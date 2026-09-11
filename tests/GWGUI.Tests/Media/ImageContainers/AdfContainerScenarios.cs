@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Adf;
+using GWGUI.MediaEngine.Formats.Floppy.Adf;
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class AdfContainerScenarios
 {
@@ -17,7 +17,7 @@ internal static class AdfContainerScenarios
         var ordered=image.AvailableBlocks.OrderBy(b=>b.LogicalBlock).ToArray();
         Assert.Equal(42,ordered[0].Data[0]);Assert.Equal(93,ordered[^1].Data[^1]);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        var linear = new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files);
+        var linear = new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files);
         var outputPath = "output" + extension;
         if (image.FormatId.StartsWith("amiga", StringComparison.OrdinalIgnoreCase)) await new AmigaAdfWriter(linear).WriteAsync(image, outputPath);
         else await new AcornAdfWriter(linear).WriteAsync(image, outputPath);

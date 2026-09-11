@@ -1,6 +1,6 @@
 using GWGUI.App.Localization.Extensions;
 using System.IO;
-using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.App.Functions.Localization;
 

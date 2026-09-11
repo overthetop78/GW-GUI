@@ -5,8 +5,9 @@ using GWGUI.MediaEngine.Decoding;
 using GWGUI.Tests.Interface.ExplorerViews;
 using System.Windows;
 using GWGUI.App.Contracts.ViewModels.Visualization;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
 namespace GWGUI.Tests.Interface.VisualizerViews;
 internal static class InspectorSelectionScenarios
 {

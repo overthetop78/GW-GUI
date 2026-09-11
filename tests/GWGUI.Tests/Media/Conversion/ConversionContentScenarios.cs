@@ -1,13 +1,15 @@
 using GWGUI.MediaEngine.Conversion.Apple;
-using GWGUI.MediaEngine.Conversion.Ibm;
 using GWGUI.MediaEngine.Conversion.Scp;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Containers.Raw;
-using GWGUI.MediaEngine.Containers.Ibm.Raw;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.Tests.Application.TestInfrastructure;
+using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.Conversion;
 internal static class ConversionContentScenarios
 {

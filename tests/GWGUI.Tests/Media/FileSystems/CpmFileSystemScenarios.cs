@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.FileSystems.Cpm;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileSystems;
 internal static class CpmFileSystemScenarios
 {
@@ -21,7 +22,7 @@ internal static class CpmFileSystemScenarios
         if(damage==2) bytes[origin+16]=2;
         if(damage==4) bytes.AsSpan(origin,2048).Fill(0xe5);
         var blocks=Enumerable.Range(0,bytes.Length/512).Select(i=>new SectorBlock(i,new(0,0,firstSector+i),bytes.AsSpan(i*512,512).ToArray())).ToArray();
-        var format=pcw?GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AmstradPcw:GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AmstradCpc;
+        var format=pcw?GWGUI.MediaEngine.Constants.DiskImageFormatIds.AmstradPcw:GWGUI.MediaEngine.Constants.DiskImageFormatIds.AmstradCpc;
         var image=new SectorImage(format,512,1,1,blocks.Length,blocks.Where(block=>damage!=3 || block.LogicalBlock!=(origin+5120)/512));
         var reader=new AmstradCpmFileSystemReader();
         if(damage==4) { Assert.Equal(pcw,reader.CanRead(image)); if(pcw) Assert.Empty(reader.Read(image).Entries); else Assert.Throws<InvalidDataException>(()=>reader.Read(image)); return; }

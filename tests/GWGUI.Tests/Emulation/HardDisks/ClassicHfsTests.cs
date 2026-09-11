@@ -1,9 +1,10 @@
 using System.Buffers.Binary;
 using DiscUtils.Streams;
 using GWGUI.Emulation.HardDisks;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests.Emulation.HardDisks;
 

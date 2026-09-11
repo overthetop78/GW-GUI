@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using System.Text;
+using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class AmstradContainerScenarios
 {

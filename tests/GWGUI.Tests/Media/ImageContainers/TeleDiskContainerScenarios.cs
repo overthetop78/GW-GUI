@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.TeleDisk;
+using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class TeleDiskContainerScenarios
 {

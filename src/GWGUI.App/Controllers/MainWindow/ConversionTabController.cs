@@ -26,6 +26,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using GWGUI.Infrastructure.Processes;
+using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Reading;
 
 namespace GWGUI.App.Controllers.MainWindow;
 
@@ -40,6 +42,8 @@ internal sealed class ConversionTabController(
     Func<AppSettings> settings,
     IGwCommandBuilder commandBuilder,
     IGreaseweazleRunner runner,
+    MediaImageReadingService mediaReader,
+    MediaConversionService mediaConversion,
     IFileDialogService fileDialogs,
     IBusinessDialogService businessDialogs,
     IMessageDialogService dialogs,
@@ -184,7 +188,7 @@ internal sealed class ConversionTabController(
         var outcome = await operation.RunAsync(token =>
         {
             var items = outputs.Select(x => (Output: x, Command: commandBuilder.BuildConversion(settings().GwExecutablePath ?? "gw.exe", viewModel.Conversion.SourcePath, x, Options(), viewModel.Conversion.ExpertArguments))).ToArray();
-            return new ConversionBatchExecutor(runner).RunAsync(viewModel.Conversion.SourcePath, items, progress, item => dispatcher.Invoke(() =>
+            return new ConversionBatchExecutor(runner, mediaReader, mediaConversion).RunAsync(viewModel.Conversion.SourcePath, items, progress, item => dispatcher.Invoke(() =>
             { operation.Begin(); operation.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }, DispatcherPriority.ContextIdle), token, settings().Engines.Conversion);
         });
         await operation.FlushPendingAsync(); operation.Apply(operation.Present(outcome)); operation.End();

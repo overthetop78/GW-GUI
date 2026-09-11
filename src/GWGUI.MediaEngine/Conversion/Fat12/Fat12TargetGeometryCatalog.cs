@@ -1,7 +1,8 @@
 using GWGUI.MediaEngine.FileSystems.Fat12;
-using GWGUI.MediaEngine.Geometries.Atari;
-using GWGUI.MediaEngine.Geometries.Ibm;
-using GWGUI.MediaEngine.Geometries.Msx;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
 
 namespace GWGUI.MediaEngine.Conversion.Fat12;
 

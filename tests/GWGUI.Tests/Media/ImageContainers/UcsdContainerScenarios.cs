@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.Ucsd.Raw;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class UcsdContainerScenarios
 {

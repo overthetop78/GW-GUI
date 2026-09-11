@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.Dec.Rx02;
+using GWGUI.MediaEngine.Formats.Floppy.Rx02;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class DecContainerScenarios
 {

@@ -1,10 +1,14 @@
-﻿using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Geometries.Apple;
-using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Reconstruction.Scp;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Flux;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.Apple;
 

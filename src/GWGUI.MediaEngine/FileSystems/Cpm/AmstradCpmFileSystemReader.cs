@@ -1,8 +1,10 @@
 using System.Collections.Frozen;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Definitions;
-using GWGUI.MediaEngine.Recognition.Amstrad;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Recognition;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Cpm;
 

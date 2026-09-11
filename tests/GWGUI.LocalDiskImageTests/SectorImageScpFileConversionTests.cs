@@ -1,15 +1,16 @@
 using GWGUI.App.Services.Conversion;
 using GWGUI.Domain.Conversion;
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Adf;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Conversion.Scp;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.Geometries.Amiga;
 using GWGUI.MediaEngine.Reconstruction;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Adf;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Iso;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.EpsonQx10;
 

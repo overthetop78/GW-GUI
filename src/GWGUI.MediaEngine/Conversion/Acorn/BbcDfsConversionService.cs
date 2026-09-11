@@ -1,8 +1,8 @@
-using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Geometries.Acorn;
 using GWGUI.MediaEngine.Reconstruction.Iso;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Conversion.Acorn;
 

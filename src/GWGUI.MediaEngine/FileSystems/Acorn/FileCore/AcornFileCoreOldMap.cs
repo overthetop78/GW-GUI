@@ -1,6 +1,5 @@
 using GWGUI.MediaEngine.FileSystems.Acorn.Adfs;
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.MediaEngine.FileSystems.Acorn.FileCore;
 

@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.Coherent;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class CoherentContainerScenarios
 {

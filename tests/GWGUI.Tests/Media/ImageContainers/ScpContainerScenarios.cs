@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.Containers.Scp;
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class ScpContainerScenarios
 {

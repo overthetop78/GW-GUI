@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
+using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class AcornContainerScenarios
 {
@@ -17,7 +17,7 @@ internal static class AcornContainerScenarios
         var ordered=image.AvailableBlocks.OrderBy(b=>b.LogicalBlock).ToArray();
         Assert.Equal(42,ordered[0].Data[0]);Assert.Equal(93,ordered[^1].Data[^1]);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        var linear = new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files);
+        var linear = new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files);
         var outputPath = "output" + extension;
         await new BbcDfsImageWriter(linear).WriteAsync(image, outputPath, image.FormatId);
         Assert.Equal(data, files.Files[outputPath]); Assert.Equal(outputPath, Assert.Single(files.Calls));

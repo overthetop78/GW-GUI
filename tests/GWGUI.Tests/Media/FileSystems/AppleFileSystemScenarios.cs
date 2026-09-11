@@ -1,12 +1,13 @@
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Migration;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Apple.InformXzip;
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion.Migration;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileSystems;
 internal static class AppleFileSystemScenarios
 {

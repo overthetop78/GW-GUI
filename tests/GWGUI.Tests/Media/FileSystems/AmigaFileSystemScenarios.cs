@@ -1,9 +1,10 @@
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Amiga;
-using GWGUI.MediaEngine.Migration;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.FileSystems.Amiga.FlatArchive;
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Conversion.Migration;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileSystems;
 internal static class AmigaFileSystemScenarios
 {

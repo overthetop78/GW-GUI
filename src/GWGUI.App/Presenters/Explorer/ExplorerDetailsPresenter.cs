@@ -57,6 +57,34 @@ public static class ExplorerDetailsPresenter
         return new(volumeName.Text, ExplorerIconCategory.DiskImage, rows, volumeName.IsSynthetic);
     }
 
+    public static ExplorerDetailsPresentation ForMedia(
+        ExploredMediaImage document,
+        ExploredMediaVolume exploredVolume,
+        string? currentSystem = null)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        ArgumentNullException.ThrowIfNull(exploredVolume);
+        var volume = exploredVolume.FileSystem;
+        var syntheticName = string.IsNullOrWhiteSpace(volume?.Name);
+        var volumeName = syntheticName
+            ? $"({LocExtension.Get("Explorer.Unnamed")})"
+            : volume!.Name;
+        var capacity = volume?.Capacity ?? exploredVolume.Descriptor.Length;
+        var entries = volume?.Entries ?? [];
+        var rows = new List<ExplorerDetailRow>
+        {
+            new("Explorer.Volume", volumeName, syntheticName),
+            new("Explorer.System", currentSystem ?? document.Document.MediaKind.ToString()),
+            new("Explorer.Protection", LocExtension.Get("Explorer.Metadata.None")),
+            new("Explorer.FileSystem", volume?.FileSystemId ?? ControlVisualConstants.EmptyValue),
+            new("Explorer.Capacity", StorageSizeFormatter.FormatBytes(capacity)),
+            new("Explorer.Free", volume?.FreeSpaceKnown == true ? StorageSizeFormatter.FormatBytes(volume.FreeBytes) : ControlVisualConstants.EmptyValue),
+            new("Explorer.Entries", ExplorerSection.CountEntries(entries).ToString()),
+            new("Explorer.Warnings", ExplorerIssueBuilder.Build(document, exploredVolume).Count.ToString())
+        };
+        return new(volumeName, ExplorerIconCategory.DiskImage, rows, syntheticName);
+    }
+
     public static ExplorerDetailsPresentation ForItem(ExplorerContentItem item)
     {
         var rows = new List<ExplorerDetailRow>

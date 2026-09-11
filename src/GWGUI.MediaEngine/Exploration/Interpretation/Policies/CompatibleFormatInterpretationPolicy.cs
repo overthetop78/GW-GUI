@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
-using GWGUI.MediaEngine.Exploration.Interpretation.Definitions;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Exploration.Interpretation;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 

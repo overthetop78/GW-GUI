@@ -1,16 +1,19 @@
-using GWGUI.MediaEngine.Containers.I86f;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.Flux.Conversion;
-using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.Reconstruction.Iso;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Decoding.I86f;
+
+using GWGUI.MediaEngine.Formats.Floppy.I86f;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 
@@ -108,7 +111,7 @@ public sealed class I86fImageTests
     [Fact]
     public void ConverterUsesFortyTicksPerCellAndRejectsTransitionlessTracks()
     {
-        var revolution = Assert.IsType<GWGUI.MediaEngine.Containers.Scp.ScpRevolution>(I86fBitCellFluxConverter.Convert([false, true, false, false, true]));
+        var revolution = Assert.IsType<GWGUI.MediaEngine.Formats.Floppy.Scp.ScpRevolution>(I86fBitCellFluxConverter.Convert([false, true, false, false, true]));
         Assert.Equal(new uint[] { 80, 120 }, revolution.FluxIntervals);
         Assert.Equal((uint)200, revolution.IndexTimeTicks);
         Assert.Null(I86fBitCellFluxConverter.Convert([false, false, false]));

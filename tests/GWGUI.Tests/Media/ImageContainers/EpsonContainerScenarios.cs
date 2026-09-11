@@ -1,5 +1,5 @@
-using GWGUI.MediaEngine.Containers.Epson.Raw;
-using GWGUI.MediaEngine.Geometries.Epson;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class EpsonContainerScenarios
 {
@@ -11,7 +11,7 @@ internal static class EpsonContainerScenarios
         var image = await reader.ReadAsync("virtual",geometry.FormatId);
         Assert.Equal(blocks,image.BlockCount); Assert.Equal(cylinders,image.Cylinders); Assert.Equal(heads,image.Heads); Assert.Equal(capacity,image.Capacity);
         var last = image.AvailableBlocks.Single(x=>x.LogicalBlock==blocks-1);
-        Assert.Equal(new GWGUI.MediaEngine.SectorImages.SectorAddress(cylinders-1,heads-1,lastSector),last.Address);
+        Assert.Equal(new GWGUI.MediaEngine.Representations.Sectors.SectorAddress(cylinders-1,heads-1,lastSector),last.Address);
         Assert.Equal(lastSize,last.Data.Count); Assert.Equal(93,last.Data[^1]);
         if(kind==5)
         {
@@ -20,7 +20,7 @@ internal static class EpsonContainerScenarios
         }
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles(); var writer = new EpsonQx10RawImageWriter(files);
         await writer.WriteAsync(image,"output",geometry.FormatId); Assert.Equal(data,files.Files["output"]);
-        var missing = new GWGUI.MediaEngine.SectorImages.SectorImage(image.FormatId,image.BlockSize,image.Cylinders,image.Heads,image.SectorsPerTrack,image.AvailableBlocks.Skip(1).ToArray(),allowVariableBlockSize:true,capacity:capacity,logicalBlockCount:blocks);
+        var missing = new GWGUI.MediaEngine.Representations.Sectors.SectorImage(image.FormatId,image.BlockSize,image.Cylinders,image.Heads,image.SectorsPerTrack,image.AvailableBlocks.Skip(1).ToArray(),allowVariableBlockSize:true,capacity:capacity,logicalBlockCount:blocks);
         await Assert.ThrowsAsync<InvalidDataException>(()=>writer.WriteAsync(missing,"output",geometry.FormatId)); Assert.Equal(data,files.Files["output"]);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>reader.ReadAsync("virtual",geometry.FormatId,new CancellationToken(true)));
         data=data[..^1]; await Assert.ThrowsAsync<InvalidDataException>(()=>reader.ReadAsync("virtual",geometry.FormatId));

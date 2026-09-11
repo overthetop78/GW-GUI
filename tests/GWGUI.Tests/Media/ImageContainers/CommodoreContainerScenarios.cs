@@ -1,7 +1,11 @@
-using GWGUI.MediaEngine.Containers.Commodore.D64;
-using GWGUI.MediaEngine.Containers.Commodore.D71;
-using GWGUI.MediaEngine.Containers.Commodore.D81;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Formats.Floppy.D64;
+
+using GWGUI.MediaEngine.Formats.Floppy.D71;
+
+using GWGUI.MediaEngine.Formats.Floppy.D81;
+
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class CommodoreContainerScenarios
 {
@@ -27,8 +31,8 @@ internal static class CommodoreContainerScenarios
         Assert.Equal(!map, blocks[1].IntegrityValid); Assert.Equal(!map, blocks[^1].IntegrityValid);
         Assert.Equal(map ? (byte?)2 : null, blocks[1].DiagnosticCode);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        var writer = new GWGUI.MediaEngine.Containers.Commodore.CommodoreDosContainerWriter(files);
-        await writer.WriteAsync(image, "output", map ? GWGUI.MediaEngine.Containers.Commodore.CommodoreDosErrorMapMode.Preserve : GWGUI.MediaEngine.Containers.Commodore.CommodoreDosErrorMapMode.None);
+        var writer = new GWGUI.MediaEngine.Formats.Floppy.CommodoreDos.CommodoreDosContainerWriter(files);
+        await writer.WriteAsync(image, "output", map ? GWGUI.MediaEngine.Formats.Floppy.CommodoreDos.CommodoreDosErrorMapMode.Preserve : GWGUI.MediaEngine.Formats.Floppy.CommodoreDos.CommodoreDosErrorMapMode.None);
         Assert.Equal(data, files.Files["output"]);
         await writer.WriteAsync(image, "without-map"); Assert.Equal(data.Take(length), files.Files["without-map"]);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => writer.WriteAsync(image, "output", cancellationToken: new CancellationToken(true)));
@@ -54,8 +58,8 @@ internal static class CommodoreContainerScenarios
         Assert.Equal(42,image.AvailableBlocks.Single(b=>b.LogicalBlock==0).Data[0]);
         Assert.Equal(93,image.AvailableBlocks.Single(b=>b.LogicalBlock==count-1).Data[^1]);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        if(kind==81) await new D81Writer(new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files)).WriteAsync(image,"output");
-        else await new GWGUI.MediaEngine.Containers.Commodore.CommodoreDosContainerWriter(files).WriteAsync(image,"output");
+        if(kind==81) await new D81Writer(new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files)).WriteAsync(image,"output");
+        else await new GWGUI.MediaEngine.Formats.Floppy.CommodoreDos.CommodoreDosContainerWriter(files).WriteAsync(image,"output");
         Assert.Equal(data,files.Files["output"]);
         data=new byte[3];
         await Assert.ThrowsAsync<InvalidDataException>(()=>read("virtual",default));

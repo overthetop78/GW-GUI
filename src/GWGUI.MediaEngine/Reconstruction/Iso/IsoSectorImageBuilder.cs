@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.Iso;
 

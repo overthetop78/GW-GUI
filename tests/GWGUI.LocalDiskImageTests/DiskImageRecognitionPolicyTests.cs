@@ -1,9 +1,9 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.Tests;
 

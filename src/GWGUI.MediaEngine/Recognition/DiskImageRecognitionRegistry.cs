@@ -1,10 +1,14 @@
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.Domain.Contracts;
+using GWGUI.MediaEngine.Reading;
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Recognition;
 
 /// <summary>Essaie dans leur ordre d'enregistrement les politiques capables de reconnaître une image de média.</summary>
 public sealed class DiskImageRecognitionRegistry
 {
+    private readonly MediaImageReadingService? readingService;
+
     /// <summary>Politiques parcourues dans l'ordre fourni au constructeur.</summary>
     private readonly IReadOnlyList<IDiskImageRecognitionPolicy> policies;
 
@@ -19,6 +23,15 @@ public sealed class DiskImageRecognitionRegistry
         this.policies = policies.ToArray();
     }
 
+    /// <summary>Creates a temporary sector-only adapter over the common media reading chain.</summary>
+    /// <param name="readingService">Common service responsible for recognition and format reading.</param>
+    public DiskImageRecognitionRegistry(MediaImageReadingService readingService)
+    {
+        ArgumentNullException.ThrowIfNull(readingService);
+        this.readingService = readingService;
+        policies = [];
+    }
+
     /// <summary>Parcourt les politiques compatibles jusqu'à ce que l'une d'elles lise complètement le contenu.</summary>
     /// <param name="path">Chemin du fichier à reconnaître.</param>
     /// <param name="requestedFormatId">Identifiant de format demandé, ou <see langword="null"/> pour la détection automatique.</param>
@@ -30,7 +43,39 @@ public sealed class DiskImageRecognitionRegistry
     /// <exception cref="IOException">Le fichier ne peut pas être consulté ou lu.</exception>
     /// <exception cref="UnauthorizedAccessException">L'accès au fichier est refusé.</exception>
     public Task<SectorImage> ReadAsync(string path, string? requestedFormatId, CancellationToken cancellationToken)
-        => ReadAsync(new DiskImageRecognitionContext(path, requestedFormatId), cancellationToken);
+        => readingService is null
+            ? ReadAsync(new DiskImageRecognitionContext(path, requestedFormatId), cancellationToken)
+            : ReadThroughCommonChainAsync(path, requestedFormatId, cancellationToken);
+
+    private async Task<SectorImage> ReadThroughCommonChainAsync(
+        string path,
+        string? requestedFormatId,
+        CancellationToken cancellationToken)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+        var source = new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId);
+
+        try
+        {
+            var document = await readingService!.ReadAsync(source, cancellationToken).ConfigureAwait(false);
+            if (document.Representation is SectorMediaImageRepresentation sectors) return sectors.Image;
+
+            throw new NotSupportedException(
+                $"The legacy sector-image adapter cannot expose the '{document.Representation.RepresentationKind}' representation read from '{path}'.");
+        }
+        catch (AggregateException exception)
+        {
+            var context = new DiskImageRecognitionContext(path, requestedFormatId);
+            var failures = exception.InnerExceptions
+                .Select((failure, index) => new DiskImageRecognitionFailure($"common-reader-{index + 1}", failure))
+                .ToArray();
+            throw DiskImageRecognitionExceptions.AllCandidatesRejected(context, failures);
+        }
+        catch (NotSupportedException exception)
+        {
+            throw new DiskImageNotRecognizedException(exception.Message, path);
+        }
+    }
 
     /// <summary>Reconnaît une source déjà décrite en partageant sa lecture entre les politiques.</summary>
     internal async Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)

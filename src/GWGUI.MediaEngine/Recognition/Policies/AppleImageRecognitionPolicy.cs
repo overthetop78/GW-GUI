@@ -1,10 +1,15 @@
-using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
-using GWGUI.MediaEngine.Containers.Apple.Nib;
-using GWGUI.MediaEngine.Containers.Apple.TwoImg;
-using GWGUI.MediaEngine.Containers.Apple.Woz;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Recognition.Apple;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.DiskCopy;
+
+using GWGUI.MediaEngine.Formats.Floppy.Nib;
+
+using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
+
+using GWGUI.MediaEngine.Formats.Floppy.Woz;
+
+using GWGUI.MediaEngine.Recognition;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 

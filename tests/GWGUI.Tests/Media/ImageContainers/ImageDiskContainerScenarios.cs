@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.ImageDisk;
+using GWGUI.MediaEngine.Formats.Floppy.ImageDisk;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class ImageDiskContainerScenarios
 {

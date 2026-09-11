@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.FileSystems.Fat12;
-using GWGUI.MediaEngine.Geometries.Ibm;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
 
 namespace GWGUI.MediaEngine.Recognition.Ibm;
 

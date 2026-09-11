@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.Ibm.Raw;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class IbmContainerScenarios
 {
@@ -13,7 +14,7 @@ internal static class IbmContainerScenarios
         Assert.Equal(valid ? 80 : 40, image.Cylinders); Assert.Equal(valid ? 1 : 2, image.Heads);
         Assert.Equal(9, image.SectorsPerTrack); Assert.Equal(720, image.BlockCount);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        var writer = new IbmRawImageWriter(new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files));
+        var writer = new IbmRawImageWriter(new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files));
         if (valid) { await Assert.ThrowsAsync<InvalidDataException>(() => writer.WriteAsync(image, "output", "ibm.360")); Assert.Empty(files.Files); }
         else { await writer.WriteAsync(image, "output", "ibm.360"); Assert.Equal(data, files.Files["output"]); }
     }
@@ -23,7 +24,7 @@ internal static class IbmContainerScenarios
         var image = await new IbmRawImageReader((_, _) => Task.FromResult(data)).ReadAsync("virtual");
         Assert.Equal("ibm.1680", image.FormatId);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        var writer = new IbmRawImageWriter(new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files));
+        var writer = new IbmRawImageWriter(new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files));
         await writer.WriteAsync(image, "output", "ibm.dmf"); Assert.Equal(data, files.Files["output"]);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => writer.WriteAsync(image, "output", "ibm.dmf", new CancellationToken(true)));
         Assert.Equal(data, files.Files["output"]);
@@ -44,7 +45,7 @@ internal static class IbmContainerScenarios
         var ordered=image.AvailableBlocks.OrderBy(b=>b.LogicalBlock).ToArray();
         Assert.Equal(42,ordered[0].Data[0]);Assert.Equal(93,ordered[^1].Data[^1]);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        var linear = new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files);
+        var linear = new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files);
         var outputPath = "output" + extension;
         await new IbmRawImageWriter(linear).WriteAsync(image, outputPath, image.FormatId);
         Assert.Equal(data, files.Files[outputPath]); Assert.Equal(outputPath, Assert.Single(files.Calls));

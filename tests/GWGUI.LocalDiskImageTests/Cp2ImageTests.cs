@@ -1,9 +1,8 @@
-using GWGUI.MediaEngine.Containers.Cp2;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Formats.Floppy.Cp2;
 
 namespace GWGUI.Tests;
 
@@ -113,7 +112,7 @@ public sealed class Cp2ImageTests
     }
 
     /// <summary>Lit une variante CP2 temporaire avec le lecteur public.</summary>
-    private static async Task<GWGUI.MediaEngine.SectorImages.SectorImage> ReadTemporaryAsync(byte[] data)
+    private static async Task<GWGUI.MediaEngine.Representations.Sectors.SectorImage> ReadTemporaryAsync(byte[] data)
     {
         var path = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.cp2");
         try

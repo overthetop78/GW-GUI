@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
-using GWGUI.MediaEngine.Containers.Scp;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Contracts.Services.PhysicalDiskReading;
 

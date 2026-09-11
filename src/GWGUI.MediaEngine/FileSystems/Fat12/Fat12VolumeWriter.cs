@@ -1,8 +1,9 @@
 using GWGUI.MediaEngine.Conversion.Fat12;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Migration;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Conversion.Migration;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Fat12;
 
@@ -84,7 +85,7 @@ public sealed class Fat12VolumeWriter
             boot[0] = FatBootSectorLayout.ShortJumpOpcode;
             boot[1] = 0x3c;
             boot[2] = 0x90;
-            var oem = Geometries.Msx.MsxDiskGeometryCatalog.TryFromFormatId(geometry.FormatId, out _) ? "MSX     " : "GWGUI   ";
+            var oem = Formats.Floppy.Raw.MsxDiskGeometryCatalog.TryFromFormatId(geometry.FormatId, out _) ? "MSX     " : "GWGUI   ";
             System.Text.Encoding.ASCII.GetBytes(oem).CopyTo(boot, FatBootSectorLayout.OemOffset);
             BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), FatBootSectorLayout.SectorSize);
             boot[FatBootSectorLayout.SectorsPerClusterOffset] = checked((byte)_layout.SectorsPerCluster);

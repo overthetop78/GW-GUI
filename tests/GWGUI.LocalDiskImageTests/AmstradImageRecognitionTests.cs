@@ -1,11 +1,11 @@
-using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
 
 namespace GWGUI.Tests;
 
@@ -93,8 +93,8 @@ public sealed class AmstradImageRecognitionTests
     }
 
     private static void AssertSameSectorImage(
-        GWGUI.MediaEngine.SectorImages.SectorImage expected,
-        GWGUI.MediaEngine.SectorImages.SectorImage actual)
+        GWGUI.MediaEngine.Representations.Sectors.SectorImage expected,
+        GWGUI.MediaEngine.Representations.Sectors.SectorImage actual)
     {
         Assert.Equal(expected.BlockSize, actual.BlockSize);
         Assert.Equal(expected.Cylinders, actual.Cylinders);

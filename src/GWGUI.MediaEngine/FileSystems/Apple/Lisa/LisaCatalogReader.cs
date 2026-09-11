@@ -1,6 +1,7 @@
 using System.Buffers.Binary;
 using System.Collections.Frozen;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 

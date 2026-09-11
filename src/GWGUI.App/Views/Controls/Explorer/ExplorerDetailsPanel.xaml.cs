@@ -14,6 +14,8 @@ namespace GWGUI.App.Views.Controls.Explorer;
 public partial class ExplorerDetailsPanel : UserControl
 {
     private ExploredDiskImage? _document;
+    private ExploredMediaImage? _mediaDocument;
+    private ExploredMediaVolume? _mediaVolume;
     private ExplorerContentItem? _item;
     private string? _currentSystem;
 
@@ -26,11 +28,13 @@ public partial class ExplorerDetailsPanel : UserControl
     }
 
     public string DisplayedTitle => DetailsTitle.Text;
-    public bool IsShowingDisk => _document is not null && _item is null;
+    public bool IsShowingDisk => (_document is not null || _mediaDocument is not null) && _item is null;
 
     public void Clear()
     {
         _document = null;
+        _mediaDocument = null;
+        _mediaVolume = null;
         _item = null;
         _currentSystem = null;
         DetailsIcon.Category = ExplorerIconCategory.DiskImage;
@@ -42,6 +46,20 @@ public partial class ExplorerDetailsPanel : UserControl
     public void ShowDisk(ExploredDiskImage document, string? currentSystem = null)
     {
         _document = document;
+        _mediaDocument = null;
+        _mediaVolume = null;
+        _item = null;
+        _currentSystem = currentSystem;
+        Render();
+    }
+
+    public void ShowMedia(ExploredMediaImage document, ExploredMediaVolume volume, string? currentSystem = null)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        ArgumentNullException.ThrowIfNull(volume);
+        _document = null;
+        _mediaDocument = document;
+        _mediaVolume = volume;
         _item = null;
         _currentSystem = currentSystem;
         Render();
@@ -50,6 +68,15 @@ public partial class ExplorerDetailsPanel : UserControl
     public void ShowItem(ExploredDiskImage document, ExplorerContentItem item)
     {
         _document = document;
+        _mediaDocument = null;
+        _mediaVolume = null;
+        _item = item;
+        Render();
+    }
+
+    public void ShowItem(ExplorerContentItem item)
+    {
+        ArgumentNullException.ThrowIfNull(item);
         _item = item;
         Render();
     }
@@ -62,19 +89,25 @@ public partial class ExplorerDetailsPanel : UserControl
 
     private void Render()
     {
-        if (_document is null)
+        if (_document is null && (_mediaDocument is null || _mediaVolume is null))
         {
             Clear();
             return;
         }
 
-        if (_item is null)
+        if (_item is not null)
+        {
+            RenderItem(_item);
+            return;
+        }
+
+        if (_document is not null)
         {
             RenderDisk(_document);
             return;
         }
 
-        RenderItem(_item);
+        Apply(ExplorerDetailsPresenter.ForMedia(_mediaDocument!, _mediaVolume!, _currentSystem));
     }
 
     private void RenderDisk(ExploredDiskImage document)

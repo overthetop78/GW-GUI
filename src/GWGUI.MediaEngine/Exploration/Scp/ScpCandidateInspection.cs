@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Scp;
 

@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Conversion.Fat12;
 

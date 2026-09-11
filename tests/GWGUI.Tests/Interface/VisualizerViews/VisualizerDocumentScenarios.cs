@@ -10,11 +10,12 @@ using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.Domain.Commands.Building;
 using GWGUI.Domain.Commands.Execution;
 using GWGUI.Domain.Settings;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Visualization;
 using System.Windows;
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
 namespace GWGUI.Tests.Interface.VisualizerViews;
 internal static class VisualizerDocumentScenarios
 {

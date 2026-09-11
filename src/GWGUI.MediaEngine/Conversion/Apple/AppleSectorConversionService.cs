@@ -1,9 +1,12 @@
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Apple.Raw;
-using GWGUI.MediaEngine.Containers.Apple.TwoImg;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Reconstruction.Apple;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Conversion.Apple;
 
@@ -26,7 +29,7 @@ public sealed class AppleSectorConversionService(AppleDiskImageReader imageReade
         var outputExtension = Path.GetExtension(outputPath);
         if (!CanCreate(targetFormatId, outputExtension)) throw new NotSupportedException($"Apple target '{targetFormatId}' with extension '{outputExtension}' is not supported.");
         var image = await ReadSourceAsync(sourcePath, targetFormatId, cancellationToken).ConfigureAwait(false);
-        ValidateSource(image, targetFormatId);
+        AppleSectorConversionValidationFunctions.Validate(image, targetFormatId);
         if (outputExtension.Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase))
             await twoImgWriter.WriteAsync(image, outputPath, targetFormatId, cancellationToken).ConfigureAwait(false);
         else
@@ -39,17 +42,6 @@ public sealed class AppleSectorConversionService(AppleDiskImageReader imageReade
         if (Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)) return await scpReader.ReadAsync(sourcePath, targetFormatId, cancellationToken).ConfigureAwait(false);
         var bytes = await File.ReadAllBytesAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         return await imageReader.ReadAsync(bytes, Path.GetExtension(sourcePath), targetFormatId, cancellationToken).ConfigureAwait(false);
-    }
-
-    /// <summary>Empêche de rebaptiser un système de fichiers en un autre sans conversion sémantique.</summary>
-    private static void ValidateSource(SectorImage image, string targetFormatId)
-    {
-        var valid = targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) && image.FormatId.Equals(DiskImageFormatIds.AppleIIDos32, StringComparison.OrdinalIgnoreCase)
-            || targetFormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) && (image.FormatId.Equals(DiskImageFormatIds.AppleIIDos33, StringComparison.OrdinalIgnoreCase) || image.FormatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase))
-            || targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) && (image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) || image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase))
-            || targetFormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) && (image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) || image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase))
-            || targetFormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) && image.FormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase);
-        if (!valid) throw new InvalidDataException($"Apple source format '{image.FormatId}' cannot be written as '{targetFormatId}' without changing its file system.");
     }
 
     /// <summary>Indique si l'identifiant appartient aux cinq profils sectoriels pris en charge.</summary>

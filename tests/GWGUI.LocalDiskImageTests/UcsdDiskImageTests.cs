@@ -1,17 +1,19 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.TeleDisk;
-using GWGUI.MediaEngine.Containers.Ucsd.Raw;
-using GWGUI.MediaEngine.Conversion.Ucsd;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Ucsd;
-using GWGUI.MediaEngine.Geometries.Ucsd;
 using GWGUI.MediaEngine.Reconstruction.Iso;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
 using GWGUI.MediaEngine.Decoding;
 using Xunit.Abstractions;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

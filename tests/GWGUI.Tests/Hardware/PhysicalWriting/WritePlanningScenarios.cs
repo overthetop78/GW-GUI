@@ -2,7 +2,8 @@ using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
 using GWGUI.App.Enums.Services.PhysicalDiskWriting;
 using GWGUI.App.Services.PhysicalDiskWriting;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
-using GWGUI.MediaEngine.Containers.Scp;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.Tests.Hardware.PhysicalWriting;
 internal static class WritePlanningScenarios

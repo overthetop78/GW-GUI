@@ -1,7 +1,8 @@
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Exploration.Scoring;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Exploration;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Scp;
 

@@ -1,11 +1,12 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Atari.Msa;
-using GWGUI.MediaEngine.Containers.Atari.St;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.Geometries.Atari;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Msa;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
 
 namespace GWGUI.Tests;
 

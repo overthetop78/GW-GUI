@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
-using GWGUI.MediaEngine.Flux;
+
+using GWGUI.MediaEngine.Representations.Flux;
 
 namespace GWGUI.MediaEngine.Decoding;
 

@@ -13,4 +13,8 @@
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

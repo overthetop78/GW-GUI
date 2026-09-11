@@ -1,9 +1,11 @@
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Results;
 

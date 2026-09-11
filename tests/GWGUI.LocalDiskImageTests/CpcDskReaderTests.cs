@@ -1,9 +1,10 @@
-using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.Buffers.Binary;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+
+using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
 
 namespace GWGUI.Tests;
 

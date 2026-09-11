@@ -1,15 +1,18 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
-using GWGUI.MediaEngine.Containers.Atari.St;
-using GWGUI.MediaEngine.Containers.Hfe;
-using GWGUI.MediaEngine.Conversion.Hfe;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
+
+using GWGUI.MediaEngine.Formats.Floppy.Hfe;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

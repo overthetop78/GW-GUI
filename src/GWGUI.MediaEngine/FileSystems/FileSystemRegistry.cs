@@ -1,6 +1,11 @@
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Interfaces.Exploration;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems;
 
@@ -9,6 +14,7 @@ public sealed class FileSystemRegistry
 {
     private readonly FrozenDictionary<string, IFileSystemReader> readersById;
     private readonly FrozenDictionary<string, IReadOnlyList<IFileSystemReader>> readersByFormatId;
+    private readonly FrozenDictionary<MediaRepresentationKind, IReadOnlyList<IMediaFileSystemReader>> readersByRepresentation;
 
     /// <summary>Crée le registre à partir du catalogue par défaut.</summary>
     public FileSystemRegistry() : this(FileSystemReaderCatalog.CreateDefault()) { }
@@ -28,6 +34,13 @@ public sealed class FileSystemRegistry
         Readers = Array.AsReadOnly(copied);
         readersById = copied.ToFrozenDictionary(reader => reader.Id, StringComparer.OrdinalIgnoreCase);
         readersByFormatId = copied.SelectMany(reader => reader.CatalogFormatIds.Select(formatId => (formatId, reader))).GroupBy(item => item.formatId, StringComparer.OrdinalIgnoreCase).ToFrozenDictionary(group => group.Key, group => (IReadOnlyList<IFileSystemReader>)Array.AsReadOnly(group.Select(item => item.reader).ToArray()), StringComparer.OrdinalIgnoreCase);
+        readersByRepresentation = copied
+            .Cast<IMediaFileSystemReader>()
+            .SelectMany(reader => reader.RepresentationKinds.Select(kind => (kind, reader)))
+            .GroupBy(item => item.kind)
+            .ToFrozenDictionary(
+                group => group.Key,
+                group => (IReadOnlyList<IMediaFileSystemReader>)Array.AsReadOnly(group.Select(item => item.reader).ToArray()));
         SupportedFormatIds = readersByFormatId.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     }
 
@@ -35,6 +48,34 @@ public sealed class FileSystemRegistry
     public IReadOnlyList<IFileSystemReader> Readers { get; }
     /// <summary>Ensemble immuable des formats de catalogue déclarés.</summary>
     public IReadOnlySet<string> SupportedFormatIds { get; }
+
+    /// <summary>Explores a media volume with readers compatible with its actual representation.</summary>
+    public ExploredMediaVolume Explore(MediaImageDocument document, MediaVolumeDescriptor volume)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        ArgumentNullException.ThrowIfNull(volume);
+        if (!readersByRepresentation.TryGetValue(document.Representation.RepresentationKind, out var candidates))
+            return new(volume, null, null, []);
+
+        var ordered = string.IsNullOrWhiteSpace(volume.FileSystemId)
+            ? candidates
+            : candidates.OrderByDescending(reader => reader.Id.Equals(volume.FileSystemId, StringComparison.OrdinalIgnoreCase)).ToArray();
+        var diagnostics = new List<string>();
+        foreach (var reader in ordered)
+        {
+            if (!reader.CanRead(document, volume)) continue;
+            try
+            {
+                return new(volume, reader.Id, reader.Read(document, volume), diagnostics);
+            }
+            catch (InvalidDataException exception)
+            {
+                diagnostics.Add($"{reader.Id}: {exception.Message}");
+            }
+        }
+
+        return new(volume, null, null, diagnostics);
+    }
 
     /// <summary>Lit tous les lecteurs qui reconnaissent l'image.</summary>
     public FileSystemReadReport ReadAll(SectorImage image) => ReadCandidates(image, Readers);

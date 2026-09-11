@@ -1,9 +1,12 @@
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
-using GWGUI.MediaEngine.Containers.Apple.Raw;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Reconstruction.Apple;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.DiskCopy;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Conversion.Apple;
 

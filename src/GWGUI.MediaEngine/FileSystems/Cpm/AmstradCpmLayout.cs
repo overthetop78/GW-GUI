@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Recognition.Amstrad;
+
+using GWGUI.MediaEngine.Recognition;
 
 namespace GWGUI.MediaEngine.FileSystems.Cpm;
 

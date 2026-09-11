@@ -1,5 +1,7 @@
-using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Formats.Floppy.D71;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 

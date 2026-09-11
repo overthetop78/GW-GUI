@@ -1,9 +1,9 @@
-using GWGUI.MediaEngine.Containers.Atari.Atr;
 using GWGUI.MediaEngine.Conversion.Atari;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Atr;
 
 namespace GWGUI.Tests;
 

@@ -48,16 +48,13 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.Infrastructure.Hardware;
-
-
-
 namespace GWGUI.App.Views.Windows.Shell;
 
 public partial class MainWindow : Window
@@ -161,6 +158,7 @@ public partial class MainWindow : Window
     private ImageFormatDetector _formatDetector = null!;
     private readonly ConversionFormatPresenter _conversionFormatPresenter = new();
     private readonly FluxDecoderRegistry _fluxDecoders = new();
+    private readonly MediaEngineComposition _mediaEngine;
     private readonly ScpInspectorController _scpInspectorController;
     private readonly DiskImageWorkspaceController _diskImageWorkspace;
     private readonly ExplorerReadController _explorerRead;
@@ -183,6 +181,7 @@ public partial class MainWindow : Window
         _openDocumentation = openDocumentation ?? (url => Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }));
         _writeError = logError ?? ((error, context) => ErrorLog.Write(error, context));
         InitializeComponent();
+        _mediaEngine = MediaEngineComposition.CreateDefault();
         _settingsProvidedAtStartup = initialSettings is not null;
         _settings = initialSettings ?? new AppSettings();
         if (_settingsProvidedAtStartup) RestoreWindowPlacement();
@@ -285,13 +284,16 @@ public partial class MainWindow : Window
             _commandBuilder,
             _runner,
             _scpInspectorController,
-            new ScpDocumentLoader(new ScpReader(), (key, arguments) => LocExtension.Get(key, arguments)),
+            new ScpDocumentLoader(_mediaEngine.Recognition.ScpReader, (key, arguments) => LocExtension.Get(key, arguments)),
             DiskImageExplorer.CreateDefault(),
             new SectorImageFluxVisualizer(),
             diskImageCancellation,
             () => _operation.IsRunning,
             ShowLoggedError,
-            (key, arguments) => LocExtension.Get(key, arguments));
+            (key, arguments) => LocExtension.Get(key, arguments),
+            mediaReader: _mediaEngine.ReadingService,
+            mediaExplorer: _mediaEngine.Explorer,
+            visualizationProviders: _mediaEngine.Visualization.Registry);
         VisualizerHeader.ClassificationSelector.ValueChanged += (_, _) => _diskImageWorkspace.ApplyClassification();
         _readTab = new ReadTabController(
             ReadTabBlock,
@@ -329,6 +331,7 @@ public partial class MainWindow : Window
         _conversionTab = new ConversionTabController(
             this, ConvertTabBlock, _viewModel, _profileController, _conversionFormatPresenter,
             () => _formatCatalog, () => _formatDetector, () => _settings, _commandBuilder, _runner,
+            _mediaEngine.ReadingService, _mediaEngine.ConversionService,
             _fileDialogs, _businessDialogs, _dialogs, _diskDefinitionsController, _operation, _consoleLog,
             _diskImageWorkspace, ReadFolder, CommandPreview, LogOutput, () => MainTabs?.SelectedIndex ?? -1,
             index => MainTabs.SelectedIndex = index, path => _diskImageWorkspace.LoadAsync(path),

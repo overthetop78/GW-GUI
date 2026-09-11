@@ -1,9 +1,10 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
-using GWGUI.MediaEngine.Encoding.Commodore;
-using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.D81;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Visualization.Policies;
 

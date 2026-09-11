@@ -1,7 +1,8 @@
-using GWGUI.MediaEngine.Containers.Dec.Rx02;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Geometries.Dec;
-using GWGUI.MediaEngine.Recognition.Dec;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Rx02;
+
+using GWGUI.MediaEngine.Recognition;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 

@@ -1,6 +1,6 @@
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class AppleContainerScenarios
 {
@@ -28,8 +28,8 @@ internal static class AppleContainerScenarios
     public static async Task WriterFacade(bool woz,bool rwts)
     {
         int sectors=rwts?6:16, size=rwts?768:256;
-        var blocks=Enumerable.Range(0,sectors*2).Select(i=>new GWGUI.MediaEngine.SectorImages.SectorBlock(i,new(i/sectors,0,i%sectors),Enumerable.Range(0,size).Select(j=>(byte)(j+i)).ToArray())).ToArray();
-        var image=new GWGUI.MediaEngine.SectorImages.SectorImage(rwts?DiskImageFormatIds.AppleIIRwts18:DiskImageFormatIds.AppleIIDos33,size,2,1,sectors,blocks);
+        var blocks=Enumerable.Range(0,sectors*2).Select(i=>new GWGUI.MediaEngine.Representations.Sectors.SectorBlock(i,new(i/sectors,0,i%sectors),Enumerable.Range(0,size).Select(j=>(byte)(j+i)).ToArray())).ToArray();
+        var image=new GWGUI.MediaEngine.Representations.Sectors.SectorImage(rwts?DiskImageFormatIds.AppleIIRwts18:DiskImageFormatIds.AppleIIDos33,size,2,1,sectors,blocks);
         var files=new Dictionary<string,byte[]>(); var writer=new AppleDiskImageWriter(writeBytes:(path,bytes,token)=>{token.ThrowIfCancellationRequested();files[path]=bytes;return Task.CompletedTask;});
         string path=woz?"output.woz":"output.nib"; await writer.WriteAsync(image,path);
         var read=await new AppleDiskImageReader().ReadAsync(files[path].AsMemory(),woz?".woz":".nib",null);
@@ -37,13 +37,13 @@ internal static class AppleContainerScenarios
         foreach(var block in blocks) Assert.Equal(block.Data,read.AvailableBlocks.Single(b=>b.Address.Cylinder==block.Address.Cylinder&&b.Address.Number==block.Address.Number).Data);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>writer.WriteAsync(image,path,new CancellationToken(true)));
         await Assert.ThrowsAsync<NotSupportedException>(()=>writer.WriteAsync(image,"bad.ext"));
-        var incomplete=new GWGUI.MediaEngine.SectorImages.SectorImage(image.FormatId,size,2,1,sectors,blocks.Skip(1));
+        var incomplete=new GWGUI.MediaEngine.Representations.Sectors.SectorImage(image.FormatId,size,2,1,sectors,blocks.Skip(1));
         await Assert.ThrowsAsync<InvalidDataException>(()=>writer.WriteAsync(incomplete,path));
     }
 
     public static async Task RawVariant(int kind)
     {
-        var plan=new GWGUI.MediaEngine.Migration.MigrationPlan("synthetic","prodos",kind<2?"DOS-007":"TEST",[]);
+        var plan=new GWGUI.MediaEngine.Conversion.Migration.MigrationPlan("synthetic","prodos",kind<2?"DOS-007":"TEST",[]);
         var source=kind switch
         {
             0=>new GWGUI.MediaEngine.FileSystems.Apple.Dos.AppleDosVolumeWriter().Create(plan,DiskImageFormatIds.AppleIIDos32),
@@ -53,11 +53,11 @@ internal static class AppleContainerScenarios
         };
         string target=kind switch {0=>DiskImageFormatIds.AppleIIAppleDos113,1=>DiskImageFormatIds.AppleIIAppleDos140,2=>DiskImageFormatIds.AppleIIISos,_=>DiskImageFormatIds.AppleIIProDos800};
         string extension=kind switch{0=>".d13",1=>".do",_=>".po"}; var files=new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        var writer=new GWGUI.MediaEngine.Containers.Apple.Raw.AppleRawImageWriter(files); await writer.WriteAsync(source,"out"+extension,target);
+        var writer=new GWGUI.MediaEngine.Formats.Floppy.Raw.AppleRawImageWriter(files); await writer.WriteAsync(source,"out"+extension,target);
         byte[] bytes=files.Files["out"+extension]; Assert.Equal(source.AvailableBlocks.OrderBy(b=>b.LogicalBlock).SelectMany(b=>b.Data),bytes);
         var read=await new AppleDiskImageReader().ReadAsync(bytes.AsMemory(),extension,null); Assert.Equal(source.Capacity,read.Capacity); Assert.Equal(source.BlockSize,read.BlockSize);
         Assert.Equal(kind==2?DiskImageFormatIds.AppleIIISos:kind==3?DiskImageFormatIds.AppleIIProDos:source.FormatId,read.FormatId);
-        await new GWGUI.MediaEngine.Containers.Apple.TwoImg.TwoImgWriter(files).WriteAsync(source,"out.2mg",target);
+        await new GWGUI.MediaEngine.Formats.Floppy.TwoImg.TwoImgWriter(files).WriteAsync(source,"out.2mg",target);
         var restored=await new AppleDiskImageReader().ReadAsync(files.Files["out.2mg"].AsMemory(),".2mg",null);
         Assert.Equal(bytes,restored.AvailableBlocks.OrderBy(b=>b.LogicalBlock).SelectMany(b=>b.Data));
         await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>writer.WriteAsync(source,"cancelled"+extension,target,new CancellationToken(true)));
@@ -65,17 +65,17 @@ internal static class AppleContainerScenarios
 
     public static async Task LisaDiskCopy(int count)
     {
-        var blocks=Enumerable.Range(0,count).Select(i=>new GWGUI.MediaEngine.SectorImages.SectorBlock(i,new(0,0,i),Enumerable.Repeat((byte)(i%251),512).ToArray(),Tag:new byte[]{0,0,0,0,0,1,0,(byte)i,0,0,0,0})).ToArray();
-        var image=new GWGUI.MediaEngine.SectorImages.SectorImage(DiskImageFormatIds.AppleLisaOffice,512,1,1,count,blocks);
-        var files=new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles(); var writer=new GWGUI.MediaEngine.Containers.Apple.DiskCopy.DiskCopyWriter(files);
+        var blocks=Enumerable.Range(0,count).Select(i=>new GWGUI.MediaEngine.Representations.Sectors.SectorBlock(i,new(0,0,i),Enumerable.Repeat((byte)(i%251),512).ToArray(),Tag:new byte[]{0,0,0,0,0,1,0,(byte)i,0,0,0,0})).ToArray();
+        var image=new GWGUI.MediaEngine.Representations.Sectors.SectorImage(DiskImageFormatIds.AppleLisaOffice,512,1,1,count,blocks);
+        var files=new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles(); var writer=new GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyWriter(files);
         await writer.WriteAsync(image,"out.dc42",new(image,[84,69,83,84],0,0)); var bytes=files.Files["out.dc42"];
-        var read=GWGUI.MediaEngine.Containers.Apple.DiskCopy.DiskCopyReader.ReadDetailed(bytes).Image;
+        var read=GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.ReadDetailed(bytes).Image;
         Assert.Equal(count,read.BlockCount); Assert.Equal(DiskImageFormatIds.AppleLisaOffice,read.FormatId);
         Assert.Equal(count==1702?46:count==800?80:1,read.Cylinders); Assert.Equal(count==1702?2:1,read.Heads);
         Assert.Equal(blocks.SelectMany(b=>b.Data),read.AvailableBlocks.OrderBy(b=>b.LogicalBlock).SelectMany(b=>b.Data));
         Assert.Equal(blocks[^1].Tag,read.AvailableBlocks.Single(b=>b.LogicalBlock==count-1).Tag);
-        bytes[^1]^=1; Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Containers.Apple.DiskCopy.DiskCopyReader.Read(bytes));
-        bytes[^1]^=1; BinaryPrimitives.WriteInt32BigEndian(bytes.AsSpan(68),1); Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Containers.Apple.DiskCopy.DiskCopyReader.Read(bytes));
+        bytes[^1]^=1; Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.Read(bytes));
+        bytes[^1]^=1; BinaryPrimitives.WriteInt32BigEndian(bytes.AsSpan(68),1); Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.Read(bytes));
     }
 
     public static async Task BitContainer(bool woz,int sectors)
@@ -86,8 +86,8 @@ internal static class AppleContainerScenarios
         var files = new Dictionary<string,byte[]>();
         Task Store(string path,byte[] bytes,CancellationToken token) { token.ThrowIfCancellationRequested(); files[path]=bytes; return Task.CompletedTask; }
         Task Write(IReadOnlyList<IReadOnlyList<bool>> tracks,string path,CancellationToken token = default) => woz
-            ? GWGUI.MediaEngine.Containers.Apple.Woz.WozWriter.WriteAsync(tracks,path,token,Store)
-            : GWGUI.MediaEngine.Containers.Apple.Nib.NibWriter.WriteAsync(tracks,path,token,Store);
+            ? GWGUI.MediaEngine.Formats.Floppy.Woz.WozWriter.WriteAsync(tracks,path,token,Store)
+            : GWGUI.MediaEngine.Formats.Floppy.Nib.NibWriter.WriteAsync(tracks,path,token,Store);
         await Write([encoded.Bits],"output"); var written = files["output"];
         if(woz)
         {
@@ -120,24 +120,24 @@ internal static class AppleContainerScenarios
         Assert.Equal(0,ordered[0].Address.Number); Assert.Equal(79,ordered[^1].Address.Cylinder);
         Assert.Equal(capacity==1474560?17:7,ordered[^1].Address.Number);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        await new GWGUI.MediaEngine.Containers.Apple.Raw.MacintoshRawImageWriter(files).WriteAsync(image,"raw"); Assert.Equal(data,files.Files["raw"]);
+        await new GWGUI.MediaEngine.Formats.Floppy.Raw.MacintoshRawImageWriter(files).WriteAsync(image,"raw"); Assert.Equal(data,files.Files["raw"]);
         if(tagged)
         {
-            var blocks = ordered.Select((block,index)=>new GWGUI.MediaEngine.SectorImages.SectorBlock(block.LogicalBlock,block.Address,block.Data,Tag:Enumerable.Repeat((byte)(index%251),12).ToArray())).ToArray();
+            var blocks = ordered.Select((block,index)=>new GWGUI.MediaEngine.Representations.Sectors.SectorBlock(block.LogicalBlock,block.Address,block.Data,Tag:Enumerable.Repeat((byte)(index%251),12).ToArray())).ToArray();
             image = new(image.FormatId,512,80,image.Heads,image.SectorsPerTrack,blocks,capacity:capacity,logicalBlockCount:blocks.Length);
         }
-        var writer = new GWGUI.MediaEngine.Containers.Apple.DiskCopy.DiskCopyWriter(files); await writer.WriteAsync(image,"disk.dc42"); var output = files.Files["disk.dc42"];
+        var writer = new GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyWriter(files); await writer.WriteAsync(image,"disk.dc42"); var output = files.Files["disk.dc42"];
         Assert.Equal(capacity+84+(tagged?capacity/512*12:0),output.Length);
         Assert.Equal(4,output[0]); Assert.Equal("disk"u8.ToArray(),output.Skip(1).Take(4));
         Assert.Equal((uint)capacity,BinaryPrimitives.ReadUInt32BigEndian(output.AsSpan(64)));
         Assert.Equal(new byte[]{1,0},output.Skip(82).Take(2)); Assert.Equal(data,output.Skip(84).Take(capacity));
         uint checksum=0; for(var index=0;index<data.Length;index+=2) { checksum=unchecked(checksum+(uint)(data[index]*256+data[index+1])); checksum=(checksum>>1)|(checksum<<31); }
         Assert.Equal(checksum,BinaryPrimitives.ReadUInt32BigEndian(output.AsSpan(72)));
-        var decoded = GWGUI.MediaEngine.Containers.Apple.DiskCopy.DiskCopyReader.ReadDetailed(output);
+        var decoded = GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.ReadDetailed(output);
         Assert.Equal(data,decoded.Image.AvailableBlocks.OrderBy(x=>x.LogicalBlock).SelectMany(x=>x.Data));
         if(tagged) Assert.Equal(Enumerable.Repeat((byte)1,12),decoded.Image.AvailableBlocks.Single(x=>x.LogicalBlock==1).Tag!);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>writer.WriteAsync(image,"cancelled",cancellationToken:new CancellationToken(true)));
-        output[84]^=1; Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Containers.Apple.DiskCopy.DiskCopyReader.Read(output));
+        output[84]^=1; Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.Read(output));
     }
     public static async Task Read(bool container)
     {
@@ -153,9 +153,9 @@ internal static class AppleContainerScenarios
         Assert.Equal(42, image.AvailableBlocks.Single(block => block.LogicalBlock == 0).Data[0]);
         Assert.Equal(93, image.AvailableBlocks.Single(block => block.LogicalBlock == 279).Data[^1]);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        await new GWGUI.MediaEngine.Containers.Apple.Raw.AppleRawImageWriter(files).WriteAsync(image,"raw.po",DiskImageFormatIds.AppleIIProDos140);
+        await new GWGUI.MediaEngine.Formats.Floppy.Raw.AppleRawImageWriter(files).WriteAsync(image,"raw.po",DiskImageFormatIds.AppleIIProDos140);
         Assert.Equal(bytes.Skip(offset),files.Files["raw.po"]);
-        await new GWGUI.MediaEngine.Containers.Apple.TwoImg.TwoImgWriter(files).WriteAsync(image,"output.2mg",DiskImageFormatIds.AppleIIProDos140);
+        await new GWGUI.MediaEngine.Formats.Floppy.TwoImg.TwoImgWriter(files).WriteAsync(image,"output.2mg",DiskImageFormatIds.AppleIIProDos140);
         var output = files.Files["output.2mg"]; Assert.Equal(143424,output.Length);
         Assert.Equal("2IMG"u8.ToArray(),output.Take(4)); Assert.Equal(64,output[8]); Assert.Equal(1,output[10]); Assert.Equal(1,output[12]);
         Assert.Equal(280u,BinaryPrimitives.ReadUInt32LittleEndian(output.AsSpan(20))); Assert.Equal(64u,BinaryPrimitives.ReadUInt32LittleEndian(output.AsSpan(24)));
@@ -172,7 +172,7 @@ internal static class AppleContainerScenarios
         else { bytes[1024]=0xd2; bytes[1025]=0xd7; }
         var reader=new AppleDiskImageReader(); var image=await reader.ReadAsync(bytes.AsMemory(),".img",null);
         Assert.Equal(lisa?DiskImageFormatIds.AppleLisaRaw:DiskImageFormatIds.AppleMacMfs,image.FormatId); Assert.Equal(800,image.BlockCount);
-        var files=new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles(); await new GWGUI.MediaEngine.Containers.Apple.Raw.MacintoshRawImageWriter(files).WriteAsync(image,"out.img"); Assert.Equal(bytes,files.Files["out.img"]);
+        var files=new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles(); await new GWGUI.MediaEngine.Formats.Floppy.Raw.MacintoshRawImageWriter(files).WriteAsync(image,"out.img"); Assert.Equal(bytes,files.Files["out.img"]);
         Array.Clear(bytes); await Assert.ThrowsAsync<InvalidDataException>(()=>reader.ReadAsync(bytes.AsMemory(),".img",null));
     }
 

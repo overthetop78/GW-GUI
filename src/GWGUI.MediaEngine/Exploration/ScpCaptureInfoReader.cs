@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
-using GWGUI.MediaEngine.Containers.Scp;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.MediaEngine.Exploration;
 

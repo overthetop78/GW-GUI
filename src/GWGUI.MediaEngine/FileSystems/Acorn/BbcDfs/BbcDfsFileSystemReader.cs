@@ -1,10 +1,10 @@
-using GWGUI.MediaEngine.Definitions;
 using System.Collections.Frozen;
-using GWGUI.MediaEngine.SectorImages;
 
 
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.Geometries.Acorn;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Acorn.BbcDfs;
 

@@ -1,6 +1,12 @@
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.D64;
+
+using GWGUI.MediaEngine.Formats.Floppy.D71;
+
+using GWGUI.MediaEngine.Formats.Floppy.D81;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 

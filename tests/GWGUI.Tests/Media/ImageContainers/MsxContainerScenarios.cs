@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.Containers.Msx.Raw;
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class MsxContainerScenarios
 {
@@ -18,10 +19,10 @@ internal static class MsxContainerScenarios
         Assert.Equal(size,image.Capacity);
         Assert.Equal(42,image.AvailableBlocks.Single(b=>b.LogicalBlock==image.BlockCount-1).Data[^1]);
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles();
-        await new MsxRawImageWriter(new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files)).WriteAsync(image,"output.dsk",image.FormatId);
+        await new MsxRawImageWriter(new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files)).WriteAsync(image,"output.dsk",image.FormatId);
         Assert.Equal(data,files.Files["output.dsk"]);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>reader.ReadAsync("virtual",new CancellationToken(true)));
-        await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>new MsxRawImageWriter(new GWGUI.MediaEngine.Containers.Raw.LinearSectorImageWriter(files)).WriteAsync(image,"cancelled.dsk",image.FormatId,new CancellationToken(true)));
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>new MsxRawImageWriter(new GWGUI.MediaEngine.Formats.Floppy.Raw.LinearSectorImageWriter(files)).WriteAsync(image,"cancelled.dsk",image.FormatId,new CancellationToken(true)));
         Assert.False(files.Files.ContainsKey("cancelled.dsk"));
         data[3]=0;
         await Assert.ThrowsAsync<InvalidDataException>(()=>reader.ReadAsync("virtual"));

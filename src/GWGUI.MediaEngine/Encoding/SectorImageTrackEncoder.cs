@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Visualization;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Encoding;
 

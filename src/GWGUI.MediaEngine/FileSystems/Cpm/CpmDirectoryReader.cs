@@ -1,6 +1,7 @@
 using System.Buffers.Binary;
 using System.Text;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Cpm;
 

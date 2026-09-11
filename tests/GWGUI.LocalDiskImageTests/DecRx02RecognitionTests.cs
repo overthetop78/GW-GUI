@@ -1,12 +1,13 @@
-using GWGUI.MediaEngine.Containers.Dec.Rx02;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
-using GWGUI.MediaEngine.Geometries.Dec;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
 using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Rx02;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

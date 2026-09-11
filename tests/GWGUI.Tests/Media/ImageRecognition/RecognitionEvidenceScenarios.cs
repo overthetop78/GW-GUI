@@ -3,8 +3,8 @@ using GWGUI.Domain.Formats;
 using GWGUI.Domain.Formats.Detection;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.ImageRecognition;
 internal static class RecognitionEvidenceScenarios
 {

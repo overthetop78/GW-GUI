@@ -1,8 +1,8 @@
-using GWGUI.MediaEngine.Containers.Atari.Msa;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Msa;
 
 namespace GWGUI.Tests;
 
@@ -40,7 +40,7 @@ public sealed class MsaReaderTests
     }
 
     /// <summary>Retourne l'adresse CHS d'un bloc sous une forme directement comparable.</summary>
-    private static (int Cylinder, int Head, int Number) AddressOf(GWGUI.MediaEngine.SectorImages.SectorBlock block) => (block.Address.Cylinder, block.Address.Head, block.Address.Number);
+    private static (int Cylinder, int Head, int Number) AddressOf(GWGUI.MediaEngine.Representations.Sectors.SectorBlock block) => (block.Address.Cylinder, block.Address.Head, block.Address.Number);
 
     /// <summary>Écrit une variante temporaire, vérifie son rejet puis supprime le fichier.</summary>
     private static async Task AssertRejectedAsync(byte[] source, Action<byte[]> mutate)

@@ -1,9 +1,12 @@
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.Reconstruction.Atari;
 using GWGUI.MediaEngine.Reconstruction.EpsonQx10;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.Iso;
 

@@ -22,6 +22,8 @@ public partial class ExplorerSection : UserControl
 {
     private ExplorerFolderItem? _rootFolder;
     private ExploredDiskImage? _document;
+    private ExploredMediaImage? _mediaDocument;
+    private ExploredMediaVolume? _mediaVolume;
     private IReadOnlyList<FileSystemEntry> _rootEntries = [];
     private IReadOnlyList<DiskFormat> _formats = [];
     private IReadOnlyList<string> _detectedFormatIds = [];
@@ -54,6 +56,8 @@ public partial class ExplorerSection : UserControl
         Classification.SetAutomaticDetection(enabled);
         if (enabled && _document is not null)
             Classification.ApplyDetection(_document.PrimaryFormatId, _document.Metadata.ProtectionId, _detectedFormatIds);
+        else if (enabled && _mediaDocument is not null)
+            Classification.ApplyDetection(_mediaDocument.Document.FormatId, null, _detectedFormatIds);
     }
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
@@ -78,6 +82,8 @@ public partial class ExplorerSection : UserControl
         SystemText.Text = ProtectionText.Text = "\u2014";
         _rootFolder = null;
         _document = null;
+        _mediaDocument = null;
+        _mediaVolume = null;
         _rootEntries = [];
         _visibleFolders.Clear();
         ContentsList.ItemsSource = null;
@@ -88,6 +94,8 @@ public partial class ExplorerSection : UserControl
     public void Display(ExploredDiskImage document)
     {
         _document = document;
+        _mediaDocument = null;
+        _mediaVolume = null;
         PathText.Text = document.SourcePath;
         _detectedFormatIds = _detectedFormatIds
             .Concat(ReportedFormats(document))
@@ -124,6 +132,51 @@ public partial class ExplorerSection : UserControl
         WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {warningCount}";
     }
 
+    public void Display(ExploredMediaImage document)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        _document = null;
+        _mediaDocument = document;
+        _mediaVolume = document.Volumes.FirstOrDefault(volume => volume.FileSystem is not null)
+            ?? document.Volumes.FirstOrDefault();
+        PathText.Text = document.Document.Source.PrimaryPath;
+        _detectedFormatIds = _detectedFormatIds
+            .Append(document.Document.FormatId)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        var detectedSummary = DetectedFormatsSummary();
+        DetectedFormatsText.Text = detectedSummary;
+        DetectedFormatsText.ToolTip = detectedSummary;
+        Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
+        if (_applyDetectionOnDisplay)
+            Classification.ApplyDetection(document.Document.FormatId, null, _detectedFormatIds);
+        _applyDetectionOnDisplay = false;
+
+        var volume = _mediaVolume?.FileSystem;
+        var syntheticName = string.IsNullOrWhiteSpace(volume?.Name);
+        var volumeName = syntheticName ? $"({LocExtension.Get("Explorer.Unnamed")})" : volume!.Name;
+        VolumeNameText.Foreground = BrushFor(syntheticName);
+        VolumeNameText.Text = volumeName;
+        SystemText.Text = CurrentSystem(document);
+        ProtectionText.Text = LocExtension.Get("Explorer.Metadata.None");
+        FileSystemText.Text = volume?.FileSystemId ?? ControlVisualConstants.EmptyValue;
+        var capacity = volume?.Capacity ?? _mediaVolume?.Descriptor.Length;
+        CapacityText.Text = capacity.HasValue ? StorageSizeFormatter.FormatBytes(capacity.Value) : ControlVisualConstants.EmptyValue;
+        FreeText.Text = volume?.FreeSpaceKnown == true
+            ? StorageSizeFormatter.FormatBytes(volume.FreeBytes)
+            : ControlVisualConstants.EmptyValue;
+        _rootEntries = volume?.Entries ?? [];
+        EntryCountText.Text = CountEntries(_rootEntries).ToString();
+        _rootFolder = new ExplorerFolderItem(volumeName, null, 0, _rootEntries, syntheticName) { IsExpanded = true };
+        RefreshVisibleFolders(_rootFolder);
+        FolderList.SelectedItem = _rootFolder;
+        ShowContents(_rootEntries);
+
+        var issues = _mediaVolume is null ? document.Diagnostics : ExplorerIssueBuilder.Build(document, _mediaVolume);
+        WarningsButton.Visibility = issues.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
+        WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {issues.Count}";
+    }
+
     private static IReadOnlyList<string> ReportedFormats(ExploredDiskImage document)
     {
         return document.FormatsDetectes
@@ -155,6 +208,13 @@ public partial class ExplorerSection : UserControl
         return format?.Family ?? ExplorerMetadataPresenter.Systems(document.Metadata);
     }
 
+    private string CurrentSystem(ExploredMediaImage document)
+    {
+        if (Classification.SelectedMachine is { } selectedMachine) return selectedMachine;
+        var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.Document.FormatId);
+        return format?.Family ?? document.Document.MediaKind.ToString();
+    }
+
     private Brush BrushFor(bool synthetic)
     {
         var resourceKey = synthetic ? "SyntheticNameBrush" : "TextBrush";
@@ -173,20 +233,32 @@ public partial class ExplorerSection : UserControl
 
     private void ShowContents(IEnumerable<FileSystemEntry> entries)
     {
-        var family = _document is null ? ExplorerFileSystemFamily.Unknown : ExplorerFileIconClassifier.FamilyFor(_document);
+        var family = _document is not null
+            ? ExplorerFileIconClassifier.FamilyFor(_document)
+            : _mediaDocument is not null
+                ? ExplorerFileIconClassifier.FamilyFor(_mediaDocument.Document.FormatId, _mediaVolume?.FileSystem?.FileSystemId)
+                : ExplorerFileSystemFamily.Unknown;
         ContentsList.ItemsSource = entries
             .OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory)
             .ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase)
             .Select(entry => new ExplorerContentItem(entry, family)).ToArray();
         ContentsList.SelectedItem = null;
         if (_document is not null) DetailsPanel.ShowDisk(_document, CurrentSystem(_document));
+        else if (_mediaDocument is not null && _mediaVolume is not null)
+            DetailsPanel.ShowMedia(_mediaDocument, _mediaVolume, CurrentSystem(_mediaDocument));
     }
 
     private void ContentsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (_document is null) return;
-        if (ContentsList.SelectedItem is ExplorerContentItem item) DetailsPanel.ShowItem(_document, item);
-        else DetailsPanel.ShowDisk(_document, CurrentSystem(_document));
+        if (_document is null && _mediaDocument is null) return;
+        if (ContentsList.SelectedItem is ExplorerContentItem item)
+        {
+            if (_document is not null) DetailsPanel.ShowItem(_document, item);
+            else DetailsPanel.ShowItem(item);
+        }
+        else if (_document is not null) DetailsPanel.ShowDisk(_document, CurrentSystem(_document));
+        else if (_mediaDocument is not null && _mediaVolume is not null)
+            DetailsPanel.ShowMedia(_mediaDocument, _mediaVolume, CurrentSystem(_mediaDocument));
     }
 
     private void FolderToggle_Click(object sender, RoutedEventArgs e)
@@ -215,8 +287,13 @@ public partial class ExplorerSection : UserControl
 
     private void WarningsButton_Click(object sender, RoutedEventArgs e)
     {
-        if (_document is null) return;
-        new ExplorerIssuesWindow(BuildIssues(_document)) { Owner = Window.GetWindow(this) }.ShowDialog();
+        var issues = _document is not null
+            ? BuildIssues(_document)
+            : _mediaDocument is not null && _mediaVolume is not null
+                ? ExplorerIssueBuilder.Build(_mediaDocument, _mediaVolume)
+                : [];
+        if (issues.Count == 0) return;
+        new ExplorerIssuesWindow(issues) { Owner = Window.GetWindow(this) }.ShowDialog();
     }
 
     public static IReadOnlyList<string> BuildIssues(ExploredDiskImage document) => ExplorerIssueBuilder.Build(document);

@@ -45,7 +45,7 @@ internal static class ConversionSelectionScenarios
         var settings = new AppSettings(); settings.Engines.Conversion = OperationEngine.Internal;
         model.Conversion.SetFormat("amiga.amigados", true, new HashSet<string> { ".adf" });
         model.Conversion.SetFormat("atarist.720", true, new HashSet<string> { ".st" });
-        var controller = new ConversionTabController(new Window(), view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!,
+        var controller = new ConversionTabController(new Window(), view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!, null!, null!,
             ControlledDependencies.Simulate<IFileDialogService>((method, _) => { Assert.Equal("OpenFile", method.Name); return responses.Dequeue(); }),
             ControlledDependencies.Reject<IBusinessDialogService>(), ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, new TextBox { Text = "virtual-folder" }, new TextBox(), new TextBox(), () => 0, _ => { }, null!, () => { }, (error, _) => failures.Add(error), () => { }, Dispatcher.CurrentDispatcher,
             _ => throw new InvalidOperationException(), path => detector.Detect(path, 901120), path => { analyzed.Add(path); return Task.CompletedTask; });

@@ -1,17 +1,17 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Coherent;
-using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Conversion.Commodore;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Coherent;
 using GWGUI.MediaEngine.FileSystems.Definitions;
-using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.Recognition;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

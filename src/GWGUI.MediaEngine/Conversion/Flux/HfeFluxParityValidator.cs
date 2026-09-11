@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.Hfe;
+
+using GWGUI.MediaEngine.Formats.Floppy.Hfe;
 
 namespace GWGUI.MediaEngine.Conversion.Flux;
 

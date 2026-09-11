@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Geometries.Acorn;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.Iso;
 

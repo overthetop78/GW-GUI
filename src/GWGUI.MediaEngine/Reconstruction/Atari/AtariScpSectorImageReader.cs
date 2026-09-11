@@ -1,8 +1,10 @@
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.Atari;
 

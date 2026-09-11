@@ -1,8 +1,9 @@
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Geometries.Atari;
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Atr;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Visualization.Policies;
 

@@ -1,7 +1,9 @@
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 

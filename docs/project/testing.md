@@ -46,6 +46,35 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer-upgra
 
 Les contrôles d’installation refusent de démarrer si une installation GW GUI est déjà enregistrée pour l’utilisateur.
 
+## Validation du socle MediaEngine commun
+
+La validation locale du socle commun a été exécutée en configuration `Debug`, sans le corpus privé
+`image_test`. Les quatre projets concernés compilent sans avertissement ni erreur :
+
+```powershell
+dotnet build src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj --no-restore --configuration Debug --verbosity quiet
+dotnet build src/GWGUI.App/GWGUI.App.csproj --no-restore --configuration Debug --verbosity quiet
+dotnet build src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj --no-restore --configuration Debug --verbosity quiet
+dotnet build src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj --no-restore --configuration Debug --verbosity quiet
+```
+
+Les tests ciblés du registre de reconnaissance, des représentations de disquettes, de la conversion,
+du partage du document et des frontières entre projets ont ensuite produit **10 réussites, 0 échec
+et 0 test ignoré** :
+
+```powershell
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --configuration Debug --filter "FullyQualifiedName~MediaRecognitionRegistryTests|FullyQualifiedName~FloppyMediaReadingTests|FullyQualifiedName~MediaConversionServiceTests|FullyQualifiedName~MediaExplorerTests|FullyQualifiedName~MediaEngineProjectBoundaryTests" --verbosity quiet
+```
+
+Le script de construction Debug standard a ensuite terminé avec succès :
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+```
+
+Le script a produit l'application sans module d'émulation préinstallé. La présence de
+`build/Debug/GW GUI/gwgui.exe` a été vérifiée après sa terminaison.
+
 ## Ancien contrôle interactif, manuel uniquement
 
 `scripts/test-app-accessibility.ps1` reste disponible pour ouvrir l’exécutable empaqueté, contrôler son redimensionnement avec le DPI Windows et inspecter les noms accessibles. Ce script nécessite un bureau ; il n’est plus appelé par le workflow de release ni par `GWGUI.Tests`. Les tests hors écran ne sont pas présentés comme un remplacement de sa vérification du cadre natif.

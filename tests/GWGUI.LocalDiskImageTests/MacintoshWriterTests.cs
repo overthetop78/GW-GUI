@@ -1,16 +1,19 @@
 using GWGUI.Domain.Formats;
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Conversion.Apple;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Mfs;
-using GWGUI.MediaEngine.Geometries.Apple;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.DiskCopy;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 
@@ -133,7 +136,7 @@ public sealed class MacintoshWriterTests
         Assert.Equal(DiskCopyReader.CalculateChecksum(tags[DiskCopyLayout.TagChecksumExcludedPrefixSize..]), BinaryPrimitives.ReadUInt32BigEndian(bytes.AsSpan(DiskCopyLayout.TagChecksumOffset)));
     }
 
-    private static FileSystemVolume ReadFileSystem(GWGUI.MediaEngine.SectorImages.SectorImage image)
+    private static FileSystemVolume ReadFileSystem(GWGUI.MediaEngine.Representations.Sectors.SectorImage image)
     {
         if (new MacMfsFileSystemReader().CanRead(image)) return new MacMfsFileSystemReader().Read(image);
         var hfs = new MacHfsFileSystemReader();
@@ -141,7 +144,7 @@ public sealed class MacintoshWriterTests
         return hfs.Read(image);
     }
 
-    private static void AssertImagesEqual(GWGUI.MediaEngine.SectorImages.SectorImage expected, GWGUI.MediaEngine.SectorImages.SectorImage actual)
+    private static void AssertImagesEqual(GWGUI.MediaEngine.Representations.Sectors.SectorImage expected, GWGUI.MediaEngine.Representations.Sectors.SectorImage actual)
     {
         Assert.Equal(expected.BlockCount, actual.BlockCount);
         for (var logical = 0; logical < expected.BlockCount; logical++)

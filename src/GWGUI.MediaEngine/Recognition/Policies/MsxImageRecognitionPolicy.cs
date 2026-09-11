@@ -1,6 +1,7 @@
-﻿using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Recognition.Msx;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 

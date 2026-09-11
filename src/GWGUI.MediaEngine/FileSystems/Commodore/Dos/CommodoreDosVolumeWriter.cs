@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.Migration;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Conversion.Migration;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 

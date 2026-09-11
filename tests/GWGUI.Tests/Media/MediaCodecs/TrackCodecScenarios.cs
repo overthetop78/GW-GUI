@@ -10,7 +10,7 @@ internal static class TrackCodecScenarios
         Assert.Equal("LongInterval",RawFluxDecoder.Classify(801,80,1).ToString());
         Assert.Equal("None",RawFluxDecoder.Classify(800,80,1).ToString());
         Assert.Equal(64,RawFluxDecoder.ConvertToCellCount(100000,80));
-        var result=new FluxDecoderRegistry().Decode("raw",new GWGUI.MediaEngine.Flux.FluxRevolution(10000,new uint[]{160,160,160,160,10000}));
+        var result=new FluxDecoderRegistry().Decode("raw",new GWGUI.MediaEngine.Representations.Flux.FluxRevolution(10000,new uint[]{160,160,160,160,10000}));
         Assert.Empty(result.Sectors); Assert.Empty(result.DecodedBytes); Assert.Equal(.05,result.Confidence); Assert.NotEmpty(result.Structures);
     }
 
@@ -23,7 +23,7 @@ internal static class TrackCodecScenarios
         var sector=Assert.Single(decoded.Sectors); Assert.True(sector.IntegrityValid); Assert.Equal(payload,sector.Data!.Take(length));
         Assert.Same(decoded,decoders.Decode(id,encoded.Revolution));
         var damaged=encoded.Bits.ToArray(); for(int index=damaged.Length/2;index<damaged.Length/2+16;index++) damaged[index]=!damaged[index];
-        var corrupted=decoders.Decode(id,GWGUI.MediaEngine.Flux.FluxRevolutionFactory.Create(damaged,request.BitCellTicks,request.IndexTimeTicks));
+        var corrupted=decoders.Decode(id,GWGUI.MediaEngine.Representations.Flux.FluxRevolutionFactory.Create(damaged,request.BitCellTicks,request.IndexTimeTicks));
         Assert.DoesNotContain(corrupted.Sectors,s=>s.IntegrityValid==true&&s.Data is not null&&s.Data.Take(length).SequenceEqual(payload));
         Assert.ThrowsAny<ArgumentException>(()=>encoder.Encode(new(-1,0,[new(3,payload)])));
         Assert.ThrowsAny<ArgumentException>(()=>encoder.Encode(new(0,0,[])));

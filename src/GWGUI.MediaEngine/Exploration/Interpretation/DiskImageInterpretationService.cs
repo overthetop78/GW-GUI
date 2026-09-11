@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation;
 

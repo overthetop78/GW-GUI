@@ -1,7 +1,9 @@
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Reconstruction.Scp;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.Iso;
 

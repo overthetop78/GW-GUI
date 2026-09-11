@@ -1,20 +1,24 @@
-﻿using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.Domain.Contracts;
 using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Scp;
-using GWGUI.MediaEngine.Recognition;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Reading;
+using GWGUI.MediaEngine.Representations.Flux;
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration;
 
 /// <summary>ReconnaÃ®t une image de mÃ©dia et construit son document d'exploration technique.</summary>
 public sealed class DiskImageExplorer
 {
-    /// <summary>Registre ordonnÃ© des politiques de reconnaissance.</summary>
-    private readonly DiskImageRecognitionRegistry recognition;
+    /// <summary>Common media recognition and reading service.</summary>
+    private readonly MediaImageReadingService readingService;
     /// <summary>Registre des lecteurs de systÃ¨mes de fichiers.</summary>
     private readonly FileSystemRegistry fileSystems;
     /// <summary>Service spÃ©cialisÃ© dans l'exploration automatique des captures SCP.</summary>
@@ -25,9 +29,9 @@ public sealed class DiskImageExplorer
     private readonly DiskImageDocumentFactory documents;
 
     /// <summary>Initialise l'explorateur avec les services partagÃ©s composÃ©s par le moteur.</summary>
-    internal DiskImageExplorer(DiskImageRecognitionRegistry recognition, FileSystemRegistry fileSystems, ScpImageExplorationService scpExploration, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents)
+    internal DiskImageExplorer(MediaImageReadingService readingService, FileSystemRegistry fileSystems, ScpImageExplorationService scpExploration, DiskImageInterpretationService interpretations, DiskImageDocumentFactory documents)
     {
-        this.recognition = recognition;
+        this.readingService = readingService;
         this.fileSystems = fileSystems;
         this.scpExploration = scpExploration;
         this.interpretations = interpretations;
@@ -51,18 +55,28 @@ public sealed class DiskImageExplorer
     public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
     {
         if (!File.Exists(path)) throw DiskImageExplorationExceptions.MissingImage(path);
-        if (formatId is null && await HasScpSignatureAsync(path, cancellationToken).ConfigureAwait(false)) return await scpExploration.ExploreAutomaticallyAsync(path, cancellationToken).ConfigureAwait(false);
-
-        SectorImage image;
+        MediaImageDocument document;
         try
         {
-            image = await recognition.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+            document = await ReadDocumentAsync(path, formatId, cancellationToken).ConfigureAwait(false);
         }
-        catch (DiskImageNotRecognizedException)
+        catch (NotSupportedException)
         {
             return documents.CreateUnknown(path);
         }
 
+        if (document.Representation is FluxMediaImageRepresentation)
+        {
+            if (!document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase)) return documents.CreateUnknown(path);
+            if (formatId is null) return await scpExploration.ExploreAutomaticallyAsync(path, cancellationToken).ConfigureAwait(false);
+
+            var decoded = await scpExploration.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+            var explicitResult = ReadExplicitly(decoded, formatId);
+            return documents.Create(path, explicitResult.Image, Deduplicate(explicitResult.Detected), [explicitResult.Image]);
+        }
+
+        if (document.Representation is not SectorMediaImageRepresentation sectors) return documents.CreateUnknown(path);
+        var image = sectors.Image;
         var result = formatId is null ? ReadAutomatically(image) : ReadExplicitly(image, formatId);
         var unique = Deduplicate(result.Detected);
         return documents.Create(path, result.Image, unique, [result.Image]);
@@ -79,13 +93,18 @@ public sealed class DiskImageExplorer
         return scpExploration.ExploreAutomaticallyAsync(path, image, cancellationToken);
     }
 
-    /// <summary>VÃ©rifie la signature SCP commune sans se fier Ã  l'extension du chemin.</summary>
-    private static async Task<bool> HasScpSignatureAsync(string path, CancellationToken cancellationToken)
+    /// <summary>Reads through the common chain and retries without a downstream sector-format hint when necessary.</summary>
+    private async Task<MediaImageDocument> ReadDocumentAsync(string path, string? formatId, CancellationToken cancellationToken)
     {
-        var signature = new byte[ScpFormatConstants.SignatureLength];
-        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, ScpFormatConstants.SignatureLength, FileOptions.Asynchronous | FileOptions.SequentialScan);
-        var read = await stream.ReadAsync(signature, cancellationToken).ConfigureAwait(false);
-        return read == signature.Length && ScpSignature.IsPresent(signature);
+        var source = new MediaSourceDescriptor(path, [], RequestedFormatId: formatId);
+        try
+        {
+            return await readingService.ReadAsync(source, cancellationToken).ConfigureAwait(false);
+        }
+        catch (NotSupportedException) when (formatId is not null)
+        {
+            return await readingService.ReadAsync(source with { RequestedFormatId = null }, cancellationToken).ConfigureAwait(false);
+        }
     }
 
     /// <summary>Lit les systÃ¨mes de fichiers directement reconnus, puis la premiÃ¨re interprÃ©tation supplÃ©mentaire exploitable.</summary>

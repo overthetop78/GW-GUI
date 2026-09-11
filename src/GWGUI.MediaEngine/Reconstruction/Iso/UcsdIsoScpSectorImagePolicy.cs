@@ -1,6 +1,8 @@
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Geometries.Ucsd;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction.Iso;
 

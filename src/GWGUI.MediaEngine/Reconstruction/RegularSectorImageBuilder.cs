@@ -1,5 +1,7 @@
-using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.SectorImages.Builders;
+
+using GWGUI.MediaEngine.Reconstruction.Sectors;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Reconstruction;
 

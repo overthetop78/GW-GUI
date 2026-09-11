@@ -1,7 +1,9 @@
-using GWGUI.MediaEngine.Containers.Hfe;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Hfe;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.MediaEngine.Conversion.Flux;
 

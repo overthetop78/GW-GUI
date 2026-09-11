@@ -5,7 +5,8 @@ using System.Windows.Controls;
 using GWGUI.App.Interfaces.Rendering.Scp;
 using GWGUI.Tests.Application.TestInfrastructure;
 using GWGUI.Tests.Interface.ExplorerViews;
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
 namespace GWGUI.Tests.Interface.VisualizerViews;
 internal static class ViewportGeometryScenarios
 {

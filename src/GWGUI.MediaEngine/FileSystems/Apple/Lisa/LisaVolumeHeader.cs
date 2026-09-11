@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
-using GWGUI.MediaEngine.Geometries.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
 
 namespace GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 

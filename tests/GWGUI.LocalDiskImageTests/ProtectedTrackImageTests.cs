@@ -1,9 +1,11 @@
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.TrackImages;
 using System.IO;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Flux;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

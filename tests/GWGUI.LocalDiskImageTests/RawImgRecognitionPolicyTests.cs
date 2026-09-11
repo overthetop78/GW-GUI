@@ -1,12 +1,13 @@
-using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
-using GWGUI.MediaEngine.Containers.Raw;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using System.IO;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
 
 namespace GWGUI.Tests;
 

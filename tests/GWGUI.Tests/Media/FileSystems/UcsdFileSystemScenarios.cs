@@ -1,7 +1,8 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Ucsd;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileSystems;
 internal static class UcsdFileSystemScenarios
 {

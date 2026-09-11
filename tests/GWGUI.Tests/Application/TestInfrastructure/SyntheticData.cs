@@ -37,7 +37,7 @@ internal sealed class MemoryVideoProfileFiles : GWGUI.VideoPresentation.Services
     }
 }
 
-internal sealed class MemoryImageFiles : GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter
+internal sealed class MemoryImageFiles : GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter
 {
     public Dictionary<string, byte[]> Files { get; } = new(StringComparer.OrdinalIgnoreCase);
     public List<string> Calls { get; } = [];

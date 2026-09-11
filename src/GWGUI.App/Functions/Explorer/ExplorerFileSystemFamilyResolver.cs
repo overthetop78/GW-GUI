@@ -7,9 +7,13 @@ namespace GWGUI.App.Functions.Explorer;
 internal static class ExplorerFileSystemFamilyResolver
 {
     public static ExplorerFileSystemFamily Resolve(ExploredDiskImage document)
+        => Resolve(document.Image.FormatId, document.Volume.FileSystemId);
+
+    public static ExplorerFileSystemFamily Resolve(string formatId, string? fileSystemId)
     {
-        var format = document.Image.FormatId;
-        var fileSystem = document.Volume.FileSystemId;
+        ArgumentException.ThrowIfNullOrWhiteSpace(formatId);
+        var format = formatId;
+        var fileSystem = fileSystemId ?? string.Empty;
         if (fileSystem.Contains("CP/M", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Cpm;
         if (format.StartsWith("acorn.dfs", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.BbcMicro;
         if (format.StartsWith("dec.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Dec;

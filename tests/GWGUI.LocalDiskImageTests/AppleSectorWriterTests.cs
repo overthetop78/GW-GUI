@@ -1,14 +1,16 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Apple.Raw;
-using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Conversion.Apple;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.Geometries.Apple;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

@@ -1,5 +1,3 @@
-using GWGUI.MediaEngine.Containers.Msx.Raw;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
@@ -8,6 +6,9 @@ using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
 
 namespace GWGUI.Tests;
 

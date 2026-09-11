@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Metadata;
 

@@ -1,7 +1,9 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
-using GWGUI.MediaEngine.Geometries.Msx;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Recognition.Msx;
 

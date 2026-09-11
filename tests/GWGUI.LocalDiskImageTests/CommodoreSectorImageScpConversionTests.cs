@@ -1,12 +1,16 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
-using GWGUI.MediaEngine.Encoding.Commodore;
-using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.D64;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

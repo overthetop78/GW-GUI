@@ -1,6 +1,7 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Atari.Dos;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileSystems;
 internal static class AtariFileSystemScenarios
 {

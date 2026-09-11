@@ -1,11 +1,13 @@
-using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Ucsd;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
+
+using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

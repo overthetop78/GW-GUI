@@ -1,12 +1,14 @@
-using GWGUI.MediaEngine.Containers.Epson.Raw;
-using GWGUI.MediaEngine.Containers.ImageDisk;
-using GWGUI.MediaEngine.Conversion.Epson;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
-using GWGUI.MediaEngine.Geometries.Epson;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion;
+
+using GWGUI.MediaEngine.Formats.Floppy.ImageDisk;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

@@ -1,10 +1,9 @@
-using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Amiga;
 using GWGUI.MediaEngine.Primitives;
 using System.Buffers.Binary;
 using System.IO;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Formats.Floppy.Adf;
 
 namespace GWGUI.Tests;
 

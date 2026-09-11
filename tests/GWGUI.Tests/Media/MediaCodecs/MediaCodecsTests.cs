@@ -11,8 +11,8 @@ public class MediaCodecsTests
     [Theory] [InlineData("synthetic",1,128)] [InlineData("synthetic",0,128)]
     [InlineData("amstrad.cpc.data",0xc1,512)] [InlineData("ibm.160",1,512)] [InlineData("atarist.720",1,512)]
     [InlineData("atari.90",1,128)] [InlineData("epson.qx10.320",1,256)]
-    [InlineData(GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AcornDfsSingleSided,0,256)]
-    [InlineData(GWGUI.MediaEngine.Definitions.DiskImageFormatIds.UcsdIbmMfm,1,512)]
+    [InlineData(GWGUI.MediaEngine.Constants.DiskImageFormatIds.AcornDfsSingleSided,0,256)]
+    [InlineData(GWGUI.MediaEngine.Constants.DiskImageFormatIds.UcsdIbmMfm,1,512)]
     public void IsoPoliciesPreserveBestRevolutionAndMissingSectorPositions(string format,int first,int size) => SectorReconstructionScenarios.Iso(format,first,size);
     [Theory]
     [InlineData("applemac.gcr",512,false)] [InlineData("applelisa.fileware.gcr",512,false)]

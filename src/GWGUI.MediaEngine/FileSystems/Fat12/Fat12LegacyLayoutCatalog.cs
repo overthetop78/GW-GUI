@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaEngine.FileSystems.Fat12;
 

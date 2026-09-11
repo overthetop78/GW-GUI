@@ -1,8 +1,11 @@
-using GWGUI.MediaEngine.Containers.Commodore;
-using GWGUI.MediaEngine.Containers.Commodore.D64;
-using GWGUI.MediaEngine.Containers.Commodore.D71;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Reconstruction.Commodore;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
+
+using GWGUI.MediaEngine.Formats.Floppy.D64;
+
+using GWGUI.MediaEngine.Formats.Floppy.D71;
+
+using GWGUI.MediaEngine.Reconstruction;
 
 namespace GWGUI.MediaEngine.Conversion.Commodore;
 

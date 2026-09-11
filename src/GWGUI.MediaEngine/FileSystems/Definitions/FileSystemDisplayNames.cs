@@ -1,5 +1,5 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Amiga;
+using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaEngine.FileSystems.Definitions;
 

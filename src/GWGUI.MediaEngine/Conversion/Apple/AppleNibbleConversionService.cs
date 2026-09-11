@@ -1,10 +1,12 @@
 using System.Collections.Frozen;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Reconstruction.Apple;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Conversion.Apple;
 

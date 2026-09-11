@@ -1,37 +1,4 @@
-using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
-using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
-using GWGUI.MediaEngine.Conversion.Amstrad;
-using GWGUI.MediaEngine.Conversion.Epson;
-using GWGUI.MediaEngine.Conversion.Dec;
-using GWGUI.MediaEngine.Containers.Epson.Raw;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Apple.Raw;
-using GWGUI.MediaEngine.Containers.Apple.TwoImg;
-using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
-using GWGUI.MediaEngine.Containers.Atari.Atr;
-using GWGUI.MediaEngine.Containers.Atari.Msa;
-using GWGUI.MediaEngine.Containers.Atari.St;
-using GWGUI.MediaEngine.Containers.Coherent;
-using GWGUI.MediaEngine.Containers.Commodore.D64;
-using GWGUI.MediaEngine.Containers.Commodore.D71;
-using GWGUI.MediaEngine.Containers.Commodore.D81;
-using GWGUI.MediaEngine.Containers.Commodore;
-using GWGUI.MediaEngine.Containers.Cp2;
-using GWGUI.MediaEngine.Containers.Dec.Rx02;
-using GWGUI.MediaEngine.Containers.I86f;
-using GWGUI.MediaEngine.Containers.Ibm.Raw;
-using GWGUI.MediaEngine.Containers.ImageDisk;
-using GWGUI.MediaEngine.Containers.Msx.Raw;
-using GWGUI.MediaEngine.Containers.Raw;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Containers.TeleDisk;
-using GWGUI.MediaEngine.Containers.Ucsd.Raw;
 using GWGUI.MediaEngine.Conversion.Apple;
-using GWGUI.MediaEngine.Conversion.Amiga;
-using GWGUI.MediaEngine.Conversion.Ibm;
-using GWGUI.MediaEngine.Conversion.Msx;
-using GWGUI.MediaEngine.Conversion.Ucsd;
-using GWGUI.MediaEngine.Conversion.Hfe;
 using GWGUI.MediaEngine.Conversion.Flux;
 using GWGUI.MediaEngine.Conversion.Scp;
 using GWGUI.MediaEngine.Conversion.Acorn;
@@ -40,7 +7,6 @@ using GWGUI.MediaEngine.Conversion.Commodore;
 using GWGUI.MediaEngine.Encoding.Apple;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
@@ -50,19 +16,54 @@ using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.Recognition.Scp;
-using GWGUI.MediaEngine.Reconstruction.Amiga;
 using GWGUI.MediaEngine.Reconstruction.Apple;
 using GWGUI.MediaEngine.Reconstruction.Atari;
-using GWGUI.MediaEngine.Reconstruction.Commodore;
-using GWGUI.MediaEngine.Reconstruction.Dec;
 using GWGUI.MediaEngine.Reconstruction.Iso;
-using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.SectorImages.Scp;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Decoding.I86f;
+using GWGUI.MediaEngine.Decoding.Scp.Sectors;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+using GWGUI.MediaEngine.Formats.Floppy.Atr;
+using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
+using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
+using GWGUI.MediaEngine.Formats.Floppy.Cp2;
+
+using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
+
+using GWGUI.MediaEngine.Formats.Floppy.D64;
+
+using GWGUI.MediaEngine.Formats.Floppy.D71;
+
+using GWGUI.MediaEngine.Formats.Floppy.D81;
+
+using GWGUI.MediaEngine.Formats.Floppy.DiskCopy;
+
+using GWGUI.MediaEngine.Formats.Floppy.I86f;
+
+using GWGUI.MediaEngine.Formats.Floppy.ImageDisk;
+
+using GWGUI.MediaEngine.Formats.Floppy.Msa;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.Rx02;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
+
+using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
+
+using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
+using GWGUI.MediaEngine.Interfaces.Reading;
+using GWGUI.MediaEngine.Reading;
+
+using GWGUI.MediaEngine.Reconstruction;
 
 namespace GWGUI.MediaEngine.Composition;
 
@@ -73,7 +74,7 @@ public static class MediaEngineFactory
     public static AmigaAdfConversionService CreateAmigaAdfConversionService()
     {
         var scpReader = CreateScpReader();
-        return new(new AmigaScpSectorImageReader(scpReader, CreateFluxDecoders()), new Containers.Adf.AdfReader(), new Containers.Adf.AmigaAdfWriter());
+        return new(new AmigaScpSectorImageReader(scpReader, CreateFluxDecoders()), new Formats.Floppy.Adf.AdfReader(), new Formats.Floppy.Adf.AmigaAdfWriter());
     }
     /// <summary>Crée le service de conversion IBM brute avec ses Reader et Writer partagés.</summary>
     public static IbmRawConversionService CreateIbmRawConversionService()
@@ -91,7 +92,7 @@ public static class MediaEngineFactory
     public static AcornAdfConversionService CreateAcornAdfConversionService()
     {
         var scpReader = CreateScpReader();
-        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new Containers.Adf.AdfReader(), new Containers.Adf.AcornAdfWriter());
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new Formats.Floppy.Adf.AdfReader(), new Formats.Floppy.Adf.AcornAdfWriter());
     }
     /// <summary>Crée le service de conversion BBC DFS avec ses Reader et Writer partagés.</summary>
     public static BbcDfsConversionService CreateBbcDfsConversionService()
@@ -126,41 +127,41 @@ public static class MediaEngineFactory
         return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new DiskCopyWriter());
     }
     /// <summary>Crée le service HFE sectoriel avec l'explorateur et l'encodeur de pistes communs.</summary>
-    public static HfeConversionService CreateHfeConversionService() => new(CreateDefaultExplorer(), new SectorImageTrackEncoder(), new Containers.Hfe.HfeWriter());
+    public static HfeConversionService CreateHfeConversionService() => new(CreateDefaultExplorer(), new SectorImageTrackEncoder(), new Formats.Floppy.Hfe.HfeWriter());
 
     /// <summary>Crée le service de conversion directe entre conteneurs de flux.</summary>
     public static FluxContainerConversionService CreateFluxContainerConversionService() => new(
         CreateScpReader(),
         new ScpWriter(),
-        new Containers.Hfe.HfeReader(),
-        new Containers.Hfe.HfeWriter());
+        new Formats.Floppy.Hfe.HfeReader(),
+        new Formats.Floppy.Hfe.HfeWriter());
     /// <summary>Crée le service commun de reconstruction SCP depuis les images sectorielles.</summary>
     public static SectorImageScpConversionService CreateSectorImageScpConversionService() => new(new SectorImageTrackEncoder(), new ScpEncodedTrackFluxService(), new ScpWriter());
 
     /// <summary>Crée le service strict de réinterprétation entre formats FAT12 compatibles.</summary>
     public static Conversion.Fat12.Fat12ReinterpretationService CreateFat12ReinterpretationService()
     {
-        var linear = new Containers.Raw.LinearSectorImageWriter();
-        var writer = new Conversion.Fat12.Fat12TargetImageWriter(new Containers.Atari.St.AtariStWriter(linear), new Containers.Ibm.Raw.IbmRawImageWriter(linear), new Containers.Msx.Raw.MsxRawImageWriter(linear));
+        var linear = new Formats.Floppy.Raw.LinearSectorImageWriter();
+        var writer = new Conversion.Fat12.Fat12TargetImageWriter(new Formats.Floppy.St.AtariStWriter(linear), new Formats.Floppy.Raw.IbmRawImageWriter(linear), new Formats.Floppy.Raw.MsxRawImageWriter(linear));
         return new(CreateDefaultExplorer(), writer);
     }
 
     /// <summary>Crée le service de migration de fichiers entre FAT12 et AmigaDOS.</summary>
-    public static Migration.Fat12AmigaDosMigrationService CreateFat12AmigaDosMigrationService()
+    public static Conversion.Migration.Fat12AmigaDosMigrationService CreateFat12AmigaDosMigrationService()
     {
-        var linear = new Containers.Raw.LinearSectorImageWriter();
-        var fatWriter = new Conversion.Fat12.Fat12TargetImageWriter(new Containers.Atari.St.AtariStWriter(linear), new Containers.Ibm.Raw.IbmRawImageWriter(linear), new Containers.Msx.Raw.MsxRawImageWriter(linear));
-        return new(new Containers.Adf.AmigaAdfWriter(), fatWriter);
+        var linear = new Formats.Floppy.Raw.LinearSectorImageWriter();
+        var fatWriter = new Conversion.Fat12.Fat12TargetImageWriter(new Formats.Floppy.St.AtariStWriter(linear), new Formats.Floppy.Raw.IbmRawImageWriter(linear), new Formats.Floppy.Raw.MsxRawImageWriter(linear));
+        return new(new Formats.Floppy.Adf.AmigaAdfWriter(), fatWriter);
     }
 
     /// <summary>Crée le service de migration vers Apple DOS, ProDOS et SOS.</summary>
-    public static Migration.AppleFileSystemMigrationService CreateAppleFileSystemMigrationService() => new(new Containers.Apple.Raw.AppleRawImageWriter(), new Containers.Apple.TwoImg.TwoImgWriter(), new Containers.Apple.AppleDiskImageWriter());
+    public static Conversion.Migration.AppleFileSystemMigrationService CreateAppleFileSystemMigrationService() => new(new Formats.Floppy.Raw.AppleRawImageWriter(), new Formats.Floppy.TwoImg.TwoImgWriter(), new Formats.Floppy.Apple.AppleDiskImageWriter());
 
     /// <summary>Crée le service de migration vers les volumes Commodore DOS D64, D71 et D81.</summary>
-    public static Migration.CommodoreDosMigrationService CreateCommodoreDosMigrationService() => new(new Containers.Commodore.CommodoreDosContainerWriter(), new Containers.Commodore.D81.D81Writer(new Containers.Raw.LinearSectorImageWriter()));
+    public static Conversion.Migration.CommodoreDosMigrationService CreateCommodoreDosMigrationService() => new(new Formats.Floppy.CommodoreDos.CommodoreDosContainerWriter(), new Formats.Floppy.D81.D81Writer(new Formats.Floppy.Raw.LinearSectorImageWriter()));
 
     /// <summary>Crée le service unifié de migration entre systèmes de fichiers.</summary>
-    public static Migration.FileSystemMigrationService CreateFileSystemMigrationService() => new(CreateFat12AmigaDosMigrationService(), CreateAppleFileSystemMigrationService(), CreateCommodoreDosMigrationService());
+    public static Conversion.Migration.FileSystemMigrationService CreateFileSystemMigrationService() => new(CreateFat12AmigaDosMigrationService(), CreateAppleFileSystemMigrationService(), CreateCommodoreDosMigrationService());
 
     /// <summary>Crée le service reconnaissant une image sectorielle avant de la reconstruire en SCP.</summary>
     public static SectorImageScpFileConversionService CreateSectorImageScpFileConversionService()
@@ -248,8 +249,8 @@ public static class MediaEngineFactory
         var (interpretations, documents) = CreateInterpretations(fileSystems);
         var candidates = CreateScpCandidates(scpReader, decoders);
         var scpExploration = CreateScpExploration(scpReader, decoders, candidates, fileSystems, interpretations, documents);
-        var recognition = CreateRecognition(decoders, scpExploration, fileSystems);
-        return new(recognition, fileSystems, scpExploration, interpretations, documents);
+        var readingService = CreateMediaImageReadingService();
+        return new(readingService, fileSystems, scpExploration, interpretations, documents);
     }
 
     /// <summary>CrÃ©e l'unique lecteur de conteneur SCP partagÃ© par les reconstructeurs.</summary>
@@ -338,32 +339,43 @@ public static class MediaEngineFactory
         return new(automatic, new ScpSectorImageReader(candidates, fileSystems));
     }
 
-    /// <summary>CrÃ©e le registre des politiques de reconnaissance dans l'ordre historique conservÃ©.</summary>
+    /// <summary>Creates the temporary sector-only adapter over the common media reader chain.</summary>
     private static DiskImageRecognitionRegistry CreateRecognition(FluxDecoderRegistry decoders, ScpImageExplorationService scpExploration, FileSystemRegistry fileSystems)
     {
-        var appleReader = new AppleDiskImageReader();
-        return new(
-        [
-            new ExtensionHintRecognitionPolicy(new Containers.Adf.AdfReader().ReadAsync, DiskImageFileExtensions.Adf),
-            new ExtensionHintRecognitionPolicy(new BbcDfsReader().ReadAsync, DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd),
-            new CoherentImageRecognitionPolicy(new CoherentRawImageReader()),
-            new DecRx02ImageRecognitionPolicy(new DecRx02Reader()),
-            new ExtensionHintRecognitionPolicy(new AtariStReader().ReadAsync, DiskImageFileExtensions.St),
-            new ExtensionHintRecognitionPolicy(new MsaReader().ReadAsync, DiskImageFileExtensions.Msa),
-            new ExtensionHintRecognitionPolicy(new AtrReader().ReadAsync, DiskImageFileExtensions.Atr),
-            new ExtensionHintRecognitionPolicy(new D64Reader().ReadAsync, DiskImageFileExtensions.D64),
-            new ExtensionHintRecognitionPolicy(new D71Reader().ReadAsync, DiskImageFileExtensions.D71),
-            new ExtensionHintRecognitionPolicy(new D81Reader().ReadAsync, DiskImageFileExtensions.D81),
-            new AppleImageRecognitionPolicy(appleReader),
-            new MsxImageRecognitionPolicy(new MsxRawImageReader()),
-            new AmstradImageRecognitionPolicy(new CpcDskReader()),
-            new RawImgRecognitionPolicy(new RawImgReader()),
-            new ExtensionHintRecognitionPolicy(new IbmRawImageReader().ReadAsync, DiskImageFileExtensions.Ima),
-            new ExtensionHintRecognitionPolicy(new Td0Reader().ReadAsync, DiskImageFileExtensions.Td0),
-            new ExtensionHintRecognitionPolicy(new I86fSectorImageReader(new I86fReader(), decoders).ReadAsync, DiskImageFileExtensions.I86f),
-            new ExtensionHintRecognitionPolicy(new Cp2Reader().ReadAsync, DiskImageFileExtensions.Cp2),
-            new ExtensionHintRecognitionPolicy(new ImdReader().ReadAsync, DiskImageFileExtensions.Imd),
-            new ScpRecognitionPolicy(scpExploration, fileSystems.SupportedFormatIds)
-        ]);
+        _ = decoders;
+        _ = scpExploration;
+        _ = fileSystems;
+        return new(CreateMediaImageReadingService());
     }
+
+    /// <summary>Creates the common recognition and reading service used during the migration.</summary>
+    private static MediaImageReadingService CreateMediaImageReadingService() => new(new MediaRecognitionRegistry(CreateMediaImageReaders()));
+
+    /// <summary>Registers every existing media image reader in deterministic order.</summary>
+    private static IReadOnlyList<IMediaImageReader> CreateMediaImageReaders() =>
+    [
+        new Formats.Floppy.Adf.AdfReader(),
+        new BbcDfsReader(),
+        new CoherentRawImageReader(),
+        new DecRx02Reader(),
+        new AtariStReader(),
+        new MsaReader(),
+        new AtrReader(),
+        new D64Reader(),
+        new D71Reader(),
+        new D81Reader(),
+        new AppleDiskImageReader(),
+        new MsxRawImageReader(),
+        new CpcDskReader(),
+        new RawImgReader(),
+        new IbmRawImageReader(),
+        new Td0Reader(),
+        new I86fReader(),
+        new Cp2Reader(),
+        new ImdReader(),
+        new EpsonQx10RawImageReader(),
+        new UcsdRawImageReader(),
+        new Formats.Floppy.Hfe.HfeReader(),
+        new ScpReader()
+    ];
 }

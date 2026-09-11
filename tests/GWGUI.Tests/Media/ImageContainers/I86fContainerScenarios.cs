@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.I86f;
+using GWGUI.MediaEngine.Formats.Floppy.I86f;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class I86fContainerScenarios
 {

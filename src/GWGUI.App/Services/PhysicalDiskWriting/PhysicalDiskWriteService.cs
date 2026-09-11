@@ -4,8 +4,9 @@ using GWGUI.App.Functions.Services.PhysicalDiskWriting;
 using GWGUI.App.Interfaces.Services.PhysicalDiskWriting;
 using System.IO;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.PhysicalDiskWriting;
 

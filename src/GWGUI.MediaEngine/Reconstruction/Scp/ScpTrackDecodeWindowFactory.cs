@@ -1,5 +1,7 @@
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Flux;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Flux;
 
 namespace GWGUI.MediaEngine.Reconstruction.Scp;
 

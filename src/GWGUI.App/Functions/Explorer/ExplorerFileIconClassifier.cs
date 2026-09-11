@@ -12,6 +12,9 @@ public static class ExplorerFileIconClassifier
     public static ExplorerFileSystemFamily FamilyFor(ExploredDiskImage document) =>
         ExplorerFileSystemFamilyResolver.Resolve(document);
 
+    public static ExplorerFileSystemFamily FamilyFor(string formatId, string? fileSystemId) =>
+        ExplorerFileSystemFamilyResolver.Resolve(formatId, fileSystemId);
+
     public static ExplorerIconCategory IconFor(FileSystemEntry entry, ExplorerFileSystemFamily family = ExplorerFileSystemFamily.Unknown)
     {
         if (entry.Kind == FileSystemEntryKind.Directory) return ExplorerIconCategory.Folder;

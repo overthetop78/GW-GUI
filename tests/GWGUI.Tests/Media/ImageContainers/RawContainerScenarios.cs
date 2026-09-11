@@ -1,4 +1,5 @@
-using GWGUI.MediaEngine.Containers.Raw;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class RawContainerScenarios
 {
@@ -24,7 +25,7 @@ internal static class RawContainerScenarios
         }
         var reader = new RawImgReader((_, token) => { token.ThrowIfCancellationRequested(); return Task.FromResult(bytes); });
         var image = await reader.ReadAsync("memory.img");
-        var expected = fat ? "ibm.180" : directory ? GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AmstradCpc : specification ? GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AmstradPcw : "ibm.180";
+        var expected = fat ? "ibm.180" : directory ? GWGUI.MediaEngine.Constants.DiskImageFormatIds.AmstradCpc : specification ? GWGUI.MediaEngine.Constants.DiskImageFormatIds.AmstradPcw : "ibm.180";
         Assert.Equal(expected, image.FormatId);
         Assert.Equal(bytes, image.AvailableBlocks.OrderBy(block => block.LogicalBlock).SelectMany(block => block.Data));
     }
@@ -32,10 +33,10 @@ internal static class RawContainerScenarios
     {
         var files=new GWGUI.Tests.Application.TestInfrastructure.MemoryImageFiles(); files.Files["output"]=[91];
         var geometry=new GWGUI.MediaEngine.Reconstruction.RegularSectorGeometry("synthetic",4,1,1,2);
-        var blocks=new List<GWGUI.MediaEngine.SectorImages.SectorBlock> { new(1,new(0,0,1),[5,6,7,8]),new(0,new(0,0,0),[1,2,3,4]) };
+        var blocks=new List<GWGUI.MediaEngine.Representations.Sectors.SectorBlock> { new(1,new(0,0,1),[5,6,7,8]),new(0,new(0,0,0),[1,2,3,4]) };
         if(failure==1) blocks.RemoveAt(0);
         if(failure==2) blocks[0]=new(1,new(0,0,1),[5,6]);
-        var image=new GWGUI.MediaEngine.SectorImages.SectorImage(failure==3?"wrong":"synthetic",4,1,1,2,blocks);
+        var image=new GWGUI.MediaEngine.Representations.Sectors.SectorImage(failure==3?"wrong":"synthetic",4,1,1,2,blocks);
         var writer=new LinearSectorImageWriter(files);
         if(failure==0) { await writer.WriteAsync(image,"output",geometry); Assert.Equal(new byte[]{1,2,3,4,5,6,7,8},files.Files["output"]); }
         else { await Assert.ThrowsAsync<InvalidDataException>(()=>writer.WriteAsync(image,"output",geometry)); Assert.Equal(new byte[]{91},files.Files["output"]); }

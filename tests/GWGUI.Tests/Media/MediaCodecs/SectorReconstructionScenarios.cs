@@ -1,9 +1,12 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Reconstruction;
 using GWGUI.MediaEngine.Reconstruction.Iso;
-using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Flux;
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Flux;
+
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.MediaCodecs;
 internal static class SectorReconstructionScenarios
 {
@@ -15,7 +18,7 @@ internal static class SectorReconstructionScenarios
         var sectors=numbers.Select(number=>new GWGUI.MediaEngine.Encoding.TrackSector(number,Enumerable.Repeat((byte)(42+number),size).ToArray(),Attributes:new Dictionary<string,int>{{"tag0",93}})).ToArray();
         var encoded=new GWGUI.MediaEngine.Encoding.FluxEncoderRegistry().Encode(id,new(0,0,sectors,new Dictionary<string,int>{{"sectorsPerTrack",kind==0?13:16}}));
         var scp=new ScpImage(new(0x24,0,1,0,0,ScpFlags.None,ScpBitCellEncoding.Default16Bit,ScpHeadSelection.Both,0,0),[new(0,0,0,[new(encoded.Revolution,(uint)encoded.Revolution.FluxIntervals.Count)])],true,0);
-        string format=kind switch {0=>GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AppleIIDos32,1=>GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AppleIIDos33,2=>GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AppleIIProDos140,3=>GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AppleIIRwts18,4=>GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AppleMacGcr,_=>GWGUI.MediaEngine.Definitions.DiskImageFormatIds.AppleLisaOffice};
+        string format=kind switch {0=>GWGUI.MediaEngine.Constants.DiskImageFormatIds.AppleIIDos32,1=>GWGUI.MediaEngine.Constants.DiskImageFormatIds.AppleIIDos33,2=>GWGUI.MediaEngine.Constants.DiskImageFormatIds.AppleIIProDos140,3=>GWGUI.MediaEngine.Constants.DiskImageFormatIds.AppleIIRwts18,4=>GWGUI.MediaEngine.Constants.DiskImageFormatIds.AppleMacGcr,_=>GWGUI.MediaEngine.Constants.DiskImageFormatIds.AppleLisaOffice};
         var reader=new GWGUI.MediaEngine.Reconstruction.Apple.AppleScpSectorImageReader(new MemoryCapture(scp),new());
         var image=await reader.ReadAsync("virtual",format); Assert.Equal(kind==3?6:1,image.AvailableBlocks.Count); Assert.NotEmpty(image.MissingBlocks);
         if(kind==2) Assert.Equal(Enumerable.Repeat((byte)42,256).Concat(Enumerable.Repeat((byte)44,256)),Assert.Single(image.AvailableBlocks).Data);
@@ -40,9 +43,9 @@ internal static class SectorReconstructionScenarios
         var source=new Capture(kind=="dec"?1:0);
         Task<SectorImage> Read(CancellationToken token)=>kind switch
         {
-            "amiga" or "amiga-hd"=>new GWGUI.MediaEngine.Reconstruction.Amiga.AmigaScpSectorImageReader(source,registry).ReadAsync("virtual",token),
-            "dec"=>new GWGUI.MediaEngine.Reconstruction.Dec.DecRx02ScpSectorImageReader(source,registry).ReadAsync("virtual",token),
-            _=>new GWGUI.MediaEngine.Reconstruction.Commodore.CommodoreScpSectorImageReader(source,registry).ReadAsync("virtual",kind=="900"?GWGUI.MediaEngine.Definitions.DiskImageFormatIds.Commodore900Coherent:"commodore."+kind,token)
+            "amiga" or "amiga-hd"=>new GWGUI.MediaEngine.Reconstruction.AmigaScpSectorImageReader(source,registry).ReadAsync("virtual",token),
+            "dec"=>new GWGUI.MediaEngine.Reconstruction.DecRx02ScpSectorImageReader(source,registry).ReadAsync("virtual",token),
+            _=>new GWGUI.MediaEngine.Reconstruction.CommodoreScpSectorImageReader(source,registry).ReadAsync("virtual",kind=="900"?GWGUI.MediaEngine.Constants.DiskImageFormatIds.Commodore900Coherent:"commodore."+kind,token)
         };
         if(empty||kind=="amiga-hd") { await Assert.ThrowsAsync<InvalidDataException>(()=>Read(CancellationToken.None)); return; }
         var image=await Read(CancellationToken.None); Assert.Equal(kind=="1581"?2:1,image.AvailableBlocks.Count);
@@ -56,9 +59,9 @@ internal static class SectorReconstructionScenarios
     public static void AmigaDensity()
     {
         var track=Enumerable.Range(0,22).Select(number=>new SectorAddress(0,0,number)).ToArray();
-        Assert.Equal(11,GWGUI.MediaEngine.Reconstruction.Amiga.AmigaScpSectorImageReader.InferSectorsPerTrack(track));
-        Assert.Equal(22,GWGUI.MediaEngine.Reconstruction.Amiga.AmigaScpSectorImageReader.InferSectorsPerTrack(track.Concat(track.Select(address=>new SectorAddress(1,0,address.Number)))));
-        Assert.Equal(11,GWGUI.MediaEngine.Reconstruction.Amiga.AmigaScpSectorImageReader.InferSectorsPerTrack([new(0,0,21),new(1,0,21)]));
+        Assert.Equal(11,GWGUI.MediaEngine.Reconstruction.AmigaScpSectorImageReader.InferSectorsPerTrack(track));
+        Assert.Equal(22,GWGUI.MediaEngine.Reconstruction.AmigaScpSectorImageReader.InferSectorsPerTrack(track.Concat(track.Select(address=>new SectorAddress(1,0,address.Number)))));
+        Assert.Equal(11,GWGUI.MediaEngine.Reconstruction.AmigaScpSectorImageReader.InferSectorsPerTrack([new(0,0,21),new(1,0,21)]));
     }
 
     private sealed class Decoder(string id,Func<FluxRevolution,IReadOnlyList<DecodedSector>> decode):IFluxDecoder

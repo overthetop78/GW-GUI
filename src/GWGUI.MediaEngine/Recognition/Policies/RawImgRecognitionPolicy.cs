@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.Containers.Raw;
-using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 

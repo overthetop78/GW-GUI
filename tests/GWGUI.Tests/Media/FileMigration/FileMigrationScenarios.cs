@@ -1,25 +1,28 @@
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Migration;
-using GWGUI.MediaEngine.Containers.Adf;
-using GWGUI.MediaEngine.Containers.Raw;
-using GWGUI.MediaEngine.Containers.Ibm.Raw;
-using GWGUI.MediaEngine.Containers.Atari.St;
-using GWGUI.MediaEngine.Containers.Msx.Raw;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Apple.Raw;
-using GWGUI.MediaEngine.Containers.Apple.TwoImg;
 using GWGUI.MediaEngine.Conversion.Fat12;
 using GWGUI.MediaEngine.FileSystems.Amiga;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
 using GWGUI.Tests.Application.TestInfrastructure;
-using GWGUI.MediaEngine.Containers.Commodore;
-using GWGUI.MediaEngine.Containers.Commodore.D64;
-using GWGUI.MediaEngine.Containers.Commodore.D71;
-using GWGUI.MediaEngine.Containers.Commodore.D81;
 using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Conversion.Migration;
+using GWGUI.MediaEngine.Formats.Floppy.Adf;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
+using GWGUI.MediaEngine.Formats.Floppy.D64;
+
+using GWGUI.MediaEngine.Formats.Floppy.D71;
+
+using GWGUI.MediaEngine.Formats.Floppy.D81;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
+
+using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileMigration;
 internal static class FileMigrationScenarios
 {
@@ -108,7 +111,7 @@ internal static class FileMigrationScenarios
         if(apple)
         {
             var bytes=files.Files[path]; Assert.Equal(143360,bytes.Length);
-            var image=new GWGUI.MediaEngine.SectorImages.SectorImage(target,512,35,1,8,Enumerable.Range(0,280).Select(index=>new GWGUI.MediaEngine.SectorImages.SectorBlock(index,new(index/8,0,index%8),bytes.AsSpan(index*512,512).ToArray())));
+            var image=new GWGUI.MediaEngine.Representations.Sectors.SectorImage(target,512,35,1,8,Enumerable.Range(0,280).Select(index=>new GWGUI.MediaEngine.Representations.Sectors.SectorBlock(index,new(index/8,0,index%8),bytes.AsSpan(index*512,512).ToArray())));
             volume=new ProDosFileSystemReader().Read(image);
         }
         else volume=new AmigaDosFileSystemReader().Read(await new AdfReader((requested,token)=>{ Assert.Equal(path,requested); token.ThrowIfCancellationRequested(); return Task.FromResult(files.Files[requested]); }).ReadAsync(path));

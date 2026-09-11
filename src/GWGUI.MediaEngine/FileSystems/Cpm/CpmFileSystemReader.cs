@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.FileSystems.Definitions;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Cpm;
 

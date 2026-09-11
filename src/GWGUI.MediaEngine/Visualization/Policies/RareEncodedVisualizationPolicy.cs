@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.Encoding.Rare;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Encoding;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Visualization.Policies;
 

@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaEngine.FileSystems.Cpm;
 

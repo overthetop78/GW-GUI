@@ -1,6 +1,8 @@
-﻿using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Scp;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Recognition.Policies;
 

@@ -1,9 +1,10 @@
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.Woz;
 
 namespace GWGUI.Tests;
 

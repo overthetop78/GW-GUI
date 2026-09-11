@@ -1,12 +1,12 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
-using GWGUI.MediaEngine.Conversion.Amstrad;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.SectorImages;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion;
+
+using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
 
 namespace GWGUI.Tests;
 
@@ -40,10 +40,10 @@ public sealed class CpcDskWriterTests
         };
         var imageBlocks = new[]
         {
-            new GWGUI.MediaEngine.SectorImages.SectorBlock(0, new(0, 0, 0xc2), Enumerable.Repeat((byte)0xa5, 512).ToArray()),
-            new GWGUI.MediaEngine.SectorImages.SectorBlock(1, new(0, 0, 0xc1), Enumerable.Range(0, 256).Select(value => checked((byte)value)).ToArray())
+            new GWGUI.MediaEngine.Representations.Sectors.SectorBlock(0, new(0, 0, 0xc2), Enumerable.Repeat((byte)0xa5, 512).ToArray()),
+            new GWGUI.MediaEngine.Representations.Sectors.SectorBlock(1, new(0, 0, 0xc1), Enumerable.Range(0, 256).Select(value => checked((byte)value)).ToArray())
         };
-        var sectorImage = new GWGUI.MediaEngine.SectorImages.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 2, imageBlocks, true, 768, 2);
+        var sectorImage = new GWGUI.MediaEngine.Representations.Sectors.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 2, imageBlocks, true, 768, 2);
         var source = new CpcDskImage(CpcDskContainerKind.Extended, 1, 1, [new(0, true, 0, 0, 2, 0x2a, 0xe5, sectors)], sectorImage);
         var outputPath = GeneratedPath("descriptor-preservation.edsk");
 
@@ -79,7 +79,7 @@ public sealed class CpcDskWriterTests
     public async Task StandardWriterRejectsAStoredSizeDifferentFromTheNominalDescriptorSize()
     {
         var sector = new CpcDskSector(0, 0, 1, 2, 0, 0, new byte[768]);
-        var sectorImage = new GWGUI.MediaEngine.SectorImages.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 1, [new(0, new(0, 0, 1), new byte[512])]);
+        var sectorImage = new GWGUI.MediaEngine.Representations.Sectors.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 1, [new(0, new(0, 0, 1), new byte[512])]);
         var source = new CpcDskImage(CpcDskContainerKind.Standard, 1, 1, [new(0, true, 0, 0, 2, 0x4e, 0xe5, [sector])], sectorImage);
 
         await Assert.ThrowsAsync<InvalidDataException>(() => new CpcDskWriter().WriteAsync(source, GeneratedPath("lossy-standard.dsk")));
@@ -98,8 +98,8 @@ public sealed class CpcDskWriterTests
             new CpcDskSector(0, 0, 0xc1, 2, 0x20, 0x00, Enumerable.Repeat((byte)0x19, 512).ToArray()),
             new CpcDskSector(0, 0, 0xc2, 2, 0x00, 0x20, Enumerable.Repeat((byte)0x73, 512).ToArray())
         };
-        var blocks = sectors.Select((sector, index) => new GWGUI.MediaEngine.SectorImages.SectorBlock(index, new(0, 0, sector.Id), sector.Data.ToArray())).ToArray();
-        var sectorImage = new GWGUI.MediaEngine.SectorImages.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 2, blocks);
+        var blocks = sectors.Select((sector, index) => new GWGUI.MediaEngine.Representations.Sectors.SectorBlock(index, new(0, 0, sector.Id), sector.Data.ToArray())).ToArray();
+        var sectorImage = new GWGUI.MediaEngine.Representations.Sectors.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 2, blocks);
         var image = new CpcDskImage(CpcDskContainerKind.Extended, 1, 1, [new(0, true, 0, 0, 2, 0x4e, 0xe5, sectors)], sectorImage);
         await new CpcDskWriter().WriteAsync(image, source);
         var service = MediaEngineFactory.CreateAmstradDskConversionService();
@@ -116,7 +116,7 @@ public sealed class CpcDskWriterTests
         var id = Guid.NewGuid().ToString("N");
         var source = GeneratedPath($"missing-track-source-{id}.edsk");
         var output = GeneratedPath($"missing-track-output-{id}.dsk");
-        var sectorImage = new GWGUI.MediaEngine.SectorImages.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 1, []);
+        var sectorImage = new GWGUI.MediaEngine.Representations.Sectors.SectorImage(DiskImageFormatIds.AmstradCpc, 512, 1, 1, 1, []);
         var image = new CpcDskImage(CpcDskContainerKind.Extended, 1, 1, [new(0, false, 0, 0, 2, 0x4e, 0xe5, [])], sectorImage);
         await new CpcDskWriter().WriteAsync(image, source);
         await Assert.ThrowsAsync<InvalidDataException>(() => MediaEngineFactory.CreateAmstradDskConversionService().ConvertAsync(source, output, DiskImageFormatIds.AmstradCpc));

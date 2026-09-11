@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Primitives;
+
+using GWGUI.MediaEngine.Representations.Flux;
 
 namespace GWGUI.MediaEngine.Decoding;
 

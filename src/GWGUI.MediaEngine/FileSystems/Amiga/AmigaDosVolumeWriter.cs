@@ -1,11 +1,12 @@
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Geometries.Amiga;
-using GWGUI.MediaEngine.Migration;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Reconstruction;
-using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
 using System.Text;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Conversion.Migration;
+using GWGUI.MediaEngine.Formats.Floppy.Adf;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Amiga;
 

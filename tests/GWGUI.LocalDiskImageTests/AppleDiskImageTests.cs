@@ -7,11 +7,8 @@ using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Formats.Detection;
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Apple;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Metadata;
@@ -24,12 +21,17 @@ using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Reconstruction.Apple;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Visualization;
 using System.IO;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Mfs;
 using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.Apple;
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

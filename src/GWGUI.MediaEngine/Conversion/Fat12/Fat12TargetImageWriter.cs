@@ -1,8 +1,10 @@
-using GWGUI.MediaEngine.Containers.Atari.St;
-using GWGUI.MediaEngine.Containers.Ibm.Raw;
-using GWGUI.MediaEngine.Containers.Msx.Raw;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Conversion.Fat12;
 

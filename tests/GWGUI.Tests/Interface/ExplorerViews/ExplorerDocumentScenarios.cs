@@ -1,12 +1,14 @@
 using GWGUI.App.Views.Controls.Explorer;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.App.ViewModels.Explorer;
 using System.Windows.Controls;
 using GWGUI.Domain.Formats;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
+
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Interface.ExplorerViews;
 internal static class ExplorerDocumentScenarios
 {

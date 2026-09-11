@@ -1,8 +1,9 @@
-using GWGUI.MediaEngine.Definitions;
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.FileSystems.Acorn.Adfs;
 using GWGUI.MediaEngine.FileSystems.Acorn.BbcDfs;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileSystems;
 internal static class AcornFileSystemScenarios
 {

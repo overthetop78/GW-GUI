@@ -1,8 +1,9 @@
 using DiscUtils.Streams;
 using GWGUI.Emulation.HardDisks;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Ucsd;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests.Emulation.HardDisks;
 

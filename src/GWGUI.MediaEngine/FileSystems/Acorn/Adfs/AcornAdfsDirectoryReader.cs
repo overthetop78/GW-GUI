@@ -1,7 +1,8 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.FileSystems.Acorn.FileCore;
 using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems.Acorn.Adfs;
 
@@ -48,8 +49,8 @@ public static class AcornAdfsDirectoryReader
                 }
             }
             else if (!isDirectory) content = AcornAdfsFileReader.Read(image, indirectAddress, length, resolver, name, warnings, ref metadataValid);
-            var type = Acorn.AcornFileSystemTime.HasTimestamp(load) ? (load >> BitPrimitives.BitsPerByte) & 0xfff : 0u;
-            entries.Add(new(name, isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, isDirectory ? 0 : length, Acorn.AcornFileSystemTime.Decode(load, execute), Describe(load, execute, type), attributes, indirectAddress, metadataValid, children, content));
+            var type = global::GWGUI.MediaEngine.FileSystems.AcornFileSystemTime.HasTimestamp(load) ? (load >> BitPrimitives.BitsPerByte) & 0xfff : 0u;
+            entries.Add(new(name, isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, isDirectory ? 0 : length, global::GWGUI.MediaEngine.FileSystems.AcornFileSystemTime.Decode(load, execute), Describe(load, execute, type), attributes, indirectAddress, metadataValid, children, content));
         }
         var title = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.TitleOffset, AcornAdfsLayout.TitleLength));
         var directoryName = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.DirectoryNameOffset, AcornAdfsLayout.DirectoryNameLength));
@@ -84,5 +85,5 @@ public static class AcornAdfsDirectoryReader
     }
 
     /// <summary>Construit la description technique d'une entrée.</summary>
-    public static string Describe(uint load, uint execute, uint type) => Acorn.AcornFileSystemTime.HasTimestamp(load) ? $"RISC OS file type &{type:X3}, load &{load:X8}, execute &{execute:X8}" : $"ADFS load &{load:X8}, execute &{execute:X8}";
+    public static string Describe(uint load, uint execute, uint type) => global::GWGUI.MediaEngine.FileSystems.AcornFileSystemTime.HasTimestamp(load) ? $"RISC OS file type &{type:X3}, load &{load:X8}, execute &{execute:X8}" : $"ADFS load &{load:X8}, execute &{execute:X8}";
 }

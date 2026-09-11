@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Containers.Cp2;
+using GWGUI.MediaEngine.Formats.Floppy.Cp2;
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class Cp2ContainerScenarios
 {

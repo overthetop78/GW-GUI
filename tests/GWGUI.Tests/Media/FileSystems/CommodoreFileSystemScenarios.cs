@@ -1,8 +1,10 @@
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
-using GWGUI.MediaEngine.Migration;
-using GWGUI.MediaEngine.Geometries.Commodore;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Conversion.Migration;
+using GWGUI.MediaEngine.Formats.Floppy.Raw;
+
+using GWGUI.MediaEngine.Representations.Sectors;
+
 namespace GWGUI.Tests.Media.FileSystems;
 internal static class CommodoreFileSystemScenarios
 {

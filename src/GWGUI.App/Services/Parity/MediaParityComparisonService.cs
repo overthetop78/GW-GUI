@@ -1,7 +1,8 @@
 using GWGUI.Domain.Parity;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.App.Services.Parity;
 

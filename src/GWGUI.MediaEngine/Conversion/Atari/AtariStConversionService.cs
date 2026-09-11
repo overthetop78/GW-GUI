@@ -1,7 +1,9 @@
-using GWGUI.MediaEngine.Containers.Atari.Msa;
-using GWGUI.MediaEngine.Containers.Atari.St;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Reconstruction.Atari;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Msa;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
 
 namespace GWGUI.MediaEngine.Conversion.Atari;
 

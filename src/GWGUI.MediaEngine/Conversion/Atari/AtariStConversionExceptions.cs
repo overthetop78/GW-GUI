@@ -1,5 +1,7 @@
-using GWGUI.MediaEngine.Geometries.Atari;
-using GWGUI.MediaEngine.SectorImages;
+
+using GWGUI.MediaEngine.Formats.Floppy.St;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Conversion.Atari;
 

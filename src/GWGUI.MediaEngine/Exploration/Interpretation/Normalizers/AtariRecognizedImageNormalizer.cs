@@ -1,9 +1,10 @@
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
 

@@ -1,9 +1,11 @@
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
-using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.Geometries.Dec;
-using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Constants;
+
+using GWGUI.MediaEngine.Formats.Floppy.Rx02;
+
+using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.Tests;
 

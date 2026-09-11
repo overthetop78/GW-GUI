@@ -1,13 +1,14 @@
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Containers.Commodore;
-using GWGUI.MediaEngine.Containers.Commodore.D64;
-using GWGUI.MediaEngine.Containers.Commodore.D71;
 using GWGUI.MediaEngine.Conversion.Commodore;
-using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
-using GWGUI.MediaEngine.Geometries.Commodore;
 using System.IO;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
+
+using GWGUI.MediaEngine.Formats.Floppy.D64;
+
+using GWGUI.MediaEngine.Formats.Floppy.D71;
 
 namespace GWGUI.Tests;
 

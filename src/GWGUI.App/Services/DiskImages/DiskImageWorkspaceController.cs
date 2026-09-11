@@ -14,18 +14,23 @@ using GWGUI.App.Services.Visualization;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.Domain.Contracts;
+using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Reading;
+using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Visualization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
 using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Contracts;
 
+
+using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.DiskImages;
 
@@ -45,6 +50,9 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private readonly ScpInspectorController _inspector;
     private readonly ScpDocumentLoader _scpLoader;
     private readonly Func<string, string?, CancellationToken, Task<ExploredDiskImage>> _explore;
+    private readonly MediaImageReadingService? _mediaReader;
+    private readonly MediaExplorer? _mediaExplorer;
+    private readonly MediaVisualizationProviderRegistry? _visualizationProviders;
     private readonly SectorImageFluxVisualizer _sectorVisualizer;
     private readonly Func<bool> _operationIsRunning;
     private readonly Action<Exception, string, string, string> _showError;
@@ -52,6 +60,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private readonly DiskImageCancellationScope _cancellation;
     private ScpImage? _scpImage;
     private ExploredDiskImage? _exploredImage;
+    private ExploredMediaImage? _exploredMediaImage;
+    private MediaVisualizationDescriptor? _visualizationDescriptor;
 
     public DiskImageWorkspaceController(
         ExplorerSection explorer,
@@ -73,7 +83,10 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         Func<bool> operationIsRunning,
         Action<Exception, string, string, string> showError,
         Func<string, object[], string> localize,
-        Func<string, string?, CancellationToken, Task<ExploredDiskImage>>? explore = null)
+        Func<string, string?, CancellationToken, Task<ExploredDiskImage>>? explore = null,
+        MediaImageReadingService? mediaReader = null,
+        MediaExplorer? mediaExplorer = null,
+        MediaVisualizationProviderRegistry? visualizationProviders = null)
     {
         _explorer = explorer;
         _visualizer = visualizer;
@@ -89,6 +102,9 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _inspector = inspector;
         _scpLoader = scpLoader;
         _explore = explore ?? diskImageExplorer.ExploreAsync;
+        _mediaReader = mediaReader;
+        _mediaExplorer = mediaExplorer;
+        _visualizationProviders = visualizationProviders;
         _sectorVisualizer = sectorVisualizer;
         _cancellation = cancellation;
         _operationIsRunning = operationIsRunning;
@@ -106,6 +122,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     {
         var document = await _explore(path, null, cancellationToken);
         cancellationToken.ThrowIfCancellationRequested();
+        _exploredMediaImage = await ExploreMediaAsync(path, null, cancellationToken);
         LastReadImage = document;
         return document;
     }
@@ -148,8 +165,12 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             if (!cancellation.IsCancellationRequested)
             {
                 _exploredImage = document;
+                _exploredMediaImage = await ExploreMediaAsync(path, requestedFormat, cancellation.Token);
                 LastReadImage = document;
-                _explorer.Display(document);
+                if (_exploredMediaImage?.Document.Representation is SectorMediaImageRepresentation)
+                    _explorer.Display(_exploredMediaImage);
+                else
+                    _explorer.Display(document);
                 var detectedFormatIds = document.FormatsDetectes
                     .Select(format => format.FormatId)
                     .ToArray();
@@ -269,13 +290,14 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         try
         {
             cancellation.Token.ThrowIfCancellationRequested();
-            if (explored is not null
-                && _sectorVisualizer.CanVisualize(explored.Image)
-                && explored.Image.AvailableBlocks.Count > 0)
+            var sectorImage = ResolveSectorImage(path, explored);
+            if (sectorImage is not null
+                && _sectorVisualizer.CanVisualize(sectorImage)
+                && sectorImage.AvailableBlocks.Count > 0)
             {
                 ShowProgress(_localize("Visual.Loading", []), 0, true);
-                var visualization = await Task.Run(() => _sectorVisualizer.Create(explored.Image, cancellation.Token), cancellation.Token);
-                var summary = $"{explored.Image.FormatId} · {explored.Image.Cylinders}×{explored.Image.Heads}×{explored.Image.SectorsPerTrack} · {explored.Image.AvailableBlocks.Count}/{explored.Image.BlockCount}";
+                var visualization = await Task.Run(() => _sectorVisualizer.Create(sectorImage, cancellation.Token), cancellation.Token);
+                var summary = $"{sectorImage.FormatId} · {sectorImage.Cylinders}×{sectorImage.Heads}×{sectorImage.SectorsPerTrack} · {sectorImage.AvailableBlocks.Count}/{sectorImage.BlockCount}";
                 await DisplayScpAsync(visualization, displayFileName ?? Path.GetFileName(path), summary, cancellation);
                 return;
             }
@@ -462,6 +484,42 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         if (_operationIsRunning()) return;
         _viewModel.ProgressVisibility = Visibility.Collapsed;
         _viewModel.ProgressIndeterminate = false;
+    }
+
+    private async Task<ExploredMediaImage?> ExploreMediaAsync(
+        string path,
+        string? requestedFormatId,
+        CancellationToken cancellationToken)
+    {
+        if (_mediaReader is null || _mediaExplorer is null) return null;
+
+        var source = new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId);
+        MediaImageDocument document;
+        try
+        {
+            document = await _mediaReader.ReadAsync(source, cancellationToken);
+        }
+        catch (NotSupportedException) when (requestedFormatId is not null)
+        {
+            document = await _mediaReader.ReadAsync(source with { RequestedFormatId = null }, cancellationToken);
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+        _visualizationDescriptor = _visualizationProviders?.CreateDescriptor(document);
+        return _mediaExplorer.Explore(document);
+    }
+
+    private SectorImage? ResolveSectorImage(string path, ExploredDiskImage? legacyImage)
+    {
+        if (_exploredMediaImage is not null
+            && _visualizationDescriptor is not null
+            && string.Equals(_exploredMediaImage.Document.Source.PrimaryPath, path, StringComparison.OrdinalIgnoreCase)
+            && _exploredMediaImage.Document.Representation is SectorMediaImageRepresentation sectors)
+        {
+            return sectors.Image;
+        }
+
+        return legacyImage?.Image;
     }
 
     private static void TryDelete(string? path)
