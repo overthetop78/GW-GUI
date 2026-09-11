@@ -42,9 +42,8 @@ public sealed partial class SkiaScpRenderer : IScpRenderer
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 var track = tracks[trackIndex];
-                var revolution = track.Revolutions.FirstOrDefault();
-                var preparedTrack = revolution is not null && revolution.FluxIntervals.Count > 0
-                    ? PrepareTrack(track, revolution, decoderId, cancellationToken)
+                var preparedTrack = track.Revolutions.Any(revolution => revolution.FluxIntervals.Count > 0)
+                    ? PrepareTrack(track, decoderId, cancellationToken)
                     : new PreparedScpTrack([], [], ScpTrackVisualState.Anomaly, 0, 0, 0, false);
                 prepared[track] = preparedTrack;
                 progress?.Report(new ScpTrackPreparation(
@@ -100,7 +99,12 @@ public sealed partial class SkiaScpRenderer : IScpRenderer
             using var shortPath = new SKPath();
             using var longPath = new SKPath();
             using var normalPath = new SKPath();
-            foreach (var arc in prepared.FluxArcs)
+            var revolutionIndex = ReferenceEquals(track, request.SelectedTrack)
+                ? request.SelectedRevolutionIndex.GetValueOrDefault()
+                : 0;
+            var preparedRevolution = prepared.Revolutions.ElementAtOrDefault(revolutionIndex)
+                ?? prepared.Revolutions.FirstOrDefault();
+            foreach (var arc in preparedRevolution?.FluxArcs ?? [])
             {
                 var path = arc.Color == shortFlux.Color ? shortPath : arc.Color == longFlux.Color ? longPath : normalPath;
                 path.AddArc(trackRect, arc.Start, arc.Sweep);

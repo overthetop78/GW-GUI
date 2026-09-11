@@ -20,6 +20,9 @@ public sealed class MediaVisualizationComposition
     public static MediaVisualizationComposition CreateDefault()
         => new([
             new FluxMediaVisualizationProvider(),
-            new SectorMediaVisualizationProvider()
+            new SectorMediaVisualizationProvider(),
+            new BlockMediaVisualizationProvider(),
+            new OpticalMediaVisualizationProvider(),
+            new SequentialMediaVisualizationProvider()
         ]);
 }

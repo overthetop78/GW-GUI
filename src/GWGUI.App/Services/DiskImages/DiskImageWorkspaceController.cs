@@ -11,10 +11,12 @@ using GWGUI.App.Contracts.Visualization;
 using GWGUI.App.Functions.Services.Visualization;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Services.Visualization;
+using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.Domain.Contracts;
+using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Reading;
@@ -53,7 +55,14 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private readonly MediaImageReadingService? _mediaReader;
     private readonly MediaExplorer? _mediaExplorer;
     private readonly MediaVisualizationProviderRegistry? _visualizationProviders;
-    private readonly SectorImageFluxVisualizer _sectorVisualizer;
+    private readonly SectorMediaView _sectorView;
+    private readonly SectorMediaInspectorPresenter _sectorPresenter;
+    private readonly BlockMediaView _blockView;
+    private readonly BlockMediaInspectorPresenter _blockPresenter;
+    private readonly OpticalMediaView _opticalView;
+    private readonly OpticalMediaInspectorPresenter _opticalPresenter;
+    private readonly SequentialMediaView _sequentialView;
+    private readonly SequentialMediaInspectorPresenter _sequentialPresenter;
     private readonly Func<bool> _operationIsRunning;
     private readonly Action<Exception, string, string, string> _showError;
     private readonly Func<string, object[], string> _localize;
@@ -62,6 +71,12 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private ExploredDiskImage? _exploredImage;
     private ExploredMediaImage? _exploredMediaImage;
     private MediaVisualizationDescriptor? _visualizationDescriptor;
+    private GWGUI.App.Contracts.Rendering.Blocks.BlockMediaRenderModel? _blockRenderModel;
+    private GWGUI.App.Contracts.Rendering.Blocks.BlockMediaRange? _selectedBlockRange;
+    private int? _selectedBlockSurface;
+    private MediaImageDocument? _opticalDocument;
+    private GWGUI.App.Contracts.Rendering.Optical.OpticalMediaRenderModel? _opticalRenderModel;
+    private GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaRenderModel? _sequentialRenderModel;
 
     public DiskImageWorkspaceController(
         ExplorerSection explorer,
@@ -78,7 +93,6 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         ScpInspectorController inspector,
         ScpDocumentLoader scpLoader,
         DiskImageExplorer diskImageExplorer,
-        SectorImageFluxVisualizer sectorVisualizer,
         DiskImageCancellationScope cancellation,
         Func<bool> operationIsRunning,
         Action<Exception, string, string, string> showError,
@@ -105,7 +119,23 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _mediaReader = mediaReader;
         _mediaExplorer = mediaExplorer;
         _visualizationProviders = visualizationProviders;
-        _sectorVisualizer = sectorVisualizer;
+        _sectorView = new SectorMediaView();
+        _sectorPresenter = new SectorMediaInspectorPresenter(localize);
+        _sectorView.SectorSelected += HandleSectorSelected;
+        _visualizer.RegisterRepresentationView(MediaRepresentationKind.Sectors, _sectorView);
+        _blockView = new BlockMediaView();
+        _blockPresenter = new BlockMediaInspectorPresenter(localize);
+        _blockView.RangeSelected += HandleBlockRangeSelected;
+        _blockView.SurfaceSelected += HandleBlockSurfaceSelected;
+        _visualizer.RegisterRepresentationView(MediaRepresentationKind.Blocks, _blockView);
+        _opticalView = new OpticalMediaView();
+        _opticalPresenter = new OpticalMediaInspectorPresenter(localize);
+        _opticalView.TrackSelected += HandleOpticalTrackSelected;
+        _visualizer.RegisterRepresentationView(MediaRepresentationKind.OpticalTracks, _opticalView);
+        _sequentialView = new SequentialMediaView();
+        _sequentialPresenter = new SequentialMediaInspectorPresenter(localize);
+        _sequentialView.SegmentSelected += HandleSequentialSegmentSelected;
+        _visualizer.RegisterRepresentationView(MediaRepresentationKind.Sequential, _sequentialView);
         _cancellation = cancellation;
         _operationIsRunning = operationIsRunning;
         _showError = showError;
@@ -285,29 +315,19 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             return;
         }
 
+        if (_exploredMediaImage is not null
+            && _visualizationDescriptor?.RepresentationKind is { } representationKind
+            && representationKind != MediaRepresentationKind.Flux)
+        {
+            _scpImage = null;
+            _inspector.ClearImage();
+            HideProgress();
+            return;
+        }
+
         ClearVisualizer(displayFileName ?? Path.GetFileName(path));
         if (_operationIsRunning()) return;
-        try
-        {
-            cancellation.Token.ThrowIfCancellationRequested();
-            var sectorImage = ResolveSectorImage(path, explored);
-            if (sectorImage is not null
-                && _sectorVisualizer.CanVisualize(sectorImage)
-                && sectorImage.AvailableBlocks.Count > 0)
-            {
-                ShowProgress(_localize("Visual.Loading", []), 0, true);
-                var visualization = await Task.Run(() => _sectorVisualizer.Create(sectorImage, cancellation.Token), cancellation.Token);
-                var summary = $"{sectorImage.FormatId} · {sectorImage.Cylinders}×{sectorImage.Heads}×{sectorImage.SectorsPerTrack} · {sectorImage.AvailableBlocks.Count}/{sectorImage.BlockCount}";
-                await DisplayScpAsync(visualization, displayFileName ?? Path.GetFileName(path), summary, cancellation);
-                return;
-            }
-        }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return; }
-        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException) { }
-        finally
-        {
-            if (_cancellation.IsCurrentVisualization(cancellation)) HideProgress();
-        }
+        cancellation.Token.ThrowIfCancellationRequested();
 
         var detection = _getFormatDetector().Detect(path, new FileInfo(path).Length);
         if (!GwVisualizationPolicy.CanConvertToScp(path, detection, _getCapabilities())) return;
@@ -506,21 +526,61 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
         cancellationToken.ThrowIfCancellationRequested();
         _visualizationDescriptor = _visualizationProviders?.CreateDescriptor(document);
+        if (_visualizationDescriptor is not null)
+        {
+            if (document.Representation is SectorMediaImageRepresentation sectors)
+                _sectorView.SetDocument(_sectorPresenter.BuildRenderModel(sectors.Image), _visualizationDescriptor);
+            else if (document.Representation is GWGUI.MediaEngine.Representations.Blocks.BlockMediaImageRepresentation)
+            {
+                _blockRenderModel = _blockPresenter.BuildRenderModel(document);
+                _selectedBlockRange = null;
+                _selectedBlockSurface = null;
+                _blockView.SetDocument(_blockRenderModel);
+            }
+            else if (document.Representation is GWGUI.MediaEngine.Representations.Optical.OpticalMediaImageRepresentation)
+            {
+                _opticalDocument = document;
+                _opticalRenderModel = _opticalPresenter.BuildRenderModel(document);
+                _opticalView.SetDocument(_opticalRenderModel);
+            }
+            else if (document.Representation is GWGUI.MediaEngine.Representations.Sequential.SequentialMediaImageRepresentation)
+            {
+                _sequentialRenderModel = _sequentialPresenter.BuildRenderModel(document);
+                _sequentialView.SetDocument(_sequentialRenderModel);
+            }
+            _visualizer.ShowDocument(document, _visualizationDescriptor);
+        }
         return _mediaExplorer.Explore(document);
     }
 
-    private SectorImage? ResolveSectorImage(string path, ExploredDiskImage? legacyImage)
-    {
-        if (_exploredMediaImage is not null
-            && _visualizationDescriptor is not null
-            && string.Equals(_exploredMediaImage.Document.Source.PrimaryPath, path, StringComparison.OrdinalIgnoreCase)
-            && _exploredMediaImage.Document.Representation is SectorMediaImageRepresentation sectors)
-        {
-            return sectors.Image;
-        }
+    private void HandleSectorSelected(int surface, GWGUI.App.Contracts.Rendering.Sectors.SectorMediaElement? sector) =>
+        _visualizer.SetInspectorModel(sector is null ? null : _sectorPresenter.BuildInspectorModel(surface, sector));
 
-        return legacyImage?.Image;
+    private void HandleBlockRangeSelected(GWGUI.App.Contracts.Rendering.Blocks.BlockMediaRange? range)
+    {
+        _selectedBlockRange = range;
+        UpdateBlockInspector();
     }
+
+    private void HandleBlockSurfaceSelected(int? surface)
+    {
+        _selectedBlockSurface = surface;
+        UpdateBlockInspector();
+    }
+
+    private void UpdateBlockInspector() => _visualizer.SetInspectorModel(_blockRenderModel is null
+        ? null
+        : _blockPresenter.BuildInspectorModel(_blockRenderModel, _selectedBlockRange, _selectedBlockSurface));
+
+    private void HandleOpticalTrackSelected(GWGUI.App.Contracts.Rendering.Optical.OpticalMediaTrack? track) =>
+        _visualizer.SetInspectorModel(_opticalDocument is null || _opticalRenderModel is null
+            ? null
+            : _opticalPresenter.BuildInspectorModel(_opticalDocument, _opticalRenderModel, track));
+
+    private void HandleSequentialSegmentSelected(GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment? segment) =>
+        _visualizer.SetInspectorModel(_sequentialRenderModel is null
+            ? null
+            : _sequentialPresenter.BuildInspectorModel(_sequentialRenderModel, segment));
 
     private static void TryDelete(string? path)
     {

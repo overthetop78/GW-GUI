@@ -9,30 +9,20 @@ namespace GWGUI.App.Rendering.Scp;
 
 public sealed partial class SkiaScpRenderer
 {
-    private PreparedScpTrack PrepareTrack(ScpTrack track, ScpRevolution revolution, string? decoderId, CancellationToken cancellationToken)
+    private PreparedScpTrack PrepareTrack(ScpTrack track, string? decoderId, CancellationToken cancellationToken)
     {
-        var intervals = revolution.FluxIntervals;
-        var sampleStep = Math.Max(1, intervals.Count / 720);
-        var total = intervals.Sum(interval => (double)interval);
-        var ordered = intervals.ToArray();
-        Array.Sort(ordered);
-        var median = ordered[ordered.Length / 2];
-        var fluxArcs = new List<PreparedScpArc>(Math.Min(720, intervals.Count));
         var shortTransitionCount = 0;
         var longTransitionCount = 0;
         var normalFluxCount = 0;
-        double elapsed = 0;
-        for (var index = 0; index < intervals.Count; index += sampleStep)
+        var preparedRevolutions = new List<PreparedScpRevolution>(track.Revolutions.Count);
+        foreach (var revolution in track.Revolutions)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            double span = 0;
-            for (var sample = index; sample < Math.Min(index + sampleStep, intervals.Count); sample++) span += intervals[sample];
-            var color = intervals[index] < median * .65 ? new SKColor(143, 104, 255) : intervals[index] > median * 1.8 ? new SKColor(83, 173, 255) : new SKColor(36, 179, 93);
-            if (color == new SKColor(143, 104, 255)) shortTransitionCount++;
-            else if (color == new SKColor(83, 173, 255)) longTransitionCount++;
-            else normalFluxCount++;
-            fluxArcs.Add(new((float)(elapsed / total * 360 - 90), Math.Max(.08f, (float)(span / total * 360)), color));
-            elapsed += span;
+            var prepared = PrepareRevolution(revolution, cancellationToken);
+            preparedRevolutions.Add(prepared.Revolution);
+            shortTransitionCount += prepared.ShortTransitions;
+            longTransitionCount += prepared.LongTransitions;
+            normalFluxCount += prepared.NormalTransitions;
         }
 
         var structureArcs = new List<PreparedScpArc>();
@@ -54,13 +44,48 @@ public sealed partial class SkiaScpRenderer
         }
         var sectors = decodedResult?.Sectors ?? [];
         return new(
-            fluxArcs,
+            preparedRevolutions,
             structureArcs,
             Classify(decodedResult, shortTransitionCount, longTransitionCount, normalFluxCount),
             sectors.Count(sector => sector.IntegrityValid == true),
             sectors.Count(sector => sector.IntegrityValid == false),
             sectors.Count(sector => sector.IntegrityValid is null),
-            true);
+            preparedRevolutions.Any(item => item.FluxArcs.Count > 0));
+    }
+
+    private static (PreparedScpRevolution Revolution, int ShortTransitions, int LongTransitions, int NormalTransitions) PrepareRevolution(
+        ScpRevolution revolution,
+        CancellationToken cancellationToken)
+    {
+        var intervals = revolution.FluxIntervals;
+        if (intervals.Count == 0) return (new PreparedScpRevolution([]), 0, 0, 0);
+
+        var sampleStep = Math.Max(1, intervals.Count / 720);
+        var total = intervals.Sum(interval => (double)interval);
+        if (total <= 0) return (new PreparedScpRevolution([]), 0, 0, 0);
+
+        var ordered = intervals.ToArray();
+        Array.Sort(ordered);
+        var median = ordered[ordered.Length / 2];
+        var fluxArcs = new List<PreparedScpArc>(Math.Min(720, intervals.Count));
+        var shortTransitionCount = 0;
+        var longTransitionCount = 0;
+        var normalFluxCount = 0;
+        double elapsed = 0;
+        for (var index = 0; index < intervals.Count; index += sampleStep)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            double span = 0;
+            for (var sample = index; sample < Math.Min(index + sampleStep, intervals.Count); sample++) span += intervals[sample];
+            var color = intervals[index] < median * .65 ? new SKColor(143, 104, 255) : intervals[index] > median * 1.8 ? new SKColor(83, 173, 255) : new SKColor(36, 179, 93);
+            if (color == new SKColor(143, 104, 255)) shortTransitionCount++;
+            else if (color == new SKColor(83, 173, 255)) longTransitionCount++;
+            else normalFluxCount++;
+            fluxArcs.Add(new((float)(elapsed / total * 360 - 90), Math.Max(.08f, (float)(span / total * 360)), color));
+            elapsed += span;
+        }
+
+        return (new PreparedScpRevolution(fluxArcs), shortTransitionCount, longTransitionCount, normalFluxCount);
     }
 
     internal static ScpTrackVisualState Classify(FluxDecodeResult? decoded, int shortTransitions, int longTransitions, int normalFlux)

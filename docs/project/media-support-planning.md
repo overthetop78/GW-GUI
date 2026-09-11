@@ -209,9 +209,58 @@ Avant d’étendre le Visualiseur aux autres représentations et aux autres supp
 
 Cette réorganisation concerne le contrôleur du Visualiseur, le contrat utilisé par les moteurs de rendu, la préparation et le cache de `SkiaScpRenderer`, ainsi que les tests du chargement, de l’annulation, du zoom et de la sélection. Elle ne demande pas de refaire la lecture des formats ni l’ensemble de l’interface.
 
-### Question à définir
+### Choix graphiques de base
 
-- Comment représenter graphiquement les images de disquettes, de cassettes et bandes, de disques durs, ainsi que de CD et DVD ?
+Les cinq représentations partagent le chargement progressif, le zoom, la sélection, la légende et
+le panneau d’informations. Chaque rendu conserve toutefois une géométrie propre aux données qu’il
+reçoit.
+
+#### Flux
+
+Une capture de flux de disquette utilise une surface circulaire par face. Les pistes concentriques
+sont remplies progressivement dans l’ordre fourni par la source. Le rendu distingue les
+révolutions, la densité des transitions, les structures décodées et les anomalies réellement
+présentes. Une zone non décodée, une zone sans transition et une erreur déclarée utilisent des
+états visuels différents. Les informations détaillées restent accessibles par face, piste et
+révolution.
+
+#### Sectors
+
+Une image sectorielle de disquette utilise également une surface circulaire par face, mais chaque
+piste est divisée selon ses secteurs réels. La couleur décrit uniquement un état logique connu :
+secteur présent, absent, illisible dans l’image, réservé, libre, occupé ou associé à un fichier
+lorsque le système de fichiers fournit cette relation. Le rendu n’invente ni transitions
+magnétiques, ni révolutions, ni défaut physique.
+
+#### Blocks
+
+Une image de disque dur utilise par défaut une carte logique de plages LBA agrégées. Elle montre les
+partitions, volumes et zones réservées, allouées, libres ou inconnues sans créer un élément par
+secteur. Une seconde vue en plateaux et surfaces est disponible seulement lorsqu’une géométrie CHS
+fiable est fournie. Le nombre de plateaux physiques n’est jamais déduit d’une simple capacité.
+
+#### OpticalTracks
+
+Une image optique utilise un disque par face réellement décrite. Les bandes concentriques suivent
+l’ordre des sessions, pistes et index ; leur nature audio ou données et leurs couches sont montrées
+uniquement lorsque le format les fournit. Les grandes plages de secteurs sont agrégées pour garder
+un dessin lisible. Les sélecteurs de face, couche et session n’apparaissent que lorsqu’ils ont un
+effet.
+
+#### Sequential
+
+Une cassette ou une bande utilise une chronologie horizontale répartie sur plusieurs lignes. Les
+faces, pistes et canaux deviennent des voies séparées lorsqu’ils existent. Les segments conservent
+leur ordre et leur sens de lecture ; les silences, impulsions, blocs décodés, fichiers reconnus et
+erreurs de décodage restent distincts. Une forme d’onde est affichée seulement lorsque la source
+contient réellement des échantillons.
+
+#### Informations absentes
+
+Une propriété absente du document n’est ni estimée ni affichée comme certaine. L’interface masque
+les sélecteurs inutiles et emploie un état « information indisponible » uniquement lorsqu’il aide à
+comprendre le rendu. Les couleurs ne servent jamais à transformer une information logique en état
+physique supposé.
 
 ## Explorateur
 

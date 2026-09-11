@@ -1,4 +1,5 @@
 using GWGUI.App.Contracts.Rendering.Scp;
+using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Enums.Rendering.Scp;
 using GWGUI.App.Functions.Rendering.Scp;
 using GWGUI.App.Interfaces.Rendering.Scp;
@@ -15,7 +16,7 @@ using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Views.Controls.Visualization;
 
-public partial class ScpDiskView : UserControl
+public partial class ScpDiskView : UserControl, IMediaVisualizationView
 {
     private ScpImage? _image;
     private int _head;
@@ -27,12 +28,25 @@ public partial class ScpDiskView : UserControl
     private readonly IScpRenderer _renderer;
     public event EventHandler<ScpTrack?>? TrackSelected;
     public event EventHandler<float>? ZoomChanged;
+    public event Action<int, long>? ElementSelected;
     public ScpTrack? SelectedTrack { get; private set; }
+    public int? SelectedRevolutionIndex { get; private set; }
     public float Zoom => _zoom;
 
     public ScpDiskView() : this(new SkiaScpRenderer()) { }
-    internal ScpDiskView(IScpRenderer renderer) { _renderer = renderer; InitializeComponent(); }
-    public void SetImage(ScpImage? image, int head) { _image = image; _head = head; SelectedTrack = null; _renderer.ClearCache(); ResetView(); }
+    internal ScpDiskView(IScpRenderer renderer) { _renderer = renderer; InitializeComponent(); UpdateLabels(); }
+    public void SetImage(ScpImage? image, int head)
+    {
+        _image = image;
+        _head = head;
+        SelectedTrack = null;
+        SelectedRevolutionIndex = null;
+        _renderer.ClearCache();
+        RevolutionSelector.ItemsSource = null;
+        RevolutionSelector.Visibility = Visibility.Collapsed;
+        UpdateLabels();
+        ResetView();
+    }
     public async Task PrepareAsync(IProgress<ScpTrackPreparation>? progress = null, CancellationToken cancellationToken = default)
     {
         if (_image is null) return;
@@ -42,8 +56,14 @@ public partial class ScpDiskView : UserControl
     public void SetDecoder(string? decoderId) { _renderer.DecoderId = decoderId; Canvas.InvalidateVisual(); }
     public void SetMediaCategory(DiskMediaCategory mediaKind) { _mediaCategory = mediaKind; Canvas.InvalidateVisual(); }
     public void RefreshPreparedTracks() => Canvas.InvalidateVisual();
-    public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
-    public void ResetView() { _zoom = 1; _panX = _panY = 0; Canvas.InvalidateVisual(); }
+    public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); ResetZoomButton.Content = $"{_zoom:P0}"; Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
+    public void ResetView() { _panX = _panY = 0; SetZoom(1); }
+
+    public void SelectElement(int surface, long position)
+    {
+        if (surface != _head || position is < int.MinValue or > int.MaxValue) return;
+        SelectTrack(_image?.Tracks.FirstOrDefault(track => track.Head == surface && track.Cylinder == (int)position), false);
+    }
 
     private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
@@ -53,7 +73,7 @@ public partial class ScpDiskView : UserControl
     internal ScpRenderRequest CreateRenderRequest(int width, int height)
     {
         var center = new SKPoint(width / 2f + _panX * width / (float)Math.Max(1, Canvas.ActualWidth), height / 2f + _panY * height / (float)Math.Max(1, Canvas.ActualHeight));
-        return new(_image, _head, SelectedTrack, width, height, center, _zoom,
+        return new(_image, _head, SelectedTrack, SelectedRevolutionIndex, width, height, center, _zoom,
             LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head), _mediaCategory);
     }
 
@@ -71,7 +91,39 @@ public partial class ScpDiskView : UserControl
         var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? []; if (tracks.Length == 0) return;
         var centerX = Canvas.ActualWidth / 2 + _panX; var centerY = Canvas.ActualHeight / 2 + _panY; var distance = Math.Sqrt(Math.Pow(position.X - centerX, 2) + Math.Pow(position.Y - centerY, 2));
         var outer = ScpMediaGeometryFunctions.FluxRadius((int)Canvas.ActualWidth, (int)Canvas.ActualHeight, _zoom, _mediaCategory); var inner = outer * .25; if (distance < inner || distance > outer) return;
-        var index = Math.Clamp((int)((outer - distance) / ((outer - inner) / tracks.Length)), 0, tracks.Length - 1); SelectedTrack = tracks[index]; Canvas.InvalidateVisual(); TrackSelected?.Invoke(this, SelectedTrack);
+        var index = Math.Clamp((int)((outer - distance) / ((outer - inner) / tracks.Length)), 0, tracks.Length - 1);
+        SelectTrack(tracks[index], true);
+    }
+
+    private void SelectTrack(ScpTrack? track, bool notifyOverview)
+    {
+        SelectedTrack = track;
+        SelectedRevolutionIndex = track?.Revolutions.Count > 0 ? 0 : null;
+        RevolutionSelector.ItemsSource = track is null ? null : Enumerable.Range(1, track.Revolutions.Count).ToArray();
+        RevolutionSelector.SelectedIndex = SelectedRevolutionIndex ?? -1;
+        RevolutionSelector.Visibility = track?.Revolutions.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
+        UpdateLabels();
+        Canvas.InvalidateVisual();
+        TrackSelected?.Invoke(this, track);
+        if (notifyOverview && track is not null) ElementSelected?.Invoke(track.Head, track.Cylinder);
+    }
+
+    private void UpdateLabels()
+    {
+        SurfaceLabel.Text = LocExtension.Get("Visual.Side", _head);
+        SelectionLabel.Text = SelectedTrack is null
+            ? string.Empty
+            : $"{LocExtension.Get("Visual.TrackLabel")} {SelectedTrack.Cylinder}";
+    }
+
+    private void ZoomOutButton_Click(object sender, RoutedEventArgs e) => SetZoom(_zoom * .89f, true);
+    private void ZoomInButton_Click(object sender, RoutedEventArgs e) => SetZoom(_zoom * 1.12f, true);
+    private void ResetZoomButton_Click(object sender, RoutedEventArgs e) => ResetView();
+
+    private void RevolutionSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        SelectedRevolutionIndex = RevolutionSelector.SelectedIndex >= 0 ? RevolutionSelector.SelectedIndex : null;
+        Canvas.InvalidateVisual();
     }
 
     private void Canvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e) { _dragOrigin = e.GetPosition(Canvas); Canvas.CaptureMouse(); e.Handled = true; }

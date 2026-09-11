@@ -83,5 +83,51 @@
         <Style x:Key="Card" TargetType="Border"><Setter Property="Background" Value="{DynamicResource CardBrush}"/><Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="8"/><Setter Property="Padding" Value="18"/><Setter Property="Margin" Value="0,0,0,12"/></Style>
         <Style TargetType="common:CardSection" xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common"><Setter Property="Background" Value="{DynamicResource CardBrush}"/><Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="8"/><Setter Property="Padding" Value="14"/></Style>
         <Style x:Key="SubtlePanel" TargetType="Border"><Setter Property="Background" Value="{DynamicResource WindowBrush}"/><Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="6"/><Setter Property="Padding" Value="8"/></Style>
+        <Style x:Key="VisualizerSurface" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+        <Style x:Key="VisualizerSelector" TargetType="ComboBox">
+            <Setter Property="MinWidth" Value="128"/>
+            <Setter Property="MinHeight" Value="34"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="VisualizerLegendBadge" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource WindowBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="8,3"/>
+            <Setter Property="Margin" Value="0,0,6,4"/>
+        </Style>
+        <Style x:Key="VisualizerInformationCard" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource WindowBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="2,0,2,10"/>
+        </Style>
+        <Style x:Key="VisualizerSelectionCard" TargetType="Border" BasedOn="{StaticResource VisualizerInformationCard}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource HoverBrush}"/>
+                </Trigger>
+                <Trigger Property="Tag" Value="Selected">
+                    <Setter Property="Background" Value="{DynamicResource SelectedBrush}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="VisualizerToolbarButton" TargetType="Button">
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="Padding" Value="9,4"/>
+            <Setter Property="Margin" Value="3,0"/>
+        </Style>
         <Style TargetType="Window" BasedOn="{StaticResource ApplicationWindowStyle}"/>
 </ResourceDictionary>

@@ -1742,3 +1742,11 @@ ajoutée après la dernière action cochée et avant son exécution, conforméme
     - [x] Modifier `docs/project/testing.md` avec les commandes et résultats obtenus après compilation de `GWGUI.MediaEngine`, `GWGUI.App`, `GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et exécution des tests ciblés.
     - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe`.
     - [x] Créer `docs/architecture/media-format-orchestration.md` avec la structure réellement obtenue, les registres, la chaîne Reader-document-Writer, les points d’intégration et les limites encore ouvertes.
+
+- [x] 10. Réordonner les feuilles avant la phase d’affichage
+  - [x] 10.1 Séparer la phase graphique qui suit le premier commit
+    - [x] Créer `docs/tasks/media-visualization.md` avec toutes les actions actuelles du point 8 de `docs/tasks/media-exploration.md`, en indiquant qu’elles commencent après le premier commit et se terminent par le deuxième commit demandé.
+    - [x] Modifier `docs/tasks/media-exploration.md` pour retirer son ancien point 8 et indiquer que ses actions de formats, exploration et appareils commencent seulement après le deuxième commit de `docs/tasks/media-visualization.md`.
+  - [x] 10.2 Corriger l’ordre global des feuilles restantes
+    - [x] Modifier `docs/tasks/hard-disk-images.md` pour le faire commencer après l’achèvement de `docs/tasks/media-exploration.md`, sans attribuer le deuxième commit à cette feuille.
+    - [x] Modifier `docs/tasks/README.md` pour ordonner strictement le premier commit, `media-visualization.md`, le deuxième commit, `media-exploration.md`, `hard-disk-images.md`, le troisième commit puis les validations manuelles.

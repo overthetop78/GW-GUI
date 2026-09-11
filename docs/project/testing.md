@@ -75,6 +75,38 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configura
 Le script a produit l'application sans module d'émulation préinstallé. La présence de
 `build/Debug/GW GUI/gwgui.exe` a été vérifiée après sa terminaison.
 
+## Validation des vues de médias
+
+Les tests généraux du Visualiseur ont été exécutés en configuration `Debug`, sans fichier du
+corpus privé. Les **14 scénarios ont réussi, sans échec ni test ignoré** :
+
+```powershell
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --configuration Debug --filter "FullyQualifiedName~MediaVisualizationRoutingTests|FullyQualifiedName~FloppyVisualizationTests|FullyQualifiedName~OtherMediaVisualizationTests|FullyQualifiedName~MediaVisualizationLayoutTests" --verbosity minimal
+```
+
+Ils contrôlent le routage de `Flux`, `Sectors`, `Blocks`, `OpticalTracks` et `Sequential`, la
+séparation des informations de flux et de secteurs, les sélections 64 bits, les informations
+absentes, la progression, les tailles de fenêtre, les ressources de thèmes et les noms accessibles.
+Les documents Blocks, OpticalTracks et Sequential employés ici sont synthétiques : leurs Readers
+de fichiers sont ajoutés dans les feuilles suivantes.
+
+Le build destiné à la vérification visuelle a ensuite été recréé avec la commande standard :
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+```
+
+Le script a terminé avec succès et la présence de
+`build/Debug/GW GUI/gwgui.exe` a été vérifiée. Dans cette version :
+
+- ouvrir un fichier `.scp` depuis l'onglet **Visualisation** affiche la vue Flux ;
+- ouvrir une image de disquette sectorielle reconnue, par exemple ADF, ST, MSA, ATR, D64, D71,
+  D81, DSK, IMG, IMD, TD0, HFE ou 86F, affiche la vue Sectors sans fabriquer de faux flux ;
+- les vues Blocks, OpticalTracks et Sequential sont enregistrées et couvertes par les tests
+  synthétiques ; elles deviendront accessibles depuis l'onglet **Visualisation** dès que les
+  Readers HDD, CD/DVD/optiques et cassette/bande des feuilles suivantes fourniront ces
+  représentations.
+
 ## Ancien contrôle interactif, manuel uniquement
 
 `scripts/test-app-accessibility.ps1` reste disponible pour ouvrir l’exécutable empaqueté, contrôler son redimensionnement avec le DPI Windows et inspecter les noms accessibles. Ce script nécessite un bureau ; il n’est plus appelé par le workflow de release ni par `GWGUI.Tests`. Les tests hors écran ne sont pas présentés comme un remplacement de sa vérification du cadre natif.

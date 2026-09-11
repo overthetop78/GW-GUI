@@ -1,9 +1,10 @@
 # Extension aux disques durs, supports optiques, cassettes et bandes
 
 Cette feuille commence seulement lorsque toutes les cases de
-[`media-format-orchestration.md`](media-format-orchestration.md) sont cochées. Elle réutilise le
-`MediaImageDocument`, les registres et les représentations communes obtenus pendant ce premier
-chantier. Les tâches sont exécutées et cochées une par une, dans l’ordre.
+[`media-visualization.md`](media-visualization.md) sont cochées et que le deuxième commit demandé a
+été créé. Elle réutilise le `MediaImageDocument`, les registres, les représentations communes et les
+vues obtenus pendant les deux premiers chantiers. Les tâches sont exécutées et cochées une par une,
+dans l’ordre.
 
 - [ ] 1. Définir les formats réellement pris en charge avant leur implémentation
   - [ ] 1.1 Inventorier les images de disques durs
@@ -109,121 +110,6 @@ chantier. Les tâches sont exécutées et cochées une par une, dans l’ordre.
     - [ ] Modifier `docs/architecture/media-format-orchestration.md` avec les Readers, Writers, représentations, visualiseurs, systèmes de fichiers et limites réellement implémentés.
     - [ ] Modifier `docs/project/media-support-planning.md` pour remplacer les questions résolues par les décisions effectivement validées et conserver uniquement les inconnues restantes.
 
-- [ ] 8. Finaliser l’affichage graphique de tous les supports
-
-  Après achèvement et validation des points 1 à 7, créer le commit demandé par l’utilisateur avec
-  tout le travail terminé jusque-là. Ce point de contrôle Git est explicitement autorisé par la
-  demande du 10 septembre 2026. Commencer ensuite seulement les actions ci-dessous.
-
-  - [ ] 8.1 Construire la présentation commune du Visualiseur
-    - [ ] Modifier `docs/project/media-support-planning.md` pour consigner les choix graphiques réellement appliqués aux vues Flux, Sectors, Blocks, OpticalTracks et Sequential, sans présenter comme physique une information absente de l’image.
-    - [ ] Créer `src/GWGUI.App/Contracts/ViewModels/Visualization/MediaInspectorModel.cs` avec le titre du support, ses sections d’informations, l’élément sélectionné et uniquement les propriétés fournies par le document média.
-    - [ ] Créer `src/GWGUI.App/Contracts/ViewModels/Visualization/MediaInspectorSection.cs` avec un titre, une icône et une liste ordonnée de valeurs affichables.
-    - [ ] Créer `src/GWGUI.App/Contracts/ViewModels/Visualization/MediaInspectorEntry.cs` avec le libellé, la valeur, l’unité éventuelle et le niveau d’information ou d’erreur.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/MediaInspectorPanel.xaml` avec des cartes de synthèse et de détails réutilisables par tous les supports.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/MediaInspectorPanel.xaml.cs` pour recevoir un `MediaInspectorModel` sans connaître le format du fichier ouvert.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml` pour organiser une zone de rendu principale, une barre d’outils courte, une légende, une progression et le panneau d’informations adaptable à la largeur disponible.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml.cs` pour sélectionner automatiquement la vue correspondant à Flux, Sectors, Blocks, OpticalTracks ou Sequential et conserver zoom, sélection et position entre les actualisations du même document.
-    - [ ] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour transmettre le document et son descripteur à la vue sélectionnée sans décider du rendu d’après l’extension.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml` pour afficher le nom, le format, le support, la représentation et uniquement les sélecteurs utiles à la vue active.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml.cs` pour alimenter ces informations depuis le document et masquer les commandes incompatibles avec sa représentation.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerLegend.xaml` pour afficher une légende compacte composée d’éléments colorés et expliqués, propre à la représentation active.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerLegend.xaml.cs` pour construire la légende depuis le descripteur sans liste codée par extension.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/TrackProgressStrip.xaml` pour représenter une progression générique par pistes, secteurs, plages, pistes optiques ou segments.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/TrackProgressStrip.xaml.cs` pour recevoir l’unité, le total, l’avancement et l’état sans dépendre de `SkiaScpRenderer`.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml` pour afficher dynamiquement les surfaces, plateaux, couches, faces, canaux ou lignes annoncés par le descripteur.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml.cs` pour générer ces lignes de progression et synchroniser leur sélection avec la vue principale.
-
-  - [ ] 8.2 Finaliser la vue d’une disquette en flux
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml` pour présenter séparément les faces disponibles, la surface circulaire du flux, le zoom et la sélection d’une piste ou d’une révolution.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs` pour conserver la face sélectionnée, relier le pointeur aux pistes préparées et afficher les données de flux correspondantes dans `MediaInspectorPanel`.
-    - [ ] Modifier `src/GWGUI.App/Rendering/Scp/SkiaScpRenderer.cs` pour préparer progressivement chaque piste et dessiner uniquement les transitions, révolutions, densités et anomalies réellement présentes dans la capture.
-    - [ ] Modifier `src/GWGUI.App/Rendering/Scp/ScpTrackDrawingFunctions.cs` pour appliquer une palette lisible sur thèmes clair et sombre sans confondre absence de décodage, zone vide et erreur physique.
-    - [ ] Modifier `src/GWGUI.App/Presenters/Visualization/ScpInspectorPresenter.cs` pour produire le modèle commun avec face, piste, révolution, durées, transitions, encodage détecté et structures décodées disponibles.
-    - [ ] Modifier `src/GWGUI.App/Services/Visualization/ScpInspectorController.cs` pour alimenter `MediaInspectorPanel` dans la vue principale et dans la fenêtre détachée.
-    - [ ] Modifier `src/GWGUI.App/Views/Windows/Visualization/ScpInspectorWindow.xaml` pour héberger `MediaInspectorPanel` avec le modèle de la sélection Flux.
-    - [ ] Modifier `src/GWGUI.App/Views/Windows/Visualization/ScpInspectorWindow.xaml.cs` pour recevoir et actualiser le modèle commun de la sélection Flux.
-    - [ ] Supprimer `src/GWGUI.App/Views/Controls/Visualization/ScpInspectorPanel.xaml` après migration de la vue principale et de la fenêtre détachée vers `MediaInspectorPanel`.
-    - [ ] Supprimer `src/GWGUI.App/Views/Controls/Visualization/ScpInspectorPanel.xaml.cs` après suppression du contrôle XAML correspondant.
-
-  - [ ] 8.3 Finaliser la vue d’une disquette sectorielle
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Sectors/SectorMediaRenderModel.cs` avec les faces, pistes, secteurs, tailles, identifiants, positions, états connus et correspondance avec les fichiers lorsque l’Explorateur la fournit.
-    - [ ] Créer `src/GWGUI.App/Rendering/Sectors/SkiaSectorMediaRenderer.cs` pour dessiner les faces comme des surfaces de pistes concentriques divisées en secteurs, avec l’ordre et la direction fournis par le descripteur.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SectorMediaView.xaml` avec les faces disponibles, la carte sectorielle, le zoom et la sélection, sans commandes propres aux révolutions du flux.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SectorMediaView.xaml.cs` pour relier la sélection d’un secteur à son adresse, sa taille, son état connu et son contenu logique dans `MediaInspectorPanel`.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/SectorMediaInspectorPresenter.cs` pour construire les informations de face, piste et secteur sans déduire de défaut physique depuis une image de données.
-    - [ ] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour envoyer les images sectorielles à `SectorMediaView` et cesser de fabriquer un SCP synthétique.
-    - [ ] Supprimer `src/GWGUI.MediaEngine/Visualization/SectorImageFluxVisualizer.cs` après suppression vérifiée de son dernier appel.
-
-  - [ ] 8.4 Finaliser la vue d’une image de disque dur
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Blocks/BlockMediaRenderModel.cs` avec les plages LBA, partitions, volumes, zones réservées, allouées, libres ou inconnues et la géométrie CHS uniquement lorsqu’elle est établie.
-    - [ ] Créer `src/GWGUI.App/Rendering/Blocks/SkiaBlockMediaRenderer.cs` pour agréger les grandes plages sans créer un élément graphique par secteur et dessiner une carte logique sélectionnable.
-    - [ ] Créer `src/GWGUI.App/Rendering/Blocks/SkiaHardDiskGeometryRenderer.cs` pour représenter plusieurs plateaux et surfaces seulement lorsque le document fournit une géométrie CHS exploitable.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/BlockMediaView.xaml` avec la carte logique et, lorsqu’elle existe, la vue CHS, ainsi que la sélection de partition, volume, plage ou surface.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/BlockMediaView.xaml.cs` pour choisir la vue disponible, synchroniser le zoom et alimenter `MediaInspectorPanel` avec les adresses et capacités connues.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/BlockMediaInspectorPresenter.cs` pour présenter capacité, adressage, partitions, volumes, systèmes de fichiers et géométrie sans inventer le nombre de plateaux.
-
-  - [ ] 8.5 Finaliser la vue d’une image de CD ou DVD
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Optical/OpticalMediaRenderModel.cs` avec les faces, couches, sessions, pistes, index, plages de secteurs et la nature audio ou données réellement décrites.
-    - [ ] Créer `src/GWGUI.App/Rendering/Optical/SkiaOpticalMediaRenderer.cs` pour dessiner un disque par face, répartir couches, sessions et pistes selon leur ordre réel et agréger les secteurs lorsque nécessaire.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml` avec le disque, les sélecteurs de face, couche et session disponibles, le zoom et la sélection de piste.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs` pour synchroniser les sélecteurs avec le rendu et afficher les informations optiques connues dans `MediaInspectorPanel`.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/OpticalMediaInspectorPresenter.cs` pour présenter face, couche, session, piste, index, mode, durée et volume associé sans déduire une structure absente.
-
-  - [ ] 8.6 Finaliser la vue d’une image de cassette ou de bande
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Sequential/SequentialMediaRenderModel.cs` avec les faces, pistes, canaux, segments, positions temporelles, silences, blocs décodés et la forme d’onde facultative.
-    - [ ] Créer `src/GWGUI.App/Rendering/Sequential/SkiaSequentialMediaRenderer.cs` pour répartir la chronologie sur plusieurs lignes et voies, préparer progressivement les segments et conserver leur ordre ainsi que leur sens de lecture.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml` avec les lignes temporelles, les sélecteurs de face, piste ou canal disponibles, le zoom horizontal et la sélection d’un segment.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs` pour synchroniser défilement, zoom et sélection puis afficher les informations temporelles dans `MediaInspectorPanel`.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/SequentialMediaInspectorPresenter.cs` pour présenter position, durée, canal, piste, type de segment, fichier ou bloc reconnu et erreurs de décodage disponibles.
-
-  - [ ] 8.7 Harmoniser l’apparence et l’accessibilité
-    - [ ] Modifier `src/GWGUI.App/Resources/ApplicationStyles.xaml` avec les styles communs des surfaces, sélecteurs, légendes, badges, cartes d’informations et états de sélection du Visualiseur sur thèmes clair et sombre.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml` pour conserver une utilisation complète aux tailles minimale et maximale de la fenêtre, avec panneau d’informations repliable et défilement uniquement dans les zones nécessaires.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/MediaInspectorPanel.xaml` pour fournir ordre de tabulation, noms accessibles, contraste et lecture correcte des valeurs indisponibles.
-
-  - [ ] 8.8 Ajouter tous les textes du Visualiseur
-    - [ ] Modifier `src/GWGUI.App/Resources/00-Base/Visualizer.resx` avec les clés communes et les valeurs anglaises ou invariantes nécessaires aux cinq représentations, sans dupliquer CPU, CHS, LBA, CD, DVD ni les noms de formats.
-    - [ ] Modifier `src/GWGUI.App/Resources/ar-SA/Visualizer.resx` avec les traductions arabes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/cs-CZ/Visualizer.resx` avec les traductions tchèques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/da-DK/Visualizer.resx` avec les traductions danoises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/de-DE/Visualizer.resx` avec les traductions allemandes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/el-GR/Visualizer.resx` avec les traductions grecques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/en-US/Visualizer.resx` avec les textes anglais des nouvelles clés du Visualiseur qui ne sont pas déjà hérités de la base commune.
-    - [ ] Modifier `src/GWGUI.App/Resources/es-ES/Visualizer.resx` avec les traductions espagnoles des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/fi-FI/Visualizer.resx` avec les traductions finnoises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/fr-FR/Visualizer.resx` avec les traductions françaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/he-IL/Visualizer.resx` avec les traductions hébraïques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/hu-HU/Visualizer.resx` avec les traductions hongroises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/id-ID/Visualizer.resx` avec les traductions indonésiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/it-IT/Visualizer.resx` avec les traductions italiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ja-JP/Visualizer.resx` avec les traductions japonaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ko-KR/Visualizer.resx` avec les traductions coréennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/nb-NO/Visualizer.resx` avec les traductions norvégiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/nl-NL/Visualizer.resx` avec les traductions néerlandaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/pl-PL/Visualizer.resx` avec les traductions polonaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/pt-BR/Visualizer.resx` avec les traductions portugaises du Brésil des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/pt-PT/Visualizer.resx` avec les traductions portugaises du Portugal des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ro-RO/Visualizer.resx` avec les traductions roumaines des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ru-RU/Visualizer.resx` avec les traductions russes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/sv-SE/Visualizer.resx` avec les traductions suédoises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/th-TH/Visualizer.resx` avec les traductions thaïlandaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/tr-TR/Visualizer.resx` avec les traductions turques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/uk-UA/Visualizer.resx` avec les traductions ukrainiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/vi-VN/Visualizer.resx` avec les traductions vietnamiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/zh-Hans/Visualizer.resx` avec les traductions chinoises simplifiées des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/zh-Hant/Visualizer.resx` avec les traductions chinoises traditionnelles des nouvelles clés du Visualiseur produites avec Argos.
-
-  - [ ] 8.9 Ajouter les tests généraux des vues
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs` avec le routage de Flux, Sectors, Blocks, OpticalTracks et Sequential vers leur vue sans décision fondée sur l’extension.
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs` avec la séparation des informations Flux et Sectors, la progression et la sélection simulées sans fichier du corpus local.
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs` avec les sélections Blocks, OpticalTracks et Sequential, les informations absentes et les grandes plages simulées sans fichier du corpus local.
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` avec les tailles minimales, le panneau replié, les thèmes clair et sombre et les noms accessibles des commandes.
-
-  - [ ] 8.10 Produire le build destiné à la vérification visuelle
-    - [ ] Modifier `docs/project/testing.md` avec le résultat de `scripts/build.ps1 -Configuration Debug`, la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` et les chemins manuels à ouvrir pour observer Flux, Sectors, Blocks, OpticalTracks et Sequential.
-
-  Après achèvement et validation de toutes les cases du point 8, créer le second commit demandé par
-  l’utilisateur avec cette base graphique. Continuer ensuite avec la première case non cochée de
-  [`hard-disk-images.md`](hard-disk-images.md). Aucun essai manuel du corpus `image_test` ne commence
-  avant l’achèvement de cette feuille complémentaire et le troisième commit qui la termine.
+Après achèvement et validation de toutes les cases de cette feuille, continuer avec la première case
+non cochée de [`hard-disk-images.md`](hard-disk-images.md). Le troisième commit demandé est créé
+après cette feuille complémentaire et avant les essais manuels du corpus `image_test`.

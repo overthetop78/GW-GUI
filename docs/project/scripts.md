@@ -287,12 +287,14 @@ Traduit, synchronise, nettoie et contrôle les ressources `.resx` avec les modè
 python .\scripts\translate-resx-argos.py <ressource> <clé> <texte-anglais>
 python .\scripts\translate-resx-argos.py --entry <clé> <texte-anglais> [--entry ...]
 python .\scripts\translate-resx-argos.py --sync-all
+python .\scripts\translate-resx-argos.py --sync-all --culture fr-FR
+python .\scripts\translate-resx-argos.py --sync-all --culture fr-FR --catalog Visualizer.resx
 python .\scripts\translate-resx-argos.py --clean-only
 python .\scripts\translate-resx-argos.py --audit
 python .\scripts\translate-resx-argos.py --repair-mixed
 python .\scripts\translate-resx-argos.py --format
 ```
 
-`--root` permet de choisir un autre dossier de ressources que `src/GWGUI.App/Resources`. Le mode d’ajout insère les clés dans la ressource de base et traduit les textes traduisibles dans toutes les cultures. `--sync-all` complète les entrées absentes, `--clean-only` retire les doublons et les valeurs techniques invariantes qui doivent utiliser le repli, `--audit` ne modifie rien et contrôle la structure, la présence de chaque texte traduisible dans les 28 cultures Argos, les clés, les paramètres réservés et les fragments non traduits. `en-US` utilise volontairement les textes de `00-Base`; les valeurs techniques invariantes utilisent aussi ce repli. Une traduction identique au texte anglais reste inscrite physiquement afin que l’audit puisse distinguer une traduction produite d’une clé oubliée. `--repair-mixed` retraduit les entrées mixtes, et `--format` normalise la présentation XML des éléments `data`.
+`--root` permet de choisir un autre dossier de ressources que `src/GWGUI.App/Resources`. Le mode d’ajout insère les clés dans la ressource de base et traduit les textes traduisibles dans toutes les cultures. `--sync-all` complète les entrées absentes ; `--culture` permet de limiter cette synchronisation à une culture, y compris `en-US`, et `--catalog` à un seul fichier de ressources. `--clean-only` retire les doublons et les valeurs techniques invariantes qui doivent utiliser le repli, `--audit` ne modifie rien et contrôle la structure, la présence de chaque texte traduisible dans les 28 cultures Argos, les clés, les paramètres réservés et les fragments non traduits. `en-US` utilise volontairement les textes de `00-Base`; les valeurs techniques invariantes utilisent aussi ce repli. Une traduction identique au texte anglais reste inscrite physiquement afin que l’audit puisse distinguer une traduction produite d’une clé oubliée. `--repair-mixed` retraduit les entrées mixtes, et `--format` normalise la présentation XML des éléments `data`.
 
 Les modes de traduction modifient directement les fichiers `.resx`. Les termes protégés, paramètres et valeurs invariantes sont préservés. Les modèles Argos nécessaires doivent déjà être installés.

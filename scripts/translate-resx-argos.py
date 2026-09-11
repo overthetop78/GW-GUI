@@ -360,6 +360,10 @@ def main() -> None:
         help="replace the value when the key already exists")
     parser.add_argument("--sync-all", action="store_true",
         help="translate every missing or untranslated entry in every RESX catalog")
+    parser.add_argument("--culture", choices=["en-US", *LANGUAGE_CODES],
+        help="limit --sync-all to one culture")
+    parser.add_argument("--catalog",
+        help="limit --sync-all to one RESX catalog, for example Visualizer.resx")
     parser.add_argument("--clean-only", action="store_true",
         help="remove duplicate keys and localized values that must use the neutral fallback")
     parser.add_argument("--audit", action="store_true",
@@ -452,21 +456,43 @@ def main() -> None:
         return
 
     if args.sync_all:
+        selected_cultures = (
+            {args.culture: LANGUAGE_CODES[args.culture]}
+            if args.culture in LANGUAGE_CODES
+            else LANGUAGE_CODES
+        )
+        selected_directories = (
+            [root / args.culture]
+            if args.culture is not None
+            else [path for path in root.iterdir() if path.is_dir() and path.name != "00-Base"]
+        )
+        catalog_pattern = args.catalog or "*.resx"
         duplicate_count = sum(
             remove_duplicate_keys(path)
-            for culture_path in root.iterdir()
-            if culture_path.is_dir() and culture_path.name != "00-Base"
-            for path in culture_path.glob("*.resx")
+            for culture_path in selected_directories
+            for path in culture_path.glob(catalog_pattern)
         )
         if duplicate_count:
             print(f"Duplicate entries removed: {duplicate_count}", flush=True)
         base_catalogs = {
             path.name: read_entries(path)
-            for path in sorted((root / "00-Base").glob("*.resx"))
+            for path in sorted((root / "00-Base").glob(catalog_pattern))
         }
+        if args.culture == "en-US":
+            removed = 0
+            for catalog, base_entries in base_catalogs.items():
+                if catalog in BASE_ONLY_CATALOGS:
+                    continue
+                removed += remove_fallback_entries(
+                    root / "en-US" / catalog,
+                    base_entries,
+                    remove_identical=True,
+                )
+            print(f"en-US: invariant duplicates removed={removed}", flush=True)
+            return
         packages = {(item.from_code, item.to_code): item
             for item in package.get_installed_packages() if item.type == "translate"}
-        for culture, language_code in LANGUAGE_CODES.items():
+        for culture, language_code in selected_cultures.items():
             installed_package = packages.get(("en", language_code))
             if installed_package is None:
                 raise RuntimeError(f"Missing Argos model en -> {language_code}")
@@ -503,17 +529,18 @@ def main() -> None:
                 )
             print(f"{culture}: translated={len(pending)}, invariant duplicates removed={removed}", flush=True)
 
-        for catalog, base_entries in base_catalogs.items():
-            if catalog in BASE_ONLY_CATALOGS:
-                continue
-            target_path = root / "en-US" / catalog
-            removed = remove_fallback_entries(
-                target_path,
-                base_entries,
-                remove_identical=True,
-            )
-            if removed:
-                print(f"en-US/{catalog}: invariant duplicates removed={removed}", flush=True)
+        if args.culture is None:
+            for catalog, base_entries in base_catalogs.items():
+                if catalog in BASE_ONLY_CATALOGS:
+                    continue
+                target_path = root / "en-US" / catalog
+                removed = remove_fallback_entries(
+                    target_path,
+                    base_entries,
+                    remove_identical=True,
+                )
+                if removed:
+                    print(f"en-US/{catalog}: invariant duplicates removed={removed}", flush=True)
         return
 
     if not args.resource or not args.key or args.english is None:

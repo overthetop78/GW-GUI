@@ -12,10 +12,10 @@ cases de la précédente sont cochées et que son éventuel point de contrôle G
 l'utilisateur est terminé.
 
 1. [Orchestration commune des formats et représentations](media-format-orchestration.md).
-2. [Extension aux HDD, supports optiques, cassettes et bandes](media-exploration.md), points 1 à 7.
-3. Premier commit demandé dans `media-exploration.md`.
-4. [Affichage graphique de tous les supports](media-exploration.md), point 8.
-5. Deuxième commit demandé dans `media-exploration.md`.
+2. Premier commit demandé après l’orchestration.
+3. [Affichage graphique de tous les supports](media-visualization.md).
+4. Deuxième commit demandé après l’affichage.
+5. [Extension aux HDD, supports optiques, cassettes et bandes](media-exploration.md).
 6. [Création et cycle de vie des images HDD](hard-disk-images.md), avec les compléments qui restent
    après l'orchestration, l'exploration et l'affichage des HDD, CD/DVD/optiques et cassettes/bandes.
 7. Troisième commit demandé dans `hard-disk-images.md`.

@@ -9,6 +9,7 @@ public sealed record ScpRenderRequest(
     ScpImage? Image,
     int Head,
     ScpTrack? SelectedTrack,
+    int? SelectedRevolutionIndex,
     int Width,
     int Height,
     SKPoint Center,

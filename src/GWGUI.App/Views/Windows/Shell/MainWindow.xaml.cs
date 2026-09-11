@@ -286,7 +286,6 @@ public partial class MainWindow : Window
             _scpInspectorController,
             new ScpDocumentLoader(_mediaEngine.Recognition.ScpReader, (key, arguments) => LocExtension.Get(key, arguments)),
             DiskImageExplorer.CreateDefault(),
-            new SectorImageFluxVisualizer(),
             diskImageCancellation,
             () => _operation.IsRunning,
             ShowLoggedError,

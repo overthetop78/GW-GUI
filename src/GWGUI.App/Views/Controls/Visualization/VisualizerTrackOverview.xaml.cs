@@ -1,6 +1,10 @@
 using GWGUI.App.Contracts.Rendering.Scp;
 using GWGUI.App.Enums.Rendering.Scp;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Visualization;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -8,29 +12,83 @@ namespace GWGUI.App.Views.Controls.Visualization;
 
 public partial class VisualizerTrackOverview : UserControl
 {
-    private readonly Dictionary<int, HashSet<int>> _preparedCylinders = [];
+    private readonly Dictionary<int, TrackProgressStrip> _strips = [];
 
     public VisualizerTrackOverview() => InitializeComponent();
 
+    public event Action<int, long>? ElementSelected;
+
     public void Configure(IReadOnlyDictionary<int, IReadOnlyList<int>> cylinders)
     {
-        Visibility = cylinders.Values.Any(items => items.Count > 0) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-        _preparedCylinders.Clear();
-        foreach (var head in cylinders.Keys)
-            _preparedCylinders[head] = [];
-        ConfigureFace(Face0, Face0Count, 0, cylinders.GetValueOrDefault(0) ?? []);
-        ConfigureFace(Face1, Face1Count, 1, cylinders.GetValueOrDefault(1) ?? []);
+        ArgumentNullException.ThrowIfNull(cylinders);
+        var surfaces = cylinders.Keys.Order().ToArray();
+        var elements = cylinders
+            .SelectMany(pair => pair.Value.Select(cylinder => new MediaVisualizationElement(cylinder, pair.Key)))
+            .ToArray();
+        Configure(new MediaVisualizationDescriptor(
+            MediaRepresentationKind.Flux,
+            surfaces,
+            MediaVisualizationProgressUnit.Track,
+            MediaVisualizationDirection.Ascending,
+            elements));
+    }
+
+    public void Configure(MediaVisualizationDescriptor descriptor)
+    {
+        ArgumentNullException.ThrowIfNull(descriptor);
+        ProgressRows.Children.Clear();
+        _strips.Clear();
+
+        var surfaces = descriptor.Surfaces.Count > 0
+            ? descriptor.Surfaces
+            : descriptor.Elements.Where(element => element.Surface.HasValue).Select(element => element.Surface!.Value).Distinct().Order().ToArray();
+
+        foreach (var surface in surfaces)
+        {
+            var positions = descriptor.Elements
+                .Where(element => element.Surface == surface)
+                .Select(element => element.Position)
+                .Distinct()
+                .Order()
+                .ToArray();
+            AddStrip(descriptor.ProgressUnit, surface, positions, SurfaceLabel(descriptor.RepresentationKind, surface));
+        }
+
+        var unassignedPositions = descriptor.Elements
+            .Where(element => element.Surface is null)
+            .Select(element => element.Position)
+            .Distinct()
+            .Order()
+            .ToArray();
+        if (unassignedPositions.Length > 0)
+        {
+            var unassignedSurface = surfaces.DefaultIfEmpty(-1).Max() + 1;
+            AddStrip(descriptor.ProgressUnit, unassignedSurface, unassignedPositions, LocExtension.Get("Visual.All"));
+        }
+
+        Visibility = _strips.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void AddStrip(MediaVisualizationProgressUnit progressUnit, int surface, IReadOnlyList<long> positions, string label)
+    {
+        if (positions.Count == 0) return;
+        var strip = new TrackProgressStrip();
+        strip.Configure(progressUnit, surface, positions, label);
+        strip.ElementSelected += HandleElementSelected;
+        ProgressRows.Children.Add(strip);
+        _strips[surface] = strip;
+    }
+
+    public void SelectElement(int surface, long position)
+    {
+        foreach (var pair in _strips)
+            pair.Value.Select(pair.Key == surface ? position : long.MinValue);
     }
 
     public void MarkPrepared(ScpTrackPreparation preparation)
     {
-        var strip = preparation.Head == 0 ? Face0 : Face1;
-        var label = preparation.Head == 0 ? Face0Count : Face1Count;
-        strip.SetColor(preparation.Cylinder, ColorFor(preparation));
-        if (!_preparedCylinders.TryGetValue(preparation.Head, out var prepared))
-            _preparedCylinders[preparation.Head] = prepared = [];
-        prepared.Add(preparation.Cylinder);
-        label.Text = $"{Math.Min(prepared.Count, strip.Segments.Count)} / {strip.Segments.Count}";
+        if (_strips.TryGetValue(preparation.Head, out var strip))
+            strip.SetColor(preparation.Cylinder, ColorFor(preparation));
     }
 
     internal static Color ColorFor(ScpTrackPreparation preparation)
@@ -62,11 +120,17 @@ public partial class VisualizerTrackOverview : UserControl
         };
     }
 
-    private static void ConfigureFace(TrackProgressStrip strip, TextBlock label, int head, IReadOnlyList<int> cylinders)
+    private void HandleElementSelected(int surface, long position)
     {
-        strip.Visibility = cylinders.Count == 0 ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
-        label.Visibility = strip.Visibility;
-        strip.Configure(head, cylinders, LocExtension.Get("Visual.Side", head));
-        label.Text = $"0 / {cylinders.Count}";
+        SelectElement(surface, position);
+        ElementSelected?.Invoke(surface, position);
     }
+
+    private static string SurfaceLabel(MediaRepresentationKind representationKind, int surface) => representationKind switch
+    {
+        MediaRepresentationKind.Blocks => LocExtension.Get("Visual.Surface", surface),
+        MediaRepresentationKind.OpticalTracks => LocExtension.Get("Visual.DiscFace", surface),
+        MediaRepresentationKind.Sequential => LocExtension.Get("Visual.Channel", surface),
+        _ => LocExtension.Get("Visual.Side", surface)
+    };
 }

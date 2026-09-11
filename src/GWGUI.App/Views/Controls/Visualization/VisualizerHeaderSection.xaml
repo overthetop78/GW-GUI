@@ -8,6 +8,17 @@
                 <StackPanel>
                     <TextBlock x:Name="FileName" Text="{l:Loc Visual.NoFile}" FontSize="17" FontWeight="SemiBold"/>
                     <TextBlock x:Name="Summary" Text="{l:Loc Visual.Waiting}" Foreground="{DynamicResource MutedTextBrush}" Margin="0,3,0,0"/>
+                    <WrapPanel x:Name="MediaBadges" Margin="0,8,0,0" Visibility="Collapsed">
+                        <Border Style="{StaticResource SubtlePanel}" Padding="8,3" Margin="0,0,6,0">
+                            <TextBlock x:Name="Format" FontWeight="SemiBold"/>
+                        </Border>
+                        <Border Style="{StaticResource SubtlePanel}" Padding="8,3" Margin="0,0,6,0">
+                            <TextBlock x:Name="MediaKind" FontWeight="SemiBold"/>
+                        </Border>
+                        <Border Style="{StaticResource SubtlePanel}" Padding="8,3">
+                            <TextBlock x:Name="Representation" FontWeight="SemiBold"/>
+                        </Border>
+                    </WrapPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">

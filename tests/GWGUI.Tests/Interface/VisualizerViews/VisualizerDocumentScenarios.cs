@@ -58,7 +58,7 @@ internal static class VisualizerDocumentScenarios
                 () => throw new InvalidOperationException("Unexpected capabilities"),
                 ControlledDependencies.Reject<IFileDialogService>(), ControlledDependencies.Reject<IGwCommandBuilder>(),
                 ControlledDependencies.Reject<IGreaseweazleRunner>(), InspectorSelectionScenarios.Controller(Visualizer, scope),
-                new ScpDocumentLoader(reader, (key, _) => key), DiskImageExplorer.CreateDefault(), new SectorImageFluxVisualizer(),
+                new ScpDocumentLoader(reader, (key, _) => key), DiskImageExplorer.CreateDefault(),
                 scope, () => false, (error, _, _, _) => Errors.Add(error), (key, _) => key,
                 (path, format, token) => Explore(path, format, token));
         }

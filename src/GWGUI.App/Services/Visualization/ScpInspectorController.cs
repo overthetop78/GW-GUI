@@ -1,4 +1,5 @@
 using GWGUI.App.Contracts.Visualization;
+using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.Services.DiskImages;
 using GWGUI.App.Views.Controls.Visualization;
@@ -29,6 +30,7 @@ public sealed class ScpInspectorController
     private ScpImage? _image;
     private ScpTrack? _selectedTrack;
     private ScpInspectorWindow? _detachedWindow;
+    private MediaInspectorModel? _currentInspectorModel;
     private bool _syncingZoom;
 
     public ScpInspectorController(
@@ -53,10 +55,8 @@ public sealed class ScpInspectorController
         _section.SecondSide.ZoomChanged += ZoomChanged;
         _section.Header.DecoderCombo.SelectionChanged += DecoderChanged;
         _section.Header.ResetButton.Click += ResetViews;
-        _section.Inspector.CloseRequested += (_, _) => _section.Inspector.Visibility = Visibility.Collapsed;
-        _section.Inspector.DetachRequested += (_, _) => DetachInspector();
-        _section.Inspector.DragRequested += (_, delta) => MoveInspector(delta.X, delta.Y);
         _section.ToggleInspectorRequested += ToggleInspector;
+        _section.DetachInspectorRequested += (_, _) => DetachInspector();
     }
 
     public void SetImage(ScpImage image)
@@ -64,7 +64,8 @@ public sealed class ScpInspectorController
         _cancellation.CancelInspector();
         _image = image;
         _selectedTrack = null;
-        _section.Inspector.DataContext = null;
+        _currentInspectorModel = null;
+        _section.SetInspectorModel(null);
         if (_detachedWindow is not null) _detachedWindow.DataContext = null;
     }
 
@@ -73,7 +74,8 @@ public sealed class ScpInspectorController
         _cancellation.CancelInspector();
         _image = null;
         _selectedTrack = null;
-        _section.Inspector.DataContext = null;
+        _currentInspectorModel = null;
+        _section.SetInspectorModel(null);
         if (_detachedWindow is not null) _detachedWindow.DataContext = null;
     }
 
@@ -93,7 +95,8 @@ public sealed class ScpInspectorController
         _selectedTrack = track;
         if (track is not null) return UpdateInspectorAsync(track);
         _cancellation.CancelInspector();
-        _section.Inspector.DataContext = null;
+        _currentInspectorModel = null;
+        _section.SetInspectorModel(null);
         if (_detachedWindow is not null) _detachedWindow.DataContext = null;
         return Task.CompletedTask;
     }
@@ -130,11 +133,10 @@ public sealed class ScpInspectorController
         var decoderId = (_section.Header.DecoderCombo.SelectedItem as ScpDecoderChoice)?.Id;
         try
         {
-            var model = await Task.Run(() => _presenter.BuildModel(image, track, decoderId), cancellation.Token);
+            var model = await Task.Run(() => _presenter.BuildCommonModel(image, track, decoderId), cancellation.Token);
             if (cancellation.IsCancellationRequested || !_cancellation.IsCurrentInspector(cancellation)) return;
-            _section.Inspector.DataContext = model;
-            _section.Inspector.Visibility = _detachedWindow is null ? Visibility.Visible : Visibility.Collapsed;
-            if (_detachedWindow is null) PositionInspector();
+            _currentInspectorModel = model;
+            if (_detachedWindow is null) _section.SetInspectorModel(model);
             else _detachedWindow.DataContext = model;
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
@@ -168,41 +170,17 @@ public sealed class ScpInspectorController
             return;
         }
 
-        _section.Inspector.Visibility = _section.Inspector.Visibility == Visibility.Visible
-            ? Visibility.Collapsed
-            : Visibility.Visible;
-    }
-
-    private void MoveInspector(double x, double y)
-    {
-        var inspector = _section.Inspector;
-        var layer = _section.InspectorCanvas;
-        var left = Math.Clamp(Canvas.GetLeft(inspector) + x, 0, Math.Max(0, layer.ActualWidth - inspector.ActualWidth));
-        var top = Math.Clamp(Canvas.GetTop(inspector) + y, 0, Math.Max(0, layer.ActualHeight - inspector.ActualHeight));
-        Canvas.SetLeft(inspector, left);
-        Canvas.SetTop(inspector, top);
-    }
-
-    private void PositionInspector()
-    {
-        var inspector = _section.Inspector;
-        var layer = _section.InspectorCanvas;
-        inspector.Width = Math.Max(320, Math.Min(390, layer.ActualWidth - 12));
-        inspector.Height = Math.Max(280, Math.Min(410, layer.ActualHeight - 12));
-        var currentLeft = Canvas.GetLeft(inspector);
-        var currentTop = Canvas.GetTop(inspector);
-        var left = double.IsNaN(currentLeft) ? Math.Max(12, layer.ActualWidth - inspector.Width - 20) : Math.Min(currentLeft, Math.Max(0, layer.ActualWidth - inspector.Width));
-        var top = double.IsNaN(currentTop) ? 18 : Math.Min(currentTop, Math.Max(0, layer.ActualHeight - inspector.Height));
-        Canvas.SetLeft(inspector, left);
-        Canvas.SetTop(inspector, top);
+        _section.SetInspectorModel(_section.IsInspectorVisible
+            ? null
+            : _currentInspectorModel);
     }
 
     private void DetachInspector()
     {
         if (_detachedWindow is not null) return;
-        _section.Inspector.Visibility = Visibility.Collapsed;
-        var window = _detachedWindow = new ScpInspectorWindow { Owner = _owner, DataContext = _section.Inspector.DataContext };
-        window.AttachRequested += (_, _) => _section.Inspector.Visibility = Visibility.Visible;
+        _section.SetInspectorModel(null);
+        var window = _detachedWindow = new ScpInspectorWindow { Owner = _owner, DataContext = _currentInspectorModel };
+        window.AttachRequested += (_, _) => _section.SetInspectorModel(_currentInspectorModel);
         window.Closed += (_, _) => _detachedWindow = null;
         window.Show();
     }
