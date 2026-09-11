@@ -81,16 +81,22 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     internal async Task StopAsync()
     {
         if (_disposed) return;
+        _disposed = true;
         ExitFullscreen();
         _video.FramePresented -= FramePresented;
         _video.ShaderLoadingChanged -= VideoShaderLoadingChanged;
         _video.SurfaceChanged -= VideoSurfaceChanged;
         _session.MachineChanged -= MachineChanged;
-        _input.Dispose();
-        _video.Dispose();
-        EmulationVideoShaderLoadingStatus.Set(_options.ModuleId, _options.ConfigurationId, false);
-        await _session.DisposeAsync();
-        _disposed = true;
+        try
+        {
+            _input.Dispose();
+            _video.Dispose();
+        }
+        finally
+        {
+            EmulationVideoShaderLoadingStatus.Set(_options.ModuleId, _options.ConfigurationId, false);
+            await _session.DisposeAsync();
+        }
     }
 
     internal void ApplyVideoRenderer(EmulationVideoRenderer renderer)
@@ -241,7 +247,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _input.CompleteHostTransition();
     }
 
-    private void ExitFullscreen()
+    private void ExitFullscreen(bool closeWindow = true)
     {
         if (_fullscreenWindow is null) return;
         _input.BeginHostTransition();
@@ -249,15 +255,16 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         window.Closed -= FullscreenWindowClosed;
         window.ContentRendered -= FullscreenContentRendered;
         _fullscreenHost?.Children.Remove(_view.Screen);
+        window.Content = null;
         _fullscreenHost = null;
         _fullscreenWindow = null;
         _view.DisplayHost.Children.Add(_view.Screen);
         _video.SetDisplayHost(_view.DisplayHost);
-        if (window.IsVisible) window.Close();
+        if (closeWindow) window.Close();
         _input.CompleteHostTransition();
     }
 
-    private void FullscreenWindowClosed(object? sender, EventArgs args) => ExitFullscreen();
+    private void FullscreenWindowClosed(object? sender, EventArgs args) => ExitFullscreen(closeWindow: false);
 
     private void FullscreenContentRendered(object? sender, EventArgs args)
     {

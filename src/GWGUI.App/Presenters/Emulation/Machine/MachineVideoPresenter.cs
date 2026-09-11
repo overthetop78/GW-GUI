@@ -11,7 +11,6 @@ namespace GWGUI.App.Presenters.Emulation.Machine;
 
 internal sealed class MachineVideoPresenter : IDisposable
 {
-    private static readonly TimeSpan WorkerShutdownTimeout = TimeSpan.FromSeconds(3);
     private readonly MachineView _view;
     private readonly Func<EmulationVideoRenderer, IEmulationVideoSurface> _createSurface;
     private FrameworkElement _displayHost;
@@ -173,18 +172,28 @@ internal sealed class MachineVideoPresenter : IDisposable
         _view.VideoHost.Loaded -= VideoHostLoaded;
         _view.VideoHost.Unloaded -= VideoHostUnloaded;
         if (_hostWindow is not null) _hostWindow.StateChanged -= HostWindowStateChanged;
+        _hostWindow = null;
         _presentationEnabled = false;
         _disposed = true;
-        lock (_gpuFrameGate) _pendingGpuFrame = null;
+        lock (_gpuFrameGate)
+        {
+            _pendingGpuFrame = null;
+            _latestCompletedFrame = null;
+        }
         _gpuWorkerCancellation.Cancel();
         _gpuFrameAvailable.Set();
-        var workerStopped = false;
-        try { workerStopped = _gpuWorker.Wait(WorkerShutdownTimeout); }
-        catch (AggregateException error) when (error.InnerExceptions.All(exception =>
-                   exception is OperationCanceledException)) { workerStopped = true; }
-        if (workerStopped)
+        try
         {
-            lock (_surfaceGate) _surface.Dispose();
+            _gpuWorker.GetAwaiter().GetResult();
+        }
+        catch (OperationCanceledException) { }
+        finally
+        {
+            lock (_surfaceGate)
+            {
+                _surface.SuspendPresentation();
+                _surface.Dispose();
+            }
             _gpuWorkerCancellation.Dispose();
             _gpuFrameAvailable.Dispose();
         }

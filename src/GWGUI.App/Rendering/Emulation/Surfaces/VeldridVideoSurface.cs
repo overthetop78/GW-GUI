@@ -48,6 +48,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         EmulationVideoProcessingConfigurationFunctions.Normalize(null);
     private readonly IEmulationVideoProcessingPipeline _videoProcessingPipeline;
     private readonly SoftwareEmulationVideoProcessingPipeline _snapshotPipeline = new();
+    private bool _disposed;
     private EmulationVideoProcessingConfiguration _videoProcessing =
         EmulationVideoProcessingConfigurationFunctions.Normalize(null);
 
@@ -92,7 +93,11 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         return new HandleRef(this, _hwnd);
     }
 
-    protected override void DestroyWindowCore(HandleRef hwnd) => NativeVideoWindowFunctions.Destroy(hwnd.Handle);
+    protected override void DestroyWindowCore(HandleRef hwnd)
+    {
+        NativeVideoWindowFunctions.Destroy(hwnd.Handle);
+        _hwnd = IntPtr.Zero;
+    }
 
     protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
     {
@@ -355,15 +360,31 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
 
     public new void Dispose()
     {
-        _videoProcessingPipeline.Dispose();
-        _snapshotPipeline.Dispose();
-        lock (_deviceGate)
+        if (_disposed) return;
+        _disposed = true;
+        try
         {
-            DisposeFrameResources();
-            _commands?.Dispose();
-            _device?.Dispose();
+            lock (_deviceGate)
+            {
+                try { _device?.WaitForIdle(); }
+                finally
+                {
+                    DisposeFrameResources();
+                    _commands?.Dispose();
+                    _commands = null;
+                    _device?.Dispose();
+                    _device = null;
+                }
+            }
+            base.Dispose();
         }
-        base.Dispose();
+        finally
+        {
+            _snapshot = null;
+            _snapshotSourceFrame = null;
+            _videoProcessingPipeline.Dispose();
+            _snapshotPipeline.Dispose();
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]

@@ -19,7 +19,7 @@ namespace GWGUI.App.Services.Visualization;
 /// Coordinates track selection, linked zoom and the attached/detached SCP inspector.
 /// Disk loading and progressive track preparation remain outside this controller.
 /// </summary>
-public sealed class ScpInspectorController
+public sealed class ScpInspectorController : IDisposable
 {
     private readonly Window _owner;
     private readonly VisualizerTabSection _section;
@@ -32,6 +32,7 @@ public sealed class ScpInspectorController
     private ScpInspectorWindow? _detachedWindow;
     private MediaInspectorModel? _currentInspectorModel;
     private bool _syncingZoom;
+    private bool _disposed;
 
     public ScpInspectorController(
         Window owner,
@@ -56,7 +57,7 @@ public sealed class ScpInspectorController
         _section.Header.DecoderCombo.SelectionChanged += DecoderChanged;
         _section.Header.ResetButton.Click += ResetViews;
         _section.ToggleInspectorRequested += ToggleInspector;
-        _section.DetachInspectorRequested += (_, _) => DetachInspector();
+        _section.DetachInspectorRequested += DetachInspectorRequested;
     }
 
     public void SetImage(ScpImage image)
@@ -180,8 +181,57 @@ public sealed class ScpInspectorController
         if (_detachedWindow is not null) return;
         _section.SetInspectorModel(null);
         var window = _detachedWindow = new ScpInspectorWindow { Owner = _owner, DataContext = _currentInspectorModel };
-        window.AttachRequested += (_, _) => _section.SetInspectorModel(_currentInspectorModel);
-        window.Closed += (_, _) => _detachedWindow = null;
+        window.AttachRequested += DetachedWindowAttachRequested;
+        window.Closed += DetachedWindowClosed;
         window.Show();
+    }
+
+    public void Dispose()
+    {
+        if (_disposed) return;
+        _disposed = true;
+        _cancellation.CancelInspector();
+        _section.FirstSide.TrackSelected -= TrackSelected;
+        _section.SecondSide.TrackSelected -= TrackSelected;
+        _section.FirstSide.ZoomChanged -= ZoomChanged;
+        _section.SecondSide.ZoomChanged -= ZoomChanged;
+        _section.Header.DecoderCombo.SelectionChanged -= DecoderChanged;
+        _section.Header.ResetButton.Click -= ResetViews;
+        _section.ToggleInspectorRequested -= ToggleInspector;
+        _section.DetachInspectorRequested -= DetachInspectorRequested;
+        _image = null;
+        _selectedTrack = null;
+        _currentInspectorModel = null;
+        _section.SetInspectorModel(null);
+        CloseDetachedWindow();
+    }
+
+    private void DetachInspectorRequested(object? sender, RoutedEventArgs args) => DetachInspector();
+
+    private void DetachedWindowAttachRequested(object? sender, EventArgs args) =>
+        _section.SetInspectorModel(_currentInspectorModel);
+
+    private void DetachedWindowClosed(object? sender, EventArgs args)
+    {
+        if (sender is ScpInspectorWindow window)
+        {
+            window.AttachRequested -= DetachedWindowAttachRequested;
+            window.Closed -= DetachedWindowClosed;
+            window.DataContext = null;
+            window.Content = null;
+        }
+        _detachedWindow = null;
+    }
+
+    private void CloseDetachedWindow()
+    {
+        var window = _detachedWindow;
+        if (window is null) return;
+        _detachedWindow = null;
+        window.AttachRequested -= DetachedWindowAttachRequested;
+        window.Closed -= DetachedWindowClosed;
+        window.DataContext = null;
+        window.Close();
+        window.Content = null;
     }
 }

@@ -21,6 +21,7 @@ using System.Windows;
 using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
 using System.Windows.Threading;
+using System.Windows.Interop;
 using GWGUI.Infrastructure.HostTools;
 
 namespace GWGUI.App;
@@ -102,6 +103,7 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
+        ReleaseRemainingWindows();
         try { GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.FlushPending(); }
         catch (Exception error) { System.Diagnostics.Trace.TraceError(error.ToString()); }
         GameInputControllerSource.Instance.StopMonitoring();
@@ -110,6 +112,21 @@ public partial class App : Application
         AppDomain.CurrentDomain.UnhandledException -= OnDomainUnhandledException;
         TaskScheduler.UnobservedTaskException -= OnUnobservedTaskException;
         base.OnExit(e);
+    }
+
+    private void ReleaseRemainingWindows()
+    {
+        foreach (Window window in Windows.Cast<Window>().ToArray())
+        {
+            try
+            {
+                if (new WindowInteropHelper(window).Handle != IntPtr.Zero) window.Close();
+            }
+            catch (InvalidOperationException) { }
+            window.DataContext = null;
+            window.Content = null;
+        }
+        MainWindow = null;
     }
 
     protected override void OnActivated(EventArgs e)

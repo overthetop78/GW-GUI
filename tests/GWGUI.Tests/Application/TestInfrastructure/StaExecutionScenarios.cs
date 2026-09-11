@@ -7,10 +7,12 @@ public sealed class StaExecutionScenarios : IDisposable
 {
     private readonly Thread thread;
     private readonly Dispatcher dispatcher;
+    private readonly ResourceApplication application;
 
     public StaExecutionScenarios()
     {
-        var ready = new TaskCompletionSource<Dispatcher>(TaskCreationOptions.RunContinuationsAsynchronously);
+        var ready = new TaskCompletionSource<(Dispatcher Dispatcher, ResourceApplication Application)>(
+            TaskCreationOptions.RunContinuationsAsynchronously);
         thread = new Thread(() =>
         {
             try
@@ -22,34 +24,61 @@ public sealed class StaExecutionScenarios : IDisposable
                 {
                     Source = new Uri("/gwgui.app;component/Resources/ApplicationStyles.xaml", UriKind.Relative)
                 };
-                ready.SetResult(current);
+                ready.SetResult((current, resources));
                 Dispatcher.Run();
             }
             catch (Exception exception) { ready.TrySetException(exception); }
         }) { IsBackground = true, Name = "GWGUI test dispatcher" };
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
-        dispatcher = ready.Task.GetAwaiter().GetResult();
+        (dispatcher, application) = ready.Task.GetAwaiter().GetResult();
     }
 
-    public Task Run(Action scenario) => dispatcher.InvokeAsync(() =>
+    public Task Run(Action scenario) => RunAsync(() =>
     {
         scenario();
-        foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
-            Assert.Equal(IntPtr.Zero, new System.Windows.Interop.WindowInteropHelper(window).Handle);
-    }).Task.WaitAsync(TimeSpan.FromSeconds(30));
+        return Task.CompletedTask;
+    });
 
     public Task RunAsync(Func<Task> scenario) => dispatcher.InvokeAsync(async () =>
     {
-        await scenario();
-        foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
-            Assert.Equal(IntPtr.Zero, new System.Windows.Interop.WindowInteropHelper(window).Handle);
+        try { await scenario(); }
+        finally
+        {
+            CloseAndReleaseWindows();
+            await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);
+            foreach (System.Windows.Window window in application.Windows)
+                Assert.Equal(IntPtr.Zero, new System.Windows.Interop.WindowInteropHelper(window).Handle);
+        }
     }).Task.Unwrap().WaitAsync(TimeSpan.FromSeconds(30));
 
     public void Dispose()
     {
-        dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
+        if (!dispatcher.HasShutdownStarted && !dispatcher.HasShutdownFinished)
+        {
+            dispatcher.Invoke(() =>
+            {
+                CloseAndReleaseWindows();
+                application.Shutdown();
+            }, DispatcherPriority.Send);
+        }
         if (!thread.Join(TimeSpan.FromSeconds(5))) throw new TimeoutException("WPF test dispatcher did not stop.");
+        if (thread.IsAlive || !dispatcher.HasShutdownFinished)
+            throw new InvalidOperationException("WPF test dispatcher thread did not finish its shutdown.");
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        GC.Collect();
+    }
+
+    private void CloseAndReleaseWindows()
+    {
+        foreach (System.Windows.Window window in application.Windows.Cast<System.Windows.Window>().ToArray())
+        {
+            var handle = new System.Windows.Interop.WindowInteropHelper(window).Handle;
+            if (handle != IntPtr.Zero) window.Close();
+            window.DataContext = null;
+            window.Content = null;
+        }
     }
 
     private sealed class ResourceApplication : System.Windows.Application

@@ -577,7 +577,11 @@ public partial class MainWindow : Window
 
     private void RestoreConversionSettings() => _conversionTab.RestoreSettings();
 
-    private void Window_Closing(object? sender, CancelEventArgs e) => _lifecycle.Closing(e);
+    private void Window_Closing(object? sender, CancelEventArgs e)
+    {
+        _lifecycle.Closing(e);
+        if (!e.Cancel) _scpInspectorController.Dispose();
+    }
 
     private void RefreshReadProfiles(string? selectedId = null)
         => _readTab.RefreshProfiles(selectedId);

@@ -177,3 +177,22 @@ Le script a produit l'application sans module d'émulation préinstallé. La pr�
 ## Ancien contrôle interactif, manuel uniquement
 
 `scripts/test-app-accessibility.ps1` reste disponible pour ouvrir l’exécutable empaqueté, contrôler son redimensionnement avec le DPI Windows et inspecter les noms accessibles. Ce script nécessite un bureau ; il n’est plus appelé par le workflow de release ni par `GWGUI.Tests`. Les tests hors écran ne sont pas présentés comme un remplacement de sa vérification du cadre natif.
+
+## Contrat de fermeture WPF et graphique
+
+La fermeture d'une machine attend maintenant la terminaison réelle de son thread de présentation
+avant de détruire la surface vidéo. La limite précédente de trois secondes ne peut donc plus laisser
+une surface, un signal ou un jeton d'annulation en attente. Les surfaces WPF, OpenGL, Direct3D 11 et
+Vulkan vident aussi leurs images conservées ; les surfaces Veldrid attendent l'inactivité du
+périphérique avant de libérer ses ressources.
+
+Les fenêtres plein écran sont fermées même lorsqu'elles sont cachées. La fenêtre d'inspection
+détachée annule son travail, détache ses événements et vide son contenu avec la fenêtre principale.
+Au départ de l'application, les éventuelles fenêtres secondaires restantes sont fermées et leur
+arbre de contenu est libéré avant la fin du `Dispatcher`.
+
+L'infrastructure WPF des tests applique le même principe après chaque scénario : fermeture et
+vidage des fenêtres sur le thread STA, traitement de la file WPF jusqu'à la priorité
+`ApplicationIdle`, puis arrêt explicite de l'`Application` et du `Dispatcher` à la destruction de
+la fixture. Elle attend ensuite la terminaison du thread et les finaliseurs. Cette modification n'a
+pas déclenché les tests manuels du corpus `image_test` ni lancé l'application.

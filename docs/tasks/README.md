@@ -19,7 +19,8 @@ l'utilisateur est terminé.
 6. [Création et cycle de vie des images HDD](hard-disk-images.md), avec les compléments qui restent
    après l'orchestration, l'exploration et l'affichage des HDD, CD/DVD/optiques et cassettes/bandes.
 7. Troisième commit demandé dans `hard-disk-images.md`.
-8. [Validation finale](validation.md), en commençant par les essais manuels du corpus `image_test`.
+8. [Nettoyage du cycle de vie WPF et graphique](wpf-lifecycle-cleanup.md), avant de reprendre les essais manuels.
+9. [Validation finale](validation.md), en commençant par les essais manuels du corpus `image_test`.
 
 Avant chaque action, vérifier qu'elle est la première case non cochée de cette séquence. Si une
 action nécessaire manque, l'ajouter à la suite de la dernière action cochée et avant l'action qui en

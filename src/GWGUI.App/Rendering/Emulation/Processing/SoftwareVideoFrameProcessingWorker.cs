@@ -16,6 +16,7 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
     private readonly object _gate = new();
     private readonly IEmulationVideoProcessingPipeline _pipeline;
     private WorkItem? _pending;
+    private Task? _processingTask;
     private bool _running;
     private bool _disposed;
     private bool _resetHistory;
@@ -48,19 +49,22 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
                 configurationVersion, completed);
             if (_running) return;
             _running = true;
-            _ = Task.Run(ProcessPending);
+            _processingTask = Task.Run(ProcessPending);
         }
     }
 
     public void Dispose()
     {
+        Task? processingTask;
         lock (_gate)
         {
             if (_disposed) return;
             _disposed = true;
             _pending = null;
-            if (!_running) _pipeline.Dispose();
+            processingTask = _processingTask;
         }
+        processingTask?.GetAwaiter().GetResult();
+        _pipeline.Dispose();
     }
 
     private void ProcessPending()
@@ -74,7 +78,6 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
                 if (_disposed || _pending is null)
                 {
                     _running = false;
-                    if (_disposed) _pipeline.Dispose();
                     return;
                 }
                 work = _pending;
