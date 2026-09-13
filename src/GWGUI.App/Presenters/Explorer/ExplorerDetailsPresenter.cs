@@ -133,15 +133,36 @@ public static class ExplorerDetailsPresenter
     {
         var rows = new List<ExplorerDetailRow>
         {
-            new("Explorer.Type", item.TypeText),
+            new("Explorer.Type", item.TypeText)
+        };
+        if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.File)
+        {
+            rows.Add(new("Explorer.Category", LocExtension.Get($"Explorer.Category.{item.Definition.Category}")));
+            rows.Add(new("Explorer.ContentFormat", LocExtension.Get($"Explorer.ContentFormat.{item.Definition.ContentFormat}")));
+            if (item.Definition.TextEncoding != ExplorerTextEncoding.NotApplicable)
+                rows.Add(new("Explorer.TextEncoding", TextEncoding(item.Definition.TextEncoding)));
+            rows.Add(new("Explorer.Preview", LocExtension.Get($"Explorer.Preview.{item.Definition.PreviewKind}")));
+        }
+        rows.AddRange(
+        [
             new("Explorer.Size", item.SizeText),
             new("Explorer.Modified", item.ModifiedText),
             new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)
-        };
+        ]);
         if (item.Definition.ExecutionKind != ExplorerExecutionKind.None)
             rows.Add(new("Explorer.Execution", LocExtension.Get($"Explorer.Execution.{item.Definition.ExecutionKind}")));
         if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory)
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(item.Entry.Children).ToString()));
         return new(item.Name, item.IconCategory, rows, false, item.Tone);
     }
+
+    private static string TextEncoding(ExplorerTextEncoding encoding) => encoding switch
+    {
+        ExplorerTextEncoding.Unknown => LocExtension.Get("Explorer.Unknown"),
+        ExplorerTextEncoding.DosOem => "DOS OEM",
+        ExplorerTextEncoding.Latin1 => "Latin-1",
+        ExplorerTextEncoding.MacRoman => "Mac Roman",
+        ExplorerTextEncoding.AppleAscii => "Apple ASCII",
+        _ => encoding.ToString().ToUpperInvariant()
+    };
 }

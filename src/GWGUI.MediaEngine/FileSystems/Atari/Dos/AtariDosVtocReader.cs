@@ -8,7 +8,16 @@ namespace GWGUI.MediaEngine.FileSystems.Atari.Dos;
 public static class AtariDosVtocReader
 {
     /// <summary>Indique si le secteur possède le marqueur et la longueur minimale attendus.</summary>
-    public static bool LooksValid(IReadOnlyList<byte> data) => data.Count >= AtariDosFileSystemLayout.MinimumSectorSize && data[0] == AtariDosFileSystemLayout.VtocMarker;
+    public static bool LooksValid(IReadOnlyList<byte> data, int maximumSectorCount)
+    {
+        if (data.Count < AtariDosFileSystemLayout.MinimumSectorSize ||
+            data[0] is not (AtariDosFileSystemLayout.LegacyVtocMarker or AtariDosFileSystemLayout.VtocMarker)) return false;
+        var usable = data[AtariDosFileSystemLayout.UsableSectorCountOffset] |
+            data[AtariDosFileSystemLayout.UsableSectorCountOffset + 1] << 8;
+        var free = data[AtariDosFileSystemLayout.FreeSectorCountOffset] |
+            data[AtariDosFileSystemLayout.FreeSectorCountOffset + 1] << 8;
+        return usable > 0 && usable <= maximumSectorCount && free <= usable;
+    }
     /// <summary>Lit le compteur libre lorsqu'il est disponible.</summary>
     public static int? ReadFreeSectors(SectorImage image)
     {

@@ -30,14 +30,20 @@ internal static class AtrLayout
     public const int ExtendedSectorSize = 512;
     /// <summary>Nombre de secteurs d'une image ATR standard de 90 ou 180 Kio.</summary>
     public const int StandardSectorCount = 720;
+    /// <summary>Nombre de secteurs présents dans certaines images 90 Kio tronquées après leur dernière zone utile.</summary>
+    public const int TruncatedSingleDensitySectorCount = 512;
     /// <summary>Nombre de secteurs d'une image ATR à densité améliorée de 130 Kio.</summary>
     public const int EnhancedDensitySectorCount = 1040;
+    /// <summary>Nombre de secteurs des images Atari DOS étendues de 140 Kio.</summary>
+    public const int ExtendedSingleDensitySectorCount = 1120;
     /// <summary>Nombre de cylindres des disquettes Atari 8 bits standards.</summary>
     public const int StandardCylinderCount = 40;
     /// <summary>Nombre de secteurs par piste en simple et double densité.</summary>
     public const int StandardSectorsPerCylinder = 18;
     /// <summary>Nombre de secteurs par piste en densité améliorée.</summary>
     public const int EnhancedDensitySectorsPerCylinder = 26;
+    /// <summary>Nombre de secteurs par piste des images Atari DOS étendues de 140 Kio.</summary>
+    public const int ExtendedSingleDensitySectorsPerCylinder = 28;
     /// <summary>Décalage binaire appliqué au mot haut du nombre de paragraphes.</summary>
     public const int ParagraphCountHighWordShift = 16;
     /// <summary>Premier numéro de secteur exposé par une image ATR.</summary>
@@ -66,6 +72,10 @@ internal static class AtrLayout
         return (sectorSize == SingleDensitySectorSize ? 0 : BootSectorCount) + (payloadLength - bootAreaLength) / sectorSize;
     }
 
+    /// <summary>Indique si les secteurs présents constituent le début d'une disquette simple densité standard.</summary>
+    public static bool IsTruncatedSingleDensity(int sectorSize, int sectorCount) =>
+        sectorSize == SingleDensitySectorSize && sectorCount > 0 && sectorCount < StandardSectorCount;
+
     /// <summary>Retourne la géométrie physique standard correspondant à la taille et au nombre de secteurs ATR.</summary>
     /// <param name="sectorSize">Taille nominale d'un secteur.</param>
     /// <param name="sectorCount">Nombre total de secteurs.</param>
@@ -73,10 +83,14 @@ internal static class AtrLayout
     public static (int Cylinders, int Heads, int SectorsPerTrack) GetGeometry(int sectorSize, int sectorCount) =>
         (sectorSize, sectorCount) switch
         {
+            (SingleDensitySectorSize, > 0 and < StandardSectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder),
             (SingleDensitySectorSize, StandardSectorCount) or (DoubleDensitySectorSize, StandardSectorCount) =>
                 (StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder),
             (SingleDensitySectorSize, EnhancedDensitySectorCount) =>
                 (StandardCylinderCount, LogicalHeadCount, EnhancedDensitySectorsPerCylinder),
+            (SingleDensitySectorSize, ExtendedSingleDensitySectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, ExtendedSingleDensitySectorsPerCylinder),
             _ => (sectorCount, LogicalHeadCount, 1)
         };
 }

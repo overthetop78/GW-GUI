@@ -24,7 +24,7 @@ public class FileSystemsTests
     [Theory] [InlineData(6,0)] [InlineData(10,0)] [InlineData(6,1)] [InlineData(6,2)] [InlineData(6,3)] [InlineData(6,4)] [InlineData(6,5)]
     public void UcsdDirectorySizesSeparateExtentsAndInvalidRanges(int end,int damage) => UcsdFileSystemScenarios.Directory(end,damage);
     [Theory]
-    [InlineData("atari.90",128,0)] [InlineData("atari.130",128,0)] [InlineData("atari.180",256,0)]
+    [InlineData("atari.90",128,0)] [InlineData("atari.130",128,0)] [InlineData("atari.140",128,0)] [InlineData("atari.180",256,0)]
     [InlineData("atari.90",128,1)] [InlineData("atari.90",128,2)] [InlineData("atari.90",128,3)] [InlineData("atari.90",128,4)] [InlineData("atari.90",128,5)]
     [InlineData("atari.90",128,6)] [InlineData("atari.180",256,6)]
     public void AtariDosVariantsFragmentationEmptyAndMalformedChains(string format,int size,int damage) => AtariFileSystemScenarios.Variant(format,size,damage);
@@ -51,7 +51,11 @@ public class FileSystemsTests
     [Theory] [InlineData(false)] [InlineData(true)] public void UcsdByteOrderAndFileContents(bool bigEndian) => UcsdFileSystemScenarios.Volume(bigEndian);
     [Theory] [InlineData(false)] [InlineData(true)] public void BbcDfsCatalogAndMissingContent(bool missing) => AcornFileSystemScenarios.Dfs(missing);
     [Theory] [InlineData(false)] [InlineData(true)] public void AtariDosCatalogAndBrokenChain(bool broken) => AtariFileSystemScenarios.Dos(broken);
+    [Theory] [InlineData((byte)0)] [InlineData((byte)2)] public void AtariDosCatalogAcceptsKnownVtocMarkers(byte marker) => AtariFileSystemScenarios.VtocMarker(marker);
     [Fact] public void AtariDosCatalogAcceptsNamedEmptyFiles() => AtariFileSystemScenarios.NamedEmptyFile();
+    [Fact] public void AtariDosCatalogStopsAtFirstUnusedEntry() => AtariFileSystemScenarios.StopsAtFirstUnusedDirectoryEntry();
+    [Fact] public void AtariDosRejectsAnEmptyVtoc() => AtariFileSystemScenarios.EmptyVtoc();
+    [Fact] public void AtariDosKeepsOpenDirectoryEntries() => AtariFileSystemScenarios.OpenEntry();
     [Fact] public void Fat12WriterBuildsBootAndDirectoryWithExpectedContent()=>Fat12FileSystemScenarios.Volume();
     [Theory]
     [InlineData(AmigaDosVariant.Ofs)]

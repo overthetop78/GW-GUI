@@ -139,7 +139,7 @@ typedef struct rootblock
         public uint RovingPtr { get; set; }
 
         /// <summary>
-        /// deldir location (<= 17.8)
+        /// deldir location (&lt;= 17.8)
         /// </summary>
         public uint DelDir { get; set; }
 

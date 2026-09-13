@@ -14,6 +14,9 @@ internal static class AtrFormat
     /// <summary>Identifiant d'une image Atari à densité améliorée de 130 Kio.</summary>
     public const string EnhancedDensityFormatId = DiskImageFormatIds.Atari130;
 
+    /// <summary>Identifiant d'une image Atari étendue de 140 Kio.</summary>
+    public const string ExtendedSingleDensityFormatId = DiskImageFormatIds.Atari140;
+
     /// <summary>Identifiant d'une image Atari double densité de 180 Kio.</summary>
     public const string DoubleDensityFormatId = DiskImageFormatIds.Atari180;
 
@@ -23,8 +26,10 @@ internal static class AtrFormat
     /// <returns>L'identifiant Atari connu ou un identifiant ATR décrivant la géométrie observée.</returns>
     public static string GetFormatId(int sectorSize, int sectorCount) => (sectorSize, sectorCount) switch
     {
+        (AtrLayout.SingleDensitySectorSize, > 0 and < AtrLayout.StandardSectorCount) => SingleDensityFormatId,
         (AtrLayout.SingleDensitySectorSize, AtrLayout.StandardSectorCount) => SingleDensityFormatId,
         (AtrLayout.SingleDensitySectorSize, AtrLayout.EnhancedDensitySectorCount) => EnhancedDensityFormatId,
+        (AtrLayout.SingleDensitySectorSize, AtrLayout.ExtendedSingleDensitySectorCount) => ExtendedSingleDensityFormatId,
         (AtrLayout.DoubleDensitySectorSize, AtrLayout.StandardSectorCount) => DoubleDensityFormatId,
         _ => DiskImageFormatIds.AtariAtr(sectorSize, sectorCount)
     };

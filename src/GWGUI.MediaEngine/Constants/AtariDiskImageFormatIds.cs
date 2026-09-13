@@ -11,6 +11,8 @@ public static partial class DiskImageFormatIds
     public const string Atari90 = "atari.90";
     /// <summary>Image Atari 8 bits de 130 Kio.</summary>
     public const string Atari130 = "atari.130";
+    /// <summary>Image Atari 8 bits étendue de 140 Kio.</summary>
+    public const string Atari140 = "atari.140";
     /// <summary>Image Atari 8 bits de 180 Kio.</summary>
     public const string Atari180 = "atari.180";
     /// <summary>Préfixe des formats Atari ST.</summary>

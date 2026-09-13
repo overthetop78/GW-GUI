@@ -19,6 +19,7 @@ public class ImageRecognitionTests
     [InlineData(".st", 1474560, "atarist.1440")]
     [InlineData(".atr", 92176, "atari.90")]
     [InlineData(".atr", 133136, "atari.130")]
+    [InlineData(".atr", 143376, "atari.140")]
     [InlineData(".atr", 183952, "atari.180")]
     [InlineData(".ima", 163840, "ibm.160")]
     [InlineData(".ima", 184320, "ibm.180")]

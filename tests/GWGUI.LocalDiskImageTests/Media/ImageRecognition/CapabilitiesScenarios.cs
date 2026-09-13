@@ -22,7 +22,7 @@ internal static class CapabilitiesScenarios
                 new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "atari.90", "atari.130" },
                 new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".atr" }));
         Assert.Equal(
-            ["atari.90", "atari.130", "atari.180"],
+            ["atari.90", "atari.130", "atari.140", "atari.180"],
             new DiskClassificationCatalog(atariCatalog.Formats)
                 .FormatsFor("Atari 8-bit")
                 .Select(format => format.Id));
@@ -37,6 +37,10 @@ internal static class CapabilitiesScenarios
         Assert.Equal(FloppyFormFactor.FiveAndQuarterInch, atari180.FormFactor);
         Assert.False(atari180.SupportsPhysicalRead);
         Assert.False(atari180.SupportsPhysicalWrite);
+        var atari140 = Assert.Single(atariCatalog.Formats, format => format.Id == "atari.140");
+        Assert.Equal(FloppyFormFactor.FiveAndQuarterInch, atari140.FormFactor);
+        Assert.False(atari140.SupportsPhysicalRead);
+        Assert.False(atari140.SupportsPhysicalWrite);
 
         var builtInFormats = new BuiltInImageFormatCatalog().Formats;
         Assert.All(

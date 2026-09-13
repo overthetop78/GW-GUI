@@ -928,11 +928,7 @@
             return true;
         }
         
-        /// <summary>
-        /// Calculates max number of dir entries a dir block can store
-        /// </summary>
-        /// <param name="dirblock"></param>
-        /// <returns></returns>
+        // Calculates the maximum number of directory entries a directory block can store.
         // private static int CalculateMaxDirEntries(dirblock dirblock)
         // {
         //     return dirblock == null ? 0 : (dirblock.entries.Length / SizeOf.DirEntry.Struct) + 5;

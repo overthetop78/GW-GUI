@@ -54,11 +54,7 @@
         }
         public static bool IsLocked(CachedBlock blk, globaldata g) => blk.used == g.locknr;
 
-        /// <summary>
-        /// Note: first get dirblock from cached block: CachedBlock.direntry
-        /// </summary>
-        /// <param name="blok"></param>
-        /// <returns></returns>
+        // Note: first get dirblock from cached block: CachedBlock.direntry.
         // public static direntry FIRSTENTRY(dirblock blk) => DirEntryReader.Read(blk.entries, 0);
 
         /* get next directory entry */
@@ -68,6 +64,9 @@
         //     return DirEntryReader.Read(blk.entries, de.Offset + de.next);
         // }         
         // public static int DB_HEADSPACE(globaldata g) => SizeOf.DirBlock.Struct(g);
+        /// <summary>Gets the space available for directory entries.</summary>
+        /// <param name="g">Global file-system data.</param>
+        /// <returns>Available space in bytes.</returns>
         public static int DB_ENTRYSPACE(globaldata g) => SizeOf.DirBlock.Entries(g);
         
         //public static int GetAnodeBlock(uint a, uint b, globaldata g) => anodes.big_GetAnodeBlock() (g.getanodeblock)(a, b);

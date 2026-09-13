@@ -17,12 +17,70 @@ public sealed class AtrReaderTests
     [InlineData(AtrLayout.ExtendedSectorSize, AtrLayout.BootSectorCount * AtrLayout.BootSectorSize)]
     public void ComputesBootAreaLength(int sectorSize, int expectedLength) => Assert.Equal(expectedLength, AtrLayout.GetBootAreaLength(sectorSize));
 
-    /// <summary>Vérifie les identifiants des trois géométries ATR reconnues explicitement.</summary>
+    /// <summary>Vérifie les identifiants des géométries ATR reconnues explicitement.</summary>
     [Theory]
+    [InlineData(AtrLayout.SingleDensitySectorSize, AtrLayout.TruncatedSingleDensitySectorCount, DiskImageFormatIds.Atari90)]
     [InlineData(AtrLayout.SingleDensitySectorSize, AtrLayout.StandardSectorCount, DiskImageFormatIds.Atari90)]
     [InlineData(AtrLayout.SingleDensitySectorSize, AtrLayout.EnhancedDensitySectorCount, DiskImageFormatIds.Atari130)]
+    [InlineData(AtrLayout.SingleDensitySectorSize, AtrLayout.ExtendedSingleDensitySectorCount, DiskImageFormatIds.Atari140)]
     [InlineData(AtrLayout.DoubleDensitySectorSize, AtrLayout.StandardSectorCount, DiskImageFormatIds.Atari180)]
     public void PreservesKnownFormatIdentifiers(int sectorSize, int sectorCount, string expectedFormatId) => Assert.Equal(expectedFormatId, AtrFormat.GetFormatId(sectorSize, sectorCount));
+
+    [Fact]
+    public void PlacesTruncatedSingleDensityImagesInTheStandardAtariGeometry() =>
+        Assert.Equal(
+            (AtrLayout.StandardCylinderCount, AtrLayout.LogicalHeadCount, AtrLayout.StandardSectorsPerCylinder),
+            AtrLayout.GetGeometry(AtrLayout.SingleDensitySectorSize, AtrLayout.TruncatedSingleDensitySectorCount));
+
+    [Fact]
+    public void PlacesExtendedSingleDensityImagesInTheirFortyTrackGeometry() =>
+        Assert.Equal(
+            (AtrLayout.StandardCylinderCount, AtrLayout.LogicalHeadCount, AtrLayout.ExtendedSingleDensitySectorsPerCylinder),
+            AtrLayout.GetGeometry(AtrLayout.SingleDensitySectorSize, AtrLayout.ExtendedSingleDensitySectorCount));
+
+    [Fact]
+    public async Task ExpandsTruncatedSingleDensityImagesToTheirLogicalDiskCapacity()
+    {
+        var data = new byte[AtrLayout.HeaderSize + AtrLayout.TruncatedSingleDensitySectorCount * AtrLayout.SingleDensitySectorSize];
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.SignatureOffset), AtrFormat.Signature);
+        BinaryPrimitives.WriteUInt16LittleEndian(
+            data.AsSpan(AtrLayout.ParagraphCountLowOffset),
+            (ushort)((data.Length - AtrLayout.HeaderSize) / AtrLayout.ParagraphSize));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset), AtrLayout.SingleDensitySectorSize);
+
+        var image = await new AtrReader((_, _) => Task.FromResult(data)).ReadAsync("truncated.atr");
+
+        Assert.Equal(DiskImageFormatIds.Atari90, image.FormatId);
+        Assert.Equal(AtrLayout.StandardSectorCount, image.BlockCount);
+        Assert.Equal((long)AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize, image.Capacity);
+        Assert.Equal(AtrLayout.StandardSectorCount, image.AvailableBlocks.Count);
+        Assert.Empty(image.MissingBlocks);
+        Assert.All(
+            image.AvailableBlocks.Where(block => block.LogicalBlock >= AtrLayout.TruncatedSingleDensitySectorCount),
+            block => Assert.All(block.Data, value => Assert.Equal(0, value)));
+    }
+
+    [Fact]
+    public async Task ReadsShortBootImageWhenItsHeaderOverstatesThePayload()
+    {
+        const int presentSectorCount = 15;
+        const int declaredSectorCount = 30;
+        var data = new byte[AtrLayout.HeaderSize + presentSectorCount * AtrLayout.SingleDensitySectorSize];
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.SignatureOffset), AtrFormat.Signature);
+        BinaryPrimitives.WriteUInt16LittleEndian(
+            data.AsSpan(AtrLayout.ParagraphCountLowOffset),
+            declaredSectorCount * AtrLayout.SingleDensitySectorSize / AtrLayout.ParagraphSize);
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset), AtrLayout.SingleDensitySectorSize);
+        data[AtrLayout.HeaderSize + 1] = AtrLayout.BootSectorCount;
+        data[AtrLayout.HeaderSize + (presentSectorCount - 1) * AtrLayout.SingleDensitySectorSize] = 0x5a;
+
+        var image = await new AtrReader((_, _) => Task.FromResult(data)).ReadAsync("short-boot.atr");
+
+        Assert.Equal(DiskImageFormatIds.Atari90, image.FormatId);
+        Assert.Equal(AtrLayout.StandardSectorCount, image.BlockCount);
+        Assert.Equal(0x5a, image.GetBlock(presentSectorCount - 1).Span[0]);
+        Assert.All(image.GetBlock(presentSectorCount).Span.ToArray(), value => Assert.Equal(0, value));
+    }
 
     [Theory]
     [InlineData("validated_images/Atari/Atari 130XE/5.25 pouces - Chargeur propriétaire - 90 Kio/seeds-of-evil-atari-130xe.atr", 128, 720, DiskImageFormatIds.Atari90)]

@@ -135,6 +135,7 @@
         /// <summary>
         /// Convert entry block to entry
         /// </summary>
+        /// <param name="volume">Volume containing the entry.</param>
         /// <param name="entryBlock"></param>
         /// <returns></returns>
         /// <exception cref="IOException"></exception>

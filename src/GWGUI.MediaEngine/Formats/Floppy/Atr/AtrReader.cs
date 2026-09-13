@@ -17,6 +17,7 @@ public sealed class AtrReader : IMediaImageReader
     {
         DiskImageFormatIds.Atari90,
         DiskImageFormatIds.Atari130,
+        DiskImageFormatIds.Atari140,
         DiskImageFormatIds.Atari180
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Atr }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
@@ -101,7 +102,21 @@ public sealed class AtrReader : IMediaImageReader
             offset += length;
         }
 
-        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: payloadLength);
+        var isTruncatedSingleDensity = AtrLayout.IsTruncatedSingleDensity(sectorSize, sectorCount);
+        if (isTruncatedSingleDensity)
+        {
+            for (var logicalIndex = sectorCount; logicalIndex < AtrLayout.StandardSectorCount; logicalIndex++)
+            {
+                var cylinder = logicalIndex / geometry.SectorsPerTrack;
+                var sectorInTrack = logicalIndex % geometry.SectorsPerTrack + AtrLayout.FirstSectorNumber;
+                blocks.Add(new(logicalIndex, new(cylinder, AtrLayout.LogicalHeadIndex, sectorInTrack), new byte[AtrLayout.SingleDensitySectorSize]));
+            }
+        }
+        var capacity = isTruncatedSingleDensity
+            ? (long)AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize
+            : payloadLength;
+        var logicalBlockCount = isTruncatedSingleDensity ? AtrLayout.StandardSectorCount : sectorCount;
+        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: capacity, logicalBlockCount: logicalBlockCount);
     }
 
     /// <summary>Charge un conteneur ATR et vÃ©rifie son en-tÃªte, ses longueurs et l'intÃ©gritÃ© de ses limites sectorielles.</summary>
@@ -134,9 +149,26 @@ public sealed class AtrReader : IMediaImageReader
         var paragraphCount = ((long)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset)) << 16) | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));
         var declaredPayloadLength = paragraphCount * AtrLayout.ParagraphSize;
         var observedPayloadLength = data.Length - AtrLayout.HeaderSize;
-        if (declaredPayloadLength != observedPayloadLength) throw AtrExceptions.PayloadLengthMismatch(observedPayloadLength, declaredPayloadLength);
+        if (declaredPayloadLength != observedPayloadLength &&
+            !LooksLikeTruncatedSingleDensityBootImage(data, sectorSize, declaredPayloadLength, observedPayloadLength))
+            throw AtrExceptions.PayloadLengthMismatch(observedPayloadLength, declaredPayloadLength);
 
         var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
         if (observedPayloadLength < bootAreaLength || (observedPayloadLength - bootAreaLength) % sectorSize != 0) throw AtrExceptions.TruncatedPayload(observedPayloadLength, bootAreaLength, sectorSize);
+    }
+
+    private static bool LooksLikeTruncatedSingleDensityBootImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
+    {
+        if (sectorSize != AtrLayout.SingleDensitySectorSize ||
+            observedPayloadLength < AtrLayout.SingleDensitySectorSize ||
+            observedPayloadLength >= AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize ||
+            observedPayloadLength % AtrLayout.SingleDensitySectorSize != 0 ||
+            declaredPayloadLength <= observedPayloadLength ||
+            declaredPayloadLength > AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize)
+            return false;
+
+        var availableSectors = observedPayloadLength / AtrLayout.SingleDensitySectorSize;
+        var bootSectorCount = data[AtrLayout.HeaderSize + 1];
+        return bootSectorCount > 0 && bootSectorCount <= availableSectors;
     }
 }

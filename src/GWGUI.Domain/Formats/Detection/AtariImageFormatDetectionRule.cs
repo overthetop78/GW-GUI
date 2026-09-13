@@ -35,7 +35,7 @@ internal sealed class AtariImageFormatDetectionRule : IImageFormatDetectionRule
 
     private static string? DetectAtr(long? length) => length switch
     {
-        92176 => "atari.90", 133136 => "atari.130", 183952 => "atari.180", _ => null
+        92176 => "atari.90", 133136 => "atari.130", 143376 => "atari.140", 183952 => "atari.180", _ => null
     };
 
     private static string? DetectMsa(ImageFormatDetectionContext context)
