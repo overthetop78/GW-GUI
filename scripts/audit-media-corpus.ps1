@@ -68,15 +68,6 @@ if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $auditAssembly)) {
     throw "La compilation de l'outil d'audit a échoué."
 }
 
-$extensionJson = & dotnet $auditAssembly --list-extensions
-if ($LASTEXITCODE -ne 0) {
-    throw "La lecture des extensions reconnues par le moteur a échoué."
-}
-$extensions = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
-foreach ($extension in ($extensionJson | ConvertFrom-Json)) {
-    [void]$extensions.Add([string]$extension)
-}
-
 if ($ImagePath) {
     $resolvedImage = (Resolve-Path -LiteralPath $ImagePath).Path
     $singleDestination = Join-Path (Join-Path $OutputRoot 'items') ("single-" + (Get-PathIdentifier $resolvedImage))
@@ -86,31 +77,11 @@ if ($ImagePath) {
 }
 
 $resolvedRoot = (Resolve-Path -LiteralPath $Root).Path
-$allCandidates = @(Get-ChildItem -LiteralPath $resolvedRoot -Recurse -File | Where-Object {
-    $extensions.Contains($_.Extension) -and $_.Extension -notin @('.zip', '.7z', '.rar')
-} | Sort-Object -Property FullName)
-
-$associatedPaths = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
-foreach ($candidate in $allCandidates) {
-    if ($candidate.Extension -ieq '.cue') {
-        foreach ($line in Get-Content -LiteralPath $candidate.FullName -ErrorAction SilentlyContinue) {
-            if ($line -match '^\s*FILE\s+"([^"]+)"') {
-                $referencedPath = Join-Path $candidate.DirectoryName $Matches[1]
-                if (Test-Path -LiteralPath $referencedPath) {
-                    [void]$associatedPaths.Add((Resolve-Path -LiteralPath $referencedPath).Path)
-                }
-            }
-        }
-    }
-    if ($candidate.Extension -ieq '.ccd') {
-        [void]$associatedPaths.Add([System.IO.Path]::ChangeExtension($candidate.FullName, '.img'))
-        [void]$associatedPaths.Add([System.IO.Path]::ChangeExtension($candidate.FullName, '.sub'))
-    }
-    if ($candidate.Extension -ieq '.mds') {
-        [void]$associatedPaths.Add([System.IO.Path]::ChangeExtension($candidate.FullName, '.mdf'))
-    }
+$candidateJson = & dotnet $auditAssembly --list-images $resolvedRoot
+if ($LASTEXITCODE -ne 0) {
+    throw "L'énumération des images du corpus a échoué."
 }
-$candidates = @($allCandidates | Where-Object { -not $associatedPaths.Contains($_.FullName) })
+$candidates = @(($candidateJson | ConvertFrom-Json) | ForEach-Object { [System.IO.FileInfo]::new([string]$_) })
 
 $startIndex = 0
 if (-not $Restart -and (Test-Path -LiteralPath $checkpointPath)) {

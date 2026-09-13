@@ -43,6 +43,13 @@ internal static partial class Program
                 return 0;
             }
 
+            var listRoot = Argument(args, "--list-images");
+            if (!string.IsNullOrWhiteSpace(listRoot))
+            {
+                Console.WriteLine(JsonSerializer.Serialize(ListMediaImages(engine, Path.GetFullPath(listRoot)), JsonOptions));
+                return 0;
+            }
+
             var imagePath = Argument(args, "--image") ?? throw new ArgumentException("--image is required.");
             var outputDirectory = Argument(args, "--output") ?? throw new ArgumentException("--output is required.");
             Directory.CreateDirectory(outputDirectory);
@@ -273,6 +280,48 @@ internal static partial class Program
     private static async Task WriteJsonAsync(string path, object value)
         => await File.WriteAllTextAsync(path, JsonSerializer.Serialize(value, JsonOptions), new UTF8Encoding(false));
 
+    private static IReadOnlyList<string> ListMediaImages(MediaEngineComposition engine, string root)
+    {
+        if (!Directory.Exists(root)) throw new DirectoryNotFoundException($"Media root not found: {root}");
+        var extensions = engine.Recognition.Readers.SelectMany(reader => reader.Extensions)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var paths = Directory.EnumerateFiles(root, "*", new EnumerationOptions
+            {
+                RecurseSubdirectories = true,
+                IgnoreInaccessible = false,
+                ReturnSpecialDirectories = false
+            })
+            .Where(path => extensions.Contains(Path.GetExtension(path)))
+            .Order(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        var associatedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var path in paths)
+        {
+            var extension = Path.GetExtension(path);
+            if (extension.Equals(".cue", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var line in File.ReadLines(path))
+                {
+                    var match = CueFileReference().Match(line);
+                    if (match.Success)
+                        associatedPaths.Add(Path.GetFullPath(match.Groups[1].Value, Path.GetDirectoryName(path)!));
+                }
+            }
+            else if (extension.Equals(".ccd", StringComparison.OrdinalIgnoreCase))
+            {
+                associatedPaths.Add(Path.ChangeExtension(path, ".img"));
+                associatedPaths.Add(Path.ChangeExtension(path, ".sub"));
+            }
+            else if (extension.Equals(".mds", StringComparison.OrdinalIgnoreCase))
+            {
+                associatedPaths.Add(Path.ChangeExtension(path, ".mdf"));
+            }
+        }
+
+        return paths.Where(path => !associatedPaths.Contains(path)).ToArray();
+    }
+
     private static string? Argument(IReadOnlyList<string> args, string name)
     {
         for (var index = 0; index < args.Count - 1; index++)
@@ -288,6 +337,9 @@ internal static partial class Program
 
     [GeneratedRegex(@"\[([^\]]+)\]")]
     private static partial Regex BracketValue();
+
+    [GeneratedRegex("^\\s*FILE\\s+\"([^\"]+)\"", RegexOptions.IgnoreCase)]
+    private static partial Regex CueFileReference();
 }
 
 internal sealed class MediaAuditValidationException(string path, IReadOnlyList<string> errors)
