@@ -42,7 +42,7 @@ internal static class ConversionSelectionScenarios
         var view = new ConversionTabSection(); var model = new MainWindowViewModel("synthetic", "synthetic"); view.DataContext = model;
         var catalog = new BuiltInImageFormatCatalog(key => key); var detector = new ImageFormatDetector(catalog, _ => throw new InvalidOperationException());
         var responses = new Queue<string?>(["virtual.adf", "unknown.synthetic", null]); var analyzed = new List<string>(); var failures = new List<Exception>();
-        var settings = new AppSettings(); settings.Engines.Conversion = OperationEngine.Internal;
+        var settings = new AppSettings(); settings.Engines.Conversion = OperationEngine.GreaseweazleHostTools;
         model.Conversion.SetFormat("amiga.amigados", true, new HashSet<string> { ".adf" });
         model.Conversion.SetFormat("atarist.720", true, new HashSet<string> { ".st" });
         var controller = new ConversionTabController(new Window(), view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!, null!, null!, null!,
