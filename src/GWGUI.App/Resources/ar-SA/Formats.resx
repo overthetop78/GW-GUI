@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>تم التعرف على هندسة IBM PC من حجم الملف.</value></data>
   <data name="Detection.ExtensionInferred"><value>التنسيق المستنتج من الامتداد.</value></data>
   <data name="Detection.Multiple"><value>عدة أشكال ممكنة. اختر واحدة صراحة.</value></data>
-  <data name="Common.DiskImageFilter"><value>صور قرصية|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|جميع الملفات|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>صور قرصية|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|جميع الملفات|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>تم التعرف على تنسيق Apple II DOS من ترتيب القطاعات.</value></data>
   <data name="Detection.AppleProDosOrder"><value>تم التعرف على تنسيق Apple II ProDOS من ترتيب القطاعات.</value></data>
   <data name="Detection.AppleContainer"><value>تم اكتشاف حاوية صورة قرص Apple.</value></data>

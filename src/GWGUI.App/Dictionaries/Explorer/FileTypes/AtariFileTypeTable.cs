@@ -49,7 +49,7 @@ internal static class AtariFileTypeTable
         Rule(EightBit, ".com", ExplorerFileCategory.Executable, execution: ExplorerExecutionKind.NativeExecutable),
         Rule(EightBit, ".xex", ExplorerFileCategory.Executable, execution: ExplorerExecutionKind.NativeExecutable),
         Rule(EightBit, ".exe", ExplorerFileCategory.Executable, execution: ExplorerExecutionKind.NativeExecutable),
-        Rule(EightBit, ".atr", ExplorerFileCategory.DiskImage), Rule(EightBit, ".xfd", ExplorerFileCategory.DiskImage),
+        Rule(EightBit, ".atr", ExplorerFileCategory.DiskImage), Rule(EightBit, ".atx", ExplorerFileCategory.DiskImage), Rule(EightBit, ".xfd", ExplorerFileCategory.DiskImage),
         Rule(EightBit, ".scp", ExplorerFileCategory.DiskImage)
     ];
 }

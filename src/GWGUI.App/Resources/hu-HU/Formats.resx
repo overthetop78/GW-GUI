@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC geometria felismerve a fájl méretéből.</value></data>
   <data name="Detection.ExtensionInferred"><value>A kiterjesztésből kikövetkeztetett formátum.</value></data>
   <data name="Detection.Multiple"><value>Számos formátum lehetséges; kifejezetten válasszon egyet.</value></data>
-  <data name="Common.DiskImageFilter"><value>Lemezképek|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Minden fájl|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Lemezképek|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Minden fájl|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Az Apple II DOS formátum a szektorsorrend alapján felismerve.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Az Apple II ProDOS formátum a szektorsorrend alapján felismerve.</value></data>
   <data name="Detection.AppleContainer"><value>Apple lemezkép-tároló észlelve.</value></data>

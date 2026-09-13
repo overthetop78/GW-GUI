@@ -11,10 +11,11 @@ internal sealed class AtariImageFormatDetectionRule : IImageFormatDetectionRule
             ".st" => DetectSt(context.KnownLength),
             ".msa" => DetectMsa(context),
             ".atr" => DetectAtr(context.KnownLength),
+            ".atx" => DetectAtx(context),
             _ => null
         };
 
-        if (context.Extension is not (".st" or ".msa" or ".atr"))
+        if (context.Extension is not (".st" or ".msa" or ".atr" or ".atx"))
         {
             result = null!;
             return false;
@@ -37,6 +38,18 @@ internal sealed class AtariImageFormatDetectionRule : IImageFormatDetectionRule
     {
         92176 => "atari.90", 133136 => "atari.130", 143376 => "atari.140", 183952 => "atari.180", _ => null
     };
+
+    private static string? DetectAtx(ImageFormatDetectionContext context)
+    {
+        try
+        {
+            using var stream = context.OpenRead(context.FilePath);
+            Span<byte> signature = stackalloc byte[4];
+            return stream.Read(signature) == signature.Length && signature.SequenceEqual("AT8X"u8) ? "atari.atx" : null;
+        }
+        catch (IOException) { return null; }
+        catch (UnauthorizedAccessException) { return null; }
+    }
 
     private static string? DetectMsa(ImageFormatDetectionContext context)
     {

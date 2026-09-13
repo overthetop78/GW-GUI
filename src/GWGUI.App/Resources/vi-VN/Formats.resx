@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC hình học được nhận dạng từ kích thước tệp.</value></data>
   <data name="Detection.ExtensionInferred"><value>Định dạng được suy ra từ phần mở rộng.</value></data>
   <data name="Detection.Multiple"><value>Có thể có một số định dạng; chọn một cách rõ ràng.</value></data>
-  <data name="Common.DiskImageFilter"><value>ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Mọi tập tin|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Mọi tập tin|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Đã nhận dạng định dạng Apple II DOS từ thứ tự sector.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Đã nhận dạng định dạng Apple II ProDOS từ thứ tự sector.</value></data>
   <data name="Detection.AppleContainer"><value>Đã phát hiện vùng chứa ảnh đĩa Apple.</value></data>

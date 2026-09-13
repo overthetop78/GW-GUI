@@ -65,12 +65,14 @@
   <data name="Extension.hfe"><value>HxC Floppy Emulator</value></data>
   <data name="Format.apple2.appledos.113"><value>Apple II DOS 3.2 — 113 KiB</value></data>
   <data name="Extension.d13"><value>D13 (Apple DOS 3.2)</value></data>
-  <data name="Common.DiskImageFilter"><value>Disk images|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|All files|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|All files|*.*</value></data>
   <data name="Format.atari.90"><value>Atari 8-bit — 90 KiB</value></data>
+  <data name="Format.atari.atx"><value>Atari 8-bit — ATX</value></data>
   <data name="Format.atari.130"><value>Atari 8-bit — 130 KiB</value></data>
   <data name="Format.atari.140"><value>Atari 8-bit — 140 KiB</value></data>
   <data name="Format.atari.180"><value>Atari 8-bit — 180 KiB</value></data>
   <data name="Extension.atr"><value>Atari ATR disk image</value></data>
+  <data name="Extension.atx"><value>ATX</value></data>
   <data name="Format.apple2.appledos.140"><value>Apple II DOS 3.3 — 140 KiB</value></data>
   <data name="Format.apple2.prodos.140"><value>Apple II ProDOS — 140 KiB</value></data>
   <data name="Format.apple2.prodos.800"><value>Apple II ProDOS — 800 KiB</value></data>

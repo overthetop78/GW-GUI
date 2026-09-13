@@ -99,6 +99,24 @@ internal static class AtariFileSystemScenarios
         Assert.Equal("FILE.BIN", Assert.Single(entries).Name);
     }
 
+    public static void RejectsFalseEmptyCatalogAndStopsBeforeReusedDirectorySectors()
+    {
+        var vtoc = new byte[128]; vtoc[0] = 2; vtoc[1] = 0xc3; vtoc[2] = 2; vtoc[3] = 0xc3; vtoc[4] = 2;
+        var emptyDirectory = new byte[128];
+        var blocks = new List<SectorBlock> { new(359, new(19, 0, 18), vtoc), new(360, new(20, 0, 1), emptyDirectory) };
+        for (var index = 361; index < 368; index++) blocks.Add(new(index, new(index / 18, 0, index % 18 + 1), new byte[128]));
+        var empty = new SectorImage(DiskImageFormatIds.Atari90, 128, 40, 1, 18, blocks);
+        Assert.False(new AtariDosFileSystemReader().CanRead(empty));
+
+        var directory = new byte[128]; directory[0] = 0x42; directory[1] = 1; directory[3] = 1; "FILE    BIN"u8.CopyTo(directory.AsSpan(5));
+        var reused = Enumerable.Repeat((byte)0xa5, 128).ToArray();
+        var data = new byte[128]; data[127] = 1;
+        var occupiedBlocks = blocks.Select(block => block.LogicalBlock == 360 ? new SectorBlock(360, block.Address, directory) : block).Append(new SectorBlock(0, new(0, 0, 1), data)).ToList();
+        occupiedBlocks[2] = new SectorBlock(361, occupiedBlocks[2].Address, reused);
+        var protectedDisk = new SectorImage(DiskImageFormatIds.Atari90, 128, 40, 1, 18, occupiedBlocks);
+        Assert.Equal("FILE.BIN", Assert.Single(new AtariDosFileSystemReader().Read(protectedDisk).Entries).Name);
+    }
+
     public static void EmptyVtoc()
     {
         var blocks = new List<SectorBlock>();

@@ -54,6 +54,7 @@ public class FileSystemsTests
     [Theory] [InlineData((byte)0)] [InlineData((byte)2)] public void AtariDosCatalogAcceptsKnownVtocMarkers(byte marker) => AtariFileSystemScenarios.VtocMarker(marker);
     [Fact] public void AtariDosCatalogAcceptsNamedEmptyFiles() => AtariFileSystemScenarios.NamedEmptyFile();
     [Fact] public void AtariDosCatalogStopsAtFirstUnusedEntry() => AtariFileSystemScenarios.StopsAtFirstUnusedDirectoryEntry();
+    [Fact] public void AtariDosRejectsFalseEmptyCatalogAndStopsBeforeReusedDirectorySectors() => AtariFileSystemScenarios.RejectsFalseEmptyCatalogAndStopsBeforeReusedDirectorySectors();
     [Fact] public void AtariDosRejectsAnEmptyVtoc() => AtariFileSystemScenarios.EmptyVtoc();
     [Fact] public void AtariDosKeepsOpenDirectoryEntries() => AtariFileSystemScenarios.OpenEntry();
     [Fact] public void Fat12WriterBuildsBootAndDirectoryWithExpectedContent()=>Fat12FileSystemScenarios.Volume();

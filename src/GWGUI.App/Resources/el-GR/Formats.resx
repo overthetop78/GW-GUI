@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>Η γεωμετρία IBM PC αναγνωρίζεται από το μέγεθος αρχείου.</value></data>
   <data name="Detection.ExtensionInferred"><value>Μορφή που προκύπτει από την επέκταση.</value></data>
   <data name="Detection.Multiple"><value>Είναι δυνατές διάφορες μορφές. επιλέξτε ένα ρητά.</value></data>
-  <data name="Common.DiskImageFilter"><value>Εικόνες δίσκου|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Όλα τα αρχεία|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Εικόνες δίσκου|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Όλα τα αρχεία|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Η μορφή Apple II DOS αναγνωρίστηκε από τη σειρά των τομέων.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Η μορφή Apple II ProDOS αναγνωρίστηκε από τη σειρά των τομέων.</value></data>
   <data name="Detection.AppleContainer"><value>Εντοπίστηκε περιέκτης εικόνας δίσκου Apple.</value></data>

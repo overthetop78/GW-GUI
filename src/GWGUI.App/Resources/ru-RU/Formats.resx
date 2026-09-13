@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>Геометрия IBM PC распознается по размеру файла.</value></data>
   <data name="Detection.ExtensionInferred"><value>Формат, полученный из расширения.</value></data>
   <data name="Detection.Multiple"><value>Возможны несколько форматов; выберите один явно.</value></data>
-  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|все файлы|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|все файлы|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Формат Apple II DOS определён по порядку секторов.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Формат Apple II ProDOS определён по порядку секторов.</value></data>
   <data name="Detection.AppleContainer"><value>Обнаружен контейнер образа диска Apple.</value></data>

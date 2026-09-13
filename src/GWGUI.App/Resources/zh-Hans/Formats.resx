@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC 从文件大小识别的几何形状。</value></data>
   <data name="Detection.ExtensionInferred"><value>从扩展名推断出的格式。</value></data>
   <data name="Detection.Multiple"><value>可以采用多种格式；明确选择一个。</value></data>
-  <data name="Common.DiskImageFilter"><value>磁盘图像|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|所有文件|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>磁盘图像|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|所有文件|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>已根据扇区顺序识别 Apple II DOS 格式。</value></data>
   <data name="Detection.AppleProDosOrder"><value>已根据扇区顺序识别 Apple II ProDOS 格式。</value></data>
   <data name="Detection.AppleContainer"><value>已检测到 Apple 磁盘映像容器。</value></data>

@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC geometrie herkend op basis van bestandsgrootte.</value></data>
   <data name="Detection.ExtensionInferred"><value>Formaat afgeleid van de extensie.</value></data>
   <data name="Detection.Multiple"><value>Er zijn meerdere formaten mogelijk; kies er expliciet één.</value></data>
-  <data name="Common.DiskImageFilter"><value>Schijfafbeeldingen|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle bestanden|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Schijfafbeeldingen|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle bestanden|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Apple II DOS-indeling herkend aan de sectorvolgorde.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS-indeling herkend aan de sectorvolgorde.</value></data>
   <data name="Detection.AppleContainer"><value>Apple-schijfkopiecontainer gedetecteerd.</value></data>

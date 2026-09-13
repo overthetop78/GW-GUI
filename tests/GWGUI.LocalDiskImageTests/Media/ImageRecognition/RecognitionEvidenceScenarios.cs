@@ -61,6 +61,15 @@ internal static class RecognitionEvidenceScenarios
         Assert.Equal(kind == "msa" && !valid, result.RequiresUserChoice);
         if (kind != "msa") Assert.Contains(result.Candidates, x => x.Id == "ibm.800");
     }
+
+    public static void AtxHeader(bool valid)
+    {
+        var data = new byte[48];
+        (valid ? "AT8X"u8 : "BAD!"u8).CopyTo(data);
+        var result = new ImageFormatDetector(Catalog, _ => new MemoryStream(data, false)).Detect("virtual.atx", data.Length);
+        Assert.Equal(valid ? "atari.atx" : null, result.Format?.Id);
+        Assert.Equal(!valid, result.RequiresUserChoice);
+    }
     public static void MissingHeader(bool denied)
     {
         var detector = new ImageFormatDetector(Catalog, _ => throw (denied ? new UnauthorizedAccessException() : (Exception)new IOException()));

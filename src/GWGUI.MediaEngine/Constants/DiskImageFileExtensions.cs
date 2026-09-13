@@ -17,6 +17,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des images Atari ATR.</summary>
     public const string Atr = ".atr";
 
+    /// <summary>Extension des images de disquettes Atari protégées ATX.</summary>
+    public const string Atx = ".atx";
+
     /// <summary>Extension générique de certaines images binaires brutes.</summary>
     public const string Bin = ".bin";
 

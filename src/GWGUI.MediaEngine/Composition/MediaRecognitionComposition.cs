@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Formats.Floppy.Apple;
 using GWGUI.MediaEngine.Formats.Floppy.AcornAtom;
 using GWGUI.MediaEngine.Formats.Floppy.Apridisk;
 using GWGUI.MediaEngine.Formats.Floppy.Atr;
+using GWGUI.MediaEngine.Formats.Floppy.Atx;
 using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
 using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
 using GWGUI.MediaEngine.Formats.Floppy.Cp2;
@@ -77,6 +78,7 @@ public sealed class MediaRecognitionComposition
                 new AtariStReader(),
                 new MsaReader(),
                 new AtrReader(),
+                new AtxReader(),
                 new D64Reader(),
                 new D71Reader(),
                 new D81Reader(),

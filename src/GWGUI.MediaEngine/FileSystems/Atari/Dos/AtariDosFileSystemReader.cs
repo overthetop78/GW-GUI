@@ -11,9 +11,9 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
     /// <inheritdoc />
     public string Id => Definitions.FileSystemIds.AtariDos;
     /// <inheritdoc />
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { DiskImageFormatIds.Atari90, DiskImageFormatIds.Atari130, DiskImageFormatIds.Atari140, DiskImageFormatIds.Atari180 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { DiskImageFormatIds.Atari90, DiskImageFormatIds.Atari130, DiskImageFormatIds.Atari140, DiskImageFormatIds.Atari180, DiskImageFormatIds.AtariAtx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     /// <inheritdoc />
-    public bool CanRead(SectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockCount >= AtariDosFileSystemLayout.LastDirectorySector && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc) && AtariDosVtocReader.LooksValid(vtoc, image.BlockCount) && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.FirstDirectorySector, out var directory) && AtariDosDirectoryReader.LooksValid(directory);
+    public bool CanRead(SectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockCount >= AtariDosFileSystemLayout.LastDirectorySector && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc) && AtariDosVtocReader.LooksValid(vtoc, image.BlockCount) && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.FirstDirectorySector, out var directory) && AtariDosDirectoryReader.LooksValid(directory) && AtariDosDirectoryReader.ContainsRecordedEntry(image);
     /// <inheritdoc />
     public FileSystemVolume Read(SectorImage image)
     {

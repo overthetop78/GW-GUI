@@ -34,6 +34,7 @@ public class ImageRecognitionTests
     public void SizeAndExtensionEvidence(string extension, long size, string expected) => RecognitionEvidenceScenarios.Size(extension, size, expected);
     [Theory] [InlineData("msa", true)] [InlineData("msa", false)] [InlineData("mac", true)] [InlineData("mac", false)]
     public void HeaderEvidence(string kind, bool valid) => RecognitionEvidenceScenarios.Header(kind, valid);
+    [Theory] [InlineData(true)] [InlineData(false)] public void AtxHeaderEvidence(bool valid) => RecognitionEvidenceScenarios.AtxHeader(valid);
     [Theory] [InlineData(true)] [InlineData(false)] public void MissingHeaderIsNotEvidence(bool denied) => RecognitionEvidenceScenarios.MissingHeader(denied);
     [Fact] public void AutomaticSelectionPreservesCandidates() => MultipleFormatsScenarios.Candidates();
     [Fact] public void CapabilitiesFilterAndPreserveDefaultOutput() => CapabilitiesScenarios.Capabilities();

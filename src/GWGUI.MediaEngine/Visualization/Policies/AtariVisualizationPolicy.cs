@@ -14,7 +14,7 @@ internal sealed class AtariVisualizationPolicy : SectorImageVisualizationPolicy
     public override bool CanHandle(SectorImage image) => image.FormatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) || image.FormatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase);
 
     /// <inheritdoc />
-    public override string EncoderId(SectorImage image) => image.FormatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase) ? FluxCodecIds.IsoFm : FluxCodecIds.IsoMfm;
+    public override string EncoderId(SectorImage image) => image.FormatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase) || image.FormatId.Equals(DiskImageFormatIds.AtariAtx, StringComparison.OrdinalIgnoreCase) ? FluxCodecIds.IsoFm : FluxCodecIds.IsoMfm;
 
     /// <inheritdoc />
     public override SectorAddress VisualAddress(SectorImage image, SectorAddress address)
