@@ -41,6 +41,8 @@ public static class FileSystemIds
     public const string AppleInformXzip = "apple-inform-xzip";
     /// <summary>Identifie Atari DOS.</summary>
     public const string AtariDos = "atari-dos";
+    /// <summary>Identifie une disquette amorçable K-file contenant un exécutable Atari unique.</summary>
+    public const string AtariKFile = "atari-k-file";
     /// <summary>Identifie Coherent.</summary>
     public const string Coherent = "coherent";
     /// <summary>Identifie Commodore DOS.</summary>

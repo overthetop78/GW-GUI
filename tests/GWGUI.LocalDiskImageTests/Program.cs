@@ -83,12 +83,21 @@ internal static partial class Program
     {
         if (!File.Exists(path)) throw new FileNotFoundException("Media image not found.", path);
         var file = new FileInfo(path);
-        var hexPath = Path.Combine(outputDirectory, "source.hex");
-        var sha256 = await WriteHexAndHashAsync(path, hexPath);
+        var sha256 = await HashFileAsync(path);
         var source = new MediaSourceDescriptor(path, []);
         var context = new MediaRecognitionContext(source);
         var recognized = await engine.Recognition.Registry.RecognizeAsync(context);
         var document = recognized.Document;
+        var associatedFiles = new List<AssociatedSourceFileAudit>();
+        foreach (var associatedPath in document.Source.AssociatedPaths
+                     .Where(File.Exists)
+                     .Where(candidate => !Path.GetFullPath(candidate).Equals(path, StringComparison.OrdinalIgnoreCase))
+                     .Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            var associated = new FileInfo(associatedPath);
+            var associatedHash = await HashFileAsync(associated.FullName);
+            associatedFiles.Add(new(associated.FullName, associated.Extension.ToLowerInvariant(), associated.Length, associatedHash));
+        }
         var explored = await engine.Explorer.ExploreAsync(document);
         var visualization = engine.Visualization.Registry.CreateDescriptor(explored.Document);
         var catalogFormat = new BuiltInImageFormatCatalog().Formats.FirstOrDefault(format =>
@@ -124,7 +133,7 @@ internal static partial class Program
             DateTimeOffset.UtcNow,
             new SourceAudit(
                 path, file.Name, file.Extension.ToLowerInvariant(), file.Length, file.CreationTimeUtc, file.LastWriteTimeUtc,
-                sha256, Path.GetFileName(hexPath), ExpectedFormatHint(path), document.Source.AssociatedPaths),
+                sha256, ExpectedFormatHint(path), associatedFiles),
             new RecognitionAudit(
                 true, recognized.Reader.GetType().FullName ?? recognized.Reader.GetType().Name, document.FormatId,
                 document.MediaKind.ToString(), document.Representation.RepresentationKind.ToString(), document.Metadata,
@@ -153,22 +162,36 @@ internal static partial class Program
             volume.Descriptor.PartitionType, volume.Descriptor.PartitionId, fileSystem?.Name ?? volume.Descriptor.Name,
             volume.ReaderId, fileSystem?.FileSystemId, fileSystem?.Capacity, fileSystem?.FreeBytes, fileSystem?.FreeSpaceKnown,
             fileSystem?.Bootable, fileSystem?.Created, fileSystem?.Modified, fileSystem?.Attributes ?? [],
-            volume.Diagnostics, fileSystem?.Warnings ?? [], fileSystem?.Entries.Select(entry => CreateEntry(entry, family)).ToArray() ?? []);
+            volume.Diagnostics, fileSystem?.Warnings ?? [], fileSystem is null ? [] : CreateEntries(fileSystem.Entries, family));
     }
 
-    private static FileEntryAudit CreateEntry(FileSystemEntry entry, GWGUI.App.Enums.Explorer.ExplorerFileSystemFamily family)
+    private static IReadOnlyList<FileEntryAudit> CreateEntries(
+        IEnumerable<FileSystemEntry> entries,
+        GWGUI.App.Enums.Explorer.ExplorerFileSystemFamily family)
+    {
+        var result = new List<FileEntryAudit>();
+        foreach (var entry in entries)
+            result.Add(CreateEntry(entry, family));
+        return result;
+    }
+
+    private static FileEntryAudit CreateEntry(
+        FileSystemEntry entry,
+        GWGUI.App.Enums.Explorer.ExplorerFileSystemFamily family)
     {
         var item = new ExplorerContentItem(entry, family);
         var content = entry.Content?.ToArray();
+        var children = CreateEntries(entry.Children, family);
         return new FileEntryAudit(
             entry.Name, item.Name, entry.Kind.ToString(), item.TypeText, item.Definition.Category.ToString(),
-            item.Definition.ContentFormat.ToString(), item.Definition.PreviewKind.ToString(), entry.Size, entry.OccupiedSize,
+            item.Definition.ContentFormat.ToString(), item.Definition.TextEncoding.ToString(), item.Definition.ExecutionKind.ToString(),
+            item.Definition.PreviewKind.ToString(), entry.Size, entry.OccupiedSize,
             entry.Created, entry.Modified, entry.Accessed, entry.Comment, entry.RawAttributes, entry.StorageReference,
             entry.MetadataValid, entry.DataValid, entry.SyntheticName, entry.NativeTypeId, entry.LinkTarget,
             entry.Attributes, entry.Diagnostics, entry.Metadata,
             content is null ? null : Convert.ToHexString(SHA256.HashData(content)),
-            content is null ? null : Convert.ToHexString(content),
-            entry.Children.Select(child => CreateEntry(child, family)).ToArray());
+            content is not null,
+            children);
     }
 
     private static object CreateRepresentation(MediaImageDocument document) => document.Representation switch
@@ -182,8 +205,8 @@ internal static partial class Program
             {
                 block.LogicalBlock, block.Address.Cylinder, block.Address.Head, block.Address.Number,
                 block.IntegrityValid, block.Revolution, block.FormatCode, block.DiagnosticCode,
-                dataHex = Convert.ToHexString(block.Data.ToArray()),
-                tagHex = block.Tag is null ? null : Convert.ToHexString(block.Tag.ToArray())
+                dataSha256 = Convert.ToHexString(SHA256.HashData(block.Data.ToArray())),
+                tagSha256 = block.Tag is null ? null : Convert.ToHexString(SHA256.HashData(block.Tag.ToArray()))
             }).ToArray()
         },
         FluxMediaImageRepresentation flux => new
@@ -246,8 +269,10 @@ internal static partial class Program
         {
             if (!entry.MetadataValid) warnings.Add($"Invalid metadata recorded for '{entry.DisplayName}'.");
             if (entry.DataValid == false) warnings.Add($"Invalid data recorded for '{entry.DisplayName}'.");
-            if (entry.Kind == FileSystemEntryKind.File.ToString() && entry.ContentHex is null)
+            if (entry.Kind == FileSystemEntryKind.File.ToString() && !entry.ContentExtracted)
                 errors.Add($"No content was extracted for '{entry.DisplayName}'.");
+            if (entry.Kind == FileSystemEntryKind.File.ToString() && entry.Category == GWGUI.App.Enums.Explorer.ExplorerFileCategory.File.ToString())
+                errors.Add($"Unknown file content for '{entry.DisplayName}'.");
         }
         return (errors.Distinct(StringComparer.Ordinal).ToList(), warnings.Distinct(StringComparer.Ordinal).ToList());
     }
@@ -261,20 +286,14 @@ internal static partial class Program
         }
     }
 
-    private static async Task<string> WriteHexAndHashAsync(string sourcePath, string destinationPath)
+    private static async Task<string> HashFileAsync(string sourcePath)
     {
         await using var source = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, 1024 * 1024, FileOptions.SequentialScan);
-        await using var destination = new FileStream(destinationPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, FileOptions.SequentialScan);
-        await using var writer = new StreamWriter(destination, new UTF8Encoding(false), 1024 * 1024);
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         var buffer = new byte[1024 * 1024];
         int read;
         while ((read = await source.ReadAsync(buffer)) > 0)
-        {
             hash.AppendData(buffer, 0, read);
-            await writer.WriteLineAsync(Convert.ToHexString(buffer.AsSpan(0, read)));
-        }
-        await writer.FlushAsync();
         return Convert.ToHexString(hash.GetHashAndReset());
     }
 

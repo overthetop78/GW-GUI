@@ -20,9 +20,10 @@ public sealed record SourceAudit(
     DateTimeOffset Created,
     DateTimeOffset Modified,
     string Sha256,
-    string RawHexFile,
     string? ExpectedFormatHint,
-    IReadOnlyList<string> AssociatedPaths);
+    IReadOnlyList<AssociatedSourceFileAudit> AssociatedFiles);
+
+public sealed record AssociatedSourceFileAudit(string Path, string Extension, long Length, string Sha256);
 
 public sealed record RecognitionAudit(
     bool Readable,
@@ -73,6 +74,8 @@ public sealed record FileEntryAudit(
     string Type,
     string Category,
     string ContentFormat,
+    string TextEncoding,
+    string ExecutionKind,
     string Preview,
     long Size,
     long? OccupiedSize,
@@ -91,7 +94,7 @@ public sealed record FileEntryAudit(
     IReadOnlyList<string> Diagnostics,
     IReadOnlyDictionary<string, string> Metadata,
     string? ContentSha256,
-    string? ContentHex,
+    bool ContentExtracted,
     IReadOnlyList<FileEntryAudit> Children);
 
 public sealed record VisualizationAudit(
