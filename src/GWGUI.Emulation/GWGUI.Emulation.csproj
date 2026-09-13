@@ -29,5 +29,6 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
   </ItemGroup>
 </Project>

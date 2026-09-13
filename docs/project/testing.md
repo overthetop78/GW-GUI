@@ -17,7 +17,7 @@ Les données sont synthétiques et les accès aux fichiers de données sont simu
 
 ## Tests des images disque
 
-[GWGUI.LocalDiskImageTests](../../tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj) contient les tests de reconnaissance, lecture, écriture, conversion et systèmes de fichiers des images disque. Il reste séparé de la solution principale et du workflow de release. L'audit local utilise en lecture seule `F:\Rétro`, `F:\86Box\Isos`, `C:\Users\overt\Documents\GW GUI\Emulation\HDD` et `C:\Users\overt\86Box VMs`, sans copier, déplacer ni modifier les médias.
+[GWGUI.LocalDiskImageTests](../../tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj) contient tous les tests de reconnaissance, lecture, écriture, conversion, conteneurs, codecs et systèmes de fichiers des images disque, qu'ils utilisent des données synthétiques ou le corpus local. Il reste séparé de la solution principale et du workflow de release. L'audit local utilise en lecture seule `F:\Rétro`, `F:\86Box\Isos`, `C:\Users\overt\Documents\GW GUI\Emulation\HDD` et `C:\Users\overt\86Box VMs`, sans copier, déplacer ni modifier les médias.
 
 Tout test qui dépend d'une image locale, d'un matériel, d'une application ou d'une DLL externe est
 une validation manuelle locale exécutée par le développeur qui possède cette ressource. Ces tests
@@ -68,7 +68,8 @@ du partage du document et des frontières entre projets ont ensuite produit **10
 et 0 test ignoré** :
 
 ```powershell
-dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --configuration Debug --filter "FullyQualifiedName~MediaRecognitionRegistryTests|FullyQualifiedName~FloppyMediaReadingTests|FullyQualifiedName~MediaConversionServiceTests|FullyQualifiedName~MediaExplorerTests|FullyQualifiedName~MediaEngineProjectBoundaryTests" --verbosity quiet
+dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj --no-restore --configuration Debug --filter "FullyQualifiedName~MediaRecognitionRegistryTests|FullyQualifiedName~FloppyMediaReadingTests|FullyQualifiedName~MediaConversionServiceTests|FullyQualifiedName~MediaExplorerTests" --verbosity quiet
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --configuration Debug --filter "FullyQualifiedName~MediaEngineProjectBoundaryTests" --verbosity quiet
 ```
 
 Le script de construction Debug standard a ensuite terminé avec succès :
@@ -120,9 +121,9 @@ contrôles ne dépendent pas des corpus locaux et ne constituent pas les essais 
 finaux des images réelles.
 
 ```powershell
-dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~RawHardDiskMediaTests"
-dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~OpticalMediaTests"
-dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~SequentialMediaTests"
+dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj --no-restore --filter "FullyQualifiedName~RawHardDiskMediaTests"
+dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj --no-restore --filter "FullyQualifiedName~OpticalMediaTests"
+dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj --no-restore --filter "FullyQualifiedName~SequentialMediaTests"
 dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~OtherMediaExplorerScenarios"
 ```
 
@@ -157,7 +158,7 @@ Les tests généraux des services HDD d'émulation et des Readers, Writers et co
 MediaEngine ont été exécutés ensemble en configuration `Debug`, sans utiliser les corpus locaux :
 
 ```powershell
-dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter "FullyQualifiedName~GWGUI.Tests.Emulation.HardDisks|FullyQualifiedName~GWGUI.Tests.MediaEngine.HardDisk" --nologo -v:quiet
+dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj -c Debug --no-restore --filter "FullyQualifiedName~GWGUI.Tests.Emulation.HardDisks|FullyQualifiedName~GWGUI.Tests.MediaEngine.HardDisk" --nologo -v:quiet
 ```
 
 Résultat : **422 réussites, 0 échec et 0 test ignoré**. Cet ensemble couvre notamment les capacités

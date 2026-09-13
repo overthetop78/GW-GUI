@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+    <Using Include="System.IO" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,9 @@
     <ProjectReference Include="..\..\src\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.App\GWGUI.App.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation\GWGUI.Emulation.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
   </ItemGroup>
 
 </Project>

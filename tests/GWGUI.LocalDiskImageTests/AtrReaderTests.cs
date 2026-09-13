@@ -48,7 +48,10 @@ public sealed class AtrReaderTests
         Assert.Equal(expectedSectorSize, image.BlockSize);
         Assert.Equal(expectedSectorCount, image.BlockCount);
         Assert.Equal(expectedFormatId, image.FormatId);
-        Assert.Equal((expectedSectorCount, AtrLayout.LogicalHeadCount, AtrLayout.LogicalSectorsPerCylinder), (image.Cylinders, image.Heads, image.SectorsPerTrack));
+        var expectedSectorsPerTrack = expectedSectorCount == AtrLayout.EnhancedDensitySectorCount
+            ? AtrLayout.EnhancedDensitySectorsPerCylinder
+            : AtrLayout.StandardSectorsPerCylinder;
+        Assert.Equal((AtrLayout.StandardCylinderCount, AtrLayout.LogicalHeadCount, expectedSectorsPerTrack), (image.Cylinders, image.Heads, image.SectorsPerTrack));
         Assert.Equal(bytes.Length - 16, image.Capacity);
         Assert.Equal(Enumerable.Range(0, expectedSectorCount), image.AvailableBlocks.Select(block => block.LogicalBlock));
         Assert.Equal(Enumerable.Range(1, expectedSectorCount), image.AvailableBlocks.Select(block => block.Address.Number));
