@@ -23,7 +23,8 @@ public sealed record FileSystemEntry
         bool? dataValid = null,
         bool syntheticName = false,
         string? linkTarget = null,
-        IEnumerable<string>? diagnostics = null)
+        IEnumerable<string>? diagnostics = null,
+        IReadOnlyDictionary<string, string>? metadata = null)
     {
         Name = name;
         Kind = kind;
@@ -44,6 +45,8 @@ public sealed record FileSystemEntry
         SyntheticName = syntheticName;
         LinkTarget = linkTarget;
         Diagnostics = Array.AsReadOnly((diagnostics ?? []).ToArray());
+        Metadata = new System.Collections.ObjectModel.ReadOnlyDictionary<string, string>(
+            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     /// <summary>Nom décodé de l'entrée.</summary>
@@ -84,4 +87,6 @@ public sealed record FileSystemEntry
     public string? LinkTarget { get; }
     /// <summary>Diagnostics propres à cette entrée.</summary>
     public IReadOnlyList<string> Diagnostics { get; }
+    /// <summary>Métadonnées techniques propres au format de l'entrée.</summary>
+    public IReadOnlyDictionary<string, string> Metadata { get; }
 }

@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Bloccare le informazioni multimediali</value></data>
   <data name="Visual.CapacityLabel"><value>Capacità</value></data>
   <data name="Visual.AddressingLabel"><value>Indirizzo</value></data>
-  <data name="Visual.StartLabel"><value>Inizia</value></data>
+  <data name="Visual.StartLabel"><value>Inizio</value></data>
   <data name="Visual.LengthLabel"><value>Lunghezza</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Schema di partecipazione</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Numero di partizione</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Settore</value></data>
   <data name="Visual.SectorWithoutData"><value>Settore senza dati</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analizzare la rivoluzione {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Informazioni sulla cassetta</value></data>
 </root>

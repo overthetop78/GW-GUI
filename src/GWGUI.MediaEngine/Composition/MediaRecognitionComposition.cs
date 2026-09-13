@@ -18,6 +18,7 @@ using GWGUI.MediaEngine.Formats.Floppy.Rx02;
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Formats.Floppy.St;
 using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
+using GWGUI.MediaEngine.Formats.Floppy.Xfd;
 using GWGUI.MediaEngine.Formats.HardDisk.Raw;
 using GWGUI.MediaEngine.Formats.HardDisk.Chd;
 using GWGUI.MediaEngine.Formats.HardDisk.Qcow2;
@@ -78,6 +79,7 @@ public sealed class MediaRecognitionComposition
                 new AtariStReader(),
                 new MsaReader(),
                 new AtrReader(),
+                new XfdReader(),
                 new AtxReader(),
                 new D64Reader(),
                 new D71Reader(),

@@ -17,6 +17,14 @@ public static partial class DiskImageFormatIds
     public const string Atari180 = "atari.180";
     /// <summary>Image protégée Atari 8 bits au format ATX.</summary>
     public const string AtariAtx = "atari.atx";
+    /// <summary>Image XFD brute Atari 8 bits de 90 Kio.</summary>
+    public const string AtariXfd90 = "atari.xfd.90";
+    /// <summary>Image XFD brute Atari 8 bits de 130 Kio.</summary>
+    public const string AtariXfd130 = "atari.xfd.130";
+    /// <summary>Image XFD brute Atari 8 bits de 140 Kio.</summary>
+    public const string AtariXfd140 = "atari.xfd.140";
+    /// <summary>Image XFD brute Atari 8 bits de 180 Kio.</summary>
+    public const string AtariXfd180 = "atari.xfd.180";
     /// <summary>Préfixe des formats Atari ST.</summary>
     public const string AtariStPrefix = "atarist.";
     /// <summary>Image Atari ST de 180 Kio.</summary>

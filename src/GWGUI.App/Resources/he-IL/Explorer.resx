@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>אודיו Audio</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimal</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>יישום חיצוני</value></data>
+  <data name="Explorer.Cassette"><value>קלטת</value></data>
+  <data name="Explorer.InternalName"><value>תיאור פנימי</value></data>
+  <data name="Explorer.BaudRates"><value>קצבים</value></data>
+  <data name="Explorer.Chunks"><value>מקטעים</value></data>
+  <data name="Explorer.FskBlocks"><value>מקטעי FSK</value></data>
+  <data name="Explorer.Records"><value>רשומות</value></data>
+  <data name="Explorer.FullRecords"><value>מלאות</value></data>
+  <data name="Explorer.PartialRecords"><value>חלקיות</value></data>
+  <data name="Explorer.EndRecord"><value>סיום</value></data>
+  <data name="Explorer.ChunkType"><value>סוג</value></data>
+  <data name="Explorer.BaudRate"><value>קצב</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>השהיה</value></data>
+  <data name="Explorer.Type.BootProgram"><value>תוכנית Boot</value></data>
+  <data name="Explorer.Category.BootProgram"><value>תוכנית Boot</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>לקרוא את הקלטת</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>רשומות רשומות {0} של {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>רשומות קלטות</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>זיהוי קבצים</value></data>
 </root>

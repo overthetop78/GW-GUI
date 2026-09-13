@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Аудио</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>шестидесятичный</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Внешнее применение</value></data>
+  <data name="Explorer.Cassette"><value>Кассета</value></data>
+  <data name="Explorer.InternalName"><value>Внутреннее описание</value></data>
+  <data name="Explorer.BaudRates"><value>Скорости</value></data>
+  <data name="Explorer.Chunks"><value>Блоки</value></data>
+  <data name="Explorer.FskBlocks"><value>Блоки FSK</value></data>
+  <data name="Explorer.Records"><value>Записи</value></data>
+  <data name="Explorer.FullRecords"><value>Полные</value></data>
+  <data name="Explorer.PartialRecords"><value>Частичные</value></data>
+  <data name="Explorer.EndRecord"><value>Конец</value></data>
+  <data name="Explorer.ChunkType"><value>Тип</value></data>
+  <data name="Explorer.BaudRate"><value>Скорость</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Задержка</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Программа бут</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Программа бут</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Чтение ленты</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>рекорд {0} из {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Дешифровка записей с магнитной ленты</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Распознавание файлов</value></data>
 </root>

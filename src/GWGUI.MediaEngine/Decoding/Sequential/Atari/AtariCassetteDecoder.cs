@@ -39,16 +39,53 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
             throw new InvalidDataException("The media document is not compatible with the Atari cassette decoder.");
         var representation = (SequentialMediaImageRepresentation)document.Representation;
         return document.FormatId.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase)
-            ? await DecodeCasAsync(representation, cancellationToken).ConfigureAwait(false)
+            ? await DecodeCasAsync(document, representation, cancellationToken).ConfigureAwait(false)
             : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
     }
 
     private async Task<SequentialDecodeResult> DecodeCasAsync(
+        MediaImageDocument document,
         SequentialMediaImageRepresentation representation,
         CancellationToken cancellationToken)
     {
         var blocks = new List<SequentialDecodedBlock>();
         var consumed = new HashSet<long>();
+        var fileData = new MemoryStream();
+        var filePositions = new List<long>();
+        var recordCount = 0;
+        var fullRecordCount = 0;
+        var partialRecordCount = 0;
+        var integrityValid = true;
+        var baudRates = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var structuralSegment in representation.Segments ?? [])
+        {
+            if (structuralSegment.Kind is Enums.SequentialSegmentKind.TapeMark or Enums.SequentialSegmentKind.Carrier)
+                consumed.Add(structuralSegment.Position);
+        }
+
+        void FlushLogicalFile(bool endRecordPresent)
+        {
+            if (filePositions.Count == 0) return;
+            var ordinal = blocks.Count + 1;
+            var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["sourceKind"] = "atari-cas-records",
+                ["logicalFileOrdinal"] = ordinal.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["recordCount"] = recordCount.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["fullRecordCount"] = fullRecordCount.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["partialRecordCount"] = partialRecordCount.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["endRecordPresent"] = endRecordPresent.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["baudRates"] = string.Join(", ", baudRates.Order(StringComparer.Ordinal)),
+                ["checksumPresent"] = true.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            };
+            blocks.Add(new SequentialDecodedBlock(blocks.Count, fileData.ToArray(), filePositions.ToArray(), integrityValid, metadata));
+            fileData.SetLength(0);
+            filePositions.Clear();
+            recordCount = fullRecordCount = partialRecordCount = 0;
+            integrityValid = true;
+            baudRates.Clear();
+        }
+
         foreach (var segment in representation.Segments ?? [])
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -61,9 +98,35 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
 
             var data = new byte[checked((int)range.Length)];
             await range.Source.ReadExactlyAsync(range.SourceOffset, data, cancellationToken).ConfigureAwait(false);
-            blocks.Add(CreateBlock(blocks.Count, data, [segment.Position], "cas-data"));
             consumed.Add(segment.Position);
+            if (!TryReadStandardRecord(data, out var recordType, out var recordData, out var checksumValid))
+            {
+                FlushLogicalFile(false);
+                blocks.Add(CreateBlock(blocks.Count, data, [segment.Position], "cas-data"));
+                continue;
+            }
+
+            filePositions.Add(segment.Position);
+            recordCount++;
+            integrityValid &= checksumValid;
+            if (segment.Metadata.TryGetValue(AtariCasConstants.BaudRateMetadataKey, out var baudRate))
+                baudRates.Add(baudRate);
+            if (recordType == AtariCasConstants.FullRecordType)
+            {
+                fullRecordCount++;
+                fileData.Write(recordData.Span);
+            }
+            else if (recordType == AtariCasConstants.PartialRecordType)
+            {
+                partialRecordCount++;
+                fileData.Write(recordData.Span);
+            }
+            else if (recordType == AtariCasConstants.EndRecordType)
+            {
+                FlushLogicalFile(true);
+            }
         }
+        FlushLogicalFile(false);
 
         var pulseSegments = (representation.Segments ?? [])
             .Where(segment => segment.Kind == Enums.SequentialSegmentKind.Pulse
@@ -89,6 +152,10 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
                 var positions = pulseSegments.Select(segment => segment.Position).ToArray();
                 blocks.Add(CreateBlock(blocks.Count, decoded.Bytes.ToArray(), positions, "cas-fsk"));
                 foreach (var positionValue in positions) consumed.Add(positionValue);
+                foreach (var fskChunk in (representation.Segments ?? []).Where(segment =>
+                    segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var id)
+                    && id == AtariCasConstants.FskChunk))
+                    consumed.Add(fskChunk.Position);
             }
         }
 
@@ -96,6 +163,40 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         var confidence = blocks.Count == 0 ? 0 : 1;
         var diagnostics = blocks.Count == 0 ? new[] { "No Atari CAS data chunk could be decoded." } : [];
         return new SequentialDecodeResult(Id, confidence, blocks, undecoded, diagnostics);
+    }
+
+    private static bool TryReadStandardRecord(
+        ReadOnlyMemory<byte> record,
+        out byte recordType,
+        out ReadOnlyMemory<byte> data,
+        out bool checksumValid)
+    {
+        recordType = 0;
+        data = ReadOnlyMemory<byte>.Empty;
+        checksumValid = false;
+        if (record.Length != AtariCasConstants.StandardRecordLength
+            || record.Span[0] != AtariCasConstants.RecordSyncByte
+            || record.Span[1] != AtariCasConstants.RecordSyncByte)
+            return false;
+
+        recordType = record.Span[2];
+        if (recordType is not (AtariCasConstants.FullRecordType
+            or AtariCasConstants.PartialRecordType
+            or AtariCasConstants.EndRecordType))
+            return false;
+
+        var dataLength = recordType switch
+        {
+            AtariCasConstants.FullRecordType => AtariCasConstants.RecordDataLength,
+            AtariCasConstants.PartialRecordType => Math.Min(
+                (int)record.Span[AtariCasConstants.PartialRecordLengthOffset],
+                AtariCasConstants.RecordDataLength),
+            _ => 0
+        };
+        data = record.Slice(AtariCasConstants.RecordDataOffset, dataLength);
+        checksumValid = CalculateSioChecksum(record.Span[..AtariCasConstants.RecordChecksumOffset])
+            == record.Span[AtariCasConstants.RecordChecksumOffset];
+        return true;
     }
 
     private async Task<SequentialDecodeResult> DecodeWaveAsync(

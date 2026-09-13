@@ -32,6 +32,9 @@
             <skia:SKElement x:Name="Canvas"
                             PaintSurface="Canvas_PaintSurface"
                             MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
+                            MouseDown="Canvas_MouseDown"
+                            MouseUp="Canvas_MouseUp"
+                            MouseMove="Canvas_MouseMove"
                             MouseWheel="Canvas_MouseWheel"/>
         </Border>
     </Grid>

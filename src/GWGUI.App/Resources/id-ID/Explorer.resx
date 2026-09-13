@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Audio</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Heksadesimal</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Aplikasi eksternal</value></data>
+  <data name="Explorer.Cassette"><value>Kaset</value></data>
+  <data name="Explorer.InternalName"><value>Deskripsi internal</value></data>
+  <data name="Explorer.BaudRates"><value>Kecepatan</value></data>
+  <data name="Explorer.Chunks"><value>Blok</value></data>
+  <data name="Explorer.FskBlocks"><value>Blok FSK</value></data>
+  <data name="Explorer.Records"><value>Rekaman</value></data>
+  <data name="Explorer.FullRecords"><value>Penuh</value></data>
+  <data name="Explorer.PartialRecords"><value>Parsial</value></data>
+  <data name="Explorer.EndRecord"><value>Akhir</value></data>
+  <data name="Explorer.ChunkType"><value>Jenis</value></data>
+  <data name="Explorer.BaudRate"><value>Kecepatan</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Jeda</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program boot</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program boot</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Membaca rekaman</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Rekam {0} dari {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Menghilangkan rekaman</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Mengenali berkas</value></data>
 </root>

@@ -15,8 +15,11 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Representations.Optical;
+using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Recognition;
 
 
 namespace GWGUI.App.Views.Controls.Explorer;
@@ -174,6 +177,7 @@ public partial class ExplorerSection : UserControl
         VolumeSelector.ItemsSource = null;
         VolumeSelector.Visibility = Visibility.Collapsed;
         _updatingVolumeSelector = false;
+        ResetSummaryLabels();
         PathText.Text = document.SourcePath;
         var reportedFormatIds = ReportedFormats(document);
         if (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true)
@@ -264,6 +268,7 @@ public partial class ExplorerSection : UserControl
         {
             SessionSelector.ItemsSource = null;
             SessionSelector.Visibility = Visibility.Collapsed;
+            SessionControl.Visibility = Visibility.Collapsed;
             _updatingSessionSelector = false;
             return;
         }
@@ -275,6 +280,7 @@ public partial class ExplorerSection : UserControl
                 $"{LocExtension.Get("Explorer.Session")} {number}"))
             .ToArray();
         SessionSelector.ItemsSource = choices;
+        SessionControl.Visibility = choices.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
         SessionSelector.Visibility = choices.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
         SessionSelector.SelectedItem = choices.FirstOrDefault(choice => choice.SessionNumber == preferredSession)
             ?? choices.FirstOrDefault();
@@ -318,6 +324,19 @@ public partial class ExplorerSection : UserControl
         _mediaVolume = exploredVolume;
 
         var volume = _mediaVolume?.FileSystem;
+        var isTape = _mediaDocument.Document.MediaKind == GWGUI.Domain.Enums.MediaKind.Tape;
+        if (isTape)
+        {
+            VolumeLabel.Text = LocExtension.Get("Explorer.Volume");
+            FileSystemLabel.Text = LocExtension.Get("Explorer.Format");
+            CapacityLabel.Text = LocExtension.Get("Explorer.Size");
+            FreeLabel.Text = LocExtension.Get("Visual.DurationLabel");
+            EntryCountLabel.Text = LocExtension.Get("Explorer.Entries");
+        }
+        else
+        {
+            ResetSummaryLabels();
+        }
         var descriptorName = _mediaVolume?.Descriptor.Name;
         var syntheticName = string.IsNullOrWhiteSpace(volume?.Name) && string.IsNullOrWhiteSpace(descriptorName);
         var volumeName = !string.IsNullOrWhiteSpace(volume?.Name)
@@ -329,12 +348,16 @@ public partial class ExplorerSection : UserControl
         VolumeNameText.Text = volumeName;
         SystemText.Text = CurrentSystem(_mediaDocument);
         ProtectionText.Text = LocExtension.Get("Explorer.Metadata.None");
-        FileSystemText.Text = volume?.FileSystemId ?? ControlVisualConstants.EmptyValue;
+        FileSystemText.Text = isTape
+            ? TapeDescription(_mediaDocument)
+            : volume?.FileSystemId ?? ControlVisualConstants.EmptyValue;
         var capacity = volume?.Capacity ?? _mediaVolume?.Descriptor.Length;
         CapacityText.Text = capacity.HasValue ? StorageSizeFormatter.FormatBytes(capacity.Value) : ControlVisualConstants.EmptyValue;
-        FreeText.Text = volume?.FreeSpaceKnown == true
-            ? StorageSizeFormatter.FormatBytes(volume.FreeBytes)
-            : ControlVisualConstants.EmptyValue;
+        FreeText.Text = isTape
+            ? (_mediaDocument.Document.Representation as SequentialMediaImageRepresentation)?.Duration?.ToString("g") ?? ControlVisualConstants.EmptyValue
+            : volume?.FreeSpaceKnown == true
+                ? StorageSizeFormatter.FormatBytes(volume.FreeBytes)
+                : ControlVisualConstants.EmptyValue;
         _rootEntries = volume?.Entries ?? [];
         EntryCountText.Text = CountEntries(_rootEntries).ToString();
         _rootFolder = new ExplorerFolderItem(volumeName, null, 0, _rootEntries, syntheticName) { IsExpanded = true };
@@ -393,6 +416,9 @@ public partial class ExplorerSection : UserControl
 
     private string DetectedFormatsSummary()
     {
+        if (_detectedFormatIds.Contains(TapeImageFormatIds.AtariCas, StringComparer.OrdinalIgnoreCase))
+            return LocExtension.Get("Explorer.DetectedFormats", "Atari 8-bit (Atari CAS)");
+
         var catalog = new DiskClassificationCatalog(_formats);
         var recognized = _detectedFormatIds.Select(id => catalog.ResolveFormat(id))
             .Where(format => format is not null).Cast<DiskFormat>()
@@ -446,9 +472,35 @@ public partial class ExplorerSection : UserControl
 
     private string CurrentSystem(ExploredMediaImage document)
     {
+        if (document.Document.FormatId.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase)
+            && document.Document.Metadata.TryGetValue("systemId", out var cassetteSystemId)
+            && cassetteSystemId == DiskSystemIds.Atari8Bit)
+            return "Atari 8-bit";
         if (Classification.SelectedMachine is { } selectedMachine) return selectedMachine;
         var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.Document.FormatId);
-        return format?.Family ?? document.Document.MediaKind.ToString();
+        return format?.Family
+            ?? (document.Document.Metadata.TryGetValue("systemId", out var systemId) && systemId == DiskSystemIds.Atari8Bit ? "Atari 8-bit" : null)
+            ?? document.Document.MediaKind.ToString();
+    }
+
+    private string TapeDescription(ExploredMediaImage document)
+    {
+        var cassette = LocExtension.Get("Explorer.Cassette");
+        var system = CurrentSystem(document);
+        if (!string.IsNullOrWhiteSpace(system)
+            && !system.Equals(document.Document.MediaKind.ToString(), StringComparison.OrdinalIgnoreCase))
+            return $"{cassette} {system}";
+        var format = FormatForIdentity(document.Document.FormatId);
+        return format is null ? cassette : $"{cassette} {format.DisplayName}";
+    }
+
+    private void ResetSummaryLabels()
+    {
+        VolumeLabel.Text = LocExtension.Get("Explorer.Volume");
+        FileSystemLabel.Text = LocExtension.Get("Explorer.FileSystem");
+        CapacityLabel.Text = LocExtension.Get("Explorer.Capacity");
+        FreeLabel.Text = LocExtension.Get("Explorer.Free");
+        EntryCountLabel.Text = LocExtension.Get("Explorer.Entries");
     }
 
     private Brush BrushFor(bool synthetic)
@@ -509,6 +561,16 @@ public partial class ExplorerSection : UserControl
     private void FolderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (FolderList.SelectedItem is ExplorerFolderItem item) ShowContents(item.Entry?.Children ?? _rootEntries);
+    }
+
+    private void FolderList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        var element = e.OriginalSource as DependencyObject;
+        while (element is not null && element is not ListBoxItem)
+            element = VisualTreeHelper.GetParent(element);
+        if (element is not ListBoxItem { DataContext: ExplorerFolderItem item }) return;
+        ContentsList.SelectedItem = null;
+        ShowContents(item.Entry?.Children ?? _rootEntries);
     }
 
     private void ContentsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

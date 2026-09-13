@@ -1,5 +1,8 @@
 using GWGUI.App.Dictionaries.Explorer.FileTypes;
 using GWGUI.App.Enums.Explorer;
+using GWGUI.App.Functions.Explorer;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.FileSystems;
 
 namespace GWGUI.Tests.Interface.ExplorerViews;
 
@@ -57,4 +60,34 @@ public sealed class ExplorerFileTypeCatalogScenarios
 
         Assert.All(expected, family => Assert.Contains(ExplorerFileTypeCatalog.Rows, row => row.Family == family));
     }
+
+    [Fact]
+    public void AtariCassetteContentIsClassifiedFromItsBytes()
+    {
+        Assert.Equal(
+            ExplorerFileSystemFamily.Atari8Bit,
+            ExplorerFileIconClassifier.FamilyFor(TapeImageFormatIds.AtariCas, "sequential-content"));
+
+        var basic = new byte[]
+        {
+            0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01,
+            0x04, 0x01, 0x08, 0x01, 0x08, 0x01, 0, 0, 0, 0, 0, 0, 0, 0
+        };
+        var xex = new byte[] { 0xff, 0xff, 0x00, 0x20, 0x02, 0x20, 1, 2, 3 };
+        var boot = new byte[128];
+        boot[1] = 1;
+        boot[2] = 0x00;
+        boot[3] = 0x07;
+        boot[4] = 0x00;
+        boot[5] = 0x07;
+
+        Assert.Equal(ExplorerFileCategory.BasicProgram, DefinitionFor(basic).Category);
+        Assert.Equal(ExplorerFileCategory.Executable, DefinitionFor(xex).Category);
+        Assert.Equal(ExplorerFileCategory.BootProgram, DefinitionFor(boot).Category);
+    }
+
+    private static GWGUI.App.Contracts.Explorer.ExplorerFileTypeDefinition DefinitionFor(byte[] content) =>
+        ExplorerFileIconClassifier.DefinitionFor(
+            new FileSystemEntry("File 0001.bin", FileSystemEntryKind.File, content.Length, null, string.Empty, 0, 0, true, [], content),
+            ExplorerFileSystemFamily.Atari8Bit);
 }

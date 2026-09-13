@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Молода</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Хоксадекмо</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Зовнішнє застосування</value></data>
+  <data name="Explorer.Cassette"><value>Касета</value></data>
+  <data name="Explorer.InternalName"><value>Внутрішній опис</value></data>
+  <data name="Explorer.BaudRates"><value>Швидкості</value></data>
+  <data name="Explorer.Chunks"><value>Блоки</value></data>
+  <data name="Explorer.FskBlocks"><value>Блоки FSK</value></data>
+  <data name="Explorer.Records"><value>Записи</value></data>
+  <data name="Explorer.FullRecords"><value>Повні</value></data>
+  <data name="Explorer.PartialRecords"><value>Часткові</value></data>
+  <data name="Explorer.EndRecord"><value>Кінець</value></data>
+  <data name="Explorer.ChunkType"><value>Тип</value></data>
+  <data name="Explorer.BaudRate"><value>Швидкість</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Затримка</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Програма для завантаження</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Програма для завантаження</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Читання стрічки</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Редакція {0} з {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Випадкові записи стрічки</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Визнання файлів</value></data>
 </root>

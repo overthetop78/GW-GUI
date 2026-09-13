@@ -24,7 +24,10 @@
                     <Border Margin="4" Background="#090C10" CornerRadius="8" ClipToBounds="True">
                         <skia:SKElement x:Name="LogicalCanvas"
                                         PaintSurface="LogicalCanvas_PaintSurface"
-                                        MouseLeftButtonDown="LogicalCanvas_MouseLeftButtonDown"/>
+                                        MouseLeftButtonDown="LogicalCanvas_MouseLeftButtonDown"
+                                        MouseDown="Canvas_MouseDown"
+                                        MouseUp="Canvas_MouseUp"
+                                        MouseMove="Canvas_MouseMove"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -43,7 +46,10 @@
                     <Border Grid.Row="1" Margin="4" Background="#090C10" CornerRadius="8" ClipToBounds="True">
                         <skia:SKElement x:Name="GeometryCanvas"
                                         PaintSurface="GeometryCanvas_PaintSurface"
-                                        MouseLeftButtonDown="GeometryCanvas_MouseLeftButtonDown"/>
+                                        MouseLeftButtonDown="GeometryCanvas_MouseLeftButtonDown"
+                                        MouseDown="Canvas_MouseDown"
+                                        MouseUp="Canvas_MouseUp"
+                                        MouseMove="Canvas_MouseMove"/>
                     </Border>
                 </Grid>
             </TabItem>

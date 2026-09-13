@@ -62,8 +62,8 @@
                             PaintSurface="Canvas_PaintSurface"
                             MouseWheel="Canvas_MouseWheel"
                             MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
-                            MouseRightButtonDown="Canvas_MouseRightButtonDown"
-                            MouseRightButtonUp="Canvas_MouseRightButtonUp"
+                            MouseDown="Canvas_MouseDown"
+                            MouseUp="Canvas_MouseUp"
                             MouseMove="Canvas_MouseMove"/>
         </Grid>
     </Border>

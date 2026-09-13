@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Ήχος</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Εξαδεσιμάλη</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Εξωτερική εφαρμογή</value></data>
+  <data name="Explorer.Cassette"><value>Κασέτα</value></data>
+  <data name="Explorer.InternalName"><value>Εσωτερική περιγραφή</value></data>
+  <data name="Explorer.BaudRates"><value>Ρυθμοί</value></data>
+  <data name="Explorer.Chunks"><value>Μπλοκ</value></data>
+  <data name="Explorer.FskBlocks"><value>Μπλοκ FSK</value></data>
+  <data name="Explorer.Records"><value>Εγγραφές</value></data>
+  <data name="Explorer.FullRecords"><value>Πλήρεις</value></data>
+  <data name="Explorer.PartialRecords"><value>Μερικές</value></data>
+  <data name="Explorer.EndRecord"><value>Τέλος</value></data>
+  <data name="Explorer.ChunkType"><value>Τύπος</value></data>
+  <data name="Explorer.BaudRate"><value>Ρυθμός</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Καθυστέρηση</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Πρόγραμμα εκκίνησης</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Πρόγραμμα εκκίνησης</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Διαβάζοντας την κασέτα</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Εγγραφή {0} του {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Αποκωδικοποίηση εγγραφών ταινιών</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Αναγνώριση αρχείων</value></data>
 </root>

@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>เสียง</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>ฐานสิบหก</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>โปรแกรมภายนอก</value></data>
+  <data name="Explorer.Cassette"><value>เทปคาสเซ็ต</value></data>
+  <data name="Explorer.InternalName"><value>คำอธิบายภายใน</value></data>
+  <data name="Explorer.BaudRates"><value>อัตรา</value></data>
+  <data name="Explorer.Chunks"><value>บล็อก</value></data>
+  <data name="Explorer.FskBlocks"><value>บล็อก FSK</value></data>
+  <data name="Explorer.Records"><value>ระเบียน</value></data>
+  <data name="Explorer.FullRecords"><value>เต็ม</value></data>
+  <data name="Explorer.PartialRecords"><value>บางส่วน</value></data>
+  <data name="Explorer.EndRecord"><value>สิ้นสุด</value></data>
+  <data name="Explorer.ChunkType"><value>ชนิด</value></data>
+  <data name="Explorer.BaudRate"><value>อัตรา</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>หน่วงเวลา</value></data>
+  <data name="Explorer.Type.BootProgram"><value>โปรแกรมบูต</value></data>
+  <data name="Explorer.Category.BootProgram"><value>โปรแกรมบูต</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>กําลังอ่านเทป</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>บันทึก {0} ของ {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>กําลังถอดรหัสบันทึกเทป</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>กําลังจดจําแฟ้มต่างๆ</value></data>
 </root>

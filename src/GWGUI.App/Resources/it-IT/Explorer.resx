@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Audio audio</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Esadecimale</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Applicazione esterna</value></data>
+  <data name="Explorer.Cassette"><value>Cassetta</value></data>
+  <data name="Explorer.InternalName"><value>Descrizione interna</value></data>
+  <data name="Explorer.BaudRates"><value>Velocità</value></data>
+  <data name="Explorer.Chunks"><value>Blocchi</value></data>
+  <data name="Explorer.FskBlocks"><value>Blocchi FSK</value></data>
+  <data name="Explorer.Records"><value>Record</value></data>
+  <data name="Explorer.FullRecords"><value>Completi</value></data>
+  <data name="Explorer.PartialRecords"><value>Parziali</value></data>
+  <data name="Explorer.EndRecord"><value>Fine</value></data>
+  <data name="Explorer.ChunkType"><value>Tipo</value></data>
+  <data name="Explorer.BaudRate"><value>Velocità</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Ritardo</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Programma di avvio</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Programma di avvio</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Leggere il nastro</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Registrazione {0} di {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Registrazione dei nastri</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Riconoscere i file</value></data>
 </root>

@@ -8,13 +8,17 @@ using GWGUI.Domain.Settings.Engines;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.Contracts.Rendering.Scp;
 using GWGUI.App.Contracts.Rendering.Sectors;
+using GWGUI.App.Contracts.Rendering.Sequential;
 using GWGUI.App.Contracts.Visualization;
 using GWGUI.App.Functions.Services.Visualization;
+using GWGUI.App.Functions.Explorer;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Visualization;
 using GWGUI.App.Presenters.Visualization;
+using GWGUI.App.Rendering.Sequential;
 using GWGUI.App.ViewModels.Main;
+using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.Domain.Contracts;
@@ -22,6 +26,7 @@ using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Reading;
 using GWGUI.MediaEngine.Representations.Sectors;
 using GWGUI.MediaEngine.Representations.Flux;
@@ -38,6 +43,7 @@ using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.FileSystems;
 
 
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
@@ -48,6 +54,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 {
     private static readonly TimeSpan MinimumTrackPresentationInterval = TimeSpan.FromMilliseconds(30);
     private static readonly TimeSpan MinimumSectorTrackPresentationInterval = TimeSpan.FromMilliseconds(100);
+    private static readonly TimeSpan MinimumSequentialSegmentPresentationInterval = TimeSpan.FromMilliseconds(4);
     private readonly ExplorerSection _explorer;
     private readonly VisualizerTabSection _visualizer;
     private readonly MainWindowViewModel _viewModel;
@@ -215,10 +222,12 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
     public async Task LoadAsync(string path, string? displayFileName = null)
     {
+        var isCassette = Path.GetExtension(path).Equals(".cas", StringComparison.OrdinalIgnoreCase);
         var generation = Interlocked.Increment(ref _sharedLoadGeneration);
         var shownName = displayFileName ?? Path.GetFileName(path);
         ClearVisualizer(shownName);
         ReportSharedProgress(_localize("Explorer.LoadingRecognition", []), shownName, 0, true);
+        await _visualizer.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.Render);
         try
         {
             if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
@@ -238,7 +247,15 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         }
         finally
         {
-            if (generation == Volatile.Read(ref _sharedLoadGeneration)) HideProgress();
+            if (generation == Volatile.Read(ref _sharedLoadGeneration))
+            {
+                if (isCassette)
+                {
+                    await CompleteCassetteLoadingPresentationAsync(generation, shownName);
+                }
+                _explorer.SetLoading(false);
+                HideProgress();
+            }
         }
     }
 
@@ -300,19 +317,27 @@ internal sealed class DiskImageWorkspaceController : IDisposable
                             _explorer.SetLoadingProgress(stage, detail, value);
                             sharedProgress?.Invoke(stage, detail, value, false);
                         });
-                    if (_exploredMediaImage?.Document.Representation is SectorMediaImageRepresentation)
+                    if (_exploredMediaImage is not null)
                         _explorer.Display(_exploredMediaImage);
                     else
                         _explorer.Display(document);
                 }
-                var detectedFormatIds = document.FormatsDetectes
-                    .Select(format => format.FormatId)
-                    .ToArray();
-                _visualizer.Header.ApplyDetection(
-                    document.PrimaryFormatId,
-                    document.Metadata.ProtectionId,
-                    detectedFormatIds,
-                    Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase));
+                if (_exploredMediaImage is not null)
+                {
+                    var mediaFormatId = _exploredMediaImage.Document.FormatId;
+                    _visualizer.Header.ApplyDetection(mediaFormatId, null, [mediaFormatId], false);
+                }
+                else
+                {
+                    var detectedFormatIds = document.FormatsDetectes
+                        .Select(format => format.FormatId)
+                        .ToArray();
+                    _visualizer.Header.ApplyDetection(
+                        document.PrimaryFormatId,
+                        document.Metadata.ProtectionId,
+                        detectedFormatIds,
+                        Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase));
+                }
                 ApplyClassification();
                 _explorer.SetLoadingProgress(
                     _localize("Explorer.LoadingDisplay", []),
@@ -330,7 +355,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         catch (Exception exception)
         {
             if (!_cancellation.IsCurrentExplorer(cancellation) || cancellationToken.IsCancellationRequested) return null;
-            if (_cancellation.IsCurrentExplorer(cancellation)) _explorer.SetLoading(false);
+            if (_cancellation.IsCurrentExplorer(cancellation) && sharedProgress is null) _explorer.SetLoading(false);
             var messageKey = LoadFailureMessageKey(newImage, requestedFormat);
             var titleKey = messageKey == "Explorer.SelectedFormatUnsupported"
                 ? "Explorer.SelectedFormatUnsupportedTitle"
@@ -979,8 +1004,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _viewModel.ProgressText = string.Empty;
         _viewModel.ProgressValue = value;
         _viewModel.ProgressIndeterminate = indeterminate;
-        _viewModel.ProgressVisibility = Visibility.Visible;
-        _viewModel.GlobalProgressVisibility = Visibility.Visible;
+        _viewModel.ProgressVisibility = Visibility.Collapsed;
+        _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
         _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
         _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
         _viewModel.Face0ProgressValue = 0;
@@ -997,16 +1022,108 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _viewModel.ProgressText = string.Empty;
         _viewModel.ProgressValue = value;
         _viewModel.ProgressIndeterminate = indeterminate;
-        _viewModel.ProgressVisibility = Visibility.Visible;
         if (_scpImage is null)
         {
-            _viewModel.GlobalProgressVisibility = Visibility.Visible;
+            _viewModel.ProgressVisibility = Visibility.Collapsed;
+            _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
             _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
             _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
         }
         _visualizer.SetRecognitionProgress(true, stage, detail, value, indeterminate);
         _viewModel.OperationText = _localize("Tab.Read", []);
         _viewModel.OperationBrush = Brushes.SeaGreen;
+    }
+
+    private void ConfigureCassetteStatusProgress(SequentialMediaRenderModel model)
+    {
+        var rowCount = model.Segments.Count > 1 ? 2 : 1;
+        var rowSize = (model.Segments.Count + rowCount - 1) / rowCount;
+        var firstCount = Math.Min(rowSize, model.Segments.Count);
+        var secondCount = Math.Max(0, model.Segments.Count - firstCount);
+        _face0Progress.Configure(
+            MediaVisualizationProgressUnit.Segment,
+            0,
+            Enumerable.Range(0, firstCount).Select(index => (long)index).ToArray(),
+            rowCount == 1 ? _localize("Explorer.Cassette", []) : $"{_localize("Explorer.Cassette", [])} 1/2");
+        if (secondCount > 0)
+        {
+            _face1Progress.Configure(
+                MediaVisualizationProgressUnit.Segment,
+                1,
+                Enumerable.Range(0, secondCount).Select(index => (long)index).ToArray(),
+                $"{_localize("Explorer.Cassette", [])} 2/2");
+        }
+
+        _viewModel.ProgressVisibility = Visibility.Visible;
+        _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
+        _viewModel.Face0ProgressVisibility = firstCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+        _viewModel.Face1ProgressVisibility = secondCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private async Task CompleteCassetteLoadingPresentationAsync(long generation, string shownName)
+    {
+        if (_sequentialRenderModel is not { } model || model.Segments.Count == 0)
+        {
+            ReportSharedProgress(_localize("Visual.Loading", []), shownName, 100, false);
+            return;
+        }
+
+        ConfigureCassetteStatusProgress(model);
+        var recognizedFiles = CassetteFileDescriptions(_exploredMediaImage);
+        var rowSize = (model.Segments.Count + 1) / 2;
+        var lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();
+        for (var index = 0; index < model.Segments.Count; index++)
+        {
+            if (generation != Volatile.Read(ref _sharedLoadGeneration)) return;
+            var elapsed = System.Diagnostics.Stopwatch.GetElapsedTime(lastPresentation);
+            var delay = MinimumSequentialSegmentPresentationInterval - elapsed;
+            if (delay > TimeSpan.Zero) await Task.Delay(delay);
+
+            var row = index < rowSize ? 0 : 1;
+            var position = row == 0 ? index : index - rowSize;
+            var segment = model.Segments[index];
+            var color = SkiaSequentialMediaRenderer.ColorFor(segment);
+            (row == 0 ? _face0Progress : _face1Progress).SetColor(
+                position,
+                Color.FromRgb(color.Red, color.Green, color.Blue));
+
+            var completed = index + 1;
+            var value = completed * 100d / model.Segments.Count;
+            var stage = _localize("Explorer.LoadingTapeReading", []);
+            var detail = _localize("Explorer.LoadingTapeRecord", [completed, model.Segments.Count]);
+            if (recognizedFiles.Count > 0)
+            {
+                var recognizedIndex = Math.Min(recognizedFiles.Count - 1, index * recognizedFiles.Count / model.Segments.Count);
+                detail = $"{detail} · {recognizedFiles[recognizedIndex]}";
+            }
+            _viewModel.ProgressValue = value;
+            _viewModel.ProgressText = string.Empty;
+            _explorer.SetLoadingProgress(stage, detail, value);
+            _visualizer.SetRecognitionProgress(true, stage, detail, value);
+            lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();
+        }
+    }
+
+    private IReadOnlyList<string> CassetteFileDescriptions(ExploredMediaImage? explored)
+    {
+        if (explored?.Document.MediaKind != MediaKind.Tape) return [];
+        var family = ExplorerFileIconClassifier.FamilyFor(
+            explored.Document.FormatId,
+            explored.Volumes.Select(volume => volume.FileSystem?.FileSystemId).FirstOrDefault(id => !string.IsNullOrWhiteSpace(id)));
+        return explored.Volumes
+            .SelectMany(volume => volume.FileSystem?.Entries ?? [])
+            .SelectMany(EnumerateFiles)
+            .Select(entry => new ExplorerContentItem(entry, family))
+            .Select(item => $"{item.Name} — {item.TypeText}")
+            .ToArray();
+    }
+
+    private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
+    {
+        if (entry.Kind == FileSystemEntryKind.File) yield return entry;
+        foreach (var child in entry.Children)
+            foreach (var descendant in EnumerateFiles(child))
+                yield return descendant;
     }
 
     private void HideProgress()
@@ -1027,7 +1144,11 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     {
         if (_mediaReader is null || _mediaExplorer is null) return null;
 
-        reportProgress?.Invoke(_localize("Explorer.LoadingMedia", []), Path.GetFileName(path), 58);
+        var isCassette = Path.GetExtension(path).Equals(".cas", StringComparison.OrdinalIgnoreCase);
+        reportProgress?.Invoke(
+            _localize(isCassette ? "Explorer.LoadingTapeReading" : "Explorer.LoadingMedia", []),
+            Path.GetFileName(path),
+            58);
         var source = new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId);
         MediaImageDocument document;
         try
@@ -1040,9 +1161,16 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         }
 
         cancellationToken.ThrowIfCancellationRequested();
-        reportProgress?.Invoke(_localize("Explorer.LoadingFileSystem", []), document.FormatId, 78);
+        reportProgress?.Invoke(
+            _localize(isCassette ? "Explorer.LoadingTapeDecoding" : "Explorer.LoadingFileSystem", []),
+            document.FormatId,
+            78);
         var explored = await _mediaExplorer.ExploreAsync(document, cancellationToken);
-        reportProgress?.Invoke(_localize("Explorer.LoadingContents", []), explored.Document.FormatId, 94);
+        var recognizedFiles = CassetteFileDescriptions(explored);
+        reportProgress?.Invoke(
+            _localize(isCassette ? "Explorer.LoadingFileRecognition" : "Explorer.LoadingContents", []),
+            recognizedFiles.Count > 0 ? recognizedFiles[0] : explored.Document.FormatId,
+            94);
         return explored;
     }
 
@@ -1108,8 +1236,15 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             {
                 _sequentialRenderModel = _sequentialPresenter.BuildRenderModel(document);
                 _sequentialView.SetDocument(_sequentialRenderModel);
+                ConfigureCassetteStatusProgress(_sequentialRenderModel);
             }
             _visualizer.ShowDocument(document, _visualizationDescriptor);
+            if (document.Representation is GWGUI.MediaEngine.Representations.Sequential.SequentialMediaImageRepresentation
+                && _sequentialRenderModel is not null)
+            {
+                _visualizer.Overview.MarkSequential(_sequentialRenderModel);
+                _visualizer.SetInspectorModel(_sequentialPresenter.BuildInspectorModel(_sequentialRenderModel, null));
+            }
         }
         return _visualizationDescriptor.RepresentationKind != MediaRepresentationKind.Flux;
     }

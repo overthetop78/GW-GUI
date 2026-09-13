@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC-Geometrie anhand der Dateigröße erkannt.</value></data>
   <data name="Detection.ExtensionInferred"><value>Aus der Erweiterung abgeleitetes Format.</value></data>
   <data name="Detection.Multiple"><value>Es sind mehrere Formate möglich; Wählen Sie explizit eine aus.</value></data>
-  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle Dateien|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle Dateien|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Apple II DOS Format, das aus der Sektorreihenfolge identifiziert wird.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS-Format, das aus der Sektorreihenfolge identifiziert wurde.</value></data>
   <data name="Detection.AppleContainer"><value>Apple-Disk-Image-Container erkannt.</value></data>

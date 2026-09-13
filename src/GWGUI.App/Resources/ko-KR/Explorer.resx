@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>의 특징</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>육종</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>외부 신청</value></data>
+  <data name="Explorer.Cassette"><value>카세트테이프</value></data>
+  <data name="Explorer.InternalName"><value>내부 설명</value></data>
+  <data name="Explorer.BaudRates"><value>속도</value></data>
+  <data name="Explorer.Chunks"><value>블록</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK 블록</value></data>
+  <data name="Explorer.Records"><value>레코드</value></data>
+  <data name="Explorer.FullRecords"><value>전체</value></data>
+  <data name="Explorer.PartialRecords"><value>부분</value></data>
+  <data name="Explorer.EndRecord"><value>종료</value></data>
+  <data name="Explorer.ChunkType"><value>유형</value></data>
+  <data name="Explorer.BaudRate"><value>속도</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>지연</value></data>
+  <data name="Explorer.Type.BootProgram"><value>부트 프로그램</value></data>
+  <data name="Explorer.Category.BootProgram"><value>부트 프로그램</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>테이프를 읽으십시오</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>- 연혁 {0} 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Decoding 테이프 기록</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>파일 인식</value></data>
 </root>

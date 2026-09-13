@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Audio</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexazecimal</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Aplicare externă</value></data>
+  <data name="Explorer.Cassette"><value>Casetă</value></data>
+  <data name="Explorer.InternalName"><value>Descriere internă</value></data>
+  <data name="Explorer.BaudRates"><value>Viteze</value></data>
+  <data name="Explorer.Chunks"><value>Blocuri</value></data>
+  <data name="Explorer.FskBlocks"><value>Blocuri FSK</value></data>
+  <data name="Explorer.Records"><value>Înregistrări</value></data>
+  <data name="Explorer.FullRecords"><value>Complete</value></data>
+  <data name="Explorer.PartialRecords"><value>Parțiale</value></data>
+  <data name="Explorer.EndRecord"><value>Sfârșit</value></data>
+  <data name="Explorer.ChunkType"><value>Tip</value></data>
+  <data name="Explorer.BaudRate"><value>Viteză</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Întârziere</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program de boot</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program de boot</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Citind caseta</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Înregistrare {0} din {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Decodarea înregistrărilor de bandă</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Recunoaşterea dosarelor</value></data>
 </root>

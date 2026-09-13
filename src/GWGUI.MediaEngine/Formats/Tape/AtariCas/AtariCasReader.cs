@@ -50,6 +50,12 @@ public sealed class AtariCasReader : IMediaImageReader
         var segments = new List<SequentialMediaSegment>();
         var diagnostics = new List<string>();
         var currentBaud = AtariCasConstants.DefaultBaudRate;
+        var baudRates = new HashSet<int>();
+        var internalNames = new List<string>();
+        var chunkCount = 0;
+        var chunkTypes = new List<string>();
+        var dataChunkCount = 0;
+        var fskChunkCount = 0;
         var position = 0L;
         var elapsed = TimeSpan.Zero;
         var first = true;
@@ -67,6 +73,8 @@ public sealed class AtariCasReader : IMediaImageReader
             if (first && id != AtariCasConstants.FileMarkerChunk)
                 throw new InvalidDataException("The Atari CAS image does not begin with a FUJI marker.");
             first = false;
+            chunkCount++;
+            if (!chunkTypes.Contains(id, StringComparer.Ordinal)) chunkTypes.Add(id);
 
             var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
             {
@@ -80,7 +88,9 @@ public sealed class AtariCasReader : IMediaImageReader
             {
                 var nameBytes = new byte[length];
                 if (length > 0) await input.ReadExactlyAsync(nameBytes, cancellationToken).ConfigureAwait(false);
-                metadata["name"] = System.Text.Encoding.ASCII.GetString(nameBytes);
+                var internalName = System.Text.Encoding.ASCII.GetString(nameBytes).TrimEnd('\0', ' ');
+                metadata["name"] = internalName;
+                if (!string.IsNullOrWhiteSpace(internalName)) internalNames.Add(internalName);
                 segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.TapeMark, length: length == 0 ? null : length,
                     dataRange: range, metadata: metadata));
             }
@@ -88,12 +98,15 @@ public sealed class AtariCasReader : IMediaImageReader
             {
                 if (length != 0) diagnostics.Add("An Atari CAS baud chunk contains an unexpected payload that was retained.");
                 currentBaud = auxiliary;
+                baudRates.Add(currentBaud);
                 metadata[AtariCasConstants.BaudRateMetadataKey] = currentBaud.ToString(System.Globalization.CultureInfo.InvariantCulture);
                 segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.Carrier, dataRange: range, metadata: metadata));
                 input.Position = dataOffset + length;
             }
             else if (id == AtariCasConstants.DataChunk)
             {
+                dataChunkCount++;
+                baudRates.Add(currentBaud);
                 if (auxiliary > 0)
                 {
                     var markDuration = TimeSpan.FromMilliseconds(auxiliary);
@@ -111,6 +124,7 @@ public sealed class AtariCasReader : IMediaImageReader
             }
             else if (id == AtariCasConstants.FskChunk)
             {
+                fskChunkCount++;
                 if ((length & 1) != 0) throw new InvalidDataException("An Atari CAS FSK chunk has an odd payload length.");
                 if (auxiliary > 0) elapsed += TimeSpan.FromMilliseconds(auxiliary);
                 var pulseBytes = new byte[length];
@@ -139,6 +153,18 @@ public sealed class AtariCasReader : IMediaImageReader
             }
         }
         var representation = new SequentialMediaImageRepresentation(context.Length, elapsed == TimeSpan.Zero ? null : elapsed, segments);
+        var documentMetadata = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["systemId"] = DiskSystemIds.Atari8Bit,
+            ["defaultBaudRate"] = AtariCasConstants.DefaultBaudRate.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [AtariCasConstants.ChunkCountMetadataKey] = chunkCount.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [AtariCasConstants.ChunkTypesMetadataKey] = string.Join(", ", chunkTypes),
+            [AtariCasConstants.DataChunkCountMetadataKey] = dataChunkCount.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [AtariCasConstants.FskChunkCountMetadataKey] = fskChunkCount.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [AtariCasConstants.BaudRatesMetadataKey] = string.Join(", ", baudRates.Order())
+        };
+        if (internalNames.Count > 0)
+            documentMetadata[AtariCasConstants.InternalNameMetadataKey] = string.Join("; ", internalNames.Distinct(StringComparer.Ordinal));
         return new MediaImageDocument(
             context.Source,
             TapeImageFormatIds.AtariCas,
@@ -146,9 +172,6 @@ public sealed class AtariCasReader : IMediaImageReader
             representation,
             [],
             diagnostics,
-            new Dictionary<string, string>(StringComparer.Ordinal)
-            {
-                ["defaultBaudRate"] = AtariCasConstants.DefaultBaudRate.ToString(System.Globalization.CultureInfo.InvariantCulture)
-            });
+            documentMetadata);
     }
 }

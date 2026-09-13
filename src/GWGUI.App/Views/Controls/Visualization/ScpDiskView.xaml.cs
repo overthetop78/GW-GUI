@@ -24,7 +24,7 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     private float _panX;
     private float _panY;
     private DiskMediaCategory _mediaCategory;
-    private Point? _dragOrigin;
+    private Point? _panDragLast;
     private readonly IScpRenderer _renderer;
     public event EventHandler<ScpTrack?>? TrackSelected;
     public event EventHandler<float>? ZoomChanged;
@@ -56,7 +56,7 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     public void SetMediaCategory(DiskMediaCategory mediaKind) { _mediaCategory = mediaKind; Canvas.InvalidateVisual(); }
     public void RevealPreparedTrack(int cylinder) { _renderer.RevealTrack(cylinder); Canvas.InvalidateVisual(); }
     public void RefreshPreparedTracks() => Canvas.InvalidateVisual();
-    public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); ResetZoomButton.Content = $"{_zoom:P0}"; Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
+    public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); if (_zoom <= 1) _panX = _panY = 0; ResetZoomButton.Content = $"{_zoom:P0}"; Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
     public void ResetView() { _panX = _panY = 0; SetZoom(1); }
 
     public void SelectElement(int surface, long position)
@@ -79,12 +79,35 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
 
     internal void PanBy(double x, double y)
     {
-        _panX += (float)x; _panY += (float)y; Canvas.InvalidateVisual();
+        if (_zoom <= 1) return;
+        var maxX = Math.Max(0, Canvas.ActualWidth * (_zoom - 1) / 2);
+        var maxY = Math.Max(0, Canvas.ActualHeight * (_zoom - 1) / 2);
+        _panX = (float)Math.Clamp(_panX + x, -maxX, maxX);
+        _panY = (float)Math.Clamp(_panY + y, -maxY, maxY);
+        Canvas.InvalidateVisual();
     }
 
     private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e) { SetZoom(_zoom * (e.Delta > 0 ? 1.12f : .89f), true); e.Handled = true; }
     private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         => SelectTrackAt(e.GetPosition(Canvas));
+
+    private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton != MouseButton.Middle || _zoom <= 1) return;
+        _panDragLast = e.GetPosition(Canvas);
+        Canvas.Cursor = VisualizationCursors.Grabbing;
+        Canvas.CaptureMouse();
+        e.Handled = true;
+    }
+
+    private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton != MouseButton.Middle || _panDragLast is null) return;
+        _panDragLast = null;
+        Canvas.ReleaseMouseCapture();
+        Canvas.ClearValue(CursorProperty);
+        e.Handled = true;
+    }
 
     internal void SelectTrackAt(Point position)
     {
@@ -116,11 +139,14 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     private void ZoomInButton_Click(object sender, RoutedEventArgs e) => SetZoom(_zoom * 1.12f, true);
     private void ResetZoomButton_Click(object sender, RoutedEventArgs e) => ResetView();
 
-    private void Canvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e) { _dragOrigin = e.GetPosition(Canvas); Canvas.CaptureMouse(); e.Handled = true; }
-    private void Canvas_MouseRightButtonUp(object sender, MouseButtonEventArgs e) { _dragOrigin = null; Canvas.ReleaseMouseCapture(); e.Handled = true; }
     private void Canvas_MouseMove(object sender, MouseEventArgs e)
     {
         var position = e.GetPosition(Canvas);
-        if (_dragOrigin is Point origin && e.RightButton == MouseButtonState.Pressed) { PanBy(position.X - origin.X, position.Y - origin.Y); _dragOrigin = position; return; }
+        if (_panDragLast is Point last && e.MiddleButton == MouseButtonState.Pressed)
+        {
+            PanBy(position.X - last.X, position.Y - last.Y);
+            _panDragLast = position;
+            return;
+        }
     }
 }

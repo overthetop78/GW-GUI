@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>معلومات عن وسائط الإعلام</value></data>
   <data name="Visual.CapacityLabel"><value>القدرات</value></data>
   <data name="Visual.AddressingLabel"><value>العنوان</value></data>
-  <data name="Visual.StartLabel"><value>ابدأ</value></data>
+  <data name="Visual.StartLabel"><value>بداية</value></data>
   <data name="Visual.LengthLabel"><value>لينجث</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>نظام التجزئة</value></data>
   <data name="Visual.PartitionNumberLabel"><value>رقم التجزئة</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>القطاع الميت</value></data>
   <data name="Visual.SectorWithoutData"><value>القطاع غير المتوفر بيانات</value></data>
   <data name="Visual.AnalysingRevolution"><value>:: إجراء ثورة تحليلية {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>معلومات شريط الكاسيت</value></data>
 </root>

@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>デッドセクター</value></data>
   <data name="Visual.SectorWithoutData"><value>データを使わないセクター</value></data>
   <data name="Visual.AnalysingRevolution"><value>回転を解析中 {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>カセット情報</value></data>
 </root>

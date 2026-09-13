@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>オーディオ</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>六角形</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>外部アプリケーション</value></data>
+  <data name="Explorer.Cassette"><value>カセットテープ</value></data>
+  <data name="Explorer.InternalName"><value>内部説明</value></data>
+  <data name="Explorer.BaudRates"><value>速度</value></data>
+  <data name="Explorer.Chunks"><value>ブロック</value></data>
+  <data name="Explorer.FskBlocks"><value>FSKブロック</value></data>
+  <data name="Explorer.Records"><value>レコード</value></data>
+  <data name="Explorer.FullRecords"><value>完全</value></data>
+  <data name="Explorer.PartialRecords"><value>部分</value></data>
+  <data name="Explorer.EndRecord"><value>終了</value></data>
+  <data name="Explorer.ChunkType"><value>種類</value></data>
+  <data name="Explorer.BaudRate"><value>速度</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>遅延</value></data>
+  <data name="Explorer.Type.BootProgram"><value>ブートプログラム</value></data>
+  <data name="Explorer.Category.BootProgram"><value>ブートプログラム</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>テープを読む</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>レコード {0} のり {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>テープレコードのデコード</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>ファイルの認識</value></data>
 </root>

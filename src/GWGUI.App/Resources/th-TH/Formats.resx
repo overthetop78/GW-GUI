@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC เรขาคณิตได้รับการยอมรับจากขนาดไฟล์</value></data>
   <data name="Detection.ExtensionInferred"><value>รูปแบบอนุมานจากส่วนขยาย</value></data>
   <data name="Detection.Multiple"><value>สามารถทำได้หลายรูปแบบ เลือกอย่างใดอย่างหนึ่งอย่างชัดเจน</value></data>
-  <data name="Common.DiskImageFilter"><value>ภาพบนดิสก์|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|ทุกแฟ้ม|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>ภาพบนดิสก์|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|ทุกแฟ้ม|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>ระบุรูปแบบ Apple II DOS จากลำดับเซกเตอร์แล้ว</value></data>
   <data name="Detection.AppleProDosOrder"><value>ระบุรูปแบบ Apple II ProDOS จากลำดับเซกเตอร์แล้ว</value></data>
   <data name="Detection.AppleContainer"><value>ตรวจพบคอนเทนเนอร์อิมเมจดิสก์ Apple</value></data>

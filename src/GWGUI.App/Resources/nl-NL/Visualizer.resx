@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Doodse sector</value></data>
   <data name="Visual.SectorWithoutData"><value>Sector zonder gegevens</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analyse van revolutie {0}'{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Cassette-informatie</value></data>
 </root>

@@ -60,7 +60,7 @@ public partial class MediaDocumentIdentity : UserControl
             MediaKind.Floppy => ("floppy", FloppyGeometry, "#FF24658A", "#FFE4EDF5", (string?)null),
             MediaKind.HardDisk => ("hard-disk", HardDiskGeometry, "#FF77572B", "#FFF2E9DA", (string?)null),
             MediaKind.Optical => ("optical", OpticalGeometry, "#FF6B4BB6", "#FFEDE8F8", (string?)null),
-            MediaKind.Tape when extension is ".cas" or ".cdt" or ".tzx" or ".wav" => ("cassette", CassetteGeometry, "#FFC15B2A", "#FFF7E7DE", (string?)null),
+            MediaKind.Tape when extension is ".cas" or ".cdt" or ".tzx" or ".wav" => ("cassette", CassetteGeometry, "#FFF4F7F9", "#FF344A57", "cassette-data.png"),
             MediaKind.Tape => ("tape", TapeGeometry, "#FF9A3D68", "#FFF5E3EC", (string?)null),
             _ when extension is ".crt" or ".car" or ".rom" or ".a26" or ".a52" or ".a78" or ".nes" => ("cartridge", CartridgeGeometry, "#FF3F7C48", "#FFE3F1E5", (string?)null),
             _ when extension is ".iso" or ".cue" or ".ccd" or ".mds" => ("optical", OpticalGeometry, "#FF6B4BB6", "#FFEDE8F8", (string?)null),

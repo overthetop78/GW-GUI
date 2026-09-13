@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Hang</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimális</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Külső alkalmazás</value></data>
+  <data name="Explorer.Cassette"><value>Kazetta</value></data>
+  <data name="Explorer.InternalName"><value>Belső leírás</value></data>
+  <data name="Explorer.BaudRates"><value>Sebességek</value></data>
+  <data name="Explorer.Chunks"><value>Blokkok</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK-blokkok</value></data>
+  <data name="Explorer.Records"><value>Rekordok</value></data>
+  <data name="Explorer.FullRecords"><value>Teljesek</value></data>
+  <data name="Explorer.PartialRecords"><value>Részlegesek</value></data>
+  <data name="Explorer.EndRecord"><value>Vége</value></data>
+  <data name="Explorer.ChunkType"><value>Típus</value></data>
+  <data name="Explorer.BaudRate"><value>Sebesség</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Késleltetés</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Indítóprogram</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Indítóprogram</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>A szalag olvasása</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Nyilvántartás {0} II. {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>A szalagok dekódolása</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Fájlok felismerése</value></data>
 </root>

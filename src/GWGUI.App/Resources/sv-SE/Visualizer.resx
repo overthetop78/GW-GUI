@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Blockera medieinformation</value></data>
   <data name="Visual.CapacityLabel"><value>Kapacitet</value></data>
   <data name="Visual.AddressingLabel"><value>Adressering</value></data>
-  <data name="Visual.StartLabel"><value>Börja</value></data>
+  <data name="Visual.StartLabel"><value>Början</value></data>
   <data name="Visual.LengthLabel"><value>Längd</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Partitionssystem</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Partitionsnummer</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Död sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor utan data</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analysera revolutionen {0}////{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Kassettinformation</value></data>
 </root>

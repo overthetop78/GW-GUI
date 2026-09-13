@@ -1,10 +1,12 @@
 using GWGUI.App.Contracts.Rendering.Scp;
 using GWGUI.App.Contracts.Rendering.Sectors;
+using GWGUI.App.Contracts.Rendering.Sequential;
 using GWGUI.App.Enums.Rendering.Sectors;
 using GWGUI.App.Enums.Rendering.Scp;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Rendering.Scp;
 using GWGUI.App.Rendering.Sectors;
+using GWGUI.App.Rendering.Sequential;
 using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Visualization;
@@ -17,6 +19,9 @@ namespace GWGUI.App.Views.Controls.Visualization;
 public partial class VisualizerTrackOverview : UserControl
 {
     private readonly Dictionary<int, TrackProgressStrip> _strips = [];
+    private readonly Dictionary<(int Row, long Position), (int Lane, long Position)> _sequentialTargets = [];
+    private readonly Dictionary<(int Lane, long Position), (int Row, long Position)> _sequentialLocations = [];
+    private bool _sequentialLayout;
 
     public VisualizerTrackOverview() => InitializeComponent();
 
@@ -42,6 +47,9 @@ public partial class VisualizerTrackOverview : UserControl
         ArgumentNullException.ThrowIfNull(descriptor);
         ProgressRows.Children.Clear();
         _strips.Clear();
+        _sequentialTargets.Clear();
+        _sequentialLocations.Clear();
+        _sequentialLayout = false;
 
         var surfaces = descriptor.Surfaces.Count > 0
             ? descriptor.Surfaces
@@ -85,6 +93,13 @@ public partial class VisualizerTrackOverview : UserControl
 
     public void SelectElement(int surface, long position)
     {
+        if (_sequentialLayout)
+        {
+            var location = _sequentialLocations.GetValueOrDefault((surface, position), (-1, long.MinValue));
+            foreach (var pair in _strips)
+                pair.Value.Select(pair.Key == location.Item1 ? location.Item2 : long.MinValue);
+            return;
+        }
         foreach (var pair in _strips)
             pair.Value.Select(pair.Key == surface ? position : long.MinValue);
     }
@@ -113,6 +128,44 @@ public partial class VisualizerTrackOverview : UserControl
             strip.SetColor(track.Cylinder, SectorColor(track.Sectors));
     }
 
+    public void MarkSequential(SequentialMediaRenderModel model)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        ProgressRows.Children.Clear();
+        _strips.Clear();
+        _sequentialTargets.Clear();
+        _sequentialLocations.Clear();
+        _sequentialLayout = true;
+
+        var segments = model.Segments.ToArray();
+        var rowCount = segments.Length > 1 ? 2 : 1;
+        var rowSize = (segments.Length + rowCount - 1) / rowCount;
+        for (var row = 0; row < rowCount; row++)
+        {
+            var rowSegments = segments.Skip(row * rowSize).Take(rowSize).ToArray();
+            if (rowSegments.Length == 0) continue;
+            var positions = Enumerable.Range(0, rowSegments.Length).Select(index => (long)index).ToArray();
+            AddStrip(
+                MediaVisualizationProgressUnit.Segment,
+                row,
+                positions,
+                rowCount == 1 ? LocExtension.Get("Explorer.Cassette") : $"{LocExtension.Get("Explorer.Cassette")} {row + 1}/{rowCount}");
+
+            var strip = _strips[row];
+            for (var index = 0; index < rowSegments.Length; index++)
+            {
+                var segment = rowSegments[index];
+                var syntheticPosition = (long)index;
+                _sequentialTargets[(row, syntheticPosition)] = (segment.Lane, segment.Position);
+                _sequentialLocations.TryAdd((segment.Lane, segment.Position), (row, syntheticPosition));
+                var color = SkiaSequentialMediaRenderer.ColorFor(segment);
+                strip.SetColor(syntheticPosition, Color.FromRgb(color.Red, color.Green, color.Blue));
+            }
+        }
+
+        Visibility = _strips.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+    }
+
     private static Color SectorColor(IReadOnlyList<SectorMediaElement> sectors)
     {
         var state = sectors.Count == 0
@@ -139,6 +192,11 @@ public partial class VisualizerTrackOverview : UserControl
     private void HandleElementSelected(int surface, long position)
     {
         SelectElement(surface, position);
+        if (_sequentialLayout && _sequentialTargets.TryGetValue((surface, position), out var target))
+        {
+            ElementSelected?.Invoke(target.Lane, target.Position);
+            return;
+        }
         ElementSelected?.Invoke(surface, position);
     }
 
@@ -146,7 +204,7 @@ public partial class VisualizerTrackOverview : UserControl
     {
         MediaRepresentationKind.Blocks => LocExtension.Get("Visual.Surface", surface),
         MediaRepresentationKind.OpticalTracks => LocExtension.Get("Visual.DiscFace", surface),
-        MediaRepresentationKind.Sequential => LocExtension.Get("Visual.Channel", surface),
+        MediaRepresentationKind.Sequential => LocExtension.Get("Explorer.Cassette"),
         _ => LocExtension.Get("Visual.Side", surface)
     };
 }

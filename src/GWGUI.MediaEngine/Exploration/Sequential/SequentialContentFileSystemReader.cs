@@ -55,8 +55,12 @@ public sealed class SequentialContentFileSystemReader : IMediaFileSystemReader
         if (entries.Count == 0)
             warnings.Add("No decoded block or stored raw record is available for exploration.");
 
+        var volumeName = document.Metadata.TryGetValue(AtariCasConstants.InternalNameMetadataKey, out var internalName)
+            && !string.IsNullOrWhiteSpace(internalName)
+                ? internalName.Trim()
+                : string.Empty;
         return new FileSystemVolume(
-            Path.GetFileNameWithoutExtension(document.Source.PrimaryPath),
+            volumeName,
             Id,
             volume.Length,
             0,
@@ -112,7 +116,8 @@ public sealed class SequentialContentFileSystemReader : IMediaFileSystemReader
                 nativeTypeId: ReadMetadata(block.Metadata, "fileType", "msxCasFileType"),
                 dataValid: block.IntegrityValid,
                 syntheticName: syntheticName,
-                diagnostics: diagnostics));
+                diagnostics: diagnostics,
+                metadata: block.Metadata));
         }
         if (decoded.Blocks.Any(block => block.IntegrityValid == false))
             warnings.Add("One or more decoded blocks failed their integrity check.");
@@ -175,7 +180,10 @@ public sealed class SequentialContentFileSystemReader : IMediaFileSystemReader
     {
         var storedName = ReadMetadata(block.Metadata, "fileName", "name");
         synthetic = string.IsNullOrWhiteSpace(storedName);
-        var baseName = synthetic ? $"Block {index + 1:D4}" : SanitizeName(storedName!);
+        var baseName = synthetic
+            && ReadMetadata(block.Metadata, "sourceKind") == "atari-cas-records"
+                ? $"File {index + 1:D4}"
+                : synthetic ? $"Block {index + 1:D4}" : SanitizeName(storedName!);
         var blockNumber = ReadMetadata(block.Metadata, "blockNumber");
         return blockNumber is null ? $"{baseName}.bin" : $"{baseName}.block-{blockNumber}.bin";
     }

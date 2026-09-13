@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Blok medya bilgileri</value></data>
   <data name="Visual.CapacityLabel"><value>Kapasite Kapasitesi Kapasite Kapasitesi</value></data>
   <data name="Visual.AddressingLabel"><value>Adrese</value></data>
-  <data name="Visual.StartLabel"><value>Başlangıç Başlangıç Başlangıç Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start Start</value></data>
+  <data name="Visual.StartLabel"><value>Başlangıç Başlangıç</value></data>
   <data name="Visual.LengthLabel"><value>Uzunluk uzunluğu</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Katılımcılık</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Katılımcı sayısı</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Dead Sector</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektör verisiz</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analysing devrimi {0}/ / / / / / /{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Kaset bilgileri</value></data>
 </root>

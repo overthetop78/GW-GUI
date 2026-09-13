@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Sector muerto</value></data>
   <data name="Visual.SectorWithoutData"><value>Sector sin datos</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analizar la revolución {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Información del casete</value></data>
 </root>

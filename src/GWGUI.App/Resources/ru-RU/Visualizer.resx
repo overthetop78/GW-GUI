@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Блокировка медиаинформации</value></data>
   <data name="Visual.CapacityLabel"><value>Вместимость</value></data>
   <data name="Visual.AddressingLabel"><value>адресовать</value></data>
-  <data name="Visual.StartLabel"><value>Начинать</value></data>
+  <data name="Visual.StartLabel"><value>Начало</value></data>
   <data name="Visual.LengthLabel"><value>Длина</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Схема раздела</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Номер раздела</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Мертвый сектор</value></data>
   <data name="Visual.SectorWithoutData"><value>Сектор без данных</value></data>
   <data name="Visual.AnalysingRevolution"><value>Анализ революции {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Сведения о кассете</value></data>
 </root>

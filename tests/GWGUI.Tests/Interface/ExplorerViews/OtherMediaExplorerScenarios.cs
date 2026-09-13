@@ -74,6 +74,24 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
             Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
     });
 
+    [Fact]
+    public Task AtariCasUsesCassetteSummaryAndLogicalFiles() => sta.Run(() =>
+    {
+        var segment = new SequentialMediaSegment(0, SequentialSegmentKind.DataBlock, 132, duration: TimeSpan.FromSeconds(2));
+        var representation = new SequentialMediaImageRepresentation(132, TimeSpan.FromSeconds(2), [segment]);
+        var volume = Volume(0, 132, "TEST TAPE", fileName: "TEST TAPE.bin");
+        var section = Display(Document(
+            MediaKind.Tape,
+            representation,
+            [volume],
+            "tape.atari-cas",
+            new Dictionary<string, string> { ["systemId"] = "atari-8bit" }));
+
+        Assert.Equal("Atari CAS", Find<TextBlock>(section, "FileSystemText").Text);
+        Assert.Equal("Atari 8-bit", Find<TextBlock>(section, "SystemText").Text);
+        Assert.Equal("1", Find<TextBlock>(section, "EntryCountText").Text);
+    });
+
     private static ExplorerSection Display(ExploredMediaImage document)
     {
         var section = new ExplorerSection();
@@ -85,16 +103,18 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
     private static ExploredMediaImage Document(
         MediaKind kind,
         GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation representation,
-        IReadOnlyList<ExploredMediaVolume> volumes)
+        IReadOnlyList<ExploredMediaVolume> volumes,
+        string formatId = "test.media",
+        IReadOnlyDictionary<string, string>? metadata = null)
     {
         var document = new MediaImageDocument(
             new MediaSourceDescriptor("memory.media", []),
-            "test.media",
+            formatId,
             kind,
             representation,
             volumes.Select(volume => volume.Descriptor).ToArray(),
             [],
-            new Dictionary<string, string>());
+            metadata ?? new Dictionary<string, string>());
         return new ExploredMediaImage(document, volumes, []);
     }
 

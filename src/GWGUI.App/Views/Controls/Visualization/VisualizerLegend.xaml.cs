@@ -37,10 +37,10 @@ public partial class VisualizerLegend : UserControl
                 ("Visual.OpticalPregap", 0x9AA0A6),
                 ("Visual.OpticalSession", 0x24B35D)),
             MediaRepresentationKind.Sequential => Items(
-                ("Visual.SequentialSignal", 0x1677D2),
-                ("Visual.SequentialDecoded", 0x24B35D),
-                ("Visual.SequentialSilence", 0x9AA0A6),
-                ("Visual.SequentialError", 0xFF4B60)),
+                ("Visual.SequentialSignal", 0x39444E),
+                ("Visual.SequentialDecoded", 0x2FA65B),
+                ("Visual.SequentialSilence", 0xC2CAD0),
+                ("Visual.SequentialError", 0xCF373E)),
             _ => []
         };
     }

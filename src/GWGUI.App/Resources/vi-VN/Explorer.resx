@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Âm thanh</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Thập lục phân</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Ứng dụng bên ngoài</value></data>
+  <data name="Explorer.Cassette"><value>Băng cassette</value></data>
+  <data name="Explorer.InternalName"><value>Mô tả nội bộ</value></data>
+  <data name="Explorer.BaudRates"><value>Tốc độ</value></data>
+  <data name="Explorer.Chunks"><value>Khối</value></data>
+  <data name="Explorer.FskBlocks"><value>Khối FSK</value></data>
+  <data name="Explorer.Records"><value>Bản ghi</value></data>
+  <data name="Explorer.FullRecords"><value>Đầy đủ</value></data>
+  <data name="Explorer.PartialRecords"><value>Một phần</value></data>
+  <data name="Explorer.EndRecord"><value>Kết thúc</value></data>
+  <data name="Explorer.ChunkType"><value>Loại</value></data>
+  <data name="Explorer.BaudRate"><value>Tốc độ</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Độ trễ</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Chương trình khởi động</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Chương trình khởi động</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Đang đọc băng</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Thu {0} Tháng Baof {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Đang giải mã các tập tin băng</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Nhận dạng tập tin</value></data>
 </root>

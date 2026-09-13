@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Audio</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimální</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Vnější aplikace</value></data>
+  <data name="Explorer.Cassette"><value>Kazeta</value></data>
+  <data name="Explorer.InternalName"><value>Interní popis</value></data>
+  <data name="Explorer.BaudRates"><value>Rychlosti</value></data>
+  <data name="Explorer.Chunks"><value>Bloky</value></data>
+  <data name="Explorer.FskBlocks"><value>Bloky FSK</value></data>
+  <data name="Explorer.Records"><value>Záznamy</value></data>
+  <data name="Explorer.FullRecords"><value>Plné</value></data>
+  <data name="Explorer.PartialRecords"><value>Částečné</value></data>
+  <data name="Explorer.EndRecord"><value>Konec</value></data>
+  <data name="Explorer.ChunkType"><value>Typ</value></data>
+  <data name="Explorer.BaudRate"><value>Rychlost</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Prodleva</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program pro bóty</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program pro bóty</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Čtení pásky</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Záznam {0} ze {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Dekódování záznamů pásek</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Rozpoznávání souborů</value></data>
 </root>

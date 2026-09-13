@@ -1,5 +1,6 @@
 using GWGUI.App.Enums.Explorer;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Constants;
 
 
 namespace GWGUI.App.Functions.Explorer;
@@ -14,6 +15,7 @@ internal static class ExplorerFileSystemFamilyResolver
         ArgumentException.ThrowIfNullOrWhiteSpace(formatId);
         var format = formatId;
         var fileSystem = fileSystemId ?? string.Empty;
+        if (format.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Atari8Bit;
         if (fileSystem.Contains("CP/M", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Cpm;
         if (format.StartsWith("acorn.dfs", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.BbcMicro;
         if (format.StartsWith("dec.", StringComparison.OrdinalIgnoreCase)) return ExplorerFileSystemFamily.Dec;

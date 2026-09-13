@@ -10,6 +10,9 @@ using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Representations.Optical;
+using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Recognition;
 
 
 namespace GWGUI.App.Presenters.Explorer;
@@ -74,6 +77,27 @@ public static class ExplorerDetailsPresenter
             : volume!.Name;
         var capacity = volume?.Capacity ?? exploredVolume.Descriptor.Length;
         var entries = volume?.Entries ?? [];
+        if (document.Document.MediaKind == MediaKind.Tape)
+        {
+            var metadata = document.Document.Metadata;
+            var tapeRows = new List<ExplorerDetailRow>
+            {
+                new("Explorer.Type", LocExtension.Get("Explorer.Cassette")),
+                new("Explorer.Format", document.Document.FormatId.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase) ? "Atari CAS" : document.Document.FormatId),
+                new("Explorer.System", currentSystem ?? SystemName(ReadMetadata(metadata, "systemId")) ?? document.Document.MediaKind.ToString()),
+                new("Explorer.Size", StorageSizeFormatter.FormatBytes(capacity))
+            };
+            if (document.Document.Representation is SequentialMediaImageRepresentation sequential && sequential.Duration is { } duration)
+                tapeRows.Add(new("Visual.DurationLabel", duration.ToString("g")));
+            AddMetadataRow(tapeRows, metadata, "internalName", "Explorer.InternalName");
+            AddMetadataRow(tapeRows, metadata, "baudRates", "Explorer.BaudRates", "baud");
+            AddChunkSummaryRow(tapeRows, metadata);
+            AddMetadataRow(tapeRows, metadata, "dataChunkCount", "Explorer.DataBlocks");
+            AddMetadataRow(tapeRows, metadata, "fskChunkCount", "Explorer.FskBlocks");
+            tapeRows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(entries).ToString()));
+            tapeRows.Add(new("Explorer.Warnings", ExplorerIssueBuilder.Build(document, exploredVolume).Count.ToString()));
+            return new(volumeName, ExplorerIconCategory.DiskImage, tapeRows, syntheticName);
+        }
         var rows = new List<ExplorerDetailRow>
         {
             new("Explorer.Volume", volumeName, syntheticName),
@@ -121,7 +145,7 @@ public static class ExplorerDetailsPresenter
             new("Explorer.SectorCount", track.SectorCount.ToString()),
             new("Explorer.StoredSectorSize", StorageSizeFormatter.FormatBytes(track.StoredSectorSize)),
             new("Explorer.UserDataSize", StorageSizeFormatter.FormatBytes(track.UserDataLength)),
-            new("Explorer.Subchannels", track.HasSubchannels ? LocExtension.Get("Common.Yes") : LocExtension.Get("Common.No"))
+            new("Explorer.Subchannels", track.HasSubchannels ? LocExtension.Get("Controllers.Yes") : LocExtension.Get("Controllers.No"))
         };
         return new(
             $"{LocExtension.Get("Explorer.Track")} {track.TrackNumber}",
@@ -153,7 +177,45 @@ public static class ExplorerDetailsPresenter
             rows.Add(new("Explorer.Execution", LocExtension.Get($"Explorer.Execution.{item.Definition.ExecutionKind}")));
         if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory)
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(item.Entry.Children).ToString()));
+        AddMetadataRow(rows, item.Entry.Metadata, "recordCount", "Explorer.Records");
+        AddMetadataRow(rows, item.Entry.Metadata, "fullRecordCount", "Explorer.FullRecords");
+        AddMetadataRow(rows, item.Entry.Metadata, "partialRecordCount", "Explorer.PartialRecords");
+        AddMetadataRow(rows, item.Entry.Metadata, "baudRates", "Explorer.BaudRates", "baud");
+        if (item.Entry.Metadata.TryGetValue("endRecordPresent", out var endRecordPresent))
+            rows.Add(new("Explorer.EndRecord", bool.TryParse(endRecordPresent, out var present) && present
+                ? LocExtension.Get("Controllers.Yes")
+                : LocExtension.Get("Controllers.No")));
         return new(item.Name, item.IconCategory, rows, false, item.Tone);
+    }
+
+    private static string? ReadMetadata(IReadOnlyDictionary<string, string> metadata, string key) =>
+        metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : null;
+
+    private static string? SystemName(string? systemId) => systemId switch
+    {
+        DiskSystemIds.Atari8Bit => "Atari 8-bit",
+        _ => systemId
+    };
+
+    private static void AddMetadataRow(
+        ICollection<ExplorerDetailRow> rows,
+        IReadOnlyDictionary<string, string> metadata,
+        string metadataKey,
+        string labelKey,
+        string? unit = null)
+    {
+        if (ReadMetadata(metadata, metadataKey) is { } value)
+            rows.Add(new(labelKey, unit is null ? value : $"{value} {unit}"));
+    }
+
+    private static void AddChunkSummaryRow(
+        ICollection<ExplorerDetailRow> rows,
+        IReadOnlyDictionary<string, string> metadata)
+    {
+        var count = ReadMetadata(metadata, "chunkCount");
+        var types = ReadMetadata(metadata, "chunkTypes");
+        if (count is not null || types is not null)
+            rows.Add(new("Explorer.Chunks", types is null ? count! : count is null ? types : $"{types} ({count})"));
     }
 
     private static string TextEncoding(ExplorerTextEncoding encoding) => encoding switch

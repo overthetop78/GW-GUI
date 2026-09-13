@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Toter Sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor ohne Daten</value></data>
   <data name="Visual.AnalysingRevolution"><value>Revolution analysieren {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Kassetteninformationen</value></data>
 </root>

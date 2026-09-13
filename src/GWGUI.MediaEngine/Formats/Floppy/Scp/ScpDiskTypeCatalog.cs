@@ -16,7 +16,9 @@ internal static class ScpDiskTypeCatalog
         if (formatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.AmigaHighDensity;
         if (formatId.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Amiga;
         if (formatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitSingleDensity;
+        if (formatId.Equals(DiskImageFormatIds.AtariXfd90, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitSingleDensity;
         if (formatId.Equals(DiskImageFormatIds.Atari130, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitEnhancedDensity;
+        if (formatId.Equals(DiskImageFormatIds.AtariXfd130, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitEnhancedDensity;
         if (formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.Atari8BitDoubleDensity;
         if (formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase)) return image.Heads == DiskGeometryConstants.SingleSidedHeadCount ? ScpDiskType.AtariStSingleSided : ScpDiskType.AtariStDoubleSided;
         if (formatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase)) return ScpDiskType.AppleMacintosh800;

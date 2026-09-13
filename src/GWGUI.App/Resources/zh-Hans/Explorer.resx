@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>音频</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>十六进制</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>外部应用程序</value></data>
+  <data name="Explorer.Cassette"><value>盒式磁带</value></data>
+  <data name="Explorer.InternalName"><value>内部说明</value></data>
+  <data name="Explorer.BaudRates"><value>速率</value></data>
+  <data name="Explorer.Chunks"><value>块</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK 块</value></data>
+  <data name="Explorer.Records"><value>记录</value></data>
+  <data name="Explorer.FullRecords"><value>完整</value></data>
+  <data name="Explorer.PartialRecords"><value>部分</value></data>
+  <data name="Explorer.EndRecord"><value>结束</value></data>
+  <data name="Explorer.ChunkType"><value>类型</value></data>
+  <data name="Explorer.BaudRate"><value>速率</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>延迟</value></data>
+  <data name="Explorer.Type.BootProgram"><value>启动程序</value></data>
+  <data name="Explorer.Category.BootProgram"><value>启动程序</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>读取磁带</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>记录 {0} 编 {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>解码磁带记录</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>识别文件</value></data>
 </root>

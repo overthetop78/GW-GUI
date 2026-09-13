@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC גיאומטריה מזוהה מגודל הקובץ.</value></data>
   <data name="Detection.ExtensionInferred"><value>הפורמט נגזר מההרחבה.</value></data>
   <data name="Detection.Multiple"><value>מספר פורמטים אפשריים; לבחור אחד במפורש.</value></data>
-  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|כל הקבצים|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|כל הקבצים|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>תבנית Apple II DOS זוהתה לפי סדר הסקטורים.</value></data>
   <data name="Detection.AppleProDosOrder"><value>תבנית Apple II ProDOS זוהתה לפי סדר הסקטורים.</value></data>
   <data name="Detection.AppleContainer"><value>זוהה מכל תמונת דיסק של Apple.</value></data>

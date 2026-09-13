@@ -100,22 +100,22 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                <StackPanel x:Name="SessionControl" Grid.Column="0" Margin="0,0,10,0">
                     <TextBlock Text="{l:Loc Explorer.Session}" Foreground="{DynamicResource MutedTextBrush}"/>
                     <ComboBox x:Name="SessionSelector" Margin="0,4,0,0" MinWidth="135" DisplayMemberPath="DisplayName" Visibility="Collapsed"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/>
+                    <TextBlock x:Name="VolumeLabel" Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/>
                     <TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="&#x2014;"/>
                     <ComboBox x:Name="VolumeSelector" Margin="0,4,10,0" MinWidth="190" DisplayMemberPath="DisplayName"
                               Visibility="Collapsed" SelectionChanged="VolumeSelector_SelectionChanged"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.System}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="SystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
                 <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.Protection}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="ProtectionText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="4"><TextBlock Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="5"><TextBlock Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="6"><TextBlock Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="7"><TextBlock Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="4"><TextBlock x:Name="FileSystemLabel" Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="5"><TextBlock x:Name="CapacityLabel" Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="6"><TextBlock x:Name="FreeLabel" Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="7"><TextBlock x:Name="EntryCountLabel" Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
                 <Button x:Name="WarningsButton" Grid.Column="8" Visibility="Collapsed" Background="#FFF5DA" BorderBrush="#D99A19"
                         BorderThickness="1" Padding="10,4" MinHeight="0" VerticalAlignment="Center" Click="WarningsButton_Click">
                     <TextBlock x:Name="WarningsText" Foreground="#8A5A00"/>
@@ -147,7 +147,8 @@
                 </DockPanel>
             </common:CardSection>
             <common:CardSection Grid.Row="1" Padding="8">
-                <ListBox x:Name="FolderList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerFolderItemStyle}" SelectionChanged="FolderList_SelectionChanged">
+                <ListBox x:Name="FolderList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerFolderItemStyle}"
+                         SelectionChanged="FolderList_SelectionChanged" PreviewMouseLeftButtonDown="FolderList_PreviewMouseLeftButtonDown">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type viewModels:ExplorerFolderItem}">
                             <Grid Margin="{Binding Indent}">

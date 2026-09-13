@@ -4,6 +4,7 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Rendering.Optical;
 using SkiaSharp;
 using SkiaSharp.Views.Desktop;
+using SkiaSharp.Views.WPF;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,6 +17,9 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
     private OpticalMediaRenderModel? _model;
     private OpticalMediaTrack? _selectedTrack;
     private float _zoom = 1;
+    private Point _pan;
+    private Point? _panDragLast;
+    private (int Width, int Height) _renderSize;
 
     public OpticalMediaView()
     {
@@ -33,6 +37,7 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
         ArgumentNullException.ThrowIfNull(model);
         _model = model;
         _selectedTrack = null;
+        _pan = new Point();
         SetChoices(FaceSelector, model.FaceCount is > 1 ? Enumerable.Range(0, model.FaceCount.Value) : [] , "Visual.DiscFace");
         SetChoices(LayerSelector, model.LayerCount is > 1 ? Enumerable.Range(0, model.LayerCount.Value) : [], "Visual.Layer");
         SetChoices(SessionSelector, model.Tracks.Select(track => track.SessionNumber).Distinct().Order(), "Visual.Session");
@@ -50,28 +55,75 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
         Canvas.InvalidateVisual();
     }
 
-    private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e) => _renderer.Render(
-        e.Surface.Canvas,
-        _model,
-        _selectedTrack,
-        SelectedValue(FaceSelector),
-        SelectedValue(LayerSelector),
-        SelectedValue(SessionSelector),
-        e.Info.Width,
-        e.Info.Height,
-        _zoom);
+    private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
+    {
+        _renderSize = (e.Info.Width, e.Info.Height);
+        e.Surface.Canvas.Save();
+        e.Surface.Canvas.Translate(
+            (float)(_pan.X * e.Info.Width / Math.Max(1, Canvas.ActualWidth)),
+            (float)(_pan.Y * e.Info.Height / Math.Max(1, Canvas.ActualHeight)));
+        _renderer.Render(
+            e.Surface.Canvas,
+            _model,
+            _selectedTrack,
+            SelectedValue(FaceSelector),
+            SelectedValue(LayerSelector),
+            SelectedValue(SessionSelector),
+            e.Info.Width,
+            e.Info.Height,
+            _zoom);
+        e.Surface.Canvas.Restore();
+    }
 
     private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        => SelectAt(e.GetPosition(Canvas));
+
+    private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
     {
+        if (e.ChangedButton != MouseButton.Middle || _zoom <= 1) return;
+        _panDragLast = e.GetPosition(Canvas);
+        Canvas.Cursor = VisualizationCursors.Grabbing;
+        Canvas.CaptureMouse();
+        e.Handled = true;
+    }
+
+    private void Canvas_MouseMove(object sender, MouseEventArgs e)
+    {
+        if (_panDragLast is not Point last || e.MiddleButton != MouseButtonState.Pressed) return;
         var point = e.GetPosition(Canvas);
+        var maxX = Math.Max(0, Canvas.ActualWidth * (_zoom - 1) / 2);
+        var maxY = Math.Max(0, Canvas.ActualHeight * (_zoom - 1) / 2);
+        _pan = new Point(
+            Math.Clamp(_pan.X + point.X - last.X, -maxX, maxX),
+            Math.Clamp(_pan.Y + point.Y - last.Y, -maxY, maxY));
+        _panDragLast = point;
+        Canvas.InvalidateVisual();
+    }
+
+    private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton != MouseButton.Middle || _panDragLast is null) return;
+        _panDragLast = null;
+        Canvas.ReleaseMouseCapture();
+        Canvas.ClearValue(CursorProperty);
+        e.Handled = true;
+    }
+
+    private void SelectAt(Point pointer)
+    {
+        var width = Math.Max(1, _renderSize.Width);
+        var height = Math.Max(1, _renderSize.Height);
+        var point = new SKPoint(
+            (float)((pointer.X - _pan.X) * width / Math.Max(1, Canvas.ActualWidth)),
+            (float)((pointer.Y - _pan.Y) * height / Math.Max(1, Canvas.ActualHeight)));
         var track = _renderer.HitTest(
             _model,
             SelectedValue(FaceSelector),
             SelectedValue(LayerSelector),
             SelectedValue(SessionSelector),
-            Math.Max(1, (int)Canvas.ActualWidth),
-            Math.Max(1, (int)Canvas.ActualHeight),
-            new SKPoint((float)point.X, (float)point.Y),
+            width,
+            height,
+            point,
             _zoom);
         if (track is null) return;
         _selectedTrack = track;
@@ -102,6 +154,7 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
     private void SetZoom(float zoom)
     {
         _zoom = Math.Clamp(zoom, .65f, 4f);
+        if (_zoom <= 1) _pan = new Point();
         ResetZoomButton.Content = $"{_zoom:P0}";
         Canvas.InvalidateVisual();
     }

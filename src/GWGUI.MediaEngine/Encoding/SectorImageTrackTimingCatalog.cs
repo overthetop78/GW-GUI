@@ -9,7 +9,9 @@ internal static class SectorImageTrackTimingCatalog
     {
         if (formatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm2880, StringComparison.OrdinalIgnoreCase)) return TrackEncodingTimings.ExtraDensityMfmBitCellTicks;
         if (formatId.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase)) return TrackEncodingTimings.HighDensityMfmBitCellTicks;
-        if (formatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase)) return TrackEncodingTimings.SingleDensityFmBitCellTicks;
+        if (formatId.Equals(DiskImageFormatIds.Atari90, StringComparison.OrdinalIgnoreCase)
+            || formatId.Equals(DiskImageFormatIds.AtariXfd90, StringComparison.OrdinalIgnoreCase)
+            || formatId.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase)) return TrackEncodingTimings.SingleDensityFmBitCellTicks;
         if (formatId.Equals(DiskImageFormatIds.AtariSt1440, StringComparison.OrdinalIgnoreCase) || IsHighDensityIbm(formatId)) return TrackEncodingTimings.HighDensityMfmBitCellTicks;
         if (IsDoubleDensityFamily(formatId)) return TrackEncodingTimings.DoubleDensityMfmBitCellTicks;
         return TrackEncodingDefaults.BitCellTicks;

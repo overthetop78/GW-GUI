@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Lyd</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimal</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Ekstern anvendelse</value></data>
+  <data name="Explorer.Cassette"><value>Kassettebånd</value></data>
+  <data name="Explorer.InternalName"><value>Intern beskrivelse</value></data>
+  <data name="Explorer.BaudRates"><value>Hastigheder</value></data>
+  <data name="Explorer.Chunks"><value>Blokke</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK-blokke</value></data>
+  <data name="Explorer.Records"><value>Poster</value></data>
+  <data name="Explorer.FullRecords"><value>Fuldstændige</value></data>
+  <data name="Explorer.PartialRecords"><value>Delvise</value></data>
+  <data name="Explorer.EndRecord"><value>Slut</value></data>
+  <data name="Explorer.ChunkType"><value>Type</value></data>
+  <data name="Explorer.BaudRate"><value>Hastighed</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Forsinkelse</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Boot-program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Boot-program</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Læser båndet</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Optag {0} af {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Afkodning af båndoptagelser</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Genkender filer</value></data>
 </root>

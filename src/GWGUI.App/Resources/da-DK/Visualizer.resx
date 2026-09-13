@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Bloker mediedata</value></data>
   <data name="Visual.CapacityLabel"><value>Kapacitet</value></data>
   <data name="Visual.AddressingLabel"><value>Adressat</value></data>
-  <data name="Visual.StartLabel"><value>Start</value></data>
+  <data name="Visual.StartLabel"><value>Begyndelse</value></data>
   <data name="Visual.LengthLabel"><value>Længde</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Deltagelsesordning</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Partitionsnummer</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Den døde sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor uden data</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analyseregulering {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Kassetteoplysninger</value></data>
 </root>

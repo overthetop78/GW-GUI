@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Audio</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Szesnastościan</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Zewnętrzne zastosowanie</value></data>
+  <data name="Explorer.Cassette"><value>Kaseta</value></data>
+  <data name="Explorer.InternalName"><value>Opis wewnętrzny</value></data>
+  <data name="Explorer.BaudRates"><value>Prędkości</value></data>
+  <data name="Explorer.Chunks"><value>Bloki</value></data>
+  <data name="Explorer.FskBlocks"><value>Bloki FSK</value></data>
+  <data name="Explorer.Records"><value>Rekordy</value></data>
+  <data name="Explorer.FullRecords"><value>Pełne</value></data>
+  <data name="Explorer.PartialRecords"><value>Częściowe</value></data>
+  <data name="Explorer.EndRecord"><value>Koniec</value></data>
+  <data name="Explorer.ChunkType"><value>Typ</value></data>
+  <data name="Explorer.BaudRate"><value>Prędkość</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Opóźnienie</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program boot</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program boot</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Odczyt taśmy</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Zapis {0} z {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Odkodowywanie nagrań taśmowych</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Rozpoznawanie plików</value></data>
 </root>

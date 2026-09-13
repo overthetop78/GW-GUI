@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>חסימת מידע תקשורתי</value></data>
   <data name="Visual.CapacityLabel"><value>יכולת</value></data>
   <data name="Visual.AddressingLabel"><value>כתובת</value></data>
-  <data name="Visual.StartLabel"><value>התחל להתחיל</value></data>
+  <data name="Visual.StartLabel"><value>תחילת ההתחלה</value></data>
   <data name="Visual.LengthLabel"><value>אורך אורך</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>תוכנית חלוקת</value></data>
   <data name="Visual.PartitionNumberLabel"><value>מספר חלוקת</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Deadמגזר</value></data>
   <data name="Visual.SectorWithoutData"><value>מגזר ללא נתונים</value></data>
   <data name="Visual.AnalysingRevolution"><value>מהפכה {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>פרטי הקלטת</value></data>
 </root>

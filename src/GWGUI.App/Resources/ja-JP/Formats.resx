@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC ジオメトリはファイル サイズから認識されました。</value></data>
   <data name="Detection.ExtensionInferred"><value>拡張子から推測される形式。</value></data>
   <data name="Detection.Multiple"><value>いくつかの形式が可能です。明示的に 1 つを選択してください。</value></data>
-  <data name="Common.DiskImageFilter"><value>ディスク イメージ|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|すべてのファイル|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>ディスク イメージ|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|すべてのファイル|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>セクター順序から Apple II DOS 形式を識別しました。</value></data>
   <data name="Detection.AppleProDosOrder"><value>セクター順序から Apple II ProDOS 形式を識別しました。</value></data>
   <data name="Detection.AppleContainer"><value>Apple ディスクイメージコンテナーを検出しました。</value></data>

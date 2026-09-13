@@ -20,6 +20,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des images de disquettes Atari protégées ATX.</summary>
     public const string Atx = ".atx";
 
+    /// <summary>Extension des images sectorielles brutes Atari 8 bits.</summary>
+    public const string Xfd = ".xfd";
+
     /// <summary>Extension générique de certaines images binaires brutes.</summary>
     public const string Bin = ".bin";
 

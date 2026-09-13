@@ -18,6 +18,9 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
     private readonly long?[] _selectedPositions = new long?[2];
     private readonly float[] _zooms = [1, 1];
     private readonly (int Width, int Height)[] _renderSizes = new (int Width, int Height)[2];
+    private readonly Point[] _pan = [new(), new()];
+    private Point? _panDragLast;
+    private int _panDragSurface = -1;
     private readonly HashSet<(int Surface, int Cylinder)> _revealedTracks = [];
     private SectorMediaRenderModel? _model;
     private MediaVisualizationDescriptor? _descriptor;
@@ -41,6 +44,7 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
         _revealedTracks.Clear();
         Array.Clear(_selectedPositions);
         _zooms[0] = _zooms[1] = 1;
+        _pan[0] = _pan[1] = new Point();
         UpdateZoomLabel(0);
         UpdateZoomLabel(1);
         UpdateSelectionLabel(0, null);
@@ -103,6 +107,10 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
 
         _renderSizes[surface] = (e.Info.Width, e.Info.Height);
 
+        var scaleX = e.Info.Width / Math.Max(1, CanvasFor(surface).ActualWidth);
+        var scaleY = e.Info.Height / Math.Max(1, CanvasFor(surface).ActualHeight);
+        e.Surface.Canvas.Save();
+        e.Surface.Canvas.Translate((float)(_pan[surface].X * scaleX), (float)(_pan[surface].Y * scaleY));
         _renderer.Render(
             e.Surface.Canvas,
             _model,
@@ -113,6 +121,7 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
             e.Info.Height,
             _zooms[surface],
             _revealedTracks);
+        e.Surface.Canvas.Restore();
     }
 
     private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -120,11 +129,49 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
         if (_descriptor is null || sender is not SKElement canvas) return;
         var surface = SurfaceFor(canvas);
         if (surface is < 0 or > 1) return;
+        SelectAt(canvas, surface, e.GetPosition(canvas));
+    }
+
+    private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton != MouseButton.Middle || sender is not SKElement canvas) return;
+        var surface = SurfaceFor(canvas);
+        if (surface is < 0 or > 1 || _zooms[surface] <= 1) return;
+        _panDragSurface = surface;
+        _panDragLast = e.GetPosition(canvas);
+        canvas.Cursor = VisualizationCursors.Grabbing;
+        canvas.CaptureMouse();
+        e.Handled = true;
+    }
+
+    private void Canvas_MouseMove(object sender, MouseEventArgs e)
+    {
+        if (sender is not SKElement canvas || _panDragSurface != SurfaceFor(canvas)
+            || _panDragLast is not Point last || e.MiddleButton != MouseButtonState.Pressed) return;
+        var point = e.GetPosition(canvas);
+        PanBy(_panDragSurface, point.X - last.X, point.Y - last.Y);
+        _panDragLast = point;
+    }
+
+    private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
+    {
+        if (e.ChangedButton != MouseButton.Middle || sender is not SKElement canvas || _panDragLast is null) return;
+        _panDragLast = null;
+        _panDragSurface = -1;
+        canvas.ReleaseMouseCapture();
+        canvas.ClearValue(CursorProperty);
+        e.Handled = true;
+    }
+
+    private void SelectAt(SKElement canvas, int surface, Point pointer)
+    {
+        if (_descriptor is null) return;
+
         var renderSize = _renderSizes[surface];
         var renderWidth = renderSize.Width > 0 ? renderSize.Width : Math.Max(1, (int)Math.Round(canvas.ActualWidth));
         var renderHeight = renderSize.Height > 0 ? renderSize.Height : Math.Max(1, (int)Math.Round(canvas.ActualHeight));
         var point = MapPointerToRender(
-            e.GetPosition(canvas),
+            new Point(pointer.X - _pan[surface].X, pointer.Y - _pan[surface].Y),
             canvas.ActualWidth,
             canvas.ActualHeight,
             renderWidth,
@@ -143,6 +190,17 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
         canvas.InvalidateVisual();
         ElementSelected?.Invoke(surface, sector.Cylinder);
         SectorSelected?.Invoke(surface, sector);
+    }
+
+    private void PanBy(int surface, double deltaX, double deltaY)
+    {
+        var canvas = CanvasFor(surface);
+        var maxX = Math.Max(0, canvas.ActualWidth * (_zooms[surface] - 1) / 2);
+        var maxY = Math.Max(0, canvas.ActualHeight * (_zooms[surface] - 1) / 2);
+        _pan[surface] = new Point(
+            Math.Clamp(_pan[surface].X + deltaX, -maxX, maxX),
+            Math.Clamp(_pan[surface].Y + deltaY, -maxY, maxY));
+        canvas.InvalidateVisual();
     }
 
     private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -171,11 +229,13 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
         if (surface is < 0 or > 1) return;
         var value = Math.Clamp(zoom, .65f, 4f);
         _zooms[surface] = value;
+        if (value <= 1) _pan[surface] = new Point();
         UpdateZoomLabel(surface);
         CanvasFor(surface).InvalidateVisual();
         if (!LinkZoom) return;
         var otherSurface = 1 - surface;
         _zooms[otherSurface] = value;
+        if (value <= 1) _pan[otherSurface] = new Point();
         UpdateZoomLabel(otherSurface);
         CanvasFor(otherSurface).InvalidateVisual();
     }

@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Blochează informațiile media</value></data>
   <data name="Visual.CapacityLabel"><value>Capacitate</value></data>
   <data name="Visual.AddressingLabel"><value>Adresarea</value></data>
-  <data name="Visual.StartLabel"><value>Start</value></data>
+  <data name="Visual.StartLabel"><value>Începutul</value></data>
   <data name="Visual.LengthLabel"><value>Lungime</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Schema de partiție</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Numărul de partiție</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Sectorul mort</value></data>
   <data name="Visual.SectorWithoutData"><value>Sectorul fără date</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analizarea revoluţiei {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Informații despre casetă</value></data>
 </root>

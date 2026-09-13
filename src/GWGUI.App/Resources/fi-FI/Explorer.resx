@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Ääni</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Heksadesimaali</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Ulkoiset toimet</value></data>
+  <data name="Explorer.Cassette"><value>Kasetti</value></data>
+  <data name="Explorer.InternalName"><value>Sisäinen kuvaus</value></data>
+  <data name="Explorer.BaudRates"><value>Nopeudet</value></data>
+  <data name="Explorer.Chunks"><value>Lohkot</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK-lohkot</value></data>
+  <data name="Explorer.Records"><value>Tietueet</value></data>
+  <data name="Explorer.FullRecords"><value>Täydet</value></data>
+  <data name="Explorer.PartialRecords"><value>Osittaiset</value></data>
+  <data name="Explorer.EndRecord"><value>Loppu</value></data>
+  <data name="Explorer.ChunkType"><value>Tyyppi</value></data>
+  <data name="Explorer.BaudRate"><value>Nopeus</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Viive</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Käynnistä ohjelma</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Käynnistä ohjelma</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Nauhan lukeminen</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Kirjaaminen {0} / {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Nauhan purku</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Tunnistan tiedostoja</value></data>
 </root>

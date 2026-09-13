@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Blokovat informace o médiích</value></data>
   <data name="Visual.CapacityLabel"><value>Kapacita</value></data>
   <data name="Visual.AddressingLabel"><value>Adresát</value></data>
-  <data name="Visual.StartLabel"><value>Spustit</value></data>
+  <data name="Visual.StartLabel"><value>Začátek</value></data>
   <data name="Visual.LengthLabel"><value>Délka</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Režim rozdělení</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Číslo oddílu</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Mrtvý sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Odvětví bez údajů</value></data>
   <data name="Visual.AnalysingRevolution"><value>Analyzující revoluce {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Informace o kazetě</value></data>
 </root>

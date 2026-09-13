@@ -12,6 +12,7 @@ using GWGUI.Domain.Contracts;
 using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Representations.Optical;
+using GWGUI.MediaEngine.Representations.Sequential;
 using SkiaSharp;
 using RenderSequentialMediaSegment = GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment;
 
@@ -75,5 +76,49 @@ public sealed class OtherMediaVisualizationTests
             entry => entry.Label == "Visual.ChannelLabel" && entry.Value == "2");
         Assert.DoesNotContain(inspector.Sections.SelectMany(section => section.Entries),
             entry => entry.Label == "Visual.CapacityLabel");
+    }
+
+    [Fact]
+    public void AtariCasInspectorShowsCassetteAndChunkMetadata()
+    {
+        var sourceSegment = new GWGUI.MediaEngine.Contracts.SequentialMediaSegment(
+            0,
+            GWGUI.MediaEngine.Enums.SequentialSegmentKind.DataBlock,
+            132,
+            TimeSpan.Zero,
+            TimeSpan.FromSeconds(2),
+            metadata: new Dictionary<string, string>
+            {
+                ["chunkId"] = "data",
+                ["baudRate"] = "600",
+                ["auxiliary"] = "260"
+            });
+        var representation = new SequentialMediaImageRepresentation(132, TimeSpan.FromSeconds(2), [sourceSegment]);
+        var document = new MediaImageDocument(
+            new MediaSourceDescriptor("test.cas", []),
+            "tape.atari-cas",
+            MediaKind.Tape,
+            representation,
+            [],
+            [],
+            new Dictionary<string, string>
+            {
+                ["internalName"] = "TEST",
+                ["baudRates"] = "600",
+                ["chunkCount"] = "3",
+                ["chunkTypes"] = "FUJI, baud, data",
+                ["dataChunkCount"] = "1",
+                ["fskChunkCount"] = "0"
+            });
+        var presenter = new SequentialMediaInspectorPresenter((key, _) => key);
+        var model = presenter.BuildRenderModel(document);
+        var inspector = presenter.BuildInspectorModel(model, Assert.Single(model.Segments));
+        var entries = inspector.Sections.SelectMany(section => section.Entries).ToArray();
+
+        Assert.Equal("Visual.CassetteInspectorTitle", inspector.Title);
+        Assert.Contains(entries, entry => entry.Label == "Explorer.BaudRates" && entry.Value == "600");
+        Assert.Contains(entries, entry => entry.Label == "Explorer.ChunkType" && entry.Value == "data");
+        Assert.Contains(entries, entry => entry.Label == "Explorer.BaudRate" && entry.Value == "600");
+        Assert.Contains(entries, entry => entry.Label == "Explorer.DelayBeforeBlock" && entry.Value == "260");
     }
 }

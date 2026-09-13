@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>Геометрія IBM PC розпізнається за розміром файлу.</value></data>
   <data name="Detection.ExtensionInferred"><value>Формат, отриманий із розширення.</value></data>
   <data name="Detection.Multiple"><value>Можливі декілька форматів; виберіть один явно.</value></data>
-  <data name="Common.DiskImageFilter"><value>Дискові зображення|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Всі файли|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Дискові зображення|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Всі файли|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Формат Apple II DOS визначено за порядком секторів.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Формат Apple II ProDOS визначено за порядком секторів.</value></data>
   <data name="Detection.AppleContainer"><value>Виявлено контейнер образу диска Apple.</value></data>

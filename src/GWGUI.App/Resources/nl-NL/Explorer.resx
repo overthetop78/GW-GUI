@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Geluid</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimaal</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Externe toepassing</value></data>
+  <data name="Explorer.Cassette"><value>Cassette</value></data>
+  <data name="Explorer.InternalName"><value>Interne beschrijving</value></data>
+  <data name="Explorer.BaudRates"><value>Snelheden</value></data>
+  <data name="Explorer.Chunks"><value>Blokken</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK-blokken</value></data>
+  <data name="Explorer.Records"><value>Records</value></data>
+  <data name="Explorer.FullRecords"><value>Volledig</value></data>
+  <data name="Explorer.PartialRecords"><value>Gedeeltelijk</value></data>
+  <data name="Explorer.EndRecord"><value>Einde</value></data>
+  <data name="Explorer.ChunkType"><value>Type</value></data>
+  <data name="Explorer.BaudRate"><value>Snelheid</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Vertraging</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Opstartprogramma</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Opstartprogramma</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>De band lezen</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Opname {0} van {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Decoderen van tape records</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Bestanden herkennen</value></data>
 </root>

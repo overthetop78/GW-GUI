@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC geometri genkendt fra filstørrelse.</value></data>
   <data name="Detection.ExtensionInferred"><value>Format udledt af udvidelsen.</value></data>
   <data name="Detection.Multiple"><value>Flere formater er mulige; vælge en eksplicit.</value></data>
-  <data name="Common.DiskImageFilter"><value>Disk images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle filer|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle filer|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Apple II DOS-format genkendt ud fra sektorrækkefølgen.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS format identificeret fra sektor orden.</value></data>
   <data name="Detection.AppleContainer"><value>Apple-diskimagecontainer fundet.</value></data>

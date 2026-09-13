@@ -50,7 +50,7 @@
   <data name="Explorer.DataBlocks"><value>Blocs de données</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Les Host Tools ne peuvent pas produire une image sectorielle exploitable pour {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Les Host Tools n’ont pas pu décoder l’image au format {0}.</value></data>
-  <data name="Explorer.Format"><value>Présentation</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
   <data name="Explorer.Volume"><value>Volume</value></data>
   <data name="Explorer.Type"><value>Type</value></data>
   <data name="Explorer.Type.Image"><value>Image</value></data>
@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Audio</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexadécimal</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Application externe</value></data>
+  <data name="Explorer.Cassette"><value>Cassette</value></data>
+  <data name="Explorer.InternalName"><value>Description interne</value></data>
+  <data name="Explorer.BaudRates"><value>Débits</value></data>
+  <data name="Explorer.Chunks"><value>Blocs</value></data>
+  <data name="Explorer.FskBlocks"><value>Blocs FSK</value></data>
+  <data name="Explorer.Records"><value>Enregistrements</value></data>
+  <data name="Explorer.FullRecords"><value>Complets</value></data>
+  <data name="Explorer.PartialRecords"><value>Partiels</value></data>
+  <data name="Explorer.EndRecord"><value>Fin</value></data>
+  <data name="Explorer.ChunkType"><value>Type</value></data>
+  <data name="Explorer.BaudRate"><value>Débit</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Délai</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Programme de démarrage</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Programme de démarrage</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Lecture de la bande</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Enregistrement {0} sur {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Décodage des enregistrements de la bande</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Reconnaissance des fichiers</value></data>
 </root>

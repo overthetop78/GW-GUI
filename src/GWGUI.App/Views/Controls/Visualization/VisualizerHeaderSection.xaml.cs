@@ -155,8 +155,12 @@ public partial class VisualizerHeaderSection : UserControl
 
     private string BuildDetectedFormatsSummary(IEnumerable<string> formatIds)
     {
+        var ids = formatIds.Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+        if (ids.Contains(GWGUI.MediaEngine.Constants.TapeImageFormatIds.AtariCas, StringComparer.OrdinalIgnoreCase))
+            return LocExtension.Get("Explorer.DetectedFormats", "Atari 8-bit (Atari CAS)");
+
         var catalog = new DiskClassificationCatalog(formats);
-        var detected = formatIds
+        var detected = ids
             .Select(catalog.ResolveFormat)
             .Where(format => format is not null)
             .Cast<DiskFormat>()

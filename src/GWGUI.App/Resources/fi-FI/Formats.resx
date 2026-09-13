@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC geometria tunnistettu tiedoston koosta.</value></data>
   <data name="Detection.ExtensionInferred"><value>Laajennuksesta päätelty muoto.</value></data>
   <data name="Detection.Multiple"><value>Useat formaatit ovat mahdollisia; valitse yksi selkeästi.</value></data>
-  <data name="Common.DiskImageFilter"><value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Kaikki tiedostot|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Kaikki tiedostot|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Apple II DOS -muoto tunnistettiin sektorijärjestyksestä.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS -muoto tunnistettiin sektorijärjestyksestä.</value></data>
   <data name="Detection.AppleContainer"><value>Apple-levykuvasäilö havaittu.</value></data>

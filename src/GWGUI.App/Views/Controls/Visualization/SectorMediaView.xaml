@@ -51,7 +51,7 @@
                         </StackPanel>
                     </DockPanel>
                 </Border>
-                <skia:SKElement x:Name="Canvas0" Grid.Row="1" Tag="0" PaintSurface="Canvas_PaintSurface" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseWheel="Canvas_MouseWheel"/>
+                <skia:SKElement x:Name="Canvas0" Grid.Row="1" Tag="0" PaintSurface="Canvas_PaintSurface" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseDown="Canvas_MouseDown" MouseUp="Canvas_MouseUp" MouseMove="Canvas_MouseMove" MouseWheel="Canvas_MouseWheel"/>
             </Grid>
         </Border>
 
@@ -73,7 +73,7 @@
                         </StackPanel>
                     </DockPanel>
                 </Border>
-                <skia:SKElement x:Name="Canvas1" Grid.Row="1" Tag="1" PaintSurface="Canvas_PaintSurface" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseWheel="Canvas_MouseWheel"/>
+                <skia:SKElement x:Name="Canvas1" Grid.Row="1" Tag="1" PaintSurface="Canvas_PaintSurface" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseDown="Canvas_MouseDown" MouseUp="Canvas_MouseUp" MouseMove="Canvas_MouseMove" MouseWheel="Canvas_MouseWheel"/>
             </Grid>
         </Border>
     </Grid>

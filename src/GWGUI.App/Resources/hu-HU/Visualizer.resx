@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Holt szektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Adatszolgáltatás nélküli ágazat</value></data>
   <data name="Visual.AnalysingRevolution"><value>Forradalom elemzése {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Kazetta adatai</value></data>
 </root>

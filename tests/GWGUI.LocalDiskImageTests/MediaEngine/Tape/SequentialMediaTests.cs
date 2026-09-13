@@ -1,6 +1,7 @@
 using System.Buffers.Binary;
 using System.Text;
 using GWGUI.Domain.Contracts;
+using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
@@ -10,6 +11,43 @@ namespace GWGUI.Tests.MediaEngine.Tape;
 
 public sealed class SequentialMediaTests
 {
+    [Fact]
+    public async Task AtariCasExposesLogicalFileAndCassetteMetadata()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"gwgui-{Guid.NewGuid():N}.cas");
+        try
+        {
+            var bytes = CreateAtariCas();
+            await File.WriteAllBytesAsync(path, bytes);
+            var engine = MediaEngineComposition.CreateDefault();
+            var document = await engine.ReadingService.ReadAsync(new MediaSourceDescriptor(path, [], bytes.Length));
+            var explored = await engine.Explorer.ExploreAsync(document);
+            var fileSystem = Assert.Single(explored.Volumes).FileSystem!;
+            var entry = Assert.Single(fileSystem.Entries);
+
+            Assert.Equal(MediaKind.Tape, document.MediaKind);
+            Assert.Equal("4", document.Metadata["chunkCount"]);
+            Assert.Equal("FUJI, baud, data", document.Metadata["chunkTypes"]);
+            Assert.Equal("2", document.Metadata["dataChunkCount"]);
+            Assert.Equal("0", document.Metadata["fskChunkCount"]);
+            Assert.Equal("1200", document.Metadata["baudRates"]);
+            Assert.Equal("TEST TAPE", document.Metadata["internalName"]);
+            Assert.Equal("File 0001.bin", entry.Name);
+            Assert.True(entry.SyntheticName);
+            Assert.Equal(new byte[] { 1, 2, 3 }, entry.Content);
+            Assert.Equal("1", entry.Metadata["logicalFileOrdinal"]);
+            Assert.Equal("2", entry.Metadata["recordCount"]);
+            Assert.Equal("1", entry.Metadata["partialRecordCount"]);
+            Assert.Equal("True", entry.Metadata["endRecordPresent"]);
+            Assert.True(entry.DataValid);
+            Assert.Empty(fileSystem.Warnings);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
     [Fact]
     public async Task WavKeepsTimelineChannelsAndUnknownChunks()
     {
@@ -90,6 +128,48 @@ public sealed class SequentialMediaTests
         WriteChunkHeader(result, ref offset, "data", pcm.Length);
         pcm.CopyTo(result, offset);
         return result;
+    }
+
+    private static byte[] CreateAtariCas()
+    {
+        using var output = new MemoryStream();
+        WriteCasChunk(output, "FUJI", Encoding.ASCII.GetBytes("TEST TAPE"), 0);
+        WriteCasChunk(output, "baud", [], 1200);
+        WriteCasChunk(output, "data", CreateAtariRecord(0xfa, [1, 2, 3]), 1000);
+        WriteCasChunk(output, "data", CreateAtariRecord(0xfe, []), 260);
+        return output.ToArray();
+    }
+
+    private static byte[] CreateAtariRecord(byte type, byte[] data)
+    {
+        var record = new byte[132];
+        record[0] = record[1] = 0x55;
+        record[2] = type;
+        data.CopyTo(record, 3);
+        if (type == 0xfa) record[130] = checked((byte)data.Length);
+        record[131] = CalculateAtariChecksum(record.AsSpan(0, 131));
+        return record;
+    }
+
+    private static byte CalculateAtariChecksum(ReadOnlySpan<byte> data)
+    {
+        var checksum = 0;
+        foreach (var value in data)
+        {
+            checksum += value;
+            checksum = (checksum & 0xff) + (checksum >> 8);
+        }
+        return (byte)checksum;
+    }
+
+    private static void WriteCasChunk(Stream output, string id, byte[] data, ushort auxiliary)
+    {
+        Span<byte> header = stackalloc byte[8];
+        Encoding.ASCII.GetBytes(id).CopyTo(header);
+        BinaryPrimitives.WriteUInt16LittleEndian(header[4..], checked((ushort)data.Length));
+        BinaryPrimitives.WriteUInt16LittleEndian(header[6..], auxiliary);
+        output.Write(header);
+        output.Write(data);
     }
 
     private static void WriteChunkHeader(byte[] destination, ref int offset, string id, int length)

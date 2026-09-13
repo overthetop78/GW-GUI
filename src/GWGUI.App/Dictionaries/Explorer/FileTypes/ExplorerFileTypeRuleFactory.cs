@@ -33,6 +33,7 @@ internal static class ExplorerFileTypeRuleFactory
             ExplorerFileCategory.Document => ("Explorer.Type.Document", ExplorerIconCategory.Document, ExplorerContentFormat.PlainText, ExplorerPreviewKind.Text),
             ExplorerFileCategory.SourceCode => ("Explorer.Type.SourceCode", ExplorerIconCategory.SourceCode, ExplorerContentFormat.PlainText, ExplorerPreviewKind.Text),
             ExplorerFileCategory.BasicProgram => ("Explorer.Type.BasicProgram", ExplorerIconCategory.BasicProgram, ExplorerContentFormat.BasicProgram, ExplorerPreviewKind.BasicListing),
+            ExplorerFileCategory.BootProgram => ("Explorer.Type.BootProgram", ExplorerIconCategory.System, ExplorerContentFormat.SystemBinary, ExplorerPreviewKind.Hexadecimal),
             ExplorerFileCategory.Program => ("Explorer.Type.Program", ExplorerIconCategory.Program, ExplorerContentFormat.Unknown, ExplorerPreviewKind.None),
             ExplorerFileCategory.Executable => ("Explorer.Type.Executable", ExplorerIconCategory.Executable, ExplorerContentFormat.NativeExecutable, ExplorerPreviewKind.Hexadecimal),
             ExplorerFileCategory.Command => ("Explorer.Type.Command", ExplorerIconCategory.Command, ExplorerContentFormat.CommandScript, ExplorerPreviewKind.Text),

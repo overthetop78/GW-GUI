@@ -248,7 +248,7 @@ internal static class VisualizerDocumentScenarios
         }
     }
 
-    public static void SharedNonScpProgressFeedsExplorerVisualizerAndGlobalStatus()
+    public static void SharedNonScpProgressStaysInLoadingPanelsUntilTrackProgress()
     {
         using var workspace = new Workspace();
         workspace.Explorer.SetLoading(true);
@@ -258,8 +258,8 @@ internal static class VisualizerDocumentScenarios
         Assert.Equal("Reading media", workspace.Explorer.LoadingStage);
         Assert.Equal("disk.img", workspace.Explorer.LoadingDetail);
         Assert.Equal(58, workspace.Explorer.LoadingValue);
-        Assert.Equal(Visibility.Visible, workspace.Model.ProgressVisibility);
-        Assert.Equal(Visibility.Visible, workspace.Model.GlobalProgressVisibility);
+        Assert.Equal(Visibility.Collapsed, workspace.Model.ProgressVisibility);
+        Assert.Equal(Visibility.Collapsed, workspace.Model.GlobalProgressVisibility);
         Assert.Equal(58, workspace.Model.ProgressValue);
         Assert.Empty(workspace.Model.ProgressText);
         Assert.Equal("Tab.Read", workspace.Model.OperationText);

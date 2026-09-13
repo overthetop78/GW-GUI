@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>死区</value></data>
   <data name="Visual.SectorWithoutData"><value>无数据部门</value></data>
   <data name="Visual.AnalysingRevolution"><value>分析革命 {0}/ 数据{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>卡式錄音帶資訊</value></data>
 </root>

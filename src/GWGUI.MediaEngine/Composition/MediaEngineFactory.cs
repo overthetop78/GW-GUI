@@ -366,6 +366,7 @@ public static class MediaEngineFactory
         new AtariStReader(),
         new MsaReader(),
         new AtrReader(),
+        new Formats.Floppy.Xfd.XfdReader(),
         new AtxReader(),
         new D64Reader(),
         new D71Reader(),

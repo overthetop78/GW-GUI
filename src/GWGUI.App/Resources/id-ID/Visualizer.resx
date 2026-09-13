@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Blokir informasi media</value></data>
   <data name="Visual.CapacityLabel"><value>Kapasitas</value></data>
   <data name="Visual.AddressingLabel"><value>Alamat</value></data>
-  <data name="Visual.StartLabel"><value>Mulai</value></data>
+  <data name="Visual.StartLabel"><value>Awal</value></data>
   <data name="Visual.LengthLabel"><value>Panjang</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Skema partisi</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Nomor partisi</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Sektor mati</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor tanpa data</value></data>
   <data name="Visual.AnalysingRevolution"><value>Menganalisa revolusi {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Informasi kaset</value></data>
 </root>

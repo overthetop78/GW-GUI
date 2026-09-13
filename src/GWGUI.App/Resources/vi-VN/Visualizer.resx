@@ -110,7 +110,7 @@
   <data name="Visual.BlockInspectorTitle"><value>Chặn thông tin phương tiện</value></data>
   <data name="Visual.CapacityLabel"><value>Thành quả</value></data>
   <data name="Visual.AddressingLabel"><value>Địa chỉ</value></data>
-  <data name="Visual.StartLabel"><value>Chạy</value></data>
+  <data name="Visual.StartLabel"><value>Bắt đầu</value></data>
   <data name="Visual.LengthLabel"><value>Chiều dài</value></data>
   <data name="Visual.PartitionSchemeLabel"><value>Bộ màu phân vùng</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Số phân vùng</value></data>
@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Khu vực chết</value></data>
   <data name="Visual.SectorWithoutData"><value>Khu vực không có dữ liệu</value></data>
   <data name="Visual.AnalysingRevolution"><value>Phân tích cách mạng {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Thông tin băng cassette</value></data>
 </root>

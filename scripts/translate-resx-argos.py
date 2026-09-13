@@ -23,6 +23,7 @@ LANGUAGE_CODES = {
 }
 BASE_ONLY_CATALOGS = {"Icons.resx"}
 CONTEXTUAL_LABEL_SOURCES = {
+    "Visual.StartLabel": "Beginning",
     "Explorer.Session": "Disc session",
     "Explorer.Track": "Media track",
     "Explorer.Layers": "Disc layers",
@@ -30,6 +31,7 @@ CONTEXTUAL_LABEL_SOURCES = {
 }
 CONTEXTUAL_LABEL_OVERRIDES = {
     "fr-FR": {
+        "Visual.StartLabel": "Début",
         "Explorer.Session": "Session",
         "Explorer.Track": "Piste",
         "Explorer.Layers": "Couches",

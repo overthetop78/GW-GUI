@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>Ses Ses</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimal</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>Dış uygulama dış uygulama dış uygulama</value></data>
+  <data name="Explorer.Cassette"><value>Kaset</value></data>
+  <data name="Explorer.InternalName"><value>Dahili açıklama</value></data>
+  <data name="Explorer.BaudRates"><value>Hızlar</value></data>
+  <data name="Explorer.Chunks"><value>Bloklar</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK blokları</value></data>
+  <data name="Explorer.Records"><value>Kayıtlar</value></data>
+  <data name="Explorer.FullRecords"><value>Tam</value></data>
+  <data name="Explorer.PartialRecords"><value>Kısmi</value></data>
+  <data name="Explorer.EndRecord"><value>Son</value></data>
+  <data name="Explorer.ChunkType"><value>Tür</value></data>
+  <data name="Explorer.BaudRate"><value>Hız</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Gecikme</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Boot programı</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Boot programı</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>kaseti okumak</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record {0} Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Decoding kaset kayıtları</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Dosyayı tanımak</value></data>
 </root>

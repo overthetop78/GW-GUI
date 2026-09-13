@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>Kuollut sektori</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektori ilman tietoja</value></data>
   <data name="Visual.AnalysingRevolution"><value>Vallankumouksen analysointi {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Kasetin tiedot</value></data>
 </root>

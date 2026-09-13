@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC geometri igenkänd från filstorlek.</value></data>
   <data name="Detection.ExtensionInferred"><value>Format som härleds från tillägget.</value></data>
   <data name="Detection.Multiple"><value>Flera format är möjliga; välj en uttryckligen.</value></data>
-  <data name="Common.DiskImageFilter"><value>Diskbilder|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alla filer|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Diskbilder|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alla filer|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Apple II DOS-format identifierat från sektorordningen.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS-format som identifierats från sektorsbeställning.</value></data>
   <data name="Detection.AppleContainer"><value>Apple-diskavbildningsbehållare upptäckt.</value></data>

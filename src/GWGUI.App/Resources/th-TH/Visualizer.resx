@@ -169,4 +169,5 @@
   <data name="Visual.SectorDead"><value>ขอบเขตตาย</value></data>
   <data name="Visual.SectorWithoutData"><value>ขอบเขตข้อมูลไม่มี</value></data>
   <data name="Visual.AnalysingRevolution"><value>วิเคราะห์ การ ปฏิวัติ {0}/{1}…</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>ข้อมูลเทปคาสเซ็ต</value></data>
 </root>

@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC geometrisi dosya boyutundan tanındı.</value></data>
   <data name="Detection.ExtensionInferred"><value>Uzantıdan çıkarılan biçim.</value></data>
   <data name="Detection.Multiple"><value>Çeşitli formatlar mümkündür; açıkça birini seçin.</value></data>
-  <data name="Common.DiskImageFilter"><value>Disk görüntüleri|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|All files|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk görüntüleri|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|All files|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Apple II DOS biçimi sektör sırasından tanımlandı.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS biçimi sektör sırasından tanımlandı.</value></data>
   <data name="Detection.AppleContainer"><value>Apple disk kalıbı kapsayıcısı algılandı.</value></data>

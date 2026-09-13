@@ -7,6 +7,7 @@ public enum ExplorerFileCategory
     Document,
     SourceCode,
     BasicProgram,
+    BootProgram,
     Program,
     Executable,
     Command,

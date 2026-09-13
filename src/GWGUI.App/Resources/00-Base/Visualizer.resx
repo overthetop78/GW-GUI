@@ -197,4 +197,5 @@
   <data name="Visual.SectorDegraded"><value>Degraded sector</value></data>
   <data name="Visual.SectorDead"><value>Dead sector</value></data>
   <data name="Visual.SectorWithoutData"><value>Sector without data</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Cassette information</value></data>
 </root>

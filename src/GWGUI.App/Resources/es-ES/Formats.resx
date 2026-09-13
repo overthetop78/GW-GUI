@@ -23,7 +23,7 @@
   <data name="Detection.IbmSize"><value>IBM PC geometría reconocida a partir del tamaño del archivo.</value></data>
   <data name="Detection.ExtensionInferred"><value>Formato inferido de la extensión.</value></data>
   <data name="Detection.Multiple"><value>Son posibles varios formatos; elija uno explícitamente.</value></data>
-  <data name="Common.DiskImageFilter"><value>Imágenes de disco|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Todos los archivos|*.*</value></data>
+  <data name="Common.DiskImageFilter"><value>Imágenes de disco|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Todos los archivos|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Formato Apple II DOS identificado por el orden de los sectores.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Formato Apple II ProDOS identificado por el orden de los sectores.</value></data>
   <data name="Detection.AppleContainer"><value>Se ha detectado un contenedor de imagen de disco Apple.</value></data>

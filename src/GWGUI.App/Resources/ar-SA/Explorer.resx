@@ -145,4 +145,22 @@
   <data name="Explorer.Preview.Audio"><value>أوديو</value></data>
   <data name="Explorer.Preview.Hexadecimal"><value>سداسيمال</value></data>
   <data name="Explorer.Preview.ExternalApplication"><value>التطبيق الخارجي</value></data>
+  <data name="Explorer.Cassette"><value>شريط كاسيت</value></data>
+  <data name="Explorer.InternalName"><value>الوصف الداخلي</value></data>
+  <data name="Explorer.BaudRates"><value>السرعات</value></data>
+  <data name="Explorer.Chunks"><value>الكتل</value></data>
+  <data name="Explorer.FskBlocks"><value>كتل FSK</value></data>
+  <data name="Explorer.Records"><value>السجلات</value></data>
+  <data name="Explorer.FullRecords"><value>الكاملة</value></data>
+  <data name="Explorer.PartialRecords"><value>الجزئية</value></data>
+  <data name="Explorer.EndRecord"><value>النهاية</value></data>
+  <data name="Explorer.ChunkType"><value>النوع</value></data>
+  <data name="Explorer.BaudRate"><value>السرعة</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>التأخير</value></data>
+  <data name="Explorer.Type.BootProgram"><value>برنامج الأحذية</value></data>
+  <data name="Explorer.Category.BootProgram"><value>برنامج الأحذية</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>قراءة الشريط</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>السجل {0} of of {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>سجلات شريط التناقص</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>الملفات</value></data>
 </root>

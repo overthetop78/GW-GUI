@@ -6,7 +6,7 @@
         <Border x:Name="IconTile" Width="40" Height="40" CornerRadius="8" Background="#FFE4EDF5"
                 HorizontalAlignment="Left" VerticalAlignment="Center">
             <Grid>
-                <Image x:Name="IconImage" Width="34" Height="34" Stretch="Uniform" Visibility="Collapsed"
+                <Image x:Name="IconImage" Width="38" Height="38" Stretch="Uniform" Visibility="Collapsed"
                        RenderOptions.BitmapScalingMode="HighQuality" SnapsToDevicePixels="True"/>
                 <Viewbox x:Name="IconVector" Width="25" Height="25">
                     <Path x:Name="Icon" Width="24" Height="24" Stretch="Uniform" Fill="#FF24658A"/>
