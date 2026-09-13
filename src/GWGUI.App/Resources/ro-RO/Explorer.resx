@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Dimensiunea datelor de utilizator</value></data>
   <data name="Explorer.Subchannels"><value>Subcanale</value></data>
   <data name="Explorer.AudioTracks"><value>Piste audio</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Recunoaşterea formatului media</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Format recunoscut</value></data>
+  <data name="Explorer.LoadingMedia"><value>Citirea structurii media</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analizarea sistemului de fișiere</value></data>
+  <data name="Explorer.LoadingContents"><value>Pregătirea dosarelor și a fișierelor</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Afişarea conţinutului</value></data>
+  <data name="Explorer.TestingFormat"><value>Format de încercare: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: recunoscut</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: nerecunoscut</value></data>
+  <data name="Explorer.ReadingFormat"><value>Format de citire: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Format incompatibil</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>„{1}” nu poate fi interpretat folosind formatul „{0}”.&#xA;Selectați alt format pentru a continua.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Fișier {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Document</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Codul sursei</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC fișier program</value></data>
+  <data name="Explorer.Type.Executable"><value>Executabil</value></data>
+  <data name="Explorer.Type.Command"><value>Fișier comandă</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Fișier sistem</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Cod obiect</value></data>
+  <data name="Explorer.Type.Data"><value>Fișier de date</value></data>
+  <data name="Explorer.Type.Configuration"><value>Fișier de configurare</value></data>
+  <data name="Explorer.Type.Library"><value>Bibliotecă</value></data>
+  <data name="Explorer.Type.Media"><value>Fișier media</value></data>
+  <data name="Explorer.Type.Font"><value>Font</value></data>
+  <data name="Explorer.Execution"><value>Execuția</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Fișier executabil nativ</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Fișier executabil interpretat</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Comandă sau script</value></data>
 </root>

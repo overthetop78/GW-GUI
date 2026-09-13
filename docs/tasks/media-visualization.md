@@ -179,5 +179,5 @@ demandé. Les tâches sont exécutées et cochées une par une, dans l’ordre.
 
   Après achèvement et validation de toutes les cases de cette feuille, créer le deuxième commit
   demandé avec cette base graphique. Continuer ensuite avec la première case non cochée de
-  [`media-exploration.md`](media-exploration.md). Aucun essai manuel du corpus `image_test` ne
+[`media-exploration.md`](media-exploration.md). Aucun essai manuel des corpus locaux de médias ne
   commence avant l’achèvement des feuilles suivantes et le troisième commit qui les termine.

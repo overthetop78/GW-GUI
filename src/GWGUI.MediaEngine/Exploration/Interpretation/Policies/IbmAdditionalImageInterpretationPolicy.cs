@@ -20,8 +20,13 @@ internal sealed class IbmAdditionalImageInterpretationPolicy : IAdditionalImageI
     {
         if (image.BlockSize != FatBootSectorLayout.SectorSize || image.FormatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) || !image.TryGetBlock(FatBootSectorLayout.BootLogicalBlock, out var boot) || boot.Data.Count != FatBootSectorLayout.SectorSize) yield break;
         var fatMedia = image.TryGetBlock(FatBootSectorLayout.FirstFatLogicalBlock, out var fat) && fat.Data.Count > FatBootSectorLayout.FatMediaDescriptorDataOffset ? fat.Data[FatBootSectorLayout.FatMediaDescriptorDataOffset] : FatBootSectorLayout.UnknownMediaDescriptor;
-        if (!IbmDosDiskProbe.TryIdentify(boot.Data.ToArray(), fatMedia, true, out var geometry)) yield break;
-        var formatId = geometry.FormatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && supportedFormatIds.Contains(geometry.FormatId) ? geometry.FormatId : DiskImageFormatIds.IbmScan;
+        if (!IbmDosDiskProbe.TryIdentify(boot.Data.ToArray(), fatMedia, false, out var geometry)) yield break;
+        var physicalFormatId = DiskImageFormatIds.IbmFromCapacity(image.Capacity);
+        var formatId = geometry.FormatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && supportedFormatIds.Contains(geometry.FormatId)
+            ? geometry.FormatId
+            : supportedFormatIds.Contains(physicalFormatId)
+                ? physicalFormatId
+                : DiskImageFormatIds.IbmScan;
         yield return image.WithFormatId(formatId);
     }
 }

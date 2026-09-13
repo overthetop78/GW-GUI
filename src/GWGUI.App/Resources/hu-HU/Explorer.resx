@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Felhasználói adatok mérete</value></data>
   <data name="Explorer.Subchannels"><value>Alcsatornák</value></data>
   <data name="Explorer.AudioTracks"><value>Hangsáv</value></data>
+  <data name="Explorer.LoadingRecognition"><value>A média formátumának felismerése</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Elismert formátum</value></data>
+  <data name="Explorer.LoadingMedia"><value>A médiastruktúra olvasása</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>A fájlrendszer elemzése</value></data>
+  <data name="Explorer.LoadingContents"><value>A mappák és fájlok előkészítése</value></data>
+  <data name="Explorer.LoadingDisplay"><value>A tartalom megjelenítése</value></data>
+  <data name="Explorer.TestingFormat"><value>Vizsgálati formátum: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: elismert</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: nem ismert</value></data>
+  <data name="Explorer.ReadingFormat"><value>Olvasási formátum: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Nem kompatibilis formátum</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>A(z) „{1}” nem értelmezhető a(z) „{0}” formátummal.&#xA;A folytatáshoz válasszon másik formátumot.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Fájl {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokumentum</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Forráskód</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC programfájl</value></data>
+  <data name="Explorer.Type.Executable"><value>Végrehajtható</value></data>
+  <data name="Explorer.Type.Command"><value>Parancsfájl</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Rendszerfájl</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Objektum kódja</value></data>
+  <data name="Explorer.Type.Data"><value>Adatfájl</value></data>
+  <data name="Explorer.Type.Configuration"><value>Beállítófájl</value></data>
+  <data name="Explorer.Type.Library"><value>Könyvtár</value></data>
+  <data name="Explorer.Type.Media"><value>Médiafájl</value></data>
+  <data name="Explorer.Type.Font"><value>Betűtípus</value></data>
+  <data name="Explorer.Execution"><value>Végrehajtás</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Az indító végrehajtható fájl</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Elefántolt végrehajtható fájl</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Parancs- vagy parancsfájl</value></data>
 </root>

@@ -2,6 +2,25 @@ using GWGUI.MediaEngine.Formats.Floppy.Adf;
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class AdfContainerScenarios
 {
+    public static async Task ReadAcornHighDensity()
+    {
+        var data = new byte[AcornAdfGeometry.HighDensityCapacity];
+        data[0] = 42;
+        data[^1] = 93;
+        var reader = new AdfReader((_, token) => { token.ThrowIfCancellationRequested(); return Task.FromResult(data); });
+        var image = await reader.ReadAsync("archimedes.adf");
+        Assert.Equal(GWGUI.MediaEngine.Constants.DiskImageFormatIds.AcornAdfs1600, image.FormatId);
+        Assert.Equal(80, image.Cylinders);
+        Assert.Equal(2, image.Heads);
+        Assert.Equal(10, image.SectorsPerTrack);
+        Assert.Equal(1024, image.BlockSize);
+        Assert.Equal(1600, image.AvailableBlocks.Count);
+        Assert.Empty(image.MissingBlocks);
+        var blocks = image.AvailableBlocks.OrderBy(block => block.LogicalBlock).ToArray();
+        Assert.Equal(42, blocks[0].Data[0]);
+        Assert.Equal(93, blocks[^1].Data[^1]);
+    }
+
     public static async Task Read(string extension,int length,int cylinders,int heads,int sectors,int blockSize)
     {
         var data=new byte[length];data[0]=42;data[^1]=93;

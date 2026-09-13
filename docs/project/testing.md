@@ -17,7 +17,7 @@ Les données sont synthétiques et les accès aux fichiers de données sont simu
 
 ## Tests des images disque
 
-[GWGUI.LocalDiskImageTests](../../tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj) contient les tests de reconnaissance, lecture, écriture, conversion et systèmes de fichiers des images disque. Il reste séparé de la solution principale et du workflow de release. Les tests utilisant le corpus privé nécessitent le dossier local `image_test`.
+[GWGUI.LocalDiskImageTests](../../tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj) contient les tests de reconnaissance, lecture, écriture, conversion et systèmes de fichiers des images disque. Il reste séparé de la solution principale et du workflow de release. L'audit local utilise en lecture seule `F:\Rétro`, `F:\86Box\Isos`, `C:\Users\overt\Documents\GW GUI\Emulation\HDD` et `C:\Users\overt\86Box VMs`, sans copier, déplacer ni modifier les médias.
 
 Tout test qui dépend d'une image locale, d'un matériel, d'une application ou d'une DLL externe est
 une validation manuelle locale exécutée par le développeur qui possède cette ressource. Ces tests
@@ -53,8 +53,8 @@ Les contrôles d’installation refusent de démarrer si une installation GW GUI
 
 ## Validation du socle MediaEngine commun
 
-La validation locale du socle commun a été exécutée en configuration `Debug`, sans le corpus privé
-`image_test`. Les quatre projets concernés compilent sans avertissement ni erreur :
+La validation locale du socle commun a été exécutée en configuration `Debug`, sans les corpus locaux
+de médias. Les quatre projets concernés compilent sans avertissement ni erreur :
 
 ```powershell
 dotnet build src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj --no-restore --configuration Debug --verbosity quiet
@@ -116,7 +116,7 @@ Le script a terminé avec succès et la présence de
 
 Les Readers, structures et parcours d'Explorateur ajoutés pour les disques durs, les médias
 optiques et les médias séquentiels ont été validés séparément en configuration `Debug`. Ces
-contrôles ne dépendent pas du corpus privé `image_test` et ne constituent pas les essais manuels
+contrôles ne dépendent pas des corpus locaux et ne constituent pas les essais manuels
 finaux des images réelles.
 
 ```powershell
@@ -140,7 +140,7 @@ Résultats obtenus :
 Les images HDD et ISO 9660 ainsi que les documents de représentation sont construits en mémoire.
 Le scénario WAV crée un fichier synthétique minimal dans le dossier temporaire du système parce
 que le Reader WAV valide un véritable conteneur RIFF ; ce fichier est supprimé par le scénario dans
-tous les cas. Aucun fichier du dossier `image_test` n'est lu par ces commandes.
+tous les cas. Aucun fichier des quatre racines d'audit n'est lu par ces commandes.
 
 La construction Debug complète exécutée après ces validations a également réussi :
 
@@ -154,7 +154,7 @@ Le script a produit l'application sans module d'émulation préinstallé. La pr�
 ## Validation autonome des compléments HDD
 
 Les tests généraux des services HDD d'émulation et des Readers, Writers et conversions HDD de
-MediaEngine ont été exécutés ensemble en configuration `Debug`, sans utiliser `image_test` :
+MediaEngine ont été exécutés ensemble en configuration `Debug`, sans utiliser les corpus locaux :
 
 ```powershell
 dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter "FullyQualifiedName~GWGUI.Tests.Emulation.HardDisks|FullyQualifiedName~GWGUI.Tests.MediaEngine.HardDisk" --nologo -v:quiet
@@ -195,4 +195,4 @@ L'infrastructure WPF des tests applique le même principe après chaque scénari
 vidage des fenêtres sur le thread STA, traitement de la file WPF jusqu'à la priorité
 `ApplicationIdle`, puis arrêt explicite de l'`Application` et du `Dispatcher` à la destruction de
 la fixture. Elle attend ensuite la terminaison du thread et les finaliseurs. Cette modification n'a
-pas déclenché les tests manuels du corpus `image_test` ni lancé l'application.
+pas déclenché l'audit manuel des corpus locaux ni lancé l'application.

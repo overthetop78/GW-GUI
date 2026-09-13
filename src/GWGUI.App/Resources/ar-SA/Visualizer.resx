@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>فك التشفير</value></data>
   <data name="Visual.LinkZoom"><value>تكبير الارتباط</value></data>
   <data name="Visual.OpenScp"><value>فتح SCP ملف...</value></data>
-  <data name="Visual.NoFile"><value>لا يوجد ملف SCP مفتوح</value></data>
+  <data name="Visual.NoFile"><value>لا توجد صورة مفتوحة</value></data>
   <data name="Visual.Waiting"><value>في انتظار الملف</value></data>
   <data name="Visual.Inspector"><value>مفتش</value></data>
   <data name="Visual.SelectTrack"><value>حدد المسار.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>القطاع المخصص</value></data>
   <data name="Visual.SectorFree"><value>القطاع الحر</value></data>
   <data name="Visual.SectorReserved"><value>القطاع الاحتياطي</value></data>
-  <data name="Visual.SectorMissing"><value>قطاع المفقودين</value></data>
   <data name="Visual.SectorUnreadable"><value>القطاع غير القابل للقراءة</value></data>
   <data name="Visual.SectorInspectorTitle"><value>المعلومات القطاعية</value></data>
   <data name="Visual.SectorLabel"><value>القطاع</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>الحجم</value></data>
   <data name="Visual.StateLabel"><value>الدولة</value></data>
   <data name="Visual.FileSystemPathLabel"><value>مسار نظام التمويل</value></data>
-  <data name="Visual.SectorState.Available"><value>متاحة</value></data>
-  <data name="Visual.SectorState.Missing"><value>مفقودة</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>النزاهة غير معروفة</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>النزاهة غير صحيحة</value></data>
   <data name="Visual.LogicalMapTitle"><value>خريطة تنظيمية</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS الهندسة</value></data>
   <data name="Visual.SurfaceLabel"><value>الوجه السطحي</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>الإشارة</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>الصمت</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>القطعة المتناقصة</value></data>
+  <data name="Visual.RevolutionSummary"><value>كلّ الثورة</value></data>
+  <data name="Visual.RevolutionChoice"><value>الثورة {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>الثورة</value></data>
+  <data name="Visual.QualityDead"><value>مات</value></data>
+  <data name="Visual.QualityPoor"><value>الفقراء</value></data>
+  <data name="Visual.QualityPartial"><value>قابل للقراءة جزئيا</value></data>
+  <data name="Visual.QualityGood"><value>جيد</value></data>
+  <data name="Visual.QualityExcellent"><value>ممتاز</value></data>
+  <data name="Visual.SectorWithData"><value>القطاع الذي تتوفر فيه البيانات</value></data>
+  <data name="Visual.SectorDegraded"><value>القطاع المتدهور</value></data>
+  <data name="Visual.SectorDead"><value>القطاع الميت</value></data>
+  <data name="Visual.SectorWithoutData"><value>القطاع غير المتوفر بيانات</value></data>
+  <data name="Visual.AnalysingRevolution"><value>:: إجراء ثورة تحليلية {0}/{1}…</value></data>
 </root>

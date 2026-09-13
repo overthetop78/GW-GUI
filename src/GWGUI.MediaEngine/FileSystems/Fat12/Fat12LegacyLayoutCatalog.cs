@@ -37,7 +37,8 @@ public sealed record Fat12LegacyLayoutCatalog
         [DiskImageFormatIds.Ibm160] = new(DiskImageFormatIds.Ibm160, 320, 1, 64, 1),
         [DiskImageFormatIds.Ibm180] = new(DiskImageFormatIds.Ibm180, 360, 1, 64, 2),
         [DiskImageFormatIds.Ibm320] = new(DiskImageFormatIds.Ibm320, 640, 2, 112, 1),
-        [DiskImageFormatIds.Ibm360] = new(DiskImageFormatIds.Ibm360, 720, 2, 112, 2)
+        [DiskImageFormatIds.Ibm360] = new(DiskImageFormatIds.Ibm360, 720, 2, 112, 2),
+        [DiskImageFormatIds.ApricotPcXi315] = new(DiskImageFormatIds.ApricotPcXi315, 630, 1, 64, 2)
     });
 
     /// <summary>Recherche une disposition par identifiant de format.</summary>

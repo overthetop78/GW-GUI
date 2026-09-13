@@ -43,7 +43,7 @@ internal static class DiskCopyReader
 
         var payload = container.AsSpan(DiskCopyLayout.HeaderSize, dataLength).ToArray();
         var tags = container.AsSpan(DiskCopyLayout.HeaderSize + dataLength, tagLength);
-        ValidateChecksums(container, payload, tags);
+        var checksums = InspectChecksums(container, payload, tags);
 
         SectorImage image;
         if (tagLength == 0 && TryReadUntaggedImage(payload, out var untaggedImage)) image = untaggedImage;
@@ -60,7 +60,7 @@ internal static class DiskCopyReader
         }
         var nameLength = Math.Min((int)container[DiskCopyLayout.NameLengthOffset], DiskCopyLayout.MaximumNameLength);
         var nameBytes = container.AsSpan(DiskCopyLayout.NameOffset, nameLength).ToArray();
-        return new(image, nameBytes, container[DiskCopyLayout.DiskFormatOffset], container[DiskCopyLayout.FormatByteOffset]);
+        return new(image, nameBytes, container[DiskCopyLayout.DiskFormatOffset], container[DiskCopyLayout.FormatByteOffset], checksums.Data, checksums.Tags);
     }
 
     /// <summary>Construit les blocs tagués en conservant l'adressage propre à la géométrie reconnue.</summary>
@@ -163,25 +163,21 @@ internal static class DiskCopyReader
     /// <param name="payload">Données sectorielles dont le checksum doit être vérifié.</param>
     /// <param name="tags">Tags sectoriels dont le checksum doit être vérifié.</param>
     /// <exception cref="InvalidDataException">Un checksum présent est invalide ou sa plage de tags est incomplète.</exception>
-    private static void ValidateChecksums(ReadOnlySpan<byte> container, ReadOnlySpan<byte> payload, ReadOnlySpan<byte> tags)
+    private static (bool? Data, bool? Tags) InspectChecksums(ReadOnlySpan<byte> container, ReadOnlySpan<byte> payload, ReadOnlySpan<byte> tags)
     {
         var storedDataChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.DataChecksumOffset));
-        if (storedDataChecksum != DiskCopyFormat.MissingChecksum)
-        {
-            var calculatedDataChecksum = CalculateChecksum(payload);
-            if (storedDataChecksum != calculatedDataChecksum)
-                throw DiskCopyExceptions.InvalidDataChecksum(storedDataChecksum, calculatedDataChecksum);
-        }
+        var dataValid = storedDataChecksum == DiskCopyFormat.MissingChecksum
+            ? (bool?)null
+            : storedDataChecksum == CalculateChecksum(payload);
 
         var storedTagChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.TagChecksumOffset));
         if (storedTagChecksum == DiskCopyFormat.MissingChecksum)
-            return;
+            return (dataValid, null);
         if (tags.Length < DiskCopyLayout.TagChecksumExcludedPrefixSize)
-            throw DiskCopyExceptions.InvalidTagChecksum(storedTagChecksum, DiskCopyFormat.MissingChecksum);
+            return (dataValid, false);
 
         var calculatedTagChecksum = CalculateChecksum(tags[DiskCopyLayout.TagChecksumExcludedPrefixSize..]);
-        if (storedTagChecksum != calculatedTagChecksum)
-            throw DiskCopyExceptions.InvalidTagChecksum(storedTagChecksum, calculatedTagChecksum);
+        return (dataValid, storedTagChecksum == calculatedTagChecksum);
     }
 
     /// <summary>

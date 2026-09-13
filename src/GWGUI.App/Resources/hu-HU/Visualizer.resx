@@ -14,7 +14,7 @@
   </resheader>
   <data name="Visual.Decoder"><value>Dekóder</value></data>
 <data name="Visual.OpenScp"><value>Nyisson meg egy SCP fájlt…</value></data>
-  <data name="Visual.NoFile"><value>Nincs nyitva SCP fájl</value></data>
+  <data name="Visual.NoFile"><value>Nincs megnyitott lemezkép</value></data>
   <data name="Visual.Waiting"><value>Fájlra vár</value></data>
   <data name="Visual.Inspector"><value>Ellenőr</value></data>
   <data name="Visual.SelectTrack"><value>Válasszon ki egy műsorszámot.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Kiosztott ágazat</value></data>
   <data name="Visual.SectorFree"><value>Szabad ágazat</value></data>
   <data name="Visual.SectorReserved"><value>Fenntartott ágazat</value></data>
-  <data name="Visual.SectorMissing"><value>Hiányzó ágazat</value></data>
   <data name="Visual.SectorUnreadable"><value>Nem olvasható ágazat</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Ágazati információk</value></data>
   <data name="Visual.SectorLabel"><value>Szektor</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Méret</value></data>
   <data name="Visual.StateLabel"><value>Állam</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Fájlrendszer elérési útja</value></data>
-  <data name="Visual.SectorState.Available"><value>Rendelkezésre álló</value></data>
-  <data name="Visual.SectorState.Missing"><value>Hiányzik</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Az integritás ismeretlen</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Az integritás érvénytelen</value></data>
   <data name="Visual.LogicalMapTitle"><value>Logikai térkép</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometria</value></data>
   <data name="Visual.SurfaceLabel"><value>Felület</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Jelzés</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Csend.</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Dekódolt blokk</value></data>
+  <data name="Visual.RevolutionSummary"><value>Minden fordulat</value></data>
+  <data name="Visual.RevolutionChoice"><value>Forradalom {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Forradalom</value></data>
+  <data name="Visual.QualityDead"><value>Halott</value></data>
+  <data name="Visual.QualityPoor"><value>Szegény.</value></data>
+  <data name="Visual.QualityPartial"><value>Részben olvasható</value></data>
+  <data name="Visual.QualityGood"><value>Jó.</value></data>
+  <data name="Visual.QualityExcellent"><value>Kiváló.</value></data>
+  <data name="Visual.SectorWithData"><value>Adatokkal rendelkező ágazat</value></data>
+  <data name="Visual.SectorDegraded"><value>Lealacsonyított ágazat</value></data>
+  <data name="Visual.SectorDead"><value>Holt szektor</value></data>
+  <data name="Visual.SectorWithoutData"><value>Adatszolgáltatás nélküli ágazat</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Forradalom elemzése {0}/{1}…</value></data>
 </root>

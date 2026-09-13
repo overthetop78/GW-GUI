@@ -46,21 +46,22 @@ public static class AmigaDosDirectoryReader
                 var size = kind == FileSystemEntryKind.File ? BigEndianInt32.ReadUnsigned(block, AmigaDosLayout.FileSizeOffset) : 0;
                 IReadOnlyList<byte>? content = null;
                 var metadataValid = AmigaDosChecksum.IsValid(block);
+                bool? dataValid = null;
                 if (kind == FileSystemEntryKind.File)
                 {
                     try
                     {
                         var file = AmigaDosFileReader.Read(image, block, checked((int)size), variant, warnings);
                         content = file.Content;
-                        metadataValid &= file.IsValid;
+                        dataValid = file.IsValid;
                     }
                     catch (Exception exception) when (exception is InvalidDataException or OverflowException or ArgumentOutOfRangeException)
                     {
                         warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception));
-                        metadataValid = false;
+                        dataValid = false;
                     }
                 }
-                entries.Add(new(name, kind, size, AmigaDosTime.Read(block, AmigaDosLayout.DateOffset), AmigaDosNameCodec.Read(block, AmigaDosLayout.LongNameOffset, AmigaDosLayout.CommentMaximumLength), BigEndianInt32.ReadUnsigned(block, AmigaDosLayout.ProtectionOffset), blockNumber, metadataValid, children, content));
+                entries.Add(new(name, kind, size, AmigaDosTime.Read(block, AmigaDosLayout.DateOffset), AmigaDosNameCodec.Read(block, AmigaDosLayout.LongNameOffset, AmigaDosLayout.CommentMaximumLength), BigEndianInt32.ReadUnsigned(block, AmigaDosLayout.ProtectionOffset), blockNumber, metadataValid, children, content, dataValid: dataValid));
                 blockNumber = next;
             }
         }

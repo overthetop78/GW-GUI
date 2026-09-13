@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Kích cỡ dữ liệu người dùng</value></data>
   <data name="Explorer.Subchannels"><value>Các tàu con</value></data>
   <data name="Explorer.AudioTracks"><value>Các vết âm thanh</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Nhận dạng phương tiện</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Định dạng nhận diện</value></data>
+  <data name="Explorer.LoadingMedia"><value>Đọc cấu trúc phương tiện</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Đang phân tích hệ thống tập tin</value></data>
+  <data name="Explorer.LoadingContents"><value>Đang chuẩn bị thư mục và tập tin</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Hiển thị nội dung</value></data>
+  <data name="Explorer.TestingFormat"><value>Định dạng thử ra: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: nhận diện</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: không nhận ra</value></data>
+  <data name="Explorer.ReadingFormat"><value>Định dạng đọc: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Định dạng không tương thích</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Không thể diễn giải “{1}” bằng định dạng “{0}”.&#xA;Chọn định dạng khác để tiếp tục.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Tập tin {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Tài liệu</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Mã nguồn</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC tập tin chương trình</value></data>
+  <data name="Explorer.Type.Executable"><value>Có thể thực hiện</value></data>
+  <data name="Explorer.Type.Command"><value>Tập tin lệnh</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Tập tin hệ thống</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Mã đối tượng</value></data>
+  <data name="Explorer.Type.Data"><value>Tập tin dữ liệu</value></data>
+  <data name="Explorer.Type.Configuration"><value>Tập tin cấu hình</value></data>
+  <data name="Explorer.Type.Library"><value>Thư viện</value></data>
+  <data name="Explorer.Type.Media"><value>Tập tin phương tiện</value></data>
+  <data name="Explorer.Type.Font"><value>Phông</value></data>
+  <data name="Explorer.Execution"><value>Thực hiện</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Tập tin thực hiện được bản địa</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Tập tin thực hiện được giải mã qua mạng</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Lệnh hay văn lệnh</value></data>
 </root>

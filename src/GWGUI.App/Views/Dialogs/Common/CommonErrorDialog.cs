@@ -15,6 +15,7 @@ namespace GWGUI.App.Views.Dialogs.Common;
 internal sealed class CommonErrorDialog : Window
 {
     internal const string ErrorIcon = "\uEA39";
+    internal const string InformationIcon = "\uE946";
 
     internal CommonErrorDialog(CommonErrorDialogContent content)
     {

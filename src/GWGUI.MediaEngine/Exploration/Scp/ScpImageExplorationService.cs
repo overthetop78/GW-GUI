@@ -20,12 +20,13 @@ public sealed class ScpImageExplorationService
         this.sectorImageReader = sectorImageReader;
     }
     /// <summary>Délègue l'exploration automatique du chemin et propage l'annulation et les erreurs.</summary>
-    public Task<ExploredDiskImage> ExploreAutomaticallyAsync(string path, CancellationToken cancellationToken) => automaticExplorer.ExploreAsync(path, cancellationToken);
+    public Task<ExploredDiskImage> ExploreAutomaticallyAsync(string path, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken) => automaticExplorer.ExploreAsync(path, progress, cancellationToken);
     /// <summary>Explore une capture SCP déjà disponible en mémoire.</summary>
     public Task<ExploredDiskImage> ExploreAutomaticallyAsync(
         string path,
         ScpImage image,
-        CancellationToken cancellationToken) => automaticExplorer.ExploreAsync(path, image, cancellationToken);
+        IProgress<ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken) => automaticExplorer.ExploreAsync(path, image, progress, cancellationToken);
     /// <summary>Délègue la reconstruction du chemin et du format explicitement demandé.</summary>
     public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) => sectorImageReader.ReadAsync(path, formatId, cancellationToken);
 }

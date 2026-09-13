@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>ユーザーデータサイズ</value></data>
   <data name="Explorer.Subchannels"><value>サブチャネル</value></data>
   <data name="Explorer.AudioTracks"><value>オーディオトラック</value></data>
+  <data name="Explorer.LoadingRecognition"><value>メディアフォーマットを認識</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>認識されたフォーマット</value></data>
+  <data name="Explorer.LoadingMedia"><value>メディア構造の読み方</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>ファイルシステム分析</value></data>
+  <data name="Explorer.LoadingContents"><value>フォルダとファイルの準備</value></data>
+  <data name="Explorer.LoadingDisplay"><value>コンテンツの表示</value></data>
+  <data name="Explorer.TestingFormat"><value>フォーマットをテストして下さい: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: 認定資格</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: 認められない</value></data>
+  <data name="Explorer.ReadingFormat"><value>読書フォーマット: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>互換性のないフォーマット</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>「{1}」を「{0}」形式として解釈できません。&#xA;続行するには別の形式を選択してください。</value></data>
+  <data name="Explorer.FileWithExtension"><value>コンテンツ {0}</value></data>
+  <data name="Explorer.Type.Document"><value>ドキュメント</value></data>
+  <data name="Explorer.Type.SourceCode"><value>ソースコード</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC プログラムファイル</value></data>
+  <data name="Explorer.Type.Executable"><value>実行テーブル</value></data>
+  <data name="Explorer.Type.Command"><value>コマンドファイル</value></data>
+  <data name="Explorer.Type.SystemFile"><value>システムファイル</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>オブジェクトコード</value></data>
+  <data name="Explorer.Type.Data"><value>データファイル</value></data>
+  <data name="Explorer.Type.Configuration"><value>設定ファイル</value></data>
+  <data name="Explorer.Type.Library"><value>図書館</value></data>
+  <data name="Explorer.Type.Media"><value>メディアファイル</value></data>
+  <data name="Explorer.Type.Font"><value>トピックス</value></data>
+  <data name="Explorer.Execution"><value>実行手順</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>ネイティブ実行ファイル</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>解釈された実行ファイル</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>コマンドまたはスクリプト</value></data>
 </root>

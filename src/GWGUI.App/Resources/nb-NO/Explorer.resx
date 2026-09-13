@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Brukerdatastørrelse</value></data>
   <data name="Explorer.Subchannels"><value>Underkanaler</value></data>
   <data name="Explorer.AudioTracks"><value>Lydspor</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Kjenn igjen medieformatet</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Kjente format</value></data>
+  <data name="Explorer.LoadingMedia"><value>Lese mediestrukturen</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analysere filsystemet</value></data>
+  <data name="Explorer.LoadingContents"><value>Forbereder mapper og filer</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Viser innholdet</value></data>
+  <data name="Explorer.TestingFormat"><value>Testformat: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: Kjente</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: ikke anerkjent</value></data>
+  <data name="Explorer.ReadingFormat"><value>Leseformat: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Inkompatibelt format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>«{1}» kan ikke tolkes med formatet «{0}».&#xA;Velg et annet format for å fortsette.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Fil {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokument</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Kildekode</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC programfil</value></data>
+  <data name="Explorer.Type.Executable"><value>KJØP</value></data>
+  <data name="Explorer.Type.Command"><value>Kommandofil</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Systemfil</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Objektkode</value></data>
+  <data name="Explorer.Type.Data"><value>Datafil</value></data>
+  <data name="Explorer.Type.Configuration"><value>Konfigurasjonsfil</value></data>
+  <data name="Explorer.Type.Library"><value>Bibliotek</value></data>
+  <data name="Explorer.Type.Media"><value>Mediafil</value></data>
+  <data name="Explorer.Type.Font"><value>Skrift</value></data>
+  <data name="Explorer.Execution"><value>Utførelse</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Innfødt kjørbar fil</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Tolket kjørbar fil</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Kommando eller skript</value></data>
 </root>

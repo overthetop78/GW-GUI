@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Αποκρυπτογράφος</value></data>
   <data name="Visual.LinkZoom"><value>Ζουμ συνδέσμου</value></data>
   <data name="Visual.OpenScp"><value>Ανοίξτε ένα αρχείο SCP…</value></data>
-  <data name="Visual.NoFile"><value>Δεν έχει ανοίξει αρχείο SCP</value></data>
+  <data name="Visual.NoFile"><value>Δεν έχει ανοιχτεί εικόνα</value></data>
   <data name="Visual.Waiting"><value>Αναμονή για αρχείο</value></data>
   <data name="Visual.Inspector"><value>Επιθεωρητής</value></data>
   <data name="Visual.SelectTrack"><value>Επιλέξτε ένα κομμάτι.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Τομέας που έχει εγκατασταθεί</value></data>
   <data name="Visual.SectorFree"><value>Ελεύθερος τομέας</value></data>
   <data name="Visual.SectorReserved"><value>Αποθεματικός τομέας</value></data>
-  <data name="Visual.SectorMissing"><value>Αγνοούμενος τομέας</value></data>
   <data name="Visual.SectorUnreadable"><value>Μη αναγνώσιμος τομέας</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Πληροφορίες τομέα</value></data>
   <data name="Visual.SectorLabel"><value>Τομέας</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Μέγεθος</value></data>
   <data name="Visual.StateLabel"><value>Κατάσταση</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Διαδρομή συστήματος αρχείων</value></data>
-  <data name="Visual.SectorState.Available"><value>Διαθέσιμα</value></data>
-  <data name="Visual.SectorState.Missing"><value>Λείπει.</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Ακεραιότητα άγνωστη</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Μη έγκυρη ακεραιότητα</value></data>
   <data name="Visual.LogicalMapTitle"><value>Λογικός χάρτης</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS γεωμετρία</value></data>
   <data name="Visual.SurfaceLabel"><value>Επιφάνεια</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Σήμα</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Σιωπή.</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Αποκωδικοποιημένο μπλοκ</value></data>
+  <data name="Visual.RevolutionSummary"><value>Όλες οι επαναστάσεις</value></data>
+  <data name="Visual.RevolutionChoice"><value>Επανάσταση {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Επανάσταση</value></data>
+  <data name="Visual.QualityDead"><value>Νεκρός.</value></data>
+  <data name="Visual.QualityPoor"><value>Φτωχός</value></data>
+  <data name="Visual.QualityPartial"><value>Μερικό αναγνώσιμο</value></data>
+  <data name="Visual.QualityGood"><value>Ωραία.</value></data>
+  <data name="Visual.QualityExcellent"><value>Τέλεια.</value></data>
+  <data name="Visual.SectorWithData"><value>Τομέας με δεδομένα</value></data>
+  <data name="Visual.SectorDegraded"><value>Τομέας που έχει υποβαθμιστεί</value></data>
+  <data name="Visual.SectorDead"><value>Νεκρός τομέας</value></data>
+  <data name="Visual.SectorWithoutData"><value>Τομέας χωρίς δεδομένα</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Ανάλυση επανάστασης {0}/{1}…</value></data>
 </root>

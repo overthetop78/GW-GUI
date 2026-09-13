@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>לֹא יְדוּעַ</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>הוצאה</value></data>
+  <data name="Common.MediaKind.Unknown"><value>תקשורת לא ידועה</value></data>
+  <data name="Common.MediaKind.Floppy"><value>תקליטון</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>דיסק קשיח</value></data>
+  <data name="Common.MediaKind.Optical"><value>דיסק אופטי</value></data>
+  <data name="Common.MediaKind.Tape"><value>Tape</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>מגזרים</value></data>
+  <data name="Common.Representation.Blocks"><value>בלוקים</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>מסלולים אופטיים</value></data>
+  <data name="Common.Representation.Sequential"><value>נתונים הכרחיים</value></data>
 </root>

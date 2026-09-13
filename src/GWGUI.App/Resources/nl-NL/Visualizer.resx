@@ -14,7 +14,7 @@
   </resheader>
 <data name="Visual.LinkZoom"><value>Zoomlink koppelen</value></data>
   <data name="Visual.OpenScp"><value>Open een SCP-bestand…</value></data>
-  <data name="Visual.NoFile"><value>Geen SCP bestand geopend</value></data>
+  <data name="Visual.NoFile"><value>Geen schijfkopie geopend</value></data>
   <data name="Visual.Waiting"><value>Wachten op een bestand</value></data>
   <data name="Visual.Inspector"><value>Inspecteur</value></data>
   <data name="Visual.SelectTrack"><value>Selecteer een nummer.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Toegewezen sector</value></data>
   <data name="Visual.SectorFree"><value>Vrije sector</value></data>
   <data name="Visual.SectorReserved"><value>Gereserveerde sector</value></data>
-  <data name="Visual.SectorMissing"><value>Ontbrekende sector</value></data>
   <data name="Visual.SectorUnreadable"><value>Onleesbare sector</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Sectorinformatie</value></data>
   <data name="Visual.SectorLabel"><value>Sector</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Grootte</value></data>
   <data name="Visual.StateLabel"><value>Staat</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Pad naar bestandssysteem</value></data>
-  <data name="Visual.SectorState.Available"><value>Beschikbaar</value></data>
-  <data name="Visual.SectorState.Missing"><value>Ontbrekend</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integriteit onbekend</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integriteit ongeldig</value></data>
   <data name="Visual.LogicalMapTitle"><value>Logische kaart</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometrie</value></data>
   <data name="Visual.SurfaceLabel"><value>Oppervlakte</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Signaal</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Stilte</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Gedecodeerd blok</value></data>
+  <data name="Visual.RevolutionSummary"><value>Alle revoluties</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revolutie {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revolutie</value></data>
+  <data name="Visual.QualityDead"><value>Dood</value></data>
+  <data name="Visual.QualityPoor"><value>Slecht</value></data>
+  <data name="Visual.QualityPartial"><value>Gedeeltelijk leesbaar</value></data>
+  <data name="Visual.QualityGood"><value>Goed</value></data>
+  <data name="Visual.QualityExcellent"><value>Uitstekend.</value></data>
+  <data name="Visual.SectorWithData"><value>Sector met gegevens</value></data>
+  <data name="Visual.SectorDegraded"><value>Gedegradeerde sector</value></data>
+  <data name="Visual.SectorDead"><value>Doodse sector</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sector zonder gegevens</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyse van revolutie {0}'{1}…</value></data>
 </root>

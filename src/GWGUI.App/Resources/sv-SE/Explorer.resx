@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Användardatastorlek</value></data>
   <data name="Explorer.Subchannels"><value>Subchannels</value></data>
   <data name="Explorer.AudioTracks"><value>Audio spår</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Erkänner medieformatet</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Erkänd format</value></data>
+  <data name="Explorer.LoadingMedia"><value>Läsa mediestrukturen</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analysera filsystemet</value></data>
+  <data name="Explorer.LoadingContents"><value>Förbereda mappar och filer</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Visa innehållet</value></data>
+  <data name="Explorer.TestingFormat"><value>Testformat: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: Erkänd</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: Inte erkänd</value></data>
+  <data name="Explorer.ReadingFormat"><value>Läsformat: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Inkompatibelt format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>“{1}” kan inte tolkas med formatet “{0}”.&#xA;Välj ett annat format för att fortsätta.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Fil {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokument</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Källa kod</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC Programfil</value></data>
+  <data name="Explorer.Type.Executable"><value>Exekutabel</value></data>
+  <data name="Explorer.Type.Command"><value>Kommandofil</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Systemfil</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Objektkod</value></data>
+  <data name="Explorer.Type.Data"><value>Datafil</value></data>
+  <data name="Explorer.Type.Configuration"><value>Konfigurationsfil</value></data>
+  <data name="Explorer.Type.Library"><value>Bibliotek</value></data>
+  <data name="Explorer.Type.Media"><value>Media-fil</value></data>
+  <data name="Explorer.Type.Font"><value>Font</value></data>
+  <data name="Explorer.Execution"><value>Exekverings</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Native executable file</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Tolkad körbar fil</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Kommando eller skript</value></data>
 </root>

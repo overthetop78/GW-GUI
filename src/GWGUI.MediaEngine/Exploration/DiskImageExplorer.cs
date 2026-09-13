@@ -53,6 +53,14 @@ public sealed class DiskImageExplorer
     /// <exception cref="DiskImageCandidatesRejectedException">Un conteneur candidat est identifiÃ© mais corrompu.</exception>
     /// <exception cref="OperationCanceledException">Le jeton demande l'annulation.</exception>
     public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
+        => await ExploreAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+
+    /// <summary>Explore l'image et publie les unités réelles de l'analyse SCP lorsqu'elle s'applique.</summary>
+    public async Task<ExploredDiskImage> ExploreAsync(
+        string path,
+        string? formatId,
+        IProgress<ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         if (!File.Exists(path)) throw DiskImageExplorationExceptions.MissingImage(path);
         MediaImageDocument document;
@@ -68,7 +76,7 @@ public sealed class DiskImageExplorer
         if (document.Representation is FluxMediaImageRepresentation)
         {
             if (!document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase)) return documents.CreateUnknown(path);
-            if (formatId is null) return await scpExploration.ExploreAutomaticallyAsync(path, cancellationToken).ConfigureAwait(false);
+            if (formatId is null) return await scpExploration.ExploreAutomaticallyAsync(path, progress, cancellationToken).ConfigureAwait(false);
 
             var decoded = await scpExploration.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
             var explicitResult = ReadExplicitly(decoded, formatId);
@@ -90,13 +98,16 @@ public sealed class DiskImageExplorer
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         ArgumentNullException.ThrowIfNull(image);
-        return scpExploration.ExploreAutomaticallyAsync(path, image, cancellationToken);
+        return scpExploration.ExploreAutomaticallyAsync(path, image, null, cancellationToken);
     }
 
     /// <summary>Reads through the common chain and retries without a downstream sector-format hint when necessary.</summary>
     private async Task<MediaImageDocument> ReadDocumentAsync(string path, string? formatId, CancellationToken cancellationToken)
     {
-        var source = new MediaSourceDescriptor(path, [], RequestedFormatId: formatId);
+        var containerFormatId = Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
+            ? null
+            : formatId;
+        var source = new MediaSourceDescriptor(path, [], RequestedFormatId: containerFormatId);
         try
         {
             return await readingService.ReadAsync(source, cancellationToken).ConfigureAwait(false);
@@ -111,12 +122,12 @@ public sealed class DiskImageExplorer
     private (SectorImage Image, IReadOnlyList<ExploredFileSystem> Detected) ReadAutomatically(SectorImage image)
     {
         var detected = fileSystems.ReadCandidates(image, image.FormatId).Matches
-            .Select(match => new ExploredFileSystem(image.FormatId, match.ReaderId, image, match.Volume))
+            .Select(match => new ExploredFileSystem(match.ReaderId, image, match.Volume))
             .ToList();
         foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(image))
         {
             if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var match)) continue;
-            detected.Add(new(interpretation.FormatId, match.ReaderId, interpretation, match.Volume));
+            detected.Add(new(match.ReaderId, interpretation, match.Volume));
         }
         return (image, detected);
     }
@@ -127,7 +138,7 @@ public sealed class DiskImageExplorer
         var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : image.WithFormatId(formatId);
         if (fileSystems.TryRead(selectedImage, formatId, out var match))
         {
-            return (selectedImage, [new(formatId, match.ReaderId, selectedImage, match.Volume)]);
+            return (selectedImage, [new(match.ReaderId, selectedImage, match.Volume)]);
         }
         return (selectedImage, []);
     }

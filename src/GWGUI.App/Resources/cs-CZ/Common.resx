@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Neznámý</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Vysunout</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Neznámá média</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Disketa</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Pevný disk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optický disk</value></data>
+  <data name="Common.MediaKind.Tape"><value>Páska</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sektory</value></data>
+  <data name="Common.Representation.Blocks"><value>Bloky</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optické koleje</value></data>
+  <data name="Common.Representation.Sequential"><value>Pořadové údaje</value></data>
 </root>

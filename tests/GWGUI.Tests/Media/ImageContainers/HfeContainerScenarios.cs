@@ -38,6 +38,32 @@ internal static class HfeContainerScenarios
         Assert.All(written[1025..1280], value => Assert.Equal(0x88, value));
         Assert.Equal(image.Tracks[1].Bits, new HfeReader().Read(written).Tracks[1].Bits);
     }
+
+    public static void Version3()
+    {
+        var bytes = new byte[1536];
+        "HXCHFEV3"u8.CopyTo(bytes); bytes[9] = 1; bytes[10] = 2; bytes[12] = 250; bytes[18] = 1;
+        bytes[512] = 2; bytes[514] = 8;
+        bytes[1024] = HfeFormat.Version3IndexOpcode;
+        bytes[1025] = HfeFormat.Version3BitRateOpcode;
+        bytes[1026] = 0x12;
+        bytes[1027] = HfeFormat.Version3RandomOpcode;
+        bytes[1280] = 0x01;
+        bytes[1281] = HfeFormat.Version3SkipBitsOpcode;
+        bytes[1282] = 0x20;
+        bytes[1283] = 0x80;
+
+        var image = new HfeReader().Read(bytes);
+        Assert.Equal(2, image.Tracks.Count);
+        var first = image.Tracks[0];
+        Assert.Equal(8, first.Bits.Count);
+        Assert.Contains(first.Features, feature => feature.Kind == GWGUI.MediaEngine.Representations.Flux.TrackFeatureKind.WeakRegion);
+        Assert.Contains(first.Features, feature => feature.Kind == GWGUI.MediaEngine.Representations.Flux.TrackFeatureKind.IndexMark);
+        Assert.Single(first.Timing);
+        Assert.Equal(80u, first.BitCellTicks);
+        Assert.Equal(12, image.Tracks[1].Bits.Count);
+    }
+
     public static void Invalid(int variant)
     {
         var bytes = Bytes();

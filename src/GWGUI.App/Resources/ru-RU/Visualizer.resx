@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Декодер</value></data>
   <data name="Visual.LinkZoom"><value>Увеличение ссылки</value></data>
   <data name="Visual.OpenScp"><value>Откройте файл SCP…</value></data>
-  <data name="Visual.NoFile"><value>Файл SCP не открыт</value></data>
+  <data name="Visual.NoFile"><value>Образ не открыт</value></data>
   <data name="Visual.Waiting"><value>Ожидание файла</value></data>
   <data name="Visual.Inspector"><value>Инспектор</value></data>
   <data name="Visual.SelectTrack"><value>Выберите трек.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Выделенный сектор</value></data>
   <data name="Visual.SectorFree"><value>Свободный сектор</value></data>
   <data name="Visual.SectorReserved"><value>Резервный сектор</value></data>
-  <data name="Visual.SectorMissing"><value>Пропавший сектор</value></data>
   <data name="Visual.SectorUnreadable"><value>Нечитаемый сектор</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Секторальная информация</value></data>
   <data name="Visual.SectorLabel"><value>сектор</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Размер</value></data>
   <data name="Visual.StateLabel"><value>государство</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Путь файловой системы</value></data>
-  <data name="Visual.SectorState.Available"><value>Доступный</value></data>
-  <data name="Visual.SectorState.Missing"><value>Пропавший</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Целостность неизвестна</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Целостность недействительна</value></data>
   <data name="Visual.LogicalMapTitle"><value>Логическая карта</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS геометрия</value></data>
   <data name="Visual.SurfaceLabel"><value>поверхность</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>сигнал</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Тишина</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Декодированный блок</value></data>
+  <data name="Visual.RevolutionSummary"><value>Все революции</value></data>
+  <data name="Visual.RevolutionChoice"><value>Революция {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Революция</value></data>
+  <data name="Visual.QualityDead"><value>мертвый</value></data>
+  <data name="Visual.QualityPoor"><value>бедный</value></data>
+  <data name="Visual.QualityPartial"><value>частично читаемый</value></data>
+  <data name="Visual.QualityGood"><value>Хорошо.</value></data>
+  <data name="Visual.QualityExcellent"><value>Превосходно.</value></data>
+  <data name="Visual.SectorWithData"><value>Сектор с данными</value></data>
+  <data name="Visual.SectorDegraded"><value>Деградированный сектор</value></data>
+  <data name="Visual.SectorDead"><value>Мертвый сектор</value></data>
+  <data name="Visual.SectorWithoutData"><value>Сектор без данных</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Анализ революции {0}/{1}…</value></data>
 </root>

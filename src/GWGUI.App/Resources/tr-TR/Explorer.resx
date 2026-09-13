@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Kullanıcı Verileri Boyut</value></data>
   <data name="Explorer.Subchannels"><value>Subchannels</value></data>
   <data name="Explorer.AudioTracks"><value>Ses parçaları</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Medya formatını tanımak</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Tanımlanmış format</value></data>
+  <data name="Explorer.LoadingMedia"><value>Medya yapısını okumak</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Dosya sistemini analiz edin</value></data>
+  <data name="Explorer.LoadingContents"><value>klasörleri ve dosyaları hazırlamak</value></data>
+  <data name="Explorer.LoadingDisplay"><value>İçerikleri görüntülemek</value></data>
+  <data name="Explorer.TestingFormat"><value>Test formatı: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: Tanık tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: Tanınmadın</value></data>
+  <data name="Explorer.ReadingFormat"><value>Okuma formatı: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Uyumsuz biçim</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>“{1}”, “{0}” biçimi kullanılarak yorumlanamıyor.&#xA;Devam etmek için başka bir biçim seçin.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Dosya {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Doküman Doküman Doküman Doküman</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Kaynak Kodu</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC Program dosyası</value></data>
+  <data name="Explorer.Type.Executable"><value>Executableable</value></data>
+  <data name="Explorer.Type.Command"><value>Komutan dosya</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Sistem dosyası</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Object code</value></data>
+  <data name="Explorer.Type.Data"><value>Data file</value></data>
+  <data name="Explorer.Type.Configuration"><value>Yapılandırma dosyası</value></data>
+  <data name="Explorer.Type.Library"><value>Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane</value></data>
+  <data name="Explorer.Type.Media"><value>Media file</value></data>
+  <data name="Explorer.Type.Font"><value>Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font</value></data>
+  <data name="Explorer.Execution"><value>Execution Execution</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Yerli eklenebilir dosya</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Eski eski dosyayı yorumladı</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Komut veya senaryo</value></data>
 </root>

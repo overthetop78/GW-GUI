@@ -1,21 +1,23 @@
 <UserControl x:Class="GWGUI.App.Views.Controls.Visualization.TrackProgressStrip"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             MinWidth="180" MinHeight="16">
-    <Grid>
+             MinWidth="180" MinHeight="0" Height="12">
+    <Grid Height="12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="ProgressLabel"
-                   MinWidth="64"
-                   Margin="0,0,8,0"
+                   MinWidth="40"
+                   Margin="0,0,4,0"
                    VerticalAlignment="Center"
-                   FontSize="11"
+                   FontSize="9"
                    TextTrimming="CharacterEllipsis"/>
-        <ItemsControl Grid.Column="1"
-                      MinHeight="10"
+        <ItemsControl x:Name="ProgressSegments"
+                      Grid.Column="1"
+                      MinHeight="0"
+                      Height="8"
                       VerticalAlignment="Center"
                       ItemsSource="{Binding Segments, RelativeSource={RelativeSource AncestorType=UserControl}}">
             <ItemsControl.ItemsPanel>
@@ -25,7 +27,10 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Margin="0.5"
+                    <Button Style="{x:Null}"
+                            Height="8"
+                            MinHeight="0"
+                            Margin="0.5"
                             Padding="0"
                             BorderThickness="0"
                             Background="Transparent"
@@ -34,7 +39,8 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="SegmentBorder"
-                                        MinWidth="3"
+                                        MinWidth="2"
+                                        Height="8"
                                         CornerRadius="1"
                                         BorderBrush="{DynamicResource PrimaryBrush}"
                                         BorderThickness="0"
@@ -57,11 +63,11 @@
         </ItemsControl>
         <TextBlock x:Name="ProgressCount"
                    Grid.Column="2"
-                   MinWidth="54"
-                   Margin="8,0,0,0"
+                   MinWidth="40"
+                   Margin="4,0,0,0"
                    VerticalAlignment="Center"
                    TextAlignment="Right"
-                   FontSize="11"
+                   FontSize="9"
                    Foreground="{DynamicResource MutedTextBrush}"/>
     </Grid>
 </UserControl>

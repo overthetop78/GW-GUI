@@ -3,7 +3,6 @@ using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.Services.DiskImages;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.App.Views.Windows.Visualization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,21 +15,18 @@ using GWGUI.MediaEngine.Formats.Floppy.Scp;
 namespace GWGUI.App.Services.Visualization;
 
 /// <summary>
-/// Coordinates track selection, linked zoom and the attached/detached SCP inspector.
+/// Coordinates track selection, linked zoom and the integrated SCP inspector.
 /// Disk loading and progressive track preparation remain outside this controller.
 /// </summary>
 public sealed class ScpInspectorController : IDisposable
 {
-    private readonly Window _owner;
     private readonly VisualizerTabSection _section;
     private readonly DiskImageCancellationScope _cancellation;
     private readonly Func<CancellationToken, Task> _prepareViewsAsync;
     private readonly Action _hideProgress;
     private readonly ScpInspectorPresenter _presenter;
     private ScpImage? _image;
-    private ScpTrack? _selectedTrack;
-    private ScpInspectorWindow? _detachedWindow;
-    private MediaInspectorModel? _currentInspectorModel;
+    private readonly Dictionary<int, ScpTrack> _selectedTracks = [];
     private bool _syncingZoom;
     private bool _disposed;
 
@@ -43,7 +39,7 @@ public sealed class ScpInspectorController : IDisposable
         Action hideProgress,
         Func<string, object[], string> localize)
     {
-        _owner = owner;
+        _ = owner;
         _section = section;
         _cancellation = cancellation;
         _prepareViewsAsync = prepareViewsAsync;
@@ -56,49 +52,48 @@ public sealed class ScpInspectorController : IDisposable
         _section.SecondSide.ZoomChanged += ZoomChanged;
         _section.Header.DecoderCombo.SelectionChanged += DecoderChanged;
         _section.Header.ResetButton.Click += ResetViews;
-        _section.ToggleInspectorRequested += ToggleInspector;
-        _section.DetachInspectorRequested += DetachInspectorRequested;
     }
 
     public void SetImage(ScpImage image)
     {
         _cancellation.CancelInspector();
         _image = image;
-        _selectedTrack = null;
-        _currentInspectorModel = null;
-        _section.SetInspectorModel(null);
-        if (_detachedWindow is not null) _detachedWindow.DataContext = null;
+        _selectedTracks.Clear();
+        _section.ClearInspectorModels();
     }
 
     public void ClearImage()
     {
         _cancellation.CancelInspector();
         _image = null;
-        _selectedTrack = null;
-        _currentInspectorModel = null;
-        _section.SetInspectorModel(null);
-        if (_detachedWindow is not null) _detachedWindow.DataContext = null;
+        _selectedTracks.Clear();
+        _section.ClearInspectorModels();
     }
 
     public void RefreshInspector()
     {
-        if (_selectedTrack is not null && _image is not null)
-            _ = UpdateInspectorAsync(_selectedTrack);
+        if (_selectedTracks.Count > 0 && _image is not null)
+            _ = RefreshInspectorsAsync();
     }
 
     private void TrackSelected(object? sender, ScpTrack? track)
     {
-        _ = SelectTrackAsync(track);
+        var surface = ReferenceEquals(sender, _section.SecondSide) ? 1 : 0;
+        _ = SelectTrackAsync(surface, track);
     }
 
-    internal Task SelectTrackAsync(ScpTrack? track)
+    internal Task SelectTrackAsync(ScpTrack? track) => SelectTrackAsync(track?.Head ?? 0, track);
+
+    internal Task SelectTrackAsync(int surface, ScpTrack? track)
     {
-        _selectedTrack = track;
-        if (track is not null) return UpdateInspectorAsync(track);
+        if (track is not null)
+        {
+            _selectedTracks[surface] = track;
+            return UpdateInspectorAsync(surface, track);
+        }
         _cancellation.CancelInspector();
-        _currentInspectorModel = null;
-        _section.SetInspectorModel(null);
-        if (_detachedWindow is not null) _detachedWindow.DataContext = null;
+        _selectedTracks.Remove(surface);
+        _section.SetInspectorModel(surface, null);
         return Task.CompletedTask;
     }
 
@@ -126,7 +121,7 @@ public sealed class ScpInspectorController : IDisposable
         }
     }
 
-    private async Task UpdateInspectorAsync(ScpTrack track)
+    private async Task UpdateInspectorAsync(int surface, ScpTrack track)
     {
         var image = _image;
         if (image is null) return;
@@ -136,9 +131,24 @@ public sealed class ScpInspectorController : IDisposable
         {
             var model = await Task.Run(() => _presenter.BuildCommonModel(image, track, decoderId), cancellation.Token);
             if (cancellation.IsCancellationRequested || !_cancellation.IsCurrentInspector(cancellation)) return;
-            _currentInspectorModel = model;
-            if (_detachedWindow is null) _section.SetInspectorModel(model);
-            else _detachedWindow.DataContext = model;
+            _section.SetInspectorModel(surface, model);
+        }
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
+    }
+
+    private async Task RefreshInspectorsAsync()
+    {
+        var image = _image;
+        if (image is null) return;
+        var tracks = _selectedTracks.ToArray();
+        var cancellation = _cancellation.BeginInspector();
+        var decoderId = (_section.Header.DecoderCombo.SelectedItem as ScpDecoderChoice)?.Id;
+        try
+        {
+            var models = await Task.Run(() => tracks.Select(item =>
+                (item.Key, Model: _presenter.BuildCommonModel(image, item.Value, decoderId))).ToArray(), cancellation.Token);
+            if (cancellation.IsCancellationRequested || !_cancellation.IsCurrentInspector(cancellation)) return;
+            foreach (var item in models) _section.SetInspectorModel(item.Key, item.Model);
         }
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
     }
@@ -163,29 +173,6 @@ public sealed class ScpInspectorController : IDisposable
         _section.SecondSide.ResetView();
     }
 
-    private void ToggleInspector(object sender, RoutedEventArgs e)
-    {
-        if (_detachedWindow is not null)
-        {
-            _detachedWindow.Activate();
-            return;
-        }
-
-        _section.SetInspectorModel(_section.IsInspectorVisible
-            ? null
-            : _currentInspectorModel);
-    }
-
-    private void DetachInspector()
-    {
-        if (_detachedWindow is not null) return;
-        _section.SetInspectorModel(null);
-        var window = _detachedWindow = new ScpInspectorWindow { Owner = _owner, DataContext = _currentInspectorModel };
-        window.AttachRequested += DetachedWindowAttachRequested;
-        window.Closed += DetachedWindowClosed;
-        window.Show();
-    }
-
     public void Dispose()
     {
         if (_disposed) return;
@@ -197,41 +184,8 @@ public sealed class ScpInspectorController : IDisposable
         _section.SecondSide.ZoomChanged -= ZoomChanged;
         _section.Header.DecoderCombo.SelectionChanged -= DecoderChanged;
         _section.Header.ResetButton.Click -= ResetViews;
-        _section.ToggleInspectorRequested -= ToggleInspector;
-        _section.DetachInspectorRequested -= DetachInspectorRequested;
         _image = null;
-        _selectedTrack = null;
-        _currentInspectorModel = null;
-        _section.SetInspectorModel(null);
-        CloseDetachedWindow();
-    }
-
-    private void DetachInspectorRequested(object? sender, RoutedEventArgs args) => DetachInspector();
-
-    private void DetachedWindowAttachRequested(object? sender, EventArgs args) =>
-        _section.SetInspectorModel(_currentInspectorModel);
-
-    private void DetachedWindowClosed(object? sender, EventArgs args)
-    {
-        if (sender is ScpInspectorWindow window)
-        {
-            window.AttachRequested -= DetachedWindowAttachRequested;
-            window.Closed -= DetachedWindowClosed;
-            window.DataContext = null;
-            window.Content = null;
-        }
-        _detachedWindow = null;
-    }
-
-    private void CloseDetachedWindow()
-    {
-        var window = _detachedWindow;
-        if (window is null) return;
-        _detachedWindow = null;
-        window.AttachRequested -= DetachedWindowAttachRequested;
-        window.Closed -= DetachedWindowClosed;
-        window.DataContext = null;
-        window.Close();
-        window.Content = null;
+        _selectedTracks.Clear();
+        _section.ClearInspectorModels();
     }
 }

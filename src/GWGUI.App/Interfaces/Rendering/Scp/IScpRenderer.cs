@@ -9,6 +9,7 @@ public interface IScpRenderer
 {
     string? DecoderId { get; set; }
     void ClearCache();
+    void RevealTrack(int cylinder);
     Task PrepareAsync(ScpImage image, int head, IProgress<ScpTrackPreparation>? progress = null, CancellationToken cancellationToken = default);
     void Render(SKCanvas canvas, ScpRenderRequest request);
 }

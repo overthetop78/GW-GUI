@@ -133,13 +133,15 @@ public static class ExplorerDetailsPresenter
     {
         var rows = new List<ExplorerDetailRow>
         {
-            new("Explorer.Type", LocExtension.Get(ExplorerFileIconClassifier.TypeResourceKeyFor(item.IconCategory))),
+            new("Explorer.Type", item.TypeText),
             new("Explorer.Size", item.SizeText),
             new("Explorer.Modified", item.ModifiedText),
             new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)
         };
+        if (item.Definition.ExecutionKind != ExplorerExecutionKind.None)
+            rows.Add(new("Explorer.Execution", LocExtension.Get($"Explorer.Execution.{item.Definition.ExecutionKind}")));
         if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory)
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(item.Entry.Children).ToString()));
-        return new(item.Name, item.IconCategory, rows);
+        return new(item.Name, item.IconCategory, rows, false, item.Tone);
     }
 }

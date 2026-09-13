@@ -2,5 +2,25 @@ namespace GWGUI.App.Enums.Explorer;
 
 public enum ExplorerIconCategory
 {
-    Folder, Text, Image, Audio, Archive, Program, DiskImage, Link, File
+    File,
+    Folder,
+    Text,
+    Document,
+    SourceCode,
+    BasicProgram,
+    Executable,
+    Command,
+    System,
+    ObjectCode,
+    Data,
+    Configuration,
+    Library,
+    Image,
+    Audio,
+    Media,
+    Archive,
+    DiskImage,
+    Link,
+    Font,
+    Program
 }

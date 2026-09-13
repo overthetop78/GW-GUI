@@ -42,8 +42,6 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
         SelectedTrack = null;
         SelectedRevolutionIndex = null;
         _renderer.ClearCache();
-        RevolutionSelector.ItemsSource = null;
-        RevolutionSelector.Visibility = Visibility.Collapsed;
         UpdateLabels();
         ResetView();
     }
@@ -54,7 +52,9 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
         if (!cancellationToken.IsCancellationRequested) Canvas.InvalidateVisual();
     }
     public void SetDecoder(string? decoderId) { _renderer.DecoderId = decoderId; Canvas.InvalidateVisual(); }
+    public void SetRevolution(int? revolutionIndex) { SelectedRevolutionIndex = revolutionIndex; Canvas.InvalidateVisual(); }
     public void SetMediaCategory(DiskMediaCategory mediaKind) { _mediaCategory = mediaKind; Canvas.InvalidateVisual(); }
+    public void RevealPreparedTrack(int cylinder) { _renderer.RevealTrack(cylinder); Canvas.InvalidateVisual(); }
     public void RefreshPreparedTracks() => Canvas.InvalidateVisual();
     public void SetZoom(float zoom, bool notify = false) { _zoom = Math.Clamp(zoom, .65f, 4f); ResetZoomButton.Content = $"{_zoom:P0}"; Canvas.InvalidateVisual(); if (notify) ZoomChanged?.Invoke(this, _zoom); }
     public void ResetView() { _panX = _panY = 0; SetZoom(1); }
@@ -98,10 +98,6 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     private void SelectTrack(ScpTrack? track, bool notifyOverview)
     {
         SelectedTrack = track;
-        SelectedRevolutionIndex = track?.Revolutions.Count > 0 ? 0 : null;
-        RevolutionSelector.ItemsSource = track is null ? null : Enumerable.Range(1, track.Revolutions.Count).ToArray();
-        RevolutionSelector.SelectedIndex = SelectedRevolutionIndex ?? -1;
-        RevolutionSelector.Visibility = track?.Revolutions.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
         UpdateLabels();
         Canvas.InvalidateVisual();
         TrackSelected?.Invoke(this, track);
@@ -112,19 +108,13 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     {
         SurfaceLabel.Text = LocExtension.Get("Visual.Side", _head);
         SelectionLabel.Text = SelectedTrack is null
-            ? string.Empty
+            ? $"{LocExtension.Get("Visual.TrackLabel")} —"
             : $"{LocExtension.Get("Visual.TrackLabel")} {SelectedTrack.Cylinder}";
     }
 
     private void ZoomOutButton_Click(object sender, RoutedEventArgs e) => SetZoom(_zoom * .89f, true);
     private void ZoomInButton_Click(object sender, RoutedEventArgs e) => SetZoom(_zoom * 1.12f, true);
     private void ResetZoomButton_Click(object sender, RoutedEventArgs e) => ResetView();
-
-    private void RevolutionSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        SelectedRevolutionIndex = RevolutionSelector.SelectedIndex >= 0 ? RevolutionSelector.SelectedIndex : null;
-        Canvas.InvalidateVisual();
-    }
 
     private void Canvas_MouseRightButtonDown(object sender, MouseButtonEventArgs e) { _dragOrigin = e.GetPosition(Canvas); Canvas.CaptureMouse(); e.Handled = true; }
     private void Canvas_MouseRightButtonUp(object sender, MouseButtonEventArgs e) { _dragOrigin = null; Canvas.ReleaseMouseCapture(); e.Handled = true; }

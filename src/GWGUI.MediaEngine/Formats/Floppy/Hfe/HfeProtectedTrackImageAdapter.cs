@@ -12,9 +12,9 @@ public static class HfeProtectedTrackImageAdapter
             track.Cylinder,
             track.Head,
             track.Bits,
-            [new TrackTimingSegment(0, track.Bits.Count, track.BitCellTicks * (double)HfeFormat.TickNanoseconds)],
+            track.Timing,
             [],
-            [],
+            track.Features,
             [new TrackFluxRevolution(HfeFormat.TickNanoseconds, track.Revolution)])).ToArray();
         return new ProtectedTrackImage(tracks, false);
     }

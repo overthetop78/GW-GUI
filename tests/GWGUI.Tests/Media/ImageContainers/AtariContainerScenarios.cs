@@ -27,6 +27,12 @@ internal static class AtariContainerScenarios
         data[16]=42; data[16+384]=71; data[^1]=93;
         var reader = new GWGUI.MediaEngine.Formats.Floppy.Atr.AtrReader((_,token)=>{token.ThrowIfCancellationRequested();return Task.FromResult(data);});
         var image = await reader.ReadAsync("virtual"); Assert.Equal(format,image.FormatId); Assert.Equal(count,image.BlockCount); Assert.Equal(length,image.Capacity);
+        var sectorsPerTrack = count == 1040 ? 26 : 18;
+        Assert.Equal(40,image.Cylinders); Assert.Equal(1,image.Heads); Assert.Equal(sectorsPerTrack,image.SectorsPerTrack);
+        var firstBlockOnSecondTrack = image.AvailableBlocks.Single(x=>x.LogicalBlock==sectorsPerTrack);
+        Assert.Equal(1,firstBlockOnSecondTrack.Address.Cylinder); Assert.Equal(0,firstBlockOnSecondTrack.Address.Head); Assert.Equal(1,firstBlockOnSecondTrack.Address.Number);
+        var lastBlock = image.AvailableBlocks.Single(x=>x.LogicalBlock==count-1);
+        Assert.Equal(39,lastBlock.Address.Cylinder); Assert.Equal(0,lastBlock.Address.Head); Assert.Equal(sectorsPerTrack,lastBlock.Address.Number);
         Assert.Equal(128,image.AvailableBlocks.Single(x=>x.LogicalBlock==0).Data.Count);
         Assert.Equal(size,image.AvailableBlocks.Single(x=>x.LogicalBlock==3).Data.Count);
         Assert.Equal(71,image.AvailableBlocks.Single(x=>x.LogicalBlock==3).Data[0]);

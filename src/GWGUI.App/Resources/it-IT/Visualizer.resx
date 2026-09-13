@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Decodificatore</value></data>
   <data name="Visual.LinkZoom"><value>Zoom del collegamento</value></data>
   <data name="Visual.OpenScp"><value>Aprire un SCP file...</value></data>
-  <data name="Visual.NoFile"><value>Nessun file SCP aperto</value></data>
+  <data name="Visual.NoFile"><value>Nessuna immagine aperta</value></data>
   <data name="Visual.Waiting"><value>In attesa di un file</value></data>
   <data name="Visual.Inspector"><value>Ispettore</value></data>
   <data name="Visual.SelectTrack"><value>Seleziona una traccia.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Settore legato</value></data>
   <data name="Visual.SectorFree"><value>Settore pubblico</value></data>
   <data name="Visual.SectorReserved"><value>Settore riservato</value></data>
-  <data name="Visual.SectorMissing"><value>Settore mancante</value></data>
   <data name="Visual.SectorUnreadable"><value>Settore illeggibile</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Informazioni sul settore</value></data>
   <data name="Visual.SectorLabel"><value>Settore</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Dimensione</value></data>
   <data name="Visual.StateLabel"><value>Stato</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Percorso del sistema di file</value></data>
-  <data name="Visual.SectorState.Available"><value>Disponibile</value></data>
-  <data name="Visual.SectorState.Missing"><value>Mancato</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integrità sconosciuta</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integrity invalidità</value></data>
   <data name="Visual.LogicalMapTitle"><value>Mappa logica</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria geometria</value></data>
   <data name="Visual.SurfaceLabel"><value>Superficie</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Segnale</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Silenzio</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Blocco codificato</value></data>
+  <data name="Visual.RevolutionSummary"><value>Tutte le rivoluzioni</value></data>
+  <data name="Visual.RevolutionChoice"><value>Rivoluzione {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Rivoluzione</value></data>
+  <data name="Visual.QualityDead"><value>Morto morto</value></data>
+  <data name="Visual.QualityPoor"><value>Povero</value></data>
+  <data name="Visual.QualityPartial"><value>Parzialmente leggibile</value></data>
+  <data name="Visual.QualityGood"><value>Bene.</value></data>
+  <data name="Visual.QualityExcellent"><value>Ottimo</value></data>
+  <data name="Visual.SectorWithData"><value>Settore con dati</value></data>
+  <data name="Visual.SectorDegraded"><value>Settore degradato</value></data>
+  <data name="Visual.SectorDead"><value>Settore</value></data>
+  <data name="Visual.SectorWithoutData"><value>Settore senza dati</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analizzare la rivoluzione {0}/{1}…</value></data>
 </root>

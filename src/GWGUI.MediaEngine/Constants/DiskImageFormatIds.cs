@@ -15,4 +15,6 @@ public static partial class DiskImageFormatIds
     public const string RawHfe = "raw.hfe";
     /// <summary>Identifiant du conteneur de flux SuperCard Pro.</summary>
     public const string RawScp = "raw.scp";
+    /// <summary>Identifiant des conteneurs ApriDisk ACT Apricot PC/Xi de 315 Kio.</summary>
+    public const string ApricotPcXi315 = "apricot.pcxi.315";
 }

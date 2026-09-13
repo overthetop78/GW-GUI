@@ -11,7 +11,7 @@ using GWGUI.MediaEngine.Representations.Sectors;
 
 namespace GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
 
-/// <summary>Lit les conteneurs TeleDisk non compressés portant la signature majuscule.</summary>
+/// <summary>Lit les conteneurs TeleDisk normaux et avancés.</summary>
 public sealed class Td0Reader : IMediaImageReader
 {
     private static readonly IReadOnlySet<string> SupportedFormatIds = IbmPcGeometryCatalog.All
@@ -50,7 +50,16 @@ public sealed class Td0Reader : IMediaImageReader
     public static Td0Image ReadDetailed(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
     {
         if (data.Length < Td0Layout.HeaderSize) throw Td0Exceptions.Truncated(Td0Section.ImageHeader, 0, Td0Layout.HeaderSize, data.Length);
-        if (data[Td0Layout.SignatureOffset..].StartsWith(Td0Format.AdvancedCompressionSignature)) throw Td0Exceptions.AdvancedCompression();
+        if (data[Td0Layout.SignatureOffset..].StartsWith(Td0Format.AdvancedCompressionSignature))
+        {
+            var expanded = Td0AdvancedDecompressor.Decompress(data[Td0Layout.HeaderSize..]);
+            var normal = new byte[Td0Layout.HeaderSize + expanded.Length];
+            data[..Td0Layout.HeaderSize].CopyTo(normal);
+            Td0Format.UncompressedSignature.CopyTo(normal);
+            BinaryPrimitives.WriteUInt16LittleEndian(normal.AsSpan(Td0Layout.HeaderCrcOffset), Td0Crc16.Compute(normal.AsSpan(0, Td0Layout.HeaderCrcOffset)));
+            expanded.CopyTo(normal.AsSpan(Td0Layout.HeaderSize));
+            return ReadDetailed(normal, cancellationToken);
+        }
         if (!data[Td0Layout.SignatureOffset..].StartsWith(Td0Format.UncompressedSignature)) throw Td0Exceptions.InvalidSignature();
         var storedHeaderCrc = ReadUInt16(data, Td0Layout.HeaderCrcOffset);
         var calculatedHeaderCrc = Td0Crc16.Compute(data[..Td0Layout.HeaderCrcOffset]);
@@ -85,7 +94,7 @@ public sealed class Td0Reader : IMediaImageReader
         if (context.RequestedFormatId is not null && !((IMediaImageReader)this).SupportsFormatId(context.RequestedFormatId)) return false;
         if (context.Length < Td0Layout.HeaderSize) return false;
         var signature = await context.ReadHeaderAsync(Td0Format.SignatureLength, cancellationToken).ConfigureAwait(false);
-        return signature.Span.SequenceEqual(Td0Format.UncompressedSignature);
+        return signature.Span.SequenceEqual(Td0Format.UncompressedSignature) || signature.Span.SequenceEqual(Td0Format.AdvancedCompressionSignature);
     }
 
     async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common" xmlns:explorer="clr-namespace:GWGUI.App.Views.Controls.Explorer"
              xmlns:viewModels="clr-namespace:GWGUI.App.ViewModels.Explorer"
+             xmlns:explorerEnums="clr-namespace:GWGUI.App.Enums.Explorer"
              xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions">
     <UserControl.Resources>
         <Style x:Key="ExplorerFolderItemStyle" TargetType="ListBoxItem">
@@ -51,31 +52,38 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <common:CardSection Padding="12" Margin="0,0,0,12">
+        <common:CardSection x:Name="HeaderCardRoot" Padding="10" Margin="0,0,0,12">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="120"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.RowSpan="2" Margin="0,0,12,0">
-                    <TextBlock Text="{l:Loc Explorer.Image}" Margin="0,0,0,5"/>
-                    <TextBox x:Name="PathText" Height="38" IsReadOnly="True" VerticalContentAlignment="Center" AutomationProperties.Name="{l:Loc Explorer.Image}"/>
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                <common:MediaDocumentIdentity x:Name="DocumentIdentity" Margin="0,0,12,0"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="ReadDiskButton" Height="40" MinHeight="0" Margin="0,0,8,0" Content="{l:Loc Explorer.ReadDisk}"/>
+                    <Button x:Name="OpenButton" Height="40" MinHeight="0" Content="{l:Loc Explorer.OpenImage}"/>
+                    <Button x:Name="ManualOptionsButton" Width="40" Height="40" MinWidth="0" MinHeight="0" Padding="0" Margin="8,0,0,0"
+                            Click="ManualOptionsButton_Click" ToolTip="{l:Loc Common.Advanced}" AutomationProperties.Name="{l:Loc Common.Advanced}">
+                        <TextBlock Text="&#xE713;" FontFamily="{StaticResource IconFontFamily}" FontSize="16"/>
+                    </Button>
                 </StackPanel>
-                <common:DiskClassificationSelector x:Name="Classification" Grid.Column="1" Grid.RowSpan="2" Margin="0,0,12,0" ShowAutomatic="False"/>
-                <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom">
-                    <Button x:Name="ReadDiskButton" Height="38" MinHeight="0" Margin="0,0,8,0" Content="{l:Loc Explorer.ReadDisk}"/>
-                    <Button x:Name="OpenButton" Height="38" MinHeight="0" Content="{l:Loc Explorer.OpenImage}"/>
-                </StackPanel>
-                <TextBlock x:Name="DetectedFormatsText" Grid.Row="2" Margin="0,7,12,0" Foreground="{DynamicResource MutedTextBrush}"
-                           TextTrimming="CharacterEllipsis" Text="&#x2014;"/>
-                <CheckBox x:Name="AutomaticDetection" Grid.Row="2" Grid.Column="2" Content="{l:Loc Classification.Automatic}" IsChecked="True"
-                          HorizontalAlignment="Center" Margin="0,7,0,0" Checked="AutomaticDetection_Changed" Unchecked="AutomaticDetection_Changed"/>
+                <Grid Grid.Row="1" Margin="0,9,12,0">
+                    <TextBox x:Name="PathText" Visibility="Collapsed" IsReadOnly="True"/>
+                    <StackPanel x:Name="DetectedFormatPanel" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="DetectedFormatLabel" Text="{l:Loc Explorer.Format}" FontWeight="SemiBold" VerticalAlignment="Center"
+                                   Margin="0,0,9,0" Visibility="Collapsed"/>
+                        <ComboBox x:Name="DetectedFormatSelector" Height="34" MinWidth="260" Visibility="Collapsed" SelectionChanged="DetectedFormatSelector_SelectionChanged">
+                            <ComboBox.ItemTemplate><DataTemplate><StackPanel Orientation="Horizontal"><Ellipse Width="7" Height="7" Margin="0,0,8,0" Fill="#2EA866"/><TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextBrush}" FontWeight="SemiBold"/></StackPanel></DataTemplate></ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                <CheckBox x:Name="AutomaticDetection" Grid.Row="1" Grid.Column="1" Content="{l:Loc Classification.Automatic}" IsChecked="True"
+                          HorizontalAlignment="Right" Margin="0,9,0,0" Checked="AutomaticDetection_Changed" Unchecked="AutomaticDetection_Changed"/>
+                <Popup x:Name="ManualOptionsPopup" Placement="Custom" PlacementTarget="{Binding ElementName=ManualOptionsButton}"
+                       CustomPopupPlacementCallback="ManualOptionsPopup_Place" AllowsTransparency="True" StaysOpen="False">
+                    <Border Margin="0,8,0,12" Padding="14" Background="{DynamicResource CardBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="8">
+                        <Border.Effect><DropShadowEffect BlurRadius="18" ShadowDepth="4" Opacity="0.22"/></Border.Effect>
+                        <common:DiskClassificationSelector x:Name="Classification" ShowAutomatic="False"/>
+                    </Border>
+                </Popup>
             </Grid>
         </common:CardSection>
 
@@ -169,7 +177,29 @@
                     <ListView.View>
                         <GridView AllowsColumnReorder="False">
                             <GridViewColumn Header="{l:Loc Explorer.Name}" Width="250">
-                                <GridViewColumn.CellTemplate><DataTemplate><DockPanel><common:FileEntryIcon Category="{Binding IconCategory}" Width="22" Margin="0,0,8,0" VerticalAlignment="Center"/><TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/></DockPanel></DataTemplate></GridViewColumn.CellTemplate>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <common:FileEntryIcon Category="{Binding IconCategory}" Tone="{Binding Tone}" Width="22" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Tone}" Value="{x:Static explorerEnums:ExplorerEntryTone.Executable}">
+                                                                <Setter Property="Foreground" Value="#18864B"/>
+                                                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Tone}" Value="{x:Static explorerEnums:ExplorerEntryTone.Muted}">
+                                                                <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="{l:Loc Explorer.Modified}" Width="135" DisplayMemberBinding="{Binding ModifiedText}"/>
                             <GridViewColumn Header="{l:Loc Explorer.Type}" Width="115" DisplayMemberBinding="{Binding TypeText}"/>
@@ -182,13 +212,23 @@
             <common:CardSection Grid.Row="1" Grid.Column="4" Padding="0">
                 <explorer:ExplorerDetailsPanel x:Name="DetailsPanel"/>
             </common:CardSection>
+
+            <Border x:Name="ExplorerEmptyState" Grid.Row="1" Grid.ColumnSpan="5" Background="{DynamicResource CardBrush}"
+                    CornerRadius="8" Panel.ZIndex="5">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border Width="68" Height="68" CornerRadius="34" Background="#EAF2F7" HorizontalAlignment="Center">
+                        <TextBlock Text="&#xED25;" FontFamily="{StaticResource IconFontFamily}" FontSize="30" Foreground="#34566C"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="{l:Loc Visual.NoFile}" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,16,0,14"/>
+                    <Button x:Name="EmptyOpenButton" Content="{l:Loc Explorer.OpenImage}" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
         </Grid>
 
-        <Border x:Name="LoadingOverlay" Grid.RowSpan="3" Background="#CCFFFFFF" Visibility="Collapsed">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ProgressBar Width="280" Height="8" IsIndeterminate="True"/>
-                <TextBlock Text="{l:Loc Explorer.Loading}" Margin="0,12,0,0" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-            </StackPanel>
+        <Border x:Name="LoadingOverlay" Grid.Row="2" Background="Transparent" Visibility="Collapsed"
+                Panel.ZIndex="10" IsHitTestVisible="False">
+            <common:MediaRecognitionProgressCard x:Name="LoadingCard" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
     </Grid>
 </UserControl>

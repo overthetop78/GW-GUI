@@ -1,6 +1,10 @@
 using GWGUI.App.Contracts.Rendering.Scp;
+using GWGUI.App.Contracts.Rendering.Sectors;
+using GWGUI.App.Enums.Rendering.Sectors;
 using GWGUI.App.Enums.Rendering.Scp;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Rendering.Scp;
+using GWGUI.App.Rendering.Sectors;
 using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Visualization;
@@ -91,33 +95,45 @@ public partial class VisualizerTrackOverview : UserControl
             strip.SetColor(preparation.Cylinder, ColorFor(preparation));
     }
 
+    public void MarkSectors(SectorMediaRenderModel model)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+        foreach (var surface in model.Surfaces)
+        {
+            if (!_strips.TryGetValue(surface.Index, out var strip)) continue;
+            foreach (var track in surface.Tracks)
+                strip.SetColor(track.Cylinder, SectorColor(track.Sectors));
+        }
+    }
+
+    public void MarkSectorTrack(int surface, SectorMediaTrack track)
+    {
+        ArgumentNullException.ThrowIfNull(track);
+        if (_strips.TryGetValue(surface, out var strip))
+            strip.SetColor(track.Cylinder, SectorColor(track.Sectors));
+    }
+
+    private static Color SectorColor(IReadOnlyList<SectorMediaElement> sectors)
+    {
+        var state = sectors.Count == 0
+            ? SectorMediaElementState.WithoutData
+            : sectors.Any(sector => sector.State == SectorMediaElementState.Dead)
+                ? SectorMediaElementState.Dead
+                : sectors.Any(sector => sector.State == SectorMediaElementState.Degraded)
+                    ? SectorMediaElementState.Degraded
+                    : sectors.Any(sector => sector.State == SectorMediaElementState.WithData)
+                        ? SectorMediaElementState.WithData
+                        : SectorMediaElementState.WithoutData;
+        var color = SkiaSectorMediaRenderer.ColorFor(state);
+        return Color.FromRgb(color.Red, color.Green, color.Blue);
+    }
+
     internal static Color ColorFor(ScpTrackPreparation preparation)
     {
         if (!preparation.HasFlux)
-            return Color.FromRgb(255, 75, 96);
-
-        var sectorCount = preparation.ValidSectors + preparation.InvalidSectors + preparation.UnverifiedSectors;
-        if (sectorCount > 0)
-        {
-            var unreadableRatio = (preparation.InvalidSectors + preparation.UnverifiedSectors * .25) / sectorCount;
-            if (unreadableRatio == 0) return Color.FromRgb(36, 179, 93);
-            if (unreadableRatio <= .10) return Color.FromRgb(100, 201, 107);
-            if (unreadableRatio <= .25) return Color.FromRgb(67, 220, 255);
-            if (unreadableRatio <= .40) return Color.FromRgb(83, 173, 255);
-            if (unreadableRatio <= .60) return Color.FromRgb(255, 205, 64);
-            if (preparation.ValidSectors > 0) return Color.FromRgb(245, 158, 61);
-            return Color.FromRgb(255, 75, 96);
-        }
-
-        return preparation.State switch
-        {
-            ScpTrackVisualState.ShortTransition => Color.FromRgb(143, 104, 255),
-            ScpTrackVisualState.LongTransition => Color.FromRgb(83, 173, 255),
-            ScpTrackVisualState.Header => Color.FromRgb(255, 205, 64),
-            ScpTrackVisualState.DecodedData => Color.FromRgb(67, 220, 255),
-            ScpTrackVisualState.Anomaly => Color.FromRgb(255, 75, 96),
-            _ => Color.FromRgb(36, 179, 93)
-        };
+            return Color.FromRgb(190, 55, 62);
+        var color = SkiaScpRenderer.QualityColor(preparation.Quality);
+        return Color.FromRgb(color.Red, color.Green, color.Blue);
     }
 
     private void HandleElementSelected(int surface, long position)

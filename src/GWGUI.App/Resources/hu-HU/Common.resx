@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Ismeretlen</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Kibocsátás</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Ismeretlen adathordozók</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Hajlékonylemez</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>merevlemez</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optikai tárcsa</value></data>
+  <data name="Common.MediaKind.Tape"><value>Videofelvétel</value></data>
+  <data name="Common.Representation.Flux"><value>flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Szektorok</value></data>
+  <data name="Common.Representation.Blocks"><value>Blokkok</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optikai sínek</value></data>
+  <data name="Common.Representation.Sequential"><value>Szakaszos adatok</value></data>
 </root>

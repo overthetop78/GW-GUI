@@ -87,6 +87,7 @@ public sealed class AtrReader : IMediaImageReader
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
         var payloadLength = data.Length - AtrLayout.HeaderSize;
         var sectorCount = AtrLayout.GetSectorCount(payloadLength, sectorSize);
+        var geometry = AtrLayout.GetGeometry(sectorSize, sectorCount);
         var blocks = new List<SectorBlock>(sectorCount);
         var offset = AtrLayout.HeaderSize;
         for (var sector = AtrLayout.FirstSectorNumber; sector <= sectorCount; sector++)
@@ -94,11 +95,13 @@ public sealed class AtrReader : IMediaImageReader
             cancellationToken.ThrowIfCancellationRequested();
             var length = sector <= AtrLayout.BootSectorCount ? AtrLayout.BootSectorSize : sectorSize;
             var logicalIndex = sector - AtrLayout.FirstSectorNumber;
-            blocks.Add(new(logicalIndex, new(logicalIndex, AtrLayout.LogicalHeadIndex, sector), data.AsSpan(offset, length).ToArray()));
+            var cylinder = logicalIndex / geometry.SectorsPerTrack;
+            var sectorInTrack = logicalIndex % geometry.SectorsPerTrack + AtrLayout.FirstSectorNumber;
+            blocks.Add(new(logicalIndex, new(cylinder, AtrLayout.LogicalHeadIndex, sectorInTrack), data.AsSpan(offset, length).ToArray()));
             offset += length;
         }
 
-        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, sectorCount, AtrLayout.LogicalHeadCount, AtrLayout.LogicalSectorsPerCylinder, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: payloadLength);
+        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: payloadLength);
     }
 
     /// <summary>Charge un conteneur ATR et vÃ©rifie son en-tÃªte, ses longueurs et l'intÃ©gritÃ© de ses limites sectorielles.</summary>

@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Onbekend</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Uitwerpen</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Onbekende media</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Diskette</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Harde schijf</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optische schijf</value></data>
+  <data name="Common.MediaKind.Tape"><value>Tape</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sectoren</value></data>
+  <data name="Common.Representation.Blocks"><value>Blok</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optische sporen</value></data>
+  <data name="Common.Representation.Sequential"><value>Sequentiële gegevens</value></data>
 </root>

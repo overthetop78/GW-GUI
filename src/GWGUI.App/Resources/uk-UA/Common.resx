@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Невідомий</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>В'язання</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Невідомі ЗМІ</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Дискета</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Жорсткий диск</value></data>
+  <data name="Common.MediaKind.Optical"><value>Оптичний диск</value></data>
+  <data name="Common.MediaKind.Tape"><value>Панчохи</value></data>
+  <data name="Common.Representation.Flux"><value>Флюс</value></data>
+  <data name="Common.Representation.Sectors"><value>Сектори</value></data>
+  <data name="Common.Representation.Blocks"><value>Блоки</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Оптичні треки</value></data>
+  <data name="Common.Representation.Sequential"><value>Основні дані</value></data>
 </root>

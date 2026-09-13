@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>ไม่ทราบ</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>นำออก</value></data>
+  <data name="Common.MediaKind.Unknown"><value>ไม่รู้จักสื่อ</value></data>
+  <data name="Common.MediaKind.Floppy"><value>ฟลอปปีดิสก์</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>ฮาร์ดดิสก์</value></data>
+  <data name="Common.MediaKind.Optical"><value>แผ่นโอพทัล</value></data>
+  <data name="Common.MediaKind.Tape"><value>เทป</value></data>
+  <data name="Common.Representation.Flux"><value>เบลอ</value></data>
+  <data name="Common.Representation.Sectors"><value>ส่วน</value></data>
+  <data name="Common.Representation.Blocks"><value>บล็อค</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>แทร็กเสียงแบบโอพทรีย์</value></data>
+  <data name="Common.Representation.Sequential"><value>ข้อมูลลําดับ</value></data>
 </root>

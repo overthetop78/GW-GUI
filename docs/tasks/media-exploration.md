@@ -439,7 +439,7 @@ dans l’ordre.
 
   Ce point commence seulement lorsque les points 1 à 6 sont entièrement terminés. Il contient les
   tests généraux autonomes de `GWGUI.Tests`, créés ou adaptés après stabilisation du code et sans
-  dépendance au corpus local `image_test`.
+dépendance aux corpus locaux de médias.
 
   - [x] 7.1 Couvrir les Readers et structures sans matériel externe
     - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs` pour valider l'acquisition Greaseweazle neutre, sa reconstruction SCP et sa progression sans dépendre des contrats supprimés de l'application.
@@ -466,4 +466,4 @@ dans l’ordre.
 
 Après achèvement et validation de toutes les cases de cette feuille, continuer avec la première case
 non cochée de [`hard-disk-images.md`](hard-disk-images.md). Le troisième commit demandé est créé
-après cette feuille complémentaire et avant les essais manuels du corpus `image_test`.
+après cette feuille complémentaire et avant les essais manuels des corpus locaux de médias.

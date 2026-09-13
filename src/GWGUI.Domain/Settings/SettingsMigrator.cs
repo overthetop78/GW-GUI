@@ -124,6 +124,10 @@ public static class SettingsMigrator
         foreach (var shortcut in EmulationShortcutDefaults.Values)
             if (!settings.EmulationShortcuts.ContainsKey(shortcut.Key)) settings.EmulationShortcuts[shortcut.Key] = shortcut.Value;
         settings.LastDiskImageFolder = string.IsNullOrWhiteSpace(settings.LastDiskImageFolder) ? null : settings.LastDiskImageFolder.Trim();
+        settings.LastVisualizerImageFolder = string.IsNullOrWhiteSpace(settings.LastVisualizerImageFolder)
+            ? settings.LastDiskImageFolder : settings.LastVisualizerImageFolder.Trim();
+        settings.LastExplorerImageFolder = string.IsNullOrWhiteSpace(settings.LastExplorerImageFolder)
+            ? settings.LastDiskImageFolder : settings.LastExplorerImageFolder.Trim();
         settings.Window ??= new WindowPlacementSettings();
         settings.Controllers ??= [];
         settings.UnconfiguredControllers ??= [];

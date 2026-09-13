@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>未知</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>退出</value></data>
+  <data name="Common.MediaKind.Unknown"><value>未知的媒体</value></data>
+  <data name="Common.MediaKind.Floppy"><value>軟碟</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>硬盘</value></data>
+  <data name="Common.MediaKind.Optical"><value>光盘</value></data>
+  <data name="Common.MediaKind.Tape"><value>磁带</value></data>
+  <data name="Common.Representation.Flux"><value>豪华</value></data>
+  <data name="Common.Representation.Sectors"><value>部门</value></data>
+  <data name="Common.Representation.Blocks"><value>块</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>光学轨道</value></data>
+  <data name="Common.Representation.Sequential"><value>序列数据</value></data>
 </root>

@@ -75,6 +75,27 @@ données nécessaires sont disponibles.
 Le même `MediaImageDocument` peut alimenter l’Explorateur, la préparation du Visualiseur et la
 conversion. Il n’est pas nécessaire de recommencer la reconnaissance entre ces opérations.
 
+### Priorité des captures SCP multiformats
+
+Les captures SCP restent toutes analysées sur l'ensemble de leurs pistes. L'ordre automatique
+commence toutefois par Amiga, puis par les variantes MFM compatibles IBM PC et Atari ST. Ce choix
+correspond aux disquettes de couverture Amiga/ST/PC effectivement présentes dans le corpus et aux
+formats physiques documentés : AmigaOS CrossDOS sait lire les disquettes MS-DOS 720 Kio, tandis
+que le pilote AMIX distingue explicitement le format Amiga 880 Kio du format IBM PC 720 Kio.
+
+Le format Atari ST 720 Kio partage la géométrie MFM 80 cylindres, deux faces et neuf secteurs de
+512 octets avec IBM PC ; il peut donc constituer une interprétation logique supplémentaire du même
+décodage physique. Les formats AmigaDOS 880 Kio et Apple Macintosh 400/800 Kio exigent des
+décodages physiques distincts. La présence historique de lecteurs Macintosh 400, 800 et 1 440 Kio
+ne démontre pas qu'une même disquette combine un catalogue Apple avec AmigaDOS et FAT12 : Apple
+reste donc analysé dans le parcours complet, sans être ajouté artificiellement au groupe
+tri-format prioritaire.
+
+Sources techniques : manuel [AmigaOS CrossDOS](https://wiki.amigaos.net/wiki/AmigaOS_Manual%3A_Workbench_CrossDOS),
+page de référence [AMIX fd(7A)](https://www.typewritten.org/Manual/Commodore/AMIX/2.03/man7a/fd.html),
+catalogue technique [fdutils floppy_formats](https://sources.debian.org/src/fdutils/5.6-5/doc/floppy_formats)
+et description de préservation du format Macintosh [MOOF](https://www.loc.gov/preservation/digital/formats/fdd/fdd000612.shtml).
+
 ## Exploration
 
 `MediaExplorer` reçoit un document déjà reconnu. `MediaVolumeDetectorRegistry` détermine les
@@ -190,7 +211,7 @@ Les projets d’émulation n’ont pas été restructurés : seuls leurs appels 
 - L'écriture physique neutre est préparée par contrats et registres. Les appareils et outils réels
   autres que Greaseweazle devront être ajoutés dans `GWGUI.Infrastructure`, sans déplacer leurs
   protocoles dans MediaEngine ou dans l'interface.
-- Les validations finales avec les véritables fichiers du corpus `image_test` restent séparées et
+- Les validations finales avec les véritables fichiers des corpus locaux de médias restent séparées et
   seront effectuées manuellement après les phases d'implémentation et les commits prévus.
 - Les validations autonomes des compléments HDD couvrent les services HDD et MediaEngine avec des
   fichiers ou documents synthétiques. Elles ne remplacent pas la vérification finale des variantes

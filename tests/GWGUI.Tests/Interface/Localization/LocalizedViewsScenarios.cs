@@ -22,9 +22,11 @@ internal static class LocalizedViewsScenarios
             var read = new ReadTabSection(); var write = new WriteTabSection(); var convert = new ConversionTabSection();
             var longPath = "virtual/" + string.Concat(Enumerable.Repeat("long-directory/", 50)) + "synthetic.scp";
             read.FolderBlock.Input.Text = longPath; write.SourceBlock.Input.Text = longPath; convert.SourceBlock.Input.Text = longPath;
-            read.CompletionBlock.Visibility = Visibility.Visible;
+            read.CompletionBlock.BeginCapture(longPath);
+            read.CompletionBlock.CompleteCapture(
+                longPath,
+                string.Join(" ", Enumerable.Repeat(LocExtension.Get("Read.ScpSummaryTitle"), 500)));
             var summary = read.CompletionBlock.SummaryTextBlock;
-            summary.Text = string.Join(" ", Enumerable.Repeat(LocExtension.Get("Read.ScpSummaryTitle"), 500));
             foreach (var (section, command, path) in new (UserControl, Button, TextBox)[] {
                 (read, read.ExecuteActionButton, read.FolderBlock.Input),
                 (write, write.ExecuteActionButton, write.SourceBlock.Input),
@@ -65,6 +67,11 @@ internal static class LocalizedViewsScenarios
                 Assert.False(string.IsNullOrWhiteSpace(value),"Empty resource: "+key+" in "+language);
                 Assert.NotEqual("["+key+"]",value);
             }
+            var incompatibleFormat = LocExtension.Get(
+                "Explorer.SelectedFormatUnsupported", "FORMAT_TOKEN", "FILE_TOKEN");
+            Assert.Contains("FORMAT_TOKEN", incompatibleFormat);
+            Assert.Contains("FILE_TOKEN", incompatibleFormat);
+            Assert.Contains("\n", incompatibleFormat);
             Assert.False(label.IsLoaded);
         }
         finally{source.SetCultures(old.Culture,old.UiCulture);}

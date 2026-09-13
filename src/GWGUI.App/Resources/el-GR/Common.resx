@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Αγνωστος</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Έκτρωση</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Άγνωστο μέσο</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Δισκέτα</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Σκληρός δίσκος</value></data>
+  <data name="Common.MediaKind.Optical"><value>Οπτικός δίσκος</value></data>
+  <data name="Common.MediaKind.Tape"><value>Ταινία</value></data>
+  <data name="Common.Representation.Flux"><value>Φλούξ</value></data>
+  <data name="Common.Representation.Sectors"><value>Τομείς</value></data>
+  <data name="Common.Representation.Blocks"><value>Πλευρά</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Οπτικά κομμάτια</value></data>
+  <data name="Common.Representation.Sequential"><value>Αλληλοσημειωτικά δεδομένα</value></data>
 </root>

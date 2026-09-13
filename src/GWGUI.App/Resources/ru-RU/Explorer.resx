@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Размер данных пользователя</value></data>
   <data name="Explorer.Subchannels"><value>Подканалы</value></data>
   <data name="Explorer.AudioTracks"><value>Аудио треки</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Признание формата СМИ</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Признанный формат</value></data>
+  <data name="Explorer.LoadingMedia"><value>Чтение структуры СМИ</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Анализ файловой системы</value></data>
+  <data name="Explorer.LoadingContents"><value>Подготовка папок и файлов</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Отображение содержимого</value></data>
+  <data name="Explorer.TestingFormat"><value>Формат тестирования: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: признанный</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: не признано</value></data>
+  <data name="Explorer.ReadingFormat"><value>Формат чтения: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Несовместимый формат</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Невозможно интерпретировать «{1}» в формате «{0}».&#xA;Выберите другой формат, чтобы продолжить.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Файлы {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Документация</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Исходный код</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC файл программы</value></data>
+  <data name="Explorer.Type.Executable"><value>исполняемый</value></data>
+  <data name="Explorer.Type.Command"><value>Командовый файл</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Системный файл</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Объектный код</value></data>
+  <data name="Explorer.Type.Data"><value>Файлы данных</value></data>
+  <data name="Explorer.Type.Configuration"><value>Файл конфигурации</value></data>
+  <data name="Explorer.Type.Library"><value>Библиотека</value></data>
+  <data name="Explorer.Type.Media"><value>Медиафайлы</value></data>
+  <data name="Explorer.Type.Font"><value>шрифт</value></data>
+  <data name="Explorer.Execution"><value>Казнь</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Native executable файл</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Интерпретируемый исполняемый файл</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Командный или письменный</value></data>
 </root>

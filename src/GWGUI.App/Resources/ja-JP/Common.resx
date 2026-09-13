@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>未知</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>取り出す</value></data>
+  <data name="Common.MediaKind.Unknown"><value>未知のメディア</value></data>
+  <data name="Common.MediaKind.Floppy"><value>フロッピーディスク</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>ハードディスク</value></data>
+  <data name="Common.MediaKind.Optical"><value>光学ディスク</value></data>
+  <data name="Common.MediaKind.Tape"><value>テープ</value></data>
+  <data name="Common.Representation.Flux"><value>フラックス</value></data>
+  <data name="Common.Representation.Sectors"><value>セクター</value></data>
+  <data name="Common.Representation.Blocks"><value>ブロック</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>光学トラック</value></data>
+  <data name="Common.Representation.Sequential"><value>順次データ</value></data>
 </root>

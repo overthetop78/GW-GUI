@@ -130,7 +130,9 @@ internal sealed class ReadTabController(
     internal void FamilyChanged()
     {
         if (FormatCombo is null || FamilyCombo.SelectedItem is not string family) return;
-        FormatCombo.ItemsSource = formatCatalog().Formats.Where(x => x.Family == family).ToArray();
+        FormatCombo.ItemsSource = formatCatalog().Formats
+            .Where(format => format.Family == family && format.SupportsPhysicalRead)
+            .ToArray();
         FormatCombo.SelectedIndex = 0;
     }
 
@@ -398,6 +400,7 @@ internal sealed class ReadTabController(
         catch (ArgumentException) { diskDefinitionsController.ShowInvalid(LocExtension.Get("Read.Title")); return; }
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop");
         operation.Begin();
+        view.CompletionBlock.BeginCapture(target);
         await operation.RenderPendingAsync();
         logOutput.Clear();
         await consoleLog.BeginAsync("read", command.ToDisplayString());
@@ -409,16 +412,18 @@ internal sealed class ReadTabController(
         {
             if (result.WasCancelled)
                 HandleCancelledOutput(target, true, "Deleting cancelled read output");
-            if (result.IsSuccess && extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
+            if (result.IsSuccess)
             {
                 diskImageWorkspace.LastCapturedPath = target;
-                view.CompletionBlock.Visibility = Visibility.Visible;
-                await AppendScpCaptureSummaryAsync(target);
+                var summary = extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)
+                    ? await AppendScpCaptureSummaryAsync(target)
+                    : string.Empty;
+                view.CompletionBlock.CompleteCapture(target, summary);
             }
-            if (result.IsSuccess && exists(target))
-                await AnalyzeCompletedAsync(target);
             if (result.IsSuccess) viewModel.Read.TryAdvanceSequence();
         }
+        if (outcome.Result?.IsSuccess != true)
+            view.CompletionBlock.DiscardCapture(target);
         operation.End();
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Execute");
     }
@@ -427,6 +432,7 @@ internal sealed class ReadTabController(
     {
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop");
         operation.Begin();
+        view.CompletionBlock.BeginCapture(target);
         await operation.RenderPendingAsync();
         logOutput.Clear();
         await consoleLog.BeginAsync("read-internal", LocExtension.Get("Read.InternalPreview", target));
@@ -448,9 +454,15 @@ internal sealed class ReadTabController(
         {
             diskImageWorkspace.RememberReadImage(capture.Document);
             diskImageWorkspace.LastCapturedPath = target;
-            view.CompletionBlock.Visibility = Visibility.Visible;
-            await AppendScpCaptureSummaryAsync(target);
+            var summary = Path.GetExtension(target).Equals(".scp", StringComparison.OrdinalIgnoreCase)
+                ? await AppendScpCaptureSummaryAsync(target)
+                : string.Empty;
+            view.CompletionBlock.CompleteCapture(target, summary);
             viewModel.Read.TryAdvanceSequence();
+        }
+        else
+        {
+            view.CompletionBlock.DiscardCapture(target);
         }
         operation.End();
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Execute");
@@ -482,20 +494,7 @@ internal sealed class ReadTabController(
         if (showDialog) dialogs.Show(message, LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
     }
 
-    private async Task AnalyzeCompletedAsync(string path)
-    {
-        try { await diskImageWorkspace.AnalyzeAsync(path); }
-        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
-        {
-            ErrorLog.Write(exception, $"Analyzing completed disk read: {path}");
-            var detail = ExceptionDescriptionFunctions.Describe(exception);
-            operation.AppendText(Environment.NewLine);
-            operation.AppendText(LocExtension.Get("Error.Unexpected", detail));
-            operation.AppendText(Environment.NewLine);
-        }
-    }
-
-    private async Task AppendScpCaptureSummaryAsync(string path)
+    private async Task<string> AppendScpCaptureSummaryAsync(string path)
     {
         try
         {
@@ -505,15 +504,17 @@ internal sealed class ReadTabController(
             operation.AppendText(LocExtension.Get("Read.ScpTracksSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides) + Environment.NewLine);
             operation.AppendText(LocExtension.Get("Read.ScpTechnicalSummary", info.Header.Revolutions, info.Header.ResolutionNanoseconds, info.FileSize, checksum) + Environment.NewLine);
             operation.AppendText(LocExtension.Get("Read.ScpOutputFile", path) + Environment.NewLine);
-            view.CompletionBlock.SummaryTextBlock.Text = LocExtension.Get("Read.ScpBannerSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides, info.Header.Revolutions, info.FileSize, checksum);
+            var summary = LocExtension.Get("Read.ScpBannerSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides, info.Header.Revolutions, info.FileSize, checksum);
             logOutput.ScrollToEnd();
+            return summary;
         }
         catch (Exception exception)
         {
             reportError(exception, "Reading SCP summary");
             var detail = ExceptionDescriptionFunctions.Describe(exception);
-            view.CompletionBlock.SummaryTextBlock.Text = LocExtension.Get("Read.ScpSummaryUnavailable", detail);
-            operation.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", detail) + Environment.NewLine);
+            var summary = LocExtension.Get("Read.ScpSummaryUnavailable", detail);
+            operation.AppendText(Environment.NewLine + summary + Environment.NewLine);
+            return summary;
         }
     }
 

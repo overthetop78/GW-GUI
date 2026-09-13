@@ -98,8 +98,8 @@ explicites de l’utilisateur restent prioritaires.
 
 ## Images de test
 
-- `image_test/validated_images` contient uniquement les images dont le parcours demandé a été validé.
-- Une image validée est déplacée, jamais copiée, vers `validated_images/<marque>/<modèle>/<type de disquette>/`.
+- Les audits de médias emploient en lecture seule `F:\Rétro`, `F:\86Box\Isos`, `C:\Users\overt\Documents\GW GUI\Emulation\HDD` et `C:\Users\overt\86Box VMs`.
+- Une validation ne copie, ne déplace et ne modifie aucun fichier de ces corpus.
 - Une image déjà validée n’est pas retraitée.
 - Les images générées sont elles aussi testées puis classées dans leur famille finale.
 - Les fichiers parasites et dossiers sources devenus vides sont supprimés après déplacement des images validées.

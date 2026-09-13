@@ -1727,7 +1727,7 @@ ajoutée après la dernière action cochée et avant son exécution, conforméme
 
   Ce point commence seulement lorsque les points 1 à 8 sont entièrement terminés. Il contient les
   tests généraux autonomes de `GWGUI.Tests`, fondés sur des données simulées en mémoire et adaptés
-  aux contrôles normaux du projet. Il n’utilise pas le corpus local `image_test`.
+aux contrôles normaux du projet. Il n’utilise pas les corpus locaux de médias.
 
   - [x] 9.1 Conserver les comportements actuels utiles
     - [x] Créer `tests/GWGUI.Tests/MediaEngine/Recognition/MediaRecognitionRegistryTests.cs` avec des Readers simulés couvrant signature, extension, format demandé, ordre, fichiers associés, annulation et lecture partagée.

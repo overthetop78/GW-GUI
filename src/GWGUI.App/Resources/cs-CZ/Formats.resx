@@ -23,7 +23,6 @@
   <data name="Detection.IbmSize"><value>Geometrie IBM PC rozpoznána z velikosti souboru.</value></data>
   <data name="Detection.ExtensionInferred"><value>Formát odvozený z rozšíření.</value></data>
   <data name="Detection.Multiple"><value>Je možných několik formátů; jednu explicitně vybrat.</value></data>
-  <data name="Format.raw.scp"><value>Obraz surového toku</value></data>
   <data name="Common.DiskImageFilter"><value>Obrázky disků|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Všechny soubory|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Formát Apple II DOS byl rozpoznán podle pořadí sektorů.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Formát Apple II ProDOS byl rozpoznán podle pořadí sektorů.</value></data>
@@ -32,4 +31,5 @@
   <data name="Classification.Machine"><value>Počítač</value></data>
   <data name="Classification.Format"><value>Formát</value></data>
   <data name="Classification.Protection"><value>Ochrana</value></data>
+  <data name="Format.raw.scp"><value>Obrázek syrového toku</value></data>
 </root>

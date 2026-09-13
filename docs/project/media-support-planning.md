@@ -274,4 +274,4 @@ Les décisions suivantes nécessitent les images réelles du corpus ou du matér
 - quels seuils d’agrégation, couleurs et niveaux de détail restent lisibles avec de très grandes images ;
 - quels appareils physiques pourront être utilisés pour les disques durs, les supports optiques et les bandes, et quelles capacités réelles ils déclareront ;
 - quelles conversions entraînent une perte acceptable de métadonnées physiques, optiques ou temporelles ;
-- quels écarts apparaissent lors des essais manuels du corpus `image_test`.
+- quels écarts apparaissent lors des essais manuels des corpus locaux de médias.

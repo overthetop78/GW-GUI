@@ -23,6 +23,8 @@ public sealed class AppSettings
     public List<EmulationMediaFolderSettings> EmulationMediaFolders { get; set; } = [];
     public bool CreateEmulationFoldersAutomatically { get; set; } = true;
     public string? LastDiskImageFolder { get; set; }
+    public string? LastVisualizerImageFolder { get; set; }
+    public string? LastExplorerImageFolder { get; set; }
     public string? GwExecutablePath { get; set; }
     public string? PreviousGwExecutablePath { get; set; }
     public string? InstalledHostToolsVersion { get; set; }

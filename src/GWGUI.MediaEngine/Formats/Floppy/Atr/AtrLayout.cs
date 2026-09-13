@@ -32,6 +32,12 @@ internal static class AtrLayout
     public const int StandardSectorCount = 720;
     /// <summary>Nombre de secteurs d'une image ATR à densité améliorée de 130 Kio.</summary>
     public const int EnhancedDensitySectorCount = 1040;
+    /// <summary>Nombre de cylindres des disquettes Atari 8 bits standards.</summary>
+    public const int StandardCylinderCount = 40;
+    /// <summary>Nombre de secteurs par piste en simple et double densité.</summary>
+    public const int StandardSectorsPerCylinder = 18;
+    /// <summary>Nombre de secteurs par piste en densité améliorée.</summary>
+    public const int EnhancedDensitySectorsPerCylinder = 26;
     /// <summary>Décalage binaire appliqué au mot haut du nombre de paragraphes.</summary>
     public const int ParagraphCountHighWordShift = 16;
     /// <summary>Premier numéro de secteur exposé par une image ATR.</summary>
@@ -40,9 +46,6 @@ internal static class AtrLayout
     public const int LogicalHeadIndex = 0;
     /// <summary>Nombre de faces logiques exposées par une image ATR.</summary>
     public const int LogicalHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
-    /// <summary>Nombre de secteurs logiques associé à chaque cylindre logique ATR.</summary>
-    public const int LogicalSectorsPerCylinder = 1;
-
     /// <summary>Indique si une taille sectorielle est prise en charge.</summary>
     /// <param name="sectorSize">Taille sectorielle observée, en octets.</param>
     /// <returns><see langword="true"/> pour une taille prise en charge ; sinon <see langword="false"/>.</returns>
@@ -62,4 +65,18 @@ internal static class AtrLayout
         var bootAreaLength = GetBootAreaLength(sectorSize);
         return (sectorSize == SingleDensitySectorSize ? 0 : BootSectorCount) + (payloadLength - bootAreaLength) / sectorSize;
     }
+
+    /// <summary>Retourne la géométrie physique standard correspondant à la taille et au nombre de secteurs ATR.</summary>
+    /// <param name="sectorSize">Taille nominale d'un secteur.</param>
+    /// <param name="sectorCount">Nombre total de secteurs.</param>
+    /// <returns>Géométrie standard connue, ou géométrie linéaire pour une disposition ATR non standard.</returns>
+    public static (int Cylinders, int Heads, int SectorsPerTrack) GetGeometry(int sectorSize, int sectorCount) =>
+        (sectorSize, sectorCount) switch
+        {
+            (SingleDensitySectorSize, StandardSectorCount) or (DoubleDensitySectorSize, StandardSectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder),
+            (SingleDensitySectorSize, EnhancedDensitySectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, EnhancedDensitySectorsPerCylinder),
+            _ => (sectorCount, LogicalHeadCount, 1)
+        };
 }

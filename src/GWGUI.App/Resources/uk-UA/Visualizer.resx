@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Декодер</value></data>
   <data name="Visual.LinkZoom"><value>Збільшення посилання</value></data>
   <data name="Visual.OpenScp"><value>Відкрийте файл SCP…</value></data>
-  <data name="Visual.NoFile"><value>Немає відкритого файлу SCP</value></data>
+  <data name="Visual.NoFile"><value>Немає відкритого образу</value></data>
   <data name="Visual.Waiting"><value>Очікування файлу</value></data>
   <data name="Visual.Inspector"><value>Інспектор</value></data>
   <data name="Visual.SelectTrack"><value>Виберіть трек.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Індустрія</value></data>
   <data name="Visual.SectorFree"><value>Безкоштовна галузь</value></data>
   <data name="Visual.SectorReserved"><value>Заповідний сектор</value></data>
-  <data name="Visual.SectorMissing"><value>Місця сектора</value></data>
   <data name="Visual.SectorUnreadable"><value>Непрочитане сектор</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Інформація про сектор</value></data>
   <data name="Visual.SectorLabel"><value>Сектор</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Розмір</value></data>
   <data name="Visual.StateLabel"><value>АД</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Шлях файлової системи</value></data>
-  <data name="Visual.SectorState.Available"><value>Доступний</value></data>
-  <data name="Visual.SectorState.Missing"><value>Проксимус</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Невідома інтеграція</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Недійсність недійсна</value></data>
   <data name="Visual.LogicalMapTitle"><value>Логічна карта</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS геометрія</value></data>
   <data name="Visual.SurfaceLabel"><value>Промисловість</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Зареєструватися</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Сила</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Закодований блок</value></data>
+  <data name="Visual.RevolutionSummary"><value>Всі революції</value></data>
+  <data name="Visual.RevolutionChoice"><value>Революція {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Революція</value></data>
+  <data name="Visual.QualityDead"><value>Зареєструватися</value></data>
+  <data name="Visual.QualityPoor"><value>Поор</value></data>
+  <data name="Visual.QualityPartial"><value>Частково прочитаний</value></data>
+  <data name="Visual.QualityGood"><value>Зручності</value></data>
+  <data name="Visual.QualityExcellent"><value>Поганий</value></data>
+  <data name="Visual.SectorWithData"><value>Сектор з даними</value></data>
+  <data name="Visual.SectorDegraded"><value>Оградований сектор</value></data>
+  <data name="Visual.SectorDead"><value>Депутатський сектор</value></data>
+  <data name="Visual.SectorWithoutData"><value>Сектор без даних</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Аналіз оберту {0}/{1}…</value></data>
 </root>

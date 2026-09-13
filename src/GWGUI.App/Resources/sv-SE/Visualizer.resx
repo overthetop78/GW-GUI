@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Avkodare</value></data>
   <data name="Visual.LinkZoom"><value>Länkzoom</value></data>
   <data name="Visual.OpenScp"><value>Öppna en SCP fil...</value></data>
-  <data name="Visual.NoFile"><value>Ingen SCP fil öppen</value></data>
+  <data name="Visual.NoFile"><value>Ingen diskavbildning är öppen</value></data>
   <data name="Visual.Waiting"><value>Väntar på en fil</value></data>
   <data name="Visual.Inspector"><value>Inspektör</value></data>
   <data name="Visual.SelectTrack"><value>Välj ett spår.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Tilldelad sektor</value></data>
   <data name="Visual.SectorFree"><value>Fri sektor</value></data>
   <data name="Visual.SectorReserved"><value>Reserverad sektor</value></data>
-  <data name="Visual.SectorMissing"><value>Saknar sektor</value></data>
   <data name="Visual.SectorUnreadable"><value>Oläsbar sektor</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Sektorinformation</value></data>
   <data name="Visual.SectorLabel"><value>Sektor</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Storlek</value></data>
   <data name="Visual.StateLabel"><value>statsstat</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Filsystemväg</value></data>
-  <data name="Visual.SectorState.Available"><value>Tillgänglig</value></data>
-  <data name="Visual.SectorState.Missing"><value>Saknar</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integritet okänd</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integritetsinvalid</value></data>
   <data name="Visual.LogicalMapTitle"><value>Logisk karta</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometri</value></data>
   <data name="Visual.SurfaceLabel"><value>Surface</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Signal</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>tystnad</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Dekoded block</value></data>
+  <data name="Visual.RevolutionSummary"><value>Alla revolutioner</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revolution revolution {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revolution revolution</value></data>
+  <data name="Visual.QualityDead"><value>Döda</value></data>
+  <data name="Visual.QualityPoor"><value>Dålig</value></data>
+  <data name="Visual.QualityPartial"><value>Delvis läsbar</value></data>
+  <data name="Visual.QualityGood"><value>Bra bra bra</value></data>
+  <data name="Visual.QualityExcellent"><value>Utmärkt</value></data>
+  <data name="Visual.SectorWithData"><value>Sektor med data</value></data>
+  <data name="Visual.SectorDegraded"><value>Försämrad sektor</value></data>
+  <data name="Visual.SectorDead"><value>Död sektor</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektor utan data</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analysera revolutionen {0}////{1}…</value></data>
 </root>

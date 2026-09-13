@@ -41,8 +41,10 @@ public partial class ExplorerDetailsPanel : UserControl
         _opticalTrack = null;
         _currentSystem = null;
         DetailsIcon.Category = ExplorerIconCategory.DiskImage;
+        DetailsIcon.Tone = ExplorerEntryTone.Default;
         DetailsTitle.Text = "\u2014";
         DetailsTitle.Foreground = BrushFor(false);
+        DetailsTitle.FontWeight = FontWeights.Normal;
         SetRows([]);
     }
 
@@ -146,8 +148,15 @@ public partial class ExplorerDetailsPanel : UserControl
     private void Apply(ExplorerDetailsPresentation presentation)
     {
         DetailsIcon.Category = presentation.IconCategory;
+        DetailsIcon.Tone = presentation.Tone;
         DetailsTitle.Text = presentation.Title;
-        DetailsTitle.Foreground = BrushFor(presentation.IsSyntheticTitle);
+        DetailsTitle.Foreground = presentation.Tone switch
+        {
+            ExplorerEntryTone.Executable => new SolidColorBrush(Color.FromRgb(24, 134, 75)),
+            ExplorerEntryTone.Muted => BrushFor(true),
+            _ => BrushFor(presentation.IsSyntheticTitle)
+        };
+        DetailsTitle.FontWeight = presentation.Tone == ExplorerEntryTone.Executable ? FontWeights.SemiBold : FontWeights.Normal;
         SetRows(presentation.Rows.Select(row => ((string?)row.Key, (string?)row.Value, row.IsSyntheticValue)).ToArray());
     }
 

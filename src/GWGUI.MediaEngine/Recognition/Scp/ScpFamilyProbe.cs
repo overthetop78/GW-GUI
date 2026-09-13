@@ -1,36 +1,78 @@
-using System.Collections.Concurrent;
 using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Reconstruction.Scp;
-
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Reconstruction.Scp;
 
 namespace GWGUI.MediaEngine.Recognition.Scp;
 
-/// <summary>Sonde un échantillon de pistes afin d'identifier les familles de reconstruction SCP.</summary>
+/// <summary>Sonde rapidement des pistes réparties avant de lancer les reconstructions complètes.</summary>
 internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
-    /// <summary>Retourne chaque famille ayant produit au moins un secteur doté de données et d'une intégrité valide.</summary>
-    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken)
+    public Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken) =>
+        DetectAsync(path, null, cancellationToken);
+
+    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(
+        string path,
+        IProgress<ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         var samples = ScpTrackSampler.Sample(scp.Tracks);
         if (samples.Count == 0) return new HashSet<ScpFormatFamily>();
-        var found = new ConcurrentDictionary<ScpFormatFamily, byte>();
-        await Task.WhenAll(samples.Select(track => Task.Run(() => ProbeTrack(track, found, cancellationToken), cancellationToken))).ConfigureAwait(false);
-        return found.Keys.ToHashSet();
+
+        var found = new HashSet<ScpFormatFamily>();
+        for (var index = 0; index < ScpFamilyProbeCatalog.Definitions.Count; index++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var definition = ScpFamilyProbeCatalog.Definitions[index];
+            progress?.Report(new(
+                ScpExplorationProgressKind.FormatProbeStarted,
+                definition.DisplayName,
+                index,
+                ScpFamilyProbeCatalog.Definitions.Count));
+
+            var recognized = await ProbeFamilyAsync(definition, samples, cancellationToken).ConfigureAwait(false);
+            if (recognized) found.Add(definition.Family);
+
+            progress?.Report(new(
+                ScpExplorationProgressKind.FormatProbeCompleted,
+                definition.DisplayName,
+                index + 1,
+                ScpFamilyProbeCatalog.Definitions.Count,
+                recognized));
+        }
+
+        return found;
     }
 
-    /// <summary>Sonde la première fenêtre chronologique et évite les décodeurs d'une famille déjà trouvée.</summary>
-    private void ProbeTrack(ScpTrack track, ConcurrentDictionary<ScpFormatFamily, byte> found, CancellationToken cancellationToken)
+    private async Task<bool> ProbeFamilyAsync(
+        ScpFamilyProbeDefinition definition,
+        IReadOnlyList<ScpTrack> samples,
+        CancellationToken cancellationToken)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        var flux = ScpTrackDecodeWindowFactory.Primary(track).Flux;
-        foreach (var definition in ScpFamilyProbeCatalog.Definitions)
-        {
-            if (found.ContainsKey(definition.Family)) continue;
-            var result = decoders.Decode(definition.DecoderId, flux);
-            if (HasValidSector(result)) found.TryAdd(definition.Family, 0);
-        }
+        var recognized = 0;
+        await Parallel.ForEachAsync(
+            samples,
+            new ParallelOptions
+            {
+                CancellationToken = cancellationToken,
+                MaxDegreeOfParallelism = Math.Max(1, Environment.ProcessorCount)
+            },
+            (track, token) =>
+            {
+                if (Volatile.Read(ref recognized) != 0) return ValueTask.CompletedTask;
+                token.ThrowIfCancellationRequested();
+                var flux = ScpTrackDecodeWindowFactory.Primary(track).Flux;
+                foreach (var decoderId in definition.DecoderIds)
+                {
+                    var result = decoders.Decode(decoderId, flux);
+                    if (!HasValidSector(result)) continue;
+                    Interlocked.Exchange(ref recognized, 1);
+                    break;
+                }
+                return ValueTask.CompletedTask;
+            }).ConfigureAwait(false);
+        return recognized != 0;
     }
 
     private static bool HasValidSector(FluxDecodeResult result) =>

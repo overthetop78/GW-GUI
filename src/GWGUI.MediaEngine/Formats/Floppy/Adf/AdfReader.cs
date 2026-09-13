@@ -16,6 +16,7 @@ public sealed class AdfReader : IMediaImageReader
     private static readonly IReadOnlySet<string> SupportedFormatIds = new[]
     {
         DiskImageFormatIds.AcornAdfs800,
+        DiskImageFormatIds.AcornAdfs1600,
         DiskImageFormatIds.AmigaDos,
         DiskImageFormatIds.AmigaDosHighDensity
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
@@ -40,7 +41,7 @@ public sealed class AdfReader : IMediaImageReader
         this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
     }
 
-    private static readonly int[] AcceptedSizes = [AcornAdfGeometry.Capacity, AcornAdfGeometry.PaddedCapacity, AmigaAdfGeometry.DoubleDensityCapacity, AmigaAdfGeometry.HighDensityCapacity];
+    private static readonly int[] AcceptedSizes = [AcornAdfGeometry.Capacity, AcornAdfGeometry.PaddedCapacity, AcornAdfGeometry.HighDensityCapacity, AmigaAdfGeometry.DoubleDensityCapacity, AmigaAdfGeometry.HighDensityCapacity];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
 
@@ -82,6 +83,7 @@ public sealed class AdfReader : IMediaImageReader
     {
         if (data.Length == AcornAdfGeometry.Capacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.Geometry, cancellationToken);
         if (data.Length == AcornAdfGeometry.PaddedCapacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.Geometry, cancellationToken, AcornAdfGeometry.PaddedTrailingByteCount);
+        if (data.Length == AcornAdfGeometry.HighDensityCapacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.HighDensityGeometry, cancellationToken);
         if (data.Length == AmigaAdfGeometry.DoubleDensity.Capacity) return RegularSectorImageBuilder.Create(data, AmigaAdfGeometry.DoubleDensity, cancellationToken);
         if (data.Length == AmigaAdfGeometry.HighDensity.Capacity) return RegularSectorImageBuilder.Create(data, AmigaAdfGeometry.HighDensity, cancellationToken);
         throw AdfExceptions.InvalidSize(data.Length, AcceptedSizes);

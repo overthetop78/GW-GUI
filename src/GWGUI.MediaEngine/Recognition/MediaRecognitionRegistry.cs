@@ -41,7 +41,7 @@ public sealed class MediaRecognitionRegistry
     public async Task<IReadOnlyList<MediaRecognitionCandidate>> SelectCandidatesAsync(MediaRecognitionContext context, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(context);
-        var candidates = new List<(MediaRecognitionCandidate Candidate, int RegistrationOrder)>();
+        var candidates = new List<(MediaRecognitionCandidate Candidate, int EvidenceCount, int RegistrationOrder)>();
         var registrationOrder = 0;
 
         foreach (var reader in readers)
@@ -86,12 +86,13 @@ public sealed class MediaRecognitionRegistry
                 reasons.Add("reader probe");
             }
 
-            if (reasons.Count > 0) candidates.Add((new MediaRecognitionCandidate(reader, confidence, string.Join(", ", reasons)), registrationOrder));
+            if (reasons.Count > 0) candidates.Add((new MediaRecognitionCandidate(reader, confidence, string.Join(", ", reasons)), reasons.Count, registrationOrder));
             registrationOrder++;
         }
 
         return candidates
             .OrderByDescending(item => item.Candidate.Confidence)
+            .ThenByDescending(item => item.EvidenceCount)
             .ThenBy(item => item.RegistrationOrder)
             .Select(item => item.Candidate)
             .ToArray();

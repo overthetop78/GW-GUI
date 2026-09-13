@@ -1,4 +1,6 @@
 using GWGUI.MediaEngine.Formats.Floppy.Apple;
+using GWGUI.MediaEngine.Formats.Floppy.AcornAtom;
+using GWGUI.MediaEngine.Formats.Floppy.Apridisk;
 using GWGUI.MediaEngine.Formats.Floppy.Atr;
 using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
 using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
@@ -67,6 +69,8 @@ public sealed class MediaRecognitionComposition
             scpReader,
             [
                 new Formats.Floppy.Adf.AdfReader(),
+                new AcornAtomDskReader(),
+                new ApridiskReader(),
                 new BbcDfsReader(),
                 new CoherentRawImageReader(),
                 new DecRx02Reader(),

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Käyttäjän tietojen koko</value></data>
   <data name="Explorer.Subchannels"><value>Alakanavat</value></data>
   <data name="Explorer.AudioTracks"><value>Ääniraidat</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Tunnistetaan mediamuoto</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Tunnistettu muoto</value></data>
+  <data name="Explorer.LoadingMedia"><value>Mediarakenteen lukeminen</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Tiedostojärjestelmän analysointi</value></data>
+  <data name="Explorer.LoadingContents"><value>Valmistellaan kansioita ja tiedostoja</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Sisältö</value></data>
+  <data name="Explorer.TestingFormat"><value>Testausmuoto: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: tunnustettu</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: ei tunnistettu</value></data>
+  <data name="Explorer.ReadingFormat"><value>Luentamuoto: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Yhteensopimaton muoto</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Kohdetta ”{1}” ei voi tulkita muodossa ”{0}”.&#xA;Jatka valitsemalla toinen muoto.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Tiedosto {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Asiakirja</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Lähdekoodi</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC ohjelmatiedosto</value></data>
+  <data name="Explorer.Type.Executable"><value>Suoritettava</value></data>
+  <data name="Explorer.Type.Command"><value>Komentotiedosto</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Järjestelmätiedosto</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Olion koodi</value></data>
+  <data name="Explorer.Type.Data"><value>Tiedosto</value></data>
+  <data name="Explorer.Type.Configuration"><value>Asetukset</value></data>
+  <data name="Explorer.Type.Library"><value>Kirjasto</value></data>
+  <data name="Explorer.Type.Media"><value>Mediatiedosto</value></data>
+  <data name="Explorer.Type.Font"><value>Kirjasin</value></data>
+  <data name="Explorer.Execution"><value>Toteutus</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Oma tiedosto</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Tulkattu suoritettava tiedosto</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Komento tai komentosarja</value></data>
 </root>

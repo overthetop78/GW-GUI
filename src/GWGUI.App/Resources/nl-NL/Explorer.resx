@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Grootte gebruikersgegevens</value></data>
   <data name="Explorer.Subchannels"><value>Subkanalen</value></data>
   <data name="Explorer.AudioTracks"><value>Audiotracks</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Het mediaformaat herkennen</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Herkenbaar formaat</value></data>
+  <data name="Explorer.LoadingMedia"><value>De mediastructuur lezen</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Het analyseren van het bestandssysteem</value></data>
+  <data name="Explorer.LoadingContents"><value>Mappen en bestanden worden voorbereid</value></data>
+  <data name="Explorer.LoadingDisplay"><value>De inhoud weergeven</value></data>
+  <data name="Explorer.TestingFormat"><value>Testformaat: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: erkend</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: niet herkend</value></data>
+  <data name="Explorer.ReadingFormat"><value>Leesformaat: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Incompatibel formaat</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>‘{1}’ kan niet worden geïnterpreteerd met de indeling ‘{0}’.&#xA;Selecteer een andere indeling om door te gaan.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Bestand {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Document</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Broncode</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC programmabestand</value></data>
+  <data name="Explorer.Type.Executable"><value>Uitvoerbaar bestand</value></data>
+  <data name="Explorer.Type.Command"><value>Commandobestand</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Systeembestand</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Objectcode</value></data>
+  <data name="Explorer.Type.Data"><value>Gegevensbestand</value></data>
+  <data name="Explorer.Type.Configuration"><value>Configuratiebestand</value></data>
+  <data name="Explorer.Type.Library"><value>Bibliotheek</value></data>
+  <data name="Explorer.Type.Media"><value>Mediabestand</value></data>
+  <data name="Explorer.Type.Font"><value>Lettertype</value></data>
+  <data name="Explorer.Execution"><value>Uitvoering</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Inheems uitvoerbaar bestand</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Vertolkt uitvoerbaar bestand</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Commando of script</value></data>
 </root>

@@ -57,6 +57,28 @@ public sealed class MediaRecognitionRegistryTests
     }
 
     [Fact]
+    public async Task MatchingExtensionBreaksATieBetweenSuccessfulProbes()
+    {
+        var path = TemporaryFile(".ima", [0x00]);
+        try
+        {
+            var genericProbe = new TestReader("generic-probe", ["generic"], canRead: true);
+            var imaProbe = new TestReader("ima-probe", ["ibm.720"], [".ima"], canRead: true);
+            var registry = new MediaRecognitionRegistry([genericProbe, imaProbe]);
+
+            var candidates = await registry.SelectCandidatesAsync(Context(path));
+
+            Assert.Same(imaProbe, candidates[0].Reader);
+            Assert.Contains("file extension", candidates[0].Reason);
+            Assert.Contains("reader probe", candidates[0].Reason);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
+    [Fact]
     public async Task AssociatedFileIsRecognitionEvidenceWithoutOpeningIt()
     {
         var path = TemporaryFile(".bin", [0x00]);

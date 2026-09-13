@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>デコーダ</value></data>
   <data name="Visual.LinkZoom"><value>リンクズーム</value></data>
   <data name="Visual.OpenScp"><value>SCP ファイルを開きます…</value></data>
-  <data name="Visual.NoFile"><value>SCP ファイルが開いていません</value></data>
+  <data name="Visual.NoFile"><value>イメージが開かれていません</value></data>
   <data name="Visual.Waiting"><value>ファイルを待っています</value></data>
   <data name="Visual.Inspector"><value>検査官</value></data>
   <data name="Visual.SelectTrack"><value>トラックを選択します。</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>割賦部門</value></data>
   <data name="Visual.SectorFree"><value>無料のセクター</value></data>
   <data name="Visual.SectorReserved"><value>営業部 営業部</value></data>
-  <data name="Visual.SectorMissing"><value>ミス・セクター</value></data>
   <data name="Visual.SectorUnreadable"><value>未読化分野</value></data>
   <data name="Visual.SectorInspectorTitle"><value>セクター情報</value></data>
   <data name="Visual.SectorLabel"><value>セクター</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>寸法:</value></data>
   <data name="Visual.StateLabel"><value>ステート</value></data>
   <data name="Visual.FileSystemPathLabel"><value>ファイルシステムパス</value></data>
-  <data name="Visual.SectorState.Available"><value>利用できる</value></data>
-  <data name="Visual.SectorState.Missing"><value>ミス</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>知的知的</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>完全性無効</value></data>
   <data name="Visual.LogicalMapTitle"><value>ロジカルマップ</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS ジオメトリ</value></data>
   <data name="Visual.SurfaceLabel"><value>表面を覆う</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>信号信号</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>サイレンス</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>解読ブロック</value></data>
+  <data name="Visual.RevolutionSummary"><value>あらゆる革命</value></data>
+  <data name="Visual.RevolutionChoice"><value>革命 {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>革命</value></data>
+  <data name="Visual.QualityDead"><value>デッドキャスト</value></data>
+  <data name="Visual.QualityPoor"><value>ポーア</value></data>
+  <data name="Visual.QualityPartial"><value>部分的に読みやすく</value></data>
+  <data name="Visual.QualityGood"><value>おすすめ</value></data>
+  <data name="Visual.QualityExcellent"><value>優優優優優優</value></data>
+  <data name="Visual.SectorWithData"><value>データのセクタ</value></data>
+  <data name="Visual.SectorDegraded"><value>分解されたセクター</value></data>
+  <data name="Visual.SectorDead"><value>デッドセクター</value></data>
+  <data name="Visual.SectorWithoutData"><value>データを使わないセクター</value></data>
+  <data name="Visual.AnalysingRevolution"><value>回転を解析中 {0}/{1}…</value></data>
 </root>

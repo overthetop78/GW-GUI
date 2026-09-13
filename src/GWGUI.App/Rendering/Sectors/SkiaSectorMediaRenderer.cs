@@ -16,7 +16,8 @@ public sealed class SkiaSectorMediaRenderer
         long? selectedPosition,
         int width,
         int height,
-        float zoom = 1)
+        float zoom = 1,
+        IReadOnlySet<(int Surface, int Cylinder)>? revealedTracks = null)
     {
         canvas.Clear(SectorMediaRenderConstants.BackgroundColor);
         var mediaSurface = model?.Surfaces.FirstOrDefault(item => item.Index == surface);
@@ -29,6 +30,7 @@ public sealed class SkiaSectorMediaRenderer
             ? mediaSurface.Tracks.OrderByDescending(track => track.Cylinder).ToArray()
             : mediaSurface.Tracks.OrderBy(track => track.Cylinder).ToArray();
         var trackWidth = (outerRadius - innerRadius) / tracks.Length;
+        using var trackBoundary = new SKPaint { Color = SectorMediaRenderConstants.PendingTrackBoundaryColor, IsAntialias = true, Style = SKPaintStyle.Stroke, StrokeWidth = 1 };
 
         for (var trackIndex = 0; trackIndex < tracks.Length; trackIndex++)
         {
@@ -36,6 +38,7 @@ public sealed class SkiaSectorMediaRenderer
             if (sectors.Length == 0) continue;
             var outer = outerRadius - trackIndex * trackWidth;
             var inner = Math.Max(innerRadius, outer - trackWidth);
+            canvas.DrawCircle(center, outer, trackBoundary);
             var sweep = 360f / sectors.Length;
             for (var sectorIndex = 0; sectorIndex < sectors.Length; sectorIndex++)
             {
@@ -45,7 +48,13 @@ public sealed class SkiaSectorMediaRenderer
                     SectorMediaRenderConstants.MinimumSweepDegrees,
                     sweep - SectorMediaRenderConstants.SectorGapDegrees);
                 using var path = CreateRingSector(center, inner, outer, start, visibleSweep);
-                using var fill = new SKPaint { Color = ColorFor(sector.State), IsAntialias = true, Style = SKPaintStyle.Fill };
+                var revealed = revealedTracks is null || revealedTracks.Contains((surface, tracks[trackIndex].Cylinder));
+                using var fill = new SKPaint
+                {
+                    Color = revealed ? ColorFor(sector.State) : SectorMediaRenderConstants.PendingColor,
+                    IsAntialias = true,
+                    Style = SKPaintStyle.Fill
+                };
                 canvas.DrawPath(path, fill);
                 if (sector.Position != selectedPosition) continue;
                 using var selection = new SKPaint
@@ -102,12 +111,16 @@ public sealed class SkiaSectorMediaRenderer
         return path;
     }
 
-    private static SKColor ColorFor(SectorMediaElementState state) => state switch
+    internal static SKColor ColorFor(SectorMediaElementState state) => state switch
     {
-        SectorMediaElementState.Available => SectorMediaRenderConstants.AvailableColor,
-        SectorMediaElementState.Missing => SectorMediaRenderConstants.MissingColor,
-        SectorMediaElementState.IntegrityUnknown => SectorMediaRenderConstants.IntegrityUnknownColor,
-        SectorMediaElementState.IntegrityInvalid => SectorMediaRenderConstants.IntegrityInvalidColor,
-        _ => SectorMediaRenderConstants.MissingColor
+        SectorMediaElementState.WithData => SectorMediaRenderConstants.WithDataColor,
+        SectorMediaElementState.WithoutData => SectorMediaRenderConstants.WithoutDataColor,
+        SectorMediaElementState.Degraded => SectorMediaRenderConstants.DegradedColor,
+        SectorMediaElementState.Dead => SectorMediaRenderConstants.DeadColor,
+        _ => SectorMediaRenderConstants.WithoutDataColor
     };
+
+    internal static SKColor UnrevealedColor => SectorMediaRenderConstants.PendingColor;
+
+    internal static SKColor UnrevealedTrackBoundaryColor => SectorMediaRenderConstants.PendingTrackBoundaryColor;
 }

@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Kod çözücü</value></data>
   <data name="Visual.LinkZoom"><value>Bağlantı yakınlaştırma</value></data>
   <data name="Visual.OpenScp"><value>Bir SCP dosyasını açın…</value></data>
-  <data name="Visual.NoFile"><value>SCP dosyası açık değil</value></data>
+  <data name="Visual.NoFile"><value>Açık görüntü yok</value></data>
   <data name="Visual.Waiting"><value>Bir dosya bekleniyor</value></data>
   <data name="Visual.Inspector"><value>Müfettiş</value></data>
   <data name="Visual.SelectTrack"><value>Bir parça seçin.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Allocated Sector</value></data>
   <data name="Visual.SectorFree"><value>Ücretsiz Sektör</value></data>
   <data name="Visual.SectorReserved"><value>Özellikler Sektör</value></data>
-  <data name="Visual.SectorMissing"><value>Eksik Sektör</value></data>
   <data name="Visual.SectorUnreadable"><value>Hazırlanmamış sektör</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Sektör bilgisi</value></data>
   <data name="Visual.SectorLabel"><value>Sektör Sektör Sektör</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Boyut Boyutu</value></data>
   <data name="Visual.StateLabel"><value>Devlet Devleti</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Dosya sistemi yolu</value></data>
-  <data name="Visual.SectorState.Available"><value>Mevcut kullanılabilir kullanılabilir kullanılabilir</value></data>
-  <data name="Visual.SectorState.Missing"><value>Eksik Eksik Eksik Eksik Eksik</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Bilinmeyen</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Kaka geçersizliği geçersiz</value></data>
   <data name="Visual.LogicalMapTitle"><value>Mantıksal harita</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS Geometri Geometri Geometri Geometri</value></data>
   <data name="Visual.SurfaceLabel"><value>Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Sinyal Sinyal Sinyali</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Sessizlik</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Decoded blok</value></data>
+  <data name="Visual.RevolutionSummary"><value>Tüm devrimler</value></data>
+  <data name="Visual.RevolutionChoice"><value>Devrim Devrimi {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Devrim Devrimi</value></data>
+  <data name="Visual.QualityDead"><value>Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü Ölü</value></data>
+  <data name="Visual.QualityPoor"><value>Zavallı</value></data>
+  <data name="Visual.QualityPartial"><value>Kısmen okunabilir</value></data>
+  <data name="Visual.QualityGood"><value>İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi İyi</value></data>
+  <data name="Visual.QualityExcellent"><value>Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel Mükemmel</value></data>
+  <data name="Visual.SectorWithData"><value>Sektör with data with data</value></data>
+  <data name="Visual.SectorDegraded"><value>Degraded Sektör</value></data>
+  <data name="Visual.SectorDead"><value>Dead Sector</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektör verisiz</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analysing devrimi {0}/ / / / / / /{1}…</value></data>
 </root>

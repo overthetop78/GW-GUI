@@ -16,8 +16,9 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     public bool CanRead(SectorImage image)
     {
         if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != FatBootSectorLayout.SectorSize || !image.TryGetBlock(0, out var boot) || boot.Data.Count < FatBootSectorLayout.ExtendedBootMinimumLength) return false;
-        var mediaDescriptor = boot.Data[FatBootSectorLayout.MediaDescriptorOffset];
-        return Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout) && Fat12FatReader.HasReadableCopy(image, layout, mediaDescriptor);
+        return Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)
+            && TryReadMediaDescriptor(image, boot, layout, out var mediaDescriptor)
+            && Fat12FatReader.HasReadableCopy(image, layout, mediaDescriptor);
     }
 
     /// <summary>Lit le volume, son espace libre et son arborescence en conservant les secteurs absents.</summary>
@@ -25,7 +26,7 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     {
         if (!image.TryGetBlock(0, out var boot) || !Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, image.TryGetBlock(0, out var availableBoot) ? availableBoot.Data : null);
         var warnings = new List<string>();
-        var mediaDescriptor = boot.Data[FatBootSectorLayout.MediaDescriptorOffset];
+        if (!TryReadMediaDescriptor(image, boot, layout, out var mediaDescriptor)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, boot.Data);
         var fat = Fat12FatReader.ReadBest(image, layout, mediaDescriptor, warnings);
         if (!fat.IsValid || !Fat12FatReader.IsUsable(fat.Bytes, mediaDescriptor, layout.ClusterCount)) throw Fat12FileSystemExceptions.UnsupportedLayout(image.FormatId, boot.Data);
         var root = FatSectorReader.Read(image, layout.RootStart, layout.RootSectors, warnings);
@@ -41,5 +42,15 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
         var label = FatDirectoryEntryReader.ReadVolumeLabel(root.Bytes) ?? FatDirectoryEntryReader.ReadBootVolumeLabel(boot.Data);
         var freeBytes = fat.IsValid ? (long)freeClusters * layout.SectorsPerCluster * FatBootSectorLayout.SectorSize : 0;
         return new(label, Definitions.FileSystemIds.Fat12, image.Capacity, freeBytes, null, null, entries, warnings);
+    }
+
+    /// <summary>Lit le descripteur standard du BPB, ou celui de la première FAT pour le secteur d'amorçage Apricot.</summary>
+    private static bool TryReadMediaDescriptor(SectorImage image, SectorBlock boot, Fat12Layout layout, out byte mediaDescriptor)
+    {
+        mediaDescriptor = boot.Data[FatBootSectorLayout.MediaDescriptorOffset];
+        if (!image.FormatId.Equals(GWGUI.MediaEngine.Constants.DiskImageFormatIds.ApricotPcXi315, StringComparison.OrdinalIgnoreCase)) return true;
+        if (!image.TryGetBlock(layout.ReservedSectors, out var firstFat) || firstFat.Data.Count == 0) return false;
+        mediaDescriptor = firstFat.Data[FatBootSectorLayout.FatMediaDescriptorDataOffset];
+        return true;
     }
 }

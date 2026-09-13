@@ -16,9 +16,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         }
 
         var curatedFormats = curated.Formats
-            .Where(format => format.Id == "raw.scp" || IsSupported(format, capabilities))
-            .Select(format => FilterExtensions(format, capabilities.ImageExtensions))
-            .Where(format => format.Extensions.Count > 0)
+            .Select(format => ApplyPhysicalCapabilities(format, capabilities))
             .ToList();
         var known = curatedFormats.Select(format => format.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
         curatedFormats.AddRange(capabilities.FormatIds
@@ -35,19 +33,17 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         return Formats.Where(format => format.CompatibleSourceExtensions?.Contains(normalized) == true).ToArray();
     }
 
-    private static bool IsSupported(DiskFormat format, GwFormatCapabilities capabilities)
+    private static DiskFormat ApplyPhysicalCapabilities(DiskFormat format, GwFormatCapabilities capabilities)
     {
-        if (BuiltInDiskDefinitions.Supports(format.Id)) return true;
+        if (!format.SupportsPhysicalRead && !format.SupportsPhysicalWrite) return format;
+        var supported = BuiltInDiskDefinitions.Supports(format.Id);
         var gwFormat = GwFormatArgument.FromCatalogId(format.Id);
-        return gwFormat is not null && capabilities.FormatIds.Contains(gwFormat);
-    }
-
-    private static DiskFormat FilterExtensions(DiskFormat format, IReadOnlySet<string> supported)
-    {
-        var extensions = format.Extensions.Where(extension => supported.Contains(Normalize(extension.Extension))).ToArray();
-        if (extensions.Length == 0) return format with { Extensions = [] };
-        if (extensions.Any(extension => extension.IsDefault)) return format with { Extensions = extensions };
-        return format with { Extensions = extensions.Select((extension, index) => extension with { IsDefault = index == 0 }).ToArray() };
+        supported |= gwFormat is not null && capabilities.FormatIds.Contains(gwFormat);
+        return format with
+        {
+            SupportsPhysicalRead = format.SupportsPhysicalRead && supported,
+            SupportsPhysicalWrite = format.SupportsPhysicalWrite && supported
+        };
     }
 
     private static DiskFormat CreateDiscoveredFormat(string id, IReadOnlySet<string> supported)
@@ -59,7 +55,17 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         var extensions = preferred is null ? Array.Empty<ImageExtension>() : [new ImageExtension(preferred, preferred.TrimStart('.').ToUpperInvariant(), true)];
         var sources = new HashSet<string>(supported.Select(Normalize), StringComparer.OrdinalIgnoreCase);
         var tag = Regex.Replace(id.ToUpperInvariant(), "[^A-Z0-9]+", "-").Trim('-');
-        return new DiskFormat(id, family, detail is null ? family : $"{family} — {detail}", extensions, false, sources, tag);
+        return new DiskFormat(
+            id,
+            family,
+            detail is null ? family : $"{family} — {detail}",
+            extensions,
+            false,
+            sources,
+            tag,
+            FloppyFormFactor.Unknown,
+            SupportsPhysicalRead: true,
+            SupportsPhysicalWrite: true);
     }
 
     private static string FriendlyToken(string token)

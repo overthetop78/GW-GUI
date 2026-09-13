@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Tuntematon</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Poista asemasta</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Tuntematon media</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Levyke</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Kovalevy</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optinen levy</value></data>
+  <data name="Common.MediaKind.Tape"><value>Nauha</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Alat</value></data>
+  <data name="Common.Representation.Blocks"><value>Lohkot</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optiset radat</value></data>
+  <data name="Common.Representation.Sequential"><value>Sekvenssitiedot</value></data>
 </root>

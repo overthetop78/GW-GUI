@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>مجهول</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>إخراج</value></data>
+  <data name="Common.MediaKind.Unknown"><value>وسائط الإعلام غير المعروفة</value></data>
+  <data name="Common.MediaKind.Floppy"><value>قرص مرن</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>قرص صلب</value></data>
+  <data name="Common.MediaKind.Optical"><value>قرص غير مرئي</value></data>
+  <data name="Common.MediaKind.Tape"><value>تايب</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>القطاعات</value></data>
+  <data name="Common.Representation.Blocks"><value>القفل</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>المسارات البصرية</value></data>
+  <data name="Common.Representation.Sequential"><value>البيانات السرية</value></data>
 </root>

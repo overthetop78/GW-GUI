@@ -72,6 +72,12 @@ internal static class AmigaFileSystemScenarios
         Assert.Equal("TEST",volume.Name);
         var file=Assert.Single(volume.Entries);
         Assert.Equal("file",file.Name);Assert.Equal(700,file.Size);Assert.Equal(payload,file.Content);
+        Assert.True(file.MetadataValid); Assert.True(file.DataValid);
+        var fileHeader=image.GetBlock(file.StorageReference).Span;
+        var missingDataBlock=BinaryPrimitives.ReadInt32BigEndian(fileHeader.Slice(AmigaDosLayout.DataPointersOffset+(AmigaDosLayout.RootHashTableEntryCount-1)*AmigaDosLayout.WordSize,AmigaDosLayout.WordSize));
+        var incompleteImage=new SectorImage(image.FormatId,image.BlockSize,image.Cylinders,image.Heads,image.SectorsPerTrack,image.AvailableBlocks.Where(block=>block.LogicalBlock!=missingDataBlock));
+        var incompleteFile=Assert.Single(reader.Read(incompleteImage).Entries);
+        Assert.True(incompleteFile.MetadataValid); Assert.False(incompleteFile.DataValid); Assert.NotNull(incompleteFile.Content);
         Assert.Throws<InvalidDataException>(()=>new AmigaDosVolumeWriter().Create(plan,AmigaDosVariant.FfsLongNames));
         var writer=new AmigaDosVolumeWriter();
         var nested=writer.Create(new("synthetic",variant.FileSystemId(),"TEST",[new("DIR","DIR",FileSystemEntryKind.Directory,[],null,"",0,true,

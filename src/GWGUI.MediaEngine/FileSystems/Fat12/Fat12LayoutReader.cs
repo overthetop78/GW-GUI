@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaEngine.FileSystems.Fat12;
 
@@ -9,6 +10,8 @@ internal static class Fat12LayoutReader
     public static bool TryRead(ReadOnlySpan<byte> boot, int availableSectors, string formatId, out Fat12Layout layout)
     {
         layout = null!;
+        if (formatId.Equals(DiskImageFormatIds.ApricotPcXi315, StringComparison.OrdinalIgnoreCase))
+            return Fat12LegacyLayoutCatalog.TryCreateLayout(formatId, availableSectors, boot, out layout);
         var bytesPerSector = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBootSectorLayout.BytesPerSectorOffset..]);
         var sectorsPerCluster = boot[FatBootSectorLayout.SectorsPerClusterOffset];
         var reservedSectors = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBootSectorLayout.ReservedSectorCountOffset..]);

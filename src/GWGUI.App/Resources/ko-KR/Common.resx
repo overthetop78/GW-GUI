@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>알려지지 않은</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>꺼내기</value></data>
+  <data name="Common.MediaKind.Unknown"><value>알 수없는 미디어</value></data>
+  <data name="Common.MediaKind.Floppy"><value>플로피 디스크</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>하드 디스크</value></data>
+  <data name="Common.MediaKind.Optical"><value>광학 디스크</value></data>
+  <data name="Common.MediaKind.Tape"><value>제품정보</value></data>
+  <data name="Common.Representation.Flux"><value>렉스</value></data>
+  <data name="Common.Representation.Sectors"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Common.Representation.Blocks"><value>팟캐스트</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>광학 트랙</value></data>
+  <data name="Common.Representation.Sequential"><value>순차적 데이터</value></data>
 </root>

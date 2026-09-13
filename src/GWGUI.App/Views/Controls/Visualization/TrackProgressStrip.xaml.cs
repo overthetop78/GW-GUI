@@ -40,6 +40,7 @@ public partial class TrackProgressStrip : UserControl
         Unit = unit;
         Head = surface;
         ProgressLabel.Text = label;
+        ProgressLabel.ToolTip = label;
         Segments.Clear();
         foreach (var element in elements)
             Segments.Add(new TrackSegment(element, surface, PendingBrush));

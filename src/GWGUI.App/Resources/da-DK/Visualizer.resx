@@ -14,7 +14,7 @@
   </resheader>
   <data name="Visual.Decoder"><value>Dekoder</value></data>
 <data name="Visual.OpenScp"><value>Åbn en SCP fil...</value></data>
-  <data name="Visual.NoFile"><value>Ingen SCP fil åben</value></data>
+  <data name="Visual.NoFile"><value>Intet diskbillede er åbent</value></data>
   <data name="Visual.Waiting"><value>Venter på en fil</value></data>
   <data name="Visual.Inspector"><value>Inspektør</value></data>
   <data name="Visual.SelectTrack"><value>Vælg et spor.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Allokeret sektor</value></data>
   <data name="Visual.SectorFree"><value>Fri sektor</value></data>
   <data name="Visual.SectorReserved"><value>Reserveret sektor</value></data>
-  <data name="Visual.SectorMissing"><value>Manglende sektor</value></data>
   <data name="Visual.SectorUnreadable"><value>Ulæselig sektor</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Sektorinformation</value></data>
   <data name="Visual.SectorLabel"><value>Sektor</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Størrelse</value></data>
   <data name="Visual.StateLabel"><value>Tilstand</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Filsystemsti</value></data>
-  <data name="Visual.SectorState.Available"><value>Tilgængelig</value></data>
-  <data name="Visual.SectorState.Missing"><value>Mangler</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integritet ukendt</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integritet ugyldig</value></data>
   <data name="Visual.LogicalMapTitle"><value>Logisk kort</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometri</value></data>
   <data name="Visual.SurfaceLabel"><value>Overflade</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>SignalQShortcut</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Stilhed</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Afkodet blok</value></data>
+  <data name="Visual.RevolutionSummary"><value>Alle revolutioner</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revolution {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revolution</value></data>
+  <data name="Visual.QualityDead"><value>Død</value></data>
+  <data name="Visual.QualityPoor"><value>Stakkels</value></data>
+  <data name="Visual.QualityPartial"><value>Delvis læsbar</value></data>
+  <data name="Visual.QualityGood"><value>Godt</value></data>
+  <data name="Visual.QualityExcellent"><value>Fremragende</value></data>
+  <data name="Visual.SectorWithData"><value>Sektor med data</value></data>
+  <data name="Visual.SectorDegraded"><value>Degraderet sektor</value></data>
+  <data name="Visual.SectorDead"><value>Den døde sektor</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektor uden data</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyseregulering {0}/{1}…</value></data>
 </root>

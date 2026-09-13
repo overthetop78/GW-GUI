@@ -69,6 +69,8 @@ public sealed class SectorImage
     public int Heads { get; }
     /// <summary>Nombre de secteurs par piste.</summary>
     public int SectorsPerTrack { get; }
+    /// <summary>Indique si le format autorise des tailles de blocs différentes de <see cref="BlockSize"/>.</summary>
+    public bool AllowsVariableBlockSize => _allowVariableBlockSize;
     /// <summary>Nombre total de blocs logiques annoncé par l'image.</summary>
     public int BlockCount => _logicalBlockCount ?? checked(Cylinders * Heads * SectorsPerTrack);
     /// <summary>Capacité totale de l'image, en octets.</summary>

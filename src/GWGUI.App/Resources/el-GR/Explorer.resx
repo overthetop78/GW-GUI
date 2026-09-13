@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Μέγεθος δεδομένων χρήστη</value></data>
   <data name="Explorer.Subchannels"><value>Υποκανάλια</value></data>
   <data name="Explorer.AudioTracks"><value>Κομμάτια ήχου</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Αναγνωρίζοντας τη μορφή των μέσων ενημέρωσης</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Αναγνωρισμένο σχήμα</value></data>
+  <data name="Explorer.LoadingMedia"><value>Ανάγνωση της δομής των μέσων ενημέρωσης</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Ανάλυση του συστήματος αρχείων</value></data>
+  <data name="Explorer.LoadingContents"><value>Προετοιμασία φακέλων και αρχείων</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Εμφάνιση των περιεχομένων</value></data>
+  <data name="Explorer.TestingFormat"><value>Μορφή δοκιμής: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: αναγνωρισμένο</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: μη αναγνωρισμένο</value></data>
+  <data name="Explorer.ReadingFormat"><value>Μορφή ανάγνωσης: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Μη συμβατή μορφή</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Δεν είναι δυνατή η ερμηνεία του «{1}» με τη μορφή «{0}».&#xA;Επιλέξτε άλλη μορφή για να συνεχίσετε.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Αρχείο {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Έγγραφο</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Κωδικός πηγής</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC αρχείο προγράμματος</value></data>
+  <data name="Explorer.Type.Executable"><value>Εκτελέσιμο</value></data>
+  <data name="Explorer.Type.Command"><value>Αρχείο εντολής</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Αρχείο συστήματος</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Κωδικός αντικειμένου</value></data>
+  <data name="Explorer.Type.Data"><value>Αρχείο δεδομένων</value></data>
+  <data name="Explorer.Type.Configuration"><value>Αρχείο ρύθμισης</value></data>
+  <data name="Explorer.Type.Library"><value>Βιβλιοθήκη</value></data>
+  <data name="Explorer.Type.Media"><value>Αρχείο πολυμέσων</value></data>
+  <data name="Explorer.Type.Font"><value>Γραμματοσειρά</value></data>
+  <data name="Explorer.Execution"><value>Εκτέλεση</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Μητρικό εκτελέσιμο αρχείο</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Ερμηνευμένο εκτελέσιμο αρχείο</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Εντολή ή σενάριο</value></data>
 </root>

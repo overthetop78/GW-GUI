@@ -38,7 +38,13 @@ internal static class WriteSourceScenarios
         view.FormatBlock.FormatCombo.SelectedIndex = 0;
         await controller.BrowseSourceAsync();
         Assert.Equal("unknown.synthetic", model.Write.SourcePath); Assert.Null(view.FormatBlock.FormatCombo.SelectedItem);
-        Assert.Equal(catalog.Formats.Count, view.FormatBlock.FormatCombo.Items.Count); Assert.Single(failures);
+        Assert.Equal(catalog.Formats.Count(format => format.Family != "Raw" && format.SupportsPhysicalWrite), view.FormatBlock.FormatCombo.Items.Count);
+        var proposedFormats = view.FormatBlock.FormatCombo.Items.Cast<DiskFormat>().ToArray();
+        Assert.All(proposedFormats, format => Assert.True(format.SupportsPhysicalWrite));
+        Assert.DoesNotContain(
+            catalog.Formats.Where(format => !format.SupportsPhysicalWrite),
+            disabled => proposedFormats.Any(proposed => proposed.Id == disabled.Id));
+        Assert.Single(failures);
         var information = view.FormatBlock.DetectionText.Text;
         await controller.BrowseSourceAsync();
         Assert.Equal("unknown.synthetic", model.Write.SourcePath); Assert.Equal(information, view.FormatBlock.DetectionText.Text);

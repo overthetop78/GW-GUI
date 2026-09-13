@@ -46,6 +46,8 @@
     <Content Include="$(PkgMicrosoft_GameInput)\redist\GameInputRedist.msi" Link="Runtime\GameInputRedist.msi" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Resource Include="Assets\app-icon.png" />
     <Resource Include="Assets\Controllers\*.png" />
+    <Resource Include="Assets\Icons\FileTypes\*.ico" />
+    <Resource Include="Assets\Media\*.png" />
     <EmbeddedResource Include="Assets\Input\gamecontrollerdb.txt" LogicalName="GWGUI.App.Assets.Input.gamecontrollerdb.txt" />
     <None Include="Assets\Input\SDL_GameControllerDB.LICENSE" />
   </ItemGroup>

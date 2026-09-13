@@ -16,19 +16,16 @@ public partial class VisualizerLegend : UserControl
         LegendItems.ItemsSource = descriptor.RepresentationKind switch
         {
             MediaRepresentationKind.Flux => Items(
-                ("Visual.NormalFlux", 0x24B35D),
-                ("Visual.ShortTransition", 0x8F68FF),
-                ("Visual.LongTransition", 0x53ADFF),
-                ("Visual.StructureHeader", 0xFFCD40),
-                ("Visual.StructureData", 0x43DCFF),
-                ("Visual.StructureAnomaly", 0xFF4B60)),
+                ("Visual.QualityDead", 0xBE373E),
+                ("Visual.QualityPoor", 0xD37130),
+                ("Visual.QualityPartial", 0x847639),
+                ("Visual.QualityGood", 0x3F7448),
+                ("Visual.QualityExcellent", 0x2FA65B)),
             MediaRepresentationKind.Sectors => Items(
-                ("Visual.SectorPresent", 0x24B35D),
-                ("Visual.SectorAllocated", 0x1677D2),
-                ("Visual.SectorFree", 0x73C991),
-                ("Visual.SectorReserved", 0xFFCD40),
-                ("Visual.SectorMissing", 0x9AA0A6),
-                ("Visual.SectorUnreadable", 0xFF4B60)),
+                ("Visual.SectorWithData", 0x2DB064),
+                ("Visual.SectorWithoutData", 0x4A535E),
+                ("Visual.SectorDegraded", 0xE0972F),
+                ("Visual.SectorDead", 0xCF4343)),
             MediaRepresentationKind.Blocks => Items(
                 ("Visual.BlockAllocated", 0x1677D2),
                 ("Visual.BlockFree", 0x73C991),

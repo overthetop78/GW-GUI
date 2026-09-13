@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Неизвестный</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>выбрасывать</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Неизвестные СМИ</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Дискета</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Жесткий диск</value></data>
+  <data name="Common.MediaKind.Optical"><value>Оптический диск</value></data>
+  <data name="Common.MediaKind.Tape"><value>Лента</value></data>
+  <data name="Common.Representation.Flux"><value>флюкс</value></data>
+  <data name="Common.Representation.Sectors"><value>Секторы</value></data>
+  <data name="Common.Representation.Blocks"><value>Блоки</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Оптические дорожки</value></data>
+  <data name="Common.Representation.Sequential"><value>Последовательные данные</value></data>
 </root>

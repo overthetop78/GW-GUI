@@ -14,7 +14,7 @@ using System.Windows.Controls;
 namespace GWGUI.Tests.Interface.ReadViews;
 internal static class ReadFormatScenarios
 {
-    internal sealed record SelectionContext(ReadTabSection View,MainWindowViewModel Model,ReadTabController Controller,List<ReadRequest> Requests);
+    internal sealed record SelectionContext(ReadTabSection View,MainWindowViewModel Model,ReadTabController Controller,List<ReadRequest> Requests,IReadOnlyList<DiskFormat> Formats);
 
     internal static SelectionContext CreateSelectionContext(string? folderResponse=null)
     {
@@ -22,7 +22,7 @@ internal static class ReadFormatScenarios
         var model=new MainWindowViewModel("synthetic","synthetic");
         view.DataContext=model;
         var settings=new AppSettings();settings.Engines.PhysicalRead=OperationEngine.Internal;
-        var formats=new[]{new DiskFormat("test.one","family-one","one",[new(".one","one"),new(".two","two",true)]),new DiskFormat("test.other","family-other","other",[new(".other","other",true)])};
+        var formats=new[]{new DiskFormat("test.one","family-one","one",[new(".one","one"),new(".two","two",true)]),new DiskFormat("test.blocked","family-one","blocked",[new(".blocked","blocked",true)],SupportsPhysicalRead:false),new DiskFormat("test.other","family-other","other",[new(".other","other",true)])};
         var catalog=ControlledDependencies.Simulate<IImageFormatCatalog>((method,_)=>method.Name=="get_Formats"?formats:throw new InvalidOperationException(method.Name));
         var requests=new List<ReadRequest>();
         var builder=ControlledDependencies.Simulate<IGwCommandBuilder>((method,args)=>{
@@ -34,7 +34,7 @@ internal static class ReadFormatScenarios
         var controller=new ReadTabController(view,model,null!,()=>catalog,()=>settings,builder,dialogs,
             ControlledDependencies.Reject<IBusinessDialogService>(),ControlledDependencies.Reject<IMessageDialogService>(),
             null!,null!,null!,null!,null!,null!,new TextBox(),new TextBox(),()=>"virtual-device",()=>"B",()=>true,()=>null,()=>{},()=>{},()=>{});
-        return new(view,model,controller,requests);
+        return new(view,model,controller,requests,formats);
     }
 
     public static void Selection()
@@ -45,6 +45,11 @@ internal static class ReadFormatScenarios
         image.RawScpRadio.IsChecked=false;image.KnownFormatRadio.IsChecked=true;
         image.FamilyCombo.ItemsSource=new[]{"family-one","family-other"};image.FamilyCombo.SelectedIndex=0;
         context.Controller.FamilyChanged();context.Controller.FormatChanged();context.Controller.ModeChanged();
+        var proposedFormats = image.FormatCombo.Items.Cast<DiskFormat>().ToArray();
+        Assert.All(proposedFormats, format => Assert.True(format.SupportsPhysicalRead));
+        Assert.DoesNotContain(
+            context.Formats.Where(format => !format.SupportsPhysicalRead),
+            disabled => proposedFormats.Any(proposed => proposed.Id == disabled.Id));
         Assert.Equal(Visibility.Visible,image.KnownFormatPanel.Visibility);
         Assert.Equal("test.one",Assert.IsType<DiskFormat>(image.FormatCombo.SelectedItem).Id);
         Assert.Equal(".two",context.Controller.GetExtension());

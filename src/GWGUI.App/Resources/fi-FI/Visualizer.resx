@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Dekooderi</value></data>
   <data name="Visual.LinkZoom"><value>Linkin zoomaus</value></data>
   <data name="Visual.OpenScp"><value>Avaa tiedosto SCP…</value></data>
-  <data name="Visual.NoFile"><value>Ei SCP tiedostoa auki</value></data>
+  <data name="Visual.NoFile"><value>Levykuvaa ei ole avattu</value></data>
   <data name="Visual.Waiting"><value>Odotetaan tiedostoa</value></data>
   <data name="Visual.Inspector"><value>Tarkastaja</value></data>
   <data name="Visual.SelectTrack"><value>Valitse kappale.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Toimiala</value></data>
   <data name="Visual.SectorFree"><value>Vapaa-aika</value></data>
   <data name="Visual.SectorReserved"><value>Varattu sektori</value></data>
-  <data name="Visual.SectorMissing"><value>Puuttuva sektori</value></data>
   <data name="Visual.SectorUnreadable"><value>Ei luettavissa</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Alakohtaiset tiedot</value></data>
   <data name="Visual.SectorLabel"><value>Ala</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Koko</value></data>
   <data name="Visual.StateLabel"><value>Tila</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Tiedostojärjestelmän polku</value></data>
-  <data name="Visual.SectorState.Available"><value>Saatavilla</value></data>
-  <data name="Visual.SectorState.Missing"><value>Puuttuu</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Epätodellisuus tuntematon</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Epävarma</value></data>
   <data name="Visual.LogicalMapTitle"><value>Looginen kartta</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometria</value></data>
   <data name="Visual.SurfaceLabel"><value>Pinta</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Signaali</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Hiljaa.</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Purettu lohko</value></data>
+  <data name="Visual.RevolutionSummary"><value>Kaikki vallankumoukset</value></data>
+  <data name="Visual.RevolutionChoice"><value>Vallankumous {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Vallankumous</value></data>
+  <data name="Visual.QualityDead"><value>Kuollut</value></data>
+  <data name="Visual.QualityPoor"><value>Heikko</value></data>
+  <data name="Visual.QualityPartial"><value>Osittain luettavissa</value></data>
+  <data name="Visual.QualityGood"><value>Hyvä.</value></data>
+  <data name="Visual.QualityExcellent"><value>Erinomaista.</value></data>
+  <data name="Visual.SectorWithData"><value>Sektori, jossa tietoja</value></data>
+  <data name="Visual.SectorDegraded"><value>Heikentynyt ala</value></data>
+  <data name="Visual.SectorDead"><value>Kuollut sektori</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektori ilman tietoja</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Vallankumouksen analysointi {0}/{1}…</value></data>
 </root>

@@ -7,9 +7,11 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Dialogs.Explorer;
+using GWGUI.App.Views.Controls.Common;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using GWGUI.MediaEngine.FileSystems;
@@ -21,6 +23,7 @@ namespace GWGUI.App.Views.Controls.Explorer;
 
 public partial class ExplorerSection : UserControl
 {
+    private static readonly IReadOnlyList<DiskFormat> BuiltInFormats = new BuiltInImageFormatCatalog().Formats;
     private ExplorerFolderItem? _rootFolder;
     private ExploredDiskImage? _document;
     private ExploredMediaImage? _mediaDocument;
@@ -28,18 +31,24 @@ public partial class ExplorerSection : UserControl
     private IReadOnlyList<FileSystemEntry> _rootEntries = [];
     private IReadOnlyList<DiskFormat> _formats = [];
     private IReadOnlyList<string> _detectedFormatIds = [];
+    private string? _automaticDetectedFormatId;
     private readonly ObservableCollection<ExplorerFolderItem> _visibleFolders = [];
-    private bool _applyDetectionOnDisplay;
     private bool _updatingVolumeSelector;
     private bool _updatingSessionSelector;
-
+    private bool _updatingDetectedFormatSelector;
     public ExplorerSection()
     {
         InitializeComponent();
         FolderList.ItemsSource = _visibleFolders;
         SetFormats([], null);
-        Classification.ValueChanged += (_, _) => FormatChanged?.Invoke(this, EventArgs.Empty);
+        Classification.ValueChanged += (_, _) =>
+        {
+            AutomaticDetection.IsChecked = false;
+            Classification.SetAutomaticDetection(false);
+            FormatChanged?.Invoke(this, EventArgs.Empty);
+        };
         OpenButton.Click += (_, e) => OpenRequested?.Invoke(this, e);
+        EmptyOpenButton.Click += (_, e) => OpenRequested?.Invoke(this, e);
         ReadDiskButton.Click += (_, e) => ReadDiskRequested?.Invoke(this, e);
         SessionSelector.SelectionChanged += SessionSelector_SelectionChanged;
         AudioTrackList.SelectionChanged += AudioTrackList_SelectionChanged;
@@ -49,20 +58,43 @@ public partial class ExplorerSection : UserControl
     public event RoutedEventHandler? ReadDiskRequested;
     public event EventHandler? FormatChanged;
     public Button OpenImageButton => OpenButton;
+    public CardSection HeaderCardControl => HeaderCardRoot;
+    public DiskClassificationSelector ClassificationSelector => Classification;
     public IReadOnlyList<ExplorerFormatChoice> FormatChoices =>
         [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
-    public string? SelectedFormatId => Classification.SelectedProtectionId ?? Classification.SelectedFormatId;
+    public string? SelectedFormatId => AutomaticDetection.IsChecked == true
+        ? (DetectedFormatSelector.SelectedItem as ExplorerFormatChoice)?.Id ?? Classification.SelectedFormatId
+        : Classification.SelectedFormatId;
     public string? FormatIdForNewImage => AutomaticDetection.IsChecked == true ? null : SelectedFormatId;
+
+    public void SelectDetectedFormat(string formatId)
+    {
+        if (DetectedFormatSelector.ItemsSource is not IEnumerable<ExplorerFormatChoice> choices) return;
+        var choice = choices.FirstOrDefault(item => string.Equals(item.Id, formatId, StringComparison.OrdinalIgnoreCase));
+        if (choice is null) return;
+        _updatingDetectedFormatSelector = true;
+        DetectedFormatSelector.SelectedItem = choice;
+        Classification.ApplyDetection(formatId, null, _detectedFormatIds);
+        _updatingDetectedFormatSelector = false;
+    }
 
     private void AutomaticDetection_Changed(object sender, RoutedEventArgs e)
     {
+        if (!IsInitialized)
+            return;
+
         var enabled = AutomaticDetection.IsChecked == true;
         Classification.SetAutomaticDetection(enabled);
-        if (enabled && _document is not null)
-            Classification.ApplyDetection(_document.PrimaryFormatId, _document.Metadata.ProtectionId, _detectedFormatIds);
-        else if (enabled && _mediaDocument is not null)
-            Classification.ApplyDetection(_mediaDocument.Document.FormatId, null, _detectedFormatIds);
+        if (!enabled) return;
+
+        var formatId = _automaticDetectedFormatId
+            ?? _document?.PrimaryFormatId
+            ?? _mediaDocument?.Document.FormatId;
+        if (string.IsNullOrWhiteSpace(formatId)) return;
+
+        SelectDetectedFormat(formatId);
+        FormatChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
@@ -73,15 +105,34 @@ public partial class ExplorerSection : UserControl
         if (!hadSelection && selectedId is not null) Classification.ApplyDetection(selectedId, null);
     }
 
-    public void SetLoading(bool loading) => LoadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
+    public void SetLoading(bool loading)
+    {
+        LoadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
+        if (loading)
+            SetLoadingProgress(LocExtension.Get("Explorer.Loading"), string.Empty, 0);
+    }
+
+    public void SetLoadingProgress(string stage, string detail, double value)
+    {
+        LoadingCard.SetProgress(stage, detail, value);
+    }
+
+    internal string LoadingStage => LoadingCard.Stage;
+    internal string LoadingDetail => LoadingCard.Detail;
+    internal double LoadingValue => LoadingCard.Value;
+    internal string LoadingPercent => LoadingCard.Percent;
 
     public void Clear(string? path = null, bool newImage = true)
     {
-        _applyDetectionOnDisplay = newImage && AutomaticDetection.IsChecked == true;
-        if (newImage) _detectedFormatIds = [];
+        ManualOptionsPopup.IsOpen = false;
+        if (newImage)
+        {
+            _detectedFormatIds = [];
+            _automaticDetectedFormatId = null;
+            UpdateDetectedFormatSelector(null);
+        }
         PathText.Text = path ?? string.Empty;
-        DetectedFormatsText.Text = "\u2014";
-        DetectedFormatsText.ToolTip = null;
+        DocumentIdentity.Display(path ?? string.Empty, string.Empty, null);
         VolumeNameText.Foreground = BrushFor(false);
         VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = "—";
         SystemText.Text = ProtectionText.Text = "\u2014";
@@ -104,10 +155,12 @@ public partial class ExplorerSection : UserControl
         ContentsList.ItemsSource = null;
         WarningsButton.Visibility = Visibility.Collapsed;
         DetailsPanel.Clear();
+        ExplorerEmptyState.Visibility = string.IsNullOrWhiteSpace(path) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     public void Display(ExploredDiskImage document)
     {
+        ExplorerEmptyState.Visibility = Visibility.Collapsed;
         _document = document;
         _mediaDocument = null;
         _mediaVolume = null;
@@ -122,20 +175,31 @@ public partial class ExplorerSection : UserControl
         VolumeSelector.Visibility = Visibility.Collapsed;
         _updatingVolumeSelector = false;
         PathText.Text = document.SourcePath;
-        _detectedFormatIds = _detectedFormatIds
-            .Concat(ReportedFormats(document))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var reportedFormatIds = ReportedFormats(document);
+        if (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true)
+        {
+            _automaticDetectedFormatId = document.PrimaryFormatId;
+            _detectedFormatIds = reportedFormatIds;
+        }
+        else
+        {
+            _detectedFormatIds = _detectedFormatIds
+                .Concat(reportedFormatIds)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+        }
+        UpdateDetectedFormatSelector(document.PrimaryFormatId);
         var detectedSummary = DetectedFormatsSummary();
-        DetectedFormatsText.Text = detectedSummary;
-        DetectedFormatsText.ToolTip = detectedSummary;
+        DocumentIdentity.Display(
+            document.SourcePath,
+            detectedSummary,
+            GWGUI.Domain.Enums.MediaKind.Floppy,
+            FormatForIdentity(document.PrimaryFormatId));
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
-        if (_applyDetectionOnDisplay)
+        if (AutomaticDetection.IsChecked == true)
         {
             Classification.ApplyDetection(document.PrimaryFormatId, document.Metadata.ProtectionId, _detectedFormatIds);
         }
-
-        _applyDetectionOnDisplay = false;
         var volumeName = ExplorerDetailsPresenter.VolumeName(document);
         VolumeNameText.Text = volumeName.Text;
         VolumeNameText.Foreground = BrushFor(volumeName.IsSynthetic);
@@ -160,25 +224,37 @@ public partial class ExplorerSection : UserControl
     public void Display(ExploredMediaImage document)
     {
         ArgumentNullException.ThrowIfNull(document);
+        ExplorerEmptyState.Visibility = Visibility.Collapsed;
         _document = null;
         _mediaDocument = document;
         PathText.Text = document.Document.Source.PrimaryPath;
-        _detectedFormatIds = _detectedFormatIds
-            .Append(document.Document.FormatId)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        if (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true)
+        {
+            _automaticDetectedFormatId = document.Document.FormatId;
+            _detectedFormatIds = [document.Document.FormatId];
+        }
+        UpdateDetectedFormatSelector(document.Document.FormatId);
         var detectedSummary = DetectedFormatsSummary();
-        DetectedFormatsText.Text = detectedSummary;
-        DetectedFormatsText.ToolTip = detectedSummary;
+        DocumentIdentity.Display(
+            document.Document.Source.PrimaryPath,
+            detectedSummary,
+            document.Document.MediaKind,
+            FormatForIdentity(document.Document.FormatId));
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
-        if (_applyDetectionOnDisplay)
+        if (AutomaticDetection.IsChecked == true)
             Classification.ApplyDetection(document.Document.FormatId, null, _detectedFormatIds);
-        _applyDetectionOnDisplay = false;
 
         var selectedVolume = document.Volumes.FirstOrDefault(volume => volume.FileSystem is not null)
             ?? document.Volumes.FirstOrDefault();
         ConfigureSessions(selectedVolume?.Descriptor.SessionNumber);
         ConfigureVolumesAndAudio(selectedVolume);
+    }
+
+    private DiskFormat? FormatForIdentity(string? formatId)
+    {
+        if (string.IsNullOrWhiteSpace(formatId)) return null;
+        return _formats.FirstOrDefault(format => string.Equals(format.Id, formatId, StringComparison.OrdinalIgnoreCase))
+            ?? BuiltInFormats.FirstOrDefault(format => string.Equals(format.Id, formatId, StringComparison.OrdinalIgnoreCase));
     }
 
     private void ConfigureSessions(int? preferredSession)
@@ -327,15 +403,45 @@ public partial class ExplorerSection : UserControl
         return LocExtension.Get("Explorer.DetectedFormats", value);
     }
 
+    private void UpdateDetectedFormatSelector(string? selectedId)
+    {
+        var catalog = new DiskClassificationCatalog(_formats);
+        var choices = _detectedFormatIds
+            .Select(id => catalog.ResolveFormat(id))
+            .Where(format => format is not null)
+            .Cast<DiskFormat>()
+            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
+            .Select(format => new ExplorerFormatChoice(format.Id, $"{format.Family} · {format.DisplayName}"))
+            .ToArray();
+        _updatingDetectedFormatSelector = true;
+        DetectedFormatSelector.ItemsSource = choices;
+        DetectedFormatSelector.SelectedItem = choices.FirstOrDefault(choice =>
+            string.Equals(choice.Id, selectedId, StringComparison.OrdinalIgnoreCase)) ?? choices.FirstOrDefault();
+        var selectorVisible = choices.Length > 1;
+        DetectedFormatSelector.Visibility = selectorVisible ? Visibility.Visible : Visibility.Collapsed;
+        DetectedFormatLabel.Visibility = selectorVisible ? Visibility.Visible : Visibility.Collapsed;
+        _updatingDetectedFormatSelector = false;
+    }
+
+    private void DetectedFormatSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_updatingDetectedFormatSelector || DetectedFormatSelector.SelectedItem is not ExplorerFormatChoice { Id: { } formatId }) return;
+        Classification.ApplyDetection(formatId, null, _detectedFormatIds);
+        FormatChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ManualOptionsButton_Click(object sender, RoutedEventArgs e) =>
+        ManualOptionsPopup.IsOpen = !ManualOptionsPopup.IsOpen;
+
+    private CustomPopupPlacement[] ManualOptionsPopup_Place(Size popupSize, Size targetSize, Point offset) =>
+        [new(new Point(targetSize.Width - popupSize.Width, targetSize.Height), PopupPrimaryAxis.Horizontal)];
+
     private string CurrentSystem(ExploredDiskImage document)
     {
-        if (Classification.SelectedMachine is { } selectedMachine)
-        {
-            return selectedMachine;
-        }
-
         var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.PrimaryFormatId);
-        return format?.Family ?? ExplorerMetadataPresenter.Systems(document.Metadata);
+        return format?.Family
+            ?? Classification.SelectedMachine
+            ?? ExplorerMetadataPresenter.Systems(document.Metadata);
     }
 
     private string CurrentSystem(ExploredMediaImage document)

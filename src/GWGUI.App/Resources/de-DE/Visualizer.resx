@@ -14,7 +14,7 @@
   </resheader>
 <data name="Visual.LinkZoom"><value>Link-Zoom</value></data>
   <data name="Visual.OpenScp"><value>Öffnen Sie eine SCP-Datei…</value></data>
-  <data name="Visual.NoFile"><value>Keine SCP-Datei geöffnet</value></data>
+  <data name="Visual.NoFile"><value>Kein Abbild geöffnet</value></data>
   <data name="Visual.Waiting"><value>Warten auf eine Datei</value></data>
   <data name="Visual.Inspector"><value>Inspektor</value></data>
   <data name="Visual.SelectTrack"><value>Wählen Sie einen Titel aus.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Zuzuteilender Sektor</value></data>
   <data name="Visual.SectorFree"><value>Freier Sektor</value></data>
   <data name="Visual.SectorReserved"><value>Reservierter Sektor</value></data>
-  <data name="Visual.SectorMissing"><value>Fehlender Sektor</value></data>
   <data name="Visual.SectorUnreadable"><value>Nicht lesbarer Sektor</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Sektorinformationen</value></data>
   <data name="Visual.SectorLabel"><value>Sektor</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Größe</value></data>
   <data name="Visual.StateLabel"><value>Staat</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Dateisystempfad</value></data>
-  <data name="Visual.SectorState.Available"><value>Verfügbar</value></data>
-  <data name="Visual.SectorState.Missing"><value>Fehlend</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integrität unbekannt</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integrität ungültig</value></data>
   <data name="Visual.LogicalMapTitle"><value>Logische Karte</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS Geometrie</value></data>
   <data name="Visual.SurfaceLabel"><value>Oberfläche</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Signal</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Schweigezustand</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Dekodierter Block</value></data>
+  <data name="Visual.RevolutionSummary"><value>Alle Revolutionen</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revolution {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revolution</value></data>
+  <data name="Visual.QualityDead"><value>Tot</value></data>
+  <data name="Visual.QualityPoor"><value>arm</value></data>
+  <data name="Visual.QualityPartial"><value>Teilweise lesbar</value></data>
+  <data name="Visual.QualityGood"><value>Gut</value></data>
+  <data name="Visual.QualityExcellent"><value>Hervorragend</value></data>
+  <data name="Visual.SectorWithData"><value>Sektor mit Daten</value></data>
+  <data name="Visual.SectorDegraded"><value>Degradierter Sektor</value></data>
+  <data name="Visual.SectorDead"><value>Toter Sektor</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektor ohne Daten</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Revolution analysieren {0}/{1}…</value></data>
 </root>

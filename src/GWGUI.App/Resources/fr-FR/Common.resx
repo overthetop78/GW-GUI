@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Inconnue</value></data>
   <data name="Common.Eject"><value>Éjecter</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Médias inconnus</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Disquette</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Disque dur</value></data>
+  <data name="Common.MediaKind.Optical"><value>Disque optique</value></data>
+  <data name="Common.MediaKind.Tape"><value>Rubrique</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Secteurs</value></data>
+  <data name="Common.Representation.Blocks"><value>Blocs</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Voies optiques</value></data>
+  <data name="Common.Representation.Sequential"><value>Données séquentielles</value></data>
 </root>

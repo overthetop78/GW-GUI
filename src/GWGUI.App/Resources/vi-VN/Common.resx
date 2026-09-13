@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Không xác định</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Đẩy ra</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Phương tiện lạ</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Đĩa mềm</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Đĩa cứng</value></data>
+  <data name="Common.MediaKind.Optical"><value>Đĩa quang</value></data>
+  <data name="Common.MediaKind.Tape"><value>Băng</value></data>
+  <data name="Common.Representation.Flux"><value>Dòng chảy</value></data>
+  <data name="Common.Representation.Sectors"><value>Khu vực</value></data>
+  <data name="Common.Representation.Blocks"><value>Khối</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Dấu vết quang học</value></data>
+  <data name="Common.Representation.Sequential"><value>Dữ liệu thời gian</value></data>
 </root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Розмір даних користувачів</value></data>
   <data name="Explorer.Subchannels"><value>Підканали</value></data>
   <data name="Explorer.AudioTracks"><value>Аудіо треки</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Визнання медіа формату</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Визначений формат</value></data>
+  <data name="Explorer.LoadingMedia"><value>Читання структури ЗМІ</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Аналіз файлової системи</value></data>
+  <data name="Explorer.LoadingContents"><value>Підготовка папок і файлів</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Відображення вмісту</value></data>
+  <data name="Explorer.TestingFormat"><value>Формат тестування: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: Юридична</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: не визнав</value></data>
+  <data name="Explorer.ReadingFormat"><value>Формат читання: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Несумісний формат</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Не вдалося інтерпретувати «{1}» у форматі «{0}».&#xA;Виберіть інший формат, щоб продовжити.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Письма {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Документація</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Код джерела</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC файл програми</value></data>
+  <data name="Explorer.Type.Executable"><value>Виконаний</value></data>
+  <data name="Explorer.Type.Command"><value>Ім'я користувача</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Файл системи</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Код об'єкта</value></data>
+  <data name="Explorer.Type.Data"><value>Файл даних</value></data>
+  <data name="Explorer.Type.Configuration"><value>Файл конфігурації</value></data>
+  <data name="Explorer.Type.Library"><value>Інформаційна підтримка</value></data>
+  <data name="Explorer.Type.Media"><value>Медіа файл</value></data>
+  <data name="Explorer.Type.Font"><value>БРОНЮВАННЯ</value></data>
+  <data name="Explorer.Execution"><value>Виконавець</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Відносний файл, що виконуваний</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Перевірений файл, що виконуваний</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Команди або скрипти</value></data>
 </root>

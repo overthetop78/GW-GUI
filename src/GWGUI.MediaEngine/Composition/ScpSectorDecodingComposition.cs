@@ -49,7 +49,8 @@ internal sealed class ScpSectorDecodingComposition
         var isoAutomatic = new ScpSectorImageCandidate(
             ScpCandidateIds.IsoAutomatic,
             ScpFormatFamily.Iso,
-            (path, _, token) => isoReader.ReadAsync(path, null, token));
+            (path, _, token) => isoReader.ReadAsync(path, null, token),
+            (path, _, progress, token) => isoReader.ReadAsync(path, null, progress, token));
         var isoSelected = new ScpSectorImageCandidate(
             ScpCandidateIds.IsoSelected,
             ScpFormatFamily.Iso,
@@ -57,7 +58,8 @@ internal sealed class ScpSectorDecodingComposition
         var amiga = new ScpSectorImageCandidate(
             ScpCandidateIds.Amiga,
             ScpFormatFamily.Amiga,
-            (path, _, token) => amigaReader.ReadAsync(path, token));
+            (path, _, token) => amigaReader.ReadAsync(path, token),
+            (path, _, progress, token) => amigaReader.ReadAsync(path, progress, token));
         var atari = new ScpSectorImageCandidate(
             ScpCandidateIds.Atari,
             ScpFormatFamily.Iso,
@@ -86,7 +88,8 @@ internal sealed class ScpSectorDecodingComposition
         ScpSectorImageCandidate Iso(string format) => new(
             ScpCandidateIds.IsoFormat(format),
             ScpFormatFamily.Iso,
-            (path, _, token) => isoReader.ReadAsync(path, format, token));
+            (path, _, token) => isoReader.ReadAsync(path, format, token),
+            (path, _, progress, token) => isoReader.ReadAsync(path, format, progress, token));
 
         var acornAdfs = Iso(DiskImageFormatIds.AcornAdfs800);
         var amstradCpc = Iso(DiskImageFormatIds.AmstradCpc);
@@ -144,7 +147,7 @@ internal sealed class ScpSectorDecodingComposition
             selections,
             defaults,
             families,
-            [ScpFormatFamily.Iso, ScpFormatFamily.Amiga, ScpFormatFamily.Commodore, ScpFormatFamily.Apple, ScpFormatFamily.Dec],
+            [ScpFormatFamily.Amiga, ScpFormatFamily.Iso, ScpFormatFamily.Commodore, ScpFormatFamily.Apple, ScpFormatFamily.Dec],
             isoSelected);
     }
 }

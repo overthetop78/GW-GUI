@@ -3,6 +3,14 @@ using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
 namespace GWGUI.Tests.Media.ImageContainers;
 internal static class TeleDiskContainerScenarios
 {
+    public static void AdvancedCompressionVector()
+    {
+        var compressed = Convert.FromHexString("EAEB3DBF9C4EFE1E16EA34091C0DC08C02FC3F773F5720177F1F5FBFC6AB7FA5AFFE4C3996");
+        var expected = "I am Sam. Sam I am. I do not like this Sam I am.\n"u8.ToArray();
+        var expanded = Td0AdvancedDecompressor.Decompress(compressed);
+        Assert.Equal(expected, expanded[..expected.Length]);
+    }
+
     public static async Task Flags(byte flags)
     {
         bool missing=(flags&0x30)!=0; byte[] payload=Enumerable.Range(0,64).SelectMany(_=>new byte[]{42,93}).ToArray();

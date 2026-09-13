@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Ukendt</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Skub ud</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Ukendt medie</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Diskette</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Harddisk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optisk skive</value></data>
+  <data name="Common.MediaKind.Tape"><value>Tape</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sektorer</value></data>
+  <data name="Common.Representation.Blocks"><value>Blokke</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optiske spor</value></data>
+  <data name="Common.Representation.Sequential"><value>Sekventielle data</value></data>
 </root>

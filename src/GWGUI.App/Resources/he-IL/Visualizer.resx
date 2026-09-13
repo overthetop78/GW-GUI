@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>מפענח</value></data>
   <data name="Visual.LinkZoom"><value>זום קישור</value></data>
   <data name="Visual.OpenScp"><value>Open a SCP קובץ</value></data>
-  <data name="Visual.NoFile"><value>לא פתוח קובץ SCP</value></data>
+  <data name="Visual.NoFile"><value>לא נפתחה תמונה</value></data>
   <data name="Visual.Waiting"><value>מחכה לקובץ</value></data>
   <data name="Visual.Inspector"><value>מְפַקֵחַ</value></data>
   <data name="Visual.SelectTrack"><value>בחר רצועה.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>מגזר Allocated</value></data>
   <data name="Visual.SectorFree"><value>המגזר החופשי</value></data>
   <data name="Visual.SectorReserved"><value>המגזר השומר</value></data>
-  <data name="Visual.SectorMissing"><value>המגזר החסר</value></data>
   <data name="Visual.SectorUnreadable"><value>מגזר לא ידוע</value></data>
   <data name="Visual.SectorInspectorTitle"><value>מידע</value></data>
   <data name="Visual.SectorLabel"><value>מגזר</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>גודל</value></data>
   <data name="Visual.StateLabel"><value>מדינת מדינת</value></data>
   <data name="Visual.FileSystemPathLabel"><value>מערכת File system</value></data>
-  <data name="Visual.SectorState.Available"><value>זמין</value></data>
-  <data name="Visual.SectorState.Missing"><value>חסר</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>אינטגרליות לא ידועה</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>אינטגרציה invalid</value></data>
   <data name="Visual.LogicalMapTitle"><value>מפה הגיונית</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS גיאומטריה</value></data>
   <data name="Visual.SurfaceLabel"><value>Surface Surface Surface Surface</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>אות</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>שקט</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>בלוק Decoded</value></data>
+  <data name="Visual.RevolutionSummary"><value>כל המהפכה</value></data>
+  <data name="Visual.RevolutionChoice"><value>המהפכה {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>המהפכה</value></data>
+  <data name="Visual.QualityDead"><value>מת מת</value></data>
+  <data name="Visual.QualityPoor"><value>עניים עניים</value></data>
+  <data name="Visual.QualityPartial"><value>לקריאה חלקית</value></data>
+  <data name="Visual.QualityGood"><value>טוב טוב טוב טוב</value></data>
+  <data name="Visual.QualityExcellent"><value>מעולה</value></data>
+  <data name="Visual.SectorWithData"><value>מגזר עם נתונים</value></data>
+  <data name="Visual.SectorDegraded"><value>המגזר Degraded</value></data>
+  <data name="Visual.SectorDead"><value>Deadמגזר</value></data>
+  <data name="Visual.SectorWithoutData"><value>מגזר ללא נתונים</value></data>
+  <data name="Visual.AnalysingRevolution"><value>מהפכה {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1}…</value></data>
 </root>

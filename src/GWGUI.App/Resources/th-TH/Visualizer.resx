@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>ตัวถอดรหัส</value></data>
   <data name="Visual.LinkZoom"><value>ลิงค์ซูม.</value></data>
   <data name="Visual.OpenScp"><value>เปิด SCP แฟ้ม...</value></data>
-  <data name="Visual.NoFile"><value>ไม่มีไฟล์ SCP เปิดอยู่</value></data>
+  <data name="Visual.NoFile"><value>ไม่มีอิมเมจเปิดอยู่</value></data>
   <data name="Visual.Waiting"><value>กำลังรอไฟล์</value></data>
   <data name="Visual.Inspector"><value>สารวัตร</value></data>
   <data name="Visual.SelectTrack"><value>เลือกแทร็ก</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>ส่วนที่รวมแล้ว</value></data>
   <data name="Visual.SectorFree"><value>ส่วนอิสระ</value></data>
   <data name="Visual.SectorReserved"><value>ส่วนที่สํารองไว้</value></data>
-  <data name="Visual.SectorMissing"><value>ส่วนที่ขาดหายไป</value></data>
   <data name="Visual.SectorUnreadable"><value>ส่วนที่ยังไม่อ่าน</value></data>
   <data name="Visual.SectorInspectorTitle"><value>ข้อมูลขอบเขต</value></data>
   <data name="Visual.SectorLabel"><value>ส่วน</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>ขนาด</value></data>
   <data name="Visual.StateLabel"><value>สถานะ</value></data>
   <data name="Visual.FileSystemPathLabel"><value>พาธของแฟ้มของระบบ</value></data>
-  <data name="Visual.SectorState.Available"><value>มี</value></data>
-  <data name="Visual.SectorState.Missing"><value>หายไป</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>ไม่ปรากฏชื่อความสัตย์สุจริต</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>ความซื่อสัตย์ไม่ถูกต้อง</value></data>
   <data name="Visual.LogicalMapTitle"><value>แผนที่ตรรกะ</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS เรขาคณิต</value></data>
   <data name="Visual.SurfaceLabel"><value>พื้นผิว</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>สัญญาณ</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>เงียบ</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>บล็อกที่ถอดรหัสได้</value></data>
+  <data name="Visual.RevolutionSummary"><value>การปฏิวัติทั้งหมด</value></data>
+  <data name="Visual.RevolutionChoice"><value>การ ปฏิวัติ {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>การ ปฏิวัติ</value></data>
+  <data name="Visual.QualityDead"><value>ตาย</value></data>
+  <data name="Visual.QualityPoor"><value>จน</value></data>
+  <data name="Visual.QualityPartial"><value>อ่านบางส่วนได้</value></data>
+  <data name="Visual.QualityGood"><value>ดี</value></data>
+  <data name="Visual.QualityExcellent"><value>เยี่ยม</value></data>
+  <data name="Visual.SectorWithData"><value>ขอบเขตที่มีข้อมูล</value></data>
+  <data name="Visual.SectorDegraded"><value>สัดส่วนที่ลดแล้ว</value></data>
+  <data name="Visual.SectorDead"><value>ขอบเขตตาย</value></data>
+  <data name="Visual.SectorWithoutData"><value>ขอบเขตข้อมูลไม่มี</value></data>
+  <data name="Visual.AnalysingRevolution"><value>วิเคราะห์ การ ปฏิวัติ {0}/{1}…</value></data>
 </root>

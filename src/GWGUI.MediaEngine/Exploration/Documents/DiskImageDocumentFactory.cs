@@ -34,17 +34,18 @@ internal sealed class DiskImageDocumentFactory(DiskImageMetadataFactory metadata
         ScpImage? scpImage = null)
     {
         var images = detectedImages ?? detected.Select(item => item.Image).ToArray();
+        var primaryImage = detected.Count > 0 ? detected[0].Image : image;
         var formatIds = detected
             .Select(item => item.FormatId)
             .Concat(images.Select(item => item.FormatId))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
-        var metadata = metadataFactory.Create(image, formatIds);
+        var metadata = metadataFactory.Create(primaryImage, formatIds);
         if (detected.Count > 0)
         {
             return new(
                 path,
-                image,
+                primaryImage,
                 detected[0].Volume,
                 metadata,
                 true,
@@ -54,11 +55,11 @@ internal sealed class DiskImageDocumentFactory(DiskImageMetadataFactory metadata
                 scpImage);
         }
 
-        var entries = metadata.Content.HasCataloglessOrganization ? [] : PhysicalSectorTreeBuilder.Build(image);
-        var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), image.FormatId, image.Capacity, 0, null, null, entries, []);
+        var entries = metadata.Content.HasCataloglessOrganization ? [] : PhysicalSectorTreeBuilder.Build(primaryImage);
+        var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), primaryImage.FormatId, primaryImage.Capacity, 0, null, null, entries, []);
         return new(
             path,
-            image,
+            primaryImage,
             physical,
             metadata,
             false,

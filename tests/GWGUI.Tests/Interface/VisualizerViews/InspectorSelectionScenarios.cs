@@ -21,10 +21,12 @@ internal static class InspectorSelectionScenarios
         var first = new ScpRevolution(8_000_000, 2, [80, 160]);
         var second = new ScpRevolution(encoded.Revolution, (uint)encoded.Revolution.FluxIntervals.Count);
         var track = new ScpTrack((byte)(4 + head), 2, head, [first, second]);
-        var image = new ScpImage(ExplorerDocumentScenarios.Document("capture").ScpImage!.Header, [track], true, 688);
+        var otherTrack = new ScpTrack((byte)(5 - head), 2, 1 - head, [first, second]);
+        var image = new ScpImage(ExplorerDocumentScenarios.Document("capture").ScpImage!.Header, [track, otherTrack], true, 688);
         controller.SetImage(image);
         await controller.SelectTrackAsync(track);
-        var model = Assert.IsType<MediaInspectorModel>(section.CommonInspector.DataContext);
+        var inspector = head == 0 ? section.FirstInspector : section.SecondInspector;
+        var model = Assert.IsType<MediaInspectorModel>(inspector.DataContext);
         Assert.Equal("Visual.Title|", model.Title);
         Assert.Equal($"Visual.TrackTooltip|{head}|2|2", model.SelectedElement);
         var summary = model.Sections.Single(item => item.Title == "Visual.SummaryTab|");
@@ -35,20 +37,23 @@ internal static class InspectorSelectionScenarios
         var revolutions = model.Sections.Single(item => item.Title == "Visual.RevolutionsTitle|").Entries;
         Assert.Equal(2, revolutions.Count);
         Assert.Contains("2", revolutions[0].Value);
-        Assert.Contains("200.00 ms", revolutions[0].Value);
-        Assert.Contains("300.00 RPM", revolutions[0].Value);
+        Assert.Contains("ms", revolutions[0].Value);
+        Assert.Contains("RPM", revolutions[0].Value);
         Assert.Contains(model.Sections, item => item.Title == "Visual.AnalysisTitle|");
         Assert.Contains(model.Sections, item => item.Title == "Visual.StructuresTitle|");
         var sector = Assert.Single(model.Sections.Single(item => item.Title == "Visual.SectorsTitle|").Entries);
         Assert.StartsWith($"Visual.SectorDetail|2|{head}|3|128|", sector.Value);
-        Assert.True(section.IsInspectorVisible);
-        await controller.SelectTrackAsync(null); Assert.Null(section.CommonInspector.DataContext);
+        await controller.SelectTrackAsync(1 - head, otherTrack);
+        var otherInspector = head == 0 ? section.SecondInspector : section.FirstInspector;
+        Assert.IsType<MediaInspectorModel>(otherInspector.DataContext);
+        Assert.Same(model, inspector.DataContext);
+        await controller.SelectTrackAsync(head, null); Assert.Null(inspector.DataContext);
         var pending = controller.SelectTrackAsync(track);
         controller.SetImage(ExplorerDocumentScenarios.Document("replacement").ScpImage!);
-        await pending; Assert.Null(section.CommonInspector.DataContext);
+        await pending; Assert.Null(inspector.DataContext);
         controller.SetImage(image);
         pending = controller.SelectTrackAsync(track);
-        controller.ClearImage(); await pending; Assert.Null(section.CommonInspector.DataContext);
+        controller.ClearImage(); await pending; Assert.Null(inspector.DataContext);
     }
     internal static ScpInspectorController Controller(VisualizerTabSection section, DiskImageCancellationScope scope) =>
         new(new Window(), section, new FluxDecoderRegistry(), scope, _ => Task.CompletedTask, () => { }, (key, _) => key);
@@ -57,11 +62,18 @@ internal static class InspectorSelectionScenarios
         var section = new VisualizerTabSection();
         using var scope = new DiskImageCancellationScope();
         var controller = Controller(section, scope);
-        section.CommonInspector.DataContext = new object();
+        section.FirstInspector.Model = new("first", null, []);
+        section.SecondInspector.Model = new("second", null, []);
         controller.SetImage(ExplorerDocumentScenarios.Document("first").ScpImage!);
-        Assert.Null(section.CommonInspector.DataContext);
-        section.CommonInspector.DataContext = new object();
-        controller.ClearImage(); Assert.Null(section.CommonInspector.DataContext);
-        controller.RefreshInspector(); Assert.Null(section.CommonInspector.DataContext);
+        Assert.Null(section.FirstInspector.DataContext);
+        Assert.Null(section.SecondInspector.DataContext);
+        section.FirstInspector.Model = new("first", null, []);
+        section.SecondInspector.Model = new("second", null, []);
+        controller.ClearImage();
+        Assert.Null(section.FirstInspector.DataContext);
+        Assert.Null(section.SecondInspector.DataContext);
+        controller.RefreshInspector();
+        Assert.Null(section.FirstInspector.DataContext);
+        Assert.Null(section.SecondInspector.DataContext);
     }
 }

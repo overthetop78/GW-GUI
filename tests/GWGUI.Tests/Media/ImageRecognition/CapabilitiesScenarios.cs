@@ -9,11 +9,51 @@ internal static class CapabilitiesScenarios
         var curated = RecognitionEvidenceScenarios.Catalog;
         Assert.Same(curated.Formats, new CapabilityAwareImageFormatCatalog(curated, GwFormatCapabilities.Unknown).Formats);
         var catalog = new CapabilityAwareImageFormatCatalog(curated, new(new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "synthetic.new" }, new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".img", ".scp" }));
-        Assert.Contains(catalog.Formats, x => x.Id == "raw.scp"); Assert.DoesNotContain(catalog.Formats, x => x.Extensions.Any(e => e.Extension == ".adf"));
+        Assert.Contains(catalog.Formats, x => x.Id == "raw.scp");
+        Assert.Contains(catalog.Formats, x => x.Extensions.Any(e => e.Extension == ".adf"));
         var discovered = Assert.Single(catalog.Formats, x => x.Id == "synthetic.new");
         Assert.Equal(".img", Assert.Single(discovered.Extensions).Extension); Assert.True(discovered.Extensions[0].IsDefault);
         Assert.Contains(discovered, catalog.GetCompatibleOutputs("SCP"));
         Assert.All(catalog.Formats, x => Assert.Single(x.Extensions, e => e.IsDefault));
+
+        var atariCatalog = new CapabilityAwareImageFormatCatalog(
+            new BuiltInImageFormatCatalog(),
+            new(
+                new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "atari.90", "atari.130" },
+                new HashSet<string>(StringComparer.OrdinalIgnoreCase) { ".atr" }));
+        Assert.Equal(
+            ["atari.90", "atari.130", "atari.180"],
+            new DiskClassificationCatalog(atariCatalog.Formats)
+                .FormatsFor("Atari 8-bit")
+                .Select(format => format.Id));
+        Assert.All(
+            atariCatalog.Formats.Where(format => format.Id is "atari.90" or "atari.130"),
+            format =>
+            {
+                Assert.True(format.SupportsPhysicalRead);
+                Assert.True(format.SupportsPhysicalWrite);
+            });
+        var atari180 = Assert.Single(atariCatalog.Formats, format => format.Id == "atari.180");
+        Assert.Equal(FloppyFormFactor.FiveAndQuarterInch, atari180.FormFactor);
+        Assert.False(atari180.SupportsPhysicalRead);
+        Assert.False(atari180.SupportsPhysicalWrite);
+
+        var builtInFormats = new BuiltInImageFormatCatalog().Formats;
+        Assert.All(
+            builtInFormats.Where(format => format.FormFactor == FloppyFormFactor.ThreeAndHalfInch),
+            format => Assert.NotEqual(FloppyDensity.Unknown, format.Density));
+        Assert.Equal(FloppyDensity.DoubleDensity, Assert.Single(builtInFormats, format => format.Id == "ibm.720").Density);
+        Assert.Equal(FloppyDensity.HighDensity, Assert.Single(builtInFormats, format => format.Id == "ibm.1440").Density);
+        Assert.Equal(FloppyDensity.ExtendedDensity, Assert.Single(builtInFormats, format => format.Id == "ibm.2880").Density);
+        var msxFormats = builtInFormats.Where(format => format.Family == "MSX").ToArray();
+        Assert.Equal(4, msxFormats.Length);
+        Assert.All(
+            msxFormats,
+            format =>
+            {
+                Assert.Equal(FloppyFormFactor.ThreeAndHalfInch, format.FormFactor);
+                Assert.Equal(FloppyDensity.DoubleDensity, format.Density);
+            });
     }
     public static void Presentation()
     {

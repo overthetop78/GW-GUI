@@ -7,6 +7,7 @@ using GWGUI.Domain.HostTools;
 using GWGUI.Domain.Profiles;
 using GWGUI.Domain.Settings;
 using GWGUI.App.Contracts.Services.Hardware;
+using GWGUI.App.Contracts.Dialogs;
 using GWGUI.App.Contracts.Visualization;
 using GWGUI.App.Controllers.MainWindow;
 using GWGUI.App.Dictionaries.Options;
@@ -37,6 +38,7 @@ using GWGUI.App.Views.Controls.Options;
 using GWGUI.App.Views.Controls.Read;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.App.Views.Controls.Write;
+using GWGUI.App.Views.Dialogs.Common;
 using GWGUI.MediaEngine.Visualization;
 using System.ComponentModel;
 using GWGUI.MediaEngine.Exploration.Results;
@@ -294,6 +296,10 @@ public partial class MainWindow : Window
             mediaExplorer: _mediaEngine.Explorer,
             visualizationProviders: _mediaEngine.Visualization.Registry);
         VisualizerHeader.ClassificationSelector.ValueChanged += (_, _) => _diskImageWorkspace.ApplyClassification();
+        VisualizerHeader.ClassificationFormatChanged += async (_, formatId) =>
+            await _diskImageWorkspace.SelectVisualizerRepresentationAsync(formatId);
+        VisualizerHeader.RepresentationChoiceChanged += async (_, formatId) =>
+            await _diskImageWorkspace.SelectVisualizerRepresentationAsync(formatId);
         _readTab = new ReadTabController(
             ReadTabBlock,
             _viewModel,
@@ -348,9 +354,9 @@ public partial class MainWindow : Window
             _consoleLog,
             path => _diskImageWorkspace.LoadAsync(path),
             ShowLoggedError);
-        VisualizerHeader.OpenButton.Click += async (_, _) =>
+        VisualizerTabBlock.OpenRequested += async (_, _) =>
         {
-            var path = _diskImageWorkspace.SelectImage();
+            var path = _diskImageWorkspace.SelectVisualizerImage();
             if (path is not null) await _diskImageWorkspace.LoadAsync(path);
         };
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
@@ -433,17 +439,15 @@ public partial class MainWindow : Window
         ReadAdvancedBlock.DenselChecked += (_, _) => _readTab.EnableDensel();
         ReadAdvancedBlock.Tg43Checked += (_, _) => _readTab.EnableTg43();
         ReadAdvancedBlock.SequenceKindChanged += (_, _) => _readTab.ChangeSequenceKind();
-        ReadCompletionBlock.ExploreRequested += async (_, _) =>
+        ReadCompletionBlock.ExploreRequested += async path =>
         {
-            if (_diskImageWorkspace.LastCapturedPath is null) return;
             MainTabs.SelectedIndex = 4;
-            await _diskImageWorkspace.LoadAsync(_diskImageWorkspace.LastCapturedPath);
+            await _diskImageWorkspace.LoadAsync(path);
         };
-        ReadCompletionBlock.VisualizeRequested += async (_, _) =>
+        ReadCompletionBlock.VisualizeRequested += async path =>
         {
-            if (_diskImageWorkspace.LastCapturedPath is null) return;
             MainTabs.SelectedIndex = 3;
-            await _diskImageWorkspace.LoadAsync(_diskImageWorkspace.LastCapturedPath);
+            await _diskImageWorkspace.LoadAsync(path);
         };
         ReadTabBlock.ExecuteRequested += ExecuteRead_Click;
         TerminalBlock.CopyButton.Click += (_, _) => _terminalPanel.CopyToClipboard();
@@ -527,13 +531,13 @@ public partial class MainWindow : Window
     {
         DiskExplorer.OpenRequested += async (_, _) =>
         {
-            var path = _diskImageWorkspace.SelectImage();
+            var path = _diskImageWorkspace.SelectExplorerImage();
             if (path is not null) await _diskImageWorkspace.LoadAsync(path);
         };
         DiskExplorer.ReadDiskRequested += async (_, _) => await _explorerRead.ExecuteAsync();
         DiskExplorer.FormatChanged += async (_, _) =>
         {
-            if (!string.IsNullOrWhiteSpace(_diskImageWorkspace.ExplorerPath)) await _diskImageWorkspace.LoadExplorerAsync(_diskImageWorkspace.ExplorerPath, false);
+            await _diskImageWorkspace.SelectExplorerRepresentationAsync();
         };
     }
 
@@ -630,17 +634,19 @@ public partial class MainWindow : Window
     {
         var selectedReadId = (ReadFormatCombo.SelectedItem as DiskFormat)?.Id;
         var selectedFamily = (ReadFormatCombo.SelectedItem as DiskFormat)?.Family ?? ReadFamilyCombo.SelectedItem as string;
-        var families = _formatCatalog.Formats.Where(format => format.Family != "Raw").Select(format => format.Family).Distinct().Order().ToArray();
+        var readableFormats = _formatCatalog.Formats.Where(format => format.Family != "Raw" && format.SupportsPhysicalRead).ToArray();
+        var families = readableFormats.Select(format => format.Family).Distinct().Order().ToArray();
         ReadFamilyCombo.ItemsSource = families;
         ReadFamilyCombo.SelectedItem = selectedFamily is not null && families.Contains(selectedFamily) ? selectedFamily : families.FirstOrDefault();
         if (selectedReadId is not null)
-            ReadFormatCombo.SelectedItem = _formatCatalog.Formats.FirstOrDefault(format => format.Id == selectedReadId);
+            ReadFormatCombo.SelectedItem = readableFormats.FirstOrDefault(format => format.Id == selectedReadId);
 
         if (WriteFormatCombo.ItemsSource is not null)
         {
             var selectedWriteId = (WriteFormatCombo.SelectedItem as DiskFormat)?.Id;
-            WriteFormatCombo.ItemsSource = _formatCatalog.Formats.Where(format => format.Family != "Raw").ToArray();
-            WriteFormatCombo.SelectedItem = _formatCatalog.Formats.FirstOrDefault(format => format.Id == selectedWriteId);
+            var writableFormats = _formatCatalog.Formats.Where(format => format.Family != "Raw" && format.SupportsPhysicalWrite).ToArray();
+            WriteFormatCombo.ItemsSource = writableFormats;
+            WriteFormatCombo.SelectedItem = writableFormats.FirstOrDefault(format => format.Id == selectedWriteId);
         }
 
         DetectedImageFormat? detection = null;
@@ -722,6 +728,18 @@ public partial class MainWindow : Window
     private void ShowLoggedError(Exception exception, string context, string titleKey, string messageKey = "Error.Unexpected")
     {
         _writeError(exception, context);
+        if (messageKey == "Explorer.SelectedFormatUnsupported")
+        {
+            var unsupported = exception as DiskImageWorkspaceController.SelectedFormatUnsupportedException;
+            var formatName = unsupported?.FormatName ?? LocExtension.Get("Explorer.Unknown");
+            var fileName = unsupported?.FileName ?? LocExtension.Get("Explorer.Unknown");
+            CommonErrorDialog.Show(this, new CommonErrorDialogContent(
+                LocExtension.Get(titleKey),
+                LocExtension.Get(messageKey, formatName, fileName),
+                CommonErrorDialog.InformationIcon,
+                (Brush)FindResource("AccentBrush")));
+            return;
+        }
         var detail = ExceptionDescriptionFunctions.Describe(exception);
         _dialogs.Show(LocExtension.Get(messageKey, detail), LocExtension.Get(titleKey), icon: UserDialogIcon.Error);
     }

@@ -18,15 +18,22 @@ public sealed partial class SkiaScpRenderer
         foreach (var revolution in track.Revolutions)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var prepared = PrepareRevolution(revolution, cancellationToken);
+            var decodedRevolution = decoderId is null
+                ? null
+                : _decoders.Decode(decoderId, revolution.Flux);
+            var prepared = PrepareRevolution(revolution, decodedRevolution, cancellationToken);
             preparedRevolutions.Add(prepared.Revolution);
             shortTransitionCount += prepared.ShortTransitions;
             longTransitionCount += prepared.LongTransitions;
             normalFluxCount += prepared.NormalTransitions;
         }
 
+        preparedRevolutions = ApplyFluxAgreementQuality(track.Revolutions, preparedRevolutions);
+
         var structureArcs = new List<PreparedScpArc>();
-        var best = _decoders.DecodeBest(track.Revolutions.Select(item => item.Flux).ToArray(), decoderId);
+        var best = decoderId is null
+            ? null
+            : _decoders.DecodeBest(track.Revolutions.Select(item => item.Flux).ToArray(), decoderId);
         FluxDecodeResult? decodedResult = null;
         if (best is not null)
         {
@@ -45,6 +52,7 @@ public sealed partial class SkiaScpRenderer
         var sectors = decodedResult?.Sectors ?? [];
         return new(
             preparedRevolutions,
+            BuildSynthesis(preparedRevolutions),
             structureArcs,
             Classify(decodedResult, shortTransitionCount, longTransitionCount, normalFluxCount),
             sectors.Count(sector => sector.IntegrityValid == true),
@@ -55,14 +63,15 @@ public sealed partial class SkiaScpRenderer
 
     private static (PreparedScpRevolution Revolution, int ShortTransitions, int LongTransitions, int NormalTransitions) PrepareRevolution(
         ScpRevolution revolution,
+        FluxDecodeResult? decoded,
         CancellationToken cancellationToken)
     {
         var intervals = revolution.FluxIntervals;
-        if (intervals.Count == 0) return (new PreparedScpRevolution([]), 0, 0, 0);
+        if (intervals.Count == 0) return (new PreparedScpRevolution([], 0), 0, 0, 0);
 
         var sampleStep = Math.Max(1, intervals.Count / 720);
         var total = intervals.Sum(interval => (double)interval);
-        if (total <= 0) return (new PreparedScpRevolution([]), 0, 0, 0);
+        if (total <= 0) return (new PreparedScpRevolution([], 0), 0, 0, 0);
 
         var ordered = intervals.ToArray();
         Array.Sort(ordered);
@@ -77,15 +86,78 @@ public sealed partial class SkiaScpRenderer
             cancellationToken.ThrowIfCancellationRequested();
             double span = 0;
             for (var sample = index; sample < Math.Min(index + sampleStep, intervals.Count); sample++) span += intervals[sample];
-            var color = intervals[index] < median * .65 ? new SKColor(143, 104, 255) : intervals[index] > median * 1.8 ? new SKColor(83, 173, 255) : new SKColor(36, 179, 93);
-            if (color == new SKColor(143, 104, 255)) shortTransitionCount++;
-            else if (color == new SKColor(83, 173, 255)) longTransitionCount++;
+            var color = intervals[index] < median * .65 ? new SKColor(68, 151, 143) : intervals[index] > median * 1.8 ? new SKColor(72, 115, 154) : new SKColor(55, 137, 101);
+            if (color == new SKColor(68, 151, 143)) shortTransitionCount++;
+            else if (color == new SKColor(72, 115, 154)) longTransitionCount++;
             else normalFluxCount++;
             fluxArcs.Add(new((float)(elapsed / total * 360 - 90), Math.Max(.08f, (float)(span / total * 360)), color));
             elapsed += span;
         }
 
-        return (new PreparedScpRevolution(fluxArcs), shortTransitionCount, longTransitionCount, normalFluxCount);
+        return (new PreparedScpRevolution(fluxArcs, QualityFor(decoded, intervals, median)), shortTransitionCount, longTransitionCount, normalFluxCount);
+    }
+
+    private static PreparedScpRevolution BuildSynthesis(IReadOnlyList<PreparedScpRevolution> revolutions)
+    {
+        if (revolutions.Count == 0) return new([], 0);
+        var sampleCount = revolutions.Max(item => item.FluxArcs.Count);
+        if (sampleCount == 0) return new([], 0);
+        var arcs = new PreparedScpArc[sampleCount];
+        for (var index = 0; index < sampleCount; index++)
+        {
+            var colors = revolutions
+                .Where(item => item.FluxArcs.Count > 0)
+                .Select(item => item.FluxArcs[Math.Min(item.FluxArcs.Count - 1, index * item.FluxArcs.Count / sampleCount)].Color)
+                .ToArray();
+            var color = colors.GroupBy(item => item).OrderByDescending(group => group.Count()).First().Key;
+            arcs[index] = new PreparedScpArc(-90f + index * 360f / sampleCount, 360f / sampleCount, color);
+        }
+        return new(arcs, revolutions.Average(item => item.Quality));
+    }
+
+    private static double QualityFor(FluxDecodeResult? decoded, IReadOnlyList<uint> intervals, uint median)
+    {
+        if (decoded is not null)
+        {
+            if (decoded.Sectors.Count == 0)
+                return Math.Clamp(decoded.Confidence, 0, 1);
+            var valid = decoded.Sectors.Count(item => item.IntegrityValid == true);
+            var unknown = decoded.Sectors.Count(item => item.IntegrityValid is null);
+            return Math.Clamp((valid + unknown * .35) / decoded.Sectors.Count, 0, 1);
+        }
+
+        return intervals.Count == 0 || median == 0 ? 0 : 1;
+    }
+
+    private static List<PreparedScpRevolution> ApplyFluxAgreementQuality(
+        IReadOnlyList<ScpRevolution> source,
+        IReadOnlyList<PreparedScpRevolution> prepared)
+    {
+        if (source.Count != prepared.Count || source.Count == 0) return prepared.ToList();
+        if (source.Count == 1)
+            return [prepared[0] with { Quality = source[0].FluxIntervals.Count > 0 ? 1 : 0 }];
+
+        var durations = source.Select(item => (double)item.IndexTimeTicks).Order().ToArray();
+        var counts = source.Select(item => (double)item.FluxIntervals.Count).Order().ToArray();
+        var medianDuration = durations[durations.Length / 2];
+        var medianCount = counts[counts.Length / 2];
+        var result = new List<PreparedScpRevolution>(prepared.Count);
+        for (var index = 0; index < prepared.Count; index++)
+        {
+            var revolution = source[index];
+            if (revolution.FluxIntervals.Count == 0 || medianDuration <= 0 || medianCount <= 0)
+            {
+                result.Add(prepared[index] with { Quality = 0 });
+                continue;
+            }
+
+            var durationDeviation = Math.Abs(revolution.IndexTimeTicks - medianDuration) / medianDuration;
+            var countDeviation = Math.Abs(revolution.FluxIntervals.Count - medianCount) / medianCount;
+            var durationAgreement = Math.Clamp(1 - durationDeviation / .08, 0, 1);
+            var countAgreement = Math.Clamp(1 - countDeviation / .18, 0, 1);
+            result.Add(prepared[index] with { Quality = durationAgreement * .65 + countAgreement * .35 });
+        }
+        return result;
     }
 
     internal static ScpTrackVisualState Classify(FluxDecodeResult? decoded, int shortTransitions, int longTransitions, int normalFlux)

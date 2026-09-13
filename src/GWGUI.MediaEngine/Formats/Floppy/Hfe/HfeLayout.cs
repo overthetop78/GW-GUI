@@ -1,6 +1,6 @@
 namespace GWGUI.MediaEngine.Formats.Floppy.Hfe;
 
-/// <summary>Définit les offsets et tailles du conteneur HFE version 1.</summary>
+/// <summary>Définit les offsets et tailles communs aux conteneurs HFE versions 1 et 3.</summary>
 public static class HfeLayout
 {
     public const int BlockSize = 512;

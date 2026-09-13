@@ -14,7 +14,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
     /// <summary>Identifiant technique du lecteur.</summary>
     public string Id => Definitions.FileSystemIds.AcornDfs;
     /// <summary>Formats BBC DFS pris en charge.</summary>
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { DiskImageFormatIds.AcornDfsSingleSided, DiskImageFormatIds.AcornDfsSingleSided80, DiskImageFormatIds.AcornDfsDoubleSided, DiskImageFormatIds.AcornDfsDoubleSided80 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { DiskImageFormatIds.AcornAtomDos, DiskImageFormatIds.AcornDfsSingleSided, DiskImageFormatIds.AcornDfsSingleSided80, DiskImageFormatIds.AcornDfsDoubleSided, DiskImageFormatIds.AcornDfsDoubleSided80 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public bool CanRead(SectorImage image)
     {
@@ -30,6 +30,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
         var metadata = image.GetBlock(BbcDfsFileSystemLayout.MetadataSector).Span;
         var title = BbcDfsNameCodec.Decode(names[..BbcDfsFileSystemLayout.TitleFirstLength]) + BbcDfsNameCodec.Decode(metadata[..BbcDfsFileSystemLayout.TitleSecondLength]);
         var totalSectors = (metadata[BbcDfsFileSystemLayout.TotalSectorsHighOffset] & BbcDfsFileSystemLayout.TotalSectorsHighMask) << BitPrimitives.BitsPerByte | metadata[BbcDfsFileSystemLayout.TotalSectorsLowOffset];
+        if (totalSectors == 0 && image.FormatId.Equals(DiskImageFormatIds.AcornAtomDos, StringComparison.OrdinalIgnoreCase)) totalSectors = image.BlockCount;
         var fileCount = metadata[BbcDfsFileSystemLayout.EntryCountOffset] / BbcDfsFileSystemLayout.EntryPartSize;
         var entries = new List<FileSystemEntry>(fileCount);
         var warnings = new List<string>();
@@ -41,7 +42,8 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
             var leaf = BbcDfsNameCodec.Decode(names.Slice(nameOffset, BbcDfsFileSystemLayout.LeafNameLength));
             var directoryByte = names[nameOffset + BbcDfsFileSystemLayout.DirectoryOffset];
             var directory = (char)(directoryByte & BbcDfsFileSystemLayout.CharacterMask);
-            var name = directory == BbcDfsFileSystemLayout.RootDirectory ? leaf : $"{directory}.{leaf}";
+            var atomDefaultQualifier = image.FormatId.Equals(DiskImageFormatIds.AcornAtomDos, StringComparison.OrdinalIgnoreCase) && directory == ' ';
+            var name = directory == BbcDfsFileSystemLayout.RootDirectory || atomDefaultQualifier ? leaf : $"{directory}.{leaf}";
             var length = BbcDfsEntryDecoder.Length(metadata, metaOffset);
             var start = BbcDfsEntryDecoder.StartSector(metadata, metaOffset);
             var load = BbcDfsEntryDecoder.Load(metadata, metaOffset);

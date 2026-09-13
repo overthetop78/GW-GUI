@@ -41,7 +41,7 @@ public sealed class BbcDfsReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    /// <summary>Charge l'image, sélectionne SSD ou DSD depuis l'extension et exige une capacité exacte de 40 ou 80 cylindres.</summary>
+    /// <summary>Charge l'image et sélectionne SSD ou DSD depuis l'extension, y compris une image tronquée après son dernier secteur complet.</summary>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(path);
@@ -56,7 +56,9 @@ public sealed class BbcDfsReader : IMediaImageReader
         var kind = GetContainerKind(context.Extension);
         if (kind is null) return ValueTask.FromResult(false);
         var heads = kind == BbcDfsContainerKind.Ssd ? DiskGeometryConstants.SingleSidedHeadCount : DiskGeometryConstants.DoubleSidedHeadCount;
-        var matches = context.Length <= int.MaxValue && BbcDfsGeometry.Find(heads, (int)context.Length) is not null;
+        var maximumCapacity = BbcDfsGeometry.Supported.Where(geometry => geometry.Heads == heads).Max(geometry => geometry.Capacity);
+        var matches = context.Length >= BbcDfsGeometry.SectorSize
+            && context.Length <= maximumCapacity + BbcDfsGeometry.SectorSize - 1;
         return ValueTask.FromResult(matches);
     }
 
@@ -71,11 +73,21 @@ public sealed class BbcDfsReader : IMediaImageReader
     {
         var kind = GetContainerKind(extension) ?? throw BbcDfsExceptions.UnknownExtension(extension);
         var heads = kind == BbcDfsContainerKind.Ssd ? DiskGeometryConstants.SingleSidedHeadCount : DiskGeometryConstants.DoubleSidedHeadCount;
-        if (data.Length == 0 || data.Length % (BbcDfsGeometry.TrackSize * heads) != 0) throw BbcDfsExceptions.IncompleteTrack(data.Length, heads, BbcDfsGeometry.TrackSize);
-        var cylinders = data.Length / (BbcDfsGeometry.TrackSize * heads);
-        var geometry = BbcDfsGeometry.Find(heads, data.Length) ?? throw BbcDfsExceptions.UnsupportedCylinderCount(data.Length, cylinders, heads);
-        var linear = new LinearSectorImageGeometry(BbcDfsGeometry.SectorSize, geometry.Cylinders, geometry.Heads, BbcDfsGeometry.SectorsPerTrack, SectorNumbering.ZeroBased);
-        return LinearSectorImageBuilder.Create(data, geometry.FormatId, linear, cancellationToken);
+        var completeLength = data.Length / BbcDfsGeometry.SectorSize * BbcDfsGeometry.SectorSize;
+        if (completeLength == 0)
+            throw BbcDfsExceptions.IncompleteTrack(data.Length, heads, BbcDfsGeometry.SectorSize);
+        var geometry = BbcDfsGeometry.Supported.Where(candidate => candidate.Heads == heads && candidate.Capacity >= completeLength)
+            .OrderBy(candidate => candidate.Capacity).FirstOrDefault()
+            ?? throw BbcDfsExceptions.UnsupportedCylinderCount(data.Length, (int)Math.Ceiling(data.Length / (double)(BbcDfsGeometry.TrackSize * heads)), heads);
+        var blocks = new SectorBlock[completeLength / BbcDfsGeometry.SectorSize];
+        for (var logical = 0; logical < blocks.Length; logical++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var perCylinder = geometry.Heads * BbcDfsGeometry.SectorsPerTrack;
+            var address = new SectorAddress(logical / perCylinder, logical / BbcDfsGeometry.SectorsPerTrack % geometry.Heads, logical % BbcDfsGeometry.SectorsPerTrack);
+            blocks[logical] = new(logical, address, data.AsSpan(logical * BbcDfsGeometry.SectorSize, BbcDfsGeometry.SectorSize).ToArray());
+        }
+        return new SectorImage(geometry.FormatId, BbcDfsGeometry.SectorSize, geometry.Cylinders, geometry.Heads, BbcDfsGeometry.SectorsPerTrack, blocks);
     }
 
     private static BbcDfsContainerKind? GetContainerKind(string extension)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Wielkość danych użytkownika</value></data>
   <data name="Explorer.Subchannels"><value>Podkanały</value></data>
   <data name="Explorer.AudioTracks"><value>Ścieżki dźwiękowe</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Uznawanie formatu mediów</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Uznane format</value></data>
+  <data name="Explorer.LoadingMedia"><value>Czytanie struktury mediów</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analiza systemu plików</value></data>
+  <data name="Explorer.LoadingContents"><value>Przygotowanie folderów i plików</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Wyświetlanie zawartości</value></data>
+  <data name="Explorer.TestingFormat"><value>Format badania: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: rozpoznany</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: nierozpoznany</value></data>
+  <data name="Explorer.ReadingFormat"><value>Format odczytu: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Niezgodny format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Nie można zinterpretować „{1}” przy użyciu formatu „{0}”.&#xA;Wybierz inny format, aby kontynuować.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Plik {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokument</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Kod źródła</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC plik programu</value></data>
+  <data name="Explorer.Type.Executable"><value>Wykonawalny</value></data>
+  <data name="Explorer.Type.Command"><value>Plik poleceń</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Plik systemowy</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Kod obiektu</value></data>
+  <data name="Explorer.Type.Data"><value>Plik danych</value></data>
+  <data name="Explorer.Type.Configuration"><value>Plik konfiguracyjny</value></data>
+  <data name="Explorer.Type.Library"><value>Biblioteka</value></data>
+  <data name="Explorer.Type.Media"><value>Plik nośnika</value></data>
+  <data name="Explorer.Type.Font"><value>Czcionka</value></data>
+  <data name="Explorer.Execution"><value>Wykonanie</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Plik wykonywalny natywny</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Interpretowany plik wykonywalny</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Polecenie lub skrypt</value></data>
 </root>

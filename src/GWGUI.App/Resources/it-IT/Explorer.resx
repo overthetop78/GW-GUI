@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Dimensione dei dati utente</value></data>
   <data name="Explorer.Subchannels"><value>Sottocanale</value></data>
   <data name="Explorer.AudioTracks"><value>Audio tracce</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Riconoscere il formato dei media</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Formato riconosciuto</value></data>
+  <data name="Explorer.LoadingMedia"><value>Leggere la struttura dei media</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analizzare il file system</value></data>
+  <data name="Explorer.LoadingContents"><value>Preparazione di cartelle e file</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Visualizzazione dei contenuti</value></data>
+  <data name="Explorer.TestingFormat"><value>Formato di prova: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: riconosciuto</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: non riconosciuto</value></data>
+  <data name="Explorer.ReadingFormat"><value>Formato di lettura: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Formato incompatibile</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Impossibile interpretare «{1}» con il formato «{0}».&#xA;Selezionare un altro formato per continuare.</value></data>
+  <data name="Explorer.FileWithExtension"><value>File {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Documento</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Codice sorgente</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC file del programma</value></data>
+  <data name="Explorer.Type.Executable"><value>Esecuzione</value></data>
+  <data name="Explorer.Type.Command"><value>File di comando</value></data>
+  <data name="Explorer.Type.SystemFile"><value>File di sistema</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Codice oggetto</value></data>
+  <data name="Explorer.Type.Data"><value>File dei dati</value></data>
+  <data name="Explorer.Type.Configuration"><value>File di configurazione</value></data>
+  <data name="Explorer.Type.Library"><value>Biblioteca</value></data>
+  <data name="Explorer.Type.Media"><value>File dei media</value></data>
+  <data name="Explorer.Type.Font"><value>Fonti</value></data>
+  <data name="Explorer.Execution"><value>Esecuzione</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>File eseguibile nativo</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>File eseguibile interpretato</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Comando o script</value></data>
 </root>

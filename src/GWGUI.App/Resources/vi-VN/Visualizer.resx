@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Bộ giải mã</value></data>
   <data name="Visual.LinkZoom"><value>Thu phóng liên kết</value></data>
   <data name="Visual.OpenScp"><value>Mở tệp SCP…</value></data>
-  <data name="Visual.NoFile"><value>Không có tệp SCP nào được mở</value></data>
+  <data name="Visual.NoFile"><value>Không có ảnh đĩa nào được mở</value></data>
   <data name="Visual.Waiting"><value>Đang chờ một tập tin</value></data>
   <data name="Visual.Inspector"><value>Thanh tra</value></data>
   <data name="Visual.SelectTrack"><value>Chọn một bản nhạc.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Khu vực đã được điều chỉnh</value></data>
   <data name="Visual.SectorFree"><value>Khu vực tự do</value></data>
   <data name="Visual.SectorReserved"><value>Khu vực đã bảo tồn</value></data>
-  <data name="Visual.SectorMissing"><value>Khu vực mất tích</value></data>
   <data name="Visual.SectorUnreadable"><value>Khu vực không thể đọc</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Thông tin khu vực</value></data>
   <data name="Visual.SectorLabel"><value>Khu vực</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Cỡ</value></data>
   <data name="Visual.StateLabel"><value>Tình trạng</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Đường dẫn hệ thống tập tin</value></data>
-  <data name="Visual.SectorState.Available"><value>Sẵn sàng</value></data>
-  <data name="Visual.SectorState.Missing"><value>Thiếu</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Không rõ tính toàn vẹn</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Không có quyền giữ thanh liêm</value></data>
   <data name="Visual.LogicalMapTitle"><value>Sơ đồ luân lýStencils</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS Hình học</value></data>
   <data name="Visual.SurfaceLabel"><value>Bề mặt</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Tín hiệu</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Yên lặng</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Khối đã mã hoá</value></data>
+  <data name="Visual.RevolutionSummary"><value>Tất cả các cuộc cách mạng</value></data>
+  <data name="Visual.RevolutionChoice"><value>Cách mạng {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Cách mạng</value></data>
+  <data name="Visual.QualityDead"><value>Chết</value></data>
+  <data name="Visual.QualityPoor"><value>Tội nghiệp</value></data>
+  <data name="Visual.QualityPartial"><value>Có thể đọc một phần</value></data>
+  <data name="Visual.QualityGood"><value>Tốt</value></data>
+  <data name="Visual.QualityExcellent"><value>Tuyệt vời</value></data>
+  <data name="Visual.SectorWithData"><value>Khu vực có dữ liệu</value></data>
+  <data name="Visual.SectorDegraded"><value>Phân khu bị hạ cấp</value></data>
+  <data name="Visual.SectorDead"><value>Khu vực chết</value></data>
+  <data name="Visual.SectorWithoutData"><value>Khu vực không có dữ liệu</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Phân tích cách mạng {0}/{1}…</value></data>
 </root>

@@ -61,6 +61,8 @@ public sealed class StaExecutionScenarios : IDisposable
                 CloseAndReleaseWindows();
                 application.Shutdown();
             }, DispatcherPriority.Send);
+            if (!dispatcher.HasShutdownStarted)
+                dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
         }
         if (!thread.Join(TimeSpan.FromSeconds(5))) throw new TimeoutException("WPF test dispatcher did not stop.");
         if (thread.IsAlive || !dispatcher.HasShutdownFinished)

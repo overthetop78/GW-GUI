@@ -27,7 +27,7 @@ public static class AtariDosDirectoryReader
             {
                 var sectorCount = data[offset + AtariDosFileSystemLayout.SectorCountOffset] | data[offset + AtariDosFileSystemLayout.SectorCountOffset + 1] << 8;
                 var firstSector = data[offset + AtariDosFileSystemLayout.FirstSectorOffset] | data[offset + AtariDosFileSystemLayout.FirstSectorOffset + 1] << 8;
-                if (nameIsBlank || sectorCount == 0 || firstSector == 0) return false;
+                if (nameIsBlank || (sectorCount == 0) != (firstSector == 0)) return false;
             }
         }
         return true;

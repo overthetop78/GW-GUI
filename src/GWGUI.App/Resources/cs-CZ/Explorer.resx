@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Velikost uživatelských dat</value></data>
   <data name="Explorer.Subchannels"><value>Subkanály</value></data>
   <data name="Explorer.AudioTracks"><value>Zvukové stopy</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Rozpoznávání formátu médií</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Rozpoznávaný formát</value></data>
+  <data name="Explorer.LoadingMedia"><value>Čtení struktury médií</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analyzuji souborový systém</value></data>
+  <data name="Explorer.LoadingContents"><value>Příprava složek a souborů</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Zobrazuji obsah</value></data>
+  <data name="Explorer.TestingFormat"><value>Formát zkoušky: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: rozpoznán</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: nerozpoznán</value></data>
+  <data name="Explorer.ReadingFormat"><value>Formát čtení: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Nekompatibilní formát</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Soubor „{1}“ nelze interpretovat pomocí formátu „{0}“.&#xA;Pokračujte výběrem jiného formátu.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Soubor {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokument</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Zdrojový kód</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC soubor programu</value></data>
+  <data name="Explorer.Type.Executable"><value>Spustitelné</value></data>
+  <data name="Explorer.Type.Command"><value>Příkazový soubor</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Systémový soubor</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Kód objektu</value></data>
+  <data name="Explorer.Type.Data"><value>Soubor dat</value></data>
+  <data name="Explorer.Type.Configuration"><value>Soubor nastavení</value></data>
+  <data name="Explorer.Type.Library"><value>Knihovna</value></data>
+  <data name="Explorer.Type.Media"><value>Soubor médií</value></data>
+  <data name="Explorer.Type.Font"><value>Písmo</value></data>
+  <data name="Explorer.Execution"><value>Provedení</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Name</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Interpretovaný spustitelný soubor</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Příkaz nebo skript</value></data>
 </root>

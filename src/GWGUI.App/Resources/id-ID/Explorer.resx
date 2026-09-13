@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>Ukuran data pengguna</value></data>
   <data name="Explorer.Subchannels"><value>Subchances</value></data>
   <data name="Explorer.AudioTracks"><value>Trek audio</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Mengenali format media</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Format yang dikenali</value></data>
+  <data name="Explorer.LoadingMedia"><value>Membaca struktur media</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Menganalisa sistem berkas</value></data>
+  <data name="Explorer.LoadingContents"><value>Menyiapkan folder dan berkas</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Menampilkan isi</value></data>
+  <data name="Explorer.TestingFormat"><value>Format pengujian: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: dikenal</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: tidak dikenal</value></data>
+  <data name="Explorer.ReadingFormat"><value>Format pembacaan: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Format tidak kompatibel</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>“{1}” tidak dapat ditafsirkan menggunakan format “{0}”.&#xA;Pilih format lain untuk melanjutkan.</value></data>
+  <data name="Explorer.FileWithExtension"><value>Berkas {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokumen</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Kode sumber</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC berkas program</value></data>
+  <data name="Explorer.Type.Executable"><value>Dapat dieksekusi</value></data>
+  <data name="Explorer.Type.Command"><value>Berkas perintah</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Berkas sistem</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Kode objek</value></data>
+  <data name="Explorer.Type.Data"><value>Berkas data</value></data>
+  <data name="Explorer.Type.Configuration"><value>Berkas konfigurasi</value></data>
+  <data name="Explorer.Type.Library"><value>Pustaka</value></data>
+  <data name="Explorer.Type.Media"><value>Berkas media</value></data>
+  <data name="Explorer.Type.Font"><value>Fonta</value></data>
+  <data name="Explorer.Execution"><value>Eksekusi</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Berkas eksekusi asli</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Berkas eksekusi yang diinterpretasi</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Perintah atau skrip</value></data>
 </root>

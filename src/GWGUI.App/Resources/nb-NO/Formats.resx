@@ -23,7 +23,6 @@
   <data name="Detection.IbmSize"><value>IBM PC geometri gjenkjent fra filstørrelse.</value></data>
   <data name="Detection.ExtensionInferred"><value>Format utledet fra utvidelsen.</value></data>
   <data name="Detection.Multiple"><value>Flere formater er mulige; velg en eksplisitt.</value></data>
-  <data name="Format.raw.scp"><value>Rå fluksbilde</value></data>
   <data name="Common.DiskImageFilter"><value>Disk bilder|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle filer|*.*</value></data>
   <data name="Detection.AppleDosOrder"><value>Apple II DOS-format gjenkjent fra sektorrekkefølgen.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS-format identifisert fra sektorbestilling.</value></data>
@@ -31,5 +30,6 @@
   <data name="Classification.Automatic"><value>Automatisk gjenkjenning</value></data>
   <data name="Classification.Machine"><value>Datamaskin</value></data>
 <data name="Classification.Protection"><value>Beskyttelse</value></data>
-<data name="Classification.Format"><value>Formater</value></data>
+  <data name="Classification.Format"><value>Format</value></data>
+  <data name="Format.raw.scp"><value>Råflytbilde</value></data>
 </root>

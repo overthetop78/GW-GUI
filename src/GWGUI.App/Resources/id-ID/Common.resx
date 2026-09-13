@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Tidak dikenal</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Keluarkan</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Media tak dikenal</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Disket</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Hard disk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Diska optik</value></data>
+  <data name="Common.MediaKind.Tape"><value>Tape</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sektor</value></data>
+  <data name="Common.Representation.Blocks"><value>Blok</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Trek optik</value></data>
+  <data name="Common.Representation.Sequential"><value>Data Sequential</value></data>
 </root>

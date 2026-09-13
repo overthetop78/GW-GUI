@@ -26,4 +26,24 @@ internal static class AcornContainerScenarios
         data=new byte[3];
         await Assert.ThrowsAsync<InvalidDataException>(()=>reader.ReadAsync("virtual"+extension));
     }
+
+    public static async Task ReadTruncated()
+    {
+        const int completeLength = 11776;
+        const int trailingBytes = 3;
+        const int length = completeLength + trailingBytes;
+        var data = new byte[length];
+        var reader = new BbcDfsReader((_, token) =>
+        {
+            token.ThrowIfCancellationRequested();
+            return Task.FromResult(data);
+        });
+        var image = await reader.ReadAsync("truncated.ssd");
+        Assert.Equal(40, image.Cylinders);
+        Assert.Equal(1, image.Heads);
+        Assert.Equal(400, image.BlockCount);
+        Assert.Equal(completeLength / 256, image.AvailableBlocks.Count);
+        Assert.Equal(400 - completeLength / 256, image.MissingBlocks.Count);
+        Assert.Equal(102400, image.Capacity);
+    }
 }

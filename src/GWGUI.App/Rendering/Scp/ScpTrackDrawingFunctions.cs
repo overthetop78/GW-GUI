@@ -41,11 +41,11 @@ public sealed partial class SkiaScpRenderer
 
     private static SKColor StructureColor(FluxStructureKind kind) => kind switch
     {
-        FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader => new SKColor(255, 205, 64),
-        FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData => new SKColor(67, 220, 255),
-        FluxStructureKind.DeletedDataAddressMark => new SKColor(255, 75, 96),
-        FluxStructureKind.TimingAnomaly => new SKColor(245, 158, 61),
-        _ => new SKColor(196, 203, 212)
+        FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader => new SKColor(218, 174, 82),
+        FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData => new SKColor(83, 161, 181),
+        FluxStructureKind.DeletedDataAddressMark => new SKColor(201, 82, 91),
+        FluxStructureKind.TimingAnomaly => new SKColor(194, 132, 72),
+        _ => new SKColor(138, 151, 160)
     };
 
     private static void DrawCentered(SKCanvas canvas, SKPoint center, string text, SKColor color)

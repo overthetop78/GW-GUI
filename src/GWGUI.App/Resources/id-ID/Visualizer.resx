@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Dekoder</value></data>
   <data name="Visual.LinkZoom"><value>Perbesar tautan</value></data>
   <data name="Visual.OpenScp"><value>Buka file SCP…</value></data>
-  <data name="Visual.NoFile"><value>Tidak ada file SCP yang terbuka</value></data>
+  <data name="Visual.NoFile"><value>Tidak ada citra yang dibuka</value></data>
   <data name="Visual.Waiting"><value>Menunggu file</value></data>
   <data name="Visual.Inspector"><value>Inspektur</value></data>
   <data name="Visual.SelectTrack"><value>Pilih trek.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Sektor teralokasi</value></data>
   <data name="Visual.SectorFree"><value>Sektor bebas</value></data>
   <data name="Visual.SectorReserved"><value>Sektor yang dipesan</value></data>
-  <data name="Visual.SectorMissing"><value>Sektor hilang</value></data>
   <data name="Visual.SectorUnreadable"><value>Sektor yang tidak dapat dibaca</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Informasi sektor</value></data>
   <data name="Visual.SectorLabel"><value>Sektor</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Ukuran</value></data>
   <data name="Visual.StateLabel"><value>Keadaan</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Path sistem berkas</value></data>
-  <data name="Visual.SectorState.Available"><value>Tersedia</value></data>
-  <data name="Visual.SectorState.Missing"><value>Hilang</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integritas tidak diketahui</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integritas tidak valid</value></data>
   <data name="Visual.LogicalMapTitle"><value>Peta logical</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometri</value></data>
   <data name="Visual.SurfaceLabel"><value>Permukaan</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Sinyal</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Diam</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Blok yang telah didekoded</value></data>
+  <data name="Visual.RevolutionSummary"><value>Semua revolusi</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revolusi {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revolusi</value></data>
+  <data name="Visual.QualityDead"><value>Mati</value></data>
+  <data name="Visual.QualityPoor"><value>Buruk</value></data>
+  <data name="Visual.QualityPartial"><value>Sebagian bisa dibaca</value></data>
+  <data name="Visual.QualityGood"><value>Baik</value></data>
+  <data name="Visual.QualityExcellent"><value>Bagus sekali</value></data>
+  <data name="Visual.SectorWithData"><value>Sektor dengan data</value></data>
+  <data name="Visual.SectorDegraded"><value>Sektor yang telah ditinggalkan</value></data>
+  <data name="Visual.SectorDead"><value>Sektor mati</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektor tanpa data</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Menganalisa revolusi {0}/{1}…</value></data>
 </root>

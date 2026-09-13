@@ -25,10 +25,14 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
         if (explicitlySelected && formatId is not null && !formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && !formatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase)) throw ScpReconstructionExceptions.InvalidRequestedFormat(DiskImageFormatIds.IbmPrefix, formatId);
         var candidates = candidateSet.Addressed;
         var measured = IsoSectorImageBuilder.Measure(candidates);
-        var cylinders = measured.Cylinders;
-        var heads = measured.Heads;
-        var sectorsPerTrack = measured.SectorsPerTrack;
-        var sectorSize = measured.SectorSize;
+        var explicitGeometry = default(IbmPcGeometry);
+        var hasExplicitGeometry = explicitlySelected
+            && formatId is not null
+            && IbmPcGeometryCatalog.TryFromFormatId(formatId, out explicitGeometry);
+        var cylinders = hasExplicitGeometry ? explicitGeometry.Cylinders : measured.Cylinders;
+        var heads = hasExplicitGeometry ? explicitGeometry.Heads : measured.Heads;
+        var sectorsPerTrack = hasExplicitGeometry ? explicitGeometry.SectorsPerTrack : measured.SectorsPerTrack;
+        var sectorSize = hasExplicitGeometry ? FatBootSectorLayout.SectorSize : measured.SectorSize;
         var bpbGeometry = default(FatBpbGeometry);
         var hasBpbGeometry = !measured.ZeroBased && FatIsoScpGeometryDetector.TryDetect(candidates, out bpbGeometry);
         var isAutomaticScan = formatId?.Equals(DiskImageFormatIds.IbmScan, StringComparison.OrdinalIgnoreCase) == true;
@@ -40,14 +44,14 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
             hasBpbGeometry = IbmDosDiskProbe.TryIdentify(boot, fatMedia, true, out _);
             if (!hasBpbGeometry) throw IsoScpReconstructionExceptions.NotIbmDos();
         }
-        if (hasBpbGeometry)
+        if (!hasExplicitGeometry && hasBpbGeometry)
         {
             cylinders = bpbGeometry.Cylinders;
             heads = bpbGeometry.Heads;
             sectorsPerTrack = bpbGeometry.SectorsPerTrack;
             sectorSize = bpbGeometry.SectorSize;
         }
-        else if (!isAutomaticScan && measured.SectorSize == FatBootSectorLayout.SectorSize && !measured.ZeroBased)
+        else if (!hasExplicitGeometry && !isAutomaticScan && measured.SectorSize == FatBootSectorLayout.SectorSize && !measured.ZeroBased)
         {
             var boot = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.BootSectorNumber));
             var fat = IsoSectorImageBuilder.BestData(candidates, new(FatBootSectorLayout.SystemCylinder, FatBootSectorLayout.SystemHead, FatBootSectorLayout.FirstFatSectorNumber));
@@ -60,8 +64,8 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
                 sectorsPerTrack = geometry.SectorsPerTrack;
             }
         }
-        var resolved = IbmPcGeometryCatalog.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, sectorSize);
+        var resolved = hasExplicitGeometry ? explicitGeometry.FormatId : IbmPcGeometryCatalog.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, sectorSize);
         return IsoSectorImageBuilder.CreateUniform(resolved, candidates, sectorSize, cylinders, heads, sectorsPerTrack, address => measured.ZeroBased ? Array.IndexOf(measured.SectorOrder, address.Number) : address.Number - 1,
-            normalizeData: hasBpbGeometry ? data => IsoSectorDataNormalizer.PadTo(data, sectorSize) : null);
+            normalizeData: hasExplicitGeometry || hasBpbGeometry ? data => IsoSectorDataNormalizer.PadTo(data, sectorSize) : null);
     }
 }

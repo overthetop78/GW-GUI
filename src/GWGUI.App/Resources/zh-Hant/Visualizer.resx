@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>解碼器</value></data>
   <data name="Visual.LinkZoom"><value>連結縮放</value></data>
   <data name="Visual.OpenScp"><value>開啟 SCP 檔案...</value></data>
-  <data name="Visual.NoFile"><value>沒有開啟 SCP 文件</value></data>
+  <data name="Visual.NoFile"><value>未開啟映像</value></data>
   <data name="Visual.Waiting"><value>等待文件</value></data>
   <data name="Visual.Inspector"><value>督察</value></data>
   <data name="Visual.SelectTrack"><value>選擇一首曲目。</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>分配部门</value></data>
   <data name="Visual.SectorFree"><value>自由部门</value></data>
   <data name="Visual.SectorReserved"><value>保留部门</value></data>
-  <data name="Visual.SectorMissing"><value>缺少部门</value></data>
   <data name="Visual.SectorUnreadable"><value>无法读取的扇区</value></data>
   <data name="Visual.SectorInspectorTitle"><value>部门信息</value></data>
   <data name="Visual.SectorLabel"><value>部门</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>大小</value></data>
   <data name="Visual.StateLabel"><value>状态</value></data>
   <data name="Visual.FileSystemPathLabel"><value>文件系统路径</value></data>
-  <data name="Visual.SectorState.Available"><value>可用</value></data>
-  <data name="Visual.SectorState.Missing"><value>失踪</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>完整性未知</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>完整性无效</value></data>
   <data name="Visual.LogicalMapTitle"><value>逻辑地图</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS 几何</value></data>
   <data name="Visual.SurfaceLabel"><value>表面</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>信号</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>安静</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>解码块</value></data>
+  <data name="Visual.RevolutionSummary"><value>所有革命</value></data>
+  <data name="Visual.RevolutionChoice"><value>革命 {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>革命</value></data>
+  <data name="Visual.QualityDead"><value>死了,你没死</value></data>
+  <data name="Visual.QualityPoor"><value>穷</value></data>
+  <data name="Visual.QualityPartial"><value>可部分读取</value></data>
+  <data name="Visual.QualityGood"><value>不错</value></data>
+  <data name="Visual.QualityExcellent"><value>不错</value></data>
+  <data name="Visual.SectorWithData"><value>有数据的部门</value></data>
+  <data name="Visual.SectorDegraded"><value>退化部门</value></data>
+  <data name="Visual.SectorDead"><value>死区</value></data>
+  <data name="Visual.SectorWithoutData"><value>无数据部门</value></data>
+  <data name="Visual.AnalysingRevolution"><value>分析革命 {0}/ 数据{1}…</value></data>
 </root>

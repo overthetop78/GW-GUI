@@ -19,9 +19,17 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et le décodage.</param>
     /// <returns>L'image sectorielle construite par la politique ISO résolue.</returns>
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
+        => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+
+    /// <summary>Décode la capture en publiant la progression réelle de chaque piste.</summary>
+    public async Task<SectorImage> ReadAsync(
+        string path,
+        string? formatId,
+        IProgress<GWGUI.MediaEngine.Exploration.Scp.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         var policy = IsoScpSectorImagePolicyRegistry.Resolve(formatId);
-        var candidates = await candidateDecoder.DecodeAsync(path, policy.DecoderIds, cancellationToken).ConfigureAwait(false);
+        var candidates = await candidateDecoder.DecodeAsync(path, policy.DecoderIds, progress, cancellationToken).ConfigureAwait(false);
         if (candidates.Addressed.Count == 0 && candidates.Physical.Count == 0)
             throw IsoScpReconstructionExceptions.NoCandidates(formatId, candidates.Addressed.Count, candidates.Physical.Count);
         return policy.Build(formatId, candidates);

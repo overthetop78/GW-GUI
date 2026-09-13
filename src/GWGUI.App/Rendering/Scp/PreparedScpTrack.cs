@@ -7,6 +7,7 @@ public sealed partial class SkiaScpRenderer
 {
     private sealed record PreparedScpTrack(
         IReadOnlyList<PreparedScpRevolution> Revolutions,
+        PreparedScpRevolution Synthesis,
         IReadOnlyList<PreparedScpArc> StructureArcs,
         ScpTrackVisualState VisualState,
         int ValidSectors,
@@ -14,5 +15,7 @@ public sealed partial class SkiaScpRenderer
         int UnverifiedSectors,
         bool HasFlux);
 
-    private sealed record PreparedScpRevolution(IReadOnlyList<PreparedScpArc> FluxArcs);
+    private sealed record PreparedScpRevolution(
+        IReadOnlyList<PreparedScpArc> FluxArcs,
+        double Quality);
 }

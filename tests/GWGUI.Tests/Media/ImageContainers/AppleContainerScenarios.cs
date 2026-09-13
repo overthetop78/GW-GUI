@@ -74,7 +74,7 @@ internal static class AppleContainerScenarios
         Assert.Equal(count==1702?46:count==800?80:1,read.Cylinders); Assert.Equal(count==1702?2:1,read.Heads);
         Assert.Equal(blocks.SelectMany(b=>b.Data),read.AvailableBlocks.OrderBy(b=>b.LogicalBlock).SelectMany(b=>b.Data));
         Assert.Equal(blocks[^1].Tag,read.AvailableBlocks.Single(b=>b.LogicalBlock==count-1).Tag);
-        bytes[^1]^=1; Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.Read(bytes));
+        bytes[^1]^=1; Assert.False(GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.ReadDetailed(bytes).TagChecksumValid);
         bytes[^1]^=1; BinaryPrimitives.WriteInt32BigEndian(bytes.AsSpan(68),1); Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.Read(bytes));
     }
 
@@ -137,7 +137,7 @@ internal static class AppleContainerScenarios
         Assert.Equal(data,decoded.Image.AvailableBlocks.OrderBy(x=>x.LogicalBlock).SelectMany(x=>x.Data));
         if(tagged) Assert.Equal(Enumerable.Repeat((byte)1,12),decoded.Image.AvailableBlocks.Single(x=>x.LogicalBlock==1).Tag!);
         await Assert.ThrowsAnyAsync<OperationCanceledException>(()=>writer.WriteAsync(image,"cancelled",cancellationToken:new CancellationToken(true)));
-        output[84]^=1; Assert.Throws<InvalidDataException>(()=>GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.Read(output));
+        output[84]^=1; Assert.False(GWGUI.MediaEngine.Formats.Floppy.DiskCopy.DiskCopyReader.ReadDetailed(output).DataChecksumValid);
     }
     public static async Task Read(bool container)
     {

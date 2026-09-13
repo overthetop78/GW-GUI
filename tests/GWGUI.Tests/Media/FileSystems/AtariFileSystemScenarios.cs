@@ -47,4 +47,28 @@ internal static class AtariFileSystemScenarios
         Assert.Equal(!broken, file.MetadataValid); Assert.Equal(1280, volume.FreeBytes);
         if (broken) Assert.NotEmpty(volume.Warnings); else Assert.Empty(volume.Warnings);
     }
+
+    public static void NamedEmptyFile()
+    {
+        var vtoc = new byte[128]; vtoc[0] = 2;
+        var directory = new byte[128];
+        directory[0] = 0x40;
+        "EMPTY   TXT"u8.CopyTo(directory.AsSpan(5));
+        directory[16] = 0x40; directory[17] = 1; directory[19] = 1;
+        "FILE    BIN"u8.CopyTo(directory.AsSpan(21));
+        var data = new byte[128]; data[0] = 42; data[127] = 1;
+        var blocks = new List<SectorBlock> { new(0, new(0,0,1), data), new(359, new(19,0,18), vtoc) };
+        for (var index = 360; index < 368; index++) blocks.Add(new(index, new(index/18,0,index%18+1), index == 360 ? directory : new byte[128]));
+        var image = new SectorImage(DiskImageFormatIds.Atari90, 128, 40, 1, 18, blocks);
+        var reader = new AtariDosFileSystemReader(); Assert.True(reader.CanRead(image));
+        var entries = reader.Read(image).Entries;
+        Assert.Equal(2, entries.Count);
+        var empty = Assert.Single(entries, entry => entry.Name == "EMPTY.TXT");
+        Assert.Equal(0, empty.Size); Assert.Empty(empty.Content!); Assert.True(empty.MetadataValid);
+        Assert.Contains(entries, entry => entry.Name == "FILE.BIN");
+
+        directory[1] = 1;
+        var inconsistent = new SectorImage(DiskImageFormatIds.Atari90, 128, 40, 1, 18, blocks.Select(block=>block.LogicalBlock==360?new SectorBlock(360,block.Address,directory):block));
+        Assert.False(reader.CanRead(inconsistent));
+    }
 }

@@ -35,7 +35,7 @@ public class ImageContainersTests
     [Theory] [InlineData(409600,false)] [InlineData(819200,false)] [InlineData(1474560,false)] [InlineData(409600,true)] [InlineData(819200,true)]
     public Task MacintoshRawDiskCopyHeadersChecksumsAndTags(int capacity,bool tagged) => AppleContainerScenarios.Macintosh(capacity,tagged);
     [Theory] [InlineData(128,720,"atari.90")] [InlineData(128,1040,"atari.130")] [InlineData(256,720,"atari.180")]
-    public Task AtrBootSectorSizesAndHeader(int size,int count,string format) => AtariContainerScenarios.Atr(size,count,format);
+    public Task AtrBootSectorSizesHeaderAndStandardGeometry(int size,int count,string format) => AtariContainerScenarios.Atr(size,count,format);
     [Theory] [InlineData(false)] [InlineData(true)] public Task MsaRawAndRleTracks(bool compressed) => AtariContainerScenarios.Msa(compressed);
     [Theory] [InlineData(0)] [InlineData(1)] [InlineData(2)] [InlineData(3)] [InlineData(4)]
     public void MsaRleEscapesMarkersAndRejectsMalformedRuns(int damage) => AtariContainerScenarios.Rle(damage);
@@ -50,7 +50,9 @@ public class ImageContainersTests
     [Theory] [InlineData(false)] [InlineData(true)] public Task CpcContainerMapsSectorDescriptors(bool extended) => AmstradContainerScenarios.Read(extended);
     [Fact] public Task DecInterleaveMapsPhysicalSectors() => DecContainerScenarios.Read();
     [Fact] public void TeleDiskDetailedRecordsAndCorruption() => TeleDiskContainerScenarios.ReadWrite();
+    [Fact] public void TeleDiskAdvancedCompressionKnownVector() => TeleDiskContainerScenarios.AdvancedCompressionVector();
     [Fact] public void HfeSidePackingAndWriter() => HfeContainerScenarios.ReadWrite();
+    [Fact] public void HfeVersion3PreservesOpcodesAndBothSides() => HfeContainerScenarios.Version3();
     [Theory] [InlineData(0)] [InlineData(1)] [InlineData(2)] [InlineData(3)]
     public void HfeInvalidHeaderOrTrack(int variant) => HfeContainerScenarios.Invalid(variant);
     [Theory]
@@ -75,11 +77,16 @@ public class ImageContainersTests
     [InlineData(".dsd",204800,40,2,10,256)]
     [InlineData(".dsd",409600,80,2,10,256)]
     public Task AcornReaderBuildsExpectedSectors(string extension,int length,int cylinders,int heads,int sectors,int blockSize)=>AcornContainerScenarios.Read(extension,length,cylinders,heads,sectors,blockSize);
+    [Fact] public Task AcornReaderPreservesTruncatedSectorImages()=>AcornContainerScenarios.ReadTruncated();
+    [Fact] public Task AcornAtomReaderBuildsAndExploresExpectedSectors()=>AcornAtomContainerScenarios.ReadAndExplore();
+    [Fact] public void AcornAtomProbeRejectsGenericDskWithoutCatalog()=>AcornAtomContainerScenarios.ProbeRejectsGenericDskWithoutAtomCatalog();
+    [Fact] public Task ApridiskReaderBuildsExpectedSectors()=>ApridiskContainerScenarios.ReadContainer();
     [Theory]
     [InlineData(".adf",819200,80,2,5,1024)]
     [InlineData(".adf",901120,80,2,11,512)]
     [InlineData(".adf",1802240,80,2,22,512)]
-    public Task AdfReaderBuildsExpectedSectors(string extension,int length,int cylinders,int heads,int sectors,int blockSize)=>AdfContainerScenarios.Read(extension,length,cylinders,heads,sectors,blockSize);
+      public Task AdfReaderBuildsExpectedSectors(string extension,int length,int cylinders,int heads,int sectors,int blockSize)=>AdfContainerScenarios.Read(extension,length,cylinders,heads,sectors,blockSize);
+      [Fact] public Task AdfReaderBuildsAcornHighDensitySectors() => AdfContainerScenarios.ReadAcornHighDensity();
     [Theory]
     [InlineData(".img",163840,40,1,8,512)]
     [InlineData(".img",1474560,80,2,18,512)]

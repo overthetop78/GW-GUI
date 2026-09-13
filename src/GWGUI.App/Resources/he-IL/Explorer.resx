@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -70,4 +70,33 @@
   <data name="Explorer.UserDataSize"><value>גודל הנתונים של המשתמש</value></data>
   <data name="Explorer.Subchannels"><value>ערוצים</value></data>
   <data name="Explorer.AudioTracks"><value>עקבו אחרי Audio</value></data>
+  <data name="Explorer.LoadingRecognition"><value>זיהוי פורמט התקשורת</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>פורמט מוכר</value></data>
+  <data name="Explorer.LoadingMedia"><value>קריאה במבנה התקשורת</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>ניתוח מערכת הקבצים</value></data>
+  <data name="Explorer.LoadingContents"><value>הכנת תיקיות וקבצים</value></data>
+  <data name="Explorer.LoadingDisplay"><value>הצגת התוכן</value></data>
+  <data name="Explorer.TestingFormat"><value>פורמט בדיקות: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: מוכר</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: לא מוכר</value></data>
+  <data name="Explorer.ReadingFormat"><value>פורמט קריאה: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>פורמט לא תואם</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>לא ניתן לפרש את „{1}” באמצעות הפורמט „{0}”.&#xA;בחר פורמט אחר כדי להמשיך.</value></data>
+  <data name="Explorer.FileWithExtension"><value>File {0}</value></data>
+  <data name="Explorer.Type.Document"><value>מסמך</value></data>
+  <data name="Explorer.Type.SourceCode"><value>קוד מקור</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC תוכנת File</value></data>
+  <data name="Explorer.Type.Executable"><value>לוח ההוצאה להורג</value></data>
+  <data name="Explorer.Type.Command"><value>קובץ Command</value></data>
+  <data name="Explorer.Type.SystemFile"><value>קובץ מערכת</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>קוד אובייקטים</value></data>
+  <data name="Explorer.Type.Data"><value>קובץ נתונים</value></data>
+  <data name="Explorer.Type.Configuration"><value>קובץ Configuration</value></data>
+  <data name="Explorer.Type.Library"><value>ספריית הספרייה</value></data>
+  <data name="Explorer.Type.Media"><value>קובץ Media</value></data>
+  <data name="Explorer.Type.Font"><value>פונטה פונטפונט</value></data>
+  <data name="Explorer.Execution"><value>הוצאה להורג</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>קובץ Native exetable</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>קובץ executable</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Command או תסריט</value></data>
 </root>

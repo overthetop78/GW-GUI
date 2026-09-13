@@ -14,4 +14,14 @@
   </resheader>
   <data name="Common.Unknown"><value>Necunoscut</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>Ejectează</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Media necunoscută</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Dischetă</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Hard disk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Disc optic</value></data>
+  <data name="Common.MediaKind.Tape"><value>Bandă</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sectoare</value></data>
+  <data name="Common.Representation.Blocks"><value>Blocuri</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Piste optice</value></data>
+  <data name="Common.Representation.Sequential"><value>Date secvenţiale</value></data>
 </root>

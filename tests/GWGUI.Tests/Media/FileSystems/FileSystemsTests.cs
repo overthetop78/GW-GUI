@@ -51,6 +51,7 @@ public class FileSystemsTests
     [Theory] [InlineData(false)] [InlineData(true)] public void UcsdByteOrderAndFileContents(bool bigEndian) => UcsdFileSystemScenarios.Volume(bigEndian);
     [Theory] [InlineData(false)] [InlineData(true)] public void BbcDfsCatalogAndMissingContent(bool missing) => AcornFileSystemScenarios.Dfs(missing);
     [Theory] [InlineData(false)] [InlineData(true)] public void AtariDosCatalogAndBrokenChain(bool broken) => AtariFileSystemScenarios.Dos(broken);
+    [Fact] public void AtariDosCatalogAcceptsNamedEmptyFiles() => AtariFileSystemScenarios.NamedEmptyFile();
     [Fact] public void Fat12WriterBuildsBootAndDirectoryWithExpectedContent()=>Fat12FileSystemScenarios.Volume();
     [Theory]
     [InlineData(AmigaDosVariant.Ofs)]

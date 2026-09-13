@@ -15,7 +15,7 @@
   <data name="Visual.Decoder"><value>Dekodér</value></data>
   <data name="Visual.LinkZoom"><value>Zoom odkazu</value></data>
   <data name="Visual.OpenScp"><value>Otevřít soubor SCP…</value></data>
-  <data name="Visual.NoFile"><value>Není otevřen žádný soubor SCP</value></data>
+  <data name="Visual.NoFile"><value>Není otevřen žádný obraz</value></data>
   <data name="Visual.Waiting"><value>Čekání na soubor</value></data>
   <data name="Visual.Inspector"><value>Inspektor</value></data>
   <data name="Visual.SelectTrack"><value>Vyberte skladbu.</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Přidělené odvětví</value></data>
   <data name="Visual.SectorFree"><value>Volný sektor</value></data>
   <data name="Visual.SectorReserved"><value>Vyhrazené odvětví</value></data>
-  <data name="Visual.SectorMissing"><value>Chybějící sektor</value></data>
   <data name="Visual.SectorUnreadable"><value>Nečitelný sektor</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Informace o odvětví</value></data>
   <data name="Visual.SectorLabel"><value>Odvětví</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Velikost</value></data>
   <data name="Visual.StateLabel"><value>Stát</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Cesta souborového systému</value></data>
-  <data name="Visual.SectorState.Available"><value>K dispozici</value></data>
-  <data name="Visual.SectorState.Missing"><value>Chybějící</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integrita není známa</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integrita neplatná</value></data>
   <data name="Visual.LogicalMapTitle"><value>Logická mapa</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometrie</value></data>
   <data name="Visual.SurfaceLabel"><value>Povrch</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Signál</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Ticho.</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Oddělený blok</value></data>
+  <data name="Visual.RevolutionSummary"><value>Všechny revoluce</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revoluce {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revoluce</value></data>
+  <data name="Visual.QualityDead"><value>Mrtvý</value></data>
+  <data name="Visual.QualityPoor"><value>Ubohý.</value></data>
+  <data name="Visual.QualityPartial"><value>Částečně čitelné</value></data>
+  <data name="Visual.QualityGood"><value>Dobře.</value></data>
+  <data name="Visual.QualityExcellent"><value>Výborně.</value></data>
+  <data name="Visual.SectorWithData"><value>Odvětví s údaji</value></data>
+  <data name="Visual.SectorDegraded"><value>Odvětví s degradací</value></data>
+  <data name="Visual.SectorDead"><value>Mrtvý sektor</value></data>
+  <data name="Visual.SectorWithoutData"><value>Odvětví bez údajů</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyzující revoluce {0}/{1}…</value></data>
 </root>

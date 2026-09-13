@@ -82,9 +82,12 @@ internal sealed class WriteTabController(
         viewModel.Write.SourcePath = path;
         detectedFormat = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);
         view.FormatBlock.DetectionText.Text = $"{detectedFormat.Format?.DisplayName ?? LocExtension.Get("Detection.Ambiguous")} — {LocExtension.Get(detectedFormat.ExplanationKey)}";
-        FormatCombo.ItemsSource = detectedFormat.Candidates.Count > 0 ? detectedFormat.Candidates : formatCatalog().Formats;
-        FormatCombo.SelectedItem = detectedFormat.Format;
-        FormatCombo.Visibility = detectedFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
+        FormatCombo.ItemsSource = PhysicalWriteFormats(
+            detectedFormat.Candidates.Count > 0 ? detectedFormat.Candidates : formatCatalog().Formats);
+        FormatCombo.SelectedItem = detectedFormat.Format?.SupportsPhysicalWrite == true ? detectedFormat.Format : null;
+        FormatCombo.Visibility = FormatCombo.SelectedItem is null || detectedFormat.RequiresUserChoice
+            ? Visibility.Visible
+            : Visibility.Collapsed;
         view.FormatBlock.VisualizeTracksButton.IsEnabled = true;
         try { await (analyzeSource is null ? diskImageWorkspace.AnalyzeAsync(path) : analyzeSource(path)); }
         catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
@@ -122,7 +125,7 @@ internal sealed class WriteTabController(
 
     internal void ToggleFormat()
     {
-        if (FormatCombo.ItemsSource is null) FormatCombo.ItemsSource = formatCatalog().Formats;
+        if (FormatCombo.ItemsSource is null) FormatCombo.ItemsSource = PhysicalWriteFormats(formatCatalog().Formats);
         FormatCombo.Visibility = FormatCombo.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
     }
 
@@ -133,7 +136,7 @@ internal sealed class WriteTabController(
 
     internal GwCommand BuildCommand() => commandBuilder.BuildWrite(new WriteRequest(
         settings().GwExecutablePath ?? "gw.exe", viewModel.Write.SourcePath,
-        (FormatCombo.SelectedItem as DiskFormat)?.Id ?? detectedFormat?.Format?.Id,
+        SelectedWritableFormat()?.Id,
         viewModel.Write.BuildOptions(), viewModel.Write.DisableVerification,
         selectedDeviceArgument(), selectedDriveArgument(), viewModel.Write.ExpertArguments));
 
@@ -151,7 +154,7 @@ internal sealed class WriteTabController(
         if (!ensureSelectedHardwareAvailable()) return;
         if (!diskDefinitionsController.Validate(view.AdvancedBlock.DiskDefinitionsEnabled, view.AdvancedBlock.DiskDefinitionsValue, LocExtension.Get("Write.Title"))) return;
         if (!exists(view.SourceBlock.Input.Text)) { dialogs.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Information); return; }
-        var selected = FormatCombo.SelectedItem as DiskFormat ?? detectedFormat?.Format;
+        var selected = SelectedWritableFormat();
         if (selected is null || (detectedFormat?.RequiresUserChoice == true && FormatCombo.SelectedItem is null))
         { dialogs.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning); FormatCombo.Visibility = Visibility.Visible; return; }
         if (UsesInternal) { await ExecuteInternalAsync(selected); return; }
@@ -211,10 +214,17 @@ internal sealed class WriteTabController(
 
     private void ApplyProfileFormat(OperationProfile profile)
     {
-        if (profile.Values.TryGetValue("format", out var formatId) && formatCatalog().Formats.FirstOrDefault(x => x.Id == formatId) is { } format)
-        { FormatCombo.ItemsSource = formatCatalog().Formats.Where(x => x.Family != "Raw").ToArray(); FormatCombo.SelectedItem = format; FormatCombo.Visibility = Visibility.Visible; return; }
+        if (profile.Values.TryGetValue("format", out var formatId) && formatCatalog().Formats.FirstOrDefault(x => x.Id == formatId && x.SupportsPhysicalWrite) is { } format)
+        { FormatCombo.ItemsSource = PhysicalWriteFormats(formatCatalog().Formats); FormatCombo.SelectedItem = format; FormatCombo.Visibility = Visibility.Visible; return; }
         if (detectedFormat is not null)
-        { FormatCombo.ItemsSource = detectedFormat.Candidates.Count > 0 ? detectedFormat.Candidates : formatCatalog().Formats; FormatCombo.SelectedItem = detectedFormat.Format; FormatCombo.Visibility = detectedFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed; }
+        {
+            FormatCombo.ItemsSource = PhysicalWriteFormats(
+                detectedFormat.Candidates.Count > 0 ? detectedFormat.Candidates : formatCatalog().Formats);
+            FormatCombo.SelectedItem = detectedFormat.Format?.SupportsPhysicalWrite == true ? detectedFormat.Format : null;
+            FormatCombo.Visibility = FormatCombo.SelectedItem is null || detectedFormat.RequiresUserChoice
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
         else { FormatCombo.SelectedItem = null; FormatCombo.Visibility = Visibility.Collapsed; }
     }
 
@@ -231,4 +241,13 @@ internal sealed class WriteTabController(
     internal void RestoreSettings() => viewModel.Write.ApplyOptions(settings().Write.EnabledOptions, settings().Write.OptionValues);
     internal void CaptureSettings()
     { settings().Write.EnabledOptions = viewModel.Write.CaptureEnabledOptions(); settings().Write.OptionValues = viewModel.Write.CaptureValues(); }
+
+    private static DiskFormat[] PhysicalWriteFormats(IEnumerable<DiskFormat> formats) =>
+        formats.Where(format => format.Family != "Raw" && format.SupportsPhysicalWrite).ToArray();
+
+    private DiskFormat? SelectedWritableFormat()
+    {
+        var format = FormatCombo.SelectedItem as DiskFormat ?? detectedFormat?.Format;
+        return format?.SupportsPhysicalWrite == true ? format : null;
+    }
 }

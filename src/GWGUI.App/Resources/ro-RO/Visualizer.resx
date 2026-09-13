@@ -14,7 +14,7 @@
   </resheader>
   <data name="Visual.Decoder"><value>Decodor</value></data>
   <data name="Visual.OpenScp"><value>Deschideți o SCP fișier...</value></data>
-  <data name="Visual.NoFile"><value>Niciun fișier SCP deschis</value></data>
+  <data name="Visual.NoFile"><value>Nicio imagine deschisă</value></data>
   <data name="Visual.Waiting"><value>În așteptarea unui dosar</value></data>
 <data name="Visual.SelectTrack"><value>Selectați o piesă.</value></data>
   <data name="Visual.Controls"><value>Faceți clic: selectați · Roată: măriți · Clic dreapta: deplasați</value></data>
@@ -93,7 +93,6 @@
   <data name="Visual.SectorAllocated"><value>Sectorul alocat</value></data>
   <data name="Visual.SectorFree"><value>Sectorul liber</value></data>
   <data name="Visual.SectorReserved"><value>Sectorul rezervat</value></data>
-  <data name="Visual.SectorMissing"><value>Sectorul dispărut</value></data>
   <data name="Visual.SectorUnreadable"><value>Sectorul de necitit</value></data>
   <data name="Visual.SectorInspectorTitle"><value>Informații sectoriale</value></data>
   <data name="Visual.SectorLabel"><value>Sectorul</value></data>
@@ -101,10 +100,6 @@
   <data name="Visual.SizeLabel"><value>Dimensiune</value></data>
   <data name="Visual.StateLabel"><value>Stat</value></data>
   <data name="Visual.FileSystemPathLabel"><value>Calea sistemului de fișiere</value></data>
-  <data name="Visual.SectorState.Available"><value>Disponibil</value></data>
-  <data name="Visual.SectorState.Missing"><value>Lipsește</value></data>
-  <data name="Visual.SectorState.IntegrityUnknown"><value>Integritate necunoscută</value></data>
-  <data name="Visual.SectorState.IntegrityInvalid"><value>Integritate invalidă</value></data>
   <data name="Visual.LogicalMapTitle"><value>Hartă logică</value></data>
   <data name="Visual.ChsGeometryTitle"><value>CHS geometrie</value></data>
   <data name="Visual.SurfaceLabel"><value>Suprafață</value></data>
@@ -161,4 +156,17 @@
   <data name="Visual.SequentialSegmentKind.Signal"><value>Semnal</value></data>
   <data name="Visual.SequentialSegmentKind.Silence"><value>Linişte.</value></data>
   <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Bloc decodat</value></data>
+  <data name="Visual.RevolutionSummary"><value>Toate revoluţiile</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revoluție {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revoluție</value></data>
+  <data name="Visual.QualityDead"><value>Mort.</value></data>
+  <data name="Visual.QualityPoor"><value>Sărăcuţa.</value></data>
+  <data name="Visual.QualityPartial"><value>Parţial lizibil</value></data>
+  <data name="Visual.QualityGood"><value>Bine.</value></data>
+  <data name="Visual.QualityExcellent"><value>Excelent.</value></data>
+  <data name="Visual.SectorWithData"><value>Sectorul cu date</value></data>
+  <data name="Visual.SectorDegraded"><value>Sectorul degradat</value></data>
+  <data name="Visual.SectorDead"><value>Sectorul mort</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sectorul fără date</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analizarea revoluţiei {0}/{1}…</value></data>
 </root>

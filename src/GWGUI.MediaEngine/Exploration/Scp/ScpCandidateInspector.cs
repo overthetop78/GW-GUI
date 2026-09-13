@@ -9,30 +9,51 @@ namespace GWGUI.MediaEngine.Exploration.Scp;
 internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations)
 {
     /// <summary>Inspecte un candidat, relit les images normalisées avec le même Reader et conserve son diagnostic de rejet.</summary>
-    public async Task<ScpCandidateInspection> InspectAsync(ScpSectorImageCandidate candidate, string path, CancellationToken cancellationToken)
+    public async Task<ScpCandidateInspection> InspectAsync(
+        ScpSectorImageCandidate candidate,
+        string path,
+        IProgress<ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         try
         {
-            var image = await candidate.ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
-            var matches = new List<ExploredFileSystem>();
-            foreach (var match in fileSystems.ReadCandidates(image, image.FormatId).Matches)
-            {
-                var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId, match.Volume);
-                if (ReferenceEquals(normalized, image))
-                {
-                    matches.Add(new(image.FormatId, match.ReaderId, image, match.Volume));
-                    continue;
-                }
-
-                var volume = match.Volume;
-                if (fileSystems.TryRead(normalized, match.ReaderId, out var normalizedMatch)) volume = normalizedMatch.Volume;
-                matches.Add(new(normalized.FormatId, match.ReaderId, normalized, volume));
-            }
-            return new(candidate.Id, image, matches, null);
+            var image = await candidate.ReadWithProgressAsync(path, null, progress, cancellationToken).ConfigureAwait(false);
+            return new(candidate.Id, image, InspectFileSystems(image), null);
         }
         catch (InvalidDataException exception)
         {
             return new(candidate.Id, null, [], exception);
         }
+    }
+
+    /// <summary>Lit et met en mémoire toutes les interprétations de système de fichiers d'une image déjà reconstruite.</summary>
+    internal IReadOnlyList<ExploredFileSystem> InspectFileSystems(GWGUI.MediaEngine.Representations.Sectors.SectorImage image)
+    {
+            var matches = new List<ExploredFileSystem>();
+            foreach (var match in fileSystems.ReadCandidates(image, image.FormatId).Matches)
+            {
+                var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId, match.Volume);
+                ExploredFileSystem recognized;
+                if (ReferenceEquals(normalized, image))
+                {
+                    recognized = new(match.ReaderId, image, match.Volume);
+                }
+                else if (fileSystems.TryRead(normalized, match.ReaderId, out var normalizedMatch))
+                {
+                    recognized = new(match.ReaderId, normalized, normalizedMatch.Volume);
+                }
+                else
+                {
+                    recognized = new(match.ReaderId, image, match.Volume);
+                }
+
+                matches.Add(recognized);
+                foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(recognized.Image))
+                {
+                    if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var interpretedMatch)) continue;
+                    matches.Add(new(interpretedMatch.ReaderId, interpretation, interpretedMatch.Volume));
+                }
+            }
+            return matches;
     }
 }
