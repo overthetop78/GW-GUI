@@ -46,6 +46,10 @@ function Invoke-MediaValidator {
     )
 
     New-Item -ItemType Directory -Path $Destination -Force | Out-Null
+    foreach ($staleName in @('failure.json', 'execution.log')) {
+        $stalePath = Join-Path $Destination $staleName
+        if (Test-Path -LiteralPath $stalePath) { Remove-Item -LiteralPath $stalePath -Force }
+    }
     $previousLocation = Get-Location
     try {
         Set-Location -LiteralPath $repositoryRoot
@@ -114,6 +118,7 @@ for ($index = $startIndex; $index -lt $candidates.Count; $index++) {
     $destination = Join-Path (Join-Path $OutputRoot 'items') (('{0:D8}-' -f $index) + (Get-PathIdentifier $candidate.FullName))
     try {
         Invoke-MediaValidator -Path $candidate.FullName -Destination $destination
+        if (Test-Path -LiteralPath $failurePath) { Remove-Item -LiteralPath $failurePath -Force }
         Write-JsonAtomic -Path $checkpointPath -Value ([ordered]@{
             status = 'running'
             root = $resolvedRoot

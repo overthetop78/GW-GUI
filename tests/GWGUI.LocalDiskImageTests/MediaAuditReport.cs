@@ -117,4 +117,4 @@ public sealed record SupportAudit(
 
 public sealed record ConversionAudit(string FormatId, string Extension, string Writer, bool MultipleFiles);
 
-public sealed record ValidationAudit(bool Passed, IReadOnlyList<string> Errors);
+public sealed record ValidationAudit(bool Passed, IReadOnlyList<string> Errors, IReadOnlyList<string> Warnings);

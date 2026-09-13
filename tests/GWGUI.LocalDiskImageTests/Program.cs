@@ -114,7 +114,7 @@ internal static partial class Program
 
         var volumes = explored.Volumes.Select(volume => CreateVolume(document, volume)).ToArray();
         var logicalFiles = volumes.SelectMany(volume => Flatten(volume.Entries)).Count(entry => entry.Kind == FileSystemEntryKind.File.ToString());
-        var validationErrors = Validate(document, recognized, explored, visualization.Elements.Count, volumes, logicalFiles);
+        var validation = Validate(document, recognized, explored, visualization.Elements.Count, volumes, logicalFiles);
         var declaredCapacity = volumes.Select(volume => volume.Capacity).Where(value => value.HasValue).Sum(value => value!.Value);
         var freeBytes = volumes.Where(volume => volume.FreeSpaceKnown == true).Select(volume => volume.FreeBytes).Where(value => value.HasValue).Sum(value => value!.Value);
         long? usedBytes = declaredCapacity > 0 ? Math.Max(0, declaredCapacity - freeBytes) : null;
@@ -140,7 +140,7 @@ internal static partial class Program
                 writePlan, writeDiagnostic, catalogFormat?.Family, catalogFormat?.FormFactor.ToString(), catalogFormat?.Density.ToString(),
                 catalogFormat?.Extensions.Select(extension => extension.Extension).ToArray() ?? recognized.Reader.Extensions.Order().ToArray(), destinations),
             CreateRepresentation(document),
-            new ValidationAudit(validationErrors.Count == 0, validationErrors));
+            new ValidationAudit(validation.Errors.Count == 0, validation.Errors, validation.Warnings));
     }
 
     private static VolumeAudit CreateVolume(MediaImageDocument document, ExploredMediaVolume volume)
@@ -226,7 +226,7 @@ internal static partial class Program
         _ => new { kind = document.Representation.RepresentationKind.ToString(), document.Representation.LogicalLength }
     };
 
-    private static List<string> Validate(
+    private static (List<string> Errors, List<string> Warnings) Validate(
         MediaImageDocument document,
         MediaRecognitionResult recognized,
         ExploredMediaImage explored,
@@ -235,6 +235,7 @@ internal static partial class Program
         int logicalFileCount)
     {
         var errors = new List<string>();
+        var warnings = new List<string>();
         if (!recognized.Reader.SupportsFormatId(document.FormatId)) errors.Add("The selected reader does not declare the recognized format.");
         if (!recognized.Reader.Extensions.Contains(Path.GetExtension(document.Source.PrimaryPath), StringComparer.OrdinalIgnoreCase))
             errors.Add("The selected reader does not declare the source extension.");
@@ -243,12 +244,12 @@ internal static partial class Program
         if (logicalFileCount == 0) errors.Add("No logical file was extracted from the media.");
         foreach (var entry in volumes.SelectMany(volume => Flatten(volume.Entries)))
         {
-            if (!entry.MetadataValid) errors.Add($"Invalid metadata for '{entry.DisplayName}'.");
-            if (entry.DataValid == false) errors.Add($"Invalid data for '{entry.DisplayName}'.");
+            if (!entry.MetadataValid) warnings.Add($"Invalid metadata recorded for '{entry.DisplayName}'.");
+            if (entry.DataValid == false) warnings.Add($"Invalid data recorded for '{entry.DisplayName}'.");
             if (entry.Kind == FileSystemEntryKind.File.ToString() && entry.ContentHex is null)
                 errors.Add($"No content was extracted for '{entry.DisplayName}'.");
         }
-        return errors.Distinct(StringComparer.Ordinal).ToList();
+        return (errors.Distinct(StringComparer.Ordinal).ToList(), warnings.Distinct(StringComparer.Ordinal).ToList());
     }
 
     private static IEnumerable<FileEntryAudit> Flatten(IEnumerable<FileEntryAudit> entries)
