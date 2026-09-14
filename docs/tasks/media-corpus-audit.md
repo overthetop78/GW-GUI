@@ -1112,9 +1112,9 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
   - [x] Modifier `artifacts/media-audit/items/00001410-10bb91a692880869` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
   - [x] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque format au premier arrêt correspondant et son résultat après correction.
 - [ ] Reconnaître les ressources de `C64 Slideshow -VBXE-` au checkpoint 1415.
-  - [ ] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/analyze-content.ps1` pour comparer les structures des fichiers `.FN`, `.CM`, `.SC` et `.TX`.
-  - [ ] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` avec les preuves internes nécessaires à leurs classifications.
-  - [ ] Supprimer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/analyze-content.ps1` après l'analyse.
+  - [x] Créer `scripts/analyze-media-audit-report.ps1` avec les paramètres `ReportPath`, `OutputPath` et `EntryName`, puis écrire pour chaque fichier sélectionné ses métadonnées, son empreinte, sa signature, sa fin, sa distribution d'octets et ses chaînes utiles.
+  - [x] Modifier `scripts/analyze-media-audit-report.ps1` pour ignorer les dossiers et entrées sans propriété `ContentHex` sous mode strict.
+  - [ ] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` en exécutant le script réutilisable sur le rapport du média.
   - [ ] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` avec uniquement les extensions dont le type aura été confirmé.
   - [ ] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément les structures confirmées.
   - [ ] Supprimer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` après intégration.
