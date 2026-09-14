@@ -114,10 +114,18 @@ if (-not $Restart -and (Test-Path -LiteralPath $checkpointPath)) {
     $sameScope = $checkpoint.root -and ([string]$checkpoint.root -ieq $resolvedRoot) -and
         ([string]$checkpoint.startAt -ieq [string]$effectiveStartAt)
     if ($sameScope -and $checkpoint.status -eq 'failed' -and $checkpoint.failedPath) {
+        $failedCandidateFound = $false
         for ($candidateIndex = 0; $candidateIndex -lt $candidates.Count; $candidateIndex++) {
             if ($candidates[$candidateIndex].FullName -ieq [string]$checkpoint.failedPath) {
                 $startIndex = $candidateIndex
+                $failedCandidateFound = $true
                 break
+            }
+        }
+        if (-not $failedCandidateFound) {
+            while ($startIndex -lt $candidates.Count -and
+                [string]::Compare($candidates[$startIndex].FullName, [string]$checkpoint.failedPath, $true) -lt 0) {
+                $startIndex++
             }
         }
     } elseif ($sameScope -and ($checkpoint.nextIndex -is [long] -or $checkpoint.nextIndex -is [int])) {

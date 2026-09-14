@@ -3,6 +3,7 @@ namespace GWGUI.App.Enums.Explorer;
 public enum ExplorerContentFormat
 {
     Unknown,
+    Empty,
     PlainText,
     BasicProgram,
     NativeExecutable,

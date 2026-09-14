@@ -10,6 +10,8 @@ public enum AtariDosDirectoryFlags : byte
     OpenForOutput = AtariDosFileSystemLayout.OpenForOutputFlag,
     /// <summary>Entrée créée par Atari DOS 2.</summary>
     CreatedByDos2 = AtariDosFileSystemLayout.CreatedByDos2Flag,
+    /// <summary>Entree d'un catalogue Atari DOS double densite.</summary>
+    DoubleDensity = AtariDosFileSystemLayout.DoubleDensityFlag,
     /// <summary>Entrée verrouillée.</summary>
     Locked = AtariDosFileSystemLayout.LockedFlag,
     /// <summary>Entrée active.</summary>

@@ -7,6 +7,8 @@ internal static class AtariDosFileSystemExceptions
     public static InvalidDataException UnsupportedDirectory(string formatId, int sectorSize) => new($"The {formatId} image with {sectorSize}-byte sectors does not contain a supported Atari DOS directory.");
     /// <summary>Construit l'avertissement signalant un secteur de catalogue absent.</summary>
     public static string MissingDirectorySector(int sector) => $"Directory sector {sector} is missing.";
+    /// <summary>Construit l'avertissement signalant une entrée de catalogue non interprétable.</summary>
+    public static string InvalidDirectoryEntry(int sector, int slot) => $"Directory sector {sector}, entry {slot + 1} is not a valid Atari DOS file entry and was ignored.";
     /// <summary>Construit l'avertissement signalant un secteur de données absent.</summary>
     public static string MissingDataSector(string name, int sector) => $"{name}: Atari DOS data sector {sector} is missing.";
     /// <summary>Construit l'avertissement signalant une chaîne cyclique.</summary>

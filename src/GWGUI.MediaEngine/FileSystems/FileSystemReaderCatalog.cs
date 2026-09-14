@@ -24,6 +24,9 @@ public static class FileSystemReaderCatalog
         new Commodore.Dos.CommodoreDosFileSystemReader(),
         new Fat12.Fat12FileSystemReader(),
         new Atari.Dos.AtariDosFileSystemReader(),
-        new Atari.KFile.AtariKFileFileSystemReader()
+        new Atari.WordMagic.AtariWordMagicDictionaryFileSystemReader(),
+        new Atari.PrintShop.AtariPrintShopFileSystemReader(),
+        new Atari.KFile.AtariKFileFileSystemReader(),
+        new Atari.Boot.AtariBootFileSystemReader()
     ]);
 }

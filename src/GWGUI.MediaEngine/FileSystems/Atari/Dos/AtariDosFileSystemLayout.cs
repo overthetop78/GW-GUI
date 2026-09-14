@@ -35,6 +35,8 @@ public static class AtariDosFileSystemLayout
     public const byte OpenForOutputFlag = 0x01;
     /// <summary>Drapeau d'une entrée créée par Atari DOS 2.</summary>
     public const byte CreatedByDos2Flag = 0x02;
+    /// <summary>Bit de catalogue des volumes Atari DOS double densite.</summary>
+    public const byte DoubleDensityFlag = 0x04;
     /// <summary>Drapeau d'une entrée verrouillée.</summary>
     public const byte LockedFlag = 0x20;
     /// <summary>Drapeau d'une entrée supprimée.</summary>
@@ -51,8 +53,12 @@ public static class AtariDosFileSystemLayout
     public const int UsableSectorCountOffset = 1;
     /// <summary>Marqueur VTOC reconnu.</summary>
     public const byte VtocMarker = 2;
+    /// <summary>Marqueur VTOC employé par les disquettes Atari DOS en double densité.</summary>
+    public const byte DoubleDensityVtocMarker = 3;
     /// <summary>Marqueur VTOC employé par certaines disquettes Atari DOS plus anciennes.</summary>
     public const byte LegacyVtocMarker = 0;
+    /// <summary>Marqueur VTOC étendu employé par MyDOS sur les grands volumes.</summary>
+    public const byte ExtendedVtocMarker = 7;
     /// <summary>Largeur du compteur libre.</summary>
     public const int FreeSectorCountLength = sizeof(ushort);
     /// <summary>Caractère de remplissage des noms.</summary>

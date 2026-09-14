@@ -11,7 +11,10 @@ public static class AtariDosVtocReader
     public static bool LooksValid(IReadOnlyList<byte> data, int maximumSectorCount)
     {
         if (data.Count < AtariDosFileSystemLayout.MinimumSectorSize ||
-            data[0] is not (AtariDosFileSystemLayout.LegacyVtocMarker or AtariDosFileSystemLayout.VtocMarker)) return false;
+            data[0] is not (AtariDosFileSystemLayout.LegacyVtocMarker
+                or AtariDosFileSystemLayout.VtocMarker
+                or AtariDosFileSystemLayout.DoubleDensityVtocMarker
+                or AtariDosFileSystemLayout.ExtendedVtocMarker)) return false;
         var usable = data[AtariDosFileSystemLayout.UsableSectorCountOffset] |
             data[AtariDosFileSystemLayout.UsableSectorCountOffset + 1] << 8;
         var free = data[AtariDosFileSystemLayout.FreeSectorCountOffset] |

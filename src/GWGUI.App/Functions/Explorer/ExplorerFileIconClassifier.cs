@@ -22,11 +22,21 @@ public static class ExplorerFileIconClassifier
         if (entry.Kind == FileSystemEntryKind.Directory) return Synthetic(ExplorerFileCategory.File, "Explorer.Directory", ExplorerIconCategory.Folder);
         if (entry.Kind == FileSystemEntryKind.Link) return Synthetic(ExplorerFileCategory.Link, "Explorer.Link", ExplorerIconCategory.Link);
         var extension = Path.GetExtension(entry.Name);
+        if (entry.Content is { Count: 0 })
+            return Synthetic(ExplorerFileCategory.File,
+                extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
+                ExplorerIconCategory.File, extension, ExplorerContentFormat.Empty);
         var known = ExplorerFileTypeCatalog.Find(family, extension);
         var contentCategory = ExplorerFileContentClassifier.KnownCategory(entry, family);
         if (contentCategory is not null && (known is null || known.Category is ExplorerFileCategory.File or ExplorerFileCategory.Data))
+        {
+            var encoding = contentCategory == ExplorerFileCategory.Text && family == ExplorerFileSystemFamily.Atari8Bit
+                ? ExplorerTextEncoding.Atascii
+                : ExplorerTextEncoding.NotApplicable;
             return ExplorerFileTypeRuleFactory.Rule(family, extension, contentCategory.Value,
+                encoding,
                 execution: contentCategory == ExplorerFileCategory.Executable ? ExplorerExecutionKind.NativeExecutable : ExplorerExecutionKind.None);
+        }
         if (known is not null) return known;
         if (ExplorerFileContentClassifier.LooksLikeText(entry.Content))
             return ExplorerFileTypeRuleFactory.Rule(family, extension, ExplorerFileCategory.Text, ExplorerTextEncoding.Unknown);
@@ -70,9 +80,10 @@ public static class ExplorerFileIconClassifier
         ExplorerFileCategory category,
         string resourceKey,
         ExplorerIconCategory icon,
-        string extension = "") =>
+        string extension = "",
+        ExplorerContentFormat contentFormat = ExplorerContentFormat.Unknown) =>
         new(null, ExplorerFileTypeRuleFactory.Normalize(extension), category, resourceKey,
-            ExplorerExecutionKind.None, icon, ExplorerContentFormat.Unknown,
+            ExplorerExecutionKind.None, icon, contentFormat,
             ExplorerTextEncoding.NotApplicable, ExplorerPreviewKind.None);
 
 }

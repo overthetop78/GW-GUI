@@ -129,7 +129,7 @@ internal static partial class Program
         long? usedBytes = declaredCapacity > 0 ? Math.Max(0, declaredCapacity - freeBytes) : null;
 
         return new MediaAuditReport(
-            1,
+            3,
             DateTimeOffset.UtcNow,
             new SourceAudit(
                 path, file.Name, file.Extension.ToLowerInvariant(), file.Length, file.CreationTimeUtc, file.LastWriteTimeUtc,
@@ -182,6 +182,10 @@ internal static partial class Program
         var item = new ExplorerContentItem(entry, family);
         var content = entry.Content?.ToArray();
         var children = CreateEntries(entry.Children, family);
+        var contentHex = content is { Length: > 0 }
+            && item.Definition.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown
+                ? Convert.ToHexString(content)
+                : null;
         return new FileEntryAudit(
             entry.Name, item.Name, entry.Kind.ToString(), item.TypeText, item.Definition.Category.ToString(),
             item.Definition.ContentFormat.ToString(), item.Definition.TextEncoding.ToString(), item.Definition.ExecutionKind.ToString(),
@@ -190,6 +194,7 @@ internal static partial class Program
             entry.MetadataValid, entry.DataValid, entry.SyntheticName, entry.NativeTypeId, entry.LinkTarget,
             entry.Attributes, entry.Diagnostics, entry.Metadata,
             content is null ? null : Convert.ToHexString(SHA256.HashData(content)),
+            contentHex,
             content is not null,
             children);
     }
@@ -261,7 +266,7 @@ internal static partial class Program
         var warnings = new List<string>();
         if (!recognized.Reader.SupportsFormatId(document.FormatId)) errors.Add("The selected reader does not declare the recognized format.");
         if (!recognized.Reader.Extensions.Contains(Path.GetExtension(document.Source.PrimaryPath), StringComparer.OrdinalIgnoreCase))
-            errors.Add("The selected reader does not declare the source extension.");
+            warnings.Add("The selected reader does not declare the source extension; the media content was recognized independently of its file name.");
         if (visualizationElementCount == 0) errors.Add("The visualizer produced no media element.");
         if (explored.Volumes.Count == 0) errors.Add("The explorer produced no volume.");
         if (logicalFileCount == 0) errors.Add("No logical file was extracted from the media.");
@@ -271,7 +276,9 @@ internal static partial class Program
             if (entry.DataValid == false) warnings.Add($"Invalid data recorded for '{entry.DisplayName}'.");
             if (entry.Kind == FileSystemEntryKind.File.ToString() && !entry.ContentExtracted)
                 errors.Add($"No content was extracted for '{entry.DisplayName}'.");
-            if (entry.Kind == FileSystemEntryKind.File.ToString() && entry.Category == GWGUI.App.Enums.Explorer.ExplorerFileCategory.File.ToString())
+            if (entry.Kind == FileSystemEntryKind.File.ToString()
+                && entry.Category == GWGUI.App.Enums.Explorer.ExplorerFileCategory.File.ToString()
+                && entry.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown.ToString())
                 errors.Add($"Unknown file content for '{entry.DisplayName}'.");
         }
         return (errors.Distinct(StringComparer.Ordinal).ToList(), warnings.Distinct(StringComparer.Ordinal).ToList());
@@ -339,8 +346,16 @@ internal static partial class Program
             }
         }
 
-        return paths.Where(path => !associatedPaths.Contains(path)).ToArray();
+        return paths
+            .Where(path => !associatedPaths.Contains(path))
+            .Where(path => !IsNonMediaBinaryCollection(path))
+            .ToArray();
     }
+
+    private static bool IsNonMediaBinaryCollection(string path) =>
+        Path.GetExtension(path).Equals(".bin", StringComparison.OrdinalIgnoreCase)
+        && BracketValue().Matches(path).Any(match =>
+            match.Groups[1].Value.Equals("BIN", StringComparison.OrdinalIgnoreCase));
 
     private static string? Argument(IReadOnlyList<string> args, string name)
     {

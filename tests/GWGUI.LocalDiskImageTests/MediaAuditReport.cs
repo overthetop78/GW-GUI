@@ -94,6 +94,7 @@ public sealed record FileEntryAudit(
     IReadOnlyList<string> Diagnostics,
     IReadOnlyDictionary<string, string> Metadata,
     string? ContentSha256,
+    string? ContentHex,
     bool ContentExtracted,
     IReadOnlyList<FileEntryAudit> Children);
 

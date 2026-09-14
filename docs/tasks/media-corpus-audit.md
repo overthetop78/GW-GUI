@@ -30,6 +30,662 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
   - [x] ATR avec Atari DOS.
     - [x] Créer les rapports des cinq premières images ATR reconnues dans `artifacts/media-audit/items` et conserver leurs catalogues et fichiers extraits.
     - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour enregistrer les entrées Atari DOS ouvertes en écriture comme avertissements du média.
+    - [x] Traiter les entrées Atari DOS vides sans contenu à classifier.
+      - [x] Modifier `docs/tasks/media-corpus-audit.md` pour consigner l'arrêt sur `8bit Mouse, The v2.01` et les sept entrées de catalogue vides.
+      - [x] Modifier le classificateur de fichiers de l'explorateur pour identifier une entrée extraite de zéro octet comme fichier vide.
+      - [x] Modifier le validateur continu pour accepter cette classification explicite et continuer à refuser les contenus non vides inconnus.
+      - [x] Modifier `artifacts/media-audit/items/00000000-3b90ab12235b8612` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les morceaux Antic Music Processor.
+      - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaAuditReport.cs` et `Program.cs` pour conserver les 256 premiers octets HEX des contenus encore inconnus.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la signature de contenu `AM1` comme audio Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension `.AMP` comme audio Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000003-d65c58e214273c52` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les programmes produits par ABC A BASIC Compiler.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'interpréteur ABC lié au P-code par son en-tête et sa chaîne `RUNTIME ERROR`.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension ABC `.CMP` comme exécutable Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000007-ea1e399250b1498b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les exécutables Atari avec charge utile embarquée.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider les segments initiaux, le vecteur RUN/INIT pointant dans un segment chargé et la charge utile privée restante.
+      - [x] Modifier `artifacts/media-audit/items/00000008-7a53978ffc81677f` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les interpréteurs d'exécution ABC.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le module ABC `$2600-$37C5`, sa taille et sa chaîne d'erreur interne comme bibliothèque d'exécution.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension `.R26` comme bibliothèque Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000009-5fcca99ff20d076e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le texte ATASCII d'après son contenu.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les caractères imprimables et la fin de ligne ATASCII `0x9B`.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` pour enregistrer l'encodage `Atascii` lors de cette reconnaissance par contenu.
+      - [x] Modifier `artifacts/media-audit/items/00000010-9d1b2b1016706371` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les programmes BASIC Atari protégés.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour normaliser les pointeurs du fichier sauvegardé et valider la table complète des lignes lorsque `STMCUR` et `STARP` sont volontairement falsifiés.
+      - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaAuditReport.cs` et `Program.cs` pour remplacer l'échantillon par le contenu HEX complet uniquement tant que le contenu reste inconnu.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour accepter les données de fin non délimitables après au moins trois lignes tokenisées cohérentes, tout en conservant les avertissements de chaîne de secteurs.
+      - [x] Modifier `artifacts/media-audit/items/00000011-3a5764e3e478a40e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le code objet Deep Blue C et ACE C.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer `.CCC` comme code objet Atari 8 bits destiné au linker Deep Blue C/ACE C.
+      - [x] Modifier `artifacts/media-audit/items/00000012-36e79f3fa233bc25` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les disquettes Atari amorçables sans catalogue.
+      - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Atari/Boot/AtariBootFileSystemReader.cs` pour valider l'en-tête d'amorçage, réunir exactement les secteurs annoncés et exposer leur contenu sous le nom synthétique `BOOT.BIN`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` pour ajouter l'identifiant invariant `atari-boot-disk`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs` pour ajouter le nom invariant `Atari boot disk`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs` pour essayer le lecteur après Atari DOS et Atari K-file.
+      - [x] Modifier `artifacts/media-audit/items/00000014-bab1418fb67e40ae` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les fichiers Atari contenant une valeur binaire unique.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer un fichier non vide d'un octet comme donnée structurée affichable en hexadécimal.
+      - [x] Modifier `artifacts/media-audit/items/00000015-d97f356995bb3e62` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les morceaux Advanced MusicSystem II.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider les dix champs numériques ATASCII et leurs quatre plages ordonnées avant de classer le contenu comme audio Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer les extensions `.AMS` et `.AM2` comme morceaux Advanced MusicSystem.
+      - [x] Modifier `artifacts/media-audit/items/00000016-d055d21fc80171bf` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les aventures créées par Adventure Creation Kit.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête ATASCII `CREATION` des aventures enregistrées par le programme.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension `.ADV` comme donnée structurée Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000017-c46638ef3fa7b3a0` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le texte ATASCII en vidéo inverse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour traiter les caractères imprimables dont le bit de vidéo inverse est activé comme du texte ATASCII.
+      - [x] Modifier `artifacts/media-audit/items/00000018-38c37b302376f17a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les fichiers d'aide ATASCII.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension Atari `.HLP` comme texte ATASCII, y compris lorsque le document emploie les glyphes graphiques du jeu de caractères.
+      - [x] Modifier `artifacts/media-audit/items/00000026-18a45360b13a6b41` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images APAC.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension `.APC` comme image Atari 8 bits APAC 80 x 96 en 256 couleurs simulées.
+      - [x] Modifier `artifacts/media-audit/items/00000037-80fe1a3bd827881f` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les catalogues Atari DOS contenant une bannière dans des entrées inutilisables.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemExceptions.cs` pour consigner précisément le secteur et l'emplacement d'une entrée de catalogue ignorée.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` pour ignorer les entrées invalides, poursuivre jusqu'aux entrées valides et reconnaître le catalogue si au moins un fichier réel est présent.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemReader.cs` pour accepter un VTOC valide accompagné d'au moins une entrée de catalogue valide, même si la première entrée sert de bannière graphique.
+      - [x] Modifier `artifacts/media-audit/items/00000040-62afd9eb990113da` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les flux d'amorçage Atari utilisant l'octet de drapeau.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Boot/AtariBootFileSystemReader.cs` pour accepter l'octet de drapeau conservé par l'OS, enregistrer sa valeur et continuer à valider le nombre de secteurs, les adresses et le contenu chargé.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le même flux comme programme d'amorçage indépendamment de la valeur de son octet de drapeau.
+      - [x] Modifier `artifacts/media-audit/items/00000052-196a979c7213bef6` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les ressources internes d'Artist Unleashed.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.ZZZ` comme routine exécutable 6502 et `.DS` comme données d'écran structurées pour Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000057-a5ad5dfb050f2f1c` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les dessins Artist Unleashed sans extension.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête aligné contenant l'adresse décimale `41296`, sa fin de ligne ATASCII et les métadonnées binaires qui suivent.
+      - [x] Modifier `artifacts/media-audit/items/00000058-43171e4b2ff8675d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les thèmes astrologiques Atari.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension `.HOR` comme données astrologiques structurées Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000060-3226b4d17f0bb179` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les jeux de caractères Atari.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension `.CHR` comme police matricielle Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000061-3078724b6f341d78` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images compressées AtariArtist et MicroIllustrator.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'identifiant binaire `FF 80 C9 C7` indépendamment du nom de fichier.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer l'extension `.PI` comme image AtariArtist ou MicroIllustrator.
+      - [x] Modifier `artifacts/media-audit/items/00000065-20284f70db5fab06` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les écrans de démonstration ATASCII.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer les extensions Atari `.SHO` et `.CUR` comme écrans graphiques ATASCII.
+      - [x] Modifier `artifacts/media-audit/items/00000066-c96d2034deb0325b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les réglages binaires Atari Desktop.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension Atari `.SET` comme configuration structurée.
+      - [x] Modifier `artifacts/media-audit/items/00000071-f2315528d697eb4d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les programmes et données d'Atari Drums.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître depuis leur contenu les motifs rythmiques `.DRM` et la banque d'échantillons `.DIG` d'Atari Drums.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour déclarer `.CTB` comme programme compilé Atari 8 bits et `.DRM`/`.DIG` comme données audio.
+      - [x] Modifier `artifacts/media-audit/items/00000076-f66f9d83b5d4ef40` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les images ATR physiquement tronquées au milieu d'un secteur.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour conserver les octets disponibles du dernier secteur incomplet, compléter les octets et secteurs absents et exposer la géométrie déclarée quand l'amorçage présent reste valide.
+      - [x] Modifier `artifacts/media-audit/items/00000082-71806a38c86241a1` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les fichiers d'exécution Atari Pascal.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.ERL` comme bibliothèque relogeable Atari Pascal.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le moniteur Atari Pascal `MON` par sa structure de chargement à `0x2000` et son adresse d'entrée finale.
+      - [x] Modifier `artifacts/media-audit/items/00000085-b558bd14a8ef9f66` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les exécutables internes Atari Pascal sans extension.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les exécutables Atari Pascal constitués d'un segment chargé à `0x2000` suivi de leur adresse d'entrée.
+      - [x] Modifier `artifacts/media-audit/items/00000086-6398b170c5a61d62` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître l'arrière-plan graphique d'Atari Raytracer.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'image `.BKG` de 960 cellules précédée de sa palette de cinq octets.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.BKG` comme image Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000089-166a2fee9bba75cf` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les documents et sources internes d'AtariWriter+.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer les fichiers entièrement nuls comme données, reconnaître la structure d'un document AtariWriter+ et reconnaître une source assembleur tokenisée par ses instructions.
+      - [x] Modifier `artifacts/media-audit/items/00000100-f2d194b59f49d467` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les sauvegardes mémoire Atari DOS.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.SAV` comme sauvegarde système dans la famille Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000106-3b9aeffd4c857303` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Accepter une image XFD brute portant par erreur l'extension ATR.
+      - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour conserver l'écart entre extension et lecteur comme avertissement quand le contenu est reconnu et validé.
+      - [x] Modifier `artifacts/media-audit/items/00000108-a7ba3cf09b2bb97b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les ressources internes d'AwardWare.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître par leur structure le segment graphique, le catalogue, la configuration d'impression, les modèles de documents et la table de largeurs d'AwardWare.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.SEG` comme segment graphique Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000112-905ba76cbfd4f224` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les graphismes et pilotes d'impression d'AwardWare.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête graphique 144 x 112, la collection de bordures, les profils d'imprimantes de 291/292 octets et leur sélection enregistrée.
+      - [x] Modifier `artifacts/media-audit/items/00000113-14a8d4234f5cfdae` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les routines et données internes de B-Graph.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les trois prologues de routines 6502 appelées par B-Graph et l'en-tête ATASCII de ses données graphiques.
+      - [x] Modifier `artifacts/media-audit/items/00000115-79d1662f5d6e157d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les morceaux de Bash-a-Drum.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le motif `.PAT` et la séquence `.SNG` par leurs structures binaires.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.PAT` et `.SNG` comme données audio Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000120-ff21ba125ba54869` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les index de données Atari.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.IDX` comme table d'index structurée Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000123-f9f841595571af02` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître l'image autonome de The Bear Essentials.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le chargeur 6502 de 128 octets suivi de l'image de 8 Kio.
+      - [x] Modifier `artifacts/media-audit/items/00000132-0e1ed202f6d3225d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les grilles de labyrinthe Atari.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.MAZ` comme grille de labyrinthe structurée Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000136-15eac8cb493b3e8f` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les banques de polices Atari sans extension.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les trois jeux de 128 glyphes de huit octets contenus dans une banque brute de 3 Kio.
+      - [x] Modifier `artifacts/media-audit/items/00000142-110c1c258bacde85` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les écrans graphiques bruts de Big Asembler.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les écrans de 8 000 octets et les images de 10 003/10 018 octets munies de leurs en-têtes de mode graphique.
+      - [x] Modifier `artifacts/media-audit/items/00000143-d372f27a8ce9b4c9` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les disquettes d'amorçage Atari sans routine d'initialisation distincte.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Boot/AtariBootFileSystemReader.cs` pour accepter une adresse d'initialisation nulle lorsque l'adresse de chargement et les secteurs d'amorçage sont valides.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer le flux ainsi extrait comme programme d'amorçage.
+      - [x] Modifier `artifacts/media-audit/items/00000148-863f1e7c65e8a197` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les formes et écrans de Blazing Paddles.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les écrans graphiques de 7 680 octets précédés de leur en-tête de quatre octets.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.SHP` comme bibliothèque de formes graphiques Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000153-5c753b5716089b1a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les banques d'icônes Boss-XE.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.IKB` comme banque d'icônes Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000169-b2276b3560e48a0a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les écrans Boss-XE.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.SCR` comme définition d'écran graphique Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000170-6dc6c92233b02124` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le fichier de contrôle de Centro de Costos.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les seize octets de paramètres terminés par la fin de ligne ATASCII comme configuration.
+      - [x] Modifier `artifacts/media-audit/items/00000212-dc423a4eca998b1e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les ressources musicales de Chaos Music Composer.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.REP` comme données audio Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000217-dbd658ec8356ba50` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Généraliser les écrans Atari de 7 680 octets avec palette.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître tout écran brut de 7 680 octets suivi de ses quatre octets de palette, indépendamment des premiers pixels.
+      - [x] Modifier `artifacts/media-audit/items/00000224-3c89ae52e15a7e49` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les jeux de caractères du mode graphique Atari 4.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître un jeu brut de 128 glyphes de huit octets.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.GR` comme police graphique Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000229-4b2fba76dae1f7ca` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images et scènes CIN.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête invariant `CIN 1.2` des images compressées CCI.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.CCI` et `.CIN` comme contenus graphiques Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000233-cd7d01331c510f33` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les tables d'équivalences assembleur CodeBuster.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête source `Operating System Equates` et classer le contenu comme code source Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000239-971e1112a5b73957` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images Colorizer.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.AP2` et `.PI9` comme images Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000242-b3b74c4a64c9b88a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les plans de couleur bruts Colorview.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer un plan graphique Atari brut de 7 680 octets comme image, indépendamment de son extension de canal.
+      - [x] Modifier `artifacts/media-audit/items/00000243-d79d31daee7ef2d3` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les sources tokenisées MAC/65.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête `FE FE` et les lignes commentées des sources tokenisées MAC/65.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.M65` comme code source assembleur Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000245-85fac0520a72dbb2` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les dessins Computer Canvas.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.PTG` comme image Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000250-87993521365c0b68` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les écrans ACT.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.ACT` comme image Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000258-0c5e534690ac45e9` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les ATR terminés par des secteurs de remplissage nuls.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour accepter les secteurs complets supplémentaires uniquement lorsqu'ils sont entièrement nuls et suivent exactement la charge utile déclarée.
+      - [x] Modifier `artifacts/media-audit/items/00000283-24ad8d072f3ee5b4` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les configurations, pilotes et applications Diamond Desktop.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.INF` comme configuration, `.DRV` comme pilote et `.APP` comme exécutable dans la famille Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000307-2547be71d6fe7a6b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les polices Diamond Paint.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.DFT` comme police Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000308-ff27d09cf1fda702` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les composants Diamond Utilities.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.OS` comme configuration système, `.SDX` comme commande SpartaDOS X et `.ACC` comme accessoire exécutable Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000309-29d96cbc4332714d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les échantillons Digi-Voice sans extension.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le bloc audio chargé de `0x4000` à `0xBF00` et ses 32 512 octets d'échantillons.
+      - [x] Modifier `artifacts/media-audit/items/00000311-5bfc4d4629fe8239` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les échantillons Digidisk.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.SPL` comme audio échantillonné Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000313-473f5c2f59d2b843` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les pages de Digital Editor.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.PGE` comme document de mise en page Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000315-6f255ee7283ed743` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les écrans Atari suivis de cinq octets de palette.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer les 7 680 octets d'écran suivis de cinq octets de palette comme image.
+      - [x] Modifier `artifacts/media-audit/items/00000328-6a352f54b3d2678a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les modules utilitaires Disk Scanner.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.SU` comme bibliothèque de routines 6502 Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000340-98ca172a5e4c645b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les composants vocaux de Disk Wizard II.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les programmes BASIC de récitation par leurs chaînes intégrées et la routine 6502 de synthèse par son prologue.
+      - [x] Modifier `artifacts/media-audit/items/00000347-b8a6d7944566525b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les catalogues Atari DOS en double densité.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs` pour déclarer le marqueur VTOC double densité `03` observé.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosVtocReader.cs` pour valider ce marqueur avec les compteurs de secteurs existants.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs` pour déclarer le bit de catalogue double densité `04` observé.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosDirectoryFlags.cs` pour exposer ce bit comme drapeau Atari DOS connu.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` pour accepter ce drapeau lors de la validation du catalogue.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la signature binaire `DC-MOD13` des modules DOS Control 1.3 comme bibliothèque.
+      - [x] Modifier `artifacts/media-audit/items/00000364-a2494305166cdd1e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les modules et modèles de DOS Control 2.5.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer les signatures binaires observées des modules `.DC` et modèles `.DCT` de DOS Control 2.5.
+      - [x] Modifier `artifacts/media-audit/items/00000366-8e04e3d05b196e67` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les ATR double densité dont la longueur inclut trois demi-secteurs de bourrage nul.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour reconnaître cette longueur défectueuse, exclure les 384 octets nuls finaux et exposer les 720 secteurs standards.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.REF` comme données de référence Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000375-1d6b71bc9fc5b1d6` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les ATR 130 Kio complets dont l'en-tête déclare à tort 140 Kio.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour accepter exactement 1 040 secteurs lorsque le VTOC confirme 1 010 secteurs utilisables malgré une déclaration de 1 120 secteurs.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la signature `DAISY-DOT NLQ FONT` comme police d'impression Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000391-06a143b201052f25` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le pseudo-code Draper Pascal.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.PCD` comme code objet intermédiaire Draper Pascal.
+      - [x] Modifier `artifacts/media-audit/items/00000395-48c0a4088883b958` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images basse résolution Draw7.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les 240 octets d'écran suivis de quatre octets de palette comme image Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000397-68d664e260374fdf` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les dessins natifs Drawing Board.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les images brutes Drawing Board de 7 625 et 7 900 octets.
+      - [x] Modifier `artifacts/media-audit/items/00000399-21fb7cfbb0e432c6` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître la configuration binaire Easy Scan.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le bloc de paramètres Easy Scan de 120 octets avec zones réservées et tables de niveaux.
+      - [x] Modifier `artifacts/media-audit/items/00000406-c67064d537075794` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les écrans d'instructions et modules de F.A. Editor.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.INS` comme document en codes écran Atari et `.EDR` comme module exécutable F.A. Editor.
+      - [x] Modifier `artifacts/media-audit/items/00000424-3accb85a1a17942b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les fiches binaires Family Vehicle Expense.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer les enregistrements binaires d'un secteur de 125 octets comme données Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000427-ea0efa29cf286cb8` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les ATR 130 Kio XF+ dont l'en-tête déclare à tort 140 Kio.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour accepter le VTOC `03` de 1 027 secteurs gérés et son catalogue actif dans la récupération 1 040/1 120.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.MD8` comme audio numérique lu par Fampy.
+      - [x] Modifier `artifacts/media-audit/items/00000430-b5a8a8f02eb62ae2` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le profil d'impression de Financial Wizard.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les trois commandes ESC terminées par ATASCII EOL comme configuration d'imprimante.
+      - [x] Modifier `artifacts/media-audit/items/00000451-36c78fa794b770cb` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les photos The Newsroom.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'enveloppe binaire contenant les marqueurs `NEWSROOM` comme image de Photo Lab.
+      - [x] Modifier `artifacts/media-audit/items/00000455-e9ab92c45d4c58cc` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les paramètres par défaut FlickerTerm80.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.DEF` comme fichier de configuration Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000463-13889d043c2756e3` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les modules Future Composer.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.FC` comme module musical Future Composer.
+      - [x] Modifier `artifacts/media-audit/items/00000480-a465249917b52176` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les documents Ghost Editor.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.GHE` comme document Ghost Editor et empêcher sa fausse détection comme programme d'amorçage.
+      - [x] Modifier `artifacts/media-audit/items/00000488-98aad042a553c169` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les modules de périphérique Graf-Term.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.GTM` comme bibliothèque de pilote Graf-Term.
+      - [x] Modifier `artifacts/media-audit/items/00000494-0c1e358c41076003` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les scènes Graph 3D.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.G3D` comme données structurées Graph 3D.
+      - [x] Modifier `artifacts/media-audit/items/00000495-5572180bba91f014` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le document enrichi Graf-Term.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.EPS` comme document Graf-Term dans la famille Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000499-c6b6fe34e0a8f1af` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les programmes bruts Headliner.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.PRG` comme exécutable 6502 dans la famille Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000523-edfdf6301dcccc23` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images InterPainter.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.INT` comme image native InterPainter.
+      - [x] Modifier `artifacts/media-audit/items/00000554-23f380eeb8b33638` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les ATR complétés par un grand bourrage nul externe.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour utiliser la longueur déclarée valide lorsque tous les octets surnuméraires sont nuls, sans imposer un alignement sectoriel au bourrage externe.
+      - [x] Modifier `artifacts/media-audit/items/00000559-810ec65a6ced55f8` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les banques et utilitaires K3 Wave Table Editor.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.P50` comme banque audio Kawai K3.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les trois signatures de code 6502 brut des utilitaires K3 et accepter un XEX minimal de sept octets.
+      - [x] Modifier `artifacts/media-audit/items/00000562-833d17fc8c76cbd1` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître l'éditeur binaire Kyan Pascal.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le segment `2005–342A` contenant les messages de chargement de l'éditeur Kyan comme exécutable.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour respecter la faute `Invailid Device` présente dans le message binaire original.
+      - [x] Modifier `artifacts/media-audit/items/00000573-363a1a47aae20d84` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le noyau brut Laserteller.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le prologue 6502 de `CORE.BIN` et ses références aux fichiers de données Laserteller comme exécutable.
+      - [x] Modifier `artifacts/media-audit/items/00000580-c8222002b459a663` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images Logos Maker et Fun with Art.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.RAW` comme image brute Logos Maker et `.FWA` comme image Fun with Art.
+      - [x] Modifier `artifacts/media-audit/items/00000596-e1eb3955d9ca95be` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire les ATR complétés par un bourrage DOS `1A`.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour accepter un surplus uniforme `1A` après une charge utile déclarée et sectoriellement valide.
+      - [x] Modifier `artifacts/media-audit/items/00000600-45154455e5d6ce36` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images monochromes Mad Designer.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension `.MBG` comme image Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le bitmap monochrome brut Mad Designer de 512 x 256 pixels par son extension et sa longueur exacte de 16 384 octets.
+      - [x] Modifier `artifacts/media-audit/items/00000607-8cbc5dc3434553e3` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître la configuration d'éditeur Mantis.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension `.ECF` comme configuration Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître une configuration d'éditeur Mantis `.ECF` par son extension et sa structure compacte de 42 octets.
+      - [x] Modifier `artifacts/media-audit/items/00000614-4a8eadf9c4f02e6d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images compressées Marco Pixel Editor.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension `.CPI` comme image Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les données non vides `.CPI` de Marco Pixel Editor comme images 160 x 192 à quatre couleurs.
+      - [x] Modifier `artifacts/media-audit/items/00000616-ff8b9741faefe820` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images Megacolor Editor.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension `.MGA` comme image Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les images `.MGA` de 7 856 octets, constituées de 7 680 pixels indexés 80 x 96 et de leurs données de couleur.
+      - [x] Modifier `artifacts/media-audit/items/00000623-8583c7e2b293fe93` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître la ressource `SHUT` de Micro-Painter.
+      - [x] Créer `artifacts/media-audit/items/00000629-ba634ee70243bd63/shut-preview.png` avec trois interprétations monochromes des 3 072 octets extraits afin de déterminer leur organisation graphique.
+      - [x] Modifier `artifacts/media-audit/items/00000629-ba634ee70243bd63/shut-preview.png` pour y ajouter l'interprétation des 3 072 octets comme 384 glyphes monochromes 8 x 8 organisés en trois banques de 128 glyphes.
+      - [x] Supprimer `artifacts/media-audit/items/00000629-ba634ee70243bd63/shut-preview.png` après inspection.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les 3 072 octets comme bitmap 2 bpp de 128 x 96 pixels lorsque chacun des quatre pixels d'un octet vaut uniquement `00` ou `11`, sans se fonder sur le dossier externe.
+      - [x] Modifier `artifacts/media-audit/items/00000629-ba634ee70243bd63` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les compositions Midi Pattern Editor.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension `.MPE` comme audio Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les compositions `.MPE` structurées en pages de 256 octets avec une table d'ordre terminée par `FE` ou `FF` dans la première page.
+      - [x] Modifier `artifacts/media-audit/items/00000633-7a4e3202d52f446d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les séquences du Midi Sequencer Atari.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension `.SEQ` comme audio pour la famille Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la signature binaire commune `B3 A5 B1` des séquences Midi Sequencer.
+      - [x] Modifier `artifacts/media-audit/items/00000634-479377cb2a7add06` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les documents Mini Office II sans extension.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête `CD C4 01 0D` suivi d'un corps texte ATASCII comme document Mini Office II.
+      - [x] Modifier `artifacts/media-audit/items/00000635-4cc2f9697e1a6aa1` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les écrans texte ATASCII de terminal.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.ATA` comme texte ATASCII pour Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les fichiers `.ATA` contenant des fins de ligne ATASCII et des codes d'affichage ou de contrôle Atari.
+      - [x] Modifier `artifacts/media-audit/items/00000642-c54947d6c68f8a07` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les formats graphiques de Multi Graph View.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.256`, `.APA`, `.SFD` et `.INP` comme images Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la signature SFDN `S101` des `.256` et `.SFD`, la structure `.APA` de 7 720 octets et la structure `.INP` de 16 004 octets.
+      - [x] Modifier `artifacts/media-audit/items/00000651-2c6a6e364806c62b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les deux composantes des morceaux Music Construction Set.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.MUS` comme audio Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les partitions sans extension commençant par `1F 0A 10 00` et les fichiers `.MUS` portant leur signature commune à l'offset 4.
+      - [x] Modifier `artifacts/media-audit/items/00000668-8c237b67735b1a6a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les morceaux et banques d'instruments de The Music Studio.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la table d'instruments commune contenant `clarinet` puis `bass`, y compris lorsque leur première lettre porte le bit vidéo inverse ATASCII.
+      - [x] Modifier `artifacts/media-audit/items/00000679-cc87db9eb66718ce` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître le module brut `MEM.SA` de The NewsRoom.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître son prologue 6502 `20 E0 07 D8 4C` comme exécutable brut Atari 8 bits.
+      - [x] Modifier `artifacts/media-audit/items/00000710-7ae6d6b40b6a6670` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les tables de conversion Panther.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.CVN` comme configuration Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les lignes ATASCII `#nombre=` séparées par `9B` comme table de conversion.
+      - [x] Modifier `artifacts/media-audit/items/00000727-dbf8bb24ee50b3ad` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les profils d'imprimantes et le module caché de PaperClip.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.CNF` et `.CNG` comme configurations Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les profils binaires `.CNF` de 190 octets et les profils graphiques `.CNG` constitués de commandes séparées par `9B`.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le prologue 6502 de `KEEPOFFT.HIS` comme module exécutable brut sans généraliser l'extension `.HIS`.
+      - [x] Modifier `artifacts/media-audit/items/00000730-51b84a6c8195c326` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les polices téléchargeables Epson FX de PaperClip.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.FX` comme police Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les commandes Epson `ESC :` puis `ESC &` qui introduisent les glyphes téléchargeables.
+      - [x] Modifier `artifacts/media-audit/items/00000732-b717508bfd8c196a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les ressources graphiques sans extension de Picility.
+      - [x] Créer `artifacts/media-audit/items/00000746-2be603b41e7e1217/picility-preview.png` avec les organisations graphiques plausibles de `LPENPIC` et `THECITY` à partir des contenus extraits.
+      - [x] Modifier `artifacts/media-audit/items/00000746-2be603b41e7e1217/picility-preview.png` pour comparer `THECITY` en 1 bpp et 2 bpp avec plusieurs largeurs Atari usuelles et confirmer sa disposition.
+      - [x] Supprimer `artifacts/media-audit/items/00000746-2be603b41e7e1217/picility-preview.png` après inspection.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les structures graphiques confirmées de Picility sans utiliser le nom du fichier ni celui du dossier externe.
+      - [x] Modifier `artifacts/media-audit/items/00000746-2be603b41e7e1217` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images de Player-Missile Graphics Tablet avec ou sans extension.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les fichiers de 4 206 octets composés du mode graphique `0x17`, de cinq registres de couleur et de 4 200 octets d'écran.
+      - [x] Modifier `artifacts/media-audit/items/00000753-c5ac9a90b011dd5b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les écrans internes de Print Shop File Image Converters.
+      - [x] Créer `artifacts/media-audit/items/00000759-15e0a2ce3464fcf8/print-shop-screens.png` avec le rendu 2 bpp des contenus `SCR1` et `SCR2` de 7 857 octets.
+      - [x] Supprimer `artifacts/media-audit/items/00000759-15e0a2ce3464fcf8/print-shop-screens.png` après inspection.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la structure confirmée de ces écrans internes sans utiliser leurs noms.
+      - [x] Modifier `artifacts/media-audit/items/00000759-15e0a2ce3464fcf8` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les images d'icônes Typesetter de Print Shop Interface.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.TS` comme image Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les images Typesetter `.TS` de 1 791 octets.
+      - [x] Modifier `artifacts/media-audit/items/00000762-b751532bc87df74f` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Lire le catalogue propriétaire des disquettes d'icônes Print Shop.
+      - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Atari/PrintShop/AtariPrintShopFileSystemReader.cs` pour reconnaître `PRINT SHOP:CLK!`, lire les entrées de 32 octets des secteurs 362 à 393 et extraire chaque icône de 572 octets depuis ses secteurs chaînés de 126 octets.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` pour ajouter l'identifiant `atari-print-shop`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs` pour ajouter le nom invariant `Atari Print Shop`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs` pour enregistrer le lecteur Print Shop après les lecteurs Atari existants.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer comme images les entrées portant le type natif `atari-print-shop-icon` fourni par le lecteur.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/PrintShop/AtariPrintShopFileSystemReader.cs` pour qualifier explicitement `System.Text.Encoding.ASCII` face à l'espace de noms `GWGUI.MediaEngine.Encoding`.
+      - [x] Modifier `artifacts/media-audit/items/00000772-f8592960508afaa4` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/PrintShop/AtariPrintShopFileSystemReader.cs` pour ignorer les emplacements résiduels dont l'octet de type imite `x` mais dont le secteur ou la longueur ne forme pas une entrée valide.
+      - [x] Modifier `artifacts/media-audit/items/00000773-688870414f73ba8c` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/PrintShop/AtariPrintShopFileSystemReader.cs` pour conserver une icône dont la chaîne se termine avant les 572 octets déclarés, avec sa taille réellement récupérée, `dataValid=false`, un diagnostic et la longueur déclarée en métadonnée.
+      - [x] Modifier `artifacts/media-audit/items/00000776-f6d7f13bb24a4797` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Reconnaître les catalogues graphiques et la sélection d'imprimante de PrintPower.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.D8A` comme données structurées Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les catalogues `.D8A` de 593 ou 995 octets et la configuration `PDNAME` contenant un chemin de pilote `D1:` terminé en ATASCII.
+      - [x] Modifier `artifacts/media-audit/items/00000785-20847cfdc03ba178` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les ressources `.001` de PrintPower.
+      - [x] Créer `artifacts/media-audit/items/00000786-b1906982cd07b8cb/analyze-content.ps1` pour transformer les contenus HEX déjà présents dans le rapport en profils structurels JSON sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000786-b1906982cd07b8cb/content-analysis.json` avec les tailles, empreintes, préfixes, suffixes et répartitions d'octets des contenus `.001` extraits afin d'en déterminer la structure.
+      - [x] Supprimer `artifacts/media-audit/items/00000786-b1906982cd07b8cb/analyze-content.ps1` après création du profil structurel.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les ressources `.001` à partir de leur structure confirmée, sans utiliser le nom du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000786-b1906982cd07b8cb/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000786-b1906982cd07b8cb` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les motifs utilisateur RAMbrandt.
+      - [x] Créer `artifacts/media-audit/items/00000814-57dbac513c1809d9/content-analysis.json` avec la taille, l'empreinte, le contenu HEX et la répartition des octets de `PATTERN1.USR` déjà extraits dans le rapport.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître `PATTERN1.USR` selon sa structure confirmée, sans utiliser le nom du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000814-57dbac513c1809d9/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000814-57dbac513c1809d9` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les tampons graphiques Rubber Stamp.
+      - [x] Créer `artifacts/media-audit/items/00000829-300db03aa3695a0e/content-analysis.json` avec la taille, l'empreinte, les extrémités HEX et l'organisation graphique de `BUNNY.PAD` déjà extraits dans le rapport afin d'en déterminer la structure.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les tampons `.PAD` à partir de leur structure confirmée, sans utiliser le nom du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000829-300db03aa3695a0e/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000829-300db03aa3695a0e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les documents sans extension de Schema Design.
+      - [x] Créer `artifacts/media-audit/items/00000836-1620ce70b55e62cd/analyze-content.ps1` pour profiler les douze contenus inconnus déjà extraits dans le rapport sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000836-1620ce70b55e62cd/content-analysis.json` avec leurs tailles, empreintes, extrémités HEX, statistiques ATASCII et signatures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00000836-1620ce70b55e62cd/analyze-content.ps1` après création du profil.
+      - [x] Créer `artifacts/media-audit/items/00000836-1620ce70b55e62cd/analyze-structure.ps1` pour calculer les limites non nulles et les motifs de longueur des contenus déjà enregistrés.
+      - [x] Modifier `artifacts/media-audit/items/00000836-1620ce70b55e62cd/content-analysis.json` pour y ajouter ces limites et motifs structurels.
+      - [x] Supprimer `artifacts/media-audit/items/00000836-1620ce70b55e62cd/analyze-structure.ps1` après enrichissement du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître chaque structure confirmée sans utiliser les noms du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000836-1620ce70b55e62cd/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000836-1620ce70b55e62cd` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les schémas et agrandissements de Schematic Designer.
+      - [x] Créer `artifacts/media-audit/items/00000837-17783e000e162789/analyze-content.ps1` pour profiler les contenus `.SCH` et `.ZOM` déjà extraits dans le rapport sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000837-17783e000e162789/content-analysis.json` avec leurs tailles, empreintes, limites non nulles et signatures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00000837-17783e000e162789/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour décrire `.SCH` et `.ZOM` comme documents graphiques Atari 8 bits.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les deux structures confirmées sans utiliser le nom du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000837-17783e000e162789/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000837-17783e000e162789` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les ressources de Screen Aided Management.
+      - [x] Créer `artifacts/media-audit/items/00000838-a4248c531c823897/analyze-content.ps1` pour profiler `CATALOG.MEM` et `EPSONFX8` depuis le rapport sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000838-a4248c531c823897/content-analysis.json` avec leurs tailles, empreintes, limites non nulles, extrémités HEX et statistiques ATASCII.
+      - [x] Supprimer `artifacts/media-audit/items/00000838-a4248c531c823897/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément le catalogue mémoire et la ressource d'imprimante selon leur contenu.
+      - [x] Supprimer `artifacts/media-audit/items/00000838-a4248c531c823897/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000838-a4248c531c823897` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître le profil d'imprimante Screen Dump II.
+      - [x] Créer `artifacts/media-audit/items/00000840-eddb9db5bebbd995/content-analysis.json` avec la taille, l'empreinte et le contenu HEX de `DRUCKER.PAR` déjà extraits dans le rapport.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître ce profil `.PAR` selon ses commandes d'imprimante.
+      - [x] Supprimer `artifacts/media-audit/items/00000840-eddb9db5bebbd995/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour lire le nom d'imprimante aux octets 47 à 55 du profil `.PAR` conformément au contenu réel.
+      - [x] Modifier `artifacts/media-audit/items/00000840-eddb9db5bebbd995` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les ressources graphiques `.004` de Sesame Street Print Kit.
+      - [x] Créer `artifacts/media-audit/items/00000852-8c07bb3d6fd96e93/analyze-content.ps1` pour comparer la structure des contenus `.004` déjà extraits avec celle des bibliothèques PrintPower `.001`.
+      - [x] Créer `artifacts/media-audit/items/00000852-8c07bb3d6fd96e93/content-analysis.json` avec leurs tailles, compteurs, tables de fins d'images et résultats de validation structurelle.
+      - [x] Supprimer `artifacts/media-audit/items/00000852-8c07bb3d6fd96e93/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour accepter `.004` dans le lecteur de bibliothèque graphique uniquement si la même structure est confirmée.
+      - [x] Supprimer `artifacts/media-audit/items/00000852-8c07bb3d6fd96e93/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000852-8c07bb3d6fd96e93` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les documents `.ASC` de SIO2PC.
+      - [x] Créer `artifacts/media-audit/items/00000859-d2733f7622bc9454/content-analysis.json` avec la taille, l'empreinte, les extrémités HEX et les séparateurs de ligne de `1SIO2PC.ASC` déjà extraits.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.ASC` selon l'encodage confirmé.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider le contenu texte `.ASC` sans utiliser son nom externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000859-d2733f7622bc9454/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000859-d2733f7622bc9454` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître la ressource `.SYN` de Softsynth.
+      - [x] Créer `artifacts/media-audit/items/00000870-950398f098630b19/content-analysis.json` avec la taille, l'empreinte, la signature HEX et l'organisation bitmap de `SCHRIFT.SYN` déjà extraits.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.SYN` selon le type confirmé.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider sa structure sans utiliser le nom du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000870-950398f098630b19/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000870-950398f098630b19` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les compositions sans extension de Softsynth.
+      - [x] Créer `artifacts/media-audit/items/00000871-52ba421b0a45c0f1/analyze-content.ps1` pour profiler les vingt contenus inconnus déjà extraits dans le rapport sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000871-52ba421b0a45c0f1/content-analysis.json` avec leurs tailles, empreintes, signatures, distributions et regroupements structurels.
+      - [x] Supprimer `artifacts/media-audit/items/00000871-52ba421b0a45c0f1/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les structures Softsynth confirmées sans utiliser les noms du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000871-52ba421b0a45c0f1/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000871-52ba421b0a45c0f1` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les fichiers `.IDA` de Songwriter.
+      - [x] Créer `artifacts/media-audit/items/00000873-3d4545cc78c03680/analyze-content.ps1` pour profiler les sept contenus `.IDA` déjà extraits sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000873-3d4545cc78c03680/content-analysis.json` avec leurs tailles, empreintes, extrémités HEX, statistiques texte et signatures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00000873-3d4545cc78c03680/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.IDA` selon le type confirmé.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider la structure `.IDA` sans utiliser le nom du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000873-3d4545cc78c03680/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000873-3d4545cc78c03680` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les fichiers Sound Tracker 08 `.MUZ` et `.DTA`.
+      - [x] Créer `artifacts/media-audit/items/00000875-e05654d49becf344/analyze-content.ps1` pour profiler les onze contenus déjà extraits dans le rapport sans relire l'image source.
+      - [x] Supprimer `artifacts/media-audit/items/00000875-e05654d49becf344/analyze-content.ps1` après constat que sa sélection ne parcourait pas `Volumes[].Entries`.
+      - [x] Créer `artifacts/media-audit/items/00000875-e05654d49becf344/analyze-content.ps1` avec la sélection corrigée de `Volumes[].Entries`.
+      - [x] Créer `artifacts/media-audit/items/00000875-e05654d49becf344/content-analysis.json` avec leurs tailles, signatures, suffixes, distributions et structures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00000875-e05654d49becf344/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.MUZ` et `.DTA` selon leurs types confirmés.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider les structures Sound Tracker 08 sans utiliser les noms du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000875-e05654d49becf344/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000875-e05654d49becf344` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier le format réel de l'image `Submon v4.1D` portant une extension `.atr` et un en-tête non ATR.
+      - [x] Créer `artifacts/media-audit/items/00000915-8cec6e74326f054b/analyze-source.ps1` pour profiler la copie d'erreur sans relire l'image originale.
+      - [x] Créer `artifacts/media-audit/items/00000915-8cec6e74326f054b/source-analysis.json` avec la taille, les extrémités HEX, les chaînes et les structures de secteurs détectées.
+      - [x] Supprimer `artifacts/media-audit/items/00000915-8cec6e74326f054b/analyze-source.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Xfd/XfdReader.cs` pour reconnaître un XFD brut suivi de 16 octets nuls et exclure ces octets de la capacité du média.
+      - [x] Supprimer `artifacts/media-audit/items/00000915-8cec6e74326f054b/source-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000915-8cec6e74326f054b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les fichiers géométriques et la configuration d'impression de Super 3D Plotter II.
+      - [x] Créer `artifacts/media-audit/items/00000916-3c609b54edef4ca4/analyze-content.ps1` pour profiler les contenus `.PTS`, `.LIN` et `PRINTER` déjà extraits sans relire l'image source.
+      - [x] Modifier `artifacts/media-audit/items/00000916-3c609b54edef4ca4/analyze-content.ps1` pour contrôler les 33 entrées réellement présentes.
+      - [x] Créer `artifacts/media-audit/items/00000916-3c609b54edef4ca4/content-analysis.json` avec leurs tailles, signatures, distributions, relations par paire et structures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00000916-3c609b54edef4ca4/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.PTS` et `.LIN` comme données graphiques.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider les points, lignes et commandes d'impression de Super 3D Plotter II sans utiliser les noms du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000916-3c609b54edef4ca4/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000916-3c609b54edef4ca4` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître `PRINTER.TYP` de Super Mailer Plus.
+      - [x] Créer `artifacts/media-audit/items/00000920-c760ba226c66da18/analyze-content.ps1` pour profiler le contenu déjà extrait sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000920-c760ba226c66da18/content-analysis.json` avec sa taille, ses extrémités HEX et ses chaînes.
+      - [x] Supprimer `artifacts/media-audit/items/00000920-c760ba226c66da18/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.TYP` comme configuration.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la table de quatre codes d'imprimante de Super Mailer Plus.
+      - [x] Supprimer `artifacts/media-audit/items/00000920-c760ba226c66da18/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000920-c760ba226c66da18` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les paires d'images `.COL` et `.LUM` de Technicolor Dream.
+      - [x] Créer `artifacts/media-audit/items/00000948-7ca247369e839492/analyze-content.ps1` pour profiler les dix contenus déjà extraits sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000948-7ca247369e839492/content-analysis.json` avec leurs tailles, signatures, distributions et relations par paire.
+      - [x] Supprimer `artifacts/media-audit/items/00000948-7ca247369e839492/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.COL` et `.LUM` comme images.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider l'en-tête commun des composantes Technicolor Dream sans utiliser les noms du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000948-7ca247369e839492/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000948-7ca247369e839492` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les images `.TIP` de TIPview.
+      - [x] Créer `artifacts/media-audit/items/00000956-acaf9464cb418cf9/analyze-content.ps1` pour profiler les sept contenus déjà extraits sans relire l'image source.
+      - [x] Modifier `artifacts/media-audit/items/00000956-acaf9464cb418cf9/analyze-content.ps1` pour profiler les neuf entrées `.TIP` réellement présentes, dont deux déjà reconnues.
+      - [x] Créer `artifacts/media-audit/items/00000956-acaf9464cb418cf9/content-analysis.json` avec leurs tailles, signatures et structures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00000956-acaf9464cb418cf9/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.TIP` comme image.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider la signature et la version des images TIP sans utiliser les noms du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000956-acaf9464cb418cf9/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000956-acaf9464cb418cf9` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les modules de The Trick - Cheat Maker.
+      - [x] Créer `artifacts/media-audit/items/00000966-a01afbad54239070/analyze-content.ps1` pour profiler les huit contenus inconnus déjà extraits sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00000966-a01afbad54239070/content-analysis.json` avec leurs tailles, signatures, chaînes et structures exécutables éventuelles.
+      - [x] Supprimer `artifacts/media-audit/items/00000966-a01afbad54239070/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.DAN` comme donnée propriétaire et `.PFD` comme fonte.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour distinguer routines, musique, données, fonte et conteneurs binaires de The Trick à partir de leur contenu.
+      - [x] Supprimer `artifacts/media-audit/items/00000966-a01afbad54239070/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000966-a01afbad54239070` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les fichiers `.CPR` de Trzmiel.
+      - [x] Créer `artifacts/media-audit/items/00000967-8349b4c2a544496e/analyze-content.ps1` pour profiler les cinq contenus déjà extraits sans relire l'image source.
+      - [x] Modifier `artifacts/media-audit/items/00000967-8349b4c2a544496e/analyze-content.ps1` pour profiler les huit entrées `.CPR` réellement présentes, dont trois déjà reconnues.
+      - [x] Créer `artifacts/media-audit/items/00000967-8349b4c2a544496e/content-analysis.json` avec leurs tailles, signatures et structures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00000967-8349b4c2a544496e/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.CPR` comme image compressée.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider la version et les contrôles RLE des images CPR sans utiliser les noms du dossier externe.
+      - [x] Supprimer `artifacts/media-audit/items/00000967-8349b4c2a544496e/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00000967-8349b4c2a544496e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître la commande binaire `UUD.BAT`.
+      - [x] Créer `artifacts/media-audit/items/00001000-bc8d531fb5e6060f/analyze-content.ps1` pour profiler le contenu déjà extrait sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00001000-bc8d531fb5e6060f/content-analysis.json` avec sa taille, son encodage, ses séparateurs de lignes et son texte décodé.
+      - [x] Supprimer `artifacts/media-audit/items/00001000-bc8d531fb5e6060f/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.BAT` comme commande Atari.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le code machine contenu dans ce fichier `.BAT` sans utiliser son nom externe.
+      - [x] Supprimer `artifacts/media-audit/items/00001000-bc8d531fb5e6060f/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001000-bc8d531fb5e6060f` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les pages `HELP.*` de Video 130XE.
+      - [x] Créer `artifacts/media-audit/items/00001003-573419b9854292c5/analyze-content.ps1` pour profiler les onze contenus déjà extraits sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00001003-573419b9854292c5/content-analysis.json` avec leurs tailles, encodages, séparateurs et structures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00001003-573419b9854292c5/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les documents en codes écran dont l'en-tête déclare exactement la longueur du contenu.
+      - [x] Supprimer `artifacts/media-audit/items/00001003-573419b9854292c5/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001003-573419b9854292c5` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître le fichier sans extension `RABBIT` de Video-Scanner.
+      - [x] Créer `artifacts/media-audit/items/00001007-15e21d22249a3629/analyze-content.ps1` pour profiler le contenu déjà extrait sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00001007-15e21d22249a3629/content-analysis.json` avec sa taille, ses pointeurs BASIC, ses signatures et ses chaînes.
+      - [x] Supprimer `artifacts/media-audit/items/00001007-15e21d22249a3629/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'image brute de 4 375 octets avec ses marges nulles sans utiliser son nom externe.
+      - [x] Supprimer `artifacts/media-audit/items/00001007-15e21d22249a3629/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Créer `artifacts/media-audit/items/00001007-15e21d22249a3629/analyze-layout.ps1` pour relever précisément les bornes non nulles du contenu régénéré.
+      - [x] Créer `artifacts/media-audit/items/00001007-15e21d22249a3629/layout-analysis.json` avec le premier et le dernier octet non nul et les longueurs de marges.
+      - [x] Supprimer `artifacts/media-audit/items/00001007-15e21d22249a3629/analyze-layout.ps1` après création du relevé.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour remplacer les bornes supposées par les bornes réelles de l'image brute.
+      - [x] Supprimer `artifacts/media-audit/items/00001007-15e21d22249a3629/layout-analysis.json` après correction de la règle.
+      - [x] Modifier `artifacts/media-audit/items/00001007-15e21d22249a3629` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les images `.RAP` de Vidig Paint.
+      - [x] Créer `artifacts/media-audit/items/00001008-c2961ca8fca61a30/analyze-content.ps1` pour profiler les trois contenus déjà extraits sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00001008-c2961ca8fca61a30/content-analysis.json` avec leurs tailles, signatures et structures communes.
+      - [x] Supprimer `artifacts/media-audit/items/00001008-c2961ca8fca61a30/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.RAP` comme image.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le bitmap RAP de 7 680 octets suivi de son octet de réglage.
+      - [x] Supprimer `artifacts/media-audit/items/00001008-c2961ca8fca61a30/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001008-c2961ca8fca61a30` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les compositions `.JL`, `.JM` et `.DM` de Virtuoso.
+      - [x] Créer `artifacts/media-audit/items/00001011-e8dfb2b0beb96aa7/analyze-content.ps1` pour profiler les sept contenus déjà extraits sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00001011-e8dfb2b0beb96aa7/content-analysis.json` avec leurs tailles, signatures et structures par extension.
+      - [x] Supprimer `artifacts/media-audit/items/00001011-e8dfb2b0beb96aa7/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.JL`, `.JM` et `.DM` comme compositions audio.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider les tailles et les tables de pistes réservées de Virtuoso.
+      - [x] Supprimer `artifacts/media-audit/items/00001011-e8dfb2b0beb96aa7/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001011-e8dfb2b0beb96aa7` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître `HOLDINGS.CAT` de VisiCalc.
+      - [x] Créer `artifacts/media-audit/items/00001013-b5caea5e0aaea3f7/analyze-content.ps1` pour profiler le contenu déjà extrait sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00001013-b5caea5e0aaea3f7/content-analysis.json` avec sa taille, ses signatures, ses séparateurs et son texte décodé.
+      - [x] Supprimer `artifacts/media-audit/items/00001013-b5caea5e0aaea3f7/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.CAT` comme donnée de catalogue.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le module 6502 de 375 octets comme bibliothèque malgré son extension `.CAT`.
+      - [x] Supprimer `artifacts/media-audit/items/00001013-b5caea5e0aaea3f7/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001013-b5caea5e0aaea3f7` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les modules et pages d'aide de Visualiser.
+      - [x] Créer `artifacts/media-audit/items/00001014-7ae9581e38ac57f6/analyze-content.ps1` pour profiler les vingt-trois contenus inconnus déjà extraits sans relire l'image source.
+      - [x] Créer `artifacts/media-audit/items/00001014-7ae9581e38ac57f6/content-analysis.json` avec leurs tailles, signatures, chaînes et groupes structurels.
+      - [x] Supprimer `artifacts/media-audit/items/00001014-7ae9581e38ac57f6/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les écrans d'aide fixes et les deux ressources graphiques de Visualiser par leur structure.
+      - [x] Supprimer `artifacts/media-audit/items/00001014-7ae9581e38ac57f6/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour rechercher le code écran Atari `0x30` du premier caractère de l'invite des pages d'aide.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître aussi les variantes confirmées `exit/view/next/page` et l'invite entièrement en codes écran inversés.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour identifier les pages par le nom `HELP`, leur extension Visualiser, leur taille fixe et leur invite, sans imposer un caractère de remplissage absent de `HELP.C10`.
+      - [x] Modifier `artifacts/media-audit/items/00001014-7ae9581e38ac57f6` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les fichiers vocaux de Voicemaster.
+      - [x] Créer `artifacts/media-audit/items/00001016-5e9e8cad345c51c5/content-analysis.json` avec la taille, la signature, les motifs et les chaînes de `DEALER.SPE` à partir du contenu déjà enregistré.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le format Voicemaster confirmé par sa structure.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer l'extension Voicemaster `.SPE` comme audio.
+      - [x] Supprimer `artifacts/media-audit/items/00001016-5e9e8cad345c51c5/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001016-5e9e8cad345c51c5` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les profils d'impression et extensions de Writer's Tool.
+      - [x] Créer `artifacts/media-audit/items/00001026-2ecda9c25e823bf0/content-analysis.json` avec les structures de `AT825.PPP`, `CUSTM.EXT` et `DICTM.EXT` depuis leurs contenus déjà enregistrés.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les trois formats confirmés de Writer's Tool.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.PPP` comme configuration et `.EXT` comme module.
+      - [x] Supprimer `artifacts/media-audit/items/00001026-2ecda9c25e823bf0/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001026-2ecda9c25e823bf0` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les images RIP de XL-Paint.
+      - [x] Créer `artifacts/media-audit/items/00001036-7628fbea9e8f956e/content-analysis.json` avec les tailles, signatures et invariants des trois fichiers `.RIP` depuis leurs contenus enregistrés.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les images RIP confirmées.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.RIP` comme image Atari.
+      - [x] Supprimer `artifacts/media-audit/items/00001036-7628fbea9e8f956e/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001036-7628fbea9e8f956e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier et reconnaître les images XLP de XL-Paint.
+      - [x] Créer `artifacts/media-audit/items/00001039-87e42c9b83a4f045/analyze-content.ps1` pour calculer les invariants des fichiers `.XLP` à partir du rapport existant.
+      - [x] Créer `artifacts/media-audit/items/00001039-87e42c9b83a4f045/content-analysis.json` avec les tailles, signatures et invariants des quatorze fichiers `.XLP` depuis leurs contenus enregistrés.
+      - [x] Supprimer `artifacts/media-audit/items/00001039-87e42c9b83a4f045/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les images XLP confirmées.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour classer `.XLP` comme image Atari.
+      - [x] Supprimer `artifacts/media-audit/items/00001039-87e42c9b83a4f045/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001039-87e42c9b83a4f045` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Exclure les collections de binaires applicatifs qui ne sont pas des images de média.
+      - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour ne pas énumérer comme média les `.bin` rangés dans une collection explicitement marquée `[BIN]`, tout en conservant les BIN associés à une image décrite par CUE.
+      - [x] Modifier `scripts/audit-media-corpus.ps1` pour reprendre au premier candidat alphabétique suivant lorsque le fichier d'échec est désormais exclu de la liste.
+      - [x] Supprimer `artifacts/media-audit/items/00001055-19717c16fa694dcb` après exclusion de la source `.bin` hors périmètre.
   - [ ] ATR K-file.
     - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Atari/KFile/AtariKFileFileSystemReader.cs` pour reconnaître le chargeur KBoot et extraire l'exécutable en `RUN.XEX`.
     - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` pour ajouter `atari-k-file`.
@@ -43,8 +699,426 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
 
 ## Cassettes
 
-- [ ] Formats de cassette rencontrés.
-  - [ ] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque format au premier arrêt correspondant et son résultat après correction.
+  - [ ] Formats de cassette rencontrés.
+  - [x] Identifier le flux amorçable de la cassette Atari `Cassette Boot`.
+    - [x] Créer `artifacts/media-audit/items/00001060-e8ea679860b30561/content-analysis.json` avec les segments CAS, la taille, la signature et la structure du flux `DATA-0001.BIN` depuis le rapport existant.
+    - [x] Sans objet — conserver `src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs`, qui a déjà reconstruit les treize enregistrements avec leur intégrité et leurs métadonnées sans utiliser le nom externe.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour accepter un en-tête cassette boot valide chargé en mémoire basse et afficher ainsi le nom générique `BOOT.BIN` existant.
+    - [x] Supprimer `artifacts/media-audit/items/00001060-e8ea679860b30561/content-analysis.json` après intégration de la reconnaissance.
+    - [x] Modifier `artifacts/media-audit/items/00001060-e8ea679860b30561` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+  - [x] Identifier le flux de la cassette Atari `Cassette Duplicator`.
+    - [x] Créer `artifacts/media-audit/items/00001061-4acf821c791d621d/content-analysis.json` avec les enregistrements, la taille, la signature et la structure du flux depuis le rapport existant.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le programme cassette boot dont le dernier enregistrement de données est partiel, sans utiliser le nom externe.
+    - [x] Supprimer `artifacts/media-audit/items/00001061-4acf821c791d621d/content-analysis.json` après intégration de la reconnaissance.
+    - [x] Modifier `artifacts/media-audit/items/00001061-4acf821c791d621d` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+  - [x] Identifier le second flux de la cassette Atari `Home Financial Management`.
+    - [x] Créer `artifacts/media-audit/items/00001065-2e71684dc83f4500/analyze-content.ps1` pour vérifier les pointeurs internes et les tables du second flux depuis le rapport existant.
+    - [x] Créer `artifacts/media-audit/items/00001065-2e71684dc83f4500/content-analysis.json` avec les métadonnées, la taille et la structure du second flux depuis le rapport existant.
+    - [x] Modifier `artifacts/media-audit/items/00001065-2e71684dc83f4500/analyze-content.ps1` pour convertir les octets en entiers avant le décalage 16 bits, puis régénérer `content-analysis.json`.
+    - [x] Modifier `artifacts/media-audit/items/00001065-2e71684dc83f4500/analyze-content.ps1` pour comparer les deux flux, relever les chaînes, signatures et transformations utiles du chargeur, puis régénérer `content-analysis.json`.
+    - [x] Modifier `artifacts/media-audit/items/00001065-2e71684dc83f4500/analyze-content.ps1` pour corriger l'expression conditionnelle PowerShell multi-ligne avant de relancer l'analyse.
+    - [x] Supprimer `artifacts/media-audit/items/00001065-2e71684dc83f4500/analyze-content.ps1` après création du profil.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le type réel confirmé de ce flux sans utiliser le nom externe.
+    - [x] Supprimer `artifacts/media-audit/items/00001065-2e71684dc83f4500/content-analysis.json` après intégration de la reconnaissance.
+    - [x] Modifier `artifacts/media-audit/items/00001065-2e71684dc83f4500` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+  - [x] Identifier les trois flux supplémentaires de la cassette Atari `Magic Window`.
+    - [x] Créer `artifacts/media-audit/items/00001068-0f00961ef8ae796c/analyze-content.ps1` pour relever les tailles, métadonnées, signatures, chaînes et structures des flux 2 à 4 depuis le rapport existant.
+    - [x] Créer `artifacts/media-audit/items/00001068-0f00961ef8ae796c/content-analysis.json` avec le profil comparé des trois flux.
+    - [x] Supprimer `artifacts/media-audit/items/00001068-0f00961ef8ae796c/analyze-content.ps1` après création du profil.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les types réels confirmés des trois flux sans utiliser le nom externe.
+    - [x] Supprimer `artifacts/media-audit/items/00001068-0f00961ef8ae796c/content-analysis.json` après intégration de la reconnaissance.
+    - [x] Modifier `artifacts/media-audit/items/00001068-0f00961ef8ae796c` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+  - [x] Identifier les blocs et flux de la cassette Atari `Polskie LOGO`.
+    - [x] Créer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/analyze-content.ps1` pour relever les tailles, métadonnées, signatures, chaînes et structures de `Block 0002.bin` et `DATA-0003.BIN` depuis le rapport existant.
+    - [x] Créer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/content-analysis.json` avec le profil comparé des deux contenus.
+    - [x] Supprimer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/analyze-content.ps1` après création du profil.
+    - [x] Modifier `src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` pour reconnaître et consommer le bloc de remplissage nul étendu dont la somme de contrôle est valide, sans l'exposer comme faux fichier.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître comme programme d'amorçage binaire l'image mémoire cassette complète de 16 Kio, composée de 128 enregistrements intègres.
+    - [x] Supprimer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/content-analysis.json` après intégration de la reconnaissance.
+    - [x] Créer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/verify-regenerated.ps1` pour relever les métadonnées exactes du flux renuméroté après suppression du bloc de remplissage.
+    - [x] Créer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/regenerated-analysis.json` avec ces métadonnées et les signatures internes nécessaires.
+    - [x] Supprimer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/verify-regenerated.ps1` après création du profil corrigé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour corriger la reconnaissance du flux à partir des métadonnées réellement régénérées.
+    - [x] Supprimer `artifacts/media-audit/items/00001072-8fb352ebc8349d83/regenerated-analysis.json` après correction.
+    - [x] Modifier `artifacts/media-audit/items/00001072-8fb352ebc8349d83` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+  - [ ] Reprendre les disquettes Atari rencontrées après les cassettes d'applications.
+    - [x] Identifier les huit fichiers `DOCUMENT.0` à `DOCUMENT.7` de `A.N.G. Sample Utilities`.
+      - [x] Créer `artifacts/media-audit/items/00001076-b710939869e9cec3/analyze-content.ps1` pour relever les tailles, signatures, chaînes, encodages et structures communes des huit documents depuis le rapport existant.
+      - [x] Créer `artifacts/media-audit/items/00001076-b710939869e9cec3/content-analysis.json` avec le profil comparé des huit fichiers.
+      - [x] Modifier `artifacts/media-audit/items/00001076-b710939869e9cec3/analyze-content.ps1` pour extraire depuis la copie ATR les chaînes des lecteurs et utilitaires associés, puis régénérer `content-analysis.json` afin d'identifier le format par son propre code.
+      - [x] Supprimer `artifacts/media-audit/items/00001076-b710939869e9cec3/analyze-content.ps1` après création du profil.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le format réellement confirmé des huit documents sans utiliser le nom externe.
+      - [x] Sans objet — conserver `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` inchangé : les extensions numériques `.0` à `.7` ne constituent pas un format global.
+      - [x] Supprimer `artifacts/media-audit/items/00001076-b710939869e9cec3/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001076-b710939869e9cec3` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier les fichiers audio `DASOMEN.SMP`, `ROCK1.AUM` et `SCREAM.SMP` du côté B de `A.N.G. Sample Utilities`.
+      - [x] Créer `artifacts/media-audit/items/00001077-a3e2a5469c6ce92a/analyze-content.ps1` pour comparer les octets, distributions et signatures des trois fichiers avec les lecteurs contenus sur les deux côtés du média.
+      - [x] Modifier `artifacts/media-audit/items/00001077-a3e2a5469c6ce92a/analyze-content.ps1` pour charger aussi le rapport conservé du côté A et relever les signatures de son lecteur d'échantillons.
+      - [x] Créer `artifacts/media-audit/items/00001077-a3e2a5469c6ce92a/content-analysis.json` avec les résultats nécessaires à leur identification sans utiliser le nom externe de l'image.
+      - [x] Supprimer `artifacts/media-audit/items/00001077-a3e2a5469c6ce92a/analyze-content.ps1` après création du profil.
+      - [x] Sans objet — conserver `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` inchangé pour ces fichiers : les échantillons bruts ne possèdent pas de signature fiable et leurs extensions internes constituent leur identifiant de format.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour présenter les extensions Atari 8 bits `.SMP` et `.AUM` confirmées comme fichiers audio.
+      - [x] Supprimer `artifacts/media-audit/items/00001077-a3e2a5469c6ce92a/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001077-a3e2a5469c6ce92a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier `BOOT.BIN` dans la compilation `Action! & Turbo Basic XL 1.5 & Fig-Forth 1.1`.
+      - [x] Créer `artifacts/media-audit/items/00001078-944b08856124be2a/analyze-content.ps1` pour relever la structure, les vecteurs, les chaînes et les relations de `BOOT.BIN` avec les autres fichiers du média.
+      - [x] Créer `artifacts/media-audit/items/00001078-944b08856124be2a/content-analysis.json` avec les éléments nécessaires à l'identification interne du fichier.
+      - [x] Supprimer `artifacts/media-audit/items/00001078-944b08856124be2a/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la structure confirmée de `BOOT.BIN` sans utiliser le nom externe de l'image.
+      - [x] Supprimer `artifacts/media-audit/items/00001078-944b08856124be2a/content-analysis.json` après intégration de la reconnaissance.
+      - [x] Modifier `artifacts/media-audit/items/00001078-944b08856124be2a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier les fichiers `.AAE` de `aIDS pAKK`.
+      - [x] Créer `artifacts/media-audit/items/00001079-fb8f5fadb0079dbb/analyze-content.ps1` pour comparer les structures des quatre fichiers `.AAE` et relever les références présentes dans les exécutables du média.
+      - [x] Créer `artifacts/media-audit/items/00001079-fb8f5fadb0079dbb/content-analysis.json` avec les signatures et relations internes nécessaires à l'identification du format.
+      - [x] Supprimer `artifacts/media-audit/items/00001079-fb8f5fadb0079dbb/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'en-tête ATASCII `AAEditor` commun aux quatre documents `.AAE`.
+      - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour présenter l'extension `.AAE` comme document ATASCII.
+      - [x] Supprimer `artifacts/media-audit/items/00001079-fb8f5fadb0079dbb/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001079-fb8f5fadb0079dbb` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier les cinq fichiers `.BIN` de systèmes DOS contenus dans `DOS Disk #01`.
+      - [x] Créer `artifacts/media-audit/items/00001087-7605de48f95c0c73/analyze-content.ps1` pour relever leurs en-têtes, segments, vecteurs, chaînes et structures de chargement.
+      - [x] Modifier `artifacts/media-audit/items/00001087-7605de48f95c0c73/analyze-content.ps1` pour comparer les cinq échecs aux autres fichiers DOS `.BIN` déjà reconnus sur le même média.
+      - [x] Créer `artifacts/media-audit/items/00001087-7605de48f95c0c73/content-analysis.json` avec la comparaison des cinq fichiers et du chargeur présent sur le média.
+      - [x] Supprimer `artifacts/media-audit/items/00001087-7605de48f95c0c73/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le type système confirmé des cinq fichiers `.BIN` à partir de leur structure.
+      - [x] Supprimer `artifacts/media-audit/items/00001087-7605de48f95c0c73/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001087-7605de48f95c0c73` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier la variante `MYDOS318.BIN` de `DOS Disk #02`.
+      - [x] Créer `artifacts/media-audit/items/00001088-ee2e2e18760e0979/analyze-content.ps1` pour relever l'en-tête, les adresses, les chaînes et la structure de secteurs de `MYDOS318.BIN`.
+      - [x] Créer `artifacts/media-audit/items/00001088-ee2e2e18760e0979/content-analysis.json` avec les données nécessaires à l'identification de cette variante.
+      - [x] Supprimer `artifacts/media-audit/items/00001088-ee2e2e18760e0979/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la variante MyDOS confirmée sans affecter les autres fichiers `.BIN`.
+      - [x] Supprimer `artifacts/media-audit/items/00001088-ee2e2e18760e0979/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001088-ee2e2e18760e0979` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier `BOOT.BIN` dans `Mega Copier Disk` côté B.
+      - [x] Créer `artifacts/media-audit/items/00001094-3bf8bbe182c233ab/analyze-content.ps1` pour relever la structure complète et les chaînes de ce nouveau fichier d'amorçage.
+      - [x] Créer `artifacts/media-audit/items/00001094-3bf8bbe182c233ab/content-analysis.json` avec les preuves internes de son type.
+      - [x] Supprimer `artifacts/media-audit/items/00001094-3bf8bbe182c233ab/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître cette structure d'amorçage confirmée.
+      - [x] Supprimer `artifacts/media-audit/items/00001094-3bf8bbe182c233ab/content-analysis.json` après intégration.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` après la relance pour accepter toute instruction 6502 initiale dans une structure d'amorçage autrement valide.
+      - [x] Modifier `artifacts/media-audit/items/00001094-3bf8bbe182c233ab` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Identifier `FONTMAK.EDF` dans `Tight Tools Packed v1.0`.
+      - [x] Créer `artifacts/media-audit/items/00001109-2c71655e69e67b62/analyze-content.ps1` pour relever la taille, l'en-tête, les motifs graphiques et les références à `FONTMAK.EDF` sur le média.
+      - [x] Créer `artifacts/media-audit/items/00001109-2c71655e69e67b62/content-analysis.json` avec les éléments nécessaires à l'identification du format.
+      - [x] Supprimer `artifacts/media-audit/items/00001109-2c71655e69e67b62/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le programme FontMaker à partir de ses signatures internes.
+      - [x] Sans objet — conserver `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` inchangé : `.EDF` seul ne désigne pas globalement un exécutable Atari.
+      - [x] Supprimer `artifacts/media-audit/items/00001109-2c71655e69e67b62/content-analysis.json` après intégration.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` après validation pour retirer les deux libellés de touches encodés avec attributs ATASCII et conserver la taille exacte ainsi que les deux signatures brutes du programme.
+      - [x] Modifier `artifacts/media-audit/items/00001109-2c71655e69e67b62` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [x] Extraire les fichiers logiques de `Word Magic rev 5`, disque 2 côté A.
+      - [x] Créer `artifacts/media-audit/items/00001112-76b12a957a0aa745/analyze-media.ps1` pour relever l'en-tête ATR, la géométrie, les secteurs d'amorçage, VTOC et répertoire ainsi que leurs chaînes lisibles.
+      - [x] Modifier `artifacts/media-audit/items/00001112-76b12a957a0aa745/analyze-media.ps1` pour extraire `SPELL.OBJ` et `WMAGIC.OBJ` depuis le rapport et l'image validés du disque 1, puis relever leur description interne du disque 2.
+      - [x] Modifier `artifacts/media-audit/items/00001112-76b12a957a0aa745/analyze-media.ps1` pour extraire aussi les documents du disque 1 côté B et rechercher leur description du disque de données propriétaire.
+      - [x] Créer `artifacts/media-audit/items/00001112-76b12a957a0aa745/media-analysis.json` avec la cartographie physique nécessaire à l'identification du système de fichiers.
+      - [x] Supprimer `artifacts/media-audit/items/00001112-76b12a957a0aa745/analyze-media.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` pour ajouter l'identifiant invariant `atari-word-magic-dictionary`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs` pour ajouter le nom invariant `Word Magic main dictionary`.
+      - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Atari/WordMagic/AtariWordMagicDictionaryFileSystemReader.cs` pour reconnaître la signature physique confirmée et exposer la base compressée comme `MAIN.DIC`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs` pour essayer ce lecteur après Atari DOS et avant les lecteurs Atari sans catalogue.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer le type natif `word-magic-main-dictionary` comme données.
+      - [x] Supprimer `artifacts/media-audit/items/00001112-76b12a957a0aa745/media-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001112-76b12a957a0aa745` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+  - [ ] Reprendre les compilations de démos Atari.
+    - [ ] Extraire le contenu logique de `Demos 010 (CubE)`.
+      - [x] Créer `artifacts/media-audit/items/00001135-bfcab2f4e03cd2f3/analyze-media.ps1` pour relever l'en-tête ATR, les secteurs d'amorçage, les zones occupées, les chaînes et les signatures de catalogue ou chargeur.
+      - [x] Créer `artifacts/media-audit/items/00001135-bfcab2f4e03cd2f3/media-analysis.json` avec la cartographie physique nécessaire à l'identification de la structure.
+      - [x] Supprimer `artifacts/media-audit/items/00001135-bfcab2f4e03cd2f3/analyze-media.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemReader.cs` pour accepter les identifiants ATR dynamiques dont le VTOC et le répertoire Atari DOS sont valides.
+      - [x] Supprimer `artifacts/media-audit/items/00001135-bfcab2f4e03cd2f3/media-analysis.json` après intégration.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemLayout.cs` et `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosVtocReader.cs` pour accepter le marqueur VTOC étendu `7` de cette image lorsque ses compteurs restent cohérents avec le support.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileReader.cs` et `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` pour reconstruire les chaînes MyDOS étendues avec les huit bits hauts du numéro de secteur et sans contrôle de propriétaire DOS 2.
+      - [x] Modifier `artifacts/media-audit/items/00001135-bfcab2f4e03cd2f3` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Extraire entièrement `UNIVERSE` de `Your Body Digi-Demo & Moon Shadow & Universe`.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileReader.cs` pour suivre une chaîne de secteurs jusqu'à son lien terminal, même lorsque le compteur du catalogue est inférieur, tout en la bornant au nombre de secteurs du support.
+      - [x] Modifier `artifacts/media-audit/items/00001241-893726d8e2cf752d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier les quatre fichiers `.FUN` de `Battling Bugs + Concentraction`.
+      - [x] Créer `artifacts/media-audit/items/00001242-bdc223a9e126cc03/analyze-content.ps1` pour extraire les références aux fichiers `.FUN` depuis les programmes BASIC du média et relever la structure binaire des quatre fichiers.
+      - [x] Créer `artifacts/media-audit/items/00001242-bdc223a9e126cc03/content-analysis.json` avec les preuves internes de leur type.
+      - [x] Supprimer `artifacts/media-audit/items/00001242-bdc223a9e126cc03/analyze-content.ps1` après l'analyse.
+      - [x] Modifier les tables ou détecteurs sous `src/GWGUI.App/Dictionaries/Explorer/FileTypes` et `src/GWGUI.App/Functions/Explorer` pour reconnaître le format confirmé sans confondre les autres extensions `.FUN`.
+      - [x] Supprimer `artifacts/media-audit/items/00001242-bdc223a9e126cc03/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001242-bdc223a9e126cc03` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `PMBLANK.FIL` de `Crocodile + Flip Flop`.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître la routine 6502 de 256 octets qui efface les objets Player/Missile, à partir de son code interne et de son remplissage final.
+      - [x] Modifier `artifacts/media-audit/items/00001243-72676bb7eac98cff` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Décoder sans faux fichiers les chunks atypiques de `Golf Classic & Compubar` côté A.
+      - [x] Modifier `src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` pour accepter les enregistrements courts de fin `FE` et conserver les chunks `data` non reconnus parmi les segments non décodés au lieu de les exposer comme fichiers `.bin`.
+      - [x] Modifier `artifacts/media-audit/items/00001248-7c97862cb71124e0` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier `MUSHROOM` de `Arcade II`.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour accepter le remplissage nul terminal après les segments valides d'un exécutable Atari XEX.
+      - [x] Modifier `artifacts/media-audit/items/00001254-57fcea22b6c00a13` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Extraire le contenu logique de `Czaszki + Electra`.
+      - [x] Créer `artifacts/media-audit/items/00001259-9f6c7281b24c9c0a/analyze-media.ps1` pour relever l'en-tête ATR, les secteurs d'amorçage, les secteurs non nuls, les signatures et les chaînes internes du support.
+      - [x] Modifier `artifacts/media-audit/items/00001259-9f6c7281b24c9c0a/analyze-media.ps1` pour utiliser un contrôle PowerShell compatible des secteurs entièrement nuls.
+      - [x] Créer `artifacts/media-audit/items/00001259-9f6c7281b24c9c0a/media-analysis.json` avec la cartographie physique nécessaire à l'identification du chargeur et des contenus.
+      - [x] Supprimer `artifacts/media-audit/items/00001259-9f6c7281b24c9c0a/analyze-media.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Boot/AtariBootFileSystemReader.cs` pour accepter l'adresse d'initialisation basse confirmée du chargeur, conserver le flux d'amorçage et ajouter chaque chaîne sectorielle qui forme un XEX complet sous un nom synthétique stable.
+      - [x] Supprimer `artifacts/media-audit/items/00001259-9f6c7281b24c9c0a/media-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001259-9f6c7281b24c9c0a` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier les ressources graphiques de `Light Cycles + Alien Attack`.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les définitions graphiques `.GDF` par blocs de 8 octets et les plans d'image `.MEM` de 40 octets par ligne à partir de leur structure binaire.
+      - [x] Modifier `artifacts/media-audit/items/00001276-76104128b13ad0db` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier les cartes et effets de `MicroProse - Chopper Rescue & Hellcat Ace & Floyd of the Jungle`.
+      - [x] Créer `artifacts/media-audit/items/00001280-6a14b05546321b2d/analyze-content.ps1` pour relever les tailles, structures binaires et références internes des fichiers `.MAP` et `.EFF`.
+      - [x] Créer `artifacts/media-audit/items/00001280-6a14b05546321b2d/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Modifier `artifacts/media-audit/items/00001280-6a14b05546321b2d/analyze-content.ps1` pour consigner la structure des douze enregistrements de 40 octets de `FLOYD.EFF`.
+      - [x] Modifier `artifacts/media-audit/items/00001280-6a14b05546321b2d/content-analysis.json` pour conserver ces enregistrements dans le résultat d'analyse.
+      - [x] Supprimer `artifacts/media-audit/items/00001280-6a14b05546321b2d/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement les structures graphiques et d'effets confirmées.
+      - [x] Supprimer `artifacts/media-audit/items/00001280-6a14b05546321b2d/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001280-6a14b05546321b2d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `KELCH.CAD` et `KUGEL.CAD` de `Sawfish Software Public Domain #1` côté B.
+      - [x] Créer `artifacts/media-audit/items/00001291-de624f6cfcd1fa7d/analyze-content.ps1` pour relever les dimensions, structures binaires et similarités des deux fichiers `.CAD`.
+      - [x] Créer `artifacts/media-audit/items/00001291-de624f6cfcd1fa7d/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001291-de624f6cfcd1fa7d/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure `.CAD` confirmée.
+      - [x] Supprimer `artifacts/media-audit/items/00001291-de624f6cfcd1fa7d/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001291-de624f6cfcd1fa7d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier les fichiers sans extension de `Supertrons & VDH5`.
+      - [x] Créer `artifacts/media-audit/items/00001295-557b6737c6e04f7d/analyze-content.ps1` pour relever les tailles, structures, signatures et similarités de `L1` à `L5` et `ZSP`.
+      - [x] Créer `artifacts/media-audit/items/00001295-557b6737c6e04f7d/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001295-557b6737c6e04f7d/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement les structures confirmées de ces fichiers.
+      - [x] Supprimer `artifacts/media-audit/items/00001295-557b6737c6e04f7d/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001295-557b6737c6e04f7d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `DIGDUG` et `PINHEAD` de `Yogi's Mega Games 001`.
+      - [x] Créer `artifacts/media-audit/items/00001301-4fbdfc49d544bb7e/analyze-content.ps1` pour relever les tailles, structures, signatures exécutables et similarités des deux fichiers sans extension.
+      - [x] Créer `artifacts/media-audit/items/00001301-4fbdfc49d544bb7e/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Modifier `artifacts/media-audit/items/00001301-4fbdfc49d544bb7e/analyze-content.ps1` pour parcourir les segments XEX et consigner précisément le premier arrêt structurel.
+      - [x] Modifier `artifacts/media-audit/items/00001301-4fbdfc49d544bb7e/content-analysis.json` avec le résultat du parcours des segments.
+      - [x] Supprimer `artifacts/media-audit/items/00001301-4fbdfc49d544bb7e/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour accepter le marqueur de fin DOS `1A` uniquement après une suite complète de segments XEX valides.
+      - [x] Supprimer `artifacts/media-audit/items/00001301-4fbdfc49d544bb7e/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001301-4fbdfc49d544bb7e` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `MYRIAPED.E` de `Yogi's Mega Games 002`.
+      - [x] Créer `artifacts/media-audit/items/00001302-82a217b4a12edce4/analyze-content.ps1` pour relever la structure et parcourir les éventuels segments exécutables du fichier.
+      - [x] Créer `artifacts/media-audit/items/00001302-82a217b4a12edce4/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001302-82a217b4a12edce4/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour accepter l'octet terminal ATASCII `9B` uniquement après une suite complète de segments XEX valides.
+      - [x] Supprimer `artifacts/media-audit/items/00001302-82a217b4a12edce4/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001302-82a217b4a12edce4` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `LEVEL1.UNI`, `MILLIPED.E` et `PREXOR` de `Yogi's Mega Games 003`.
+      - [x] Créer `artifacts/media-audit/items/00001303-fd77e60e4b23104d/analyze-content.ps1` pour relever la structure des trois fichiers et parcourir leurs éventuels segments XEX.
+      - [x] Créer `artifacts/media-audit/items/00001303-fd77e60e4b23104d/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001303-fd77e60e4b23104d/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le niveau `.UNI`, l'exécutable compacté et son module auxiliaire uniquement à partir de leurs structures confirmées.
+      - [x] Supprimer `artifacts/media-audit/items/00001303-fd77e60e4b23104d/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001303-fd77e60e4b23104d` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `LEGIONAI.RE` de `Yogi's Mega Games 005`.
+      - [x] Créer `artifacts/media-audit/items/00001305-292e7788102ee1bf/analyze-content.ps1` pour relever la structure et parcourir les éventuels segments XEX du fichier.
+      - [x] Créer `artifacts/media-audit/items/00001305-292e7788102ee1bf/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001305-292e7788102ee1bf/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître un exécutable à charge utile embarquée lorsque son vecteur interne pointe dans un segment XEX déjà validé.
+      - [x] Supprimer `artifacts/media-audit/items/00001305-292e7788102ee1bf/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001305-292e7788102ee1bf` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `ANTEATER` de `Yogi's Mega Games 008`.
+      - [x] Créer `artifacts/media-audit/items/00001308-bce103015bcef21c/analyze-content.ps1` pour relever la structure et parcourir les éventuels segments XEX du fichier.
+      - [x] Créer `artifacts/media-audit/items/00001308-bce103015bcef21c/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001308-bce103015bcef21c/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître l'exécutable auto-décompactant uniquement à partir de sa plage déclarée et de sa routine 6502 confirmée.
+      - [x] Supprimer `artifacts/media-audit/items/00001308-bce103015bcef21c/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001308-bce103015bcef21c` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `BURGERS` et `MINERCHE.AT` de `Yogi's Mega Games 021`.
+      - [x] Créer `artifacts/media-audit/items/00001321-32169ce914eaa3cd/analyze-content.ps1` pour relever les tailles, structures et éventuels segments XEX des deux fichiers.
+      - [x] Modifier `artifacts/media-audit/items/00001321-32169ce914eaa3cd/analyze-content.ps1` pour remplacer la syntaxe compacte ambiguë par un parcours PowerShell explicite.
+      - [x] Créer `artifacts/media-audit/items/00001321-32169ce914eaa3cd/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001321-32169ce914eaa3cd/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément les deux emballages exécutables à partir de leurs préambules et vecteurs confirmés.
+      - [x] Supprimer `artifacts/media-audit/items/00001321-32169ce914eaa3cd/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001321-32169ce914eaa3cd` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+    - [ ] Identifier `KAZOO` de `Yogi's Mega Games 022`.
+      - [x] Créer `artifacts/media-audit/items/00001322-0581ab66188cf6fb/analyze-content.ps1` pour relever la taille, les signatures et la structure du fichier.
+      - [x] Modifier `artifacts/media-audit/items/00001322-0581ab66188cf6fb/analyze-content.ps1` pour rechercher récursivement `KAZOO` dans les sous-dossiers du média.
+      - [x] Modifier `artifacts/media-audit/items/00001322-0581ab66188cf6fb/analyze-content.ps1` pour sélectionner uniquement l'entrée `KAZOO` encore inconnue parmi les deux homonymes.
+      - [x] Créer `artifacts/media-audit/items/00001322-0581ab66188cf6fb/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001322-0581ab66188cf6fb/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour valider une charge utile compacte uniquement lorsque son vecteur terminal cible sa plage décompactée déclarée.
+      - [x] Supprimer `artifacts/media-audit/items/00001322-0581ab66188cf6fb/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001322-0581ab66188cf6fb` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+  - [ ] Reprendre les compilations de jeux Atari ATX.
+    - [ ] Lire `Arcade Classics - Seawolf II and Gun Fight` sans rejeter ses données de secteur.
+      - [x] Créer `artifacts/media-audit/items/00001325-38a24641eac75bbd/analyze-atx.ps1` pour relever les en-têtes de piste, listes de secteurs, blocs de données et limites physiques du fichier ATX.
+      - [x] Créer `artifacts/media-audit/items/00001325-38a24641eac75bbd/atx-analysis.json` avec la première divergence entre les tailles déclarées et les données présentes.
+      - [x] Supprimer `artifacts/media-audit/items/00001325-38a24641eac75bbd/analyze-atx.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxLayout.cs` pour définir le bit invariant `0x10` signalant l'absence de données de secteur.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxReader.cs` pour ne pas lire de bloc de données lorsque ce bit est présent, tout en conservant les autres contrôles de limites.
+      - [x] Supprimer `artifacts/media-audit/items/00001325-38a24641eac75bbd/atx-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001325-38a24641eac75bbd` en régénérant le rapport puis en supprimant `failed-source.atx` après validation.
+    - [ ] Lire la géométrie ATX de `Lasermania + Robbo Konstruktor` côté A.
+      - [x] Créer `artifacts/media-audit/items/00001329-db8d437146e18f16/analyze-atx.ps1` pour relever tous les numéros de piste et de secteur ainsi que les secteurs absents.
+      - [x] Créer `artifacts/media-audit/items/00001329-db8d437146e18f16/atx-analysis.json` avec la géométrie physique complète rencontrée.
+      - [x] Supprimer `artifacts/media-audit/items/00001329-db8d437146e18f16/analyze-atx.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxLayout.cs` et `AtxReader.cs` pour représenter la géométrie confirmée sans modifier la disposition des secteurs 18 secteurs par piste.
+      - [x] Supprimer `artifacts/media-audit/items/00001329-db8d437146e18f16/atx-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001329-db8d437146e18f16` en régénérant le rapport puis en supprimant `failed-source.atx` après validation.
+  - [ ] Reprendre les compilations de jeux Atari CAS.
+    - [ ] Identifier les flux 2 et 4 de `4 Star Compilation - Volume 1` côté A.
+      - [x] Créer `artifacts/media-audit/items/00001332-18a0facce4257077/analyze-content.ps1` pour relever les métadonnées d'enregistrements, tailles, signatures et structures des deux flux.
+      - [x] Créer `artifacts/media-audit/items/00001332-18a0facce4257077/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001332-18a0facce4257077/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les deux programmes cassette uniquement à partir de leurs enregistrements complets, de leur fin valide et de leurs signatures 6502.
+      - [x] Supprimer `artifacts/media-audit/items/00001332-18a0facce4257077/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001332-18a0facce4257077` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier les flux 2 à 5 de `4 Star Compilation - Volume 1` côté B.
+      - [x] Créer `artifacts/media-audit/items/00001333-f6f428a1d843b133/analyze-content.ps1` pour relever les métadonnées d'enregistrements et les signatures des quatre flux.
+      - [x] Créer `artifacts/media-audit/items/00001333-f6f428a1d843b133/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001333-f6f428a1d843b133/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les deux programmes, la ressource graphique et le bloc de données cassette uniquement à partir de leurs structures confirmées.
+      - [x] Supprimer `artifacts/media-audit/items/00001333-f6f428a1d843b133/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001333-f6f428a1d843b133` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier le flux 2 de `Atari Safari`.
+      - [x] Créer `artifacts/media-audit/items/00001334-31e2820bb4bdb4db/analyze-content.ps1` pour relever ses métadonnées d'enregistrements, sa taille et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001334-31e2820bb4bdb4db/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001334-31e2820bb4bdb4db/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le programme Character Generator à partir de ses métadonnées cassette et de ses chaînes internes.
+      - [x] Supprimer `artifacts/media-audit/items/00001334-31e2820bb4bdb4db/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001334-31e2820bb4bdb4db` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier le flux 3 de `Atari Smash Hits - Volume 2` côté A.
+      - [x] Créer `artifacts/media-audit/items/00001337-524e4a2b2c873f31/analyze-content.ps1` pour relever ses métadonnées d'enregistrements, sa taille, ses chaînes et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001337-524e4a2b2c873f31/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001337-524e4a2b2c873f31/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le flux comme données cassette binaires à partir de ses 170 enregistrements et de sa structure graphique initiale.
+      - [x] Supprimer `artifacts/media-audit/items/00001337-524e4a2b2c873f31/content-analysis.json` après intégration.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` après validation pour utiliser l'offset réel 34 du premier motif non nul du flux.
+      - [x] Modifier `artifacts/media-audit/items/00001337-524e4a2b2c873f31` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier le flux 2 de `Atari Smash Hits - Volume 3` côté B.
+      - [x] Créer `artifacts/media-audit/items/00001340-d997a93ef45ec731/analyze-content.ps1` pour relever ses métadonnées d'enregistrements, sa taille, ses chaînes et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001340-d997a93ef45ec731/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001340-d997a93ef45ec731/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les données structurées à partir de leurs 50 enregistrements complets, de leur enregistrement partiel et de leur signature binaire.
+      - [x] Supprimer `artifacts/media-audit/items/00001340-d997a93ef45ec731/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001340-d997a93ef45ec731` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier les flux 2 et 5 de `Compilation C` côté A.
+      - [x] Créer `artifacts/media-audit/items/00001346-6c30d06ad78c3b02/analyze-content.ps1` pour relever leurs métadonnées d'enregistrements, tailles, chaînes et signatures.
+      - [x] Créer `artifacts/media-audit/items/00001346-6c30d06ad78c3b02/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001346-6c30d06ad78c3b02/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément le programme cassette et la base de données d'aventure à partir de leurs structures et chaînes internes.
+      - [x] Supprimer `artifacts/media-audit/items/00001346-6c30d06ad78c3b02/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001346-6c30d06ad78c3b02` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier les flux 2 et 3 de `Compilation C` côté B.
+      - [x] Créer `artifacts/media-audit/items/00001347-975eb75036dfb0e3/analyze-content.ps1` pour relever leurs métadonnées d'enregistrements, tailles, chaînes et signatures.
+      - [x] Créer `artifacts/media-audit/items/00001347-975eb75036dfb0e3/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001347-975eb75036dfb0e3/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément le bloc de données partiel et le programme cassette complet à partir de leurs structures confirmées.
+      - [x] Supprimer `artifacts/media-audit/items/00001347-975eb75036dfb0e3/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001347-975eb75036dfb0e3` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [ ] Identifier les flux 2 à 4 de `Four Great Games Volume 1` partie 1.
+      - [x] Créer `artifacts/media-audit/items/00001356-eb864b4f5e6d0e51/analyze-content.ps1` pour relever leurs métadonnées d'enregistrements, tailles, chaînes et signatures.
+      - [x] Créer `artifacts/media-audit/items/00001356-eb864b4f5e6d0e51/content-analysis.json` avec les preuves internes nécessaires à leur classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001356-eb864b4f5e6d0e51/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément la ressource graphique, le programme cassette et la source assembleur tokenisée à partir de leurs structures internes.
+      - [x] Supprimer `artifacts/media-audit/items/00001356-eb864b4f5e6d0e51/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001356-eb864b4f5e6d0e51` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier le flux 2 de `Four Great Games Volume 1` partie 4.
+      - [x] Créer `artifacts/media-audit/items/00001359-c6a4c46a11e47c76/analyze-content.ps1` pour relever ses métadonnées d'enregistrements, sa taille, ses chaînes et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001359-c6a4c46a11e47c76/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001359-c6a4c46a11e47c76/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure confirmée du flux.
+      - [x] Supprimer `artifacts/media-audit/items/00001359-c6a4c46a11e47c76/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001359-c6a4c46a11e47c76` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier le flux 2 de `Four Great Games Volume 2` partie 2.
+      - [x] Créer `artifacts/media-audit/items/00001361-0898bcb1aae1ecd3/analyze-content.ps1` pour relever ses métadonnées d'enregistrements, sa taille, ses chaînes et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001361-0898bcb1aae1ecd3/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001361-0898bcb1aae1ecd3/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure confirmée du flux.
+      - [x] Supprimer `artifacts/media-audit/items/00001361-0898bcb1aae1ecd3/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001361-0898bcb1aae1ecd3` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier le flux 2 de `Four Great Games Volume 2` partie 3.
+      - [x] Créer `artifacts/media-audit/items/00001362-caf844f3b888375f/analyze-content.ps1` pour relever ses métadonnées d'enregistrements, sa taille, ses chaînes et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001362-caf844f3b888375f/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001362-caf844f3b888375f/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure confirmée du flux.
+      - [x] Supprimer `artifacts/media-audit/items/00001362-caf844f3b888375f/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001362-caf844f3b888375f` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier les flux 3 à 5 de `Four Great Games Volume 2` partie 4.
+      - [x] Créer `artifacts/media-audit/items/00001363-8c4b6776ca30b54f/analyze-content.ps1` pour relever séparément leurs métadonnées d'enregistrements, tailles, chaînes et signatures.
+      - [x] Créer `artifacts/media-audit/items/00001363-8c4b6776ca30b54f/content-analysis.json` avec les preuves internes nécessaires à leurs classifications.
+      - [x] Supprimer `artifacts/media-audit/items/00001363-8c4b6776ca30b54f/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément les structures confirmées des trois flux.
+      - [x] Supprimer `artifacts/media-audit/items/00001363-8c4b6776ca30b54f/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001363-8c4b6776ca30b54f` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier les dix flux inconnus de `Four Great Games Volume 3` partie 1.
+      - [x] Créer `artifacts/media-audit/items/00001364-9c8c7d04ff4a8751/analyze-content.ps1` pour relever séparément leurs métadonnées, tailles, chaînes et signatures.
+      - [x] Créer `artifacts/media-audit/items/00001364-9c8c7d04ff4a8751/content-analysis.json` avec les preuves internes nécessaires à leurs classifications.
+      - [x] Supprimer `artifacts/media-audit/items/00001364-9c8c7d04ff4a8751/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément les structures confirmées des dix flux.
+      - [x] Supprimer `artifacts/media-audit/items/00001364-9c8c7d04ff4a8751/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001364-9c8c7d04ff4a8751` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier le flux 4 de `Greatest Hits - Volume 1` côté B.
+      - [x] Créer `artifacts/media-audit/items/00001369-68ca4d917270d90e/analyze-content.ps1` pour relever ses métadonnées, sa taille, ses chaînes et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001369-68ca4d917270d90e/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001369-68ca4d917270d90e/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure confirmée du flux.
+      - [x] Supprimer `artifacts/media-audit/items/00001369-68ca4d917270d90e/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001369-68ca4d917270d90e` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier le flux 1 de `Lasermania + Robbo Konstruktor` côté A.
+      - [x] Créer `artifacts/media-audit/items/00001370-8c50c9b5c5daaeb4/analyze-content.ps1` pour relever ses métadonnées, sa taille, ses chaînes et sa signature.
+      - [x] Créer `artifacts/media-audit/items/00001370-8c50c9b5c5daaeb4/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001370-8c50c9b5c5daaeb4/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure confirmée du flux.
+      - [x] Supprimer `artifacts/media-audit/items/00001370-8c50c9b5c5daaeb4/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001370-8c50c9b5c5daaeb4` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+    - [x] Identifier le flux 1 de `Lasermania + Robbo Konstruktor` côté B.
+      - [x] Créer `artifacts/media-audit/items/00001371-6309662918aa5179/analyze-content.ps1` pour relever ses métadonnées, sa taille, ses chaînes et sa signature avec PowerShell 7.
+      - [x] Créer `artifacts/media-audit/items/00001371-6309662918aa5179/content-analysis.json` avec les preuves internes nécessaires à sa classification.
+      - [x] Supprimer `artifacts/media-audit/items/00001371-6309662918aa5179/analyze-content.ps1` après l'analyse.
+      - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` après lecture des métadonnées, de la signature et des chaînes internes déjà conservées dans `artifacts/media-audit/items/00001371-6309662918aa5179/report.json`.
+      - [x] Supprimer `artifacts/media-audit/items/00001371-6309662918aa5179/content-analysis.json` après intégration.
+      - [x] Modifier `artifacts/media-audit/items/00001371-6309662918aa5179` en régénérant le rapport puis en supprimant `failed-source.cas` après validation.
+
+## Reprise des disquettes après les cassettes
+
+- [x] Reconnaître les images `A4R` de la disquette `Anime 4ever` côté B.
+  - [x] Créer `artifacts/media-audit/items/00001380-88d0c54505baeee4/analyze-content.ps1` pour comparer les tailles, signatures, fins et distributions des douze fichiers.
+  - [x] Créer `artifacts/media-audit/items/00001380-88d0c54505baeee4/content-analysis.json` avec les preuves internes du format commun.
+  - [x] Supprimer `artifacts/media-audit/items/00001380-88d0c54505baeee4/analyze-content.ps1` après l'analyse.
+  - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour associer l'extension invariante `.a4r` aux images Atari 8-bit.
+  - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le format `A4R` uniquement à partir de sa structure confirmée.
+  - [x] Supprimer `artifacts/media-audit/items/00001380-88d0c54505baeee4/content-analysis.json` après intégration.
+  - [x] Modifier `artifacts/media-audit/items/00001380-88d0c54505baeee4` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+- [x] Reconnaître les images `LC` de la disquette `Apple Pictures '89`.
+  - [x] Créer `artifacts/media-audit/items/00001382-9b2d01b642a42c69/analyze-content.ps1` pour comparer les tailles, signatures, fins et distributions des onze fichiers.
+  - [x] Créer `artifacts/media-audit/items/00001382-9b2d01b642a42c69/content-analysis.json` avec les preuves internes du format commun.
+  - [x] Supprimer `artifacts/media-audit/items/00001382-9b2d01b642a42c69/analyze-content.ps1` après l'analyse.
+  - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour associer l'extension invariante `.lc` aux images Atari 8-bit.
+  - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le format `LC` uniquement à partir de sa structure confirmée.
+  - [x] Supprimer `artifacts/media-audit/items/00001382-9b2d01b642a42c69/content-analysis.json` après intégration.
+  - [x] Modifier `artifacts/media-audit/items/00001382-9b2d01b642a42c69` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+- [x] Reconnaître les échantillons numériques `DGT` de la disquette `Atari Digital Sound`.
+  - [x] Créer `artifacts/media-audit/items/00001388-00f9f2f7df0145ab/analyze-content.ps1` pour comparer tailles, signatures, distributions et transitions des deux échantillons.
+  - [x] Créer `artifacts/media-audit/items/00001388-00f9f2f7df0145ab/content-analysis.json` avec les preuves internes du flux audio brut.
+  - [x] Supprimer `artifacts/media-audit/items/00001388-00f9f2f7df0145ab/analyze-content.ps1` après l'analyse.
+  - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour associer l'extension invariante `.dgt` aux échantillons audio Atari 8-bit.
+  - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître les flux `DGT` par extension et caractéristiques de données PCM brutes confirmées.
+  - [x] Supprimer `artifacts/media-audit/items/00001388-00f9f2f7df0145ab/content-analysis.json` après intégration.
+  - [x] Modifier `artifacts/media-audit/items/00001388-00f9f2f7df0145ab` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+- [x] Reconnaître les images `GTF` de la disquette `Atari Manga #1`.
+  - [x] Créer `artifacts/media-audit/items/00001392-670e967a6244190c/analyze-content.ps1` pour comparer les tailles, signatures, fins et distributions des neuf fichiers.
+  - [x] Créer `artifacts/media-audit/items/00001392-670e967a6244190c/content-analysis.json` avec les preuves internes du format commun.
+  - [x] Supprimer `artifacts/media-audit/items/00001392-670e967a6244190c/analyze-content.ps1` après l'analyse.
+  - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour associer l'extension invariante `.gtf` aux images Atari 8-bit.
+  - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître le format `GTF` uniquement à partir de sa structure confirmée.
+  - [x] Supprimer `artifacts/media-audit/items/00001392-670e967a6244190c/content-analysis.json` après intégration.
+  - [x] Modifier `artifacts/media-audit/items/00001392-670e967a6244190c` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+- [x] Reconnaître les contenus audio `MD1`, `TMC` et `D15` de la disquette `BLB Music`.
+  - [x] Créer `artifacts/media-audit/items/00001410-10bb91a692880869/analyze-content.ps1` pour relever séparément leurs tailles, signatures et distributions.
+  - [x] Créer `artifacts/media-audit/items/00001410-10bb91a692880869/content-analysis.json` avec les preuves internes des trois formats.
+  - [x] Supprimer `artifacts/media-audit/items/00001410-10bb91a692880869/analyze-content.ps1` après l'analyse.
+  - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour associer les extensions invariantes `.md1`, `.tmc` et `.d15` à l'audio Atari 8-bit.
+  - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître chaque format d'après son extension et sa structure confirmée.
+  - [x] Supprimer `artifacts/media-audit/items/00001410-10bb91a692880869/content-analysis.json` après intégration.
+  - [x] Modifier `artifacts/media-audit/items/00001410-10bb91a692880869` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque format au premier arrêt correspondant et son résultat après correction.
+- [ ] Reconnaître les ressources de `C64 Slideshow -VBXE-` au checkpoint 1415.
+  - [ ] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/analyze-content.ps1` pour comparer les structures des fichiers `.FN`, `.CM`, `.SC` et `.TX`.
+  - [ ] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` avec les preuves internes nécessaires à leurs classifications.
+  - [ ] Supprimer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/analyze-content.ps1` après l'analyse.
+  - [ ] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` avec uniquement les extensions dont le type aura été confirmé.
+  - [ ] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître séparément les structures confirmées.
+  - [ ] Supprimer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` après intégration.
+  - [ ] Modifier `artifacts/media-audit/items/00001415-e4f1f3158933c60b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
 
 ## Supports optiques
 

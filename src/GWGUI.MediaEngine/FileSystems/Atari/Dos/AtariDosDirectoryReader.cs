@@ -40,6 +40,9 @@ public static class AtariDosDirectoryReader
     public static IReadOnlyList<FileSystemEntry> Read(SectorImage image, ICollection<string> warnings)
     {
         var entries = new List<FileSystemEntry>();
+        var usesExtendedLinks = AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc)
+            && vtoc.Length > 0
+            && vtoc[0] >= 4;
         for (var sectorNumber = AtariDosFileSystemLayout.FirstDirectorySector; sectorNumber <= AtariDosFileSystemLayout.LastDirectorySector; sectorNumber++)
         {
             if (!AtariDosVtocReader.TrySector(image, sectorNumber, out var sector) || sector.Length < AtariDosFileSystemLayout.MinimumSectorSize)
@@ -52,13 +55,17 @@ public static class AtariDosDirectoryReader
                 var offset = slot * AtariDosFileSystemLayout.DirectoryEntrySize;
                 var flags = (AtariDosDirectoryFlags)sector[offset + AtariDosFileSystemLayout.FlagsOffset];
                 if (IsEndOfDirectory(flags)) return entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
-                if (!LooksValidEntry(sector, offset, flags)) return entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
+                if (!LooksValidEntry(sector, offset, flags))
+                {
+                    warnings.Add(AtariDosFileSystemExceptions.InvalidDirectoryEntry(sectorNumber, slot));
+                    continue;
+                }
                 if (!IsPresent(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) continue;
                 var sectorCount = BinaryPrimitives.ReadUInt16LittleEndian(sector.AsSpan(offset + AtariDosFileSystemLayout.SectorCountOffset));
                 var firstSector = BinaryPrimitives.ReadUInt16LittleEndian(sector.AsSpan(offset + AtariDosFileSystemLayout.FirstSectorOffset));
                 var name = AtariDosNameCodec.Decode(sector.AsSpan(offset + AtariDosFileSystemLayout.NameOffset, AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength));
                 var fileNumber = FileNumber(sectorNumber, slot);
-                var file = AtariDosFileReader.Read(image, firstSector, sectorCount, fileNumber, warnings, name);
+                var file = AtariDosFileReader.Read(image, firstSector, sectorCount, fileNumber, usesExtendedLinks, warnings, name);
                 var metadataValid = file.IsValid && !flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
                 entries.Add(new(name, FileSystemEntryKind.File, file.Content.Count, null, string.Empty, (byte)flags, firstSector, metadataValid, [], file.Content));
             }
@@ -81,8 +88,9 @@ public static class AtariDosDirectoryReader
             {
                 var offset = slot * AtariDosFileSystemLayout.DirectoryEntrySize;
                 var flags = (AtariDosDirectoryFlags)sector[offset];
-                if (IsEndOfDirectory(flags) || !LooksValidEntry(sector, offset, flags)) return false;
-                if (IsPresent(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return true;
+                if (IsEndOfDirectory(flags)) return false;
+                if (!LooksValidEntry(sector, offset, flags)) continue;
+                if (IsPresent(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return true;
             }
         }
         return false;
@@ -105,7 +113,7 @@ public static class AtariDosDirectoryReader
     }
 
     private static bool HasUnknownFlags(AtariDosDirectoryFlags flags) =>
-        (flags & ~(AtariDosDirectoryFlags.OpenForOutput | AtariDosDirectoryFlags.CreatedByDos2 | AtariDosDirectoryFlags.Locked | AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.Deleted)) != 0;
+        (flags & ~(AtariDosDirectoryFlags.OpenForOutput | AtariDosDirectoryFlags.CreatedByDos2 | AtariDosDirectoryFlags.DoubleDensity | AtariDosDirectoryFlags.Locked | AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.Deleted)) != 0;
 
     /// <summary>Calcule le numéro de fichier sur six bits depuis le secteur et le slot du répertoire.</summary>
     public static int FileNumber(int sectorNumber, int slot) => (slot + (sectorNumber - AtariDosFileSystemLayout.FirstDirectorySector) * AtariDosFileSystemLayout.DirectoryEntriesPerSector) & 0x3f;

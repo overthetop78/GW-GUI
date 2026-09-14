@@ -53,7 +53,7 @@ public sealed class AtxReader : IMediaImageReader
         if (trackOffset < AtxLayout.FileHeaderSize || trackOffset > data.Length - AtxLayout.TrackHeaderSize)
             throw new InvalidDataException("The ATX track-data offset is outside the file.");
 
-        var candidates = new Dictionary<int, List<SectorCandidate>>();
+        var candidates = new Dictionary<(int Track, int Sector), List<SectorCandidate>>();
         var visited = new HashSet<int>();
         while (trackOffset > 0)
         {
@@ -81,14 +81,15 @@ public sealed class AtxReader : IMediaImageReader
                 {
                     var header = sectorListOffset + AtxLayout.SectorListHeaderSize + index * AtxLayout.SectorHeaderSize;
                     var sectorNumber = data[header + AtxLayout.SectorNumberOffset];
-                    if (sectorNumber is < 1 or > AtxLayout.SectorsPerTrack) throw new InvalidDataException($"ATX track {trackNumber} contains invalid sector {sectorNumber}.");
+                    if (sectorNumber is < 1 or > AtxLayout.MaximumSectorsPerTrack) throw new InvalidDataException($"ATX track {trackNumber} contains invalid sector {sectorNumber}.");
                     var status = data[header + AtxLayout.SectorStatusOffset];
                     var position = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(header + AtxLayout.SectorPositionOffset));
+                    if ((status & AtxLayout.SectorStatusMissingData) != 0) continue;
                     var dataOffset = checked(trackOffset + ReadOffset(data, header + AtxLayout.SectorDataRelativeOffset, "sector data"));
                     EnsureRange(data, dataOffset, AtxLayout.SectorSize, "sector data");
                     if (dataOffset + AtxLayout.SectorSize > trackEnd) throw new InvalidDataException($"The data of ATX track {trackNumber}, sector {sectorNumber}, crosses the track boundary.");
-                    var logical = trackNumber * AtxLayout.SectorsPerTrack + sectorNumber - 1;
-                    if (!candidates.TryGetValue(logical, out var list)) candidates[logical] = list = [];
+                    var address = ((int)trackNumber, (int)sectorNumber);
+                    if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
                     list.Add(new(status, position, data.AsSpan(dataOffset, AtxLayout.SectorSize).ToArray()));
                 }
             }
@@ -98,14 +99,15 @@ public sealed class AtxReader : IMediaImageReader
         }
 
         if (candidates.Count == 0) throw new InvalidDataException("The ATX image contains no readable sector record.");
-        var blocks = candidates.OrderBy(item => item.Key).Select(item =>
+        var sectorsPerTrack = Math.Max(AtxLayout.StandardSectorsPerTrack, candidates.Keys.Max(address => address.Sector));
+        var blocks = candidates.OrderBy(item => item.Key.Track).ThenBy(item => item.Key.Sector).Select(item =>
         {
             var selected = item.Value.OrderBy(candidate => candidate.Status == 0 ? 0 : 1).ThenBy(candidate => candidate.Position).First();
-            var cylinder = item.Key / AtxLayout.SectorsPerTrack;
-            var number = item.Key % AtxLayout.SectorsPerTrack + 1;
-            return new SectorBlock(item.Key, new(cylinder, 0, number), selected.Data, selected.Status == 0, DiagnosticCode: selected.Status);
+            var logical = item.Key.Track * sectorsPerTrack + item.Key.Sector - 1;
+            return new SectorBlock(logical, new(item.Key.Track, 0, item.Key.Sector), selected.Data, selected.Status == 0, DiagnosticCode: selected.Status);
         }).ToArray();
-        return new(DiskImageFormatIds.AtariAtx, AtxLayout.SectorSize, AtxLayout.TrackCount, 1, AtxLayout.SectorsPerTrack, blocks, capacity: (long)AtxLayout.LogicalSectorCount * AtxLayout.SectorSize, logicalBlockCount: AtxLayout.LogicalSectorCount);
+        var logicalSectorCount = AtxLayout.TrackCount * sectorsPerTrack;
+        return new(DiskImageFormatIds.AtariAtx, AtxLayout.SectorSize, AtxLayout.TrackCount, 1, sectorsPerTrack, blocks, capacity: (long)logicalSectorCount * AtxLayout.SectorSize, logicalBlockCount: logicalSectorCount);
     }
 
     private static int ReadOffset(byte[] data, int offset, string field)

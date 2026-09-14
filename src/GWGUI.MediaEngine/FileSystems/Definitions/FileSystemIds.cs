@@ -41,8 +41,14 @@ public static class FileSystemIds
     public const string AppleInformXzip = "apple-inform-xzip";
     /// <summary>Identifie Atari DOS.</summary>
     public const string AtariDos = "atari-dos";
+    /// <summary>Identifie une bibliothèque graphique Atari Print Shop.</summary>
+    public const string AtariPrintShop = "atari-print-shop";
     /// <summary>Identifie une disquette amorçable K-file contenant un exécutable Atari unique.</summary>
     public const string AtariKFile = "atari-k-file";
+    /// <summary>Identifie une disquette Atari contenant un flux d'amorçage sans catalogue.</summary>
+    public const string AtariBootDisk = "atari-boot-disk";
+    /// <summary>Identifie une disquette contenant la base principale compressée de Word Magic.</summary>
+    public const string AtariWordMagicDictionary = "atari-word-magic-dictionary";
     /// <summary>Identifie Coherent.</summary>
     public const string Coherent = "coherent";
     /// <summary>Identifie Commodore DOS.</summary>

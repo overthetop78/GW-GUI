@@ -98,14 +98,14 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
 
             var data = new byte[checked((int)range.Length)];
             await range.Source.ReadExactlyAsync(range.SourceOffset, data, cancellationToken).ConfigureAwait(false);
-            consumed.Add(segment.Position);
             if (!TryReadStandardRecord(data, out var recordType, out var recordData, out var checksumValid))
             {
                 FlushLogicalFile(false);
-                blocks.Add(CreateBlock(blocks.Count, data, [segment.Position], "cas-data"));
+                if (IsExtendedZeroPaddingRecord(data)) consumed.Add(segment.Position);
                 continue;
             }
 
+            consumed.Add(segment.Position);
             filePositions.Add(segment.Position);
             recordCount++;
             integrityValid &= checksumValid;
@@ -174,7 +174,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         recordType = 0;
         data = ReadOnlyMemory<byte>.Empty;
         checksumValid = false;
-        if (record.Length != AtariCasConstants.StandardRecordLength
+        if (record.Length < 4
             || record.Span[0] != AtariCasConstants.RecordSyncByte
             || record.Span[1] != AtariCasConstants.RecordSyncByte)
             return false;
@@ -183,6 +183,15 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         if (recordType is not (AtariCasConstants.FullRecordType
             or AtariCasConstants.PartialRecordType
             or AtariCasConstants.EndRecordType))
+            return false;
+
+        if (recordType == AtariCasConstants.EndRecordType)
+        {
+            checksumValid = CalculateSioChecksum(record.Span[..^1]) == record.Span[^1];
+            return true;
+        }
+
+        if (record.Length != AtariCasConstants.StandardRecordLength)
             return false;
 
         var dataLength = recordType switch
@@ -198,6 +207,14 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
             == record.Span[AtariCasConstants.RecordChecksumOffset];
         return true;
     }
+
+    private static bool IsExtendedZeroPaddingRecord(ReadOnlySpan<byte> record) =>
+        record.Length > AtariCasConstants.StandardRecordLength
+        && record[0] == AtariCasConstants.RecordSyncByte
+        && record[1] == AtariCasConstants.RecordSyncByte
+        && record[2] == AtariCasConstants.FullRecordType
+        && record[AtariCasConstants.RecordDataOffset..^1].IndexOfAnyExcept((byte)0) < 0
+        && CalculateSioChecksum(record[..^1]) == record[^1];
 
     private async Task<SequentialDecodeResult> DecodeWaveAsync(
         MediaImageDocument document,

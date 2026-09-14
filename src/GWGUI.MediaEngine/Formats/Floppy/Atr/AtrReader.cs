@@ -86,8 +86,10 @@ public sealed class AtrReader : IMediaImageReader
     private static SectorImage Read(byte[] data, CancellationToken cancellationToken)
     {
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
-        var payloadLength = data.Length - AtrLayout.HeaderSize;
-        var sectorCount = AtrLayout.GetSectorCount(payloadLength, sectorSize);
+        var payloadLength = GetUsablePayloadLength(data, sectorSize);
+        var sectorCount = sectorSize == AtrLayout.SingleDensitySectorSize
+            ? (payloadLength + sectorSize - 1) / sectorSize
+            : AtrLayout.GetSectorCount(payloadLength, sectorSize);
         var geometry = AtrLayout.GetGeometry(sectorSize, sectorCount);
         var blocks = new List<SectorBlock>(sectorCount);
         var offset = AtrLayout.HeaderSize;
@@ -98,8 +100,11 @@ public sealed class AtrReader : IMediaImageReader
             var logicalIndex = sector - AtrLayout.FirstSectorNumber;
             var cylinder = logicalIndex / geometry.SectorsPerTrack;
             var sectorInTrack = logicalIndex % geometry.SectorsPerTrack + AtrLayout.FirstSectorNumber;
-            blocks.Add(new(logicalIndex, new(cylinder, AtrLayout.LogicalHeadIndex, sectorInTrack), data.AsSpan(offset, length).ToArray()));
-            offset += length;
+            var sectorData = new byte[length];
+            var availableLength = Math.Min(length, data.Length - offset);
+            if (availableLength > 0) data.AsSpan(offset, availableLength).CopyTo(sectorData);
+            blocks.Add(new(logicalIndex, new(cylinder, AtrLayout.LogicalHeadIndex, sectorInTrack), sectorData));
+            offset += availableLength;
         }
 
         var isTruncatedSingleDensity = AtrLayout.IsTruncatedSingleDensity(sectorSize, sectorCount);
@@ -149,12 +154,44 @@ public sealed class AtrReader : IMediaImageReader
         var paragraphCount = ((long)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset)) << 16) | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));
         var declaredPayloadLength = paragraphCount * AtrLayout.ParagraphSize;
         var observedPayloadLength = data.Length - AtrLayout.HeaderSize;
-        if (declaredPayloadLength != observedPayloadLength &&
-            !LooksLikeTruncatedSingleDensityBootImage(data, sectorSize, declaredPayloadLength, observedPayloadLength))
+        var usablePayloadLength = GetUsablePayloadLength(data, sectorSize);
+        var isRecoverableTruncatedImage = declaredPayloadLength != observedPayloadLength
+            && (LooksLikeTruncatedSingleDensityBootImage(data, sectorSize, declaredPayloadLength, observedPayloadLength)
+                || LooksLikeMislabeledEnhancedDensityImage(data, sectorSize, declaredPayloadLength, observedPayloadLength));
+        var isExternallyPaddedImage = declaredPayloadLength != observedPayloadLength
+            && LooksLikeExternallyPaddedImage(data, sectorSize, declaredPayloadLength, observedPayloadLength);
+        if (declaredPayloadLength != observedPayloadLength && !isRecoverableTruncatedImage && !isExternallyPaddedImage)
             throw AtrExceptions.PayloadLengthMismatch(observedPayloadLength, declaredPayloadLength);
 
         var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
-        if (observedPayloadLength < bootAreaLength || (observedPayloadLength - bootAreaLength) % sectorSize != 0) throw AtrExceptions.TruncatedPayload(observedPayloadLength, bootAreaLength, sectorSize);
+        if (!isRecoverableTruncatedImage &&
+            (usablePayloadLength < bootAreaLength || (usablePayloadLength - bootAreaLength) % sectorSize != 0))
+            throw AtrExceptions.TruncatedPayload(observedPayloadLength, bootAreaLength, sectorSize);
+    }
+
+    private static int GetUsablePayloadLength(byte[] data, int sectorSize)
+    {
+        var observedPayloadLength = data.Length - AtrLayout.HeaderSize;
+        var paragraphCount = ((long)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset)) << 16)
+            | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));
+        var declaredPayloadLength = paragraphCount * AtrLayout.ParagraphSize;
+        var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
+        if (declaredPayloadLength is > 0 and <= int.MaxValue
+            && declaredPayloadLength < observedPayloadLength
+            && declaredPayloadLength >= bootAreaLength
+            && (declaredPayloadLength - bootAreaLength) % sectorSize == 0
+            && IsExternalPadding(data.AsSpan(AtrLayout.HeaderSize + (int)declaredPayloadLength)))
+            return (int)declaredPayloadLength;
+
+        if (sectorSize != AtrLayout.DoubleDensitySectorSize ||
+            observedPayloadLength != AtrLayout.StandardSectorCount * sectorSize)
+            return observedPayloadLength;
+
+        var standardPayloadLength = AtrLayout.GetBootAreaLength(sectorSize)
+            + (AtrLayout.StandardSectorCount - AtrLayout.BootSectorCount) * sectorSize;
+        return data.AsSpan(AtrLayout.HeaderSize + standardPayloadLength).IndexOfAnyExcept((byte)0) < 0
+            ? standardPayloadLength
+            : observedPayloadLength;
     }
 
     private static bool LooksLikeTruncatedSingleDensityBootImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
@@ -162,13 +199,45 @@ public sealed class AtrReader : IMediaImageReader
         if (sectorSize != AtrLayout.SingleDensitySectorSize ||
             observedPayloadLength < AtrLayout.SingleDensitySectorSize ||
             observedPayloadLength >= AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize ||
-            observedPayloadLength % AtrLayout.SingleDensitySectorSize != 0 ||
             declaredPayloadLength <= observedPayloadLength ||
             declaredPayloadLength > AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize)
             return false;
 
-        var availableSectors = observedPayloadLength / AtrLayout.SingleDensitySectorSize;
         var bootSectorCount = data[AtrLayout.HeaderSize + 1];
-        return bootSectorCount > 0 && bootSectorCount <= availableSectors;
+        return bootSectorCount > 0 && bootSectorCount * AtrLayout.SingleDensitySectorSize <= observedPayloadLength;
     }
+
+    private static bool LooksLikeMislabeledEnhancedDensityImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
+    {
+        if (sectorSize != AtrLayout.SingleDensitySectorSize ||
+            observedPayloadLength != AtrLayout.EnhancedDensitySectorCount * AtrLayout.SingleDensitySectorSize ||
+            declaredPayloadLength != AtrLayout.ExtendedSingleDensitySectorCount * AtrLayout.SingleDensitySectorSize)
+            return false;
+
+        const int vtocSectorNumber = 360;
+        const ushort enhancedDensityUsableSectorCount = 1010;
+        const ushort xfPlusManagedSectorCount = 1027;
+        var vtocOffset = AtrLayout.HeaderSize + (vtocSectorNumber - AtrLayout.FirstSectorNumber) * AtrLayout.SingleDensitySectorSize;
+        var directoryOffset = vtocOffset + AtrLayout.SingleDensitySectorSize;
+        if (data.Length < directoryOffset + 1 || (data[directoryOffset] & 0x40) == 0) return false;
+        var managedSectorCount = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(vtocOffset + 1));
+        return data[vtocOffset] == 2 && managedSectorCount == enhancedDensityUsableSectorCount
+            || data[vtocOffset] == 3 && managedSectorCount == xfPlusManagedSectorCount;
+    }
+
+    private static bool LooksLikeExternallyPaddedImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
+    {
+        var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
+        if (declaredPayloadLength <= 0 || declaredPayloadLength >= observedPayloadLength
+            || declaredPayloadLength > int.MaxValue
+            || declaredPayloadLength < bootAreaLength
+            || (declaredPayloadLength - bootAreaLength) % sectorSize != 0)
+            return false;
+        return IsExternalPadding(data.AsSpan(AtrLayout.HeaderSize + (int)declaredPayloadLength));
+    }
+
+    private static bool IsExternalPadding(ReadOnlySpan<byte> padding)
+        => padding.Length > 0
+            && (padding.IndexOfAnyExcept((byte)0) < 0
+                || padding.IndexOfAnyExcept((byte)0x1A) < 0);
 }

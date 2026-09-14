@@ -24,7 +24,7 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
         DiskImageFormatIds.AtariXfd180
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     /// <inheritdoc />
-    public bool CanRead(SectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockCount >= AtariDosFileSystemLayout.LastDirectorySector && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc) && AtariDosVtocReader.LooksValid(vtoc, image.BlockCount) && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.FirstDirectorySector, out var directory) && AtariDosDirectoryReader.LooksValid(directory) && AtariDosDirectoryReader.ContainsRecordedEntry(image);
+    public bool CanRead(SectorImage image) => IsSupportedFormat(image.FormatId) && image.BlockCount >= AtariDosFileSystemLayout.LastDirectorySector && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc) && AtariDosVtocReader.LooksValid(vtoc, image.BlockCount) && AtariDosDirectoryReader.ContainsRecordedEntry(image);
     /// <inheritdoc />
     public FileSystemVolume Read(SectorImage image)
     {
@@ -34,4 +34,8 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
         var freeSectors = AtariDosVtocReader.ReadFreeSectors(image);
         return new(string.Empty, Definitions.FileSystemIds.AtariDos, image.Capacity, freeSectors.HasValue ? Math.Clamp((long)freeSectors.Value * image.BlockSize, 0, image.Capacity) : 0, null, null, entries, warnings);
     }
+
+    private bool IsSupportedFormat(string formatId) =>
+        CatalogFormatIds.Contains(formatId)
+        || formatId.StartsWith($"{DiskImageFormatIds.AtariPrefix}atr.", StringComparison.OrdinalIgnoreCase);
 }

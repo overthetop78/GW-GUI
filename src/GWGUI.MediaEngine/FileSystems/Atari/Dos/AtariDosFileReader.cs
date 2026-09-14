@@ -8,15 +8,14 @@ namespace GWGUI.MediaEngine.FileSystems.Atari.Dos;
 public static class AtariDosFileReader
 {
     /// <summary>Lit la chaîne attendue et conserve le contenu partiel en cas d'erreur.</summary>
-    public static AtariDosFileData Read(SectorImage image, int first, int expectedSectors, int fileNumber, ICollection<string> warnings, string name)
+    public static AtariDosFileData Read(SectorImage image, int first, int expectedSectors, int fileNumber, bool usesExtendedLinks, ICollection<string> warnings, string name)
     {
         var result = new List<byte>();
         var current = first;
         var visited = new HashSet<int>();
         var count = 0;
         var valid = true;
-        var limit = expectedSectors == 0 ? 1 : expectedSectors;
-        while (current != 0 && count < limit)
+        while (current != 0 && count < image.BlockCount)
         {
             if (!visited.Add(current))
             {
@@ -38,7 +37,8 @@ public static class AtariDosFileReader
             }
             var link = sector.Length - AtariDosFileSystemLayout.LinkByteCount;
             var storedFile = sector[link] >> AtariDosFileSystemLayout.FileOwnerShift;
-            var next = (sector[link] & AtariDosFileSystemLayout.NextSectorHighMask) << BitPrimitives.BitsPerByte | sector[link + 1];
+            var nextHigh = usesExtendedLinks ? sector[link] : sector[link] & AtariDosFileSystemLayout.NextSectorHighMask;
+            var next = nextHigh << BitPrimitives.BitsPerByte | sector[link + 1];
             var used = (int)sector[link + 2];
             if (used > link)
             {
@@ -46,7 +46,7 @@ public static class AtariDosFileReader
                 used = link;
                 valid = false;
             }
-            if (storedFile != fileNumber && storedFile != 0)
+            if (!usesExtendedLinks && storedFile != fileNumber && storedFile != 0)
             {
                 warnings.Add(AtariDosFileSystemExceptions.InconsistentOwner(name, current, fileNumber, storedFile));
                 valid = false;

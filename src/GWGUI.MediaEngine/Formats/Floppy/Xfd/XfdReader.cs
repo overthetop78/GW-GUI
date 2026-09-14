@@ -13,6 +13,7 @@ namespace GWGUI.MediaEngine.Formats.Floppy.Xfd;
 /// <summary>Reads headerless Atari 8-bit XFD sector images.</summary>
 public sealed class XfdReader : IMediaImageReader
 {
+    private const int SupportedTrailingPaddingLength = 16;
     private sealed record Profile(string FormatId, int SectorSize, int SectorCount, int Length);
 
     private static readonly IReadOnlyList<Profile> Profiles =
@@ -70,6 +71,13 @@ public sealed class XfdReader : IMediaImageReader
         ArgumentNullException.ThrowIfNull(bytes);
         var profile = ProfileFor(bytes.Length, requestedFormatId)
             ?? throw new InvalidDataException($"Unsupported Atari XFD image length: {bytes.Length} bytes.");
+        var trailingLength = bytes.Length - profile.Length;
+        if (trailingLength != 0
+            && (trailingLength != SupportedTrailingPaddingLength
+                || bytes.Skip(profile.Length).Any(value => value != 0)))
+        {
+            throw new InvalidDataException("The Atari XFD trailing padding is invalid.");
+        }
         var geometry = AtrLayout.GetGeometry(profile.SectorSize, profile.SectorCount);
         var blocks = new List<SectorBlock>(profile.SectorCount);
         var offset = 0;
@@ -93,11 +101,11 @@ public sealed class XfdReader : IMediaImageReader
             geometry.SectorsPerTrack,
             blocks,
             allowVariableBlockSize: profile.SectorSize > AtrLayout.BootSectorSize,
-            capacity: bytes.Length,
+            capacity: profile.Length,
             logicalBlockCount: profile.SectorCount);
     }
 
     private static Profile? ProfileFor(long length, string? requestedFormatId) => Profiles.FirstOrDefault(profile =>
-        profile.Length == length
+        (profile.Length == length || profile.Length + SupportedTrailingPaddingLength == length)
         && (requestedFormatId is null || profile.FormatId.Equals(requestedFormatId, StringComparison.OrdinalIgnoreCase)));
 }

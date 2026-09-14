@@ -18,9 +18,10 @@ public static class AtxLayout
     public const int SectorStatusOffset = 1;
     public const int SectorPositionOffset = 2;
     public const int SectorDataRelativeOffset = 4;
+    public const byte SectorStatusMissingData = 0x10;
     public const int TrackCount = 40;
-    public const int SectorsPerTrack = 18;
+    public const int StandardSectorsPerTrack = 18;
+    public const int MaximumSectorsPerTrack = 26;
     public const int SectorSize = 128;
-    public const int LogicalSectorCount = TrackCount * SectorsPerTrack;
     public const int MaximumSectorRecordsPerTrack = 64;
 }

@@ -18,8 +18,14 @@ internal static class FileSystemDisplayNames
     public const string AppleInformXzip = "Apple II Inform/XZIP";
     /// <summary>Nom affiché d'Atari DOS.</summary>
     public const string AtariDos = "Atari DOS";
+    /// <summary>Nom affiché d'une bibliothèque graphique Atari Print Shop.</summary>
+    public const string AtariPrintShop = "Atari Print Shop";
     /// <summary>Nom affiché d'une disquette amorçable Atari K-file.</summary>
     public const string AtariKFile = "Atari K-file";
+    /// <summary>Nom affiché d'une disquette Atari contenant un flux d'amorçage sans catalogue.</summary>
+    public const string AtariBootDisk = "Atari boot disk";
+    /// <summary>Nom affiché de la base principale compressée de Word Magic.</summary>
+    public const string AtariWordMagicDictionary = "Word Magic main dictionary";
     /// <summary>Nom affiché de Coherent sur Commodore 900.</summary>
     public const string CoherentCommodore900 = "COHERENT (Commodore 900)";
     /// <summary>Nom affiché de Commodore DOS.</summary>
