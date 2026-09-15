@@ -44,7 +44,7 @@ internal static class ExplorerFileTypeRuleFactory
             ExplorerFileCategory.Library => ("Explorer.Type.Library", ExplorerIconCategory.Library, ExplorerContentFormat.Library, ExplorerPreviewKind.Hexadecimal),
             ExplorerFileCategory.Image => ("Explorer.Type.Image", ExplorerIconCategory.Image, ExplorerContentFormat.Image, ExplorerPreviewKind.Image),
             ExplorerFileCategory.Audio => ("Explorer.Type.Audio", ExplorerIconCategory.Audio, ExplorerContentFormat.Audio, ExplorerPreviewKind.Audio),
-            ExplorerFileCategory.Media => ("Explorer.Type.Media", ExplorerIconCategory.Media, ExplorerContentFormat.Unknown, ExplorerPreviewKind.ExternalApplication),
+            ExplorerFileCategory.Media => ("Explorer.Type.Media", ExplorerIconCategory.Media, ExplorerContentFormat.Media, ExplorerPreviewKind.ExternalApplication),
             ExplorerFileCategory.Archive => ("Explorer.Type.Archive", ExplorerIconCategory.Archive, ExplorerContentFormat.Archive, ExplorerPreviewKind.None),
             ExplorerFileCategory.DiskImage => ("Explorer.Type.DiskImage", ExplorerIconCategory.DiskImage, ExplorerContentFormat.DiskImage, ExplorerPreviewKind.None),
             ExplorerFileCategory.Link => ("Explorer.Link", ExplorerIconCategory.Link, ExplorerContentFormat.Unknown, ExplorerPreviewKind.None),

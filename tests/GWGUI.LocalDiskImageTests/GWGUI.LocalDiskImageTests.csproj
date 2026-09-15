@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <UseWPF>true</UseWPF>
     <RootNamespace>GWGUI.MediaAudit</RootNamespace>
   </PropertyGroup>
 

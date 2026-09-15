@@ -57,15 +57,13 @@ explicites de l’utilisateur restent prioritaires.
 - Un test ajouté pour l’occasion qui crée des fichiers ou dépend de fichiers, applications ou DLL
   externes est supprimé après usage avec ses artefacts temporaires. Cette règle ne demande pas de
   supprimer les tests ou fichiers qui existaient avant le travail.
-- Tout test ou script qui crée une fenêtre, une surface graphique, un arbre visuel, une `Application`,
-  un `Dispatcher` ou un thread doit les fermer, les détacher et les libérer dans un bloc `finally`,
-  y compris après une erreur ou une interruption. Il doit attendre leur destruction effective afin
-  de ne laisser aucun handle, ressource graphique ou résidu accumulé dans DWM.
-
-- Tout test ou script qui crée une fenêtre, une surface graphique, un arbre visuel, une `Application`,
-  un `Dispatcher` ou un thread doit les fermer, les détacher et les libérer dans un bloc `finally`,
-  y compris après une erreur ou une interruption. Il doit attendre leur destruction effective afin
-  de ne laisser aucun handle, ressource graphique ou résidu accumulé dans DWM.
+- Tout code propriétaire d’une fenêtre, d’une surface graphique, d’un arbre visuel, d’une `Application`,
+  d’un `Dispatcher`, d’un thread, d’un processus ou d’un cœur d’émulation doit le fermer, le détacher
+  et le libérer dans un bloc `finally`, y compris après une erreur ou une interruption. Il doit attendre
+  sa destruction effective afin de ne laisser aucun handle, ressource graphique, processus, thread ou
+  résidu accumulé dans DWM. Cette règle s’applique à l’application, aux modules, aux outils, à tous les
+  projets de tests et à tous les scripts du dépôt. Un objet reçu d’un appelant reste sous la responsabilité
+  de son propriétaire et ne doit pas être détruit par le code qui l’emprunte.
 
 ## Traductions
 
@@ -82,9 +80,9 @@ explicites de l’utilisateur restent prioritaires.
   fonctionnels sont considérés disponibles.
 - Si un outil nécessaire manque réellement, demander son installation au lieu de multiplier les
   contournements.
-- Quand un build Debug est demandé, lancer `scripts/build.ps1 -Configuration Debug`. Si la stratégie
+- Quand un build Debug est demandé, lancer `scripts/local-building.cmd --building=debug --modules=0`. Si la stratégie
   PowerShell l’exige, employer
-  `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug`.
+`scripts\local-building.cmd --building=debug --modules=0`.
 - Vérifier la réussite du script et la présence de `build/Debug/GW GUI/gwgui.exe`, puis communiquer
   ce chemin pour le test utilisateur.
 
@@ -148,10 +146,10 @@ explicites de l’utilisateur restent prioritaires.
 - Préparer `.github/release-notes/modules/<id>/vX.Y.Z.md` avec les changements propres au module.
 - Prendre `X.Y.Z` dans `moduleVersion` du `module.json` concerné et employer le même identifiant et la
   même version dans les notes, le titre, le tag `module-<id>-vX.Y.Z` et les paquets.
-- Commiter et pousser le code du module, son manifeste et ses notes sur `main`, puis créer et pousser
-  le tag sur ce commit.
-- Le tag déclenche `.github/workflows/module-release.yml`. Ne pas lancer avant cela son mode manuel,
-  sauf demande explicite.
+- Commiter et pousser le code du module, son manifeste et ses notes sur `main`, puis lancer
+  `scripts\publish-modules.cmd <id>`. Sans identifiant, le script traite successivement toutes les
+  versions de modules qui ne sont pas encore publiées.
+- Le script déclenche `.github/workflows/module-release.yml`, qui crée le tag et la release du module.
 
 ### SDK d’émulation
 

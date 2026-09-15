@@ -15,8 +15,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-. (Join-Path $PSScriptRoot 'emulation-modules.ps1')
+$repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\..'))
+. (Join-Path $PSScriptRoot 'emulation-modules\emulation-modules.ps1')
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repositoryRoot 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $dist 'update-catalog.json' }

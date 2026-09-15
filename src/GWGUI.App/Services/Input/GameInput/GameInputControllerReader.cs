@@ -63,7 +63,7 @@ internal static class GameInputControllerReader
     internal static void StopMonitoring()
     {
         RawGameControllerFallback.StopMonitoring();
-        Worker.TryInvoke(() =>
+        if (!Worker.Stop(() =>
         {
             Shutdown();
             lock (Sync)
@@ -71,7 +71,8 @@ internal static class GameInputControllerReader
                 _initialized = false;
                 InitializationFailed = false;
             }
-        }, ShutdownTimeout);
+        }, ShutdownTimeout))
+            throw new TimeoutException("The GameInput worker thread did not stop.");
     }
 
     internal static IReadOnlyList<GameInputDeviceDescriptor> GetConnectedControllerDetailsCached()
@@ -1106,12 +1107,13 @@ internal static class GameInputControllerReader
     {
         private readonly BlockingCollection<Action> _queue = new();
         private readonly int _threadId;
+        private readonly Thread _thread;
 
         internal GameInputWorker()
         {
             using var ready = new ManualResetEventSlim();
             var threadId = 0;
-            var thread = new Thread(() =>
+            _thread = new Thread(() =>
             {
                 threadId = Environment.CurrentManagedThreadId;
                 ready.Set();
@@ -1121,8 +1123,8 @@ internal static class GameInputControllerReader
                 IsBackground = true,
                 Name = "GWGUI GameInput"
             };
-            thread.SetApartmentState(ApartmentState.MTA);
-            thread.Start();
+            _thread.SetApartmentState(ApartmentState.MTA);
+            _thread.Start();
             ready.Wait();
             _threadId = threadId;
         }
@@ -1159,6 +1161,54 @@ internal static class GameInputControllerReader
             if (!completed.Task.Wait(timeout)) return false;
             completed.Task.GetAwaiter().GetResult();
             return true;
+        }
+
+        internal bool Stop(Action action, TimeSpan timeout)
+        {
+            if (_queue.IsAddingCompleted)
+                return !_thread.IsAlive || _thread.Join(timeout);
+
+            if (Environment.CurrentManagedThreadId == _threadId)
+            {
+                try { action(); }
+                finally { _queue.CompleteAdding(); }
+                return true;
+            }
+
+            var completed = new TaskCompletionSource(
+                TaskCreationOptions.RunContinuationsAsynchronously);
+            _queue.Add(() =>
+            {
+                try
+                {
+                    action();
+                    completed.TrySetResult();
+                }
+                catch (Exception exception)
+                {
+                    completed.TrySetException(exception);
+                }
+                finally
+                {
+                    _queue.CompleteAdding();
+                }
+            });
+
+            Exception? failure = null;
+            var actionCompleted = false;
+            try
+            {
+                actionCompleted = completed.Task.Wait(timeout);
+                if (actionCompleted) completed.Task.GetAwaiter().GetResult();
+            }
+            catch (Exception error)
+            {
+                failure = error;
+            }
+
+            var threadStopped = _thread.Join(timeout);
+            if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
+            return actionCompleted && threadStopped;
         }
 
         internal T Invoke<T>(Func<T> action)

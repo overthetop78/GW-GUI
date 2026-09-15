@@ -72,7 +72,7 @@ objet est supprimée.
   - [x] 5.1 Exécuter les tests généraux autonomes après stabilisation du code
     - [x] Modifier `docs/project/testing.md` avec la commande et le résultat des tests ciblés de `tests/GWGUI.Tests/Emulation/HardDisks` et `tests/GWGUI.Tests/MediaEngine/HardDisk`, sans utiliser les corpus locaux de médias.
   - [x] 5.2 Produire le build qui précède les essais manuels
-    - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe`.
+    - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/local-building/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe`.
   - [x] 5.3 Mettre à jour la documentation durable finale
     - [x] Modifier `docs/architecture/media-format-orchestration.md` avec les capacités HDD, optiques et séquentielles réellement disponibles après cette feuille.
     - [x] Modifier `docs/project/media-support-planning.md` pour conserver uniquement les questions encore ouvertes après les validations autonomes.

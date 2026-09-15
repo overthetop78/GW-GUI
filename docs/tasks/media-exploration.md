@@ -428,7 +428,7 @@ dans l’ordre.
   - [x] 6.2 Définir la confirmation de conversion séquentielle avec pertes
     - [x] Modifier `src/GWGUI.App/Resources/00-Base/Conversion.resx` avec `Conversion.SequentialLossesTitle` et `Conversion.SequentialLossesConfirm` en anglais, en conservant le paramètre `{0}` du détail des pertes.
   - [x] 6.3 Donner à Argos le contexte technique des libellés courts
-    - [x] Modifier `scripts/translate-resx-argos.py` pour traduire les clés ambiguës depuis un libellé de média explicite et appliquer les termes français validés `Session`, `Piste`, `Couches` et `Faces`.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` pour traduire les clés ambiguës depuis un libellé de média explicite et appliquer les termes français validés `Session`, `Piste`, `Couches` et `Faces`.
     - [x] Modifier `docs/project/scripts.md` pour documenter la traduction contextuelle des libellés techniques par le script Argos.
   - [x] 6.4 Régénérer ensemble toutes les traductions de l’Explorateur
     - [x] Modifier avec Argos `src/GWGUI.App/Resources/{ar-SA,cs-CZ,da-DK,de-DE,el-GR,es-ES,fi-FI,fr-FR,he-IL,hu-HU,id-ID,it-IT,ja-JP,ko-KR,nb-NO,nl-NL,pl-PL,pt-BR,pt-PT,ro-RO,ru-RU,sv-SE,th-TH,tr-TR,uk-UA,vi-VN,zh-Hans,zh-Hant}/Explorer.resx` en remplaçant toutes les nouvelles traductions, puis vérifier que session, piste, couche et face conservent leur sens technique dans chaque langue.
@@ -460,7 +460,7 @@ dépendance aux corpus locaux de médias.
     - [x] Créer `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` avec sélection de partitions, sessions, volumes et contenus séquentiels.
   - [x] 7.3 Consigner les résultats réels
     - [x] Modifier `docs/project/testing.md` avec les commandes, fichiers d’essai et résultats obtenus pour HDD, optique et bande, en distinguant les validations automatisées des validations manuelles.
-    - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` après la dernière famille.
+    - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/local-building/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` après la dernière famille.
     - [x] Modifier `docs/architecture/media-format-orchestration.md` avec les Readers, Writers, représentations, visualiseurs, systèmes de fichiers et limites réellement implémentés.
     - [x] Modifier `docs/project/media-support-planning.md` pour remplacer les questions résolues par les décisions effectivement validées et conserver uniquement les inconnues restantes.
 

@@ -13,15 +13,15 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
   - [x] Créer `tests/GWGUI.LocalDiskImageTests/Program.cs` avec les contrôles de reconnaissance, exploration, visualisation, écriture physique et conversion.
   - [x] Créer `tests/GWGUI.LocalDiskImageTests/MediaAuditReport.cs` avec le schéma du rapport persistant.
 - [x] Créer le parcours autonome et sa reprise.
-  - [x] Créer `scripts/analyze-media-data.ps1` avec les paramètres `ImagePath`, `Root`, `StartAt`, `OutputRoot` et `Restart`.
-  - [x] Modifier `scripts/analyze-media-data.ps1` pour isoler les contrôles directs dans `artifacts/media-audit/single-tests` sans numéro ni modification du checkpoint continu.
+  - [x] Créer `scripts/temp/analyze-media-data.ps1` avec les paramètres `ImagePath`, `Root`, `StartAt`, `OutputRoot` et `Restart`.
+  - [x] Modifier `scripts/temp/analyze-media-data.ps1` pour isoler les contrôles directs dans `artifacts/media-audit/single-tests` sans numéro ni modification du checkpoint continu.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour énumérer les chemins longs et exclure les fichiers annexes CUE, CCD et MDS.
 - [ ] Réduire les artefacts sans perdre les données nécessaires à une analyse ultérieure.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaAuditReport.cs` pour référencer la source et ses fichiers associés dans le rapport principal.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour conserver les empreintes de la source et de ses fichiers associés sans copie permanente ni duplication HEX.
-  - [x] Modifier `scripts/analyze-media-data.ps1` pour copier automatiquement l'image fautive dans son dossier de diagnostic et supprimer cette copie lorsqu'elle passe après correction.
+  - [x] Modifier `scripts/temp/analyze-media-data.ps1` pour copier automatiquement l'image fautive dans son dossier de diagnostic et supprimer cette copie lorsqu'elle passe après correction.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour enregistrer l'empreinte des contenus extraits sans conserver une seconde copie après leur identification.
-  - [x] Modifier `scripts/analyze-media-data.ps1` pour numéroter le premier fichier demandé `00000000`.
+  - [x] Modifier `scripts/temp/analyze-media-data.ps1` pour numéroter le premier fichier demandé `00000000`.
   - [x] Supprimer puis recréer `artifacts/media-audit/items`, `artifacts/media-audit/checkpoint.json` et `artifacts/media-audit/failure.json` avec le nouveau format.
 
 ## Disquettes
@@ -684,7 +684,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
       - [x] Modifier `artifacts/media-audit/items/00001039-87e42c9b83a4f045` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
     - [x] Exclure les collections de binaires applicatifs qui ne sont pas des images de média.
       - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour ne pas énumérer comme média les `.bin` rangés dans une collection explicitement marquée `[BIN]`, tout en conservant les BIN associés à une image décrite par CUE.
-      - [x] Modifier `scripts/analyze-media-data.ps1` pour reprendre au premier candidat alphabétique suivant lorsque le fichier d'échec est désormais exclu de la liste.
+      - [x] Modifier `scripts/temp/analyze-media-data.ps1` pour reprendre au premier candidat alphabétique suivant lorsque le fichier d'échec est désormais exclu de la liste.
       - [x] Supprimer `artifacts/media-audit/items/00001055-19717c16fa694dcb` après exclusion de la source `.bin` hors périmètre.
   - [ ] ATR K-file.
     - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Atari/KFile/AtariKFileFileSystemReader.cs` pour reconnaître le chargeur KBoot et extraire l'exécutable en `RUN.XEX`.
@@ -1112,8 +1112,8 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
   - [x] Modifier `artifacts/media-audit/items/00001410-10bb91a692880869` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
   - [x] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque format au premier arrêt correspondant et son résultat après correction.
 - [x] Reconnaître les ressources de `C64 Slideshow -VBXE-` au checkpoint 1415.
-  - [x] Créer `scripts/extract_data_from_ContentHex.ps1` avec les paramètres `ReportPath`, `OutputPath` et `EntryName`, puis écrire pour chaque fichier sélectionné ses métadonnées, son empreinte, sa signature, sa fin, sa distribution d'octets et ses chaînes utiles.
-  - [x] Modifier `scripts/extract_data_from_ContentHex.ps1` pour ignorer les dossiers et entrées sans propriété `ContentHex` sous mode strict.
+  - [x] Créer `scripts/temp/extract_data_from_ContentHex.ps1` avec les paramètres `ReportPath`, `OutputPath` et `EntryName`, puis écrire pour chaque fichier sélectionné ses métadonnées, son empreinte, sa signature, sa fin, sa distribution d'octets et ses chaînes utiles.
+  - [x] Modifier `scripts/temp/extract_data_from_ContentHex.ps1` pour ignorer les dossiers et entrées sans propriété `ContentHex` sous mode strict.
   - [x] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` en exécutant le script réutilisable sur le rapport du média.
   - [x] Supprimer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/reference-c64` et `reference-c64.7z`, ajoutés hors du périmètre demandé.
   - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour enregistrer `.cm`, `.fn`, `.sc` et `.tx` comme données Atari 8-bit avant leur classification structurelle.
@@ -1122,20 +1122,20 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
   - [x] Modifier `artifacts/media-audit/items/00001415-e4f1f3158933c60b` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
   Résultat annulé par la revue globale ; la reprise est définie après le dernier point exécuté dans `docs/tasks/media-format-identification.md`.
 - [x] Identifier `YESTERDA` de `Composer's Jukebox II` au checkpoint 1417.
-  - [x] Créer `artifacts/media-audit/items/00001417-3d178abccb72de76/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur le rapport local.
+  - [x] Créer `artifacts/media-audit/items/00001417-3d178abccb72de76/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur le rapport local.
   - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure confirmée de `YESTERDA`.
   - [x] Supprimer `artifacts/media-audit/items/00001417-3d178abccb72de76/content-analysis.json` après intégration.
   - [x] Modifier `artifacts/media-audit/items/00001417-3d178abccb72de76` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
   Résultat annulé par la revue globale ; la reprise est définie après le dernier point exécuté dans `docs/tasks/media-format-identification.md`.
 - [x] Reconnaître les animations `.ANM` de `Demo Maker` au checkpoint 1434.
-  - [x] Créer `artifacts/media-audit/items/00001434-d99c1ce6e312a5f2/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur les six fichiers inconnus du rapport local.
+  - [x] Créer `artifacts/media-audit/items/00001434-d99c1ce6e312a5f2/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur les six fichiers inconnus du rapport local.
   - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour enregistrer l’extension `.anm` dans la famille Atari 8-bit.
   - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure `.ANM` confirmée.
   - [x] Supprimer `artifacts/media-audit/items/00001434-d99c1ce6e312a5f2/content-analysis.json` après intégration.
   - [x] Modifier `artifacts/media-audit/items/00001434-d99c1ce6e312a5f2` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
   Résultat annulé par la revue globale ; la reprise est définie après le dernier point exécuté dans `docs/tasks/media-format-identification.md`.
 - [x] Identifier `PICTURE` de `Digital Christmas Card` au checkpoint 1441.
-  - [x] Créer `artifacts/media-audit/items/00001441-6b69bd04a3f6fbd1/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur le rapport local.
+  - [x] Créer `artifacts/media-audit/items/00001441-6b69bd04a3f6fbd1/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur le rapport local.
   - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour reconnaître uniquement la structure graphique confirmée de `PICTURE`.
   - [x] Supprimer `artifacts/media-audit/items/00001441-6b69bd04a3f6fbd1/content-analysis.json` après intégration.
   - [x] Modifier `artifacts/media-audit/items/00001441-6b69bd04a3f6fbd1` en régénérant le rapport puis en supprimant `failed-source.atr` après validation.
@@ -1155,7 +1155,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
   - [ ] Requalifier tous les formats nommés d’après un logiciel, un jeu ou un média d’exemple.
     - [x] Créer `docs/tasks/media-format-identification.md` avec l’inventaire complet des lecteurs, identifiants, types natifs et détecteurs concernés, séparé entre disquettes et cassettes, et une tâche de comparaison de tous les médias correspondants avant chaque renommage.
   - [x] Empêcher le script d’audit de laisser des processus de compilation en mémoire.
-    - [x] Modifier `scripts/analyze-media-data.ps1` pour compiler sans serveur de build, sans compilation partagée et sans réutilisation de nœud MSBuild.
+    - [x] Modifier `scripts/temp/analyze-media-data.ps1` pour compiler sans serveur de build, sans compilation partagée et sans réutilisation de nœud MSBuild.
   - [x] Annuler les classifications non démontrées ajoutées depuis la reprise aux checkpoints 1415 à 1441.
     - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/AtariFileTypeTable.cs` pour retirer les associations `.anm`, `.cm`, `.fn`, `.sc` et `.tx` ajoutées sans comparaison de plusieurs médias.
     - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour retirer les six détecteurs fondés sur les seuls exemplaires des checkpoints 1415, 1417, 1434 et 1441.
@@ -1170,7 +1170,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
 
 - [x] Reprendre l’identification des ressources internes du checkpoint 1415 à partir de leurs données, sans règle liée au nom externe du média.
   - [x] Consigner les structures communes et les différences des fichiers `.FN`, `.CM`, `.SC` et `.TX`.
-    - [x] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur tous les contenus inconnus du rapport régénéré.
+    - [x] Créer `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur tous les contenus inconnus du rapport régénéré.
     - [x] Modifier `artifacts/media-audit/items/00001415-e4f1f3158933c60b/content-analysis.json` pour ajouter les structures démontrées par la comparaison des 35 fichiers et les routines de lecture et de transformation retrouvées dans les exécutables du média.
   - [x] Reconnaître les quatre structures aPLib à partir de leur contenu décodé.
     - [x] Ajouter le décodage aPLib commun.
@@ -1196,7 +1196,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
 
 - [x] Reprendre l’identification du fichier `YESTERDA` au checkpoint 1417 à partir de son contenu.
   - [x] Consigner les données binaires utiles du fichier inconnu.
-    - [x] Créer `artifacts/media-audit/items/00001417-3d178abccb72de76/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur le rapport arrêté.
+    - [x] Créer `artifacts/media-audit/items/00001417-3d178abccb72de76/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur le rapport arrêté.
   - [x] Comparer ce contenu avec les médias et fichiers déjà consignés.
     - [x] Ajouter les correspondances retrouvées au rapport d’analyse.
       - [x] Modifier `artifacts/media-audit/items/00001417-3d178abccb72de76/content-analysis.json` pour inscrire les autres `report.json` contenant le même nom, la même empreinte ou une structure binaire comparable, ainsi que les différences avec les fichiers voisins du média.
@@ -1219,7 +1219,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
 
 - [x] Reprendre l’identification des sept fichiers `.ANM` inconnus au checkpoint 1434 à partir de leur contenu.
   - [x] Consigner leurs données binaires utiles dans un rapport commun.
-    - [x] Créer `artifacts/media-audit/items/00001434-d99c1ce6e312a5f2/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur les sept contenus inconnus du rapport arrêté.
+    - [x] Créer `artifacts/media-audit/items/00001434-d99c1ce6e312a5f2/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur les sept contenus inconnus du rapport arrêté.
   - [x] Comparer les sept contenus entre eux, avec les rapports existants et avec les routines qui les chargent.
     - [x] Consigner la structure commune et les différences démontrées.
       - [x] Modifier `artifacts/media-audit/items/00001434-d99c1ce6e312a5f2/content-analysis.json` pour ajouter les correspondances trouvées dans les autres rapports, les dimensions calculées et les règles de lecture retrouvées dans les exécutables du média.
@@ -1239,7 +1239,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
 
 - [x] Reprendre l’identification du fichier `PICTURE` inconnu au checkpoint 1441 à partir de son contenu.
   - [x] Consigner ses données binaires utiles.
-    - [x] Créer `artifacts/media-audit/items/00001441-6b69bd04a3f6fbd1/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur le contenu inconnu du rapport arrêté.
+    - [x] Créer `artifacts/media-audit/items/00001441-6b69bd04a3f6fbd1/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur le contenu inconnu du rapport arrêté.
   - [x] Comparer le contenu aux fichiers déjà consignés et aux routines qui le chargent.
     - [x] Consigner la structure graphique démontrée sans utiliser le nom externe du média.
       - [x] Modifier `artifacts/media-audit/items/00001441-6b69bd04a3f6fbd1/content-analysis.json` pour ajouter les correspondances des autres rapports, les dimensions calculées et la routine de lecture retrouvée dans les exécutables du média.
@@ -1284,7 +1284,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
 
 - [x] Reprendre l'identification du flux d'amorçage inconnu au checkpoint 1450.
   - [x] Consigner les données binaires utiles du flux de 128 octets.
-    - [x] Créer `artifacts/media-audit/items/00001450-aeed2afb0c4d1556/content-analysis.json` en exécutant `scripts/extract_data_from_ContentHex.ps1` sur `BOOT.BIN`.
+    - [x] Créer `artifacts/media-audit/items/00001450-aeed2afb0c4d1556/content-analysis.json` en exécutant `scripts/temp/extract_data_from_ContentHex.ps1` sur `BOOT.BIN`.
   - [x] Classer le flux déjà reconnu par le moteur comme amorçage Atari.
     - [x] Utiliser le type natif produit par le lecteur de disque amorçable.
       - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer `atari-boot-stream` comme programme de démarrage Atari 8 bits même lorsque l'adresse de continuation stockée vaut zéro.
@@ -1662,7 +1662,7 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
     - [x] Créer `%TEMP%/gwgui-checkpoint-1581-rip` avec les onze enregistrements des deux images découpés à leur longueur utile calculée et leurs rendus PNG produits par RECOIL.
     - [x] Modifier `artifacts/media-audit/items/00001581-74be1719b74e1c67/content-analysis.json` pour y consigner le découpage démontré des enregistrements et les champs nécessaires à leur extraction.
 
-- [ ] Reconnaître les ATR dont la longueur déclarée inclut l'en-tête et leurs fichiers Atari Multi RIP au checkpoint 1581.
+- [x] Reconnaître les ATR dont la longueur déclarée inclut l'en-tête et leurs fichiers Atari Multi RIP au checkpoint 1581.
   - [x] Lire correctement le conteneur ATR dont la longueur déclarée inclut son en-tête.
     - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` pour accepter cette variante lorsque les 16 octets d'écart correspondent exactement à l'en-tête ATR et pour compléter le dernier secteur manquant avec des zéros.
   - [x] Exposer chaque enregistrement Multi RIP comme un fichier logique.
@@ -1685,11 +1685,75 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
     - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Atari/MultiRipImageCollection/AtariMultiRipImageCollectionFileSystemReader.cs` et son dossier devenu vide.
   - [x] Confirmer l'état final sans le lecteur sectoriel provisoire.
     - [x] Modifier `artifacts/media-audit/items/00001581-74be1719b74e1c67/content-analysis.json` pour consigner le build Debug final et confirmer que seul le catalogue Atari DOS est nécessaire.
-  - [ ] Finaliser le checkpoint 1581 après l'intégration.
+  - [x] Finaliser le checkpoint 1581 après l'intégration.
     - [x] Supprimer `artifacts/media-audit/items/00001581-74be1719b74e1c67/content-analysis.json` après intégration de ses preuves dans le code.
     - [x] Supprimer les dossiers de contrôle direct créés sous `artifacts/media-audit/single-tests` pour les deux collections.
     - [x] Supprimer `%TEMP%/gwgui-recoil-6.4.5.tar.gz`, `%TEMP%/gwgui-recoil-6.4.5`, `%TEMP%/gwgui-recoil-6.4.5-win64.zip`, `%TEMP%/gwgui-recoil-6.4.5-win64` et `%TEMP%/gwgui-checkpoint-1581-rip`.
-    - [ ] Modifier `artifacts/media-audit/items/00001581-74be1719b74e1c67` en régénérant `report.json` et en supprimant `failed-source.atr` après validation par la campagne continue.
+    - [x] Modifier `artifacts/media-audit/items/00001581-74be1719b74e1c67` en régénérant `report.json` et en supprimant `failed-source.atr` après validation par la campagne continue.
+
+- [x] Identifier les contenus inconnus `GUNFIGHT.ASX`, `PORAZKA.ASX` et `ZUPA.ASX` du checkpoint 1584.
+  - [x] Consigner leur structure commune et déterminer précisément le format de source assembleur représenté.
+    - [x] Créer `artifacts/media-audit/items/00001584-a7dfb1e03a2f00de/content-analysis.json` avec l'analyse de leurs `ContentHex`, leurs séparateurs, leurs directives, leurs instructions et les preuves permettant d'identifier le format sans utiliser leurs noms ni leur extension.
+
+- [x] Reconnaître les sources assembleur Atari xasm démontrées au checkpoint 1584.
+  - [x] Ajouter une détection fondée sur la syntaxe et l'encodage du contenu.
+    - [x] Créer `src/GWGUI.App/Functions/Explorer/FileContentClassification/Atari8Bit/SourceCode/IsAtariXasmSource.cs` pour valider le texte source ATASCII, ses fins de ligne et plusieurs directives ou constructions propres à xasm et Quick Assembler.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer une source xasm reconnue comme code source avant le texte ATASCII générique, sans utiliser le nom, l'extension ou le chemin et sans dépasser 200 lignes.
+  - [x] Accepter les sources xasm qui utilisent des espaces à la place du caractère de tabulation ATASCII.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/FileContentClassification/Atari8Bit/SourceCode/IsAtariXasmSource.cs` pour ne pas exiger `$7F` lorsque les fins de ligne, directives, instructions et constructions propres à xasm suffisent à démontrer le format.
+  - [x] Vérifier la correction sur toutes les sources ASX du média arrêté.
+    - [x] Modifier `artifacts/media-audit/items/00001584-a7dfb1e03a2f00de/content-analysis.json` pour consigner le build Debug et la classification comme code source de `GUNFIGHT.ASX`, `PORAZKA.ASX`, `SPY3.ASX` et `ZUPA.ASX` par le logiciel.
+  - [x] Finaliser le checkpoint 1584 après l'intégration.
+    - [x] Supprimer `artifacts/media-audit/items/00001584-a7dfb1e03a2f00de/content-analysis.json` après intégration de ses preuves dans le code.
+    - [x] Supprimer le dossier de contrôle direct du checkpoint 1584 sous `artifacts/media-audit/single-tests`.
+    - [x] Modifier `artifacts/media-audit/items/00001584-a7dfb1e03a2f00de` en régénérant `report.json` et en supprimant `failed-source.atr` après validation par la campagne continue.
+
+- [x] Identifier les contenus inconnus `CBC.MVM`, `FIN.MVM` et `PART1.MVM` à `PART4.MVM` du checkpoint 1602.
+  - [x] Consigner leur structure commune et déterminer précisément le format d'animation représenté.
+    - [x] Créer `artifacts/media-audit/items/00001602-3c2992ffab1ec5a5/content-analysis.json` avec l'analyse de leurs `ContentHex`, leurs en-têtes, leurs terminaisons, leurs blocs internes et les preuves permettant d'identifier le format sans utiliser leurs noms ni leur extension.
+
+- [x] Reconnaître les films Atari 8 bits Movie Maker démontrés au checkpoint 1602 et sur la disquette de référence.
+  - [x] Ajouter une détection fondée sur l'encadrement binaire commun aux quatorze films examinés.
+    - [x] Créer `src/GWGUI.App/Functions/Explorer/FileContentClassification/Atari8Bit/Media/IsAtariMovieMakerMovie.cs` pour valider l'en-tête `01 00 01`, l'unique enregistrement terminal `C0 00 00 00 07 00 00` situé à la fin et une charge utile non vide.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` pour classer un film Movie Maker reconnu comme média sans utiliser son nom, son extension ou son chemin et sans dépasser 200 lignes.
+  - [x] Vérifier la correction sur les quatorze films des deux disquettes de données.
+    - [x] Modifier `artifacts/media-audit/items/00001602-3c2992ffab1ec5a5/content-analysis.json` pour consigner le build Debug et la classification des six fichiers du checkpoint et des huit fichiers de référence.
+  - [x] Finaliser le checkpoint 1602 après l'intégration.
+    - [x] Supprimer `artifacts/media-audit/items/00001602-3c2992ffab1ec5a5/content-analysis.json` après intégration de ses preuves dans le code.
+    - [x] Supprimer `artifacts/media-audit/reference-movie-maker-a`, `artifacts/media-audit/reference-movie-maker-b` et `artifacts/media-audit/reference-movie-maker-smurfs` après la vérification.
+    - [x] Supprimer `artifacts/media-audit/single-tests/checkpoint-1602` et `artifacts/media-audit/single-tests/movie-maker-reference-b` après la vérification.
+    - [x] Supprimer `%TEMP%/GWGUI-Movie-Maker-A.atr` et `%TEMP%/GWGUI-Movie-Maker-B.atr` après la vérification.
+    - [x] Modifier `artifacts/media-audit/items/00001602-3c2992ffab1ec5a5` en régénérant `report.json` et en supprimant `failed-source.atr` après validation par la campagne continue.
+
+- [x] Retirer les `ContentHex` encore conservés pour les films Movie Maker reconnus au checkpoint 1602.
+  - [x] Donner un format de contenu connu à la catégorie média commune.
+    - [x] Modifier `src/GWGUI.App/Enums/Explorer/ExplorerContentFormat.cs` pour ajouter le format de contenu `Media`.
+    - [x] Modifier `src/GWGUI.App/Dictionaries/Explorer/FileTypes/ExplorerFileTypeRuleFactory.cs` pour associer la catégorie `Media` au format de contenu `Media`.
+  - [x] Régénérer le rapport 1602 sans données de diagnostic devenues inutiles.
+    - [x] Modifier `artifacts/media-audit/checkpoint.json` pour faire reprendre la campagne normale au média 1602.
+    - [x] Modifier `artifacts/media-audit/items/00001602-3c2992ffab1ec5a5/report.json` par la campagne normale et vérifier que les six films sont reconnus sans propriété `ContentHex`.
+
+- [ ] Reconnaître le disque amorçable personnalisé du checkpoint 1604 sans exposer son répertoire décoratif comme un catalogue Atari DOS.
+  - [x] Refuser un catalogue Atari DOS dont aucune entrée active ne possède une chaîne de secteurs valide.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` pour contrôler qu'au moins une entrée active non supprimée se reconstruit avec une longueur, un propriétaire et une fin de chaîne cohérents.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemReader.cs` pour exiger cette entrée lisible avant de sélectionner Atari DOS.
+  - [x] Observer l'amorçage du média 1604 avec le cœur Atari800 libretro déjà installé par GW GUI.
+    - [x] Créer `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader.csproj` pour compiler uniquement le lecteur temporaire avec les projets d'émulation Atari existants.
+    - [x] Créer `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader.cs` pour charger un ATR avec `AtariExternalCore`, exécuter l'amorçage sans fenêtre et écrire les images écran, la RAM et les diagnostics dans le dossier de résultat demandé.
+    - [x] Créer les relevés `artifacts/media-audit/items/00001604-1938364d1170aea4/libretro-*` en exécutant le lecteur temporaire sur `failed-source.atr` avec le cœur et la configuration Atari800 déjà installés.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader.cs` pour arrêter et libérer le cœur, ses callbacks, ses buffers et sa session dans le bloc `finally`, y compris après une erreur.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader.csproj` pour employer un nom d'assembly et des dossiers `bin/obj` distincts de `GWGUI.LocalDiskImageTests`.
+    - [x] Isoler physiquement le lecteur libretro temporaire du projet d'audit existant.
+      - [x] Déplacer `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader.cs` vers `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader/TemporaryLibretroMediaReader.cs` sans modifier son contenu.
+      - [x] Déplacer `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader.csproj` vers `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader/TemporaryLibretroMediaReader.csproj` et adapter uniquement ses chemins de références aux projets existants.
+  - [ ] Lire les vrais fichiers Atari DOS depuis le catalogue déplacé du média.
+    - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosDirectoryLocation.cs` pour décrire le premier secteur, la capacité et le nombre d'entrées par secteur d'un catalogue Atari DOS trouvé.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` pour rechercher un catalogue déplacé seulement lorsque le catalogue normal est illisible, valider ses noms et ses chaînes avec leur numéro de fichier réel, puis lire ses entrées.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Atari/Dos/AtariDosFileSystemReader.cs` pour accepter le catalogue retrouvé et signaler l'attribut invariant `relocated-directory` lorsqu'il n'occupe pas les secteurs 361 à 368.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj` pour référencer WPF, requis par le nettoyage des fenêtres et du Dispatcher déjà présent dans le validateur local.
+  - [ ] Finaliser le checkpoint 1604 après validation par la campagne normale.
+    - [ ] Supprimer `artifacts/media-audit/items/00001604-1938364d1170aea4/content-analysis.json` après utilisation du diagnostic.
+    - [ ] Modifier `artifacts/media-audit/items/00001604-1938364d1170aea4` en régénérant `report.json` et en supprimant `failed-source.atr` après validation par la campagne normale.
 
 ## Supports optiques
 
@@ -1709,7 +1773,13 @@ Résultats : `F:\GW GUI\artifacts\media-audit`
 
 ## Contrôle récursif des contenus
 
-- [ ] Identifier chaque fichier extrait, y compris dans les sous-dossiers du média.
+  - [ ] Identifier chaque fichier extrait, y compris dans les sous-dossiers du média.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaAuditReport.cs` pour enregistrer catégorie, format, encodage, mode d'exécution, aperçu et empreinte du contenu.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour parcourir récursivement les entrées et arrêter l'audit lorsqu'un fichier reste en catégorie inconnue.
   - [ ] Modifier les tables et détecteurs sous `src/GWGUI.App/Dictionaries/Explorer/FileTypes` et `src/GWGUI.App/Functions/Explorer` à chaque nouveau contenu fiable rencontré.
+
+## Nettoyage des outils temporaires
+
+- [ ] Supprimer les fichiers temporaires de l'identification des formats après la fin de leur utilisation.
+  - [ ] Supprimer `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader/TemporaryLibretroMediaReader.cs`.
+  - [ ] Supprimer `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader/TemporaryLibretroMediaReader.csproj`.

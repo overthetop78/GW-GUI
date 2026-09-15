@@ -24,13 +24,19 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
         DiskImageFormatIds.AtariXfd180
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     /// <inheritdoc />
-    public bool CanRead(SectorImage image) => IsSupportedFormat(image.FormatId) && image.BlockCount >= AtariDosFileSystemLayout.LastDirectorySector && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc) && AtariDosVtocReader.LooksValid(vtoc, image.BlockCount) && AtariDosDirectoryReader.ContainsRecordedEntry(image);
+    public bool CanRead(SectorImage image) => IsSupportedFormat(image.FormatId)
+        && image.BlockCount >= AtariDosFileSystemLayout.LastDirectorySector
+        && AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc)
+        && AtariDosVtocReader.LooksValid(vtoc, image.BlockCount)
+        && AtariDosDirectoryReader.TryLocate(image, out _);
     /// <inheritdoc />
     public FileSystemVolume Read(SectorImage image)
     {
         if (!CanRead(image)) throw AtariDosFileSystemExceptions.UnsupportedDirectory(image.FormatId, image.BlockSize);
+        if (!AtariDosDirectoryReader.TryLocate(image, out var directory))
+            throw AtariDosFileSystemExceptions.UnsupportedDirectory(image.FormatId, image.BlockSize);
         var warnings = new List<string>();
-        var entries = AtariDosDirectoryReader.Read(image, warnings);
+        var entries = AtariDosDirectoryReader.Read(image, directory, warnings);
         var freeSectors = AtariDosVtocReader.ReadFreeSectors(image);
         var isMyDos = AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc)
             && vtoc.Length > 0
@@ -44,7 +50,16 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
             null,
             entries,
             warnings,
-            attributes: isMyDos ? ["mydos", "extended-sector-links"] : ["atari-dos"]);
+            attributes: Attributes(isMyDos, directory));
+    }
+
+    private static IReadOnlyList<string> Attributes(bool isMyDos, AtariDosDirectoryLocation directory)
+    {
+        var attributes = isMyDos
+            ? new List<string> { "mydos", "extended-sector-links" }
+            : ["atari-dos"];
+        if (!directory.IsCanonical) attributes.Add("relocated-directory");
+        return attributes;
     }
 
     private bool IsSupportedFormat(string formatId) =>

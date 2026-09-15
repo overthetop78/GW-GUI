@@ -4,8 +4,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using System.Windows;
-using System.Windows.Threading;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.Domain.Contracts;
@@ -21,6 +19,7 @@ using GWGUI.MediaEngine.Representations.Flux;
 using GWGUI.MediaEngine.Representations.Optical;
 using GWGUI.MediaEngine.Representations.Sectors;
 using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaAudit.TestInfrastructure;
 
 namespace GWGUI.MediaAudit;
 
@@ -82,53 +81,8 @@ internal static partial class Program
         }
         finally
         {
-            ReleaseWpfResources();
+            WpfResourceCleanup.Release();
         }
-    }
-
-    private static void ReleaseWpfResources()
-    {
-        var application = Application.Current;
-        if (application is not null)
-        {
-            var dispatcher = application.Dispatcher;
-            void CloseApplication()
-            {
-                foreach (Window window in application.Windows.Cast<Window>().ToArray())
-                {
-                    window.Owner = null;
-                    window.DataContext = null;
-                    window.Content = null;
-                    window.Close();
-                }
-
-                application.Shutdown();
-                if (!dispatcher.HasShutdownStarted)
-                    dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
-            }
-
-            try
-            {
-                if (dispatcher.CheckAccess())
-                {
-                    CloseApplication();
-                }
-                else
-                {
-                    var operation = dispatcher.InvokeAsync(CloseApplication, DispatcherPriority.Send);
-                    operation.Task.Wait(TimeSpan.FromSeconds(10));
-                }
-            }
-            catch (Exception error) when (error is InvalidOperationException or TaskCanceledException or AggregateException)
-            {
-                if (!dispatcher.HasShutdownStarted)
-                    dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
-            }
-        }
-
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
-        GC.Collect();
     }
 
     private static async Task<MediaAuditReport> AuditAsync(MediaEngineComposition engine, string path, string outputDirectory)

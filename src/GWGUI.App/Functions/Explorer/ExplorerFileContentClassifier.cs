@@ -22,6 +22,7 @@ internal static partial class ExplorerFileContentClassifier
             if (string.Equals(entry.NativeTypeId, "atari-clk-graphic", StringComparison.Ordinal)) return ExplorerFileCategory.Image;
             if (string.Equals(entry.NativeTypeId, "atari-front-compressed-word-list", StringComparison.Ordinal)) return ExplorerFileCategory.Text;
             if (string.Equals(entry.NativeTypeId, "atari-packed-5bit-interlaced-grayscale-image", StringComparison.Ordinal) || string.Equals(entry.NativeTypeId, "atari-fixed-record-animation-frame", StringComparison.Ordinal)) return ExplorerFileCategory.Image;
+            if (IsAtariMovieMakerMovie(entry.Content)) return ExplorerFileCategory.Media;
             if (IsAtariHardInterlacePicture(entry) || IsAtari8BitInterlaceStudioImage(entry)) return ExplorerFileCategory.Image;
             if (IsSuper3DPlotterPoints(entry) || IsSuper3DPlotterLines(entry)) return ExplorerFileCategory.Image;
             if (IsSuper3DPlotterPrinterProfile(entry.Content)) return ExplorerFileCategory.Configuration;
@@ -54,8 +55,7 @@ internal static partial class ExplorerFileContentClassifier
             if (IsWritersToolExtensionModule(entry)) return ExplorerFileCategory.Library;
             if (entry.Content is { Count: 1 }) return ExplorerFileCategory.Data;
             if (IsFilledWithZero(entry.Content)) return ExplorerFileCategory.Data;
-            if (entry.Content is { Count: >= 4 } && entry.Content[0] == 0xff && entry.Content[1] == 0x80 && entry.Content[2] == 0xc9 && entry.Content[3] == 0xc7)
-                return ExplorerFileCategory.Image;
+            if (entry.Content is { Count: >= 4 } && entry.Content[0] == 0xff && entry.Content[1] == 0x80 && entry.Content[2] == 0xc9 && entry.Content[3] == 0xc7) return ExplorerFileCategory.Image;
             if (IsAtari8BitAdvancedMusicSystem(entry.Content)) return ExplorerFileCategory.Audio;
             if (IsAtari8BitDrumPattern(entry.Content)) return ExplorerFileCategory.Audio;
             if (IsAtari8BitDrumSampleBank(entry.Content)) return ExplorerFileCategory.Audio;
@@ -163,7 +163,7 @@ internal static partial class ExplorerFileContentClassifier
             if (HasAsciiPrefix(entry.Content, "CREATION") && entry.Content is { Count: > 8 } && entry.Content[8] == 0x9b)
                 return ExplorerFileCategory.Data;
             if (HasAsciiPrefix(entry.Content, ";------Operating System Equates")) return ExplorerFileCategory.SourceCode;
-            if (IsAtariMac65Source(entry.Content)) return ExplorerFileCategory.SourceCode;
+            if (IsAtariMac65Source(entry.Content) || IsAtariXasmSource(entry.Content)) return ExplorerFileCategory.SourceCode;
             if (IsAtariWriterDocument(entry.Content)) return ExplorerFileCategory.Document;
             if (IsMiniOfficeDocument(entry.Content)) return ExplorerFileCategory.Document;
             if (IsAtasciiTerminalScreen(entry)) return ExplorerFileCategory.Text;

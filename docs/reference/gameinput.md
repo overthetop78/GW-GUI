@@ -146,7 +146,7 @@ Le relevé déconnecté et la comparaison complète sont enregistrés dans `docs
 - Cause corrigée : l'objet COM GameInput était créé sur un thread puis interrogé directement depuis le thread STA de WPF. Toutes les opérations publiques passent désormais par un worker MTA dédié.
 - Les lectures ne récupèrent plus `IGameInputDevice` par conversion d'un RCW partagé et ne libèrent plus ce RCW depuis un callback brut.
 - Régression matérielle ajoutée : lecture détaillée de chaque contrôleur depuis un thread WPF.
-- 49 tests GameInput/localisation non interactifs passent ensemble, puis le build officiel `scripts/build.ps1 -Configuration Debug` passe.
+- 49 tests GameInput/localisation non interactifs passent ensemble, puis le build officiel `scripts/local-building/build.ps1 -Configuration Debug` passe.
 - Validation dans `build/Debug/GW GUI/gwgui.exe` : ouverture de l'onglet Manettes, lecture continue et nouvelle détection sans nouvelle entrée dans `errors-20260823.log` ; le processus reste réactif.
 
 Captures supplémentaires de la session :
@@ -164,7 +164,7 @@ Ces trois relevés enrichis instantanés ne contiennent que `usb gamepad` et `Xb
 - Lecture matérielle détaillée et dix cycles de réinitialisation/lecture : `docs/captures/gameinput-20260823-live-stress.txt`.
 - Les périphériques encore connectés pendant la lecture détaillée étaient `usb gamepad` (0810:E501) et `Xbox Rematch Core Wired Controller- Black` (10F5:7122). La Xbox Series sans fil 045E:0B12 s'était déjà éteinte et n'était plus énumérée par GameInput.
 - Le scénario réel Options > Manettes > Détecter > sélectionner la Turtle Beach a révélé quatre exceptions WPF, conservées dans `docs/captures/gwgui-errors-after-live-ui-20260823.txt` : la colonne `Active` utilisait la liaison implicite TwoWay sur une propriété en lecture seule.
-- Correction : la liaison `Active` est explicitement `Mode=OneWay`. Après reconstruction par `scripts/build.ps1 -Configuration Debug`, redétection, changement de périphérique et quinze secondes de lecture continue, `errors-20260823.log` est resté à 92 964 octets : zéro nouvelle erreur.
+- Correction : la liaison `Active` est explicitement `Mode=OneWay`. Après reconstruction par `scripts/local-building/build.ps1 -Configuration Debug`, redétection, changement de périphérique et quinze secondes de lecture continue, `errors-20260823.log` est resté à 92 964 octets : zéro nouvelle erreur.
 - Le lot GameInput/visualisation/localisation passe à 58/58 dans l'environnement Windows normal. Le test matériel détaillé confirme au repos 6 axes à 0,000 et 18 boutons à 0 pour la Turtle Beach.
 - Captures visuelles : `build/Debug/options-manettes-after-binding-fix.png`, `build/Debug/options-manettes-live-values.png` et `build/Debug/options-manettes-current-idle.png`.
 - Le faux état bleu au repos est corrigé : les boutons Gamepad absents ne sont plus interprétés comme pressés et les axes bruts absents sont centrés à 0,5. Le test `MissingRawControlsAreReleasedAndCentered` et la capture `build/Debug/options-manettes-empty-raw-fixed.png` couvrent cette régression.
@@ -183,7 +183,7 @@ Ces trois relevés enrichis instantanés ne contiennent que `usb gamepad` et `Xb
 
 - Capture visuelle du build Debug final : `docs/captures/manettes-hid-final-build.png`. L’écran réel affiche `2 axes · 11 boutons · 0 commutateurs` pour `usb gamepad` (0810:E501).
 - Après ouverture de Manettes et redétection, `gwgui.exe` reste réactif. Le journal reste stable à 99 757 octets sans lancer de tests ; les nouvelles entrées de 09:04 à 09:13 sont toutes produites par `testhost.exe`, pas par l’application.
-- Validation ciblée finale : 74/74 tests GameInput, HID, interface Manettes, visualisation et localisation passent ; le build officiel `scripts/build.ps1 -Configuration Debug` passe.
+- Validation ciblée finale : 74/74 tests GameInput, HID, interface Manettes, visualisation et localisation passent ; le build officiel `scripts/local-building/build.ps1 -Configuration Debug` passe.
 
 
 ## Reconnexion courte et lecture des plantages — 23 août 2026
@@ -202,7 +202,7 @@ Ces trois relevés enrichis instantanés ne contiennent que `usb gamepad` et `Xb
 - Un test de réflexion `GameInputInteropSignatureTests` verrouille toutes les interfaces COM et le type de retour de `GetRawReport`.
 - Preuve matérielle avant/après sur la Turtle Beach 10F5:7122 : avant la correction, le périphérique annonçait `Gamepad` mais l'état standard restait `null`; après la correction, `GetGamepadState` renvoie bien `GAMEPAD buttons=None` et les six valeurs analogiques au repos.
 - Capture : `docs/captures/gameinput-detailed-after-preservesig-20260823.txt`.
-- Le build officiel `scripts/build.ps1 -Configuration Debug` passe. Dans le vrai `build/Debug/GW GUI/gwgui.exe`, Options > Manettes affiche `usb gamepad`, le visuel Mega Drive, 2 axes, 11 boutons et les deux rapports d'entrée. Capture : `docs/captures/gameinput-preservesig-ui-20260823.png`.
+- Le build officiel `scripts/local-building/build.ps1 -Configuration Debug` passe. Dans le vrai `build/Debug/GW GUI/gwgui.exe`, Options > Manettes affiche `usb gamepad`, le visuel Mega Drive, 2 axes, 11 boutons et les deux rapports d'entrée. Capture : `docs/captures/gameinput-preservesig-ui-20260823.png`.
 - Après un clic réel sur Détecter, le processus PID 38168 reste répondant et `errors-20260823.log` reste exactement à 101349 octets.
 - La suite GameInput/HID/visualisation hors écoute interactive passe 38/38. Une écoute annoncée de 15 secondes n'a observé aucun mouvement ; sa sortie est conservée dans `docs/captures/gameinput-live-signal-after-preservesig-20260823.txt` et ne constitue pas une validation physique réussie.
 
@@ -229,7 +229,7 @@ Ces trois relevés enrichis instantanés ne contiennent que `usb gamepad` et `Xb
 - Le test d’intégration de OptionsControllersSection injecte maintenant un bouton A, quatre axes et deux gâchettes, vérifie le dessin pressé, puis relâché, en plus du tableau et des valeurs analogiques. Les 5 tests GameInputControllersSectionBehaviorTests passent.
 - Les erreurs volontaires de ce test utilisent désormais un logger injecté. Elles restent vérifiées mais n’écrivent plus dans le journal utilisateur de GW GUI.
 - Preuve : une nouvelle exécution des 5 tests a laissé errors-20260823.log strictement inchangé à 106125 octets.
-- Le build officiel scripts/build.ps1 -Configuration Debug passe après ces changements.
+- Le build officiel scripts/local-building/build.ps1 -Configuration Debug passe après ces changements.
 - Validation finale du binaire build/Debug/GW GUI/gwgui.exe, PID 36244 : Options > Manettes, Turtle Beach sélectionnée, 6 axes, 18 boutons, 4 moteurs de vibration, D-pad neutre, processus répondant.
 - Capture finale : docs/captures/manettes-final-debug-turtlebeach-20260823.png.
 - Après cette validation réelle, le journal reste strictement inchangé à 106125 octets et conserve seulement les quatre anciennes erreurs gwgui de 08:01 déjà corrigées.
@@ -282,7 +282,7 @@ Ces trois relevés enrichis instantanés ne contiennent que `usb gamepad` et `Xb
 - Tous les bits de boutons standard GameInput des gamepads, volants, joysticks de vol et sticks arcade sont injectés un par un dans les tests ; chaque signal modifie le visuel concerné. Les axes, gâchettes, pédales, volant, rapport engagé et chapeau directionnel sont également injectés individuellement.
 - Le test de vibration vérifie la séquence complète : activation des seuls moteurs annoncés par le périphérique, attente de 500 ms, puis arrêt explicite des quatre canaux.
 - Les 66 tests non interactifs GameInput/onglet/visuels passent. Les 40 tests de localisation passent pour les 29 langues, y compris le remplacement immédiat des textes et les nouvelles valeurs de modèles.
-- Le build officiel `scripts/build.ps1 -Configuration Debug` passe. Le binaire `build/Debug/GW GUI/gwgui.exe` a été lancé, était répondant, puis a été fermé avec `Remaining=0`. Aucun nouvel événement Windows `gwgui`, `GW GUI` ou `GameInputRedist.dll` n’a été trouvé.
+- Le build officiel `scripts/local-building/build.ps1 -Configuration Debug` passe. Le binaire `build/Debug/GW GUI/gwgui.exe` a été lancé, était répondant, puis a été fermé avec `Remaining=0`. Aucun nouvel événement Windows `gwgui`, `GW GUI` ou `GameInputRedist.dll` n’a été trouvé.
 - Relevé matériel après rallumage annoncé de la Xbox Series : trois exécutions séparées, dix actualisations sur douze secondes et une capture brute `RegisterDeviceCallback` n’ont exposé que `usb gamepad` et `Xbox Rematch Core Wired Controller- Black`. Aucune entrée `045E:0B12` n’était fournie par GameInput.
 - Une écoute d’activité de quinze secondes n’a reçu aucun changement. Elle a échoué avec la liste GameInput exacte `usb gamepad (0810:E501)`, `Xbox Rematch Core Wired Controller- Black (10F5:7122)`. Cette absence est conservée comme constat matériel ; elle n’est pas attribuée au filtre de GW GUI puisque la capture brute GameInput ne contenait pas non plus la Xbox Series.
 - Au même instant, Windows PnP marquait pourtant `HID\VID_045E&PID_0B12&IG_00`, son interface USB et le récepteur `USB\VID_045E&PID_02E6` comme présents et sans problème. Les résolutions directes GameInput du chemin HID, des deux identifiants PnP, du récepteur et du nom `Xbox Wireless Adapter for Windows #2` ont toutes renvoyé `0x80070490` (introuvable). Le désaccord actuel est donc Windows PnP présent / GameInput absent, pas une suppression par GW GUI.

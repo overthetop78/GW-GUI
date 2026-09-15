@@ -1740,7 +1740,7 @@ aux contrôles normaux du projet. Il n’utilise pas les corpus locaux de média
     - [x] Créer `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` vérifiant les dépendances interdites entre Domain, MediaEngine, Infrastructure, App et les modules.
   - [x] 9.2 Consigner les résultats réels
     - [x] Modifier `docs/project/testing.md` avec les commandes et résultats obtenus après compilation de `GWGUI.MediaEngine`, `GWGUI.App`, `GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et exécution des tests ciblés.
-    - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe`.
+    - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/local-building/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe`.
     - [x] Créer `docs/architecture/media-format-orchestration.md` avec la structure réellement obtenue, les registres, la chaîne Reader-document-Writer, les points d’intégration et les limites encore ouvertes.
 
 - [x] 10. Réordonner les feuilles avant la phase d’affichage

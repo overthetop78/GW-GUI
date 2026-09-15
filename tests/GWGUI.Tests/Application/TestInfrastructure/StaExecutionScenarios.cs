@@ -1,3 +1,4 @@
+using System.Runtime.ExceptionServices;
 using System.Windows.Threading;
 
 namespace GWGUI.Tests.Application.TestInfrastructure;
@@ -54,33 +55,73 @@ public sealed class StaExecutionScenarios : IDisposable
 
     public void Dispose()
     {
-        if (!dispatcher.HasShutdownStarted && !dispatcher.HasShutdownFinished)
+        Exception? cleanupFailure = null;
+        try
         {
-            dispatcher.Invoke(() =>
+            if (!dispatcher.HasShutdownStarted && !dispatcher.HasShutdownFinished)
             {
-                CloseAndReleaseWindows();
-                application.Shutdown();
-            }, DispatcherPriority.Send);
-            if (!dispatcher.HasShutdownStarted)
-                dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
+                dispatcher.Invoke(() =>
+                {
+                    CloseAndReleaseWindows();
+                    application.Shutdown();
+                }, DispatcherPriority.Send);
+            }
         }
-        if (!thread.Join(TimeSpan.FromSeconds(5))) throw new TimeoutException("WPF test dispatcher did not stop.");
-        if (thread.IsAlive || !dispatcher.HasShutdownFinished)
-            throw new InvalidOperationException("WPF test dispatcher thread did not finish its shutdown.");
-        GC.Collect();
-        GC.WaitForPendingFinalizers();
-        GC.Collect();
+        catch (Exception error)
+        {
+            cleanupFailure = error;
+        }
+        finally
+        {
+            try
+            {
+                if (!dispatcher.HasShutdownStarted && !dispatcher.HasShutdownFinished)
+                    dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
+            }
+            catch (Exception error)
+            {
+                cleanupFailure ??= error;
+            }
+
+            if (!thread.Join(TimeSpan.FromSeconds(5)))
+                cleanupFailure ??= new TimeoutException("WPF test dispatcher did not stop.");
+            else if (thread.IsAlive || !dispatcher.HasShutdownFinished)
+                cleanupFailure ??= new InvalidOperationException(
+                    "WPF test dispatcher thread did not finish its shutdown.");
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+        }
+
+        if (cleanupFailure is not null)
+            ExceptionDispatchInfo.Capture(cleanupFailure).Throw();
     }
 
     private void CloseAndReleaseWindows()
     {
+        Exception? closeFailure = null;
         foreach (System.Windows.Window window in application.Windows.Cast<System.Windows.Window>().ToArray())
         {
-            var handle = new System.Windows.Interop.WindowInteropHelper(window).Handle;
-            if (handle != IntPtr.Zero) window.Close();
-            window.DataContext = null;
-            window.Content = null;
+            try
+            {
+                window.Owner = null;
+                var handle = new System.Windows.Interop.WindowInteropHelper(window).Handle;
+                if (handle != IntPtr.Zero) window.Close();
+            }
+            catch (Exception error)
+            {
+                closeFailure ??= error;
+            }
+            finally
+            {
+                window.DataContext = null;
+                window.Content = null;
+            }
         }
+
+        if (closeFailure is not null)
+            ExceptionDispatchInfo.Capture(closeFailure).Throw();
     }
 
     private sealed class ResourceApplication : System.Windows.Application

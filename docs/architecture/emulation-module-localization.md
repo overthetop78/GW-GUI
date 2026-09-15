@@ -45,7 +45,7 @@ id-ID, it-IT, ja-JP, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
 sv-SE, th-TH, tr-TR, uk-UA, vi-VN, zh-Hans, zh-Hant.
 
 Conserver les 29 cultures, plus `00-Base`. Argos est l'outil installé pour compléter uniquement
-les traductions nouvelles ou manquantes ; le script existant est `scripts/translate-resx-argos.py`.
+les traductions nouvelles ou manquantes ; le script existant est `scripts/tools/translate-resx-argos.py`.
 
 ## Consommateurs à raccorder ou à préserver
 

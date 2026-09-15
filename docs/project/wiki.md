@@ -7,7 +7,7 @@ Les sources du wiki sont conservées dans [wiki/](../../wiki/Home.md), avec un d
 ## Préparer les fichiers localement
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-wiki.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/wiki/build-wiki.ps1
 ```
 
 Le script vérifie la présence des langues, l’unicité des noms de pages et les cibles des liens locaux. Il copie les pages et les images dans `build/wiki`, en convertissant les liens Markdown et les chemins des balises HTML `<img>` vers les URL adaptées à GitHub Wiki. Il conserve les dossiers par langue.
@@ -18,7 +18,7 @@ Le script vérifie la présence des langues, l’unicité des noms de pages et l
 .\scripts\publish-wiki.cmd
 ```
 
-Cette commande lance `publish-wiki.ps1`, qui appelle d’abord `build-wiki.ps1`, clone le dépôt du wiki, synchronise les fichiers, puis effectue le commit et le push du wiki. Git doit disposer d’un accès en écriture au wiki ; le script reprend le nom et l’adresse de l’auteur configurés dans le dépôt principal.
+Cette commande lance `wiki/publish-wiki.ps1`, qui appelle d’abord `build-wiki.ps1`, clone le dépôt du wiki, synchronise les fichiers, puis effectue le commit et le push du wiki. Git doit disposer d’un accès en écriture au wiki ; le script reprend le nom et l’adresse de l’auteur configurés dans le dépôt principal.
 
 Lors de la toute première mise en place, le wiki doit être activé et posséder une première page créée sur GitHub pour permettre son clonage.
 

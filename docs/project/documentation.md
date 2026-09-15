@@ -32,7 +32,7 @@ réalisées appartiennent à Git et ne restent pas sous forme de feuilles de tâ
 
 ## Recherche des éléments invalides
 
-`scripts/find-invalid-documentation.ps1` trouve les liens Markdown locaux cassés, les documents non indexés et les
+`scripts/tools/find-invalid-documentation.ps1` trouve les liens Markdown locaux cassés, les documents non indexés et les
 feuilles terminées dans `docs/tasks`. Le résultat du dernier nettoyage complet est inscrit ici à la
 fin de l’opération.
 

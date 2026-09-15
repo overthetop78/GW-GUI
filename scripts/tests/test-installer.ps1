@@ -12,7 +12,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 if ([string]::IsNullOrWhiteSpace($SetupPath)) { $SetupPath = Join-Path $repository 'dist\GW-GUI-0.1.0-win-x64-setup.exe' }
 if ([string]::IsNullOrWhiteSpace($InstallDirectory)) { $InstallDirectory = Join-Path $repository 'dist\installer-smoke' }
 $setup = [IO.Path]::GetFullPath($SetupPath)
@@ -29,8 +29,11 @@ if (Test-Path -LiteralPath $uninstallRegistryPath) {
 }
 
 $uninstaller = Join-Path $destination 'unins000.exe'
+$install = $null
+$uninstall = $null
 try {
-    $install = Start-Process -FilePath $setup -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', "/LANG=$InstallerLanguage", "/DIR=`"$destination`"") -Wait -PassThru
+    $install = Start-Process -FilePath $setup -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', "/LANG=$InstallerLanguage", "/DIR=`"$destination`"") -PassThru
+    $install.WaitForExit()
     if ($install.ExitCode -ne 0) { throw "Installer exited with code $($install.ExitCode)." }
 
     $required = @('gwgui.exe', 'unins000.exe')
@@ -63,9 +66,20 @@ try {
     [pscustomobject]@{ InstallDirectory = $destination; ProductVersion = $version; InstallerLanguage = $registeredLanguage; RequiredFiles = $required.Count }
 }
 finally {
-    if (Test-Path -LiteralPath $uninstaller -PathType Leaf) {
-        $uninstall = Start-Process -FilePath $uninstaller -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -Wait -PassThru
-        if ($uninstall.ExitCode -ne 0) { throw "Uninstaller exited with code $($uninstall.ExitCode)." }
+    try {
+        if ($null -ne $install -and -not $install.HasExited) {
+            $install.Kill($true)
+            $install.WaitForExit()
+        }
+        if (Test-Path -LiteralPath $uninstaller -PathType Leaf) {
+            $uninstall = Start-Process -FilePath $uninstaller -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -PassThru
+            $uninstall.WaitForExit()
+            if ($uninstall.ExitCode -ne 0) { throw "Uninstaller exited with code $($uninstall.ExitCode)." }
+        }
+    }
+    finally {
+        if ($null -ne $uninstall) { $uninstall.Dispose() }
+        if ($null -ne $install) { $install.Dispose() }
     }
 }
 

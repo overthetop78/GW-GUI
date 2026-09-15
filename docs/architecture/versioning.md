@@ -5,9 +5,9 @@ indépendamment.
 
 ## Application
 
-`GWGUI.App.csproj` définit `0.3.0` comme version locale par défaut. `scripts/build.ps1` lit cette
+`GWGUI.App.csproj` définit `0.3.0` comme version locale par défaut. `scripts/local-building/build.ps1` lit cette
 valeur lorsqu’aucun `-Version X.Y.Z` n’est fourni et la transmet aux publications de l’application,
-du lanceur et de l’updater. `scripts/package.ps1` exige une version et l’emploie aussi dans les noms
+du lanceur et de l’updater. `scripts/release/package/package.ps1` exige une version et l’emploie aussi dans les noms
 du ZIP portable et de l’installateur.
 
 Lors d’une publication GitHub, le numéro `X.Y.Z` du fichier

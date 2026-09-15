@@ -39,9 +39,9 @@ Après la construction des paquets, le workflow prépare et vérifie les sources
 Ces contrôles peuvent aussi être lancés localement après le packaging. Exemple pour les paquets `0.1.3` :
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -SetupPath dist/GW-GUI-0.1.3-win-x64-setup.exe -ExpectedVersion 0.1.3 -InstallerLanguage english
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -SetupPath dist/GW-GUI-0.1.3-win-x64-setup.exe -ExpectedVersion 0.1.3 -InstallerLanguage french
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer-upgrade.ps1 -CurrentVersion 0.1.3
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tests/test-installer.ps1 -SetupPath dist/GW-GUI-0.1.3-win-x64-setup.exe -ExpectedVersion 0.1.3 -InstallerLanguage english
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tests/test-installer.ps1 -SetupPath dist/GW-GUI-0.1.3-win-x64-setup.exe -ExpectedVersion 0.1.3 -InstallerLanguage french
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tests/test-installer-upgrade.ps1 -CurrentVersion 0.1.3
 ```
 
 | Contrôle | Ce qu’il vérifie |
@@ -75,7 +75,7 @@ dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --configuration De
 Le script de construction Debug standard a ensuite terminé avec succès :
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug
 ```
 
 Le script a produit l'application sans module d'émulation préinstallé. La présence de
@@ -99,7 +99,7 @@ de fichiers sont ajoutés dans les feuilles suivantes.
 Le build destiné à la vérification visuelle a ensuite été recréé avec la commande standard :
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug
 ```
 
 Le script a terminé avec succès et la présence de
@@ -146,7 +146,7 @@ tous les cas. Aucun fichier des quatre racines d'audit n'est lu par ces commande
 La construction Debug complète exécutée après ces validations a également réussi :
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug
 ```
 
 Le script a produit l'application sans module d'émulation préinstallé. La présence de
@@ -169,7 +169,7 @@ plages avec annulation et préservation de la destination.
 Le build Debug standard exécuté après ces validations a terminé avec succès :
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug
 ```
 
 Le script a produit l'application sans module d'émulation préinstallé. La présence de
@@ -177,7 +177,7 @@ Le script a produit l'application sans module d'émulation préinstallé. La pr�
 
 ## Ancien contrôle interactif, manuel uniquement
 
-`scripts/test-app-accessibility.ps1` reste disponible pour ouvrir l’exécutable empaqueté, contrôler son redimensionnement avec le DPI Windows et inspecter les noms accessibles. Ce script nécessite un bureau ; il n’est plus appelé par le workflow de release ni par `GWGUI.Tests`. Les tests hors écran ne sont pas présentés comme un remplacement de sa vérification du cadre natif.
+`scripts/tests/test-app-accessibility.ps1` reste disponible pour ouvrir l’exécutable empaqueté, contrôler son redimensionnement avec le DPI Windows et inspecter les noms accessibles. Ce script nécessite un bureau ; il n’est plus appelé par le workflow de release ni par `GWGUI.Tests`. Les tests hors écran ne sont pas présentés comme un remplacement de sa vérification du cadre natif.
 
 ## Contrat de fermeture WPF et graphique
 
@@ -200,7 +200,7 @@ pas déclenché l'audit manuel des corpus locaux ni lancé l'application.
 
 L'exécutable `GWGUI.LocalDiskImageTests` libère dans son bloc `finally` l'éventuelle `Application`
 WPF chargée par l'analyse, ses fenêtres, son `Dispatcher` et les objets en attente de finalisation.
-Le script `scripts/analyze-media-data.ps1` démarre chaque
+Le script `scripts/temp/analyze-media-data.ps1` démarre chaque
 invocation `dotnet` sans créer de fenêtre, attend sa terminaison,
 arrête son arbre de processus si l'exécution est interrompue et libère l'objet processus avant de
 passer au média suivant. Ce contrat s'applique aussi aux erreurs de reconnaissance et de validation.

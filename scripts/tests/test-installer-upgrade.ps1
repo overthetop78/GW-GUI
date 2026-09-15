@@ -6,7 +6,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $dist = [IO.Path]::GetFullPath((Join-Path $repository 'dist'))
 $distPrefix = $dist + [IO.Path]::DirectorySeparatorChar
 if ([string]::IsNullOrWhiteSpace($CurrentSetupPath)) {
@@ -46,6 +46,9 @@ if (-not $iscc) {
 if (-not $iscc) { throw 'Inno Setup 6 (ISCC.exe) was not found.' }
 
 $uninstaller = Join-Path $destination 'unins000.exe'
+$previousInstall = $null
+$currentInstall = $null
+$uninstall = $null
 try {
     New-Item -ItemType Directory -Path $fixtureDirectory | Out-Null
     & $iscc "/DMyAppVersion=$PreviousVersion" "/DSourceDir=$publishDirectory" "/DOutputDir=$fixtureDirectory" (Join-Path $repository 'installer\GWGUI.iss') | Out-Null
@@ -54,7 +57,8 @@ try {
     if (-not (Test-Path -LiteralPath $previousSetup -PathType Leaf)) { throw 'Previous-version fixture was not produced.' }
 
     $installArguments = @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', "/DIR=`"$destination`"")
-    $previousInstall = Start-Process -FilePath $previousSetup -ArgumentList $installArguments -Wait -PassThru
+    $previousInstall = Start-Process -FilePath $previousSetup -ArgumentList $installArguments -PassThru
+    $previousInstall.WaitForExit()
     if ($previousInstall.ExitCode -ne 0) { throw "Previous installer exited with code $($previousInstall.ExitCode)." }
     $previousRegistration = Get-ItemProperty -LiteralPath $uninstallRegistryPath
     if ($previousRegistration.DisplayVersion -ne $PreviousVersion) {
@@ -79,7 +83,8 @@ try {
         }
     })
 
-    $currentInstall = Start-Process -FilePath $currentSetup -ArgumentList $installArguments -Wait -PassThru
+    $currentInstall = Start-Process -FilePath $currentSetup -ArgumentList $installArguments -PassThru
+    $currentInstall.WaitForExit()
     if ($currentInstall.ExitCode -ne 0) { throw "Current installer exited with code $($currentInstall.ExitCode)." }
     $currentRegistration = Get-ItemProperty -LiteralPath $uninstallRegistryPath
     if ($currentRegistration.DisplayVersion -ne $CurrentVersion) {
@@ -112,22 +117,36 @@ try {
     }
 }
 finally {
-    if (Test-Path -LiteralPath $uninstaller -PathType Leaf) {
-        $uninstall = Start-Process -FilePath $uninstaller -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -Wait -PassThru
-        if ($uninstall.ExitCode -ne 0) { throw "Uninstaller exited with code $($uninstall.ExitCode)." }
-    }
-    if (Test-Path -LiteralPath $uninstallRegistryPath) { throw 'The uninstall registration remained after cleanup.' }
-    if (Test-Path -LiteralPath $destination) {
-        $retainedModules = Join-Path $destination 'Modules'
-        if (Test-Path -LiteralPath $retainedModules) {
-            Remove-Item -LiteralPath $retainedModules -Recurse -Force
+    try {
+        foreach ($process in @($previousInstall, $currentInstall)) {
+            if ($null -ne $process -and -not $process.HasExited) {
+                $process.Kill($true)
+                $process.WaitForExit()
+            }
         }
-        $remaining = @(Get-ChildItem -LiteralPath $destination -Force)
-        if ($remaining.Count -ne 0) { throw "Uninstaller left $($remaining.Count) item(s) in $destination." }
-        Remove-Item -LiteralPath $destination -Force
+        if (Test-Path -LiteralPath $uninstaller -PathType Leaf) {
+            $uninstall = Start-Process -FilePath $uninstaller -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -PassThru
+            $uninstall.WaitForExit()
+            if ($uninstall.ExitCode -ne 0) { throw "Uninstaller exited with code $($uninstall.ExitCode)." }
+        }
+        if (Test-Path -LiteralPath $uninstallRegistryPath) { throw 'The uninstall registration remained after cleanup.' }
+        if (Test-Path -LiteralPath $destination) {
+            $retainedModules = Join-Path $destination 'Modules'
+            if (Test-Path -LiteralPath $retainedModules) {
+                Remove-Item -LiteralPath $retainedModules -Recurse -Force
+            }
+            $remaining = @(Get-ChildItem -LiteralPath $destination -Force)
+            if ($remaining.Count -ne 0) { throw "Uninstaller left $($remaining.Count) item(s) in $destination." }
+            Remove-Item -LiteralPath $destination -Force
+        }
+        if (Test-Path -LiteralPath $fixtureDirectory) {
+            Remove-Item -LiteralPath $fixtureDirectory -Recurse -Force
+        }
     }
-    if (Test-Path -LiteralPath $fixtureDirectory) {
-        Remove-Item -LiteralPath $fixtureDirectory -Recurse -Force
+    finally {
+        if ($null -ne $uninstall) { $uninstall.Dispose() }
+        if ($null -ne $currentInstall) { $currentInstall.Dispose() }
+        if ($null -ne $previousInstall) { $previousInstall.Dispose() }
     }
 }
 

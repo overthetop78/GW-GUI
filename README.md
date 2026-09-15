@@ -44,7 +44,23 @@ nécessaires restent à fournir par l’utilisateur.
 
 Le [wiki utilisateur](https://github.com/overthetop78/GW-GUI/wiki) propose un choix parmi 29 langues. Le menu d’aide ouvre directement le guide dans la langue de l’application. Cette aide est uniquement en ligne ; les guides sont progressivement enrichis et révisés.
 
-## Compiler le projet avec build.ps1
+## Compiler le projet localement
+
+Le lanceur interactif demande la configuration et les modules à inclure :
+
+```cmd
+scripts\local-building.cmd
+```
+
+Les choix peuvent aussi être fournis directement :
+
+```cmd
+scripts\local-building.cmd --building=debug --modules=amiga,atari
+scripts\local-building.cmd --building=release --modules=A
+scripts\local-building.cmd --building=debug --modules=0
+```
+
+Le script PowerShell reste directement utilisable :
 
 Prérequis : **Windows, PowerShell et le SDK .NET 10**. La sélection du SDK est définie dans [global.json](global.json). Exécuter les commandes depuis la racine du dépôt.
 
@@ -52,25 +68,25 @@ Le script compile l’application et son lanceur, puis range les bibliothèques 
 
 ```powershell
 # Construire Debug et Release
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1
 
 # Construire uniquement Debug
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug
 
 # Construire Debug avec une version locale explicite
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug -Version 0.3.0
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug -Version 0.3.0
 
 # Construire uniquement Release
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Release
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Release
 
 # Construire Debug avec un seul module
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug --Module amiga
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug --Module amiga
 
 # Construire Debug avec plusieurs modules choisis
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug --Module amiga,atari
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug --Module amiga,atari
 
 # Construire Debug avec tous les modules découverts
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug --AllModules
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-building/build.ps1 -Configuration Debug --AllModules
 ```
 
 Sans `--Module` ni `--AllModules`, le dossier `Modules` est créé vide. `--Module` accepte un ou
@@ -93,10 +109,10 @@ Le paramètre `-Version` est obligatoire. Dans les exemples suivants, `0.1.3` es
 
 ```powershell
 # Créer le ZIP portable et l’installateur
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1 -Version 0.1.3
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\release\package\package.ps1 -Version 0.1.3
 
 # Créer uniquement le ZIP portable, sans nécessiter Inno Setup
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1 -Version 0.1.3 -SkipInstaller
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\release\package\package.ps1 -Version 0.1.3 -SkipInstaller
 ```
 
 | Sortie | Contenu |

@@ -117,10 +117,10 @@ demandé. Les tâches sont exécutées et cochées une par une, dans l’ordre.
   - [x] 1.8 Ajouter tous les textes du Visualiseur
     - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs` pour utiliser un libellé court dédié dans le sélecteur de piste au lieu du résumé multiligne historique `Visual.Track`.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml.cs` pour représenter une seule fois les éléments sans surface déclarée, sans les dupliquer sur chaque face, couche ou voie disponible.
-    - [x] Modifier `scripts/translate-resx-argos.py` pour permettre à `--sync-all` de cibler une seule culture et ainsi traduire les fichiers de ressources un par un dans l’ordre de la feuille.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` pour permettre à `--sync-all` de cibler une seule culture et ainsi traduire les fichiers de ressources un par un dans l’ordre de la feuille.
     - [x] Modifier `docs/project/scripts.md` pour documenter l’option de culture ciblée ajoutée au script Argos.
     - [x] Modifier `src/GWGUI.App/Resources/00-Base/Visualizer.resx` avec les clés communes et les valeurs anglaises ou invariantes nécessaires aux cinq représentations, sans dupliquer CPU, CHS, LBA, CD, DVD ni les noms de formats.
-    - [x] Modifier `scripts/translate-resx-argos.py` pour permettre à `--sync-all` de limiter la synchronisation à un seul catalogue de ressources.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` pour permettre à `--sync-all` de limiter la synchronisation à un seul catalogue de ressources.
     - [x] Modifier `docs/project/scripts.md` pour documenter le filtre de catalogue utilisable avec la synchronisation Argos ciblée.
     - [x] Modifier `src/GWGUI.App/Resources/ar-SA/Visualizer.resx` avec les traductions arabes des nouvelles clés du Visualiseur produites avec Argos.
     - [x] Modifier `src/GWGUI.App/Resources/cs-CZ/Visualizer.resx` avec les traductions tchèques des nouvelles clés du Visualiseur produites avec Argos.
@@ -175,7 +175,7 @@ demandé. Les tâches sont exécutées et cochées une par une, dans l’ordre.
     - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` pour vérifier directement les noms accessibles attachés aux commandes sans créer de pairs UI Automation qui bloquent ensuite le dispatcher WPF partagé.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml` pour attribuer explicitement aux commandes d’inspection leurs noms accessibles traduits, indépendamment de la création d’un pair UI Automation.
     - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` pour limiter le scénario des noms accessibles aux propriétés concernées et ne pas laisser un second arbre visuel arrangé sur le dispatcher partagé.
-    - [x] Modifier `docs/project/testing.md` avec le résultat des tests généraux du Visualiseur et de `scripts/build.ps1 -Configuration Debug`, la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` et les chemins manuels à ouvrir pour observer Flux, Sectors, Blocks, OpticalTracks et Sequential.
+    - [x] Modifier `docs/project/testing.md` avec le résultat des tests généraux du Visualiseur et de `scripts/local-building/build.ps1 -Configuration Debug`, la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` et les chemins manuels à ouvrir pour observer Flux, Sectors, Blocks, OpticalTracks et Sequential.
 
   Après achèvement et validation de toutes les cases de cette feuille, créer le deuxième commit
   demandé avec cette base graphique. Continuer ensuite avec la première case non cochée de

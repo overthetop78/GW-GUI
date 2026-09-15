@@ -5,7 +5,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 if ([string]::IsNullOrWhiteSpace($ApplicationPath)) { $ApplicationPath = Join-Path $repository 'dist\portable\GW GUI\gwgui.exe' }
 $application = [IO.Path]::GetFullPath($ApplicationPath)
 if (-not (Test-Path -LiteralPath $application -PathType Leaf)) { throw "Application not found: $application" }
@@ -26,8 +26,9 @@ $interactiveTypes = @(
     'ControlType.CheckBox', 'ControlType.RadioButton', 'ControlType.MenuItem', 'ControlType.TreeItem',
     'ControlType.Slider', 'ControlType.Hyperlink'
 )
-$process = Start-Process -FilePath $application -PassThru
+$process = $null
 try {
+    $process = Start-Process -FilePath $application -PassThru
     $root = $null
     for ($attempt = 0; $attempt -lt 40 -and $null -eq $root; $attempt++) {
         Start-Sleep -Milliseconds 250
@@ -106,8 +107,18 @@ try {
     }
 }
 finally {
-    if (-not $process.HasExited) {
-        $null = $process.CloseMainWindow()
-        if (-not $process.WaitForExit(5000)) { Stop-Process -Id $process.Id -Force }
+    if ($null -ne $process) {
+        try {
+            if (-not $process.HasExited) {
+                $null = $process.CloseMainWindow()
+                if (-not $process.WaitForExit(5000)) {
+                    $process.Kill($true)
+                    $process.WaitForExit()
+                }
+            }
+        }
+        finally {
+            $process.Dispose()
+        }
     }
 }

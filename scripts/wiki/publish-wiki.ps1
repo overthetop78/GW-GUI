@@ -1,7 +1,7 @@
 param()
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $built = Join-Path $repository 'build\wiki'
 & (Join-Path $PSScriptRoot 'build-wiki.ps1')
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) { throw 'Git is required.' }

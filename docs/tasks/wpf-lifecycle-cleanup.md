@@ -28,8 +28,29 @@
   - [x] Modifier `.codex/config.toml` pour imposer la même règle à chaque future intervention de Codex et éviter toute nouvelle accumulation de ressources dans DWM.
 - [x] 9. Appliquer la prévention au processus d'audit qui provoque l'accumulation DWM.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` afin de libérer après chaque exécution toutes les ressources graphiques et WPF chargées par l'audit, y compris en cas d'erreur.
-  - [x] Modifier `scripts/analyze-media-data.ps1` afin que chaque processus du validateur soit terminé et libéré avant le passage au média suivant, y compris en cas d'erreur ou d'interruption.
+  - [x] Modifier `scripts/temp/analyze-media-data.ps1` afin que chaque processus du validateur soit terminé et libéré avant le passage au média suivant, y compris en cas d'erreur ou d'interruption.
   - [x] Modifier `docs/project/testing.md` pour documenter le nettoyage dans `GWGUI.LocalDiskImageTests` et le script continu.
   - [x] Modifier `docs/tasks/wpf-lifecycle-cleanup.md` avec le résultat concret de la correction, sans relancer l'audit du corpus.
 
 Résultat : GWGUI.LocalDiskImageTests ferme et libère les ressources WPF éventuellement chargées dans son `finally`. Le script continu crée les processus dotnet sans fenêtre, attend leur fin et les libère avant le média suivant. Sa syntaxe est valide et le projet local compile sans avertissement ni erreur ; aucun audit du corpus ni test de GWGUI.Tests n'a été lancé après la correction de périmètre.
+
+- [x] 10. Appliquer le contrat de libération à tout le dépôt et supprimer le nettoyage incomplet du validateur local.
+  - [x] Rendre la règle permanente générale et non limitée aux tests et scripts.
+    - [x] Modifier `.codex/config.toml` pour imposer à tout code propriétaire d'une fenêtre, d'une surface graphique, d'un arbre visuel, d'une `Application`, d'un `Dispatcher`, d'un thread, d'un processus ou d'un cœur d'émulation de le libérer dans un bloc `finally` et d'attendre sa destruction effective.
+    - [x] Modifier `docs/project/rules.md` pour remplacer les deux règles dupliquées et limitées aux tests et scripts par le même contrat général de propriété et de libération.
+  - [x] Centraliser le nettoyage WPF des deux points d'entrée du validateur local.
+    - [x] Créer `tests/GWGUI.LocalDiskImageTests/TestInfrastructure/WpfResourceCleanup.cs` avec la fermeture et le détachement des fenêtres, l'arrêt de l'`Application` et du `Dispatcher`, l'attente de `ShutdownFinished` et l'exécution des finaliseurs.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour appeler `WpfResourceCleanup.Release()` dans son bloc `finally` et supprimer sa copie incomplète du nettoyage.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` pour appeler `WpfResourceCleanup.Release()` dans son bloc `finally` et supprimer sa copie incomplète du nettoyage.
+  - [x] Garantir le nettoyage de la fixture WPF commune même si sa fermeture échoue.
+    - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` pour détacher le propriétaire des fenêtres et exécuter l'arrêt du `Dispatcher`, l'attente du thread et les finaliseurs dans un bloc `finally`, même si la fermeture d'une fenêtre échoue.
+  - [x] Arrêter le thread GameInput possédé par l'application.
+    - [x] Modifier `src/GWGUI.App/Services/Input/GameInput/GameInputControllerReader.cs` pour terminer la file du worker après la libération COM et attendre la fin effective de son thread dans `StopMonitoring()`.
+  - [x] Fermer complètement les processus lancés par les scripts de test d'interface et d'installation.
+    - [x] Modifier `scripts/tests/test-app-accessibility.ps1` pour attendre la fin après une fermeture forcée et toujours libérer l'objet `Process` dans le bloc `finally`.
+    - [x] Modifier `scripts/tests/test-installer.ps1` pour conserver, attendre et libérer dans le bloc `finally` les objets `Process` de l'installation et de la désinstallation.
+    - [x] Modifier `scripts/tests/test-installer-upgrade.ps1` pour conserver, attendre et libérer dans le bloc `finally` les objets `Process` des installations et de la désinstallation.
+  - [x] Consigner le contrôle des propriétaires déjà correctement libérés.
+    - [x] Modifier `docs/tasks/wpf-lifecycle-cleanup.md` pour inscrire le résultat du contrôle de `GWGUI.App`, des modules d'émulation, de `GWGUI.Tests` et des autres lanceurs de processus, avec les fichiers corrigés et ceux dont le nettoyage existant est conservé.
+
+Résultat du contrôle général : `GWGUI.App` ferme déjà ses fenêtres restantes dans `App.OnExit`, et ses présentateurs et surfaces vidéo possèdent déjà un arrêt suivi d'une libération. Les machines et les cœurs Atari et Amiga arrêtent leurs boucles, attendent leur tâche de fin et libèrent leurs transports, processus et ressources natives ; le lecteur libretro temporaire les appelle dans son `finally`. `GreaseweazleRunner` et `temp/analyze-media-data.ps1` attendent déjà leurs processus et les libèrent dans leur `finally`, ils sont conservés. La fixture de `GWGUI.Tests`, les deux points d'entrée de `GWGUI.LocalDiskImageTests`, le worker GameInput et les trois scripts de test qui possèdent un processus ont été corrigés. La syntaxe des trois scripts est valide. Les projets `GWGUI.LocalDiskImageTests` et `GWGUI.Tests` compilent séquentiellement sans avertissement ni erreur ; aucun test graphique et aucun audit de média n'ont été exécutés.

@@ -1,7 +1,7 @@
 param()
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $source = Join-Path $repository 'wiki'
 $output = [IO.Path]::GetFullPath((Join-Path $repository 'build\wiki'))
 $wikiUrl = 'https://github.com/overthetop78/GW-GUI/wiki'

@@ -1,4 +1,4 @@
-﻿param([string]$BuildDirectory = (Join-Path $PSScriptRoot '..\build\Debug\GW GUI'))
+param([string]$BuildDirectory = (Join-Path $PSScriptRoot '..\..\build\Debug\GW GUI'))
 
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath($BuildDirectory).TrimEnd('\') + '\'

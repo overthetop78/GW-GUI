@@ -8,7 +8,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $buildRoot = Join-Path $repository 'build'
 $applicationProject = Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj'
 if ([string]::IsNullOrWhiteSpace($Version)) {
@@ -22,7 +22,7 @@ if ($Version -notmatch '^\d+\.\d+\.\d+$') {
     throw 'The application build version must use X.Y.Z.'
 }
 $configurations = if ([string]::IsNullOrWhiteSpace($Configuration)) { @('Debug', 'Release') } else { @($Configuration) }
-. (Join-Path $PSScriptRoot 'emulation-modules.ps1')
+. (Join-Path $repository 'scripts\release\update-catalog\emulation-modules\emulation-modules.ps1')
 
 $moduleWasSpecified = $PSBoundParameters.ContainsKey('Module')
 if ($AllModules -and $moduleWasSpecified) {
@@ -158,7 +158,7 @@ function New-GwGuiBuild {
     Copy-Item -Path (Join-Path $applicationPublish '*') -Destination $output -Recurse -Force
     Remove-Item -LiteralPath (Join-Path $output 'gwgui.app.exe'),(Join-Path $output 'gwgui.app.runtimeconfig.json') -Force
 
-    & (Join-Path $repository 'scripts\organize-application-output.ps1') -OutputDirectory $output
+    & (Join-Path $repository 'scripts\release\package\organize_app\organize-application-output.ps1') -OutputDirectory $output
     dotnet publish (Join-Path $repository 'src\GWGUI.Updater\GWGUI.Updater.csproj') `
         -c $BuildConfiguration -r win-x64 --self-contained false -p:Version=$Version -o $updaterPublish --disable-build-servers
     if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration updater publish failed." }

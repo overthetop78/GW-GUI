@@ -15,6 +15,7 @@ public enum ExplorerContentFormat
     Library,
     Image,
     Audio,
+    Media,
     Archive,
     DiskImage,
     Font

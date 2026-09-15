@@ -8,7 +8,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repositoryRoot = Split-Path -Parent $PSScriptRoot
+$repositoryRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 if (-not $OutputRoot) {
     $OutputRoot = Join-Path $repositoryRoot 'artifacts\media-audit'
 }

@@ -1,7 +1,7 @@
 param()
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $docsRoot = [IO.Path]::GetFullPath((Join-Path $repository 'docs'))
 $indexPath = [IO.Path]::GetFullPath((Join-Path $docsRoot 'README.md'))
 $docsRootUri = [Uri]($docsRoot.TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar)

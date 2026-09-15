@@ -6,7 +6,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\..'))
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
@@ -35,7 +35,7 @@ dotnet publish (Join-Path $repository 'src\GWGUI.Launcher\GWGUI.Launcher.csproj'
 if ($LASTEXITCODE -ne 0) { throw 'GW GUI bootstrap publish failed.' }
 Copy-Item -Path (Join-Path $applicationPublish '*') -Destination $publish -Recurse -Force
 Remove-Item -LiteralPath (Join-Path $publish 'gwgui.app.exe'),(Join-Path $publish 'gwgui.app.runtimeconfig.json') -Force
-& (Join-Path $repository 'scripts\organize-application-output.ps1') -OutputDirectory $publish
+& (Join-Path $PSScriptRoot 'organize_app\organize-application-output.ps1') -OutputDirectory $publish
 New-Item -ItemType Directory -Path (Join-Path $publish 'Modules') -Force | Out-Null
 dotnet publish (Join-Path $repository 'src\GWGUI.Updater\GWGUI.Updater.csproj') -c $Configuration `
     -r win-x64 --self-contained false -p:Version=$Version -o $updaterPublish --disable-build-servers
