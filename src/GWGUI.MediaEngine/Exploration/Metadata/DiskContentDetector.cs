@@ -10,7 +10,6 @@ internal sealed class DiskContentDetector
 {
     private static ReadOnlySpan<byte> CrackedBySignature => "CRACKED BY"u8;
     private static ReadOnlySpan<byte> TheCompanySignature => "THE COMPANY"u8;
-    private static ReadOnlySpan<byte> FireSignature => "FIRE"u8;
 
     /// <summary>Analyse les blocs disponibles dans leur ordre logique.</summary>
     public DiskContentMetadata Analyze(SectorImage image)
@@ -18,7 +17,6 @@ internal sealed class DiskContentDetector
         var bytes = Flatten(image);
         var modificationId = ContainsInOrder(bytes, CrackedBySignature, TheCompanySignature) ? DiskContentIds.CrackTheCompany : null;
         var compressionIds = new List<string>();
-        if (Contains(bytes, FireSignature)) compressionIds.Add(DiskContentIds.CompressionFire);
         var organizationId = DetectOrganization(image, bytes, out var memberCount);
         if (organizationId is not null) compressionIds.Add(DiskContentIds.CompressionAtnImploder);
         return new(IsValidAmigaBootLoader(image, bytes), modificationId, compressionIds, organizationId, memberCount);

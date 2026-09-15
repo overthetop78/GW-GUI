@@ -1,0 +1,23 @@
+using GWGUI.App.Enums.Explorer;
+using GWGUI.MediaEngine.FileSystems;
+
+namespace GWGUI.App.Functions.Explorer;
+
+internal static partial class ExplorerFileContentClassifier
+{
+    private static bool IsSongwriterLesson(FileSystemEntry entry) =>
+        string.Equals(System.IO.Path.GetExtension(entry.Name), ".ida", StringComparison.OrdinalIgnoreCase)
+        && entry.Content is { Count: 1498 } data
+        && data[0] == 0x80 && data[1] == 0x8c && data[2] == 0x00
+        && data.Skip(29).Take(20).SequenceEqual(new byte[]
+        {
+            0xae, 0x2e, 0xae, 0x2e, 0xae, 0x2e, 0xae, 0x2e, 0xae, 0x2e,
+            0x8c, 0x8c, 0x8d, 0x8d, 0x8e, 0x8e, 0x8f, 0x8f, 0x90, 0x90
+        })
+        && data.Skip(data.Count - 25).SequenceEqual(new byte[]
+        {
+            0x34, 0x4f, 0x6a, 0x85, 0xa0, 0xbb, 0xd6, 0xf1, 0x0c, 0x27,
+            0x91, 0x91, 0x91, 0x91, 0x91, 0x91, 0x91, 0x91,
+            0x92, 0x92, 0xea, 0xea, 0xea, 0xea, 0xea
+        });
+}

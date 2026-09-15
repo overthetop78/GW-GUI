@@ -24,9 +24,12 @@ public static class FileSystemReaderCatalog
         new Commodore.Dos.CommodoreDosFileSystemReader(),
         new Fat12.Fat12FileSystemReader(),
         new Atari.Dos.AtariDosFileSystemReader(),
-        new Atari.WordMagic.AtariWordMagicDictionaryFileSystemReader(),
-        new Atari.PrintShop.AtariPrintShopFileSystemReader(),
+        new Atari.FrontCompressedDictionary.AtariFrontCompressedDictionaryFileSystemReader(),
+        new Atari.ClkGraphicsLibrary.AtariClkGraphicsLibraryFileSystemReader(),
         new Atari.KFile.AtariKFileFileSystemReader(),
+        new Atari.PackedPcmDataDisk.AtariPackedPcmDataDiskFileSystemReader(),
+        new Atari.PackedInterlacedGrayscaleDisk.AtariPackedInterlacedGrayscaleDiskFileSystemReader(),
+        new Atari.FixedRecordAnimation.AtariFixedRecordAnimationFileSystemReader(),
         new Atari.Boot.AtariBootFileSystemReader()
     ]);
 }

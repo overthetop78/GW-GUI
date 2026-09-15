@@ -5,8 +5,6 @@ public static class DiskContentIds
 {
     /// <summary>Crack attribué explicitement à The Company dans l'image.</summary>
     public const string CrackTheCompany = "crack-the-company";
-    /// <summary>Données compactées portant la signature FIRE.</summary>
-    public const string CompressionFire = "compression-fire";
     /// <summary>Organisation sectorielle composée de blocs ATN!/File Imploder.</summary>
     public const string OrganizationAtnArchive = "organization-atn-archive";
     /// <summary>Image amorçable complète chargée directement par secteurs et dépourvue de catalogue reconnu.</summary>

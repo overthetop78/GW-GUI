@@ -30,10 +30,10 @@ Les résultats détaillés d’un test temporaire ne sont conservés que s’ils
 choix ou une procédure encore utile. Les historiques de modifications et les listes d’actions déjà
 réalisées appartiennent à Git et ne restent pas sous forme de feuilles de tâches terminées.
 
-## Contrôle
+## Recherche des éléments invalides
 
-`scripts/audit-docs.ps1` contrôle les liens Markdown locaux, l’indexation des documents et l’absence
-de feuille terminée dans `docs/tasks`. Le résultat du dernier nettoyage complet est inscrit ici à la
+`scripts/find-invalid-documentation.ps1` trouve les liens Markdown locaux cassés, les documents non indexés et les
+feuilles terminées dans `docs/tasks`. Le résultat du dernier nettoyage complet est inscrit ici à la
 fin de l’opération.
 
 Le nettoyage complet du 10 septembre 2026 aboutit à l’inventaire suivant :

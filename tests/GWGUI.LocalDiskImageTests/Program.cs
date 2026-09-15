@@ -1,8 +1,11 @@
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Threading;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.Domain.Contracts;
@@ -77,6 +80,55 @@ internal static partial class Program
             Console.Error.WriteLine(exception.Message);
             return 2;
         }
+        finally
+        {
+            ReleaseWpfResources();
+        }
+    }
+
+    private static void ReleaseWpfResources()
+    {
+        var application = Application.Current;
+        if (application is not null)
+        {
+            var dispatcher = application.Dispatcher;
+            void CloseApplication()
+            {
+                foreach (Window window in application.Windows.Cast<Window>().ToArray())
+                {
+                    window.Owner = null;
+                    window.DataContext = null;
+                    window.Content = null;
+                    window.Close();
+                }
+
+                application.Shutdown();
+                if (!dispatcher.HasShutdownStarted)
+                    dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
+            }
+
+            try
+            {
+                if (dispatcher.CheckAccess())
+                {
+                    CloseApplication();
+                }
+                else
+                {
+                    var operation = dispatcher.InvokeAsync(CloseApplication, DispatcherPriority.Send);
+                    operation.Task.Wait(TimeSpan.FromSeconds(10));
+                }
+            }
+            catch (Exception error) when (error is InvalidOperationException or TaskCanceledException or AggregateException)
+            {
+                if (!dispatcher.HasShutdownStarted)
+                    dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
+            }
+        }
+
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        GC.Collect();
     }
 
     private static async Task<MediaAuditReport> AuditAsync(MediaEngineComposition engine, string path, string outputDirectory)

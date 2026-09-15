@@ -21,3 +21,15 @@
   - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs` pour ne pas rappeler `Close()` depuis l’événement `Closed`, tout en conservant la fermeture forcée des fenêtres cachées lors de l’arrêt de la machine.
 - [x] 6. Supprimer les diagnostics temporaires à la demande de l’utilisateur
   - [x] Supprimer tous les fichiers de diagnostic contenus dans `artifacts/diagnostics/vscode-load`, puis supprimer `artifacts` et ses sous-dossiers devenus vides.
+- [x] 7. Sans objet — conserver l'infrastructure existante de `GWGUI.Tests`
+  - [x] Modifier `docs/tasks/wpf-lifecycle-cleanup.md` pour consigner qu'aucun changement propre à cette campagne n'est conservé dans `GWGUI.Tests`, car l'accumulation constatée provient de l'audit `GWGUI.LocalDiskImageTests`.
+- [x] 8. Rendre permanent le nettoyage des ressources graphiques créées par les tests et scripts.
+  - [x] Modifier `docs/project/rules.md` pour imposer la fermeture et la libération dans un bloc `finally` de chaque fenêtre, surface graphique, arbre visuel, application, dispatcher et thread créés par un test ou un script, y compris après erreur ou interruption.
+  - [x] Modifier `.codex/config.toml` pour imposer la même règle à chaque future intervention de Codex et éviter toute nouvelle accumulation de ressources dans DWM.
+- [x] 9. Appliquer la prévention au processus d'audit qui provoque l'accumulation DWM.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` afin de libérer après chaque exécution toutes les ressources graphiques et WPF chargées par l'audit, y compris en cas d'erreur.
+  - [x] Modifier `scripts/analyze-media-data.ps1` afin que chaque processus du validateur soit terminé et libéré avant le passage au média suivant, y compris en cas d'erreur ou d'interruption.
+  - [x] Modifier `docs/project/testing.md` pour documenter le nettoyage dans `GWGUI.LocalDiskImageTests` et le script continu.
+  - [x] Modifier `docs/tasks/wpf-lifecycle-cleanup.md` avec le résultat concret de la correction, sans relancer l'audit du corpus.
+
+Résultat : GWGUI.LocalDiskImageTests ferme et libère les ressources WPF éventuellement chargées dans son `finally`. Le script continu crée les processus dotnet sans fenêtre, attend leur fin et les libère avant le média suivant. Sa syntaxe est valide et le projet local compile sans avertissement ni erreur ; aucun audit du corpus ni test de GWGUI.Tests n'a été lancé après la correction de périmètre.

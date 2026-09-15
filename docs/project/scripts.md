@@ -10,7 +10,8 @@ Ce document décrit tous les fichiers présents dans `scripts`. Les commandes so
 
 | Script | Usage | Appelé automatiquement par |
 |---|---|---|
-| `audit-docs.ps1` | Contrôle de la structure et des liens de `docs` | Aucun |
+| `analyze-media-data.ps1` | Analyse et validation continue des images de médias locales avec rapports et reprise | Aucun |
+| `extract_data_from_ContentHex.ps1` | Extraction des données d’analyse depuis le `ContentHex` des fichiers consignés | Aucun |
 | `build.ps1` | Construction locale de GW GUI | Aucun |
 | `build-module-directory.ps1` | Production du répertoire des modules installables | Workflow de publication du répertoire de modules |
 | `build-update-catalog.ps1` | Production du catalogue de mises à jour | Workflows de publication de l’application et des modules |
@@ -27,6 +28,7 @@ Ce document décrit tous les fichiers présents dans `scripts`. Les commandes so
 | `test-installer.ps1` | Validation d’une installation propre | Workflow de publication de l’application |
 | `test-installer-upgrade.ps1` | Validation d’une mise à niveau | Workflow de publication de l’application |
 | `translate-resx-argos.py` | Traduction et contrôle des ressources RESX | Aucun |
+| `find-invalid-documentation.ps1` | Recherche des éléments invalides dans la documentation : liens cassés, documents non indexés et feuilles de tâches terminées | Aucun |
 
 ## Construction et paquetage
 
@@ -256,14 +258,41 @@ Les trois scripts de test ont donc chacun une couverture utile : les deux contr�
 
 ## Utilitaires
 
-### `audit-docs.ps1`
+### `analyze-media-data.ps1`
 
-Contrôle tous les fichiers Markdown sous `docs`, leurs liens locaux et leur accessibilité depuis
-`docs/README.md`. Il échoue aussi lorsqu’une feuille sous `docs/tasks` ne contient plus aucune case
+Compile `GWGUI.LocalDiskImageTests`, énumère les images de médias locales, analyse chacune d'elles,
+enregistre les informations décodées dans `artifacts/media-audit/items`, puis contrôle la
+reconnaissance, l'exploration, la visualisation et les conversions disponibles. Un point de reprise
+permet de continuer au même fichier après correction ; la boucle s'arrête au premier défaut.
+
+```powershell
+./scripts/analyze-media-data.ps1
+```
+
+Les paramètres `Root`, `StartAt`, `OutputRoot` et `Restart` pilotent la validation continue. Le
+paramètre `ImagePath` analyse un média précis et place son rapport dans `single-tests`, sans modifier
+le point de reprise de la validation continue.
+
+### `extract_data_from_ContentHex.ps1`
+
+Transforme le `ContentHex` complet des fichiers consignés dans un rapport en données d’analyse
+écrites dans `content-analysis.json`, sans relire l’image source. `ReportPath` sélectionne ce rapport
+et `EntryName` permet de limiter l’extraction à certains fichiers. Le résultat contient leurs
+métadonnées, empreintes, signatures, fins, histogrammes, entropies, chaînes lisibles et autres
+statistiques calculées depuis leurs octets.
+
+```powershell
+./scripts/extract_data_from_ContentHex.ps1 -ReportPath <report.json>
+```
+
+### `find-invalid-documentation.ps1`
+
+Recherche dans tous les fichiers Markdown sous `docs` les liens locaux cassés et les documents
+inaccessibles depuis `docs/README.md`. Il signale aussi lorsqu’une feuille sous `docs/tasks` ne contient plus aucune case
 ouverte, afin qu’un plan terminé soit transféré puis supprimé.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/audit-docs.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/find-invalid-documentation.ps1
 ```
 
 Le script ne modifie aucun fichier. Il affiche chaque lien cassé, document non indexé ou feuille

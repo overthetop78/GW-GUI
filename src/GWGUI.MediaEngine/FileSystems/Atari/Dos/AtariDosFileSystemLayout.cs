@@ -57,10 +57,18 @@ public static class AtariDosFileSystemLayout
     public const byte DoubleDensityVtocMarker = 3;
     /// <summary>Marqueur VTOC employé par certaines disquettes Atari DOS plus anciennes.</summary>
     public const byte LegacyVtocMarker = 0;
-    /// <summary>Marqueur VTOC étendu employé par MyDOS sur les grands volumes.</summary>
-    public const byte ExtendedVtocMarker = 7;
+    /// <summary>Premier code VTOC employé par MyDOS pour les volumes nécessitant plusieurs secteurs de bitmap.</summary>
+    public const byte MinimumExtendedVtocCode = 4;
     /// <summary>Largeur du compteur libre.</summary>
     public const int FreeSectorCountLength = sizeof(ushort);
+
+    /// <summary>Calcule le nombre de secteurs occupés par un VTOC étendu MyDOS.</summary>
+    public static int ExtendedVtocSectorCount(byte code, int sectorSize) =>
+        code < MinimumExtendedVtocCode
+            ? 0
+            : sectorSize == MinimumSectorSize
+                ? checked((code - 2) * 2)
+                : code - 2;
     /// <summary>Caractère de remplissage des noms.</summary>
     public const byte NamePadding = 0x20;
     /// <summary>Premier caractère ASCII imprimable.</summary>

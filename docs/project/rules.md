@@ -57,6 +57,15 @@ explicites de l’utilisateur restent prioritaires.
 - Un test ajouté pour l’occasion qui crée des fichiers ou dépend de fichiers, applications ou DLL
   externes est supprimé après usage avec ses artefacts temporaires. Cette règle ne demande pas de
   supprimer les tests ou fichiers qui existaient avant le travail.
+- Tout test ou script qui crée une fenêtre, une surface graphique, un arbre visuel, une `Application`,
+  un `Dispatcher` ou un thread doit les fermer, les détacher et les libérer dans un bloc `finally`,
+  y compris après une erreur ou une interruption. Il doit attendre leur destruction effective afin
+  de ne laisser aucun handle, ressource graphique ou résidu accumulé dans DWM.
+
+- Tout test ou script qui crée une fenêtre, une surface graphique, un arbre visuel, une `Application`,
+  un `Dispatcher` ou un thread doit les fermer, les détacher et les libérer dans un bloc `finally`,
+  y compris après une erreur ou une interruption. Il doit attendre leur destruction effective afin
+  de ne laisser aucun handle, ressource graphique ou résidu accumulé dans DWM.
 
 ## Traductions
 

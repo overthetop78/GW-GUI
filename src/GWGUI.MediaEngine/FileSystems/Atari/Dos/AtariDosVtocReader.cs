@@ -10,16 +10,28 @@ public static class AtariDosVtocReader
     /// <summary>Indique si le secteur possède le marqueur et la longueur minimale attendus.</summary>
     public static bool LooksValid(IReadOnlyList<byte> data, int maximumSectorCount)
     {
-        if (data.Count < AtariDosFileSystemLayout.MinimumSectorSize ||
-            data[0] is not (AtariDosFileSystemLayout.LegacyVtocMarker
-                or AtariDosFileSystemLayout.VtocMarker
-                or AtariDosFileSystemLayout.DoubleDensityVtocMarker
-                or AtariDosFileSystemLayout.ExtendedVtocMarker)) return false;
+        if (data.Count < AtariDosFileSystemLayout.MinimumSectorSize) return false;
+        var code = data[0];
+        var isStandard = code is AtariDosFileSystemLayout.LegacyVtocMarker
+            or AtariDosFileSystemLayout.VtocMarker
+            or AtariDosFileSystemLayout.DoubleDensityVtocMarker;
+        var isExtended = code >= AtariDosFileSystemLayout.MinimumExtendedVtocCode;
+        if (!isStandard && !isExtended) return false;
         var usable = data[AtariDosFileSystemLayout.UsableSectorCountOffset] |
             data[AtariDosFileSystemLayout.UsableSectorCountOffset + 1] << 8;
         var free = data[AtariDosFileSystemLayout.FreeSectorCountOffset] |
             data[AtariDosFileSystemLayout.FreeSectorCountOffset + 1] << 8;
-        return usable > 0 && usable <= maximumSectorCount && free <= usable;
+        if (usable <= 0 || usable > maximumSectorCount || free > usable) return false;
+        if (!isExtended) return true;
+
+        var vtocSectorCount = AtariDosFileSystemLayout.ExtendedVtocSectorCount(code, data.Count);
+        var expectedUsable = maximumSectorCount
+            - 3
+            - AtariDosFileSystemLayout.DirectorySectorCount
+            - vtocSectorCount;
+        return vtocSectorCount > 0
+            && vtocSectorCount < AtariDosFileSystemLayout.VtocSector
+            && usable == expectedUsable;
     }
     /// <summary>Lit le compteur libre lorsqu'il est disponible.</summary>
     public static int? ReadFreeSectors(SectorImage image)

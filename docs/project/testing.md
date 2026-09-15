@@ -197,3 +197,10 @@ vidage des fenêtres sur le thread STA, traitement de la file WPF jusqu'à la pr
 `ApplicationIdle`, puis arrêt explicite de l'`Application` et du `Dispatcher` à la destruction de
 la fixture. Elle attend ensuite la terminaison du thread et les finaliseurs. Cette modification n'a
 pas déclenché l'audit manuel des corpus locaux ni lancé l'application.
+
+L'exécutable `GWGUI.LocalDiskImageTests` libère dans son bloc `finally` l'éventuelle `Application`
+WPF chargée par l'analyse, ses fenêtres, son `Dispatcher` et les objets en attente de finalisation.
+Le script `scripts/analyze-media-data.ps1` démarre chaque
+invocation `dotnet` sans créer de fenêtre, attend sa terminaison,
+arrête son arbre de processus si l'exécution est interrompue et libère l'objet processus avant de
+passer au média suivant. Ce contrat s'applique aussi aux erreurs de reconnaissance et de validation.

@@ -157,7 +157,8 @@ public sealed class AtrReader : IMediaImageReader
         var usablePayloadLength = GetUsablePayloadLength(data, sectorSize);
         var isRecoverableTruncatedImage = declaredPayloadLength != observedPayloadLength
             && (LooksLikeTruncatedSingleDensityBootImage(data, sectorSize, declaredPayloadLength, observedPayloadLength)
-                || LooksLikeMislabeledEnhancedDensityImage(data, sectorSize, declaredPayloadLength, observedPayloadLength));
+                || LooksLikeMislabeledEnhancedDensityImage(data, sectorSize, declaredPayloadLength, observedPayloadLength)
+                || LooksLikeHeaderInclusivePayloadLength(sectorSize, declaredPayloadLength, observedPayloadLength));
         var isExternallyPaddedImage = declaredPayloadLength != observedPayloadLength
             && LooksLikeExternallyPaddedImage(data, sectorSize, declaredPayloadLength, observedPayloadLength);
         if (declaredPayloadLength != observedPayloadLength && !isRecoverableTruncatedImage && !isExternallyPaddedImage)
@@ -176,6 +177,9 @@ public sealed class AtrReader : IMediaImageReader
             | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));
         var declaredPayloadLength = paragraphCount * AtrLayout.ParagraphSize;
         var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
+        if (LooksLikeHeaderInclusivePayloadLength(sectorSize, declaredPayloadLength, observedPayloadLength))
+            return (int)declaredPayloadLength;
+
         if (declaredPayloadLength is > 0 and <= int.MaxValue
             && declaredPayloadLength < observedPayloadLength
             && declaredPayloadLength >= bootAreaLength
@@ -234,6 +238,18 @@ public sealed class AtrReader : IMediaImageReader
             || (declaredPayloadLength - bootAreaLength) % sectorSize != 0)
             return false;
         return IsExternalPadding(data.AsSpan(AtrLayout.HeaderSize + (int)declaredPayloadLength));
+    }
+
+    private static bool LooksLikeHeaderInclusivePayloadLength(
+        int sectorSize,
+        long declaredPayloadLength,
+        int observedPayloadLength)
+    {
+        var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
+        return declaredPayloadLength == observedPayloadLength + AtrLayout.HeaderSize
+            && declaredPayloadLength <= int.MaxValue
+            && declaredPayloadLength >= bootAreaLength
+            && (declaredPayloadLength - bootAreaLength) % sectorSize == 0;
     }
 
     private static bool IsExternalPadding(ReadOnlySpan<byte> padding)

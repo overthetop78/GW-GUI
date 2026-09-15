@@ -32,7 +32,19 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
         var warnings = new List<string>();
         var entries = AtariDosDirectoryReader.Read(image, warnings);
         var freeSectors = AtariDosVtocReader.ReadFreeSectors(image);
-        return new(string.Empty, Definitions.FileSystemIds.AtariDos, image.Capacity, freeSectors.HasValue ? Math.Clamp((long)freeSectors.Value * image.BlockSize, 0, image.Capacity) : 0, null, null, entries, warnings);
+        var isMyDos = AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc)
+            && vtoc.Length > 0
+            && vtoc[0] >= AtariDosFileSystemLayout.MinimumExtendedVtocCode;
+        return new(
+            string.Empty,
+            isMyDos ? Definitions.FileSystemIds.AtariMyDos : Definitions.FileSystemIds.AtariDos,
+            image.Capacity,
+            freeSectors.HasValue ? Math.Clamp((long)freeSectors.Value * image.BlockSize, 0, image.Capacity) : 0,
+            null,
+            null,
+            entries,
+            warnings,
+            attributes: isMyDos ? ["mydos", "extended-sector-links"] : ["atari-dos"]);
     }
 
     private bool IsSupportedFormat(string formatId) =>
