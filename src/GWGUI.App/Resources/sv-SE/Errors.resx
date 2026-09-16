@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Denna operation stöds inte av den valda filen, enheten eller plattformen.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Det finns inte tillräckligt med tillgängligt minne för att slutföra operationen.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI stötte på ett oväntat problem samtidigt som man utför denna åtgärd.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput-arbetsgängan stannade inte.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Ingen kartläggning</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput-enhetsuppräkning misslyckades för {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput system knapp registrering misslyckades.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput uppdatera registrering misslyckades för {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput uppfrisk återkoppling kunde inte vara oregistrerad: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput-enhet callback-kö misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput-enhetsuppringning misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput system-knapp callback misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw-reading callback misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: Läs läsläsning {1} Misslyckades med kod 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Input Typ {1}, gamepad state tillgängligt: {2}, Controller arrays otillgängliga</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Input Typ {1}, gamepad state tillgängligt: {2}, Axlar: {3}, knappar: {4}, Switches: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM fel 0x{1:X8} (b) (b){2}) ) )</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Input Typ {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Lösta namn: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput namn: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:: ::PID:: :: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Enhet ID:: :: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Enhetsrot ID:: :: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Container ID:: :: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familj: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Användning: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Stöds input: {0} (0x){1:X8}) ) )</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Kontrollinformation: axlar={0}, knappar ={1}, switchar={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Axis etiketter: [{0}] ] ] ]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Knapp etiketter: [{0}] ] ] ]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kartläggning: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP-väg: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP-namn: {0}</value></data>
 </root>

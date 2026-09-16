@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>選択したファイル、デバイス、プラットフォームではこの操作はサポートされません。</value></data>
   <data name="Error.Description.OutOfMemory"><value>操作を完了するのに十分なメモリはありません。</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUIは、このアクションを実行しながら予期しない問題に遭遇しました。</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput ワーカースレッドが止まりませんでした。</value></data>
+  <data name="Error.GameInput.NoMapping"><value>マッピングなし</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput デバイス列挙が失敗しました {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInputシステムボタン登録が失敗しました。</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput のリフレッシュ登録が失敗しました {0}: 普通 3x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput のリフレッシュコールバックは登録解除できません: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput デバイスコールバックキューが失敗しました: {0} 普通 3x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput デバイスコールバックが失敗しました: {0} 普通 3x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput システムbutton コールバックが失敗しました: {0} 普通 3x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput の未加工読書コールバック失敗: {0} 普通 3x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: 読書 {1} コード 0x で失敗{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: 入力タイプ {1}, 利用できるgamepadの状態: {2}, コントローラー配列は利用できません</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: 入力タイプ {1}, 利用できるgamepadの状態: {2}, 軸線: {3}, ボタン: {4}, スイッチ: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM エラー 0x{1:X8} ( ){2}) ) )</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: 入力タイプ {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>解決された名前: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInputの名前: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID: : : :PID: : : : {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>デバイス ID: : : : {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>デバイスルート ID: : : : {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>コンテナ ID: : : : {0}</value></data>
+  <data name="Error.GameInput.Family"><value>家族: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>使用法: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>対応する入力: {0} (0x){1:X8}) ) )</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>コントローラ情報: axes={0}, ボタン={1}, スイッチ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>軸ラベル: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>ボタンラベル: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>マッピング: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnPパス: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP の名前: {0}</value></data>
 </root>

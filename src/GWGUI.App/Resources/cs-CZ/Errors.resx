@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Tuto operaci nepodporuje vybraný soubor, zařízení ani platforma.</value></data>
   <data name="Error.Description.OutOfMemory"><value>K dokončení operace není dostatek dostupné paměti.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI narazila na neočekávaný problém při provádění této akce.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Pracovní nit GameInputu se nezastavila.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Žádné mapování</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Výčet zařízení GameInput selhalo {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Registrace systémového tlačítka GameInput selhala.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Registrace obnova GameInput selhala {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput refresh call back nemůže být neregistrované: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput zařízení volací fronta selhala: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput zařízení volací volání selhalo: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>System- tlačítko GameInput nefungovalo: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw- čtení volání selhalo: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: čtení {1} selhalo s kódem 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: vstupní typ {1}, stav gamepad k dispozici: {2}, Řídicí pole nejsou k dispozici</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: vstupní typ {1}, stav gamepad k dispozici: {2}, osy: {3}, tlačítka: {4}, Přepínače: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM chyba 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: vstupní typ {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Vyřešení: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput name: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Zařízení ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Kořen zařízení ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Kontejner ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Rodina: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Použití: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Podporovaný vstup: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Informace o ovladači: osy ={0}, tlačítka ={1}, Přepínače ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Štítky Axis: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Štítky tlačítek: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Mapování: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP cesta: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Název PnP: {0}</value></data>
 </root>

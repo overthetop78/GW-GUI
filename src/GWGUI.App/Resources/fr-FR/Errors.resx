@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Cette opération n&apos;est pas prise en charge par le fichier, le périphérique ou la plateforme sélectionnée.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Il n&apos;y a pas assez de mémoire disponible pour terminer l&apos;opération.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI a rencontré un problème inattendu pendant l&apos;exécution de cette action.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Le fil de travail GameInput ne s'est pas arrêté.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Pas de cartographie</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Le dénombrement des périphériques GameInput a échoué pour {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>L'enregistrement du bouton système GameInput a échoué.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput rafraîchissement de l'enregistrement échoué pour {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput rafraîchissement callback ne peut pas être non enregistré: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>La file d'attente de rappel du périphérique GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Le rappel du périphérique GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Le rappel du bouton système GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Le callback de lecture brute de GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: lecture {1} échoué avec le code 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: type d'entrée {1}, état du gamepad disponible: {2}, tableaux de contrôleur non disponibles</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: type d'entrée {1}, état du gamepad disponible: {2}, axes: {3}, boutons &amp; #160;: {4}, interrupteurs: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM erreur 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: type d'entrée {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Nom résolu: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Nom de la mise en jeu : {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID- Oui.PID- Oui. {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Appareil ID- Oui. {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>racine du périphérique ID- Oui. {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Conteneur ID- Oui. {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Famille {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Utilisation : {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Contribution soutenue : {0} (0x){1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Informations sur le contrôleur: axes={0}, boutons={1}, interrupteurs={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Étiquettes de l'axe: [{0}- Oui.</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Étiquettes de bouton: [{0}- Oui.</value></data>
+  <data name="Error.GameInput.Mapper"><value>Cartographie: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP chemin: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Noms de la PnP : {0}</value></data>
 </root>

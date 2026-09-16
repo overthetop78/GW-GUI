@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>פעולה זו אינה נתמכת על ידי הקובץ שנבחר, המכשיר או הפלטפורמה.</value></data>
   <data name="Error.Description.OutOfMemory"><value>אין מספיק זיכרון זמין כדי להשלים את הפעולה.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI נתקל בבעיה בלתי צפויה בעת ביצוע פעולה זו.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>חוט העבודה של GameInput לא הפסיק.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>אין מיפוי</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>מכשיר GameInput לא הצליח {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>רישום כפתור המערכת לא הצליח.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>רישום הרעלת GameInput לא הצליח {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>משחק רענון לא יכול להיות לא מוסדר: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>תור ה-GameInput למכשירי ה-GameInput לא הצליח: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>שיחת ה-GameInput נכשלה: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>ה-GameInput System-button נדחה: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>המשחק של המשחק ב-Gate-Callback לא הצליח: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: קריאה {1} נכשל עם קוד 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: סוג קלט {1}, מצב ה- gamepad זמין: {2}, המונחים:</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: סוג קלט {1}, מצב ה- gamepad זמין: {2}, גרזן: {3}, כפתורים: {4}, מתגים: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM טעות 0x{1:X8} ((){2}) )</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: סוג קלט {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>שם: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>שם המשחק: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>התקן ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>שורש ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>מכיל ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>משפחה: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>שימוש: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>תמיכה ב-Fedput: {0} (0x{1:X8}) )</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>מידע על: Axes={0}, כפתורים={1}, מתגים={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>תוויות: [{0})</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>תוויות: [{0})</value></data>
+  <data name="Error.GameInput.Mapper"><value>צילום: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>נתיב PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>שמות PnP: {0}</value></data>
 </root>

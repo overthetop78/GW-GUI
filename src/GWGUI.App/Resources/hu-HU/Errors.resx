@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Ezt a műveletet nem támogatja a kijelölt fájl, eszköz vagy platform.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Nincs elég memória a művelet befejezéséhez.</value></data>
   <data name="Error.Description.Unexpected"><value>A GW GUI váratlan problémával szembesült, amikor ezt az akciót végezte.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>A GameInput munkásai nem álltak le.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Nincs feltérképezés</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>A GameInput eszköz felsorolása nem sikerült {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>A GameInput rendszer regisztráció nem sikerült.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>A GameInput frissítési regisztráció sikertelen {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>A GameInput frissítő visszahívása nem sikerült nem regisztrálni: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>A GameInput eszköz visszahívási sora nem sikerült: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>A GameInput eszköz visszahívása nem sikerült: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>A GameInput rendszer- gombbal történő visszahívása nem sikerült: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>A GameInput raw- olvasó visszahívása sikertelen: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: olvasás {1} nem sikerült a 0x kóddal{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: A bemeneti típus {1}, gamepad állapot áll rendelkezésre: {2}, A vezérlőrendszerek nem állnak rendelkezésre</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: A bemeneti típus {1}, gamepad állapot áll rendelkezésre: {2}, tengelyek: {3}, gombok: {4}, kapcsolók: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM hiba 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: A bemeneti típus {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>A kijelölt név: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>A bevitel neve: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Eszköz ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Szerszámgyökér ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Konténer ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Család: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Használat: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Támogatott bemenet: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>A kezelőre vonatkozó információk: tengelyek ={0}, gombok ={1}, kapcsolók ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Tengelycímkék: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Gombcímkék: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Feltérképek: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP-útvonal: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP nevek: {0}</value></data>
 </root>

@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>This operation is not supported by the selected file, device, or platform.</value></data>
   <data name="Error.Description.OutOfMemory"><value>There is not enough available memory to complete the operation.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI encountered an unexpected problem while performing this action.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>The GameInput worker thread did not stop.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>No mapping</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput device enumeration failed for {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput system button registration failed.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput refresh registration failed for {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput refresh callback could not be unregistered: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput device callback queue failed: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput device callback failed: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput system-button callback failed: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw-reading callback failed: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: reading {1} failed with code 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: input type {1}, gamepad state available: {2}, controller arrays unavailable</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: input type {1}, gamepad state available: {2}, axes: {3}, buttons: {4}, switches: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM error 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: input type {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Resolved name: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput name: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Device ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Device root ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Container ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Family: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Usage: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Supported input: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Controller information: axes={0}, buttons={1}, switches={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Axis labels: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Button labels: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP path: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP names: {0}</value></data>
 </root>

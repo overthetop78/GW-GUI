@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>ولا يدعم هذه العملية الملف أو الجهاز أو المنصة المختارة.</value></data>
   <data name="Error.Description.OutOfMemory"><value>لا توجد ذاكرة كافية لإكمال العملية</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI واجهت مشكلة غير متوقعة أثناء القيام بهذا العمل.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>لم يتوقف خبز العامل في لعبة المُدخل</value></data>
+  <data name="Error.GameInput.NoMapping"><value>لا توجد خريطة</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>إحصاء أجهزة المخرجات فشل {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>فشل تسجيل زر نظام المخرجات</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>فشل تسجيل نبذة المفاعل {0}: 0{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>لم يكن من غير المسجل رد الفعل الجديد للمفاعل: صفر{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>فشل جهاز قاذفة ألعاب: {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>فشل جهاز اعادة الاتصال باللعبة {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>فشل استعادة نظام المخرجات: {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>فشل اعادة قراءة خام المفاعل: {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: القراءة {1} "فشلت في وضع الشفرة "0{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: نوع المدخلات {1}, حالة لعبة متاحة: {2}, صفائف أجهزة التحكم غير متاحة</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: نوع المدخلات {1}, حالة لعبة متاحة: {2}, الفأس: {3}, الأزرار: {4}, مفاتيح: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM الخطأ 0{1:X8} )أ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: نوع المدخلات {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>الاسم المُحل: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>اسم المخرج: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>جهاز ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>جذور النبض ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>الحاويات ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>الأسرة: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Usage: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>مدخلات مدعومة: {0} (0x){1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>معلومات المراقب المالي: فاكس{0}, الأزرار ={1}, مفاتيح التبديل{2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>تسميات المحاور: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>تسميات الأزرار: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>رسم الخرائط: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>طريق PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>أسماء الشرطة: {0}</value></data>
 </root>

@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Denne operation understøttes ikke af den valgte fil, enhed eller platform.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Der er ikke nok hukommelse til at fuldføre operationen.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI stødte på et uventet problem under udførelsen af denne handling.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput-tråden stoppede ikke.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Ingen kortlægning</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Optælling af GameInput-enhed mislykkedes for {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Registrering af GameInput-system mislykkedes.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput opdateringsregistrering mislykkedes for {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput refresh callback kunne ikke slettes: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput-enhed kallback kø mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput-enhed der blev kaldt tilbage mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput system- knappeknapkaldgang mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw- reading callback mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: læsning {1} mislykkedes med kode 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Indgangstype {1}, gamepad- tilstand tilgængelig: {2}, controllerarrays ikke tilgængelig</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Indgangstype {1}, gamepad- tilstand tilgængelig: {2}, akser: {3}, knapper: {4}, kontakter: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM fejl 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Indgangstype {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Opløst navn: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput navn: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Enhed ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Enhedsrod ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Beholder ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familie: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Brug: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Understøttede input: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Kontrollør information: akser ={0}, knapper ={1}, switches ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Akseetiketter: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Knapmærkater: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kortlægning: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP- sti: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP- navne: {0}</value></data>
 </root>

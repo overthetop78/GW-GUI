@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Operasi ini tidak didukung oleh berkas, perangkat, atau platform yang dipilih.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Tidak cukup memori yang tersedia untuk menyelesaikan operasi.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI menghadapi masalah tak terduga saat melakukan aksi ini.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Benang pekerja GameInput tidak berhenti.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Tidak ada pemetaan</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Enumerasi perangkat gameInput gagal untuk {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Pendaftaran tombol sistem GameInput gagal.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Pendaftaran penyegaran gameInput gagal untuk {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Refreeding GameInput tidak dapat terdaftar: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Antrian callback perangkat gameInput gagal: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Gagal memanggil balik perangkat gameInput: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Tombol sistem GameInput gagal: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw-reading callback gagal: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: membaca {1} gagal dengan kode 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: tipe masukan {1}, kondisi gamepad tersedia: {2}, array pengontrol tidak tersedia</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: tipe masukan {1}, kondisi gamepad tersedia: {2}, sumbu: {3}, tombol: {4}, switch: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM galat 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: tipe masukan {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Nama yang terpecahkan: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Nama GameInput: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Perangkat ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Akar perangkat ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Kontainer ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Keluarga: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Penggunaan: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Masukan yang didukung: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Informasi controller: sumbu ={0}, tombol ={1}, switches ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Label Axis: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Label tombol: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Pemetaan: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Path PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Nama PnP: {0}</value></data>
 </root>

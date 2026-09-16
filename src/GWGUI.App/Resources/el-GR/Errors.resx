@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Αυτή η λειτουργία δεν υποστηρίζεται από το επιλεγμένο αρχείο, συσκευή ή πλατφόρμα.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Δεν υπάρχει αρκετή διαθέσιμη μνήμη για να ολοκληρωθεί η λειτουργία.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI συνάντησε ένα απροσδόκητο πρόβλημα κατά την εκτέλεση αυτής της δράσης.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Το νήμα του εργάτη του GameInput δεν σταμάτησε.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Χωρίς χαρτογράφηση</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Αποτυχία καταμέτρησης συσκευής GameInput για {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Αποτυχία εγγραφής κουμπιού συστήματος GameInput.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Αποτυχία εγγραφής ανανέωσης του GameInput {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Το refresh callback δεν μπόρεσε να καταχωρηθεί: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Αποτυχία επαναφοράς της ουράς της συσκευής GameInput: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Αποτυχία επανάκλησης συσκευής εισόδου παιχνιδιού: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Αποτυχία επανάκλησης συστήματος εισόδου παιχνιδιού: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Αποτυχία επανάκλησης της κλήσης από την πρώτη ανάγνωση του GameInput: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: ανάγνωση {1} απέτυχε με τον κωδικό 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: τύπος εισόδου {1}, Κατάσταση gamepad διαθέσιμη: {2}, Συστοιχία ελεγκτή μη διαθέσιμες</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: τύπος εισόδου {1}, Κατάσταση gamepad διαθέσιμη: {2}, άξονες: {3}, κουμπιά: {4}, διακόπτες: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM σφάλμα 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: τύπος εισόδου {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Επιλυμένη ονομασία: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Όνομα εισόδου παιχνιδιού: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Συσκευή ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Ρίζα συσκευής ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Εμπορευματοκιβώτιο ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Οικογένεια: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Χρήση: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Υποστηριζόμενη είσοδος: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Πληροφορίες ελεγκτή: άξονες={0}, κουμπιά={1}, διακόπτες ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Ετικέτα άξονα: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Ετικέτες κουμπιών: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Χαρτογράφηση: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Διαδρομή PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Όνομα PnP: {0}</value></data>
 </root>

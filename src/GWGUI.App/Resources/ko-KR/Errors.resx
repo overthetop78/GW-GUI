@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>이 작업은 선택한 파일, 장치 또는 플랫폼에 의해 지원되지 않습니다.</value></data>
   <data name="Error.Description.OutOfMemory"><value>가동을 완료하는 충분한 유효한 기억이 없습니다.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI는 이 동작을 수행하는 동안 예상치 못한 문제가 발생했습니다.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput 노동자 실은 멈추지 않았습니다.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>지도 없음</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput 장치 enumeration 실패 {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput 시스템 버튼 등록 실패.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput 새로 고침 등록 실패 {0}: ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput 새로 고침 콜백은 미등록되지 않을 수 있습니다 : 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput 장치 콜백 큐 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput 장치 콜백 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput 시스템 버튼 콜백 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput 원시 읽기 콜백 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {1} 코드 0x로 실패{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: 입력 유형 {1}, 유효한 gamepad 국가: {2}, 컨트롤러 배열을 사용할 수 없습니다.</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: 입력 유형 {1}, 유효한 gamepad 국가: {2}, axes: {3}, 단추: {4}, 스위치: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM 오류 0x{1:X8} (주){2}) )</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: 입력 유형 {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>해결된 이름: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput 이름: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID::PID:: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>제품정보 ID:: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>장치 루트 ID:: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>제품정보 ID:: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>가족: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>사용 : {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>지원된 입력: {0} (단위:m){1:X8}) )</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>컨트롤러 정보: axes={0}, 버튼 ={1}, 스위치 ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>축 라벨: [{0}] ] ] ] ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>단추 상표: [{0}] ] ] ] ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?</value></data>
+  <data name="Error.GameInput.Mapper"><value>모자를 씌우기: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP 경로: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP 이름: {0}</value></data>
 </root>

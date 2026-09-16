@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Dieser Vorgang wird von der ausgewählten Datei, dem Gerät oder der Plattform nicht unterstützt.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Es ist nicht genug Speicher verfügbar, um die Operation abzuschließen.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI stieß bei der Durchführung dieser Aktion auf ein unerwartetes Problem.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Der GameInput-Arbeiter-Thread hat nicht aufgehört.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Keine Zuordnung</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput Device Enumeration fehlgeschlagen für {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput System Button Registrierung fehlgeschlagen.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput-Aktualisierung fehlgeschlagen {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput-Refresh-Callback konnte nicht unregistriert werden: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput Device Callback Warteschlange fehlgeschlagen: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput Device Callback fehlgeschlagen: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput System-Tasten-Callback fehlgeschlagen: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw-reading callback fehlgeschlagen: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: Lesen {1} Fehlgeschlagen mit Code 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Eingabeart {1}, Gamepad-Zustand verfügbar: {2}, Controller-Arrays nicht verfügbar</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Eingabeart {1}, Gamepad-Zustand verfügbar: {2}, Achsen: {3}, Knöpfe: {4}, Schalter: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM Fehler 0x{1:X8} (){2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Eingabeart {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Aufgelöster Name: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Name des GameInput: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Vorrichtung ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Gerätewurzel ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Container ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familie: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Verwendung: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Unterstützter Input: {0} (0x){1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Controller-Informationen: Achsen ={0}, Buttons={1}, Schalter ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Achsenetiketten: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Knopfetiketten: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kartierung: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP-Pfad: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP-Namen: {0}</value></data>
 </root>

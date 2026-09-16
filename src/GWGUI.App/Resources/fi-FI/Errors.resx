@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Valittu tiedosto, laite tai alusta ei tue tätä toimintoa.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Ei ole riittävästi muistia loppuun operaation.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI kohdattiin odottamaton ongelma suoritettaessa tätä toimintoa.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput-työntekijän lanka ei pysähtynyt.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Ei kartoitusta</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput-laitteen arvotus epäonnistui {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput-järjestelmän painikkeen rekisteröinti epäonnistui.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput-päivitysrekisteröinti epäonnistui {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput-päivityssoittoa ei voitu rekisteröidä: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput-laite soittojono epäonnistui: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput-laitteen soitto epäonnistui: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput-järjestelmän painikkeen soitto epäonnistui: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput-syöte-lukija-soiton palautus epäonnistui: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: lukeminen {1} epäonnistui koodi 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: syöttötyyppi {1}, pelipadin tila saatavilla: {2}, ohjainjärjestelmät eivät ole käytettävissä</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: syöttötyyppi {1}, pelipadin tila saatavilla: {2}, akselit: {3}, painikkeet: {4}, kytkimet: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM virhe 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: syöttötyyppi {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Ratkaistu nimi: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Pelin syötenimi: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Laite ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Laite juuri ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Kontti ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Perhe: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Käyttö: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Tuettu panos: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Ohjaimen tiedot: akselit={0}, painikkeet ={1}, kytkimet ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Akselien merkinnät: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Nappimerkit: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kartta: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP- polku: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP- nimet: {0}</value></data>
 </root>

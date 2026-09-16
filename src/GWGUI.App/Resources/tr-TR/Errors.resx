@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Bu işlem seçilmiş dosya, cihaz veya platform tarafından desteklenmemektedir.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Operasyonu tamamlamak için yeterli bellek yoktur.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI bu eylemi yaparken beklenmedik bir problemle karşılaştı.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput işçi thread durmadı.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Hiçbir haritalama</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput cihazı enumeration başarısız oldu {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput system düğmesi kaydı başarısız oldu.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput yeni kayıt başarısız oldu {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput yeni çağrı geri kayıt edilemez olabilir: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput cihazı geri dönüş kuyruğu başarısız oldu: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput cihazı geri döndü: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput sistemi-button callback başarısız oldu: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput ham-reading callback başarısız oldu: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: Okuma okuma okuma okuma okuma okuma okuma okuma okuma okuma okuma {1} Kod 0x ile başarısız oldu{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: giriş türü {1}, gamepad durumu mevcut: {2}, Kontrollü diziler mevcut değildir</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: giriş türü {1}, gamepad durumu mevcut: {2}, axes: {3}, düğmeler: {4}, Anahtarlar: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM 0x{1:X8} ( (() ( ((){2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: giriş türü {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Çözülen adı: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput adı: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Device Device Device ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Cihaz kök ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Konteyner Konteyner ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Aile: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Kullanım: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Desteklenen giriş: {0} (0xx{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Kontrolcü bilgi: axes ={0}, düğmeler ={1}, Anahtarlar ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Axis etiketleri: [Ingampiyon:{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Düğme etiketleri: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP yolu: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP isimleri: {0}</value></data>
 </root>

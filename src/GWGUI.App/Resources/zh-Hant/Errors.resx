@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>此操作不为所选文件、 设备或平台所支持 。</value></data>
   <data name="Error.Description.OutOfMemory"><value>没有足够的内存来完成操作.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI 在进行此动作时遇到了出乎意料的问题.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput 工人线程没有停止 。</value></data>
+  <data name="Error.GameInput.NoMapping"><value>无映射</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput 设备计数失败 {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput系统按钮注册失败 。</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput 刷新注册失败 {0}: 0x 单曲{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>无法未注册的 GameInput 刷新回调 : 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput设备回调队列失败 : {0} 0x 单曲{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>游戏输入设备召回失败 : {0} 0x 单曲{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Game Input 系统按钮调用失败 : {0} 0x 单曲{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput 原始读取回调失败 : {0} 0x 单曲{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: 读取 {1} 代码 0x 失败{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: 输入类型 {1}, 可用游戏板状态 : {2}, 无法使用控制器阵列</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: 输入类型 {1}, 可用游戏板状态 : {2}, 轴: {3}, 按钮 : {4}, 开关 : {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM 错误 0x{1:X8} (单位:千美元){2}) , (中文(简体) ).</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: 输入类型 {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>已确定名称 : {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>游戏输入名称 : {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID: 调取PID: 调取 {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>设备 ID: 调取 {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>设备根 ID: 调取 {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>集装箱 ID: 调取 {0}</value></data>
+  <data name="Error.GameInput.Family"><value>家庭: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>用法 : {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>支持输入 : {0} (0x) (单位:千兆克;{1:X8}) , (中文(简体) ).</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>控制器信息:轴={0}, 按钮={1}, 开关={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>轴标签 : [{0}–и璶т</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>按钮标签 : [{0}–и璶т</value></data>
+  <data name="Error.GameInput.Mapper"><value>绘图 : {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP 路径 : {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>密码名称 : {0}</value></data>
 </root>

@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Thao tác này không được hỗ trợ bởi tập tin, thiết bị hoặc nền tảng đã chọn.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Không có đủ bộ nhớ để hoàn thành thao tác này.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI gặp một vấn đề bất ngờ trong khi thực hiện hành động này.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Chỉ công nhân trò chơi Input không dừng lại.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Không có bản đồ</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Trình đếm thiết bị trò chơi Input thất bại {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Việc đăng ký nút hệ thống trò chơi Input bị lỗi.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Việc đăng ký cập nhật trò chơi Input không thành công {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Không thể bỏ đăng ký phần mềm gọi lại trò chơi Input: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Việc đặt hàng đợi thiết bị input lại bị lỗi: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Việc gọi lại thiết bị nhập vào trò chơi bị lỗi: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Gọi ngược lại hệ thống khi nhập vào nút {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Việc gọi ngược lại đọc thô trò chơi: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: đọc {1} lỗi với mã 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Kiểu nhập {1}, Tình trạng trò chơipad sẵn sàng: {2}, Không có dãy điều khiển</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Kiểu nhập {1}, Tình trạng trò chơipad sẵn sàng: {2}, trục: {3}, nút: {4}, Công tắc: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM lỗi 0x{1:X8} (Tiếng cười){2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Kiểu nhập {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Tên đã giải quyết: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Tên máy game: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Thiết bị ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Gốc Thiết bị ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Ngăn chứa ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Nhóm: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Sử dụng: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Đầu vào đã hỗ trợ: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Thông tin về người điều khiển: trục={0}, nút ={1}, Công tắc={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Nhãn trục: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Nhãn nút: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Làm mũ: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Đường dẫn PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Tên PnP: {0}</value></data>
 </root>

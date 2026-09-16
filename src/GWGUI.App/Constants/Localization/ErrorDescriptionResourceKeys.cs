@@ -21,4 +21,5 @@ internal static class ErrorDescriptionResourceKeys
     internal const string NotSupported = "Error.Description.NotSupported";
     internal const string OutOfMemory = "Error.Description.OutOfMemory";
     internal const string Unexpected = "Error.Description.Unexpected";
+    internal const string GameInputWorkerStopTimeout = "Error.Description.GameInputWorkerStopTimeout";
 }

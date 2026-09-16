@@ -28,4 +28,34 @@
   <data name="Error.Description.NotSupported"><value>Эта операция не поддерживается выбранным файлом, устройством или платформой.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Не хватает памяти для завершения операции.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI столкнулся с неожиданной проблемой при выполнении этого действия.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Рабочая нить GameInput не останавливалась.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Без карт</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput не удалось перечислить {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Регистрация кнопок системы GameInput не удалась.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Регистрация обновления GameInput не состоялась {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Обновление GameInput не может быть незарегистрированным: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Очередь обратного вызова устройства GameInput не удалась: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Обратный вызов устройства GameInput не удался: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Системный кнопка возврата GameInput не удалась: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Обратный вызов GameInput для чтения сырого не удался: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: читать {1} Не удалось с кодом 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: тип ввода {1}, Gamepad State доступен: {2}, Диспетчеры контроллеров недоступны</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: тип ввода {1}, Gamepad State доступен: {2}, топоры: {3}, кнопки: {4}, переключатели: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM ошибка 0x{1:X8} (){2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: тип ввода {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Решенное имя: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Имя GameInput: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Устройство ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Корень устройства ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Контейнер ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Семья: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Использование: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Поддерживаемый вклад: {0} 0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Информация о контролере: топоры ={0}, кнопки ={1}, переключатели ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Наклейки на ось: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Кнопочные этикетки: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Картографирование: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Путь PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP-названия: {0}</value></data>
 </root>
