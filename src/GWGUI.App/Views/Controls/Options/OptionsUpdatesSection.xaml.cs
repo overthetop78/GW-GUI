@@ -1,4 +1,5 @@
 using GWGUI.App.Options.Controllers;
+using GWGUI.App.Options.Models.Updates;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
