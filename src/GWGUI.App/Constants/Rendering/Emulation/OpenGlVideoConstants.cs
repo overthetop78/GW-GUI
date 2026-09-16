@@ -2,6 +2,25 @@ namespace GWGUI.App.Constants.Rendering.Emulation;
 
 internal static class OpenGlVideoConstants
 {
+    internal const uint VertexShader = 0x8B31;
+    internal const uint FragmentShader = 0x8B30;
+    internal const uint CompileStatus = 0x8B81;
+    internal const uint LinkStatus = 0x8B82;
+    internal const int InfoLogCapacity = 4_096;
+    internal const int SourceTextureUnit = 0;
+    internal const int HistoryTextureUnit = 1;
+    internal const int InvalidAddressOne = 1;
+    internal const int InvalidAddressTwo = 2;
+    internal const int InvalidAddressThree = 3;
+    internal const int InvalidAddressMinusOne = -1;
+    internal const int ShaderSourceCount = 1;
+    internal const int ShaderSourceTerminatorByteCount = 1;
+    internal const long ShaderSequenceCycle = 4_096;
+    internal const float PercentageDivisor = 100f;
+    internal const float BrightnessUniformDivisor = 20f;
+    internal const float ContrastExponentDivisor = 5f;
+    internal const float SaturationUniformDivisor = 10f;
+    internal const float SharpnessUniformDivisor = 10f;
     internal const uint PixelFormatDrawToWindow = 4;
     internal const uint PixelFormatSupportOpenGl = 32;
     internal const uint PixelFormatDoubleBuffer = 1;

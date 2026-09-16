@@ -1,0 +1,52 @@
+namespace GWGUI.App.Constants.Rendering.Emulation;
+
+internal static class OpenGlVideoUniformNames
+{
+    internal const string Source = "Source";
+    internal const string History = "History";
+    internal const string Adjustments = "Adjustments";
+    internal const string Processing = "Processing";
+    internal const string Output = "Output";
+    internal const string CrtDisplay = "CrtDisplay";
+    internal const string CrtBeam = "CrtBeam";
+    internal const string CrtOptical = "CrtOptical";
+    internal const string CrtGeometry = "CrtGeometry";
+    internal const string CrtScanlines = "CrtScanlines";
+    internal const string CrtPattern = "CrtPattern";
+    internal const string CrtPatternIntensity = "CrtPatternIntensity";
+    internal const string FixedDisplay = "FixedDisplay";
+    internal const string FixedSpatial = "FixedSpatial";
+    internal const string FixedTechnology = "FixedTechnology";
+    internal const string FixedTemporal = "FixedTemporal";
+    internal const string PlasmaEffect = "PlasmaEffect";
+    internal const string PlasmaTemporal = "PlasmaTemporal";
+    internal const string PlasmaDisplay = "PlasmaDisplay";
+    internal const string VectorEffect = "VectorEffect";
+    internal const string VectorTemporal = "VectorTemporal";
+    internal const string VectorDisplay = "VectorDisplay";
+    internal const string SegmentGeometry = "SegmentGeometry";
+    internal const string SegmentShape = "SegmentShape";
+    internal const string SegmentEmission = "SegmentEmission";
+    internal const string SegmentOptical = "SegmentOptical";
+    internal const string SegmentTemporal = "SegmentTemporal";
+    internal const string General = "General";
+    internal const string Restoration = "Restoration";
+    internal const string Temporal = "Temporal";
+    internal const string Signal = "Signal";
+    internal const string Signal2 = "Signal2";
+    internal const string Stylistic = "Stylistic";
+    internal const string Stylistic2 = "Stylistic2";
+    internal const string VfdDisplay = "VfdDisplay";
+    internal const string VfdStructure = "VfdStructure";
+    internal const string VfdOptical = "VfdOptical";
+    internal const string LedMatrixEmission = "LedMatrixEmission";
+    internal const string LedMatrixStructure = "LedMatrixStructure";
+    internal const string DotMatrixGeometry = "DotMatrixGeometry";
+    internal const string DotMatrixEmission = "DotMatrixEmission";
+    internal const string DotMatrixTemporal = "DotMatrixTemporal";
+    internal const string EPaperInkAndColor = "EPaperInkAndColor";
+    internal const string EPaperSurface = "EPaperSurface";
+    internal const string EPaperTemporal = "EPaperTemporal";
+    internal const string Projection = "Projection";
+    internal const string ProjectionScreen = "ProjectionScreen";
+}

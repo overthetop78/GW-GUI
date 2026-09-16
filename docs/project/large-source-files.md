@@ -19,8 +19,8 @@ Ce relevé couvre les fichiers texte suivis par Git dans les dossiers `GWGUI.*`.
 |---|---:|---|
 | `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` | 1 292 | **Critique** — Découpage effectué |
 | `src/GWGUI.App/Services/Input/GameInput/GameInputControllerReader.cs` | 1 253 | **Critique** — Découpage effectué |
-| `src/GWGUI.App/Rendering/Emulation/Processing/OpenGlVideoProcessingProgram.cs` | 983 | Moyenne, wrapper OpenGL spécialisé |
-| `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` | 810 | **Élevée**, code-behind central |
+| `src/GWGUI.App/Rendering/Emulation/Processing/OpenGlVideoProcessingProgram.cs` | 983 | Moyenne, wrapper OpenGL spécialisé — Découpage effectué |
+| `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` | 810 | **Élevée**, code-behind central — Découpage effectué |
 | `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsSection.cs` | 767 | Moyenne, construction d’interface |
 | `src/GWGUI.App/Rendering/Emulation/Processing/SoftwareEmulationVideoProcessingPipeline.cs` | 754 | Moyenne, traitements vidéo spécialisés |
 | `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` | 695 | **Élevée**, contrôleur applicatif |
