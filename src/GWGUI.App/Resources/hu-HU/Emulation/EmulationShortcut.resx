@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Emulációs gyorsbillentyűk</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Egér felengedése</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Szünet / folytatás</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Teljes képernyő / ablak</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Be / ki</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Lágy újraindítás</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Kemény újraindítás</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Állapot gyorsmentése</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Állapot gyorsbetöltése</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Képernyőkép</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Aktív gép némítása</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Gyorsítás nyomva tartáskor</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Adathordozó behelyezése vagy cseréje</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Adathordozó kiadása</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Következő adathordozó</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Ezt a műveletet a jelenlegi emulátor még nem támogatja.</value></data>
+</root>

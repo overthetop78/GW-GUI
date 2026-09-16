@@ -35,7 +35,7 @@ internal static class AtariInputSettingsFunctionsConstants
     internal const string Option12 = "Option 1";
     internal const string Option2 = EmulationControllerCommandIds.Option2;
     internal const string Option22 = "Option 2";
-    internal const string ResourceKeyAtariHelp = "Emulation.Key.AtariHelp";
-    internal const string ResourceKeyAtariUndo = "Emulation.Key.AtariUndo";
-    internal const string ResourceKeyAtariBreak = "Emulation.Key.AtariBreak";
+    internal const string ResourceKeyHelp = "Emulation.Key.Help";
+    internal const string ResourceKeyUndo = "Emulation.Key.Undo";
+    internal const string ResourceKeyBreak = "Emulation.Key.Break";
 }

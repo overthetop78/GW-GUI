@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Firmware.Rom.Extended"><value>ROM מורחב</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>רכיבי ROM שזוהו</value></data>
+  <data name="Emulation.Firmware.Use"><value>השתמש</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>פתח תיקיית ROM</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>תואמת חלקית</value></data>
+  <data name="Emulation.Firmware.Official"><value>רשמי</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>לא תואם</value></data>
+</root>

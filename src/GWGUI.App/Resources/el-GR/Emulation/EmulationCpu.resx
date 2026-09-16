@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>Επεξεργαστής: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU μοντέλο</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU πολλαπλασιαστής</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Συμβατό με κύκλο CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU ταχύτητα</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Αρχική ταχύτητα</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Κανονικό</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Συμβατό</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Συμβατό με μνήμη</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Ακριβής κύκλος</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Επεξεργαστής</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Ακρίβεια</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Επιτάχυνση</value></data>
+</root>

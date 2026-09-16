@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>לֹא יְדוּעַ</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>הוצאה</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>לֹא יְדוּעַ</value></data>
+  <data name="Common.Eject"><value>הוצאה</value></data>
   <data name="Common.MediaKind.Unknown"><value>תקשורת לא ידועה</value></data>
   <data name="Common.MediaKind.Floppy"><value>תקליטון</value></data>
   <data name="Common.MediaKind.HardDisk"><value>דיסק קשיח</value></data>
@@ -24,4 +16,10 @@
   <data name="Common.Representation.Blocks"><value>בלוקים</value></data>
   <data name="Common.Representation.OpticalTracks"><value>מסלולים אופטיים</value></data>
   <data name="Common.Representation.Sequential"><value>נתונים הכרחיים</value></data>
+  <data name="Common.Advanced"><value>הגדרות מתקדמות</value></data>
+  <data name="Common.ExpertArguments"><value>טיעוני מומחה</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>הטיעונים מועברים כפי שנכתבו לאחר אימות הציטוט.</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|כל הקבצים|*.*</value></data>
+  <data name="Common.Console"><value>לְנַחֵם</value></data>
+  <data name="Common.Command"><value>פְּקוּדָה</value></data>
 </root>

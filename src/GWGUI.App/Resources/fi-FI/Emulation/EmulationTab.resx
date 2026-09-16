@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>Koneet</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Tervetuloa</value></data>
+  <data name="Emulation.Tab.General"><value>Yleiset</value></data>
+  <data name="Emulation.Tab.Video"><value>Video</value></data>
+  <data name="Emulation.Tab.Storage"><value>Tallennus</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Näppäimistö</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Hiiri</value></data>
+  <data name="Emulation.Tab.Controller"><value>Ohjaimet</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Lisäasetukset</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Pikanäppäimet</value></data>
+  <data name="Emulation.Tab.Audio"><value>Ääni</value></data>
+</root>

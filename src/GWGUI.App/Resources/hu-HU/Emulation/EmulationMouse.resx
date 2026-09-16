@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>A visszaszerzés kulcsa</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Bal egérgombbal</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Jobb egérgombbal</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Középső egérgomb</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Fizikai egér</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Kettős mozgás</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Egérsebesség</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analóg rudak irányítják az egeret</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Analog- stick dead zone</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Analog- stick egérsebesség</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Egérműveletek</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>4. egérgomb</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>5. egérgomb</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Egér rögzítése</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Egérgörgő fel</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Egérgörgő le</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Egérgörgő balra</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Egérgörgő jobbra</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Egér rögzítése</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Egér kilövése</value></data>
+</root>

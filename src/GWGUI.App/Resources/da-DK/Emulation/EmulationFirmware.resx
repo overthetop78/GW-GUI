@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Firmware.Rom.Extended"><value>Udvidet ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>Detekterede ROM &apos;er</value></data>
+  <data name="Emulation.Firmware.Use"><value>Brug</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>Åbn ROM-mappe</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>Delvist kompatibel</value></data>
+  <data name="Emulation.Firmware.Official"><value>Officiel</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>Ikke kompatibel</value></data>
+</root>

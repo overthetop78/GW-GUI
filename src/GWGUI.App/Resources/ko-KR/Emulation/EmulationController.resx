@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>컨트롤러 {0} 장치</value></data>
+  <data name="Emulation.Controller.Detect"><value>컨트롤러 검색</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga 동작</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>키보드, 마우스 또는 컨트롤러 입력</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>왼쪽 스틱</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>오른쪽 스틱</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>양쪽 스틱</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>터보 발사</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>터보 버튼</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>터보 펄스</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>컨트롤러 포트 순서</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>컨트롤러가 감지되지 않음</value></data>
+  <data name="Emulation.Controller.Mappings"><value>컨트롤러 매핑</value></data>
+  <data name="Emulation.Controller.Port"><value>포트 {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>컨트롤러 유형</value></data>
+  <data name="Emulation.Controller.Detected"><value>검색된 컨트롤러</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>동작 또는 입력 검색</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>위</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>아래</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>왼쪽</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>오른쪽</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>발사 버튼 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>발사 버튼 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>아날로그 조이스틱</value></data>
+  <data name="Emulation.Controller.Automatic"><value>오토매틱</value></data>
+  <data name="Emulation.Controller.None"><value>없음</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>스위치 조이스틱/mouse</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput을 초기화할 수 없습니다. 포함된 GameInput 런타임을 설치하거나 복구하세요.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix 스피드킹 (왼손)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (오른손)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>모양</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>의 특징 {0}</value></data>
+</root>

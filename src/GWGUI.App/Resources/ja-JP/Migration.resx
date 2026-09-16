@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>ファイル移行...</value></data>
+  <data name="Migration.Title"><value>ファイル移行</value></data>
+  <data name="Migration.Heading"><value>ファイルを別のファイルシステムに移行する</value></data>
+  <data name="Migration.Source"><value>ソースイメージ</value></data>
+  <data name="Migration.NoSource"><value>認識ファイルシステムを含む画像を選択します。</value></data>
+  <data name="Migration.Destination"><value>宛先ファイルシステムとフォーマット</value></data>
+  <data name="Migration.Output"><value>宛先イメージ</value></data>
+  <data name="Migration.Compatibility"><value>互換性と損失</value></data>
+  <data name="Migration.Waiting"><value>ソースと目的地を選択します。</value></data>
+  <data name="Migration.Severity"><value>重症度</value></data>
+  <data name="Migration.Path"><value>ソースパス</value></data>
+  <data name="Migration.Description"><value>コンテンツ</value></data>
+  <data name="Migration.AcceptLosses"><value>リストされたメタデータの損失を受け入れる</value></data>
+  <data name="Migration.Execute"><value>ファイルを移行する</value></data>
+  <data name="Migration.Blocking"><value>ブロック</value></data>
+  <data name="Migration.MetadataLoss"><value>メタデータの損失</value></data>
+  <data name="Migration.SourceSummary"><value>ボリューム: {0} — ファイル システム: {1} — ルートエントリ: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>移行の準備ができません。 {0}</value></data>
+  <data name="Migration.Completed"><value>宛先イメージが作成されました: {0}</value></data>
+  <data name="Migration.Failed"><value>移行失敗: {0}</value></data>
+  <data name="Migration.Incompatible"><value>互換性:移行前のブロック損失を修正します。</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>記載されたメタデータの損失を受諾した後に互換性があります。</value></data>
+  <data name="Migration.Compatible"><value>互換性: 検出された損失無し。</value></data>
+  <data name="Migration.Loss.MissingContent"><value>ファイルのコンテンツは利用できません。</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>エントリータイプは、目的地がサポートされていません。</value></data>
+  <data name="Migration.Loss.InvalidName"><value>お名前は、目的地の有効ではありません。</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>目的地の名は、あまりにも長いです。</value></data>
+  <data name="Migration.Loss.NameCollision"><value>複数のエントリは同じ宛先名を持つことになります。</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>ファイルがコピー先の大きい。</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>ソースメタデータは無効です。</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>変更日は保存されません。</value></data>
+  <data name="Migration.Loss.Comment"><value>コメントは保存されません。</value></data>
+  <data name="Migration.Loss.Attributes"><value>ソース属性は保存されません。</value></data>
+  <data name="Migration.OverwriteConfirm"><value>先物画像は既に存在しています。それを置き換えますか? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>宛先イメージは、ソースイメージを置き換えることができません。</value></data>
+</root>

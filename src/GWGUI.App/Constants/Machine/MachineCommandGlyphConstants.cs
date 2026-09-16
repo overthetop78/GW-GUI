@@ -1,19 +1,21 @@
+using GWGUI.App.Constants.Controls.Visual;
+
 namespace GWGUI.App.Constants.Machine;
 
 internal static class MachineCommandGlyphConstants
 {
-    internal const string Power = "\uE7E8";
-    internal const string Pause = "\uE769";
-    internal const string Continue = "\uE768";
-    internal const string SoftReset = "\uE777";
-    internal const string HardReset = "\uE72C";
-    internal const string QuickSave = "\uE74E";
-    internal const string QuickLoad = "\uE8E5";
-    internal const string CaptureScreen = "\uE722";
-    internal const string Fullscreen = "\uE740";
-    internal const string Audio = "\uE767";
-    internal const string Muted = "\uE74F";
-    internal const string Controller = "\uE7FC";
-    internal const string Pointer = "\uE962";
-    internal const string Renderer = "\uE7F4";
+    internal static string Power => IconGlyphs.Power;
+    internal static string Pause => IconGlyphs.Pause;
+    internal static string Continue => IconGlyphs.Play;
+    internal static string SoftReset => IconGlyphs.Reset;
+    internal static string HardReset => IconGlyphs.Refresh;
+    internal static string QuickSave => IconGlyphs.Save;
+    internal static string QuickLoad => IconGlyphs.Load;
+    internal static string CaptureScreen => IconGlyphs.CaptureScreen;
+    internal static string Fullscreen => IconGlyphs.Fullscreen;
+    internal static string Audio => IconGlyphs.Audio;
+    internal static string Muted => IconGlyphs.Muted;
+    internal static string Controller => IconGlyphs.Controller;
+    internal static string Pointer => IconGlyphs.Mouse;
+    internal static string Renderer => IconGlyphs.Display;
 }

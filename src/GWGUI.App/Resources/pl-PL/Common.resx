@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Nieznany</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Wyrzucić</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Nieznany</value></data>
+  <data name="Common.Eject"><value>Wyrzucić</value></data>
   <data name="Common.MediaKind.Unknown"><value>Nieznane media</value></data>
   <data name="Common.MediaKind.Floppy"><value>Dyskietka</value></data>
   <data name="Common.MediaKind.HardDisk"><value>Dysk twardy</value></data>
@@ -24,4 +16,10 @@
   <data name="Common.Representation.Blocks"><value>Bloki</value></data>
   <data name="Common.Representation.OpticalTracks"><value>Ścieżki optyczne</value></data>
   <data name="Common.Representation.Sequential"><value>Dane sekwencyjne</value></data>
+  <data name="Common.Advanced"><value>Ustawienia zaawansowane</value></data>
+  <data name="Common.ExpertArguments"><value>Argumenty ekspertów</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumenty są przekazywane w postaci zapisanej po sprawdzeniu poprawności cytatu.</value></data>
+  <data name="Common.DiskImageFilter"><value>Obrazy dysków|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Wszystkie pliki|*.*</value></data>
+  <data name="Common.Console"><value>Konsola</value></data>
+  <data name="Common.Command"><value>Rozkaz</value></data>
 </root>

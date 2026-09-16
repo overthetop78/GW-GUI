@@ -1,19 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Diskbilde</value></data>
-<data name="Explorer.OpenImage"><value>Åpne et bilde…</value></data>
+  <data name="Explorer.DetectedFormats"><value>Oppdaget: {0}</value></data>
+  <data name="Explorer.Format"><value>Formater</value></data>
+  <data name="Explorer.OpenImage"><value>Åpne et bilde…</value></data>
   <data name="Explorer.Automatic"><value>Automatisk gjenkjenning</value></data>
   <data name="Explorer.Volume"><value>Volum</value></data>
   <data name="Explorer.FileSystem"><value>Filsystem</value></data>
@@ -31,16 +25,21 @@
   <data name="Explorer.Unknown"><value>Ukjent</value></data>
   <data name="Explorer.Unnamed"><value>Volum uten navn</value></data>
   <data name="Explorer.LoadFailed"><value>Kan ikke åpne dette bildet: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Inkompatibelt format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>«{1}» kan ikke tolkes med formatet «{0}».&#xA;Velg et annet format for å fortsette.</value></data>
   <data name="Explorer.Loading"><value>Leser diskbilde…</value></data>
   <data name="Explorer.ReadDisk"><value>Les diskett</value></data>
   <data name="Explorer.Name"><value>Navn</value></data>
-<data name="Explorer.ReadDiskConfirmTitle"><value>Les diskett</value></data>
+  <data name="Explorer.Type"><value>Type</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Les diskett</value></data>
   <data name="Explorer.ReadDiskConfirm"><value>Er disketten satt inn i den valgte stasjonen ({0}) og klar til å leses?</value></data>
   <data name="Explorer.Type.Text"><value>Tekstfil</value></data>
   <data name="Explorer.Type.Image"><value>Bilde</value></data>
   <data name="Explorer.Type.Audio"><value>Lydfil</value></data>
   <data name="Explorer.Type.Archive"><value>Arkiv</value></data>
-<data name="Explorer.Type.DiskImage"><value>Diskbilde</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Diskbilde</value></data>
+  <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Beskyttelse</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysiske sektorer — ingen gjenkjent filsystem</value></data>
   <data name="Explorer.Organization"><value>Organisering</value></data>
@@ -48,15 +47,9 @@
   <data name="Explorer.Compression"><value>Komprimering</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Tilpasset sektorinnlaster</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Tilpasset sektorinnlaster — ingen filkatalog</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack av The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Datablokker</value></data>
-  <data name="Explorer.DetectedFormats"><value>Oppdaget: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Vertsverktøy kan ikke produsere et eksplorbart sektorbilde for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Vertsverktøy kunne ikke dekode bildet som {0}.</value></data>
-  <data name="Explorer.Format"><value>Formater</value></data>
-  <data name="Explorer.Type"><value>Type</value></data>
-  <data name="Explorer.Type.Program"><value>Program</value></data>
-  <data name="Explorer.System"><value>System</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Vertsverktøy kan ikke produsere et eksplorbart sektorbilde for {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Vertsverktøy kunne ikke dekode bildet som {0}.</value></data>
   <data name="Explorer.Session"><value>Plateøkt</value></data>
   <data name="Explorer.Track"><value>Mediespor</value></data>
   <data name="Explorer.Layers"><value>Disc lag</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Lydspor</value></data>
   <data name="Explorer.LoadingRecognition"><value>Kjenn igjen medieformatet</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Kjente format</value></data>
-  <data name="Explorer.LoadingMedia"><value>Lese mediestrukturen</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Analysere filsystemet</value></data>
-  <data name="Explorer.LoadingContents"><value>Forbereder mapper og filer</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Viser innholdet</value></data>
   <data name="Explorer.TestingFormat"><value>Testformat: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: Kjente</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: ikke anerkjent</value></data>
   <data name="Explorer.ReadingFormat"><value>Leseformat: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Inkompatibelt format</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>«{1}» kan ikke tolkes med formatet «{0}».&#xA;Velg et annet format for å fortsette.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Lese mediestrukturen</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Lese båndet</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Record {0} av {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Dekoding tape poster</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Kjenn igjen filer</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analysere filsystemet</value></data>
+  <data name="Explorer.LoadingContents"><value>Forbereder mapper og filer</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Viser innholdet</value></data>
   <data name="Explorer.FileWithExtension"><value>Fil {0}</value></data>
   <data name="Explorer.Type.Document"><value>Dokument</value></data>
   <data name="Explorer.Type.SourceCode"><value>Kildekode</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC programfil</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Boot program</value></data>
   <data name="Explorer.Type.Executable"><value>KJØP</value></data>
   <data name="Explorer.Type.Command"><value>Kommandofil</value></data>
   <data name="Explorer.Type.SystemFile"><value>Systemfil</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Dokument</value></data>
   <data name="Explorer.Category.SourceCode"><value>Kildekode</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC programmet</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Boot program</value></data>
   <data name="Explorer.Category.Program"><value>Program</value></data>
   <data name="Explorer.Category.Executable"><value>KJØP</value></data>
   <data name="Explorer.Category.Command"><value>Kommando</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Type</value></data>
   <data name="Explorer.BaudRate"><value>Hastighet</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Forsinkelse</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Boot program</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Boot program</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Lese båndet</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Record {0} av {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Dekoding tape poster</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Kjenn igjen filer</value></data>
 </root>

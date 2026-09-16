@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>오디오 사용</value></data>
+  <data name="Emulation.Audio.Output"><value>오디오 출력</value></data>
+  <data name="Emulation.Audio.Latency"><value>지연 시간(ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>보간</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga 오디오 필터</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>스테레오 분리도(%)</value></data>
+  <data name="Emulation.Audio.Input"><value>오디오 입력</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>이 Amiga 코어는 오디오 입력을 제공하지 않습니다.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows 기본 출력</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>안티 보간</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>에뮬레이션</value></data>
+  <data name="Emulation.Audio.FilterType"><value>필터 종류</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>플로피 드라이브 소리 음량</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>플로피 드라이브 소리 종류</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>빈 드라이브 음소거</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD 오디오 음량</value></data>
+  <data name="Emulation.Audio.Device"><value>장치</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>지연 시간</value></data>
+  <data name="Emulation.Audio.Quality"><value>품질</value></data>
+  <data name="Emulation.Audio.Drives"><value>드라이브</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>플로피 드라이브 소리</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>편광 오디오 필터</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>낮음</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>보통</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>높음</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>의 특징</value></data>
+</root>

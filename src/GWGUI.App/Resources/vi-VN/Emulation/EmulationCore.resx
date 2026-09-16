@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Lõi</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Lõi giả lập {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Thư viện vẫn nằm bên ngoài GW GUI. Phiên bản được chọn sẽ thay thế phiên bản hiện đang cài đặt.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Phiên bản GW GUI yêu cầu</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Phiên bản chính thức mới nhất hiện có</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Phiên bản hiện đang cài đặt</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Nhấp Tìm kiếm để truy vấn máy chủ Libretro chính thức.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Tìm phiên bản</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Tải xuống và thay thế</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Đang tìm các phiên bản hiện có…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Không tìm thấy phiên bản chính thức.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>Có {0} phiên bản.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Đang tải {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Phiên bản đã cài đặt: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · đã cài đặt</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Chưa cài đặt phiên bản nào</value></data>
+  <data name="Emulation.Core.Emulator"><value>Trình giả lập</value></data>
+  <data name="Emulation.Core.Install"><value>Cài đặt</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Đã cài đặt</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Tùy chọn lõi</value></data>
+</root>

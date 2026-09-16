@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Увімкнено</value></data>
+  <data name="Emulation.Value.Disabled"><value>Вимкнено</value></data>
+  <data name="Emulation.Value.Minimum"><value>Мінімум</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Дуже малий</value></data>
+  <data name="Emulation.Value.Small"><value>Малий</value></data>
+  <data name="Emulation.Value.Medium"><value>Середній</value></data>
+  <data name="Emulation.Value.Large"><value>Великий</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Дуже великий</value></data>
+  <data name="Emulation.Value.Maximum"><value>Максимум</value></data>
+  <data name="Emulation.Value.Standard"><value>Стандартний</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Покращений</value></data>
+  <data name="Emulation.Value.Internal"><value>Внутрішній</value></data>
+  <data name="Emulation.Value.Loud"><value>Гучний</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Не використовується</value></data>
+  <data name="Emulation.Value.None"><value>Немає</value></data>
+  <data name="Emulation.Value.Default"><value>За замовчуванням</value></data>
+  <data name="Emulation.Value.Gray"><value>Сірий</value></data>
+</root>

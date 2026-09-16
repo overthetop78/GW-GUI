@@ -10,25 +10,25 @@
         </Grid.RowDefinitions>
         <shell:MainMenu x:Name="ApplicationMenu"/>
         <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}" AutomationProperties.AutomationId="MainTabs">
-            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Read}"><TabItem.Header><common:MainTabHeader Icon="&#xE768;" Text="{l:Loc Tab.Read}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Read}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Play}" Text="{l:Loc Tab.Read}"/></TabItem.Header>
                 <read:ReadTabSection x:Name="ReadTabBlock"/>
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Write}"><TabItem.Header><common:MainTabHeader Icon="&#xE70F;" Text="{l:Loc Tab.Write}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Write}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Edit}" Text="{l:Loc Tab.Write}"/></TabItem.Header>
                 <write:WriteTabSection x:Name="WriteTabBlock"/>
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Convert}"><TabItem.Header><common:MainTabHeader Icon="&#xE895;" Text="{l:Loc Tab.Convert}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Convert}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Sync}" Text="{l:Loc Tab.Convert}"/></TabItem.Header>
                 <conversion:ConversionTabSection x:Name="ConvertTabBlock"/>
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Visualize}"><TabItem.Header><common:MainTabHeader Icon="&#xE9D2;" Text="{l:Loc Tab.Visualize}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Visualize}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Visualization}" Text="{l:Loc Tab.Visualize}"/></TabItem.Header>
                 <visualization:VisualizerTabSection x:Name="VisualizerTabBlock"/>
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Explorer}"><TabItem.Header><common:MainTabHeader Icon="&#xE838;" Text="{l:Loc Tab.Explorer}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Explorer}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.OpenFolder}" Text="{l:Loc Tab.Explorer}"/></TabItem.Header>
                 <explorer:ExplorerSection x:Name="DiskExplorer" Margin="16"/>
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Tools}"><TabItem.Header><common:MainTabHeader Icon="&#xE90F;" Text="{l:Loc Tab.Tools}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Tools}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Tools}" Text="{l:Loc Tab.Tools}"/></TabItem.Header>
                 <tools:ToolsTabSection x:Name="ToolsTabBlock"/>
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Emulation}"><TabItem.Header><common:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Emulation}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Controller}" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
                 <emulationMachine:EmulationSection x:Name="EmulationBlock"/>
             </TabItem>
         </TabControl>

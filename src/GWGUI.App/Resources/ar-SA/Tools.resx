@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>جاهز للتنفيذ.</value></data>
   <data name="Tool.RawOutput"><value>الإخراج الخام</value></data>
-  <data name="Maintenance.EraseTitle"><value>تأكيد المحو</value></data>
-  <data name="Maintenance.EraseConfirm"><value>هل تريد مسح جميع البيانات الموجودة على القرص المدرج بشكل دائم؟</value></data>
-  <data name="Maintenance.CleanTitle"><value>رؤوس نظيفة</value></data>
-  <data name="Maintenance.CleanConfirm"><value>تأكد من إدخال قرص التنظيف. لا تستخدم قرص البيانات أبدًا.</value></data>
   <data name="Tools.Erase"><value>محو القرص</value></data>
   <data name="Tools.EraseWarning"><value>سيتم تدمير كافة البيانات الموجودة على القرص.</value></data>
   <data name="Tools.LimitTracks"><value>الحد من المسارات</value></data>

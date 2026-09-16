@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>Befintliga filer</value></data>
-  <data name="Conflict.Heading"><value>Vissa filer finns redan</value></data>
-  <data name="Conflict.Help"><value>Välj en åtgärd för varje fil eller tillämpa samma åtgärd på alla filer.</value></data>
-  <data name="Conflict.File"><value>Fil</value></data>
-  <data name="Conflict.Action"><value>Handling</value></data>
-  <data name="Conflict.Overwrite"><value>Skriva över</value></data>
-  <data name="Conflict.Skip"><value>Hoppa</value></data>
-  <data name="Conflict.Number"><value>Använd nästa nummer</value></data>
-  <data name="Conflict.AllOverwrite"><value>Skriv över alla</value></data>
-  <data name="Conflict.AllSkip"><value>Hoppa över allt</value></data>
-  <data name="Conflict.AllNumber"><value>Nummer alla</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>Omvandling</value></data>
   <data name="Conversion.SelectOutput"><value>Välj minst ett utdataformat.</value></data>
   <data name="Conversion.SourceAmbiguous"><value>Tvetydig källa</value></data>
@@ -43,49 +24,14 @@
   <data name="Conversion.Incompatible"><value>{0} är inte kompatibel med den här källan.</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>Inget tillgängligt utdatafilnamn kunde hittas.</value></data>
   <data name="Conversion.ReconstructedFlux"><value>rekonstruerat flöde</value></data>
-  <data name="Migration.Open"><value>Fil migration...</value></data>
-  <data name="Migration.Title"><value>Fil migration</value></data>
-  <data name="Migration.Heading"><value>Migrera filer till ett annat filsystem</value></data>
-  <data name="Migration.Source"><value>Källa bild</value></data>
-  <data name="Migration.NoSource"><value>Välj en bild som innehåller ett erkänt filsystem.</value></data>
-  <data name="Migration.Destination"><value>Destination Filsystem och format</value></data>
-  <data name="Migration.Output"><value>Destination bild</value></data>
-  <data name="Migration.Compatibility"><value>Kompatibilitet och förluster</value></data>
-  <data name="Migration.Waiting"><value>Välj en källa och en destination.</value></data>
-  <data name="Migration.Severity"><value>Svårighetsgrad</value></data>
-  <data name="Migration.Path"><value>Källa väg</value></data>
-  <data name="Migration.Description"><value>Beskrivning</value></data>
-  <data name="Migration.AcceptLosses"><value>Acceptera de listade metadataförlusterna</value></data>
-  <data name="Migration.Execute"><value>Migrera filer</value></data>
-  <data name="Migration.Blocking"><value>Blockering</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadataförlust</value></data>
-  <data name="Migration.SourceSummary"><value>Volym: {0} Filsystem: {1} Root Entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Kan inte förbereda migrationen: {0}</value></data>
-  <data name="Migration.Completed"><value>destinationsbilden skapades: {0}</value></data>
-  <data name="Migration.Failed"><value>Migrering misslyckades: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Inkompatibel: korrigera blockeringsförlusterna innan migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Kompatibel efter att ha accepterat de listade metadataförlusterna.</value></data>
-  <data name="Migration.Compatible"><value>Kompatibel: ingen förlust upptäckt.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>Filinnehåll är inte tillgängligt.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>Denna ingångstyp stöds inte av destinationen.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>Namnet är inte giltigt för destinationen.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>Namnet är för länge för destinationen.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Flera poster skulle ha samma destinationsnamn.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>Filen är för stor för destinationen.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>Källan metadata är ogiltig.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>Ändringsdatumet kommer inte att bevaras.</value></data>
-  <data name="Migration.Loss.Comment"><value>Kommentaren kommer inte att bevaras.</value></data>
-  <data name="Migration.Loss.Attributes"><value>Källkrediterna kommer inte att bevaras.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>Destinationsbilden finns redan. Byt ut den? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>Destinationsbilden kan inte ersätta källbilden.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>sektorsdata; skydd som inte bevarats</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>rekonstruerade spår; originalflödet som inte bevarats</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>originalflöde bevarat</value></data>
-  <data name="Conversion.EngineExternal"><value>Värdverktyg: konvertera {0}.</value></data>
-  <data name="Conversion.EngineInternalStart"><value>Intern motor: omvandling {0} att {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>Intern konvertering slutförd: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>Den interna motorn stöder inte denna omvandling: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>Intern omvandling misslyckades för {0}:: :: {1}</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Värdverktyg: konvertera {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Intern motor: omvandling {0} att {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Intern konvertering slutförd: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>Den interna motorn stöder inte denna omvandling: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Intern omvandling misslyckades för {0}:: :: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potentiell dataförlust</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Denna omvandling kan inte bevara all källinformation:&#xA;&#xA;{0}&#xA;&#xA;Vill du fortsätta?</value></data>
 </root>

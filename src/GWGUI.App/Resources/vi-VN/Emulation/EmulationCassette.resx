@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>Phát</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Tạm dừng</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Tua lại</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>Tua nhanh</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Ghi</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Dừng</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>Không có băng</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Đã dừng</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Đang phát</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>Tạm dừng</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Đang ghi</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>Hết băng</value></data>
+</root>

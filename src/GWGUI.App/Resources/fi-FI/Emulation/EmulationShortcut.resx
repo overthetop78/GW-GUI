@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Emuloinnin pikanäppäimet</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Vapauta hiiri</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Tauko / jatka</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Koko näyttö / ikkuna</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Virta päälle / pois</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Pehmeä nollaus</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Kova nollaus</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Pikatallennus</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Pikalataus</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Näyttökuva</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Mykistä aktiivinen kone</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Pikakelaus pidettäessä</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Aseta tai vaihda media</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Poista media</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Seuraava media</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Nykyinen emulaattori ei vielä tue tätä toimintoa.</value></data>
+</root>

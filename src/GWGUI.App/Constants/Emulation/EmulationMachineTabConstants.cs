@@ -1,4 +1,5 @@
 using GWGUI.App.Contracts.Emulation.Machine;
+using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.Emulation;
 
 namespace GWGUI.App.Constants.Emulation;
@@ -11,15 +12,15 @@ internal static class EmulationMachineTabConstants
 
     internal static readonly IReadOnlyList<EmulationMachineTabDefinition> Definitions =
     [
-        new(EmulationMachineTab.General, "\uE713", "Emulation.Tab.General"),
-        new(EmulationMachineTab.Cpu, "\uE950", "Emulation.Tab.Cpu"),
-        new(EmulationMachineTab.Ram, "\uE964", "Emulation.Tab.Ram"),
-        new(EmulationMachineTab.Rom, "\uE8B7", "Emulation.Tab.Rom"),
-        new(EmulationMachineTab.Video, "\uE7F4", "Emulation.Tab.Video"),
-        new(EmulationMachineTab.Audio, "\uE767", "Emulation.Tab.Audio"),
-        new(EmulationMachineTab.Storage, "\uEDA2", "Emulation.Tab.Storage"),
+        new(EmulationMachineTab.General, IconGlyphs.Settings, "Emulation.Tab.General"),
+        new(EmulationMachineTab.Cpu, IconGlyphs.Processor, "Emulation.Tab.Cpu"),
+        new(EmulationMachineTab.Ram, IconGlyphs.Memory, "Emulation.Tab.Ram"),
+        new(EmulationMachineTab.Rom, IconGlyphs.File, "Emulation.Tab.Rom"),
+        new(EmulationMachineTab.Video, IconGlyphs.Display, "Emulation.Tab.Video"),
+        new(EmulationMachineTab.Audio, IconGlyphs.Audio, "Emulation.Tab.Audio"),
+        new(EmulationMachineTab.Storage, IconGlyphs.HardDisk, "Emulation.Tab.Storage"),
         new(EmulationMachineTab.Keyboard, EmulationInputSettingsConstants.KeyboardIcon, "Emulation.Tab.Keyboard"),
-        new(EmulationMachineTab.Mouse, "\uE962", "Emulation.Tab.Mouse"),
-        new(EmulationMachineTab.Controllers, "\uE7FC", "Emulation.Controller.Tab")
+        new(EmulationMachineTab.Mouse, IconGlyphs.Mouse, "Emulation.Tab.Mouse"),
+        new(EmulationMachineTab.Controllers, IconGlyphs.Controller, "Emulation.Tab.Controller")
     ];
 }

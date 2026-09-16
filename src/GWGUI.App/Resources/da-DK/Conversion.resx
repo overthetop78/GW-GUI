@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>Eksisterende filer</value></data>
-  <data name="Conflict.Heading"><value>Nogle filer findes allerede</value></data>
-  <data name="Conflict.Help"><value>Vælg en handling for hver fil, eller anvend den samme handling på alle filer.</value></data>
-  <data name="Conflict.File"><value>Fil</value></data>
-  <data name="Conflict.Action"><value>Handling</value></data>
-  <data name="Conflict.Overwrite"><value>Overskriv</value></data>
-  <data name="Conflict.Skip"><value>Springe</value></data>
-  <data name="Conflict.Number"><value>Brug næste nummer</value></data>
-  <data name="Conflict.AllOverwrite"><value>Overskriv alle</value></data>
-  <data name="Conflict.AllSkip"><value>Spring alle over</value></data>
-  <data name="Conflict.AllNumber"><value>Nummer alle</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>Omdannelse</value></data>
   <data name="Conversion.SelectOutput"><value>Vælg mindst ét ​​outputformat.</value></data>
   <data name="Conversion.SourceAmbiguous"><value>Tvetydig kilde</value></data>
@@ -43,49 +24,14 @@
   <data name="Conversion.Incompatible"><value>{0} er ikke kompatibel med denne kilde.</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>Der blev ikke fundet noget tilgængeligt outputfilnavn.</value></data>
   <data name="Conversion.ReconstructedFlux"><value>rekonstrueret flux</value></data>
-  <data name="Migration.Open"><value>Filmigration...</value></data>
-  <data name="Migration.Title"><value>Filmigration</value></data>
-  <data name="Migration.Heading"><value>Migrér filer til et andet filsystem</value></data>
-  <data name="Migration.Source"><value>Kildebillede</value></data>
-  <data name="Migration.NoSource"><value>Vælg et billede der indeholder et genkendt filsystem.</value></data>
-  <data name="Migration.Destination"><value>Destinationsfilsystem og -format</value></data>
-  <data name="Migration.Output"><value>Destinationsbillede</value></data>
-  <data name="Migration.Compatibility"><value>Forenelighed og tab</value></data>
-  <data name="Migration.Waiting"><value>Vælg en kilde og en destination.</value></data>
-  <data name="Migration.Severity"><value>Sværhedsgrad</value></data>
-  <data name="Migration.Path"><value>Kildesti</value></data>
-  <data name="Migration.Description"><value>Varebeskrivelse</value></data>
-  <data name="Migration.AcceptLosses"><value>Acceptér de anførte metadatatab</value></data>
-  <data name="Migration.Execute"><value>Migrér filer</value></data>
-  <data name="Migration.Blocking"><value>Blokering</value></data>
-  <data name="Migration.MetadataLoss"><value>Tab af metadata</value></data>
-  <data name="Migration.SourceSummary"><value>Mængde: {0} - Filsystem: {1} - Rodindgange: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Kan ikke forberede migreringen: {0}</value></data>
-  <data name="Migration.Completed"><value>Destinationsbilledet blev oprettet: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration mislykkedes: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Ukompatibel: korrigerer blokeringstab før migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Kompatibel efter accept af de anførte metadata tab.</value></data>
-  <data name="Migration.Compatible"><value>Kompatibel: intet tab opdaget.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>Filindholdet er ikke tilgængeligt.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>Denne indtastningstype understøttes ikke af destinationen.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>Navnet er ikke gyldigt for destinationen.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>Navnet er for langt til destinationen.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Flere poster ville have samme destinationsnavn.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>Filen er for stor til destinationen.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>Kildemetadata er ugyldige.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>Ændringstidspunktet vil ikke blive bevaret.</value></data>
-  <data name="Migration.Loss.Comment"><value>Kommentaren vil ikke blive bevaret.</value></data>
-  <data name="Migration.Loss.Attributes"><value>Kildeattributterne vil ikke blive bevaret.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>- Destinationsbilledet findes allerede. {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>Destinationsbilledet kan ikke erstatte kildebilledet.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>Sektordata; beskyttelse ikke bevaret</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>rekonstruerede spor; oprindelig flux ikke bevaret</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>original flux konserveret</value></data>
-  <data name="Conversion.EngineExternal"><value>Værtsværktøjer: konvertering {0}.</value></data>
-  <data name="Conversion.EngineInternalStart"><value>Intern motor: ombygning {0} til {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>Intern konvertering afsluttet: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>Den interne motor understøtter ikke denne konvertering: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>Intern konvertering mislykkedes for {0}: {1}</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Værtsværktøjer: konvertering {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Intern motor: ombygning {0} til {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Intern konvertering afsluttet: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>Den interne motor understøtter ikke denne konvertering: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Intern konvertering mislykkedes for {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potentielt tab af data</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Denne konvertering kan ikke bevare alle kildeoplysninger:&#xA;&#xA;{0}&#xA;&#xA;Vil du fortsætte?</value></data>
 </root>

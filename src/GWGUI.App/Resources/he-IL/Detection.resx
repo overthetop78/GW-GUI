@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Detection.Ambiguous"><value>פורמט מעורפל</value></data>
+  <data name="Detection.RawScp"><value>לכידת SCP גולמית מזוהה.</value></data>
+  <data name="Detection.AmigaSize"><value>פורמט Amiga מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.AcornSize"><value>פורמט Acorn מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>הגודל אינו תואם לפרופיל Atari ST ידוע.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST גיאומטריה מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.MsaInferred"><value>מיכל Atari MSA מזוהה; אשר את הגיאומטריה במידת הצורך.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>הסיומת לבדה לא יכולה לקבוע IBM PC Geoמטריה</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC גיאומטריה מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.ExtensionInferred"><value>הפורמט נגזר מההרחבה.</value></data>
+  <data name="Detection.Multiple"><value>מספר פורמטים אפשריים; לבחור אחד במפורש.</value></data>
+  <data name="Detection.AppleDosOrder"><value>תבנית Apple II DOS זוהתה לפי סדר הסקטורים.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>תבנית Apple II ProDOS זוהתה לפי סדר הסקטורים.</value></data>
+  <data name="Detection.AppleContainer"><value>זוהה מכל תמונת דיסק של Apple.</value></data>
+</root>

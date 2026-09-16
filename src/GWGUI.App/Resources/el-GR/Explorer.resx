@@ -1,18 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Εικόνα δίσκου</value></data>
+  <data name="Explorer.DetectedFormats"><value>Εντοπίστηκε: {0}</value></data>
   <data name="Explorer.Format"><value>Μορφή</value></data>
   <data name="Explorer.OpenImage"><value>Άνοιγμα εικόνας…</value></data>
   <data name="Explorer.Automatic"><value>Αυτόματη ανίχνευση</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Άγνωστο</value></data>
   <data name="Explorer.Unnamed"><value>Τόμος χωρίς όνομα</value></data>
   <data name="Explorer.LoadFailed"><value>Δεν είναι δυνατό το άνοιγμα της εικόνας: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Μη συμβατή μορφή</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Δεν είναι δυνατή η ερμηνεία του «{1}» με τη μορφή «{0}».&#xA;Επιλέξτε άλλη μορφή για να συνεχίσετε.</value></data>
   <data name="Explorer.Loading"><value>Ανάγνωση εικόνας δίσκου…</value></data>
   <data name="Explorer.ReadDisk"><value>Ανάγνωση δισκέτας</value></data>
   <data name="Explorer.Name"><value>Όνομα</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>Συμπίεση</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Προσαρμοσμένος φορτωτής τομέων</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Προσαρμοσμένος φορτωτής — χωρίς κατάλογο αρχείων</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack από την The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Μπλοκ δεδομένων</value></data>
-  <data name="Explorer.DetectedFormats"><value>Εντοπίστηκε: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Τα εργαλεία υποδοχής δεν μπορούν να παράγουν μια εκρηκτική εικόνα τομέα για {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Τα εργαλεία υποδοχής δεν μπορούν να αποκωδικοποιήσουν την εικόνα ως {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Τα εργαλεία υποδοχής δεν μπορούν να παράγουν μια εκρηκτική εικόνα τομέα για {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Τα εργαλεία υποδοχής δεν μπορούν να αποκωδικοποιήσουν την εικόνα ως {0}.</value></data>
   <data name="Explorer.Session"><value>Συνεδρία δίσκων</value></data>
   <data name="Explorer.Track"><value>Κομμάτι πολυμέσων</value></data>
   <data name="Explorer.Layers"><value>Στρώματα δίσκων</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Κομμάτια ήχου</value></data>
   <data name="Explorer.LoadingRecognition"><value>Αναγνωρίζοντας τη μορφή των μέσων ενημέρωσης</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Αναγνωρισμένο σχήμα</value></data>
-  <data name="Explorer.LoadingMedia"><value>Ανάγνωση της δομής των μέσων ενημέρωσης</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Ανάλυση του συστήματος αρχείων</value></data>
-  <data name="Explorer.LoadingContents"><value>Προετοιμασία φακέλων και αρχείων</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Εμφάνιση των περιεχομένων</value></data>
   <data name="Explorer.TestingFormat"><value>Μορφή δοκιμής: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: αναγνωρισμένο</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: μη αναγνωρισμένο</value></data>
   <data name="Explorer.ReadingFormat"><value>Μορφή ανάγνωσης: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Μη συμβατή μορφή</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>Δεν είναι δυνατή η ερμηνεία του «{1}» με τη μορφή «{0}».&#xA;Επιλέξτε άλλη μορφή για να συνεχίσετε.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Ανάγνωση της δομής των μέσων ενημέρωσης</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Διαβάζοντας την κασέτα</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Εγγραφή {0} του {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Αποκωδικοποίηση εγγραφών ταινιών</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Αναγνώριση αρχείων</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Ανάλυση του συστήματος αρχείων</value></data>
+  <data name="Explorer.LoadingContents"><value>Προετοιμασία φακέλων και αρχείων</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Εμφάνιση των περιεχομένων</value></data>
   <data name="Explorer.FileWithExtension"><value>Αρχείο {0}</value></data>
   <data name="Explorer.Type.Document"><value>Έγγραφο</value></data>
   <data name="Explorer.Type.SourceCode"><value>Κωδικός πηγής</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC αρχείο προγράμματος</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Πρόγραμμα εκκίνησης</value></data>
   <data name="Explorer.Type.Executable"><value>Εκτελέσιμο</value></data>
   <data name="Explorer.Type.Command"><value>Αρχείο εντολής</value></data>
   <data name="Explorer.Type.SystemFile"><value>Αρχείο συστήματος</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Έγγραφο</value></data>
   <data name="Explorer.Category.SourceCode"><value>Κωδικός πηγής</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC πρόγραμμα</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Πρόγραμμα εκκίνησης</value></data>
   <data name="Explorer.Category.Program"><value>Πρόγραμμα</value></data>
   <data name="Explorer.Category.Executable"><value>Εκτελέσιμο</value></data>
   <data name="Explorer.Category.Command"><value>Εντολή</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Τύπος</value></data>
   <data name="Explorer.BaudRate"><value>Ρυθμός</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Καθυστέρηση</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Πρόγραμμα εκκίνησης</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Πρόγραμμα εκκίνησης</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Διαβάζοντας την κασέτα</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Εγγραφή {0} του {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Αποκωδικοποίηση εγγραφών ταινιών</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Αναγνώριση αρχείων</value></data>
 </root>

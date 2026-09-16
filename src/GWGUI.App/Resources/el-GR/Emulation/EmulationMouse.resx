@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Κλειδί σύλληψης απελευθέρωσης</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Αριστερό πλήκτρο ποντικιού</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Δεξί πλήκτρο ποντικιού</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Μεσαίο πλήκτρο ποντικιού</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Φυσικό ποντίκι</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Διπλή κίνηση</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Ταχύτητα ποντικιού</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Αναλογική ραβδία ελέγχου του ποντικιού</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Ζώνη νεκρής γωνιακής άρθρωσης</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Αναλογική ταχύτητα ποντικιού</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Ενέργειες ποντικιού</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Κουμπί ποντικιού 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Κουμπί ποντικιού 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Δέσμευση ποντικιού</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Τροχός ποντικιού πάνω</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Τροχός ποντικιού κάτω</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Τροχός ποντικιού αριστερά</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Τροχός ποντικιού δεξιά</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Δέσμευση ποντικιού</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Ελευθέρωσε το ποντίκι</value></data>
+</root>

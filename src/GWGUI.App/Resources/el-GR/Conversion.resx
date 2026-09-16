@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>Υπάρχοντα αρχεία</value></data>
-  <data name="Conflict.Heading"><value>Ορισμένα αρχεία υπάρχουν ήδη</value></data>
-  <data name="Conflict.Help"><value>Επιλέξτε μια ενέργεια για κάθε αρχείο ή εφαρμόστε την ίδια ενέργεια σε όλα τα αρχεία.</value></data>
-  <data name="Conflict.File"><value>Αρχείο</value></data>
-  <data name="Conflict.Action"><value>Δράση</value></data>
-  <data name="Conflict.Overwrite"><value>Αντικατάσταση</value></data>
-  <data name="Conflict.Skip"><value>Παραλείπω</value></data>
-  <data name="Conflict.Number"><value>Χρησιμοποιήστε τον επόμενο αριθμό</value></data>
-  <data name="Conflict.AllOverwrite"><value>Αντικατάσταση όλων</value></data>
-  <data name="Conflict.AllSkip"><value>Παράλειψη όλων</value></data>
-  <data name="Conflict.AllNumber"><value>Αριθμήστε όλα</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>Μετατροπή</value></data>
   <data name="Conversion.SelectOutput"><value>Επιλέξτε τουλάχιστον μία μορφή εξόδου.</value></data>
   <data name="Conversion.SourceAmbiguous"><value>Διφορούμενη πηγή</value></data>
@@ -43,49 +24,14 @@
   <data name="Conversion.Incompatible"><value>Το {0} δεν είναι συμβατό με αυτήν την πηγή.</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>Δεν βρέθηκε διαθέσιμο όνομα αρχείου εξόδου.</value></data>
   <data name="Conversion.ReconstructedFlux"><value>ανακατασκευασμένη ροή</value></data>
-  <data name="Migration.Open"><value>Μετανάστευση αρχείου...</value></data>
-  <data name="Migration.Title"><value>Μετανάστες αρχείων</value></data>
-  <data name="Migration.Heading"><value>Μετακίνηση αρχείων σε άλλο σύστημα αρχείων</value></data>
-  <data name="Migration.Source"><value>Εικόνα πηγής</value></data>
-  <data name="Migration.NoSource"><value>Επιλέξτε μια εικόνα που περιέχει ένα αναγνωρισμένο σύστημα αρχείων.</value></data>
-  <data name="Migration.Destination"><value>Σύστημα και μορφή αρχείων προορισμού</value></data>
-  <data name="Migration.Output"><value>Εικόνα προορισμού</value></data>
-  <data name="Migration.Compatibility"><value>Συμβατότητα και ζημίες</value></data>
-  <data name="Migration.Waiting"><value>Επιλέξτε μια πηγή και έναν προορισμό.</value></data>
-  <data name="Migration.Severity"><value>Σοβαρότητα</value></data>
-  <data name="Migration.Path"><value>Διαδρομή πηγής</value></data>
-  <data name="Migration.Description"><value>Περιγραφή εμπορευμάτων</value></data>
-  <data name="Migration.AcceptLosses"><value>Αποδοχή των απωλειών μεταδεδομένων που αναφέρονται</value></data>
-  <data name="Migration.Execute"><value>Μετακίνηση αρχείων</value></data>
-  <data name="Migration.Blocking"><value>Αποκλεισμός</value></data>
-  <data name="Migration.MetadataLoss"><value>Απώλεια μεταδεδομένων</value></data>
-  <data name="Migration.SourceSummary"><value>Όγκος: {0} — Σύστημα αρχείων: {1} — Καταχωρίσεις για ρίζες: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Αδύνατη η προετοιμασία της μετανάστευσης: {0}</value></data>
-  <data name="Migration.Completed"><value>Η εικόνα προορισμού δημιουργήθηκε: {0}</value></data>
-  <data name="Migration.Failed"><value>Η μετανάστευση απέτυχε: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Ασυμβατό: διορθώστε τις απώλειες αποκλεισμού πριν από τη μετανάστευση.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Συμβατό μετά την αποδοχή των απωλειών μεταδεδομένων που αναφέρονται.</value></data>
-  <data name="Migration.Compatible"><value>Συμβατό: δεν ανιχνεύθηκε απώλεια.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>Το περιεχόμενο του αρχείου δεν είναι διαθέσιμο.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>Αυτός ο τύπος καταχώρησης δεν υποστηρίζεται από τον προορισμό.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>Το όνομα δεν ισχύει για τον προορισμό.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>Το όνομα είναι πολύ μεγάλο για τον προορισμό.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Αρκετές καταχωρήσεις θα είχαν το ίδιο όνομα προορισμού.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>Ο φάκελος είναι πολύ μεγάλος για τον προορισμό.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>Τα μεταδεδομένα πηγής είναι άκυρα.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>Η ημερομηνία τροποποίησης δεν θα διατηρηθεί.</value></data>
-  <data name="Migration.Loss.Comment"><value>Το σχόλιο δεν θα διατηρηθεί.</value></data>
-  <data name="Migration.Loss.Attributes"><value>Τα χαρακτηριστικά της πηγής δεν θα διατηρηθούν.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>Η εικόνα προορισμού υπάρχει ήδη. Αντικατάσταση της; {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>Η εικόνα προορισμού δεν μπορεί να αντικαταστήσει την εικόνα πηγής.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>δεδομένα τομέα· προστασία μη διατηρητέες</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>ανακατασκευασμένα κομμάτια· η αρχική ροή δεν διατηρείται</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>αρχική διατηρούμενη ροή</value></data>
-  <data name="Conversion.EngineExternal"><value>Εργαλεία υποδοχής: μετατροπή {0}.</value></data>
-  <data name="Conversion.EngineInternalStart"><value>Εσωτερική μηχανή: μετατροπή {0} προς {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>Εσωτερική μετατροπή ολοκληρώθηκε: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>Ο εσωτερικός κινητήρας δεν υποστηρίζει αυτή τη μετατροπή: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>Αποτυχία εσωτερικής μετατροπής για {0}: {1}</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Εργαλεία υποδοχής: μετατροπή {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Εσωτερική μηχανή: μετατροπή {0} προς {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Εσωτερική μετατροπή ολοκληρώθηκε: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>Ο εσωτερικός κινητήρας δεν υποστηρίζει αυτή τη μετατροπή: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Αποτυχία εσωτερικής μετατροπής για {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Πιθανή απώλεια δεδομένων</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Αυτή η μετατροπή δεν μπορεί να διατηρήσει όλες τις πληροφορίες πηγής:&#xA;&#xA;{0}&#xA;&#xA;Θέλεις να συνεχίσεις;</value></data>
 </root>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Συμπεριφορά</value></data>
+  <data name="Emulation.Input.Assign"><value>Αντιστοίχιση...</value></data>
+  <data name="Emulation.Input.Actions"><value>Ενέργειες</value></data>
+  <data name="Emulation.Input.Press"><value>Πατήστε ένα πλήκτρο...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Η ανίχνευση συσκευών είναι κοινή, ενώ οι αντιστοιχίσεις αποθηκεύονται χωριστά σε κάθε διαμόρφωση μηχανήματος.</value></data>
+  <data name="Emulation.Input.Test"><value>Δοκιμή εισόδων</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Κοινόχρηστες συσκευές εισόδου</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Πατήστε ένα πλήκτρο ή κουμπί ποντικιού για να δοκιμάσετε την ανίχνευση.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Επαναφορά προεπιλογών</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Εκκαθάριση διενέξεων</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Αντιστοίχιση</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Κατάσταση</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Αναζήτηση πλήκτρου ή αντιστοίχισης</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Έγκυρο: μοναδική αντιστοίχιση · Διένεξη: πολλαπλή χρήση · Δεσμευμένο: συντόμευση Windows ή GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Έγκυρο</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Διένεξη</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Δεσμευμένο</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Χωρίς αντιστοίχιση</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Πατήστε «Αντιστοίχιση» και μετά ένα πλήκτρο, κουμπί ποντικιού ή κουμπί χειριστηρίου.</value></data>
+</root>

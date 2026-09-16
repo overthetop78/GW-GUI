@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Valmiina toteuttamaan.</value></data>
   <data name="Tool.RawOutput"><value>Raaka tuotanto</value></data>
-  <data name="Maintenance.EraseTitle"><value>Vahvista poisto</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Poistetaanko kaikki syötetyn levyn tiedot pysyvästi?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Puhtaat päät</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Varmista, että puhdistuslevy on asetettu paikalleen. Älä koskaan käytä datalevyä.</value></data>
   <data name="Tools.Erase"><value>Tyhjennä levy</value></data>
   <data name="Tools.EraseWarning"><value>Kaikki levyllä olevat tiedot tuhoutuvat.</value></data>
   <data name="Tools.LimitTracks"><value>Rajoita kappaleita</value></data>
@@ -36,7 +24,8 @@
   <data name="Tool.Field.High"><value>Korkea taso</value></data>
   <data name="Tool.Field.Select"><value>Valinta (µs)</value></data>
   <data name="Tool.Field.Step"><value>Pään askel (µs)</value></data>
-<data name="Tool.Field.Motor"><value>Moottori (ms)</value></data>
+  <data name="Tool.Field.Settle"><value>Selitä (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Moottori (ms)</value></data>
   <data name="Tool.Field.Watchdog"><value>Poista valinta automaattisesti (ms)</value></data>
   <data name="Tool.Field.PreWrite"><value>Ennen kirjoittamista (µs)</value></data>
   <data name="Tool.Field.PostWrite"><value>Kirjoittamisen jälkeen (µs)</value></data>
@@ -64,5 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Lukemien määrä</value></data>
   <data name="Tool.Field.AlignFormat"><value>Dekoodausmuoto</value></data>
   <data name="Tool.Field.AlignRaw"><value>Lue raakavirta (--raw)</value></data>
-  <data name="Tool.Field.Settle"><value>Selitä (ms)</value></data>
 </root>

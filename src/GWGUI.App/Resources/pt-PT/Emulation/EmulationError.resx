@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>O emulador necessita de um suporte antes de esta máquina poder ser ligada. Insira ou configure um dos suportes necessários apresentados abaixo.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>Não foi possível ligar a máquina</value></data>
+  <data name="Emulation.Error.Machine"><value>Máquina</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>Suportes necessários</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>É necessário um modelo Amiga.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>É necessário um caminho para o Kickstart.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>Um caminho de firmware necessário está vazio.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>O arquivo selecionado não existe.</value></data>
+</root>

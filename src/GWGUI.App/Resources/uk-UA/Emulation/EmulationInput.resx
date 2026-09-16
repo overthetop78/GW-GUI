@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Поведінка</value></data>
+  <data name="Emulation.Input.Assign"><value>Призначити...</value></data>
+  <data name="Emulation.Input.Actions"><value>Дії</value></data>
+  <data name="Emulation.Input.Press"><value>Натисніть клавішу...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Виявлення пристроїв спільне, а призначення зберігаються окремо в кожній конфігурації машини.</value></data>
+  <data name="Emulation.Input.Test"><value>Перевірити введення</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Спільні пристрої введення</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Натисніть клавішу або кнопку миші, щоб перевірити виявлення.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Відновити типові значення</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Очистити конфлікти</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Призначення</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Стан</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Пошук клавіші або призначення</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Дійсне: унікальне призначення · Конфлікт: призначення використано кілька разів · Зарезервоване: скорочення Windows або GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Дійсне</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Конфлікт</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Зарезервоване</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Не призначено</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Натисніть «Призначити», а потім клавішу, кнопку миші або контролера.</value></data>
+</root>

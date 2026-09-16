@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>保存済み構成をここで作成、選択、変更、削除できます。選択した構成を編集するには{0}タブを選択します。</value></data>
+  <data name="Emulation.Configuration.Brand"><value>ブランド</value></data>
+  <data name="Emulation.Configuration.Machine"><value>マシン</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>合計 RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>ドライブ</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>周辺機器</value></data>
+  <data name="Emulation.Configuration.Actions"><value>操作</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>{0} {1} の構成を削除しますか？</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>構成</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>構成</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>このAmiga設定を削除しますか?</value></data>
+</root>

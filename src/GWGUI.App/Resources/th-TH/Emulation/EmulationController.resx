@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>อุปกรณ์ตัวควบคุม {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>ตรวจจับตัวควบคุม</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>การกระทําต่าง ๆ ของ Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>แป้นพิมพ์, เมาส์ หรือตัวควบคุม</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>แท่งด้านซ้าย</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>แท่งขวา</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>แท่งทั้งสอง</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>ไฟไหม้เทอร์โบ</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>ปุ่มเทอร์โบ</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>ชีพจรเทอร์โบ</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>คําสั่งพอร์ตควบคุม</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>ไม่พบตัวควบคุม</value></data>
+  <data name="Emulation.Controller.Mappings"><value>การกำหนดปุ่มคอนโทรลเลอร์</value></data>
+  <data name="Emulation.Controller.Port"><value>พอร์ต {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>ชนิดคอนโทรลเลอร์</value></data>
+  <data name="Emulation.Controller.Detected"><value>คอนโทรลเลอร์ที่ตรวจพบ</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>ค้นหาการทำงานหรืออินพุต</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>ขึ้น</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>ลง</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>ซ้าย</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>ขวา</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>ปุ่มยิง 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>ปุ่มยิง 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>จอยสติ๊กแอนะล็อก</value></data>
+  <data name="Emulation.Controller.Automatic"><value>อัตโนมัติ</value></data>
+  <data name="Emulation.Controller.None"><value>ไม่มี</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>สลับแท่งควบคุม/ เล็ก</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>ไม่สามารถเริ่มต้น GameInput ได้ โปรดติดตั้งหรือซ่อมแซมรันไทม์ GameInput ที่ให้มา</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix สปีดกิง (ซ้ายมือ)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix สปีดกิง (ขวามือ)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>รูปลักษณ์</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>ตัวควบคุม {0}</value></data>
+</root>

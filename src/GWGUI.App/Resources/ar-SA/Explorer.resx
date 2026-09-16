@@ -1,18 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>صورة القرص</value></data>
+  <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
   <data name="Explorer.Format"><value>التنسيق</value></data>
   <data name="Explorer.OpenImage"><value>فتح صورة…</value></data>
   <data name="Explorer.Automatic"><value>اكتشاف تلقائي</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>غير معروف</value></data>
   <data name="Explorer.Unnamed"><value>وحدة تخزين بلا اسم</value></data>
   <data name="Explorer.LoadFailed"><value>تعذر فتح هذه الصورة: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>تنسيق غير متوافق</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>تعذّر تفسير «{1}» باستخدام التنسيق «{0}».&#xA;اختر تنسيقًا آخر للمتابعة.</value></data>
   <data name="Explorer.Loading"><value>جارٍ قراءة صورة القرص…</value></data>
   <data name="Explorer.ReadDisk"><value>قراءة القرص</value></data>
   <data name="Explorer.Name"><value>الاسم</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>الضغط</value></data>
   <data name="Explorer.CustomSectorLoader"><value>مُحمّل قطاعات مخصص</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>مُحمّل مخصص — لا يوجد فهرس ملفات</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>كراك بواسطة The Company</value></data>
   <data name="Explorer.DataBlocks"><value>كتل البيانات</value></data>
-  <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>لا يمكن لأدوات المضيف أن تنتج صورة قطاعية قابلة للاستهلاك {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>لا يمكن لأدوات الرهائن أن تفكك الصورة على أنها {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>لا يمكن لأدوات المضيف أن تنتج صورة قطاعية قابلة للاستهلاك {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>لا يمكن لأدوات الرهائن أن تفكك الصورة على أنها {0}.</value></data>
   <data name="Explorer.Session"><value>الدورة</value></data>
   <data name="Explorer.Track"><value>مسار وسائط الإعلام</value></data>
   <data name="Explorer.Layers"><value>طبقات العزل</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>مسارات الصوت</value></data>
   <data name="Explorer.LoadingRecognition"><value>وإذ تقر بصيغة وسائط الإعلام</value></data>
   <data name="Explorer.LoadingFormatFound"><value>الشكل المعترف به</value></data>
-  <data name="Explorer.LoadingMedia"><value>قراءة هيكل وسائط الإعلام</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>تحليل نظام الملفات</value></data>
-  <data name="Explorer.LoadingContents"><value>إعداد الملفات والملفات</value></data>
-  <data name="Explorer.LoadingDisplay"><value>عرض المحتويات</value></data>
   <data name="Explorer.TestingFormat"><value>استمارة الاختبار: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: معترف به</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: غير معترف بها</value></data>
   <data name="Explorer.ReadingFormat"><value>استمارة القراءة: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>تنسيق غير متوافق</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>تعذّر تفسير «{1}» باستخدام التنسيق «{0}».&#xA;اختر تنسيقًا آخر للمتابعة.</value></data>
+  <data name="Explorer.LoadingMedia"><value>قراءة هيكل وسائط الإعلام</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>قراءة الشريط</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>السجل {0} of of {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>سجلات شريط التناقص</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>الملفات</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>تحليل نظام الملفات</value></data>
+  <data name="Explorer.LoadingContents"><value>إعداد الملفات والملفات</value></data>
+  <data name="Explorer.LoadingDisplay"><value>عرض المحتويات</value></data>
   <data name="Explorer.FileWithExtension"><value>ملف {0}</value></data>
   <data name="Explorer.Type.Document"><value>الوثيقة</value></data>
   <data name="Explorer.Type.SourceCode"><value>رمز المصدر</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC ملف برنامجي</value></data>
+  <data name="Explorer.Type.BootProgram"><value>برنامج الأحذية</value></data>
   <data name="Explorer.Type.Executable"><value>التنفيذ</value></data>
   <data name="Explorer.Type.Command"><value>ملف قيادة</value></data>
   <data name="Explorer.Type.SystemFile"><value>ملف النظام</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>الوثيقة</value></data>
   <data name="Explorer.Category.SourceCode"><value>رمز المصدر</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC البرنامج</value></data>
+  <data name="Explorer.Category.BootProgram"><value>برنامج الأحذية</value></data>
   <data name="Explorer.Category.Program"><value>Program</value></data>
   <data name="Explorer.Category.Executable"><value>التنفيذ</value></data>
   <data name="Explorer.Category.Command"><value>القيادة</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>النوع</value></data>
   <data name="Explorer.BaudRate"><value>السرعة</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>التأخير</value></data>
-  <data name="Explorer.Type.BootProgram"><value>برنامج الأحذية</value></data>
-  <data name="Explorer.Category.BootProgram"><value>برنامج الأحذية</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>قراءة الشريط</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>السجل {0} of of {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>سجلات شريط التناقص</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>الملفات</value></data>
 </root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>Mevcut dosyalar</value></data>
+  <data name="Conflict.Heading"><value>Bazı dosyalar zaten mevcut</value></data>
+  <data name="Conflict.Help"><value>Her dosya için bir eylem seçin veya aynı eylemi tüm dosyalara uygulayın.</value></data>
+  <data name="Conflict.File"><value>Dosya</value></data>
+  <data name="Conflict.Action"><value>Aksiyon</value></data>
+  <data name="Conflict.Overwrite"><value>Üzerine yaz</value></data>
+  <data name="Conflict.Skip"><value>Atlamak</value></data>
+  <data name="Conflict.Number"><value>Sonraki numarayı kullan</value></data>
+  <data name="Conflict.AllOverwrite"><value>Tümünün üzerine yaz</value></data>
+  <data name="Conflict.AllSkip"><value>Tümünü atla</value></data>
+  <data name="Conflict.AllNumber"><value>Hepsini numaralandır</value></data>
+</root>

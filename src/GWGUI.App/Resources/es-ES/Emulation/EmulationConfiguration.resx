@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Cree, seleccione, modifique o elimine aquí las configuraciones guardadas. Seleccione la pestaña {0} para editar la configuración elegida.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Marca</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Máquina</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>RAM total</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Unidades</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Periféricos</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Acciones</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Eliminar {0} {1} configuración?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Configuración</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Configuraciones</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>¿Suprímase esta configuración de Amiga?</value></data>
+</root>

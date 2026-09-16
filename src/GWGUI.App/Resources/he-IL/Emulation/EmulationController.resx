@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>התקן בקר {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>« בקרים Detect</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>פעולה עמיגה</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Keyboard, עכבר או בקר</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>שמאל</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>מקל ימין</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>שני מקלות</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>ירי טורבו</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>כפתור טורבו</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>הדופק טורבו</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>פקודת נמל</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>לא זוהה בקר</value></data>
+  <data name="Emulation.Controller.Mappings"><value>מיפויי בקר</value></data>
+  <data name="Emulation.Controller.Port"><value>יציאה {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>סוג בקר</value></data>
+  <data name="Emulation.Controller.Detected"><value>בקרים שזוהו</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>חיפוש פעולה או קלט</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>למעלה</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>למטה</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>שמאלה</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>ימינה</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>כפתור ירי 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>כפתור ירי 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>ג׳ויסטיק אנלוגי</value></data>
+  <data name="Emulation.Controller.Automatic"><value>אוֹטוֹמָטִי</value></data>
+  <data name="Emulation.Controller.None"><value>ללא</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Switch joystick /mouse</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>לא ניתן היה לאתחל את GameInput. התקן או תקן את סביבת הריצה המצורפת של GameInput.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>קוניקס ספיגה (משמאל)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>קוניקס ספיגה (יד ימין)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>מראה</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>המפקח {0}</value></data>
+</root>

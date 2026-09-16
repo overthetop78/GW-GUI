@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Sconosciuto</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Oggetto</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Sconosciuto</value></data>
+  <data name="Common.Eject"><value>Oggetto</value></data>
   <data name="Common.MediaKind.Unknown"><value>I media sconosciuti</value></data>
   <data name="Common.MediaKind.Floppy"><value>Dischetto</value></data>
   <data name="Common.MediaKind.HardDisk"><value>Disco rigido</value></data>
@@ -24,4 +16,10 @@
   <data name="Common.Representation.Blocks"><value>Blocchi</value></data>
   <data name="Common.Representation.OpticalTracks"><value>Tracce ottiche</value></data>
   <data name="Common.Representation.Sequential"><value>Dati di sequenza</value></data>
+  <data name="Common.Advanced"><value>Impostazioni avanzate</value></data>
+  <data name="Common.ExpertArguments"><value>Argomentazioni degli esperti</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Gli argomenti vengono passati come scritti dopo la convalida del preventivo.</value></data>
+  <data name="Common.DiskImageFilter"><value>Immagini di disco|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Tutti i file|*.*</value></data>
+  <data name="Common.Console"><value>Consolle</value></data>
+  <data name="Common.Command"><value>Comando</value></data>
 </root>

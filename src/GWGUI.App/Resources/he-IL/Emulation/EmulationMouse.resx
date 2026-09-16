@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>מפתח קיבולת</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>כפתור העכבר</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>כפתור העכבר</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>כפתור העכבר</value></data>
+  <data name="Emulation.Mouse.Physical"><value>עכבר פיזי</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>תנועה כפולה</value></data>
+  <data name="Emulation.Mouse.Speed"><value>מהירות העכבר</value></data>
+  <data name="Emulation.Mouse.Analog"><value>אנליסטים שולטים בעכבר</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>אזור מת אנליסטים</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>מהירות עכבר אנליג-stick</value></data>
+  <data name="Emulation.Mouse.Actions"><value>פעולות עכבר</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>לחצן עכבר 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>לחצן עכבר 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>לכידת עכבר</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>גלגלת עכבר למעלה</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>גלגלת עכבר למטה</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>גלגלת עכבר שמאלה</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>גלגלת עכבר ימינה</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>לכידת העכבר</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>עכבר שחרור</value></data>
+</root>

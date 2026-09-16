@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>취소</value></data>
-  <data name="Common.Save"><value>구하다</value></data>
-  <data name="Common.Create"><value>만들기</value></data>
-  <data name="Common.Delete"><value>삭제</value></data>
-  <data name="Common.Browse"><value>먹다…</value></data>
-  <data name="Common.Choose"><value>선택하다…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>취소</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>구하다</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>만들기</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>삭제</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>먹다…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>선택하다…</value></data>
   <data name="Common.Close"><value>닫다</value></data>
   <data name="Common.Execute"><value>실행하다</value></data>
   <data name="Common.Stop"><value>멈추다</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>수정하다</value></data>
   <data name="Common.Hide"><value>숨다</value></data>
   <data name="Common.Export"><value>내보내다</value></data>
-  <data name="Common.New"><value>새로 만들기</value></data>
-  <data name="Common.Refresh"><value>새로 고침</value></data>
-  <data name="Common.OpenFolder"><value>폴더 열기</value></data>
+  <data name="Common.New" xml:space="preserve"><value>새로 만들기</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>새로 고침</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>폴더 열기</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>일시 정지</value></data>
 </root>

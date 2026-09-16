@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Enhet för kontroller {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Identifiera handkontroller</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga-åtgärd</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Styrning med tangentbord, mus eller handkontroll</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Vänster spak</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Höger spak</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Båda spakarna</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turboeld</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turboknapp</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbopuls</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Ordning på handkontrollportar</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Ingen handkontroll identifierades</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Handkontrollsmappningar</value></data>
+  <data name="Emulation.Controller.Port"><value>Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Typ av handkontroll</value></data>
+  <data name="Emulation.Controller.Detected"><value>Identifierade handkontroller</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Sök efter en åtgärd eller inmatning</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Upp</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Ned</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Vänster</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Höger</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Avfyrningsknapp 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Avfyrningsknapp 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analog styrspak</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Automatisk</value></data>
+  <data name="Emulation.Controller.None"><value>Ingen</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Switch joystick/mouse</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kunde inte initieras. Installera eller reparera den medföljande GameInput-körningen.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (vänsterhand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (höger)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Utseende</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
+</root>

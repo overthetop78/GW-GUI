@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Utgivelses-kaptnøkkel</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Venstre museknapp</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Høyre museknapp</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Midtre museknapp</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Fysisk mus</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Dobbel bevegelse</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Mushastighet</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analoge stikk som styrer musen</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Analog-stick død sone</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Analog-stick musehastighet</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Musehandlinger</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Museknapp 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Museknapp 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Musefangst</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Musehjul opp</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Musehjul ned</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Musehjul til venstre</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Musehjul til høyre</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fang musen</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Utgivelsesmus</value></data>
+</root>

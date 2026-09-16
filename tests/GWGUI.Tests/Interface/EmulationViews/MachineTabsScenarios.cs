@@ -12,7 +12,7 @@ internal static class MachineTabsScenarios
         var tabs = Assert.Single(MachineConfigurationScenarios.Controls<TabControl>(section));
         var first = new MachineConfigurationScenarios.Configuration(module.Id,Guid.NewGuid(),"a");
         var second = first with { Id = Guid.NewGuid(),MachineId = "b" };
-        EmulationMachineRuntime Runtime(MachineConfigurationScenarios.Configuration configuration) => new(configuration,_ => throw new InvalidOperationException("No core may start"),[],[],"Emulation.Model",false);
+        EmulationMachineRuntime Runtime(MachineConfigurationScenarios.Configuration configuration) => new(configuration,_ => throw new InvalidOperationException("No core may start"),[],[],"Emulation.Machine.Model",false);
         var stopped = new List<Guid>(); var firstView = new Grid(); var secondView = new Grid();
         await section.AddMachineAsync(new(module.Service,first,"first"),Runtime(first),firstView,() => { stopped.Add(first.Id); return Task.CompletedTask; });
         var firstTab = Assert.IsType<TabItem>(tabs.SelectedItem); Assert.Same(firstView,tabs.SelectedContent);

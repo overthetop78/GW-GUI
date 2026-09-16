@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Klíč pro zachytávání</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Levé tlačítko myši</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Pravé tlačítko myši</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Střední tlačítko myši</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Myš</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Dvojitý pohyb</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Rychlost myši</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analogové hole ovládající myš</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Analog- stick dead zone</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Analog- stick rychlost myši</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Akce myši</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Tlačítko myši 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Tlačítko myši 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Zachytávání myši</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Kolečko myši nahoru</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Kolečko myši dolů</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Kolečko myši doleva</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Kolečko myši doprava</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Zachytávat myš</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Vypustit myš</value></data>
+</root>

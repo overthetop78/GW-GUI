@@ -32,14 +32,14 @@
             <Border x:Name="EmptyState" Style="{StaticResource VisualizerSurface}" Padding="32">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="430">
                     <Border Width="72" Height="72" CornerRadius="36" Background="#EAF2F7" HorizontalAlignment="Center">
-                        <TextBlock Text="&#xE7C3;" FontFamily="{StaticResource IconFontFamily}" FontSize="32"
+                <TextBlock Text="{l:Loc Icon.FloppyDisk}" FontFamily="{StaticResource IconFontFamily}" FontSize="32"
                                    Foreground="#34566C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Text="{l:Loc Visual.NoFile}" FontSize="22" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
                     <TextBlock Text="{l:Loc Visual.Waiting}" Foreground="{DynamicResource MutedTextBrush}" HorizontalAlignment="Center" Margin="0,6,0,18"/>
                     <Button x:Name="EmptyOpenButton" HorizontalAlignment="Center" AutomationProperties.Name="{l:Loc Visual.OpenImage}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xED25;" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,8,0"/>
+                        <TextBlock Text="{l:Loc Icon.OpenImage}" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,8,0"/>
                             <TextBlock Text="{l:Loc Visual.OpenImage}"/>
                         </StackPanel>
                     </Button>

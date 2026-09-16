@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Bộ giải mã</value></data>
   <data name="Visual.LinkZoom"><value>Thu phóng liên kết</value></data>
   <data name="Visual.OpenScp"><value>Mở tệp SCP…</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>có hiệu lực</value></data>
   <data name="Visual.CrcInvalid"><value>không hợp lệ</value></data>
   <data name="Visual.IntegrityUnavailable"><value>không có sẵn</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (nồng độ cao)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>Hành tinh Bắc Cực được bao quanh bởi một hành tinh nhỏ. MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Hathkit cứng-tried FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Name FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Hệ thống/dữ liệu Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>cúm thô</value></data>
   <data name="Visual.StructureKind.Sync"><value>Đồng bộ hóa</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Tiêu đề ngành</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Dữ liệu ngành</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Định dạng tiêu đề</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Định dạng dữ liệu</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Bất thường về thời gian</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro chụp (*.scp)|*.scp|Tất cả các tệp|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Tổng kiểm tra</value></data>
   <data name="Visual.Side"><value>Bên {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Đang phân tích bản nhạc {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Phân tích cách mạng {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Bên</value></data>
   <data name="Visual.TrackLabel"><value>Theo dõi</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP mục nhập</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Phân khu bị hạ cấp</value></data>
   <data name="Visual.SectorDead"><value>Khu vực chết</value></data>
   <data name="Visual.SectorWithoutData"><value>Khu vực không có dữ liệu</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Phân tích cách mạng {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Thông tin băng cassette</value></data>
 </root>

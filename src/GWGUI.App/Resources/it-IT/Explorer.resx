@@ -1,22 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Immagine disco</value></data>
+  <data name="Explorer.DetectedFormats"><value>Rilevato: {0}</value></data>
   <data name="Explorer.Format"><value>Formato</value></data>
   <data name="Explorer.OpenImage"><value>Apri un’immagine…</value></data>
   <data name="Explorer.Automatic"><value>Rilevamento automatico</value></data>
-<data name="Explorer.Capacity"><value>Capacità</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.FileSystem"><value>Sistema file</value></data>
+  <data name="Explorer.Capacity"><value>Capacità</value></data>
   <data name="Explorer.Free"><value>Spazio libero</value></data>
   <data name="Explorer.Entries"><value>Elementi</value></data>
   <data name="Explorer.SelectEntry"><value>Selezionare un file o una cartella.</value></data>
@@ -25,16 +20,19 @@
   <data name="Explorer.Comment"><value>Commento</value></data>
   <data name="Explorer.Warnings"><value>Avvisi</value></data>
   <data name="Explorer.Directory"><value>Cartella</value></data>
-<data name="Explorer.Link"><value>Collegamento</value></data>
+  <data name="Explorer.File"><value>File</value></data>
+  <data name="Explorer.Link"><value>Collegamento</value></data>
   <data name="Explorer.Unknown"><value>Sconosciuto</value></data>
   <data name="Explorer.Unnamed"><value>Volume senza nome</value></data>
   <data name="Explorer.LoadFailed"><value>Impossibile aprire questa immagine: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Formato incompatibile</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Impossibile interpretare «{1}» con il formato «{0}».&#xA;Selezionare un altro formato per continuare.</value></data>
   <data name="Explorer.Loading"><value>Lettura dell’immagine disco…</value></data>
   <data name="Explorer.ReadDisk"><value>Leggi disco</value></data>
   <data name="Explorer.Name"><value>Nome</value></data>
   <data name="Explorer.Type"><value>Tipo</value></data>
   <data name="Explorer.ReadDiskConfirmTitle"><value>Leggi disco</value></data>
-  <data name="Explorer.ReadDiskConfirm"><value>Il disco è inserito nell'unità attualmente selezionata ({0}) ed è pronto per la lettura?</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Il disco è inserito nell&apos;unità attualmente selezionata ({0}) ed è pronto per la lettura?</value></data>
   <data name="Explorer.Type.Text"><value>File di testo</value></data>
   <data name="Explorer.Type.Image"><value>Immagine</value></data>
   <data name="Explorer.Type.Audio"><value>File audio</value></data>
@@ -49,14 +47,9 @@
   <data name="Explorer.Compression"><value>Compressione</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Caricatore di settori personalizzato</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Caricatore personalizzato — nessun catalogo file</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack di The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Blocchi dati</value></data>
-  <data name="Explorer.DetectedFormats"><value>Rilevato: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Gli strumenti host non possono produrre un'immagine di settore esplorabile per {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Strumenti host non potrebbero decodificare l'immagine come {0}.</value></data>
-  <data name="Explorer.FileSystem"><value>Sistema file</value></data>
-  <data name="Explorer.Volume"><value>Volume</value></data>
-  <data name="Explorer.File"><value>File</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Gli strumenti host non possono produrre un&apos;immagine di settore esplorabile per {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Strumenti host non potrebbero decodificare l&apos;immagine come {0}.</value></data>
   <data name="Explorer.Session"><value>Sessione discografica</value></data>
   <data name="Explorer.Track"><value>Traccia media</value></data>
   <data name="Explorer.Layers"><value>Strati a disco</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Audio tracce</value></data>
   <data name="Explorer.LoadingRecognition"><value>Riconoscere il formato dei media</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Formato riconosciuto</value></data>
-  <data name="Explorer.LoadingMedia"><value>Leggere la struttura dei media</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Analizzare il file system</value></data>
-  <data name="Explorer.LoadingContents"><value>Preparazione di cartelle e file</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Visualizzazione dei contenuti</value></data>
   <data name="Explorer.TestingFormat"><value>Formato di prova: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: riconosciuto</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: non riconosciuto</value></data>
   <data name="Explorer.ReadingFormat"><value>Formato di lettura: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Formato incompatibile</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>Impossibile interpretare «{1}» con il formato «{0}».&#xA;Selezionare un altro formato per continuare.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Leggere la struttura dei media</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Leggere il nastro</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Registrazione {0} di {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Registrazione dei nastri</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Riconoscere i file</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analizzare il file system</value></data>
+  <data name="Explorer.LoadingContents"><value>Preparazione di cartelle e file</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Visualizzazione dei contenuti</value></data>
   <data name="Explorer.FileWithExtension"><value>File {0}</value></data>
   <data name="Explorer.Type.Document"><value>Documento</value></data>
   <data name="Explorer.Type.SourceCode"><value>Codice sorgente</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC file del programma</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Programma di avvio</value></data>
   <data name="Explorer.Type.Executable"><value>Esecuzione</value></data>
   <data name="Explorer.Type.Command"><value>File di comando</value></data>
   <data name="Explorer.Type.SystemFile"><value>File di sistema</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Documento</value></data>
   <data name="Explorer.Category.SourceCode"><value>Codice sorgente</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC programma</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Programma di avvio</value></data>
   <data name="Explorer.Category.Program"><value>Programma</value></data>
   <data name="Explorer.Category.Executable"><value>Esecuzione</value></data>
   <data name="Explorer.Category.Command"><value>Comando</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Tipo</value></data>
   <data name="Explorer.BaudRate"><value>Velocità</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Ritardo</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Programma di avvio</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Programma di avvio</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Leggere il nastro</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Registrazione {0} di {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Registrazione dei nastri</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Riconoscere i file</value></data>
 </root>

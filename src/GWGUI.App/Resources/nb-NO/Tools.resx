@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Klar til å utføre.</value></data>
   <data name="Tool.RawOutput"><value>Rå utgang</value></data>
-  <data name="Maintenance.EraseTitle"><value>Bekreft sletting</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Vil du slette alle data på den innsatte disken permanent?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Rengjør hoder</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Bekreft at en rensedisk er satt inn. Bruk aldri en datadisk.</value></data>
   <data name="Tools.Erase"><value>Slett en disk</value></data>
   <data name="Tools.EraseWarning"><value>Alle data på disken vil bli ødelagt.</value></data>
   <data name="Tools.LimitTracks"><value>Begrens spor</value></data>
@@ -37,7 +25,8 @@
   <data name="Tool.Field.Select"><value>Utvalg (µs)</value></data>
   <data name="Tool.Field.Step"><value>Hodetrinn (µs)</value></data>
   <data name="Tool.Field.Settle"><value>Avgjøre (ms)</value></data>
-<data name="Tool.Field.Watchdog"><value>Automatisk fjernvalg (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Automatisk fjernvalg (ms)</value></data>
   <data name="Tool.Field.PreWrite"><value>Før skriving (µs)</value></data>
   <data name="Tool.Field.PostWrite"><value>Etter skriving (µs)</value></data>
   <data name="Tool.Field.IndexMask"><value>Indeksmaske (µs)</value></data>
@@ -64,5 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Antall avlesninger</value></data>
   <data name="Tool.Field.AlignFormat"><value>Dekodingsformat</value></data>
   <data name="Tool.Field.AlignRaw"><value>Les råfluks (--raw)</value></data>
-  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
 </root>

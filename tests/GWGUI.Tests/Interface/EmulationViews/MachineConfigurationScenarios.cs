@@ -26,8 +26,8 @@ internal static class MachineConfigurationScenarios
             Service = ControlledDependencies.Simulate<IEmulationModule>((method,args) => method.Name switch
             {
                 "get_Id" => Id,
-                "get_DisplayResourceKey" => "Emulation.Model",
-                "get_Machines" => new EmulationMachineDefinition[] { new("a","Emulation.Model"),new("b","Emulation.Model") },
+                "get_DisplayResourceKey" => "Emulation.Machine.Model",
+                "get_Machines" => new EmulationMachineDefinition[] { new("a","Emulation.Machine.Model"),new("b","Emulation.Machine.Model") },
                 "CreateConfiguration" => new Configuration(Id,Guid.NewGuid(),(string)args[0]!),
                 "Describe" => Describe((Configuration)args[1]!),
                 "LoadConfigurationsAsync" => ValueTask.FromResult<IReadOnlyList<IEmulationConfiguration>>(Saved.ToArray()),
@@ -45,11 +45,11 @@ internal static class MachineConfigurationScenarios
         { Applied.Add(new Dictionary<string,string?>(values)); return configuration with { Value = values["toggle"] ?? "off" }; }
         private static EmulationMachineSettings Describe(Configuration configuration) => new(configuration.MachineId,
             new(new Dictionary<EmulationMachineTab,bool> { [EmulationMachineTab.General] = true,[EmulationMachineTab.Cpu] = true }),
-            [new("general",EmulationMachineTab.General,"Emulation.Model",
+            [new("general",EmulationMachineTab.General,"Emulation.Machine.Model",
                 [new("toggle",EmulationMachineTab.General,"general","Emulation.Value.Enabled",EmulationSettingsEditor.Toggle,configuration.Value,EnabledValue:"on",DisabledValue:"off"),
-                 new("hidden",EmulationMachineTab.General,"general","Emulation.Model",EmulationSettingsEditor.Text,"hidden",IsVisible:false)]),
-             new("cpu",EmulationMachineTab.Cpu,"Emulation.Model",
-                [new("locked",EmulationMachineTab.Cpu,"cpu","Emulation.Model",EmulationSettingsEditor.Text,"fixed",IsEnabled:false)])]);
+                 new("hidden",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.Text,"hidden",IsVisible:false)]),
+             new("cpu",EmulationMachineTab.Cpu,"Emulation.Machine.Model",
+                [new("locked",EmulationMachineTab.Cpu,"cpu","Emulation.Machine.Model",EmulationSettingsEditor.Text,"fixed",IsEnabled:false)])]);
         public void Cleanup() { EmulationConfigurationDraftStore.Remove(Id,"a"); EmulationConfigurationDraftStore.Remove(Id,"b"); }
     }
     internal static IEnumerable<T> Controls<T>(DependencyObject root) where T:DependencyObject

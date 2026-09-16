@@ -21,7 +21,6 @@ LANGUAGE_CODES = {
     "ru-RU": "ru", "sv-SE": "sv", "th-TH": "th", "tr-TR": "tr", "uk-UA": "uk",
     "vi-VN": "vi", "zh-Hans": "zh", "zh-Hant": "zh",
 }
-BASE_ONLY_CATALOGS = {"Icons.resx"}
 CONTEXTUAL_LABEL_SOURCES = {
     "Visual.StartLabel": "Beginning",
     "Explorer.Session": "Disc session",
@@ -43,45 +42,22 @@ PLACEHOLDER_PATTERN = re.compile(r"\{[^{}\r\n]+\}")
 STRUCTURAL_TOKEN_PATTERN = re.compile(
     r"\{[^{}\r\n]+\}(?:\.{1,3}|[,;:!?…])?|\r\n|\r|\n|\*[^|\s]*|\|"
 )
+# TODO: Keep the term "Scanline" unchanged in every language while still allowing
+# Argos to translate and grammatically reorder the complete surrounding label.
+# TODO: Review Classification.Machine, Classification.Format and
+# Classification.Protection in every language; a valid translation may be
+# spelled exactly like the English source and must not be replaced arbitrarily.
+# TODO: Review every Common.Representation.* translation in its technical media
+# context, especially Flux, Sectors, Blocks, OpticalTracks and Sequential.
 PROTECTED_TOKEN_PATTERN = re.compile(
     STRUCTURAL_TOKEN_PATTERN.pattern + r"|"
     r"(?<![\w.-])[\w-]+\.[A-Za-z0-9]+(?![\w.-])|"
     r"(?<![A-Za-z])[A-Z][A-Z0-9+.-]{1,}(?![A-Za-z])"
 )
-DATA_BLOCK_PATTERN = re.compile(
-    r"(?P<indent>[ \t]*)<data\b[^>]*>.*?</data>[ \t]*(?P<newline>\r?\n)?",
+RESOURCE_ENTRY_BLOCK_PATTERN = re.compile(
+    r"(?P<indent>[ \t]*)<(?P<tag>data|resheader)\b[^>]*>.*?</(?P=tag)>[ \t]*(?P<newline>\r?\n)?",
     re.MULTILINE | re.DOTALL,
 )
-INVARIANT_VALUE_PATTERN = re.compile(
-    r"^(?:"
-    r"CPU|GPU|FPU|RAM|ROM|USB|HID|LCD|LED|OLED|VFD|CRT|RGB|BGR|"
-    r"PAL|NTSC|SECAM|RF|S-Video|VHS|GameInput|XInput|OpenGL|Vulkan|"
-    r"Direct3D(?: 11| 12)?|KiB|MiB|GiB|Hz|RPM|CRC|PLL|MFM|FM|GCR|"
-    r"ADF|ADZ|DMS|FDI|IPF|HDF|HDZ|IMA|IMG|MSA|D64|D71|D81|HFE|SCP|"
-    r"HQx|HQ2x|HQ3x|HQ4x|2xSaI|Super 2xSaI|Super Eagle|EPX / Scale2x|"
-    r"JINC2|Lanczos|xBR|xBRZ|ScaleFX|ScaleNx|SABR"
-    r")$"
-)
-INVARIANT_KEY_PATTERNS = (
-    re.compile(r"^(?:Icon\.|.*Icon$)"),
-    re.compile(r"^(?:Explorer\.Metadata\.None|Terminal\.Prompt|Visual\.NumberPrefix|Visual\.ValueSeparator)$"),
-    re.compile(r"^(?:App\.Title|Emulation\.Memory\.Z3|Emulation\.Video\.Signal\.Connection\.RgbScart)$"),
-    re.compile(r"^Extension\."),
-    re.compile(r"^Explorer\.Content\.compression-(?:fire|atn-imploder)$"),
-    re.compile(r"^Emulation\.(?:Amiga|Atari)\.Model\."),
-    re.compile(r"^Emulation\.Family\."),
-    re.compile(r"^Emulation\.Controller\.Visual\.Model\."),
-    re.compile(r"^Controllers\.Model\."),
-    re.compile(r"^Emulation\.Key\.Atari(?:Help|Undo|Break)$"),
-    re.compile(r"^Emulation\.Firmware\.Rom\.Kickstart$"),
-    re.compile(r"^Emulation\.Atari\.Memory\.MapRam$"),
-    re.compile(r"^Migration\.Target\."),
-    re.compile(r"^Format\.(?!raw\.scp$)"),
-    re.compile(r"^System\."),
-    re.compile(r"^Visual\.DecoderName\."),
-)
-
-
 def read_entries(path: Path) -> dict[str, str]:
     root = ET.parse(path).getroot()
     return {
@@ -90,12 +66,11 @@ def read_entries(path: Path) -> dict[str, str]:
     }
 
 
-def is_invariant(value: str) -> bool:
-    return INVARIANT_VALUE_PATTERN.fullmatch(value.strip()) is not None
-
-
-def is_invariant_entry(key: str, value: str) -> bool:
-    return is_invariant(value) or any(pattern.search(key) for pattern in INVARIANT_KEY_PATTERNS)
+def read_catalogs(root: Path, pattern: str = "*.resx") -> dict[str, dict[str, str]]:
+    return {
+        path.relative_to(root).as_posix(): read_entries(path)
+        for path in sorted(root.rglob(pattern))
+    }
 
 
 def translate_preserving_placeholders(
@@ -175,20 +150,14 @@ def translate_entries(
     return [overrides.get(key, value) for (key, _), value in zip(entries, translated)]
 
 
-def remove_fallback_entries(
-    path: Path, base_entries: dict[str, str], remove_identical: bool = False
-) -> int:
+def remove_entries_not_in_source(path: Path, source_entries: dict[str, str]) -> int:
     if not path.exists():
         return 0
     text = path.read_text(encoding="utf-8")
     target_entries = read_entries(path)
     removed = 0
-    for key, value in target_entries.items():
-        if key not in base_entries:
-            continue
-        if not is_invariant_entry(key, base_entries[key]) and not (
-            remove_identical and value == base_entries[key]
-        ):
+    for key in target_entries:
+        if key in source_entries:
             continue
         pattern = re.compile(
             rf'^[ \t]*<data\s+name="{re.escape(escape(key))}"[^>]*>.*?</data>[ \t]*(?:\r?\n)?',
@@ -267,50 +236,59 @@ def encode_element_text(value: str) -> str:
 
 
 def format_resx_data_entries(path: Path) -> int:
-    """Put each RESX translation on one physical line without changing its value."""
+    """Put every RESX resource element on one physical line without changing its value."""
     text = path.read_text(encoding="utf-8")
     changed = 0
 
     def replace(match: re.Match[str]) -> str:
         nonlocal changed
         node = ET.fromstring(match.group(0).strip())
-        key = node.attrib["name"]
+        tag = node.tag
         value_node = node.find("value")
         value = "" if value_node is None or value_node.text is None else value_node.text
-        attributes = f"name={quoteattr(key)}"
-        xml_space = node.attrib.get("{http://www.w3.org/XML/1998/namespace}space")
-        if xml_space is not None:
-            attributes += f" xml:space={quoteattr(xml_space)}"
+        serialized_attributes: list[str] = []
+        for name, attribute_value in node.attrib.items():
+            if name == "{http://www.w3.org/XML/1998/namespace}space":
+                name = "xml:space"
+            serialized_attributes.append(f"{name}={quoteattr(attribute_value)}")
+        attributes = " " + " ".join(serialized_attributes) if serialized_attributes else ""
         replacement = (
-            f"{match.group('indent')}<data {attributes}><value>{encode_element_text(value)}</value>"
-            f"</data>{match.group('newline')}"
+            f"{match.group('indent')}<{tag}{attributes}><value>{encode_element_text(value)}</value>"
+            f"</{tag}>{match.group('newline')}"
         )
         if replacement != match.group(0):
             changed += 1
         return replacement
 
-    formatted = DATA_BLOCK_PATTERN.sub(replace, text)
+    formatted = RESOURCE_ENTRY_BLOCK_PATTERN.sub(replace, text)
+    formatted = re.sub(r"(?m)^[ \t]*\r?\n", "", formatted)
     if formatted != text:
         path.write_text(formatted, encoding="utf-8", newline="")
     return changed
 
 
 def audit_resources(root: Path) -> None:
-    base_catalogs = {
-        path.name: read_entries(path)
-        for path in sorted((root / "00-Base").glob("*.resx"))
-    }
+    base_catalogs = read_catalogs(root / "00-Base")
+    english_catalogs = read_catalogs(root / "en-US")
     errors: list[str] = []
     cultures = sorted(
-        path for path in root.iterdir() if path.is_dir() and path.name != "00-Base"
+        path
+        for path in root.iterdir()
+        if path.is_dir() and path.name not in {"00-Base", "en-US"}
     )
+
+    for catalog, english_entries in english_catalogs.items():
+        base_entries = base_catalogs.get(catalog)
+        if base_entries is None:
+            errors.append(f"en-US/{catalog}: catalog is missing from 00-Base")
+            continue
+        for key in english_entries.keys() - base_entries.keys():
+            errors.append(f"en-US/{catalog}: unknown {key}")
+
     for culture_path in cultures:
-        for catalog, base_entries in base_catalogs.items():
-            target_path = culture_path / catalog
-            if catalog in BASE_ONLY_CATALOGS:
-                if target_path.exists() and read_entries(target_path):
-                    errors.append(f"{culture_path.name}/{catalog}: base-only catalog has localized entries")
-                continue
+        target_catalogs = read_catalogs(culture_path)
+        for catalog, english_entries in english_catalogs.items():
+            target_path = culture_path / Path(catalog)
             if not target_path.exists():
                 errors.append(f"{culture_path.name}/{catalog}: missing catalog")
                 continue
@@ -320,40 +298,36 @@ def audit_resources(root: Path) -> None:
             if duplicates:
                 errors.append(f"{culture_path.name}/{catalog}: duplicate {', '.join(duplicates)}")
             target_entries = read_entries(target_path)
-            for key, english in base_entries.items():
+            for key, english in english_entries.items():
                 if key not in target_entries:
-                    if culture_path.name != "en-US" and not is_invariant_entry(key, english):
-                        errors.append(f"{culture_path.name}/{catalog}: missing {key}")
+                    errors.append(f"{culture_path.name}/{catalog}: missing {key}")
                     continue
-                if is_invariant_entry(key, english):
-                    errors.append(f"{culture_path.name}/{catalog}: redundant invariant {key}")
-                elif placeholder_signature(english) != placeholder_signature(target_entries[key]):
+                if placeholder_signature(english) != placeholder_signature(target_entries[key]):
                     errors.append(f"{culture_path.name}/{catalog}: placeholders differ for {key}")
                 elif protected_signature(english) != protected_signature(target_entries[key]):
                     errors.append(f"{culture_path.name}/{catalog}: protected tokens differ for {key}")
-                elif culture_path.name != "en-US" and contains_untranslated_english_run(
-                    english, target_entries[key]
-                ):
+                elif contains_untranslated_english_run(english, target_entries[key]):
                     errors.append(f"{culture_path.name}/{catalog}: partially untranslated {key}")
-            for key in target_entries.keys() - base_entries.keys():
+            for key in target_entries.keys() - english_entries.keys():
                 errors.append(f"{culture_path.name}/{catalog}: unknown {key}")
             physical_text = target_path.read_text(encoding="utf-8")
-            for match in DATA_BLOCK_PATTERN.finditer(physical_text):
+            for match in RESOURCE_ENTRY_BLOCK_PATTERN.finditer(physical_text):
                 if "\n" in match.group(0).rstrip("\r\n"):
                     errors.append(
                         f"{culture_path.name}/{catalog}: data entry spans multiple physical lines"
                     )
                     break
+        for catalog in target_catalogs.keys() - english_catalogs.keys():
+            errors.append(f"{culture_path.name}/{catalog}: catalog is not translatable")
     if errors:
         raise RuntimeError("RESX audit failed:\n" + "\n".join(errors))
     translated = sum(
-        len(read_entries(culture_path / catalog))
+        len(read_entries(culture_path / Path(catalog)))
         for culture_path in cultures
-        for catalog in base_catalogs
-        if catalog not in BASE_ONLY_CATALOGS
+        for catalog in english_catalogs
     )
     print(
-        f"RESX audit passed: {len(cultures)} cultures, {len(base_catalogs)} catalogs, "
+        f"RESX audit passed: {len(cultures)} cultures, {len(english_catalogs)} catalogs, "
         f"{translated} localized entries"
     )
 
@@ -392,14 +366,14 @@ def main() -> None:
         help="replace the value when the key already exists")
     parser.add_argument("--sync-all", action="store_true",
         help="translate every missing or untranslated entry in every RESX catalog")
-    parser.add_argument("--culture", choices=["en-US", *LANGUAGE_CODES],
+    parser.add_argument("--culture", choices=[*LANGUAGE_CODES],
         help="limit --sync-all to one culture")
     parser.add_argument("--catalog",
         help="limit --sync-all to one RESX catalog, for example Visualizer.resx")
     parser.add_argument("--clean-only", action="store_true",
-        help="remove duplicate keys and localized values that must use the neutral fallback")
+        help="remove duplicate keys and localized entries absent from en-US")
     parser.add_argument("--audit", action="store_true",
-        help="validate catalogs, keys, invariant fallbacks and format placeholders")
+        help="validate catalogs, translatable keys and format placeholders")
     parser.add_argument("--repair-mixed", action="store_true",
         help="retranslate entries that still contain a substantial English fragment")
     parser.add_argument("--format", action="store_true",
@@ -419,33 +393,24 @@ def main() -> None:
         return
 
     if args.clean_only:
-        base_catalogs = {
-            path.name: read_entries(path)
-            for path in sorted((root / "00-Base").glob("*.resx"))
-        }
+        english_catalogs = read_catalogs(root / "en-US")
         duplicates = 0
-        fallbacks = 0
+        removed = 0
         for culture_path in root.iterdir():
-            if not culture_path.is_dir() or culture_path.name == "00-Base":
+            if not culture_path.is_dir() or culture_path.name in {"00-Base", "en-US"}:
                 continue
-            for catalog, base_entries in base_catalogs.items():
-                target_path = culture_path / catalog
-                if catalog in BASE_ONLY_CATALOGS or not target_path.exists():
-                    continue
+            for target_path in culture_path.rglob("*.resx"):
                 duplicates += remove_duplicate_keys(target_path)
-                fallbacks += remove_fallback_entries(
-                    target_path,
-                    base_entries,
+                catalog = target_path.relative_to(culture_path).as_posix()
+                removed += remove_entries_not_in_source(
+                    target_path, english_catalogs.get(catalog, {})
                 )
         print(f"Duplicate entries removed: {duplicates}")
-        print(f"Localized fallback entries removed: {fallbacks}")
+        print(f"Entries absent from en-US removed: {removed}")
         return
 
     if args.repair_mixed:
-        base_catalogs = {
-            path.name: read_entries(path)
-            for path in sorted((root / "00-Base").glob("*.resx"))
-        }
+        english_catalogs = read_catalogs(root / "en-US")
         packages = {(item.from_code, item.to_code): item
             for item in package.get_installed_packages() if item.type == "translate"}
         total = 0
@@ -454,16 +419,13 @@ def main() -> None:
             if installed_package is None:
                 raise RuntimeError(f"Missing Argos model en -> {language_code}")
             pending: list[tuple[Path, str, str]] = []
-            for catalog, base_entries in base_catalogs.items():
-                if catalog in BASE_ONLY_CATALOGS:
-                    continue
-                target_path = root / culture / catalog
+            for catalog, english_entries in english_catalogs.items():
+                target_path = root / culture / Path(catalog)
                 target_entries = read_entries(target_path)
-                for key, english in base_entries.items():
+                for key, english in english_entries.items():
                     current = target_entries.get(key)
                     if (
                         current is not None
-                        and not is_invariant_entry(key, english)
                         and (
                             contains_untranslated_english_run(english, current)
                             or protected_signature(english) != protected_signature(current)
@@ -497,32 +459,25 @@ def main() -> None:
         selected_directories = (
             [root / args.culture]
             if args.culture is not None
-            else [path for path in root.iterdir() if path.is_dir() and path.name != "00-Base"]
+            else [
+                path
+                for path in root.iterdir()
+                if path.is_dir() and path.name not in {"00-Base", "en-US"}
+            ]
         )
         catalog_pattern = args.catalog or "*.resx"
         duplicate_count = sum(
             remove_duplicate_keys(path)
             for culture_path in selected_directories
-            for path in culture_path.glob(catalog_pattern)
+            for path in culture_path.rglob(catalog_pattern)
         )
         if duplicate_count:
             print(f"Duplicate entries removed: {duplicate_count}", flush=True)
-        base_catalogs = {
-            path.name: read_entries(path)
-            for path in sorted((root / "00-Base").glob(catalog_pattern))
+        english_catalogs = {
+            catalog: entries
+            for catalog, entries in read_catalogs(root / "en-US").items()
+            if Path(catalog).match(catalog_pattern)
         }
-        if args.culture == "en-US":
-            removed = 0
-            for catalog, base_entries in base_catalogs.items():
-                if catalog in BASE_ONLY_CATALOGS:
-                    continue
-                removed += remove_fallback_entries(
-                    root / "en-US" / catalog,
-                    base_entries,
-                    remove_identical=True,
-                )
-            print(f"en-US: invariant duplicates removed={removed}", flush=True)
-            return
         packages = {(item.from_code, item.to_code): item
             for item in package.get_installed_packages() if item.type == "translate"}
         for culture, language_code in selected_cultures.items():
@@ -532,14 +487,12 @@ def main() -> None:
             translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
             tokenizer = installed_package.tokenizer
             pending: list[tuple[Path, str, str]] = []
-            for catalog, base_entries in base_catalogs.items():
-                if catalog in BASE_ONLY_CATALOGS:
-                    continue
-                target_path = root / culture / catalog
+            for catalog, english_entries in english_catalogs.items():
+                target_path = root / culture / Path(catalog)
                 target_entries = read_entries(target_path)
-                for key, english in base_entries.items():
+                for key, english in english_entries.items():
                     current = target_entries.get(key)
-                    if not is_invariant_entry(key, english) and (current is None or current == english):
+                    if current is None or current == english:
                         pending.append((target_path, key, english))
 
             translated_values = translate_entries(
@@ -553,27 +506,13 @@ def main() -> None:
                     insert(target_path, key, value, replace_existing=True)
 
             removed = 0
-            for catalog, base_entries in base_catalogs.items():
-                if catalog in BASE_ONLY_CATALOGS:
-                    continue
-                removed += remove_fallback_entries(
-                    root / culture / catalog,
-                    base_entries,
+            culture_root = root / culture
+            for target_path in culture_root.rglob(catalog_pattern):
+                catalog = target_path.relative_to(culture_root).as_posix()
+                removed += remove_entries_not_in_source(
+                    target_path, english_catalogs.get(catalog, {})
                 )
-            print(f"{culture}: translated={len(pending)}, invariant duplicates removed={removed}", flush=True)
-
-        if args.culture is None:
-            for catalog, base_entries in base_catalogs.items():
-                if catalog in BASE_ONLY_CATALOGS:
-                    continue
-                target_path = root / "en-US" / catalog
-                removed = remove_fallback_entries(
-                    target_path,
-                    base_entries,
-                    remove_identical=True,
-                )
-                if removed:
-                    print(f"en-US/{catalog}: invariant duplicates removed={removed}", flush=True)
+            print(f"{culture}: translated={len(pending)}, obsolete entries removed={removed}", flush=True)
         return
 
     if not args.resource or not args.key or args.english is None:
@@ -581,15 +520,9 @@ def main() -> None:
     entries = [(args.key, args.english), *[tuple(entry) for entry in args.entry]]
     for key, english in entries:
         insert(root / "00-Base" / args.resource, key, english, args.replace)
-        if args.resource in BASE_ONLY_CATALOGS:
-            continue
-    if args.resource in BASE_ONLY_CATALOGS:
-        return
-    base_entries = read_entries(root / "00-Base" / args.resource)
-    remove_fallback_entries(root / "en-US" / args.resource, base_entries)
-    translatable_entries = [
-        (key, english) for key, english in entries if not is_invariant_entry(key, english)
-    ]
+        insert(root / "en-US" / args.resource, key, english, args.replace)
+    translatable_entries = entries
+    english_entries = read_entries(root / "en-US" / args.resource)
     packages = {(item.from_code, item.to_code): item
         for item in package.get_installed_packages() if item.type == "translate"}
     for culture, language_code in LANGUAGE_CODES.items():
@@ -603,9 +536,8 @@ def main() -> None:
         )
         for (key, _), value in zip(translatable_entries, translated_values):
             insert(root / culture / args.resource, key, value, args.replace)
-        remove_fallback_entries(
-            root / culture / args.resource,
-            base_entries,
+        remove_entries_not_in_source(
+            root / culture / args.resource, english_entries
         )
         print(culture, flush=True)
 

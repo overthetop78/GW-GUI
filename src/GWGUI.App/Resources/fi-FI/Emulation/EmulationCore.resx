@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Ydin</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0}-emulointiydin</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Kirjasto pysyy ulkopuolella GW GUI. Valittu versio korvaa nykyisen version.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>GW GUI:n vaatima versio</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Uusin saatavilla oleva virallinen versio</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Tällä hetkellä asennettu versio</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Kysy viralliselta Libretro-palvelimelta napsauttamalla Hae.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Hae versioita</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Lataa ja korvaa</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Haetaan saatavilla olevia versioita…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Virallista versiota ei löytynyt.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} versiot.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Ladataan {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Asennettu versio: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · asennettu</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Versiota ei ole asennettu</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emulaattori</value></data>
+  <data name="Emulation.Core.Install"><value>Asenna</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Asennetut</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Keskeiset vaihtoehdot</value></data>
+</root>

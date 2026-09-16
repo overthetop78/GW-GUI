@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Клавиша {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Клавиша хоста</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>две клавиши Amiga используют один и тот же PC ключ. Решите красные отображения перед сохранением.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Сквозная передача физической клавиатуры</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Зарезервированные сочетания клавиш</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Сочетания клавиш GW GUI и Windows остаются активными и не перехватываются машиной.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Клавиша машины</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Буквы, цифры и обычные клавиши-модификаторы передаются напрямую. Здесь назначаются только функциональные и специальные клавиши Amiga.</value></data>
+</root>

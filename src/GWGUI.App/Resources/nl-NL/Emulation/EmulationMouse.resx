@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Toets om muis vrij te geven</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Linkermuisknop</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Rechtermuisknop</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Middelste muisknop</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Fysieke muis</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Dubbele beweging</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Muissnelheid</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analoge sticks voor muisbesturing</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Dode zone analoge sticks</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Muissnelheid analoge stick</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Muisacties</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Muisknop 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Muisknop 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Muis vastleggen</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Muiswiel omhoog</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Muiswiel omlaag</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Muiswiel naar links</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Muiswiel naar rechts</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Muis vastleggen</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Laat de muis los</value></data>
+</root>

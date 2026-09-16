@@ -1,19 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Imagine de disc</value></data>
-<data name="Explorer.OpenImage"><value>Deschide o imagine…</value></data>
+  <data name="Explorer.DetectedFormats"><value>Detectat: {0}</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.OpenImage"><value>Deschide o imagine…</value></data>
   <data name="Explorer.Automatic"><value>Detectare automată</value></data>
   <data name="Explorer.Volume"><value>Volum</value></data>
   <data name="Explorer.FileSystem"><value>Sistem de fișiere</value></data>
@@ -31,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Necunoscut</value></data>
   <data name="Explorer.Unnamed"><value>Volum fără nume</value></data>
   <data name="Explorer.LoadFailed"><value>Imaginea nu poate fi deschisă: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Format incompatibil</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>„{1}” nu poate fi interpretat folosind formatul „{0}”.&#xA;Selectați alt format pentru a continua.</value></data>
   <data name="Explorer.Loading"><value>Se citește imaginea de disc…</value></data>
   <data name="Explorer.ReadDisk"><value>Citește discheta</value></data>
   <data name="Explorer.Name"><value>Nume</value></data>
@@ -41,7 +37,8 @@
   <data name="Explorer.Type.Image"><value>Imagine</value></data>
   <data name="Explorer.Type.Audio"><value>Fișier audio</value></data>
   <data name="Explorer.Type.Archive"><value>Arhivă</value></data>
-<data name="Explorer.Type.DiskImage"><value>Imagine de disc</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Imagine de disc</value></data>
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Protecție</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sectoare fizice — niciun sistem de fișiere recunoscut</value></data>
@@ -50,13 +47,9 @@
   <data name="Explorer.Compression"><value>Compresie</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Încărcător de sectoare personalizat</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Încărcător personalizat — fără catalog de fișiere</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack de The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Blocuri de date</value></data>
-  <data name="Explorer.DetectedFormats"><value>Detectat: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Uneltele gazdă nu pot produce o imagine de sector explorabilă pentru {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Uneltele gazdă nu au putut decoda imaginea ca {0}.</value></data>
-  <data name="Explorer.Format"><value>Format</value></data>
-  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Uneltele gazdă nu pot produce o imagine de sector explorabilă pentru {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Uneltele gazdă nu au putut decoda imaginea ca {0}.</value></data>
   <data name="Explorer.Session"><value>Sesiune disc</value></data>
   <data name="Explorer.Track"><value>Urmărire media</value></data>
   <data name="Explorer.Layers"><value>Straturi de disc</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Piste audio</value></data>
   <data name="Explorer.LoadingRecognition"><value>Recunoaşterea formatului media</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Format recunoscut</value></data>
-  <data name="Explorer.LoadingMedia"><value>Citirea structurii media</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Analizarea sistemului de fișiere</value></data>
-  <data name="Explorer.LoadingContents"><value>Pregătirea dosarelor și a fișierelor</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Afişarea conţinutului</value></data>
   <data name="Explorer.TestingFormat"><value>Format de încercare: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: recunoscut</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: nerecunoscut</value></data>
   <data name="Explorer.ReadingFormat"><value>Format de citire: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Format incompatibil</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>„{1}” nu poate fi interpretat folosind formatul „{0}”.&#xA;Selectați alt format pentru a continua.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Citirea structurii media</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Citind caseta</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Înregistrare {0} din {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Decodarea înregistrărilor de bandă</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Recunoaşterea dosarelor</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analizarea sistemului de fișiere</value></data>
+  <data name="Explorer.LoadingContents"><value>Pregătirea dosarelor și a fișierelor</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Afişarea conţinutului</value></data>
   <data name="Explorer.FileWithExtension"><value>Fișier {0}</value></data>
   <data name="Explorer.Type.Document"><value>Document</value></data>
   <data name="Explorer.Type.SourceCode"><value>Codul sursei</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC fișier program</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program de boot</value></data>
   <data name="Explorer.Type.Executable"><value>Executabil</value></data>
   <data name="Explorer.Type.Command"><value>Fișier comandă</value></data>
   <data name="Explorer.Type.SystemFile"><value>Fișier sistem</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Document</value></data>
   <data name="Explorer.Category.SourceCode"><value>Codul sursei</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program de boot</value></data>
   <data name="Explorer.Category.Program"><value>Program</value></data>
   <data name="Explorer.Category.Executable"><value>Executabil</value></data>
   <data name="Explorer.Category.Command"><value>Comandă</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Tip</value></data>
   <data name="Explorer.BaudRate"><value>Viteză</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Întârziere</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Program de boot</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Program de boot</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Citind caseta</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Înregistrare {0} din {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Decodarea înregistrărilor de bandă</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Recunoaşterea dosarelor</value></data>
 </root>

@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>Opties</value></data>
-  <data name="Options.General"><value>Algemeen</value></data>
-  <data name="Options.Tools"><value>Greaseweazle Gereedschap</value></data>
-  <data name="Options.Hardware"><value>Controllers en aandrijvingen</value></data>
-  <data name="Options.Profiles"><value>Profielen</value></data>
-  <data name="Options.ImagesFolder"><value>Standaard schijfkopiemap</value></data>
-  <data name="Options.Language"><value>Taal</value></data>
-  <data name="Options.Theme"><value>Thema</value></data>
-  <data name="Theme.System"><value>Systeem</value></data>
-  <data name="Theme.Light"><value>Licht</value></data>
-  <data name="Theme.Dark"><value>Donker</value></data>
-  <data name="Options.GwPath"><value>Pad naar gw.exe</value></data>
-  <data name="Options.ToolsHelp"><value>Als de tools ontbreken, biedt de assistent aan om ze te downloaden of een bestaande installatie te kiezen. Updates worden alleen aangekondigd.</value></data>
-  <data name="Options.HardwarePersistence"><value>Hardware-instellingen blijven opgeslagen wanneer een schijf wordt losgekoppeld.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>Opties</value></data>
+  <data name="Options.General" xml:space="preserve"><value>Algemeen</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Gereedschap</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Controllers en aandrijvingen</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Profielen</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Standaard schijfkopiemap</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Taal</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Thema</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>Systeem</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Licht</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Donker</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>Pad naar gw.exe</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Als de tools ontbreken, biedt de assistent aan om ze te downloaden of een bestaande installatie te kiezen. Updates worden alleen aangekondigd.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Hardware-instellingen blijven opgeslagen wanneer een schijf wordt losgekoppeld.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|uitvoerbaar (*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Deze opgeslagen controller en alle bijbehorende schijven verwijderen?</value></data>
-<data name="Options.UseConversionTags"><value>Gebruik tags in conversiebestandsnamen</value></data>
+  <data name="Options.HardwareTitle"><value>Hardware</value></data>
+  <data name="Options.UseConversionTags"><value>Gebruik tags in conversiebestandsnamen</value></data>
   <data name="Options.TagPreset"><value>Voorinstelling</value></data>
   <data name="Options.TagPresetFamily"><value>Alleen familie</value></data>
   <data name="Options.TagPresetFormat"><value>Alleen formaat</value></data>
@@ -61,186 +54,12 @@
   <data name="Options.LogMaximumSize"><value>Maximale grootte</value></data>
   <data name="Options.KeepLogArchives"><value>Bewaar eerdere logboeken</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = onbeperkt</value></data>
-  <data name="Options.Engines"><value>Motoren</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>Kies onafhankelijk de engine die voor elke bewerking wordt gebruikt.</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>Interne GW GUI-engine</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>De geselecteerde engine wordt strikt gebruikt. Kan deze de bewerking niet uitvoeren, dan meldt GW GUI dit zonder stilzwijgend de andere engine te gebruiken.</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Muis vastleggen</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>Instellingen</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>Controllers detecteren</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>Apparaat</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Geen controller gedetecteerd</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} controller(s) gedetecteerd</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>Trilling testen</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Trillingssterkte</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Live-invoer</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Bediening</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>Waarde</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>Actief</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>Mogelijkheden</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>Apparaatidentiteit</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>Invoertypen</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>Bedieningselementen</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>Trilmotoren</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Forcefeedback</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>Haptische feedback</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Systeemknoppen</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>Ruwe rapporten</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} invoer / {1} uitvoer</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Gamepadindeling</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Stuurwiel</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · koppeling={1} · handrem={2} · versnellingspook={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput-naam</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revisie</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Hardwareversie</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Firmwareversie</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>Familie</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Fabrikant</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>As</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Knop</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Schakelaar</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} assen · {1} knoppen · {2} schakelaars</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>Ja</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>Nee</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>Geen</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ruwe byte</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analoge waarden</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Controllerdetectie mislukt</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>Controllers detecteren…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Controller lezen mislukt</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>Test wordt uitgevoerd…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>Test mislukt</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Test voltooid</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Extra bedieningselementen</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Haptisch audio-eindpunt</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Haptische locaties</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>Gebruik</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows-apparaatketen</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Linkerstick X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Linkerstick Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>Rechterstick X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>Rechterstick Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Linkertrigger</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Rechtertrigger</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>Sturen</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>Gas</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>Rem</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Koppeling</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>Handrem</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>Versnelling</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>Rollen</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>Stampen</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>Gieren</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensoren</value></data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI-navigatie</value></data>
-<data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Laagfrequente motor</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Hoogfrequente motor</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Delen</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineair</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Hoekvormig</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normaal</value></data>
-<data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Helling</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusgolf</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Blokgolf</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Driehoeksgolf</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Stijgende zaagtand</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Dalende zaagtand</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Veer</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Wrijving</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Demper</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Traagheid</value></data>
-<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Meerassige controller</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-gebruik</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>assen</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>knoppen</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Samengevoegd</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtueel</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Invoerrapport</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Uitvoerrapport</value></data>
-<data name="Emulation.InitialDisk"><value>Initiële schijf</value></data>
-  <data name="Emulation.Audio"><value>Geluid</value></data>
-  <data name="Emulation.Core.NameOptions"><value>Kernopties</value></data>
-  <data name="Emulation.MultiDrive"><value>Mount de eerste vier schijven in DF0DF3</value></data>
-  <data name="Emulation.DiskNumber"><value>Schijf {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>Beschikbare opties laden</value></data>
-  <data name="Emulation.Configurations"><value>Configuraties</value></data>
-  <data name="Emulation.ReleaseMouse"><value>Laat de muis los</value></data>
-  <data name="Emulation.DeleteConfirm"><value>Deze Amiga configuratie verwijderen?</value></data>
-  <data name="Emulation.ModelRequired"><value>Een Amiga model is vereist.</value></data>
-  <data name="Emulation.KickstartRequired"><value>Een Kickstart pad is vereist.</value></data>
-  <data name="Emulation.FileRequired"><value>Een vereiste firmware pad is leeg.</value></data>
-  <data name="Emulation.FileMissing"><value>Het geselecteerde bestand bestaat niet.</value></data>
-<data name="Controllers.Enum.Gamepad"><value>Spelpad</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0}  {1} : {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>Analoge dode zones</value></data>
-  <data name="Controllers.StickDeadZone"><value>Stokken</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>Drempels</value></data>
-  <data name="Controllers.OuterDeadZone"><value>Buitenste dode zone</value></data>
-  <data name="Updates.Description"><value>Zoek naar updates voor GW GUI en geïnstalleerde emulatiemodules.</value></data>
-  <data name="Updates.Scope"><value>Zoeken</value></data>
-  <data name="Updates.ScopeApplication"><value>Toepassing</value></data>
-  <data name="Updates.ScopeModules"><value>Emulgatiemodules</value></data>
-  <data name="Updates.ScopeAll"><value>Toepassing en modules</value></data>
-  <data name="Updates.Search"><value>Controleren op updates</value></data>
-  <data name="Updates.Ready"><value>Kies wat te zoeken, controleer dan op updates.</value></data>
-  <data name="Updates.Searching"><value>Controleren op updates...</value></data>
-  <data name="Updates.SearchFailed"><value>Kan niet controleren op updates.</value></data>
-  <data name="Updates.UpToDate"><value>Actuele</value></data>
-  <data name="Updates.Available"><value>Update beschikbaar</value></data>
-  <data name="Updates.ApplicationRequired"><value>Vereist GW GUI host API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>Geen compatibele versie</value></data>
-  <data name="Updates.InstalledVersion"><value>Geïnstalleerd: {0}</value></data>
-  <data name="Updates.Results"><value>Updates werden gevonden.</value></data>
-  <data name="Updates.NoUpdates"><value>Alles is up-to-date.</value></data>
-  <data name="Updates.Install"><value>Geselecteerde updates installeren</value></data>
-  <data name="Updates.InstallConfirm"><value>Downloaden en installeren {0} geselecteerde component(s)? GW GUI zal sluiten en opnieuw starten.</value></data>
-  <data name="Updates.Preparing"><value>Updates downloaden en voorbereiden...</value></data>
-  <data name="Updates.PreparationCancelled"><value>Updatevoorbereiding is geannuleerd.</value></data>
-  <data name="Updates.PreparationFailed"><value>Kan de update niet voorbereiden.</value></data>
-  <data name="Updates.InstallSucceeded"><value>Updates zijn succesvol geïnstalleerd.</value></data>
-  <data name="Updates.InstallRestored"><value>De update is mislukt en de vorige versie is hersteld. {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>Installeer een emulatiemodule van een ZIP archief of de directe update catalogus URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>Installeren vanaf een bestand</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>Installeren vanaf een URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>Rechtstreeks HTTPS URL van de module-updatecatalogus (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>Modulearchieven (*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>Voer het directe HTTPS URL van een module-updatecatalogus.</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>Module installeren {0} versie {1}? GW GUI zal sluiten en opnieuw starten.</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>Kan de installatie van de module niet voorbereiden.</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>Blader door officiële emulatiemodules die beschikbaar zijn voor installatie.</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>Beschikbare modules tonen</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>Installeren</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>Laad de officiële map om de modules beschikbaar te zien voor installatie.</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>De modulemap wordt geladen...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>Er is momenteel geen compatibele module beschikbaar.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} modules in de officiële catalogus.</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>Kon de modulemap niet laden.</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>Niet geïnstalleerd</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>Beschikbare versie: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Geïnstalleerd</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>Het installeren van een module voegt zijn machines toe aan GW GUI. Emulator cores en vereiste firmware worden apart beheerd in de Emulatie opties.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Updates voor geïnstalleerde modules</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Geavanceerde installatie</value></data>
+  <data name="Options.Engines" xml:space="preserve"><value>Motoren</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>Kies onafhankelijk de engine die voor elke bewerking wordt gebruikt.</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>Interne GW GUI-engine</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>De geselecteerde engine wordt strikt gebruikt. Kan deze de bewerking niet uitvoeren, dan meldt GW GUI dit zonder stilzwijgend de andere engine te gebruiken.</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0}  {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Voorkeuren</value></data>
   <data name="Options.EmulationTitle"><value>Emulatievoorkeuren</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>Beschikbare modules</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>Toepassingsupdates</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>Modules doorbladeren en installeren</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP archief of catalogus URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>Gedownload</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>Installatie afronden</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI zal sluiten, installeren alle gedownloade modules, en herstart.</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>Alle gedownloade modules installeren? GW GUI zal sluiten en opnieuw starten.</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emulatie-instellingen</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>De gedownloade modules voltooien voordat u sluit? Kies Nee om de downloads te annuleren en te sluiten.</value></data>
-  <data name="Options.HardwareTitle"><value>Hardware</value></data>
-  <data name="Emulation.Model"><value>Model</value></data>
-  <data name="Emulation.Controller"><value>Controller {0}</value></data>
-  <data name="Emulation.Firmware"><value>Firmware</value></data>
-  <data name="Controllers.Title"><value>Controllers</value></data>
-  <data name="Controllers.Enum.Effect.Constant"><value>Constant</value></data>
-  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
-  <data name="Updates.Title"><value>Updates</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

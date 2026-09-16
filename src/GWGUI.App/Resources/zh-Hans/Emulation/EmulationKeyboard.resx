@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0} 键</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>主机键</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>两个 Amiga 按键使用了同一个 PC 按键。保存前请修正红色映射。</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>物理键盘直通</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>保留的快捷键</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>GW GUI 和 Windows 快捷键保持有效，不会被机器捕获。</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>机器按键</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>字母、数字和普通修饰键会直接传送。这里只需映射 Amiga 功能键和特殊键。</value></data>
+</root>

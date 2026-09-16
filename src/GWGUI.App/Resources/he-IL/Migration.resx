@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>תגית:</value></data>
+  <data name="Migration.Title"><value>תגית: Migration</value></data>
+  <data name="Migration.Heading"><value>קבצים נוספים למערכת קבצים</value></data>
+  <data name="Migration.Source"><value>מקור תמונה</value></data>
+  <data name="Migration.NoSource"><value>בחר תמונה המכילה מערכת קבצים מוכרת.</value></data>
+  <data name="Migration.Destination"><value>מערכת הקבצים והפורמט</value></data>
+  <data name="Migration.Output"><value>תמונת יעד</value></data>
+  <data name="Migration.Compatibility"><value>תאימות והפסדים</value></data>
+  <data name="Migration.Waiting"><value>בחרו מקור והמטרה</value></data>
+  <data name="Migration.Severity"><value>מספר</value></data>
+  <data name="Migration.Path"><value>נתיב מקור</value></data>
+  <data name="Migration.Description"><value>תיאור תיאור</value></data>
+  <data name="Migration.AcceptLosses"><value>קבלו את ההפסדים ה- metadata</value></data>
+  <data name="Migration.Execute"><value>קבצים Migrate</value></data>
+  <data name="Migration.Blocking"><value>חסימת</value></data>
+  <data name="Migration.MetadataLoss"><value>אובדן מטא-נתונים</value></data>
+  <data name="Migration.SourceSummary"><value>נפח: {0} מערכת הקבצים: {1} ערכים שורשים: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>לא ניתן להכין את ההגירה: {0}</value></data>
+  <data name="Migration.Completed"><value>תמונת היעד נוצרה: {0}</value></data>
+  <data name="Migration.Failed"><value>הגירה נכשלה: {0}</value></data>
+  <data name="Migration.Incompatible"><value>לא עולה בקנה אחד: לתקן את ההפסדים לפני הגירה.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>לאחר קבלת ההפסדים המפורטים ב- metadata.</value></data>
+  <data name="Migration.Compatible"><value>המונחים: no Loss found</value></data>
+  <data name="Migration.Loss.MissingContent"><value>תוכן קובץ אינו זמין.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>סוג כניסה זה אינו נתמך על ידי היעד.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>השם אינו חוקי עבור היעד.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>השם ארוך מדי בשביל היעד.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>למספר ערכים יש את אותו שם יעד.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>הקובץ גדול מדי עבור היעד.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>מקור metadata הוא לא חוקי.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>תאריך השינוי לא יישמר.</value></data>
+  <data name="Migration.Loss.Comment"><value>התגובה לא תשתמר.</value></data>
+  <data name="Migration.Loss.Attributes"><value>תכונות המקור לא ישמרו.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>תמונת היעד כבר קיימת.החלפתה? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>תמונת היעד אינה יכולה להחליף את תמונת המקור.</value></data>
+</root>

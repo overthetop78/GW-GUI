@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>删除磁盘映像...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>永久删除此磁盘图像及其全部数据? 此操作无法被撤销 。&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>删除是不可能的。 拆卸此磁盘, 保存配置并先关闭列出的会话 :&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>公开会议: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>不允许通过链接删除。 请选择原始文件 。</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>选择此机器和接口支持的扩展名 。</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>此文件已经存在。 选择另一个名称 。</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>容量: 512字节至 {0}, 以512倍数表示,支持系统的保守限制。</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>创建一个没有操作系统的空原始磁盘。使用模拟机器内的磁盘工具来准备和格式化。</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>磁盘准备</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>空白( 未格式化)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>格式化创建空卷, 没有操作系统。 Atari HDD 启动还需要从仿真机安装兼容的磁盘驱动程序。压缩后图像可能会重定向到提取的复制件 。</value></data>
+</root>

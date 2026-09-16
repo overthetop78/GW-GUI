@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>프로세서: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU 모델</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU 배수</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>사이클 단위 호환 CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU 속도</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>원래 속도</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>일반</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>호환</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>메모리 호환</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>사이클 단위 정확</value></data>
+  <data name="Emulation.Cpu.Processor"><value>프로세서</value></data>
+  <data name="Emulation.Cpu.Precision"><value>정밀도</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>가속</value></data>
+</root>

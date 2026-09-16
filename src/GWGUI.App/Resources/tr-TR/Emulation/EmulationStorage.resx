@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Ortam ekle</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Sabit disk oluştur</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Sabit disk boyutu (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Ortam yok. Seçilen modelin desteklediği bir disket, sabit disk veya CD ekleyin.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Salt okunur</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga hard disk|*.hdf|All dosyaları|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Seçilen model sabit diski desteklemiyor.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Bu model en fazla {0} disket sürücüsünü destekler.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Bu model en fazla {0} sabit diski destekler.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Seçilen model CD sürücüsünü desteklemiyor.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CD sürücüsü</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Disket sürücüsü sayısı</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Sabit disk sayısı</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Disket sürücüsü hızı</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Disket görüntülerini yazmaya karşı koru</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Disket yazmalarını yönlendir</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD hızı</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Mevcut bir sabit disk ekle</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Sabit diskler</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Bu makineye bağlı bir sabit disk yok.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Disketler</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Depolama aygıtı ekle</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>İlişkili ortam</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Disk geometrisi öykünücü tarafından otomatik belirlenir.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Boş disket görüntüsü oluşturuldu: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Dosya boş oluşturulacak, ardından öykünülen makinede bölümlenip biçimlendirilmelidir.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD yazıcı</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Boş disk yalnızca seçilen makine ve öykünücü yazmayı destekliyorsa oluşturulabilir.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM sürücüsü</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Yapılandır</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Boş disket oluştur</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Disk görüntüsü</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Mevcut bir disk görüntüsü seçin.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Seçilen dosya bu sanal sürücüye bağlanacaktır.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Disket sürücüsü</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga disket görüntüsü|*.adf|Tüm dosyalar|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Sabit disk</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Arayüz</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Dosyayı önceden ayır</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies ve CDs ekleniyor veya çalışan makineden değiştirilir.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Ortamı kaldır</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Disk görüntüsü zaten var: {0}\nDeğiştirmek istiyor musunuz?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Kullanılabilir türler, modeller ve tanımlayıcılar seçilen makineye bağlıdır.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Teyp sürücüsü</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Diski kullan</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Mevcut diski kullan</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Genel bölümünde değiştir</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Bu makine için ek depolama aygıtı yok.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Depolama aygıtları</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Ayırma</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Otomatik geometri</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Boş ortam</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Sektör başına bayt</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Hesaplanan kapasite: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Özel boyut</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Silindirler</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Hedef klasör</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Disk geometrisi (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Boyut profili</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Disket sürücüsü</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Kafalar</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Disk boyutu veya geometrisi geçersiz.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Fiziksel disk alanını hemen ayırır; aksi halde görüntü veri yazıldıkça büyür.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sektörler</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kaset</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Kartuş</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Kompakt diskler</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Sürücü etkinliğini emülatör ekranında göster</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kartuş yuvası</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>İlk dört diski içeri girin DF0–DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk Disk Disk Disk {0}</value></data>
+</root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Opret, vælg, rediger eller slet gemte konfigurationer her. Vælg fanen {0} for at redigere den valgte konfiguration.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Mærke</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Maskine</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Samlet RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Drev</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Eksterne enheder</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Handlinger</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Slet {0} {1} konfiguration?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Indstilling</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Konfigurationer</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Slet denne Amiga-konfiguration?</value></data>
+</root>

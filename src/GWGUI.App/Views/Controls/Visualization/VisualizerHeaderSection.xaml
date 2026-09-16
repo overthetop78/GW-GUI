@@ -26,14 +26,14 @@
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="Reset" Margin="0,0,8,0" Padding="8,5" AutomationProperties.Name="{l:Loc Common.Reset}">
-                    <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE72C;" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,5,0"/><TextBlock Text="{l:Loc Common.Reset}" FontSize="11"/></StackPanel>
+                        <StackPanel Orientation="Horizontal"><TextBlock Text="{l:Loc Icon.Refresh}" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,5,0"/><TextBlock Text="{l:Loc Common.Reset}" FontSize="11"/></StackPanel>
                 </Button>
                 <Button x:Name="Open" Padding="8,5" AutomationProperties.Name="{l:Loc Visual.OpenImage}">
-                    <StackPanel Orientation="Horizontal"><TextBlock Text="&#xED25;" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,5,0"/><TextBlock Text="{l:Loc Visual.OpenImage}" FontSize="11"/></StackPanel>
+                        <StackPanel Orientation="Horizontal"><TextBlock Text="{l:Loc Icon.OpenImage}" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,5,0"/><TextBlock Text="{l:Loc Visual.OpenImage}" FontSize="11"/></StackPanel>
                 </Button>
                 <Button x:Name="ManualOptionsButton" Width="40" Height="40" MinWidth="0" MinHeight="0" Padding="0" Margin="8,0,0,0"
                         Click="ManualOptionsButton_Click" ToolTip="{l:Loc Common.Advanced}" AutomationProperties.Name="{l:Loc Common.Advanced}">
-                    <TextBlock Text="&#xE713;" FontFamily="{StaticResource IconFontFamily}" FontSize="16"/>
+                            <TextBlock Text="{l:Loc Icon.Settings}" FontFamily="{StaticResource IconFontFamily}" FontSize="16"/>
                 </Button>
             </StackPanel>
             <Popup x:Name="ManualOptionsPopup" Placement="Custom" PlacementTarget="{Binding ElementName=ManualOptionsButton}"

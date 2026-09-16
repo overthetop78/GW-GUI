@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>Thư mục lưu trữ giả lập dùng chung</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Ổ cứng được tự động sắp xếp trong HDD\Amiga, HDD\Atari và các thư mục của hệ thống tương lai.</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Tự động tạo các thư mục con còn thiếu</value></data>
+  <data name="Emulation.Folder.Common"><value>Thư mục dùng chung</value></data>
+  <data name="Emulation.Folder.Capture"><value>Thư mục ảnh chụp</value></data>
+  <data name="Emulation.Folder.State"><value>Thư mục trạng thái đã lưu</value></data>
+  <data name="Emulation.Folder.Default"><value>Thư mục mặc định</value></data>
+</root>

@@ -1,18 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>ディスクイメージ</value></data>
+  <data name="Explorer.DetectedFormats"><value>検出: {0}</value></data>
   <data name="Explorer.Format"><value>形式</value></data>
   <data name="Explorer.OpenImage"><value>イメージを開く…</value></data>
   <data name="Explorer.Automatic"><value>自動検出</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>不明</value></data>
   <data name="Explorer.Unnamed"><value>名前のないボリューム</value></data>
   <data name="Explorer.LoadFailed"><value>このイメージを開けません: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>互換性のないフォーマット</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>「{1}」を「{0}」形式として解釈できません。&#xA;続行するには別の形式を選択してください。</value></data>
   <data name="Explorer.Loading"><value>ディスクイメージを読み込んでいます…</value></data>
   <data name="Explorer.ReadDisk"><value>ディスクを読み取る</value></data>
   <data name="Explorer.Name"><value>名前</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>圧縮</value></data>
   <data name="Explorer.CustomSectorLoader"><value>カスタムセクタローダー</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>カスタムローダー — ファイルカタログなし</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>The Company によるクラック</value></data>
   <data name="Explorer.DataBlocks"><value>データブロック</value></data>
-  <data name="Explorer.DetectedFormats"><value>検出: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>ホストツールは、探知可能なセクターイメージを生成できません。 {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>ホストツールはイメージをそのままデコードできません {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>ホストツールは、探知可能なセクターイメージを生成できません。 {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>ホストツールはイメージをそのままデコードできません {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
   <data name="Explorer.Session"><value>ディスクセッション</value></data>
   <data name="Explorer.Track"><value>メディアトラック</value></data>
   <data name="Explorer.Layers"><value>ディスク層</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>オーディオトラック</value></data>
   <data name="Explorer.LoadingRecognition"><value>メディアフォーマットを認識</value></data>
   <data name="Explorer.LoadingFormatFound"><value>認識されたフォーマット</value></data>
-  <data name="Explorer.LoadingMedia"><value>メディア構造の読み方</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>ファイルシステム分析</value></data>
-  <data name="Explorer.LoadingContents"><value>フォルダとファイルの準備</value></data>
-  <data name="Explorer.LoadingDisplay"><value>コンテンツの表示</value></data>
   <data name="Explorer.TestingFormat"><value>フォーマットをテストして下さい: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: 認定資格</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: 認められない</value></data>
   <data name="Explorer.ReadingFormat"><value>読書フォーマット: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>互換性のないフォーマット</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>「{1}」を「{0}」形式として解釈できません。&#xA;続行するには別の形式を選択してください。</value></data>
+  <data name="Explorer.LoadingMedia"><value>メディア構造の読み方</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>テープを読む</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>レコード {0} のり {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>テープレコードのデコード</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>ファイルの認識</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>ファイルシステム分析</value></data>
+  <data name="Explorer.LoadingContents"><value>フォルダとファイルの準備</value></data>
+  <data name="Explorer.LoadingDisplay"><value>コンテンツの表示</value></data>
   <data name="Explorer.FileWithExtension"><value>コンテンツ {0}</value></data>
   <data name="Explorer.Type.Document"><value>ドキュメント</value></data>
   <data name="Explorer.Type.SourceCode"><value>ソースコード</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC プログラムファイル</value></data>
+  <data name="Explorer.Type.BootProgram"><value>ブートプログラム</value></data>
   <data name="Explorer.Type.Executable"><value>実行テーブル</value></data>
   <data name="Explorer.Type.Command"><value>コマンドファイル</value></data>
   <data name="Explorer.Type.SystemFile"><value>システムファイル</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>ドキュメント</value></data>
   <data name="Explorer.Category.SourceCode"><value>ソースコード</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC プログラミング</value></data>
+  <data name="Explorer.Category.BootProgram"><value>ブートプログラム</value></data>
   <data name="Explorer.Category.Program"><value>参加プログラム</value></data>
   <data name="Explorer.Category.Executable"><value>実行テーブル</value></data>
   <data name="Explorer.Category.Command"><value>コマンド</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>種類</value></data>
   <data name="Explorer.BaudRate"><value>速度</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>遅延</value></data>
-  <data name="Explorer.Type.BootProgram"><value>ブートプログラム</value></data>
-  <data name="Explorer.Category.BootProgram"><value>ブートプログラム</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>テープを読む</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>レコード {0} のり {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>テープレコードのデコード</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>ファイルの認識</value></data>
 </root>

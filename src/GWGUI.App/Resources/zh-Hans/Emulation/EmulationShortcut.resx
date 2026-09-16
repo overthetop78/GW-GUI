@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>模拟快捷键</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>释放鼠标</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>暂停 / 继续</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>全屏 / 窗口</value></data>
+  <data name="Emulation.Shortcut.Power"><value>开机 / 关机</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>软复位</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>硬复位</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>快速保存状态</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>快速加载状态</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>屏幕截图</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>将当前机器静音</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>按住时快进</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>插入或更换媒体</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>弹出媒体</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>下一个媒体</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>当前模拟器尚未提供此操作。</value></data>
+</root>

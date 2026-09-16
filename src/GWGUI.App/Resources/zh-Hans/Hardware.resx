@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>港口</value></data>
-  <data name="Hardware.UsbId"><value>USB 标识符</value></data>
-  <data name="Hardware.Drive"><value>驾驶</value></data>
-  <data name="Hardware.Available"><value>可用的</value></data>
-  <data name="Hardware.Scan"><value>扫描</value></data>
-  <data name="Hardware.AddDrive"><value>添加驱动器...</value></data>
-  <data name="Hardware.NoDrive"><value>未定义驱动器</value></data>
-  <data name="Hardware.EditorTitle"><value>定义一个驱动器</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle 控制器</value></data>
-  <data name="Hardware.GwSelection"><value>选择传递给 gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>物理尺寸</value></data>
-  <data name="Hardware.SizeShort"><value>尺寸</value></data>
-  <data name="Hardware.DensityShort"><value>密度</value></data>
-  <data name="Hardware.SpeedShort"><value>速度</value></data>
-  <data name="Hardware.AvailableState"><value>可用的</value></data>
-  <data name="Hardware.UnavailableState"><value>不可用</value></data>
-  <data name="Hardware.DensityDescription"><value>驱动器密度（仅描述）</value></data>
-  <data name="Hardware.SpeedDescription"><value>标称速度（仅描述）</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>港口</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB 标识符</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>驾驶</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>可用的</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>扫描</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>添加驱动器...</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>未定义驱动器</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>定义一个驱动器</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle 控制器</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>选择传递给 gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>物理尺寸</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>尺寸</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>密度</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>速度</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>可用的</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>不可用</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>驱动器密度（仅描述）</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>标称速度（仅描述）</value></data>
   <data name="Hardware.NotConfigured"><value>控制器未配置</value></data>
   <data name="Hardware.Disconnected"><value>断开连接</value></data>
   <data name="Hardware.SelectedDisconnected"><value>所选驱动器已断开连接。重新连接或在选项 → 控制器和驱动器中再次扫描。</value></data>

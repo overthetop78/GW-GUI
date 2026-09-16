@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>Bộ xử lý: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>Mẫu CPU</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>Hệ số nhân CPU</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>CPU tương thích từng chu kỳ</value></data>
+  <data name="Emulation.Cpu.Speed"><value>Tốc độ CPU</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Tốc độ gốc</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Bình thường</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Tương thích</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Tương thích bộ nhớ</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Chính xác từng chu kỳ</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Bộ xử lý</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Độ chính xác</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Tăng tốc</value></data>
+</root>

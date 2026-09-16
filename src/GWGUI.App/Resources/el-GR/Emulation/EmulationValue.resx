@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Ενεργοποιημένο</value></data>
+  <data name="Emulation.Value.Disabled"><value>Απενεργοποίηση</value></data>
+  <data name="Emulation.Value.Minimum"><value>Ελάχιστη</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Πολύ μικρό</value></data>
+  <data name="Emulation.Value.Small"><value>Μικρό</value></data>
+  <data name="Emulation.Value.Medium"><value>Μεσαίο</value></data>
+  <data name="Emulation.Value.Large"><value>Μεγάλο</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Πολύ μεγάλο</value></data>
+  <data name="Emulation.Value.Maximum"><value>Μέγιστο</value></data>
+  <data name="Emulation.Value.Standard"><value>Τυπικό</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Ενισχυμένη</value></data>
+  <data name="Emulation.Value.Internal"><value>Εσωτερικό</value></data>
+  <data name="Emulation.Value.Loud"><value>Δυνατά</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Δεν χρησιμοποιείται</value></data>
+  <data name="Emulation.Value.None"><value>Κανένα</value></data>
+  <data name="Emulation.Value.Default"><value>Προεπιλογή</value></data>
+  <data name="Emulation.Value.Gray"><value>Γκρι</value></data>
+</root>

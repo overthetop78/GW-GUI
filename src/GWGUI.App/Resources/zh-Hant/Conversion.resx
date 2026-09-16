@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>現有文件</value></data>
-  <data name="Conflict.Heading"><value>有些文件已經存在</value></data>
-  <data name="Conflict.Help"><value>為每個文件選擇一個操作或對所有文件應用相同的操作。</value></data>
-  <data name="Conflict.File"><value>文件</value></data>
-  <data name="Conflict.Action"><value>行動</value></data>
-  <data name="Conflict.Overwrite"><value>覆蓋</value></data>
-  <data name="Conflict.Skip"><value>跳過</value></data>
-  <data name="Conflict.Number"><value>使用下一個號碼</value></data>
-  <data name="Conflict.AllOverwrite"><value>覆蓋全部</value></data>
-  <data name="Conflict.AllSkip"><value>全部跳過</value></data>
-  <data name="Conflict.AllNumber"><value>全部編號</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>轉換</value></data>
   <data name="Conversion.SelectOutput"><value>選擇至少一種輸出格式。</value></data>
   <data name="Conversion.SourceAmbiguous"><value>來源不明確</value></data>
@@ -43,49 +24,14 @@
   <data name="Conversion.Incompatible"><value>{0} 與此來源不相容。</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>找不到可用的輸出檔名。</value></data>
   <data name="Conversion.ReconstructedFlux"><value>重建磁通</value></data>
-  <data name="Migration.Open"><value>文件迁移...</value></data>
-  <data name="Migration.Title"><value>文件迁移</value></data>
-  <data name="Migration.Heading"><value>将文件迁移到另一个文件系统</value></data>
-  <data name="Migration.Source"><value>源图像</value></data>
-  <data name="Migration.NoSource"><value>选择包含一个已识别文件系统的图像。</value></data>
-  <data name="Migration.Destination"><value>目标文件系统和格式</value></data>
-  <data name="Migration.Output"><value>目标图像</value></data>
-  <data name="Migration.Compatibility"><value>兼容性和损失</value></data>
-  <data name="Migration.Waiting"><value>选择源和目的地。</value></data>
-  <data name="Migration.Severity"><value>严重性</value></data>
-  <data name="Migration.Path"><value>源路径</value></data>
-  <data name="Migration.Description"><value>说明</value></data>
-  <data name="Migration.AcceptLosses"><value>接受列出的元数据损失</value></data>
-  <data name="Migration.Execute"><value>迁移文件</value></data>
-  <data name="Migration.Blocking"><value>封锁</value></data>
-  <data name="Migration.MetadataLoss"><value>元数据损失</value></data>
-  <data name="Migration.SourceSummary"><value>音量 : {0} ——文件系统: {1} ——根条目 : {2}</value></data>
-  <data name="Migration.SourceFailed"><value>无法准备迁移 : {0}</value></data>
-  <data name="Migration.Completed"><value>目的地图像创建时 : {0}</value></data>
-  <data name="Migration.Failed"><value>迁移失败 : {0}</value></data>
-  <data name="Migration.Incompatible"><value>相不相容:在迁移前纠正被堵塞的损失.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>接受列出的元数据损失后兼容 。</value></data>
-  <data name="Migration.Compatible"><value>兼容性:未发现损失。</value></data>
-  <data name="Migration.Loss.MissingContent"><value>文件内容不可用 。</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>此条目类型不为目的地所支持 。</value></data>
-  <data name="Migration.Loss.InvalidName"><value>名称对目的地无效.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>名字对目的地来说太长了.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>有几个条目的目的地名称相同。</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>该文件对目的地来说太大了.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>源元数据无效 。</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>修改日期将无法保留 。</value></data>
-  <data name="Migration.Loss.Comment"><value>评论将无法保存.</value></data>
-  <data name="Migration.Loss.Attributes"><value>源属性将不会被保存 。</value></data>
-  <data name="Migration.OverwriteConfirm"><value>目标图像已经存在 。 要替换它吗 ? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>目的图像无法替换源图像 。</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>扇区数据; 未保存的保护</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>已重建的音轨; 原始通量未保存</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>原通量保留</value></data>
-  <data name="Conversion.EngineExternal"><value>主机工具: 转换 {0}. . . . . . . . . . . .</value></data>
-  <data name="Conversion.EngineInternalStart"><value>内部引擎: 转换 {0} 改为 {1}. . . . . . . . . . . .</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>完成内部转换: {0}. . . . . . . . . . . .</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>内部引擎不支持此转换 : {0}. . . . . . . . . . . .</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>内部转换失败 {0}: 调取 {1}</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>主机工具: 转换 {0}. . . . . . . . . . . .</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>内部引擎: 转换 {0} 改为 {1}. . . . . . . . . . . .</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>完成内部转换: {0}. . . . . . . . . . . .</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>内部引擎不支持此转换 : {0}. . . . . . . . . . . .</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>内部转换失败 {0}: 调取 {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>潜在数据损失</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>此转换无法保存所有源信息 :&#xA;&#xA;{0}&#xA;&#xA;你想继续吗?</value></data>
 </root>

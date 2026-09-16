@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>เพิ่มสื่อ</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>สร้างฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>ขนาดฮาร์ดดิสก์ (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>ไม่มีสื่อ เพิ่มแผ่นฟลอปปี, ฮาร์ดดิสก์ หรือ CD รองรับโดยรุ่นที่เลือกไว้</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>อ่านได้อย่างเดียว</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>ฮาร์ดดิสก์ของ Amiga|*.hdf|ทุกแฟ้ม|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>รุ่นที่เลือกไม่รองรับฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>โมเดลนี้ยอมรับได้มากที่สุด {0} ฟลอปปี้ไดรฟ์</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>โมเดลนี้ยอมรับได้มากที่สุด {0} ฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>รุ่นที่เลือกไว้ไม่รองรับ CD ไดรฟ์</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>ไดรฟ์ CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>จำนวนไดรฟ์ฟลอปปี</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>จำนวนฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>ความเร็วแผ่นฟลอปปี้ดิสก์</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>ป้องกันแผ่นฟลอปปีแบบเขียน</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>เขียนแผ่นฟลอปปี้ใหม่</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD ความเร็ว</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>เพิ่มฮาร์ดดิสก์ที่มีอยู่</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>ฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>ไม่มีฮาร์ดดิสก์เชื่อมโยงกับเครื่องนี้</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>ฟลอปปีดิสก์</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>เพิ่มอุปกรณ์จัดเก็บข้อมูล</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>สื่อที่เชื่อมโยง</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>โปรแกรมจำลองจะกำหนดรูปทรงดิสก์โดยอัตโนมัติ</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>สร้างอิมเมจฟลอปปีดิสก์เปล่าแล้ว: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>ไฟล์จะถูกสร้างเป็นไฟล์เปล่า จากนั้นต้องแบ่งพาร์ติชันและฟอร์แมตในเครื่องจำลอง</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD ผู้เขียน</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>สร้างดิสก์เปล่าได้เฉพาะเมื่อเครื่องและโปรแกรมจำลองที่เลือกสนับสนุนการเขียน</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>ไดรฟ์ CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>กำหนดค่า</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>สร้างฟลอปปีดิสก์เปล่า</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>อิมเมจดิสก์</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>เลือกอิมเมจดิสก์ที่มีอยู่</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>ไฟล์ที่เลือกจะเชื่อมต่อกับไดรฟ์เสมือนนี้</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>ไดรฟ์ฟลอปปีดิสก์</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>อิมเมจฟลอปปีดิสก์ Amiga|*.adf|ไฟล์ทั้งหมด|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>ฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>อินเทอร์เฟซ</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>จัดสรรไฟล์ล่วงหน้า</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>ใส่หรือเปลี่ยนฟลอปปีดิสก์และซีดีจากเครื่องที่กำลังทำงาน</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>นำสื่อออก</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>อิมเมจดิสก์มีอยู่แล้ว: {0}\nต้องการแทนที่หรือไม่</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>ชนิด รุ่น และตัวระบุที่ใช้ได้ขึ้นอยู่กับเครื่องที่เลือก</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>ไดรฟ์เทป</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>ใช้ดิสก์</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>ใช้ดิสก์ที่มีอยู่</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>แก้ไขใน ทั่วไป</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>ไม่มีอุปกรณ์จัดเก็บข้อมูลเพิ่มเติมสำหรับเครื่องนี้</value></data>
+  <data name="Emulation.Storage.Device.List"><value>อุปกรณ์จัดเก็บข้อมูล</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>การจัดสรร</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>เรขาคณิตอัตโนมัติ</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>สื่อเปล่า</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>ไบต์ต่อเซกเตอร์</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>ความจุที่คำนวณได้: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>ขนาดกำหนดเอง</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>กระบอกสูบ</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>โฟลเดอร์ปลายทาง</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>เรขาคณิตดิสก์ (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>โปรไฟล์ขนาด</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>ไดรฟ์ฟลอปปีดิสก์</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>หัวอ่าน</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>ขนาดหรือเรขาคณิตของดิสก์ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>จองพื้นที่จริงทันที มิฉะนั้นอิมเมจจะขยายเมื่อเขียนข้อมูล</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>เซกเตอร์</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>เทปคาสเซ็ต</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>ตลับเกม</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>คอมแพกต์ดิสก์</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>แสดงการทำงานของไดรฟ์บนหน้าจออีมูเลเตอร์</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>ช่องตลับเกม</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>เมานท์แผ่น 4 แผ่นแรกใน DF0- สืบค้นเมื่อ 3 ปีก่อนDF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>ดิสก์ {0}</value></data>
+</root>

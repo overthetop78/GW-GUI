@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>オプション</value></data>
-  <data name="Options.General"><value>一般的な</value></data>
-  <data name="Options.Tools"><value>Greaseweazle ツール</value></data>
-  <data name="Options.Hardware"><value>コントローラーとドライブ</value></data>
-  <data name="Options.Profiles"><value>プロフィール</value></data>
-  <data name="Options.ImagesFolder"><value>デフォルトのディスクイメージフォルダー</value></data>
-  <data name="Options.Language"><value>言語</value></data>
-  <data name="Options.Theme"><value>テーマ</value></data>
-  <data name="Theme.System"><value>システム</value></data>
-  <data name="Theme.Light"><value>ライト</value></data>
-  <data name="Theme.Dark"><value>暗い</value></data>
-  <data name="Options.GwPath"><value>gw.exe へのパス</value></data>
-  <data name="Options.ToolsHelp"><value>ツールが見つからない場合、アシスタントはツールをダウンロードするか、既存のインストールを選択するよう提案します。アップデートは発表のみです。</value></data>
-  <data name="Options.HardwarePersistence"><value>ドライブが切断されても、ハードウェア設定は保存されたままになります。</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>オプション</value></data>
+  <data name="Options.General" xml:space="preserve"><value>一般的な</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle ツール</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>コントローラーとドライブ</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>プロフィール</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>デフォルトのディスクイメージフォルダー</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>言語</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>テーマ</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>システム</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>ライト</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>暗い</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>gw.exe へのパス</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>ツールが見つからない場合、アシスタントはツールをダウンロードするか、既存のインストールを選択するよう提案します。アップデートは発表のみです。</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>ドライブが切断されても、ハードウェア設定は保存されたままになります。</value></data>
   <data name="Options.ExecutableFilter"><value>グリースウェザー(gw.exe)|gw.exe|実行可能(*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>この格納されたコントローラーとそのすべてのドライブを削除しますか?</value></data>
   <data name="Options.HardwareTitle"><value>ハードウェア</value></data>
@@ -63,184 +55,11 @@
   <data name="Options.KeepLogArchives"><value>以前のログを保存する</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = 無制限</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>エンジン</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>各操作で使用するエンジンを個別に選択します。</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 内部エンジン</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>選択したエンジンだけを使用します。処理できない場合、GW GUI は別のエンジンへ暗黙に切り替えず、その旨を通知します。</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>モデル</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>マウスをキャプチャ</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>構成</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>コントローラー</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>コントローラーを検出</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>デバイス</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>モデル</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>コントローラーが検出されません</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} 台のコントローラーを検出</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>振動をテスト</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>振動の強さ</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>リアルタイム入力</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>コントロール</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>値</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>有効</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>機能</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>デバイス識別情報</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>入力の種類</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>コントロール</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>振動モーター</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>フォースフィードバック</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>触覚フィードバック</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>システムボタン</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>生レポート</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>入力 {0} / 出力 {1}</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>ゲームパッド レイアウト</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>ステアリング ホイール</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · クラッチ={1} · ハンドブレーキ={2} · シフター={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput 名</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>リビジョン</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>ハードウェア バージョン</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>ファームウェア バージョン</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>ファミリー</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>製造元</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>軸</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>ボタン</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>スイッチ</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>軸 {0} · ボタン {1} · スイッチ {2}</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>はい</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>いいえ</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>なし</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>生バイト</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>アナログ値</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>コントローラーの検出に失敗しました</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>コントローラーを検出中…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>コントローラーの読み取りに失敗しました</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>テスト中…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>テストに失敗しました</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>テスト完了</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>追加コントロール</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>ハプティック音声エンドポイント</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>ハプティック位置</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>用途</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows デバイス チェーン</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>左スティック X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>左スティック Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>右スティック X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>右スティック Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>左トリガー</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>右トリガー</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>ステアリング</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>アクセル</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>ブレーキ</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>クラッチ</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>ハンドブレーキ</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>ギア</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>ロール</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>ピッチ</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>ヨー</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>センサー</value></data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI ナビゲーション</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>ゲームパッド</value></data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>低周波モーター</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>高周波モーター</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>共有</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>直線</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>角度</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>法線</value></data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>定常</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>ランプ</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>正弦波</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>矩形波</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>三角波</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>上昇のこぎり波</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>下降のこぎり波</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>ばね</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>摩擦</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>ダンパー</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>慣性</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>ジョイスティック</value></data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>多軸コントローラー</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID 用途</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>軸</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>ボタン</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>集約</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>仮想</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>入力レポート</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>出力レポート</value></data>
-<data name="Emulation.InitialDisk"><value>初期ディスク</value></data>
-  <data name="Emulation.Audio"><value>オーディオ</value></data>
-  <data name="Emulation.Controller"><value>コントローラー {0}</value></data>
-  <data name="Emulation.Core.NameOptions"><value>コアオプション</value></data>
-  <data name="Emulation.MultiDrive"><value>最初の4ディスクを取付けて下さい DF0–DF3</value></data>
-  <data name="Emulation.DiskNumber"><value>ディスク {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>利用可能なオプションをロードする</value></data>
-  <data name="Emulation.Configurations"><value>構成</value></data>
-  <data name="Emulation.Firmware"><value>ファームウェア</value></data>
-  <data name="Emulation.ReleaseMouse"><value>マウスを解放する</value></data>
-  <data name="Emulation.DeleteConfirm"><value>このAmiga設定を削除しますか?</value></data>
-  <data name="Emulation.ModelRequired"><value>明美雅モデルが必要です。</value></data>
-  <data name="Emulation.KickstartRequired"><value>キックスタートパスが必要です。</value></data>
-  <data name="Emulation.FileRequired"><value>必要なファームウェアパスは空です。</value></data>
-  <data name="Emulation.FileMissing"><value>選択したファイルが存在しない。</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} と よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ {1} : : : : {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>アナログの死んだ地帯</value></data>
-  <data name="Controllers.StickDeadZone"><value>スティック</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>トリガ</value></data>
-  <data name="Controllers.OuterDeadZone"><value>外出死んだ地帯</value></data>
-  <data name="Updates.Title"><value>更新情報</value></data>
-  <data name="Updates.Description"><value>更新情報を検索する GW GUI エミュレータモジュールをインストールします。</value></data>
-  <data name="Updates.Scope"><value>おすすめ商品</value></data>
-  <data name="Updates.ScopeApplication"><value>応用分野</value></data>
-  <data name="Updates.ScopeModules"><value>エミュレータモジュール</value></data>
-  <data name="Updates.ScopeAll"><value>アプリケーションとモジュール</value></data>
-  <data name="Updates.Search"><value>更新情報をチェック</value></data>
-  <data name="Updates.Ready"><value>何かを検索し、更新をチェックします。</value></data>
-  <data name="Updates.Searching"><value>更新情報をチェックする...</value></data>
-  <data name="Updates.SearchFailed"><value>更新のチェックができません。</value></data>
-  <data name="Updates.UpToDate"><value>最新記事</value></data>
-  <data name="Updates.Available"><value>更新可能</value></data>
-  <data name="Updates.ApplicationRequired"><value>必須条件 GW GUI ホスト API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>対応バージョンなし</value></data>
-  <data name="Updates.InstalledVersion"><value>インストール: {0}</value></data>
-  <data name="Updates.Results"><value>更新情報が見つかりました。</value></data>
-  <data name="Updates.NoUpdates"><value>選択したものは日付までです。</value></data>
-  <data name="Updates.Install"><value>選択した更新プログラムをインストール</value></data>
-  <data name="Updates.InstallConfirm"><value>ダウンロードとインストール {0} 選択したコンポーネント? GW GUI クローズして再起動します。</value></data>
-  <data name="Updates.Preparing"><value>ダウンロードと準備の更新...</value></data>
-  <data name="Updates.PreparationCancelled"><value>準備がキャンセルされました。</value></data>
-  <data name="Updates.PreparationFailed"><value>アップデートの準備ができません。</value></data>
-  <data name="Updates.InstallSucceeded"><value>更新が正常にインストールされました。</value></data>
-  <data name="Updates.InstallRestored"><value>更新が失敗し、以前のバージョンが復元されました。 {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>エミュレータモジュールを a からインストールします。 ZIP アーカイブまたは直接更新カタログ URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>ファイルからインストールする</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>インストールする URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>ダイレクト HTTPS URL モジュール更新カタログ(.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>モジュールのアーカイブ (*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>直接入力 HTTPS URL モジュール更新カタログの</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>モジュールのインストール {0} コンテンツ {1}? GW GUI クローズして再起動します。</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>モジュールのインストールを準備できません。</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>インストール時に利用可能な公式エミュレーションモジュールをブラウズします。</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>利用可能なモジュールを表示</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>インストール</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>インストール可能なモジュールを参照するために、公式ディレクトリをロードします。</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>モジュールディレクトリをロードする...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>対応モジュールは使用できません。</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} オフィシャルカタログのモジュール。</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>モジュールディレクトリをロードできません。</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>インストールされていない</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>利用できる版: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>インストール済み</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>モジュールのインストールは、マシンをマシンに追加します。 GW GUI. エミュレータコアと必要なファームウェアは、エミュレーションオプションで個別に管理されます。</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>インストールされたモジュールの更新</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>高度の取付け</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>各操作で使用するエンジンを個別に選択します。</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>GW GUI 内部エンジン</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>選択したエンジンだけを使用します。処理できない場合、GW GUI は別のエンジンへ暗黙に切り替えず、その旨を通知します。</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} と よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ {1} : : : : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>設定</value></data>
   <data name="Options.EmulationTitle"><value>エミュレーションの好み</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>利用可能なモジュール</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>アプリケーション更新</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>モジュールのブラウズとインストール</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP アーカイブまたはカタログ URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>ダウンロード</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>終わりの取付け</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI 閉じ、ダウンロードしたすべてのモジュールをインストールし、再起動します。</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>ダウンロードしたすべてのモジュールのインストールが完了しますか? GW GUI クローズして再起動します。</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} エミュレータの設定</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>ダウンロードしたモジュールを閉じる前にインストールを完了しますか? ダウンロードをキャンセルし、閉じるには、選択しないでください。</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

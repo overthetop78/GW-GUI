@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>Υπάρχοντα αρχεία</value></data>
+  <data name="Conflict.Heading"><value>Ορισμένα αρχεία υπάρχουν ήδη</value></data>
+  <data name="Conflict.Help"><value>Επιλέξτε μια ενέργεια για κάθε αρχείο ή εφαρμόστε την ίδια ενέργεια σε όλα τα αρχεία.</value></data>
+  <data name="Conflict.File"><value>Αρχείο</value></data>
+  <data name="Conflict.Action"><value>Δράση</value></data>
+  <data name="Conflict.Overwrite"><value>Αντικατάσταση</value></data>
+  <data name="Conflict.Skip"><value>Παραλείπω</value></data>
+  <data name="Conflict.Number"><value>Χρησιμοποιήστε τον επόμενο αριθμό</value></data>
+  <data name="Conflict.AllOverwrite"><value>Αντικατάσταση όλων</value></data>
+  <data name="Conflict.AllSkip"><value>Παράλειψη όλων</value></data>
+  <data name="Conflict.AllNumber"><value>Αριθμήστε όλα</value></data>
+</root>

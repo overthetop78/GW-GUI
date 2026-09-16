@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>الصوت المتاح</value></data>
+  <data name="Emulation.Audio.Output"><value>الناتج الفوق الصوتي</value></data>
+  <data name="Emulation.Audio.Latency"><value>درجة الحرارة (م)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>الإنتربول</value></data>
+  <data name="Emulation.Audio.Filter"><value>مرشح صوتي لصوت أميغا</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>فصل البذور (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>مدخلات الصوت</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>هذا النواة الأميجا لا تكشف عن مدخل صوتي</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>ناتج التخلف عن الدفع</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>مكافحة الاستنباط</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>مستنسخة</value></data>
+  <data name="Emulation.Audio.FilterType"><value>نوع المصور</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>صوت الطلقات الخافتة</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>نوع صوت الطلقات الخافتة</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>محركات فارغة</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD الصوت</value></data>
+  <data name="Emulation.Audio.Device"><value>الجهاز</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>زمن الاستجابة</value></data>
+  <data name="Emulation.Audio.Quality"><value>الجودة</value></data>
+  <data name="Emulation.Audio.Drives"><value>محركات الأقراص</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>صوت محرك الأقراص المرنة</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>مرشح صوت مستقطب</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>منخفضة</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>عادية</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>عالية</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>أوديو</value></data>
+</root>

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Read.Title"><value>Lecture</value></data>
   <data name="Read.NameRequired"><value>Indiquez un nom de fichier.</value></data>
   <data name="Read.TypeRequired"><value>Choisissez un type d’image compatible.</value></data>
@@ -22,7 +14,8 @@
   <data name="Read.ConflictNextNumber"><value>Prendre le numéro suivant</value></data>
   <data name="Read.ConflictEditName"><value>Me laisser modifier le nom</value></data>
   <data name="Read.ImageToCreate"><value>Image à créer</value></data>
-<data name="Read.RawScp"><value>Image brute (SCP)</value></data>
+  <data name="Read.Extension"><value>Prolongation</value></data>
+  <data name="Read.RawScp"><value>Image brute (SCP)</value></data>
   <data name="Read.KnownFormat"><value>Disquette au format connu</value></data>
   <data name="Read.FileName"><value>Nom du fichier</value></data>
   <data name="Read.Folder"><value>Dossier</value></data>
@@ -52,5 +45,4 @@
   <data name="Read.InternalRawScpOnly"><value>La lecture interne crée actuellement uniquement des images SCP brutes.</value></data>
   <data name="Read.InternalUnsupportedOptions"><value>Certaines options activées ne sont pas encore prises en charge par le lecteur interne.</value></data>
   <data name="Read.InternalInvalidOptions"><value>Les réglages de lecture interne sont invalides.</value></data>
-  <data name="Read.Extension"><value>Prolongation</value></data>
 </root>

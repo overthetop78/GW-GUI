@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Tecla {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Tecla del equipo</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Dos teclas de Amiga usan el mismo PC clave. Resolver las cartografías rojas antes de guardar.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Paso directo del teclado físico</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Atajos reservados</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Los atajos de GW GUI y Windows permanecen activos y la máquina no los captura.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Tecla de la máquina</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Las letras, los números y los modificadores normales se transmiten directamente. Aquí solo deben asignarse las teclas de función y especiales del Amiga.</value></data>
+</root>

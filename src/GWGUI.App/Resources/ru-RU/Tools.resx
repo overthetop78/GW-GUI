@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Готов к исполнению.</value></data>
   <data name="Tool.RawOutput"><value>Необработанный результат</value></data>
-  <data name="Maintenance.EraseTitle"><value>Подтвердить удаление</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Безвозвратно стереть все данные на вставленном диске?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Чистые головы</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Убедитесь, что чистящий диск вставлен. Никогда не используйте диск с данными.</value></data>
   <data name="Tools.Erase"><value>Стереть диск</value></data>
   <data name="Tools.EraseWarning"><value>Все данные на диске будут уничтожены.</value></data>
   <data name="Tools.LimitTracks"><value>Ограничить треки</value></data>

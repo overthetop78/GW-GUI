@@ -99,7 +99,7 @@ internal sealed class MainWindowLifecycleController(
         if (settingsSaveInProgress) return;
         if (operation.IsRunning)
         {
-            var answer = dialogs.Show(LocExtension.Get("App.OperationRunningClose"), LocExtension.Get("App.Title"), UserDialogButtons.YesNo, UserDialogIcon.Warning);
+            var answer = dialogs.Show(LocExtension.Get("Shell.OperationRunningClose"), LocExtension.Get("App.Title"), UserDialogButtons.YesNo, UserDialogIcon.Warning);
             if (answer != UserDialogResult.Yes) return;
             operation.RequestCancellation();
         }

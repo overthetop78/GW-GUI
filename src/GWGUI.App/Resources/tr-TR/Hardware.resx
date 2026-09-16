@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Liman</value></data>
-  <data name="Hardware.UsbId"><value>USB tanımlayıcı</value></data>
-  <data name="Hardware.Drive"><value>Sürmek</value></data>
-  <data name="Hardware.Available"><value>Mevcut</value></data>
-  <data name="Hardware.Scan"><value>Tara</value></data>
-  <data name="Hardware.AddDrive"><value>Bir sürücü ekleyin…</value></data>
-  <data name="Hardware.NoDrive"><value>Tanımlanmış sürücü yok</value></data>
-  <data name="Hardware.EditorTitle"><value>Bir sürücüyü tanımlayın</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle denetleyici</value></data>
-  <data name="Hardware.GwSelection"><value>Seçim gw'ye aktarıldı</value></data>
-  <data name="Hardware.PhysicalSize"><value>Fiziksel boyut</value></data>
-  <data name="Hardware.SizeShort"><value>Boyut</value></data>
-  <data name="Hardware.DensityShort"><value>Yoğunluk</value></data>
-  <data name="Hardware.SpeedShort"><value>Hız</value></data>
-  <data name="Hardware.AvailableState"><value>Mevcut</value></data>
-  <data name="Hardware.UnavailableState"><value>Kullanılamıyor</value></data>
-  <data name="Hardware.DensityDescription"><value>Sürücü yoğunluğu (yalnızca açıklama)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Nominal hız (yalnızca açıklama)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Liman</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB tanımlayıcı</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Sürmek</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Mevcut</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Tara</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Bir sürücü ekleyin…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Tanımlanmış sürücü yok</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Bir sürücüyü tanımlayın</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle denetleyici</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Seçim gw&apos;ye aktarıldı</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fiziksel boyut</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Boyut</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Yoğunluk</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Hız</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Mevcut</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Kullanılamıyor</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Sürücü yoğunluğu (yalnızca açıklama)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Nominal hız (yalnızca açıklama)</value></data>
   <data name="Hardware.NotConfigured"><value>Denetleyici yapılandırılmadı</value></data>
   <data name="Hardware.Disconnected"><value>bağlantısı kesildi</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Seçilen sürücünün bağlantısı kesildi. Yeniden bağlayın veya Seçenekler → Denetleyiciler ve sürücüler bölümünde tekrar tarayın.</value></data>
@@ -57,7 +49,7 @@
   <data name="Hardware.DriveChoice"><value>Sürücü {0} · {1}″ · {2} · {3}</value></data>
   <data name="Hardware.Forget"><value>Unutmak</value></data>
   <data name="Hardware.ForgetConfirm"><value>Bu sürücüyü veya cihazı gerçekten unutmak istiyor musunuz?</value></data>
-  <data name="Hardware.ForgetLastConfirm"><value>Bu, bu Greaseweazle için yapılandırılan son sürücüdür. Hem sürücüyü hem de Greaseweazle'yi unutmak mı istiyorsunuz?</value></data>
-  <data name="Hardware.SelectController"><value>Önce ilgili Greaseweazle'ye ait bir satırı seçin.</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Bu, bu Greaseweazle için yapılandırılan son sürücüdür. Hem sürücüyü hem de Greaseweazle&apos;yi unutmak mı istiyorsunuz?</value></data>
+  <data name="Hardware.SelectController"><value>Önce ilgili Greaseweazle&apos;ye ait bir satırı seçin.</value></data>
   <data name="Hardware.MaximumDrives"><value>Bu Greaseweazle (A ve B) öğesine otomatik olarak en fazla iki sürücü atanabilir.</value></data>
 </root>

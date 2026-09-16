@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Порт</value></data>
-  <data name="Hardware.UsbId"><value>ідентифікатор USB</value></data>
-  <data name="Hardware.Drive"><value>Драйв</value></data>
-  <data name="Hardware.Available"><value>в наявності</value></data>
-  <data name="Hardware.Scan"><value>Сканувати</value></data>
-  <data name="Hardware.AddDrive"><value>Додати диск…</value></data>
-  <data name="Hardware.NoDrive"><value>Диск не визначено</value></data>
-  <data name="Hardware.EditorTitle"><value>Визначте диск</value></data>
-  <data name="Hardware.Controller"><value>Контролер Greaseweazle</value></data>
-  <data name="Hardware.GwSelection"><value>Вибір передано gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Фізичний розмір</value></data>
-  <data name="Hardware.SizeShort"><value>Розмір</value></data>
-  <data name="Hardware.DensityShort"><value>Щільність</value></data>
-  <data name="Hardware.SpeedShort"><value>швидкість</value></data>
-  <data name="Hardware.AvailableState"><value>в наявності</value></data>
-  <data name="Hardware.UnavailableState"><value>Недоступний</value></data>
-  <data name="Hardware.DensityDescription"><value>Щільність приводу (лише опис)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Номінальна швидкість (лише опис)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Порт</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>ідентифікатор USB</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Драйв</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>в наявності</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Сканувати</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Додати диск…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Диск не визначено</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Визначте диск</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Контролер Greaseweazle</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Вибір передано gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Фізичний розмір</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Розмір</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Щільність</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>швидкість</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>в наявності</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Недоступний</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Щільність приводу (лише опис)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Номінальна швидкість (лише опис)</value></data>
   <data name="Hardware.NotConfigured"><value>Контролер не налаштований</value></data>
   <data name="Hardware.Disconnected"><value>відключений</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Вибраний диск буде відключено. Повторно підключіть його або виконайте сканування знову в Параметри → Контролери та диски.</value></data>

@@ -262,7 +262,14 @@ public static class EmulationVideoProcessingCatalog
         };
 
     public static IReadOnlyDictionary<EmulationVideoPreset, string> PresetResourceKeys { get; }
-        = ResourceKeys("Preset", Enum.GetValues<EmulationVideoPreset>());
+        = Enum.GetValues<EmulationVideoPreset>().ToDictionary(
+            preset => preset,
+            preset => preset switch
+            {
+                EmulationVideoPreset.Oled => "Emulation.Video.FixedPixel.Technology.Oled",
+                EmulationVideoPreset.Plasma => "Emulation.Video.Technology.Plasma",
+                _ => $"Emulation.Video.Preset.{preset}"
+            });
 
     public static IReadOnlyDictionary<EmulationSignalConnection, string> SignalConnectionResourceKeys { get; }
         = ResourceKeys("Signal.Connection", Enum.GetValues<EmulationSignalConnection>());

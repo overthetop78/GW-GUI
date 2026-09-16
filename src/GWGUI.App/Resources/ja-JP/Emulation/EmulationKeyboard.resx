@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}キー</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>ホストキー</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>2 つの Amiga キーに同じ PC キーが割り当てられています。保存前に赤い割り当てを修正してください。</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>物理キーボードのパススルー</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>予約済みショートカット</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>GW GUI と Windows のショートカットは有効なままで、マシンには取り込まれません。</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>マシンのキー</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>文字、数字、通常の修飾キーは直接送信されます。ここでは Amiga のファンクションキーと特殊キーだけを割り当てます。</value></data>
+</root>

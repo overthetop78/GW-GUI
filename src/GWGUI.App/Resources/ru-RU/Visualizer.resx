@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Декодер</value></data>
   <data name="Visual.LinkZoom"><value>Увеличение ссылки</value></data>
   <data name="Visual.OpenScp"><value>Откройте файл SCP…</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>действительный</value></data>
   <data name="Visual.CrcInvalid"><value>неверный</value></data>
   <data name="Visual.IntegrityUnavailable"><value>недоступен</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (одна плотность)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar жестко сегрегированный MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Хитакит жестко сегрегированный FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N жестко секционированный FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Арбургская система/данные</value></data>
+  <data name="Visual.DecoderName.raw"><value>Сырой поток</value></data>
   <data name="Visual.StructureKind.Sync"><value>Синхронизация</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Заголовок сектора</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Данные сектора</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Форматировать заголовок</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Форматировать данные</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Аномалия времени</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro захват (*.scp)|*.scp|Все файлы|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Контрольная сумма</value></data>
   <data name="Visual.Side"><value>Сторона {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Анализ дорожки {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Анализ революции {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Сторона</value></data>
   <data name="Visual.TrackLabel"><value>Отслеживать</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP запись</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Деградированный сектор</value></data>
   <data name="Visual.SectorDead"><value>Мертвый сектор</value></data>
   <data name="Visual.SectorWithoutData"><value>Сектор без данных</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Анализ революции {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Сведения о кассете</value></data>
 </root>

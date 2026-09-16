@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>Annuleren</value></data>
-  <data name="Common.Save"><value>Redden</value></data>
-  <data name="Common.Create"><value>Maken</value></data>
-  <data name="Common.Delete"><value>Verwijderen</value></data>
-  <data name="Common.Browse"><value>Blader…</value></data>
-  <data name="Common.Choose"><value>Kiezen…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>Annuleren</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Redden</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>Maken</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Verwijderen</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Blader…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>Kiezen…</value></data>
   <data name="Common.Close"><value>Dichtbij</value></data>
   <data name="Common.Execute"><value>Uitvoeren</value></data>
-<data name="Common.Continue"><value>Doorgaan</value></data>
+  <data name="Common.Stop"><value>Stoppen</value></data>
+  <data name="Common.Continue"><value>Doorgaan</value></data>
   <data name="Common.Reset"><value>Opnieuw instellen</value></data>
   <data name="Common.Copy"><value>Kopiëren</value></data>
   <data name="Common.Modify"><value>Bewerken</value></data>
   <data name="Common.Hide"><value>Verbergen</value></data>
   <data name="Common.Export"><value>Exporteren</value></data>
-  <data name="Common.New"><value>Nieuw</value></data>
-  <data name="Common.Refresh"><value>Vernieuwen</value></data>
-  <data name="Common.OpenFolder"><value>Map openen</value></data>
+  <data name="Common.New" xml:space="preserve"><value>Nieuw</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>Vernieuwen</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>Map openen</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Pauze</value></data>
-  <data name="Common.Stop"><value>Stoppen</value></data>
 </root>

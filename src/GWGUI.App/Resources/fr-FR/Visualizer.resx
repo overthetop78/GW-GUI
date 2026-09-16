@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Décodeur</value></data>
   <data name="Visual.LinkZoom"><value>Lier les zooms</value></data>
   <data name="Visual.OpenScp"><value>Ouvrir un fichier SCP…</value></data>
@@ -39,10 +31,17 @@
   <data name="Visual.StructureData"><value>Données décodées</value></data>
   <data name="Visual.StructureAnomaly"><value>Supprimé/anomalie</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analyse fondée sur la révolution {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Secteur C{0} H{1} R{2} · {3} octets · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>mors {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Secteur C{0} H{1} R{2} · {3} octets · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>valide</value></data>
   <data name="Visual.CrcInvalid"><value>incorrect</value></data>
   <data name="Visual.IntegrityUnavailable"><value>indisponible</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (densité unique)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar secteur dur MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit secteur dur FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N secteur dur FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Système/données d &apos; Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>Flux brut</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synchronisation</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>En-tête de secteur</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Données de secteur</value></data>
@@ -55,9 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>En-tête du format</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Données du format</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Anomalie temporelle</value></data>
-  <data name="Visual.OpenFilter"><value>Capture SuperCard Pro (*.scp)|*.scp|Tous les fichiers|*.*</value></data>
-<data name="Visual.Side"><value>Face {0}</value></data>
+  <data name="Visual.Side"><value>Face {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analyse de la piste {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyse de la révolution {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Face</value></data>
   <data name="Visual.TrackLabel"><value>Piste</value></data>
   <data name="Visual.ScpEntryLabel"><value>Entrée SCP</value></data>
@@ -65,19 +64,17 @@
   <data name="Visual.AnalysisTitle"><value>Analyse</value></data>
   <data name="Visual.ConfidenceLabel"><value>Confiance</value></data>
   <data name="Visual.CellLabel"><value>Cellule estimée</value></data>
-<data name="Visual.StructuresTitle"><value>Structures détectées</value></data>
+  <data name="Visual.StructuresLabel"><value>Structures</value></data>
+  <data name="Visual.StructuresTitle"><value>Structures détectées</value></data>
   <data name="Visual.SectorsTitle"><value>Secteurs</value></data>
-<data name="Visual.OpenImage"><value>Ouvrir une image disque…</value></data>
+  <data name="Visual.TransitionsUnit"><value>transitions</value></data>
+  <data name="Visual.OpenImage"><value>Ouvrir une image disque…</value></data>
   <data name="Visual.DetachInspector"><value>Détacher l’inspecteur</value></data>
   <data name="Visual.AttachInspector"><value>Rattacher l’inspecteur</value></data>
   <data name="Visual.SummaryTab"><value>Résumé</value></data>
   <data name="Visual.FormatDetected"><value>Format détecté</value></data>
   <data name="Visual.AverageRpm"><value>RPM moyen</value></data>
   <data name="Visual.AverageDuration"><value>Durée moyenne</value></data>
-  <data name="Visual.BitOffset"><value>mors {0:N0}</value></data>
-<data name="Visual.Integrity.Checksum"><value>Sommes de contrôle</value></data>
-  <data name="Visual.StructuresLabel"><value>Structures</value></data>
-  <data name="Visual.TransitionsUnit"><value>transitions</value></data>
   <data name="Visual.All"><value>Tous</value></data>
   <data name="Visual.Surface"><value>Surface {0}</value></data>
   <data name="Visual.DiscFace"><value>Visage {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Secteur dégradé</value></data>
   <data name="Visual.SectorDead"><value>Secteur mort</value></data>
   <data name="Visual.SectorWithoutData"><value>Secteur sans données</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analyse de la révolution {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Informations sur la cassette</value></data>
 </root>

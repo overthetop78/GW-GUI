@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Zkratky emulace</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Uvolnit myš</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pozastavit / pokračovat</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Celá obrazovka / okno</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Zapnout / vypnout</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Měkký restart</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Tvrdý restart</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Rychlé uložení stavu</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Rychlé načtení stavu</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Snímek obrazovky</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Ztlumit aktivní stroj</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Rychlý posun při držení</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Vložit nebo nahradit médium</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Vysunout médium</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Další médium</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Tato akce zatím není aktuálním emulátorem podporována.</value></data>
+</root>

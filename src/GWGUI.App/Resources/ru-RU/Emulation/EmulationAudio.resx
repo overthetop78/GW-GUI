@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Включить звук</value></data>
+  <data name="Emulation.Audio.Output"><value>Аудиовыход</value></data>
+  <data name="Emulation.Audio.Latency"><value>Задержка (мс)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Интерполяция</value></data>
+  <data name="Emulation.Audio.Filter"><value>Аудиофильтр Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Разделение стереоканалов (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Аудиовход</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Это ядро Amiga не предоставляет аудиовход.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Выход Windows по умолчанию</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Антиинтерполяция</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Эмулируемый</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Тип фильтра</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Громкость звука дисковода</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Тип звука дисковода</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Заглушать пустые дисководы</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD аудиообъем</value></data>
+  <data name="Emulation.Audio.Device"><value>Устройство</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Задержка</value></data>
+  <data name="Emulation.Audio.Quality"><value>Качество</value></data>
+  <data name="Emulation.Audio.Drives"><value>Приводы</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Звук дисковода</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Поляризованный аудиофильтр</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Низкое</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Нормальное</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Высокое</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Аудио</value></data>
+</root>

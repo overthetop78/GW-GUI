@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>Der Emulator benötigt ein Medium, bevor diese Maschine eingeschaltet werden kann. Legen Sie eines der unten aufgeführten erforderlichen Medien ein oder richten Sie es ein.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>Die Maschine konnte nicht eingeschaltet werden</value></data>
+  <data name="Emulation.Error.Machine"><value>Maschine</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>Erforderliche Medien</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>Ein Amiga-Modell ist erforderlich.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Ein Kickstart-Pfad ist erforderlich.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>Ein erforderlicher Firmware-Pfad ist leer.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>Die ausgewählte Datei existiert nicht.</value></data>
+</root>

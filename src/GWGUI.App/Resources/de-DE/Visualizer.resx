@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-<data name="Visual.LinkZoom"><value>Link-Zoom</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Visual.Decoder"><value>Decoder</value></data>
+  <data name="Visual.LinkZoom"><value>Link-Zoom</value></data>
   <data name="Visual.OpenScp"><value>Öffnen Sie eine SCP-Datei…</value></data>
   <data name="Visual.NoFile"><value>Kein Abbild geöffnet</value></data>
   <data name="Visual.Waiting"><value>Warten auf eine Datei</value></data>
@@ -43,6 +36,12 @@
   <data name="Visual.CrcValid"><value>gültig</value></data>
   <data name="Visual.CrcInvalid"><value>ungültig</value></data>
   <data name="Visual.IntegrityUnavailable"><value>nicht verfügbar</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (Einzeldichte)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hartsektoriert MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit-Hartsektor FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hartsektoriert FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg-System/Daten</value></data>
+  <data name="Visual.DecoderName.raw"><value>Rohstrom</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synchronisation</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Sektorkopfzeile</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sektordaten</value></data>
@@ -55,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Header formatieren</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Daten formatieren</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Timing-Anomalie</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro Erfassung (*.scp)|*.scp|Alle Dateien|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Prüfsumme</value></data>
   <data name="Visual.Side"><value>Seite {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analyse des Tracks {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Revolution analysieren {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Seite</value></data>
   <data name="Visual.TrackLabel"><value>Schiene</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP-Eintrag</value></data>
@@ -77,7 +75,6 @@
   <data name="Visual.FormatDetected"><value>Format erkannt</value></data>
   <data name="Visual.AverageRpm"><value>Durchschnitt RPM</value></data>
   <data name="Visual.AverageDuration"><value>Durchschnittliche Dauer</value></data>
-  <data name="Visual.Decoder"><value>Decoder</value></data>
   <data name="Visual.All"><value>alle</value></data>
   <data name="Visual.Surface"><value>Oberfläche {0}</value></data>
   <data name="Visual.DiscFace"><value>Gesicht {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Degradierter Sektor</value></data>
   <data name="Visual.SectorDead"><value>Toter Sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor ohne Daten</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Revolution analysieren {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Kassetteninformationen</value></data>
 </root>

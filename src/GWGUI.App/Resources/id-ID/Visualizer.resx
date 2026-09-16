@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekoder</value></data>
   <data name="Visual.LinkZoom"><value>Perbesar tautan</value></data>
   <data name="Visual.OpenScp"><value>Buka file SCP…</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>sah</value></data>
   <data name="Visual.CrcInvalid"><value>tidak sah</value></data>
   <data name="Visual.IntegrityUnavailable"><value>tidak tersedia</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (densitas tunggal)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar keras-memotong MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard- disaptored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Mikrat N hard- sectored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg sistem / data</value></data>
+  <data name="Visual.DecoderName.raw"><value>Flux mentah</value></data>
   <data name="Visual.StructureKind.Sync"><value>Sinkronisasi</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Tajuk sektor</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Data sektor</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Format tajuk</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Memformat data</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Anomali waktu</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro menangkap (*.scp)|*.scp|Semua file|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Jumlah pemeriksaan</value></data>
   <data name="Visual.Side"><value>Sisi {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Menganalisis trek {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Menganalisa revolusi {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Samping</value></data>
   <data name="Visual.TrackLabel"><value>Melacak</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP entri</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Sektor yang telah ditinggalkan</value></data>
   <data name="Visual.SectorDead"><value>Sektor mati</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor tanpa data</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Menganalisa revolusi {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Informasi kaset</value></data>
 </root>

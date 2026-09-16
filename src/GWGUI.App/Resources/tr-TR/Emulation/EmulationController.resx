@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Denetleyici {0} aygıtı</value></data>
+  <data name="Emulation.Controller.Detect"><value>Denetleyicileri algıla</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga eylemi</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Klavye, fare veya denetleyici girişi</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Sol çubuk</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Sağ çubuk</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Her iki çubuk</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turbo ateş</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turbo düğmesi</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbo darbesi</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Denetleyici bağlantı noktası sırası</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Denetleyici algılanmadı</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Denetleyici eşlemeleri</value></data>
+  <data name="Emulation.Controller.Port"><value>Bağlantı noktası {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Denetleyici türü</value></data>
+  <data name="Emulation.Controller.Detected"><value>Algılanan denetleyiciler</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Eylem veya giriş ara</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Yukarı</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Aşağı</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Sol</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Sağ</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Ateş düğmesi 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Ateş düğmesi 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analog sevinçstick</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Otomatik</value></data>
+  <data name="Emulation.Controller.None"><value>Yok</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Anahtar sevinci/mouse</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput başlatılamadı. Birlikte verilen GameInput çalışma zamanını yükleyin veya onarın.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Hızlandırıcı (sol-hand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Hızlandırıcı (sağ el)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Görünüm</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Sorumlu denetçi {0}</value></data>
+</root>

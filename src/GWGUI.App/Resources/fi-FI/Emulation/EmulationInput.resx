@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Toiminta</value></data>
+  <data name="Emulation.Input.Assign"><value>Määritä...</value></data>
+  <data name="Emulation.Input.Actions"><value>Toiminnot</value></data>
+  <data name="Emulation.Input.Press"><value>Paina näppäintä...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Laitteiden tunnistus on yhteinen, mutta määritykset tallennetaan erikseen kuhunkin konekokoonpanoon.</value></data>
+  <data name="Emulation.Input.Test"><value>Testaa syötteitä</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Jaetut syöttölaitteet</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Testaa tunnistusta painamalla näppäintä tai hiiren painiketta.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Palauta oletukset</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Tyhjennä ristiriidat</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Määritys</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Tila</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Etsi näppäintä tai määritystä</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Kelvollinen: yksilöllinen määritys · Ristiriita: määritystä käytetään useasti · Varattu: Windowsin tai GW GUI:n pikanäppäin</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Kelvollinen</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Ristiriita</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Varattu</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Ei määritetty</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Paina Määritä ja käytä sitten näppäintä, hiiren painiketta tai ohjaimen painiketta.</value></data>
+</root>

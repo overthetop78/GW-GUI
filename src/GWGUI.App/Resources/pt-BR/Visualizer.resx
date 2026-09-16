@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Decodificador</value></data>
   <data name="Visual.LinkZoom"><value>Zoom de link</value></data>
   <data name="Visual.OpenScp"><value>Abra um arquivo SCP…</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>válido</value></data>
   <data name="Visual.CrcInvalid"><value>inválido</value></data>
   <data name="Visual.IntegrityUnavailable"><value>indisponível</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (densidade única)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>Seccionados em duros NorthStar MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit endurecido FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N seccionado FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Sistema Arburg/dados</value></data>
+  <data name="Visual.DecoderName.raw"><value>Fluxo em bruto</value></data>
   <data name="Visual.StructureKind.Sync"><value>Sincronização</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Cabeçalho do setor</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Dados do setor</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Formatar cabeçalho</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Formatar dados</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Anomalia de tempo</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro captura (*.scp)|*.scp|Todos os arquivos|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Soma de verificação</value></data>
   <data name="Visual.Side"><value>Lado {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analisando faixa {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analisando a revolução {0}//{1}…</value></data>
   <data name="Visual.SideLabel"><value>Lado</value></data>
   <data name="Visual.TrackLabel"><value>Acompanhar</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP entrada</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Sector degradado</value></data>
   <data name="Visual.SectorDead"><value>Sector morto</value></data>
   <data name="Visual.SectorWithoutData"><value>Sector sem dados</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analisando a revolução {0}//{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Informações da fita cassete</value></data>
 </root>

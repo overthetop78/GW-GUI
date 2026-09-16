@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Πλήκτρο {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Πλήκτρο κεντρικού υπολογιστή</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Δύο πλήκτρα Amiga χρησιμοποιούν το ίδιο PC κλειδί. Επίλυση των κόκκινο χαρτογραφήσεων πριν από την αποθήκευση.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Διαμπερές φυσικό πληκτρολόγιο</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Δεσμευμένες συντομεύσεις</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Οι συντομεύσεις του GW GUI και των Windows παραμένουν ενεργές και δεν καταγράφονται από το μηχάνημα.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Πλήκτρο μηχανής</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Τα γράμματα, οι αριθμοί και τα συνήθη πλήκτρα τροποποίησης μεταδίδονται απευθείας. Εδώ αντιστοιχίζονται μόνο τα πλήκτρα λειτουργιών και τα ειδικά πλήκτρα του Amiga.</value></data>
+</root>

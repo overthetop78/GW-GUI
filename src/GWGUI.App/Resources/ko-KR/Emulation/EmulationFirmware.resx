@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Firmware.Rom.Extended"><value>확장 ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>검출 ROM</value></data>
+  <data name="Emulation.Firmware.Use"><value>사용</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>ROM 폴더 열기</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>부분 호환</value></data>
+  <data name="Emulation.Firmware.Official"><value>공식</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>호환되지 않음</value></data>
+</root>

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekooderi</value></data>
   <data name="Visual.LinkZoom"><value>Linkin zoomaus</value></data>
   <data name="Visual.OpenScp"><value>Avaa tiedosto SCP…</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>voimassa</value></data>
   <data name="Visual.CrcInvalid"><value>virheellinen</value></data>
   <data name="Visual.IntegrityUnavailable"><value>ei ole saatavilla</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (yksinkertainen tiheys)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar kova-asenteinen MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit kovasektori FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Mikraalinen N kovasektori FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburgin järjestelmä/tiedot</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raakavirta</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synkronointi</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Sektorin otsikko</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sektoritiedot</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Muotoile otsikko</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Muotoile tiedot</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Ajoituspoikkeama</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro sieppaus (*.scp)|*.scp|Kaikki tiedostot|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Tarkistussumma</value></data>
   <data name="Visual.Side"><value>Sivu {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analysoidaan raitaa {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Vallankumouksen analysointi {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Sivu</value></data>
   <data name="Visual.TrackLabel"><value>Seurata</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP merkintä</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Heikentynyt ala</value></data>
   <data name="Visual.SectorDead"><value>Kuollut sektori</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektori ilman tietoja</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Vallankumouksen analysointi {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Kasetin tiedot</value></data>
 </root>

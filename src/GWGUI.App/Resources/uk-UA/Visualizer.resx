@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Декодер</value></data>
   <data name="Visual.LinkZoom"><value>Збільшення посилання</value></data>
   <data name="Visual.OpenScp"><value>Відкрийте файл SCP…</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>дійсний</value></data>
   <data name="Visual.CrcInvalid"><value>недійсний</value></data>
   <data name="Visual.IntegrityUnavailable"><value>недоступний</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (щільність сідла)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar жорсткий-сертифікат MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Хатит жорсткий-сертифікат FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N твердосертований FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Арбург система / дані</value></data>
+  <data name="Visual.DecoderName.raw"><value>Сирий потік</value></data>
   <data name="Visual.StructureKind.Sync"><value>Синхронізація</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Заголовок сектора</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Дані секторів</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Форматувати заголовок</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Формат даних</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Аномалія синхронізації</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro захоплення (*.scp)|*.scp|Усі файли|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Контрольна сума</value></data>
   <data name="Visual.Side"><value>Сторона {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Аналіз доріжки {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Аналіз оберту {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>сторона</value></data>
   <data name="Visual.TrackLabel"><value>Трек</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP запис</value></data>
@@ -135,7 +132,7 @@
   <data name="Visual.TrackKindLabel"><value>Тип треку</value></data>
   <data name="Visual.OpticalTrackTitle"><value>Вибрані треки</value></data>
   <data name="Visual.VolumeOriginLabel"><value>Походження обсягу</value></data>
-  <data name="Visual.VolumeTitle"><value>Об'єм</value></data>
+  <data name="Visual.VolumeTitle"><value>Об&apos;єм</value></data>
   <data name="Visual.AssociatedFilesTitle"><value>Асоційовані файли</value></data>
   <data name="Visual.OpticalTrackKind.Unknown"><value>Невідомо</value></data>
   <data name="Visual.OpticalTrackKind.Data"><value>Дані</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Оградований сектор</value></data>
   <data name="Visual.SectorDead"><value>Депутатський сектор</value></data>
   <data name="Visual.SectorWithoutData"><value>Сектор без даних</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Аналіз оберту {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Відомості про касету</value></data>
 </root>

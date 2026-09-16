@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}-toets</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Hosttoets</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Twee Amiga toetsen gebruiken hetzelfde PC sleutel. Los de rode mappings op voordat u opslaat.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fysiek toetsenbord doorgeven</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Gereserveerde sneltoetsen</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Sneltoetsen van GW GUI en Windows blijven actief en worden niet door de machine vastgelegd.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Machinetoets</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Letters, cijfers en gewone modificatietoetsen worden rechtstreeks doorgestuurd. Alleen de functie- en speciale Amiga-toetsen moeten hier worden toegewezen.</value></data>
+</root>

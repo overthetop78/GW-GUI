@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Невідомий</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>В'язання</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Невідомий</value></data>
+  <data name="Common.Eject"><value>В&apos;язання</value></data>
   <data name="Common.MediaKind.Unknown"><value>Невідомі ЗМІ</value></data>
   <data name="Common.MediaKind.Floppy"><value>Дискета</value></data>
   <data name="Common.MediaKind.HardDisk"><value>Жорсткий диск</value></data>
@@ -24,4 +16,10 @@
   <data name="Common.Representation.Blocks"><value>Блоки</value></data>
   <data name="Common.Representation.OpticalTracks"><value>Оптичні треки</value></data>
   <data name="Common.Representation.Sequential"><value>Основні дані</value></data>
+  <data name="Common.Advanced"><value>Розширені налаштування</value></data>
+  <data name="Common.ExpertArguments"><value>Експертні аргументи</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Аргументи передаються в написаному вигляді після перевірки цитати.</value></data>
+  <data name="Common.DiskImageFilter"><value>Дискові зображення|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Всі файли|*.*</value></data>
+  <data name="Common.Console"><value>Консоль</value></data>
+  <data name="Common.Command"><value>Команда</value></data>
 </root>

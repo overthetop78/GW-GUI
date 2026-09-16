@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Emulation;
+using GWGUI.App.Constants.Controls.Visual;
 
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
@@ -55,9 +56,9 @@ public sealed partial class EmulationPreferencesSection : UserControl
         _storageFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
         _captureFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
         _stateFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
-        _generalTab = AddTab(_tabs, "\uE713", "Emulation.Tab.General", BuildGeneralTab());
-        _shortcutsTab = AddTab(_tabs, "\uE765", "Emulation.Tab.Shortcuts", BuildShortcutsTab());
-        AddTab(_tabs, "\uE8A5", "Emulation.Configuration", BuildConfigurationsTab());
+        _generalTab = AddTab(_tabs, IconGlyphs.Settings, "Emulation.Tab.General", BuildGeneralTab());
+        _shortcutsTab = AddTab(_tabs, IconGlyphs.Keyboard, "Emulation.Tab.Shortcuts", BuildShortcutsTab());
+        AddTab(_tabs, IconGlyphs.Configuration, "Emulation.Configuration", BuildConfigurationsTab());
         Content = _tabs;
         Loaded += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
         IsVisibleChanged += async (_, _) => await LoadConfigurationsWhenVisibleAsync();

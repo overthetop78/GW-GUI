@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Lisää media</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Luo kiintolevy</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Kovan levyn koko (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Ei mediaa. Lisää levyke, kovalevy tai CD-tuki valittu malli.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Vain luku</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga kiintolevy|*.hdf|Kaikki tiedostot|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Valittu malli ei tue kovalevyä.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Tämä malli hyväksyy enintään {0} Levyasemat.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Tämä malli hyväksyy enintään {0} kovalevy;s).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Valittu malli ei tue CD-asemaa.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CD-asema</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Levykeasemien määrä</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Kiintolevyjen määrä</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Levykeajonopeus</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Kirjoita suojassa olevat levykuvat</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Uudelleenohjaa levykekirjoituksia</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD-nopeus</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Lisää olemassa oleva kiintolevy</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Kiintolevyt</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Tähän koneeseen ei ole liitetty kiintolevyä.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Levykkeet</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Lisää tallennuslaite</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Liitetty tietoväline</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Emulaattori määrittää levyn geometrian automaattisesti.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Tyhjä levykevedos luotu: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Tiedosto luodaan tyhjänä, minkä jälkeen se on osioitava ja alustettava emuloidussa koneessa.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD-tallennin</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Tyhjä levy voidaan luoda vain, jos valittu kone ja emulaattori tukevat kirjoittamista.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM-asema</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Määritä</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Luo tyhjä levyke</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Levykuva</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Valitse olemassa oleva levykuva.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Valittu tiedosto liitetään tähän virtuaaliasemaan.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Levykeasema</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga-levykevedos|*.adf|Kaikki tiedostot|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Kiintolevy</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Liitäntä</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Esivaraa tiedosto</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Levykkeet ja CD-levyt lisätään tai korvataan ajokoneesta.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Poista tietoväline</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Levykuva on jo olemassa: {0}\nHaluatko korvata sen?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Käytettävissä olevat tyypit, mallit ja tunnisteet riippuvat valitusta koneesta.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Nauha-asema</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Käytä levyä</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Käytä olemassa olevaa levyä</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Muokkaa Yleiset-kohdassa</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Tälle koneelle ei ole saatavilla muita tallennuslaitteita.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Tallennuslaitteet</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Varaus</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Automaattinen geometria</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Tyhjä tietoväline</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Tavua sektoria kohden</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Laskettu kapasiteetti: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Mukautettu koko</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Sylinterit</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Kohdekansio</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Levyn geometria (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Kokoprofiili</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Levykeasema</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Päät</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Levyn koko tai geometria ei kelpaa.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Varaa fyysisen levytilan heti; muuten levykuva kasvaa tietoja kirjoitettaessa.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sektorit</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kasetti</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Pelikasetti</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>CD-levyt</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Näytä asemien toiminta emulaattorin näytössä</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kasettipaikka</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Asenna neljä ensimmäistä levyä DF0...DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Levy {0}</value></data>
+</root>

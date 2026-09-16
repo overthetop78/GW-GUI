@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Viselkedés</value></data>
+  <data name="Emulation.Input.Assign"><value>Hozzárendelés...</value></data>
+  <data name="Emulation.Input.Actions"><value>Műveletek</value></data>
+  <data name="Emulation.Input.Press"><value>Nyomjon meg egy billentyűt...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Az eszközfelismerés közös, a hozzárendelések azonban gépkonfigurációnként külön kerülnek mentésre.</value></data>
+  <data name="Emulation.Input.Test"><value>Bemenetek tesztelése</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Közös beviteli eszközök</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>A felismerés teszteléséhez nyomjon meg egy billentyűt vagy egérgombot.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Alapértékek visszaállítása</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Ütközések törlése</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Hozzárendelés</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Állapot</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Billentyű vagy hozzárendelés keresése</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Érvényes: egyedi hozzárendelés · Ütközés: többször használt hozzárendelés · Fenntartott: Windows- vagy GW GUI-gyorsbillentyű</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Érvényes</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Ütközés</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Fenntartott</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Nincs hozzárendelve</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Kattintson a Hozzárendelés gombra, majd nyomjon meg egy billentyűt, egér- vagy vezérlőgombot.</value></data>
+</root>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>미디어 추가</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>하드 디스크 만들기</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>하드 디스크 크기(MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>미디어가 없습니다. 선택한 모델이 지원하는 플로피, 하드 디스크 또는 CD를 추가하세요.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>읽기 전용</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>기가 하드 디스크|*.hdf|모든 파일|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>선택한 모델은 하드 디스크를 지원하지 않습니다.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>이 모델은 최대 {0}개의 플로피 드라이브를 지원합니다.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>이 모델은 최대 {0}개의 하드 디스크를 지원합니다.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>선택한 모델은 CD 드라이브를 지원하지 않습니다.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CD 드라이브</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>플로피 드라이브 수</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>하드 디스크 수</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>플로피 드라이브 속도</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>플로피 이미지 쓰기 보호</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>플로피 쓰기 리디렉션</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD 속도</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>기존 하드 디스크 추가</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>하드 디스크</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>이 머신에 연결된 하드 디스크가 없습니다.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>플로피 디스크</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>저장 장치 추가</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>연결된 미디어</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>디스크 구조는 에뮬레이터가 자동으로 결정합니다.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>빈 플로피 이미지 생성됨: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>파일은 빈 상태로 생성되며 에뮬레이트된 컴퓨터에서 파티션하고 포맷해야 합니다.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD 기록기</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>선택한 컴퓨터와 에뮬레이터가 쓰기를 지원할 때만 빈 디스크를 만들 수 있습니다.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM 드라이브</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>구성</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>빈 플로피 만들기</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>디스크 이미지</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>기존 디스크 이미지를 선택하세요.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>선택한 파일이 이 가상 드라이브에 연결됩니다.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>플로피 드라이브</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga 플로피 이미지|*.adf|모든 파일|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>하드 디스크</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>인터페이스</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>파일 미리 할당</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies와 CD는 삽입되거나 운영하는 기계에서 대체됩니다.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>미디어 제거</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>디스크 이미지가 이미 있습니다: {0}\n교체하시겠습니까?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>사용 가능한 유형, 모델 및 식별자는 선택한 컴퓨터에 따라 달라집니다.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>테이프 드라이브</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>디스크 사용</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>기존 디스크 사용</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>일반에서 수정</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>이 컴퓨터에 사용할 수 있는 추가 저장 장치가 없습니다.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>저장 장치</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>할당</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>자동 지오메트리</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>빈 미디어</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>섹터당 바이트</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>계산된 용량: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>사용자 지정 크기</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>실린더</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>대상 폴더</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>디스크 지오메트리 (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>크기 프로필</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>플로피 드라이브</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>헤드</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>디스크 크기 또는 지오메트리가 잘못되었습니다.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>실제 디스크 공간을 즉시 예약합니다. 그렇지 않으면 데이터를 쓸 때 이미지가 커집니다.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>섹터</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>카세트</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>카트리지</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>컴팩트 디스크</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>에뮬레이터 화면에 드라이브 활동 표시</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>카트리지 슬롯</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>DF0–DF3에서 첫 번째 4개의 디스크를 장착</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>의 특징 {0}</value></data>
+</root>

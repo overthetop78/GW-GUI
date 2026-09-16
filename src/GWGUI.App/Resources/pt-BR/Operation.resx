@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Operation.Finished"><value>Concluído: código {0}, duração {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Comando concluído com sucesso.</value></data>
+  <data name="Operation.Cancelled"><value>Comando cancelado.</value></data>
+  <data name="Operation.ExitCode"><value>O comando terminou com o código {0}.</value></data>
+  <data name="Operation.StopTitle"><value>Parar operação</value></data>
+  <data name="Operation.StopConfirm"><value>Interromper a operação Greaseweazle atual?</value></data>
+  <data name="Operation.Busy"><value>Um comando Greaseweazle já está em execução. Espere que termine ou pare antes de abrir esta ferramenta.</value></data>
+  <data name="Operation.Error"><value>Erro: {0}</value></data>
+</root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Memory.Main"><value>Bộ nhớ chính</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Mở rộng bộ nhớ</value></data>
+  <data name="Emulation.Memory.None"><value>Không có</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Cấu hình bộ nhớ tương thích với {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Các phần mở rộng bộ nhớ tương thích với {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM không sẵn sàng trên {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Tổng bộ nhớ đã cấu hình: {0} {1}</value></data>
+</root>

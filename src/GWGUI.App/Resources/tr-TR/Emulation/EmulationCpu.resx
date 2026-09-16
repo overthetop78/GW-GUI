@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>İşlemci: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU modeli</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU çarpanı</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Döngü uyumlu CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU hızı</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Özgün hız</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Uyumlu</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Bellek uyumlu</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Döngü düzeyinde kesin</value></data>
+  <data name="Emulation.Cpu.Processor"><value>İşlemci</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Hassasiyet</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Hızlandırma</value></data>
+</root>

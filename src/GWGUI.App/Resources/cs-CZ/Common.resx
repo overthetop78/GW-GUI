@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Neznámý</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Vysunout</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Neznámý</value></data>
+  <data name="Common.Eject"><value>Vysunout</value></data>
   <data name="Common.MediaKind.Unknown"><value>Neznámá média</value></data>
   <data name="Common.MediaKind.Floppy"><value>Disketa</value></data>
   <data name="Common.MediaKind.HardDisk"><value>Pevný disk</value></data>
@@ -24,4 +16,10 @@
   <data name="Common.Representation.Blocks"><value>Bloky</value></data>
   <data name="Common.Representation.OpticalTracks"><value>Optické koleje</value></data>
   <data name="Common.Representation.Sequential"><value>Pořadové údaje</value></data>
+  <data name="Common.Advanced"><value>Pokročilá nastavení</value></data>
+  <data name="Common.ExpertArguments"><value>Odborné argumenty</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumenty jsou předávány tak, jak byly napsány po ověření nabídky.</value></data>
+  <data name="Common.DiskImageFilter"><value>Obrázky disků|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Všechny soubory|*.*</value></data>
+  <data name="Common.Console"><value>Utěšit</value></data>
+  <data name="Common.Command"><value>Příkaz</value></data>
 </root>

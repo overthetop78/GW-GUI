@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Đã bật</value></data>
+  <data name="Emulation.Value.Disabled"><value>Đã tắt</value></data>
+  <data name="Emulation.Value.Minimum"><value>Tối thiểu</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Rất nhỏ</value></data>
+  <data name="Emulation.Value.Small"><value>Nhỏ</value></data>
+  <data name="Emulation.Value.Medium"><value>Trung bình</value></data>
+  <data name="Emulation.Value.Large"><value>Lớn</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Rất lớn</value></data>
+  <data name="Emulation.Value.Maximum"><value>Tối đa</value></data>
+  <data name="Emulation.Value.Standard"><value>Tiêu chuẩn</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Nâng cao</value></data>
+  <data name="Emulation.Value.Internal"><value>Nội bộ</value></data>
+  <data name="Emulation.Value.Loud"><value>Lớn</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Không sử dụng</value></data>
+  <data name="Emulation.Value.None"><value>Không</value></data>
+  <data name="Emulation.Value.Default"><value>Mặc định</value></data>
+  <data name="Emulation.Value.Gray"><value>Xám</value></data>
+</root>

@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Готовий до виконання.</value></data>
   <data name="Tool.RawOutput"><value>Необроблений вихід</value></data>
-  <data name="Maintenance.EraseTitle"><value>Підтвердити стирання</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Назавжди стерти всі дані на вставленому диску?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Чисті голови</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Переконайтеся, що диск для очищення вставлено. Ніколи не використовуйте диск з даними.</value></data>
   <data name="Tools.Erase"><value>Очистити диск</value></data>
   <data name="Tools.EraseWarning"><value>Усі дані на диску будуть знищені.</value></data>
   <data name="Tools.LimitTracks"><value>Обмежити доріжки</value></data>

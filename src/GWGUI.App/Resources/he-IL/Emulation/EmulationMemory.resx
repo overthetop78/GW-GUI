@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Memory.Main"><value>זיכרון ראשי</value></data>
+  <data name="Emulation.Memory.Extensions"><value>הרחבות זיכרון</value></data>
+  <data name="Emulation.Memory.None"><value>ללא</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>תצורת הזיכרון תואמת ל־{0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>הרחבות הזיכרון תואמות ל־{0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM לא זמין {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>סך הזיכרון שהוגדר: {0} {1}</value></data>
+</root>

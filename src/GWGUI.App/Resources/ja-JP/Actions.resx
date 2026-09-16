@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>キャンセル</value></data>
-  <data name="Common.Save"><value>保存</value></data>
-  <data name="Common.Create"><value>作成</value></data>
-  <data name="Common.Delete"><value>消去</value></data>
-  <data name="Common.Browse"><value>ブラウズ…</value></data>
-  <data name="Common.Choose"><value>選ぶ…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>キャンセル</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>作成</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>消去</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>ブラウズ…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>選ぶ…</value></data>
   <data name="Common.Close"><value>近い</value></data>
   <data name="Common.Execute"><value>実行する</value></data>
   <data name="Common.Stop"><value>停止</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>修正する</value></data>
   <data name="Common.Hide"><value>隠れる</value></data>
   <data name="Common.Export"><value>輸出</value></data>
-  <data name="Common.New"><value>新規</value></data>
-  <data name="Common.Refresh"><value>更新</value></data>
-  <data name="Common.OpenFolder"><value>フォルダーを開く</value></data>
+  <data name="Common.New" xml:space="preserve"><value>新規</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>更新</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>フォルダーを開く</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>一時停止</value></data>
 </root>

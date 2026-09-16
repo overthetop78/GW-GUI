@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>לְבַטֵל</value></data>
-  <data name="Common.Save"><value>לְהַצִיל</value></data>
-  <data name="Common.Create"><value>יצירה</value></data>
-  <data name="Common.Delete"><value>לִמְחוֹק</value></data>
-  <data name="Common.Browse"><value>לְדַפדֵף…</value></data>
-  <data name="Common.Choose"><value>לִבחוֹר…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>לְבַטֵל</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>לְהַצִיל</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>יצירה</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>לִמְחוֹק</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>לְדַפדֵף…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>לִבחוֹר…</value></data>
   <data name="Common.Close"><value>לִסְגוֹר</value></data>
   <data name="Common.Execute"><value>לְבַצֵעַ</value></data>
   <data name="Common.Stop"><value>לְהַפְסִיק</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>לְשַׁנוֹת</value></data>
   <data name="Common.Hide"><value>לְהַסתִיר</value></data>
   <data name="Common.Export"><value>יְצוּא</value></data>
-  <data name="Common.New"><value>חדש</value></data>
-  <data name="Common.Refresh"><value>רענון</value></data>
-  <data name="Common.OpenFolder"><value>פתח תיקייה</value></data>
+  <data name="Common.New" xml:space="preserve"><value>חדש</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>רענון</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>פתח תיקייה</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>השהיה</value></data>
 </root>

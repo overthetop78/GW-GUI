@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>Процесор: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU модель</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU мультиплеер</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>цикл сумісний CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU швидкість</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Початкова швидкість</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Звичайна</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Сумісна</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Сумісна з пам’яттю</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Точна за циклами</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Процесор</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Точність</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Прискорення</value></data>
+</root>

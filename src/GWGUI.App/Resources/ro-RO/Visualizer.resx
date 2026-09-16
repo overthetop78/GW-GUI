@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Decodor</value></data>
+  <data name="Visual.LinkZoom"><value>Mărește legătura</value></data>
   <data name="Visual.OpenScp"><value>Deschideți o SCP fișier...</value></data>
   <data name="Visual.NoFile"><value>Nicio imagine deschisă</value></data>
   <data name="Visual.Waiting"><value>În așteptarea unui dosar</value></data>
-<data name="Visual.SelectTrack"><value>Selectați o piesă.</value></data>
+  <data name="Visual.Inspector"><value>Inspectore.</value></data>
+  <data name="Visual.SelectTrack"><value>Selectați o piesă.</value></data>
   <data name="Visual.Controls"><value>Faceți clic: selectați · Roată: măriți · Clic dreapta: deplasați</value></data>
   <data name="Visual.NormalFlux"><value>Fluxul normal</value></data>
   <data name="Visual.ShortTransition"><value>Scurtă tranziție</value></data>
@@ -25,7 +19,8 @@
   <data name="Visual.Invalid"><value>Fișier nevalid</value></data>
   <data name="Visual.Title"><value>SCP vizualizare</value></data>
   <data name="Visual.ChecksumValid"><value>valabil</value></data>
-<data name="Visual.Summary"><value>SCP {0} · {1} piste · {2} revoluție(i) · {3} rezoluție ns · {4} sumă de control</value></data>
+  <data name="Visual.ChecksumInvalid"><value>invalidă</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} piste · {2} revoluție(i) · {3} rezoluție ns · {4} sumă de control</value></data>
   <data name="Visual.Revolution"><value>Revoluție {0}: {1:N0} tranziții · {2:F2} ms · {3:F2} RPM</value></data>
   <data name="Visual.Analysis"><value>Decodare: {0}&#xA;Încredere: {1:P0}&#xA;Celulă estimată: {2:F1} bifări&#xA;Structuri: {3}</value></data>
   <data name="Visual.Track"><value>Parte laterală: {0}&#xA;Piesa: {1}&#xA;SCP intrare: {2}</value></data>
@@ -36,9 +31,17 @@
   <data name="Visual.StructureData"><value>Date decodificate</value></data>
   <data name="Visual.StructureAnomaly"><value>Șters/anomalie</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analiză bazată pe revoluția {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} octeți · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>biți {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} octeți · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>valabil</value></data>
-<data name="Visual.IntegrityUnavailable"><value>indisponibil</value></data>
+  <data name="Visual.CrcInvalid"><value>invalidă</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>indisponibil</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (densitate unică)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hard-sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Sistemul/datele Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>Fluxul de materii prime</value></data>
   <data name="Visual.StructureKind.Sync"><value>Sincronizare</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Antet sector</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Date sectoriale</value></data>
@@ -51,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Formatați antetul</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Formatați datele</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Anomalie de sincronizare</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro captură (*.scp)|*.scp|Toate fișierele|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Sumă de control</value></data>
   <data name="Visual.Side"><value>Partea {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Se analizează piesa {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analizarea revoluţiei {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Latura</value></data>
   <data name="Visual.TrackLabel"><value>Urmări</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP intrare</value></data>
@@ -73,11 +75,6 @@
   <data name="Visual.FormatDetected"><value>Format detectat</value></data>
   <data name="Visual.AverageRpm"><value>RPM medie</value></data>
   <data name="Visual.AverageDuration"><value>Durata medie</value></data>
-  <data name="Visual.LinkZoom"><value>Mărește legătura</value></data>
-  <data name="Visual.Inspector"><value>Inspectore.</value></data>
-  <data name="Visual.ChecksumInvalid"><value>invalidă</value></data>
-  <data name="Visual.BitOffset"><value>biți {0:N0}</value></data>
-  <data name="Visual.CrcInvalid"><value>invalidă</value></data>
   <data name="Visual.All"><value>Toate</value></data>
   <data name="Visual.Surface"><value>Suprafață {0}</value></data>
   <data name="Visual.DiscFace"><value>Față {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Sectorul degradat</value></data>
   <data name="Visual.SectorDead"><value>Sectorul mort</value></data>
   <data name="Visual.SectorWithoutData"><value>Sectorul fără date</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analizarea revoluţiei {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Informații despre casetă</value></data>
 </root>

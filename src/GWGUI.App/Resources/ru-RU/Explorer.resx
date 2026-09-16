@@ -1,18 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Образ диска</value></data>
+  <data name="Explorer.DetectedFormats"><value>Обнаружено: {0}</value></data>
   <data name="Explorer.Format"><value>Формат</value></data>
   <data name="Explorer.OpenImage"><value>Открыть образ…</value></data>
   <data name="Explorer.Automatic"><value>Автоматическое определение</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Неизвестно</value></data>
   <data name="Explorer.Unnamed"><value>Том без имени</value></data>
   <data name="Explorer.LoadFailed"><value>Не удалось открыть образ: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Несовместимый формат</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Невозможно интерпретировать «{1}» в формате «{0}».&#xA;Выберите другой формат, чтобы продолжить.</value></data>
   <data name="Explorer.Loading"><value>Чтение образа диска…</value></data>
   <data name="Explorer.ReadDisk"><value>Прочитать дискету</value></data>
   <data name="Explorer.Name"><value>Имя</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>Сжатие</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Пользовательский загрузчик секторов</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Пользовательский загрузчик — нет каталога файлов</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack от The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Блоки данных</value></data>
-  <data name="Explorer.DetectedFormats"><value>Обнаружено: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools не может создать образ сектора для поиска. {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Host Tools не смогли расшифровать изображение {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools не может создать образ сектора для поиска. {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools не смогли расшифровать изображение {0}.</value></data>
   <data name="Explorer.Session"><value>Диск-сессия</value></data>
   <data name="Explorer.Track"><value>Медиа-трек</value></data>
   <data name="Explorer.Layers"><value>Дисковые слои</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Аудио треки</value></data>
   <data name="Explorer.LoadingRecognition"><value>Признание формата СМИ</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Признанный формат</value></data>
-  <data name="Explorer.LoadingMedia"><value>Чтение структуры СМИ</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Анализ файловой системы</value></data>
-  <data name="Explorer.LoadingContents"><value>Подготовка папок и файлов</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Отображение содержимого</value></data>
   <data name="Explorer.TestingFormat"><value>Формат тестирования: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: признанный</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: не признано</value></data>
   <data name="Explorer.ReadingFormat"><value>Формат чтения: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Несовместимый формат</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>Невозможно интерпретировать «{1}» в формате «{0}».&#xA;Выберите другой формат, чтобы продолжить.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Чтение структуры СМИ</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Чтение ленты</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>рекорд {0} из {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Дешифровка записей с магнитной ленты</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Распознавание файлов</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Анализ файловой системы</value></data>
+  <data name="Explorer.LoadingContents"><value>Подготовка папок и файлов</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Отображение содержимого</value></data>
   <data name="Explorer.FileWithExtension"><value>Файлы {0}</value></data>
   <data name="Explorer.Type.Document"><value>Документация</value></data>
   <data name="Explorer.Type.SourceCode"><value>Исходный код</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC файл программы</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Программа бут</value></data>
   <data name="Explorer.Type.Executable"><value>исполняемый</value></data>
   <data name="Explorer.Type.Command"><value>Командовый файл</value></data>
   <data name="Explorer.Type.SystemFile"><value>Системный файл</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Документация</value></data>
   <data name="Explorer.Category.SourceCode"><value>Исходный код</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC программа</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Программа бут</value></data>
   <data name="Explorer.Category.Program"><value>Программа</value></data>
   <data name="Explorer.Category.Executable"><value>исполняемый</value></data>
   <data name="Explorer.Category.Command"><value>Командование</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Тип</value></data>
   <data name="Explorer.BaudRate"><value>Скорость</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Задержка</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Программа бут</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Программа бут</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Чтение ленты</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>рекорд {0} из {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Дешифровка записей с магнитной ленты</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Распознавание файлов</value></data>
 </root>

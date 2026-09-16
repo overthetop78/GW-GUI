@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Πυρήνας</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Πυρήνας εξομοίωσης {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Η βιβλιοθήκη παραμένει έξω από το GW GUI. Η επιλεγμένη έκδοση αντικαθιστά την τρέχουσα εγκατεστημένη έκδοση.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Έκδοση που απαιτείται από το GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Τελευταία διαθέσιμη επίσημη έκδοση</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Τρέχουσα εγκατεστημένη έκδοση</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Κάντε κλικ στην Αναζήτηση για έλεγχο του επίσημου διακομιστή Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Αναζήτηση εκδόσεων</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Λήψη και αντικατάσταση</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Αναζήτηση διαθέσιμων εκδόσεων…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Δεν βρέθηκε επίσημη έκδοση.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} διαθέσιμες εκδόσεις.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Λήψη του {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Εγκατεστημένη έκδοση: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · εγκαταστάθηκε</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Δεν υπάρχει εγκατεστημένη έκδοση</value></data>
+  <data name="Emulation.Core.Emulator"><value>Εξομοιωτής</value></data>
+  <data name="Emulation.Core.Install"><value>Εγκατάσταση</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Εγκατασταθέν</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Βασικές επιλογές</value></data>
+</root>

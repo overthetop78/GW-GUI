@@ -304,12 +304,11 @@ pour rendre les attributions vérifiables sans modifier le logiciel.
 | `Emulation.Firmware.Rom.Xegs` | Emulation.resx | Atari | XEGS ROM |
 | `Emulation.Folder.Default` | Emulation.resx | Atari | Default folders |
 | `Emulation.Fpu.Model` | Emulation.resx | Amiga, Atari | FPU |
-| `Emulation.Key.AtariBreak` | Emulation.resx | Atari | Break |
-| `Emulation.Key.AtariHelp` | Emulation.resx | Atari | Help |
-| `Emulation.Key.AtariUndo` | Emulation.resx | Atari | Undo |
-| `Emulation.Key.Help` | Emulation.resx | Amiga | Help |
+| `Emulation.Key.Break` | Emulation.resx | Atari | Break |
+| `Emulation.Key.Help` | Emulation.resx | Amiga, Atari | Help |
 | `Emulation.Key.LeftAmiga` | Emulation.resx | Amiga | Left Amiga |
 | `Emulation.Key.RightAmiga` | Emulation.resx | Amiga | Right Amiga |
+| `Emulation.Key.Undo` | Emulation.resx | Atari | Undo |
 | `Emulation.Memory.Extensions` | Emulation.resx | Amiga, Atari | Memory extensions |
 | `Emulation.Memory.Fast` | Emulation.resx | Amiga | Fast RAM |
 | `Emulation.Memory.Main` | Emulation.resx | Amiga, Atari | Main memory |

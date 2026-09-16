@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Tambah media</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Buat hard disk</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Ukuran hard disk (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Tidak ada media. Tambahkan disket, hard disk, atau CD yang didukung model terpilih.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Hanya baca</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Idola hard disk|*.hdf|Semua berkas|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Model terpilih tidak mendukung hard disk.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Model ini mendukung paling banyak {0} drive disket.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Model ini mendukung paling banyak {0} hard disk.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Model yang dipilih tidak mendukung CD drive.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Drive CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Jumlah drive disket</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Jumlah hard disk</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Kecepatan drive disket</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Lindungi citra disket dari penulisan</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Alihkan penulisan disket</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Kecepatan CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Tambahkan hard disk yang ada</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Hard disk</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Tidak ada hard disk yang terkait dengan mesin ini.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Disket</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Tambah perangkat penyimpanan</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Media terkait</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Geometri disk ditentukan otomatis oleh emulator.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Citra disket kosong dibuat: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Berkas akan dibuat kosong lalu harus dipartisi dan diformat di mesin emulasi.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Perekam CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Disk kosong hanya dapat dibuat jika mesin dan emulator yang dipilih mendukung penulisan.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Drive CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Konfigurasi</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Buat disket kosong</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Citra disk</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Pilih citra disk yang sudah ada.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Berkas yang dipilih akan dipasang pada drive virtual ini.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Drive disket</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Citra disket Amiga|*.adf|Semua berkas|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Hard disk</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Antarmuka</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Alokasikan berkas di muka</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies dan CD dimasukkan atau diganti dari mesin yang sedang berjalan.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Lepas media</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Citra disk sudah ada: {0}\nApakah Anda ingin menggantinya?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Jenis, model, dan pengenal yang tersedia bergantung pada mesin yang dipilih.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Drive pita</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Gunakan disk</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Gunakan disk yang ada</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Ubah di Umum</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Tidak ada perangkat penyimpanan tambahan yang tersedia untuk mesin ini.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Perangkat penyimpanan</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Alokasi</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Geometri otomatis</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Media kosong</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Byte per sektor</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Kapasitas terhitung: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Ukuran khusus</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Silinder</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Folder tujuan</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Geometri disk (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Profil ukuran</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Drive disket</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Head</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Ukuran atau geometri disk tidak valid.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Mencadangkan ruang fisik segera; jika tidak, citra membesar saat data ditulis.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sektor</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kaset</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Kartrid</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Cakram padat</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Tampilkan aktivitas drive pada layar emulator</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot kartrid</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Kait empat disk pertama di DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Diska {0}</value></data>
+</root>

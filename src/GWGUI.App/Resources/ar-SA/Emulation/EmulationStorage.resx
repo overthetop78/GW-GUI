@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>وسائط الإعلام</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>إنشاء قرص صلب</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>حجم الأقراص الصلبة (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>لا توجد وسائل إعلام، إضافة قرص صلب أو قرص صلب CD مدعومة بنموذج منتقاة.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>القراءة فقط</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>قرص صلب من طراز Amiga|*.hdf|جميع الملفات|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>النموذج المختار لا يدعم قرص صلب</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>هذا النموذج يقبل على الأكثر {0} قناص مُنقّد (قناص)</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>هذا النموذج يقبل على الأكثر {0} قرص صلب.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>لا يدعم النموذج المختار CD قُد</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>محرك أقراص CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>عدد محركات الأقراص المرنة</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>عدد الأقراص الصلبة</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>سرعة العجلات</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>صور مُنعّة وقاية من الكتاب</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>إعادة توجيه كتابات النبات</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>سرعة CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>إضافة قرص صلب موجود</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>الأقراص الصلبة</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>لا يوجد قرص صلب مرتبط بهذا الجهاز.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>الأقراص المرنة</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>إضافة جهاز تخزين</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>الوسيط المرتبط</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>يحدد المحاكي هندسة القرص تلقائيًا.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>تم إنشاء صورة القرص المرن الفارغة: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>سيُنشأ الملف فارغًا، ثم يجب تقسيمه وتهيئته في الجهاز المُحاكى.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD كاتب</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>لا يمكن إنشاء قرص فارغ إلا إذا كان الجهاز والمحاكي المحددان يدعمان الكتابة.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM محرك الأقراص</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>تكوين</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>إنشاء قرص مرن فارغ</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>صورة القرص</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>حدد صورة قرص موجودة.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>سيتم إرفاق الملف المحدد بمحرك الأقراص الافتراضي هذا.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>محرك أقراص مرنة</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>صورة قرص Amiga مرن|*.adf|كل الملفات|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>قرص صلب</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>الواجهة</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>تخصيص الملف مسبقًا</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>تُدرج الأقراص المرنة والمضغوطة أو تُستبدل من الجهاز قيد التشغيل.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>إزالة الوسيط</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>صورة القرص موجودة بالفعل: {0}\nهل تريد استبدالها؟</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>تعتمد الأنواع والطرازات والمعرفات المتاحة على الجهاز المحدد.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>محرك أشرطة</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>استخدام القرص</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>استخدام قرص موجود</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>تعديل في عام</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>لا يتوفر جهاز تخزين إضافي لهذا الجهاز.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>أجهزة التخزين</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>التخصيص</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>هندسة تلقائية</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>وسيط فارغ</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>بايت لكل قطاع</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>السعة المحسوبة: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>حجم مخصص</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>الأسطوانات</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>مجلد الوجهة</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>هندسة القرص (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>ملف تعريف الحجم</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>محرك الأقراص المرنة</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>الرؤوس</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>حجم القرص أو هندسته غير صالحين.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>يحجز مساحة القرص الفعلية فورًا؛ وإلا فستزداد الصورة مع كتابة البيانات.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>القطاعات</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>شريط كاسيت</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>خرطوشة</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>أقراص مضغوطة</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>إظهار نشاط محركات الأقراص على شاشة المحاكي</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>منفذ الخرطوشة</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>سدد أول أربعة أقراص في DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>قرص {0}</value></data>
+</root>

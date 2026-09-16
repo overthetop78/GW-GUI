@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Поведение</value></data>
+  <data name="Emulation.Input.Assign"><value>Назначить...</value></data>
+  <data name="Emulation.Input.Actions"><value>Действия</value></data>
+  <data name="Emulation.Input.Press"><value>Нажмите клавишу...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Обнаружение устройств общее, а назначения сохраняются отдельно в каждой конфигурации машины.</value></data>
+  <data name="Emulation.Input.Test"><value>Проверить ввод</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Общие устройства ввода</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Нажмите клавишу или кнопку мыши, чтобы проверить обнаружение.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Восстановить значения по умолчанию</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Очистить конфликты</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Назначение</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Состояние</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Поиск клавиши или назначения</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Допустимо: уникальное назначение · Конфликт: назначение используется несколько раз · Зарезервировано: сочетание Windows или GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Допустимо</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Конфликт</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Зарезервировано</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Не назначено</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Нажмите «Назначить», затем клавишу, кнопку мыши или контроллера.</value></data>
+</root>

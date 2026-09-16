@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Menu.Options"><value>Seçenekler</value></data>
   <data name="Menu.Preferences"><value>Tercihler…</value></data>
   <data name="Menu.Diagnostics"><value>Teşhis</value></data>
@@ -27,14 +19,7 @@
   <data name="Menu.Help"><value>Yardım</value></data>
   <data name="Menu.Documentation"><value>Dokümantasyon</value></data>
   <data name="Menu.About"><value>Hakkında</value></data>
-  <data name="Tab.Read"><value>Okumak</value></data>
-  <data name="Tab.Write"><value>Yazmak</value></data>
-  <data name="Tab.Convert"><value>Dönüşüm</value></data>
-  <data name="Tab.Visualize"><value>Görselleştirme</value></data>
-  <data name="Tab.Tools"><value>Aletler</value></data>
   <data name="Menu.Align"><value>Sürücü hizalaması…</value></data>
-  <data name="Tab.Explorer"><value>Disk Gezgini</value></data>
-  <data name="Tab.Emulation"><value>Emülasyon</value></data>
-  <data name="Menu.EmulationPreferences"><value>Emulation tercihleri...</value></data>
   <data name="Menu.Emulation"><value>Emulation</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulation tercihleri...</value></data>
 </root>

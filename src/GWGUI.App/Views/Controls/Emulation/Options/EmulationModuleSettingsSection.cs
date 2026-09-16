@@ -280,7 +280,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             var columns = tab == EmulationMachineTab.Rom ? 1 : Math.Max(1, block.Columns);
             var form = EmulationSettingsLayout.CompactForm(columns, fields);
             panel.Children.Add(EmulationSettingsLayout.IconCard(form,
-                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? "\uE713"));
+                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Settings));
         }
     }
 

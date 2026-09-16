@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Core</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0} emulation core</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>The library remains external to GW GUI. The selected version replaces the currently installed version.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Version required by GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Latest official version available</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Currently installed version</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Click Search to query the official Libretro server.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Search versions</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Download and replace</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Searching available versions…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>No official version found.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} version(s) available.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Downloading {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Installed version: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · installed</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>No version installed</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emulator</value></data>
+  <data name="Emulation.Core.Install"><value>Install</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Installed</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Core options</value></data>
+</root>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Sessiz boş floppy sürücüler</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>Hiçbir disk eklenmediğinde amfili sürücü seslerini susturur. Bu seçeneği boş mekanik gürültü tutmak için.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>Analog ses filtreleme</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>Orijinal analog ses filtresinin nasıl yeniden üretildiğini seçin. Emated donanım davranışını takip eder. Diğer seçenekler filtreyi veya kapalı tutar.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>Polarize ses filtresi</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>Elde edilen ses sinyaline kutuplanmış filtreyi uygular. Filtrelenmiş sesi yeniden üretmek için kullanılabilir. Unfiltered sinyali tutmak için kullanılabilir.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>Ses interpolasyon seçin</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>Oluşturulan örnek puanlar arasında ses örnekleri nasıl hesaplanır. Yüksek kaliteli yöntemler düzgün ses üretir ancak daha fazla işleme gerektirir.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>Ses latency Set</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>Ses tamponunun süresini ayarlar. Daha kısa bir tampon gecikmeyi azaltır, ancak çatlaklara neden olabilir. Daha uzun bir tampon istikrar geliştirir, ancak gecikmeyi artırır.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>Enable dual POKEY stereo stereo stereo stereo stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>İkinci bir emated ekleyin POKEY stereo ses üretmek için çip. Enable bu seçenek sadece çiftliği destekleyen yazılım için POKEY Ses.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>Set stereo ayrılık</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>Sol ve sağ kanallar arasındaki ayrımı ayarlar. Daha düşük bir değer birlikte kanalları karıştırır. Daha yüksek bir değer onları uzak tutar.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>Jumppy sürücüsü ses setini seçin</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>Emated floppy sürücülerinin mekanik sesleri için kullanılan örneği seçin. Sürücü davranışını veya disk verilerini değiştirmez.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>Ses filtre modelini seçin</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Donanım filtre yanıtını emulate&apos;ye seçin. Auto, seçilmiş makine modelini takip eder. Belirli bir seçim her zaman bu filtre yanıtını kullanır.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>Enable iki ek sevinç portu</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>İki joystick portu ekliyor paralel bir bağlantı adaptörüne sahip olun. Dört eşzamanlı oyuncuyu destekleyen yazılım için kullanılabilir.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>turbo pul aralığı ayarla</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>Turbo tarafından üretilen otomatik düğme basınları arasındaki zamanı ayarlar. Daha kısa bir aralığı daha hızlı tekrarlanan ateş üretir.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>Bir kontrolör uyumluluk modu seçin</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>Çift katlı kontrol gibi özel bir kontrol haritasını seçin, değiştirilen portlar veya Joy2B+. Standart port haritasını tutmak için hiçbir şey seçin.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>Analog giriş hassasiyeti</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>Bir analog girişin harekete ne kadar güçlü tepki verdiği ayarlar. Daha yüksek bir değer aynı fiziksel hareketten daha büyük bir yanıt verir.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Dijital giriş hassaslığı ayarlayın</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Ne kadar hızlı bir dijital yön tam harekete ulaşır. Daha yüksek bir değer, yön değişikliklerinin maksimum daha hızlı ulaşmasını sağlar.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Autofire modunu seçin</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Engelliler otomatik ateş açar. Düğmede atanan düğme yapıldığında yangın tekrarlanır. Her zaman sürekli yangını tekrarlar.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Set paddle hareket hızı hızı</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Setler ne kadar hızlı dijital girdi bir emated paddle hareket eder. Daha düşük bir değer onu daha yavaş hareket eder. Daha yüksek bir değer daha hızlı hareket eder.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Seç FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>Yüz nokta talimatları için kullanılan yüzen nokta birimi seçin. Hiçbiri devre dışı bırakmak için seç FPU. Mevcut modeller seçilen modellere bağlıdır CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>Select Select Select Select CPU Cümle doğruluğu</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Nasıl yakından seçilir CPU zamanlama orijinal donanımı takip eder. Daha doğru modlar uyumluluk geliştirebilir ancak daha fazla işlem gerektirebilir.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Emated the emated CPU Hız hızı hız hızı</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>Emated makine tarafından kullanılan işlemci frekansı ayarlar. Orijinal hız donanım zamanlamasını korur. Yüksek değerler hızlar donanım zamanlamasını hızlandırır. CPU- sınırlı yazılım.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Mouse&apos;ı kontrol etmek için analog çubuğu kullanın</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>Emated fare noktası taşımak için analog sevinçleri izin verin. Fiziksel bir analog çubuğun noktası kontrol etmesi gerektiğinde kullanılabilir.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>Analog fare hızı</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>Bir analog çubuğun sahte fareyi kontrol ettiği zaman kümeler hız. Daha yüksek bir değer aynı sopa hareketi için işaretleyiciyi hareket eder.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>Analog fare ölü bölgeyi ayarlayın</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>Merkezin etrafındaki küçük analog-stick hareketleri fareyi kontrol ederken. Kare serbest bırakılırken işaretçi hareket ederse değeri artırın.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Enable the Enable the Axlon $0F gölge banka</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Aynalar Axlon Kontrol bankası adrese $0F. Sadece bu ek adresi kullanan yazılım veya hafıza genişlemeleri için kullanılabilir.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Set Set Set Set Axlon genişleme bellek</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Banka-switched miktarını ayarlar Axlon hafıza. Engelli genişlemeyi ortadan kaldırır. Diğer seçenekler seçilmiş hafıza kapasitesi sağlar.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Set Set Set Set Mosaic genişleme bellek</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Banka-switched miktarını ayarlar Mosaic hafıza. Engelli genişlemeyi ortadan kaldırır. Diğer seçenekler seçilmiş hafıza kapasitesi sağlar.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Ek genişleme hafızasını ayarlayın</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Seçilen makine tarafından desteklenen ek genişleme hafıza miktarını ayarlar. Sadece yapılandırılmış ana hafızayı kullanmak için hiçbir şey seçin.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Set Set Set Set Fast RAM Boyut büyüklüğü</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>Setlerin miktarı Fast RAM Doğrudan mevcut CPU. Ek Fast RAM Uyumlu yazılımlara yardımcı olabilir, ancak emilen donanım yapılandırmasını değiştirebilir.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Enable MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>Uygun yazılımları haritalanabilir RAM Sisteme gir ROM adres alanı. Bu seçenek yalnızca makine modellerinde destekleniyor MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Set Set Set Set Zorro III RAM Boyut büyüklüğü</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>32-bit miktarı ayarlar Fast RAM Bağlanma yoluyla bağlantılı Zorro III Otobüs. Sadece 32-bit makine ve yazılım ile kullanın.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>Set Set Set Set Slow RAM Boyut büyüklüğü</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Setlerin miktarı Slow RAM Kilitli genişleme alanında. Bu hafıza daha yavaştır Fast RAM Ve farklı bir donanım adresi aralığı kullanır.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>Seç ROM Şifreleme anahtarı</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>Lisanslı bir şifreyi şifrelemek için kullanılan anahtar dosyayı seçin ROM Görüntü. Seçildiğinde bu alanı boş bırakın ROM Şifrelemez.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Enable hızlı startup</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>Seçilmiş donanım başlangıç gecikmeleri kısa başlangıç için. Bu seçeneği yazılım orijinal başlangıç sırasını gerektirdiğinde ayırt edilebilir.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>genişletilmiş bir isim seçin ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>Orta bilgisayarları seçin ROM Bazı makine modelleri tarafından gerekli. Seçilmiş model genişletilmiş bir kullanımdığında bu alanı boş bırakın ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Enable hızlandırılabilir hızlandırılabilir SIO transfer transferleri transfer transfer transferleri transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>Hızlılar seri giriş / otobüs aracılığıyla uyumlu transferler. Yazılım orijinal transfer zamanlamasına bağlı olduğunda bu seçeneği ayırt edin.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Enable cassette startup</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Soyulmuş makine, eklenmiş kalibre görüntüden başlamaya çalışır. Başka bir cihazdan başlayarak bu seçeneği ayırt edin.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Enable the Enable the R-Time 8 Saat Saat Saat Saat Saat Saat</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>Emulates an R-Time 8 Gerçek zamanlı saat bu kadar uyumlu yazılım mevcut tarihi ve zamanı okuyabilirsiniz.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>Enable the Enable the P: yazıcı cihazı</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>Öfkeyi yapar P: Yazılım için mevcut yazıcı cihazı. Bu seçeneği yazıcı-device amülasyonu gerekli değildir.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>Enable the Enable the R: seri cihazı</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>Öfkeyi yapar R: Yazılım için mevcut seri cihaz. Pro-device emulation&apos;ın gerekli olmadığı bu seçeneği ayırt edemez.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>Yüksek çözünürlüklü renk sanatını seçin</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>Yüksek çözünürlüklü desenlerin kompozit-video renkleri nasıl ürettiğini seçin. Hiçbir şey sanatsal renkleri devre dışı bırakmaz. Diğer modlar farklı paletleri veya çip davranışını yeniden üretir.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>blitter zamanlamasını seçin</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>blitter operasyonlarının hemen bitirip emated donanım zamanlamasını takip edip takip edip etmeyeceğini seçin. Immediate modu daha hızlı ama daha az zamanlayıcı.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>Yenileme değişikliklerine izin verin</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>Yapılan video modundaki değişiklikleri takip etmek için çıktı yenileme oranına izin verin. Locked mevcut çıktı yenileme oranını tutar.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>çarpışma algılama detayı seçin</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>sprite ve oyun alanı çarpışmalarının hesaplandığını seçin. Daha fazla tam tespit uyumluluk uyumluluk geliştirir ancak daha fazla işleme gerektirir.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>Interlaced display flicker</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>Interlaced video çıktısında flicker azaltır. Bir steadier görüntüsü için kullanılabilir. Orijinal interlaced ekran davranışını korumak için kullanılabilir.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>Gösterilen yön oranını seçin</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>Emated görüntünün yatay ve dikey olarak nasıl ölçeklendiğini seçin. Auto emated çıktıyı takip eder. Şekil şekli gösteren sabit bir seçim kuvvetleri.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>Adapt image gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>Kara ve beyaz seviyeleri doğrudan değiştirmeden ortatonların parlaklığını değiştirir. Alt değerler de koyu ortatones. Yüksek değerler onları parlaklaştırıyor.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>Video çizgi modu seçin</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>dikey video hatlarının nasıl görüntülendiğini seçin. Auto emated modu takip eder. Diğer seçenekler tek hatları, iki satırları veya mevcut olduğunda taramaları zorlar.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>Video standardını seçin</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>Sahte televizyon zamanlamasını seçin, örneğin PAL veya NTSC. Bu, yenileme oranını, donanım zamanlamasını ve yazılım uyumluluğunu etkiler.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>Dış bir renk paleti seçin</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>Mevcut video ayarlarından üretilen renkler yerine önceden tanımlanmış bir renk paleti seçin. Oluşturulan renkleri kullanmak için hiçbir şey seçin.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>Çıktı renk derinliği seçin</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>Görüntüyü oluşturmak için kullanılan renk derinliğini seçin. 24-bit Daha fazla renk detayı tutar. 16-bit Daha küçük bir renk yelpazesi kullanır.</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>Donanım bölgesini seçin</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>Emated makine tarafından kullanılan bölgesel zamanlamayı seçin. Seçim video frekansı etkileyebilir, CPU Zamanlaması ve uyumlu programlama.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>Video dosyasını seçin</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>Emated ekran çizmek için kullanılan grafikleri tekrar seçin. Mevcut dönüştürücüler, ev sahibi sistemle performans ve uyumlulukta farklı olabilir.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>Ek ayar GTIA Renk gecikme gecikmesi</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Setleri ayarlar GTIA Renk aşaması gecikme renkleri yeniden üretmek için kullanılır. Varsayılan olarak standart değeri kullanır. Numeric seçimler sonucu hues değiştiriyor.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Set çerçeve atping</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Birçok görüntü çerçevelerinin nasıl kurtarıldığını ayarlar. Engelli her çerçeveyi çizer. Daha yüksek değerler işleme çalışmasını azaltır, ancak daha az düzgün hareket eder.</value></data>
+</root>

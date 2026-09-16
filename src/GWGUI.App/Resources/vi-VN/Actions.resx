@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>Hủy bỏ</value></data>
-  <data name="Common.Save"><value>Cứu</value></data>
-  <data name="Common.Create"><value>Tạo</value></data>
-  <data name="Common.Delete"><value>Xóa bỏ</value></data>
-  <data name="Common.Browse"><value>Duyệt…</value></data>
-  <data name="Common.Choose"><value>Chọn…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>Hủy bỏ</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Cứu</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>Tạo</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Xóa bỏ</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Duyệt…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>Chọn…</value></data>
   <data name="Common.Close"><value>Đóng</value></data>
   <data name="Common.Execute"><value>Thực hiện</value></data>
   <data name="Common.Stop"><value>Dừng lại</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>Biến đổi</value></data>
   <data name="Common.Hide"><value>Trốn</value></data>
   <data name="Common.Export"><value>Xuất khẩu</value></data>
-  <data name="Common.New"><value>Mới</value></data>
-  <data name="Common.Refresh"><value>Làm mới</value></data>
-  <data name="Common.OpenFolder"><value>Mở thư mục</value></data>
+  <data name="Common.New" xml:space="preserve"><value>Mới</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>Làm mới</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>Mở thư mục</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Tạm dừng</value></data>
 </root>

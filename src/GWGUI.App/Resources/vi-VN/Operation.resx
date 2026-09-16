@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Operation.Finished"><value>Đã hoàn thành: mã {0}, thời lượng {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Lệnh đã hoàn tất thành công.</value></data>
+  <data name="Operation.Cancelled"><value>Lệnh bị hủy.</value></data>
+  <data name="Operation.ExitCode"><value>Lệnh kết thúc bằng mã {0}.</value></data>
+  <data name="Operation.StopTitle"><value>Dừng hoạt động</value></data>
+  <data name="Operation.StopConfirm"><value>Dừng hoạt động Greaseweazle hiện tại?</value></data>
+  <data name="Operation.Busy"><value>Lệnh Greaseweazle đang chạy. Đợi nó chạy xong hoặc dừng trước khi mở công cụ này.</value></data>
+  <data name="Operation.Error"><value>Lỗi: {0}</value></data>
+</root>

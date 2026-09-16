@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Tool.Ready"><value>Pronto per l'esecuzione.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Tool.Ready"><value>Pronto per l&apos;esecuzione.</value></data>
   <data name="Tool.RawOutput"><value>Uscita grezza</value></data>
-  <data name="Maintenance.EraseTitle"><value>Conferma la cancellazione</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Cancellare definitivamente tutti i dati sul disco inserito?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Teste pulite</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Verificare che sia inserito un disco di pulizia. Non utilizzare mai un disco dati.</value></data>
   <data name="Tools.Erase"><value>Cancellare un disco</value></data>
   <data name="Tools.EraseWarning"><value>Tutti i dati sul disco verranno distrutti.</value></data>
   <data name="Tools.LimitTracks"><value>Limita le tracce</value></data>
@@ -43,7 +31,7 @@
   <data name="Tool.Field.PostWrite"><value>Dopo la scrittura (μs)</value></data>
   <data name="Tool.Field.IndexMask"><value>Maschera indice (μs)</value></data>
   <data name="Tool.Field.Bootloader"><value>Aggiorna bootloader (rischioso)</value></data>
-  <data name="Tool.BootloaderWarning"><value>L'aggiornamento del bootloader è un'operazione avanzata che può rendere inutilizzabile il controller se interrotto. Continuare?</value></data>
+  <data name="Tool.BootloaderWarning"><value>L&apos;aggiornamento del bootloader è un&apos;operazione avanzata che può rendere inutilizzabile il controller se interrotto. Continuare?</value></data>
   <data name="Tool.ControllerFallback"><value>Controllore</value></data>
   <data name="Tool.FirmwareUnknown"><value>Firmware sconosciuto</value></data>
   <data name="Tool.PortUnknown"><value>Porto sconosciuto</value></data>
@@ -53,16 +41,16 @@
   <data name="Tool.Title.Bandwidth"><value>USB larghezza di banda</value></data>
   <data name="Tool.Title.Rpm"><value>Velocità di guida</value></data>
   <data name="Tool.Title.Seek"><value>Cerca la testa</value></data>
-  <data name="Tool.Title.Pin"><value>Perni dell'hardware</value></data>
+  <data name="Tool.Title.Pin"><value>Perni dell&apos;hardware</value></data>
   <data name="Tool.Title.Reset"><value>Reimpostare il controller</value></data>
   <data name="Tool.Title.Delays"><value>Ritardi</value></data>
-<data name="Tool.InvalidParameters"><value>Parametri non validi</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
+  <data name="Tool.InvalidParameters"><value>Parametri non validi</value></data>
   <data name="Tool.InvalidParametersHelp"><value>Controllare i parametri del comando evidenziato prima di eseguirlo.</value></data>
   <data name="Tool.BootloaderTitle"><value>Modalità bootloader</value></data>
-  <data name="Tool.Title.Align"><value>Diagnostica dell'allineamento dell'unità</value></data>
+  <data name="Tool.Title.Align"><value>Diagnostica dell&apos;allineamento dell&apos;unità</value></data>
   <data name="Tool.Field.AlignTracks"><value>Traccia/e alternata/e (richiesto)</value></data>
   <data name="Tool.Field.AlignReads"><value>Numero di letture</value></data>
   <data name="Tool.Field.AlignFormat"><value>Formato di decodifica</value></data>
   <data name="Tool.Field.AlignRaw"><value>Leggi il flusso grezzo (--raw)</value></data>
-  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

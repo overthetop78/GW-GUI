@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>在開啟此機器之前，模擬器需要媒體。請插入軟碟或設定硬碟。</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>無法開啟機器</value></data>
+  <data name="Emulation.Error.Machine"><value>機器</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>所需媒體</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>需要一个Amiga模型。</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>需要一个 Kickstart 路径 。</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>所需的固件路径为空 。</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>选中的文件不存在 。</value></data>
+</root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Ενεργοποίηση ήχου</value></data>
+  <data name="Emulation.Audio.Output"><value>Έξοδος ήχου</value></data>
+  <data name="Emulation.Audio.Latency"><value>Λαχανία (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Παρεμβολή</value></data>
+  <data name="Emulation.Audio.Filter"><value>Φίλτρο ήχου Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Διαχωρισμός στερεοφωνικών (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Εισροή ήχου</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Αυτός ο πυρήνας Amiga δεν εκθέτει μια εισαγωγή ήχου.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Προκαθορισμένη έξοδος παραθύρων</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Αντιενισχυτική παρεμβολή</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Προσομοιωμένο</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Τύπος φίλτρου</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Όγκος ήχου με δισκέτα</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Τύπος ήχου δισκέτας</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Μηδενικοί δίσκοι</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Όγκος ήχου CD</value></data>
+  <data name="Emulation.Audio.Device"><value>Συσκευή</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Καθυστέρηση</value></data>
+  <data name="Emulation.Audio.Quality"><value>Ποιότητα</value></data>
+  <data name="Emulation.Audio.Drives"><value>Μονάδες</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Ήχος μονάδας δισκέτας</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Πολωμένο φίλτρο ήχου</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Χαμηλή</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Κανονική</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Υψηλή</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Ήχος</value></data>
+</root>

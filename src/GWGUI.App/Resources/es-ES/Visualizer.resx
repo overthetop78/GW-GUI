@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Descifrador</value></data>
   <data name="Visual.LinkZoom"><value>Ampliar enlace</value></data>
   <data name="Visual.OpenScp"><value>Abra una SCP archivo...</value></data>
   <data name="Visual.NoFile"><value>No hay ninguna imagen abierta</value></data>
   <data name="Visual.Waiting"><value>Esperando un archivo</value></data>
-<data name="Visual.SelectTrack"><value>Selecciona una pista.</value></data>
+  <data name="Visual.Inspector"><value>Inspector</value></data>
+  <data name="Visual.SelectTrack"><value>Selecciona una pista.</value></data>
   <data name="Visual.Controls"><value>Hacer clic: seleccionar · Rueda: hacer zoom · Hacer clic derecho: desplazar</value></data>
   <data name="Visual.NormalFlux"><value>flujo normal</value></data>
   <data name="Visual.ShortTransition"><value>Transición corta</value></data>
@@ -38,9 +31,17 @@
   <data name="Visual.StructureData"><value>Datos decodificados</value></data>
   <data name="Visual.StructureAnomaly"><value>Eliminado/anomalía</value></data>
   <data name="Visual.AnalysedRevolution"><value>Análisis basado en la revolución {0}.</value></data>
-<data name="Visual.CrcValid"><value>válido</value></data>
+  <data name="Visual.BitOffset"><value>poco {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>válido</value></data>
   <data name="Visual.CrcInvalid"><value>inválido</value></data>
   <data name="Visual.IntegrityUnavailable"><value>indisponible</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (Dens densidad del tubo)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar Hard-sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit duro-sectored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Sistema de Arburg/data</value></data>
+  <data name="Visual.DecoderName.raw"><value>Flujo crudo</value></data>
   <data name="Visual.StructureKind.Sync"><value>Sincronización</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Encabezado del sector</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Datos del sector</value></data>
@@ -53,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>encabezado de formato</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Formatear datos</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>anomalía de tiempo</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro captura (*.scp)|*.scp|Todos los archivos|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Suma de comprobación</value></data>
   <data name="Visual.Side"><value>Lado {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analizando pista {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analizar la revolución {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Lado</value></data>
   <data name="Visual.TrackLabel"><value>Pista</value></data>
   <data name="Visual.ScpEntryLabel"><value>Entrada SCP</value></data>
@@ -75,9 +75,6 @@
   <data name="Visual.FormatDetected"><value>Formato detectado</value></data>
   <data name="Visual.AverageRpm"><value>RPM promedio</value></data>
   <data name="Visual.AverageDuration"><value>Duración media</value></data>
-  <data name="Visual.BitOffset"><value>poco {0:N0}</value></data>
-  <data name="Visual.Inspector"><value>Inspector</value></data>
-  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
   <data name="Visual.All"><value>Todos</value></data>
   <data name="Visual.Surface"><value>Superficie {0}</value></data>
   <data name="Visual.DiscFace"><value>Cara {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Sector degradado</value></data>
   <data name="Visual.SectorDead"><value>Sector muerto</value></data>
   <data name="Visual.SectorWithoutData"><value>Sector sin datos</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analizar la revolución {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Información del casete</value></data>
 </root>

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Write.Title"><value>写</value></data>
   <data name="Write.SelectSource"><value>选择现有的源图像。</value></data>
   <data name="Write.Ambiguous"><value>格式不明确。明确选择兼容的格式。</value></data>
@@ -32,6 +24,6 @@
   <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI 内部写入：{0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>一个或多个所选高级选项尚不受支持。</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>内部验证尚不可用。请启用“不验证”。</value></data>
-  <data name="Write.InternalFailure"><value>音轨 {0}, 侧 {1}: {2}</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>音轨 {0}, 侧 {1}: {2}</value></data>
   <data name="Write.InternalFailureReason"><value>内部写入失败。</value></data>
 </root>

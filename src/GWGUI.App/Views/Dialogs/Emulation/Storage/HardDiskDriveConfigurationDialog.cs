@@ -1,4 +1,5 @@
 using GWGUI.App.Constants.Emulation;
+using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Contracts.Storage;
 using GWGUI.App.Functions.Storage;
@@ -78,9 +79,9 @@ public sealed class HardDiskDriveConfigurationDialog : Window
             SetSizeChoices();
         };
         var reader = StorageDialogUi.SideBySide(
-            StorageDialogUi.IconCard("\uEDA2", LocExtension.Get("Emulation.Device.Name"),
+            StorageDialogUi.IconCard(IconGlyphs.HardDisk, LocExtension.Get("Emulation.Device.Name"),
                 StorageDialogUi.CompactFields((LocExtension.Get("Emulation.Device.Name.Id"), address))),
-            StorageDialogUi.IconCard("\uE8AB", LocExtension.Get("Emulation.Storage.Device.Interface"),
+            StorageDialogUi.IconCard(IconGlyphs.Connection, LocExtension.Get("Emulation.Storage.Device.Interface"),
                 StorageDialogUi.CompactFields((LocExtension.Get("Emulation.Storage.Device.Interface"), interfaceChoice))));
 
         _existingPath.Text = currentPath ?? string.Empty;
@@ -154,8 +155,8 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         destinationAndAllocation.Children.Add(_limits);
         destinationAndAllocation.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.Hdd.PreparationHint")));
         var createTop = StorageDialogUi.SideBySide(
-            StorageDialogUi.IconCard("\uE8B7", LocExtension.Get("Emulation.Storage.Disk.Image"), image),
-            StorageDialogUi.IconCard("\uE838", LocExtension.Get("Emulation.Storage.File.DestinationFolder"),
+            StorageDialogUi.IconCard(IconGlyphs.File, LocExtension.Get("Emulation.Storage.Disk.Image"), image),
+            StorageDialogUi.IconCard(IconGlyphs.OpenFolder, LocExtension.Get("Emulation.Storage.File.DestinationFolder"),
                 destinationAndAllocation));
         var create = new StackPanel { Margin = new Thickness(4) };
         create.Children.Add(createTop);
@@ -176,7 +177,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         var advanced = new Expander
         {
             Header = LocExtension.Get("Emulation.Tab.Advanced"),
-            Content = StorageDialogUi.IconCard("\uE9D2", LocExtension.Get("Emulation.Storage.Geometry.Label"), geometryPanel),
+            Content = StorageDialogUi.IconCard(IconGlyphs.Visualization, LocExtension.Get("Emulation.Storage.Geometry.Label"), geometryPanel),
             Margin = new Thickness(0, 10, 0, 0)
         };
         var support = new StackPanel();
@@ -197,7 +198,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        var header = StorageDialogUi.DialogHeader("\uEDA2", Title,
+        var header = StorageDialogUi.DialogHeader(IconGlyphs.HardDisk, Title,
             $"{LocExtension.Get("Emulation.Storage.HardDisk.Device")} · {machineName}");
         root.Children.Add(header);
 

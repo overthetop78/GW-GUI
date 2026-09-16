@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>Pilihan</value></data>
-  <data name="Options.General"><value>Umum</value></data>
-  <data name="Options.Tools"><value>Greaseweazle Alat</value></data>
-  <data name="Options.Hardware"><value>Pengontrol dan drive</value></data>
-  <data name="Options.Profiles"><value>Profil</value></data>
-  <data name="Options.ImagesFolder"><value>Folder gambar disk default</value></data>
-  <data name="Options.Language"><value>Bahasa</value></data>
-  <data name="Options.Theme"><value>Tema</value></data>
-  <data name="Theme.System"><value>Sistem</value></data>
-  <data name="Theme.Light"><value>Lampu</value></data>
-  <data name="Theme.Dark"><value>Gelap</value></data>
-  <data name="Options.GwPath"><value>Jalan menuju gw.exe</value></data>
-  <data name="Options.ToolsHelp"><value>Jika alatnya hilang, asisten akan menawarkan untuk mengunduhnya atau memilih instalasi yang ada. Pembaruan hanya diumumkan.</value></data>
-  <data name="Options.HardwarePersistence"><value>Pengaturan perangkat keras tetap disimpan ketika drive dicabut.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>Pilihan</value></data>
+  <data name="Options.General" xml:space="preserve"><value>Umum</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Alat</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Pengontrol dan drive</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Profil</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Folder gambar disk default</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Bahasa</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>Sistem</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Lampu</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Gelap</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>Jalan menuju gw.exe</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Jika alatnya hilang, asisten akan menawarkan untuk mengunduhnya atau memilih instalasi yang ada. Pembaruan hanya diumumkan.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Pengaturan perangkat keras tetap disimpan ketika drive dicabut.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (g----exe)|gøexe|Dapat dieksekusi (*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Hapus pengontrol yang disimpan ini dan semua drive-nya?</value></data>
   <data name="Options.HardwareTitle"><value>Perangkat keras</value></data>
@@ -40,7 +32,8 @@
   <data name="Options.TagVariablesTitle"><value>Variabel yang tersedia</value></data>
   <data name="Options.TagVariableName"><value>Nama file sumber</value></data>
   <data name="Options.TagVariableFamily"><value>Keluarga: PC, ST, AMIGA…</value></data>
-<data name="Options.TagVariableExtension"><value>Ekstensi: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableFormat"><value>Format: 720, 1440, DD...</value></data>
+  <data name="Options.TagVariableExtension"><value>Ekstensi: IMA, ST, ADF…</value></data>
   <data name="Options.TagVariableDateIso"><value>Tanggal: 06-08-2026</value></data>
   <data name="Options.TagVariableDateCompact"><value>Tanggal: 20260806</value></data>
   <data name="Options.TagVariableDateLocal"><value>Tanggal: 08-06-2026</value></data>
@@ -62,185 +55,11 @@
   <data name="Options.KeepLogArchives"><value>Simpan log sebelumnya</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = tidak terbatas</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Mesin</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>Pilih secara terpisah mesin yang digunakan untuk setiap operasi.</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>Mesin internal GW GUI</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>Mesin yang dipilih digunakan secara ketat. Jika tidak dapat melakukan operasi, GW GUI akan melaporkannya tanpa diam-diam menggunakan mesin lain.</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Tangkap mouse</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>Konfigurasi</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>Kontroler</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>Deteksi kontroler</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>Perangkat</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Tidak ada kontroler yang terdeteksi</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} kontroler terdeteksi</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>Uji getaran</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Kekuatan getaran</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Input langsung</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Kontrol</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>Nilai</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>Aktif</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>Kemampuan</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>Identitas perangkat</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>Jenis input</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>Kontrol</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>Motor getar</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Umpan balik gaya</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>Umpan balik haptik</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Tombol sistem</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>Laporan mentah</value></data>
-  <data name="Controllers.ReportCounts"><value>{0} masukan / {1} keluaran</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Tata letak gamepad</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Setir</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · kopling={1} · rem tangan={2} · pemindah gigi={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>Nama GameInput</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revisi</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Versi perangkat keras</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Versi firmware</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>Keluarga</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Produsen</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Sumbu</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Tombol</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Sakelar</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} sumbu · {1} tombol · {2} sakelar</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>Ya</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>Tidak</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>Tidak ada</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Byte mentah</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Nilai analog</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Deteksi kontroler gagal</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>Mendeteksi kontroler…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Pembacaan kontroler gagal</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>Pengujian berlangsung…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>Pengujian gagal</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Pengujian selesai</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Kontrol tambahan</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Titik akhir audio haptik</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Lokasi haptik</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>Penggunaan</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Rantai perangkat Windows</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Stik kiri X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Stik kiri Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>Stik kanan X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>Stik kanan Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Pelatuk kiri</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Pelatuk kanan</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>Kemudi</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>Gas</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>Rem</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Kopling</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>Rem tangan</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>Gigi</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>Guling</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>Angguk</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>Belok</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensor</value></data>
-  <data name="Controllers.Enum.UiNavigation"><value>UI navigasi</value></data>
-<data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Motor frekuensi rendah</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Motor frekuensi tinggi</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Bagikan</value></data>
-<data name="Controllers.Enum.Angular" xml:space="preserve"><value>Sudut</value></data>
-<data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstan</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Landai</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Gelombang sinus</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Gelombang persegi</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Gelombang segitiga</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Gigi gergaji naik</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Gigi gergaji turun</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Pegas</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Gesekan</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Peredam</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inersia</value></data>
-<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Pengontrol multi-sumbu</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Penggunaan HID</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>sumbu</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>tombol</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Gabungan</value></data>
-<data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Laporan masukan</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Laporan keluaran</value></data>
-  <data name="Options.TagVariableFormat"><value>Format: 720, 1440, DD...</value></data>
-<data name="Emulation.InitialDisk"><value>Disk inisial</value></data>
-  <data name="Emulation.Controller"><value>Pengontrol {0}</value></data>
-  <data name="Emulation.Core.NameOptions"><value>Opsi core</value></data>
-  <data name="Emulation.MultiDrive"><value>Kait empat disk pertama di DF0-DF3</value></data>
-  <data name="Emulation.DiskNumber"><value>Diska {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>Muat opsi yang tersedia</value></data>
-  <data name="Emulation.Configurations"><value>Konfigurasi</value></data>
-  <data name="Emulation.ReleaseMouse"><value>Rilis tetikus</value></data>
-  <data name="Emulation.DeleteConfirm"><value>Hapus konfigurasi Amiga ini?</value></data>
-  <data name="Emulation.ModelRequired"><value>Sebuah model Amiga diperlukan.</value></data>
-  <data name="Emulation.KickstartRequired"><value>Jalur Kickstart diperlukan.</value></data>
-  <data name="Emulation.FileRequired"><value>Sebuah jalur firmware yang diperlukan kosong.</value></data>
-  <data name="Emulation.FileMissing"><value>Berkas yang dipilih tidak ada.</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>Zona mati Analog</value></data>
-  <data name="Controllers.StickDeadZone"><value>Tongkat</value></data>
-  <data name="Controllers.OuterDeadZone"><value>Zona mati luar</value></data>
-  <data name="Updates.Title"><value>Pemutakhiran</value></data>
-  <data name="Updates.Description"><value>Cari pemutakhiran ke GW GUI dan memasang modul emulasi.</value></data>
-  <data name="Updates.Scope"><value>Cari</value></data>
-  <data name="Updates.ScopeApplication"><value>Aplikasi</value></data>
-  <data name="Updates.ScopeModules"><value>Modul emulasi</value></data>
-  <data name="Updates.ScopeAll"><value>Aplikasi dan modul</value></data>
-  <data name="Updates.Search"><value>Periksa pemutakhiran</value></data>
-  <data name="Updates.Ready"><value>Pilih apa yang harus dicari, kemudian periksa pemutakhiran.</value></data>
-  <data name="Updates.Searching"><value>Memeriksa pemutakhiran...</value></data>
-  <data name="Updates.SearchFailed"><value>Tak bisa memeriksa pemutakhiran.</value></data>
-  <data name="Updates.UpToDate"><value>Naik ke tanggal</value></data>
-  <data name="Updates.Available"><value>Mutakhirkan tersedia</value></data>
-  <data name="Updates.ApplicationRequired"><value>Diperlukan GW GUI host API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>Versi yang tidak kompatibel</value></data>
-  <data name="Updates.InstalledVersion"><value>Terpasang: {0}</value></data>
-  <data name="Updates.Results"><value>Pemutakhiran ditemukan.</value></data>
-  <data name="Updates.NoUpdates"><value>Semua yang dipilih sudah tertanggal.</value></data>
-  <data name="Updates.Install"><value>Pasang pemutakhiran terpilih</value></data>
-  <data name="Updates.InstallConfirm"><value>Unduh dan pasang {0} komponen yang dipilih? GW GUI akan menutup dan restart.</value></data>
-  <data name="Updates.Preparing"><value>Mengunduh dan mempersiapkan pembaruan...</value></data>
-  <data name="Updates.PreparationCancelled"><value>Perkembangan terbaru dibatalkan.</value></data>
-  <data name="Updates.PreparationFailed"><value>Tidak dapat mempersiapkan pembaruan.</value></data>
-  <data name="Updates.InstallSucceeded"><value>Pemutakhiran telah dipasang dengan sukses.</value></data>
-  <data name="Updates.InstallRestored"><value>Pemutakhiran gagal dan versi sebelumnya dikembalikan. {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>Pasang modul emulasi dari ZIP arsip atau katalog pemutakhiran langsung URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>Pasang dari berkas</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>Pasang dari URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>Langsung HTTPS URL dari katalog update modul (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>Arsip modul (*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>Masukkan langsung HTTPS URL dari katalog update modul.</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>Pasang modul {0} versi {1}? GW GUI akan menutup dan restart.</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>Tidak dapat mempersiapkan instalasi modul.</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>Menelusuri modul emulasi resmi yang tersedia untuk instalasi.</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>Tampilkan modul yang tersedia</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>Pasang</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>Muat direktori resmi untuk melihat modul yang tersedia untuk instalasi.</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>Memuat direktori modul...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>Modul yang kompatibel tidak tersedia.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} Modul dalam katalog resmi.</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>Tidak dapat memuat direktori modul.</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>Belum terpasang</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>Versi tersedia: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Terpasang</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>Memasang modul menambah mesin ke GW GUI. Core emulator dan firmware yang diperlukan dikelola secara terpisah dalam opsi emulasi.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Pemutakhiran bagi modul yang terpasang</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Instalasi tingkat lanjut</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>Pilih secara terpisah mesin yang digunakan untuk setiap operasi.</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>Mesin internal GW GUI</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Mesin yang dipilih digunakan secara ketat. Jika tidak dapat melakukan operasi, GW GUI akan melaporkannya tanpa diam-diam menggunakan mesin lain.</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} - {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Preferensi</value></data>
   <data name="Options.EmulationTitle"><value>preferensi emulasi</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>Modul tersedia</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>Pemutakhiran aplikasi</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>Ramban dan instal modul</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP arsip atau katalog URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>Terunduh</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>Selesai instalasi</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI akan menutup, memasang semua modul yang diunduh, dan memulai kembali.</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>Selesai menginstal semua modul yang diunduh? GW GUI akan menutup dan restart.</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} pengaturan emulasi</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>Selesai memasang modul yang telah diunduh sebelum ditutup? Pilih Tak Ada untuk membatalkan pengunduhan dan tutup.</value></data>
-  <data name="Emulation.Model"><value>Model</value></data>
-  <data name="Emulation.Audio"><value>Audio</value></data>
-  <data name="Emulation.Firmware"><value>Firmware</value></data>
-  <data name="Controllers.Enum.Gamepad"><value>Gamepad</value></data>
-  <data name="Controllers.Enum.Linear"><value>Linear</value></data>
-  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
-  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
-  <data name="Controllers.Enum.Virtual"><value>Virtual</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>Triggers</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

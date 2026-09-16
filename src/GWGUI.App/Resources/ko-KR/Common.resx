@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>알려지지 않은</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>꺼내기</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>알려지지 않은</value></data>
+  <data name="Common.Eject"><value>꺼내기</value></data>
   <data name="Common.MediaKind.Unknown"><value>알 수없는 미디어</value></data>
   <data name="Common.MediaKind.Floppy"><value>플로피 디스크</value></data>
   <data name="Common.MediaKind.HardDisk"><value>하드 디스크</value></data>
@@ -24,4 +16,10 @@
   <data name="Common.Representation.Blocks"><value>팟캐스트</value></data>
   <data name="Common.Representation.OpticalTracks"><value>광학 트랙</value></data>
   <data name="Common.Representation.Sequential"><value>순차적 데이터</value></data>
+  <data name="Common.Advanced"><value>고급 설정</value></data>
+  <data name="Common.ExpertArguments"><value>전문가의 주장</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>인수는 인용 검증 후 작성된 대로 전달됩니다.</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk 이미지|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|모든 파일|*.*</value></data>
+  <data name="Common.Console"><value>콘솔</value></data>
+  <data name="Common.Command"><value>명령</value></data>
 </root>

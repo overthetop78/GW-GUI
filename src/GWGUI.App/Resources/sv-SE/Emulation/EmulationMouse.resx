@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Tangent för att frigöra musen</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Vänster musknapp</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Höger musknapp</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Mittenknapp</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Fysisk mus</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Dubbel rörelse</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Mushastighet</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analoga spakar som styr musen</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Dödzon för analoga spakar</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Mushastighet med analog spak</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Musåtgärder</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Musknapp 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Musknapp 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Musinfångning</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Mushjul upp</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Mushjul ned</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Mushjul åt vänster</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Mushjul åt höger</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fånga musen</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Släpp mus</value></data>
+</root>

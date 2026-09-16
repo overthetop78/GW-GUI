@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Αποκρυπτογράφος</value></data>
   <data name="Visual.LinkZoom"><value>Ζουμ συνδέσμου</value></data>
   <data name="Visual.OpenScp"><value>Ανοίξτε ένα αρχείο SCP…</value></data>
@@ -39,10 +31,17 @@
   <data name="Visual.StructureData"><value>Αποκωδικοποιημένα δεδομένα</value></data>
   <data name="Visual.StructureAnomaly"><value>Διαγράφηκε/ανωμαλία</value></data>
   <data name="Visual.AnalysedRevolution"><value>Ανάλυση βασισμένη στην επανάσταση {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Τομέας C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Τομέας C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>έγκυρος</value></data>
   <data name="Visual.CrcInvalid"><value>άκυρος</value></data>
   <data name="Visual.IntegrityUnavailable"><value>δυσεύρετος</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (μοναδική πυκνότητα)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar σκληροτομημένο MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit σκληροτομημένος FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N σκληροτομημένος FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Σύστημα/στοιχεία Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>Ακατέργαστη ροή</value></data>
   <data name="Visual.StructureKind.Sync"><value>Συγχρονισμός</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Κεφαλίδα τομέα</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Στοιχεία κλάδου</value></data>
@@ -55,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Μορφοποίηση κεφαλίδας</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Μορφοποίηση δεδομένων</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Ανωμαλία χρόνου</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro λήψη (*.scp)|*.scp|Όλα τα αρχεία|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Άθροισμα ελέγχου</value></data>
   <data name="Visual.Side"><value>Πλευρά {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Ανάλυση κομματιού {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Ανάλυση επανάστασης {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Πλευρά</value></data>
   <data name="Visual.TrackLabel"><value>Τροχιά</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP καταχώρηση</value></data>
@@ -77,7 +75,6 @@
   <data name="Visual.FormatDetected"><value>Εντοπίστηκε μορφή</value></data>
   <data name="Visual.AverageRpm"><value>Μέση RPM</value></data>
   <data name="Visual.AverageDuration"><value>Μέση διάρκεια</value></data>
-  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
   <data name="Visual.All"><value>Όλα</value></data>
   <data name="Visual.Surface"><value>Επιφάνεια {0}</value></data>
   <data name="Visual.DiscFace"><value>Πρόσωπο {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Τομέας που έχει υποβαθμιστεί</value></data>
   <data name="Visual.SectorDead"><value>Νεκρός τομέας</value></data>
   <data name="Visual.SectorWithoutData"><value>Τομέας χωρίς δεδομένα</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Ανάλυση επανάστασης {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Πληροφορίες κασέτας</value></data>
 </root>

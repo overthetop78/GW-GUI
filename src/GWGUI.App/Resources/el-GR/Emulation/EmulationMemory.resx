@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Memory.Main"><value>Κύρια μνήμη</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Επεκτάσεις μνήμης</value></data>
+  <data name="Emulation.Memory.None"><value>Καμία</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Η διαμόρφωση μνήμης είναι συμβατή με το {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Οι επεκτάσεις μνήμης είναι συμβατές με το {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM δεν είναι διαθέσιμη στις {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Συνολική διαμορφωμένη μνήμη: {0} {1}</value></data>
+</root>

@@ -30,7 +30,7 @@
             <Button x:Name="MoreInfoButton" DockPanel.Dock="Right" Style="{StaticResource InspectorInfoButton}"
                     Visibility="Collapsed" Click="MoreInfoButton_Click">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="&#xE946;" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,5,0"/>
+                        <TextBlock Text="{l:Loc Icon.Information}" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,5,0"/>
                     <TextBlock Text="{l:Loc Menu.Information}"/>
                 </StackPanel>
             </Button>

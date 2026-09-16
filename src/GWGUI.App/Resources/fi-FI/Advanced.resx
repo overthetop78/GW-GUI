@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Advanced"><value>Lisäasetukset</value></data>
-  <data name="Common.ExpertArguments"><value>Asiantuntijan argumentit</value></data>
-  <data name="Common.ExpertArgumentsTip"><value>Argumentit välitetään kirjoitettuna lainauksen vahvistamisen jälkeen.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Advanced.SeekRetries"><value>Etsi uudelleenyrityksiä</value></data>
   <data name="Advanced.FakeIndex"><value>Väärä indeksi</value></data>
   <data name="Advanced.HardSectors"><value>Kovat sektorit</value></data>
-<data name="Advanced.AdjustSpeed"><value>Säädä nopeutta</value></data>
+  <data name="Advanced.Reverse"><value>Käänteisraiteen tiedot</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Säädä nopeutta</value></data>
   <data name="Advanced.Pll"><value>PLL ohitus</value></data>
   <data name="Advanced.DensityPin"><value>Tiheystappi 2</value></data>
   <data name="Advanced.Tg43"><value>Luo TG43</value></data>
@@ -49,5 +39,4 @@
   <data name="Advanced.PreEraseTip"><value>--pre-erase: Pyyhi jokainen raita ennen sen kirjoittamista.</value></data>
   <data name="Advanced.PrecompOptionTip"><value>--precomp: Käytä kirjoitusennakkokompensaatiota. Esimerkki: --precomp type=mfm:40=125.</value></data>
   <data name="Advanced.OutputTracksTip"><value>--out-tracks: Yhdistä raidat tulostekuvassa. Esimerkki: --out-tracks c=0-79:h=0-1.</value></data>
-  <data name="Advanced.Reverse"><value>Käänteisraiteen tiedot</value></data>
 </root>

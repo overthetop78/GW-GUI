@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>エミュレーションのショートカット</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>マウスを解放</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>一時停止 / 再開</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>全画面 / ウィンドウ</value></data>
+  <data name="Emulation.Shortcut.Power"><value>電源オン / オフ</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>ソフトリセット</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>ハードリセット</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>状態をクイック保存</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>状態をクイック読込</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>スクリーンショット</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>アクティブなマシンをミュート</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>押している間早送り</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>メディアを挿入または交換</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>メディアを取り出す</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>次のメディア</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>この操作は現在のエミュレーターではまだ利用できません。</value></data>
+</root>

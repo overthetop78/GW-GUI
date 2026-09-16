@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekodér</value></data>
   <data name="Visual.LinkZoom"><value>Zoom odkazu</value></data>
   <data name="Visual.OpenScp"><value>Otevřít soubor SCP…</value></data>
@@ -39,10 +31,17 @@
   <data name="Visual.StructureData"><value>Dekódovaná data</value></data>
   <data name="Visual.StructureAnomaly"><value>Smazáno/anomálie</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analýza založená na revoluci {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} bajtů · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} bajtů · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>platný</value></data>
   <data name="Visual.CrcInvalid"><value>neplatný</value></data>
   <data name="Visual.IntegrityUnavailable"><value>nedostupný</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (jednotná hustota)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar ostře sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N s tvrdou sectored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Systém / data Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>Surový tok</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synchronizace</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Záhlaví sektoru</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sektorová data</value></data>
@@ -55,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Formátovat záhlaví</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Formátovat data</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Časová anomálie</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro zachytit (*.scp)|*.scp|Všechny soubory|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Kontrolní součet</value></data>
   <data name="Visual.Side"><value>Strana {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Probíhá analýza stopy {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyzující revoluce {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Strana</value></data>
   <data name="Visual.TrackLabel"><value>Dráha</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP záznam</value></data>
@@ -77,7 +75,6 @@
   <data name="Visual.FormatDetected"><value>Zjištěn formát</value></data>
   <data name="Visual.AverageRpm"><value>Průměrná RPM</value></data>
   <data name="Visual.AverageDuration"><value>Průměrná doba trvání</value></data>
-  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
   <data name="Visual.All"><value>Všechny</value></data>
   <data name="Visual.Surface"><value>Povrch {0}</value></data>
   <data name="Visual.DiscFace"><value>Tvář {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Odvětví s degradací</value></data>
   <data name="Visual.SectorDead"><value>Mrtvý sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Odvětví bez údajů</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analyzující revoluce {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Informace o kazetě</value></data>
 </root>

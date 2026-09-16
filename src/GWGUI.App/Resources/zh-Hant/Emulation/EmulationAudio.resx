@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>啟用音訊</value></data>
+  <data name="Emulation.Audio.Output"><value>音訊輸出</value></data>
+  <data name="Emulation.Audio.Latency"><value>延遲（毫秒）</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>插值</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga 音訊濾波器</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>立體聲分離度（%）</value></data>
+  <data name="Emulation.Audio.Input"><value>音訊輸入</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>此 Amiga 核心不提供音訊輸入。</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows 預設輸出</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>抗插值</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>模擬</value></data>
+  <data name="Emulation.Audio.FilterType"><value>濾波器類型</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>磁碟機聲音音量</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>磁碟機聲音類型</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>空磁碟機靜音</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD 音訊音量</value></data>
+  <data name="Emulation.Audio.Device"><value>裝置</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>延遲</value></data>
+  <data name="Emulation.Audio.Quality"><value>品質</value></data>
+  <data name="Emulation.Audio.Drives"><value>磁碟機</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>軟碟機聲音</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>偏振音訊濾波器</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>低</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>一般</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>高</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>音频</value></data>
+</root>

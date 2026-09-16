@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Kod çözücü</value></data>
   <data name="Visual.LinkZoom"><value>Bağlantı yakınlaştırma</value></data>
   <data name="Visual.OpenScp"><value>Bir SCP dosyasını açın…</value></data>
@@ -39,10 +31,17 @@
   <data name="Visual.StructureData"><value>Kodu çözülmüş veriler</value></data>
   <data name="Visual.StructureAnomaly"><value>Silindi/anormallik</value></data>
   <data name="Visual.AnalysedRevolution"><value>Devrime dayalı analiz {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Sektör C{0} H{1} R{2} · {3} bayt · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>biraz biraz biraz biraz {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sektör C{0} H{1} R{2} · {3} bayt · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>geçerli</value></data>
   <data name="Visual.CrcInvalid"><value>geçersiz</value></data>
   <data name="Visual.IntegrityUnavailable"><value>müsait değil</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (Single yoğunluk)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>Kuzey Yıldız sert-sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit sert-sectored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N sert-sectored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg sistemi/data</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raw fluxx</value></data>
   <data name="Visual.StructureKind.Sync"><value>Senkronizasyon</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Sektör başlığı</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sektör verileri</value></data>
@@ -55,9 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Başlığı biçimlendir</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Verileri biçimlendir</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Zamanlama anormalliği</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro yakalama (*.scp)|*.scp|Tüm dosyalar|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Sağlama toplamı</value></data>
   <data name="Visual.Side"><value>Taraf {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analysing track {0}/ / / / / / /{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analysing devrimi {0}/ / / / / / /{1}…</value></data>
   <data name="Visual.SideLabel"><value>Taraf</value></data>
   <data name="Visual.TrackLabel"><value>İzlemek</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP girişi</value></data>
@@ -76,8 +75,6 @@
   <data name="Visual.FormatDetected"><value>Biçim algılandı</value></data>
   <data name="Visual.AverageRpm"><value>Ortalama RPM</value></data>
   <data name="Visual.AverageDuration"><value>Ortalama süre</value></data>
-  <data name="Visual.BitOffset"><value>biraz biraz biraz biraz {0:N0}</value></data>
-  <data name="Visual.AnalysingTrack"><value>Analysing track {0}/ / / / / / /{1}…</value></data>
   <data name="Visual.All"><value>Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün Bütün</value></data>
   <data name="Visual.Surface"><value>Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey Yüzey {0}</value></data>
   <data name="Visual.DiscFace"><value>Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz Yüz {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Degraded Sektör</value></data>
   <data name="Visual.SectorDead"><value>Dead Sector</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektör verisiz</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analysing devrimi {0}/ / / / / / /{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Kaset bilgileri</value></data>
 </root>

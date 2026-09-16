@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Audio aktivieren</value></data>
+  <data name="Emulation.Audio.Output"><value>Audioausgabe</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latenz (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolation</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga-Audiofilter</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Stereotrennung (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Audioeingang</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Dieser Amiga-Kern stellt keinen Audioeingang bereit.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows-Standardausgabe</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Anti-Interpolation</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emuliert</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Filtertyp</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Lautstärke des Diskettenlaufwerks</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Klang des Diskettenlaufwerks</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Leere Laufwerke stummschalten</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD-Audiolautstärke</value></data>
+  <data name="Emulation.Audio.Device"><value>Gerät</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latenz</value></data>
+  <data name="Emulation.Audio.Quality"><value>Qualität</value></data>
+  <data name="Emulation.Audio.Drives"><value>Laufwerke</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettenlaufwerksgeräusch</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarisierter Audiofilter</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Niedrig</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hoch</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+</root>

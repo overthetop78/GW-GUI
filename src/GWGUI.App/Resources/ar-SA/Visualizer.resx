@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>فك التشفير</value></data>
   <data name="Visual.LinkZoom"><value>تكبير الارتباط</value></data>
   <data name="Visual.OpenScp"><value>فتح SCP ملف...</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>صالح</value></data>
   <data name="Visual.CrcInvalid"><value>غير صالح</value></data>
   <data name="Visual.IntegrityUnavailable"><value>غير متاح</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (الكثافة المتأنقة)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>شمال ستار MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>هيثكيت) ذات قطاع صلب) FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>شركة ميكروات ن FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>نظام أربورغ/البيانات</value></data>
+  <data name="Visual.DecoderName.raw"><value>تدفق السحب</value></data>
   <data name="Visual.StructureKind.Sync"><value>التزامن</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>رأس القطاع</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>بيانات القطاع</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>رأس التنسيق</value></data>
   <data name="Visual.StructureKind.FormatData"><value>تنسيق البيانات</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>توقيت الشذوذ</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro التقاط (*.scp)|*.scp|جميع الملفات|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>المجموع الاختباري</value></data>
   <data name="Visual.Side"><value>الجانب {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>مسار التحليل {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>:: إجراء ثورة تحليلية {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>جانب</value></data>
   <data name="Visual.TrackLabel"><value>مسار</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP الإدخال</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>القطاع المتدهور</value></data>
   <data name="Visual.SectorDead"><value>القطاع الميت</value></data>
   <data name="Visual.SectorWithoutData"><value>القطاع غير المتوفر بيانات</value></data>
-  <data name="Visual.AnalysingRevolution"><value>:: إجراء ثورة تحليلية {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>معلومات شريط الكاسيت</value></data>
 </root>

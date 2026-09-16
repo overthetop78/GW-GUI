@@ -124,7 +124,7 @@ internal static partial class EmulationSettingsLayout
     internal static Border InformationBanner(TextBlock text)
     {
         var content = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(12, 9, 12, 9) };
-        var icon = new TextBlock { Text = "\uE946", FontFamily = ControlVisualConstants.IconFont, FontSize = 18,
+        var icon = new TextBlock { Text = IconGlyphs.Information, FontFamily = ControlVisualConstants.IconFont, FontSize = 18,
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 10, 0) };
         icon.SetResourceReference(TextBlock.ForegroundProperty, "AccentBrush");
         content.Children.Add(icon);

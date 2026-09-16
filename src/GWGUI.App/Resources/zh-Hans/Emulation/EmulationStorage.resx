@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>添加媒体</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>创建硬盘</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>硬盘大小（MiB）</value></data>
+  <data name="Emulation.Storage.Media.None"><value>无媒体。请添加所选型号支持的软盘、硬盘或 CD。</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>只读</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga 硬盘|*.hdf|所有文件|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>所选型号不支持硬盘。</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>此型号最多支持 {0} 个软盘驱动器。</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>此型号最多支持 {0} 个硬盘。</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>所选型号不支持 CD 驱动器。</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CD 驱动器</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>软盘驱动器数量</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>硬盘数量</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>软盘驱动器速度</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>软盘映像写保护</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>重定向软盘写入</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD 速度</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>添加现有硬盘</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>硬盘</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>此机器未关联硬盘。</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>软盘</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>添加存储设备</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>关联介质</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>磁盘几何结构由模拟器自动确定。</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>已创建空白软盘映像：{0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>文件将以空白状态创建，之后必须在模拟计算机中进行分区和格式化。</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD 刻录机</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>仅当所选计算机和模拟器支持写入时才能创建空白光盘。</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM 驱动器</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>配置</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>创建空白软盘</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>磁盘映像</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>选择现有磁盘映像。</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>所选文件将连接到此虚拟驱动器。</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>软盘驱动器</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga 软盘映像|*.adf|所有文件|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>硬盘</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>接口</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>预分配文件</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>从运行的机器上插入或替换了花式和CD.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>移除介质</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>磁盘映像已存在：{0}\n是否替换？</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>可用类型、型号和标识符取决于所选计算机。</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>磁带驱动器</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>使用磁盘</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>使用现有磁盘</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>在“常规”中修改</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>此计算机没有可用的其他存储设备。</value></data>
+  <data name="Emulation.Storage.Device.List"><value>存储设备</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>分配</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>自动几何参数</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>空白介质</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>每扇区字节数</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>计算容量：{0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>自定义大小</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>柱面</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>目标文件夹</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>磁盘几何参数 (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>大小配置</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>软盘驱动器</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>磁头</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>磁盘大小或几何参数无效。</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>立即预留物理磁盘空间；否则映像会随写入数据而增大。</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>扇区</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>磁带</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>卡带</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>光盘</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>在模拟器屏幕上显示驱动器活动</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>卡带插槽</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>挂载 DF0 – DF3 中的前四张磁盘</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>磁盘 {0}</value></data>
+</root>

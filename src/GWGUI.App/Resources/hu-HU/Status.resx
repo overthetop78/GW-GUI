@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>oldalsó {0}: pálya {1} - {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI készen áll.</value></data>
+  <data name="Status.DefaultProfile"><value>Profil: Alapértelmezett</value></data>
+  <data name="Status.Profile"><value>Profil: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Nyomvonal {0}, oldal {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Nyomvonal {0}, oldalsó {1} - {2} feldolgozott</value></data>
+  <data name="Status.ReadyShort"><value>Kész</value></data>
+  <data name="Status.Running"><value>Futás</value></data>
+  <data name="Status.Success"><value>Siker</value></data>
+  <data name="Status.Error"><value>Hiba</value></data>
+  <data name="Status.Cancelled"><value>Törölve</value></data>
+</root>

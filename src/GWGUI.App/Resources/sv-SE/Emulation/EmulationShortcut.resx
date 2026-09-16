@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Emuleringsgenvägar</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Frigör musen</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pausa / fortsätt</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Helskärm / fönsterläge</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Slå på / av</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Mjuk omstart</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Hård omstart</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Snabbspara tillstånd</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Snabbläs tillstånd</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Skärmbild</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Tysta aktiv maskin</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Snabbspola medan tangenten hålls ned</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Sätt i eller byt medium</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Mata ut medium</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Nästa medium</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Den här åtgärden stöds ännu inte av den aktuella emulatorn.</value></data>
+</root>

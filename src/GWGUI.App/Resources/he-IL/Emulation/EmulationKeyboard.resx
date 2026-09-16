@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>מקש {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>מקש מארח</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>שני מפתחות עמיגה משתמשים באותה כמות PC מפתח.פתור את המיפוי האדום לפני החיסכון.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>מקלדת עובר דרך</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>קיצורי דרך שמורים</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>קיצורי הדרך של GW GUI ושל Windows נשארים פעילים ואינם נלכדים על ידי המכונה.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>מקש המכונה</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>אותיות, ספרות ומקשי שינוי רגילים מועברים ישירות. רק מקשי הפונקציה והמקשים המיוחדים של Amiga דורשים שיוך כאן.</value></data>
+</root>

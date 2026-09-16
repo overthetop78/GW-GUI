@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>Máy</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Chào mừng</value></data>
+  <data name="Emulation.Tab.General"><value>Chung</value></data>
+  <data name="Emulation.Tab.Video"><value>Ảnh động</value></data>
+  <data name="Emulation.Tab.Storage"><value>Lưu trữ</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Bàn phím</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Chuột</value></data>
+  <data name="Emulation.Tab.Controller"><value>Bộ điều khiển</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Nâng cao</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Phím tắt</value></data>
+  <data name="Emulation.Tab.Audio"><value>Âm thanh</value></data>
+</root>

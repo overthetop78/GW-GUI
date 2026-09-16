@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>Отмена</value></data>
-  <data name="Common.Save"><value>Сохранять</value></data>
-  <data name="Common.Create"><value>Создать</value></data>
-  <data name="Common.Delete"><value>Удалить</value></data>
-  <data name="Common.Browse"><value>Просматривать…</value></data>
-  <data name="Common.Choose"><value>Выбирать…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>Отмена</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Сохранять</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>Создать</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Удалить</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Просматривать…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>Выбирать…</value></data>
   <data name="Common.Close"><value>Закрывать</value></data>
   <data name="Common.Execute"><value>Выполнять</value></data>
   <data name="Common.Stop"><value>Останавливаться</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>Изменить</value></data>
   <data name="Common.Hide"><value>Скрывать</value></data>
   <data name="Common.Export"><value>Экспорт</value></data>
-  <data name="Common.New"><value>Создать</value></data>
-  <data name="Common.Refresh"><value>Обновить</value></data>
-  <data name="Common.OpenFolder"><value>Открыть папку</value></data>
+  <data name="Common.New" xml:space="preserve"><value>Создать</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>Обновить</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>Открыть папку</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Пауза</value></data>
 </root>

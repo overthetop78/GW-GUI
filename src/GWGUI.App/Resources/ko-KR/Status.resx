@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>측면 {0}: 트랙 {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI 준비되었습니다.</value></data>
+  <data name="Status.DefaultProfile"><value>프로필: 기본값</value></data>
+  <data name="Status.Profile"><value>프로필: {0}</value></data>
+  <data name="Status.TrackProgress"><value>트랙 {0}, 측면 {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>트랙 {0}, 측면 {1} — {2} 처리됨</value></data>
+  <data name="Status.ReadyShort"><value>준비가 된</value></data>
+  <data name="Status.Running"><value>달리기</value></data>
+  <data name="Status.Success"><value>성공</value></data>
+  <data name="Status.Error"><value>오류</value></data>
+  <data name="Status.Cancelled"><value>취소</value></data>
+</root>

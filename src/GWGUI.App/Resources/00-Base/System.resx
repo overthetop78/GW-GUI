@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="System.apple-ii"><value>Apple II</value></data>
+  <data name="System.apple-iii"><value>Apple III</value></data>
+  <data name="System.macintosh"><value>Apple Macintosh</value></data>
+  <data name="System.lisa"><value>Apple Lisa</value></data>
+  <data name="System.amiga"><value>Amiga</value></data>
+  <data name="System.atari-st"><value>Atari ST</value></data>
+  <data name="System.atari-8bit"><value>Atari 8-bit</value></data>
+  <data name="System.ibm-pc"><value>IBM PC</value></data>
+  <data name="System.commodore"><value>Commodore</value></data>
+  <data name="System.amstrad"><value>Amstrad</value></data>
+  <data name="System.acorn-bbc"><value>Acorn / BBC Micro</value></data>
+  <data name="System.epson-qx10"><value>Epson QX-10</value></data>
+  <data name="System.msx"><value>MSX</value></data>
+  <data name="System.dec"><value>DEC</value></data>
+  <data name="System.coherent"><value>COHERENT</value></data>
+  <data name="System.ucsd"><value>UCSD p-System</value></data>
+</root>

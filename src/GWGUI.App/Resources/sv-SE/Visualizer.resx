@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Avkodare</value></data>
   <data name="Visual.LinkZoom"><value>Länkzoom</value></data>
   <data name="Visual.OpenScp"><value>Öppna en SCP fil...</value></data>
@@ -39,10 +31,17 @@
   <data name="Visual.StructureData"><value>Avkodad data</value></data>
   <data name="Visual.StructureAnomaly"><value>Raderad/avvikelse</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analys baserad på revolution {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>Lite bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>giltig</value></data>
   <data name="Visual.CrcInvalid"><value>ogiltig</value></data>
   <data name="Visual.IntegrityUnavailable"><value>inte tillgänglig</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (enkel densitet)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hård sektor MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hård sektor FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hård sektor FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg-system/data</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raw flux</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synkronisering</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Sektorhuvud</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sektordata</value></data>
@@ -55,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Formatera rubrik</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Formatera data</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Tidsavvikelse</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro fånga (*.scp)|*.scp|Alla filer|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Kontrollsumma</value></data>
   <data name="Visual.Side"><value>Sida {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analysera spår {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analysera revolutionen {0}////{1}…</value></data>
   <data name="Visual.SideLabel"><value>Sida</value></data>
   <data name="Visual.TrackLabel"><value>Spåra</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP post</value></data>
@@ -77,7 +75,6 @@
   <data name="Visual.FormatDetected"><value>Format upptäckt</value></data>
   <data name="Visual.AverageRpm"><value>Genomsnittligt RPM</value></data>
   <data name="Visual.AverageDuration"><value>Genomsnittlig varaktighet</value></data>
-  <data name="Visual.BitOffset"><value>Lite bit {0:N0}</value></data>
   <data name="Visual.All"><value>Allt allt allt</value></data>
   <data name="Visual.Surface"><value>Surface {0}</value></data>
   <data name="Visual.DiscFace"><value>ansikte {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Försämrad sektor</value></data>
   <data name="Visual.SectorDead"><value>Död sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor utan data</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analysera revolutionen {0}////{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Kassettinformation</value></data>
 </root>

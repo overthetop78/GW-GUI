@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>核心</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0} 模擬核心</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>库仍为外部 GW GUI. 所选版本取代了目前已安装的版本.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>GW GUI 要求的版本</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>最新可用官方版本</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>目前安裝的版本</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>按一下「搜尋」以查詢 Libretro 官方伺服器。</value></data>
+  <data name="Emulation.Core.NameSearch"><value>搜尋版本</value></data>
+  <data name="Emulation.Core.NameDownload"><value>下載並取代</value></data>
+  <data name="Emulation.Core.NameSearching"><value>正在搜尋可用版本…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>找不到官方版本。</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>有 {0} 個版本可用。</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>正在下載 {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>已安裝版本：{0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · 已安裝</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>未安裝任何版本</value></data>
+  <data name="Emulation.Core.Emulator"><value>模擬器</value></data>
+  <data name="Emulation.Core.Install"><value>安装</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>已安装</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>核心备选方案</value></data>
+</root>

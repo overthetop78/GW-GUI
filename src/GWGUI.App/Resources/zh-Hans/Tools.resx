@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>准备执行。</value></data>
   <data name="Tool.RawOutput"><value>原始输出</value></data>
-  <data name="Maintenance.EraseTitle"><value>确认擦除</value></data>
-  <data name="Maintenance.EraseConfirm"><value>永久删除插入磁盘上的所有数据？</value></data>
-  <data name="Maintenance.CleanTitle"><value>清洁头部</value></data>
-  <data name="Maintenance.CleanConfirm"><value>确认已插入清洁盘。切勿使用数据盘。</value></data>
   <data name="Tools.Erase"><value>擦除磁盘</value></data>
   <data name="Tools.EraseWarning"><value>磁盘上的所有数据都将被破坏。</value></data>
   <data name="Tools.LimitTracks"><value>限制曲目</value></data>

@@ -62,7 +62,7 @@
                     <Button x:Name="OpenButton" Height="40" MinHeight="0" Content="{l:Loc Explorer.OpenImage}"/>
                     <Button x:Name="ManualOptionsButton" Width="40" Height="40" MinWidth="0" MinHeight="0" Padding="0" Margin="8,0,0,0"
                             Click="ManualOptionsButton_Click" ToolTip="{l:Loc Common.Advanced}" AutomationProperties.Name="{l:Loc Common.Advanced}">
-                        <TextBlock Text="&#xE713;" FontFamily="{StaticResource IconFontFamily}" FontSize="16"/>
+                                    <TextBlock Text="{l:Loc Icon.Settings}" FontFamily="{StaticResource IconFontFamily}" FontSize="16"/>
                     </Button>
                 </StackPanel>
                 <Grid Grid.Row="1" Margin="0,9,12,0">
@@ -218,7 +218,7 @@
                     CornerRadius="8" Panel.ZIndex="5">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Border Width="68" Height="68" CornerRadius="34" Background="#EAF2F7" HorizontalAlignment="Center">
-                        <TextBlock Text="&#xED25;" FontFamily="{StaticResource IconFontFamily}" FontSize="30" Foreground="#34566C"
+                        <TextBlock Text="{l:Loc Icon.OpenImage}" FontFamily="{StaticResource IconFontFamily}" FontSize="30" Foreground="#34566C"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Text="{l:Loc Visual.NoFile}" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,16,0,14"/>

@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekoder</value></data>
-<data name="Visual.OpenScp"><value>Åpne en SCP fil...</value></data>
+  <data name="Visual.LinkZoom"><value>Lenke zoom</value></data>
+  <data name="Visual.OpenScp"><value>Åpne en SCP fil...</value></data>
   <data name="Visual.NoFile"><value>Ingen diskavbildning er åpen</value></data>
   <data name="Visual.Waiting"><value>Venter på en fil</value></data>
   <data name="Visual.Inspector"><value>Inspektør</value></data>
@@ -38,10 +31,17 @@
   <data name="Visual.StructureData"><value>Dekodede data</value></data>
   <data name="Visual.StructureAnomaly"><value>Slettet/avvik</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analyse basert på revolusjon {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>gyldig</value></data>
   <data name="Visual.CrcInvalid"><value>ugyldig</value></data>
   <data name="Visual.IntegrityUnavailable"><value>utilgjengelig</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (enkeltetthet)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>Nordstjerne hardt sektorert MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hardsektored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hard-sektored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg system/data</value></data>
+  <data name="Visual.DecoderName.raw"><value>Rå flux</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synkronisering</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Sektoroverskrift</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sektordata</value></data>
@@ -54,10 +54,11 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Formater overskrift</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Formater data</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Tidsavvik</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro fangst (*.scp)|*.scp|Alle filer|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Sjekksum</value></data>
+  <data name="Visual.Side"><value>Side {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analyse spor {0}/{1}…</value></data>
-<data name="Visual.TrackLabel"><value>Spor</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyse revolusjon {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Side</value></data>
+  <data name="Visual.TrackLabel"><value>Spor</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP oppføring</value></data>
   <data name="Visual.RevolutionsTitle"><value>Revolusjoner</value></data>
   <data name="Visual.AnalysisTitle"><value>Analyse</value></data>
@@ -74,10 +75,6 @@
   <data name="Visual.FormatDetected"><value>Formatet oppdaget</value></data>
   <data name="Visual.AverageRpm"><value>Gjennomsnittlig RPM</value></data>
   <data name="Visual.AverageDuration"><value>Gjennomsnittlig varighet</value></data>
-  <data name="Visual.LinkZoom"><value>Lenke zoom</value></data>
-  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
-  <data name="Visual.Side"><value>Side {0}</value></data>
-  <data name="Visual.SideLabel"><value>Side</value></data>
   <data name="Visual.All"><value>Alle</value></data>
   <data name="Visual.Surface"><value>Overflate {0}</value></data>
   <data name="Visual.DiscFace"><value>Ansikt {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Nedgradert sektor</value></data>
   <data name="Visual.SectorDead"><value>Død sektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Sektor uten data</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analyse revolusjon {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Kassettinformasjon</value></data>
 </root>

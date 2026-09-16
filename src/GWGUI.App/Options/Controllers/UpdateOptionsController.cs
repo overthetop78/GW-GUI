@@ -10,6 +10,7 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Options;
 using GWGUI.Updates.Contracts;
 using GWGUI.App.Contracts.Updates;
+using GWGUI.App.Constants.Controls.Visual;
 
 namespace GWGUI.App.Options.Controllers;
 
@@ -101,10 +102,10 @@ internal sealed class UpdateOptionsController : IDisposable
         {
             new("application", UpdateNavigationPage.Application,
                 _localize("Updates.Application", []),
-                _localize("Updates.NavigationApplicationSubtitle", []), "\uE946", _applicationState),
+                _localize("Updates.NavigationApplicationSubtitle", []), IconGlyphs.Information, _applicationState),
             new("directory", UpdateNavigationPage.Directory,
                 _localize("Updates.ModuleDirectoryTitle", []),
-                _localize("Updates.NavigationDirectorySubtitle", []), "\uE719", _directoryState)
+                _localize("Updates.NavigationDirectorySubtitle", []), IconGlyphs.Directory, _directoryState)
         };
         foreach (var package in EmulationModuleRegistry.Packages
                      .OrderBy(package => LocExtension.GetForModule(package.Module,
@@ -122,11 +123,11 @@ internal sealed class UpdateOptionsController : IDisposable
             items.Add(new($"module:{package.Module.Id}", UpdateNavigationPage.Module,
                 LocExtension.GetForModule(package.Module, package.Module.DisplayResourceKey),
                 _localize("Updates.InstalledVersion", [package.Manifest.ModuleVersion]),
-                "\uE7FC", state, package.Module.Id));
+                IconGlyphs.Controller, state, package.Module.Id));
         }
         items.Add(new("advanced", UpdateNavigationPage.Advanced,
             _localize("Updates.ModuleAdvancedInstallationTitle", []),
-            _localize("Updates.NavigationAdvancedSubtitle", []), "\uE713", _advancedState));
+            _localize("Updates.NavigationAdvancedSubtitle", []), IconGlyphs.Settings, _advancedState));
         _section.SetNavigationItems(items);
     }
 
@@ -648,11 +649,11 @@ internal sealed class AvailableModuleRow
 
     private static string StateIconFor(UpdateVisualState state) => state switch
     {
-        UpdateVisualState.Current => "\uE73E",
-        UpdateVisualState.Available => "\uE895",
-        UpdateVisualState.Busy => "\uE895",
-        UpdateVisualState.Error => "\uEA39",
-        _ => "\uE7FC"
+        UpdateVisualState.Current => IconGlyphs.Current,
+        UpdateVisualState.Available => IconGlyphs.Sync,
+        UpdateVisualState.Busy => IconGlyphs.Sync,
+        UpdateVisualState.Error => IconGlyphs.Error,
+        _ => IconGlyphs.Controller
     };
 }
 
@@ -673,11 +674,11 @@ internal sealed class UpdateComponentRow
         (StateForeground, StateBackground) = UpdateStateBrushes.For(state);
         StateIcon = state switch
         {
-            UpdateVisualState.Current => "\uE73E",
-            UpdateVisualState.Available => "\uE895",
-            UpdateVisualState.Busy => "\uE895",
-            UpdateVisualState.Error => "\uEA39",
-            _ => "\uE7FC"
+            UpdateVisualState.Current => IconGlyphs.Current,
+            UpdateVisualState.Available => IconGlyphs.Sync,
+            UpdateVisualState.Busy => IconGlyphs.Sync,
+            UpdateVisualState.Error => IconGlyphs.Error,
+            _ => IconGlyphs.Controller
         };
     }
 

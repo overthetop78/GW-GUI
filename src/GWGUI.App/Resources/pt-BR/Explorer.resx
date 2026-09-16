@@ -1,22 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Imagem de disco</value></data>
+  <data name="Explorer.DetectedFormats"><value>Detectado: {0}</value></data>
   <data name="Explorer.Format"><value>Formato</value></data>
   <data name="Explorer.OpenImage"><value>Abrir uma imagem…</value></data>
   <data name="Explorer.Automatic"><value>Detecção automática</value></data>
-<data name="Explorer.FileSystem"><value>Sistema de arquivos</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.FileSystem"><value>Sistema de arquivos</value></data>
   <data name="Explorer.Capacity"><value>Capacidade</value></data>
   <data name="Explorer.Free"><value>Espaço livre</value></data>
   <data name="Explorer.Entries"><value>Itens</value></data>
@@ -27,9 +21,12 @@
   <data name="Explorer.Warnings"><value>Avisos</value></data>
   <data name="Explorer.Directory"><value>Pasta</value></data>
   <data name="Explorer.File"><value>Arquivo</value></data>
-<data name="Explorer.Unknown"><value>Desconhecido</value></data>
+  <data name="Explorer.Link"><value>Ligação</value></data>
+  <data name="Explorer.Unknown"><value>Desconhecido</value></data>
   <data name="Explorer.Unnamed"><value>Volume sem nome</value></data>
   <data name="Explorer.LoadFailed"><value>Não foi possível abrir esta imagem: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Formato incompatível</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Não foi possível interpretar “{1}” usando o formato “{0}”.&#xA;Selecione outro formato para continuar.</value></data>
   <data name="Explorer.Loading"><value>Lendo a imagem de disco…</value></data>
   <data name="Explorer.ReadDisk"><value>Ler disquete</value></data>
   <data name="Explorer.Name"><value>Nome</value></data>
@@ -50,13 +47,9 @@
   <data name="Explorer.Compression"><value>Compressão</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Carregador de setores personalizado</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Carregador personalizado — sem catálogo de arquivos</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack por The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Blocos de dados</value></data>
-  <data name="Explorer.DetectedFormats"><value>Detectado: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>As ferramentas da máquina não podem produzir uma imagem do setor expansível para {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Ferramentas da máquina não foi possível decodificar a imagem como {0}.</value></data>
-  <data name="Explorer.Link"><value>Ligação</value></data>
-  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>As ferramentas da máquina não podem produzir uma imagem do setor expansível para {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Ferramentas da máquina não foi possível decodificar a imagem como {0}.</value></data>
   <data name="Explorer.Session"><value>Sessão de disco</value></data>
   <data name="Explorer.Track"><value>Faixa de mídia</value></data>
   <data name="Explorer.Layers"><value>Camadas de discos</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Faixas de áudio</value></data>
   <data name="Explorer.LoadingRecognition"><value>Reconhecendo o formato de mídia</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Formato reconhecido</value></data>
-  <data name="Explorer.LoadingMedia"><value>Ler a estrutura dos media</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Analisando o sistema de arquivos</value></data>
-  <data name="Explorer.LoadingContents"><value>Preparando pastas e arquivos</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Mostrando o conteúdo</value></data>
   <data name="Explorer.TestingFormat"><value>Formato de teste: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: reconhecido</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: não reconhecido</value></data>
   <data name="Explorer.ReadingFormat"><value>Formato de leitura: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Formato incompatível</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>Não foi possível interpretar “{1}” usando o formato “{0}”.&#xA;Selecione outro formato para continuar.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Ler a estrutura dos media</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Lendo a fita</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Gravar {0} de {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Gravações de fita decodificadoras</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Reconhecendo arquivos</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analisando o sistema de arquivos</value></data>
+  <data name="Explorer.LoadingContents"><value>Preparando pastas e arquivos</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Mostrando o conteúdo</value></data>
   <data name="Explorer.FileWithExtension"><value>Ficheiro {0}</value></data>
   <data name="Explorer.Type.Document"><value>Documento</value></data>
   <data name="Explorer.Type.SourceCode"><value>Código-fonte</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC arquivo de programa</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Programa de arranque</value></data>
   <data name="Explorer.Type.Executable"><value>Executável</value></data>
   <data name="Explorer.Type.Command"><value>Ficheiro de comando</value></data>
   <data name="Explorer.Type.SystemFile"><value>Ficheiro de sistema</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Documento</value></data>
   <data name="Explorer.Category.SourceCode"><value>Código-fonte</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC programa</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Programa de arranque</value></data>
   <data name="Explorer.Category.Program"><value>Programa</value></data>
   <data name="Explorer.Category.Executable"><value>Executável</value></data>
   <data name="Explorer.Category.Command"><value>Comando</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Tipo</value></data>
   <data name="Explorer.BaudRate"><value>Velocidade</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Atraso</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Programa de arranque</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Programa de arranque</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Lendo a fita</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Gravar {0} de {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Gravações de fita decodificadoras</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Reconhecendo arquivos</value></data>
 </root>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>파일 마이그레이션 ...</value></data>
+  <data name="Migration.Title"><value>파일 마이그레이션</value></data>
+  <data name="Migration.Heading"><value>다른 파일 시스템에 파일 마이그레이션</value></data>
+  <data name="Migration.Source"><value>소스 이미지</value></data>
+  <data name="Migration.NoSource"><value>인식된 파일 시스템을 포함하는 이미지를 선택하십시오.</value></data>
+  <data name="Migration.Destination"><value>대상 파일 시스템 및 형식</value></data>
+  <data name="Migration.Output"><value>여행 일정</value></data>
+  <data name="Migration.Compatibility"><value>호환성 및 손실</value></data>
+  <data name="Migration.Waiting"><value>소스와 목적지를 선택하십시오.</value></data>
+  <data name="Migration.Severity"><value>의성</value></data>
+  <data name="Migration.Path"><value>소스 경로</value></data>
+  <data name="Migration.Description"><value>의 특징</value></data>
+  <data name="Migration.AcceptLosses"><value>목록으로 만들어진 metadata 손실</value></data>
+  <data name="Migration.Execute"><value>파일 Migrate</value></data>
+  <data name="Migration.Blocking"><value>팟캐스트</value></data>
+  <data name="Migration.MetadataLoss"><value>Metadata 손실</value></data>
+  <data name="Migration.SourceSummary"><value>양: {0} - 파일 시스템: {1} — 루트 항목: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>마이그레이션을 준비할 수 없습니다: {0}</value></data>
+  <data name="Migration.Completed"><value>대상 이미지는 다음과 같이 만들어졌습니다: {0}</value></data>
+  <data name="Migration.Failed"><value>마이그레이션 실패: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Incompatible: 마이그레이션 전에 차단 손실 수정.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>목록으로 만들어진 metadata 손실의 수락 후에 호환이 되는.</value></data>
+  <data name="Migration.Compatible"><value>호환 : 손실이 감지되지 않습니다.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>파일 내용이 사용할 수 없습니다.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>이 항목 유형은 대상에 의해 지원되지 않습니다.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>이 이름은 목적지에 유효하지 않습니다.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>이 이름은 목적지에 너무 길다.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>여러 항목은 같은 목적지 이름이있을 것입니다.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>파일이 목적지에 너무 크다.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>metadata는 유효하지 않습니다.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>수정일은 보존되지 않습니다.</value></data>
+  <data name="Migration.Loss.Comment"><value>댓글은 보존되지 않습니다.</value></data>
+  <data name="Migration.Loss.Attributes"><value>소스 속성은 보존되지 않습니다.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>대상 이미지는 이미 존재합니다. 그것을 대체? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>대상 이미지는 소스 이미지를 대체 할 수 없습니다.</value></data>
+</root>

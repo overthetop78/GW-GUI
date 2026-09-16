@@ -1,4 +1,5 @@
 using System.Windows.Media;
+using GWGUI.App.Constants.Controls.Visual;
 
 namespace GWGUI.App.Constants.Emulation;
 
@@ -26,8 +27,8 @@ internal static class EmulationCoreManagementConstants
     internal const string CancelControlName = "CancelCoreDownload";
     internal const string ProgressControlName = "CoreDownloadProgress";
     internal const string StatusControlName = "CoreStatus";
-    internal const string SearchGlyph = "\uE721";
-    internal const string DownloadGlyph = "\uE896";
+    internal static string SearchGlyph => IconGlyphs.Search;
+    internal static string DownloadGlyph => IconGlyphs.Download;
     internal const double InitialProgress = 0D;
     internal const double CompletedProgress = 1D;
     internal static readonly Color ErrorBackground = Color.FromRgb(255, 241, 241);

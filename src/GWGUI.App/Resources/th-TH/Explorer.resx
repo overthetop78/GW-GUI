@@ -1,18 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>อิมเมจดิสก์</value></data>
+  <data name="Explorer.DetectedFormats"><value>ตรวจพบ: {0}</value></data>
   <data name="Explorer.Format"><value>รูปแบบ</value></data>
   <data name="Explorer.OpenImage"><value>เปิดอิมเมจ…</value></data>
   <data name="Explorer.Automatic"><value>ตรวจหาอัตโนมัติ</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>ไม่ทราบ</value></data>
   <data name="Explorer.Unnamed"><value>โวลุ่มไม่มีชื่อ</value></data>
   <data name="Explorer.LoadFailed"><value>ไม่สามารถเปิดอิมเมจนี้ได้: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>รูปแบบไม่เข้ากัน</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>ไม่สามารถตีความ “{1}” โดยใช้รูปแบบ “{0}” ได้&#xA;เลือกรูปแบบอื่นเพื่อดำเนินการต่อ</value></data>
   <data name="Explorer.Loading"><value>กำลังอ่านอิมเมจดิสก์…</value></data>
   <data name="Explorer.ReadDisk"><value>อ่านดิสก์</value></data>
   <data name="Explorer.Name"><value>ชื่อ</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>การบีบอัด</value></data>
   <data name="Explorer.CustomSectorLoader"><value>ตัวโหลดเซกเตอร์แบบกำหนดเอง</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>ตัวโหลดแบบกำหนดเอง — ไม่มีแค็ตตาล็อกไฟล์</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack โดย The Company</value></data>
   <data name="Explorer.DataBlocks"><value>บล็อกข้อมูล</value></data>
-  <data name="Explorer.DetectedFormats"><value>ตรวจพบ: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>เครื่องมือของโฮสต์ไม่สามารถสร้างภาพของภาคต่าง ๆ ที่สามารถขยายได้ {0}. .</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>เครื่องมือของโฮสต์ ไม่สามารถถอดรหัสภาพได้ {0}. .</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>เครื่องมือของโฮสต์ไม่สามารถสร้างภาพของภาคต่าง ๆ ที่สามารถขยายได้ {0}. .</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>เครื่องมือของโฮสต์ ไม่สามารถถอดรหัสภาพได้ {0}. .</value></data>
   <data name="Explorer.Session"><value>วาระการเขียน</value></data>
   <data name="Explorer.Track"><value>แทร็กสื่อ</value></data>
   <data name="Explorer.Layers"><value>ชั้นแผ่น</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>แทร็กเสียง</value></data>
   <data name="Explorer.LoadingRecognition"><value>การจดจํารูปแบบของสื่อ</value></data>
   <data name="Explorer.LoadingFormatFound"><value>รูปแบบที่รู้จัก</value></data>
-  <data name="Explorer.LoadingMedia"><value>กําลังอ่านโครงสร้างสื่อ</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>รองรับระบบแฟ้ม</value></data>
-  <data name="Explorer.LoadingContents"><value>กําลังเตรียมโฟลเดอร์และแฟ้มต่าง ๆ</value></data>
-  <data name="Explorer.LoadingDisplay"><value>กําลังแสดงเนื้อหา</value></data>
   <data name="Explorer.TestingFormat"><value>รูปแบบการทดสอบ: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: ยอมรับ</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: ไม่สามารถจัดการ</value></data>
   <data name="Explorer.ReadingFormat"><value>รูปแบบการอ่าน: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>รูปแบบไม่เข้ากัน</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>ไม่สามารถตีความ “{1}” โดยใช้รูปแบบ “{0}” ได้&#xA;เลือกรูปแบบอื่นเพื่อดำเนินการต่อ</value></data>
+  <data name="Explorer.LoadingMedia"><value>กําลังอ่านโครงสร้างสื่อ</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>กําลังอ่านเทป</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>บันทึก {0} ของ {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>กําลังถอดรหัสบันทึกเทป</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>กําลังจดจําแฟ้มต่างๆ</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>รองรับระบบแฟ้ม</value></data>
+  <data name="Explorer.LoadingContents"><value>กําลังเตรียมโฟลเดอร์และแฟ้มต่าง ๆ</value></data>
+  <data name="Explorer.LoadingDisplay"><value>กําลังแสดงเนื้อหา</value></data>
   <data name="Explorer.FileWithExtension"><value>แฟ้ม {0}</value></data>
   <data name="Explorer.Type.Document"><value>เอกสาร</value></data>
   <data name="Explorer.Type.SourceCode"><value>รหัสต้นทาง</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC แฟ้มโปรแกรม</value></data>
+  <data name="Explorer.Type.BootProgram"><value>โปรแกรมบูต</value></data>
   <data name="Explorer.Type.Executable"><value>ประมวลผลได้</value></data>
   <data name="Explorer.Type.Command"><value>แฟ้มคําสั่ง</value></data>
   <data name="Explorer.Type.SystemFile"><value>แฟ้มของระบบ</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>เอกสาร</value></data>
   <data name="Explorer.Category.SourceCode"><value>รหัสต้นทาง</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC โปรแกรม</value></data>
+  <data name="Explorer.Category.BootProgram"><value>โปรแกรมบูต</value></data>
   <data name="Explorer.Category.Program"><value>โปรแกรม</value></data>
   <data name="Explorer.Category.Executable"><value>ประมวลผลได้</value></data>
   <data name="Explorer.Category.Command"><value>คําสั่ง</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>ชนิด</value></data>
   <data name="Explorer.BaudRate"><value>อัตรา</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>หน่วงเวลา</value></data>
-  <data name="Explorer.Type.BootProgram"><value>โปรแกรมบูต</value></data>
-  <data name="Explorer.Category.BootProgram"><value>โปรแกรมบูต</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>กําลังอ่านเทป</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>บันทึก {0} ของ {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>กําลังถอดรหัสบันทึกเทป</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>กําลังจดจําแฟ้มต่างๆ</value></data>
 </root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>โฟลเดอร์จัดเก็บข้อมูลจำลองที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>ฮาร์ดดิสก์จะถูกจัดระเบียบโดยอัตโนมัติใน HDD\Amiga, HDD\Atari และโฟลเดอร์ของระบบในอนาคต</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>สร้างโฟลเดอร์ย่อยที่ขาดโดยอัตโนมัติ</value></data>
+  <data name="Emulation.Folder.Common"><value>โฟลเดอร์ที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.Folder.Capture"><value>โฟลเดอร์ภาพจับ</value></data>
+  <data name="Emulation.Folder.State"><value>โฟลเดอร์สถานะที่บันทึก</value></data>
+  <data name="Emulation.Folder.Default"><value>โฟลเดอร์เริ่มต้น</value></data>
+</root>

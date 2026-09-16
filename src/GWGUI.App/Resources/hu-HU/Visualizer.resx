@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekóder</value></data>
-<data name="Visual.OpenScp"><value>Nyisson meg egy SCP fájlt…</value></data>
+  <data name="Visual.LinkZoom"><value>Link zoom</value></data>
+  <data name="Visual.OpenScp"><value>Nyisson meg egy SCP fájlt…</value></data>
   <data name="Visual.NoFile"><value>Nincs megnyitott lemezkép</value></data>
   <data name="Visual.Waiting"><value>Fájlra vár</value></data>
   <data name="Visual.Inspector"><value>Ellenőr</value></data>
@@ -38,10 +31,17 @@
   <data name="Visual.StructureData"><value>Dekódolt adatok</value></data>
   <data name="Visual.StructureAnomaly"><value>Törölve/rendellenesség</value></data>
   <data name="Visual.AnalysedRevolution"><value>Forradalom alapú elemzés {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Szektor C{0} H{1} R{2} · {3} bájt · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Szektor C{0} H{1} R{2} · {3} bájt · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>érvényes</value></data>
   <data name="Visual.CrcInvalid"><value>érvénytelen</value></data>
   <data name="Visual.IntegrityUnavailable"><value>nem elérhető</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (egyszeri sűrűség)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar kemény szegélyezett MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit kemény szegélyezett FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Mikraszinten FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg rendszer / adatok</value></data>
+  <data name="Visual.DecoderName.raw"><value>Nyersáram</value></data>
   <data name="Visual.StructureKind.Sync"><value>Szinkronizálás</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Szektor fejléc</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Ágazati adatok</value></data>
@@ -54,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Fejléc formázása</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Adatok formázása</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Időzítési anomália</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro befogása (*.scp)|*.scp|Minden fájl|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Ellenőrző összeg</value></data>
   <data name="Visual.Side"><value>{0} oldal</value></data>
   <data name="Visual.AnalysingTrack"><value>Elemzési pálya {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Forradalom elemzése {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Oldal</value></data>
   <data name="Visual.TrackLabel"><value>Pálya</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP bejegyzés</value></data>
@@ -76,8 +75,6 @@
   <data name="Visual.FormatDetected"><value>Formátum észlelve</value></data>
   <data name="Visual.AverageRpm"><value>Átlagos RPM</value></data>
   <data name="Visual.AverageDuration"><value>Átlagos időtartam</value></data>
-  <data name="Visual.LinkZoom"><value>Link zoom</value></data>
-  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
   <data name="Visual.All"><value>Valamennyi</value></data>
   <data name="Visual.Surface"><value>Felület {0}</value></data>
   <data name="Visual.DiscFace"><value>Arc {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Lealacsonyított ágazat</value></data>
   <data name="Visual.SectorDead"><value>Holt szektor</value></data>
   <data name="Visual.SectorWithoutData"><value>Adatszolgáltatás nélküli ágazat</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Forradalom elemzése {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Kazetta adatai</value></data>
 </root>

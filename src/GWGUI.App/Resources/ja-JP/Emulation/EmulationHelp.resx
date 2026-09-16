@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>サイレンス空のフロッピードライブ</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>ディスクが入らないままエミュレートされたドライブ音を沈黙させます。 アイドルのメカニカルノイズを抑えるこのオプションを無効にします。</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>アナログオーディオフィルタリングを選択</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>オリジナルのアナログオーディオフィルタの再現方法を選択します。 ハードウェアの動作に従います。 他の選択はフィルターをオンまたはオフ強制します。</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>偏光オーディオフィルタを有効にする</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>偏光フィルタは生成されたオーディオ信号に適用されます。 フィルターされた音を再現することを可能にします。 フィルタリングされていない信号を維持するために無効にします。</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>オーディオの補間を選択</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>生成されたサンプルポイント間で音声サンプルが計算される方法を選択します。 高品質の方法は、よりスムーズな音を生成しますが、より多くの処理が必要です。</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>オーディオレイテンシーの設定</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>オーディオバッファの持続時間を設定します。 より短いバッファは遅延を減らしますが、割れの原因となります。 より長い緩衝は安定性を改善しますが、遅れを増加します。</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>デュアルを有効にする POKEY ステレオ</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>2番目のエミュレートを追加します。 POKEY ステレオの音を作り出すために破片。 デュアルをサポートするソフトウェアのみでこのオプションを有効にする POKEY オーディオ。</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>セットステレオの分離</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>左右のチャネル間の分離を設定します。 チャネルを一緒に混合する低値。 値が高いため、遠い値が確保されます。</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>フロッピードライブサウンドセットを選択</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>エミュレートフロッピードライブのメカニカルサウンドに使用されるサンプルセットを選択します。 ドライブの動作やディスクのデータを変更しません。</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>オーディオフィルタモデルを選択</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>ハードウェアフィルタ応答を選択してエミュレートします。 選択した機械モデルを自動フォローします。 特定の選択は、常にそのフィルタ応答を使用します。</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>2つの追加ジョイスティックポートを有効にする</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>2つのジョイスティックポートを追加する並列ポートアダプターをエミュレートします。 4つの同時プレイヤーをサポートするソフトウェアを有効にします。</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>ターボパルス間隔を設定する</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>ターボによって生成される自動ボタン出版物間の時間を設定します。 より短い間隔は繰り返された発砲を速く作り出します。</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>コントローラーの互換性モードを選択します。</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>デュアルスティックコントロール、スワップポート、または Joy2B+.標準ポートマッピングを維持するために「なし」を選択します。</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>アナログ入力感度の設定</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>アナログ入力がいかに強く反応するかを設定します。 同じ身体の動きから、より大きな反応が得られる。</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>デジタル入力感度の設定</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>デジタルディレクションがいかに素早く動くかを設定します。 より高い価値により、方向変化がより迅速に達します。</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>オートファイアモードを選択</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>無効なターンオートファイアオフ. ボタンは、割り当てられたボタンが保持される間、火を繰り返します。 絶えず火を繰り返します。</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>パドル移動速度の設定</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>デジタル入力がエミュレートされたパドルをすばやく動かす方法を設定します。 より低い値がゆっくりと動かします。 より高速に値が上がる。</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>選択する FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>浮動小数点指示に使用する浮動小数点単位を選択します。 選択する なし 無効にするには FPU. 利用可能なモデルは、選択したモデルによって異なります CPU. .</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>選択する CPU エミュレーション精度</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>詳しく見る CPU 元のハードウェアに従うタイミング。 より正確なモードは、互換性を向上させることができますが、より多くの処理を必要とする場合があります。</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>エミュレートを設定する CPU スピード</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>エミュレーターで使用されるプロセッサー周波数を設定します。元の速度はハードウェアのタイミングを保ちます。より高い価値は加速します CPU-limitedソフトウェア。</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>マウスを制御するためにアナログスティックを使用する</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>アナログジョイスティックアクセシブルでエミュレートされたマウスポインタを動かすことができます。 物理的なアナログ棒がポインタを制御するべきであるときそれを可能にして下さい。</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>アナログマウス速度の設定</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>アナログスティックがエミュレートされたマウスを制御すると、ポインタ速度を設定します。 同じ棒の動きのためにポインタをはるかに動かす価値が高い。</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>アナログマウスデッドゾーンの設定</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>マウスをコントロールしながらセンターの周りの小さなアナログスティックの動きを無視します。 棒が解放される間、ポインターが動かせば価値を高めて下さい。</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>有効にする Axlon $0F 影銀行</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>ミラー Axlon アドレスで銀行を制御 $0F. この追加アドレスを使用するソフトウェアやメモリの拡張のみを有効にします。</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>セット Axlon 拡張メモリ</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>銀行分割の金額を設定します Axlon メモリ。 障害者は拡大を削除します。 他の選択肢は、選択したメモリ容量を提供します。</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>セット Mosaic 拡張メモリ</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>銀行分割の金額を設定します Mosaic メモリ。 障害者は拡大を削除します。 他の選択肢は、選択したメモリ容量を提供します。</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>追加メモリの設定</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>選択した機械でサポートされている追加の拡張メモリの量を設定します。 設定されたメインメモリのみを使用するには、[なし] を選択します。</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>セット Fast RAM サイズ:</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>金額を設定する Fast RAM 直接利用できる CPU. 追加 Fast RAM 互換性のあるソフトウェアを助けることができますが、エミュレートされたハードウェア構成を変更することができます。</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>アクセス MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>互換性のあるソフトウェアが書き込み可能なマップを許可 RAM システムに ROM アドレス領域。 このオプションは、サポートするマシンモデルでのみ利用可能です MapRAM. .</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>セット Zorro III RAM サイズ:</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>32ビットの量を設定します Fast RAM つながる Zorro III バス。 互換性のある32ビットマシンとソフトウェアでのみ使用してください。</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>セット Slow RAM サイズ:</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>金額を設定する Slow RAM トラップドア拡張エリア このメモリはより遅くなります Fast RAM 異なるハードウェアアドレス範囲を使用します。</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>選択する ROM 復号化キー</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>ライセンスされた暗号化を解読するために使用されるキーファイルを選択します。 ROM イメージ。 選択した時にこのフィールドを空にします ROM 暗号化されていません。</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>高速スタートアップを有効にする</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>選択したハードウェアの初期化遅延をスキップして、スタートアップを短縮します。 ソフトウェアが元の起動シーケンスを必要とするとき、このオプションを無効にします。</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>拡張を選択 ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>二次ファームウェアを選択 ROM いくつかの機械モデルによって要求される。 選択したモデルが拡張を使用しない場合、このフィールドを空にします ROM. .</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>加速を有効にする SIO 転送</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>シリアル入力/出力バスを介して互換性のある転送を高速化します。 ソフトウェアが元の転送タイミングに依存したときにこのオプションを無効にします。</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>カセット起動を有効にする</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>封入された機械が付けられたカセット イメージから始めることを試みさせます。 別のデバイスから始まるとき、このオプションを無効にします。</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>有効にする R-Time 8 クロック</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>エミュレート R-Time 8 リアルタイムクロックなので、互換性のあるソフトウェアは、現在の日付と時刻を読むことができます。</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>有効にする P: プリンター装置</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>エミュレートする P: プリンター装置はソフトウェアに利用できます。 プリンターデバイスエミュレーションが不要な場合、このオプションを無効にします。</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>有効にする R: シリアルデバイス</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>エミュレートする R: ソフトウェアに利用できるシリアル デバイス。 シリアルデバイスエミュレーションは必要ありません。</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>高解像度カラーアーティファクトを選択</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>高解像度のパターンがコンポジットビデオの色をどのように生成するかを選択します。 アーティファクトカラーは無効です。 他のモードは異なるパレットやチップの動作を再現します。</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>ブリッタのタイミングを選択</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>ブリッター操作がすぐに終了するか、またはエミュレートされたハードウェアのタイミングに従うかどうかを選択します。 即時モードは高速ですが、タイミング精度が低い。</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>出力のリフレッシュレート変更が可能</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>出力されたリフレッシュレートがエミュレートされたビデオモードの変更に従うことを可能にします。 ロックされたは現在の出力リフレッシュ レートを保ちます。</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>衝突検出の細部を選んで下さい</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>スプライトとプレイフィールドの衝突が計算されるかを選択します。 より多くの完全な検出は両立性を改善しますが、より多くの処理を要求します。</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>インターレースディスプレイフリッカーを削減</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>インターレースされたビデオ出力でフリッカーを減らします。 より安定したイメージを実現。 元のインターレース表示動作を保存できるように無効にします。</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>表示されるアスペクト比を選択します。</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>エミュレートされたイメージが水平で縦にスケールされる方法を選択します。 自動はエミュレートされた出力に続きます。 形状を表示する固定選択力。</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>画像を調整する gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>黒と白のレベルを直接変更することなく、真鍮の明るさを変更します。 値が下がり、真下がる。 値が明るくなります。</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>ビデオラインモードを選択します。</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>縦型ビデオラインの表示方法を選択します。 自動はエミュレートされたモードに続きます。 他の選択は利用できるとき単一のライン、二重ライン、またはスキャンラインを強制します。</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>ビデオ標準を選択します。</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>など、エミュレートされたテレビのタイミングを選択します。 PAL または NTSC. これはリフレッシュ レート、ハードウェアのタイミングおよびソフトウェア両立性に影響を与えます。</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>外部カラーパレットを選択</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>現在のビデオ設定から生成された色ではなく、あらかじめ定義されたカラーパレットを選択します。 生成された色を使用するには None を選択します。</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>出力色深度の選択</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>画像をレンダリングするために使用される色深度を選択します。 24-bit より多くの色細部を保ちます。 16-bit より小さい色の範囲を使用して下さい。</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>ハードウェア領域を選択</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>エミュレートされた機械によって使用される地域のタイミングを選択します。 選択はビデオ頻度に影響を与えることができます、 CPU タイミングおよび多用性があるファームウェア。</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>ビデオレンダーを選択します。</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>埋め込まれた表示を引くために使用されるグラフィックのバックエンドを選択します。 利用可能なレンダラーは、ホストシステムとのパフォーマンスと互換性が異なる場合があります。</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>調節して下さい GTIA 色の遅れ</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>設定する GTIA 色相遅延で色を再現しました。 デフォルトでは標準値を使用します。 数値的な選択肢は、結果のヒューズをシフトします。</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>セットフレームのスキッピング</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>ディスプレイフレーム数を省略する方法を設定します。 障害者はすべてのフレームを描画します。 より高い値がレンダリング作業を削減するが、動きを少なくする。</value></data>
+</root>

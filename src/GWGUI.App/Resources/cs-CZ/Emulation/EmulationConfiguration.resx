@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Vytvořit, vybrat, upravit nebo smazat uložené konfigurace stroje zde. Vyberte {0} záložka pro úpravu vybrané konfigurace.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Značka</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Počítač</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Celková RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Jednotky</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Periferie</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Akce</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Smazat {0} {1} konfigurace?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Nastavení</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Konfigurace</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Smazat tuto konfiguraci Amiga?</value></data>
+</root>

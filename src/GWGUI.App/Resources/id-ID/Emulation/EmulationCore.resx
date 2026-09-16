@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Inti</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Inti emulasi {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Pustaka tetap berada di luar GW GUI. Versi yang dipilih menggantikan versi yang saat ini terpasang.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Versi yang diperlukan GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Versi resmi terbaru yang tersedia</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Versi yang saat ini terpasang</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Klik Cari untuk memeriksa server resmi Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Cari versi</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Unduh dan ganti</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Mencari versi yang tersedia…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Tidak ada versi resmi yang ditemukan.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} versi tersedia.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Mengunduh {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Versi terpasang: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · terpasang</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Tidak ada versi terpasang</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emulator</value></data>
+  <data name="Emulation.Core.Install"><value>Pasang</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Terpasang</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Opsi core</value></data>
+</root>

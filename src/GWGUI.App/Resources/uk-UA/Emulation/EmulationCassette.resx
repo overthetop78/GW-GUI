@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>Відтворити</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Пауза</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Перемотування назад</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>Перемотування вперед</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Запис</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Зупинити</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>Немає касети</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Зупинено</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Відтворення</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>Пауза</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Запис</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>Кінець стрічки</value></data>
+</root>

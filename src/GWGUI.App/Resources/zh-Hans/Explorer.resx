@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>磁盘映像</value></data>
+  <data name="Explorer.DetectedFormats"><value>检测到：{0}</value></data>
   <data name="Explorer.Format"><value>格式</value></data>
   <data name="Explorer.OpenImage"><value>打开映像…</value></data>
   <data name="Explorer.Automatic"><value>自动检测</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>未知</value></data>
   <data name="Explorer.Unnamed"><value>未命名卷</value></data>
   <data name="Explorer.LoadFailed"><value>无法打开此映像：{0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>格式不兼容</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>无法将“{1}”解析为“{0}”格式。&#xA;请选择其他格式以继续。</value></data>
   <data name="Explorer.Loading"><value>正在读取磁盘映像…</value></data>
   <data name="Explorer.ReadDisk"><value>读取磁盘</value></data>
   <data name="Explorer.Name"><value>名称</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>压缩</value></data>
   <data name="Explorer.CustomSectorLoader"><value>自定义扇区加载器</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>自定义加载器 — 无文件目录</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>The Company 破解版</value></data>
   <data name="Explorer.DataBlocks"><value>数据块</value></data>
-  <data name="Explorer.DetectedFormats"><value>检测到：{0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>主机工具无法生成可扩展扇形图像 {0}. . . . . . . . . . . .</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>主机工具无法解码图像为 {0}. . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>主机工具无法生成可扩展扇形图像 {0}. . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>主机工具无法解码图像为 {0}. . . . . . . . . . . .</value></data>
   <data name="Explorer.Session"><value>磁盘会话</value></data>
   <data name="Explorer.Track"><value>媒体轨道</value></data>
   <data name="Explorer.Layers"><value>磁盘层</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>音频音轨</value></data>
   <data name="Explorer.LoadingRecognition"><value>承认媒体形式</value></data>
   <data name="Explorer.LoadingFormatFound"><value>公认格式</value></data>
-  <data name="Explorer.LoadingMedia"><value>阅读媒体结构</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>分析文件系统</value></data>
-  <data name="Explorer.LoadingContents"><value>准备文件夹和文件</value></data>
-  <data name="Explorer.LoadingDisplay"><value>显示内容</value></data>
   <data name="Explorer.TestingFormat"><value>测试格式 : {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: 承认</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: 不承认</value></data>
   <data name="Explorer.ReadingFormat"><value>读取格式 : {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>格式不兼容</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>无法将“{1}”解析为“{0}”格式。&#xA;请选择其他格式以继续。</value></data>
+  <data name="Explorer.LoadingMedia"><value>阅读媒体结构</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>读取磁带</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>记录 {0} 编 {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>解码磁带记录</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>识别文件</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>分析文件系统</value></data>
+  <data name="Explorer.LoadingContents"><value>准备文件夹和文件</value></data>
+  <data name="Explorer.LoadingDisplay"><value>显示内容</value></data>
   <data name="Explorer.FileWithExtension"><value>文件 {0}</value></data>
   <data name="Explorer.Type.Document"><value>文档</value></data>
   <data name="Explorer.Type.SourceCode"><value>源代码</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC 程序文件</value></data>
+  <data name="Explorer.Type.BootProgram"><value>启动程序</value></data>
   <data name="Explorer.Type.Executable"><value>可执行文件</value></data>
   <data name="Explorer.Type.Command"><value>命令文件</value></data>
   <data name="Explorer.Type.SystemFile"><value>系统文件</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>文档</value></data>
   <data name="Explorer.Category.SourceCode"><value>源代码</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC 程序</value></data>
+  <data name="Explorer.Category.BootProgram"><value>启动程序</value></data>
   <data name="Explorer.Category.Program"><value>程序</value></data>
   <data name="Explorer.Category.Executable"><value>可执行文件</value></data>
   <data name="Explorer.Category.Command"><value>命令</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>类型</value></data>
   <data name="Explorer.BaudRate"><value>速率</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>延迟</value></data>
-  <data name="Explorer.Type.BootProgram"><value>启动程序</value></data>
-  <data name="Explorer.Category.BootProgram"><value>启动程序</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>读取磁带</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>记录 {0} 编 {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>解码磁带记录</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>识别文件</value></data>
 </root>

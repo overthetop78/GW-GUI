@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>行为</value></data>
+  <data name="Emulation.Input.Assign"><value>分配...</value></data>
+  <data name="Emulation.Input.Actions"><value>操作</value></data>
+  <data name="Emulation.Input.Press"><value>请按键...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>设备检测是共享的，但分配会分别保存在每个机器配置中。</value></data>
+  <data name="Emulation.Input.Test"><value>测试输入</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>共享输入设备</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>按键盘按键或鼠标按钮以测试检测。</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>恢复默认值</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>清除冲突</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>映射</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>状态</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>搜索按键或映射</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>有效：唯一映射 · 冲突：映射被多次使用 · 已保留：Windows 或 GW GUI 快捷键</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>有效</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>冲突</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>已保留</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>未映射</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>单击“分配”，然后按键盘键、鼠标按钮或控制器按钮。</value></data>
+</root>

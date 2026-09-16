@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Usuń obraz dysku...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Na stałe usunąć ten obraz dysku i wszystkie jego dane? Ta operacja nie może być cofnięta.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Usuwanie jest niemożliwe. Odłącz ten dysk, zapisz konfiguracje i najpierw zamknij wymienione sesje:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Sesja otwarta: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Usuwanie przez linki nie jest dozwolone. Wybierz oryginalny plik.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Wybierz rozszerzenie obsługiwane przez tę maszynę i interfejs.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Ten plik już istnieje. Wybierz inną nazwę.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Pojemność: 512 bajtów do {0}, w wielokrotności 512. Konserwatywny limit dla wspieranego systemu.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Tworzy pusty dysk surowy bez systemu operacyjnego. Przygotowuj i formatuj go za pomocą narzędzi dyskowych wewnątrz maszyny emulowanej.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Przygotowanie dysku</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Pusty (niesformatowany)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatowanie tworzy pusty wolumin, bez systemu operacyjnego. HDD Uruchomienie systemu wymaga również kompatybilnego sterownika dysku zainstalowanego z emulowanej maszyny. Skompresowane obrazy mogą przekierować zapis do ekstrahowanej kopii.</value></data>
+</root>

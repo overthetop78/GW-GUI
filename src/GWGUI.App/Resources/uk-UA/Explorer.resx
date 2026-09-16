@@ -1,18 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Образ диска</value></data>
+  <data name="Explorer.DetectedFormats"><value>Виявлено: {0}</value></data>
   <data name="Explorer.Format"><value>Формат</value></data>
   <data name="Explorer.OpenImage"><value>Відкрити образ…</value></data>
   <data name="Explorer.Automatic"><value>Автоматичне визначення</value></data>
@@ -32,9 +25,11 @@
   <data name="Explorer.Unknown"><value>Невідомо</value></data>
   <data name="Explorer.Unnamed"><value>Том без назви</value></data>
   <data name="Explorer.LoadFailed"><value>Не вдалося відкрити образ: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Несумісний формат</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Не вдалося інтерпретувати «{1}» у форматі «{0}».&#xA;Виберіть інший формат, щоб продовжити.</value></data>
   <data name="Explorer.Loading"><value>Читання образу диска…</value></data>
   <data name="Explorer.ReadDisk"><value>Прочитати дискету</value></data>
-  <data name="Explorer.Name"><value>Ім'я</value></data>
+  <data name="Explorer.Name"><value>Ім&apos;я</value></data>
   <data name="Explorer.Type"><value>Тип</value></data>
   <data name="Explorer.ReadDiskConfirmTitle"><value>Прочитати дискету</value></data>
   <data name="Explorer.ReadDiskConfirm"><value>Дискету вставлено у вибраний зараз дисковод ({0}) і вона готова до читання?</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>Стиснення</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Власний завантажувач секторів</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Власний завантажувач — немає каталогу файлів</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack від The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Блоки даних</value></data>
-  <data name="Explorer.DetectedFormats"><value>Виявлено: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Інструменти не можуть виробляти розширюваний сектор зображення для {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Інструменти хост не можуть декодувати зображення як {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Інструменти не можуть виробляти розширюваний сектор зображення для {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Інструменти хост не можуть декодувати зображення як {0}.</value></data>
   <data name="Explorer.Session"><value>Засідання диска</value></data>
   <data name="Explorer.Track"><value>Медіа-трекер</value></data>
   <data name="Explorer.Layers"><value>Дискові шари</value></data>
@@ -72,24 +65,27 @@
   <data name="Explorer.AudioTracks"><value>Аудіо треки</value></data>
   <data name="Explorer.LoadingRecognition"><value>Визнання медіа формату</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Визначений формат</value></data>
-  <data name="Explorer.LoadingMedia"><value>Читання структури ЗМІ</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Аналіз файлової системи</value></data>
-  <data name="Explorer.LoadingContents"><value>Підготовка папок і файлів</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Відображення вмісту</value></data>
   <data name="Explorer.TestingFormat"><value>Формат тестування: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: Юридична</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: не визнав</value></data>
   <data name="Explorer.ReadingFormat"><value>Формат читання: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Несумісний формат</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>Не вдалося інтерпретувати «{1}» у форматі «{0}».&#xA;Виберіть інший формат, щоб продовжити.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Читання структури ЗМІ</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Читання стрічки</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Редакція {0} з {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Випадкові записи стрічки</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Визнання файлів</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Аналіз файлової системи</value></data>
+  <data name="Explorer.LoadingContents"><value>Підготовка папок і файлів</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Відображення вмісту</value></data>
   <data name="Explorer.FileWithExtension"><value>Письма {0}</value></data>
   <data name="Explorer.Type.Document"><value>Документація</value></data>
   <data name="Explorer.Type.SourceCode"><value>Код джерела</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC файл програми</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Програма для завантаження</value></data>
   <data name="Explorer.Type.Executable"><value>Виконаний</value></data>
-  <data name="Explorer.Type.Command"><value>Ім'я користувача</value></data>
+  <data name="Explorer.Type.Command"><value>Ім&apos;я користувача</value></data>
   <data name="Explorer.Type.SystemFile"><value>Файл системи</value></data>
-  <data name="Explorer.Type.ObjectCode"><value>Код об'єкта</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Код об&apos;єкта</value></data>
   <data name="Explorer.Type.Data"><value>Файл даних</value></data>
   <data name="Explorer.Type.Configuration"><value>Файл конфігурації</value></data>
   <data name="Explorer.Type.Library"><value>Інформаційна підтримка</value></data>
@@ -108,11 +104,12 @@
   <data name="Explorer.Category.Document"><value>Документація</value></data>
   <data name="Explorer.Category.SourceCode"><value>Код джерела</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC Програма</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Програма для завантаження</value></data>
   <data name="Explorer.Category.Program"><value>Програма</value></data>
   <data name="Explorer.Category.Executable"><value>Виконаний</value></data>
   <data name="Explorer.Category.Command"><value>КОМПЛЕКС</value></data>
   <data name="Explorer.Category.System"><value>Системы</value></data>
-  <data name="Explorer.Category.ObjectCode"><value>Код об'єкта</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Код об&apos;єкта</value></data>
   <data name="Explorer.Category.Data"><value>Дані</value></data>
   <data name="Explorer.Category.Configuration"><value>Конфігурація</value></data>
   <data name="Explorer.Category.Library"><value>Інформаційна підтримка</value></data>
@@ -128,7 +125,7 @@
   <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC Програма</value></data>
   <data name="Explorer.ContentFormat.NativeExecutable"><value>Нативний виконуваний</value></data>
   <data name="Explorer.ContentFormat.CommandScript"><value>Команди або скрипти</value></data>
-  <data name="Explorer.ContentFormat.ObjectCode"><value>Код об'єкта</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Код об&apos;єкта</value></data>
   <data name="Explorer.ContentFormat.SystemBinary"><value>Система бінарних</value></data>
   <data name="Explorer.ContentFormat.StructuredData"><value>Структура даних</value></data>
   <data name="Explorer.ContentFormat.Configuration"><value>Конфігурація</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Тип</value></data>
   <data name="Explorer.BaudRate"><value>Швидкість</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Затримка</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Програма для завантаження</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Програма для завантаження</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Читання стрічки</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Редакція {0} з {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Випадкові записи стрічки</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Визнання файлів</value></data>
 </root>

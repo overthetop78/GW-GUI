@@ -1,19 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Obraz dysku</value></data>
-<data name="Explorer.OpenImage"><value>Otwórz obraz…</value></data>
+  <data name="Explorer.DetectedFormats"><value>Wykryto: {0}</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.OpenImage"><value>Otwórz obraz…</value></data>
   <data name="Explorer.Automatic"><value>Wykrywanie automatyczne</value></data>
   <data name="Explorer.Volume"><value>Wolumin</value></data>
   <data name="Explorer.FileSystem"><value>System plików</value></data>
@@ -31,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Nieznany</value></data>
   <data name="Explorer.Unnamed"><value>Wolumin bez nazwy</value></data>
   <data name="Explorer.LoadFailed"><value>Nie można otworzyć tego obrazu: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Niezgodny format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Nie można zinterpretować „{1}” przy użyciu formatu „{0}”.&#xA;Wybierz inny format, aby kontynuować.</value></data>
   <data name="Explorer.Loading"><value>Odczytywanie obrazu dysku…</value></data>
   <data name="Explorer.ReadDisk"><value>Odczytaj dyskietkę</value></data>
   <data name="Explorer.Name"><value>Nazwa</value></data>
@@ -41,7 +37,9 @@
   <data name="Explorer.Type.Image"><value>Obraz</value></data>
   <data name="Explorer.Type.Audio"><value>Plik dźwiękowy</value></data>
   <data name="Explorer.Type.Archive"><value>Archiwum</value></data>
-<data name="Explorer.Type.DiskImage"><value>Obraz dysku</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Obraz dysku</value></data>
+  <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Zabezpieczenie</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sektory fizyczne — nie rozpoznano systemu plików</value></data>
   <data name="Explorer.Organization"><value>Organizacja</value></data>
@@ -49,14 +47,9 @@
   <data name="Explorer.Compression"><value>Kompresja</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Niestandardowy program ładujący sektory</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Niestandardowy program ładujący — brak katalogu plików</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack autorstwa The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Bloki danych</value></data>
-  <data name="Explorer.DetectedFormats"><value>Wykryto: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Narzędzia Host nie mogą stworzyć wyjasnionego obrazu sektorowego dla {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Narzędzia hosta nie mogły odkodować obrazu jako {0}.</value></data>
-  <data name="Explorer.Format"><value>Format</value></data>
-  <data name="Explorer.Type.Program"><value>Program</value></data>
-  <data name="Explorer.System"><value>System</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Narzędzia Host nie mogą stworzyć wyjasnionego obrazu sektorowego dla {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Narzędzia hosta nie mogły odkodować obrazu jako {0}.</value></data>
   <data name="Explorer.Session"><value>Sesja dysku</value></data>
   <data name="Explorer.Track"><value>Ścieżka medialna</value></data>
   <data name="Explorer.Layers"><value>Warstwy dysków</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Ścieżki dźwiękowe</value></data>
   <data name="Explorer.LoadingRecognition"><value>Uznawanie formatu mediów</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Uznane format</value></data>
-  <data name="Explorer.LoadingMedia"><value>Czytanie struktury mediów</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Analiza systemu plików</value></data>
-  <data name="Explorer.LoadingContents"><value>Przygotowanie folderów i plików</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Wyświetlanie zawartości</value></data>
   <data name="Explorer.TestingFormat"><value>Format badania: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: rozpoznany</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: nierozpoznany</value></data>
   <data name="Explorer.ReadingFormat"><value>Format odczytu: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Niezgodny format</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>Nie można zinterpretować „{1}” przy użyciu formatu „{0}”.&#xA;Wybierz inny format, aby kontynuować.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Czytanie struktury mediów</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Odczyt taśmy</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Zapis {0} z {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Odkodowywanie nagrań taśmowych</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Rozpoznawanie plików</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analiza systemu plików</value></data>
+  <data name="Explorer.LoadingContents"><value>Przygotowanie folderów i plików</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Wyświetlanie zawartości</value></data>
   <data name="Explorer.FileWithExtension"><value>Plik {0}</value></data>
   <data name="Explorer.Type.Document"><value>Dokument</value></data>
   <data name="Explorer.Type.SourceCode"><value>Kod źródła</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC plik programu</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program boot</value></data>
   <data name="Explorer.Type.Executable"><value>Wykonawalny</value></data>
   <data name="Explorer.Type.Command"><value>Plik poleceń</value></data>
   <data name="Explorer.Type.SystemFile"><value>Plik systemowy</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Dokument</value></data>
   <data name="Explorer.Category.SourceCode"><value>Kod źródła</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program boot</value></data>
   <data name="Explorer.Category.Program"><value>Program</value></data>
   <data name="Explorer.Category.Executable"><value>Wykonawalny</value></data>
   <data name="Explorer.Category.Command"><value>Polecenie</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Typ</value></data>
   <data name="Explorer.BaudRate"><value>Prędkość</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Opóźnienie</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Program boot</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Program boot</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Odczyt taśmy</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Zapis {0} z {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Odkodowywanie nagrań taśmowych</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Rozpoznawanie plików</value></data>
 </root>

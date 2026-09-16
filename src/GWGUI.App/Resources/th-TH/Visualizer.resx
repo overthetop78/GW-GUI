@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>ตัวถอดรหัส</value></data>
   <data name="Visual.LinkZoom"><value>ลิงค์ซูม.</value></data>
   <data name="Visual.OpenScp"><value>เปิด SCP แฟ้ม...</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>ถูกต้อง</value></data>
   <data name="Visual.CrcInvalid"><value>ไม่ถูกต้อง</value></data>
   <data name="Visual.IntegrityUnavailable"><value>ไม่พร้อมใช้งาน</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (ความหนาแน่นของเสียง)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>นอร์ธสตาร์ ยากที่จะทดสอบ MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit ทํางานหนัก FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>เข้ารหัส N แบบแข็งตัว FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>ระบบ/ ดาต้าของอาร์บูร์ก</value></data>
+  <data name="Visual.DecoderName.raw"><value>ฟลอกซ์แบบ Raw</value></data>
   <data name="Visual.StructureKind.Sync"><value>การซิงโครไนซ์</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>ส่วนหัวของภาค</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>ข้อมูลภาคส่วน</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>จัดรูปแบบส่วนหัว</value></data>
   <data name="Visual.StructureKind.FormatData"><value>จัดรูปแบบข้อมูล</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>ความผิดปกติของเวลา</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro จับภาพ (*.scp)|*.scp|ไฟล์ทั้งหมด|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>เช็คซัม</value></data>
   <data name="Visual.Side"><value>ด้านข้าง {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>กำลังวิเคราะห์แทร็ก {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>วิเคราะห์ การ ปฏิวัติ {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>ด้านข้าง</value></data>
   <data name="Visual.TrackLabel"><value>ติดตาม</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP รายการ</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>สัดส่วนที่ลดแล้ว</value></data>
   <data name="Visual.SectorDead"><value>ขอบเขตตาย</value></data>
   <data name="Visual.SectorWithoutData"><value>ขอบเขตข้อมูลไม่มี</value></data>
-  <data name="Visual.AnalysingRevolution"><value>วิเคราะห์ การ ปฏิวัติ {0}/{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>ข้อมูลเทปคาสเซ็ต</value></data>
 </root>

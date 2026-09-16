@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Apagar imagem de disco...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Exclua permanentemente esta imagem de disco e todos os seus dados? Esta operação não pode ser desfeita.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>A exclusão é impossível. Desanexe este disco, salve as configurações e feche primeiro as sessões listadas:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Abrir sessão: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Não é permitido excluir as ligações. Seleccione o ficheiro original.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Escolha uma extensão suportada por esta máquina e interface.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Este ficheiro já existe. Escolha outro nome.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Capacidade: 512 bytes para {0}, em múltiplos de 512. Limite conservador para o sistema suportado.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Cria um disco bruto vazio sem um sistema operacional. Prepare e formate-o usando ferramentas de disco dentro da máquina emulado.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Preparação do disco</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Em branco (não formatado)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>A formatação cria um volume vazio, sem um sistema operacional. Atari HDD o arranque também requer um driver de disco compatível instalado na máquina emulado. As imagens comprimidas podem redirecionar as gravações para uma cópia extraída.</value></data>
+</root>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>تشغيل</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>إيقاف مؤقت</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>إرجاع</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>تقديم سريع</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>تسجيل</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>إيقاف</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>لا يوجد شريط</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>متوقف</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>قيد التشغيل</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>متوقف مؤقتًا</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>تسجيل</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>نهاية الشريط</value></data>
+</root>

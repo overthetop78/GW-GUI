@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Abilita audio</value></data>
+  <data name="Emulation.Audio.Output"><value>Uscita audio</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latenza (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolazione</value></data>
+  <data name="Emulation.Audio.Filter"><value>Filtro audio Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Separazione stereo (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Ingresso audio</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Questo nucleo Amiga non fornisce un ingresso audio.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Uscita predefinita di Windows</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Interpolazione anti</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulato</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Tipo di filtro</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Volume suono unità floppy</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Tipo di suono unità floppy</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Disattiva audio delle unità vuote</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Volume audio CD</value></data>
+  <data name="Emulation.Audio.Device"><value>Dispositivo</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latenza</value></data>
+  <data name="Emulation.Audio.Quality"><value>Qualità</value></data>
+  <data name="Emulation.Audio.Drives"><value>Unità</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Suono dell’unità floppy</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtro audio polarizzato</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Bassa</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Alta</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio audio</value></data>
+</root>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Leerlauf Diskettenlaufwerke</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>Silences den emulierten Laufwerk Sound, während keine Festplatte eingefügt wird. Deaktivieren Sie diese Option, um das mechanische Leerlaufgeräusch zu halten.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>Analoge Audiofilterung auswählen</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>Wählen Sie aus, wie der ursprüngliche analoge Audiofilter reproduziert wird. Emuliert folgt dem Hardwareverhalten. Die anderen Optionen zwingen den Filter ein oder aus.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>Aktivieren Sie den polarisierten Audiofilter</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>Wendet den polarisierten Filter auf das erzeugte Audiosignal an. Ermöglichen Sie es, den gefilterten Sound zu reproduzieren. Deaktivieren Sie es, um das ungefilterte Signal beizubehalten.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>Wählen Sie Audio-Interpolation</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>Wählen Sie aus, wie Audio-Samples zwischen generierten Sample-Punkten berechnet werden. Hochwertigere Methoden erzeugen einen glatteren Klang, erfordern jedoch mehr Verarbeitung.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>Legen Sie Audiolatenz fest</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>Legt die Dauer des Audiopuffers fest. Ein kürzerer Puffer reduziert die Verzögerung, kann aber zu Knistern führen. Ein längerer Puffer verbessert die Stabilität, erhöht aber die Verzögerung.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>Dual ermöglichen POKEY Stereoanlage</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>Fügt eine zweite emuliert POKEY Chip, um Stereo-Sound zu erzeugen. Aktivieren Sie diese Option nur für Software, die Dual unterstützt POKEY Audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>Set Stereo Separation</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>Legt die Trennung zwischen dem linken und rechten Kanal fest. Ein niedrigerer Wert mischt die Kanäle zusammen. Ein höherer Wert hält sie weiter auseinander.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>Wählen Sie das Diskettenlaufwerk Soundset</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>Wählen Sie das Sample-Set aus, das für die mechanischen Sounds von emulierten Diskettenlaufwerken verwendet wird. Es ändert nicht das Laufwerksverhalten oder die Datenträgerdaten.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>Wählen Sie das Audiofiltermodell aus</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Wählt die Antwort des Hardwarefilters zum Emulieren aus. Auto folgt dem ausgewählten Maschinenmodell. Eine bestimmte Auswahl verwendet immer diese Filterantwort.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>Aktivieren Sie zwei zusätzliche Joystick-Ports</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>Emuliert einen Parallel-Port-Adapter, der zwei Joystick-Ports hinzufügt. Aktivieren Sie es für Software, die vier gleichzeitige Spieler unterstützt.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>Stellen Sie das Turbo-Pulsintervall ein</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>Stellt die Zeit zwischen automatischen Knopfdrücken ein, die von Turbo erzeugt werden. Ein kürzeres Intervall führt zu einem schnelleren wiederholten Brennen.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>Wählen Sie einen Controller-Kompatibilitätsmodus</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>Wählen Sie ein spezielles Controller-Mapping aus, z. B. Dual-Stick-Steuerung, getauschte Ports oder Joy2B+. Wählen Sie Keine, um die Standard-Port-Zuordnung beizubehalten.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>Set analoge Eingangsempfindlichkeit</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>Legt fest, wie stark ein analoger Eingang auf Bewegung reagiert. Ein höherer Wert erzeugt eine größere Antwort aus der gleichen physischen Bewegung.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Setzen Sie die digitale Eingangsempfindlichkeit</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Legt fest, wie schnell eine digitale Richtung die volle Bewegung erreicht. Ein höherer Wert lässt Richtungsänderungen schneller ihr Maximum erreichen.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Autofire-Modus auswählen</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Deaktiviert schaltet Autofeuer aus. Der Button On wiederholt das Feuer, während der zugewiesene Button gehalten wird. Immer wiederholt Feuer kontinuierlich.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Einstellung der Paddelbewegung</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Legt fest, wie schnell der digitale Eingang ein emuliertes Paddel bewegt. Ein niedrigerer Wert bewegt ihn langsamer. Ein höherer Wert bewegt ihn schneller.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Wählen Sie FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>Wählen Sie die für Gleitkomma-Anweisungen verwendete Gleitkomma-Einheit aus; Wählen Sie Keine, um die FPU. Verfügbare Modelle hängen von den ausgewählten CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>Wählen CPU Genauigkeit der Emulation</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Wählt aus, wie eng CPU Timing folgt der ursprünglichen Hardware. Genauere Modi können die Kompatibilität verbessern, erfordern jedoch möglicherweise mehr Verarbeitung.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Setzen Sie die emulierten CPU Drehzahl</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>Legt die Prozessorfrequenz fest, die von der emulierten Maschine verwendet wird. Die ursprüngliche Geschwindigkeit bewahrt das Hardware-Timing. Höhere Werte beschleunigen CPU-begrenzte Software.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Verwenden Sie analoge Sticks, um die Maus zu steuern</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>Ermöglicht analogen Joystick-Achsen, den emulierten Mauszeiger zu bewegen. Aktivieren Sie es, wenn ein physischer Analogstick den Zeiger steuern sollte.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>Analoge Mausgeschwindigkeit einstellen</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>Legt die Zeigergeschwindigkeit fest, wenn ein Analogstick die emulierte Maus steuert. Ein höherer Wert bewegt den Zeiger für die gleiche Stickbewegung weiter.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>Stellen Sie die analoge Maus tote Zone</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>Ignoriert kleine Analog-Stick-Bewegungen um das Zentrum, während die Maus gesteuert wird. Erhöhen Sie den Wert, wenn sich der Zeiger bewegt, während der Stick freigegeben wird.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Ermöglicht die Axlon $0F Schattenbank</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Spiegelt die Axlon-Kontrollbank unter Adresse $ 0F. Aktivieren Sie es nur für Software- oder Speichererweiterungen, die diese zusätzliche Adresse verwenden.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Setz Axlon Erweiterungsspeicher</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Legt den Betrag der Bank-switched Axlon Speicher. Disabled entfernt die Erweiterung. Die anderen Optionen bieten die ausgewählte Speicherkapazität.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Setz Mosaic Erweiterungsspeicher</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Legt den Betrag der Bank-switched Mosaic Speicher. Disabled entfernt die Erweiterung. Die anderen Optionen bieten die ausgewählte Speicherkapazität.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Setzen Sie zusätzlichen Erweiterungsspeicher</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Legt die Menge an zusätzlichem Erweiterungsspeicher fest, der von der ausgewählten Maschine unterstützt wird. Wählen Sie Keine, um nur den konfigurierten Hauptspeicher zu verwenden.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Setz Fast RAM Größe</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>Legt den Betrag der Fast RAM direkt verfügbar für die CPU. Zusätzlich Fast RAM kann kompatibler Software helfen, ändert aber die emulierte Hardwarekonfiguration.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Aktiv MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>Ermöglicht es kompatibler Software, beschreibbar abzubilden RAM Ins System ROM Adressgebiet. Diese Option ist nur für Maschinenmodelle verfügbar, die MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Setz Zorro III RAM Größe</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>Legt den Betrag von 32-Bit fest Fast RAM verbunden durch die Zorro III Bus. Verwenden Sie es nur mit kompatiblen 32-Bit-Maschinen und Software.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>Setz Slow RAM Größe</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Legt den Betrag der Slow RAM im Falltürerweiterungsbereich. Dieses Gedächtnis ist langsamer als Fast RAM und verwendet einen anderen Hardware-Adressbereich.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>Wählen Sie ROM Entschlüsselungsschlüssel</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>Wählen Sie die Schlüsseldatei, die zum Entschlüsseln einer lizenzierten verschlüsselten Datei verwendet wird ROM Bild. Lassen Sie dieses Feld leer, wenn ROM ist nicht verschlüsselt.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Schnelles Starten ermöglichen</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>Überspringt ausgewählte Hardware-Initialisierungsverzögerungen, um den Start zu verkürzen. Deaktivieren Sie diese Option, wenn die Software die ursprüngliche Startsequenz benötigt.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>Wählen Sie eine erweiterte ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>Wählen Sie die sekundäre Firmware ROM von einigen Maschinenmodellen verlangt. Lassen Sie dieses Feld leer, wenn das ausgewählte Modell keine erweiterte ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Beschleunigt ermöglichen SIO Übertragungen</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>Beschleunigt kompatible Übertragungen über den seriellen Ein-/Ausgabebus. Deaktivieren Sie diese Option, wenn die Software vom ursprünglichen Übertragungszeitpunkt abhängt.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Kassettenstart aktivieren</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Lässt die emulierte Maschine versuchen, mit dem angehängten Kassettenbild zu beginnen. Deaktivieren Sie diese Option beim Starten von einem anderen Gerät.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Ermöglicht die R-Time 8 Uhrzeit</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>Emuliert eine R-Time 8 Echtzeituhr, so dass kompatible Software das aktuelle Datum und die aktuelle Uhrzeit lesen kann.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>Ermöglicht die P: Druckvorrichtung</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>macht die emulierten P: Druckergerät für Software verfügbar. Deaktivieren Sie diese Option, wenn keine Druckergeräteemulation erforderlich ist.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>Ermöglicht die R: serielles Gerät</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>macht die emulierten R: serielles Gerät für Software verfügbar. Deaktivieren Sie diese Option, wenn die Emulation von Seriengeräten nicht erforderlich ist.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>Wählen Sie hochauflösende Farbartefaktierung</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>Wählen Sie aus, wie hochauflösende Muster Composite-Videofarben erzeugen. Keiner deaktiviert Artefaktfarben. Die anderen Modi reproduzieren unterschiedliche Paletten oder Chipverhalten.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>Blitter Timing auswählen</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>Wählen Sie aus, ob Blutter-Operationen sofort abgeschlossen werden oder dem emulierten Hardware-Timing folgen. Sofortiger Modus ist schneller, aber weniger Timing-genau.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>Output-Refreshrate-Änderungen zulassen</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>Ermöglicht es der Ausgabewiederholrate, Änderungen im emulierten Videomodus zu folgen. Locked behält die aktuelle Ausgabe-Aktualisierungsrate.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>Details zur Kollisionserkennung auswählen</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>Wählen Sie aus, welche Sprite- und Playfield-Kollisionen berechnet werden. Eine vollständigere Erkennung verbessert die Kompatibilität, erfordert jedoch mehr Verarbeitung.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>Reduzieren Sie Interlaced Display Flicker</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>Reduziert das Flimmern in interlaced Videoausgabe. Aktivieren Sie es für ein stabileres Bild. Deaktivieren Sie es, um das ursprüngliche interlaced Anzeigeverhalten zu erhalten.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>Wählen Sie das angezeigte Seitenverhältnis</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>Wählen Sie aus, wie das emulierte Bild horizontal und vertikal skaliert wird. Auto folgt der emulierten Ausgabe. Eine feste Wahl Kräfte, die Form zeigen.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>Bild Gamma anpassen</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>Ändert die Helligkeit der Mitteltöne, ohne die Schwarz-Weiß-Werte direkt zu ändern. Niedrigere Werte verdunkeln die Mitteltöne. Höhere Werte erhellen sie.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>Wählen Sie den Videoline-Modus</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>Wählen Sie aus, wie vertikale Videozeilen angezeigt werden. Auto folgt dem emulierten Modus. Andere Optionen erzwingen einzelne Zeilen, doppelte Zeilen oder Scanlines, wenn verfügbar.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>Wählen Sie den Videostandard</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>Wählen Sie das emulierte Fernseh-Timing aus, wie z.B. PAL oder NTSC. Dies wirkt sich auf die Aktualisierungsrate, das Hardware-Timing und die Software-Kompatibilität aus.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>Wählen Sie eine externe Farbpalette</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>Wählen Sie eine vordefinierte Farbpalette anstelle von Farben aus den aktuellen Videoeinstellungen. Wählen Sie Keine, um die erzeugten Farben zu verwenden.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>Ausgewählte Farbtiefe</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>Wählen Sie die Farbtiefe, die zum Rendern des Bildes verwendet wird. 24-bit hält mehr Farbdetails. 16-bit verwendet eine kleinere Auswahl an Farben.</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>Wählen Sie die Hardware-Region</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>Wählen Sie das regionale Timing aus, das von der emulierten Maschine verwendet wird. Die Wahl kann die Videofrequenz beeinflussen, CPU Timing und kompatible Firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>Wählen Sie den Video-Renderer</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>Wählen Sie das Grafik-Backend aus, das zum Zeichnen des emulierten Displays verwendet wird. Verfügbare Renderer können sich in Leistung und Kompatibilität mit dem Hostsystem unterscheiden.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>Anpassung GTIA Farbverzögerung</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Setzt die GTIA Farbphasenverzögerung zur Wiedergabe von Farben. Default verwendet den Standardwert. Numerische Entscheidungen verschieben die resultierenden Farbtöne.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Set-frame-Skip</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Legt fest, wie viele Anzeigerahmen weggelassen werden. Disabled zeichnet jeden Frame. Höhere Werte reduzieren die Renderarbeit, machen die Bewegung jedoch weniger glatt.</value></data>
+</root>

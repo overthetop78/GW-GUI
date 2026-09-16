@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-<data name="Visual.LinkZoom"><value>Zoomlink koppelen</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Visual.Decoder"><value>Decoder</value></data>
+  <data name="Visual.LinkZoom"><value>Zoomlink koppelen</value></data>
   <data name="Visual.OpenScp"><value>Open een SCP-bestand…</value></data>
   <data name="Visual.NoFile"><value>Geen schijfkopie geopend</value></data>
   <data name="Visual.Waiting"><value>Wachten op een bestand</value></data>
@@ -39,9 +32,16 @@
   <data name="Visual.StructureAnomaly"><value>Verwijderd/afwijking</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analyse gebaseerd op revolutie {0}.</value></data>
   <data name="Visual.BitOffset"><value>beetje {0:N0}</value></data>
-<data name="Visual.CrcValid"><value>geldig</value></data>
+  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>geldig</value></data>
   <data name="Visual.CrcInvalid"><value>ongeldig</value></data>
   <data name="Visual.IntegrityUnavailable"><value>niet beschikbaar</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (enkele dichtheid)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hard-sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg-systeem/gegevens</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raw flux</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synchronisatie</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Sectorkop</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sectorgegevens</value></data>
@@ -54,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Koptekst opmaken</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Gegevens opmaken</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Timingafwijking</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro vastleggen (*.scp)|*.scp|Alle bestanden|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Controlesom</value></data>
   <data name="Visual.Side"><value>Zijkant {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Track {0}/{1}… analyseren</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyse van revolutie {0}&apos;{1}…</value></data>
   <data name="Visual.SideLabel"><value>Kant</value></data>
   <data name="Visual.TrackLabel"><value>Spoor</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP invoer</value></data>
@@ -76,8 +75,6 @@
   <data name="Visual.FormatDetected"><value>Formaat gedetecteerd</value></data>
   <data name="Visual.AverageRpm"><value>gemiddeld RPM</value></data>
   <data name="Visual.AverageDuration"><value>Gemiddelde duur</value></data>
-  <data name="Visual.Decoder"><value>Decoder</value></data>
-  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
   <data name="Visual.All"><value>Alles</value></data>
   <data name="Visual.Surface"><value>Oppervlakte {0}</value></data>
   <data name="Visual.DiscFace"><value>Gezicht {0}</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>Gedegradeerde sector</value></data>
   <data name="Visual.SectorDead"><value>Doodse sector</value></data>
   <data name="Visual.SectorWithoutData"><value>Sector zonder gegevens</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analyse van revolutie {0}'{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>Cassette-informatie</value></data>
 </root>

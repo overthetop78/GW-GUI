@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Не вдалося зберегти налаштування.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>Помилка GW GUI</value></data>
   <data name="Error.Unexpected"><value>Неочікувана помилка була перехоплена.&#xA;&#xA;{0}</value></data>
@@ -34,6 +26,6 @@
   <data name="Error.Description.InvalidArgument"><value>Однією з поданих значень є недійсним. Перегляньте налаштування та спробуйте знову.</value></data>
   <data name="Error.Description.InvalidOperation"><value>Операція не може бути завершена в поточному стані.</value></data>
   <data name="Error.Description.NotSupported"><value>Ця операція не підтримується вибраним файлом, пристроєм або платформою.</value></data>
-  <data name="Error.Description.OutOfMemory"><value>Для завершення операції не вистачає пам'яті.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Для завершення операції не вистачає пам&apos;яті.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI зіткнувся з несподіваною проблемою під час виконання цієї дії.</value></data>
 </root>

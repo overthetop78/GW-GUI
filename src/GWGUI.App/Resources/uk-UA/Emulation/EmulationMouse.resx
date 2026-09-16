@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Клавіша звільнення миші</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Ліва кнопка миші</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Права кнопка миші</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Середня кнопка миші</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Фізична миша</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Подвійний рух</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Швидкість миші</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Аналогові стіки для керування мишею</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Мертва зона аналогових стіків</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Швидкість миші від аналогового стіка</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Дії миші</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Кнопка миші 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Кнопка миші 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Захоплення миші</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Коліщатко миші вгору</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Коліщатко миші вниз</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Коліщатко миші ліворуч</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Коліщатко миші праворуч</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Захоплювати мишу</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Видаляє мишу</value></data>
+</root>

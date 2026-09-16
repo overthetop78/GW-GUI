@@ -1,18 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>תמונת דיסק</value></data>
+  <data name="Explorer.DetectedFormats"><value>זוהה: {0}</value></data>
   <data name="Explorer.Format"><value>תבנית</value></data>
   <data name="Explorer.OpenImage"><value>פתיחת תמונה…</value></data>
   <data name="Explorer.Automatic"><value>זיהוי אוטומטי</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>לא ידוע</value></data>
   <data name="Explorer.Unnamed"><value>אמצעי אחסון ללא שם</value></data>
   <data name="Explorer.LoadFailed"><value>לא ניתן לפתוח תמונה זו: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>פורמט לא תואם</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>לא ניתן לפרש את „{1}” באמצעות הפורמט „{0}”.&#xA;בחר פורמט אחר כדי להמשיך.</value></data>
   <data name="Explorer.Loading"><value>תמונת הדיסק נקראת…</value></data>
   <data name="Explorer.ReadDisk"><value>קריאת הדיסקט</value></data>
   <data name="Explorer.Name"><value>שם</value></data>
@@ -52,11 +47,9 @@
   <data name="Explorer.Compression"><value>דחיסה</value></data>
   <data name="Explorer.CustomSectorLoader"><value>טוען סקטורים מותאם</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>טוען מותאם — אין קטלוג קבצים</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack על ידי The Company</value></data>
   <data name="Explorer.DataBlocks"><value>בלוקי נתונים</value></data>
-  <data name="Explorer.DetectedFormats"><value>זוהה: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>כלי מארח לא יכולים לייצר תמונה של מגזר בלתי מוסבר {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>כלי מארח לא יכלו לפענח את התמונה כמו {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>כלי מארח לא יכולים לייצר תמונה של מגזר בלתי מוסבר {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>כלי מארח לא יכלו לפענח את התמונה כמו {0}.</value></data>
   <data name="Explorer.Session"><value>דיון</value></data>
   <data name="Explorer.Track"><value>עקבו אחרי Media track</value></data>
   <data name="Explorer.Layers"><value>שכבות</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>עקבו אחרי Audio</value></data>
   <data name="Explorer.LoadingRecognition"><value>זיהוי פורמט התקשורת</value></data>
   <data name="Explorer.LoadingFormatFound"><value>פורמט מוכר</value></data>
-  <data name="Explorer.LoadingMedia"><value>קריאה במבנה התקשורת</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>ניתוח מערכת הקבצים</value></data>
-  <data name="Explorer.LoadingContents"><value>הכנת תיקיות וקבצים</value></data>
-  <data name="Explorer.LoadingDisplay"><value>הצגת התוכן</value></data>
   <data name="Explorer.TestingFormat"><value>פורמט בדיקות: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: מוכר</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: לא מוכר</value></data>
   <data name="Explorer.ReadingFormat"><value>פורמט קריאה: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>פורמט לא תואם</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>לא ניתן לפרש את „{1}” באמצעות הפורמט „{0}”.&#xA;בחר פורמט אחר כדי להמשיך.</value></data>
+  <data name="Explorer.LoadingMedia"><value>קריאה במבנה התקשורת</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>לקרוא את הקלטת</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>רשומות רשומות {0} של {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>רשומות קלטות</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>זיהוי קבצים</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>ניתוח מערכת הקבצים</value></data>
+  <data name="Explorer.LoadingContents"><value>הכנת תיקיות וקבצים</value></data>
+  <data name="Explorer.LoadingDisplay"><value>הצגת התוכן</value></data>
   <data name="Explorer.FileWithExtension"><value>File {0}</value></data>
   <data name="Explorer.Type.Document"><value>מסמך</value></data>
   <data name="Explorer.Type.SourceCode"><value>קוד מקור</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC תוכנת File</value></data>
+  <data name="Explorer.Type.BootProgram"><value>תוכנית Boot</value></data>
   <data name="Explorer.Type.Executable"><value>לוח ההוצאה להורג</value></data>
   <data name="Explorer.Type.Command"><value>קובץ Command</value></data>
   <data name="Explorer.Type.SystemFile"><value>קובץ מערכת</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>מסמך</value></data>
   <data name="Explorer.Category.SourceCode"><value>קוד מקור</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC תכנית</value></data>
+  <data name="Explorer.Category.BootProgram"><value>תוכנית Boot</value></data>
   <data name="Explorer.Category.Program"><value>תכנית</value></data>
   <data name="Explorer.Category.Executable"><value>לוח ההוצאה להורג</value></data>
   <data name="Explorer.Category.Command"><value>פיקוד פיקוד</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>סוג</value></data>
   <data name="Explorer.BaudRate"><value>קצב</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>השהיה</value></data>
-  <data name="Explorer.Type.BootProgram"><value>תוכנית Boot</value></data>
-  <data name="Explorer.Category.BootProgram"><value>תוכנית Boot</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>לקרוא את הקלטת</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>רשומות רשומות {0} של {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>רשומות קלטות</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>זיהוי קבצים</value></data>
 </root>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Zachowanie</value></data>
+  <data name="Emulation.Input.Assign"><value>Przypisz...</value></data>
+  <data name="Emulation.Input.Actions"><value>Akcje</value></data>
+  <data name="Emulation.Input.Press"><value>Naciśnij klawisz...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Wykrywanie urządzeń jest wspólne, ale przypisania są zapisywane osobno w każdej konfiguracji maszyny.</value></data>
+  <data name="Emulation.Input.Test"><value>Testuj wejścia</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Wspólne urządzenia wejściowe</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Naciśnij klawisz lub przycisk myszy, aby sprawdzić wykrywanie.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Przywróć domyślne</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Usuń konflikty</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Przypisanie</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Stan</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Szukaj klawisza lub przypisania</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Prawidłowe: unikalne przypisanie · Konflikt: przypisanie użyte wielokrotnie · Zarezerwowane: skrót Windows lub GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Prawidłowe</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Konflikt</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Zarezerwowane</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Nieprzypisane</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Kliknij Przypisz, a następnie użyj klawisza, przycisku myszy lub kontrolera.</value></data>
+</root>

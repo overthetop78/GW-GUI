@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Không xác định</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Đẩy ra</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Không xác định</value></data>
+  <data name="Common.Eject"><value>Đẩy ra</value></data>
   <data name="Common.MediaKind.Unknown"><value>Phương tiện lạ</value></data>
   <data name="Common.MediaKind.Floppy"><value>Đĩa mềm</value></data>
   <data name="Common.MediaKind.HardDisk"><value>Đĩa cứng</value></data>
@@ -24,4 +16,10 @@
   <data name="Common.Representation.Blocks"><value>Khối</value></data>
   <data name="Common.Representation.OpticalTracks"><value>Dấu vết quang học</value></data>
   <data name="Common.Representation.Sequential"><value>Dữ liệu thời gian</value></data>
+  <data name="Common.Advanced"><value>Cài đặt nâng cao</value></data>
+  <data name="Common.ExpertArguments"><value>Lập luận của chuyên gia</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Các đối số được thông qua như được viết sau khi xác thực trích dẫn.</value></data>
+  <data name="Common.DiskImageFilter"><value>ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Mọi tập tin|*.*</value></data>
+  <data name="Common.Console"><value>Bảng điều khiển</value></data>
+  <data name="Common.Command"><value>Yêu cầu</value></data>
 </root>

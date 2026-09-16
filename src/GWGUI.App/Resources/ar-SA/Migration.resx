@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>هجرة الخيل...</value></data>
+  <data name="Migration.Title"><value>الهجرة من الأموال</value></data>
+  <data name="Migration.Heading"><value>ملفات شركة Migrate إلى نظام ملفات آخر</value></data>
+  <data name="Migration.Source"><value>صورة المصدر</value></data>
+  <data name="Migration.NoSource"><value>اختاري صورة تحتوي على نظام ملف معترف به</value></data>
+  <data name="Migration.Destination"><value>نظام ملفات تحديد الهوية وشكلها</value></data>
+  <data name="Migration.Output"><value>صورة الوجهة</value></data>
+  <data name="Migration.Compatibility"><value>التوافق والخسائر</value></data>
+  <data name="Migration.Waiting"><value>اختيار مصدر و وجهة.</value></data>
+  <data name="Migration.Severity"><value>الشدة</value></data>
+  <data name="Migration.Path"><value>مسار المصدر</value></data>
+  <data name="Migration.Description"><value>الوصف</value></data>
+  <data name="Migration.AcceptLosses"><value>قبول الخسائر المدرجة في البيانات الفوقية</value></data>
+  <data name="Migration.Execute"><value>ملفات Migrate</value></data>
+  <data name="Migration.Blocking"><value>القفل</value></data>
+  <data name="Migration.MetadataLoss"><value>خسارة البيانات</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0} - نظام الملفات: {1} - القيود: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>عدم القدرة على إعداد الهجرة: {0}</value></data>
+  <data name="Migration.Completed"><value>تم وضع صورة الوجه: {0}</value></data>
+  <data name="Migration.Failed"><value>وفشلت الهجرة في: {0}</value></data>
+  <data name="Migration.Incompatible"><value>غير متوافقة: تصحيح الخسائر الناجمة عن الحجب قبل الهجرة.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>مقارنة بعد قبول الخسائر المدرجة في البيانات الفوقية.</value></data>
+  <data name="Migration.Compatible"><value>مقارنة: لم يكتشف أي خسارة.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>المحتوى الخفيف غير متاح</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>ولا يدعم هذا النوع من الدخول الوجهة.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>ولا ينطبق الاسم على الوجهة.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>الاسم طويل جداً على الوجهة</value></data>
+  <data name="Migration.Loss.NameCollision"><value>العديد من القيود سيكون لها نفس اسم الوجهة</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>الملف كبير جداً بالنسبة للمقصد</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>البيانات الوصفية المصدرية غير صحيحة</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>ولن يُحفظ تاريخ التعديل.</value></data>
+  <data name="Migration.Loss.Comment"><value>ولن يُحفظ التعليق.</value></data>
+  <data name="Migration.Loss.Attributes"><value>ولن تُحفظ خصائص المصدر.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>صورة الوجهة موجودة بالفعل، أستبدلها؟ {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>لا يمكن لصورة الوجهة أن تحل محل صورة المصدر</value></data>
+</root>

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>מפענח</value></data>
   <data name="Visual.LinkZoom"><value>זום קישור</value></data>
   <data name="Visual.OpenScp"><value>Open a SCP קובץ</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>תָקֵף</value></data>
   <data name="Visual.CrcInvalid"><value>לֹא בְּתוֹקֶף</value></data>
   <data name="Visual.IntegrityUnavailable"><value>לא זמין</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (דחיסות של משקל)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>צפוןסטאר - Hard-sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit - בתפקיד FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N קשוח FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>מערכת ארגובורג / נתונים</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raw Flux</value></data>
   <data name="Visual.StructureKind.Sync"><value>סִנכְּרוּן</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>כותרת מגזר</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>נתוני מגזר</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>עיצוב כותרת</value></data>
   <data name="Visual.StructureKind.FormatData"><value>פורמט נתונים</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>חריגה בתזמון</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro לכידה (*.scp)|*.scp|כל הקבצים|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>סכום בדיקה</value></data>
   <data name="Visual.Side"><value>צד {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analysing track {0}/ /{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>מהפכה {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1}…</value></data>
   <data name="Visual.SideLabel"><value>צַד</value></data>
   <data name="Visual.TrackLabel"><value>מַסלוּל</value></data>
   <data name="Visual.ScpEntryLabel"><value>ערך SCP</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>המגזר Degraded</value></data>
   <data name="Visual.SectorDead"><value>Deadמגזר</value></data>
   <data name="Visual.SectorWithoutData"><value>מגזר ללא נתונים</value></data>
-  <data name="Visual.AnalysingRevolution"><value>מהפכה {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>פרטי הקלטת</value></data>
 </root>

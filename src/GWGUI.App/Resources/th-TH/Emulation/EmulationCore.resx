@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>คอร์</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>คอร์จำลอง {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>ไลบรารียังคงอยู่นอกพื้นที่ GW GUI. รุ่นที่เลือกไว้จะแทนที่รุ่นที่ถูกติดตั้งอยู่ในปัจจุบัน</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>รุ่นที่ GW GUI ต้องการ</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>รุ่นทางการล่าสุดที่มี</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>รุ่นที่ติดตั้งอยู่ในขณะนี้</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>คลิก ค้นหา เพื่อสอบถามเซิร์ฟเวอร์ Libretro ทางการ</value></data>
+  <data name="Emulation.Core.NameSearch"><value>ค้นหารุ่น</value></data>
+  <data name="Emulation.Core.NameDownload"><value>ดาวน์โหลดและแทนที่</value></data>
+  <data name="Emulation.Core.NameSearching"><value>กำลังค้นหารุ่นที่มี…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>ไม่พบรุ่นทางการ</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>มี {0} รุ่น</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>กำลังดาวน์โหลด {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>รุ่นที่ติดตั้ง: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · ติดตั้งแล้ว</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>ไม่มีรุ่นที่ติดตั้ง</value></data>
+  <data name="Emulation.Core.Emulator"><value>โปรแกรมจำลอง</value></data>
+  <data name="Emulation.Core.Install"><value>ติดตั้ง</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>ติดตั้ง</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>ตัวเลือกของแกนหลัก</value></data>
+</root>

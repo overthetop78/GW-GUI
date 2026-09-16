@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Kärna</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0}-emuleringskärna</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Biblioteket förblir utanför GW GUI. Den valda versionen ersätter den nu installerade versionen.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Version som krävs av GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Senaste tillgängliga officiella version</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Nu installerad version</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Klicka på Sök för att fråga den officiella Libretro-servern.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Sök versioner</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Hämta och ersätt</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Söker efter tillgängliga versioner…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Ingen officiell version hittades.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} version(er) tillgänglig(a).</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Hämtar {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Installerad version: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · installerad</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Ingen version installerad</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emulator</value></data>
+  <data name="Emulation.Core.Install"><value>Installera</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Installerad</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Kärnalternativ</value></data>
+</root>

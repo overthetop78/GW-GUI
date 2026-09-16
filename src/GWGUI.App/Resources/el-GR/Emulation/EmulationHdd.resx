@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Διαγραφή εικόνας δίσκου...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Διαγράψτε μόνιμα αυτή την εικόνα δίσκου και όλα τα δεδομένα της; Αυτή η λειτουργία δεν μπορεί να αναιρεθεί.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Αποσύνδεση είναι αδύνατη. Αποσυνδέστε αυτόν το δίσκο, αποθηκεύστε τις ρυθμίσεις και κλείστε τις συνεδρίες που αναφέρονται πρώτα:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Άνοιγμα συνεδρίας: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Διαγραφή μέσω συνδέσμων δεν επιτρέπεται. Επιλέξτε το αρχικό αρχείο.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Επιλέξτε μια επέκταση που υποστηρίζεται από αυτό το μηχάνημα και τη διασύνδεση.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Αυτό το αρχείο υπάρχει ήδη. Επιλέξτε ένα άλλο όνομα.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Χωρητικότητα: 512 bytes προς {0}, σε πολλαπλάσια του 512.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Δημιουργεί ένα άδειο ακατέργαστο δίσκο χωρίς λειτουργικό σύστημα. Προετοιμάστε και διαμορφώστε το χρησιμοποιώντας εργαλεία δίσκου μέσα στην προσομοίωση μηχανή.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Προετοιμασία δίσκου</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Κενό (μη μορφοποιημένο)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Η διαμόρφωση δημιουργεί μια κενή ένταση, χωρίς λειτουργικό σύστημα. HDD Η εκκίνηση απαιτεί επίσης έναν συμβατό οδηγό δίσκου εγκατεστημένο από το μηχάνημα που μιμείται.</value></data>
+</root>

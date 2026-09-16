@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Перетворення файлів</value></data>
+  <data name="Migration.Title"><value>Перетворення файлів</value></data>
+  <data name="Migration.Heading"><value>Змігрувати файли в іншу файлову систему</value></data>
+  <data name="Migration.Source"><value>Джерело зображення</value></data>
+  <data name="Migration.NoSource"><value>Виберіть зображення, що містить визнану файлову систему.</value></data>
+  <data name="Migration.Destination"><value>Форматування та форматування</value></data>
+  <data name="Migration.Output"><value>Напрямок</value></data>
+  <data name="Migration.Compatibility"><value>Сумісність та втрати</value></data>
+  <data name="Migration.Waiting"><value>Виберіть джерело та призначення.</value></data>
+  <data name="Migration.Severity"><value>Сєвєвічність</value></data>
+  <data name="Migration.Path"><value>Джерело шлях</value></data>
+  <data name="Migration.Description"><value>Опис</value></data>
+  <data name="Migration.AcceptLosses"><value>Прийняття перерахованих втрат метаданих</value></data>
+  <data name="Migration.Execute"><value>Migrate файли</value></data>
+  <data name="Migration.Blocking"><value>Блокування</value></data>
+  <data name="Migration.MetadataLoss"><value>Збиток метаданих</value></data>
+  <data name="Migration.SourceSummary"><value>Об&apos;єм: {0} — файлова система: {1} — Записи кореневих: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Не можна підготувати міграцію: {0}</value></data>
+  <data name="Migration.Completed"><value>Створено зображення призначення: {0}</value></data>
+  <data name="Migration.Failed"><value>Не вдалося переселення: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Несумісні: виправити пошкодження блоків перед передачею.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Сумісність після прийняття зазначених втрат метаданих.</value></data>
+  <data name="Migration.Compatible"><value>Сумісність: не виявлено втрати.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Файл вмісту є недоступним.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Цей тип входу не підтримується призначенням.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Назва не діє для призначення.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Назва дуже довго для призначення.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Кілька записів будуть мати однакову назву призначення.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Файл занадто великий для призначення.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Випадкові метадані недійсні.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Дата модифікації не буде збережена.</value></data>
+  <data name="Migration.Loss.Comment"><value>Не буде збережено коментар.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Випадкові атрибути не будуть збережені.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Зображення призначення вже існує. Замініть його? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Зображення призначення не може замінити вихідний образ.</value></data>
+</root>

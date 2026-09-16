@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Warning.InvalidChecksum"><value>บล็อกหลัก {0} มีการตรวจสอบที่ไม่ถูกต้อง</value></data>
   <data name="Explorer.Warning.DirectoryNesting"><value>ถึงขีดจำกัดการซ้อนไดเร็กทอรีแล้ว</value></data>
   <data name="Explorer.Warning.InvalidDirectoryChain"><value>ห่วงโซ่ไดเรกทอรี cyclic ที่บล็อคไม่ถูกต้อง {0}.</value></data>

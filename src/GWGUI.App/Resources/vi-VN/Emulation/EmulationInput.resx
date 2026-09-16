@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Hành vi</value></data>
+  <data name="Emulation.Input.Assign"><value>Gán...</value></data>
+  <data name="Emulation.Input.Actions"><value>Hành động</value></data>
+  <data name="Emulation.Input.Press"><value>Nhấn một phím...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Việc phát hiện thiết bị được dùng chung, còn các gán được lưu riêng trong từng cấu hình máy.</value></data>
+  <data name="Emulation.Input.Test"><value>Kiểm tra đầu vào</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Thiết bị đầu vào dùng chung</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Nhấn phím bàn phím hoặc nút chuột để kiểm tra phát hiện.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Khôi phục mặc định</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Xóa xung đột</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Gán phím</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Trạng thái</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Tìm phím hoặc phép gán</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Hợp lệ: phép gán duy nhất · Xung đột: phép gán dùng nhiều lần · Dành riêng: phím tắt Windows hoặc GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Hợp lệ</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Xung đột</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Dành riêng</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Chưa gán</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Bấm Gán rồi sử dụng phím, nút chuột hoặc nút tay cầm.</value></data>
+</root>

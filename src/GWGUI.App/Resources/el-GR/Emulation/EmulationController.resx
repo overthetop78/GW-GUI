@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Συσκευή χειριστηρίου {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Ανιχνευτές</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Δράση Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Πληκτρολόγιο, έλεγχος ποντικιού ή ελεγκτή</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Αριστερό ραβδί</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Δεξί ραβδί</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Και τα δύο ραβδιά.</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Πυρκαγιά από στροβιλοκινητήρες</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>κουμπάκι Turbo</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Παλμός τούρμπο</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Σειρά θύρας ελέγχου</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Δεν εντοπίστηκε χειριστήριο</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Αντιστοιχίσεις χειριστηρίου</value></data>
+  <data name="Emulation.Controller.Port"><value>Θύρα {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Τύπος χειριστηρίου</value></data>
+  <data name="Emulation.Controller.Detected"><value>Εντοπισμένα χειριστήρια</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Αναζήτηση ενέργειας ή εισόδου</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Πάνω</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Κάτω</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Αριστερά</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Δεξιά</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Κουμπί πυρός 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Κουμπί πυρός 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Αναλογικό χειριστήριο</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Αυτόματο</value></data>
+  <data name="Emulation.Controller.None"><value>Καμία</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Εναλλαγή χειριστήριο/ποντίκι</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Δεν ήταν δυνατή η αρχικοποίηση του GameInput. Εγκαταστήστε ή επιδιορθώστε το παρεχόμενο περιβάλλον εκτέλεσης GameInput.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Ταχύτητα Konix (αριστερό χέρι)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (δεξιά)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Εμφάνιση</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Ελεγκτής {0}</value></data>
+</root>

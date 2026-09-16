@@ -1,19 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Diskafbildning</value></data>
-<data name="Explorer.OpenImage"><value>Åbn en afbildning…</value></data>
+  <data name="Explorer.DetectedFormats"><value>Registreret: {0}</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.OpenImage"><value>Åbn en afbildning…</value></data>
   <data name="Explorer.Automatic"><value>Automatisk registrering</value></data>
   <data name="Explorer.Volume"><value>Diskenhed</value></data>
   <data name="Explorer.FileSystem"><value>Filsystem</value></data>
@@ -27,19 +21,25 @@
   <data name="Explorer.Warnings"><value>Advarsler</value></data>
   <data name="Explorer.Directory"><value>Mappe</value></data>
   <data name="Explorer.File"><value>Fil</value></data>
-<data name="Explorer.Unknown"><value>Ukendt</value></data>
+  <data name="Explorer.Link"><value>Link</value></data>
+  <data name="Explorer.Unknown"><value>Ukendt</value></data>
   <data name="Explorer.Unnamed"><value>Unavngivet diskenhed</value></data>
   <data name="Explorer.LoadFailed"><value>Denne afbildning kan ikke åbnes: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Inkompatibelt format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>“{1}” kan ikke fortolkes med formatet “{0}”.&#xA;Vælg et andet format for at fortsætte.</value></data>
   <data name="Explorer.Loading"><value>Læser diskafbildning…</value></data>
   <data name="Explorer.ReadDisk"><value>Læs diskette</value></data>
   <data name="Explorer.Name"><value>Navn</value></data>
-<data name="Explorer.ReadDiskConfirmTitle"><value>Læs diskette</value></data>
+  <data name="Explorer.Type"><value>Type</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Læs diskette</value></data>
   <data name="Explorer.ReadDiskConfirm"><value>Er disketten sat i det valgte drev ({0}) og klar til at blive læst?</value></data>
   <data name="Explorer.Type.Text"><value>Tekstfil</value></data>
   <data name="Explorer.Type.Image"><value>Billede</value></data>
   <data name="Explorer.Type.Audio"><value>Lydfil</value></data>
   <data name="Explorer.Type.Archive"><value>Arkiv</value></data>
-<data name="Explorer.Type.DiskImage"><value>Diskafbildning</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Diskafbildning</value></data>
+  <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Beskyttelse</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysiske sektorer — intet genkendt filsystem</value></data>
   <data name="Explorer.Organization"><value>Organisering</value></data>
@@ -47,16 +47,9 @@
   <data name="Explorer.Compression"><value>Komprimering</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Brugerdefineret sektorindlæser</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Brugerdefineret sektorindlæser — intet filkatalog</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack af The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Datablokke</value></data>
-  <data name="Explorer.DetectedFormats"><value>Registreret: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Værtsværktøjer kan ikke producere et explorable sektor image til {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Værtsværktøjer kunne ikke afkode billedet som {0}.</value></data>
-  <data name="Explorer.Format"><value>Format</value></data>
-  <data name="Explorer.Link"><value>Link</value></data>
-  <data name="Explorer.Type"><value>Type</value></data>
-  <data name="Explorer.Type.Program"><value>Program</value></data>
-  <data name="Explorer.System"><value>System</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Værtsværktøjer kan ikke producere et explorable sektor image til {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Værtsværktøjer kunne ikke afkode billedet som {0}.</value></data>
   <data name="Explorer.Session"><value>Disk- session</value></data>
   <data name="Explorer.Track"><value>Mediespor</value></data>
   <data name="Explorer.Layers"><value>Disklag</value></data>
@@ -72,20 +65,23 @@
   <data name="Explorer.AudioTracks"><value>Lydspor</value></data>
   <data name="Explorer.LoadingRecognition"><value>Genkender medieformatet</value></data>
   <data name="Explorer.LoadingFormatFound"><value>Anerkendt format</value></data>
-  <data name="Explorer.LoadingMedia"><value>Læsning af mediestrukturen</value></data>
-  <data name="Explorer.LoadingFileSystem"><value>Analyserer filsystemet</value></data>
-  <data name="Explorer.LoadingContents"><value>Klargøring af mapper og filer</value></data>
-  <data name="Explorer.LoadingDisplay"><value>Viser indholdet</value></data>
   <data name="Explorer.TestingFormat"><value>Testformat: {0}</value></data>
   <data name="Explorer.TestedFormatRecognized"><value>{0}: anerkendt</value></data>
   <data name="Explorer.TestedFormatRejected"><value>{0}: ikke anerkendt</value></data>
   <data name="Explorer.ReadingFormat"><value>Læseformat: {0}</value></data>
-  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Inkompatibelt format</value></data>
-  <data name="Explorer.SelectedFormatUnsupported"><value>“{1}” kan ikke fortolkes med formatet “{0}”.&#xA;Vælg et andet format for at fortsætte.</value></data>
+  <data name="Explorer.LoadingMedia"><value>Læsning af mediestrukturen</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Læser båndet</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Optag {0} af {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Afkodning af båndoptagelser</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Genkender filer</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analyserer filsystemet</value></data>
+  <data name="Explorer.LoadingContents"><value>Klargøring af mapper og filer</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Viser indholdet</value></data>
   <data name="Explorer.FileWithExtension"><value>Fil {0}</value></data>
   <data name="Explorer.Type.Document"><value>Dokument</value></data>
   <data name="Explorer.Type.SourceCode"><value>Kildekode</value></data>
   <data name="Explorer.Type.BasicProgram"><value>BASIC programfil</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Boot-program</value></data>
   <data name="Explorer.Type.Executable"><value>Kan udføres</value></data>
   <data name="Explorer.Type.Command"><value>Kommandofil</value></data>
   <data name="Explorer.Type.SystemFile"><value>Systemfil</value></data>
@@ -108,6 +104,7 @@
   <data name="Explorer.Category.Document"><value>Dokument</value></data>
   <data name="Explorer.Category.SourceCode"><value>Kildekode</value></data>
   <data name="Explorer.Category.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Boot-program</value></data>
   <data name="Explorer.Category.Program"><value>Program</value></data>
   <data name="Explorer.Category.Executable"><value>Kan udføres</value></data>
   <data name="Explorer.Category.Command"><value>Kommando</value></data>
@@ -157,10 +154,4 @@
   <data name="Explorer.ChunkType"><value>Type</value></data>
   <data name="Explorer.BaudRate"><value>Hastighed</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Forsinkelse</value></data>
-  <data name="Explorer.Type.BootProgram"><value>Boot-program</value></data>
-  <data name="Explorer.Category.BootProgram"><value>Boot-program</value></data>
-  <data name="Explorer.LoadingTapeReading"><value>Læser båndet</value></data>
-  <data name="Explorer.LoadingTapeRecord"><value>Optag {0} af {1}</value></data>
-  <data name="Explorer.LoadingTapeDecoding"><value>Afkodning af båndoptagelser</value></data>
-  <data name="Explorer.LoadingFileRecognition"><value>Genkender filer</value></data>
 </root>

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>解碼器</value></data>
   <data name="Visual.LinkZoom"><value>連結縮放</value></data>
   <data name="Visual.OpenScp"><value>開啟 SCP 檔案...</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>有效的</value></data>
   <data name="Visual.CrcInvalid"><value>無效的</value></data>
   <data name="Visual.IntegrityUnavailable"><value>不可用</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (单一密度)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>北星硬块 MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>热力小板 FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>米切尔N硬区 FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>阿尔堡系统/数据</value></data>
+  <data name="Visual.DecoderName.raw"><value>原始通量</value></data>
   <data name="Visual.StructureKind.Sync"><value>同步</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>扇區標題</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>部門數據</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>格式標題</value></data>
   <data name="Visual.StructureKind.FormatData"><value>格式化數據</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>時序異常</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro 擷取 (*.scp)|*.scp|所有檔案|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>校驗和</value></data>
   <data name="Visual.Side"><value>側邊 {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>分析音轨 {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>分析革命 {0}/ 数据{1}…</value></data>
   <data name="Visual.SideLabel"><value>邊</value></data>
   <data name="Visual.TrackLabel"><value>追蹤</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP 條目</value></data>
@@ -168,6 +165,5 @@
   <data name="Visual.SectorDegraded"><value>退化部门</value></data>
   <data name="Visual.SectorDead"><value>死区</value></data>
   <data name="Visual.SectorWithoutData"><value>无数据部门</value></data>
-  <data name="Visual.AnalysingRevolution"><value>分析革命 {0}/ 数据{1}…</value></data>
   <data name="Visual.CassetteInspectorTitle"><value>卡式錄音帶資訊</value></data>
 </root>

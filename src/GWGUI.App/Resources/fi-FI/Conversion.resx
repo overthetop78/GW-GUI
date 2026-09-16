@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>Olemassa olevat tiedostot</value></data>
-  <data name="Conflict.Heading"><value>Jotkut tiedostot ovat jo olemassa</value></data>
-  <data name="Conflict.Help"><value>Valitse toiminto jokaiselle tiedostolle tai käytä samaa toimintoa kaikkiin tiedostoihin.</value></data>
-  <data name="Conflict.File"><value>Tiedosto</value></data>
-  <data name="Conflict.Action"><value>Toiminta</value></data>
-  <data name="Conflict.Overwrite"><value>Korvaa</value></data>
-  <data name="Conflict.Skip"><value>Ohita</value></data>
-  <data name="Conflict.Number"><value>Käytä seuraavaa numeroa</value></data>
-  <data name="Conflict.AllOverwrite"><value>Korvaa kaikki</value></data>
-  <data name="Conflict.AllSkip"><value>Ohita kaikki</value></data>
-  <data name="Conflict.AllNumber"><value>Numeroi kaikki</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>Muuntaminen</value></data>
   <data name="Conversion.SelectOutput"><value>Valitse vähintään yksi tulostusmuoto.</value></data>
   <data name="Conversion.SourceAmbiguous"><value>Epäselvä lähde</value></data>
@@ -43,49 +24,14 @@
   <data name="Conversion.Incompatible"><value>{0} ei ole yhteensopiva tämän lähteen kanssa.</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>Tulostetiedoston nimeä ei löytynyt.</value></data>
   <data name="Conversion.ReconstructedFlux"><value>rekonstruoitu vuo</value></data>
-  <data name="Migration.Open"><value>Tiedoston muutto...</value></data>
-  <data name="Migration.Title"><value>Tiedoston siirtyminen</value></data>
-  <data name="Migration.Heading"><value>Siirrä tiedostoja toiseen tiedostojärjestelmään</value></data>
-  <data name="Migration.Source"><value>Lähdekuva</value></data>
-  <data name="Migration.NoSource"><value>Valitse tiedostojärjestelmä, joka sisältää tunnistetun tiedostojärjestelmän.</value></data>
-  <data name="Migration.Destination"><value>Määränpäätiedostojärjestelmä ja -muoto</value></data>
-  <data name="Migration.Output"><value>Kohdekuva</value></data>
-  <data name="Migration.Compatibility"><value>Soveltuvuus ja menetykset</value></data>
-  <data name="Migration.Waiting"><value>Valitse lähde ja kohde.</value></data>
-  <data name="Migration.Severity"><value>Vakavuus</value></data>
-  <data name="Migration.Path"><value>Lähdepolku</value></data>
-  <data name="Migration.Description"><value>Tavaran kuvaus</value></data>
-  <data name="Migration.AcceptLosses"><value>Hyväksy listatut metatietohäviöt</value></data>
-  <data name="Migration.Execute"><value>Siirrä tiedostoja</value></data>
-  <data name="Migration.Blocking"><value>Esteet</value></data>
-  <data name="Migration.MetadataLoss"><value>Metatietojen menetys</value></data>
-  <data name="Migration.SourceSummary"><value>Määrä: {0} ... Tiedostojärjestelmä: {1} ... {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Muuttoliikettä ei voitu valmistella: {0}</value></data>
-  <data name="Migration.Completed"><value>Kohdekuva luotiin: {0}</value></data>
-  <data name="Migration.Failed"><value>Muuttoliike epäonnistui: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Yhteensopimaton: Korjaa estohäviöt ennen siirtymistä.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Yhteensopiva sen jälkeen, kun on hyväksytty luetellut metatiedot.</value></data>
-  <data name="Migration.Compatible"><value>Yhteensopiva: ei havaittu menetystä.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>Tiedoston sisältö ei ole saatavilla.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>Määränpää ei tue tätä tietuetyyppiä.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>Nimi ei ole voimassa määräpaikassa.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>Nimi on liian pitkä määränpäähän.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Useilla kirjoituksilla olisi sama kohdenimi.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>Tiedosto on liian suuri määränpäähän.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>Lähdemetatiedot ovat virheellisiä.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>Muutospäivää ei säilytetä.</value></data>
-  <data name="Migration.Loss.Comment"><value>Kommenttia ei säilytetä.</value></data>
-  <data name="Migration.Loss.Attributes"><value>Lähdeattribuutteja ei säilytetä.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>Kohdekuva on jo olemassa. {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>Kohdekuva ei voi korvata lähdekuvaa.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>Alakohtaiset tiedot; suojaa ei säilytetä</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>rekonstruoidut kappaleet; alkuperäinen virta, jota ei ole säilytetty</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>alkuperäinen valovirta säilynyt</value></data>
-  <data name="Conversion.EngineExternal"><value>Työkalut: muuntaminen {0}.</value></data>
-  <data name="Conversion.EngineInternalStart"><value>Sisäinen moottori: muuntaminen {0} - {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>Sisäinen muuntaminen valmis: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>Sisämoottori ei tue tätä muuntamista: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>Sisäinen muuntaminen epäonnistui {0}: {1}</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Työkalut: muuntaminen {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Sisäinen moottori: muuntaminen {0} - {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Sisäinen muuntaminen valmis: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>Sisämoottori ei tue tätä muuntamista: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Sisäinen muuntaminen epäonnistui {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potentiaalinen tietojen menetys</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Tämä muuntaminen ei voi säilyttää kaikkia lähdetietoja:&#xA;&#xA;{0}&#xA;&#xA;Haluatko jatkaa?</value></data>
 </root>
