@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Kartta: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP- polku: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP- nimet: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Tiedostojärjestelmän tietuetta ei voitu lukea.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Pyydetty luku ({0}) ylittää puskurin koon ({1})</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Seuraavassa tiedostolohkossa on väärä järjestysnumero.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Levyllä ei ole vapaata sektoria.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Tässä operaatiossa tuetaan vain nollan offset-arvoa.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Tämä tiedostojärjestelmävirta ei tue sen pituuden muuttamista.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Välimuisti {0} jakoketjussa ei ole bittikarttalohkoa; todellinen tyyppi: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Välimuistin jakolohko {0} ei sisällä bittikarttalohkoa; todellinen tyyppi: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Tarvittava bittikarttakatkos puuttuu.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Looppi havaittiin, kun lohkoja vapautettiin jakosolmussa {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Jakosolmupiste {0} -Ei voitu lukea.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Jakosolmun lohkoa ei voitu jakaa.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Pyydetty sijainti on virheellinen tälle tiedostojärjestelmä-oliolle.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Jakosolmun operaatio epäonnistui.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Jako-node bittikartta-indeksi lohko {0}/{1} -Ei voitu lukea.</value></data>
 </root>

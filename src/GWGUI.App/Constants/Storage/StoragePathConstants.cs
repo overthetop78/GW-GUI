@@ -9,6 +9,7 @@ internal static class StoragePathConstants
     internal const string SavesDirectory = "Saves";
     internal const string StorageDirectory = "Storage";
     internal const string FirmwareDirectory = "Firmware";
+    internal const string RomsDirectory = "ROM";
     internal const string FloppiesDirectory = "Floppies";
     internal const string CassettesDirectory = "Cassettes";
     internal const string CartridgesDirectory = "Cartridges";

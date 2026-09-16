@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Nombres de PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>La entrada del sistema de archivos no se podía leer.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>El recuento solicitado ({0}) excede el tamaño del búfer ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>El siguiente bloque de archivos tiene un número de secuencia incorrecto.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>No hay sector libre disponible en el disco.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Sólo se admite la compensación cero para esta operación.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Este sistema de archivos no admite cambiar su longitud.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Bloque en caché {0} en la cadena de asignación no contiene un bloque bitmap; tipo real: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Bloque de asignación en espera {0} no contiene un bloque bitmap; tipo real: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>El bloque de mapas de bits requerido está desaparecido.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Se detectó un bucle mientras se liberaban bloques en el nodo de asignación {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Nodo de asignación {0} no se podía leer.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>No se podría asignar el bloque de nodos de asignación.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>La posición solicitada es inválida para este objeto del sistema de archivos.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>La operación de nodos de asignación falló.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloque índice de mapas de bitmap de nodos de asignación {0}/{1} no se podía leer.</value></data>
 </root>

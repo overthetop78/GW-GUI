@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Cartographie: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP chemin: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Noms de la PnP : {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>L'entrée système de fichiers n'a pas pu être lue.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Le nombre demandé ({0}) dépasse la taille du tampon ({1}) .</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Le prochain bloc de fichiers a un numéro de séquence incorrect.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Aucun secteur gratuit n'est disponible sur le disque.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Seul le zéro offset est pris en charge pour cette opération.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Ce flux de système de fichiers ne supporte pas de changer sa longueur.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Bloc de cache {0} dans la chaîne d'allocation ne contient pas de bloc bitmap; type réel: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Bloc d'attribution des droits {0} ne contient pas de bloc bitmap; type réel: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Le bloc bitmap requis est manquant.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Une boucle a été détectée lors de la libération des blocs au nœud d'allocation {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Noeud d'allocation {0} ne pouvait pas être lu.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Le bloc de nœuds d'attribution n'a pas pu être attribué.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>La position demandée est invalide pour cet objet système de fichiers.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>L'opération de répartition des nœuds a échoué.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloc d'index bitmap de l'allocation-node {0}/{1} ne pouvait pas être lu.</value></data>
 </root>

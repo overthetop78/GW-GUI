@@ -25,38 +25,38 @@ Ce relevé couvre les fichiers texte suivis par Git dans les dossiers `GWGUI.*`.
 | `src/GWGUI.App/Rendering/Emulation/Processing/SoftwareEmulationVideoProcessingPipeline.cs` | 754 | Moyenne, traitements vidéo spécialisés — Découpage effectué |
 | `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` | 695 | **Élevée**, contrôleur applicatif — Découpage effectué |
 | `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs` | 644 | Normale, dessin d’interface — Découpage effectué |
-| `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs` | 612 | Moyenne, interface dynamique |
-| `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` | 598 | Moyenne, code-behind |
-| `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs` | 591 | Normale, visualisation |
-| `src/GWGUI.App/Rendering/Emulation/Processing/VeldridVideoProcessingShaders.cs` | 567 | Normale, données de shaders |
-| `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` | 559 | **Élevée**, contrôleur applicatif |
-| `src/GWGUI.App/Views/Controls/Options/OptionsControllersSection.xaml.cs` | 537 | Moyenne, code-behind |
-| `src/GWGUI.App/Services/Input/GameInput/Hid/HidReportDecoder.cs` | 531 | Moyenne, décodage spécialisé |
+| `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs` | 612 | Moyenne, interface dynamique — Découpage effectué |
+| `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` | 598 | Moyenne, code-behind — Découpage effectué |
+| `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs` | 591 | Normale, visualisation — Découpage effectué |
+| `src/GWGUI.App/Rendering/Emulation/Processing/VeldridVideoProcessingShaders.cs` | 567 | Normale, données de shaders — Découpage effectué |
+| `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` | 559 | **Élevée**, contrôleur applicatif — Découpage effectué |
+| `src/GWGUI.App/Views/Controls/Options/OptionsControllersSection.xaml.cs` | 537 | Moyenne, code-behind — Découpage effectué |
+| `src/GWGUI.App/Services/Input/GameInput/Hid/HidReportDecoder.cs` | 531 | Moyenne, décodage spécialisé — Découpage effectué |
 
 ## GWGUI.Emulation
 
 | Fichier | Lignes | Sévérité |
 |---|---:|---|
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Directory.cs` | 3 584 | **Élevée**, portage extrêmement volumineux |
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Disk.cs` | 1 103 | Portage |
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/anodes.cs` | 1 037 | Portage |
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/FastFileSystem/Directory.cs` | 975 | Portage |
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Update.cs` | 953 | Portage |
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Allocation.cs` | 869 | Portage |
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Volume.cs` | 545 | Portage |
-| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/FastFileSystem/EntryStream.cs` | 512 | Portage |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3Directory.cs` | 3 584 | **Élevée**, portage extrêmement volumineux — Renommage et découpage effectués |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3Disk.cs` | 1 103 | Portage — Renommage et découpage effectués |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3Anodes.cs` | 1 037 | Portage — Renommage et découpage effectués |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/FastFileSystem/FastFileSystemDirectory.cs` | 975 | Portage — Renommage et découpage effectués |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3Update.cs` | 953 | Portage — Renommage et découpage effectués |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3Allocation.cs` | 869 | Portage — Renommage et découpage effectués |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/Pfs3/Pfs3VolumeOperations.cs` | 545 | Portage — Renommage et découpage effectués |
+| `src/GWGUI.Emulation/HardDisks/FileSystems/Amiga/FastFileSystem/FastFileSystemEntryStream.cs` | 512 | Portage — Renommage et découpage effectués |
 
 ## GWGUI.Emulation.Amiga
 
 | Fichier | Lignes | Sévérité |
 |---|---:|---|
-| `src/GWGUI.Emulation.Amiga/Services/AmigaExternalHostCallbacks.cs` | 638 | Moyenne, interop et callbacks |
+| `src/GWGUI.Emulation.Amiga/Services/AmigaExternalHostCallbacks.cs` | 638 | Moyenne, interop et callbacks — Découpage effectué |
 
 ## GWGUI.Emulation.Atari
 
 | Fichier | Lignes | Sévérité |
 |---|---:|---|
-| `src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs` | 513 | Normale à moyenne, catalogue de réglages |
+| `src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs` | 513 | Normale à moyenne, catalogue de réglages — Découpage effectué |
 
 ## GWGUI.Tests
 
@@ -69,12 +69,9 @@ Ce relevé couvre les fichiers texte suivis par Git dans les dossiers `GWGUI.*`.
 
 | Fichier | Lignes | Sévérité |
 |---|---:|---|
-| `src/GWGUI.VideoPresentation/Dictionaries/EmulationVideoProcessingCatalog.cs` | 527 | Normale, catalogue déclaratif |
+| `src/GWGUI.VideoPresentation/Dictionaries/EmulationVideoProcessingCatalog.cs` | 527 | Normale, catalogue déclaratif — Découpage effectué |
 
 ## Priorités
 
-Le fichier applicatif le plus urgent à examiner est maintenant
-`src/GWGUI.App/Services/Input/GameInput/GameInputControllerReader.cs`.
-
-`Pfs3/Directory.cs` est beaucoup plus long, mais appartient à un portage technique. Sa provenance et
-sa correspondance avec l’implémentation d’origine doivent être conservées lors d’un éventuel découpage.
+Tous les fichiers de production recensés ont été découpés. Les deux fichiers restant sans mention de
+découpage appartiennent à `GWGUI.Tests` et sont conservés tels quels.

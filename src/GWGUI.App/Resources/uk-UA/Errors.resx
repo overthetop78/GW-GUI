@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>мітки: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>Шлях ПнП: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>ПнП імена: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Вступ файлової системи не може бути прочитано.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Запитана кількість ({0}) перевищує розмір буфера ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Наступний блок файлів має неправильний номер послідовності.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>На диску немає вільного сектора.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Для цієї операції підтримується тільки офсетний нульовий.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Цей потік файлової системи не підтримує зміну його довжини.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Заглушка блок {0} в ланцюжку розподілу не містить бітмапа блок; фактичний тип: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Блок розподілу сидінь {0} не містить бітмапа блок; фактичний тип: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Відсутня блочний блок бітма.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>При виведенні петлю виявлено петлі при розподілі вузла {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Розподільчий вузол {0} не можна читати.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Не можна виділитися блок локації.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>За запитом, позиція недійсна для цього об'єкта файлової системи.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Не вдалося відведення.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Блок індексу бітової карти вузла розподілу {0}/{1} не вдалося прочитати.</value></data>
 </root>

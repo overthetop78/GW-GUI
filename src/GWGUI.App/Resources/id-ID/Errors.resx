@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Pemetaan: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>Path PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Nama PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Entri sistem berkas tidak dapat dibaca.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Cacah yang diminta ({0}) melebihi ukuran penyangga ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Berkas blok berikutnya memiliki nomor urutan yang salah.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Tidak ada sektor bebas yang tersedia di disk.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Hanya ofset nol yang didukung untuk operasi ini.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Arus sistem berkas ini tidak mendukung mengubah panjangnya.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Blok cached {0} dalam rantai alokasi tidak berisi sebuah blok bitmap; tipe aktual: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Blok alokasi cache {0} tidak berisi sebuah blok bitmap; tipe aktual: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Blok bitmap yang diperlukan hilang.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Sebuah loop terdeteksi ketika membebaskan blok pada titik alokasi {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Node alokasi {0} tidak bisa dibaca.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Alokasional - blok titik tidak dapat dialokasikan.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Posisi yang diminta tidak valid bagi objek sistem berkas ini.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operasi allocation- node gagal.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation- node bitmap indeks block {0}/{1} tidak bisa dibaca.</value></data>
 </root>

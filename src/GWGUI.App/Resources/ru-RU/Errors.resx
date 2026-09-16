@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Картографирование: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>Путь PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP-названия: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Ввод файловой системы не может быть прочитан.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Запрошенное количество ({0}) превышает размер буфера ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Следующий блок файла имеет неправильный порядковый номер.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Бесплатный сектор на диске не доступен.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Для этой операции поддерживается только нулевое смещение.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Этот поток файловой системы не поддерживает изменение его длины.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Кэшированный блок {0} в цепочке распределения не содержится растрового блока; фактический тип: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Блок распределения кэшированных {0} не содержит растрового блока; фактический тип: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Недостающий блок растровых карт отсутствует.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Была обнаружена петля при освобождении блоков в узле распределения {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Узел распределения {0} Не мог быть прочитан.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Блок выделения-узла не мог быть выделен.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Запрашиваемая позиция недействительна для данного объекта файловой системы.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Операция по выделению узла провалилась.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Блок растрового индекса Аллокации узлов {0}/{1} Не мог быть прочитан.</value></data>
 </root>

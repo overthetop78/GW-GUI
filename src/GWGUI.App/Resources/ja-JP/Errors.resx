@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>マッピング: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnPパス: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP の名前: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>ファイルシステムエントリは読み込めません。</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>リクエストされたカウント({0}) バッファサイズを超過します({1})...</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>次のファイルブロックは、不適切なシーケンス番号を持っています。</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>ディスクに無料のセクターが使用可能ではありません。</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>オフセットゼロのみをサポート。</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>このファイルシステムストリームは、その長さを変更してもサポートしません。</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>キャッシュブロック {0} 割当チェーンにはビットマップブロックは含まれていません。実際のタイプ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>キャッシュされた割り当てブロック {0} ビットマップブロックは含まないでください。実際のタイプ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>必須のビットマップブロックが欠落しています。</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>割り当てノードでブロックを解放しながらループが検出されました {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>配分ノード {0} 読み込めない。</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>割り当てノードブロックは割り当てられません。</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>リクエストされた位置は、このファイルシステムオブジェクトでは無効です。</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>割り当てノードの動作が失敗しました。</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>アロケーションノードのビットマップインデックスブロック {0}/{1} を読み取れませんでした。</value></data>
 </root>

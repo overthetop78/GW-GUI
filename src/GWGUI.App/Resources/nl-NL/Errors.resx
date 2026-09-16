@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Kaart: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP-pad: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP namen: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Het bestandssysteem-item kon niet gelezen worden.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>De gevraagde telling ({0}) overschrijdt de buffergrootte ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Het volgende bestandsblok heeft een onjuist volgnummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Er is geen vrije sector beschikbaar op de schijf.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Alleen offset nul wordt ondersteund voor deze bewerking.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Deze bestandssysteemstream ondersteunt het wijzigen van de lengte niet.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Gekacheld blok {0} in de toewijzingsketen geen bitmapblok bevat; het werkelijke type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Gekaakte toewijzingsblok {0} bevat geen bitmapblok; eigenlijk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Het vereiste bitmapblok ontbreekt.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Er werd een lus gedetecteerd tijdens het vrijmaken van blokken bij allocatieknooppunt {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Toewijzingsknooppunt {0} kon niet worden gelezen.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Het toewijzingsknooppunt kon niet worden toegewezen.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>De gevraagde positie is ongeldig voor dit bestandssysteemobject.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>De toewijzingsnode-operatie is mislukt.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocatie-node bitmap indexblok {0}'{1} kon niet worden gelezen.</value></data>
 </root>

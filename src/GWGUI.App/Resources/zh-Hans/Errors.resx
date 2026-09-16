@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>绘图 : {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP 路径 : {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>密码名称 : {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>文件系统条目无法读取 。</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>要求的计数({0}超过缓冲大小( ){1}) (中文(简体) ).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>下一个文件块的序列号不正确.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>磁盘上没有空扇区。</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>仅支持为此项行动提供零。</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>此文件系统流不支持更改其长度 。</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>缓存块 {0} 分配链中不包含位图块; 实际类型 : {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>缓存分配块 {0} 不包含位图块; 实际类型 : {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>缺少所需的位图块 。</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>在分配节点解禁块时检测到一个循环 {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>分配节点 {0} 无法读取 。</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>无法分配节点块。</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>请求的位置对于此文件系统对象无效 。</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>分配节点操作失败 。</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>分配节点位图索引块 {0}/ 数据{1} 无法读取 。</value></data>
 </root>

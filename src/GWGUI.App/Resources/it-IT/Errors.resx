@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP path: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Nome PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>L'ingresso del file-system non poteva essere letto.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Il conteggio richiesto ({0}) supera la dimensione del buffer ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Il blocco file successivo ha un numero di sequenza errato.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Nessun settore libero è disponibile sul disco.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Solo lo zero di offset è supportato per questa operazione.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Questo flusso di file-system non supporta la modifica della sua lunghezza.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Blocco di cavità {0} nella catena di allocazione non contiene un blocco bitmap; tipo effettivo: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Blocco di allocazione Cached {0} non contiene un blocco bitmap; tipo effettivo: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Manca il blocco bitmap richiesto.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Un loop è stato rilevato durante la liberazione dei blocchi al nodo di allocazione {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Nodo di allocazione {0} non si poteva leggere.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Il blocco di nodo di allocazione non poteva essere assegnato.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>La posizione richiesta non è valida per questo oggetto file-system.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>L'operazione di allocazione-nodo non è riuscita.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blocco indice bitmap a nodo di allocazione {0}/{1} non si poteva leggere.</value></data>
 </root>

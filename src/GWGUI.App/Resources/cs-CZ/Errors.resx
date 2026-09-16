@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Mapování: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP cesta: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Název PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Zápis do souboru nelze přečíst.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Požadovaný počet ({0}) přesahuje velikost vyrovnávací paměti ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Další blok souboru má nesprávné číslo sekvence.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Na disku není k dispozici žádný volný sektor.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Pro tuto operaci je podporována pouze nulová odchylka.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Tento souborový proud nepodporuje změnu délky.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Kechovaný blok {0} v přídělovém řetězci neobsahuje blok bitmapu; skutečný typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Zachycený blok přidělení {0} neobsahuje bitmapový blok; skutečný typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Požadovaný bitmapový blok chybí.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Byla zjištěna smyčka při uvolnění bloků v alokačním uzlu {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Uzel přidělení {0} Nedalo se číst.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Nelze alokační-nód blok rozdělit.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Požadovaná pozice je pro tento objekt souboru neplatná.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operace alokation- nód selhala.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blok indexu indexu allocation- uzel {0}/{1} Nedalo se číst.</value></data>
 </root>

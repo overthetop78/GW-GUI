@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>رسم الخرائط: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>طريق PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>أسماء الشرطة: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>لا يمكن قراءة دخول نظام الملفات.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>العدد المطلوب (العد المطلوب){0}() يتجاوز حجم العازل (الحد الأقصى){1}-</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>في ملفه التالي له رقم غير صحيح</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>ولا يوجد قطاع حر على القرص.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>ولا يُدعم لهذه العملية إلا الصفر الذي يُقابل.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>ولا يدعم هذا المسار من نظام الملفات تغيير طوله.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>مبنى مقطع {0} لا يتضمن التخصيص في سلسلة التوزيع مجموعة من القطع؛ النوع الفعلي: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>كتلة مخصص مفصَّلة {0} لا يحتوي على قطعة من القطع؛ النوع الفعلي: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>القطيع المقتطع مفقود</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>تم اكتشاف حلقة في حين تم تحرير المباني عند عقد التوزيع {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Node Allocation {0} لا يمكن قراءته</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>ولم يكن بالإمكان تخصيص بند الاعتماد.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>والموقف المطلوب غير صحيح لهذا الغرض من نظام الملفات.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>فشلت عملية تحديد المخصصات.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>كتلة الرقم القياسي للعضلات {0}/{1} لا يمكن قراءته</value></data>
 </root>

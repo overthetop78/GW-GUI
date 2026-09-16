@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Kartierung: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP-Pfad: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP-Namen: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Der Dateisystemeintrag konnte nicht gelesen werden.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Die angeforderte Anzahl ({0}) überschreitet die Puffergröße ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Der nächste Dateiblock hat eine falsche Sequenznummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Auf der Festplatte ist kein freier Sektor verfügbar.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Für diesen Vorgang wird nur der Offset-Null unterstützt.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Dieser Dateisystem-Stream unterstützt keine Änderung seiner Länge.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Cache-Block {0} in der Zuweisungskette keinen Bitmap-Block enthält; aktueller Typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Zwischenspeicher-Zuweisungsblock {0} enthält keinen Bitmap-Block; aktueller Typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Der erforderliche Bitmap-Block fehlt.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Eine Schleife wurde beim Freigeben von Blöcken am Zuweisungsknoten erkannt {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Zuteilungsknoten {0} nicht gelesen werden konnte.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Der Block Allokationsknoten konnte nicht zugewiesen werden.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Die angeforderte Position ist für dieses Dateisystemobjekt ungültig.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Die Allokationsknotenoperation ist fehlgeschlagen.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bitmap-Indexblock für Allokationsknoten {0}/{1} nicht gelesen werden konnte.</value></data>
 </root>

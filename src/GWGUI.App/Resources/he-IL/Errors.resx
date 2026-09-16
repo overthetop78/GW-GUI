@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>צילום: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>נתיב PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>שמות PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>כניסת מערכת הקבצים לא ניתן לקרוא.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>הספירה המבוקשת ({0}(ה) עולה על גודל ה-buffer ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>לבלוק הקובץ הבא יש מספר רצף לא נכון.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>אין מגזר חופשי זמין בדיסק.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>רק האפס ה-outset נתמך על ידי פעולה זו.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>זרם מערכת הקבצים הזה אינו תומך בשינוי אורךו.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>בלוק Cached {0} בשרשרת ההקצאה אין חסימה של bitmap; סוג אמיתי: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>מגבלת הקצאה {0} לא מכיל חסימה bitmap; סוג אמיתי: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>בלוק bitmap הנדרש חסר.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>לולאה זוהה תוך שחרור בלוקים בהקצאת צומת {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>המונחים: node {0} לא ניתן לקרוא.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>בלוק ההקצאה לא ניתן להקצות.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>העמדה המבוקשת אינה בתוקף עבור אובייקט זה של מערכת הקבצים.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>פעולת ההקצאה נכשלה.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>חסימה של Allocation-node bitmap {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1} לא ניתן לקרוא.</value></data>
 </root>

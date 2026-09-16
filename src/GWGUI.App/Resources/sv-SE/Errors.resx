@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Kartläggning: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP-väg: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP-namn: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Filsystemets inträde kunde inte läsas.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Den begärda räkningen ({0}överstiger buffertstorleken ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Nästa filblock har ett felaktigt sekvensnummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Ingen fri sektor finns tillgänglig på disken.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Endast kompensera noll stöds för denna operation.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Denna filsystemström stöder inte ändra dess längd.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Cached block {0} i fördelningskedjan innehåller inte ett bitmapblock; faktisk typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Cached allocation block {0} innehåller inte ett bitmap-block; faktisk typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Det erforderliga bitmap blocket saknas.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>En slinga upptäcktes medan du frigjorde block vid tilldelningsnod {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Tilldelning nod {0} kunde inte läsas.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Tilldelningsnod blocket kunde inte fördelas.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Den begärda positionen är ogiltig för detta filsystemobjekt.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Tilldelningsnoden-operationen misslyckades.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Tilldelning-node bitmap index block {0}////{1} kunde inte läsas.</value></data>
 </root>

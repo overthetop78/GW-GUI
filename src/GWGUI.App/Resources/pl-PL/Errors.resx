@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Mapowanie: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>Ścieżka PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Nazwa PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Wpis systemu plików nie mógł być odczytany.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Liczba, której dotyczy wniosek ({0}) przekracza rozmiar bufora ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Następny blok ma nieprawidłowy numer sekwencji.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Na dysku nie ma wolnego sektora.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Dla tej operacji obsługiwane jest tylko zero offsetowe.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Ten strumień plików nie obsługuje zmiany długości.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Blok buforowy {0} w łańcuchu alokacji nie zawiera bloku bitmap; rzeczywisty typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Blok przydziału buforów {0} nie zawiera bloku bitmap; rzeczywisty typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Brak wymaganego bloku bitmap.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Wykryto pętlę podczas zwalniania bloków w węźle alokacji {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Węzeł przydziału {0} Nie można go odczytać.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Blok allocation- node nie mógł zostać przydzielony.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Żądana pozycja jest niepoprawna dla tego obiektu systemu plików.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operacja allocation- node nie powiodła się.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blok indeksu mapy bitowej alokacji {0}/{1} Nie można go odczytać.</value></data>
 </root>

@@ -16,6 +16,7 @@ internal static class ControlVisualConstants
     internal const string EmptyValue = "\u2014";
     internal static string AddGlyph => IconGlyphs.Add;
     internal const string DetailSeparator = " \u00B7 ";
+    internal const string WarningSymbol = "\u26A0";
     internal const string CardStyleResource = "Card";
     internal const string MainTabItemStyleResource = "MainTabItemStyle";
     internal const string StatusIconButtonStyleResource = "StatusIconButton";
@@ -26,6 +27,7 @@ internal static class ControlVisualConstants
     internal const string MutedTextBrushResource = "MutedTextBrush";
     internal const string AccentBrushResource = "AccentBrush";
     internal const string TextBrushResource = "TextBrush";
+    internal const string SyntheticNameBrushResource = "SyntheticNameBrush";
     internal const string ConfigurationResource = "Emulation.Configuration";
     internal const string OpenMachineResource = "Emulation.Machine.Open";
     internal const string MachinesResource = "Emulation.Tab.Machines";

@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Kortlægning: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP- sti: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP- navne: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Filsystemindgangen kunne ikke læses.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Den ønskede optælling ({0}) overstiger bufferstørrelsen ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Den næste fil blok har et forkert sekvensnummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Ingen gratis sektor er tilgængelig på disken.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Kun forskudt nul understøttes for denne operation.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Denne filsystemstrøm understøtter ikke ændring af dens længde.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Cached blok {0} i fordelingskæden ikke indeholder en bitmap-blok; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Tildelingsblok for cachet {0} indeholder ikke en bitmap-blok; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Den krævede bitmap blok mangler.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>En løkke blev opdaget, mens frigør blokke ved tildeling node {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Tildelingsnode {0} kunne ikke læses.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Der kunne ikke tildeles fordelingsnøgleblokken.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Den ønskede position er ugyldig for dette filsystem- objekt.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Aktionsknudeoperationen mislykkedes.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allokerings- node- bitmap-indeksplokken {0}/{1} kunne ikke læses.</value></data>
 </root>

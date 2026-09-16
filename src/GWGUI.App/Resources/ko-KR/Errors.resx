@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>모자를 씌우기: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP 경로: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP 이름: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>파일 시스템 항목은 읽을 수 없습니다.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>요청된 수 ({0}) 버퍼 크기를 초과합니다 ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>다음 파일 블록에는 잘못된 순서 번호가 있습니다.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>디스크에 무료 섹터가 없습니다.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>오프셋 0은 이 가동을 위해 지원됩니다.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>이 파일 시스템 스트림은 길이를 변경하지 않습니다.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>관련 링크 {0} 배부 체인에는 비트맵 블록이 포함되지 않습니다. 실제 유형 : {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>의약적인 할당 구획 {0} 비트맵 블록을 포함하지 않습니다. 실제 유형 : {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>필요한 bitmap 블록이 누락됩니다.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>루프는 할당 노드에서 블록을 해방하면서 감지되었습니다. {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Allocation 노드 {0} 읽지 않을 수 있었습니다.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>할당 노드 블록은 할당되지 않을 수 있습니다.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>요청된 위치는 이 파일 시스템 객체에 대해 유효하지 않습니다.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>할당 노드 작동 실패.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation-node 비트맵 인덱스 블록 {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1} 읽지 않을 수 있었습니다.</value></data>
 </root>

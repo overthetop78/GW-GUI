@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Kart: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP-sti: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP-navn: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Filsystemets oppføring kunne ikke leses.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Det forespurte antallet ({0}) overstiger bufferstørrelsen ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Neste filblokk har feil rekkefølgenummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Ingen fri sektor er tilgjengelig på disken.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Bare offset null støttes for denne operasjonen.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Denne fil-systemets strøm støtter ikke endring av lengd.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Mellomlagret blokk {0} i tildelingskjeden inneholder ikke en punktpunktblokk; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Cached tildelingsblokk {0} inneholder ikke en punktpunktblokk; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Den nødvendige bitmap-blokken mangler.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>En sløyfe ble detektert mens frigjøringsblokker ved tildelingsnode {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Tildelingsnode {0} Kunne ikke leses.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Tildelingsnødblokken kunne ikke tildeles.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Den forespurte posisjonen er ugyldig for dette filsystemet-objektet.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Tildelingsnødoperasjonen mislyktes.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Alocation-node punktgrafikkindeksblokk {0}/{1} Kunne ikke leses.</value></data>
 </root>

@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Χαρτογράφηση: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>Διαδρομή PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Όνομα PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Η καταχώρηση του συστήματος αρχείων δεν ήταν δυνατή.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Η αιτούμενη καταμέτρηση ({0}) υπερβαίνει το μέγεθος του ρυθμιστικού αποθέματος ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Το επόμενο μπλοκ αρχείων έχει λάθος αριθμό ακολουθίας.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Δεν υπάρχει διαθέσιμος δωρεάν τομέας στο δίσκο.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Μόνο το μηδενικό όφσετ υποστηρίζεται για αυτή την λειτουργία.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Αυτή η ροή συστήματος αρχείων δεν υποστηρίζει την αλλαγή του μήκους της.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Συγκεκομμένο τετράγωνο {0} στην αλυσίδα κατανομής δεν περιέχει μπλοκ bitmap· πραγματικό τύπο: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Ακυρωμένο τμήμα κατανομής {0} δεν περιέχει μπλοκ bitmap· πραγματικό τύπο: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Λείπει το απαιτούμενο μπλοκ bitmap.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Εντοπίστηκε βρόχος κατά την απελευθέρωση των μπλοκ στον κόμβο κατανομής {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Κόμβος κατανομής {0} Δεν ήταν δυνατόν να διαβαστεί.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Το μπλοκ κατανομής-κόμβου δεν ήταν δυνατό να κατανεμηθεί.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Η ζητούμενη θέση είναι άκυρη για αυτό το αντικείμενο συστήματος αρχείων.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Η λειτουργία του κόμβου κατανομής απέτυχε.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Πεδίο δείκτη bitmap κατανομής- κόμβου {0}/{1} Δεν ήταν δυνατόν να διαβαστεί.</value></data>
 </root>

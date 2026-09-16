@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Làm mũ: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>Đường dẫn PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Tên PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Không thể đọc mục nhập hệ thống tập tin.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Số đếm đã yêu cầu ({0}) Vượt quá kích cỡ bộ đệm ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Khối tập tin kế tiếp có số dãy sai.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Không có khu vực tự do nào trên đĩa.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Chỉ bù đắp zero được hỗ trợ cho thao tác này.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Dòng tập tin này không hỗ trợ việc thay đổi chiều dài.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Khối hộp {0} trong chuỗi phân vùng không chứa một khối mảng ảnh; mà là kiểu thật: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Khối phân cách vết {0} không chứa khối mảng ảnh; kiểu thật: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Khối mảng ảnh yêu cầu bị thiếu.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Một vòng lặp đã được phát hiện trong khi giải phóng khối tại nút di chuyển {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Nút vùng chọn {0} Không thể đọc được.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Không thể phân bổ khối phân bổ định vị- node.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Vị trí đã yêu cầu không hợp lệ đối tượng hệ thống này.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Thao tác định vị- node thất bại.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Khối chỉ mục sơ đồ mảng ảnh định vị- node {0}/{1} Không thể đọc được.</value></data>
 </root>

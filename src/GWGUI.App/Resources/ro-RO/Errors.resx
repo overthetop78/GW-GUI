@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>Calea PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>Nume PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Intrarea sistemului de fișiere nu a putut fi citită.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Numărul solicitat ({0}) depășește dimensiunea tamponului ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Următorul bloc de fișiere are un număr incorect de secvență.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Nu există nici un sector liber pe disc.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Numai zero offset este suportat pentru această operațiune.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Acest flux de fișiere-sistem nu suportă schimbarea lungimii sale.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Bloc cache {0} în lanțul de alocare nu conține un bloc bitmap; tipul real: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Bloc de alocare cache {0} nu conține un bloc bitmap; tip real: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Blocul necesar de bitmap lipseşte.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>O buclă a fost detectată în timp ce eliberau blocurile la nodul de alocare {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Nodul de alocare {0} nu putea fi citit.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Blocul de alocare-nodă nu a putut fi alocat.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Poziția solicitată nu este valabilă pentru acest obiect al sistemului de fișiere.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operaţiunea de alocare-nod a eşuat.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloc de indici bitmap pentru media de alocare {0}/{1} nu putea fi citit.</value></data>
 </root>

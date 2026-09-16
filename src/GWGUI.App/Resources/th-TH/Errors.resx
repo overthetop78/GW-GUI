@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>การเคาะ: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>เส้นทางไปยัง PnP: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>ชื่อของ PNP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>ไม่สามารถอ่านรายการของระบบได้</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>จํานวนที่ร้องขอ (September){0}เยอะเกินกว่าขนาดบัฟเฟอร์ (Bruffy cross){1})</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>บล็อกแฟ้มถัดไปมีลําดับลําดับไม่ถูกต้อง</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>ไม่มีส่วนอิสระบนดิสก์</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>รองรับการปรับค่าศูนย์เท่านั้น</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>ระบบแฟ้มนี้ไม่รองรับการเปลี่ยนความยาวของแฟ้ม</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>บล็อคแคช {0} ในห่วงโซ่การเรียงตั้งไม่มีบล็อกบิตแมพ; ชนิดจริง: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>บล็อคการวางแคช {0} ไม่มีส่วนบล๊อคบิตแมพ; ชนิดจริง: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>บล็อกบิตแมพที่ต้องใช้หายไป</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>ตรวจพบห่วงขณะที่ทําการปล่อยบล็อกที่โหนดการวางผัง {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>โหนดการวาง {0} ไม่สามารถอ่านได้</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>ไม่สามารถปรับลดการอุดตันของรอยหยักได้</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>ตําแหน่งที่ต้องการไม่ถูกต้องสําหรับวัตถุระบบแฟ้มนี้</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>ปฏิบัติการการแทนที่- การระบุพิกัดล้มเหลว</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>บล็อกดัชนีการแทนที่ {0}/{1} ไม่สามารถอ่านได้</value></data>
 </root>

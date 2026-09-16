@@ -58,4 +58,19 @@
   <data name="Error.GameInput.Mapper"><value>Feltérképek: {0}</value></data>
   <data name="Error.GameInput.Pnp"><value>PnP-útvonal: {0}</value></data>
   <data name="Error.GameInput.PnpNames"><value>PnP nevek: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>A fájlrendszer bejegyzését nem sikerült leolvasni.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>A kért létszám ({0}) meghaladja a pufferméretet ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>A következő fájlblokkban hibás a sorszám.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>A lemezen nincs ingyenes szektor.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Csak a nulla offset támogatást kap erre a műveletre.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Ez a fájlrendszer-folyam nem támogatja a hossz megváltoztatását.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Elérhető blokk {0} az elosztási láncban nem tartalmaz bitmap blokkot; tényleges típus: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Elérési blokk {0} nem tartalmaz bitmap blokkot; tényleges típus: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>A szükséges bitmap blokk hiányzik.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Egy hurkot észleltek, amikor a blokkokat felszabadították a elosztó csomópontnál. {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Kiosztási csomópont {0} Nem lehetett olvasni.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>A hozzárendelési csomópontot nem lehetett hozzárendelni.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>A kért pozíció érvénytelen erre a fájlrendszerbeli objektumra.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>A hozzárendelési csomópont művelet nem sikerült.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation- csomópont bitmap index blokk {0}/{1} Nem lehetett olvasni.</value></data>
 </root>
