@@ -73,14 +73,29 @@ public sealed class DiskImageExplorer
             return documents.CreateUnknown(path);
         }
 
-        if (document.Representation is FluxMediaImageRepresentation)
+        return await ExploreAsync(document, formatId, progress, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>Explores an already loaded media document without opening its source path again.</summary>
+    public async Task<ExploredDiskImage> ExploreAsync(
+        MediaImageDocument document,
+        string? formatId = null,
+        IProgress<ScpExplorationProgress>? progress = null,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        var path = document.Source.PrimaryPath;
+
+        if (document.Representation is FluxMediaImageRepresentation flux)
         {
             if (!document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase)) return documents.CreateUnknown(path);
-            if (formatId is null) return await scpExploration.ExploreAutomaticallyAsync(path, progress, cancellationToken).ConfigureAwait(false);
-
-            var decoded = await scpExploration.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
-            var explicitResult = ReadExplicitly(decoded, formatId);
-            return documents.Create(path, explicitResult.Image, Deduplicate(explicitResult.Detected), [explicitResult.Image]);
+            var scpImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
+            var explored = await scpExploration.ExploreAutomaticallyAsync(
+                path,
+                scpImage,
+                progress,
+                cancellationToken).ConfigureAwait(false);
+            return formatId is null ? explored : explored.SelectFormat(formatId) ?? documents.CreateUnknown(path);
         }
 
         if (document.Representation is not SectorMediaImageRepresentation sectors) return documents.CreateUnknown(path);

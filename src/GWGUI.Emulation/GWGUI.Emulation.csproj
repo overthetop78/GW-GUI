@@ -31,5 +31,6 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
+    <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />
   </ItemGroup>
 </Project>

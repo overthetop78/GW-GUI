@@ -20,6 +20,8 @@ public sealed record SourceAudit(
     DateTimeOffset Created,
     DateTimeOffset Modified,
     string Sha256,
+    string? ContentStartHex,
+    string? ContentEndHex,
     string? ExpectedFormatHint,
     IReadOnlyList<AssociatedSourceFileAudit> AssociatedFiles);
 
@@ -94,6 +96,8 @@ public sealed record FileEntryAudit(
     IReadOnlyList<string> Diagnostics,
     IReadOnlyDictionary<string, string> Metadata,
     string? ContentSha256,
+    string? ContentStartHex,
+    string? ContentEndHex,
     string? ContentHex,
     bool ContentExtracted,
     IReadOnlyList<FileEntryAudit> Children);

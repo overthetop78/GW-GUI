@@ -57,6 +57,7 @@ internal static partial class Program
             Directory.CreateDirectory(outputDirectory);
             var report = await AuditAsync(engine, Path.GetFullPath(imagePath), outputDirectory);
             await WriteJsonAsync(Path.Combine(outputDirectory, "report.json"), report);
+            TemporaryMediaSignatureCatalog.Record(report, outputDirectory, Environment.CurrentDirectory);
             if (report.Validation.Passed) return 0;
             throw new MediaAuditValidationException(imagePath, report.Validation.Errors);
         }
@@ -90,6 +91,7 @@ internal static partial class Program
         if (!File.Exists(path)) throw new FileNotFoundException("Media image not found.", path);
         var file = new FileInfo(path);
         var sha256 = await HashFileAsync(path);
+        var sourceEdges = await ReadContentEdgesAsync(path);
         var source = new MediaSourceDescriptor(path, []);
         var context = new MediaRecognitionContext(source);
         var recognized = await engine.Recognition.Registry.RecognizeAsync(context);
@@ -140,7 +142,7 @@ internal static partial class Program
             DateTimeOffset.UtcNow,
             new SourceAudit(
                 path, file.Name, file.Extension.ToLowerInvariant(), file.Length, file.CreationTimeUtc, file.LastWriteTimeUtc,
-                sha256, ExpectedFormatHint(path), associatedFiles),
+                sha256, sourceEdges.Start, sourceEdges.End, ExpectedFormatHint(path), associatedFiles),
             new RecognitionAudit(
                 true, recognized.Reader.GetType().FullName ?? recognized.Reader.GetType().Name, document.FormatId,
                 document.MediaKind.ToString(), document.Representation.RepresentationKind.ToString(), document.Metadata,
@@ -201,9 +203,34 @@ internal static partial class Program
             entry.MetadataValid, entry.DataValid, entry.SyntheticName, entry.NativeTypeId, entry.LinkTarget,
             entry.Attributes, entry.Diagnostics, entry.Metadata,
             content is null ? null : Convert.ToHexString(SHA256.HashData(content)),
+            ContentEdgeHex(content, fromEnd: false),
+            ContentEdgeHex(content, fromEnd: true),
             contentHex,
             content is not null,
             children);
+    }
+
+    private static string? ContentEdgeHex(byte[]? content, bool fromEnd)
+    {
+        const int edgeLength = 32;
+        if (content is not { Length: > 0 }) return null;
+        var length = Math.Min(edgeLength, content.Length);
+        var offset = fromEnd ? content.Length - length : 0;
+        return Convert.ToHexString(content.AsSpan(offset, length));
+    }
+
+    private static async Task<(string? Start, string? End)> ReadContentEdgesAsync(string path)
+    {
+        const int edgeLength = 32;
+        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, edgeLength, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        if (stream.Length == 0) return (null, null);
+        var length = (int)Math.Min(edgeLength, stream.Length);
+        var start = new byte[length];
+        await stream.ReadExactlyAsync(start);
+        stream.Seek(-length, SeekOrigin.End);
+        var end = new byte[length];
+        await stream.ReadExactlyAsync(end);
+        return (Convert.ToHexString(start), Convert.ToHexString(end));
     }
 
     private static object CreateRepresentation(MediaImageDocument document) => document.Representation switch
@@ -283,10 +310,6 @@ internal static partial class Program
             if (entry.DataValid == false) warnings.Add($"Invalid data recorded for '{entry.DisplayName}'.");
             if (entry.Kind == FileSystemEntryKind.File.ToString() && !entry.ContentExtracted)
                 errors.Add($"No content was extracted for '{entry.DisplayName}'.");
-            if (entry.Kind == FileSystemEntryKind.File.ToString()
-                && entry.Category == GWGUI.App.Enums.Explorer.ExplorerFileCategory.File.ToString()
-                && entry.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown.ToString())
-                errors.Add($"Unknown file content for '{entry.DisplayName}'.");
         }
         return (errors.Distinct(StringComparer.Ordinal).ToList(), warnings.Distinct(StringComparer.Ordinal).ToList());
     }

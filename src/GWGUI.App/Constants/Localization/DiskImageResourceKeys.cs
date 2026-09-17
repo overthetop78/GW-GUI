@@ -19,6 +19,7 @@ internal static class DiskImageResourceKeys
     internal const string ExplorerLoadingTapeDecoding = "Explorer.LoadingTapeDecoding";
     internal const string ExplorerLoadingTapeReading = "Explorer.LoadingTapeReading";
     internal const string ExplorerLoadingTapeRecord = "Explorer.LoadingTapeRecord";
+    internal const string ExplorerLoadFailed = "Explorer.LoadFailed";
     internal const string ExplorerReadingFormat = "Explorer.ReadingFormat";
     internal const string ExplorerSelectedFormatUnsupported = "Explorer.SelectedFormatUnsupported";
     internal const string ExplorerSelectedFormatUnsupportedTitle = "Explorer.SelectedFormatUnsupportedTitle";
@@ -30,9 +31,12 @@ internal static class DiskImageResourceKeys
     internal const string TabRead = "Tab.Read";
     internal const string VisualAnalysingRevolution = "Visual.AnalysingRevolution";
     internal const string VisualAnalysingTrack = "Visual.AnalysingTrack";
+    internal const string VisualChecksumInvalid = "Visual.ChecksumInvalid";
+    internal const string VisualChecksumValid = "Visual.ChecksumValid";
     internal const string VisualInvalid = "Visual.Invalid";
     internal const string VisualLoading = "Visual.Loading";
     internal const string VisualNoFile = "Visual.NoFile";
     internal const string VisualSide = "Visual.Side";
+    internal const string VisualSummary = "Visual.Summary";
     internal const string VisualTitle = "Visual.Title";
 }

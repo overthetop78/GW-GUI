@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <Compile Remove="Program.cs" />
+    <Compile Remove="MediaFileExtractor\**\*.cs" />
+    <Compile Remove="TemporaryLibretroMediaReader\**\*.cs" />
     <ProjectReference Include="..\..\src\GWGUI.Domain\GWGUI.Domain.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.App\GWGUI.App.csproj" />

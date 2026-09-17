@@ -5,16 +5,49 @@ using GWGUI.App.ViewModels.Explorer;
 using System.Windows.Controls;
 using System.Windows;
 using GWGUI.Domain.Formats;
+using GWGUI.Domain.Enums;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Representations.Sectors;
 using GWGUI.App.Views.Controls.Common;
+using GWGUI.Tests.Interface.VisualizerViews;
+using System.IO;
 
 namespace GWGUI.Tests.Interface.ExplorerViews;
 internal static class ExplorerDocumentScenarios
 {
+    public static async Task ExtensionDoesNotChooseTheMediaPipeline()
+    {
+        var temporaryDirectory = Path.Combine(Path.GetTempPath(), $"gwgui-media-pipeline-{Guid.NewGuid():N}");
+        var scpPath = Path.Combine(temporaryDirectory, "sector-source.scp");
+        var imgPath = Path.Combine(temporaryDirectory, "sector-source.img");
+        Directory.CreateDirectory(temporaryDirectory);
+        try
+        {
+            File.Copy(typeof(ExplorerDocumentScenarios).Assembly.Location, scpPath);
+            File.Copy(typeof(ExplorerDocumentScenarios).Assembly.Location, imgPath);
+            using var workspace = new VisualizerDocumentScenarios.Workspace(
+                withVisualizationProviders: true,
+                withMediaServices: true,
+                useDefaultExplorer: true,
+                sectorCylinders: 1);
+
+            await workspace.Controller.LoadAsync(scpPath);
+            Assert.Equal(MediaRepresentationKind.Sectors, workspace.Visualizer.ActiveRepresentationKind);
+            Assert.Equal(1, workspace.MediaReadCount);
+
+            await workspace.Controller.LoadAsync(imgPath);
+            Assert.Equal(MediaRepresentationKind.Sectors, workspace.Visualizer.ActiveRepresentationKind);
+            Assert.Equal(2, workspace.MediaReadCount);
+        }
+        finally
+        {
+            Directory.Delete(temporaryDirectory, true);
+        }
+    }
+
     public static void ScpMultiFormatSelector()
     {
         var section = new ExplorerSection();

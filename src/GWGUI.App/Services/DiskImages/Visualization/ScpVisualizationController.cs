@@ -75,7 +75,14 @@ internal sealed class ScpVisualizationController
     internal IReadOnlyList<(int Head, int Cylinder)> TrackPresentationOrder => _trackPresentationOrder;
 
     internal Task LoadAsync(string path, string? displayFileName = null, bool preserveProgress = false) =>
-        LoadCoreAsync(path, displayFileName, preserveProgress);
+        LoadCoreAsync(path, null, displayFileName, preserveProgress);
+
+    internal Task LoadAsync(
+        string path,
+        ScpImage image,
+        string? displayFileName = null,
+        bool preserveProgress = false) =>
+        LoadCoreAsync(path, image, displayFileName, preserveProgress);
 
     internal async Task RestoreFluxRepresentationAsync(CancellationToken cancellationToken)
     {
@@ -151,7 +158,11 @@ internal sealed class ScpVisualizationController
 
     internal Task PrepareViewsAsync(CancellationToken cancellationToken) => PrepareTracksAsync(cancellationToken);
 
-    private async Task LoadCoreAsync(string path, string? displayFileName, bool preserveProgress)
+    private async Task LoadCoreAsync(
+        string path,
+        ScpImage? image,
+        string? displayFileName,
+        bool preserveProgress)
     {
         var cancellation = _cancellation.BeginScp();
         var cancellationToken = cancellation.Token;
@@ -160,7 +171,9 @@ internal sealed class ScpVisualizationController
             DisplayName = displayFileName ?? Path.GetFileName(path);
             ShowProgress(_localize(DiskImageResourceKeys.VisualLoading, []), 0, true);
             _visualizer.Header.SummaryText.Text = _localize(DiskImageResourceKeys.VisualLoading, []);
-            var document = await _loader.LoadAsync(path, cancellationToken);
+            var document = image is null
+                ? await _loader.LoadAsync(path, cancellationToken)
+                : _loader.CreateModel(path, image);
             SourcePath = path;
             DisplayName = displayFileName ?? document.FileName;
             Summary = document.Summary;

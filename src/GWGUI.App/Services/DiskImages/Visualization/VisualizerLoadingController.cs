@@ -1,5 +1,4 @@
 using GWGUI.App.Constants.DiskImages;
-using GWGUI.App.Services.DiskImages.Exploration;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.Domain.Commands.Building;
@@ -14,6 +13,9 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaAnalysis.Services;
+using GWGUI.MediaAnalysis.Contracts;
+using GWGUI.Domain.Enums;
 using System.IO;
 
 namespace GWGUI.App.Services.DiskImages.Visualization;
@@ -26,8 +28,7 @@ internal sealed class VisualizerLoadingController(
     IGwCommandBuilder commandBuilder,
     IGreaseweazleRunner visualizationRunner,
     DiskImageCancellationScope cancellation,
-    Func<string, string?, CancellationToken, Task<ExploredDiskImage>> explore,
-    MediaImageExplorationService mediaExploration,
+    MediaImageExplorationService? mediaExploration,
     MediaVisualizationController mediaVisualization,
     ScpVisualizationController scpVisualization,
     Func<ExploredMediaImage?> getExploredMediaImage,
@@ -41,28 +42,25 @@ internal sealed class VisualizerLoadingController(
     internal async Task LoadAsync(
         string path,
         string? displayFileName = null,
-        ExploredDiskImage? exploredImage = null)
+        ExploredDiskImage? exploredImage = null,
+        MediaOpeningAnalysisResult? openingResult = null)
     {
         var visualization = cancellation.BeginVisualization();
         var cancellationToken = visualization.Token;
-        if (Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase))
+        if (openingResult?.Document.Representation.RepresentationKind == MediaRepresentationKind.Flux
+            && openingResult.DiskExploration.ScpImage is { } loadedScpImage)
         {
             visualizer.Header.ApplyDetection(null, null, [], true);
-            var detectionTask = exploredImage is null
-                ? explore(path, null, cancellationToken)
-                : Task.FromResult(exploredImage);
             try
             {
-                await scpVisualization.LoadAsync(path, displayFileName);
+                await scpVisualization.LoadAsync(path, loadedScpImage, displayFileName);
                 cancellationToken.ThrowIfCancellationRequested();
-                var detected = await detectionTask;
-                cancellationToken.ThrowIfCancellationRequested();
-                applyScpDetection(detected);
+                applyScpDetection(openingResult.DiskExploration);
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
             catch (Exception exception)
             {
-                ErrorLog.Write(exception, $"Detecting formats in SCP image: {path}");
+                ErrorLog.Write(exception, $"Displaying loaded SCP image: {path}");
             }
             return;
         }
@@ -71,14 +69,20 @@ internal sealed class VisualizerLoadingController(
         var explored = exploredImage;
         try
         {
-            if (explored is null)
+            if (openingResult is not null)
+            {
+                explored = openingResult.DiskExploration;
+                rememberReadImage(explored);
+                setExploredMediaImage(openingResult.MediaExploration);
+            }
+            else if (explored is null)
             {
                 explored = await analyze(path, cancellationToken);
             }
             else
             {
                 rememberReadImage(explored);
-                if (!string.Equals(
+                if (mediaExploration is not null && !string.Equals(
                         getExploredMediaImage()?.Document.Source.PrimaryPath,
                         path,
                         StringComparison.OrdinalIgnoreCase))
@@ -100,6 +104,23 @@ internal sealed class VisualizerLoadingController(
         }
 
         if (cancellationToken.IsCancellationRequested) return;
+        if (explored?.ScpImage is { } exploredScpImage)
+        {
+            visualizer.Header.ApplyDetection(null, null, [], true);
+            try
+            {
+                await scpVisualization.LoadAsync(path, exploredScpImage, displayFileName);
+                cancellationToken.ThrowIfCancellationRequested();
+                applyScpDetection(explored);
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
+            catch (Exception exception)
+            {
+                ErrorLog.Write(exception, $"Displaying explored SCP image: {path}");
+            }
+            return;
+        }
+
         bool presented;
         try
         {

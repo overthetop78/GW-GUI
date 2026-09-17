@@ -76,6 +76,7 @@ explicites de l’utilisateur restent prioritaires.
 
 ## Outils et build Debug
 
+- Pour lancer un script avec PowerShell 7, utiliser directement `C:\Program Files\WindowsApps\Microsoft.PowerShell_7.6.6.0_x64__8wekyb3d8bbwe\pwsh.exe` comme processus et lui transmettre `-NoProfile -File <script.ps1>`. Ne jamais passer par l'alias `C:\Users\overt\AppData\Local\Microsoft\WindowsApps\pwsh.exe` et ne jamais lancer ce PowerShell depuis un autre PowerShell.
 - Lorsqu’une commande échoue, vérifier et corriger d’abord son invocation. Les outils déclarés comme
   fonctionnels sont considérés disponibles.
 - Si un outil nécessaire manque réellement, demander son installation au lieu de multiplier les

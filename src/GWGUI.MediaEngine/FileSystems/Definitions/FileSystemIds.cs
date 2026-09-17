@@ -45,18 +45,8 @@ public static class FileSystemIds
     public const string AtariClkGraphicsLibrary = "atari-clk-graphics-library";
     /// <summary>Identifie une disquette amorçable K-file contenant un exécutable Atari unique.</summary>
     public const string AtariKFile = "atari-k-file";
-    /// <summary>Identifie une disquette Atari contenant un flux d'amorçage sans catalogue.</summary>
-    public const string AtariBootDisk = "atari-boot-disk";
-    /// <summary>Identifie une disquette de données Atari contenant des échantillons PCM 4 bits compactés par demi-octets.</summary>
-    public const string AtariPackedPcmDataDisk = "atari-packed-pcm-data-disk";
-    /// <summary>Identifie une disquette Atari contenant des images entrelacées en niveaux de gris compactées sur 5 bits.</summary>
-    public const string AtariPackedInterlacedGrayscaleDisk = "atari-packed-interlaced-grayscale-disk";
-    /// <summary>Identifie un volume Atari contenant des trames d'animation graphiques de longueur fixe.</summary>
-    public const string AtariFixedRecordAnimation = "atari-fixed-record-animation";
     /// <summary>Identifie les volumes Atari MyDOS, y compris les grands volumes à liaisons de secteurs sur 16 bits.</summary>
     public const string AtariMyDos = "atari-mydos";
-    /// <summary>Identifie un dictionnaire Atari indexé par lettre et compressé par préfixe.</summary>
-    public const string AtariFrontCompressedDictionary = "atari-front-compressed-dictionary";
     /// <summary>Identifie Coherent.</summary>
     public const string Coherent = "coherent";
     /// <summary>Identifie Commodore DOS.</summary>

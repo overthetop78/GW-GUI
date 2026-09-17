@@ -22,18 +22,8 @@ internal static class FileSystemDisplayNames
     public const string AtariClkGraphicsLibrary = "Atari CLK graphics library";
     /// <summary>Nom affiché d'une disquette amorçable Atari K-file.</summary>
     public const string AtariKFile = "Atari K-file";
-    /// <summary>Nom affiché d'une disquette Atari contenant un flux d'amorçage sans catalogue.</summary>
-    public const string AtariBootDisk = "Atari boot disk";
-    /// <summary>Nom affiché d'une disquette de données Atari contenant des échantillons PCM 4 bits compactés.</summary>
-    public const string AtariPackedPcmDataDisk = "Atari packed PCM data disk";
-    /// <summary>Nom affiché d'une disquette Atari contenant des images entrelacées en niveaux de gris compactées sur 5 bits.</summary>
-    public const string AtariPackedInterlacedGrayscaleDisk = "Atari packed interlaced grayscale disk";
-    /// <summary>Nom affiché d'un volume Atari contenant des trames d'animation graphiques de longueur fixe.</summary>
-    public const string AtariFixedRecordAnimation = "Atari fixed-record animation";
     /// <summary>Nom affiché des volumes Atari MyDOS.</summary>
     public const string AtariMyDos = "Atari MyDOS";
-    /// <summary>Nom affiché d'un dictionnaire Atari indexé par lettre et compressé par préfixe.</summary>
-    public const string AtariFrontCompressedDictionary = "Atari front-compressed dictionary";
     /// <summary>Nom affiché de Coherent sur Commodore 900.</summary>
     public const string CoherentCommodore900 = "COHERENT (Commodore 900)";
     /// <summary>Nom affiché de Commodore DOS.</summary>

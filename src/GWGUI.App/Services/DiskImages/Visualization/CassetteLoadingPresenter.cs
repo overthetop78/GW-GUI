@@ -1,10 +1,14 @@
 using GWGUI.App.Rendering.Sequential;
 using GWGUI.App.Constants.DiskImages;
 using GWGUI.App.Constants.Localization;
+using GWGUI.App.Functions.Explorer;
+using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
+using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.FileSystems;
 using System.Windows.Media;
 
 namespace GWGUI.App.Services.DiskImages.Visualization;
@@ -22,11 +26,11 @@ internal sealed class CassetteLoadingPresenter(
     private static readonly TimeSpan MinimumSegmentPresentationInterval = TimeSpan.FromMilliseconds(4);
 
     internal async Task CompleteAsync(
-        long generation,
-        Func<long> currentGeneration,
+        CancellationToken cancellationToken,
         string shownName,
         ExploredMediaImage? exploredMediaImage)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         if (mediaVisualization.SequentialRenderModel is not { } model || model.Segments.Count == 0)
         {
             reportSharedProgress(localize(DiskImageResourceKeys.VisualLoading, []), shownName, 100, false);
@@ -34,16 +38,16 @@ internal sealed class CassetteLoadingPresenter(
         }
 
         mediaVisualization.ConfigureSequentialProgress(model);
-        var recognizedFiles = Exploration.MediaImageExplorationService.FileDescriptions(exploredMediaImage);
+        var recognizedFiles = FileDescriptions(exploredMediaImage);
         var rowSize = (model.Segments.Count + MediaVisualizationLayoutConstants.SegmentProgressPageCount - 1)
                       / MediaVisualizationLayoutConstants.SegmentProgressPageCount;
         var lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();
         for (var index = 0; index < model.Segments.Count; index++)
         {
-            if (generation != currentGeneration()) return;
+            cancellationToken.ThrowIfCancellationRequested();
             var elapsed = System.Diagnostics.Stopwatch.GetElapsedTime(lastPresentation);
             var delay = MinimumSegmentPresentationInterval - elapsed;
-            if (delay > TimeSpan.Zero) await Task.Delay(delay);
+            if (delay > TimeSpan.Zero) await Task.Delay(delay, cancellationToken);
 
             var row = index < rowSize
                 ? MediaVisualizationLayoutConstants.SegmentProgressPageOne
@@ -71,6 +75,30 @@ internal sealed class CassetteLoadingPresenter(
             explorer.SetLoadingProgress(stage, detail, value);
             visualizer.SetRecognitionProgress(true, stage, detail, value);
             lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();
+        }
+    }
+
+    private static IReadOnlyList<string> FileDescriptions(ExploredMediaImage? explored)
+    {
+        if (explored?.Document.MediaKind != MediaKind.Tape) return [];
+        var family = ExplorerFileIconClassifier.FamilyFor(
+            explored.Document.FormatId,
+            explored.Volumes.Select(volume => volume.FileSystem?.FileSystemId)
+                .FirstOrDefault(id => !string.IsNullOrWhiteSpace(id)));
+        return explored.Volumes
+            .SelectMany(volume => volume.FileSystem?.Entries ?? [])
+            .SelectMany(EnumerateFiles)
+            .Select(entry => new ExplorerContentItem(entry, family))
+            .Select(item => $"{item.Name} — {item.TypeText}")
+            .ToArray();
+    }
+
+    private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
+    {
+        if (entry.Kind == FileSystemEntryKind.File) yield return entry;
+        foreach (var child in entry.Children)
+        {
+            foreach (var descendant in EnumerateFiles(child)) yield return descendant;
         }
     }
 }

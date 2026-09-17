@@ -4,6 +4,8 @@ param(
     [string]$OutputRoot,
     [string]$StartAt = 'F:\Rétro\A Trier\Atari 400-800\Atari 8bit - Applications - [ATR] (TOSEC-v2023-08-29)\8bit Mouse, The v2.01 (19xx)(Broomfield, Graham - Hunt, Colin)',
     [string]$ImagePath,
+    [ValidateRange(1, [int]::MaxValue)]
+    [int]$MaximumCount,
     [switch]$Restart
 )
 
@@ -151,6 +153,10 @@ if ($StartAt) {
             $candidates = @($candidates[$firstIncludedIndex..($candidates.Count - 1)])
         }
     }
+}
+
+if ($MaximumCount -gt 0 -and $candidates.Count -gt $MaximumCount) {
+    $candidates = @($candidates[0..($MaximumCount - 1)])
 }
 
 $startIndex = 0

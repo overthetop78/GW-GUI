@@ -18,7 +18,7 @@ namespace GWGUI.MediaAudit;
 internal static class TemporaryLibretroMediaReader
 {
     private const uint SystemRamId = 2;
-    private static readonly int[] CaptureFrames = [60, 180, 360, 600, 900, 1200, 1800];
+    private static readonly int[] CaptureFrames = [60, 180, 360, 600, 900, 1200, 1800, 2400, 3600, 6000, 9000, 12000, 15000, 18000, 21000];
 
     public static int Main(string[] args)
     {
@@ -26,6 +26,11 @@ internal static class TemporaryLibretroMediaReader
         var outputDirectory = Path.GetFullPath(Required(args, "--output"));
         var corePath = Path.GetFullPath(Required(args, "--core"));
         var configurationPath = Path.GetFullPath(Required(args, "--configuration"));
+        var swapImagePath = Optional(args, "--swap-image");
+        var swapFrame = OptionalInt(args, "--swap-frame");
+        if ((swapImagePath is null) != (swapFrame is null))
+            throw new ArgumentException("--swap-image et --swap-frame doivent être fournis ensemble.");
+        if (swapImagePath is not null) swapImagePath = Path.GetFullPath(swapImagePath);
         var sessionDirectory = Path.Combine(outputDirectory, "libretro-session");
         Directory.CreateDirectory(outputDirectory);
         Directory.CreateDirectory(sessionDirectory);
@@ -45,6 +50,8 @@ internal static class TemporaryLibretroMediaReader
         };
         var presses = ParsePresses(args);
         var captures = new List<object>();
+        var diskOperations = new List<object>();
+        byte[]? previousDcb = null;
         AtariExternalCore? core = null;
 
         try
@@ -53,10 +60,44 @@ internal static class TemporaryLibretroMediaReader
             core.Initialize(configuration, sessionDirectory);
             for (var frame = 1; frame <= CaptureFrames[^1]; frame++)
             {
+                if (frame == swapFrame)
+                {
+                    var state = core.SaveState();
+                    core.Stop();
+                    core.Dispose();
+                    core = null;
+                    var swapConfiguration = configuration with
+                    {
+                        Media =
+                        [
+                            new AtariMediaConfiguration(swapImagePath!, AtariMediaCategory.Floppy,
+                                EmulationMediaSlot.Floppy0, IsReadOnly: true)
+                        ]
+                    };
+                    core = new AtariExternalCore(corePath, AtariEmulator.Atari800);
+                    core.Initialize(swapConfiguration, sessionDirectory);
+                    core.LoadState(state);
+                }
                 core.SetInput(presses.TryGetValue(frame, out var key)
                     ? WithKey(key)
                     : EmulationInputSnapshot.Empty);
                 core.RunFrame();
+                var dcb = ReadSystemRamRange(core, 0x0300, 12);
+                if (dcb.Length == 12 && (previousDcb is null || !dcb.SequenceEqual(previousDcb)))
+                {
+                    diskOperations.Add(new
+                    {
+                        Frame = frame,
+                        Device = dcb[0],
+                        Unit = dcb[1],
+                        Command = dcb[2],
+                        Status = dcb[3],
+                        BufferAddress = dcb[4] | dcb[5] << 8,
+                        ByteCount = dcb[8] | dcb[9] << 8,
+                        Sector = dcb[10] | dcb[11] << 8
+                    });
+                    previousDcb = dcb;
+                }
                 if (!CaptureFrames.Contains(frame)) continue;
 
                 var framePath = Path.Combine(outputDirectory, $"libretro-frame-{frame:D4}.bmp");
@@ -96,7 +137,10 @@ internal static class TemporaryLibretroMediaReader
                     Image = imagePath,
                     Core = corePath,
                     Configuration = configurationPath,
+                    SwapImage = swapImagePath,
+                    SwapFrame = swapFrame,
                     Presses = presses.Select(item => new { Frame = item.Key, Key = item.Value.ToString() }),
+                    DiskOperations = diskOperations,
                     Captures = captures
                 }, new JsonSerializerOptions { WriteIndented = true }));
             return 0;
@@ -129,6 +173,23 @@ internal static class TemporaryLibretroMediaReader
         throw new ArgumentException($"Argument requis : {name}");
     }
 
+    private static string? Optional(IReadOnlyList<string> args, string name)
+    {
+        for (var index = 0; index < args.Count - 1; index++)
+            if (string.Equals(args[index], name, StringComparison.OrdinalIgnoreCase))
+                return args[index + 1];
+        return null;
+    }
+
+    private static int? OptionalInt(IReadOnlyList<string> args, string name)
+    {
+        var value = Optional(args, name);
+        if (value is null) return null;
+        return int.TryParse(value, out var result) && result > 0
+            ? result
+            : throw new ArgumentException($"Valeur invalide pour {name} : {value}");
+    }
+
     private static SortedDictionary<int, EmulationKey> ParsePresses(IReadOnlyList<string> args)
     {
         var result = new SortedDictionary<int, EmulationKey>();
@@ -158,6 +219,20 @@ internal static class TemporaryLibretroMediaReader
         var ram = new byte[checked((int)size)];
         Marshal.Copy(pointer, ram, 0, ram.Length);
         return ram;
+    }
+
+    private static byte[] ReadSystemRamRange(AtariExternalCore core, int offset, int length)
+    {
+        var field = typeof(AtariExternalCore).GetField("_exports", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?? throw new MissingFieldException(typeof(AtariExternalCore).FullName, "_exports");
+        var exports = (AtariExternalCoreExports?)field.GetValue(core)
+            ?? throw new InvalidOperationException("Le cœur Atari n'est pas initialisé.");
+        var size = exports.GetMemorySize(SystemRamId);
+        var pointer = exports.GetMemoryData(SystemRamId);
+        if (pointer == nint.Zero || offset < 0 || length < 0 || (nuint)(offset + length) > size) return [];
+        var bytes = new byte[length];
+        Marshal.Copy(pointer + offset, bytes, 0, length);
+        return bytes;
     }
 
     private static IReadOnlyList<string> ReadStrings(ReadOnlySpan<byte> data)

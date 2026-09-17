@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>gwgui.mediafilesystems</AssemblyName>
+    <RootNamespace>GWGUI.MediaFileSystems</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="GWGUI.Tests" />
+    <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
+    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
+  </ItemGroup>
+
+</Project>

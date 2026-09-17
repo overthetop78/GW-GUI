@@ -7,6 +7,7 @@ namespace GWGUI.Tests.Interface.ExplorerViews;
 public sealed class ExplorerViewsTests(StaExecutionScenarios sta)
 {
     [Fact] public Task DocumentReplacement() => sta.Run(ExplorerDocumentScenarios.Replace);
+    [Fact] public Task ExtensionDoesNotChooseTheMediaPipeline() => sta.RunAsync(ExplorerDocumentScenarios.ExtensionDoesNotChooseTheMediaPipeline);
     [Fact] public Task AlternativeVolumesAndUnknownImage() => sta.Run(ExplorerDocumentScenarios.Interpretations);
     [Fact] public Task ScpMultiFormatSelectorKeepsAmigaIbmAndAtari() => sta.Run(ExplorerDocumentScenarios.ScpMultiFormatSelector);
     [Fact] public Task AutomaticDetectionRestoresInitialMultiformatChoice() => sta.Run(ExplorerDocumentScenarios.AutomaticDetectionRestoresInitialMultiformatChoice);

@@ -1,7 +1,7 @@
 namespace GWGUI.MediaEngine.Primitives;
 
 /// <summary>Fournit les constantes et opérations élémentaires communes aux traitements de bits.</summary>
-internal static class BitPrimitives
+public static class BitPrimitives
 {
     /// <summary>Nombre de bits contenus dans un octet.</summary>
     public const int BitsPerByte = 8;

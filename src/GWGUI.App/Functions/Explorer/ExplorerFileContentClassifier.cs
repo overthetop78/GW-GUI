@@ -3,188 +3,21 @@ using GWGUI.MediaEngine.FileSystems;
 
 namespace GWGUI.App.Functions.Explorer;
 
-internal static partial class ExplorerFileContentClassifier
+internal static class ExplorerFileContentClassifier
 {
     public static ExplorerFileCategory? KnownCategory(FileSystemEntry entry, ExplorerFileSystemFamily family)
     {
+        if (entry.DataValid == false) return ExplorerFileCategory.Data;
+
         var metadata = MetadataCategory(entry, family);
         if (metadata is not null) return metadata;
-        if (IsProTrackerModule(entry.Content)) return ExplorerFileCategory.Audio;
-        if (IsAmigaExecutable(entry.Content) && family == ExplorerFileSystemFamily.Amiga) return ExplorerFileCategory.Executable;
-        if (IsDosExecutable(entry.Content) && family == ExplorerFileSystemFamily.IbmPc) return ExplorerFileCategory.Executable;
-        if (IsAtariExecutable(entry.Content) && family == ExplorerFileSystemFamily.AtariSt) return ExplorerFileCategory.Executable;
-        if (family == ExplorerFileSystemFamily.Atari8Bit)
-        {
-            if (IsAplibVbxeLowResolutionImage(entry) || IsAplibAtariScreenMap(entry)) return ExplorerFileCategory.Image;
-            if (IsAplibAtariCharacterResource(entry)) return ExplorerFileCategory.Font;
-            if (IsAplibFixedWidthTextMetadata(entry)) return ExplorerFileCategory.Text;
-            if (string.Equals(entry.NativeTypeId, "atari-boot-stream", StringComparison.Ordinal)) return ExplorerFileCategory.BootProgram;
-            if (string.Equals(entry.NativeTypeId, "atari-clk-graphic", StringComparison.Ordinal)) return ExplorerFileCategory.Image;
-            if (string.Equals(entry.NativeTypeId, "atari-front-compressed-word-list", StringComparison.Ordinal)) return ExplorerFileCategory.Text;
-            if (string.Equals(entry.NativeTypeId, "atari-packed-5bit-interlaced-grayscale-image", StringComparison.Ordinal) || string.Equals(entry.NativeTypeId, "atari-fixed-record-animation-frame", StringComparison.Ordinal)) return ExplorerFileCategory.Image;
-            if (IsAtariMovieMakerMovie(entry.Content)) return ExplorerFileCategory.Media;
-            if (IsAtariHardInterlacePicture(entry) || IsAtari8BitInterlaceStudioImage(entry)) return ExplorerFileCategory.Image;
-            if (IsSuper3DPlotterPoints(entry) || IsSuper3DPlotterLines(entry)) return ExplorerFileCategory.Image;
-            if (IsSuper3DPlotterPrinterProfile(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsSuperMailerPrinterType(entry)) return ExplorerFileCategory.Configuration;
-            if (IsTechnicolorDreamImageComponent(entry)) return ExplorerFileCategory.Image;
-            if (IsTipImage(entry)) return ExplorerFileCategory.Image;
-            if (IsTrzmielCompressedImage(entry)) return ExplorerFileCategory.Image;
-            if (IsTrickMachineRoutine(entry)) return ExplorerFileCategory.Library;
-            if (IsTrickMusicData(entry)) return ExplorerFileCategory.Audio;
-            if (IsTrickDataTable(entry)) return ExplorerFileCategory.Data;
-            if (IsTrickFont(entry)) return ExplorerFileCategory.Font;
-            if (IsTrickBinaryContainer(entry)) return ExplorerFileCategory.Executable;
-            if (IsUueDecoderBinaryCommand(entry)) return ExplorerFileCategory.Executable;
-            if (IsVideo130XeHelpDocument(entry)) return ExplorerFileCategory.Document;
-            if (IsAaEditorDocument(entry.Content)) return ExplorerFileCategory.Document;
-            if (IsVideoScannerImage(entry)) return ExplorerFileCategory.Image;
-            if (IsVidigPaintImage(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariRipImage(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsXlPaintImage(entry)) return ExplorerFileCategory.Image;
-            if (IsXlPaintMaxImage(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsVirtuosoComposition(entry)) return ExplorerFileCategory.Audio;
-            if (IsVoicemasterSpeechSample(entry)) return ExplorerFileCategory.Audio;
-            if (IsAngRawDigitizedSample(entry)) return ExplorerFileCategory.Audio;
-            if (IsAtariPackedTwoBitPcmSample(entry)) return ExplorerFileCategory.Audio;
-            if (IsAtariPackedFourBitPcmSample(entry)) return ExplorerFileCategory.Audio;
-            if (IsVisiCalcCatalogModule(entry)) return ExplorerFileCategory.Library;
-            if (IsVisualiserHelpDocument(entry)) return ExplorerFileCategory.Document;
-            if (IsVisualiserGraphicResource(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsWritersToolPrinterProfile(entry)) return ExplorerFileCategory.Configuration;
-            if (IsWritersToolExtensionModule(entry)) return ExplorerFileCategory.Library;
-            if (entry.Content is { Count: 1 }) return ExplorerFileCategory.Data;
-            if (IsFilledWithZero(entry.Content)) return ExplorerFileCategory.Data;
-            if (entry.Content is { Count: >= 4 } && entry.Content[0] == 0xff && entry.Content[1] == 0x80 && entry.Content[2] == 0xc9 && entry.Content[3] == 0xc7) return ExplorerFileCategory.Image;
-            if (IsAtari8BitAdvancedMusicSystem(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsAtari8BitDrumPattern(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsAtari8BitDrumSampleBank(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsMidiPatternEditorComposition(entry)) return ExplorerFileCategory.Audio;
-            if (IsAtariMidiSequencerFile(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsMusicConstructionSetFile(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsMusicStudioFile(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsAtari8BitRaytracerBackground(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsAwardWareCatalog(entry.Content)) return ExplorerFileCategory.Data;
-            if (IsAwardWarePrinterTemplate(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsAwardWareDocumentTemplate(entry.Content)) return ExplorerFileCategory.Document;
-            if (IsAwardWareFontWidths(entry.Content)) return ExplorerFileCategory.Font;
-            if (IsAwardWareGraphic(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsAwardWarePrinterProfile(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsAwardWarePrinterSelection(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsBGraphMachineRoutine(entry.Content)) return ExplorerFileCategory.Library;
-            if (IsBGraphData(entry.Content)) return ExplorerFileCategory.Data;
-            if (IsBashADrumPattern(entry.Content) || IsBashADrumSong(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsBearEssentialsPicture(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsAtariRawFontBank(entry.Content)) return ExplorerFileCategory.Font;
-            if (IsAtariRawCharacterSetPair(entry.Content)) return ExplorerFileCategory.Font;
-            if (IsAtariRawCharacterSet(entry.Content)) return ExplorerFileCategory.Font;
-            if (IsEpsonFxDownloadableFont(entry.Content)) return ExplorerFileCategory.Font;
-            if (IsAtariRawScreenImage(entry.Content) || IsAtariPackedFourBit64By64Image(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariRawScreenWithPalette(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsAtariFortyColumnScreenMemory(entry) || IsAtariMonochrome80By48Bitmap(entry) || IsAtariMonochrome240By19BitmapStrip(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariPageSeparatedRasterControlTable(entry)) return ExplorerFileCategory.Data;
-            if (IsPrintShopConverterScreen(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsPlayerMissileGraphicsTabletImage(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsTypesetterIcon(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariTwoColorPackedBitmap(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsPicilityImage(entry.Content)) return ExplorerFileCategory.Image;
-            if (IsPrintPowerCatalog(entry)) return ExplorerFileCategory.Data;
-            if (IsPrintPowerPrinterSelection(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsPrintPowerGraphicLibrary(entry)) return ExplorerFileCategory.Image;
-            if (IsRambrandtUserPattern(entry)) return ExplorerFileCategory.Image;
-            if (IsRubberStampPad(entry)) return ExplorerFileCategory.Image;
-            if (IsSchemaDesignDocument(entry)) return ExplorerFileCategory.Document;
-            if (IsSchematicDesignerDocument(entry)) return ExplorerFileCategory.Document;
-            if (IsScreenAidedManagementCatalog(entry)) return ExplorerFileCategory.Data;
-            if (IsScreenAidedManagementPrinterProfile(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsScreenDumpPrinterProfile(entry)) return ExplorerFileCategory.Configuration;
-            if (IsDosAsciiDocument(entry)) return ExplorerFileCategory.Text;
-            if (IsSoftsynthFont(entry)) return ExplorerFileCategory.Font;
-            if (IsSoftsynthComposition(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsSongwriterLesson(entry)) return ExplorerFileCategory.Data;
-            if (IsSoundTrackerMusic(entry)) return ExplorerFileCategory.Audio;
-            if (IsSoundTrackerInstrumentData(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariMadDesignerImage(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariMarcoPixelEditorImage(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariMegacolorEditorImage(entry)) return ExplorerFileCategory.Image;
-            if (IsMultiGraphViewImage(entry)) return ExplorerFileCategory.Image;
-            if (IsNewsroomPhoto(entry.Content)) return ExplorerFileCategory.Image;
-            if (HasAsciiPrefix(entry.Content, "CIN 1.2")) return ExplorerFileCategory.Image;
-            if (IsCentroDeCostosControl(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsMantisEditorConfiguration(entry)) return ExplorerFileCategory.Configuration;
-            if (IsPantherConversionTable(entry)) return ExplorerFileCategory.Configuration;
-            if (IsPaperclipPrinterConfiguration(entry)) return ExplorerFileCategory.Configuration;
-            if (IsDigiVoiceSample(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsEasyScanConfiguration(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsAtariPrinterControlProfile(entry.Content)) return ExplorerFileCategory.Configuration;
-            if (IsAtariBasicBlockLoadedLogo(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariGraphicsDefinition(entry) || IsAtariGraphicsMemoryPlane(entry)) return ExplorerFileCategory.Image;
-            if (IsMicroProseAtariTileMap(entry)) return ExplorerFileCategory.Image;
-            if (IsMicroProseAtariEffectSequence(entry)) return ExplorerFileCategory.Audio;
-            if (IsAtariCadVectorDrawing(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariSparseTileMap(entry.Content) || IsSupertronsCharacterSet(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariPrexorPackedExecutable(entry.Content) || IsTruncatedAtariSuperPackerExecutable(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsAtariA000SelfExtractingExecutable(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsAtariBurgersPackedExecutable(entry.Content) || IsAtariMiner2049PackedExecutable(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsAtariPrexorRoutine(entry.Content)) return ExplorerFileCategory.Library;
-            if (IsAtariUnicumLevel(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariCassetteRecordProgram(entry)) return ExplorerFileCategory.BootProgram;
-            if (IsAtariCharacterGeneratorCassetteProgram(entry)) return ExplorerFileCategory.BootProgram;
-            if (IsAtariAstroChaseCassetteProgram(entry)) return ExplorerFileCategory.BootProgram;
-            if (IsAtariCassetteGraphicRecordStream(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariCassetteDataRecordStream(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariCassettePartialDataRecordStream(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariCassettePartialProgramStream(entry)) return ExplorerFileCategory.BootProgram;
-            if (IsAtariCassetteAdventureDatabase(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariCassetteCompilationDataStream(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariCassetteAssemblerSourceStream(entry)) return ExplorerFileCategory.SourceCode;
-            if (IsAtariWhoDaresWinsGameData(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariWhoDaresWinsGraphics(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariPhantomGameData(entry)) return ExplorerFileCategory.Data;
-            if (IsAtariPhantomGraphics(entry)) return ExplorerFileCategory.Image;
-            if (IsAnime4EverImage(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariLcRasterImage(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariDgtRawSample(entry)) return ExplorerFileCategory.Audio;
-            if (IsAtariGtfImage(entry)) return ExplorerFileCategory.Image;
-            if (IsAtariTrackerAudio(entry) || IsAtariNeoTrackerModule(entry.Content)) return ExplorerFileCategory.Audio;
-            if (IsAtariPlayerMissileBlankingRoutine(entry)) return ExplorerFileCategory.Library;
-            if (IsK3WaveTableUtility(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsKyanPascalEditor(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsFontMakerEditor(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsLasertellerCore(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsNewsroomRawModule(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsPaperclipHiddenModule(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsDiskWizardSpeechBasic(entry.Content)) return ExplorerFileCategory.BasicProgram;
-            if (IsDiskWizardSpeechLibrary(entry.Content)) return ExplorerFileCategory.Library;
-            if (HasAsciiPrefix(entry.Content, "DC-MOD13\0") || HasAsciiPrefix(entry.Content, "DC-MOD20\0"))
-                return ExplorerFileCategory.Library;
-            if (HasAsciiPrefix(entry.Content, "DAISY-DOT NLQ FONT")) return ExplorerFileCategory.Font;
-            if (IsAtari8BitArtistUnleashedImage(entry.Content)) return ExplorerFileCategory.Image;
-            if (HasAsciiPrefix(entry.Content, "CREATION") && entry.Content is { Count: > 8 } && entry.Content[8] == 0x9b)
-                return ExplorerFileCategory.Data;
-            if (HasAsciiPrefix(entry.Content, ";------Operating System Equates")) return ExplorerFileCategory.SourceCode;
-            if (IsAtariMac65Source(entry.Content) || IsAtariXasmSource(entry.Content)) return ExplorerFileCategory.SourceCode;
-            if (IsAtariWriterDocument(entry.Content)) return ExplorerFileCategory.Document;
-            if (IsMiniOfficeDocument(entry.Content)) return ExplorerFileCategory.Document;
-            if (IsAtasciiTerminalScreen(entry)) return ExplorerFileCategory.Text;
-            if (IsAtariAssemblerSource(entry.Content)) return ExplorerFileCategory.SourceCode;
-            if (IsAtari8BitAtasciiBasicListing(entry.Content)) return ExplorerFileCategory.BasicProgram;
-            if (LooksLikeAtasciiText(entry.Content)) return ExplorerFileCategory.Text;
-            if (IsAtari8BitBasicProgram(entry.Content) || IsAtari8BitPackedCassetteBasicProgram(entry))
-                return ExplorerFileCategory.BasicProgram;
-            if (IsAtariPascalExecutable(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsAtariRaw6502Executable(entry)) return ExplorerFileCategory.Executable;
-            if (IsAtari8BitXex(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsAtari8BitExecutableWithEmbeddedPayload(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsAtari8BitAbcRuntimeInterpreter(entry.Content)) return ExplorerFileCategory.Library;
-            if (IsAtari8BitAbcCompiledProgram(entry.Content)) return ExplorerFileCategory.Executable;
-            if (IsAtariLogoInterpreterMemoryImage(entry)) return ExplorerFileCategory.BootProgram;
-            if (IsAtari8BitDosBootImageFile(entry.Content)) return ExplorerFileCategory.BootProgram;
-            if (IsAtari8BitDiskBootProgram(entry.Content)) return ExplorerFileCategory.BootProgram;
-            if (IsAtari8BitCassetteBootProgram(entry)) return ExplorerFileCategory.BootProgram;
-            if (HasAsciiPrefix(entry.Content, "AM1")) return ExplorerFileCategory.Audio;
-            if (entry.Content is { Count: 125 }) return ExplorerFileCategory.Data;
-        }
+
+        if (IsAmigaExecutable(entry.Content) && family == ExplorerFileSystemFamily.Amiga)
+            return ExplorerFileCategory.Executable;
+        if (IsDosExecutable(entry.Content) && family == ExplorerFileSystemFamily.IbmPc)
+            return ExplorerFileCategory.Executable;
+        if (IsAtariExecutable(entry.Content) && family == ExplorerFileSystemFamily.AtariSt)
+            return ExplorerFileCategory.Executable;
         if (HasFormType(entry.Content, "ILBM")) return ExplorerFileCategory.Image;
         if (HasFormType(entry.Content, "8SVX")) return ExplorerFileCategory.Audio;
         return null;
@@ -197,4 +30,44 @@ internal static partial class ExplorerFileContentClassifier
         var printable = sample.Count(value => value is 9 or 10 or 13 || value >= 32 && value < 127);
         return printable >= sample.Length * 0.9;
     }
+
+    private static ExplorerFileCategory? MetadataCategory(FileSystemEntry entry, ExplorerFileSystemFamily family)
+    {
+        var type = entry.Comment.Trim();
+        if (family == ExplorerFileSystemFamily.Commodore && type.StartsWith("PRG", StringComparison.OrdinalIgnoreCase)) return ExplorerFileCategory.Program;
+        if (family == ExplorerFileSystemFamily.AppleDos && type is "Text") return ExplorerFileCategory.Text;
+        if (family == ExplorerFileSystemFamily.AppleDos && type is "Integer BASIC" or "Applesoft BASIC") return ExplorerFileCategory.BasicProgram;
+        if (family == ExplorerFileSystemFamily.ProDos && type is "Text") return ExplorerFileCategory.Text;
+        if (family == ExplorerFileSystemFamily.ProDos && type is "BASIC") return ExplorerFileCategory.BasicProgram;
+        if (family == ExplorerFileSystemFamily.ProDos && type is "System") return ExplorerFileCategory.System;
+        if (family == ExplorerFileSystemFamily.Macintosh)
+        {
+            if (type.Equals("APPL", StringComparison.OrdinalIgnoreCase)) return ExplorerFileCategory.Executable;
+            if (type.Equals("TEXT", StringComparison.OrdinalIgnoreCase)) return ExplorerFileCategory.Text;
+            if (type.Equals("PICT", StringComparison.OrdinalIgnoreCase)) return ExplorerFileCategory.Image;
+            if (type.Equals("snd", StringComparison.OrdinalIgnoreCase) || type.Equals("AIFF", StringComparison.OrdinalIgnoreCase)) return ExplorerFileCategory.Audio;
+        }
+        if (family == ExplorerFileSystemFamily.Ucsd)
+        {
+            if (type.Equals("UCSD code file", StringComparison.OrdinalIgnoreCase)) return ExplorerFileCategory.Executable;
+            if (type.Equals("UCSD text file", StringComparison.OrdinalIgnoreCase)) return ExplorerFileCategory.Text;
+            if (type is "UCSD graphics file" or "UCSD photo file") return ExplorerFileCategory.Image;
+        }
+        return null;
+    }
+
+    private static bool IsAmigaExecutable(IReadOnlyList<byte>? data) =>
+        data is { Count: >= 4 } && data[0] == 0 && data[1] == 0 && data[2] == 3 && data[3] == 0xF3;
+
+    private static bool IsDosExecutable(IReadOnlyList<byte>? data) =>
+        data is { Count: >= 2 } && data[0] == (byte)'M' && data[1] == (byte)'Z';
+
+    private static bool IsAtariExecutable(IReadOnlyList<byte>? data) =>
+        data is { Count: >= 2 } && data[0] == 0x60 && data[1] == 0x1A;
+
+    private static bool HasFormType(IReadOnlyList<byte>? data, string type) =>
+        data is { Count: >= 12 } &&
+        data[0] == (byte)'F' && data[1] == (byte)'O' && data[2] == (byte)'R' && data[3] == (byte)'M' &&
+        data.Skip(8).Take(4).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(type));
+
 }

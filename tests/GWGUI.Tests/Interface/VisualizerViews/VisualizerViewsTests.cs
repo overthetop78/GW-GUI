@@ -15,6 +15,7 @@ public sealed class VisualizerViewsTests(StaExecutionScenarios sta)
     [Fact] public Task ExplorerAndVisualizerSynchronizeFormatsForTheSameImage() => sta.RunAsync(VisualizerDocumentScenarios.ExplorerAndVisualizerSynchronizeFormatsForTheSameImage);
     [Fact] public Task BothVisualizerOpenButtonsUseTheSameAction() => sta.Run(VisualizerDocumentScenarios.BothVisualizerOpenButtonsUseTheSameAction);
     [Fact] public Task SharedScpLoadClearsThenBuildsFluxDuringRecognition() => sta.RunAsync(VisualizerDocumentScenarios.SharedScpLoadClearsThenBuildsFluxDuringRecognition);
+    [Fact] public Task SharedOpeningReadsMediaOnce() => sta.RunAsync(VisualizerDocumentScenarios.SharedOpeningReadsMediaOnce);
     [Fact] public Task SharedNonScpProgressStaysInLoadingPanelsUntilTrackProgress() => sta.Run(VisualizerDocumentScenarios.SharedNonScpProgressStaysInLoadingPanelsUntilTrackProgress);
     [Theory] [InlineData(40, 1)] [InlineData(80, 2)]
     public Task SectorStatusProgressUsesMediaGeometry(int cylinders, int heads) => sta.RunAsync(() => VisualizerDocumentScenarios.SectorStatusProgressUsesMediaGeometry(cylinders, heads));
@@ -28,6 +29,8 @@ public sealed class VisualizerViewsTests(StaExecutionScenarios sta)
     [Fact] public Task FailedAndCancelledLoadCanRetry() => sta.RunAsync(VisualizerDocumentScenarios.CancelAndRetry);
     [Theory] [InlineData(false)] [InlineData(true)]
     public Task ReplacedAnalysisCannotRestartVisualization(bool combined) => sta.RunAsync(() => VisualizerDocumentScenarios.ReplacedAnalysis(combined));
+    [Fact] public Task SharedLoadsAreSerializedAndIntermediateRequestsAreDiscarded() => sta.RunAsync(VisualizerDocumentScenarios.SharedLoadsAreSerializedAndCoalesced);
+    [Fact] public Task CassettePresentationUsesRecognizedMediaKindRatherThanExtension() => sta.RunAsync(VisualizerDocumentScenarios.CassettePresentationUsesRecognizedMediaKindRatherThanExtension);
     [Fact] public Task InspectorDocumentClears() => sta.Run(InspectorSelectionScenarios.Clear);
     [Theory] [InlineData(0)] [InlineData(1)]
     public Task InspectorTrackRevolutionsAndSectors(int head) => sta.RunAsync(() => InspectorSelectionScenarios.Selection(head));
