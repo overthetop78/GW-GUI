@@ -2,6 +2,7 @@ using System.Buffers.Binary;
 using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.MediaEngine.Exploration.Metadata;
 

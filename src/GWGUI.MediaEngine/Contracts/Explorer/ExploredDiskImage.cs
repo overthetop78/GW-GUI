@@ -1,6 +1,5 @@
 using System.IO;
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;

@@ -11,6 +11,7 @@ using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Models.Flux;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
+using System.IO;
 
 namespace GWGUI.MediaEngine.Exploration;
 
@@ -62,7 +63,7 @@ public sealed class DiskImageExplorer
         IProgress<ScpExplorationProgress>? progress,
         CancellationToken cancellationToken)
     {
-        if (!File.Exists(path)) throw DiskImageExplorationExceptions.MissingImage(path);
+        if (!File.Exists(path)) throw new FileNotFoundException($"L'image de média '{path}' n'existe pas.", path);
         MediaImageDocument document;
         try
         {

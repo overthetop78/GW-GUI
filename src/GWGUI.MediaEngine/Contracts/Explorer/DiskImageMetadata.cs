@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Metadata;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Décrit les identifiants techniques de systèmes et de protection associés à une image.</summary>
 public sealed record DiskImageMetadata

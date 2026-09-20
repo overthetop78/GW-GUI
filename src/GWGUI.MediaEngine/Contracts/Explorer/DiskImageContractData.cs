@@ -1,7 +1,6 @@
 using System.IO;
 using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.Contracts.Explorer;
 

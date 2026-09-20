@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Metadata;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Décrit les caractéristiques de contenu prouvées par les octets d'une image.</summary>
 public sealed record DiskContentMetadata(bool HasValidAmigaBootLoader, string? ModificationId, IReadOnlyList<string> CompressionIds, string? OrganizationId = null, int OrganizationMemberCount = 0)

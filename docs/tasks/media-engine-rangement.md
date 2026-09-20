@@ -2922,3 +2922,14 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
   - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
   - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
   - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Documents` après vérification de son contenu.
+- [x] Ranger les métadonnées transmises à App parmi les contrats d'exploration
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentMetadata.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/DiskContentMetadata.cs` et adopter l'espace de noms des contrats.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadata.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageMetadata.cs` et adopter l'espace de noms des contrats.
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentDetector.cs` : importer les métadonnées depuis `Contracts.Explorer`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadataFactory.cs` : importer les métadonnées depuis `Contracts.Explorer`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredDiskImage.cs` : retirer l'import de métadonnées devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageContractData.cs` : retirer l'import de métadonnées devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerMetadataPresenter.cs` : importer les métadonnées depuis `Contracts.Explorer`.
+- [x] Retirer la classe d'erreur propre au seul lecteur DiskImageExplorer
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : construire directement la même `FileNotFoundException` avec le chemin source et ajouter `using System.IO;`.
+  - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/DiskImageExplorationExceptions.cs` après disparition de son unique appel.
