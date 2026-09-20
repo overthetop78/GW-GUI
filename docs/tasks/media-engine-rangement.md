@@ -2688,3 +2688,10 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : utiliser le catalogue adapté par MediaEngine.
     - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : utiliser le catalogue adapté par MediaEngine.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier les lecteurs du catalogue adapté par MediaEngine.
+- [x] Ranger le résultat d’ouverture transmis à App dans Contracts
+  - [x] Déplacer le modèle et ses références
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/MediaOpeningAnalysisResult.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/MediaOpeningAnalysisResult.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : référencer le résultat sous Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : référencer le résultat sous Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : référencer le résultat sous Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : référencer le résultat sous Contracts/Explorer.

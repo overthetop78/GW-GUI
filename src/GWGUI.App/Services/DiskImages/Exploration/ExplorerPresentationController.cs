@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 
 namespace GWGUI.App.Services.DiskImages.Exploration;
