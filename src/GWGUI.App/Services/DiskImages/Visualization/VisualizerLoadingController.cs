@@ -14,6 +14,7 @@ using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Enums;
 using System.IO;
 

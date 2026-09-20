@@ -2912,3 +2912,13 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
     - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
     - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+- [x] Ranger les services d'ouverture des images encore sous Exploration
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` et changer son espace de noms pour le service qui lit l'image et transmet le document à l'explorateur.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaOpeningAnalysisService.cs`, changer son espace de noms et importer la façade `DiskImageExplorer` encore située sous Exploration.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : importer `Images.Reading` pour le service de lecture déplacé.
+- [x] Ranger l'assemblage du résultat de lecture d'image
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Documents/DiskImageDocumentFactory.cs`, adopter l'espace de noms de lecture et ajouter `using System.IO;` pour `Path` et `FileInfo`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
+  - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Documents` après vérification de son contenu.

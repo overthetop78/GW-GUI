@@ -4,7 +4,7 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
-using GWGUI.MediaEngine.Exploration.Documents;
+using GWGUI.MediaEngine.Images.Reading.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using GWGUI.MediaEngine.Images.Reading;

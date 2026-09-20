@@ -6,8 +6,9 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using System.IO;
 
-namespace GWGUI.MediaEngine.Exploration.Documents;
+namespace GWGUI.MediaEngine.Images.Reading.Documents;
 
 /// <summary>Construit les documents d'exploration reconnus, physiques ou inconnus.</summary>
 internal sealed class DiskImageDocumentFactory(DiskImageMetadataFactory metadataFactory)

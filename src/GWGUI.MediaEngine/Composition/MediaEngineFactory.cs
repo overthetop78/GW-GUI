@@ -8,7 +8,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Apple.Encoding;
 using GWGUI.MediaEngine.Images.Writing.Encoding;
 using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Exploration.Documents;
+using GWGUI.MediaEngine.Images.Reading.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;

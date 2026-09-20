@@ -7,8 +7,9 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using GWGUI.MediaEngine.Images.Reading;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using System.IO;
+using GWGUI.MediaEngine.Exploration;
 
-namespace GWGUI.MediaEngine.Exploration;
+namespace GWGUI.MediaEngine.Images.Reading;
 
 /// <summary>Loads one media source once and derives every exploration result from the loaded document.</summary>
 public sealed class MediaOpeningAnalysisService(

@@ -7,7 +7,7 @@ using GWGUI.MediaEngine.Images.Reading;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using System.IO;
 
-namespace GWGUI.MediaEngine.Exploration;
+namespace GWGUI.MediaEngine.Images.Reading;
 
 /// <summary>Loads one media document and explores its file-system content without presentation dependencies.</summary>
 public sealed class MediaImageExplorationService(
