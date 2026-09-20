@@ -7,7 +7,6 @@ using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using System.Windows.Media;
 

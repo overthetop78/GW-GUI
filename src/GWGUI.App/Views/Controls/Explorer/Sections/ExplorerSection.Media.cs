@@ -14,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images.Models.Optical;
 using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaEngine.Images.Reading.Recognition;

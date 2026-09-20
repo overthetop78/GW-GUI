@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 
-namespace GWGUI.MediaEngine.Exploration.Results;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Contains one recognized media document and the file-system exploration of its volumes.</summary>
 public sealed class ExploredMediaImage

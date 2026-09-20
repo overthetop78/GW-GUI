@@ -1,3 +1,4 @@
+using System.IO;
 using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Metadata;
@@ -8,7 +9,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Results;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Construit le contrat public complet depuis les modèles internes déjà validés.</summary>
 internal static class DiskImageContractData

@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.ViewModels.Explorer;
 

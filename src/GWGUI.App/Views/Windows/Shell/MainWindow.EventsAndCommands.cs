@@ -41,7 +41,7 @@ using GWGUI.App.Views.Controls.Write;
 using GWGUI.App.Views.Dialogs.Common;
 using GWGUI.MediaEngine.Images.Visualization;
 using System.ComponentModel;
-using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using System.IO;
 using System.Net.Http;
 using System.Diagnostics;

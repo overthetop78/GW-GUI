@@ -1,5 +1,4 @@
 using GWGUI.App.Views.Controls.Explorer;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using System.Windows.Controls;

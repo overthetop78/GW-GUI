@@ -7,7 +7,7 @@ using GWGUI.App.Functions.Storage;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
-using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Models.Optical;

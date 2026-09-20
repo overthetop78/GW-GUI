@@ -1,6 +1,5 @@
 using GWGUI.App.Functions.Localization;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 

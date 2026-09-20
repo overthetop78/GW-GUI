@@ -1,5 +1,4 @@
 using GWGUI.MediaEngine.Contracts.Explorer;
-using GWGUI.MediaEngine.Exploration.Results;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation;
 

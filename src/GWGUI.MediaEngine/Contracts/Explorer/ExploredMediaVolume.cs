@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
-namespace GWGUI.MediaEngine.Exploration.Results;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Associates one media volume with its recognized file system and candidate diagnostics.</summary>
 public sealed class ExploredMediaVolume

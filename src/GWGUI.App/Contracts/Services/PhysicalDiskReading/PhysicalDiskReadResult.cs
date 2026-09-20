@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.Contracts.Services.PhysicalDiskReading;
 

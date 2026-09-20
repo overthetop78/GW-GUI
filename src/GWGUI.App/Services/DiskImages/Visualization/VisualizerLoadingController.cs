@@ -10,7 +10,6 @@ using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Images.Visualization;

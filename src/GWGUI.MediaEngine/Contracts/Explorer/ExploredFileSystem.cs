@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Contracts.Explorer;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Results;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Décrit un système de fichiers reconnu dans une interprétation sectorielle.</summary>
 /// <param name="ReaderId">Identifiant réel du lecteur de système de fichiers.</param>

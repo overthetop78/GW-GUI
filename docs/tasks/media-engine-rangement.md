@@ -2811,6 +2811,56 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems` après vérification de son contenu.
 - [x] Retirer les lignes vides finales ajoutées pendant le changement d’espace de noms
   - [x] Nettoyer les fichiers modifiés
+- [x] Ranger les résultats de l’explorateur dans les contrats de MediaEngine
+  - [x] Déplacer les résultats et leur constructeur
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageContractData.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredDiskImage.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredFileSystem.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredFileSystem.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaImage.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredMediaImage.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredMediaVolume.cs` et actualiser son espace de noms.
+  - [x] Raccorder tous les consommateurs à ces contrats
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/MediaOpeningAnalysisResult.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileSystemFamilyResolver.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerDetailsPanel.xaml.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerMediaVolumeChoice.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadResult.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspection.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpImageExplorationService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerTreeScenarios.cs` : remplacer les noms entièrement qualifiés des résultats déplacés.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerFailureScenarios.cs` : remplacer les noms entièrement qualifiés des résultats déplacés.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Results` après vérification de son contenu.
     - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
     - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
     - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.

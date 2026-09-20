@@ -4,7 +4,6 @@ using GWGUI.App.Dictionaries.Explorer.FileTypes;
 using GWGUI.App.Enums.Explorer;
 using GWGUI.App.Localization.Extensions;
 using System.IO;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
 

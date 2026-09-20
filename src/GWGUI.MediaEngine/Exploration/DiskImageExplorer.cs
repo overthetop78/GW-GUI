@@ -6,7 +6,6 @@ using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Models.Flux;

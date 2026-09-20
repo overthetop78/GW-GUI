@@ -1,5 +1,5 @@
 using GWGUI.App.Enums.Explorer;
-using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Constants;
 
 

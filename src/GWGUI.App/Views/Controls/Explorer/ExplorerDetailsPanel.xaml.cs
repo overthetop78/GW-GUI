@@ -6,7 +6,7 @@ using GWGUI.App.Presenters.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using System.Windows;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using System.Windows.Controls;
 using System.Windows.Media;
 

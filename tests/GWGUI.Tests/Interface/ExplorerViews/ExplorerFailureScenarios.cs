@@ -10,7 +10,7 @@ internal static class ExplorerFailureScenarios
     public static async Task LoadingAndRetry(bool staleFailure)
     {
         using var workspace = new GWGUI.Tests.Interface.VisualizerViews.VisualizerDocumentScenarios.Workspace();
-        var pending = new TaskCompletionSource<GWGUI.MediaEngine.Exploration.Results.ExploredDiskImage>();
+        var pending = new TaskCompletionSource<GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage>();
         var oldToken = default(CancellationToken);
         var latest = ExplorerDocumentScenarios.Document("latest");
         workspace.Explore = (path, _, token) => {
@@ -28,7 +28,7 @@ internal static class ExplorerFailureScenarios
         Assert.Same(latest, workspace.Controller.LastReadImage);
         Assert.Equal("latest", ExplorerDocumentScenarios.Find<TextBlock>(workspace.Explorer, "VolumeNameText").Text);
         Assert.Empty(workspace.Errors);
-        workspace.Explore = (_, _, _) => Task.FromException<GWGUI.MediaEngine.Exploration.Results.ExploredDiskImage>(new IOException("current failure"));
+        workspace.Explore = (_, _, _) => Task.FromException<GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage>(new IOException("current failure"));
         Assert.Null(await workspace.Controller.LoadExplorerAsync("failure.scp"));
         Assert.IsType<IOException>(Assert.Single(workspace.Errors));
         Assert.Empty(ExplorerDocumentScenarios.Find<ListView>(workspace.Explorer, "ContentsList").Items);

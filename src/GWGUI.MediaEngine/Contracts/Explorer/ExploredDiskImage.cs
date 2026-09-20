@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Contracts.Explorer;
@@ -6,7 +7,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Results;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Décrit le résultat immuable de l'exploration d'une image de média.</summary>
 public sealed record ExploredDiskImage : IImageDisquette
