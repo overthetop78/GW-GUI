@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Functions;
 using System.IO;
 

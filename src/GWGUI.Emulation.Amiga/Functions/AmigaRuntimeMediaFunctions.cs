@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine;
 
 namespace GWGUI.Emulation.Amiga.Functions;
 

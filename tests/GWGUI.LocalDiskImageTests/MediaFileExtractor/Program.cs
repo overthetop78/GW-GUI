@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.Json;
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 

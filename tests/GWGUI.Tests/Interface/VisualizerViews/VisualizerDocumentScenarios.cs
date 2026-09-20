@@ -17,7 +17,7 @@ using GWGUI.Infrastructure.Settings;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Interfaces.Reading;

@@ -50,7 +50,6 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.Infrastructure.Processes;

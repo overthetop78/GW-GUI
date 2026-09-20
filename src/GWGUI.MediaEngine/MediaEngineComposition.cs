@@ -9,21 +9,23 @@ using GWGUI.MediaEngine.Images.Conversion.Sequential;
 using GWGUI.MediaEngine.PhysicalMedia.Writing;
 using GWGUI.MediaEngine.Images.Reading;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
+using FileSystemsMediaExplorer = GWGUI.MediaFileSystems.Exploration.MediaExplorer;
+using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 
-namespace GWGUI.MediaEngine.Composition;
+namespace GWGUI.MediaEngine;
 
 /// <summary>Assembles the shared media engine services without implementing format algorithms.</summary>
 public sealed class MediaEngineComposition
 {
     private MediaEngineComposition(
         MediaRecognitionComposition recognition,
-        MediaExplorationComposition exploration,
+        MediaExplorer explorer,
         MediaConversionComposition conversion,
         MediaWritingComposition writing,
         MediaVisualizationComposition visualization)
     {
         Recognition = recognition;
-        Exploration = exploration;
+        Explorer = explorer;
         Conversion = conversion;
         Writing = writing;
         Visualization = visualization;
@@ -39,8 +41,6 @@ public sealed class MediaEngineComposition
 
     public MediaRecognitionComposition Recognition { get; }
 
-    public MediaExplorationComposition Exploration { get; }
-
     public MediaConversionComposition Conversion { get; }
 
     public MediaWritingComposition Writing { get; }
@@ -53,7 +53,7 @@ public sealed class MediaEngineComposition
 
     public MediaImageReadingService ReadingService => Recognition.ReadingService;
 
-    public MediaExplorer Explorer => Exploration.Explorer;
+    public MediaExplorer Explorer { get; }
 
     public MediaConversionService ConversionService { get; }
 
@@ -65,11 +65,13 @@ public sealed class MediaEngineComposition
     {
         var recognition = MediaRecognitionComposition.CreateDefault();
         var sequentialMedia = SequentialMediaComposition.CreateDefault();
-        var exploration = MediaExplorationComposition.CreateDefault(sequentialMedia);
-        var decoding = new ScpSectorDecodingComposition(recognition.ScpReader, exploration.FileSystems);
+        var mediaFileSystems = FileSystemsMediaExplorer.CreateDefault(
+            [new SequentialContentDecoderAdapter(sequentialMedia.Decoders)]);
+        var explorer = new MediaExplorer(mediaFileSystems);
+        var decoding = new ScpSectorDecodingComposition(recognition.ScpReader, new FileSystemRegistry());
         var conversion = new MediaConversionComposition(recognition, decoding, sequentialMedia);
         var writing = MediaWritingComposition.CreateDefault();
         var visualization = MediaVisualizationComposition.CreateDefault();
-        return new MediaEngineComposition(recognition, exploration, conversion, writing, visualization);
+        return new MediaEngineComposition(recognition, explorer, conversion, writing, visualization);
     }
 }

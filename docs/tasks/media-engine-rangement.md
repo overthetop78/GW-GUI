@@ -3084,3 +3084,31 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
   - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : retirer les fabriques de conversion sans appelant et le constructeur de migration ; ne garder que l'assemblage réel du lecteur d'image.
   - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorerFactory.cs` : nommer la fabrique selon son seul rôle restant et adopter l'espace de noms de lecture.
   - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` : utiliser `DiskImageExplorerFactory` dans son espace de noms.
+- [x] Confier à MediaFileSystems l'assemblage de ses lecteurs et détecteurs de volumes
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : créer le catalogue MFS par défaut et insérer les lecteurs adaptateurs fournis par MediaEngine dans l'ordre existant.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : construire la façade de lecture avec le catalogue MFS, sans assembler les lecteurs de systèmes de fichiers.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier l'adaptateur de bande dans le catalogue MFS désormais construit par MediaFileSystems.
+  - [x] Supprimer `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : son assemblage des lecteurs et détecteurs est repris par MediaFileSystems.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialContentDecoderAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Reading/SequentialContentDecoderAdapter.cs` : ranger l'adaptateur entre décodage du média et exploration MFS avec la lecture.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : importer l'adaptateur déplacé depuis Images/Reading.
+- [x] Retirer le dernier fichier et le dossier Composition de MediaEngine
+  - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` vers `src/GWGUI.MediaEngine/MediaEngineComposition.cs` : conserver à la racine la composition transversale du moteur et adopter l'espace de noms racine.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.Emulation.Amiga/Functions/AmigaRuntimeMediaFunctions.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariScpMediaFunctions.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Services/Parity/MediaEngineConversionSupport.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Composition` après vérification de son contenu.
+- [x] Retirer les imports en double révélés par la compilation
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : conserver un seul import du moteur.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : conserver un seul import du moteur.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : conserver un seul import du moteur.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : conserver un seul import du moteur.

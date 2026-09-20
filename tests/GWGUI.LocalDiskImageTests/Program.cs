@@ -9,7 +9,7 @@ using GWGUI.App.ViewModels.Explorer;
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Reading.Recognition;

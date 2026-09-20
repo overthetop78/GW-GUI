@@ -1,6 +1,6 @@
-﻿using GWGUI.MediaEngine.Images.Formats.Tape;
+using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Images.Reading;
-using GWGUI.MediaEngine.Composition;
+
 using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding;
 using GWGUI.MediaEngine.Enums;

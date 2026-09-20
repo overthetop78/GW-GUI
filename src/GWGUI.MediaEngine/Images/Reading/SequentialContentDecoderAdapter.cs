@@ -12,7 +12,7 @@ using GWGUI.MediaFileSystems;
 using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
 
-namespace GWGUI.MediaEngine.Images.Formats.Tape;
+namespace GWGUI.MediaEngine.Images.Reading;
 
 /// <summary>Décode la bande dans le moteur puis confie les vrais fichiers au lecteur de systèmes de fichiers.</summary>
 public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader

@@ -2,6 +2,10 @@ using System.IO;
 using GWGUI.MediaFileSystems.Contracts;
 using GWGUI.MediaFileSystems.Interfaces;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
+using GWGUI.MediaFileSystems.FileSystems.Iso9660;
+using GWGUI.MediaFileSystems.FileSystems.Udf;
+using GWGUI.MediaFileSystems.Exploration.Partitioning;
+using GWGUI.MediaFileSystems.Exploration.Sequential;
 
 namespace GWGUI.MediaFileSystems.Exploration;
 
@@ -32,6 +36,30 @@ public sealed class MediaExplorer
     }
 
     public IReadOnlyList<IMediaFileSystemReader> Readers => readers;
+
+    public static MediaExplorer CreateDefault(IEnumerable<IMediaFileSystemReader> adapterReaders)
+    {
+        ArgumentNullException.ThrowIfNull(adapterReaders);
+        var detectors = new MediaVolumeDetectorRegistry(
+        [
+            new SequentialContentVolumeDetector(),
+            new OpticalTrackVolumeDetector(),
+            new GptVolumeDetector(),
+            new MbrVolumeDetector(),
+            new WholeMediaVolumeDetector()
+        ]);
+        var registered = FileSystemReaderCatalog.CreateDefault()
+            .Cast<IMediaFileSystemReader>()
+            .Concat(adapterReaders)
+            .Concat(new IMediaFileSystemReader[]
+            {
+                new UdfFileSystemReader(),
+                new JolietExtensionReader(),
+                new RockRidgeExtensionReader(),
+                new Iso9660FileSystemReader()
+            });
+        return new MediaExplorer(registered, detectors);
+    }
 
     public async ValueTask<MediaFileSystemExplorationResult> ExploreAsync(
         IMediaImageDocument document,

@@ -1,5 +1,5 @@
 using System.Globalization;
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.Emulation.Atari.Functions;
