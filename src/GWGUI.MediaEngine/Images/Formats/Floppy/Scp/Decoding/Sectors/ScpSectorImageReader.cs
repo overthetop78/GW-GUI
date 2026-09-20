@@ -1,5 +1,5 @@
-using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 

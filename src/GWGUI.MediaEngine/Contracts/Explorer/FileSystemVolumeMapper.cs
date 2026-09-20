@@ -1,31 +1,11 @@
-using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.FileSystems;
 
-namespace GWGUI.MediaEngine.FileSystems;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
-/// <summary>Adapts a file-system reader to the engine's existing sector-reader catalog.</summary>
-public sealed class MediaFileSystemsReaderAdapter : IFileSystemReader
+/// <summary>Convertit les volumes entre la lecture interne et les données échangées par MediaEngine.</summary>
+public static class FileSystemVolumeMapper
 {
-    private readonly GWGUI.MediaFileSystems.IFileSystemReader reader;
-
-    public static IReadOnlyList<IFileSystemReader> CreateDefaultCatalog() =>
-        Array.AsReadOnly(GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog.CreateDefault()
-            .Select(reader => (IFileSystemReader)new MediaFileSystemsReaderAdapter(reader)).ToArray());
-
-    public MediaFileSystemsReaderAdapter(GWGUI.MediaFileSystems.IFileSystemReader reader)
-    {
-        ArgumentNullException.ThrowIfNull(reader);
-        this.reader = reader;
-    }
-
-    public string Id => reader.Id;
-
-    public IReadOnlySet<string> CatalogFormatIds => reader.CatalogFormatIds;
-
-    public bool CanRead(SectorImage image) => reader.CanRead(image);
-
-    public FileSystemVolume Read(SectorImage image) => ConvertVolume(reader.Read(image));
-
-    internal static FileSystemVolume ConvertVolume(GWGUI.MediaFileSystems.FileSystemVolume volume)
+    public static FileSystemVolume ConvertVolume(GWGUI.MediaFileSystems.FileSystemVolume volume)
     {
         ArgumentNullException.ThrowIfNull(volume);
         return new FileSystemVolume(
@@ -45,7 +25,7 @@ public sealed class MediaFileSystemsReaderAdapter : IFileSystemReader
             volume.DiskNumberOrigin);
     }
 
-    internal static GWGUI.MediaFileSystems.FileSystemVolume ToFileSystemsVolume(FileSystemVolume volume)
+    public static GWGUI.MediaFileSystems.FileSystemVolume ToFileSystemsVolume(FileSystemVolume volume)
     {
         ArgumentNullException.ThrowIfNull(volume);
         return new GWGUI.MediaFileSystems.FileSystemVolume(

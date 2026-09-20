@@ -1,7 +1,7 @@
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
-using GWGUI.MediaEngine.FileSystems;
+using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition;

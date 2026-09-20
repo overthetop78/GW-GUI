@@ -2726,3 +2726,27 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Modifier `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : appeler l’explorateur de MediaEngine puis vérifier que son volume contient le vrai nom et contenu renvoyés par MediaFileSystems.
   - [x] Retirer le dossier de décodage de bande vidé par ce déplacement
     - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Sequential` après contrôle de son contenu.
+- [x] Déplacer la sélection des lecteurs sectoriels vers MediaFileSystems
+  - [x] Remplacer le registre sectoriel dans ses appelants
+    - [x] Créer `src/GWGUI.MediaFileSystems/Exploration/SectorFileSystemRegistry.cs` : reprendre la sélection ordonnée, les identifiants de formats et les rapports de lecture sur `IMediaSectorImage`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : utiliser le registre de MediaFileSystems et transformer ses volumes en données de retour MediaEngine.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : utiliser le registre de MediaFileSystems et transformer les volumes lus avant leur retour.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageReader.cs` : interroger le registre sectoriel de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/ScpSectorDecodingComposition.cs` : recevoir le registre sectoriel de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : construire le registre sectoriel de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : transmettre le registre sectoriel de MediaFileSystems au décodage SCP.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : lire l’image avec le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : lire l’image avec le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : lire l’image avec le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier directement le catalogue de MediaFileSystems.
+  - [x] Supprimer le registre et les rapports copiés dans MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/MediaFileSystemsReaderAdapter.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs` : ne garder que les conversions de données renvoyées à App ou reçues pour la migration.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : utiliser `FileSystemVolumeMapper` pour le résultat de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` : utiliser `FileSystemVolumeMapper` pour la source de migration.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : référencer le mapper déplacé dans Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : référencer le mapper déplacé dans Contracts/Explorer.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` après raccordement de tous ses appelants.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Interfaces/Exploration/IFileSystemReader.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemReadReport.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemReadFailure.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemMatch.cs` devenu sans appelant.

@@ -16,7 +16,7 @@ using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
-using GWGUI.MediaEngine.FileSystems;
+using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Reading.Recognition.Policies;
 using GWGUI.MediaEngine.Images.Reading.Recognition.Msx;
@@ -250,7 +250,7 @@ public static class MediaEngineFactory
     private static FluxDecoderRegistry CreateFluxDecoders() => new(FluxDecoderCatalog.CreateDefault());
 
     /// <summary>CrÃ©e l'unique registre des lecteurs de systÃ¨mes de fichiers.</summary>
-    private static FileSystemRegistry CreateFileSystems() => new(MediaFileSystemsReaderAdapter.CreateDefaultCatalog());
+    private static FileSystemRegistry CreateFileSystems() => new();
 
     /// <summary>CrÃ©e le service d'interprÃ©tation partagÃ© par les explorateurs gÃ©nÃ©ral et SCP.</summary>
     private static (DiskImageInterpretationService Interpretations, DiskImageDocumentFactory Documents) CreateInterpretations(FileSystemRegistry fileSystems)

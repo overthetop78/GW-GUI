@@ -1,7 +1,9 @@
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
+using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 
@@ -32,26 +34,29 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
             var matches = new List<ExploredFileSystem>();
             foreach (var match in fileSystems.ReadCandidates(image, image.FormatId).Matches)
             {
-                var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId, match.Volume);
+                var volume = FileSystemVolumeMapper.ConvertVolume(match.Volume);
+                var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId, volume);
                 ExploredFileSystem recognized;
                 if (ReferenceEquals(normalized, image))
                 {
-                    recognized = new(match.ReaderId, image, match.Volume);
+                    recognized = new(match.ReaderId, image, volume);
                 }
                 else if (fileSystems.TryRead(normalized, match.ReaderId, out var normalizedMatch))
                 {
-                    recognized = new(match.ReaderId, normalized, normalizedMatch.Volume);
+                    recognized = new(match.ReaderId, normalized,
+                        FileSystemVolumeMapper.ConvertVolume(normalizedMatch.Volume));
                 }
                 else
                 {
-                    recognized = new(match.ReaderId, image, match.Volume);
+                    recognized = new(match.ReaderId, image, volume);
                 }
 
                 matches.Add(recognized);
                 foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(recognized.Image))
                 {
                     if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var interpretedMatch)) continue;
-                    matches.Add(new(interpretedMatch.ReaderId, interpretation, interpretedMatch.Volume));
+                    matches.Add(new(interpretedMatch.ReaderId, interpretation,
+                        FileSystemVolumeMapper.ConvertVolume(interpretedMatch.Volume)));
                 }
             }
             return matches;

@@ -2,6 +2,7 @@ using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDes
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Exploration.Documents;
@@ -11,6 +12,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Models.Flux;
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 
 namespace GWGUI.MediaEngine.Exploration;
 
@@ -137,12 +139,14 @@ public sealed class DiskImageExplorer
     private (SectorImage Image, IReadOnlyList<ExploredFileSystem> Detected) ReadAutomatically(SectorImage image)
     {
         var detected = fileSystems.ReadCandidates(image, image.FormatId).Matches
-            .Select(match => new ExploredFileSystem(match.ReaderId, image, match.Volume))
+            .Select(match => new ExploredFileSystem(
+                match.ReaderId, image, FileSystemVolumeMapper.ConvertVolume(match.Volume)))
             .ToList();
         foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(image))
         {
             if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var match)) continue;
-            detected.Add(new(match.ReaderId, interpretation, match.Volume));
+            detected.Add(new(match.ReaderId, interpretation,
+                FileSystemVolumeMapper.ConvertVolume(match.Volume)));
         }
         return (image, detected);
     }
@@ -153,7 +157,8 @@ public sealed class DiskImageExplorer
         var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : image.WithFormatId(formatId);
         if (fileSystems.TryRead(selectedImage, formatId, out var match))
         {
-            return (selectedImage, [new(match.ReaderId, selectedImage, match.Volume)]);
+            return (selectedImage, [new(match.ReaderId, selectedImage,
+                FileSystemVolumeMapper.ConvertVolume(match.Volume))]);
         }
         return (selectedImage, []);
     }

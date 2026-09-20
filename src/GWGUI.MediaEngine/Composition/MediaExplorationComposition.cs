@@ -1,6 +1,5 @@
 ﻿using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaFileSystems.FileSystems.Iso9660;
 using GWGUI.MediaFileSystems.FileSystems.Udf;
@@ -10,6 +9,7 @@ using GWGUI.MediaFileSystems.Exploration.Sequential;
 using FileSystemsMediaExplorer = GWGUI.MediaFileSystems.Exploration.MediaExplorer;
 using FileSystemsReader = GWGUI.MediaFileSystems.Interfaces.Exploration.IMediaFileSystemReader;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
+using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 
 namespace GWGUI.MediaEngine.Composition;
 
@@ -57,7 +57,7 @@ public sealed class MediaExplorationComposition
                 new Iso9660FileSystemReader()
             });
         return new(
-            new FileSystemRegistry(MediaFileSystemsReaderAdapter.CreateDefaultCatalog()),
+            new FileSystemRegistry(),
             volumeDetectors,
             new FileSystemsMediaExplorer(readers, volumeDetectors));
     }

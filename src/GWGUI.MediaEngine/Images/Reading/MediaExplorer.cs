@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
 using FileSystemsMediaExplorer = GWGUI.MediaFileSystems.Exploration.MediaExplorer;
@@ -33,7 +34,7 @@ public sealed class MediaExplorer(FileSystemsMediaExplorer fileSystems)
                 volume.ReaderId,
                 volume.FileSystem is null
                     ? null
-                    : MediaFileSystemsReaderAdapter.ConvertVolume(volume.FileSystem),
+                    : FileSystemVolumeMapper.ConvertVolume(volume.FileSystem),
                 volume.Diagnostics))
             .ToArray();
         var diagnostics = document.Diagnostics.Concat(result.Diagnostics).ToArray();

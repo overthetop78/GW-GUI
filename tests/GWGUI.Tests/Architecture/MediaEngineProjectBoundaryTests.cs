@@ -33,7 +33,7 @@ public sealed class MediaEngineProjectBoundaryTests
         Assert.DoesNotContain("gwgui.mediafilesystems", appReferences);
         Assert.DoesNotContain("gwgui.mediaanalysis", appReferences);
 
-        var readers = MediaFileSystemsReaderAdapter.CreateDefaultCatalog();
+        var readers = GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog.CreateDefault();
         foreach (var id in new[]
         {
             FileSystemIds.AcornAdfs,
@@ -44,7 +44,8 @@ public sealed class MediaEngineProjectBoundaryTests
             FileSystemIds.CommodoreDos,
             FileSystemIds.Fat12
         })
-            Assert.IsType<MediaFileSystemsReaderAdapter>(Assert.Single(readers, reader => reader.Id == id));
+            Assert.Same(typeof(GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog).Assembly,
+                Assert.Single(readers, reader => reader.Id == id).GetType().Assembly);
 
         var exploration = MediaExplorationComposition.CreateDefault(SequentialMediaComposition.CreateDefault());
         Assert.IsType<SequentialContentDecoderAdapter>(

@@ -1,4 +1,5 @@
-﻿using GWGUI.MediaEngine.Contracts.Migration;
+using GWGUI.MediaEngine.Contracts.Migration;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using System.IO;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Conversion.Fat12;
@@ -27,7 +28,7 @@ public sealed class FileSystemMigrationService
     {
         var target = FileSystemMigrationTargetCatalog.Get(targetFormatId);
         var blank = BlankSectorImageFactory.Create(target.FormatId);
-        var plan = fileSystems.CreatePlan(MediaFileSystemsReaderAdapter.ToFileSystemsVolume(source), target.FileSystemId);
+        var plan = fileSystems.CreatePlan(FileSystemVolumeMapper.ToFileSystemsVolume(source), target.FileSystemId);
         return ConvertReport(fileSystems.Validate(plan, blank, acceptMetadataLoss));
     }
 
@@ -36,7 +37,7 @@ public sealed class FileSystemMigrationService
     {
         var target = FileSystemMigrationTargetCatalog.Get(targetFormatId);
         var blank = BlankSectorImageFactory.Create(target.FormatId);
-        var plan = fileSystems.CreatePlan(MediaFileSystemsReaderAdapter.ToFileSystemsVolume(source), target.FileSystemId);
+        var plan = fileSystems.CreatePlan(FileSystemVolumeMapper.ToFileSystemsVolume(source), target.FileSystemId);
         var (filled, report) = fileSystems.Inject(plan, blank, acceptMetadataLoss);
         var blocks = filled.AvailableBlocks.Select(block => new SectorBlock(block.LogicalBlock,
             new SectorAddress(block.Address.Cylinder, block.Address.Head, block.Address.Number), block.Data));
@@ -103,3 +104,4 @@ public sealed class FileSystemMigrationService
         else throw new InvalidDataException($"The Commodore DOS migration target '{formatId}' cannot be written to '{suffix}'.");
     }
 }
+

@@ -1,20 +1,19 @@
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using GWGUI.MediaEngine.Images.Models.Sectors;
-using FileSystemRegistryExceptions = GWGUI.MediaFileSystems.FileSystemRegistryExceptions;
+using GWGUI.MediaFileSystems.Interfaces;
 
-namespace GWGUI.MediaEngine.FileSystems;
+namespace GWGUI.MediaFileSystems.Exploration;
 
-/// <summary>Parcours sectoriel utilisé pour inspecter les images SCP.</summary>
-public sealed class FileSystemRegistry
+/// <summary>Interroge les lecteurs sectoriels dans l’ordre du catalogue.</summary>
+public sealed class SectorFileSystemRegistry
 {
     private readonly FrozenDictionary<string, IFileSystemReader> readersById;
     private readonly FrozenDictionary<string, IReadOnlyList<IFileSystemReader>> readersByFormatId;
 
-    public FileSystemRegistry() : this(MediaFileSystemsReaderAdapter.CreateDefaultCatalog()) { }
+    public SectorFileSystemRegistry() : this(FileSystemReaderCatalog.CreateDefault()) { }
 
-    public FileSystemRegistry(IEnumerable<IFileSystemReader> readers)
+    public SectorFileSystemRegistry(IEnumerable<IFileSystemReader> readers)
     {
         ArgumentNullException.ThrowIfNull(readers);
         var copied = readers.ToArray();
@@ -41,9 +40,9 @@ public sealed class FileSystemRegistry
     public IReadOnlyList<IFileSystemReader> Readers { get; }
     public IReadOnlySet<string> SupportedFormatIds { get; }
 
-    public FileSystemReadReport ReadAll(SectorImage image) => ReadCandidates(image, Readers);
+    public FileSystemReadReport ReadAll(IMediaSectorImage image) => ReadCandidates(image, Readers);
 
-    public FileSystemReadReport ReadCandidates(SectorImage image, string? readerOrFormatId)
+    public FileSystemReadReport ReadCandidates(IMediaSectorImage image, string? readerOrFormatId)
     {
         if (readerOrFormatId is null) return ReadAll(image);
         if (readersById.TryGetValue(readerOrFormatId, out var reader)) return ReadCandidates(image, [reader]);
@@ -52,14 +51,14 @@ public sealed class FileSystemRegistry
             : new([], []);
     }
 
-    public bool TryRead(SectorImage image, string? readerOrFormatId, [NotNullWhen(true)] out FileSystemMatch? match)
+    public bool TryRead(IMediaSectorImage image, string? readerOrFormatId, [NotNullWhen(true)] out FileSystemMatch? match)
     {
         var report = ReadCandidates(image, readerOrFormatId);
         match = report.Matches.FirstOrDefault();
         return match is not null;
     }
 
-    private static FileSystemReadReport ReadCandidates(SectorImage image, IEnumerable<IFileSystemReader> readers)
+    private static FileSystemReadReport ReadCandidates(IMediaSectorImage image, IEnumerable<IFileSystemReader> readers)
     {
         var matches = new List<FileSystemMatch>();
         var failures = new List<FileSystemReadFailure>();
