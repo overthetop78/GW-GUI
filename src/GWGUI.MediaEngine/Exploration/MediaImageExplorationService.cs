@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Reading;
+using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using System.IO;
 
 namespace GWGUI.MediaEngine.Exploration;

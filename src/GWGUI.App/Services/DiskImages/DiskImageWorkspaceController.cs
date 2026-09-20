@@ -21,6 +21,7 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Images.Reading;
+using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Models.Flux;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;

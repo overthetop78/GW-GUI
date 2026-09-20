@@ -9,6 +9,7 @@ using GWGUI.MediaEngine.Images.Conversion.Sequential;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.PhysicalMedia.Writing;
 using GWGUI.MediaEngine.Images.Reading;
+using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 
 namespace GWGUI.MediaEngine.Composition;
 

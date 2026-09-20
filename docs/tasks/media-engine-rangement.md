@@ -2698,3 +2698,31 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
 - [x] Vérifier la lecture optique déplacée dans MediaFileSystems
   - [x] Garder un test autonome sur un catalogue ISO 9660 en mémoire
     - [x] Créer `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : construire un descripteur, un répertoire et un fichier ISO en mémoire, puis vérifier que MediaFileSystems retrouve le vrai nom et le contenu via la piste de MediaEngine.
+- [x] Confier l’exploration des volumes à MediaFileSystems
+  - [x] Construire et relier l’explorateur de MediaFileSystems
+    - [x] Créer `src/GWGUI.MediaFileSystems/Contracts/ExploredFileSystemVolume.cs` : décrire le volume détecté, son lecteur, ses fichiers et ses diagnostics.
+    - [x] Créer `src/GWGUI.MediaFileSystems/Contracts/MediaFileSystemExplorationResult.cs` : regrouper les volumes détectés et leurs résultats.
+    - [x] Créer `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : sélectionner les lecteurs enregistrés pour chaque volume et retourner les vrais fichiers.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentDecoderAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialContentDecoderAdapter.cs` : rapprocher le décodeur de ses formats de bande.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialContentDecoderAdapter.cs` : exposer le décodage des bandes via l’interface de lecteur de MediaFileSystems et retourner son volume directement.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : enregistrer directement les lecteurs de MediaFileSystems, optiques et séquentiels, dans leur ordre actuel.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/MediaExplorer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : ne garder que l’assemblage du résultat destiné à App après l’appel à MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : utiliser le nouveau rangement de la porte d’entrée MediaExplorer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : utiliser le nouveau rangement de la porte d’entrée MediaExplorer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : utiliser le nouveau rangement de la porte d’entrée MediaExplorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : référencer la porte d’entrée MediaExplorer de MediaEngine sous Images/Reading.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : construire l’explorateur de test avec le lecteur de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier le lecteur séquentiel dans l’explorateur de MediaFileSystems.
+  - [x] Supprimer le chemin de lecture des volumes devenu inutile dans le registre de MediaEngine
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` : ne conserver que le parcours sectoriel SCP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Exploration/IFileSystemReader.cs` : retirer l’héritage de l’interface de lecture de volumes obsolète.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Interfaces/Exploration/IMediaFileSystemReader.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Images/Reading/MediaFileSystemsOpticalReaderAdapter.cs` devenu sans appelant.
+  - [x] Corriger le typage révélé par la compilation
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : déclarer la liste ordonnée des lecteurs sous leur interface commune `IEnumerable<IMediaFileSystemReader>`.
+  - [x] Distinguer les deux explorateurs dans leur composition
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : nommer explicitement l’explorateur de réponse MediaEngine et celui de fichiers MediaFileSystems.
+  - [x] Vérifier le trajet du média optique jusqu’au résultat de MediaEngine
+    - [x] Modifier `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : appeler l’explorateur de MediaEngine puis vérifier que son volume contient le vrai nom et contenu renvoyés par MediaFileSystems.
+  - [x] Retirer le dossier de décodage de bande vidé par ce déplacement
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Sequential` après contrôle de son contenu.

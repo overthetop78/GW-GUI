@@ -114,7 +114,12 @@ internal static class VisualizerDocumentScenarios
                         mediaImageReader ?? new SectorDocumentReader(sectorCylinders, sectorHeads, () => MediaReadCount++)
                     ]))
                     : null,
-                mediaExplorer: withMediaServices ? new MediaExplorer(new FileSystemRegistry([])) : null,
+                mediaExplorer: withMediaServices
+                    ? new MediaExplorer(new GWGUI.MediaFileSystems.Exploration.MediaExplorer(
+                        [],
+                        new GWGUI.MediaFileSystems.Exploration.MediaVolumeDetectorRegistry(
+                            [new GWGUI.MediaFileSystems.Exploration.Partitioning.WholeMediaVolumeDetector()])))
+                    : null,
                 visualizationProviders: withVisualizationProviders ? MediaVisualizationComposition.CreateDefault().Registry : null);
         }
         public void Dispose() => Controller.Dispose();

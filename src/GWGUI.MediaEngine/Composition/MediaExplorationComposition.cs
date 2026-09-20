@@ -1,6 +1,5 @@
 ﻿using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Exploration.Sequential;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaFileSystems.FileSystems.Iso9660;
@@ -8,6 +7,9 @@ using GWGUI.MediaFileSystems.FileSystems.Udf;
 using GWGUI.MediaFileSystems.Exploration;
 using GWGUI.MediaFileSystems.Exploration.Partitioning;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
+using FileSystemsMediaExplorer = GWGUI.MediaFileSystems.Exploration.MediaExplorer;
+using FileSystemsReader = GWGUI.MediaFileSystems.Interfaces.Exploration.IMediaFileSystemReader;
+using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 
 namespace GWGUI.MediaEngine.Composition;
 
@@ -16,39 +18,47 @@ public sealed class MediaExplorationComposition
 {
     private MediaExplorationComposition(
         FileSystemRegistry fileSystems,
-        MediaVolumeDetectorRegistry volumeDetectors)
+        MediaVolumeDetectorRegistry volumeDetectors,
+        FileSystemsMediaExplorer mediaFileSystems)
     {
         FileSystems = fileSystems;
         VolumeDetectors = volumeDetectors;
-        Explorer = new MediaExplorer(fileSystems, volumeDetectors);
+        MediaFileSystems = mediaFileSystems;
+        Explorer = new MediaExplorer(mediaFileSystems);
     }
 
     public FileSystemRegistry FileSystems { get; }
 
     public MediaVolumeDetectorRegistry VolumeDetectors { get; }
 
+    public FileSystemsMediaExplorer MediaFileSystems { get; }
+
     public MediaExplorer Explorer { get; }
 
     public static MediaExplorationComposition CreateDefault(SequentialMediaComposition sequentialMedia)
     {
         ArgumentNullException.ThrowIfNull(sequentialMedia);
-        return new(
-        new FileSystemRegistry(
-            MediaFileSystemsReaderAdapter.CreateDefaultCatalog(),
-            [
-                new SequentialContentDecoderAdapter(sequentialMedia.Decoders),
-                new MediaFileSystemsOpticalReaderAdapter(new UdfFileSystemReader()),
-                new MediaFileSystemsOpticalReaderAdapter(new JolietExtensionReader()),
-                new MediaFileSystemsOpticalReaderAdapter(new RockRidgeExtensionReader()),
-                new MediaFileSystemsOpticalReaderAdapter(new Iso9660FileSystemReader())
-            ]),
-        new MediaVolumeDetectorRegistry(
+        var volumeDetectors = new MediaVolumeDetectorRegistry(
         [
             new SequentialContentVolumeDetector(),
             new OpticalTrackVolumeDetector(),
             new GptVolumeDetector(),
             new MbrVolumeDetector(),
             new WholeMediaVolumeDetector()
-        ]));
+        ]);
+        var readers = FileSystemReaderCatalog.CreateDefault()
+            .Cast<FileSystemsReader>()
+            .Concat(new FileSystemsReader[]
+            {
+                new SequentialContentDecoderAdapter(sequentialMedia.Decoders),
+                new UdfFileSystemReader(),
+                new JolietExtensionReader(),
+                new RockRidgeExtensionReader(),
+                new Iso9660FileSystemReader()
+            });
+        return new(
+            new FileSystemRegistry(MediaFileSystemsReaderAdapter.CreateDefaultCatalog()),
+            volumeDetectors,
+            new FileSystemsMediaExplorer(readers, volumeDetectors));
     }
 }

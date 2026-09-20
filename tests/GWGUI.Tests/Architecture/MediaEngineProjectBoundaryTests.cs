@@ -5,7 +5,6 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.Emulation.Amiga.Modules;
 using GWGUI.Emulation.Atari.Modules;
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Exploration.Sequential;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaFileSystems.Exploration;
@@ -49,7 +48,7 @@ public sealed class MediaEngineProjectBoundaryTests
 
         var exploration = MediaExplorationComposition.CreateDefault(SequentialMediaComposition.CreateDefault());
         Assert.IsType<SequentialContentDecoderAdapter>(
-            Assert.Single(exploration.FileSystems.MediaReaders, reader => reader.Id == FileSystemIds.SequentialContent));
+            Assert.Single(exploration.MediaFileSystems.Readers, reader => reader.Id == FileSystemIds.SequentialContent));
     }
 
     private static void AssertGwguiReferences(Assembly assembly, IEnumerable<string> expected)

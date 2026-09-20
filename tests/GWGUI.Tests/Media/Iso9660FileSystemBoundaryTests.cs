@@ -49,6 +49,14 @@ public sealed class Iso9660FileSystemBoundaryTests
         Assert.Equal("HELLO.TXT", entry.Name);
         Assert.Equal(FileSystemEntryKind.File, entry.Kind);
         Assert.Equal("HELLO", Encoding.ASCII.GetString(entry.Content!.ToArray()));
+
+        var fileSystemsExplorer = new GWGUI.MediaFileSystems.Exploration.MediaExplorer(
+            [reader], new GWGUI.MediaFileSystems.Exploration.MediaVolumeDetectorRegistry([]));
+        var engineResult = new GWGUI.MediaEngine.Images.Reading.MediaExplorer(fileSystemsExplorer).Explore(document);
+        var engineVolume = Assert.Single(engineResult.Volumes);
+        var engineEntry = Assert.Single(engineVolume.FileSystem!.Entries);
+        Assert.Equal("HELLO.TXT", engineEntry.Name);
+        Assert.Equal("HELLO", Encoding.ASCII.GetString(engineEntry.Content!.ToArray()));
     }
 
     private static void WriteRecord(Span<byte> destination, uint extent, uint length, byte flags, ReadOnlySpan<byte> name)

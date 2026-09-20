@@ -1,24 +1,22 @@
-﻿using System.Collections.Frozen;
 using System.IO;
 using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
 using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
-using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaFileSystems.Definitions;
-using GWGUI.MediaEngine.Interfaces.Exploration;
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
+using GWGUI.MediaFileSystems;
 using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
 
-namespace GWGUI.MediaEngine.Exploration.Sequential;
+namespace GWGUI.MediaEngine.Images.Formats.Tape;
 
 /// <summary>Décode la bande dans le moteur puis confie les vrais fichiers au lecteur de systèmes de fichiers.</summary>
 public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly SequentialDecoderRegistry decoders;
     private readonly SequentialContentFileSystemReader fileSystems = new();
 
@@ -29,26 +27,24 @@ public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader
     }
 
     public string Id => FileSystemIds.SequentialContent;
-    public IReadOnlySet<MediaRepresentationKind> RepresentationKinds => SupportedRepresentations;
-
-    public bool CanRead(MediaImageDocument document, MediaVolumeDescriptor volume)
+    public bool CanRead(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);
-        return document.MediaKind == MediaKind.Tape
+        return document is MediaImageDocument { MediaKind: MediaKind.Tape }
             && document.Representation is SequentialMediaImageRepresentation
             && (volume.FileSystemId?.Equals(Id, StringComparison.OrdinalIgnoreCase) == true
                 || volume.Origin.Equals(MediaVolumeOrigins.SequentialContent, StringComparison.OrdinalIgnoreCase));
     }
 
-    public FileSystemVolume Read(MediaImageDocument document, MediaVolumeDescriptor volume)
+    public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
-        if (!CanRead(document, volume))
+        if (!CanRead(document, volume) || document is not MediaImageDocument decoded)
             throw new InvalidDataException("The requested volume is not decoded sequential media content.");
 
-        var compatible = decoders.FindCompatible(document);
+        var compatible = decoders.FindCompatible(decoded);
         var results = compatible
-            .Select(decoder => decoder.DecodeAsync(document).GetAwaiter().GetResult())
+            .Select(decoder => decoder.DecodeAsync(decoded).GetAwaiter().GetResult())
             .OrderByDescending(result => result.Blocks.Count > 0)
             .ThenByDescending(result => result.Confidence)
             .ThenByDescending(result => result.Blocks.Count)
@@ -69,7 +65,7 @@ public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader
             && !string.IsNullOrWhiteSpace(internalName)
                 ? internalName.Trim()
                 : string.Empty;
-        return MediaFileSystemsReaderAdapter.ConvertVolume(fileSystems.Read(document, volume, content, volumeName));
+        return fileSystems.Read(document, volume, content, volumeName);
     }
 
     private sealed record DecodedContent(
@@ -77,3 +73,4 @@ public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader
         IReadOnlyList<MediaSequentialDecodedBlock> Blocks,
         IReadOnlyList<string> Diagnostics) : IMediaSequentialContent;
 }
+
