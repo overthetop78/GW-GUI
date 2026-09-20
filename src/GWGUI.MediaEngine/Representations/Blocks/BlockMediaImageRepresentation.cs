@@ -1,13 +1,14 @@
 using System.Collections.ObjectModel;
-using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
+using IMediaBlockRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
+using GWGUI.MediaEngine.Reading.Blocks;
 
 namespace GWGUI.MediaEngine.Representations.Blocks;
 
 /// <summary>Describes the 64-bit address ranges available in a block-addressed media image.</summary>
-public sealed class BlockMediaImageRepresentation : IMediaImageRepresentation
+public sealed class BlockMediaImageRepresentation : IMediaBlockRepresentation, IMediaImageRepresentation
 {
     public BlockMediaImageRepresentation(long logicalLength, IReadOnlyList<(long Address, long Length)> ranges)
         : this(
@@ -71,4 +72,7 @@ public sealed class BlockMediaImageRepresentation : IMediaImageRepresentation
     public IReadOnlyList<MediaDataRange> Ranges { get; }
 
     public HardDiskGeometry? Geometry { get; }
+
+    ValueTask IMediaBlockRepresentation.ReadExactlyAsync(long address, Memory<byte> destination, CancellationToken cancellationToken)
+        => BlockMediaDataReader.ReadExactlyAsync(this, address, destination, cancellationToken);
 }

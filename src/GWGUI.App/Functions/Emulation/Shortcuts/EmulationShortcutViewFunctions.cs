@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings.Emulation;
+using GWGUI.Infrastructure.Settings.Emulation;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Input;
 using GWGUI.App.Functions.Input.Bindings;

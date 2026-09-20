@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Formats.Commodore;
 using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Formats.Floppy.D64;

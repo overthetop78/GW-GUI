@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 using System.Collections.Frozen;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Interfaces.Reading;

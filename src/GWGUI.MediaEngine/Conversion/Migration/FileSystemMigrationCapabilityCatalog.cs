@@ -1,9 +1,12 @@
+using GWGUI.MediaFileSystems.Formats.Commodore;
+using AmigaDosLayout = global::GWGUI.MediaFileSystems.FileSystems.Amiga.AmigaDosLayout;
+using AppleDosFileSystemLayout = global::GWGUI.MediaFileSystems.FileSystems.Apple.Dos.AppleDosFileSystemLayout;
+using ProDosFileSystemLayout = global::GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosFileSystemLayout;
 using GWGUI.MediaEngine.Conversion.Fat12;
 using GWGUI.MediaEngine.FileSystems.Amiga;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
-using GWGUI.MediaEngine.FileSystems.Apple.Dos;
-using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
+using GWGUI.MediaEngine.Conversion.Migration.Apple;
 using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 using GWGUI.MediaEngine.Formats.Floppy.Adf;
 

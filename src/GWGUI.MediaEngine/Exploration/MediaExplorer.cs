@@ -1,7 +1,8 @@
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Exploration.Partitioning;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaFileSystems.Exploration;
+using GWGUI.MediaFileSystems.Exploration.Partitioning;
 
 namespace GWGUI.MediaEngine.Exploration;
 
@@ -33,7 +34,7 @@ public sealed class MediaExplorer
     {
         ArgumentNullException.ThrowIfNull(document);
         var detection = await volumeDetectors.DetectAsync(document, cancellationToken).ConfigureAwait(false);
-        var enrichedDocument = document.Volumes.SequenceEqual(detection.Volumes)
+        var enrichedDocument = document.FileSystemVolumes.SequenceEqual(detection.Volumes)
             ? document
             : new MediaImageDocument(
                 document.Source,

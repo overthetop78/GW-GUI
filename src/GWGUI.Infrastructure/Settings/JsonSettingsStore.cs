@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using System.Text.Json;
 
 namespace GWGUI.Infrastructure.Settings;

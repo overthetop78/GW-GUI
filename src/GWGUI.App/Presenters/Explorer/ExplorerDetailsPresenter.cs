@@ -1,3 +1,4 @@
+using MediaVolumeOrigins = global::GWGUI.MediaEngine.Constants.MediaVolumeOrigins;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Explorer;
 using GWGUI.App.Enums.Explorer;
@@ -11,7 +12,7 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Representations.Optical;
 using GWGUI.MediaEngine.Representations.Sequential;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Recognition;
 
 

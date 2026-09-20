@@ -1,7 +1,7 @@
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Services.Navigation;
 using GWGUI.App.Enums.Services.Navigation;
 using GWGUI.App.Interfaces.Services.Navigation;

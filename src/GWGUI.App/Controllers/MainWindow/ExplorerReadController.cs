@@ -1,8 +1,8 @@
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Read;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.Infrastructure.Read;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.ViewModels.Operations;
 using GWGUI.App.Enums.Services.Dialogs;

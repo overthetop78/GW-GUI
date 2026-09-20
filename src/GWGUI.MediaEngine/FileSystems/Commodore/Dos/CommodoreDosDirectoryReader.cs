@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Primitives;
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Primitives;
 

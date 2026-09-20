@@ -1,6 +1,6 @@
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaFileSystems.Primitives;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 
@@ -8,7 +8,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 public static class AmigaDosFileReader
 {
     /// <summary>Lit le contenu déclaré et indique si toutes les structures nécessaires sont valides.</summary>
-    public static AmigaDosFileData Read(SectorImage image, ReadOnlySpan<byte> header, int size, AmigaDosVariant variant, ICollection<string> warnings)
+    public static AmigaDosFileData Read(IMediaSectorImage image, ReadOnlySpan<byte> header, int size, AmigaDosVariant variant, ICollection<string> warnings)
     {
         var output = new List<byte>(size);
         var metadata = header.ToArray();

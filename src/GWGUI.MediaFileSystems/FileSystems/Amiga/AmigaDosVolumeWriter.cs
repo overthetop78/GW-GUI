@@ -1,27 +1,31 @@
-using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.Reconstruction;
+using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
+using MediaSectorGeometry = global::GWGUI.MediaFileSystems.Contracts.MediaSectorGeometry;
+using MediaSectorWriteBlock = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
+using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using GWGUI.MediaFileSystems.Primitives;
 using System.Buffers.Binary;
 using System.Text;
-using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaFileSystems.Conversion.Migration;
-using GWGUI.MediaEngine.Formats.Floppy.Adf;
-
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaFileSystems.Migration;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 
 public sealed class AmigaDosVolumeWriter
 {
-    public SectorImage Create(MigrationPlan plan, AmigaDosVariant variant, string formatId = DiskImageFormatIds.AmigaDos)
+    public MediaSectorWritePlan Create(MigrationPlan plan, AmigaDosVariant variant, MediaSectorGeometry geometry)
     {
         ArgumentNullException.ThrowIfNull(plan);
+        ArgumentNullException.ThrowIfNull(geometry);
         if (variant is not (AmigaDosVariant.Ofs or AmigaDosVariant.Ffs)) throw AmigaDosVolumeWriterExceptions.UnsupportedVariant(variant);
         if (!new AmigaDosNamePolicy().IsValid(plan.VolumeName)) throw AmigaDosVolumeWriterExceptions.InvalidEntry("/");
-        var geometry = formatId.Equals(DiskImageFormatIds.AmigaDos, StringComparison.OrdinalIgnoreCase) ? AmigaAdfGeometry.DoubleDensity : formatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase) ? AmigaAdfGeometry.HighDensity : throw AmigaDosVolumeWriterExceptions.UnsupportedGeometry(formatId);
+        if (geometry.FormatId is not (MediaImageFormatIds.AmigaDos or MediaImageFormatIds.AmigaDosHighDensity) ||
+            geometry.SectorSize != AmigaDosLayout.BlockSize || geometry.Cylinders <= 0 || geometry.Heads <= 0 ||
+            geometry.SectorsPerTrack <= 0 || geometry.BlockCount != checked(geometry.Cylinders * geometry.Heads * geometry.SectorsPerTrack))
+            throw AmigaDosVolumeWriterExceptions.UnsupportedGeometry(geometry.FormatId);
         return new Builder(plan, variant, geometry).Build();
     }
 
-    private sealed class Builder(MigrationPlan plan, AmigaDosVariant variant, RegularSectorGeometry geometry)
+    private sealed class Builder(MigrationPlan plan, AmigaDosVariant variant, MediaSectorGeometry geometry)
     {
         private readonly Dictionary<int, byte[]> _blocks = [];
         private readonly HashSet<int> _allocated = [.. Enumerable.Range(0, AmigaDosLayout.BootBlockCount)];
@@ -29,7 +33,7 @@ public sealed class AmigaDosVolumeWriter
         private readonly int _rootBlock = geometry.BlockCount / 2;
         private readonly int _bitmapBlock = geometry.BlockCount / 2 + 1;
 
-        public SectorImage Build()
+        public MediaSectorWritePlan Build()
         {
             _allocated.Add(_rootBlock);
             _allocated.Add(_bitmapBlock);
@@ -50,7 +54,7 @@ public sealed class AmigaDosVolumeWriter
             {
                 var track = logicalBlock / geometry.SectorsPerTrack;
                 var data = _blocks.TryGetValue(logicalBlock, out var block) ? block : new byte[AmigaDosLayout.BlockSize];
-                return new SectorBlock(logicalBlock, new(track / geometry.Heads, track % geometry.Heads, logicalBlock % geometry.SectorsPerTrack), data);
+                return new MediaSectorWriteBlock(logicalBlock, new MediaSectorAddress(track / geometry.Heads, track % geometry.Heads, logicalBlock % geometry.SectorsPerTrack), data);
             });
             return new(geometry.FormatId, AmigaDosLayout.BlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, sectors);
         }

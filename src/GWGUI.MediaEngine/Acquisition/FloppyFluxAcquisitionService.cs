@@ -1,8 +1,10 @@
 using System.Globalization;
-using GWGUI.Domain.Constants;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
-using GWGUI.Domain.Functions;
+using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaPhysicalDataUnit = global::GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
 namespace GWGUI.MediaEngine.Acquisition;

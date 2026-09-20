@@ -1,5 +1,5 @@
-using GWGUI.Domain.Enums;
-using GWGUI.MediaEngine.Contracts;
+using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems;
 
 namespace GWGUI.MediaFileSystems.Interfaces.Exploration;
@@ -9,9 +9,7 @@ public interface IMediaFileSystemReader
 {
     string Id { get; }
 
-    IReadOnlySet<MediaRepresentationKind> RepresentationKinds { get; }
+    bool CanRead(IMediaImageDocument document, MediaVolumeDescriptor volume);
 
-    bool CanRead(MediaImageDocument document, MediaVolumeDescriptor volume);
-
-    FileSystemVolume Read(MediaImageDocument document, MediaVolumeDescriptor volume);
+    FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume);
 }

@@ -1,8 +1,8 @@
 using System.Collections.Frozen;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.FileSystems.Acorn.BbcDfs;
+using GWGUI.MediaFileSystems.FileSystems.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Reading;
 using GWGUI.MediaEngine.Recognition;

@@ -1,7 +1,7 @@
+using GWGUI.MediaFileSystems.Primitives;
 using System.Numerics;
-using GWGUI.MediaEngine.Primitives;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 
@@ -9,7 +9,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 public static class AmigaDosBitmapReader
 {
     /// <summary>Compte les bits libres et ajoute les avertissements des bitmaps absents ou invalides.</summary>
-    public static int CountFreeBlocks(SectorImage image, ReadOnlySpan<byte> root, ICollection<string> warnings)
+    public static int CountFreeBlocks(IMediaSectorImage image, ReadOnlySpan<byte> root, ICollection<string> warnings)
     {
         var count = 0;
         for (var pointer = 0; pointer < AmigaDosLayout.MaximumBitmapPointerCount; pointer++)

@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using System.Windows;
 using System.Windows.Media;
 using Microsoft.Win32;

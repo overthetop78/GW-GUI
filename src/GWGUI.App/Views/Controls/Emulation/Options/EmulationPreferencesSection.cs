@@ -1,4 +1,4 @@
-﻿using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Localization.Extensions;

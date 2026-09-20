@@ -1,5 +1,7 @@
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Interfaces;
+using MediaPhysicalWriteProgress = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
+using MediaPhysicalWriteResult = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult;
+using MediaWritePlan = global::GWGUI.MediaEngine.Contracts.MediaWritePlan;
+using IMediaPhysicalWriter = global::GWGUI.MediaEngine.Interfaces.IMediaPhysicalWriter;
 
 namespace GWGUI.Infrastructure.Hardware.Media;
 

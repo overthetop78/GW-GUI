@@ -1,14 +1,15 @@
 using System.Collections.ObjectModel;
-using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
+using IMediaOpticalRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalRepresentation;
+using IMediaOpticalTrack = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
 using GWGUI.MediaEngine.Reading.Sources;
 
 namespace GWGUI.MediaEngine.Representations.Optical;
 
 /// <summary>Describes optical sessions, tracks, sectors, layers, faces, and associated files only when supplied by the source.</summary>
-public sealed class OpticalMediaImageRepresentation : IMediaImageRepresentation
+public sealed class OpticalMediaImageRepresentation : IMediaOpticalRepresentation, IMediaImageRepresentation
 {
     public OpticalMediaImageRepresentation(
         long? logicalLength,
@@ -61,6 +62,8 @@ public sealed class OpticalMediaImageRepresentation : IMediaImageRepresentation
     public IReadOnlyList<int>? Sessions { get; }
 
     public IReadOnlyList<OpticalTrackDescriptor>? Tracks { get; }
+
+    IReadOnlyList<IMediaOpticalTrack>? IMediaOpticalRepresentation.Tracks => Tracks?.Cast<IMediaOpticalTrack>().ToArray();
 
     public int? LayerCount { get; }
 

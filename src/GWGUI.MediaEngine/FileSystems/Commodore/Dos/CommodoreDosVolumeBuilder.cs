@@ -1,3 +1,5 @@
+using GWGUI.MediaFileSystems.Formats.Commodore;
+using GWGUI.MediaFileSystems.Primitives;
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Primitives;
@@ -166,7 +168,7 @@ internal sealed class CommodoreDosVolumeBuilder(MigrationPlan plan, CommodoreDos
         for (var track = 1; track <= geometry.Cylinders; track++)
         {
             var globalTrack = track + side * geometry.Cylinders;
-            var sectorCount = Formats.Floppy.D64.Commodore1541Geometry.SectorsPerTrack(track);
+            var sectorCount = Commodore1541Geometry.SectorsPerTrack(track);
             var offset = Commodore1541DosLayout.BamEntriesOffset + (track - 1) * Commodore1541DosLayout.BamEntrySize;
             var freeCount = 0;
             for (var sector = 0; sector < sectorCount; sector++)

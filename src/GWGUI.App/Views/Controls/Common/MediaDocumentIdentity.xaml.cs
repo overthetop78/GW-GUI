@@ -1,5 +1,5 @@
-using GWGUI.Domain.Enums;
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Formats;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;

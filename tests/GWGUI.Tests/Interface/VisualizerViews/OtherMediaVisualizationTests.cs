@@ -8,8 +8,8 @@ using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.Rendering.Blocks;
 using GWGUI.App.Rendering.Optical;
 using GWGUI.App.Rendering.Sequential;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Representations.Optical;
 using GWGUI.MediaEngine.Representations.Sequential;
@@ -62,7 +62,7 @@ public sealed class OtherMediaVisualizationTests
     public void SequentialSelectionUsesLaneAndTime()
     {
         var segment = new RenderSequentialMediaSegment(
-            0, 2, TimeSpan.Zero, TimeSpan.FromSeconds(10), SequentialSegmentKind.Signal,
+            0, 2, TimeSpan.Zero, TimeSpan.FromSeconds(10), GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal,
             ChannelNumber: 2);
         var model = new SequentialMediaRenderModel(null, TimeSpan.FromSeconds(10), [segment]);
 

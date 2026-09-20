@@ -8,9 +8,9 @@ internal static class LauncherDecisionScenarios
         var root = "virtual"; var language = Path.Combine(root, "Languages", "fr-FR.dll");
         Assert.Equal(language, LauncherPolicy.ResolveAssemblyPath(root, new("gwgui.app.resources") { CultureName = "fr-FR" },
             path => { Assert.Equal(language, path); return true; }, _ => throw new InvalidOperationException(), (_, _) => throw new InvalidOperationException()));
-        var library = Path.Combine(root, "lib"); var expected = Path.Combine(library, "nested", "gwgui.domain.dll");
-        Assert.Equal(expected, LauncherPolicy.ResolveAssemblyPath(root, new("gwgui.domain"), _ => throw new InvalidOperationException(),
-            path => { Assert.Equal(library, path); return true; }, (path, pattern) => { Assert.Equal(library, path); Assert.Equal("gwgui.domain.dll", pattern); return [expected]; }));
+        var library = Path.Combine(root, "lib"); var expected = Path.Combine(library, "nested", "gwgui.mediaengine.dll");
+        Assert.Equal(expected, LauncherPolicy.ResolveAssemblyPath(root, new("gwgui.mediaengine"), _ => throw new InvalidOperationException(),
+            path => { Assert.Equal(library, path); return true; }, (path, pattern) => { Assert.Equal(library, path); Assert.Equal("gwgui.mediaengine.dll", pattern); return [expected]; }));
         Assert.Null(LauncherPolicy.ResolveAssemblyPath(root, new("absent"), _ => false, _ => false, (_, _) => throw new InvalidOperationException()));
     }
     public static int Entry(string[] args) { Assert.Equal(new[] { "--language", "fr-FR", "virtual path" }, args); return 17; }

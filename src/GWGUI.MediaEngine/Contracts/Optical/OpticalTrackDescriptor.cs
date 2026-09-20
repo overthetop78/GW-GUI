@@ -1,11 +1,12 @@
 using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Interfaces;
+using IMediaOpticalTrack = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
+using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Contracts;
 
 /// <summary>Describes one readable optical track without exposing its container format to consumers.</summary>
-public sealed class OpticalTrackDescriptor
+public sealed class OpticalTrackDescriptor : IMediaOpticalTrack
 {
     public OpticalTrackDescriptor(
         int sessionNumber,

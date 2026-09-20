@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
 
 namespace GWGUI.MediaEngine.Representations.Flux;

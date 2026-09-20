@@ -8,9 +8,9 @@ using GWGUI.App.Constants.Localization;
 using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.Domain.Enums;
-using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Contracts;
+
 using GWGUI.MediaEngine.Representations.Blocks;
 using GWGUI.MediaEngine.Representations.Optical;
 using GWGUI.MediaEngine.Representations.Sectors;

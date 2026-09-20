@@ -1,4 +1,4 @@
-using GWGUI.Domain.Constants;
+using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
 using GWGUI.MediaEngine.Acquisition;
 
 namespace GWGUI.Tests.Hardware.PhysicalReading;

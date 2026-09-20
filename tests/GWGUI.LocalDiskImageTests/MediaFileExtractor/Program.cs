@@ -1,7 +1,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text.Json;
-using GWGUI.Domain.Contracts;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Recognition;

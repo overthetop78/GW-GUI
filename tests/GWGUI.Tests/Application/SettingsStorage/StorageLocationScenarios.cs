@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.Tests.Application.TestInfrastructure;
 namespace GWGUI.Tests.Application.SettingsStorage;
 internal static class StorageLocationScenarios

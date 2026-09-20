@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Interfaces.Writing;

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -24,9 +24,8 @@
   <ItemGroup>
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
-    <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
+
     <ProjectReference Include="..\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
-    <ProjectReference Include="..\GWGUI.MediaAnalysis\GWGUI.MediaAnalysis.csproj" />
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
     <ProjectReference Include="..\GWGUI.VideoPresentation\GWGUI.VideoPresentation.csproj" />

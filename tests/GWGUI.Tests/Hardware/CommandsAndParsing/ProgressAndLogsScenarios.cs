@@ -1,4 +1,4 @@
-using GWGUI.Domain.Commands.Progress;
+using GWGUI.Infrastructure.Commands.Progress;
 namespace GWGUI.Tests.Hardware.CommandsAndParsing;
 internal static class ProgressAndLogsScenarios
 {
@@ -21,11 +21,11 @@ internal static class ProgressAndLogsScenarios
     {
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryLogFiles();
         var time = new DateTimeOffset(2026,1,2,3,4,5,TimeSpan.Zero);
-        var command = new GWGUI.Domain.Commands.GwCommand("virtual tool","read",["virtual image"]);
+        var command = new GWGUI.Infrastructure.Commands.GwCommand("virtual tool","read",["virtual image"]);
         var writer = new GWGUI.Infrastructure.Processes.RotatingOperationLogWriter("logs",1,maximumFiles,files,() => time);
         for(var index=0;index<4;index++)
             await writer.WriteAsync(command,new(index,false,TimeSpan.FromSeconds(2),
-                [new(time,GWGUI.Domain.Commands.Execution.GwOutputStream.Error,"line-" + index)]));
+                [new(time,GWGUI.Infrastructure.Commands.Execution.GwOutputStream.Error,"line-" + index)]));
         Assert.Equal(maximumFiles,files.Files.Count);
         var current = files.Files[Path.Combine("logs","operations.log")];
         Assert.Contains("2026-01-02T03:04:05.0000000+00:00 | exit=3",current);
@@ -44,7 +44,7 @@ internal static class ProgressAndLogsScenarios
     public static async Task Console(bool archives)
     {
         var files = new GWGUI.Tests.Application.TestInfrastructure.MemoryLogFiles();
-        var settings = new GWGUI.Domain.Settings.Logging.OperationLogSettings { MaximumKilobytes = 1,KeepArchives = archives };
+        var settings = new GWGUI.Infrastructure.Settings.Logging.OperationLogSettings { MaximumKilobytes = 1,KeepArchives = archives };
         var time = new DateTimeOffset(2026,1,2,3,4,5,TimeSpan.Zero);
         var session = new GWGUI.Infrastructure.Processes.ConsoleLogSession("logs",() => settings,files,() => time);
         await session.AppendAsync("before start"); Assert.Empty(files.Calls);

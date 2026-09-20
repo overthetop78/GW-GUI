@@ -1,8 +1,8 @@
 using System.Collections.Frozen;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Enums;
+
 using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Interfaces.Writing;
 using GWGUI.MediaEngine.Representations.Sequential;

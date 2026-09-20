@@ -1,3 +1,5 @@
+using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+
 namespace GWGUI.MediaEngine.Constants;
 
 /// <summary>Regroupe les identifiants publics des formats d'images reconnus par le moteur.</summary>
@@ -16,5 +18,5 @@ public static partial class DiskImageFormatIds
     /// <summary>Identifiant du conteneur de flux SuperCard Pro.</summary>
     public const string RawScp = "raw.scp";
     /// <summary>Identifiant des conteneurs ApriDisk ACT Apricot PC/Xi de 315 Kio.</summary>
-    public const string ApricotPcXi315 = "apricot.pcxi.315";
+    public const string ApricotPcXi315 = MediaImageFormatIds.ApricotPcXi315;
 }

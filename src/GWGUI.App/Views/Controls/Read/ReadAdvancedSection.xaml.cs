@@ -1,4 +1,4 @@
-using GWGUI.Domain.Naming;
+using GWGUI.Infrastructure.Naming;
 using System.Windows;
 using System.Windows.Controls;
 

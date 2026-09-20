@@ -1,5 +1,5 @@
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Reading;
 using GWGUI.MediaEngine.Writing;

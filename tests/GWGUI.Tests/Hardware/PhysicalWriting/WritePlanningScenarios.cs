@@ -14,7 +14,7 @@ internal static class WritePlanningScenarios
     internal static PhysicalDiskWriteOptions Options => new("virtual", (GreaseweazleBusType)1, 1, CueAtIndex: false, HardSectorTicks: 200);
     internal static ScpImage Image => new(new ScpHeader(0x24,0,1,0,3,ScpFlags.None,ScpBitCellEncoding.Default16Bit,ScpHeadSelection.Both,0,0),
         [new ScpTrack(3,1,1,[new ScpRevolution(1000,2,new uint[]{80,160})]), new ScpTrack(0,0,0,[new ScpRevolution(1000,2,new uint[]{40,120})])],true,0);
-    internal static GWGUI.Domain.Contracts.MediaWritePlan Plan =>
+    internal static GWGUI.MediaEngine.Contracts.MediaWritePlan Plan =>
         new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault()).CreatePlan(Image, 0);
 
     internal static PhysicalDiskWriteService CreateService(Device device) => new(

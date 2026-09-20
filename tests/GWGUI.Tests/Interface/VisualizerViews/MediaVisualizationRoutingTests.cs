@@ -1,11 +1,11 @@
 using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
-using GWGUI.MediaEngine.Contracts;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Interfaces;
+using GWGUI.MediaEngine.Contracts;
+
+using IMediaImageRepresentation = global::GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation;
 using GWGUI.MediaEngine.Visualization;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;

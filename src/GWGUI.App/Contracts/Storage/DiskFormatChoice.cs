@@ -1,4 +1,4 @@
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Formats;
 namespace GWGUI.App.Contracts.Storage;
 
 /// <summary>Format présenté par le sélecteur avec son état de détection pour l'image courante.</summary>

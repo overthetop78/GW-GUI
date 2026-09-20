@@ -1,4 +1,4 @@
-using GWGUI.Domain.Profiles;
+using GWGUI.App.Profiles;
 namespace GWGUI.Tests.Application.Profiles;
 public class ProfilesTests
 {

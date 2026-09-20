@@ -2,10 +2,11 @@ using System.Windows;
 using System.Windows.Controls;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
-using GWGUI.MediaEngine.Contracts;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Contracts;
+
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Reading.Sources;
@@ -112,7 +113,18 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
             formatId,
             kind,
             representation,
-            volumes.Select(volume => volume.Descriptor).ToArray(),
+            volumes.Select(volume => new MediaVolumeDescriptor(
+                volume.Descriptor.Start,
+                volume.Descriptor.Length,
+                volume.Descriptor.Origin,
+                volume.Descriptor.PartitionScheme,
+                volume.Descriptor.PartitionNumber,
+                volume.Descriptor.SessionNumber,
+                volume.Descriptor.TrackNumber,
+                volume.Descriptor.FileSystemId,
+                volume.Descriptor.PartitionType,
+                volume.Descriptor.PartitionId,
+                volume.Descriptor.Name)).ToArray(),
             [],
             metadata ?? new Dictionary<string, string>());
         return new ExploredMediaImage(document, volumes, []);

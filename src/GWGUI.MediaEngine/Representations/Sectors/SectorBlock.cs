@@ -1,3 +1,5 @@
+using IMediaSectorBlock = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock;
+
 namespace GWGUI.MediaEngine.Representations.Sectors;
 
 /// <summary>Décrit un bloc logique, son adresse physique, ses données et les métadonnées issues de sa lecture.</summary>
@@ -9,4 +11,4 @@ namespace GWGUI.MediaEngine.Representations.Sectors;
 /// <param name="Tag">Métadonnées sectorielles facultatives, exprimées en octets.</param>
 /// <param name="FormatCode">Octet de format sectoriel facultatif.</param>
 /// <param name="DiagnosticCode">Code de diagnostic facultatif conservé depuis le conteneur source.</param>
-public sealed record SectorBlock(int LogicalBlock, SectorAddress Address, IReadOnlyList<byte> Data, bool? IntegrityValid = true, int Revolution = 0, IReadOnlyList<byte>? Tag = null, byte? FormatCode = null, byte? DiagnosticCode = null);
+public sealed record SectorBlock(int LogicalBlock, SectorAddress Address, IReadOnlyList<byte> Data, bool? IntegrityValid = true, int Revolution = 0, IReadOnlyList<byte>? Tag = null, byte? FormatCode = null, byte? DiagnosticCode = null) : IMediaSectorBlock;

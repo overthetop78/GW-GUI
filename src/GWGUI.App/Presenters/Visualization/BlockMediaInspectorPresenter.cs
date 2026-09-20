@@ -1,3 +1,4 @@
+using PartitionSchemeIds = global::GWGUI.MediaEngine.Constants.PartitionSchemeIds;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Rendering.Blocks;
 using GWGUI.App.Contracts.ViewModels.Visualization;

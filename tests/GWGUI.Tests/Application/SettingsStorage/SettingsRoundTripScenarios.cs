@@ -1,4 +1,3 @@
-using GWGUI.Domain.Settings;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Text.Json;

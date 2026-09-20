@@ -1,6 +1,6 @@
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Options.States;
 using GWGUI.App.ViewModels.Options;
@@ -9,7 +9,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 
-using GWGUI.Infrastructure.Hardware;
 
 
 namespace GWGUI.App.Options.Controllers;

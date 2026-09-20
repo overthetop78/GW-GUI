@@ -1,13 +1,23 @@
 using System.Collections.ObjectModel;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
+using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
+using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 
 namespace GWGUI.MediaEngine.Contracts;
 
 /// <summary>Contains a recognized media image, its representation, volumes, diagnostics, and source-provided metadata.</summary>
-public sealed class MediaImageDocument
+public sealed class MediaImageDocument : IMediaImageDocument
 {
+    public static MediaImageDocument CreateUnexplored(
+        MediaSourceDescriptor source,
+        string formatId,
+        MediaKind mediaKind,
+        IMediaImageRepresentation representation,
+        IReadOnlyList<string> diagnostics,
+        IReadOnlyDictionary<string, string> metadata)
+        => new(source, formatId, mediaKind, representation, [], diagnostics, metadata);
+
     public MediaImageDocument(
         MediaSourceDescriptor source,
         string formatId,
@@ -28,7 +38,8 @@ public sealed class MediaImageDocument
         FormatId = formatId;
         MediaKind = mediaKind;
         Representation = representation;
-        Volumes = new ReadOnlyCollection<MediaVolumeDescriptor>(volumes.ToArray());
+        FileSystemVolumes = new ReadOnlyCollection<MediaVolumeDescriptor>(volumes.ToArray());
+        Volumes = new ReadOnlyCollection<MediaVolumeInfo>(volumes.Select(volume => new MediaVolumeInfo(volume)).ToArray());
         Diagnostics = new ReadOnlyCollection<string>(diagnostics.ToArray());
         Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata, StringComparer.Ordinal));
     }
@@ -41,9 +52,21 @@ public sealed class MediaImageDocument
 
     public IMediaImageRepresentation Representation { get; }
 
-    public IReadOnlyList<MediaVolumeDescriptor> Volumes { get; }
+    public IReadOnlyList<MediaVolumeInfo> Volumes { get; }
+
+    internal IReadOnlyList<MediaVolumeDescriptor> FileSystemVolumes { get; }
 
     public IReadOnlyList<string> Diagnostics { get; }
 
     public IReadOnlyDictionary<string, string> Metadata { get; }
+
+    GWGUI.MediaFileSystems.Interfaces.IMediaSourceDescriptor IMediaImageDocument.Source => Source;
+
+    IReadOnlyList<MediaVolumeDescriptor> IMediaImageDocument.Volumes => FileSystemVolumes;
+
+    bool IMediaImageDocument.IsTape => MediaKind == MediaKind.Tape;
+
+    bool IMediaImageDocument.IsHardDisk => MediaKind == MediaKind.HardDisk;
+
+    GWGUI.MediaFileSystems.Interfaces.IMediaImageRepresentation IMediaImageDocument.Representation => Representation;
 }

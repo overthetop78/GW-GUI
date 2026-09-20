@@ -7,8 +7,8 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Rendering.Scp;
 using GWGUI.App.Rendering.Sectors;
 using GWGUI.App.Rendering.Sequential;
-using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Enums;
+
 using GWGUI.MediaEngine.Visualization;
 using System.Windows;
 using System.Windows.Controls;

@@ -1,6 +1,7 @@
-using GWGUI.MediaEngine.FileSystems.Apple.Dos;
-using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
-using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
+using AppleDosFileSystemLayout = global::GWGUI.MediaFileSystems.FileSystems.Apple.Dos.AppleDosFileSystemLayout;
+using ProDosFileSystemLayout = global::GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosFileSystemLayout;
+using ProDosVolumeHeaderReader = global::GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosVolumeHeaderReader;
+using GWGUI.MediaFileSystems.FileSystems.Apple.Lisa;
 using GWGUI.MediaEngine.FileSystems.Sos;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.FileSystems;
@@ -38,7 +39,7 @@ internal static class AppleRawImageProbe
     public static bool LooksLikeProDos(ReadOnlySpan<byte> data)
     {
         var offset = ProDosFileSystemLayout.RootBlock * ProDosFileSystemLayout.BlockSize;
-        return data.Length >= offset + ProDosFileSystemLayout.BlockSize && ProDosVolumeHeaderReader.TryRead(data.Slice(offset, ProDosFileSystemLayout.BlockSize), out _);
+        return data.Length >= offset + ProDosFileSystemLayout.BlockSize && ProDosVolumeHeaderReader.IsValid(data.Slice(offset, ProDosFileSystemLayout.BlockSize));
     }
 
     /// <summary>Sonde une signature MFS ou HFS dans le bloc maître Macintosh.</summary>

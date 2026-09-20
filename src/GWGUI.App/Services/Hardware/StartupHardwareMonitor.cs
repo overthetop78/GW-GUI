@@ -1,6 +1,6 @@
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Contracts.Services.Hardware;
 using System.IO;
 

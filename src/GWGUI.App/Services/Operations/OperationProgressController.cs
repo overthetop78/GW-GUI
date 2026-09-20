@@ -1,4 +1,4 @@
-using GWGUI.Domain.Commands.Progress;
+using GWGUI.Infrastructure.Commands.Progress;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskWriting;

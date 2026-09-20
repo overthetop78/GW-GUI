@@ -1,7 +1,7 @@
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Visualization;
 using System.Windows;

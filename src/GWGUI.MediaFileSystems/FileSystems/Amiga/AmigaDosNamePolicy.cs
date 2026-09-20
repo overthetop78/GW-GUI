@@ -1,4 +1,4 @@
-using GWGUI.MediaFileSystems.Conversion.Migration;
+using GWGUI.MediaFileSystems.Migration;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 

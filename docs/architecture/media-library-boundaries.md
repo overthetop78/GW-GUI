@@ -13,18 +13,22 @@
 - produire les données nécessaires à la visualisation graphique d’un fichier SCP ou d’une image
   sectorielle.
 
+La conversion d'images compatibles agit sur les représentations physiques (SCP, images sectorielles
+et autres formats compatibles). Elle reste dans `GWGUI.MediaEngine`.
+
 Il possède les conteneurs, flux, pistes, révolutions, secteurs, blocs, données séquentielles, codecs
 et géométries. Il ne possède plus l’explorateur de fichiers et ne connaît ni les contrôles WPF, ni
 les icônes de l’application, ni les textes traduits.
 
 ### `GWGUI.MediaFileSystems`
 
-`GWGUI.MediaFileSystems` contient l’explorateur de fichiers retiré de `GWGUI.MediaEngine`. À partir
+`GWGUI.MediaFileSystems` contient la lecture des fichiers de l’explorateur retirée de `GWGUI.MediaEngine`. À partir
 d’une représentation fournie par `GWGUI.MediaEngine`, il détecte les partitions, volumes et systèmes
 de fichiers, puis lit leurs vrais dossiers, fichiers, métadonnées et contenus. Il conserve les noms
 enregistrés dans le média et ne crée pas de faux fichiers pour remplacer un contenu qu’il ne sait
-pas encore lire. Il ne lit et n’écrit aucun média physique, ne convertit pas les fichiers flux ou les
-images sectorielles et ne produit pas leur visualisation graphique.
+pas encore lire. Il ne lit et n’écrit aucun média physique, ne
+convertit pas les fichiers flux ou les images sectorielles et ne produit pas leur visualisation
+graphique.
 
 ### `GWGUI.MediaAnalysis`
 
@@ -35,9 +39,10 @@ WPF, prête à être affichée par un consommateur.
 
 ### `GWGUI.App`
 
-`GWGUI.App` orchestre les appels, traduit les clés reçues, associe les identifiants d’icônes aux
-ressources graphiques et affiche les lignes préparées. Il ne relit pas les octets des fichiers et ne
-possède pas de règle de reconnaissance de contenu.
+`GWGUI.App` appelle uniquement l'API de `GWGUI.MediaEngine` pour ouvrir et explorer le média. Il
+traduit les clés reçues, associe les identifiants d’icônes aux ressources graphiques et affiche les
+lignes préparées. Il ne relit pas les octets des fichiers et ne possède pas de règle de reconnaissance
+de contenu.
 
 ## Arborescence de `GWGUI.MediaFileSystems`
 
@@ -54,7 +59,6 @@ GWGUI.MediaFileSystems
 │   ├── Commodore
 │   │   └── Dos
 │   └── Fat12
-├── Migration
 ├── Contracts
 ├── Registry
 ├── Definitions
@@ -65,36 +69,46 @@ Une famille propre à une machine est placée sous cette famille. Un système pa
 classé par système de fichiers et non sous une machine arbitraire. Les contrats, le registre, les
 définitions et les utilitaires communs ne sont pas mélangés aux implémentations de formats.
 
-`Migration` copie une arborescence déjà lue vers un autre système de fichiers. Par exemple, pour
-recréer sur un volume FAT12 les dossiers et fichiers lus sur un volume AmigaDOS, cette couche adapte
-les noms et métadonnées puis demande aux writers de systèmes de fichiers d'écrire le nouveau volume.
-Elle ne décode pas une capture SCP et ne convertit pas elle-même une représentation physique : ces
-opérations restent dans `GWGUI.MediaEngine`.
+« Exporter vers… » par migration de fichiers est une opération distincte de la conversion d'images :
+elle lit les vrais dossiers et fichiers de l'image source, puis les injecte dans un système de fichiers
+cible d'une autre image, y compris quand les formats d'image ne sont pas compatibles pour la conversion
+physique. `MediaEngine` lit l'image source, résout son format physique et écrit le conteneur cible.
+`MediaFileSystems` planifie et valide la migration, adapte les noms et métadonnées, puis construit le
+volume cible avec les fichiers et dossiers. Le volume construit revient à `MediaEngine` pour l'écriture
+du conteneur. `MediaAnalysis` n'intervient que pour la reconnaissance des types utiles à l'explorateur.
 ## Sens autorisé des dépendances
 
 ```text
 GWGUI.App
     ↓
-GWGUI.MediaAnalysis
+GWGUI.MediaEngine
     ↓
 GWGUI.MediaFileSystems
     ↓
-GWGUI.MediaEngine
-    ↓
-GWGUI.Domain
+GWGUI.MediaAnalysis
 ```
 
-Une bibliothèque de cette chaîne peut également référencer `GWGUI.Domain` lorsque ses contrats le
-nécessitent. Les dépendances inverses sont interdites. En particulier, aucune bibliothèque de
-production ne référence `GWGUI.App`, et `GWGUI.MediaEngine` ne référence ni
-`GWGUI.MediaFileSystems` ni `GWGUI.MediaAnalysis`.
+`GWGUI.App` n'appelle ni `GWGUI.MediaFileSystems` ni `GWGUI.MediaAnalysis` ;
+`GWGUI.MediaEngine` n'appelle pas directement `GWGUI.MediaAnalysis`. Les résultats reviennent par
+les retours de méthodes dans l'ordre inverse, sans relancer l'exploration ou l'analyse.
+Les contrats de média décodé utilisés par `MediaFileSystems` sont déclarés dans cette bibliothèque
+et implémentés par `MediaEngine`. Les informations que `App` reçoit sont exposées par l'API de
+`MediaEngine`. Aucune référence inverse entre ces projets ni DLL `GWGUI.Domain` n'est nécessaire.
+
+Les références de projets suivent ce graphe. `GWGUI.App` ne référence pas directement
+`GWGUI.MediaFileSystems` ni `GWGUI.MediaAnalysis` ; `GWGUI.MediaFileSystems` ne référence pas
+`GWGUI.MediaEngine`.
+Le raccordement des appels de production reste en cours : `MediaEngine` utilise encore ses anciens
+lecteurs de systèmes de fichiers, et `MediaFileSystems` ne déclenche pas encore la classification
+de `MediaAnalysis`. Le chargement et la double exploration actuellement utilisés par l'application
+restent orchestrés une seule fois dans `MediaEngine` pendant cette extraction.
 
 ## Réutilisation par un émulateur
 
-Un émulateur qui doit seulement monter, lire ou convertir un média référence `GWGUI.MediaEngine`.
-Il ajoute `GWGUI.MediaFileSystems` lorsqu’il doit exposer les fichiers du média, puis
-`GWGUI.MediaAnalysis` lorsqu’il doit présenter une arborescence enrichie de types, catégories et
-icônes. Les lecteurs et décodeurs restent communs ; ils ne sont pas recopiés dans l’émulateur.
+Un émulateur appelle `GWGUI.MediaEngine` pour monter, lire ou convertir un média. S'il expose
+l'explorateur de fichiers, il demande aussi son résultat à cette même API ; `MediaEngine` déclenche
+alors `MediaFileSystems`, qui déclenche `MediaAnalysis`. Les lecteurs et décodeurs restent communs ;
+ils ne sont pas recopiés dans l'émulateur.
 
 ## Données échangées
 
@@ -103,6 +117,12 @@ icônes. Les lecteurs et décodeurs restent communs ; ils ne sont pas recopiés 
 `GWGUI.MediaEngine` fournit une représentation documentée du média : format du conteneur, capacité,
 géométrie disponible et accès aux flux, pistes, secteurs, blocs ou données séquentielles. Cette
 représentation ne contient aucune hypothèse sur l’interface qui la consommera.
+
+Pour une bande, l'adaptateur de `MediaEngine` choisit le décodeur et transmet les blocs déjà décodés,
+leurs noms enregistrés, leurs métadonnées et diagnostics. Les contrats
+`MediaSequentialDecodedBlock` et `IMediaSequentialContent` sont déclarés dans
+`MediaFileSystems/Exploration/Sequential` ; son lecteur y construit les fichiers sans relancer le
+décodage et sans attribuer de nom aux blocs anonymes.
 
 ### Des systèmes de fichiers vers l’analyse
 

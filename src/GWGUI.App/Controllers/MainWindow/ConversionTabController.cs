@@ -1,13 +1,15 @@
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Commands.Options;
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
-using GWGUI.Domain.Profiles;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.Infrastructure.Commands;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using EnabledOption = global::GWGUI.MediaEngine.Commands.Options.EnabledOption;
+using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
+using ConversionOutput = global::GWGUI.MediaEngine.Conversion.ConversionOutput;
+using ConversionPlanner = global::GWGUI.MediaEngine.Conversion.ConversionPlanner;
+using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Formats.Detection;
+using GWGUI.App.Profiles;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Functions.ViewModels.Conversion;
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
@@ -129,7 +131,7 @@ internal sealed class ConversionTabController(
         {
             try
             {
-                var document = await mediaReader.ReadAsync(new GWGUI.Domain.Contracts.MediaSourceDescriptor(path, []));
+                var document = await mediaReader.ReadAsync(new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(path, []));
                 engineSourceDocument = document;
                 var directDestinations = mediaConversion.GetAvailableDestinations(document);
                 var sequentialDestinations = await sequentialMediaConversion.GetAvailableDestinationsAsync(document);
@@ -243,7 +245,7 @@ internal sealed class ConversionTabController(
         if (UsesInternal)
         {
             engineSourceDocument ??= await mediaReader.ReadAsync(
-                new GWGUI.Domain.Contracts.MediaSourceDescriptor(viewModel.Conversion.SourcePath, []));
+                new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(viewModel.Conversion.SourcePath, []));
             var losses = new List<string>();
             foreach (var output in outputs)
             {

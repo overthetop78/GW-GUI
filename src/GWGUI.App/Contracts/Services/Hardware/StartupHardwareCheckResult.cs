@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Settings.Hardware;
 namespace GWGUI.App.Contracts.Services.Hardware;
 
 public sealed record StartupHardwareCheckResult(

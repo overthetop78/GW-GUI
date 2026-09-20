@@ -14,14 +14,10 @@ internal static class FileSystemDisplayNames
     public const string AppleDos32 = "Apple DOS 3.2";
     /// <summary>Nom affiché d'Apple DOS 3.3.</summary>
     public const string AppleDos33 = "Apple DOS 3.3";
-    /// <summary>Nom affiché des volumes Inform/XZIP.</summary>
-    public const string AppleInformXzip = "Apple II Inform/XZIP";
     /// <summary>Nom affiché d'Atari DOS.</summary>
     public const string AtariDos = "Atari DOS";
     /// <summary>Nom affiché d'une bibliothèque graphique Atari CLK.</summary>
     public const string AtariClkGraphicsLibrary = "Atari CLK graphics library";
-    /// <summary>Nom affiché d'une disquette amorçable Atari K-file.</summary>
-    public const string AtariKFile = "Atari K-file";
     /// <summary>Nom affiché des volumes Atari MyDOS.</summary>
     public const string AtariMyDos = "Atari MyDOS";
     /// <summary>Nom affiché de Coherent sur Commodore 900.</summary>

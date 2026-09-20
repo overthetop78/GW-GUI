@@ -932,6 +932,10 @@ de `src/GWGUI.Emulation`, `src/GWGUI.Emulation.Amiga`, `src/GWGUI.Emulation.Atar
 `src/GWGUI.Infrastructure` ou `src/GWGUI.App`. Ces projets reçoivent seulement les changements de
 références et de points d’appel nécessaires pour consommer l’orchestration commune.
 
+Ce passage décrit l'étape initiale de rangement. `GWGUI.Domain` a depuis été supprimé et ses
+contrats ont été répartis entre les projets propriétaires ; la répartition actuelle est décrite
+dans [les frontières des bibliothèques de médias](media-library-boundaries.md).
+
 L’orchestration reste une API de `GWGUI.MediaEngine` et n’ajoute actuellement aucun contrat public
 à `src/GWGUI.Emulation`. Un nouveau contrat du SDK ne sera introduit que si une intégration future
 ne peut pas utiliser cette API sans lui ; les modifications exactes du SDK devront alors être

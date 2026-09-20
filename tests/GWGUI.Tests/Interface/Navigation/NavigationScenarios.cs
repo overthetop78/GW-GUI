@@ -12,10 +12,10 @@ using GWGUI.App.Interfaces.Services.Navigation;
 using GWGUI.App.Contracts.Services.Navigation;
 using GWGUI.App.Enums.Services.Navigation;
 using GWGUI.App.Services.Windows;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows.Media;
 

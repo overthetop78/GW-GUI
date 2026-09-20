@@ -1,9 +1,9 @@
+using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using GWGUI.MediaFileSystems.Primitives;
 using System.Collections.Frozen;
-using GWGUI.MediaEngine.Primitives;
-using GWGUI.MediaEngine.Constants;
 
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 
@@ -13,18 +13,18 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     /// <summary>Identifiant technique du lecteur AmigaDOS.</summary>
     public string Id => Definitions.FileSystemIds.AmigaDos;
     /// <summary>Formats d'images sectorielles pris en charge.</summary>
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { DiskImageFormatIds.AmigaDos, DiskImageFormatIds.AmigaDosHighDensity }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { MediaImageFormatIds.AmigaDos, MediaImageFormatIds.AmigaDosHighDensity }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>Indique si l'image contient un volume AmigaDOS plausible.</summary>
     /// <param name="image">Image sectorielle à examiner.</param>
     /// <returns><see langword="true"/> si un volume AmigaDOS est reconnu.</returns>
-    public bool CanRead(SectorImage image) => AmigaDosRootBlockReader.TryRead(image, out _) || AmigaDosRecoveryReader.TryRead(image, out _);
+    public bool CanRead(IMediaSectorImage image) => AmigaDosRootBlockReader.TryRead(image, out _) || AmigaDosRecoveryReader.TryRead(image, out _);
 
     /// <summary>Lit le volume AmigaDOS contenu dans l'image.</summary>
     /// <param name="image">Image sectorielle à lire.</param>
     /// <returns>Volume et entrées reconstruits.</returns>
     /// <exception cref="InvalidDataException">Le boot, la racine ou un bloc indispensable est invalide.</exception>
-    public FileSystemVolume Read(SectorImage image)
+    public FileSystemVolume Read(IMediaSectorImage image)
     {
         if (image.TryGetBlock(AmigaDosLayout.BootBlock, out var bootBlock) && AmigaDosRootBlockReader.HasDosPrefix(bootBlock.Data.ToArray()) && bootBlock.Data[AmigaDosLayout.DosVariantOffset] > (byte)AmigaDosLayout.MaximumVariant) throw AmigaDosExceptions.UnsupportedBootVariant(bootBlock.Data[AmigaDosLayout.DosVariantOffset]);
         if (!AmigaDosRootBlockReader.TryRead(image, out var rootResult) || rootResult is null)

@@ -34,8 +34,9 @@ Les services de conversion internes sont raccordés à ce résultat commun. Le r
 
 Les fonctions doivent rester dans la DLL propriétaire de leur action :
 
-- `GWGUI.Domain` contient les contrats neutres, demandes, résultats et capacités, sans lecture de fichier, accès matériel, conversion ni interface ;
-- `GWGUI.MediaEngine` contient la reconnaissance des formats, les Readers, décodeurs, représentations, systèmes de fichiers, explorateurs, Writers et conversions internes ;
+- `GWGUI.MediaEngine` expose les contrats média nécessaires à `App` et contient la reconnaissance des formats, les Readers, décodeurs, représentations, Writers, conversions internes, lecture et écriture physiques, et l'orchestration de l'exploration ;
+- `GWGUI.MediaFileSystems` déclare les contrats de média décodé qu'il reçoit de `MediaEngine`, lit les volumes, dossiers et fichiers, et construit les volumes cibles de la migration ;
+- `GWGUI.MediaAnalysis` reconnaît les types et catégories des fichiers et fournit leurs identifiants d'icône et clés de traduction ;
 - `GWGUI.Infrastructure` contient l’accès aux appareils, à Windows, aux processus et aux outils externes, sans interpréter les formats ni choisir un rendu ;
 - `GWGUI.App` contient les vues, présentateurs et coordinateurs d’interface, sans algorithme de reconnaissance, décodage, exploration, écriture ou conversion.
 

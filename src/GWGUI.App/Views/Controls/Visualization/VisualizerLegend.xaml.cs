@@ -1,5 +1,5 @@
 using GWGUI.App.Localization.Extensions;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Visualization;
 using System.Windows.Controls;
 using System.Windows.Media;

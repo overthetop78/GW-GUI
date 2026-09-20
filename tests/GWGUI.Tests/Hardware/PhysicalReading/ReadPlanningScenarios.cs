@@ -1,5 +1,5 @@
 using GWGUI.App.Services.PhysicalDiskReading;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 namespace GWGUI.Tests.Hardware.PhysicalReading;
@@ -9,7 +9,7 @@ internal static class ReadPlanningScenarios
     public static async Task EngineValidation(int variant)
     {
         using var context = new GWGUI.Tests.Interface.ReadViews.ReadOperationScenarios.Context();
-        context.Settings.Engines.PhysicalRead = GWGUI.Domain.Settings.Engines.OperationEngine.Internal;
+        context.Settings.Engines.PhysicalRead = GWGUI.Infrastructure.Settings.Engines.OperationEngine.Internal;
         context.Hardware = new(new(){ControllerUsbId="virtual",Selection="B"},"virtual-port",true,"synthetic");
         context.Model.Read.Tracks.Enabled = true; context.Model.Read.Tracks.Value = "c=2-3:h=1";
         context.Model.Read.Revs.Enabled = true; context.Model.Read.Revs.Value = "4";

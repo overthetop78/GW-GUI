@@ -1,9 +1,11 @@
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Exploration.Partitioning;
 using GWGUI.MediaEngine.Exploration.Sequential;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Iso9660;
 using GWGUI.MediaEngine.FileSystems.Udf;
+using GWGUI.MediaFileSystems.Exploration;
+using GWGUI.MediaFileSystems.Exploration.Partitioning;
+using GWGUI.MediaFileSystems.Exploration.Sequential;
 
 namespace GWGUI.MediaEngine.Composition;
 
@@ -32,7 +34,7 @@ public sealed class MediaExplorationComposition
         new FileSystemRegistry(
             FileSystemReaderCatalog.CreateDefault(),
             [
-                new SequentialContentFileSystemReader(sequentialMedia.Decoders),
+                new SequentialContentDecoderAdapter(sequentialMedia.Decoders),
                 new UdfFileSystemReader(),
                 new JolietExtensionReader(),
                 new RockRidgeExtensionReader(),

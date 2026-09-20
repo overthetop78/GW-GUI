@@ -1,6 +1,7 @@
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
-using GWGUI.Domain.Interfaces;
+using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
+using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using GWGUI.MediaEngine.Enums;
+using IMediaAcquisitionProvider = global::GWGUI.MediaEngine.Interfaces.IMediaAcquisitionProvider;
 
 namespace GWGUI.Infrastructure.Hardware.Media;
 

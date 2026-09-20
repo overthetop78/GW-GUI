@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Formats.Commodore;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Constants;

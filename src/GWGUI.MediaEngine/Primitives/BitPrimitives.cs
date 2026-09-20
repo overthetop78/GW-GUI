@@ -1,10 +1,12 @@
+using BitConstants = global::GWGUI.MediaFileSystems.Constants.BitConstants;
+
 namespace GWGUI.MediaEngine.Primitives;
 
 /// <summary>Fournit les constantes et opérations élémentaires communes aux traitements de bits.</summary>
 public static class BitPrimitives
 {
     /// <summary>Nombre de bits contenus dans un octet.</summary>
-    public const int BitsPerByte = 8;
+    public const int BitsPerByte = BitConstants.BitsPerByte;
     /// <summary>Masque sélectionnant le bit de poids faible d'une valeur.</summary>
     public const int LeastSignificantBitMask = 1;
     /// <summary>Inverse l'ordre des bits d'un octet : le bit d'indice <c>n</c> devient le bit d'indice <c>7 - n</c>.</summary>

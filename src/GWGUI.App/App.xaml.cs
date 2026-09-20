@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Functions.Localization;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Localization.Sources;
@@ -18,7 +18,6 @@ using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Windows;
-using GWGUI.Infrastructure.Settings;
 using Microsoft.Win32;
 using System.Windows.Threading;
 using System.Windows.Interop;

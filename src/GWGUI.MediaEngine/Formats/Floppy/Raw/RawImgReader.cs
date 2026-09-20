@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.FileSystems.Cpm;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Constants;

@@ -1,3 +1,5 @@
+using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+
 namespace GWGUI.MediaEngine.Constants;
 
 /// <summary>Définit les identifiants des images de disquettes Amstrad.</summary>
@@ -8,5 +10,5 @@ public static partial class DiskImageFormatIds
     /// <summary>Image sectorielle Amstrad CPC.</summary>
     public const string AmstradCpc = "amstrad.cpc";
     /// <summary>Image sectorielle Amstrad PCW.</summary>
-    public const string AmstradPcw = "amstrad.pcw";
+    public const string AmstradPcw = MediaImageFormatIds.AmstradPcw;
 }

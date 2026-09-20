@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Formats.Commodore;
 
 namespace GWGUI.MediaEngine.Formats.Floppy.D81;
 

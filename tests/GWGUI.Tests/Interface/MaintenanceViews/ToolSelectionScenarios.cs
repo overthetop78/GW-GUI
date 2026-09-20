@@ -1,7 +1,7 @@
 using GWGUI.App.Services.Maintenance;
 using GWGUI.App.Views.Controls.Tools;
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Settings;
 using System.Windows;
 namespace GWGUI.Tests.Interface.MaintenanceViews;
 internal static class ToolSelectionScenarios

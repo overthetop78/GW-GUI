@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Conversion.Migration;
+using AmigaDosLayout = global::GWGUI.MediaFileSystems.FileSystems.Amiga.AmigaDosLayout;
 
 namespace GWGUI.MediaEngine.FileSystems.Amiga;
 

@@ -1,7 +1,7 @@
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Formats;
 using GWGUI.App.Views.Controls.Common;
 using GWGUI.App.ViewModels.Explorer;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Visualization;
 using GWGUI.App.Localization.Extensions;
@@ -138,7 +138,7 @@ public partial class VisualizerHeaderSection : UserControl
             formats.FirstOrDefault(format => string.Equals(format.Id, document.FormatId, StringComparison.OrdinalIgnoreCase)));
 
         LinkZoom.Visibility = descriptor.Surfaces.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
-        ManualOptionsButton.Visibility = document.MediaKind == GWGUI.Domain.Enums.MediaKind.Floppy
+        ManualOptionsButton.Visibility = document.MediaKind == GWGUI.MediaEngine.Enums.MediaKind.Floppy
             ? Visibility.Visible
             : Visibility.Collapsed;
         RevolutionControl.Visibility = descriptor.RepresentationKind == MediaRepresentationKind.Flux

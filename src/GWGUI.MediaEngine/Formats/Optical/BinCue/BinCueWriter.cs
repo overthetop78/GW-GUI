@@ -1,8 +1,8 @@
 using System.Collections.Frozen;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Enums;
+
 using GWGUI.MediaEngine.Interfaces.Writing;
 using GWGUI.MediaEngine.Representations.Optical;
 using GWGUI.MediaEngine.Writing;
@@ -134,7 +134,7 @@ public sealed class BinCueWriter : IMediaImageWriter
     }
 
     private static async Task CopyAsync(
-        Interfaces.IMediaRandomAccessData source,
+        GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData source,
         long sourceOffset,
         long length,
         Stream output,

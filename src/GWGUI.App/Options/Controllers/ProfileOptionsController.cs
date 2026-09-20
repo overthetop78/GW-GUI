@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Options.States;
 using GWGUI.App.ViewModels.Options;
 using GWGUI.App.Views.Controls.Options;

@@ -1,5 +1,5 @@
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Hardware;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.Infrastructure.Hardware;
 
 namespace GWGUI.Infrastructure.Functions.Hardware;
 

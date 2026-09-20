@@ -1,6 +1,8 @@
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Representations.Flux;
 using GWGUI.MediaEngine.Representations.Sectors;
 
@@ -49,7 +51,7 @@ internal static class MediaImageDocumentFactory
         MediaSourceDescriptor source,
         string formatId,
         MediaKind mediaKind,
-        Interfaces.IMediaImageRepresentation representation,
+        IMediaImageRepresentation representation,
         IReadOnlyDictionary<string, string>? metadata = null)
         => new(
             source,

@@ -1,4 +1,4 @@
-using GWGUI.Domain.Naming;
+using GWGUI.Infrastructure.Naming;
 namespace GWGUI.Tests.Application.OutputNaming;
 internal static class OutputConflictScenarios
 {

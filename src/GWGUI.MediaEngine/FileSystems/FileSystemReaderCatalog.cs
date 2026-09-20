@@ -6,25 +6,23 @@ public static class FileSystemReaderCatalog
     /// <summary>Crée une nouvelle collection contenant les lecteurs par défaut dans leur ordre de détection.</summary>
     public static IReadOnlyList<IFileSystemReader> CreateDefault() => Array.AsReadOnly<IFileSystemReader>(
     [
-        new Amiga.AmigaDosFileSystemReader(),
-        new Amiga.FlatArchive.AmigaFlatResourceArchiveReader(),
-        new Acorn.Adfs.AcornAdfsFileSystemReader(),
-        new Acorn.BbcDfs.BbcDfsFileSystemReader(),
-        new Coherent.CoherentFileSystemReader(),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Amiga.AmigaDosFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Amiga.FlatArchive.AmigaFlatResourceArchiveReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Acorn.Adfs.AcornAdfsFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Acorn.BbcDfs.BbcDfsFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Coherent.CoherentFileSystemReader()),
         new Dec.Rt11.Rt11FileSystemReader(),
         new Ucsd.UcsdFileSystemReader(),
-        new Apple.InformXzip.AppleInformXzipFileSystemReader(),
-        new Apple.Dos.AppleDosFileSystemReader(),
-        new Apple.ProDos.ProDosFileSystemReader(),
-        new Apple.Macintosh.Mfs.MacMfsFileSystemReader(),
-        new Apple.Macintosh.Hfs.MacHfsFileSystemReader(),
-        new Apple.Lisa.LisaFileSystemReader(),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Apple.Dos.AppleDosFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Apple.ProDos.ProDosFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Apple.Macintosh.Mfs.MacMfsFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Apple.Macintosh.Hfs.MacHfsFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Apple.Lisa.LisaFileSystemReader()),
         new Cpm.AmstradCpmFileSystemReader(),
         new Cpm.CpmFileSystemReader(),
-        new Commodore.Dos.CommodoreDosFileSystemReader(),
-        new Fat12.Fat12FileSystemReader(),
-        new Atari.Dos.AtariDosFileSystemReader(),
-        new Atari.ClkGraphicsLibrary.AtariClkGraphicsLibraryFileSystemReader(),
-        new Atari.KFile.AtariKFileFileSystemReader()
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Commodore.Dos.CommodoreDosFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Fat12.Fat12FileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Atari.Dos.AtariDosFileSystemReader()),
+        new MediaFileSystemsReaderAdapter(new GWGUI.MediaFileSystems.FileSystems.Atari.ClkGraphicsLibrary.AtariClkGraphicsLibraryFileSystemReader())
     ]);
 }

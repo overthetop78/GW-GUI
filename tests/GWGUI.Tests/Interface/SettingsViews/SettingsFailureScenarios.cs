@@ -1,8 +1,8 @@
 using GWGUI.App.Views.Windows.Preferences;
 using GWGUI.App.Views.Windows.EmulationPreferences;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Hardware;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Hardware;
 using GWGUI.App.Views.Windows.EmulationModuleOptions;
 using GWGUI.Tests.Interface.EmulationViews;
 using System.Windows;

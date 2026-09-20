@@ -1,7 +1,7 @@
 using GWGUI.App.Views.Windows.Tools;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Commands;
+using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Hardware.FirmwareUpdate;

@@ -1,5 +1,5 @@
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Formats;
+using ConversionSelection = global::GWGUI.MediaEngine.Conversion.ConversionSelection;
+using GWGUI.MediaEngine.Formats;
 using GWGUI.App.Contracts.ViewModels.Conversion;
 using GWGUI.App.Enums.ViewModels.Conversion;
 using GWGUI.App.Localization.Extensions;

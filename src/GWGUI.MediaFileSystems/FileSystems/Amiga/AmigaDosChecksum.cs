@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaFileSystems.Primitives;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 

@@ -1,8 +1,8 @@
 using GWGUI.App.ViewModels.Conversion;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Formats.Detection;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Controllers.MainWindow;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Presenters.Conversion;

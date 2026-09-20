@@ -1,5 +1,5 @@
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
+using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Formats.Detection;
 namespace GWGUI.App.Services.DiskImages;
 
 /// <summary>

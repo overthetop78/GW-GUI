@@ -1,4 +1,4 @@
-using GWGUI.Domain.Contracts;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Recognition;
 

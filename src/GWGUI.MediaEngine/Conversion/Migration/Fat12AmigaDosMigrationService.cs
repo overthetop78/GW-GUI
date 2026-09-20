@@ -33,7 +33,7 @@ public sealed class Fat12AmigaDosMigrationService(
         var writable = MigrationMetadataReducer.Reduce(plan, capabilities);
         if (targetIsAmiga)
         {
-            var image = new AmigaDosVolumeWriter().Create(writable, amigaVariant, targetFormatId);
+            var image = new AmigaDosMigrationImageBuilder().Create(writable, amigaVariant, targetFormatId);
             await amigaWriter.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
         }
         else

@@ -1,5 +1,5 @@
 using System.Collections.Concurrent;
-using GWGUI.Domain.Contracts;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaEngine.Recognition;

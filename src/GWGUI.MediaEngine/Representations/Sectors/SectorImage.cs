@@ -1,7 +1,10 @@
+using IMediaSectorBlock = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock;
+using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+
 namespace GWGUI.MediaEngine.Representations.Sectors;
 
 /// <summary>Représente une image sectorielle, sa géométrie et les blocs logiques effectivement disponibles.</summary>
-public sealed class SectorImage
+public sealed class SectorImage : IMediaSectorImage
 {
     /// <summary>Blocs disponibles indexés par leur numéro logique.</summary>
     private readonly IReadOnlyDictionary<int, SectorBlock> _blocks;
@@ -77,6 +80,7 @@ public sealed class SectorImage
     public long Capacity => _capacity ?? (long)BlockCount * BlockSize;
     /// <summary>Copie de la collection des blocs effectivement disponibles.</summary>
     public IReadOnlyCollection<SectorBlock> AvailableBlocks => _blocks.Values.ToArray();
+    IReadOnlyCollection<IMediaSectorBlock> IMediaSectorImage.AvailableBlocks => _blocks.Values.Cast<IMediaSectorBlock>().ToArray();
     /// <summary>Numéros logiques des blocs absents, triés par ordre croissant.</summary>
     public IReadOnlyList<int> MissingBlocks => Enumerable.Range(0, BlockCount).Where(block => !_blocks.ContainsKey(block)).ToArray();
 
@@ -85,6 +89,17 @@ public sealed class SectorImage
     /// <param name="block">Bloc trouvé lorsque la méthode retourne <see langword="true"/>.</param>
     /// <returns><see langword="true"/> si le bloc est disponible ; sinon <see langword="false"/>.</returns>
     public bool TryGetBlock(int logicalBlock, out SectorBlock block) => _blocks.TryGetValue(logicalBlock, out block!);
+
+    bool IMediaSectorImage.TryGetBlock(int logicalBlock, out IMediaSectorBlock block)
+    {
+        if (_blocks.TryGetValue(logicalBlock, out var sector))
+        {
+            block = sector;
+            return true;
+        }
+        block = null!;
+        return false;
+    }
 
     /// <summary>Retourne les données d'un bloc logique disponible.</summary>
     /// <param name="logicalBlock">Indice logique du bloc, compté à partir de zéro.</param>

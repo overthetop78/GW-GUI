@@ -1,15 +1,15 @@
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Interfaces;
 
-/// <summary>Exposes the common read-only capabilities of a media image representation.</summary>
-public interface IMediaImageRepresentation
+/// <summary>Expose à l'application la représentation du média décodé par le moteur.</summary>
+public interface IMediaImageRepresentation : GWGUI.MediaFileSystems.Interfaces.IMediaImageRepresentation
 {
     MediaRepresentationKind RepresentationKind { get; }
 
-    long? LogicalLength { get; }
+    new long? LogicalLength { get; }
 
-    bool SupportsRandomAccess { get; }
+    new bool SupportsRandomAccess { get; }
 
-    bool SupportsSequentialAccess { get; }
+    new bool SupportsSequentialAccess { get; }
 }

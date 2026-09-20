@@ -1,3 +1,4 @@
+using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.FileSystems;
@@ -18,13 +19,13 @@ public sealed class ExploredMediaVolume
         if (fileSystem is not null && string.IsNullOrWhiteSpace(readerId))
             throw new ArgumentException("A recognized file system requires its reader identifier.", nameof(readerId));
 
-        Descriptor = descriptor;
+        Descriptor = new MediaVolumeInfo(descriptor);
         ReaderId = readerId;
         FileSystem = fileSystem;
         Diagnostics = new ReadOnlyCollection<string>(diagnostics.ToArray());
     }
 
-    public MediaVolumeDescriptor Descriptor { get; }
+    public MediaVolumeInfo Descriptor { get; }
 
     public string? ReaderId { get; }
 

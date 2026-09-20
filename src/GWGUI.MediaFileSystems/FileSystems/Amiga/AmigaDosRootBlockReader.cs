@@ -1,6 +1,6 @@
-using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaFileSystems.Primitives;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 
@@ -8,7 +8,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 public static class AmigaDosRootBlockReader
 {
     /// <summary>Tente de reconnaître le volume puis retourne sa variante et sa racine.</summary>
-    public static bool TryRead(SectorImage image, out AmigaDosRootBlock? root)
+    public static bool TryRead(IMediaSectorImage image, out AmigaDosRootBlock? root)
     {
         root = null;
         if (image.BlockSize != AmigaDosLayout.BlockSize || !image.TryGetBlock(AmigaDosLayout.BootBlock, out var bootBlock) || bootBlock.Data.Count <= AmigaDosLayout.DosVariantOffset) return false;
@@ -37,7 +37,7 @@ public static class AmigaDosRootBlockReader
     /// <summary>Indique si les trois premiers octets portent la signature DOS.</summary>
     public static bool HasDosPrefix(ReadOnlySpan<byte> boot) => boot.Length > AmigaDosLayout.DosVariantOffset && boot[0] == AmigaDosLayout.DosSignatureD && boot[1] == AmigaDosLayout.DosSignatureO && boot[2] == AmigaDosLayout.DosSignatureS;
 
-    private static bool TryGetRoot(SectorImage image, int blockNumber, out byte[] data)
+    private static bool TryGetRoot(IMediaSectorImage image, int blockNumber, out byte[] data)
     {
         data = [];
         if (blockNumber <= 0 || blockNumber >= image.BlockCount || !image.TryGetBlock(blockNumber, out var block) || block.Data.Count != AmigaDosLayout.BlockSize) return false;

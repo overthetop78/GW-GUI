@@ -1,7 +1,7 @@
 using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Enums.Services.PhysicalDiskReading;
-using GWGUI.Domain.Contracts;
+using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Acquisition;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration;

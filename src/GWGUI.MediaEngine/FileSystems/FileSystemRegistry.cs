@@ -1,6 +1,7 @@
+using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Interfaces.Exploration;

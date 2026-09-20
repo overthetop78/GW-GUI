@@ -1,4 +1,4 @@
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 
 namespace GWGUI.MediaEngine.Interfaces.Writing;

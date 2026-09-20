@@ -1,0 +1,34 @@
+using GWGUI.Infrastructure.Hardware;
+namespace GWGUI.Infrastructure.Hardware.Parsing;
+
+public static class GwInfoParser
+{
+    public static GwDeviceInfo Parse(string output)
+    {
+        string? ValueAfter(params string[] labels)
+        {
+            foreach (var rawLine in output.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries))
+            {
+                var line = rawLine.Trim();
+                var separator = line.IndexOf(':');
+                if (separator < 0) continue;
+                foreach (var label in labels)
+                    if (line[..separator].Trim().Equals(label, StringComparison.OrdinalIgnoreCase))
+                        return line[(separator + 1)..].Trim();
+            }
+            return null;
+        }
+
+        var port = ValueAfter("Port") ?? output.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x.Trim())
+            .FirstOrDefault(x => x.Length > 3 && x.StartsWith("COM", StringComparison.OrdinalIgnoreCase)
+                && x[3..].All(char.IsAsciiDigit));
+
+        return new GwDeviceInfo(
+            ValueAfter("Host Tools"), port, ValueAfter("Model"), ValueAfter("MCU"),
+            ValueAfter("Firmware"), ValueAfter("Serial"), ValueAfter("USB"),
+            output.Contains("github", StringComparison.OrdinalIgnoreCase) &&
+            (output.Contains("error", StringComparison.OrdinalIgnoreCase) || output.Contains("failed", StringComparison.OrdinalIgnoreCase)),
+            output);
+    }
+}

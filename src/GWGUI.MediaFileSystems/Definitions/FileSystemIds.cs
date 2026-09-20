@@ -37,14 +37,10 @@ public static class FileSystemIds
     public const string AmstradCpm = "amstrad.cpm";
     /// <summary>Identifie Apple DOS.</summary>
     public const string AppleDos = "apple-dos";
-    /// <summary>Identifie les volumes Apple Inform/XZIP.</summary>
-    public const string AppleInformXzip = "apple-inform-xzip";
     /// <summary>Identifie Atari DOS.</summary>
     public const string AtariDos = "atari-dos";
     /// <summary>Identifie une bibliothèque graphique Atari CLK.</summary>
     public const string AtariClkGraphicsLibrary = "atari-clk-graphics-library";
-    /// <summary>Identifie une disquette amorçable K-file contenant un exécutable Atari unique.</summary>
-    public const string AtariKFile = "atari-k-file";
     /// <summary>Identifie les volumes Atari MyDOS, y compris les grands volumes à liaisons de secteurs sur 16 bits.</summary>
     public const string AtariMyDos = "atari-mydos";
     /// <summary>Identifie Coherent.</summary>

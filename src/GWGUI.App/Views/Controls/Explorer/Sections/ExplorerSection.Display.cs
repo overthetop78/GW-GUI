@@ -1,4 +1,4 @@
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Formats;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Enums.Explorer;
 using GWGUI.App.Functions.Explorer;
@@ -96,7 +96,7 @@ public partial class ExplorerSection
         DocumentIdentity.Display(
             document.SourcePath,
             detectedSummary,
-            GWGUI.Domain.Enums.MediaKind.Floppy,
+            GWGUI.MediaEngine.Enums.MediaKind.Floppy,
             FormatForIdentity(document.PrimaryFormatId));
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         if (AutomaticDetection.IsChecked == true)

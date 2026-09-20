@@ -1,3 +1,5 @@
+using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+
 using GWGUI.MediaEngine.Primitives;
 
 namespace GWGUI.MediaEngine.Constants;
@@ -6,31 +8,31 @@ namespace GWGUI.MediaEngine.Constants;
 public static partial class DiskImageFormatIds
 {
     /// <summary>Préfixe des formats IBM PC.</summary>
-    public const string IbmPrefix = "ibm.";
+    public const string IbmPrefix = MediaImageFormatIds.IbmPrefix;
     /// <summary>Image IBM PC de 160 Kio.</summary>
-    public const string Ibm160 = "ibm.160";
+    public const string Ibm160 = MediaImageFormatIds.Ibm160;
     /// <summary>Image IBM PC de 180 Kio.</summary>
-    public const string Ibm180 = "ibm.180";
+    public const string Ibm180 = MediaImageFormatIds.Ibm180;
     /// <summary>Image IBM PC de 320 Kio.</summary>
-    public const string Ibm320 = "ibm.320";
+    public const string Ibm320 = MediaImageFormatIds.Ibm320;
     /// <summary>Image IBM PC de 360 Kio.</summary>
-    public const string Ibm360 = "ibm.360";
+    public const string Ibm360 = MediaImageFormatIds.Ibm360;
     /// <summary>Image IBM PC de 720 Kio.</summary>
-    public const string Ibm720 = "ibm.720";
+    public const string Ibm720 = MediaImageFormatIds.Ibm720;
     /// <summary>Image IBM PC de 800 Kio.</summary>
-    public const string Ibm800 = "ibm.800";
+    public const string Ibm800 = MediaImageFormatIds.Ibm800;
     /// <summary>Image IBM PC de 1 200 Kio.</summary>
-    public const string Ibm1200 = "ibm.1200";
+    public const string Ibm1200 = MediaImageFormatIds.Ibm1200;
     /// <summary>Image IBM PC de 1 440 Kio.</summary>
-    public const string Ibm1440 = "ibm.1440";
+    public const string Ibm1440 = MediaImageFormatIds.Ibm1440;
     /// <summary>Image IBM PC de 1 680 Kio.</summary>
-    public const string Ibm1680 = "ibm.1680";
+    public const string Ibm1680 = MediaImageFormatIds.Ibm1680;
     /// <summary>Image IBM PC au format DMF.</summary>
-    public const string IbmDmf = "ibm.dmf";
+    public const string IbmDmf = MediaImageFormatIds.IbmDmf;
     /// <summary>Image IBM PC de 2 880 Kio.</summary>
-    public const string Ibm2880 = "ibm.2880";
+    public const string Ibm2880 = MediaImageFormatIds.Ibm2880;
     /// <summary>Image IBM PC dont la géométrie doit être déterminée par analyse.</summary>
-    public const string IbmScan = "ibm.scan";
+    public const string IbmScan = MediaImageFormatIds.IbmScan;
 
     /// <summary>Construit l'identifiant IBM PC en tronquant au kibioctet inférieur une capacité non alignée.</summary>
     /// <param name="capacityBytes">Capacité positive ou nulle de l'image, en octets.</param>

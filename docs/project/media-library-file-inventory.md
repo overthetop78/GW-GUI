@@ -1,6 +1,44 @@
-﻿# Inventaire des fichiers concernés par la séparation des bibliothèques de médias
+# Inventaire des fichiers concernés par la séparation des bibliothèques de médias
 
 Cet inventaire couvre les lecteurs et contrats de systèmes de fichiers, leurs dépendances directes et transitives, les classificateurs et catalogues de types de l'application, ainsi que les consommateurs qui importent réellement leurs namespaces dans `src` et `tests`.
+
+Ce tableau est un relevé historique de la séparation. Depuis ce relevé, les 125 fichiers de
+`GWGUI.Domain` ont été répartis entre `GWGUI.App`, `GWGUI.Infrastructure`, `GWGUI.MediaEngine` et
+`GWGUI.MediaFileSystems`, puis le projet `GWGUI.Domain` a été retiré de la solution. Les contrats
+de média décodé reçus par `MediaFileSystems` y sont définis ; `App` utilise l'API de `MediaEngine`.
+Les chemins du tableau doivent être vérifiés avant de servir de destination à une prochaine extraction.
+La famille Acorn ADFS et ses résolveurs FileCore sont désormais dans `src/GWGUI.MediaFileSystems/FileSystems/Acorn/Adfs` et `src/GWGUI.MediaFileSystems/FileSystems/Acorn/FileCore`. `LittleEndianUInt24` est dans `MediaFileSystems/Primitives`. `MediaEngine` conserve le décodage des images ADF et expose le lecteur ADFS par `MediaFileSystemsReaderAdapter` dans `FileSystemReaderCatalog` ; le lecteur reçoit l'image de secteurs déjà décodée via `IMediaSectorImage`.
+
+La famille BBC DFS du catalogue est désormais dans `src/GWGUI.MediaFileSystems/FileSystems/Acorn/BbcDfs`. Le décodage du conteneur Acorn Atom DSK reste dans `MediaEngine/Formats/Floppy/AcornAtom` ; sa validation de format lit les constantes de disposition déplacées. `FileSystemReaderCatalog` expose le lecteur BBC DFS de `MediaFileSystems` par `MediaFileSystemsReaderAdapter`.
+La copie `MediaEngine/FileSystems/AcornFileSystemTime.cs` a été retirée : aucun appelant ne la référençait après le déplacement du lecteur ADFS, et la même logique est déjà dans `MediaFileSystems/Utilities/AcornFileSystemTime.cs`.
+
+Les anciennes copies des auxiliaires de lecture AmigaDOS (checksum, répertoires, fichiers, récupération, racine, noms et avertissements) ont été retirées de `MediaEngine`. Le lecteur actif et ces auxiliaires existent dans `MediaFileSystems/FileSystems/Amiga`. Le writer de migration AmigaDOS, ses constantes et ses appelants dans `MediaEngine` demandent encore un raccordement séparé avant suppression de leurs anciennes copies.
+
+Pour la migration vers AmigaDOS, `MediaEngine/Conversion/Migration/AmigaDosMigrationImageBuilder.cs` adapte le plan de migration public et crée le `SectorImage` cible avec la géométrie ADF. Il demande à `MediaFileSystems/FileSystems/Amiga/AmigaDosVolumeWriter.cs` de remplir le système de fichiers et de retourner un `MediaSectorWritePlan`. Les copies de la disposition AmigaDOS et du décodeur de temps ont été retirées de `MediaEngine`.
+
+Le lecteur Amiga FlatArchive et ses sept auxiliaires sont dans `MediaFileSystems/FileSystems/Amiga/FlatArchive`. Il lit les noms déjà stockés dans les descripteurs de ressources, sans inventer de fichiers, et reçoit le secteur décodé via `IMediaSectorImage`. `MediaEngine/FileSystemReaderCatalog` le publie au moyen de son adaptateur existant.
+
+Les copies Apple DOS propres au lecteur de fichiers (entrées, VTOC, listes de secteurs, noms, types et avertissements) ont été retirées de `MediaEngine` ; le lecteur actif et ces auxiliaires sont dans `MediaFileSystems/FileSystems/Apple/Dos`. Le writer de migration Apple DOS et ses dépendances sont traités dans le groupe suivant.
+
+Pour la migration Apple DOS, `MediaEngine/Conversion/Migration/AppleDosMigrationImageBuilder.cs` convertit le plan public et crée le `SectorImage` cible. `MediaFileSystems/FileSystems/Apple/Dos/AppleDosVolumeWriter.cs` construit le catalogue, le VTOC, les listes de secteurs et les données, puis retourne un `MediaSectorWritePlan`. Le lecteur de format brut et la reconnaissance restent dans `MediaEngine`.
+
+Les deux adaptateurs de règles de noms Apple DOS propres au contrat `IMigrationNamePolicy` de `MediaEngine` sont rangés dans `MediaEngine/Conversion/Migration/Apple`. Ils délèguent la validation effective aux politiques Apple DOS de `MediaFileSystems`.
+
+Le lecteur Inform/XZIP a été retiré de l’explorateur sur décision de l’utilisateur : cette disposition ne fournit pas de catalogue de fichiers et le lecteur présentait `INTERPRETER.BIN` et `STORY.Z5` comme des noms alors qu’il les fabriquait. Son enregistrement, ses quatre sources et ses identifiants inutilisés ont été supprimés. Les images concernées seront réexaminées lors d’un nouveau passage sur les disquettes ; certaines pourront rester de côté jusqu’à ce que leurs vrais fichiers puissent être retrouvés.
+
+Les douze sources du lecteur Lisa sont désormais dans `MediaFileSystems/FileSystems/Apple/Lisa`. `MediaEngine/FileSystemReaderCatalog` publie ce lecteur par `MediaFileSystemsReaderAdapter` et son sondage d’image appelle `LisaVolumeHeader` dans `MediaFileSystems`. Le contrat `IMediaSectorBlock.Tag` transmet les tags des secteurs déjà décodés. Seuls les noms lus dans le catalogue Lisa deviennent des entrées de fichier ; un identifiant de page ne sert plus à construire le nom `Fichier XXXX`. Sans catalogue, la table des noms et la liste des fichiers présentés sont vides. Les lignes de provenance plus bas représentent l’inventaire initial avant déplacement.
+
+Les dix-neuf sources des lecteurs Macintosh MFS et HFS, y compris leurs trois auxiliaires communs, sont maintenant dans `MediaFileSystems/FileSystems/Apple/Macintosh`. Elles reconstruisent les entrées depuis les répertoires MFS et le catalogue HFS, avec les vrais noms encodés dans ces structures. `MediaEngine` conserve le décodage des images et publie les deux lecteurs par `MediaFileSystemsReaderAdapter`. Les cinq identifiants de formats employés par ces lecteurs sont partagés par `MediaFileSystems/Constants/MediaImageFormatIds.cs` ; les noms publics de `MediaEngine` y renvoient.
+
+Le lecteur ProDOS actif est maintenant celui de `MediaFileSystems/FileSystems/Apple/ProDos`, publié par l’adaptateur du catalogue `MediaEngine`. Onze anciennes sources propres à la lecture ont été retirées de `MediaEngine`. Son sondage d’image appelle `ProDosVolumeHeaderReader.IsValid` dans `MediaFileSystems`. Pour la migration, `MediaEngine/Conversion/Migration/ProDosMigrationImageBuilder.cs` résout la géométrie et construit le `SectorImage` cible depuis le plan de secteurs du writer de `MediaFileSystems` ; SOS ajoute ensuite son marqueur d’amorçage au volume ProDOS de base. L’ancien writer ProDOS de `MediaEngine` et ses six dernières dépendances ont été retirés. L’adaptateur de noms ProDOS du moteur est rangé dans `Conversion/Migration/Apple` et délègue à la politique ProDOS de `MediaFileSystems`.
+
+Le lecteur Atari CLK est dans `MediaFileSystems/FileSystems/Atari/ClkGraphicsLibrary` et reçoit l’image sectorielle déjà décodée. Il lit les noms des entrées actives dans les secteurs de répertoire CLK ; `MediaEngine/FileSystemReaderCatalog` le publie par son adaptateur. Ses neuf identifiants d’images Atari sont partagés depuis `MediaFileSystems/Constants/MediaImageFormatIds.cs`.
+
+Le lecteur Atari K-file a été retiré de l’explorateur sur décision de l’utilisateur : il extrayait un programme, mais aucun catalogue ne fournissait son nom ; `RUN.XEX` était fabriqué. Son enregistrement, sa source et ses identifiants inutilisés ont été supprimés. Les disquettes concernées seront réexaminées lors du nouveau passage sur les images, et pourront rester de côté jusqu’à ce que leurs vrais fichiers soient identifiables.
+
+Les onze sources du lecteur Atari DOS et MyDOS sont dans `MediaFileSystems/FileSystems/Atari/Dos`. Elles lisent les vrais noms 8.3 des entrées de répertoire et suivent les chaînes de secteurs depuis l’image déjà décodée. `MediaEngine/FileSystemReaderCatalog` publie le lecteur par son adaptateur ; le préfixe de formats Atari utilisé par ce lecteur est partagé dans `MediaFileSystems/Constants/MediaImageFormatIds.cs`.
+
+Les quinze sources du lecteur de système de fichiers COHERENT sont dans `MediaFileSystems/FileSystems/Coherent`. Les noms de fichiers viennent des entrées de répertoire, les noms par défaut du volume sont écartés et aucune entrée de fichier n'est créée à partir d'un nom supposé. `MediaEngine` conserve la lecture du dump brut et la reconnaissance de l'image ; ces deux opérations appellent le contrôle du superbloc de `MediaFileSystems`. `FileSystemReaderCatalog` publie le lecteur par `MediaFileSystemsReaderAdapter`. Les chemins COHERENT du tableau ci-dessous restent ceux du relevé historique.
 
 | Fichier actuel | Projet actuel | Responsabilité observée | Projet cible | Appelants ou consommateurs repérés |
 |---|---|---|---|---|
@@ -228,10 +266,6 @@ Cet inventaire couvre les lecteurs et contrats de systèmes de fichiers, leurs d
 | `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVolumeWriterExceptions.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVolumeWriter.cs |
 | `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVtoc.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVtocReader.cs |
 | `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVtocReader.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosFileSystemReader.cs |
-| `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs |
-| `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | Aucun appelant direct confirmé par namespace et nom de type |
-| `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs<br>src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/ZMachineV5Header.cs |
-| `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/ZMachineV5Header.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs |
 | `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaCatalogReader.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaFileSystemReader.cs |
 | `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaCatalogVersion.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaCatalogReader.cs<br>src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs<br>src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaVolumeHeader.cs |
 | `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaFileContent.cs` | `GWGUI.MediaEngine` | Lecture, écriture, contrat ou registre de système de fichiers | `GWGUI.MediaFileSystems` | src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaFileContentReader.cs |
@@ -639,9 +673,6 @@ Le nom et la signature publique de ces types doivent être préservés ; toute m
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVolumeWriterExceptions.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVtoc.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosVtocReader.cs`
-- `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipFileSystemReader.cs`
-- `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipLayout.cs`
-- `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/ZMachineV5Header.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaCatalogReader.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaCatalogVersion.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaFileSystemExceptions.cs`
@@ -823,7 +854,6 @@ Le namespace de ces types peut suivre leur projet cible avec correction explicit
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosFileSystemExceptions.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosFileType.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Dos/AppleDosFileTypeNames.cs`
-- `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip/AppleInformXzipExceptions.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaFileContent.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaFileContentReader.cs`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa/LisaMddf.cs`
@@ -970,7 +1000,6 @@ Aucun autre fichier ne reçoit le statut inutile avant la revue de son contenu e
 - `src/GWGUI.MediaEngine/FileSystems/Amiga/FlatArchive`
 - `src/GWGUI.MediaEngine/FileSystems/Apple`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Dos`
-- `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Macintosh`
 - `src/GWGUI.MediaEngine/FileSystems/Apple/Macintosh/Hfs`
@@ -993,3 +1022,199 @@ Aucun autre fichier ne reçoit le statut inutile avant la revue de son contenu e
 - `src/GWGUI.MediaEngine/FileSystems/Ucsd`
 - `src/GWGUI.MediaEngine/FileSystems/Udf`
 
+
+## Dépendances inverses à retirer pour le trajet App → MediaEngine → MediaFileSystems → MediaAnalysis
+
+Ce tableau est l'instantané établi **avant** le rangement du 19 septembre 2026. Les chemins `Apple/Dos`, `Apple/ProDos`, `Commodore/Dos`, `Fat12` et `Sos` ont été rangés sous `FileSystems/` ; les copies citées sous `Conversion/Migration` ont été rangées sous `Migration/` ou retirées selon leur responsabilité. Les quatre copies de réinterprétation FAT12 et le catalogue de géométrie de `MediaFileSystems` ont été retirés. Le tableau reste ici pour expliquer les dépendances relevées à l'époque, pas comme liste de fichiers présents.
+
+Après ce rangement, `rg -l '^using GWGUI.MediaEngine' src/GWGUI.MediaFileSystems --glob '*.cs'` trouvait **46 fichiers**. Ces dépendances concernent notamment les représentations sectorielles, les primitives, les identifiants de format et certaines géométries physiques. Elles empêchent toujours d'inverser la référence de projet sans cycle ; chaque type utilisé à la frontière doit être examiné avant de déplacer les références.
+
+Relevé du 19 septembre 2026 après partage de `IMediaImageDocument` et `IMediaVolumeDetector` : **44 fichiers C#** de `MediaFileSystems` mentionnaient encore `GWGUI.MediaEngine`. Ce relevé est historique. Les contrats de média nécessaires ont ensuite été transférés à `GWGUI.Domain` et les références de projets ont été inversées sans cycle.
+
+État du 20 septembre 2026 : `MediaEngine` appelle maintenant le registre et les cinq détecteurs de volumes dans `MediaFileSystems`. Le contrôle CRC de GPT appartient également à `MediaFileSystems`. La compilation de la solution et le test ciblé des références d'assemblages réussissent. Le lecteur `SequentialContentFileSystemReader` reste dans `MediaEngine` : il appelle encore `SequentialDecoderRegistry` et crée des noms synthétiques pour les blocs sans nom. Son extraction demande une séparation du décodage et une décision explicite dans le code sur la représentation des blocs qui n'ont pas de nom réel ; une copie de fichier conserverait ces deux problèmes.
+
+Le catalogue de production de `MediaEngine` délègue maintenant les lectures AmigaDOS, Apple DOS, Commodore DOS et FAT12 aux quatre lecteurs de `MediaFileSystems` par `MediaFileSystemsReaderAdapter`. Les quatre anciennes classes de lecteur correspondantes ont été retirées de `MediaEngine`. Les autres lecteurs du catalogue, notamment Acorn, Atari, CP/M, Macintosh, ISO 9660 et UDF, sont encore dans `MediaEngine` et restent à extraire un par un. Les anciennes lignes d'inventaire ci-dessus décrivent leur provenance initiale, et non leur emplacement actuel.
+
+Le lecteur séquentiel est désormais séparé : `SequentialContentDecoderAdapter` de `MediaEngine` sélectionne et exécute le décodeur existant, puis transmet ses blocs déjà décodés au `SequentialContentFileSystemReader` de `MediaFileSystems`. Ce dernier ne crée une entrée de fichier que si la métadonnée du bloc porte un véritable `fileName` ; les blocs anonymes restent signalés dans les diagnostics. Les blocs successifs d'un même fichier nommé sont réunis sans ajouter de suffixe artificiel. L'ancien lecteur séquentiel de `MediaEngine` a été retiré. La visualisation de la bande et ses décodeurs restent dans `MediaEngine`.
+
+Les contrats `MediaSequentialDecodedBlock` et `IMediaSequentialContent` sont dans
+`src/GWGUI.MediaFileSystems/Exploration/Sequential`. L'adaptateur de `MediaEngine` les renseigne à
+partir du décodage déjà effectué ; le test permanent du lecteur les consomme directement. Ils
+n'exigent aucune référence inverse de `MediaFileSystems` vers `MediaEngine`.
+
+Relevé après raccordement des 27 fichiers de lecture sectorielle : **31 fichiers C#** de `MediaFileSystems` mentionnent encore `GWGUI.MediaEngine`. Les lecteurs reçoivent désormais `IMediaSectorImage`, `IMediaSectorBlock` et `IMediaSectorRepresentation` depuis `Domain` ; `SectorImage` et ses blocs les implémentent dans `MediaEngine` sans seconde lecture de l'image. Les constructeurs de volumes de migration retournent encore des `SectorImage` concrets, et plusieurs lecteurs utilisent toujours des primitives, identifiants et géométries de `MediaEngine`. Il faut dissocier ces usages avant de retirer la référence de projet.
+
+Relevé après déplacement de `BigEndianInt32` et `PetsciiCodec` vers `Domain/Primitives` et retrait des imports devenus inutiles : **21 fichiers C#** de `MediaFileSystems` mentionnent encore `GWGUI.MediaEngine`. Le test existant `MediaEngineProjectBoundaryTests` a réussi (1 test, 0 échec) et la solution compile sans avertissement. Les liens restants portent notamment sur les identifiants de format, les géométries Commodore et les constructeurs de volumes utilisés pour la migration ; la référence de projet inverse existe encore.
+
+Relevé après partage des **42 identifiants de format** nécessaires à `MediaFileSystems` dans `Domain/Constants/MediaImageFormatIds.cs` et de `BitsPerByte` dans `Domain/Constants/BitConstants.cs` : **11 fichiers C#** de `MediaFileSystems` citent encore `GWGUI.MediaEngine`. Ce sont les constructeurs de volumes Apple DOS, ProDOS, SOS, AmigaDOS, Commodore DOS et FAT12, ainsi que les quatre classes Commodore liées aux géométries et à la BAM. Le moteur conserve ses anciens noms publics d'identifiants sous forme d'alias constants vers la base commune. La compilation de la solution réussit sans avertissement ; la référence inverse du projet `MediaFileSystems` reste nécessaire tant que les 11 fichiers n'ont pas été dissociés.
+
+État après extraction des géométries Commodore et des sorties de writers : **aucun fichier C#** de `MediaFileSystems` n'importe `GWGUI.MediaEngine`. Ses constructeurs de volumes cibles produisent un `MediaSectorWritePlan` partagé, et les writers ProDOS, SOS et AmigaDOS reçoivent la géométrie cible depuis le moteur. Les références de projets configurées sont `App → MediaEngine → MediaFileSystems → MediaAnalysis`, avec `Domain` comme référence commune ; la solution et le test existant de frontière compilent et réussissent. Les références vers la bibliothèque suivante ne réalisent pas encore toutes un appel de production : les anciennes copies des lecteurs restent en service dans `MediaEngine`, et le raccordement de l'analyse des fichiers reste ouvert. Cette étape n'a changé ni la conversion physique ni la visualisation.
+
+État après déplacement de l'orchestration : `MediaOpeningAnalysisService`, `MediaImageExplorationService`, `MediaOpeningAnalysisResult`, `MediaExplorationProgress` et `MediaExplorationProgressStage` sont désormais dans `MediaEngine/Exploration`. Les deux services y chargent toujours un seul document par appel et en tirent les résultats existants. `MediaAnalysis` ne référence plus que `Domain` ; aucun de ses fichiers C# n'importe `MediaEngine` ni `MediaFileSystems`. `App` utilise les services et contrats déplacés depuis `MediaEngine` et sa référence directe à `MediaAnalysis` a été retirée après vérification de tous les fichiers du projet. Le raccordement de la classification à la chaîne d'appels reste à faire.
+
+Précision de périmètre reçue ensuite : la lecture et l'écriture physiques, la conversion des images
+compatibles et la visualisation restent dans `MediaEngine`. La migration des fichiers vers une autre
+image est distincte : `MediaFileSystems` reconstruit le système de fichiers cible à partir des vrais
+fichiers de la source, tandis que `MediaEngine` lit l'image source et écrit le conteneur cible. Les
+contrats de migration, writers de volumes et politiques de noms nécessaires à cette reconstruction
+appartiennent à `MediaFileSystems` ; les géométries physiques et writers de conteneurs restent dans
+`MediaEngine`. La mesure de 46 fichiers précède le raccordement.
+
+### Contrats à la frontière de détection des volumes
+
+| Fichier lu | Types de `MediaEngine` utilisés | Nature et action nécessaire |
+|---|---|---|
+| `Exploration/MediaVolumeDetectorRegistry.cs` | `IMediaVolumeDetector`, `MediaImageDocument`, `MediaVolumeDetectionResult` | Coordination des détecteurs de volumes ; transférer les contrats de données avant le registre. |
+| `Interfaces/Exploration/IMediaVolumeDetector.cs` | `MediaImageDocument`, `MediaVolumeDetectionResult` | Interface de détection ; elle doit être utilisable par `MediaFileSystems` sans référence au projet moteur. |
+| `Contracts/MediaImageDocument.cs` | `IMediaImageRepresentation`, `MediaVolumeDescriptor` ; `MediaSourceDescriptor` et `MediaKind` sont déjà dans `Domain` | Document de représentation reconnue, sans chargement ni décodage ; placer son contrat commun dans `Domain`. |
+| `Contracts/MediaVolumeDescriptor.cs` | Aucun autre type de `MediaEngine` | Description de volume ; contrat commun dans `Domain`. |
+| `Contracts/MediaVolumeDetectionResult.cs` | `MediaVolumeDescriptor` | Résultat de détection ; contrat commun dans `Domain`. |
+| `GWGUI.MediaFileSystems/Interfaces/IFileSystemReader.cs` | `SectorImage`, `SectorMediaImageRepresentation`, `MediaImageDocument`, `MediaVolumeDescriptor` | Lecteur de système de fichiers ; remplacer les types concrets du moteur par des contrats communs sans relire l'image. |
+| `Representations/Sectors/SectorImage.cs`, `SectorBlock.cs`, `SectorAddress.cs` | Types sectoriels du moteur | Données de secteurs à exposer à `MediaFileSystems` par un contrat partagé ; garder le chargement et le décodage dans `MediaEngine`. |
+| `Interfaces/IMediaRandomAccessData.cs` | Aucun autre type de `MediaEngine` | Accès borné aux octets déjà ouverts, nécessaire aux détecteurs de partitions ; contrat commun dans `Domain`. |
+
+Les classes qui décodent SCP, pistes, flux ou conteneurs physiques ne font pas partie de ces contrats
+partagés et restent dans `MediaEngine`. Le transfert de données ne doit pas déclencher une seconde
+lecture ou un second décodage du média.
+
+Relevé du 19 septembre 2026. Les 56 fichiers ci-dessous contiennent encore une référence à MediaEngine. La colonne « frontière cible » indique le contrat ou le sens de transfert à établir ; aucune référence de projet ne doit être inversée avant le retrait effectif de ces usages.
+
+| Fichier de MediaFileSystems | Références actuelles à MediaEngine | Frontière cible |
+|---|---|---|
+| src/GWGUI.MediaFileSystems/Apple/Dos/AppleDosFileSystemReader.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/Dos/AppleDosTrackSectorListReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/Dos/AppleDosVolumeWriter.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/Dos/AppleDosVtocReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/ProDos/ProDosBitmapReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/ProDos/ProDosDirectoryReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/ProDos/ProDosFileContentReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/ProDos/ProDosFileSystemReader.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/ProDos/ProDosVolumeHeaderReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Apple/ProDos/ProDosVolumeWriter.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Formats.Floppy.Raw<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/Commodore1541BamReader.cs | GWGUI.MediaEngine.Formats.Floppy.D71<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/Commodore1581BamReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Formats.Floppy.Raw<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosFileReader.cs | GWGUI.MediaEngine.Formats.Floppy.Raw<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosFileSystemReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosLayout.cs | GWGUI.MediaEngine.Constants | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosNamePolicy.cs | GWGUI.MediaEngine.Primitives | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosRecognizer.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosSectorReader.cs | GWGUI.MediaEngine.Formats.Floppy.Raw<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosVolumeBuilder.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosVolumeWriter.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Commodore/Dos/CommodoreDosWritableGeometry.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Formats.Floppy.D64<br>GWGUI.MediaEngine.Formats.Floppy.D71<br>GWGUI.MediaEngine.Formats.Floppy.D81<br>GWGUI.MediaEngine.Representations.Sectors | Conserver la géométrie physique dans MediaEngine ; transmettre uniquement ses paramètres utiles via Domain. |
+| src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12ReinterpretationPolicy.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la logique du système FAT12 dans MediaFileSystems ; recevoir la représentation sectorielle par Domain. |
+| src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12ReinterpretationService.cs | GWGUI.MediaEngine.Exploration<br>GWGUI.MediaEngine.Representations.Sectors | Garder la logique du système FAT12 dans MediaFileSystems ; recevoir la représentation sectorielle par Domain. |
+| src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12TargetGeometryCatalog.cs | GWGUI.MediaEngine.Formats.Floppy.Raw<br>GWGUI.MediaEngine.Formats.Floppy.St | Conserver la géométrie physique dans MediaEngine ; transmettre uniquement ses paramètres utiles via Domain. |
+| src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12TargetImageWriter.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Formats.Floppy.Raw<br>GWGUI.MediaEngine.Formats.Floppy.St<br>GWGUI.MediaEngine.Representations.Sectors | Garder la logique du système FAT12 dans MediaFileSystems ; recevoir la représentation sectorielle par Domain. |
+| src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Formats.Floppy.Apple<br>GWGUI.MediaEngine.Formats.Floppy.Raw<br>GWGUI.MediaEngine.Formats.Floppy.TwoImg<br>GWGUI.MediaEngine.Representations.Sectors | Garder la construction du système dans MediaFileSystems ; transmettre les secteurs produits à MediaEngine par un contrat commun pour la création de image. |
+| src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Formats.Floppy.CommodoreDos<br>GWGUI.MediaEngine.Formats.Floppy.D81<br>GWGUI.MediaEngine.Representations.Sectors | Garder la construction du système dans MediaFileSystems ; transmettre les secteurs produits à MediaEngine par un contrat commun pour la création de image. |
+| src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Formats.Floppy.Adf | Garder la construction du système dans MediaFileSystems ; transmettre les secteurs produits à MediaEngine par un contrat commun pour la création de image. |
+| src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs | GWGUI.MediaEngine.Formats.Floppy.Adf<br>GWGUI.MediaEngine.Formats.Floppy.D64<br>GWGUI.MediaEngine.Formats.Floppy.D71<br>GWGUI.MediaEngine.Formats.Floppy.D81<br>GWGUI.MediaEngine.Formats.Floppy.Raw | Garder la construction du système dans MediaFileSystems ; transmettre les secteurs produits à MediaEngine par un contrat commun pour la création de image. |
+| src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs | GWGUI.MediaEngine.Constants | Garder la construction du système dans MediaFileSystems ; transmettre les secteurs produits à MediaEngine par un contrat commun pour la création de image. |
+| src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationTargetCatalog.cs | GWGUI.MediaEngine.Constants | Garder la construction du système dans MediaFileSystems ; transmettre les secteurs produits à MediaEngine par un contrat commun pour la création de image. |
+| src/GWGUI.MediaFileSystems/Definitions/FileSystemDisplayNames.cs | GWGUI.MediaEngine.Constants | Placer les identifiants et métadonnées invariants requis à la frontière dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12ClusterChainReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12DirectoryReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12FatReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12FileSystemReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12FormatCatalog.cs | GWGUI.MediaEngine.Constants | Placer les identifiants et métadonnées invariants requis à la frontière dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12LayoutReader.cs | GWGUI.MediaEngine.Constants | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12LegacyLayoutCatalog.cs | GWGUI.MediaEngine.Constants | Placer les identifiants et métadonnées invariants requis à la frontière dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12Table.cs | GWGUI.MediaEngine.Primitives | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/Fat12VolumeWriter.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Fat12/FatSectorReader.cs | GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosBitmapReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosChecksum.cs | GWGUI.MediaEngine.Primitives | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosDirectoryReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosFileReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosFileSystemReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosRecoveryReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosRootBlockReader.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosTime.cs | GWGUI.MediaEngine.Primitives | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosVolumeWriter.cs | GWGUI.MediaEngine.Primitives<br>GWGUI.MediaEngine.Reconstruction<br>GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Formats.Floppy.Adf<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+| src/GWGUI.MediaFileSystems/Interfaces/Exploration/IMediaFileSystemReader.cs | GWGUI.MediaEngine.Contracts | Définir dans Domain les contrats de document, volume et accès aux secteurs nécessaires au lecteur. |
+| src/GWGUI.MediaFileSystems/Interfaces/IFileSystemReader.cs | GWGUI.MediaEngine.Contracts<br>GWGUI.MediaEngine.Representations.Sectors | Définir dans Domain les contrats de document, volume et accès aux secteurs nécessaires au lecteur. |
+| src/GWGUI.MediaFileSystems/Sos/SosBootFormat.cs | GWGUI.MediaEngine.Formats.Floppy.Raw | Conserver la géométrie physique dans MediaEngine ; transmettre uniquement ses paramètres utiles via Domain. |
+| src/GWGUI.MediaFileSystems/Sos/SosVolumeWriter.cs | GWGUI.MediaEngine.Constants<br>GWGUI.MediaEngine.Representations.Sectors | Garder la lecture du système dans MediaFileSystems ; recevoir les secteurs et utilitaires nécessaires par contrats communs dans Domain. |
+
+Les trois fichiers de `MediaAnalysis` qui dépendaient des bibliothèques précédentes, avant le déplacement du 19 septembre 2026 :
+
+| Fichier | Dépendance actuelle | Responsabilité cible |
+|---|---|---|
+| src/GWGUI.MediaAnalysis/Services/MediaOpeningAnalysisService.cs | Lecteur et explorateurs de MediaEngine | Orchestration de ouverture dans MediaEngine ; MediaAnalysis ne charge pas le média. |
+| src/GWGUI.MediaAnalysis/Services/MediaImageExplorationService.cs | Lecteur, explorateur et résultats de MediaEngine | Exploration déclenchée par MediaEngine ; MediaAnalysis reçoit uniquement les entrées déjà trouvées. |
+| src/GWGUI.MediaAnalysis/Contracts/MediaOpeningAnalysisResult.cs | Document et résultats de MediaEngine | Résultat public de API MediaEngine ; les données partagées entre bibliothèques restent dans Domain. |
+
+Le sens de référence cible est App → MediaEngine → MediaFileSystems → MediaAnalysis. Chaque bibliothèque peut utiliser Domain. MediaAnalysis ne doit pas dépendre de MediaFileSystems ou de MediaEngine ; MediaFileSystems ne doit pas dépendre de MediaEngine. Le relevé ci-dessus identifie les usages à résoudre avant ce changement.
+
+## Propriété des copies de Conversion/Fat12 et Conversion/Migration
+
+Le tableau ci-dessous conserve aussi l'instantané **avant** le rangement. Les chemins des copies retirées ne désignent plus des sources présentes ; les 14 contrats et validateurs conservés sont maintenant dans `src/GWGUI.MediaFileSystems/Migration/`. Les services qui écrivent des conteneurs restent actuellement dans `src/GWGUI.MediaEngine/Conversion/` en attendant le raccordement final.
+
+Le classement retenu conserve les 14 contrats sous `Migration/` et les writers de volumes sous
+`FileSystems/` dans `MediaFileSystems`. Les services d'orchestration, catalogues de formats physiques et
+writers de conteneurs restent dans `MediaEngine`. Les anciennes sources y existent encore et doivent
+être retirées seulement après raccordement des appels, sans créer de cycle de références.
+
+Contrôle des 26 fichiers déjà présents dans les deux projets, avant tout nouveau retrait. « Scinder » signifie que le service mêle la construction du système de fichiers à l'écriture d'un conteneur média ; il faut séparer ses méthodes et conserver le comportement avant de retirer une copie.
+
+| Fichier | Ce que fait la copie actuelle | Propriété cible |
+|---|---|---|
+| Fat12ReinterpretationExceptions.cs | Diagnostics de validation de la structure FAT12 | MediaFileSystems pour la validation, en gardant un contrat d'erreur utilisable par MediaEngine. |
+| Fat12ReinterpretationPolicy.cs | Vérifie à la fois la géométrie sectorielle et le BPB FAT12 | Scinder : MediaEngine valide la géométrie du média ; MediaFileSystems valide le BPB et la structure FAT12. |
+| Fat12ReinterpretationService.cs | Ouvre le média par DiskImageExplorer et écrit l'image par Fat12TargetImageWriter | MediaEngine ; appeler la validation du système dans MediaFileSystems lorsque la frontière sera raccordée. |
+| Fat12TargetGeometry.cs | Décrit la géométrie physique du format cible | MediaEngine ; transmettre uniquement les données nécessaires par contrat commun. |
+| Fat12TargetGeometryCatalog.cs | Associe des formats physiques Atari ST, IBM et MSX à leur géométrie | MediaEngine ; éviter que MediaFileSystems dépende des catalogues de formats physiques. |
+| Fat12TargetImageWriter.cs | Choisit puis appelle les writers de conteneurs Atari ST, IBM et MSX | MediaEngine. |
+| AppleFileSystemMigrationExceptions.cs | Erreurs de validation et de cible Apple | MediaFileSystems pour la validation ; séparer les erreurs de conteneur lors du découpage du service. |
+| AppleFileSystemMigrationService.cs | Planifie, construit le volume Apple et appelle des writers de conteneurs | Scinder : plan et volume dans MediaFileSystems, écriture du conteneur dans MediaEngine. |
+| CommodoreDosMigrationExceptions.cs | Erreurs de validation et de cible Commodore | MediaFileSystems pour la validation ; séparer les erreurs de conteneur lors du découpage du service. |
+| CommodoreDosMigrationService.cs | Planifie, construit le volume Commodore et appelle les writers D64/D71/D81 | Scinder : plan et volume dans MediaFileSystems, écriture du conteneur dans MediaEngine. |
+| Fat12AmigaDosMigrationExceptions.cs | Erreurs de validation et de direction de migration | MediaFileSystems pour la validation ; séparer les erreurs de conteneur lors du découpage du service. |
+| Fat12AmigaDosMigrationService.cs | Planifie, construit le volume FAT12 ou AmigaDOS et appelle les writers de conteneurs | Scinder : plan et volume dans MediaFileSystems, écriture du conteneur dans MediaEngine. |
+| FileSystemMigrationCapabilityCatalog.cs | Mélange les limites du système de fichiers et les capacités des formats physiques | Scinder : règles de noms et de métadonnées dans MediaFileSystems ; capacité physique reçue par contrat commun. |
+| FileSystemMigrationService.cs | Fournit CreatePlan et Validate, puis aiguille WriteAsync vers les services mixtes | Scinder : plan et validation dans MediaFileSystems ; coordination de la sortie média dans MediaEngine. |
+| FileSystemMigrationTarget.cs | Associe format cible, système de fichiers et extension | Contrat commun de la frontière MediaEngine/MediaFileSystems, sans dépendance inverse. |
+| FileSystemMigrationTargetCatalog.cs | Liste les formats physiques et leurs systèmes de fichiers cibles | MediaEngine pour le catalogue des formats ; transmettre l'identifiant du système à MediaFileSystems. |
+| IMigrationNamePolicy.cs | Politique des noms du système de fichiers cible | MediaFileSystems/Migration. |
+| MigrationEntry.cs | Entrée de l'arborescence à reconstruire | MediaFileSystems/Migration. |
+| MigrationLoss.cs | Perte de métadonnées prévue pendant la migration | MediaFileSystems/Migration. |
+| MigrationLossKind.cs | Nature de la perte de métadonnées | MediaFileSystems/Migration. |
+| MigrationMetadataReducer.cs | Réduit les métadonnées selon les capacités du système cible | MediaFileSystems/Migration. |
+| MigrationPlan.cs | Plan de construction d'un nouveau système de fichiers | MediaFileSystems/Migration. |
+| MigrationPlanner.cs | Construit le plan depuis une arborescence réelle | MediaFileSystems/Migration. |
+| MigrationTargetCapabilities.cs | Contraintes de noms, métadonnées et capacité du volume cible | MediaFileSystems/Migration, avec capacité transmise par contrat commun. |
+| MigrationValidationReport.cs | Résultat de validation avant écriture | MediaFileSystems/Migration ; exposer le contrat nécessaire à MediaEngine. |
+| MigrationValidator.cs | Valide le plan face aux capacités du système cible | MediaFileSystems/Migration. |
+
+Consommateurs directs de ces copies dans MediaFileSystems au 19 septembre 2026 (correspondance par nom de type ; les appels des autres projets sont consignés dans le tableau initial de cet inventaire) :
+
+| Type déclaré | Autres fichiers de MediaFileSystems qui le nomment |
+|---|---|
+| Fat12ReinterpretationExceptions | src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12ReinterpretationPolicy.cs<br>src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12TargetImageWriter.cs |
+| Fat12ReinterpretationPolicy | src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12ReinterpretationService.cs |
+| Fat12ReinterpretationService | Aucun |
+| Fat12TargetGeometry | src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12ReinterpretationPolicy.cs<br>src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12TargetGeometryCatalog.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12VolumeWriter.cs |
+| Fat12TargetGeometryCatalog | src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12ReinterpretationPolicy.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12VolumeWriter.cs |
+| Fat12TargetImageWriter | src/GWGUI.MediaFileSystems/Conversion/Fat12/Fat12ReinterpretationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs |
+| AppleFileSystemMigrationExceptions | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs |
+| AppleFileSystemMigrationService | src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs |
+| CommodoreDosMigrationExceptions | src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs |
+| CommodoreDosMigrationService | src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs |
+| Fat12AmigaDosMigrationExceptions | src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs |
+| Fat12AmigaDosMigrationService | src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs |
+| FileSystemMigrationCapabilityCatalog | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs |
+| FileSystemMigrationService | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs |
+| FileSystemMigrationTarget | src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationTargetCatalog.cs |
+| FileSystemMigrationTargetCatalog | src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs |
+| IMigrationNamePolicy | src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationTargetCapabilities.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosNamePolicy.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosNamePolicy.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosVolumeNamePolicy.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosNamePolicy.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosNamePolicy.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12ShortNamePolicy.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12VolumeNamePolicy.cs |
+| MigrationEntry | src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationMetadataReducer.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationPlan.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationPlanner.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationValidator.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosVolumeBuilder.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12VolumeWriter.cs |
+| MigrationLoss | src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationLossKind.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationValidationReport.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationValidator.cs |
+| MigrationLossKind | src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationLoss.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationValidator.cs |
+| MigrationMetadataReducer | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs |
+| MigrationPlan | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationMetadataReducer.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationPlanner.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationValidator.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Apple/Sos/SosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosVolumeBuilder.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosVolumeWriter.cs<br>src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12VolumeWriter.cs |
+| MigrationPlanner | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs |
+| MigrationTargetCapabilities | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationMetadataReducer.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationValidator.cs |
+| MigrationValidationReport | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/MigrationValidator.cs |
+| MigrationValidator | src/GWGUI.MediaFileSystems/Conversion/Migration/AppleFileSystemMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/CommodoreDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/Fat12AmigaDosMigrationService.cs<br>src/GWGUI.MediaFileSystems/Conversion/Migration/FileSystemMigrationService.cs |

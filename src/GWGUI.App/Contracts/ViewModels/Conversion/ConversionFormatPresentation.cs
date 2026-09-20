@@ -1,4 +1,4 @@
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Formats;
 using GWGUI.App.Enums.ViewModels.Conversion;
 
 namespace GWGUI.App.Contracts.ViewModels.Conversion;

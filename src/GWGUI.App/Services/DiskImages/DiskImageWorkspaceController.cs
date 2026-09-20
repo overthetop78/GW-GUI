@@ -1,8 +1,8 @@
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Formats.Detection;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.Contracts.Rendering.Scp;
 using GWGUI.App.Contracts.Visualization;
@@ -16,8 +16,8 @@ using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Reading;
@@ -25,13 +25,10 @@ using GWGUI.MediaEngine.Representations.Sectors;
 using GWGUI.MediaEngine.Representations.Flux;
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Visualization;
-using GWGUI.MediaAnalysis.Contracts;
-using GWGUI.MediaAnalysis.Enums;
+using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Exploration.Results;
 using System.IO;
 using System.Windows.Threading;
-
-using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Exploration.Contracts;
 
 namespace GWGUI.App.Services.DiskImages;
 
@@ -44,8 +41,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private readonly MediaVisualizationController _mediaVisualization;
     private readonly ScpVisualizationController _scpVisualization;
     private readonly ExplorerPresentationController _explorerLoading;
-    private readonly GWGUI.MediaAnalysis.Services.MediaImageExplorationService? _mediaExploration;
-    private readonly GWGUI.MediaAnalysis.Services.MediaOpeningAnalysisService? _mediaOpeningAnalysis;
+    private readonly MediaImageExplorationService? _mediaExploration;
+    private readonly MediaOpeningAnalysisService? _mediaOpeningAnalysis;
     private readonly CassetteLoadingPresenter _cassetteLoading;
     private readonly DiskImageFileSelectionService _fileSelection;
     private readonly VisualizerLoadingController _visualizerLoading;
@@ -91,8 +88,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _visualizationProviders = visualizationProviders;
         if (mediaReader is not null && mediaExplorer is not null)
         {
-            _mediaExploration = new GWGUI.MediaAnalysis.Services.MediaImageExplorationService(mediaReader, mediaExplorer);
-            _mediaOpeningAnalysis = new GWGUI.MediaAnalysis.Services.MediaOpeningAnalysisService(
+            _mediaExploration = new MediaImageExplorationService(mediaReader, mediaExplorer);
+            _mediaOpeningAnalysis = new MediaOpeningAnalysisService(
                 mediaReader,
                 diskImageExplorer,
                 mediaExplorer);
@@ -182,12 +179,11 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             ? (GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation)new FluxMediaImageRepresentation(
                 ScpProtectedTrackImageAdapter.Create(scpImage))
             : new SectorMediaImageRepresentation(disk.Image);
-        var document = new MediaImageDocument(
+        var document = MediaImageDocument.CreateUnexplored(
             new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId),
             disk.PrimaryFormatId,
             MediaKind.Floppy,
             representation,
-            [],
             [],
             new Dictionary<string, string>(StringComparer.Ordinal));
         return new(document, disk, null);
@@ -486,12 +482,11 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             ?? await _explore(sourcePath, formatId, cancellationToken);
         if (cancellationToken.IsCancellationRequested) return;
         _visualizerExploredImage = selected;
-        var document = new MediaImageDocument(
+        var document = MediaImageDocument.CreateUnexplored(
             new MediaSourceDescriptor(sourcePath, [], RequestedFormatId: formatId),
             selected.Image.FormatId,
             MediaKind.Floppy,
             new SectorMediaImageRepresentation(selected.Image),
-            [],
             [],
             new Dictionary<string, string>(StringComparer.Ordinal));
         var descriptor = _visualizationProviders?.CreateDescriptor(document);

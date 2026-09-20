@@ -1,6 +1,6 @@
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Interfaces.Services.Dialogs;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using System.IO;
 
 namespace GWGUI.App.Services.DiskImages.Selection;

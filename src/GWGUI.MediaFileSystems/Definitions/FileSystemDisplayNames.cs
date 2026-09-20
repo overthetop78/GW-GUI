@@ -1,5 +1,5 @@
+using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using GWGUI.MediaFileSystems.FileSystems.Amiga;
-using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaFileSystems.Definitions;
 
@@ -14,14 +14,10 @@ internal static class FileSystemDisplayNames
     public const string AppleDos32 = "Apple DOS 3.2";
     /// <summary>Nom affiché d'Apple DOS 3.3.</summary>
     public const string AppleDos33 = "Apple DOS 3.3";
-    /// <summary>Nom affiché des volumes Inform/XZIP.</summary>
-    public const string AppleInformXzip = "Apple II Inform/XZIP";
     /// <summary>Nom affiché d'Atari DOS.</summary>
     public const string AtariDos = "Atari DOS";
     /// <summary>Nom affiché d'une bibliothèque graphique Atari CLK.</summary>
     public const string AtariClkGraphicsLibrary = "Atari CLK graphics library";
-    /// <summary>Nom affiché d'une disquette amorçable Atari K-file.</summary>
-    public const string AtariKFile = "Atari K-file";
     /// <summary>Nom affiché des volumes Atari MyDOS.</summary>
     public const string AtariMyDos = "Atari MyDOS";
     /// <summary>Nom affiché de Coherent sur Commodore 900.</summary>
@@ -46,11 +42,11 @@ internal static class FileSystemDisplayNames
     /// <summary>Retourne le nom de la variante CP/M Amstrad correspondant au format.</summary>
     /// <param name="formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de la variante CP/M Amstrad.</returns>
-    public static string AmstradCpm(string formatId) => formatId.Equals(DiskImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase) ? "Amstrad PCW CP/M Plus" : "Amstrad CPC CP/M";
+    public static string AmstradCpm(string formatId) => formatId.Equals(MediaImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase) ? "Amstrad PCW CP/M Plus" : "Amstrad CPC CP/M";
     /// <summary>Retourne le nom de la variante FAT12 correspondant au format.</summary>
     /// <param name="formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de la variante FAT12.</returns>
-    public static string Fat12(string formatId) => formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12" : formatId.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) ? "MSX-DOS FAT12" : "Atari TOS FAT12";
+    public static string Fat12(string formatId) => formatId.StartsWith(MediaImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12" : formatId.StartsWith(MediaImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) ? "MSX-DOS FAT12" : "Atari TOS FAT12";
     /// <summary>Retourne le nom de la variante Lisa correspondant à sa version de catalogue.</summary>
     /// <param name="version">Version du catalogue Lisa.</param>
     /// <returns>Nom affiché de la variante Lisa.</returns>
@@ -58,7 +54,7 @@ internal static class FileSystemDisplayNames
     /// <summary>Retourne le nom ProDOS ou SOS correspondant au format.</summary>
     /// <param name="formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de ProDOS ou SOS.</returns>
-    public static string ProDos(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) ? AppleSosProDos : AppleProDos;
+    public static string ProDos(string formatId) => formatId.Equals(MediaImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) ? AppleSosProDos : AppleProDos;
     /// <summary>Nom affiché d'un volume Apple III SOS lu par le moteur ProDOS.</summary>
     public const string AppleSosProDos = "Apple SOS / ProDOS";
     /// <summary>Nom affiché d'un volume Apple ProDOS.</summary>

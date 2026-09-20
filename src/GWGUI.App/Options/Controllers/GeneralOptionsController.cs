@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Localization;
 using GWGUI.App.Dictionaries.Localization;
 using GWGUI.App.Localization.Sources;

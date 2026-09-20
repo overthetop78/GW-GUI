@@ -1,7 +1,7 @@
 using GWGUI.App.Views.Windows.Tools;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Commands;
+using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Hardware.Maintenance;
@@ -10,19 +10,19 @@ internal static class MaintenanceRequestScenarios
     public static void Delay(string key)
     {
         var values=new Dictionary<string,string>{{key,"0"}};
-        var command=GWGUI.Domain.Maintenance.ToolCommandBuilder.Build(new("virtual","delays",values,new HashSet<string>{key},"controller","B"));
+        var command=GWGUI.Infrastructure.Maintenance.ToolCommandBuilder.Build(new("virtual","delays",values,new HashSet<string>{key},"controller","B"));
         Assert.Equal(new[]{"--"+key,"0","--device","controller"},command.Arguments);
         values[key]="-1";
-        Assert.ThrowsAny<ArgumentException>(()=>GWGUI.Domain.Maintenance.ToolCommandBuilder.Build(new("virtual","delays",values,new HashSet<string>{key})));
-        Assert.Empty(GWGUI.Domain.Maintenance.ToolCommandBuilder.Build(new("virtual","delays",values,new HashSet<string>())).Arguments);
+        Assert.ThrowsAny<ArgumentException>(()=>GWGUI.Infrastructure.Maintenance.ToolCommandBuilder.Build(new("virtual","delays",values,new HashSet<string>{key})));
+        Assert.Empty(GWGUI.Infrastructure.Maintenance.ToolCommandBuilder.Build(new("virtual","delays",values,new HashSet<string>())).Arguments);
     }
     public static void Alignment()
     {
         var values=new Dictionary<string,string>{{"tracks","c=2-4:h=1"},{"revs","1"},{"reads","2"},{"format","ibm.720"},{"pll","period=5:phase=60"}};
         var enabled=new HashSet<string>{"format","pll","raw","reverse"};
-        var command=GWGUI.Domain.Maintenance.ToolCommandBuilder.Build(new("virtual","align",values,enabled,"controller","B"));
+        var command=GWGUI.Infrastructure.Maintenance.ToolCommandBuilder.Build(new("virtual","align",values,enabled,"controller","B"));
         Assert.Equal(new[]{"--tracks","c=2-4:h=1","--revs","1","--reads","2","--format","ibm.720","--pll","period=5:phase=60","--raw","--reverse","--device","controller","--drive","B"},command.Arguments);
-        values["reads"]="0"; Assert.ThrowsAny<ArgumentException>(()=>GWGUI.Domain.Maintenance.ToolCommandBuilder.Build(new("virtual","align",values,enabled)));
+        values["reads"]="0"; Assert.ThrowsAny<ArgumentException>(()=>GWGUI.Infrastructure.Maintenance.ToolCommandBuilder.Build(new("virtual","align",values,enabled)));
     }
     internal static GwToolWindow Window(string verb, Func<GwCommand, GwExecutionResult> run, List<Exception>? errors = null) => new("virtual-tool", verb, "controller", "B",
         ControlledDependencies.Simulate<IGreaseweazleRunner>((method, args) => method.Name switch {

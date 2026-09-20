@@ -1,9 +1,9 @@
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Decoding.Sequential;
 using GWGUI.MediaEngine.Encoding.Sequential;
-using GWGUI.MediaEngine.Enums;
+
 using GWGUI.MediaEngine.Reading;
 using GWGUI.MediaEngine.Representations.Sequential;
 using GWGUI.MediaEngine.Writing;

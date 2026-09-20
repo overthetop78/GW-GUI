@@ -1,10 +1,10 @@
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.Domain.Enums;
-using GWGUI.Domain.Formats;
-using GWGUI.MediaAnalysis.Contracts;
-using GWGUI.MediaAnalysis.Enums;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Exploration.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Scp;
 

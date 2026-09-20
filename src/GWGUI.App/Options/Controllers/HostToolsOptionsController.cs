@@ -1,5 +1,5 @@
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Options.States;
 using GWGUI.App.Views.Controls.Options;
 using System.IO;

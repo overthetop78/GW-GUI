@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
-    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
+
+    <ProjectReference Include="..\GWGUI.MediaAnalysis\GWGUI.MediaAnalysis.csproj" />
   </ItemGroup>
 
 </Project>

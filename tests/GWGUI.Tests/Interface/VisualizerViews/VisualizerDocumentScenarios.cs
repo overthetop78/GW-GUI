@@ -11,11 +11,11 @@ using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Contracts.Services.Dialogs;
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Enums;
-using GWGUI.Domain.Formats;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Formats;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Results;
@@ -28,7 +28,7 @@ using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Representations.Sequential;
 using GWGUI.MediaEngine.Representations.Sectors;
 using GWGUI.MediaEngine.Visualization;
-using GWGUI.MediaEngine.Enums;
+
 using System.IO;
 using System.Windows;
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
@@ -52,7 +52,7 @@ internal static class VisualizerDocumentScenarios
     public static async Task Classification()
     {
         using var workspace=new Workspace();
-        var formats=new[] {new GWGUI.Domain.Formats.DiskFormat("test.first","family-a","format-a",[new(".a","a",true)]),new GWGUI.Domain.Formats.DiskFormat("test.second","family-b","format-b",[new(".b","b",true)])};
+        var formats=new[] {new GWGUI.MediaEngine.Formats.DiskFormat("test.first","family-a","format-a",[new(".a","a",true)]),new GWGUI.MediaEngine.Formats.DiskFormat("test.second","family-b","format-b",[new(".b","b",true)])};
         workspace.Visualizer.Header.SetFormats(formats); workspace.Explorer.SetFormats(formats,null);
         var first=ExplorerDocumentScenarios.Document("FIRST"); var image=first.Image.WithFormatId("test.first"); var second=image.WithFormatId("test.second");
         var document=new ExploredDiskImage(first.SourcePath,image,first.Volume,first.Metadata,detectedFileSystems:[new("reader-a",image,first.Volume),new("reader-b",second,first.Volume)],scpImage:first.ScpImage);

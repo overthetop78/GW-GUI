@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using GWGUI.Domain.Contracts;
+using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
 

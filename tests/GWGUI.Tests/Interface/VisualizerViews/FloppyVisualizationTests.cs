@@ -2,10 +2,10 @@ using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.ViewModels.Visualization;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
-using GWGUI.MediaEngine.Contracts;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Contracts;
+
 using GWGUI.MediaEngine.Interfaces.Visualization;
 using GWGUI.MediaEngine.Representations.Flux;
 using GWGUI.MediaEngine.Representations.Sectors;

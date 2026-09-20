@@ -1,4 +1,4 @@
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Formats;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Enums.Explorer;
 using GWGUI.App.Functions.Explorer;
@@ -93,7 +93,7 @@ public partial class ExplorerSection
         _mediaVolume = exploredVolume;
 
         var volume = _mediaVolume?.FileSystem;
-        var isTape = _mediaDocument.Document.MediaKind == GWGUI.Domain.Enums.MediaKind.Tape;
+        var isTape = _mediaDocument.Document.MediaKind == GWGUI.MediaEngine.Enums.MediaKind.Tape;
         if (isTape)
         {
             VolumeLabel.Text = LocExtension.Get("Explorer.Volume");

@@ -1,10 +1,10 @@
 using System.Buffers.Binary;
 using System.Collections.Frozen;
-using GWGUI.Domain.Contracts;
-using GWGUI.Domain.Enums;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Enums;
+
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Reading.Sources;
 using GWGUI.MediaEngine.Recognition;

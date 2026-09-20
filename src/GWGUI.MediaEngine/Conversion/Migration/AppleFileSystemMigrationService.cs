@@ -1,6 +1,4 @@
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Apple.Dos;
-using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Sos;
 using GWGUI.MediaEngine.Constants;
@@ -49,8 +47,8 @@ public sealed class AppleFileSystemMigrationService(AppleRawImageWriter rawWrite
 
     private static SectorImage CreateImage(MigrationPlan plan, string formatId)
     {
-        if (plan.TargetFileSystemId.Equals(FileSystemIds.AppleDos, StringComparison.OrdinalIgnoreCase)) return new AppleDosVolumeWriter().Create(plan, formatId);
-        if (plan.TargetFileSystemId.Equals(FileSystemIds.ProDos, StringComparison.OrdinalIgnoreCase)) return new ProDosVolumeWriter().Create(plan, formatId);
+        if (plan.TargetFileSystemId.Equals(FileSystemIds.AppleDos, StringComparison.OrdinalIgnoreCase)) return new AppleDosMigrationImageBuilder().Create(plan, formatId);
+        if (plan.TargetFileSystemId.Equals(FileSystemIds.ProDos, StringComparison.OrdinalIgnoreCase)) return new ProDosMigrationImageBuilder().Create(plan, formatId);
         if (plan.TargetFileSystemId.Equals(FileSystemIds.Sos, StringComparison.OrdinalIgnoreCase) && formatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase)) return new SosVolumeWriter().Create(plan);
         throw AppleFileSystemMigrationExceptions.UnsupportedTarget(formatId, string.Empty);
     }

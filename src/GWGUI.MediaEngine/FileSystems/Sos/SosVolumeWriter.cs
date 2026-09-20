@@ -1,4 +1,3 @@
-using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Conversion.Migration;
 
@@ -13,7 +12,7 @@ public sealed class SosVolumeWriter
     public SectorImage Create(MigrationPlan plan)
     {
         ArgumentNullException.ThrowIfNull(plan);
-        var baseImage = new ProDosVolumeWriter().Create(plan, DiskImageFormatIds.AppleIIProDos140);
+        var baseImage = new ProDosMigrationImageBuilder().Create(plan, DiskImageFormatIds.AppleIIProDos140);
         var blocks = baseImage.AvailableBlocks.Select(block => block with { Data = block.Data.ToArray() }).OrderBy(block => block.LogicalBlock).ToArray();
         var boot = blocks.Single(block => block.LogicalBlock == 0).Data.ToArray();
         SosBootFormat.Marker.CopyTo(boot.AsSpan(SosBootFormat.MarkerOffset));

@@ -1,10 +1,12 @@
-using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
+using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation;
 
 namespace GWGUI.MediaEngine.Representations.Sectors;
 
 /// <summary>Exposes a sector image directly without synthesizing a flux representation.</summary>
-public sealed class SectorMediaImageRepresentation : IMediaImageRepresentation
+public sealed class SectorMediaImageRepresentation : IMediaSectorRepresentation, IMediaImageRepresentation
 {
     public SectorMediaImageRepresentation(SectorImage image)
     {
@@ -21,4 +23,6 @@ public sealed class SectorMediaImageRepresentation : IMediaImageRepresentation
     public bool SupportsSequentialAccess => true;
 
     public SectorImage Image { get; }
+
+    IMediaSectorImage IMediaSectorRepresentation.Image => Image;
 }

@@ -1,4 +1,4 @@
-using GWGUI.Domain.Parity;
+using GWGUI.App.Parity;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
 

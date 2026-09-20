@@ -5,12 +5,12 @@ using GWGUI.App.Constants.Localization;
 using GWGUI.App.Services.Visualization;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.Domain.Enums;
-using GWGUI.Domain.Contracts;
+using GWGUI.MediaEngine.Enums;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Enums;
+
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Reading;
 using GWGUI.MediaEngine.Representations.Flux;
@@ -201,12 +201,11 @@ internal sealed class ScpVisualizationController
     private void ShowFluxDocument(string path, ScpImage image)
     {
         if (_visualizationProviders is null) return;
-        var document = new MediaImageDocument(
+        var document = MediaImageDocument.CreateUnexplored(
             new MediaSourceDescriptor(path, []),
             DiskImageFormatIds.RawScp,
             MediaKind.Floppy,
             new FluxMediaImageRepresentation(ScpProtectedTrackImageAdapter.Create(image)),
-            [],
             [],
             new Dictionary<string, string>(StringComparer.Ordinal));
         var descriptor = _visualizationProviders.CreateDescriptor(document);

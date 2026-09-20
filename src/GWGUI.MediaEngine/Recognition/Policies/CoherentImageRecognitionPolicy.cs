@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.FileSystems.Coherent;
+using GWGUI.MediaFileSystems.FileSystems.Coherent;
 
 using GWGUI.MediaEngine.Formats.Floppy.Raw;
 
