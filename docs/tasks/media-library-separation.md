@@ -1358,38 +1358,39 @@ Après précision sur la distinction entre conversion d'image et migration de fi
       - [x] Préparations déjà réalisées pour Commodore DOS
         - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosFileSystemReader.cs : publier le lecteur déjà raccordé par MediaFileSystemsReaderAdapter dans le catalogue du moteur.
         - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosVolumeWriter.cs : produire le plan de secteurs de migration déjà raccordable au moteur.
-      - [ ] Raccorder la migration Commodore DOS au writer de MediaFileSystems
-        - [ ] Déplacer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosNamePolicy.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosNamePolicy.cs : conserver le contrat du moteur et déléguer la validation à MediaFileSystems.
-        - [ ] Créer src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationImageBuilder.cs : convertir le plan de migration, demander les secteurs au writer Commodore DOS de MediaFileSystems et créer SectorImage.
-        - [ ] Modifier src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationService.cs : utiliser le builder et la politique d’écriture de MediaFileSystems.
-        - [ ] Modifier src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs : utiliser la disposition et la politique Commodore du système de fichiers déplacé.
-      - [ ] Retirer les copies Commodore DOS restées dans MediaEngine après raccordement
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1541BamReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1541DosLayout.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1581BamReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1581DosLayout.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosExceptions.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileReadResult.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileType.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileTypeNames.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFreeSpace.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosLayout.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosRecognition.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosRecognizer.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosSectorReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosSectorReadStatus.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosVolumeBuilder.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosVolumeWriter.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosVolumeWriterExceptions.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosWarnings.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosWritableGeometry.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-        - [ ] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosWritePolicy.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
-      - [ ] Vérifier et documenter le retrait Commodore DOS
-        - [ ] Créer tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs : vérifier en mémoire la création et la relecture d’un fichier Commodore DOS avec son vrai nom.
-        - [ ] Modifier docs/project/media-library-file-inventory.md : consigner les responsabilités Commodore DOS et la provenance des noms.
-        - [ ] Modifier docs/tasks/media-library-separation.md : consigner la compilation et le test ciblé après le retrait des copies.
+      - [x] Raccorder la migration Commodore DOS au writer de MediaFileSystems
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosNamePolicy.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosNamePolicy.cs : conserver le contrat du moteur et déléguer la validation à MediaFileSystems.
+        - [x] Créer src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationImageBuilder.cs : convertir le plan de migration, demander les secteurs au writer Commodore DOS de MediaFileSystems et créer SectorImage.
+        - [x] Modifier src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationService.cs : utiliser le builder et la politique d’écriture de MediaFileSystems.
+        - [x] Modifier src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs : utiliser la disposition et la politique Commodore du système de fichiers déplacé.
+      - [x] Retirer les copies Commodore DOS restées dans MediaEngine après raccordement
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1541BamReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1541DosLayout.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1581BamReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1581DosLayout.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosExceptions.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileReadResult.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileType.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFileTypeNames.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosFreeSpace.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosLayout.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosRecognition.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosRecognizer.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosSectorReader.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosSectorReadStatus.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosVolumeBuilder.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosVolumeWriter.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosVolumeWriterExceptions.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosWarnings.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosWritableGeometry.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+        - [x] Supprimer src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosWritePolicy.cs : le lecteur ou le writer actif existe déjà dans MediaFileSystems et les appelants du moteur sont raccordés.
+      - [x] Vérifier et documenter le retrait Commodore DOS
+        - [x] Créer tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs : vérifier en mémoire la création et la relecture d’un fichier Commodore DOS avec son vrai nom.
+        - [x] Modifier docs/project/media-library-file-inventory.md : consigner les responsabilités Commodore DOS et la provenance des noms.
+        - [x] Modifier docs/tasks/media-library-separation.md : consigner la compilation et le test ciblé après le retrait des copies.
+        - Résultat vérifié le 20 septembre 2026 : solution compilée (0 avertissement, 0 erreur) ; trois lectures après migration D64, D71 et D81 et le test de frontière réussissent (4/4).
       - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmFileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs`
         - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmFileSystemReader.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
         - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmFileSystemReader.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` et raccordement de tous les consommateurs listés ci-dessus.

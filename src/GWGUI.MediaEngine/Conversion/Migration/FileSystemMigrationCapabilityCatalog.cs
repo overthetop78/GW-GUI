@@ -7,7 +7,8 @@ using GWGUI.MediaEngine.FileSystems.Amiga;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Conversion.Migration.Apple;
-using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
+using GWGUI.MediaEngine.Conversion.Migration.Commodore;
+using CommodoreDosLayout = GWGUI.MediaFileSystems.FileSystems.Commodore.Dos.CommodoreDosLayout;
 using GWGUI.MediaEngine.Formats.Floppy.Adf;
 
 using GWGUI.MediaEngine.Formats.Floppy.D64;

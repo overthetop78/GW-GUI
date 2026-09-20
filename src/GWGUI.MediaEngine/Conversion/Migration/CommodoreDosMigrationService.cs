@@ -1,8 +1,8 @@
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
+using CommodoreDosWritePolicy = GWGUI.MediaFileSystems.FileSystems.Commodore.Dos.CommodoreDosWritePolicy;
 
 using GWGUI.MediaEngine.Formats.Floppy.D81;
 
@@ -26,7 +26,7 @@ public sealed class CommodoreDosMigrationService(CommodoreDosContainerWriter d64
         var report = MigrationValidator.Validate(plan, capabilities, acceptMetadataLoss);
         MigrationValidator.EnsureExecutable(report);
         var writable = MigrationMetadataReducer.Reduce(plan, capabilities);
-        var image = new CommodoreDosVolumeWriter().Create(writable, targetFormatId, policy);
+        var image = new CommodoreDosMigrationImageBuilder().Create(writable, targetFormatId, policy);
         await WriteImageAsync(image, outputPath, targetFormatId, cancellationToken).ConfigureAwait(false);
         return report;
     }
