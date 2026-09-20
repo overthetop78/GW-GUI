@@ -1,6 +1,6 @@
-using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
+﻿using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Definitions;
+using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;

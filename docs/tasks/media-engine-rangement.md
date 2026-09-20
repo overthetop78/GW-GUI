@@ -2570,3 +2570,41 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : sélectionner une image sans fabriquer des fichiers de secteurs.
     - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/Documents/PhysicalSectorTreeBuilder.cs` devenu sans appelant.
     - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/Documents/PhysicalSectorEntryNames.cs` devenu sans appelant.
+- [x] Isoler la création des images vierges de la migration
+  - [x] Déplacer la fabrication des secteurs vierges dans Images/Creation
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Creation/BlankSectorImageFactory.cs` : reprendre sans changement les géométries et constructeurs des images vierges du service de migration.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : appeler la fabrique d’images vierges et retirer ses méthodes de fabrication dupliquées.
+- [x] Ranger les données de retour de la migration dans Contracts
+  - [x] Déplacer les modèles échangés avec App
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationLossKind.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationLossKind.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationLoss.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationLoss.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationValidationReport.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationValidationReport.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationResult.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationResult.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTarget.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/FileSystemMigrationTarget.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTargetCatalog.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationTargetOption.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationLossRow.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+- [x] Supprimer les définitions de systèmes de fichiers encore copiées dans MediaEngine
+  - [x] Réutiliser les identifiants uniques de MediaFileSystems
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentDecoderAdapter.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/JolietExtensionReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/RockRidgeExtensionReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTargetCatalog.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : utiliser l’identifiant FAT12 de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : utiliser l’identifiant FAT12 de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : utiliser l’identifiant FAT12 de MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` après vérification de son équivalence.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs` devenu sans appelant.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Definitions`.

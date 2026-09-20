@@ -1,4 +1,4 @@
-using System.Collections.Frozen;
+﻿using System.Collections.Frozen;
 using System.IO;
 using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
 using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
@@ -7,7 +7,7 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Definitions;
+using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaEngine.Interfaces.Exploration;
 using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaFileSystems.Exploration.Sequential;

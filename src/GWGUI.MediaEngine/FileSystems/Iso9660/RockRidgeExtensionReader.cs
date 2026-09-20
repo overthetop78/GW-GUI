@@ -1,6 +1,6 @@
-using GWGUI.MediaEngine.Constants;
+﻿using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.FileSystems.Definitions;
+using GWGUI.MediaFileSystems.Definitions;
 
 namespace GWGUI.MediaEngine.FileSystems.Iso9660;
 

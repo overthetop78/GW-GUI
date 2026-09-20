@@ -1,3 +1,4 @@
+﻿using GWGUI.MediaEngine.Contracts.Migration;
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Localization.Extensions;

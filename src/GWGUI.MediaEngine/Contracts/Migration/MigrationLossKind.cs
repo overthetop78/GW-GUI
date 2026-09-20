@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Operations;
+﻿namespace GWGUI.MediaEngine.Contracts.Migration;
 
 public enum MigrationLossKind
 {

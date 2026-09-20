@@ -1,8 +1,8 @@
+﻿using GWGUI.MediaEngine.Contracts.Migration;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Operations;
 using GWGUI.MediaFileSystems.Definitions;
-using EngineFileSystemIds = GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds;
 
 namespace GWGUI.Tests.Media;
 
@@ -25,7 +25,7 @@ public sealed class ProDosMigrationImageTests
     }
 
     private static FileSystemVolume CreateSource() => new(
-        "VOLUME", EngineFileSystemIds.Fat12, 0, 0, null, null,
+        "VOLUME", FileSystemIds.Fat12, 0, 0, null, null,
         [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
             0, 0, true, [], new byte[] { 1, 2, 3 })], []);
 

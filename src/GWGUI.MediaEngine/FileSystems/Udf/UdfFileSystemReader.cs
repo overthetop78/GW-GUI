@@ -1,10 +1,10 @@
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+﻿using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.FileSystems.Definitions;
+using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaEngine.Interfaces.Exploration;
 using GWGUI.MediaEngine.Images.Reading.Optical;
 using GWGUI.MediaEngine.Images.Models.Optical;

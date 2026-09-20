@@ -1,8 +1,8 @@
+﻿using GWGUI.MediaEngine.Contracts.Migration;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Operations;
 using GWGUI.MediaFileSystems.FileSystems.Apple.Dos;
-using EngineFileSystemIds = GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds;
 using MediaFileSystemIds = GWGUI.MediaFileSystems.Definitions.FileSystemIds;
 
 namespace GWGUI.Tests.Media;
@@ -12,7 +12,7 @@ public sealed class AppleDosMigrationImageTests
     [Fact]
     public void InjectedFileCanBeReadFromTheCreatedDosImage()
     {
-        var source = new FileSystemVolume("DOS-001", EngineFileSystemIds.Fat12, 0, 0, null, null,
+        var source = new FileSystemVolume("DOS-001", MediaFileSystemIds.Fat12, 0, 0, null, null,
             [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
                 0, 0, true, [], new byte[] { 1, 2, 3 })], []);
         var result = new FileSystemMigrationService().CreateImage(source, DiskImageFormatIds.AppleIIAppleDos140);
