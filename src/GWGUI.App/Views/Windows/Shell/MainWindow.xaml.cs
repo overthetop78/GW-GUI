@@ -53,7 +53,7 @@ using System.Windows.Media;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Images.Reading.Decoding;
-using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.App.Constants.Views.Shell;
 namespace GWGUI.App.Views.Windows.Shell;

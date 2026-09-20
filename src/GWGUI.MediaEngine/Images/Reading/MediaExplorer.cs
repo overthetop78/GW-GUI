@@ -36,6 +36,6 @@ public sealed class MediaExplorer(FileSystemsMediaExplorer fileSystems)
                 volume.Diagnostics))
             .ToArray();
         var diagnostics = document.Diagnostics.Concat(result.Diagnostics).ToArray();
-        return new ExploredMediaImage(enrichedDocument, volumes, diagnostics);
+        return new ExploredMediaImage(enrichedDocument, volumes, diagnostics, result.FirstFileName);
     }
 }

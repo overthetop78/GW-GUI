@@ -1,7 +1,7 @@
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
+namespace GWGUI.MediaEngine.Interfaces.Reading.Recognition;
 
 /// <summary>Définit une politique produisant des candidats ordonnés dont la validation reste confiée aux lecteurs de systèmes de fichiers.</summary>
 internal interface IAdditionalImageInterpretationPolicy

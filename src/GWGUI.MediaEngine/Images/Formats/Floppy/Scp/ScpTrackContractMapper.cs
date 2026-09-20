@@ -1,5 +1,5 @@
-﻿
-using GWGUI.MediaEngine.Exploration.Contracts;
+
+using GWGUI.MediaEngine.Interfaces;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 

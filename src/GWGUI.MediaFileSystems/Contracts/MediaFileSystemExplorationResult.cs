@@ -4,4 +4,5 @@ namespace GWGUI.MediaFileSystems.Contracts;
 public sealed record MediaFileSystemExplorationResult(
     IReadOnlyList<MediaVolumeDescriptor> Volumes,
     IReadOnlyList<ExploredFileSystemVolume> ExploredVolumes,
-    IReadOnlyList<string> Diagnostics);
+    IReadOnlyList<string> Diagnostics,
+    string? FirstFileName);

@@ -1,10 +1,7 @@
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
-using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
-using GWGUI.MediaEngine.Images.Reading;
-using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
+using GWGUI.MediaEngine.Enums;
 using System.IO;
 
 namespace GWGUI.MediaEngine.Images.Reading;
@@ -50,25 +47,10 @@ public sealed class MediaImageExplorationService(
         var explored = await explorer.ExploreAsync(document, cancellationToken).ConfigureAwait(false);
         reportProgress?.Invoke(new(
             MediaExplorationProgressStage.RecognizingFiles,
-            FirstFileName(explored) ?? document.FormatId,
+            explored.FirstFileName ?? document.FormatId,
             94,
             document.MediaKind));
         return explored;
     }
 
-    private static string? FirstFileName(ExploredMediaImage explored) =>
-        explored.Volumes
-            .SelectMany(volume => volume.FileSystem?.Entries ?? [])
-            .SelectMany(EnumerateFiles)
-            .Select(entry => entry.Name)
-            .FirstOrDefault();
-
-    private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
-    {
-        if (entry.Kind == FileSystemEntryKind.File) yield return entry;
-        foreach (var child in entry.Children)
-        {
-            foreach (var descendant in EnumerateFiles(child)) yield return descendant;
-        }
-    }
 }

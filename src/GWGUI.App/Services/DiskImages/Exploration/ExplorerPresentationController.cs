@@ -4,7 +4,7 @@ using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 

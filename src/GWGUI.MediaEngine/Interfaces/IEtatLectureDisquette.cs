@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Interfaces;
 
 /// <summary>Instantané structuré envoyé pendant une lecture physique.</summary>
 public interface IEtatLectureDisquette

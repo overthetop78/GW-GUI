@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Interfaces;
 
 /// <summary>Contrat commun complet d'une image de disquette ouverte et analysée.</summary>
 public interface IImageDisquette

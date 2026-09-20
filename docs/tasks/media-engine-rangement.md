@@ -1,4 +1,4 @@
-﻿# Rangement des fichiers de MediaEngine
+# Rangement des fichiers de MediaEngine
 
 Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enums`, `Functions`, `Interfaces`. SCP est un format dans `Images/Formats/Floppy/Scp` ; ses modèles, lecteurs, décodeurs et encodeurs propres y sont regroupés. Cette liste suit les déplacements concrets ; chaque case est cochée après l’action.
 
@@ -2975,3 +2975,100 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
   - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/DiskVisualizationClassificationFunctions.cs` : lire ses tables fixes depuis Constants.
 - [x] Nommer les ressources visuelles fixes de l'icône dans App
   - [x] Modifier `src/GWGUI.App/Constants/Controls/Visual/MediaIconVisualConstants.cs` : déclarer les couleurs et les noms des images en constantes et les utiliser dans sa table de rendu.
+- [ ] Revoir les fichiers de MediaEngine contre le schéma approuvé
+  - [x] Ranger la production des images candidates avec la reconnaissance d'image
+    - [x] Déplacer `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Interfaces/Reading/Recognition/IAdditionalImageInterpretationPolicy.cs` et adopter l'espace de noms des interfaces de reconnaissance.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/CompatibleFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/CompatibleFormatCatalog.cs` et adopter l'espace de noms de reconnaissance.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/AdditionalImageInterpretationRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/AdditionalImageInterpretationRegistry.cs` et importer l'interface déplacée.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/CompatibleFormatInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/CompatibleFormatInterpretationPolicy.cs` et importer le catalogue et l'interface déplacés.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/IbmAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/IbmAdditionalImageInterpretationPolicy.cs` et importer l'interface déplacée.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/MsxAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/MsxAdditionalImageInterpretationPolicy.cs` et importer l'interface déplacée.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` : importer le registre déplacé depuis `Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : importer les politiques, le registre et l'interface depuis leurs nouveaux dossiers.
+  - [x] Nettoyer les imports après le déplacement des candidats
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : retirer les deux imports dupliqués de `Images.Reading.Recognition`.
+  - [x] Ranger la normalisation des images reconnues sans dépendance aux volumes
+    - [x] Déplacer `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Interfaces/Reading/Recognition/IRecognizedImageNormalizer.cs` : adopter l'espace de noms Interfaces et retirer le paramètre `FileSystemVolume` inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Normalizers/AtariRecognizedImageNormalizer.cs` : adopter l'interface déplacée et retirer le paramètre volume inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Normalizers/MacRecognizedImageNormalizer.cs` : adopter l'interface déplacée et retirer le paramètre volume inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Normalizers/MsxRecognizedImageNormalizer.cs` : adopter l'interface déplacée et retirer le paramètre volume inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/RecognizedImageNormalizerRegistry.cs` : retirer le paramètre volume et importer l'interface déplacée.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageInterpretationService.cs` : retirer le paramètre volume et nommer les candidats comme des images.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : appeler la normalisation sans volume et utiliser le nouvel espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : appeler les candidats d'images et importer le service depuis Images/Reading/Recognition.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : importer les normaliseurs et leur interface depuis les nouveaux espaces de noms.
+  - [x] Corriger l'import de l'identité de volume encore sous Exploration
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : conserver temporairement l'import du calcul d'identité de volume jusqu'à son déplacement vers MediaFileSystems.
+  - [x] Placer l'évaluation et la déduplication des volumes dans MediaFileSystems
+    - [x] Créer `src/GWGUI.MediaFileSystems/Interfaces/Exploration/IFileSystemEntryView.cs` : exposer nom, nature, taille, validité et enfants nécessaires au classement des volumes.
+    - [x] Créer `src/GWGUI.MediaFileSystems/Interfaces/Exploration/IFileSystemVolumeView.cs` : exposer nom, avertissements et entrées nécessaires au classement des volumes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs` : implémenter la vue d'entrée de MediaFileSystems sans changer les données exposées à App.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs` : implémenter la vue de volume de MediaFileSystems sans changer les données exposées à App.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemAlternativePolicy.cs` vers `src/GWGUI.MediaFileSystems/Exploration/Interpretation/FileSystemAlternativePolicy.cs` : utiliser les vues MFS des volumes et entrées.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` vers `src/GWGUI.MediaFileSystems/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : recevoir identifiant de format et vue de volume MFS.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : appeler les calculs déplacés dans MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : appeler les calculs déplacés dans MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : appeler la déduplication MFS avec identifiant de format et volume.
+  - [x] Retirer le dernier import vers l'ancien espace Interpretation
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : supprimer `using GWGUI.MediaEngine.Exploration.Interpretation` après déplacement de toutes ses classes.
+- [x] Ranger l'entrée de lecture d'image et l'appel à MediaFileSystems sous Images/Reading
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` et adopter l'espace de noms de lecture.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaOpeningAnalysisService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/HfeConversionService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/PhysicalMedia/Writing/FloppyMediaWritePlanningService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskWriting/InternalPhysicalDiskWriter.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WriteVerificationScenarios.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WritePlanningScenarios.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Supprimer les dossiers Exploration vidés de MediaEngine
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration` et ses sous-dossiers vides après vérification de tous leurs contenus.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Interfaces/Exploration` et son sous-dossier vide après vérification de tous leurs contenus.
+- [x] Retirer l'ancien espace de noms Exploration des interfaces déjà rangées dans Interfaces
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IDiagnostic.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IEntree.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IEtatLectureDisquette.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IFormatDetecte.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IImageDisquette.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IPiste.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageContractData.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredDiskImage.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpTrackContractMapper.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaOpeningAnalysisService.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadOperationProgress.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadResult.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/Operations/OperationProgressController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageInterpretationService.cs` : retirer de sa documentation le paramètre volume supprimé de la méthode de normalisation.
+- [x] Confier à MediaFileSystems le nom du premier fichier affiché pendant l'analyse
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Contracts/MediaFileSystemExplorationResult.cs` : ajouter le nom optionnel du premier fichier réel au résultat de l'exploration.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : calculer ce nom depuis les volumes et leurs entrées effectivement lus, dans le même ordre qu'avant.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredMediaImage.cs` : transmettre ce nom dans le résultat destiné à App sans parcourir les entrées.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : recopier le nom fourni par MediaFileSystems dans le résultat de MediaEngine.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` : publier ce nom dans la progression et retirer son parcours des fichiers.
+- [x] Rétablir l'import de l'étape de progression conservée par MediaEngine
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` : rétablir l'import de `GWGUI.MediaEngine.Enums` nécessaire à `MediaExplorationProgressStage`.
+- [x] Confier à MediaFileSystems la lecture et la déduplication des volumes des images candidates
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs` : exposer les propriétés de comparaison de l'entrée via `IFileSystemEntryView`.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` : exposer les entrées du volume via `IFileSystemVolumeView`.
+  - [x] Créer `src/GWGUI.MediaFileSystems/Contracts/SectorFileSystemCandidate.cs` : associer l'image décodée candidate au volume réellement lu par MediaFileSystems.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/SectorFileSystemRegistry.cs` : lire les images candidates dans l'ordre et dédupliquer leurs volumes avec l'identité MFS.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` : transmettre les images candidates à MediaFileSystems et retirer sa lecture et sa déduplication des volumes.

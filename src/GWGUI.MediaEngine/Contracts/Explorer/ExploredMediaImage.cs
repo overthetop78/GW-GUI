@@ -9,7 +9,8 @@ public sealed class ExploredMediaImage
     public ExploredMediaImage(
         MediaImageDocument document,
         IReadOnlyList<ExploredMediaVolume> volumes,
-        IReadOnlyList<string> diagnostics)
+        IReadOnlyList<string> diagnostics,
+        string? firstFileName = null)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volumes);
@@ -19,6 +20,7 @@ public sealed class ExploredMediaImage
         Document = document;
         Volumes = new ReadOnlyCollection<ExploredMediaVolume>(volumes.ToArray());
         Diagnostics = new ReadOnlyCollection<string>(diagnostics.ToArray());
+        FirstFileName = firstFileName;
     }
 
     public MediaImageDocument Document { get; }
@@ -26,4 +28,6 @@ public sealed class ExploredMediaImage
     public IReadOnlyList<ExploredMediaVolume> Volumes { get; }
 
     public IReadOnlyList<string> Diagnostics { get; }
+
+    public string? FirstFileName { get; }
 }

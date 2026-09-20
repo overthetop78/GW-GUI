@@ -1,9 +1,9 @@
-using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
-using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Interfaces.Reading.Recognition;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation.Policies;
+namespace GWGUI.MediaEngine.Images.Reading.Recognition.Policies;
 
 /// <summary>Produit des candidats de formats partageant la taille de bloc de l'image source.</summary>
 internal sealed class CompatibleFormatInterpretationPolicy : IAdditionalImageInterpretationPolicy

@@ -1,9 +1,10 @@
 using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
 namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Décrit une entrée décodée dans un système de fichiers.</summary>
-public sealed record FileSystemEntry
+public sealed record FileSystemEntry : IFileSystemEntryView
 {
     /// <summary>Crée une entrée et copie ses collections.</summary>
     public FileSystemEntry(
@@ -69,6 +70,8 @@ public sealed record FileSystemEntry
     public bool MetadataValid { get; }
     /// <summary>Copie non modifiable des entrées enfants.</summary>
     public IReadOnlyList<FileSystemEntry> Children { get; }
+    string IFileSystemEntryView.KindName => Kind.ToString();
+    IReadOnlyList<IFileSystemEntryView> IFileSystemEntryView.Children => Children;
     /// <summary>Copie non modifiable du contenu, collection vide pour un fichier vide, ou <see langword="null"/> lorsque le contenu est absent.</summary>
     public IReadOnlyList<byte>? Content { get; }
     /// <summary>Type natif de l'entrée, lorsqu'il est défini par le système de fichiers.</summary>

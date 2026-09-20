@@ -7,7 +7,7 @@ using GWGUI.App.Views.Controls.Visualization;
 using System.Windows;
 using System.Windows.Media;
 
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Interfaces;
 
 
 namespace GWGUI.App.Services.Operations;

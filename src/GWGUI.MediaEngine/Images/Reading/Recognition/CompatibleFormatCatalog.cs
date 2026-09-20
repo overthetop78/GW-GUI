@@ -3,7 +3,7 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Adf;
 using GWGUI.MediaEngine.Images.Formats.Floppy.BbcDfs;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation;
+namespace GWGUI.MediaEngine.Images.Reading.Recognition;
 
 /// <summary>Catalogue immuable des formats candidats associés à une taille de bloc.</summary>
 internal static class CompatibleFormatCatalog

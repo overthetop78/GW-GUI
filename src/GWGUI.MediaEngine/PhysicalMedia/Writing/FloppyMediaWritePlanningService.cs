@@ -8,7 +8,7 @@ using MediaWritePlan = global::GWGUI.MediaEngine.Contracts.MediaWritePlan;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Writing.Encoding;
-using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.MediaEngine.PhysicalMedia.Writing;

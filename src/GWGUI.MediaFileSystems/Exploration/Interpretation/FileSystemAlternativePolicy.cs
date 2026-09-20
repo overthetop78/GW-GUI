@@ -1,9 +1,9 @@
-using GWGUI.MediaEngine.Contracts.Explorer;
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation;
+namespace GWGUI.MediaFileSystems.Exploration.Interpretation;
 
 /// <summary>Détermine si une interprétation secondaire est suffisamment crédible pour être présentée.</summary>
-internal static class FileSystemAlternativePolicy
+public static class FileSystemAlternativePolicy
 {
     /// <summary>Seuil minimal d'avertissements tolérés indépendamment du nombre d'entrées.</summary>
     public const int MinimumWarningThreshold = 3;
@@ -12,14 +12,14 @@ internal static class FileSystemAlternativePolicy
     /// <summary>Indique si les avertissements restent proportionnés au catalogue ou si plusieurs entrées contrôlées attestent le volume.</summary>
     /// <param name="volume">Volume alternatif à évaluer.</param>
     /// <returns><see langword="true"/> lorsque l'alternative reste crédible.</returns>
-    public static bool IsCredible(FileSystemVolume volume)
+    public static bool IsCredible(IFileSystemVolumeView volume)
     {
         var entries = Enumerate(volume.Entries).ToArray();
         if (volume.Warnings.Count <= Math.Max(MinimumWarningThreshold, entries.Length)) return true;
         return entries.Count(entry => entry.MetadataValid && !entry.SyntheticName && !string.IsNullOrWhiteSpace(entry.Name)) >= MinimumValidatedCatalogEntries;
     }
 
-    private static IEnumerable<FileSystemEntry> Enumerate(IEnumerable<FileSystemEntry> entries)
+    private static IEnumerable<IFileSystemEntryView> Enumerate(IEnumerable<IFileSystemEntryView> entries)
     {
         foreach (var entry in entries)
         {

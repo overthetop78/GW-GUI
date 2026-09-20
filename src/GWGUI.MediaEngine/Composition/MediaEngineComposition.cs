@@ -6,7 +6,6 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
 using GWGUI.MediaEngine.Images.Conversion;
 using GWGUI.MediaEngine.Images.Conversion.Optical;
 using GWGUI.MediaEngine.Images.Conversion.Sequential;
-using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.PhysicalMedia.Writing;
 using GWGUI.MediaEngine.Images.Reading;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;

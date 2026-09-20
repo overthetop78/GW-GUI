@@ -46,7 +46,22 @@ public sealed class MediaExplorer
             explored.Add(ExploreVolume(document, volume));
         }
         return new MediaFileSystemExplorationResult(
-            detection.Volumes, explored, detection.Diagnostics);
+            detection.Volumes, explored, detection.Diagnostics, FirstFileName(explored));
+    }
+
+    private static string? FirstFileName(IEnumerable<ExploredFileSystemVolume> volumes) =>
+        volumes.SelectMany(volume => volume.FileSystem?.Entries ?? [])
+            .SelectMany(EnumerateFiles)
+            .Select(entry => entry.Name)
+            .FirstOrDefault();
+
+    private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
+    {
+        if (entry.Kind == FileSystemEntryKind.File) yield return entry;
+        foreach (var child in entry.Children)
+        {
+            foreach (var descendant in EnumerateFiles(child)) yield return descendant;
+        }
     }
 
     private ExploredFileSystemVolume ExploreVolume(IMediaImageDocument document, MediaVolumeDescriptor volume)

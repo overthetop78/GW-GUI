@@ -1,11 +1,11 @@
-﻿using GWGUI.App.Constants.Services.PhysicalDiskReading;
+using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Enums.Services.PhysicalDiskReading;
 using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
 using GWGUI.MediaEngine.Images.Reading.Decoding;
-using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Interfaces;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 

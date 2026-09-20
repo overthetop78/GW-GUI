@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Contracts.Migration;
 using System.IO;
-using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Creation;
 

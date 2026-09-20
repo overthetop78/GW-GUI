@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Interfaces;
 
 /// <summary>Information, avertissement ou erreur structurée et traduisible.</summary>
 public interface IDiagnostic

@@ -2,7 +2,7 @@ using GWGUI.App.Enums.Services.PhysicalDiskWriting;
 using GWGUI.App.Services.PhysicalDiskWriting;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.Infrastructure.Hardware.Media;
-using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.PhysicalMedia.Writing;
 
 namespace GWGUI.Tests.Hardware.PhysicalWriting;

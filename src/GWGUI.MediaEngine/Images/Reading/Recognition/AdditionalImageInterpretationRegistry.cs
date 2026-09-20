@@ -1,9 +1,9 @@
-using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
+using GWGUI.MediaEngine.Interfaces.Reading.Recognition;
 using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation;
+namespace GWGUI.MediaEngine.Images.Reading.Recognition;
 
 /// <summary>Coordonne une copie ordonnée des politiques produisant des interprétations supplémentaires.</summary>
 internal sealed class AdditionalImageInterpretationRegistry

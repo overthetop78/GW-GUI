@@ -2,6 +2,7 @@ using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using GWGUI.MediaFileSystems.Interfaces;
+using GWGUI.MediaFileSystems.Exploration.Interpretation;
 
 namespace GWGUI.MediaFileSystems.Exploration;
 
@@ -41,6 +42,26 @@ public sealed class SectorFileSystemRegistry
     public IReadOnlySet<string> SupportedFormatIds { get; }
 
     public FileSystemReadReport ReadAll(IMediaSectorImage image) => ReadCandidates(image, Readers);
+
+    public IReadOnlyList<SectorFileSystemCandidate> ReadDistinctCandidates(IEnumerable<IMediaSectorImage> images)
+    {
+        ArgumentNullException.ThrowIfNull(images);
+        var identities = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var candidates = new List<SectorFileSystemCandidate>();
+        var primary = true;
+        foreach (var image in images)
+        {
+            ArgumentNullException.ThrowIfNull(image);
+            var matches = ReadCandidates(image, image.FormatId).Matches;
+            foreach (var match in primary ? matches : matches.Take(1))
+            {
+                if (!identities.Add(FileSystemInterpretationIdentity.Create(image.FormatId, match.Volume))) continue;
+                candidates.Add(new(image, match));
+            }
+            primary = false;
+        }
+        return candidates;
+    }
 
     public FileSystemReadReport ReadCandidates(IMediaSectorImage image, string? readerOrFormatId)
     {

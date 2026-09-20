@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
@@ -33,7 +33,7 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
             foreach (var match in fileSystems.ReadCandidates(image, image.FormatId).Matches)
             {
                 var volume = FileSystemVolumeMapper.ConvertVolume(match.Volume);
-                var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId, volume);
+                var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId);
                 ExploredFileSystem recognized;
                 if (ReferenceEquals(normalized, image))
                 {
@@ -50,7 +50,7 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
                 }
 
                 matches.Add(recognized);
-                foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(recognized.Image))
+                foreach (var interpretation in interpretations.AdditionalImageCandidates(recognized.Image))
                 {
                     if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var interpretedMatch)) continue;
                     matches.Add(new(interpretedMatch.ReaderId, interpretation,

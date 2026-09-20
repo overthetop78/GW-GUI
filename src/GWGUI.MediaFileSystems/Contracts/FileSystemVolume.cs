@@ -1,7 +1,9 @@
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
+
 namespace GWGUI.MediaFileSystems;
 
 /// <summary>Décrit un volume et les entrées décodées de son système de fichiers.</summary>
-public sealed record FileSystemVolume
+public sealed record FileSystemVolume : IFileSystemVolumeView
 {
     /// <summary>Crée un volume et copie ses collections.</summary>
     public FileSystemVolume(
@@ -64,4 +66,6 @@ public sealed record FileSystemVolume
     public int? DiskCount { get; }
     /// <summary>Origine technique de la numérotation du support.</summary>
     public string? DiskNumberOrigin { get; }
+
+    IReadOnlyList<IFileSystemEntryView> IFileSystemVolumeView.Entries => Entries;
 }

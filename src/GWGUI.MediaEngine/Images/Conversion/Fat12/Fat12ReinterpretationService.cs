@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 

@@ -1,5 +1,4 @@
 ﻿using GWGUI.MediaEngine.Images.Formats.Tape;
-using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaFileSystems.FileSystems.Iso9660;
 using GWGUI.MediaFileSystems.FileSystems.Udf;

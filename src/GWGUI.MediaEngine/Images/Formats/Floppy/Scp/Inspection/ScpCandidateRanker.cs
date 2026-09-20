@@ -1,6 +1,5 @@
-using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaFileSystems.Exploration.Interpretation;
 using GWGUI.MediaEngine.Contracts.Explorer;
-using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Images.Reading;
 
@@ -73,7 +72,7 @@ internal static class ScpCandidateRanker
                     bestFileSystemEvidence = evidence;
                 }
 
-                if (identities.Add(FileSystemInterpretationIdentity.Create(recognized)))
+                if (identities.Add(FileSystemInterpretationIdentity.Create(recognized.FormatId, recognized.Volume)))
                 {
                     detected.Add(recognized);
                 }

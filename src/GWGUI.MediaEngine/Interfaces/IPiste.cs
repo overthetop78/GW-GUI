@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Interfaces;
 
 /// <summary>Piste physique ou logique d'une image.</summary>
 public interface IPiste

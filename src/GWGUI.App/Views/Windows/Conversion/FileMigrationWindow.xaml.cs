@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.Views.Windows.Conversion;

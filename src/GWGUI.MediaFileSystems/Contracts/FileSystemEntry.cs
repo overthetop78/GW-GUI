@@ -1,7 +1,9 @@
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
+
 namespace GWGUI.MediaFileSystems;
 
 /// <summary>Décrit une entrée décodée dans un système de fichiers.</summary>
-public sealed record FileSystemEntry
+public sealed record FileSystemEntry : IFileSystemEntryView
 {
     /// <summary>Crée une entrée et copie ses collections.</summary>
     public FileSystemEntry(
@@ -89,4 +91,7 @@ public sealed record FileSystemEntry
     public IReadOnlyList<string> Diagnostics { get; }
     /// <summary>Métadonnées techniques propres au format de l'entrée.</summary>
     public IReadOnlyDictionary<string, string> Metadata { get; }
+
+    string IFileSystemEntryView.KindName => Kind.ToString();
+    IReadOnlyList<IFileSystemEntryView> IFileSystemEntryView.Children => Children;
 }

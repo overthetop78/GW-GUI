@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Interfaces;
 
 /// <summary>Entrée réelle d'un catalogue de fichiers.</summary>
 public interface IEntree

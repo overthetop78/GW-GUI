@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;

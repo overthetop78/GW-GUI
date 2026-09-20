@@ -1,8 +1,6 @@
-using GWGUI.MediaEngine.Contracts.Explorer;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation;
+namespace GWGUI.MediaEngine.Images.Reading.Recognition;
 
 /// <summary>Coordonne la normalisation et les interprétations supplémentaires d'une image reconnue.</summary>
 internal sealed class DiskImageInterpretationService
@@ -21,15 +19,14 @@ internal sealed class DiskImageInterpretationService
         this.additionalInterpretations = additionalInterpretations;
     }
 
-    /// <summary>Normalise une image à partir du lecteur et du volume qui l'ont reconnue.</summary>
+    /// <summary>Normalise une image à partir du lecteur qui l'a reconnue.</summary>
     /// <param name="image">Image reconnue à normaliser.</param>
     /// <param name="readerId">Identifiant réel du lecteur ayant reconnu le volume.</param>
-    /// <param name="volume">Volume décodé.</param>
     /// <returns>Image normalisée ou image initiale.</returns>
-    public SectorImage NormalizeRecognizedImage(SectorImage image, string readerId, FileSystemVolume volume) => normalizers.Normalize(image, readerId, volume);
+    public SectorImage NormalizeRecognizedImage(SectorImage image, string readerId) => normalizers.Normalize(image, readerId);
 
     /// <summary>Énumère les interprétations supplémentaires compatibles avec l'image.</summary>
     /// <param name="image">Image sectorielle à interpréter.</param>
     /// <returns>Interprétations supplémentaires dans l'ordre du registre.</returns>
-    public IEnumerable<SectorImage> AdditionalFileSystemInterpretations(SectorImage image) => additionalInterpretations.Create(image);
+    public IEnumerable<SectorImage> AdditionalImageCandidates(SectorImage image) => additionalInterpretations.Create(image);
 }

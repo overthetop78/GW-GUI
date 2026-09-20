@@ -1,5 +1,5 @@
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Contracts;
@@ -7,7 +7,6 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using GWGUI.MediaEngine.Images.Reading;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using System.IO;
-using GWGUI.MediaEngine.Exploration;
 
 namespace GWGUI.MediaEngine.Images.Reading;
 

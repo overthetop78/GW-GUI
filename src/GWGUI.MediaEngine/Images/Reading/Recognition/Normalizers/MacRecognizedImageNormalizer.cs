@@ -1,5 +1,4 @@
-using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
-using GWGUI.MediaEngine.Contracts.Explorer;
+using GWGUI.MediaEngine.Interfaces.Reading.Recognition;
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaEngine.Constants;
 
@@ -7,13 +6,13 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
+namespace GWGUI.MediaEngine.Images.Reading.Recognition.Normalizers;
 
 /// <summary>Réidentifie une image Macintosh MFM complète après reconnaissance HFS ou MFS.</summary>
 internal sealed class MacRecognizedImageNormalizer : IRecognizedImageNormalizer
 {
     /// <summary>Normalise uniquement la géométrie complète de 1,44 Mio reconnue par un Reader Macintosh.</summary>
-    public bool TryNormalize(SectorImage image, string readerId, FileSystemVolume volume, out SectorImage normalized)
+    public bool TryNormalize(SectorImage image, string readerId, out SectorImage normalized)
     {
         normalized = image;
         if (!readerId.Equals(FileSystemIds.MacHfs, StringComparison.OrdinalIgnoreCase) && !readerId.Equals(FileSystemIds.MacMfs, StringComparison.OrdinalIgnoreCase)) return false;

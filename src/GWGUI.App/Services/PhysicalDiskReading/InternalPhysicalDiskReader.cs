@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Enums.Services.PhysicalDiskReading;
@@ -10,7 +10,7 @@ using GWGUI.Infrastructure.Constants;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.Infrastructure.Hardware.Media;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.PhysicalDiskReading;

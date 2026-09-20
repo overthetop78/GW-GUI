@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Images.Writing.Encoding;
-using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Hfe;

@@ -5,7 +5,7 @@ using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Images.Reading.Documents;
-using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Models.Flux;
@@ -13,7 +13,7 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 using System.IO;
 
-namespace GWGUI.MediaEngine.Exploration;
+namespace GWGUI.MediaEngine.Images.Reading;
 
 /// <summary>ReconnaÃ®t une image de mÃ©dia et construit son document d'exploration technique.</summary>
 public sealed class DiskImageExplorer
@@ -102,8 +102,7 @@ public sealed class DiskImageExplorer
         if (document.Representation is not SectorMediaImageRepresentation sectors) return documents.CreateUnknown(path);
         var image = sectors.Image;
         var result = formatId is null ? ReadAutomatically(image) : ReadExplicitly(image, formatId);
-        var unique = Deduplicate(result.Detected);
-        return documents.Create(path, result.Image, unique, [result.Image]);
+        return documents.Create(path, result.Image, result.Detected, [result.Image]);
     }
 
     /// <summary>Explore une capture SCP déjà acquise en mémoire tout en conservant son chemin de destination.</summary>
@@ -137,16 +136,13 @@ public sealed class DiskImageExplorer
     /// <summary>Lit les systÃ¨mes de fichiers directement reconnus, puis la premiÃ¨re interprÃ©tation supplÃ©mentaire exploitable.</summary>
     private (SectorImage Image, IReadOnlyList<ExploredFileSystem> Detected) ReadAutomatically(SectorImage image)
     {
-        var detected = fileSystems.ReadCandidates(image, image.FormatId).Matches
-            .Select(match => new ExploredFileSystem(
-                match.ReaderId, image, FileSystemVolumeMapper.ConvertVolume(match.Volume)))
-            .ToList();
-        foreach (var interpretation in interpretations.AdditionalFileSystemInterpretations(image))
-        {
-            if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var match)) continue;
-            detected.Add(new(match.ReaderId, interpretation,
-                FileSystemVolumeMapper.ConvertVolume(match.Volume)));
-        }
+        var candidates = new[] { image }.Concat(interpretations.AdditionalImageCandidates(image));
+        var detected = fileSystems.ReadDistinctCandidates(candidates)
+            .Select(candidate => new ExploredFileSystem(
+                candidate.Match.ReaderId,
+                (SectorImage)candidate.Image,
+                FileSystemVolumeMapper.ConvertVolume(candidate.Match.Volume)))
+            .ToArray();
         return (image, detected);
     }
 
@@ -162,10 +158,4 @@ public sealed class DiskImageExplorer
         return (selectedImage, []);
     }
 
-    /// <summary>Supprime les interprÃ©tations identiques en conservant leur premiÃ¨re occurrence.</summary>
-    private IReadOnlyList<ExploredFileSystem> Deduplicate(IEnumerable<ExploredFileSystem> detected)
-    {
-        var identities = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        return detected.Where(item => identities.Add(FileSystemInterpretationIdentity.Create(item))).ToArray();
-    }
 }

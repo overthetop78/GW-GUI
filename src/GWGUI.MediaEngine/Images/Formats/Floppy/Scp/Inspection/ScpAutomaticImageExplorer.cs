@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Images.Reading.Documents;
-using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaFileSystems.Exploration.Interpretation;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
@@ -68,8 +68,8 @@ internal sealed class ScpAutomaticImageExplorer(IScpReader scpReader, ScpCandida
                 CredibleImages(ranking, ranking.Detected),
                 scpImage);
         }
-        var primaryIdentity = FileSystemInterpretationIdentity.Create(ranking.BestFileSystem);
-        var ordered = new[] { ranking.BestFileSystem }.Concat(ranking.Detected.Where(match => FileSystemInterpretationIdentity.Create(match) != primaryIdentity && FileSystemAlternativePolicy.IsCredible(match.Volume))).ToArray();
+        var primaryIdentity = FileSystemInterpretationIdentity.Create(ranking.BestFileSystem.FormatId, ranking.BestFileSystem.Volume);
+        var ordered = new[] { ranking.BestFileSystem }.Concat(ranking.Detected.Where(match => FileSystemInterpretationIdentity.Create(match.FormatId, match.Volume) != primaryIdentity && FileSystemAlternativePolicy.IsCredible(match.Volume))).ToArray();
         return documents.Create(
             path,
             ranking.BestRecognized ?? ranking.BestDecoded,

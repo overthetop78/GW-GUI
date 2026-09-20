@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Interfaces;
 
 /// <summary>Interprétation complète d'un couple machine et format reconnu.</summary>
 public interface IFormatDetecte

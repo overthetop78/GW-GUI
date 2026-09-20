@@ -1,11 +1,11 @@
-using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
+using GWGUI.MediaEngine.Interfaces.Reading.Recognition;
 using GWGUI.MediaFileSystems.FileSystems.Fat12;
 using GWGUI.MediaEngine.Images.Reading.Recognition.Ibm;
 using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Interpretation.Policies;
+namespace GWGUI.MediaEngine.Images.Reading.Recognition.Policies;
 
 /// <summary>Produit un candidat IBM depuis le BPB ou le descripteur de média FAT d'une image non IBM.</summary>
 internal sealed class IbmAdditionalImageInterpretationPolicy : IAdditionalImageInterpretationPolicy
