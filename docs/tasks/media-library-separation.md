@@ -1391,63 +1391,119 @@ Après précision sur la distinction entre conversion d'image et migration de fi
         - [x] Modifier docs/project/media-library-file-inventory.md : consigner les responsabilités Commodore DOS et la provenance des noms.
         - [x] Modifier docs/tasks/media-library-separation.md : consigner la compilation et le test ciblé après le retrait des copies.
         - Résultat vérifié le 20 septembre 2026 : solution compilée (0 avertissement, 0 erreur) ; trois lectures après migration D64, D71 et D81 et le test de frontière réussissent (4/4).
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmFileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmFileSystemReader.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmFileSystemReader.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmLayout.cs` vers `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmLayout.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmLayout.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Raw/RawImgReader.cs` pour retirer sa dépendance au type déplacé depuis `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmLayout.cs` avant le retrait de la source.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmLayout.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmLayout.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmDirectoryReader.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmDirectoryReader.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmEpsonLayoutDetector.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Raw/RawImgReader.cs` pour retirer sa dépendance au type déplacé depuis `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmDirectoryReader.cs` avant le retrait de la source.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmDirectoryReader.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmEpsonLayoutDetector.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmEpsonLayoutDetector.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmEpsonLayoutDetector.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmEpsonLayoutDetector.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmEpsonLayoutDetector.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmEpsonLayoutDetector.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmEpsonLayoutDetector.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtent.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmExtent.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmExtent.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtent.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmExtent.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtent.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmExtent.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtentKeyComparer.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmExtentKeyComparer.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmExtentKeyComparer.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtentKeyComparer.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmExtentKeyComparer.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtentKeyComparer.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmExtentKeyComparer.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemExceptions.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemExceptions.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemExceptions.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemExceptions.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemExceptions.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemExceptions.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemExceptions.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemExceptions.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemExceptions.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemReader.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemReader.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFormat.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFormat.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmLayout.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmEpsonLayoutDetector.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFormat.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmFormat.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayout.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/AmstradCpmLayout.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmDirectoryReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmEpsonLayoutDetector.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmLayoutCatalog.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayout.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmLayout.cs` et raccordement de tous les consommateurs listés ci-dessus.
-      - [ ] `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayoutCatalog.cs` vers `src/GWGUI.MediaFileSystems/Cpm/CpmLayoutCatalog.cs`
-        - [ ] Créer `src/GWGUI.MediaFileSystems/Cpm/CpmLayoutCatalog.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayoutCatalog.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.MediaFileSystems/Cpm/CpmFileSystemReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Cpm/CpmLayoutCatalog.cs` dans le namespace `GWGUI.MediaFileSystems.Cpm`.
-        - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayoutCatalog.cs` après création de `src/GWGUI.MediaFileSystems/Cpm/CpmLayoutCatalog.cs` et raccordement de tous les consommateurs listés ci-dessus.
+      - [x] Préparer l’extraction des lecteurs CP/M et Amstrad
+        - [x] Modifier docs/tasks/media-library-separation.md : remplacer les anciennes copies prévues par les déplacements directs CP/M ci-dessous.
+        - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorBlock.cs : exposer le numéro physique du secteur déjà décodé pour la disposition CPC.
+        - [x] Modifier src/GWGUI.MediaEngine/Representations/Sectors/SectorBlock.cs : transmettre Address.Number par le contrat IMediaSectorBlock.
+        - [x] Modifier src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs : partager les identifiants CPC et Epson utilisés par CP/M.
+        - [x] Modifier src/GWGUI.MediaEngine/Constants/AmstradDiskImageFormatIds.cs : aliaser l’identifiant CPC partagé.
+        - [x] Modifier src/GWGUI.MediaEngine/Constants/EpsonDiskImageFormatIds.cs : aliaser les identifiants Epson partagés.
+      - [x] Ranger les composants de migration du moteur par responsabilité
+        - [x] Modifier docs/tasks/media-library-separation.md : insérer ce rangement avant de poursuivre les déplacements CP/M.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/AmigaDosMigrationImageBuilder.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Amiga/AmigaDosMigrationImageBuilder.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/AppleDosMigrationImageBuilder.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleDosMigrationImageBuilder.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/AppleFileSystemMigrationExceptions.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleFileSystemMigrationExceptions.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/AppleFileSystemMigrationService.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleFileSystemMigrationService.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/ProDosMigrationImageBuilder.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Apple/ProDosMigrationImageBuilder.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationExceptions.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationExceptions.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationImageBuilder.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationImageBuilder.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationService.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationService.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/Fat12AmigaDosMigrationExceptions.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Fat12Amiga/Fat12AmigaDosMigrationExceptions.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Déplacer src/GWGUI.MediaEngine/Conversion/Migration/Fat12AmigaDosMigrationService.cs vers src/GWGUI.MediaEngine/Conversion/Migration/Fat12Amiga/Fat12AmigaDosMigrationService.cs : regrouper le code spécialisé tout en conservant son API et son namespace.
+        - [x] Modifier docs/architecture/media-engine-file-layout.md : mettre à jour les chemins des dix composants spécialisés déplacés.
+        - [x] Modifier docs/project/media-library-file-inventory.md : préciser les dossiers de migration du moteur et la place des contrats communs.
+        - [x] Modifier docs/tasks/media-library-separation.md : noter la compilation après rangement de Migration.
+        - Résultat vérifié le 20 septembre 2026 : solution compilée après déplacement des dix sources de migration (0 avertissement, 0 erreur).
+      - [x] Terminer l’extraction des lecteurs CP/M et Amstrad
+        - [x] Déplacer src/GWGUI.MediaEngine/Recognition/AmstradCpmDiskSpecification.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/AmstradCpmDiskSpecification.cs : partager la spécification PCW entre reconnaissance et lecture CP/M.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmFileSystemReader.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/AmstradCpmFileSystemReader.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/AmstradCpmLayout.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/AmstradCpmLayout.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmDirectoryReader.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmDirectoryReader.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmEpsonLayoutDetector.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmEpsonLayoutDetector.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtent.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmExtent.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmExtentKeyComparer.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmExtentKeyComparer.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemExceptions.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmFileSystemExceptions.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFileSystemReader.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmFileSystemReader.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmFormat.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmFormat.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayout.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmLayout.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Déplacer src/GWGUI.MediaEngine/FileSystems/Cpm/CpmLayoutCatalog.cs vers src/GWGUI.MediaFileSystems/FileSystems/Cpm/CpmLayoutCatalog.cs : recevoir IMediaSectorImage et préserver les noms lus dans les entrées du répertoire.
+        - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Cpm/AmstradCpmLayout.cs : exposer un contrôle CPC système qui réutilise la lecture positionnelle CP/M sans publier ses types internes.
+        - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Cpm/AmstradCpmDiskSpecification.cs : exposer la validation PCW utilisée par MediaEngine.
+        - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/RawImgReader.cs : conserver les détections CPC système et PCW en appelant les composants CP/M déplacés.
+        - [x] Modifier src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs : publier les deux lecteurs CP/M de MediaFileSystems par leurs adaptateurs.
+        - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Cpm/AmstradCpmFileSystemReader.cs : retirer les lignes vides laissées par les anciens imports de MediaEngine.
+        - [x] Modifier docs/project/media-library-file-inventory.md : consigner la propriété CP/M et la provenance des noms.
+        - [x] Modifier docs/tasks/media-library-separation.md : consigner la compilation et les vérifications CP/M.
+        - Résultat vérifié le 20 septembre 2026 : solution compilée (0 avertissement, 0 erreur) et test de frontière réussi (1/1).
+      - [x] Corriger le trajet de migration confirmé avant les prochains déplacements
+        - [x] Modifier `docs/tasks/media-library-separation.md` : inscrire l'ordre App → MediaEngine (création de l'image vierge) → MediaFileSystems (injection et retour de l'image remplie) → MediaEngine → App, et relever les anciennes actions qui donnent un accès direct à MediaFileSystems depuis App.
+        - [x] Modifier `docs/architecture/media-library-boundaries.md` : décrire explicitement la création de l'image vierge par MediaEngine, son passage à MediaFileSystems, puis le retour de l'image remplie vers MediaEngine et App.
+        - [x] Modifier `docs/project/media-library-file-inventory.md` : corriger la propriété cible des services et des contrats de migration, et signaler les doubles algorithmes actifs restant dans MediaEngine.
+        - [x] Modifier `docs/architecture/media-engine-file-layout.md` : corriger le classement provisoire des dix fichiers de migration rangés dans MediaEngine avant séparation de leurs responsabilités.
+        - [x] Modifier `docs/tasks/media-library-separation.md` : corriger les actions futures qui demandent à App de consommer directement les services ou contrats de MediaFileSystems.
+      - [x] Faire réellement passer l'image vierge par MediaFileSystems pendant la migration
+        - [x] Modifier `docs/tasks/media-library-separation.md` : détailler les fichiers à modifier pour la création de l'image vierge, l'injection et le retour de l'image remplie.
+        - [x] Créer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationBlankImageFactory.cs` : construire l'image vierge depuis la géométrie physique de chaque format cible existant.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationBlankImageFactory.cs` : la création d'image existe déjà dans `SectorImage` et les builders génériques de MediaEngine ; ne pas conserver une fabrique de migration doublonnante.
+        - [x] Créer `src/GWGUI.MediaFileSystems/Migration/FileSystemMigrationCapabilityCatalog.cs` : définir les limites des systèmes cibles, en recevant la capacité de l'image vierge.
+        - [x] Modifier `src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorBlock.cs` : exposer cylindre et tête du bloc déjà décodé pour transmettre à l'injecteur la carte d'adresses de l'image vierge.
+        - [x] Modifier `src/GWGUI.MediaEngine/Representations/Sectors/SectorBlock.cs` : fournir cylindre et tête du `SectorAddress` par le contrat des blocs.
+        - [x] Créer `src/GWGUI.MediaFileSystems/Migration/FileSystemMigrationService.cs` : planifier, valider puis injecter les fichiers dans l'image vierge reçue ; renvoyer les secteurs remplis et le rapport.
+        - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationLossKind.cs` vers `src/GWGUI.MediaEngine/Operations/MigrationLossKind.cs` : conserver uniquement l'énumération publique du résultat destiné à App.
+        - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationLoss.cs` vers `src/GWGUI.MediaEngine/Operations/MigrationLoss.cs` : conserver uniquement la donnée publique du résultat destiné à App.
+        - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationValidationReport.cs` vers `src/GWGUI.MediaEngine/Operations/MigrationValidationReport.cs` : conserver uniquement le rapport public destiné à App.
+        - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationTarget.cs` vers `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTarget.cs` : exposer les formats cibles à App sans exposer MediaFileSystems.
+        - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationTargetCatalog.cs` vers `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTargetCatalog.cs` : garder le catalogue des formats physiques dans l'API du moteur.
+        - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/MediaFileSystemsReaderAdapter.cs` : convertir le volume public du moteur vers le volume MediaFileSystems avec toutes ses entrées réelles, pour transmettre la source sans copie d'algorithme.
+        - [x] Créer `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : convertir le volume source de l'API MediaEngine, créer l'image vierge avec les builders sectoriels existants, appeler MediaFileSystems, écrire le conteneur physique et retourner image et rapport à App.
+        - [x] Créer `src/GWGUI.MediaEngine/Operations/MigrationResult.cs` : exposer l'image remplie et le rapport de validation via la seule API MediaEngine.
+        - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : construire seulement le service central d'Operations, sans instancier les anciens services spécialisés.
+        - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : recevoir le résultat du service MediaEngine sans utiliser de contrat MediaFileSystems.
+        - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : lire le rapport public dans Operations et conserver l'appel unique à MediaEngine.
+        - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationLossRow.cs` : utiliser le contrat public de résultat d'Operations.
+        - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationTargetOption.cs` : utiliser le contrat public de format d'Operations.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationPlanner.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationValidator.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationMetadataReducer.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationPlan.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationEntry.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MigrationTargetCapabilities.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/IMigrationNamePolicy.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/MediaFileSystemsMigrationPlanAdapter.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationService.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Amiga/AmigaDosMigrationImageBuilder.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleDosMigrationImageBuilder.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Apple/ProDosMigrationImageBuilder.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleFileSystemMigrationService.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleFileSystemMigrationExceptions.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleDosNamePolicy.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleDosVolumeNamePolicy.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Apple/ProDosNamePolicy.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationImageBuilder.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationService.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationExceptions.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosNamePolicy.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Fat12Amiga/Fat12AmigaDosMigrationService.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/Conversion/Migration/Fat12Amiga/Fat12AmigaDosMigrationExceptions.cs` : retirer la copie de migration du moteur après raccordement du service MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosNamePolicy.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosVolumeWriterExceptions.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12ShortNamePolicy.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12VolumeNamePolicy.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12VolumeWriter.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12VolumeWriterExceptions.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12WritableLayout.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Sos/SosVolumeWriter.cs` : retirer la copie de logique de système de fichiers maintenant portée par MediaFileSystems.
+        - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : appeler le nouveau trajet central et relire le fichier dans l'image remplie.
+        - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : appeler le nouveau trajet central et relire le fichier dans l'image remplie.
+        - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : appeler le nouveau trajet central pour ProDOS et SOS et relire le fichier.
+        - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : appeler le nouveau trajet central pour D64, D71 et D81 et relire le fichier.
+        - [x] Modifier `docs/project/media-library-file-inventory.md` : consigner les responsabilités finales et le retrait des doublons.
+        - [x] Modifier `docs/architecture/media-engine-file-layout.md` : préciser que ses anciennes lignes Conversion/Migration sont historiques et que le moteur n'a plus ce dossier source.
+        - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : conserver les erreurs de combinaison format/conteneur Apple et Commodore antérieures et expliciter la condition D64/D71.
+        - [x] Modifier `src/GWGUI.MediaFileSystems/Migration/FileSystemMigrationService.cs` : former le résultat à partir des adresses de l'image vierge reçue et des données injectées par le writer du système cible.
+        - [x] Modifier `docs/tasks/media-library-separation.md` : consigner le résultat de compilation et des vérifications de migration.
+        - Résultat vérifié le 20 septembre 2026 : `dotnet build GWGUI.sln --no-restore --nologo -v:q -m:1` réussit avec 0 avertissement et 0 erreur ; les tests de relecture après migration AmigaDOS, Apple DOS, ProDOS, SOS, D64, D71 et D81 et le test de frontière réussissent (9/9). Le dossier source `MediaEngine/Conversion/Migration` est absent.
       - [ ] `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11BlockPairReader.cs` vers `src/GWGUI.MediaFileSystems/Dec/Rt11/Rt11BlockPairReader.cs`
         - [ ] Créer `src/GWGUI.MediaFileSystems/Dec/Rt11/Rt11BlockPairReader.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11BlockPairReader.cs` dans le namespace `GWGUI.MediaFileSystems.Dec.Rt11`, sans retirer la source.
         - [ ] Modifier `src/GWGUI.MediaFileSystems/Dec/Rt11/Rt11DirectoryReader.cs` pour utiliser `src/GWGUI.MediaFileSystems/Dec/Rt11/Rt11BlockPairReader.cs` dans le namespace `GWGUI.MediaFileSystems.Dec.Rt11`.
@@ -1786,8 +1842,8 @@ Après précision sur la distinction entre conversion d'image et migration de fi
         - [ ] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistryExceptions.cs` après création de `src/GWGUI.MediaFileSystems/Exceptions/FileSystemRegistryExceptions.cs` et raccordement de tous les consommateurs listés ci-dessus.
       - [ ] `src/GWGUI.MediaEngine/FileSystems/FileSystemVolume.cs` vers `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs`
         - [ ] Créer `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` en copiant exactement les définitions de `src/GWGUI.MediaEngine/FileSystems/FileSystemVolume.cs` dans le namespace `GWGUI.MediaFileSystems`, sans retirer la source.
-        - [ ] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` pour utiliser `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` dans le namespace `GWGUI.MediaFileSystems`.
-        - [ ] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` pour utiliser `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` dans le namespace `GWGUI.MediaFileSystems`.
+        - [ ] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` pour conserver le volume exposé par l'API de `GWGUI.MediaEngine`, sans introduire de type `GWGUI.MediaFileSystems` dans App.
+        - [ ] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` pour conserver le volume exposé par l'API de `GWGUI.MediaEngine`, sans introduire de type `GWGUI.MediaFileSystems` dans App.
         - [ ] Modifier `src/GWGUI.MediaAnalysis/Documents/DiskImageDocumentFactory.cs` pour utiliser `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` dans le namespace `GWGUI.MediaFileSystems`.
         - [ ] Modifier `src/GWGUI.MediaFileSystems/Exploration/Interpretation/Contracts/IRecognizedImageNormalizer.cs` pour utiliser `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` dans le namespace `GWGUI.MediaFileSystems`.
         - [ ] Modifier `src/GWGUI.MediaFileSystems/Exploration/Interpretation/DiskImageInterpretationService.cs` pour utiliser `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` dans le namespace `GWGUI.MediaFileSystems`.
@@ -2451,7 +2507,7 @@ Après précision sur la distinction entre conversion d'image et migration de fi
       - [ ] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerTreeNavigator.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerMetadataPresenter.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
-      - [ ] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` pour utiliser les services de migration de GWGUI.MediaFileSystems.
+      - [ ] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` pour demander la migration uniquement au service de `GWGUI.MediaEngine` et recevoir son résultat.
       - [ ] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerLoadingController.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/MediaImageExplorationService.cs` pour demander l'exploration uniquement à l'API de `GWGUI.MediaEngine` et adapter son résultat pour l'affichage, sans orchestrer directement `GWGUI.MediaFileSystems` ou `GWGUI.MediaAnalysis`.
@@ -2472,7 +2528,7 @@ Après précision sur la distinction entre conversion d'image et migration de fi
       - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
-      - [ ] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` pour utiliser les contrats de migration de GWGUI.MediaFileSystems.
+      - [ ] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` pour utiliser les contrats publics de `GWGUI.MediaEngine`, sans référence directe aux contrats de `GWGUI.MediaFileSystems`.
       - [ ] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.
       - [ ] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` pour remplacer les anciens contrats Explorer et FileSystems par les contrats publics des nouvelles bibliothèques, sans lecture ni classification de contenu.

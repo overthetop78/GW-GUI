@@ -11,4 +11,9 @@ namespace GWGUI.MediaEngine.Representations.Sectors;
 /// <param name="Tag">Métadonnées sectorielles facultatives, exprimées en octets.</param>
 /// <param name="FormatCode">Octet de format sectoriel facultatif.</param>
 /// <param name="DiagnosticCode">Code de diagnostic facultatif conservé depuis le conteneur source.</param>
-public sealed record SectorBlock(int LogicalBlock, SectorAddress Address, IReadOnlyList<byte> Data, bool? IntegrityValid = true, int Revolution = 0, IReadOnlyList<byte>? Tag = null, byte? FormatCode = null, byte? DiagnosticCode = null) : IMediaSectorBlock;
+public sealed record SectorBlock(int LogicalBlock, SectorAddress Address, IReadOnlyList<byte> Data, bool? IntegrityValid = true, int Revolution = 0, IReadOnlyList<byte>? Tag = null, byte? FormatCode = null, byte? DiagnosticCode = null) : IMediaSectorBlock
+{
+    int IMediaSectorBlock.Cylinder => Address.Cylinder;
+    int IMediaSectorBlock.Head => Address.Head;
+    int IMediaSectorBlock.PhysicalSectorNumber => Address.Number;
+}

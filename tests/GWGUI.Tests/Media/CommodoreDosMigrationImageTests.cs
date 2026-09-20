@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Conversion.Migration;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Operations;
 using GWGUI.MediaFileSystems.Definitions;
 
 namespace GWGUI.Tests.Media;
@@ -13,14 +13,12 @@ public sealed class CommodoreDosMigrationImageTests
     [InlineData(DiskImageFormatIds.Commodore1581)]
     public void MigratedFileCanBeReadFromCommodoreDosImage(string formatId)
     {
-        var plan = new MigrationPlan(
-            FileSystemIds.Fat12,
-            FileSystemIds.CommodoreDos,
-            "VOLUME",
-            [new MigrationEntry("/HELLO", "HELLO", FileSystemEntryKind.File,
-                new byte[] { 1, 2, 3 }, null, string.Empty, 0, true, [])]);
-
-        var image = new CommodoreDosMigrationImageBuilder().Create(plan, formatId);
+        var source = new FileSystemVolume("VOLUME", FileSystemIds.Fat12, 0, 0, null, null,
+            [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
+                0, 0, true, [], new byte[] { 1, 2, 3 })], []);
+        var result = new FileSystemMigrationService().CreateImage(source, formatId);
+        Assert.True(result.Report.CanExecute);
+        var image = result.Image;
         var reader = Assert.Single(FileSystemReaderCatalog.CreateDefault(), item => item.Id == FileSystemIds.CommodoreDos);
         Assert.True(reader.CanRead(image));
         var volume = reader.Read(image);

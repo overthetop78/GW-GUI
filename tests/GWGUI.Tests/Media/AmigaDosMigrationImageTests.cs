@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Conversion.Migration;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Amiga;
+using GWGUI.MediaEngine.Operations;
 using GWGUI.MediaFileSystems.FileSystems.Amiga;
 using EngineFileSystemIds = GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds;
 using MediaFileSystemIds = GWGUI.MediaFileSystems.Definitions.FileSystemIds;
@@ -13,15 +12,12 @@ public sealed class AmigaDosMigrationImageTests
     [Fact]
     public void InjectedFileCanBeReadFromTheCreatedAdfImage()
     {
-        var plan = new MigrationPlan(
-            EngineFileSystemIds.Fat12,
-            EngineFileSystemIds.AmigaDosFfs,
-            "TEST",
-            [new MigrationEntry("/HELLO", "HELLO", FileSystemEntryKind.File,
-                new byte[] { 1, 2, 3 }, null, string.Empty, 0, true, [])]);
-
-        var image = new AmigaDosMigrationImageBuilder().Create(
-            plan, GWGUI.MediaEngine.FileSystems.Amiga.AmigaDosVariant.Ffs, DiskImageFormatIds.AmigaDos);
+        var source = new FileSystemVolume("TEST", EngineFileSystemIds.Fat12, 0, 0, null, null,
+            [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
+                0, 0, true, [], new byte[] { 1, 2, 3 })], []);
+        var result = new FileSystemMigrationService().CreateImage(source, DiskImageFormatIds.AmigaDos);
+        Assert.True(result.Report.CanExecute);
+        var image = result.Image;
         var reader = new AmigaDosFileSystemReader();
 
         Assert.True(reader.CanRead(image));

@@ -72,10 +72,13 @@ définitions et les utilitaires communs ne sont pas mélangés aux implémentati
 « Exporter vers… » par migration de fichiers est une opération distincte de la conversion d'images :
 elle lit les vrais dossiers et fichiers de l'image source, puis les injecte dans un système de fichiers
 cible d'une autre image, y compris quand les formats d'image ne sont pas compatibles pour la conversion
-physique. `MediaEngine` lit l'image source, résout son format physique et écrit le conteneur cible.
-`MediaFileSystems` planifie et valide la migration, adapte les noms et métadonnées, puis construit le
-volume cible avec les fichiers et dossiers. Le volume construit revient à `MediaEngine` pour l'écriture
-du conteneur. `MediaAnalysis` n'intervient que pour la reconnaissance des types utiles à l'explorateur.
+physique. `App` demande la migration à `MediaEngine`, seule porte d'entrée média. `MediaEngine` lit
+l'image source, choisit le format physique cible et crée l'image cible vierge. Il transmet cette image
+et les vrais fichiers et dossiers source à `MediaFileSystems`. Cette bibliothèque planifie et valide
+la migration, adapte les noms et métadonnées, injecte les fichiers dans le système cible et renvoie
+l'image remplie à `MediaEngine`. Celui-ci écrit le format physique demandé et renvoie le résultat à
+`App`. `App` n'appelle pas directement `MediaFileSystems`. `MediaAnalysis` n'intervient que pour la
+reconnaissance des types utiles à l'explorateur.
 ## Sens autorisé des dépendances
 
 ```text

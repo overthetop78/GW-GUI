@@ -1,7 +1,7 @@
 using System.IO;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Conversion.Migration;
+using GWGUI.MediaEngine.Operations;
 
 namespace GWGUI.App.Services.Conversion;
 
@@ -20,5 +20,5 @@ public sealed class FileMigrationCoordinator(
 
     public MigrationValidationReport Validate(FileSystemVolume source, string targetFormatId, bool acceptMetadataLoss = false) => migrationService.Validate(source, targetFormatId, acceptMetadataLoss);
 
-    public Task<MigrationValidationReport> ExecuteAsync(FileSystemVolume source, string outputPath, string targetFormatId, bool acceptMetadataLoss, CancellationToken cancellationToken = default) => migrationService.WriteAsync(source, outputPath, targetFormatId, acceptMetadataLoss, cancellationToken);
+    public Task<MigrationResult> ExecuteAsync(FileSystemVolume source, string outputPath, string targetFormatId, bool acceptMetadataLoss, CancellationToken cancellationToken = default) => migrationService.WriteAsync(source, outputPath, targetFormatId, acceptMetadataLoss, cancellationToken);
 }

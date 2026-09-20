@@ -21,6 +21,14 @@ Cet inventaire couvre chaque fichier C# présent sous src/GWGUI.MediaEngine, y c
 
 ## Inventaire fichier par fichier
 
+Les lignes `Conversion/Migration` ci-dessous sont un relevé historique et ne désignent plus des
+fichiers présents. Le dossier source `MediaEngine/Conversion/Migration` a été vidé : les algorithmes
+et writers de systèmes de fichiers sont dans `MediaFileSystems`, tandis que
+`MediaEngine/Operations/FileSystemMigrationService.cs` reçoit la commande d'App, construit l'image
+vierge avec les builders sectoriels du moteur, transmet l'image à `MediaFileSystems`, reçoit l'image
+remplie et écrit son format physique. Les types publics associés à cette entrée sont sous
+`MediaEngine/Operations/`.
+
 | Chemin actuel | Chemin cible exact | Définitions | Responsabilité | Doublon ou collision |
 |---|---|---|---|---|
 | src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs | src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs | MediaEngineFactory | Crée ou compose le composant indiqué par son nom. | Aucun signal |
@@ -750,12 +758,16 @@ Cet inventaire couvre chaque fichier C# présent sous src/GWGUI.MediaEngine, y c
 | src/GWGUI.MediaEngine/Geometries/Msx/MsxDiskGeometryCatalog.cs | src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxDiskGeometryCatalog.cs | MsxDiskGeometryCatalog | Répertorie les valeurs ou profils indiqués par son nom. | Aucun signal |
 | src/GWGUI.MediaEngine/Geometries/Ucsd/UcsdIbmMfmGeometry.cs | src/GWGUI.MediaEngine/Formats/Floppy/Raw/UcsdIbmMfmGeometry.cs | UcsdIbmMfmGeometry | Décrit la géométrie de média indiquée par son nom. | Aucun signal |
 | src/GWGUI.MediaEngine/GlobalUsings.cs | src/GWGUI.MediaEngine/GlobalUsings.cs | Aucune definition nommee detectee | Implémente la fonction média indiquée par son chemin et son nom. | Aucun signal |
-| src/GWGUI.MediaEngine/Migration/AppleFileSystemMigrationExceptions.cs | src/GWGUI.MediaEngine/Conversion/Migration/AppleFileSystemMigrationExceptions.cs | AppleFileSystemMigrationExceptions | Définit les erreurs du composant indiqué par son nom. | Aucun signal |
-| src/GWGUI.MediaEngine/Migration/AppleFileSystemMigrationService.cs | src/GWGUI.MediaEngine/Conversion/Migration/AppleFileSystemMigrationService.cs | AppleFileSystemMigrationService | Orchestre le traitement spécialisé indiqué par son nom. | Aucun signal |
-| src/GWGUI.MediaEngine/Migration/CommodoreDosMigrationExceptions.cs | src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationExceptions.cs | CommodoreDosMigrationExceptions | Définit les erreurs du composant indiqué par son nom. | Aucun signal |
-| src/GWGUI.MediaEngine/Migration/CommodoreDosMigrationService.cs | src/GWGUI.MediaEngine/Conversion/Migration/CommodoreDosMigrationService.cs | CommodoreDosMigrationService | Orchestre le traitement spécialisé indiqué par son nom. | Aucun signal |
-| src/GWGUI.MediaEngine/Migration/Fat12AmigaDosMigrationExceptions.cs | src/GWGUI.MediaEngine/Conversion/Migration/Fat12AmigaDosMigrationExceptions.cs | Fat12AmigaDosMigrationExceptions | Définit les erreurs du composant indiqué par son nom. | Aucun signal |
-| src/GWGUI.MediaEngine/Migration/Fat12AmigaDosMigrationService.cs | src/GWGUI.MediaEngine/Conversion/Migration/Fat12AmigaDosMigrationService.cs | Fat12AmigaDosMigrationService | Orchestre le traitement spécialisé indiqué par son nom. | Aucun signal |
+| créé pendant la séparation | src/GWGUI.MediaEngine/Conversion/Migration/Amiga/AmigaDosMigrationImageBuilder.cs | AmigaDosMigrationImageBuilder | Adapte le plan de secteurs AmigaDOS à l'image cible. | Aucun signal |
+| créé pendant la séparation | src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleDosMigrationImageBuilder.cs | AppleDosMigrationImageBuilder | Adapte le plan de secteurs Apple DOS à l'image cible. | Aucun signal |
+| src/GWGUI.MediaEngine/Migration/AppleFileSystemMigrationExceptions.cs | src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleFileSystemMigrationExceptions.cs | AppleFileSystemMigrationExceptions | Définit les erreurs du composant indiqué par son nom. | Aucun signal |
+| src/GWGUI.MediaEngine/Migration/AppleFileSystemMigrationService.cs | src/GWGUI.MediaEngine/Conversion/Migration/Apple/AppleFileSystemMigrationService.cs | AppleFileSystemMigrationService | Orchestre le traitement spécialisé indiqué par son nom. | Aucun signal |
+| créé pendant la séparation | src/GWGUI.MediaEngine/Conversion/Migration/Apple/ProDosMigrationImageBuilder.cs | ProDosMigrationImageBuilder | Adapte le plan de secteurs ProDOS à l'image cible. | Aucun signal |
+| src/GWGUI.MediaEngine/Migration/CommodoreDosMigrationExceptions.cs | src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationExceptions.cs | CommodoreDosMigrationExceptions | Définit les erreurs du composant indiqué par son nom. | Aucun signal |
+| créé pendant la séparation | src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationImageBuilder.cs | CommodoreDosMigrationImageBuilder | Adapte le plan de secteurs Commodore DOS à l'image cible. | Aucun signal |
+| src/GWGUI.MediaEngine/Migration/CommodoreDosMigrationService.cs | src/GWGUI.MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationService.cs | CommodoreDosMigrationService | Orchestre le traitement spécialisé indiqué par son nom. | Aucun signal |
+| src/GWGUI.MediaEngine/Migration/Fat12AmigaDosMigrationExceptions.cs | src/GWGUI.MediaEngine/Conversion/Migration/Fat12Amiga/Fat12AmigaDosMigrationExceptions.cs | Fat12AmigaDosMigrationExceptions | Définit les erreurs du composant indiqué par son nom. | Aucun signal |
+| src/GWGUI.MediaEngine/Migration/Fat12AmigaDosMigrationService.cs | src/GWGUI.MediaEngine/Conversion/Migration/Fat12Amiga/Fat12AmigaDosMigrationService.cs | Fat12AmigaDosMigrationService | Orchestre le traitement spécialisé indiqué par son nom. | Aucun signal |
 | src/GWGUI.MediaEngine/Migration/FileSystemMigrationCapabilityCatalog.cs | src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs | FileSystemMigrationCapabilityCatalog | Répertorie les valeurs ou profils indiqués par son nom. | Aucun signal |
 | src/GWGUI.MediaEngine/Migration/FileSystemMigrationService.cs | src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationService.cs | FileSystemMigrationService | Orchestre le traitement spécialisé indiqué par son nom. | Aucun signal |
 | src/GWGUI.MediaEngine/Migration/FileSystemMigrationTarget.cs | src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationTarget.cs | FileSystemMigrationTarget | Implémente la fonction média indiquée par son chemin et son nom. | Aucun signal |

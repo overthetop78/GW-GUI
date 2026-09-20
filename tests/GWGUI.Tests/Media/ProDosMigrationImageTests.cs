@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Conversion.Migration;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Sos;
+using GWGUI.MediaEngine.Operations;
 using GWGUI.MediaFileSystems.Definitions;
 using EngineFileSystemIds = GWGUI.MediaEngine.FileSystems.Definitions.FileSystemIds;
 
@@ -14,23 +13,21 @@ public sealed class ProDosMigrationImageTests
     [InlineData(DiskImageFormatIds.AppleIIProDos800)]
     public void MigratedFileCanBeReadFromProDosImage(string formatId)
     {
-        var image = new ProDosMigrationImageBuilder().Create(CreatePlan(EngineFileSystemIds.ProDos), formatId);
+        var image = new FileSystemMigrationService().CreateImage(CreateSource(), formatId).Image;
         AssertFile(image, FileSystemIds.ProDos);
     }
 
     [Fact]
     public void MigratedFileCanBeReadFromSosImage()
     {
-        var image = new SosVolumeWriter().Create(CreatePlan(EngineFileSystemIds.Sos));
+        var image = new FileSystemMigrationService().CreateImage(CreateSource(), DiskImageFormatIds.AppleIIISos).Image;
         AssertFile(image, FileSystemIds.Sos);
     }
 
-    private static MigrationPlan CreatePlan(string targetFileSystemId) => new(
-        EngineFileSystemIds.Fat12,
-        targetFileSystemId,
-        "VOLUME",
-        [new MigrationEntry("/HELLO", "HELLO", FileSystemEntryKind.File,
-            new byte[] { 1, 2, 3 }, null, string.Empty, 0, true, [])]);
+    private static FileSystemVolume CreateSource() => new(
+        "VOLUME", EngineFileSystemIds.Fat12, 0, 0, null, null,
+        [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
+            0, 0, true, [], new byte[] { 1, 2, 3 })], []);
 
     private static void AssertFile(GWGUI.MediaEngine.Representations.Sectors.SectorImage image, string expectedFileSystemId)
     {

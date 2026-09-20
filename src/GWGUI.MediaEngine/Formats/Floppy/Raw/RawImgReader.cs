@@ -1,6 +1,6 @@
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.FileSystems.Cpm;
+using GWGUI.MediaFileSystems.FileSystems.Cpm;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -80,8 +80,7 @@ internal sealed class RawImgReader : IMediaImageReader
         var image = IbmRawSectorImageBuilder.Create(bytes, geometry, cancellationToken);
         if (!hasFatBpb)
         {
-            var logical = CpmDirectoryReader.Flatten(image);
-            if (CpmDirectoryReader.FindDirectory(logical, AmstradCpmLayout.CpcSystem, AmstradCpmLayout.CpcSectorSize, allowEmpty: false, rejectLowercase: false) is not null) return image.WithFormatId(DiskImageFormatIds.AmstradCpc);
+            if (AmstradCpmLayout.LooksLikeCpcSystemDirectory(image)) return image.WithFormatId(DiskImageFormatIds.AmstradCpc);
         }
         if (!hasFatBpb && AmstradCpmDiskSpecification.TryParse(bytes, out _)) return image.WithFormatId(DiskImageFormatIds.AmstradPcw);
         return image;

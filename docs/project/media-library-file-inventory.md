@@ -14,13 +14,13 @@ La copie `MediaEngine/FileSystems/AcornFileSystemTime.cs` a été retirée : auc
 
 Les anciennes copies des auxiliaires de lecture AmigaDOS (checksum, répertoires, fichiers, récupération, racine, noms et avertissements) ont été retirées de `MediaEngine`. Le lecteur actif et ces auxiliaires existent dans `MediaFileSystems/FileSystems/Amiga`. Le writer de migration AmigaDOS, ses constantes et ses appelants dans `MediaEngine` demandent encore un raccordement séparé avant suppression de leurs anciennes copies.
 
-Pour la migration vers AmigaDOS, `MediaEngine/Conversion/Migration/AmigaDosMigrationImageBuilder.cs` adapte le plan de migration public et crée le `SectorImage` cible avec la géométrie ADF. Il demande à `MediaFileSystems/FileSystems/Amiga/AmigaDosVolumeWriter.cs` de remplir le système de fichiers et de retourner un `MediaSectorWritePlan`. Les copies de la disposition AmigaDOS et du décodeur de temps ont été retirées de `MediaEngine`.
+Pour la migration vers AmigaDOS, `MediaEngine/Conversion/Migration/Amiga/AmigaDosMigrationImageBuilder.cs` adapte le plan de migration public et crée le `SectorImage` cible avec la géométrie ADF. Il demande à `MediaFileSystems/FileSystems/Amiga/AmigaDosVolumeWriter.cs` de remplir le système de fichiers et de retourner un `MediaSectorWritePlan`. Les copies de la disposition AmigaDOS et du décodeur de temps ont été retirées de `MediaEngine`.
 
 Le lecteur Amiga FlatArchive et ses sept auxiliaires sont dans `MediaFileSystems/FileSystems/Amiga/FlatArchive`. Il lit les noms déjà stockés dans les descripteurs de ressources, sans inventer de fichiers, et reçoit le secteur décodé via `IMediaSectorImage`. `MediaEngine/FileSystemReaderCatalog` le publie au moyen de son adaptateur existant.
 
 Les copies Apple DOS propres au lecteur de fichiers (entrées, VTOC, listes de secteurs, noms, types et avertissements) ont été retirées de `MediaEngine` ; le lecteur actif et ces auxiliaires sont dans `MediaFileSystems/FileSystems/Apple/Dos`. Le writer de migration Apple DOS et ses dépendances sont traités dans le groupe suivant.
 
-Pour la migration Apple DOS, `MediaEngine/Conversion/Migration/AppleDosMigrationImageBuilder.cs` convertit le plan public et crée le `SectorImage` cible. `MediaFileSystems/FileSystems/Apple/Dos/AppleDosVolumeWriter.cs` construit le catalogue, le VTOC, les listes de secteurs et les données, puis retourne un `MediaSectorWritePlan`. Le lecteur de format brut et la reconnaissance restent dans `MediaEngine`.
+Pour la migration Apple DOS, `MediaEngine/Conversion/Migration/Apple/AppleDosMigrationImageBuilder.cs` convertit le plan public et crée le `SectorImage` cible. `MediaFileSystems/FileSystems/Apple/Dos/AppleDosVolumeWriter.cs` construit le catalogue, le VTOC, les listes de secteurs et les données, puis retourne un `MediaSectorWritePlan`. Le lecteur de format brut et la reconnaissance restent dans `MediaEngine`.
 
 Les deux adaptateurs de règles de noms Apple DOS propres au contrat `IMigrationNamePolicy` de `MediaEngine` sont rangés dans `MediaEngine/Conversion/Migration/Apple`. Ils délèguent la validation effective aux politiques Apple DOS de `MediaFileSystems`.
 
@@ -30,7 +30,7 @@ Les douze sources du lecteur Lisa sont désormais dans `MediaFileSystems/FileSys
 
 Les dix-neuf sources des lecteurs Macintosh MFS et HFS, y compris leurs trois auxiliaires communs, sont maintenant dans `MediaFileSystems/FileSystems/Apple/Macintosh`. Elles reconstruisent les entrées depuis les répertoires MFS et le catalogue HFS, avec les vrais noms encodés dans ces structures. `MediaEngine` conserve le décodage des images et publie les deux lecteurs par `MediaFileSystemsReaderAdapter`. Les cinq identifiants de formats employés par ces lecteurs sont partagés par `MediaFileSystems/Constants/MediaImageFormatIds.cs` ; les noms publics de `MediaEngine` y renvoient.
 
-Le lecteur ProDOS actif est maintenant celui de `MediaFileSystems/FileSystems/Apple/ProDos`, publié par l’adaptateur du catalogue `MediaEngine`. Onze anciennes sources propres à la lecture ont été retirées de `MediaEngine`. Son sondage d’image appelle `ProDosVolumeHeaderReader.IsValid` dans `MediaFileSystems`. Pour la migration, `MediaEngine/Conversion/Migration/ProDosMigrationImageBuilder.cs` résout la géométrie et construit le `SectorImage` cible depuis le plan de secteurs du writer de `MediaFileSystems` ; SOS ajoute ensuite son marqueur d’amorçage au volume ProDOS de base. L’ancien writer ProDOS de `MediaEngine` et ses six dernières dépendances ont été retirés. L’adaptateur de noms ProDOS du moteur est rangé dans `Conversion/Migration/Apple` et délègue à la politique ProDOS de `MediaFileSystems`.
+Le lecteur ProDOS actif est maintenant celui de `MediaFileSystems/FileSystems/Apple/ProDos`, publié par l’adaptateur du catalogue `MediaEngine`. Onze anciennes sources propres à la lecture ont été retirées de `MediaEngine`. Son sondage d’image appelle `ProDosVolumeHeaderReader.IsValid` dans `MediaFileSystems`. Pour la migration, `MediaEngine/Conversion/Migration/Apple/ProDosMigrationImageBuilder.cs` résout la géométrie et construit le `SectorImage` cible depuis le plan de secteurs du writer de `MediaFileSystems` ; SOS ajoute ensuite son marqueur d’amorçage au volume ProDOS de base. L’ancien writer ProDOS de `MediaEngine` et ses six dernières dépendances ont été retirés. L’adaptateur de noms ProDOS du moteur est rangé dans `Conversion/Migration/Apple` et délègue à la politique ProDOS de `MediaFileSystems`.
 
 Le lecteur Atari CLK est dans `MediaFileSystems/FileSystems/Atari/ClkGraphicsLibrary` et reçoit l’image sectorielle déjà décodée. Il lit les noms des entrées actives dans les secteurs de répertoire CLK ; `MediaEngine/FileSystemReaderCatalog` le publie par son adaptateur. Ses neuf identifiants d’images Atari sont partagés depuis `MediaFileSystems/Constants/MediaImageFormatIds.cs`.
 
@@ -40,7 +40,11 @@ Les onze sources du lecteur Atari DOS et MyDOS sont dans `MediaFileSystems/FileS
 
 Les quinze sources du lecteur de système de fichiers COHERENT sont dans `MediaFileSystems/FileSystems/Coherent`. Les noms de fichiers viennent des entrées de répertoire, les noms par défaut du volume sont écartés et aucune entrée de fichier n'est créée à partir d'un nom supposé. `MediaEngine` conserve la lecture du dump brut et la reconnaissance de l'image ; ces deux opérations appellent le contrôle du superbloc de `MediaFileSystems`. `FileSystemReaderCatalog` publie le lecteur par `MediaFileSystemsReaderAdapter`. Les chemins COHERENT du tableau ci-dessous restent ceux du relevé historique.
 
-Le lecteur Commodore DOS actif et le writer de système de fichiers pour la migration sont dans `MediaFileSystems/FileSystems/Commodore/Dos`. Le lecteur reprend les noms PETSCII des entrées du répertoire D64, D71 ou D81. `MediaEngine/Conversion/Migration/CommodoreDosMigrationImageBuilder.cs` transmet le plan au writer, crée le `SectorImage` depuis ses secteurs et garde l'écriture du conteneur dans le moteur. L'adaptateur de noms du moteur est rangé dans `Conversion/Migration/Commodore` et délègue la validation à `MediaFileSystems`. Les 22 anciennes copies de lecture et d'écriture ont été retirées de `MediaEngine/FileSystems/Commodore/Dos` ; les lignes du tableau plus bas indiquent leurs chemins historiques.
+Le lecteur Commodore DOS actif et le writer de système de fichiers pour la migration sont dans `MediaFileSystems/FileSystems/Commodore/Dos`. Le lecteur reprend les noms PETSCII des entrées du répertoire D64, D71 ou D81. `MediaEngine/Conversion/Migration/Commodore/CommodoreDosMigrationImageBuilder.cs` transmet le plan au writer, crée le `SectorImage` depuis ses secteurs et garde l'écriture du conteneur dans le moteur. L'adaptateur de noms du moteur est rangé dans `Conversion/Migration/Commodore` et délègue la validation à `MediaFileSystems`. Les 22 anciennes copies de lecture et d'écriture ont été retirées de `MediaEngine/FileSystems/Commodore/Dos` ; les lignes du tableau plus bas indiquent leurs chemins historiques.
+
+Dans `MediaEngine/Conversion/Migration`, les services, exceptions et constructeurs propres à Apple, Commodore, AmigaDOS et au trajet FAT12 vers AmigaDOS sont rangés dans `Apple`, `Commodore`, `Amiga` et `Fat12Amiga`. Les plans, validations, catalogues et adaptateurs communs restent à la racine de `Migration`. Le déplacement des dix sources spécialisées conserve leurs namespaces publics ; leurs consommateurs et leurs contrats ne changent pas.
+
+Les onze sources des lecteurs CP/M générique et Amstrad sont dans `MediaFileSystems/FileSystems/Cpm`. Leurs fichiers proviennent des noms décodés des entrées et extents CP/M ; le répertoire n'invente pas d'entrées pour les secteurs sans nom. Le contrat `IMediaSectorBlock.PhysicalSectorNumber` transmet le numéro de secteur CPC déjà décodé, sans référencer `MediaEngine` depuis `MediaFileSystems`. `MediaEngine` conserve la reconnaissance du format brut ; elle utilise les contrôles CPC et PCW de `MediaFileSystems` et publie les deux lecteurs par `MediaFileSystemsReaderAdapter`.
 
 | Fichier actuel | Projet actuel | Responsabilité observée | Projet cible | Appelants ou consommateurs repérés |
 |---|---|---|---|---|
@@ -1152,12 +1156,17 @@ Le sens de référence cible est App → MediaEngine → MediaFileSystems → Me
 
 ## Propriété des copies de Conversion/Fat12 et Conversion/Migration
 
-Le tableau ci-dessous conserve aussi l'instantané **avant** le rangement. Les chemins des copies retirées ne désignent plus des sources présentes ; les 14 contrats et validateurs conservés sont maintenant dans `src/GWGUI.MediaFileSystems/Migration/`. Les services qui écrivent des conteneurs restent actuellement dans `src/GWGUI.MediaEngine/Conversion/` en attendant le raccordement final.
+Le tableau ci-dessous conserve l'instantané **avant** le raccordement. Ses chemins de copies retirées ne désignent plus des sources présentes. Les contrats, la planification, la validation et l'injection des fichiers sont sous `src/GWGUI.MediaFileSystems/Migration/`. `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` crée l'image vierge avec les builders sectoriels existants, la transmet à MediaFileSystems, reçoit les secteurs remplis, écrit le format physique et retourne image et rapport à App. Les types publics nécessaires à App sont sous `MediaEngine/Operations/` ; App n'utilise aucun type de MediaFileSystems pour cette opération.
 
 Le classement retenu conserve les 14 contrats sous `Migration/` et les writers de volumes sous
 `FileSystems/` dans `MediaFileSystems`. Les services d'orchestration, catalogues de formats physiques et
-writers de conteneurs restent dans `MediaEngine`. Les anciennes sources y existent encore et doivent
-être retirées seulement après raccordement des appels, sans créer de cycle de références.
+writers de conteneurs restent dans `MediaEngine`. Les anciennes copies de `MigrationPlanner`,
+`MigrationValidator` et `MigrationMetadataReducer`, les services spécialisés et les builders
+de migration ont été retirés de `MediaEngine/Conversion/Migration/`. Les writers de volumes
+Apple DOS, ProDOS, SOS, AmigaDOS, FAT12 et Commodore DOS appartiennent à `MediaFileSystems`.
+`MediaEngine` conserve les géométries et builders physiques, les writers de conteneurs et
+l'unique entrée publique qui orchestre la demande d'App. Ce tableau reste historique ; il ne
+décrit pas les chemins actuellement présents.
 
 Contrôle des 26 fichiers déjà présents dans les deux projets, avant tout nouveau retrait. « Scinder » signifie que le service mêle la construction du système de fichiers à l'écriture d'un conteneur média ; il faut séparer ses méthodes et conserver le comportement avant de retirer une copie.
 

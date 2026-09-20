@@ -149,22 +149,8 @@ public static class MediaEngineFactory
         return new(CreateDefaultExplorer(), writer);
     }
 
-    /// <summary>Crée le service de migration de fichiers entre FAT12 et AmigaDOS.</summary>
-    public static Conversion.Migration.Fat12AmigaDosMigrationService CreateFat12AmigaDosMigrationService()
-    {
-        var linear = new Formats.Floppy.Raw.LinearSectorImageWriter();
-        var fatWriter = new Conversion.Fat12.Fat12TargetImageWriter(new Formats.Floppy.St.AtariStWriter(linear), new Formats.Floppy.Raw.IbmRawImageWriter(linear), new Formats.Floppy.Raw.MsxRawImageWriter(linear));
-        return new(new Formats.Floppy.Adf.AmigaAdfWriter(), fatWriter);
-    }
-
-    /// <summary>Crée le service de migration vers Apple DOS, ProDOS et SOS.</summary>
-    public static Conversion.Migration.AppleFileSystemMigrationService CreateAppleFileSystemMigrationService() => new(new Formats.Floppy.Raw.AppleRawImageWriter(), new Formats.Floppy.TwoImg.TwoImgWriter(), new Formats.Floppy.Apple.AppleDiskImageWriter());
-
-    /// <summary>Crée le service de migration vers les volumes Commodore DOS D64, D71 et D81.</summary>
-    public static Conversion.Migration.CommodoreDosMigrationService CreateCommodoreDosMigrationService() => new(new Formats.Floppy.CommodoreDos.CommodoreDosContainerWriter(), new Formats.Floppy.D81.D81Writer(new Formats.Floppy.Raw.LinearSectorImageWriter()));
-
-    /// <summary>Crée le service unifié de migration entre systèmes de fichiers.</summary>
-    public static Conversion.Migration.FileSystemMigrationService CreateFileSystemMigrationService() => new(CreateFat12AmigaDosMigrationService(), CreateAppleFileSystemMigrationService(), CreateCommodoreDosMigrationService());
+    /// <summary>Crée l'entrée média pour l'export des fichiers vers une image cible.</summary>
+    public static Operations.FileSystemMigrationService CreateFileSystemMigrationService() => new();
 
     /// <summary>Crée le service reconnaissant une image sectorielle avant de la reconstruire en SCP.</summary>
     public static SectorImageScpFileConversionService CreateSectorImageScpFileConversionService()

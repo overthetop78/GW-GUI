@@ -12,7 +12,7 @@ using System.Windows;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Conversion.Migration;
+using GWGUI.MediaEngine.Operations;
 
 namespace GWGUI.App.Views.Windows.Conversion;
 

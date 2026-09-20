@@ -11,6 +11,7 @@ public static class MediaImageFormatIds
     public const string AcornDfsDoubleSided80 = "acorn.dfs.ds80";
     public const string AmigaDos = "amiga.amigados";
     public const string AmigaDosHighDensity = "amiga.amigados_hd";
+    public const string AmstradCpc = "amstrad.cpc";
     public const string AmstradPcw = "amstrad.pcw";
     public const string AppleIIAppleDos113 = "apple2.appledos.113";
     public const string AppleIIAppleDos140 = "apple2.appledos.140";
@@ -45,6 +46,12 @@ public static class MediaImageFormatIds
     public const string Commodore1571 = "commodore.1571";
     public const string Commodore1581 = "commodore.1581";
     public const string Commodore900Coherent = "commodore900.coherent";
+    public const string EpsonQx10Prefix = "epson.qx10.";
+    public const string EpsonQx10_320 = "epson.qx10.320";
+    public const string EpsonQx10_396 = "epson.qx10.396";
+    public const string EpsonQx10_399 = "epson.qx10.399";
+    public const string EpsonQx10_400 = "epson.qx10.400";
+    public const string EpsonQx10Logo = "epson.qx10.logo";
     public const string Ibm1200 = "ibm.1200";
     public const string Ibm1440 = "ibm.1440";
     public const string Ibm160 = "ibm.160";
