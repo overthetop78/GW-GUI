@@ -14,4 +14,6 @@ public interface IMediaOpticalTrack
     int UserDataLength { get; }
 
     bool IsAudio { get; }
+
+    ValueTask<byte[]> ReadUserDataAsync(long relativeSector, CancellationToken cancellationToken = default);
 }

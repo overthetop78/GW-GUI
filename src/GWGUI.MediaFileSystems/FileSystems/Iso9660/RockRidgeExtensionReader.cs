@@ -1,8 +1,9 @@
-﻿using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Contracts;
+﻿using System.IO;
+using GWGUI.MediaFileSystems.Constants;
+using GWGUI.MediaFileSystems.Interfaces;
 using GWGUI.MediaFileSystems.Definitions;
 
-namespace GWGUI.MediaEngine.FileSystems.Iso9660;
+namespace GWGUI.MediaFileSystems.FileSystems.Iso9660;
 
 /// <summary>Reads Rock Ridge alternate names stored in ISO 9660 SUSP system-use entries.</summary>
 public sealed class RockRidgeExtensionReader : Iso9660FileSystemReader
@@ -11,7 +12,7 @@ public sealed class RockRidgeExtensionReader : Iso9660FileSystemReader
 
     public override string Id => FileSystemIds.RockRidge;
 
-    protected override bool AcceptFileSystem(OpticalTrackDescriptor track, ReadOnlySpan<byte> descriptor)
+    protected override bool AcceptFileSystem(IMediaOpticalTrack track, ReadOnlySpan<byte> descriptor)
     {
         var directory = ReadRootDirectoryData(track, descriptor);
         var offset = 0;

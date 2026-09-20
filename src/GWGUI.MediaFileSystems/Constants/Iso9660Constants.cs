@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Constants;
+﻿namespace GWGUI.MediaFileSystems.Constants;
 
 /// <summary>Invariant ISO 9660 volume descriptor and directory record dimensions.</summary>
 internal static class Iso9660Constants

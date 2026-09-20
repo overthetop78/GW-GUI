@@ -2,7 +2,7 @@
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaEngine.Constants;
 
-namespace GWGUI.MediaEngine.Operations;
+namespace GWGUI.MediaEngine.Contracts.Migration;
 
 /// <summary>Répertorie les systèmes de fichiers que le moteur sait reconstruire depuis le modèle commun.</summary>
 public static class FileSystemMigrationTargetCatalog

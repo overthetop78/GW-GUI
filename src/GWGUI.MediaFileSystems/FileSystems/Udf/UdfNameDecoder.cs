@@ -1,6 +1,7 @@
-using GWGUI.MediaEngine.Constants;
+﻿using System.IO;
+using GWGUI.MediaFileSystems.Constants;
 
-namespace GWGUI.MediaEngine.FileSystems.Udf;
+namespace GWGUI.MediaFileSystems.FileSystems.Udf;
 
 /// <summary>Decodes UDF CS0 compressed Unicode strings and fixed-length d-strings.</summary>
 internal static class UdfNameDecoder

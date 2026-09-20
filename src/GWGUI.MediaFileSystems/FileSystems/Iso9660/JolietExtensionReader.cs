@@ -1,7 +1,8 @@
-﻿using GWGUI.MediaEngine.Constants;
+﻿using System.IO;
+using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.Definitions;
 
-namespace GWGUI.MediaEngine.FileSystems.Iso9660;
+namespace GWGUI.MediaFileSystems.FileSystems.Iso9660;
 
 /// <summary>Reads ISO 9660 supplementary volume descriptors carrying Joliet UCS-2 names.</summary>
 public sealed class JolietExtensionReader : Iso9660FileSystemReader

@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Images.Reading.Optical;
 using IMediaOpticalTrack = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
 using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
@@ -8,6 +9,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Describes one readable optical track without exposing its container format to consumers.</summary>
 public sealed class OpticalTrackDescriptor : IMediaOpticalTrack
 {
+    private static readonly OpticalSectorReader SectorReader = new();
     public OpticalTrackDescriptor(
         int sessionNumber,
         int trackNumber,
@@ -116,4 +118,7 @@ public sealed class OpticalTrackDescriptor : IMediaOpticalTrack
     public int SubchannelStride { get; }
     public bool HasSubchannels => SubchannelSource is not null;
     public bool IsAudio => Mode == OpticalTrackMode.Audio;
+
+    public ValueTask<byte[]> ReadUserDataAsync(long relativeSector, CancellationToken cancellationToken = default) =>
+        SectorReader.ReadUserDataAsync(this, relativeSector, cancellationToken);
 }

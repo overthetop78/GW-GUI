@@ -1,28 +1,20 @@
-﻿using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+﻿using System.IO;
+using GWGUI.MediaFileSystems;
+using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Buffers.Binary;
-using System.Collections.Frozen;
-using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaFileSystems.Constants;
+using GWGUI.MediaFileSystems.Interfaces;
 using GWGUI.MediaFileSystems.Definitions;
-using GWGUI.MediaEngine.Interfaces.Exploration;
-using GWGUI.MediaEngine.Images.Reading.Optical;
-using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
-namespace GWGUI.MediaEngine.FileSystems.Udf;
+namespace GWGUI.MediaFileSystems.FileSystems.Udf;
 
 /// <summary>Reads directly allocated UDF volumes carried by an optical data track.</summary>
 public sealed class UdfFileSystemReader : IMediaFileSystemReader
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
-    private readonly OpticalSectorReader sectors = new();
-
     public string Id => FileSystemIds.Udf;
 
-    public IReadOnlySet<MediaRepresentationKind> RepresentationKinds => SupportedRepresentations;
-
-    public bool CanRead(MediaImageDocument document, MediaVolumeDescriptor volume)
+    public bool CanRead(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
         try
         {
@@ -36,7 +28,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         }
     }
 
-    public FileSystemVolume Read(MediaImageDocument document, MediaVolumeDescriptor volume)
+    public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
         var context = ReadVolumeContext(document, volume);
         var visited = new HashSet<uint>();
@@ -57,7 +49,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
             attributes: [$"UDF {FormatRevision(context.Revision)}"]);
     }
 
-    private VolumeContext ReadVolumeContext(MediaImageDocument document, MediaVolumeDescriptor volume)
+    private VolumeContext ReadVolumeContext(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
         var track = ResolveTrack(document, volume);
         ValidateVolumeRecognitionSequence(track);
@@ -295,7 +287,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         return result;
     }
 
-    private void ValidateVolumeRecognitionSequence(OpticalTrackDescriptor track)
+    private void ValidateVolumeRecognitionSequence(IMediaOpticalTrack track)
     {
         var foundNsr = false;
         for (var index = 0; index < UdfConstants.MaximumVolumeRecognitionSectors; index++)
@@ -313,7 +305,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         if (!foundNsr) throw new InvalidDataException("The UDF NSR volume structure descriptor is missing.");
     }
 
-    private uint FindAnchor(OpticalTrackDescriptor track)
+    private uint FindAnchor(IMediaOpticalTrack track)
     {
         var candidates = new List<long> { UdfConstants.AnchorSector };
         if (track.SectorCount > 0) candidates.Add(track.SectorCount - 1);
@@ -334,23 +326,23 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         throw new InvalidDataException("No valid UDF anchor volume descriptor pointer was found.");
     }
 
-    private byte[] ReadPhysicalBlock(OpticalTrackDescriptor track, uint block)
+    private byte[] ReadPhysicalBlock(IMediaOpticalTrack track, uint block)
     {
-        var data = sectors.ReadUserDataAsync(track, block).AsTask().GetAwaiter().GetResult();
+        var data = track.ReadUserDataAsync(block).AsTask().GetAwaiter().GetResult();
         if (data.Length != UdfConstants.LogicalBlockSize)
             throw new NotSupportedException($"Unsupported UDF physical sector size {data.Length}.");
         return data;
     }
 
-    private byte[] ReadPartitionBlock(OpticalTrackDescriptor track, uint partitionStart, uint partitionLength, uint block)
+    private byte[] ReadPartitionBlock(IMediaOpticalTrack track, uint partitionStart, uint partitionLength, uint block)
     {
         if (block >= partitionLength) throw new InvalidDataException("A UDF block lies outside its partition.");
         return ReadPhysicalBlock(track, checked(partitionStart + block));
     }
 
-    private static OpticalTrackDescriptor ResolveTrack(MediaImageDocument document, MediaVolumeDescriptor volume)
+    private static IMediaOpticalTrack ResolveTrack(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
-        if (document.Representation is not OpticalMediaImageRepresentation optical || optical.Tracks is null)
+        if (document.Representation is not IMediaOpticalRepresentation optical || optical.Tracks is null)
             throw new NotSupportedException("UDF requires optical track data.");
         return optical.Tracks.FirstOrDefault(track =>
                 !track.IsAudio
@@ -413,7 +405,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         $"{(revision >> 8):X}.{(revision & 0xFF):X2}";
 
     private sealed record VolumeContext(
-        OpticalTrackDescriptor Track,
+        IMediaOpticalTrack Track,
         uint PartitionStart,
         uint PartitionLength,
         ushort Revision,

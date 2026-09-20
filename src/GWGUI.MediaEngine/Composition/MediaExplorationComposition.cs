@@ -2,8 +2,9 @@
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Sequential;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.FileSystems.Iso9660;
-using GWGUI.MediaEngine.FileSystems.Udf;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaFileSystems.FileSystems.Iso9660;
+using GWGUI.MediaFileSystems.FileSystems.Udf;
 using GWGUI.MediaFileSystems.Exploration;
 using GWGUI.MediaFileSystems.Exploration.Partitioning;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
@@ -36,10 +37,10 @@ public sealed class MediaExplorationComposition
             FileSystemReaderCatalog.CreateDefault(),
             [
                 new SequentialContentDecoderAdapter(sequentialMedia.Decoders),
-                new UdfFileSystemReader(),
-                new JolietExtensionReader(),
-                new RockRidgeExtensionReader(),
-                new Iso9660FileSystemReader()
+                new MediaFileSystemsOpticalReaderAdapter(new UdfFileSystemReader()),
+                new MediaFileSystemsOpticalReaderAdapter(new JolietExtensionReader()),
+                new MediaFileSystemsOpticalReaderAdapter(new RockRidgeExtensionReader()),
+                new MediaFileSystemsOpticalReaderAdapter(new Iso9660FileSystemReader())
             ]),
         new MediaVolumeDetectorRegistry(
         [

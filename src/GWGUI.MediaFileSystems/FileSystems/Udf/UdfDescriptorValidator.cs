@@ -1,7 +1,7 @@
-using System.Buffers.Binary;
-using GWGUI.MediaEngine.Constants;
+﻿using System.Buffers.Binary;
+using GWGUI.MediaFileSystems.Constants;
 
-namespace GWGUI.MediaEngine.FileSystems.Udf;
+namespace GWGUI.MediaFileSystems.FileSystems.Udf;
 
 /// <summary>Validates ECMA-167 descriptor tags before their contents are consumed.</summary>
 internal static class UdfDescriptorValidator

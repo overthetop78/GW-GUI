@@ -1,6 +1,5 @@
 ﻿using GWGUI.MediaEngine.Contracts.Migration;
 using GWGUI.App.Functions.Localization;
-using GWGUI.MediaEngine.Operations;
 
 namespace GWGUI.App.ViewModels.Conversion;
 

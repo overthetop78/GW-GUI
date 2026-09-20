@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Constants;
+﻿namespace GWGUI.MediaFileSystems.Constants;
 
 /// <summary>Invariant ECMA-167 and UDF descriptor identifiers, offsets, and limits.</summary>
 internal static class UdfConstants

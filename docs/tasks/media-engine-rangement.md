@@ -2632,3 +2632,34 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
     - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : référencer la composition sous `Images.Formats.Tape`.
+- [x] Supprimer le dossier Operations de MediaEngine
+  - [x] Placer le catalogue et le service auprès de leurs responsabilités
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTargetCatalog.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/FileSystemMigrationTargetCatalog.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` vers `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationTargetOption.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationLossRow.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Operations`.
+- [x] Placer les lecteurs optiques de fichiers dans MediaFileSystems
+  - [x] Exposer les secteurs utilisateur des pistes déjà décodées
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Interfaces/IMediaOpticalTrack.cs` : ajouter la lecture d’un secteur utilisateur à l’interface de piste.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackDescriptor.cs` : implémenter cette lecture par `OpticalSectorReader`.
+  - [x] Déplacer les constantes et traitements propres aux systèmes de fichiers optiques
+    - [x] Déplacer `src/GWGUI.MediaEngine/Constants/Iso9660Constants.cs` vers `src/GWGUI.MediaFileSystems/Constants/Iso9660Constants.cs` avec son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Constants/UdfConstants.cs` vers `src/GWGUI.MediaFileSystems/Constants/UdfConstants.cs` avec son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfNameDecoder.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Udf/UdfNameDecoder.cs` avec ses imports.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfDescriptorValidator.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Udf/UdfDescriptorValidator.cs` avec ses imports.
+  - [x] Déplacer les lecteurs et raccorder leur appel depuis MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Iso9660/Iso9660FileSystemReader.cs` en utilisant les interfaces de média déjà décodé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Iso9660/JolietExtensionReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Iso9660/JolietExtensionReader.cs` en utilisant les constantes de MediaFileSystems.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Iso9660/RockRidgeExtensionReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Iso9660/RockRidgeExtensionReader.cs` en utilisant les interfaces et constantes de MediaFileSystems.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Udf/UdfFileSystemReader.cs` en utilisant les interfaces de média déjà décodé.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Reading/MediaFileSystemsOpticalReaderAdapter.cs` : transmettre le document décodé aux lecteurs optiques et convertir leur résultat pour le registre actuel.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : enregistrer les quatre lecteurs de MediaFileSystems via cet adaptateur.
+    - [x] Supprimer les dossiers vides `src/GWGUI.MediaEngine/FileSystems/Iso9660` et `src/GWGUI.MediaEngine/FileSystems/Udf`.

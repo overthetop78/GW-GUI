@@ -151,7 +151,7 @@ public static class MediaEngineFactory
     }
 
     /// <summary>Crée l'entrée média pour l'export des fichiers vers une image cible.</summary>
-    public static Operations.FileSystemMigrationService CreateFileSystemMigrationService() => new();
+    public static Images.Creation.FileSystemMigrationService CreateFileSystemMigrationService() => new();
 
     /// <summary>Crée le service reconnaissant une image sectorielle avant de la reconstruire en SCP.</summary>
     public static SectorImageScpFileConversionService CreateSectorImageScpFileConversionService()

@@ -15,7 +15,7 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 using FileSystemsMigrationService = GWGUI.MediaFileSystems.Migration.FileSystemMigrationService;
 using FileSystemsReport = GWGUI.MediaFileSystems.Migration.MigrationValidationReport;
 
-namespace GWGUI.MediaEngine.Operations;
+namespace GWGUI.MediaEngine.Images.Creation;
 
 /// <summary>Entrée média : crée le support vierge, demande l'injection puis écrit le format physique.</summary>
 public sealed class FileSystemMigrationService

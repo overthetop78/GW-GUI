@@ -1,7 +1,7 @@
 ﻿using GWGUI.MediaEngine.Contracts.Migration;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Operations;
+using GWGUI.MediaEngine.Images.Creation;
 using GWGUI.MediaFileSystems.FileSystems.Apple.Dos;
 using MediaFileSystemIds = GWGUI.MediaFileSystems.Definitions.FileSystemIds;
 
