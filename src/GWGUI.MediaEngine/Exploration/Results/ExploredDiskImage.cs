@@ -1,11 +1,10 @@
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.FileSystems;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Results;
 
@@ -120,16 +119,6 @@ public sealed record ExploredDiskImage : IImageDisquette
             return null;
         }
 
-        IReadOnlyList<FileSystemEntry> entries;
-        if (Metadata.Content.HasCataloglessOrganization)
-        {
-            entries = [];
-        }
-        else
-        {
-            entries = PhysicalSectorTreeBuilder.Build(selectedImage);
-        }
-
         var volume = new FileSystemVolume(
             Path.GetFileNameWithoutExtension(SourcePath),
             selectedImage.FormatId,
@@ -137,7 +126,7 @@ public sealed record ExploredDiskImage : IImageDisquette
             0,
             null,
             null,
-            entries,
+            [],
             []);
         return new ExploredDiskImage(
             SourcePath,

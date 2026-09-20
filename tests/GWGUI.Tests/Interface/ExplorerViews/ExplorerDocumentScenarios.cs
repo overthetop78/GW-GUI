@@ -4,13 +4,13 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.App.ViewModels.Explorer;
 using System.Windows.Controls;
 using System.Windows;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.App.Views.Controls.Common;
 using GWGUI.Tests.Interface.VisualizerViews;
 using System.IO;

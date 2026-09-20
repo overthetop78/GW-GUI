@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;

@@ -3,11 +3,11 @@ using GWGUI.App.Enums.Rendering.Scp;
 using GWGUI.App.Functions.Rendering.Scp;
 using GWGUI.App.Interfaces.Rendering.Scp;
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 using SkiaSharp;
 using System.Collections.Concurrent;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Rendering.Scp;
 

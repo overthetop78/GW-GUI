@@ -1,9 +1,9 @@
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Definitions;
-using GWGUI.MediaEngine.Recognition.Msx;
+using GWGUI.MediaEngine.Images.Reading.Recognition.Msx;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
 

@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Images.Conversion;
 using GWGUI.MediaEngine.Contracts;
 
 namespace GWGUI.MediaEngine.Interfaces.Conversion;

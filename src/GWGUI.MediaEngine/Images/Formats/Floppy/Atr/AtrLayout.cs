@@ -1,0 +1,97 @@
+﻿using GWGUI.MediaEngine.Functions;
+using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Constants;
+
+namespace GWGUI.MediaEngine.Images.Formats.Floppy.Atr;
+
+/// <summary>Décrit la disposition binaire et les tailles prises en charge d'un conteneur ATR.</summary>
+internal static class AtrLayout
+{
+    /// <summary>Taille de l'en-tête ATR, en octets.</summary>
+    public const int HeaderSize = 16;
+    /// <summary>Offset de la signature, en octets depuis le début du fichier.</summary>
+    public const int SignatureOffset = 0;
+    /// <summary>Offset du mot bas du nombre de paragraphes de données.</summary>
+    public const int ParagraphCountLowOffset = 2;
+    /// <summary>Offset de la taille nominale des secteurs.</summary>
+    public const int SectorSizeOffset = 4;
+    /// <summary>Offset du mot haut du nombre de paragraphes de données.</summary>
+    public const int ParagraphCountHighOffset = 6;
+    /// <summary>Taille d'un paragraphe ATR, en octets.</summary>
+    public const int ParagraphSize = 16;
+    /// <summary>Nombre de secteurs d'amorçage placés au début de la charge utile.</summary>
+    public const int BootSectorCount = 3;
+    /// <summary>Taille d'un secteur d'amorçage, en octets.</summary>
+    public const int BootSectorSize = SingleDensitySectorSize;
+    /// <summary>Taille sectorielle ATR de 128 octets.</summary>
+    public const int SingleDensitySectorSize = 128;
+    /// <summary>Taille sectorielle ATR de 256 octets.</summary>
+    public const int DoubleDensitySectorSize = 256;
+    /// <summary>Taille sectorielle ATR étendue de 512 octets.</summary>
+    public const int ExtendedSectorSize = 512;
+    /// <summary>Nombre de secteurs d'une image ATR standard de 90 ou 180 Kio.</summary>
+    public const int StandardSectorCount = 720;
+    /// <summary>Nombre de secteurs présents dans certaines images 90 Kio tronquées après leur dernière zone utile.</summary>
+    public const int TruncatedSingleDensitySectorCount = 512;
+    /// <summary>Nombre de secteurs d'une image ATR à densité améliorée de 130 Kio.</summary>
+    public const int EnhancedDensitySectorCount = 1040;
+    /// <summary>Nombre de secteurs des images Atari DOS étendues de 140 Kio.</summary>
+    public const int ExtendedSingleDensitySectorCount = 1120;
+    /// <summary>Nombre de cylindres des disquettes Atari 8 bits standards.</summary>
+    public const int StandardCylinderCount = 40;
+    /// <summary>Nombre de secteurs par piste en simple et double densité.</summary>
+    public const int StandardSectorsPerCylinder = 18;
+    /// <summary>Nombre de secteurs par piste en densité améliorée.</summary>
+    public const int EnhancedDensitySectorsPerCylinder = 26;
+    /// <summary>Nombre de secteurs par piste des images Atari DOS étendues de 140 Kio.</summary>
+    public const int ExtendedSingleDensitySectorsPerCylinder = 28;
+    /// <summary>Décalage binaire appliqué au mot haut du nombre de paragraphes.</summary>
+    public const int ParagraphCountHighWordShift = 16;
+    /// <summary>Premier numéro de secteur exposé par une image ATR.</summary>
+    public const int FirstSectorNumber = 1;
+    /// <summary>Index de la tête logique unique exposée par une image ATR.</summary>
+    public const int LogicalHeadIndex = 0;
+    /// <summary>Nombre de faces logiques exposées par une image ATR.</summary>
+    public const int LogicalHeadCount = DiskGeometryConstants.SingleSidedHeadCount;
+    /// <summary>Indique si une taille sectorielle est prise en charge.</summary>
+    /// <param name="sectorSize">Taille sectorielle observée, en octets.</param>
+    /// <returns><see langword="true"/> pour une taille prise en charge ; sinon <see langword="false"/>.</returns>
+    public static bool IsSupportedSectorSize(int sectorSize) => sectorSize is SingleDensitySectorSize or DoubleDensitySectorSize or ExtendedSectorSize;
+
+    /// <summary>Calcule la longueur de la zone d'amorçage précédant les secteurs de taille nominale.</summary>
+    /// <param name="sectorSize">Taille nominale des secteurs, en octets.</param>
+    /// <returns>Zéro pour les secteurs de 128 octets ; sinon la longueur des trois secteurs d'amorçage.</returns>
+    public static int GetBootAreaLength(int sectorSize) => sectorSize == SingleDensitySectorSize ? 0 : BootSectorCount * BootSectorSize;
+
+    /// <summary>Calcule le nombre total de secteurs contenus dans une charge utile ATR valide.</summary>
+    /// <param name="payloadLength">Longueur de la charge utile ATR, en octets.</param>
+    /// <param name="sectorSize">Taille nominale des secteurs suivant la zone d'amorçage.</param>
+    /// <returns>Nombre total de secteurs, secteurs d'amorçage compris.</returns>
+    public static int GetSectorCount(int payloadLength, int sectorSize)
+    {
+        var bootAreaLength = GetBootAreaLength(sectorSize);
+        return (sectorSize == SingleDensitySectorSize ? 0 : BootSectorCount) + (payloadLength - bootAreaLength) / sectorSize;
+    }
+
+    /// <summary>Indique si les secteurs présents constituent le début d'une disquette simple densité standard.</summary>
+    public static bool IsTruncatedSingleDensity(int sectorSize, int sectorCount) =>
+        sectorSize == SingleDensitySectorSize && sectorCount > 0 && sectorCount < StandardSectorCount;
+
+    /// <summary>Retourne la géométrie physique standard correspondant à la taille et au nombre de secteurs ATR.</summary>
+    /// <param name="sectorSize">Taille nominale d'un secteur.</param>
+    /// <param name="sectorCount">Nombre total de secteurs.</param>
+    /// <returns>Géométrie standard connue, ou géométrie linéaire pour une disposition ATR non standard.</returns>
+    public static (int Cylinders, int Heads, int SectorsPerTrack) GetGeometry(int sectorSize, int sectorCount) =>
+        (sectorSize, sectorCount) switch
+        {
+            (SingleDensitySectorSize, > 0 and < StandardSectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder),
+            (SingleDensitySectorSize, StandardSectorCount) or (DoubleDensitySectorSize, StandardSectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder),
+            (SingleDensitySectorSize, EnhancedDensitySectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, EnhancedDensitySectorsPerCylinder),
+            (SingleDensitySectorSize, ExtendedSingleDensitySectorCount) =>
+                (StandardCylinderCount, LogicalHeadCount, ExtendedSingleDensitySectorsPerCylinder),
+            _ => (sectorCount, LogicalHeadCount, 1)
+        };
+}

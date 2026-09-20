@@ -12,7 +12,7 @@ using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.Infrastructure.Settings.Logging;

@@ -1,7 +1,7 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Naming;
 using GWGUI.App.Profiles;
 using GWGUI.Infrastructure.Read;
@@ -62,13 +62,13 @@ internal sealed partial class ReadTabController(
     Func<string?, bool>? fileExists = null,
     Func<string, Exception?>? deleteCancelledOutput = null,
     Action? selectOutputName = null,
-    Func<string, Task<GWGUI.MediaEngine.Exploration.ScpCaptureInfo>>? readCaptureInfo = null,
+    Func<string, Task<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpCaptureInfo>>? readCaptureInfo = null,
     Action<Exception, string>? logError = null,
     Func<InternalPhysicalDiskReader>? internalReaderFactory = null)
 {
     private readonly Func<string?, bool> exists = fileExists ?? File.Exists;
     private readonly Func<string, Exception?> deleteOutput = deleteCancelledOutput ?? CancelledOutputCleaner.TryDelete;
-    private readonly Func<string, Task<GWGUI.MediaEngine.Exploration.ScpCaptureInfo>> captureInfo = readCaptureInfo ?? (path => GWGUI.MediaEngine.Exploration.ScpCaptureInfoReader.ReadAsync(path));
+    private readonly Func<string, Task<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpCaptureInfo>> captureInfo = readCaptureInfo ?? (path => GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpCaptureInfoReader.ReadAsync(path));
     private readonly Action<Exception, string> reportError = logError ?? ((error, context) => ErrorLog.Write(error, context));
     private readonly Func<InternalPhysicalDiskReader> createInternalReader = internalReaderFactory ?? InternalPhysicalDiskReader.CreateDefault;
     private ComboBox ProfileCombo => view.ProfileBlock.ProfileCombo;

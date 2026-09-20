@@ -1,12 +1,12 @@
-using GWGUI.MediaEngine.Conversion.Apple;
-using GWGUI.MediaEngine.Conversion.Flux;
-using GWGUI.MediaEngine.Conversion.Scp;
-using GWGUI.MediaEngine.Conversion.Acorn;
-using GWGUI.MediaEngine.Conversion.Atari;
-using GWGUI.MediaEngine.Conversion.Commodore;
-using GWGUI.MediaEngine.Encoding.Apple;
-using GWGUI.MediaEngine.Encoding;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Conversion.Apple;
+using GWGUI.MediaEngine.Images.Conversion.Flux;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion;
+using GWGUI.MediaEngine.Images.Conversion.Acorn;
+using GWGUI.MediaEngine.Images.Conversion.Atari;
+using GWGUI.MediaEngine.Images.Conversion.Commodore;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Apple.Encoding;
+using GWGUI.MediaEngine.Images.Writing.Encoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
@@ -14,59 +14,60 @@ using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
 using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 using GWGUI.MediaEngine.Exploration.Metadata;
-using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.Images.Reading.Metadata;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Recognition;
-using GWGUI.MediaEngine.Recognition.Policies;
-using GWGUI.MediaEngine.Recognition.Msx;
-using GWGUI.MediaEngine.Recognition.Scp;
-using GWGUI.MediaEngine.Reconstruction.Apple;
-using GWGUI.MediaEngine.Reconstruction.Atari;
-using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
+using GWGUI.MediaEngine.Images.Reading.Recognition.Policies;
+using GWGUI.MediaEngine.Images.Reading.Recognition.Msx;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction.Apple;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction.Atari;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Conversion;
-using GWGUI.MediaEngine.Decoding.I86f;
-using GWGUI.MediaEngine.Decoding.Scp.Sectors;
-using GWGUI.MediaEngine.Formats.Floppy.Apple;
-using GWGUI.MediaEngine.Formats.Floppy.AcornAtom;
-using GWGUI.MediaEngine.Formats.Floppy.Apridisk;
-using GWGUI.MediaEngine.Formats.Floppy.Atr;
-using GWGUI.MediaEngine.Formats.Floppy.Atx;
-using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
-using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
-using GWGUI.MediaEngine.Formats.Floppy.Cp2;
+using GWGUI.MediaEngine.Images.Conversion;
+using GWGUI.MediaEngine.Images.Reading.Decoding.I86f;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Apple;
+using GWGUI.MediaEngine.Images.Formats.Floppy.AcornAtom;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Apridisk;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Atr;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Atx;
+using GWGUI.MediaEngine.Images.Formats.Floppy.BbcDfs;
+using GWGUI.MediaEngine.Images.Formats.Floppy.CommodoreDos;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Cp2;
 
-using GWGUI.MediaEngine.Formats.Floppy.CpcDsk;
+using GWGUI.MediaEngine.Images.Formats.Floppy.CpcDsk;
 
-using GWGUI.MediaEngine.Formats.Floppy.D64;
+using GWGUI.MediaEngine.Images.Formats.Floppy.D64;
 
-using GWGUI.MediaEngine.Formats.Floppy.D71;
+using GWGUI.MediaEngine.Images.Formats.Floppy.D71;
 
-using GWGUI.MediaEngine.Formats.Floppy.D81;
+using GWGUI.MediaEngine.Images.Formats.Floppy.D81;
 
-using GWGUI.MediaEngine.Formats.Floppy.DiskCopy;
+using GWGUI.MediaEngine.Images.Formats.Floppy.DiskCopy;
 
-using GWGUI.MediaEngine.Formats.Floppy.I86f;
+using GWGUI.MediaEngine.Images.Formats.Floppy.I86f;
 
-using GWGUI.MediaEngine.Formats.Floppy.ImageDisk;
+using GWGUI.MediaEngine.Images.Formats.Floppy.ImageDisk;
 
-using GWGUI.MediaEngine.Formats.Floppy.Msa;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Msa;
 
-using GWGUI.MediaEngine.Formats.Floppy.Raw;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
 
-using GWGUI.MediaEngine.Formats.Floppy.Rx02;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Rx02;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
-using GWGUI.MediaEngine.Formats.Floppy.St;
+using GWGUI.MediaEngine.Images.Formats.Floppy.St;
 
-using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
+using GWGUI.MediaEngine.Images.Formats.Floppy.TeleDisk;
 
-using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
+using GWGUI.MediaEngine.Images.Formats.Floppy.TwoImg;
 using GWGUI.MediaEngine.Interfaces.Reading;
-using GWGUI.MediaEngine.Reading;
+using GWGUI.MediaEngine.Images.Reading;
 
-using GWGUI.MediaEngine.Reconstruction;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction;
 
 namespace GWGUI.MediaEngine.Composition;
 
@@ -77,7 +78,7 @@ public static class MediaEngineFactory
     public static AmigaAdfConversionService CreateAmigaAdfConversionService()
     {
         var scpReader = CreateScpReader();
-        return new(new AmigaScpSectorImageReader(scpReader, CreateFluxDecoders()), new Formats.Floppy.Adf.AdfReader(), new Formats.Floppy.Adf.AmigaAdfWriter());
+        return new(new AmigaScpSectorImageReader(scpReader, CreateFluxDecoders()), new GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader(), new GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AmigaAdfWriter());
     }
     /// <summary>Crée le service de conversion IBM brute avec ses Reader et Writer partagés.</summary>
     public static IbmRawConversionService CreateIbmRawConversionService()
@@ -95,7 +96,7 @@ public static class MediaEngineFactory
     public static AcornAdfConversionService CreateAcornAdfConversionService()
     {
         var scpReader = CreateScpReader();
-        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new Formats.Floppy.Adf.AdfReader(), new Formats.Floppy.Adf.AcornAdfWriter());
+        return new(new IsoScpSectorImageReader(scpReader, CreateFluxDecoders()), new GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader(), new GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AcornAdfWriter());
     }
     /// <summary>Crée le service de conversion BBC DFS avec ses Reader et Writer partagés.</summary>
     public static BbcDfsConversionService CreateBbcDfsConversionService()
@@ -130,22 +131,22 @@ public static class MediaEngineFactory
         return new(new AppleDiskImageReader(), new AppleScpSectorImageReader(scpReader, CreateFluxDecoders()), new DiskCopyWriter());
     }
     /// <summary>Crée le service HFE sectoriel avec l'explorateur et l'encodeur de pistes communs.</summary>
-    public static HfeConversionService CreateHfeConversionService() => new(CreateDefaultExplorer(), new SectorImageTrackEncoder(), new Formats.Floppy.Hfe.HfeWriter());
+    public static HfeConversionService CreateHfeConversionService() => new(CreateDefaultExplorer(), new SectorImageTrackEncoder(), new GWGUI.MediaEngine.Images.Formats.Floppy.Hfe.HfeWriter());
 
     /// <summary>Crée le service de conversion directe entre conteneurs de flux.</summary>
     public static FluxContainerConversionService CreateFluxContainerConversionService() => new(
         CreateScpReader(),
         new ScpWriter(),
-        new Formats.Floppy.Hfe.HfeReader(),
-        new Formats.Floppy.Hfe.HfeWriter());
+        new GWGUI.MediaEngine.Images.Formats.Floppy.Hfe.HfeReader(),
+        new GWGUI.MediaEngine.Images.Formats.Floppy.Hfe.HfeWriter());
     /// <summary>Crée le service commun de reconstruction SCP depuis les images sectorielles.</summary>
     public static SectorImageScpConversionService CreateSectorImageScpConversionService() => new(new SectorImageTrackEncoder(), new ScpEncodedTrackFluxService(), new ScpWriter());
 
     /// <summary>Crée le service strict de réinterprétation entre formats FAT12 compatibles.</summary>
-    public static Conversion.Fat12.Fat12ReinterpretationService CreateFat12ReinterpretationService()
+    public static GWGUI.MediaEngine.Images.Conversion.Fat12.Fat12ReinterpretationService CreateFat12ReinterpretationService()
     {
-        var linear = new Formats.Floppy.Raw.LinearSectorImageWriter();
-        var writer = new Conversion.Fat12.Fat12TargetImageWriter(new Formats.Floppy.St.AtariStWriter(linear), new Formats.Floppy.Raw.IbmRawImageWriter(linear), new Formats.Floppy.Raw.MsxRawImageWriter(linear));
+        var linear = new GWGUI.MediaEngine.Images.Formats.Floppy.Raw.LinearSectorImageWriter();
+        var writer = new GWGUI.MediaEngine.Images.Conversion.Fat12.Fat12TargetImageWriter(new GWGUI.MediaEngine.Images.Formats.Floppy.St.AtariStWriter(linear), new GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmRawImageWriter(linear), new GWGUI.MediaEngine.Images.Formats.Floppy.Raw.MsxRawImageWriter(linear));
         return new(CreateDefaultExplorer(), writer);
     }
 
@@ -343,7 +344,7 @@ public static class MediaEngineFactory
     /// <summary>Registers every existing media image reader in deterministic order.</summary>
     private static IReadOnlyList<IMediaImageReader> CreateMediaImageReaders() =>
     [
-        new Formats.Floppy.Adf.AdfReader(),
+        new GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader(),
         new AcornAtomDskReader(),
         new ApridiskReader(),
         new BbcDfsReader(),
@@ -352,7 +353,7 @@ public static class MediaEngineFactory
         new AtariStReader(),
         new MsaReader(),
         new AtrReader(),
-        new Formats.Floppy.Xfd.XfdReader(),
+        new GWGUI.MediaEngine.Images.Formats.Floppy.Xfd.XfdReader(),
         new AtxReader(),
         new D64Reader(),
         new D71Reader(),
@@ -368,7 +369,7 @@ public static class MediaEngineFactory
         new ImdReader(),
         new EpsonQx10RawImageReader(),
         new UcsdRawImageReader(),
-        new Formats.Floppy.Hfe.HfeReader(),
+        new GWGUI.MediaEngine.Images.Formats.Floppy.Hfe.HfeReader(),
         new ScpReader()
     ];
 }

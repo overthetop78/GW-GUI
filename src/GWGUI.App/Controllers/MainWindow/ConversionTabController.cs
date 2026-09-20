@@ -1,12 +1,12 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using EnabledOption = global::GWGUI.MediaEngine.Commands.Options.EnabledOption;
+using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
-using ConversionOutput = global::GWGUI.MediaEngine.Conversion.ConversionOutput;
-using ConversionPlanner = global::GWGUI.MediaEngine.Conversion.ConversionPlanner;
-using GWGUI.MediaEngine.Formats;
-using GWGUI.MediaEngine.Formats.Detection;
+using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using ConversionPlanner = global::GWGUI.MediaEngine.Images.Conversion.ConversionPlanner;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.App.Profiles;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Settings.Engines;
@@ -29,10 +29,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using GWGUI.Infrastructure.Processes;
-using GWGUI.MediaEngine.Conversion;
-using GWGUI.MediaEngine.Conversion.Sequential;
+using GWGUI.MediaEngine.Images.Conversion;
+using GWGUI.MediaEngine.Images.Conversion.Sequential;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Reading;
+using GWGUI.MediaEngine.Images.Reading;
 
 namespace GWGUI.App.Controllers.MainWindow;
 

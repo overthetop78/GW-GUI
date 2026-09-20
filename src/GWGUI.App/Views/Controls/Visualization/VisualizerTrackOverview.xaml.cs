@@ -9,7 +9,7 @@ using GWGUI.App.Rendering.Sectors;
 using GWGUI.App.Rendering.Sequential;
 using GWGUI.MediaEngine.Enums;
 
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;

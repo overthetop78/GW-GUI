@@ -1,6 +1,6 @@
 using GWGUI.Infrastructure.Naming;
-using ConversionTagFormatter = global::GWGUI.MediaEngine.Conversion.ConversionTagFormatter;
-using GWGUI.MediaEngine.Formats;
+using ConversionTagFormatter = global::GWGUI.MediaEngine.Images.Conversion.ConversionTagFormatter;
+using GWGUI.MediaEngine.Images.Formats;
 namespace GWGUI.Tests.Application.OutputNaming;
 internal static class SequenceAndTagsScenarios
 {

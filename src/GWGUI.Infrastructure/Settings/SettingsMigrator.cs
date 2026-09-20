@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Settings.Emulation;
 using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.Infrastructure.Settings.Operations;

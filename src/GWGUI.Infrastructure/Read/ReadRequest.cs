@@ -1,4 +1,4 @@
-using EnabledOption = global::GWGUI.MediaEngine.Commands.Options.EnabledOption;
+using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 namespace GWGUI.Infrastructure.Read;
 
 public enum ReadResultKind { RawScp, KnownFormat }

@@ -6,7 +6,7 @@ using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Interfaces.Exploration;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems;
 

@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 
 namespace GWGUI.App.Contracts.Services.PhysicalDiskReading;
 

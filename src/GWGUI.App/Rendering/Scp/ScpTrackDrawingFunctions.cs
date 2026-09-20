@@ -1,5 +1,5 @@
 using GWGUI.App.Contracts.Rendering.Scp;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 using SkiaSharp;
 
 namespace GWGUI.App.Rendering.Scp;

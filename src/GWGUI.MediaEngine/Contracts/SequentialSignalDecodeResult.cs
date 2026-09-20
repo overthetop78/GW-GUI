@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Images.Models.Sequential;
 
 namespace GWGUI.MediaEngine.Contracts;
 

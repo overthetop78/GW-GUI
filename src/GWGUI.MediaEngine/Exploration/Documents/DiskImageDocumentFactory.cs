@@ -4,9 +4,9 @@ using GWGUI.MediaEngine.FileSystems;
 
 using GWGUI.MediaEngine.Constants;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Documents;
 
@@ -55,8 +55,7 @@ internal sealed class DiskImageDocumentFactory(DiskImageMetadataFactory metadata
                 scpImage);
         }
 
-        var entries = metadata.Content.HasCataloglessOrganization ? [] : PhysicalSectorTreeBuilder.Build(primaryImage);
-        var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), primaryImage.FormatId, primaryImage.Capacity, 0, null, null, entries, []);
+        var physical = new FileSystemVolume(Path.GetFileNameWithoutExtension(path), primaryImage.FormatId, primaryImage.Capacity, 0, null, null, [], []);
         return new(
             path,
             primaryImage,

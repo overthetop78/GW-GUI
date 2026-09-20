@@ -10,10 +10,10 @@ using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Representations.Optical;
-using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 
 
 namespace GWGUI.App.Presenters.Explorer;

@@ -3,8 +3,8 @@ using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Exploration.Scp;
-using GWGUI.MediaEngine.Reading;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
+using GWGUI.MediaEngine.Images.Reading;
 using System.IO;
 
 namespace GWGUI.MediaEngine.Exploration;

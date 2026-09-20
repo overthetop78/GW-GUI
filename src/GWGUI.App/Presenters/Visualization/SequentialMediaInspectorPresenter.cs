@@ -5,7 +5,7 @@ using GWGUI.App.Enums.Rendering.Sequential;
 using GWGUI.App.Enums.ViewModels.Visualization;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Images.Models.Sequential;
 using RenderSegment = GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment;
 
 namespace GWGUI.App.Presenters.Visualization;

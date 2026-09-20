@@ -11,8 +11,8 @@ using GWGUI.App.Rendering.Sequential;
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Representations.Optical;
-using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaEngine.Images.Models.Sequential;
 using SkiaSharp;
 using RenderSequentialMediaSegment = GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment;
 

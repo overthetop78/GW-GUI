@@ -1,9 +1,9 @@
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.Views.Controls.Common;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.App.Localization.Extensions;
 using System.IO;
 using System.Windows;

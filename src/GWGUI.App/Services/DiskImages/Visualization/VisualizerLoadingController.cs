@@ -3,16 +3,16 @@ using GWGUI.App.Services.Logging;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using ConversionOutput = global::GWGUI.MediaEngine.Conversion.ConversionOutput;
-using GWGUI.MediaEngine.Formats.Detection;
-using GWGUI.MediaEngine.Formats;
+using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using GWGUI.MediaEngine.Images.Formats.Detection;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Enums;
 using System.IO;
@@ -163,7 +163,7 @@ internal sealed class VisualizerLoadingController(
                 stagedSourcePath = Path.Combine(
                     Path.GetTempPath(),
                     $"{DiskImageTemporaryFileConstants.VisualizerFilePrefix}{Guid.NewGuid().ToString(DiskImageTemporaryFileConstants.UniqueNameFormat)}{DiskImageFileExtensions.Img}");
-                await GWGUI.MediaEngine.Conversion.Atari.AtrPayloadWriter.WriteRawPayloadAsync(
+                await GWGUI.MediaEngine.Images.Conversion.Atari.AtrPayloadWriter.WriteRawPayloadAsync(
                     path,
                     stagedSourcePath,
                     cancellationToken);

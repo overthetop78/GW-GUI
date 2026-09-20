@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Formats.Parsing;
+using GWGUI.MediaEngine.Images.Formats.Parsing;
 namespace GWGUI.Tests.Hardware.CommandsAndParsing;
 internal static class ExternalOutputParsingScenarios
 {

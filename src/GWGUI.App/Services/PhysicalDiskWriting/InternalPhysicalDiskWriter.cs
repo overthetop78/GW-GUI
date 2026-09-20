@@ -2,7 +2,7 @@ using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.Infrastructure.Hardware.Media;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.PhysicalWriting;
+using GWGUI.MediaEngine.PhysicalMedia.Writing;
 
 namespace GWGUI.App.Services.PhysicalDiskWriting;
 

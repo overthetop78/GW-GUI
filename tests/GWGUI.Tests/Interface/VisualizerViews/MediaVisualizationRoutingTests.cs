@@ -6,7 +6,7 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 
 using IMediaImageRepresentation = global::GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;
 using System.Windows.Controls;

@@ -9,10 +9,10 @@ using GWGUI.MediaEngine.Contracts;
 
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Reading.Sources;
-using GWGUI.MediaEngine.Representations.Blocks;
-using GWGUI.MediaEngine.Representations.Optical;
-using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Images.Reading.Sources;
+using GWGUI.MediaEngine.Images.Models.Blocks;
+using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.Tests.Application.TestInfrastructure;
 
 namespace GWGUI.Tests.Interface.ExplorerViews;

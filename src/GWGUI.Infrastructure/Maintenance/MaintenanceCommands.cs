@@ -1,5 +1,5 @@
 using GWGUI.Infrastructure.Commands;
-using EnabledOption = global::GWGUI.MediaEngine.Commands.Options.EnabledOption;
+using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 namespace GWGUI.Infrastructure.Maintenance;
 
 public sealed record EraseRequest(string Executable, IReadOnlyList<EnabledOption> Options, string? Device = null, string? Drive = null, string? ExpertArguments = null);

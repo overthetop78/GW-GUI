@@ -1,6 +1,6 @@
 using GWGUI.App.ViewModels.Conversion;
-using GWGUI.MediaEngine.Formats;
-using GWGUI.MediaEngine.Formats.Detection;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Controllers.MainWindow;

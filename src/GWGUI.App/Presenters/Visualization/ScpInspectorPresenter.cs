@@ -1,9 +1,9 @@
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Presenters.Visualization;
 

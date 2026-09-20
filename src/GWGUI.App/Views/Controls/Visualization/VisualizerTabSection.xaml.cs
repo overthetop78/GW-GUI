@@ -3,7 +3,7 @@ using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 using System.Windows;
 using System.Windows.Controls;
 

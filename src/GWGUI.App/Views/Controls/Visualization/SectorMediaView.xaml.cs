@@ -2,7 +2,7 @@ using GWGUI.App.Contracts.Rendering.Sectors;
 using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Rendering.Sectors;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using SkiaSharp.Views.WPF;

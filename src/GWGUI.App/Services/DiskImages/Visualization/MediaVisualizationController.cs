@@ -11,11 +11,11 @@ using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 
-using GWGUI.MediaEngine.Representations.Blocks;
-using GWGUI.MediaEngine.Representations.Optical;
-using GWGUI.MediaEngine.Representations.Sectors;
-using GWGUI.MediaEngine.Representations.Sequential;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Models.Blocks;
+using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sequential;
+using GWGUI.MediaEngine.Images.Visualization;
 using System.Windows;
 using System.Windows.Threading;
 

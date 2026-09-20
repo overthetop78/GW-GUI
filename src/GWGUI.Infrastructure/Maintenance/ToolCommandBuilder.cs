@@ -1,5 +1,5 @@
 using GWGUI.Infrastructure.Commands;
-using EnabledOption = global::GWGUI.MediaEngine.Commands.Options.EnabledOption;
+using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
 using System.Globalization;
 

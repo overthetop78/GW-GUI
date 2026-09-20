@@ -1,7 +1,7 @@
-using GWGUI.MediaEngine.FileSystems.Fat12;
+using GWGUI.MediaFileSystems.FileSystems.Fat12;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Formats.Floppy.Adf;
-using GWGUI.MediaEngine.Formats.Floppy.BbcDfs;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Adf;
+using GWGUI.MediaEngine.Images.Formats.Floppy.BbcDfs;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation;
 

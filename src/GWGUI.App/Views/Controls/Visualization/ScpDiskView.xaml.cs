@@ -12,7 +12,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using GWGUI.MediaEngine;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Views.Controls.Visualization;
 

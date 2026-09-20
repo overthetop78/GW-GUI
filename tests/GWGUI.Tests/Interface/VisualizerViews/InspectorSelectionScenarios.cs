@@ -1,12 +1,12 @@
 using GWGUI.App.Services.DiskImages;
 using GWGUI.App.Services.Visualization;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.Tests.Interface.ExplorerViews;
 using System.Windows;
 using GWGUI.App.Contracts.ViewModels.Visualization;
-using GWGUI.MediaEngine.Encoding;
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Writing.Encoding;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.Tests.Interface.VisualizerViews;
 internal static class InspectorSelectionScenarios

@@ -3,7 +3,7 @@ using GWGUI.App.Contracts.Rendering.Sectors;
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Enums.Rendering.Sectors;
 using GWGUI.App.Enums.ViewModels.Visualization;
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.App.Presenters.Visualization;
 

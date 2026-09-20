@@ -1,5 +1,5 @@
-using GWGUI.MediaEngine.Formats;
-using GWGUI.MediaEngine.Formats.Parsing;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Parsing;
 using System.Diagnostics;
 
 namespace GWGUI.Infrastructure.HostTools;

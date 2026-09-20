@@ -5,7 +5,7 @@ using GWGUI.App.Controllers.MainWindow;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Settings.Engines;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Read;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Tests.Application.TestInfrastructure;

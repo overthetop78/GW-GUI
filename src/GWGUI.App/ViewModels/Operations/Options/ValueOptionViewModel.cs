@@ -1,4 +1,4 @@
-using EnabledOption = global::GWGUI.MediaEngine.Commands.Options.EnabledOption;
+using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 namespace GWGUI.App.ViewModels.Operations.Options;
 
 public sealed class ValueOptionViewModel(string argument, string initialValue) : OperationOptionViewModelBase(argument)

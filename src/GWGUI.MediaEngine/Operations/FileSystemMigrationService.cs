@@ -1,17 +1,17 @@
 using System.IO;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.Conversion.Fat12;
+using GWGUI.MediaEngine.Images.Conversion.Fat12;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Formats.Floppy.Adf;
-using GWGUI.MediaEngine.Formats.Floppy.Apple;
-using GWGUI.MediaEngine.Formats.Floppy.CommodoreDos;
-using GWGUI.MediaEngine.Formats.Floppy.D81;
-using GWGUI.MediaEngine.Formats.Floppy.Raw;
-using GWGUI.MediaEngine.Formats.Floppy.St;
-using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
-using GWGUI.MediaEngine.Reconstruction.Sectors;
-using GWGUI.MediaEngine.Reconstruction.Sectors.Apple;
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Adf;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Apple;
+using GWGUI.MediaEngine.Images.Formats.Floppy.CommodoreDos;
+using GWGUI.MediaEngine.Images.Formats.Floppy.D81;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
+using GWGUI.MediaEngine.Images.Formats.Floppy.St;
+using GWGUI.MediaEngine.Images.Formats.Floppy.TwoImg;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction.Sectors;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction.Sectors.Apple;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaFileSystems.Formats.Commodore;
 using FileSystemsMigrationService = GWGUI.MediaFileSystems.Migration.FileSystemMigrationService;
 using FileSystemsReport = GWGUI.MediaFileSystems.Migration.MigrationValidationReport;
@@ -135,7 +135,7 @@ public sealed class FileSystemMigrationService
             else if (AppleDiskImageWriter.SupportsExtension(extension) &&
                 formatId is not (DiskImageFormatIds.AppleIIProDos800 or DiskImageFormatIds.AppleIIISos))
                 await new AppleDiskImageWriter().WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
-            else if (GWGUI.MediaEngine.Conversion.Apple.AppleSectorConversionService.CanCreate(formatId, extension))
+            else if (GWGUI.MediaEngine.Images.Conversion.Apple.AppleSectorConversionService.CanCreate(formatId, extension))
                 await new AppleRawImageWriter().WriteAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
             else throw new InvalidDataException($"The Apple migration target '{formatId}' cannot be written to '{extension}'.");
             return;

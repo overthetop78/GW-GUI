@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Images.Models.Sequential;
 
 namespace GWGUI.MediaEngine.Interfaces.Encoding;
 

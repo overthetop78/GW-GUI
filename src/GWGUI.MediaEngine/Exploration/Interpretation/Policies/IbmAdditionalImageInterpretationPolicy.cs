@@ -1,9 +1,9 @@
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
-using GWGUI.MediaEngine.FileSystems.Fat12;
-using GWGUI.MediaEngine.Recognition.Ibm;
+using GWGUI.MediaFileSystems.FileSystems.Fat12;
+using GWGUI.MediaEngine.Images.Reading.Recognition.Ibm;
 using GWGUI.MediaEngine.Constants;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 

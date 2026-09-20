@@ -1,7 +1,7 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Naming;
 using GWGUI.App.Profiles;
 using GWGUI.Infrastructure.Read;

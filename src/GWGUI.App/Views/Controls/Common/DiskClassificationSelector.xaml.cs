@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.Contracts.Storage;
 using System.Windows;
 using System.Windows.Controls;

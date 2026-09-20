@@ -6,8 +6,8 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Interfaces.Exploration;
-using GWGUI.MediaEngine.Reading.Optical;
-using GWGUI.MediaEngine.Representations.Optical;
+using GWGUI.MediaEngine.Images.Reading.Optical;
+using GWGUI.MediaEngine.Images.Models.Optical;
 
 namespace GWGUI.MediaEngine.FileSystems.Udf;
 

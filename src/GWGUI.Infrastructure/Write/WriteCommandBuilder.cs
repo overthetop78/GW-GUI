@@ -1,6 +1,6 @@
 using GWGUI.Infrastructure.Commands;
 using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 namespace GWGUI.Infrastructure.Write;
 
 public static class WriteCommandBuilder

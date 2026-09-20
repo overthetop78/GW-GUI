@@ -1,10 +1,13 @@
-using GWGUI.MediaEngine.Acquisition;
-using GWGUI.MediaEngine.Conversion;
-using GWGUI.MediaEngine.Conversion.Optical;
-using GWGUI.MediaEngine.Conversion.Sequential;
+using GWGUI.MediaEngine.Images.Visualization;
+using GWGUI.MediaEngine.Images.Writing;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
+using GWGUI.MediaEngine.Images.Conversion;
+using GWGUI.MediaEngine.Images.Conversion.Optical;
+using GWGUI.MediaEngine.Images.Conversion.Sequential;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.PhysicalWriting;
-using GWGUI.MediaEngine.Reading;
+using GWGUI.MediaEngine.PhysicalMedia.Writing;
+using GWGUI.MediaEngine.Images.Reading;
 
 namespace GWGUI.MediaEngine.Composition;
 

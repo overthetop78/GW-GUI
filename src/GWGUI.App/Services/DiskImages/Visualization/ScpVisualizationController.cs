@@ -11,10 +11,10 @@ using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
-using GWGUI.MediaEngine.Reading;
-using GWGUI.MediaEngine.Representations.Flux;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Images.Models.Flux;
+using GWGUI.MediaEngine.Images.Visualization;
 using System.IO;
 using System.Threading.Channels;
 using System.Windows;

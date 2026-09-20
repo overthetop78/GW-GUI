@@ -3,7 +3,7 @@ using GWGUI.App.Contracts.Rendering.Optical;
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Enums.Rendering.Optical;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Representations.Optical;
+using GWGUI.MediaEngine.Images.Models.Optical;
 
 namespace GWGUI.App.Presenters.Visualization;
 

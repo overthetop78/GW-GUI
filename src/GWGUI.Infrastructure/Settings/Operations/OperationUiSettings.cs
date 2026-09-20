@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.Infrastructure.Naming;
 namespace GWGUI.Infrastructure.Settings.Operations;
 

@@ -1,7 +1,7 @@
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using GWGUI.MediaEngine.Formats;
-using GWGUI.MediaEngine.Formats.Detection;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.Contracts.Rendering.Scp;
@@ -20,11 +20,11 @@ using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDes
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Reading;
-using GWGUI.MediaEngine.Representations.Sectors;
-using GWGUI.MediaEngine.Representations.Flux;
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Flux;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.IO;
@@ -159,7 +159,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private async Task<MediaOpeningAnalysisResult> AnalyzeOpeningAsync(
         string path,
         string? requestedFormatId,
-        IProgress<GWGUI.MediaEngine.Exploration.Scp.ScpExplorationProgress>? scpProgress,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? scpProgress,
         Action<MediaExplorationProgress>? progress,
         CancellationToken cancellationToken)
     {

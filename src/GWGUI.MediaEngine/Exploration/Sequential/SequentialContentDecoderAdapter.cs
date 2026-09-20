@@ -5,11 +5,11 @@ using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolu
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Decoding.Sequential;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Interfaces.Exploration;
-using GWGUI.MediaEngine.Representations.Sequential;
+using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
 
 namespace GWGUI.MediaEngine.Exploration.Sequential;

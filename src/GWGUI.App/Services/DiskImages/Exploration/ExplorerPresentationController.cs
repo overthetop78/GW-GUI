@@ -2,11 +2,11 @@ using GWGUI.App.Constants.Localization;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 
 namespace GWGUI.App.Services.DiskImages.Exploration;
 

@@ -7,9 +7,9 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 
 using GWGUI.MediaEngine.Interfaces.Visualization;
-using GWGUI.MediaEngine.Representations.Flux;
-using GWGUI.MediaEngine.Representations.Sectors;
-using GWGUI.MediaEngine.Visualization.Providers;
+using GWGUI.MediaEngine.Images.Models.Flux;
+using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Visualization.Providers;
 using GWGUI.Tests.Application.TestInfrastructure;
 using GWGUI.App.Enums.Rendering.Sectors;
 

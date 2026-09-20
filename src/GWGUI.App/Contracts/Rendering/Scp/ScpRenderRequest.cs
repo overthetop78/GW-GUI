@@ -1,7 +1,7 @@
 using GWGUI.App.Enums.Rendering.Scp;
 using SkiaSharp;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Contracts.Rendering.Scp;
 

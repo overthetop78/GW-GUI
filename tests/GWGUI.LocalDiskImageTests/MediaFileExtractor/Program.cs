@@ -4,7 +4,7 @@ using System.Text.Json;
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 
 namespace GWGUI.MediaFileExtractor;
 

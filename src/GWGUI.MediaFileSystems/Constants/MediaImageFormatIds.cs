@@ -3,6 +3,8 @@ namespace GWGUI.MediaFileSystems.Constants;
 /// <summary>Identifiants de formats d'images partagés entre le moteur et les systèmes de fichiers.</summary>
 public static class MediaImageFormatIds
 {
+    public const string DecRx02 = "dec.rx02";
+    public const string UcsdIbmMfm = "ucsd.ibm.mfm";
     public const string AcornAdfs800 = "acorn.adfs.800";
     public const string AcornAtomDos = "acorn.dfs.atom";
     public const string AcornDfsSingleSided = "acorn.dfs.ss";

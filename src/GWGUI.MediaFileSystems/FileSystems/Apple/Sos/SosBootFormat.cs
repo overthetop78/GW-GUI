@@ -1,7 +1,7 @@
 namespace GWGUI.MediaFileSystems.FileSystems.Apple.Sos;
 
 /// <summary>Définit le marqueur et la fenêtre d'amorçage utilisés pour sonder Apple SOS.</summary>
-internal static class SosBootFormat
+public static class SosBootFormat
 {
     /// <summary>Longueur de la fenêtre d'amorçage examinée.</summary>
     public const int SearchLength = 128;

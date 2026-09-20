@@ -3,9 +3,9 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Constants;
 
-using GWGUI.MediaEngine.Formats.Floppy.Raw;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
 
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
 

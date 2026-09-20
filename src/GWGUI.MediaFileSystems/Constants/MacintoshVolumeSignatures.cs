@@ -3,7 +3,7 @@ using System.Buffers.Binary;
 namespace GWGUI.MediaFileSystems;
 
 /// <summary>Définit les signatures des blocs maîtres Macintosh MFS et HFS.</summary>
-internal static class MacintoshVolumeSignatures
+public static class MacintoshVolumeSignatures
 {
     /// <summary>Numéro du bloc logique du bloc maître.</summary>
     public const int MasterDirectoryBlock = 2;
@@ -40,7 +40,7 @@ internal static class MacintoshVolumeSignatures
 }
 
 /// <summary>Variantes de systèmes de fichiers nommées par le bloc maître Macintosh.</summary>
-internal enum MacintoshFileSystemKind
+public enum MacintoshFileSystemKind
 {
     /// <summary>Macintosh File System.</summary>
     Mfs,

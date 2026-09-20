@@ -15,7 +15,7 @@ using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Results;
@@ -23,15 +23,15 @@ using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Interfaces.Reading;
-using GWGUI.MediaEngine.Reading;
-using GWGUI.MediaEngine.Recognition;
-using GWGUI.MediaEngine.Representations.Sequential;
-using GWGUI.MediaEngine.Representations.Sectors;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
+using GWGUI.MediaEngine.Images.Models.Sequential;
+using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Visualization;
 
 using System.IO;
 using System.Windows;
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.Tests.Interface.VisualizerViews;
 internal static class VisualizerDocumentScenarios
@@ -52,7 +52,7 @@ internal static class VisualizerDocumentScenarios
     public static async Task Classification()
     {
         using var workspace=new Workspace();
-        var formats=new[] {new GWGUI.MediaEngine.Formats.DiskFormat("test.first","family-a","format-a",[new(".a","a",true)]),new GWGUI.MediaEngine.Formats.DiskFormat("test.second","family-b","format-b",[new(".b","b",true)])};
+        var formats=new[] {new GWGUI.MediaEngine.Images.Formats.DiskFormat("test.first","family-a","format-a",[new(".a","a",true)]),new GWGUI.MediaEngine.Images.Formats.DiskFormat("test.second","family-b","format-b",[new(".b","b",true)])};
         workspace.Visualizer.Header.SetFormats(formats); workspace.Explorer.SetFormats(formats,null);
         var first=ExplorerDocumentScenarios.Document("FIRST"); var image=first.Image.WithFormatId("test.first"); var second=image.WithFormatId("test.second");
         var document=new ExploredDiskImage(first.SourcePath,image,first.Volume,first.Metadata,detectedFileSystems:[new("reader-a",image,first.Volume),new("reader-b",second,first.Volume)],scpImage:first.ScpImage);

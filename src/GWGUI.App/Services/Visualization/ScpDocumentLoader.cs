@@ -3,7 +3,7 @@ using GWGUI.App.Constants.Localization;
 using System.IO;
 using GWGUI.MediaEngine;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.Visualization;
 

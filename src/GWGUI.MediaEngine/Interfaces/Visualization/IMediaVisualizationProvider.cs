@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 
 namespace GWGUI.MediaEngine.Interfaces.Visualization;
 

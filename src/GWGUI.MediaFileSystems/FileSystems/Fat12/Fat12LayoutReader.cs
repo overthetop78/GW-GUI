@@ -4,7 +4,7 @@ using System.Buffers.Binary;
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
 
 /// <summary>Valide un BPB FAT12 ou une disposition IBM historique.</summary>
-internal static class Fat12LayoutReader
+public static class Fat12LayoutReader
 {
     /// <summary>Tente de construire la disposition calculée correspondant au secteur d'amorçage.</summary>
     public static bool TryRead(ReadOnlySpan<byte> boot, int availableSectors, string formatId, out Fat12Layout layout)

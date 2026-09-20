@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 
 namespace GWGUI.MediaEngine.Interfaces.Reading;
 

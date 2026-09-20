@@ -1,15 +1,15 @@
-using GWGUI.MediaEngine.Decoding.Sequential;
-using GWGUI.MediaEngine.Decoding.Sequential.Acorn;
-using GWGUI.MediaEngine.Decoding.Sequential.Atari;
-using GWGUI.MediaEngine.Decoding.Sequential.Commodore;
-using GWGUI.MediaEngine.Decoding.Sequential.Msx;
-using GWGUI.MediaEngine.Decoding.Sequential.Spectrum;
-using GWGUI.MediaEngine.Encoding.Sequential;
-using GWGUI.MediaEngine.Encoding.Sequential.Acorn;
-using GWGUI.MediaEngine.Encoding.Sequential.Atari;
-using GWGUI.MediaEngine.Encoding.Sequential.Commodore;
-using GWGUI.MediaEngine.Encoding.Sequential.Msx;
-using GWGUI.MediaEngine.Encoding.Sequential.Spectrum;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Atari;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Commodore;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Msx;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Spectrum;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Atari;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Commodore;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Msx;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Spectrum;
 
 namespace GWGUI.MediaEngine.Composition;
 

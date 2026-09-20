@@ -1,6 +1,6 @@
 using GWGUI.App.Localization.Extensions;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Images.Visualization;
 using System.Windows.Controls;
 using System.Windows.Media;
 

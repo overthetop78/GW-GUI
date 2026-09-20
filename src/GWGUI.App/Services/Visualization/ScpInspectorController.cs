@@ -7,10 +7,10 @@ using System.Windows;
 using System.Windows.Controls;
 
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.Visualization;
 

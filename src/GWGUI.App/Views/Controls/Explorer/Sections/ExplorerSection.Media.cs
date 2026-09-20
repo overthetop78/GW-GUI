@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Enums.Explorer;
 using GWGUI.App.Functions.Explorer;
@@ -15,9 +15,9 @@ using System.Windows.Media;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Representations.Optical;
-using GWGUI.MediaEngine.Representations.Sequential;
-using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaEngine.Images.Models.Sequential;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 
 namespace GWGUI.App.Views.Controls.Explorer;
 

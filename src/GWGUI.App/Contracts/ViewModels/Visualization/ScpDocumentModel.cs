@@ -1,5 +1,5 @@
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Contracts.ViewModels.Visualization;
 

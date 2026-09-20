@@ -29,7 +29,7 @@ public sealed class ProDosMigrationImageTests
         [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
             0, 0, true, [], new byte[] { 1, 2, 3 })], []);
 
-    private static void AssertFile(GWGUI.MediaEngine.Representations.Sectors.SectorImage image, string expectedFileSystemId)
+    private static void AssertFile(GWGUI.MediaEngine.Images.Models.Sectors.SectorImage image, string expectedFileSystemId)
     {
         var reader = Assert.Single(FileSystemReaderCatalog.CreateDefault(), item => item.Id == FileSystemIds.ProDos);
         Assert.True(reader.CanRead(image));

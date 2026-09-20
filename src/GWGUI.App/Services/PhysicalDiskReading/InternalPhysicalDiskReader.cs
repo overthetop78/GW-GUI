@@ -9,9 +9,9 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.Infrastructure.Constants;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.Infrastructure.Hardware.Media;
-using GWGUI.MediaEngine.Acquisition;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.PhysicalDiskReading;
 

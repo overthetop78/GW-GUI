@@ -6,7 +6,7 @@ using GWGUI.App.Enums.Rendering.Blocks;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Representations.Blocks;
+using GWGUI.MediaEngine.Images.Models.Blocks;
 using System.IO;
 
 namespace GWGUI.App.Presenters.Visualization;

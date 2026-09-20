@@ -1,8 +1,8 @@
 using GWGUI.Infrastructure.Commands;
-using EnabledOption = global::GWGUI.MediaEngine.Commands.Options.EnabledOption;
+using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
-using GWGUI.MediaEngine.Formats;
-using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Conversion;
 namespace GWGUI.Infrastructure.Conversion;
 
 public static class ConversionCommandBuilder

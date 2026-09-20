@@ -1,7 +1,7 @@
 using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Contracts.Services.PhysicalDiskReading;
 

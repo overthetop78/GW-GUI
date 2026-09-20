@@ -6,7 +6,7 @@ internal static class CommandArgumentsScenarios
 {
     public static void Options(string argument,string? value,bool valid)
     {
-        GWGUI.MediaEngine.Commands.Options.EnabledOption[] options=[new(argument,value)];
+        GWGUI.MediaEngine.Contracts.Options.EnabledOption[] options=[new(argument,value)];
         GWGUI.Infrastructure.Commands.GwCommand Build()=>ReadCommandBuilder.Build(new("virtual","virtual folder/a\"b.scp",ReadResultKind.RawScp,null,options));
         if(!valid) { Assert.ThrowsAny<ArgumentException>(Build); return; }
         var command=Build(); Assert.Equal("virtual folder/a\"b.scp",command.Arguments[^1]); Assert.Equal(argument,command.Arguments[0]);
@@ -14,7 +14,7 @@ internal static class CommandArgumentsScenarios
     }
     public static void ExclusiveAndExpert()
     {
-        foreach(var pair in new[]{new[]{new GWGUI.MediaEngine.Commands.Options.EnabledOption("--fake-index","300rpm"),new("--hard-sectors")},new[]{new GWGUI.MediaEngine.Commands.Options.EnabledOption("--densel","H"),new("--gen-tg43")}})
+        foreach(var pair in new[]{new[]{new GWGUI.MediaEngine.Contracts.Options.EnabledOption("--fake-index","300rpm"),new("--hard-sectors")},new[]{new GWGUI.MediaEngine.Contracts.Options.EnabledOption("--densel","H"),new("--gen-tg43")}})
             Assert.Throws<ArgumentException>(()=>ReadCommandBuilder.Build(new("virtual","out",ReadResultKind.RawScp,null,pair)));
         Assert.Throws<ArgumentException>(()=>ReadCommandBuilder.Build(new("virtual","out",ReadResultKind.RawScp,null,[],ExpertArguments:"--tracks \"unclosed")));
         var explicitDefinitions=ReadCommandBuilder.Build(new("virtual","out",ReadResultKind.KnownFormat,"amstrad.cpc",[new("--diskdefs","virtual config")]));

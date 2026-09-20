@@ -2,7 +2,7 @@ using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolu
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Interfaces.Exploration;
-using GWGUI.MediaEngine.Representations.Sectors;
+using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.FileSystems;
 
