@@ -7,6 +7,7 @@ using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.DiskImages.Exploration;
 
@@ -14,7 +15,7 @@ internal sealed class ExplorerPresentationController
 {
     private readonly ExplorerSection _explorer;
     private readonly VisualizerTabSection _visualizer;
-    private readonly Func<string, string?, IProgress<ScpExplorationProgress>?, Action<MediaExplorationProgress>?, CancellationToken, Task<MediaOpeningAnalysisResult>> _analyze;
+    private readonly Func<string, string?, IProgress<ScpExplorationProgress>?, Action<MediaExplorationProgress>?, CancellationToken, Action<ScpImage>?, Task<MediaOpeningAnalysisResult>> _analyze;
     private readonly DiskImageCancellationScope _cancellation;
     private readonly Action _applyClassification;
     private readonly Action<ExploredDiskImage> _rememberDiskImage;
@@ -25,7 +26,7 @@ internal sealed class ExplorerPresentationController
     internal ExplorerPresentationController(
         ExplorerSection explorer,
         VisualizerTabSection visualizer,
-        Func<string, string?, IProgress<ScpExplorationProgress>?, Action<MediaExplorationProgress>?, CancellationToken, Task<MediaOpeningAnalysisResult>> analyze,
+        Func<string, string?, IProgress<ScpExplorationProgress>?, Action<MediaExplorationProgress>?, CancellationToken, Action<ScpImage>?, Task<MediaOpeningAnalysisResult>> analyze,
         DiskImageCancellationScope cancellation,
         Action applyClassification,
         Action<ExploredDiskImage> rememberDiskImage,
@@ -49,12 +50,13 @@ internal sealed class ExplorerPresentationController
     internal MediaOpeningAnalysisResult? CurrentOpeningResult { get; private set; }
 
     internal Task<ExploredDiskImage?> LoadAsync(string path, bool newImage = true) =>
-        LoadAsync(path, newImage, null);
+        LoadAsync(path, newImage, null, null);
 
     internal async Task<ExploredDiskImage?> LoadAsync(
         string path,
         bool newImage,
-        Action<string, string, double, bool>? sharedProgress)
+        Action<string, string, double, bool>? sharedProgress,
+        Action<ScpImage>? scpImageLoaded)
     {
         var cancellation = _cancellation.BeginExplorer();
         var cancellationToken = cancellation.Token;
@@ -66,7 +68,7 @@ internal sealed class ExplorerPresentationController
         {
             ReportProgress(DiskImageResourceKeys.ExplorerLoadingRecognition, System.IO.Path.GetFileName(path), 12, sharedProgress);
             var openingResult = SelectCachedInterpretation(path, newImage, requestedFormat)
-                ?? await AnalyzeAsync(path, requestedFormat, cancellationToken, sharedProgress);
+                ?? await AnalyzeAsync(path, requestedFormat, cancellationToken, sharedProgress, scpImageLoaded);
             cancellationToken.ThrowIfCancellationRequested();
             if (!_cancellation.IsCurrentExplorer(cancellation)) return null;
 
@@ -85,13 +87,18 @@ internal sealed class ExplorerPresentationController
             _rememberDiskImage(document);
             var mediaImage = openingResult.MediaExploration;
             _setMediaImage(mediaImage);
-            if (mediaImage is not null) _explorer.Display(mediaImage);
+            var detectedFormatIds = document.FormatsDetectes.Select(format => format.FormatId).ToArray();
+            if (mediaImage is not null) _explorer.Display(mediaImage, detectedFormatIds);
             else _explorer.Display(document);
 
             if (mediaImage is not null)
             {
                 var mediaFormatId = mediaImage.Document.FormatId;
-                _visualizer.Header.ApplyDetection(mediaFormatId, null, [mediaFormatId], false);
+                _visualizer.Header.ApplyDetection(
+                    mediaFormatId,
+                    document.Metadata.ProtectionId,
+                    detectedFormatIds,
+                    document.ScpImage is not null);
             }
             else
             {
@@ -147,7 +154,8 @@ internal sealed class ExplorerPresentationController
         string path,
         string? requestedFormat,
         CancellationToken cancellationToken,
-        Action<string, string, double, bool>? sharedProgress)
+        Action<string, string, double, bool>? sharedProgress,
+        Action<ScpImage>? scpImageLoaded)
     {
         var latestValue = 12d;
         var scpProgress = new Progress<ScpExplorationProgress>(item =>
@@ -180,13 +188,15 @@ internal sealed class ExplorerPresentationController
             path,
             requestedFormat,
             scpProgress,
-            item =>
+            item => _explorer.Dispatcher.Invoke(() =>
             {
+                if (cancellationToken.IsCancellationRequested) return;
                 var stage = MediaProgressText(item);
                 _explorer.SetLoadingProgress(stage, item.Detail, item.Value);
                 sharedProgress?.Invoke(stage, item.Detail, item.Value, false);
-            },
-            cancellationToken);
+            }),
+            cancellationToken,
+            scpImageLoaded);
     }
 
     private void ReportProgress(

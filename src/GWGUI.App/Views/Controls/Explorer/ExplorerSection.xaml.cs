@@ -65,9 +65,7 @@ public partial class ExplorerSection : UserControl
     public IReadOnlyList<ExplorerFormatChoice> FormatChoices =>
         [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
-    public string? SelectedFormatId => AutomaticDetection.IsChecked == true
-        ? (DetectedFormatSelector.SelectedItem as ExplorerFormatChoice)?.Id ?? Classification.SelectedFormatId
-        : Classification.SelectedFormatId;
+    public string? SelectedFormatId => Classification.SelectedFormatId;
     public string? FormatIdForNewImage => AutomaticDetection.IsChecked == true ? null : SelectedFormatId;
 
     public void SelectDetectedFormat(string formatId)

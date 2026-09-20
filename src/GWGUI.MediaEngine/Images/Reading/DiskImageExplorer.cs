@@ -81,7 +81,8 @@ public sealed class DiskImageExplorer
         MediaImageDocument document,
         string? formatId = null,
         IProgress<ScpExplorationProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        Action<ScpImage>? scpImageLoaded = null)
     {
         ArgumentNullException.ThrowIfNull(document);
         var path = document.Source.PrimaryPath;
@@ -90,6 +91,7 @@ public sealed class DiskImageExplorer
         {
             if (!document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase)) return documents.CreateUnknown(path);
             var scpImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
+            scpImageLoaded?.Invoke(scpImage);
             var explored = await scpExploration.ExploreAutomaticallyAsync(
                 path,
                 scpImage,

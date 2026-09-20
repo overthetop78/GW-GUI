@@ -42,7 +42,8 @@ internal sealed class VisualizerLoadingController(
         string path,
         string? displayFileName = null,
         ExploredDiskImage? exploredImage = null,
-        MediaOpeningAnalysisResult? openingResult = null)
+        MediaOpeningAnalysisResult? openingResult = null,
+        bool fluxPresented = false)
     {
         var visualization = cancellation.BeginVisualization();
         var cancellationToken = visualization.Token;
@@ -52,7 +53,8 @@ internal sealed class VisualizerLoadingController(
             visualizer.Header.ApplyDetection(null, null, [], true);
             try
             {
-                await scpVisualization.LoadAsync(path, loadedScpImage, displayFileName);
+                if (!fluxPresented || !ReferenceEquals(scpVisualization.Image, loadedScpImage))
+                    await scpVisualization.LoadAsync(path, loadedScpImage, displayFileName);
                 cancellationToken.ThrowIfCancellationRequested();
                 applyScpDetection(diskExploration);
             }

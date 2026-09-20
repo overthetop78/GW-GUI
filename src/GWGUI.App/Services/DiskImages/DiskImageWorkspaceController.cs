@@ -160,7 +160,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         string? requestedFormatId,
         IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? scpProgress,
         Action<MediaExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        Action<ScpImage>? scpImageLoaded)
     {
         if (_mediaOpeningAnalysis is not null)
         {
@@ -170,7 +171,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
                 scpProgress,
                 progress,
                 cancellationToken,
-                includeFileSystems: true);
+                includeFileSystems: true,
+                scpImageLoaded: scpImageLoaded);
         }
 
         var disk = await _explore(path, requestedFormatId, cancellationToken);
@@ -322,14 +324,22 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         ReportSharedProgress(_localize(DiskImageResourceKeys.ExplorerLoadingRecognition, []), shownName, 0, true);
         await _visualizer.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.Render);
         cancellationToken.ThrowIfCancellationRequested();
+        Task? fluxPresentation = null;
         try
         {
-            var explored = await LoadExplorerAsync(path, true, ReportSharedProgress);
+            var explored = await LoadExplorerAsync(path, true, ReportSharedProgress, image =>
+            {
+                fluxPresentation = _visualizer.Dispatcher.InvokeAsync(() =>
+                    _scpVisualization.LoadAsync(path, image, displayFileName, preserveProgress: true))
+                    .Task.Unwrap();
+            });
+            if (fluxPresentation is not null) await fluxPresentation;
             cancellationToken.ThrowIfCancellationRequested();
             if (explored is null) return;
             var openingResult = _explorerLoading.CurrentOpeningResult;
             if (openingResult is null || !ReferenceEquals(openingResult.DiskExploration, explored)) return;
-            await _visualizerLoading.LoadAsync(path, displayFileName, explored, openingResult);
+            await _visualizerLoading.LoadAsync(path, displayFileName, explored, openingResult,
+                fluxPresented: ReferenceEquals(_scpVisualization.Image, explored.ScpImage));
             cancellationToken.ThrowIfCancellationRequested();
         }
         finally
@@ -359,8 +369,9 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private async Task<ExploredDiskImage?> LoadExplorerAsync(
         string path,
         bool newImage,
-        Action<string, string, double, bool>? sharedProgress) =>
-        await _explorerLoading.LoadAsync(path, newImage, sharedProgress);
+        Action<string, string, double, bool>? sharedProgress,
+        Action<ScpImage>? scpImageLoaded) =>
+        await _explorerLoading.LoadAsync(path, newImage, sharedProgress, scpImageLoaded);
 
     internal static string LoadFailureMessageKey(bool newImage, string? requestedFormat) =>
         !newImage && !string.IsNullOrWhiteSpace(requestedFormat)
@@ -430,7 +441,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
                 && _explorerLoading.CurrentImage?.SelectFormat(formatId) is { } explorerSelection)
             {
                 _explorerLoading.CurrentImage = explorerSelection;
-                _explorer.Display(explorerSelection);
+                _explorer.Display(explorerSelection, preserveAutomaticFormat: true);
             }
         }
         catch (OperationCanceledException)
@@ -470,7 +481,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         }
 
         _explorerLoading.CurrentImage = explorerSelection;
-        _explorer.Display(explorerSelection);
+        _explorer.Display(explorerSelection, preserveAutomaticFormat: true);
         if (!SameExplorerAndVisualizerSource())
         {
             return;

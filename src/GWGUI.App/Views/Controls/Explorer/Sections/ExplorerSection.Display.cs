@@ -59,7 +59,7 @@ public partial class ExplorerSection
         ExplorerEmptyState.Visibility = string.IsNullOrWhiteSpace(path) ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    public void Display(ExploredDiskImage document)
+    public void Display(ExploredDiskImage document, bool preserveAutomaticFormat = false)
     {
         ExplorerEmptyState.Visibility = Visibility.Collapsed;
         _document = document;
@@ -78,7 +78,7 @@ public partial class ExplorerSection
         ResetSummaryLabels();
         PathText.Text = document.SourcePath;
         var reportedFormatIds = ReportedFormats(document);
-        if (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true)
+        if (!preserveAutomaticFormat && (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true))
         {
             _automaticDetectedFormatId = document.PrimaryFormatId;
             _detectedFormatIds = reportedFormatIds;
@@ -123,18 +123,25 @@ public partial class ExplorerSection
         WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {warningCount}";
     }
 
-    public void Display(ExploredMediaImage document)
+    public void Display(ExploredMediaImage document, IReadOnlyList<string>? detectedFormatIds = null)
     {
         ArgumentNullException.ThrowIfNull(document);
         ExplorerEmptyState.Visibility = Visibility.Collapsed;
         _document = null;
         _mediaDocument = document;
         PathText.Text = document.Document.Source.PrimaryPath;
+        var reportedFormatIds = new[] { document.Document.FormatId }
+            .Concat(detectedFormatIds ?? [])
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
         if (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true)
         {
             _automaticDetectedFormatId = document.Document.FormatId;
-            _detectedFormatIds = [document.Document.FormatId];
+            _detectedFormatIds = reportedFormatIds;
         }
+        else
+            _detectedFormatIds = _detectedFormatIds.Concat(reportedFormatIds)
+                .Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         UpdateDetectedFormatSelector(document.Document.FormatId);
         var detectedSummary = DetectedFormatsSummary();
         DocumentIdentity.Display(

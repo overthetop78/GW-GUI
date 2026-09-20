@@ -72,7 +72,7 @@ public partial class ExplorerSection
     private void DetectedFormatSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (_updatingDetectedFormatSelector || DetectedFormatSelector.SelectedItem is not ExplorerFormatChoice { Id: { } formatId }) return;
-        Classification.ApplyDetection(formatId, null, _detectedFormatIds);
+        Classification.SelectFormat(formatId);
         FormatChanged?.Invoke(this, EventArgs.Empty);
     }
 

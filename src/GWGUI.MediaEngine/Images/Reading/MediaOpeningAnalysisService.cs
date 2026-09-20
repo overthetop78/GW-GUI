@@ -4,7 +4,11 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Images.Models.Flux;
+using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Constants;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using System.IO;
 
@@ -22,7 +26,8 @@ public sealed class MediaOpeningAnalysisService(
         IProgress<ScpExplorationProgress>? scpProgress = null,
         Action<MediaExplorationProgress>? progress = null,
         CancellationToken cancellationToken = default,
-        bool includeFileSystems = true)
+        bool includeFileSystems = true,
+        Action<ScpImage>? scpImageLoaded = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         progress?.Invoke(new(
@@ -57,8 +62,11 @@ public sealed class MediaOpeningAnalysisService(
             document,
             requestedFormatId,
             scpProgress,
-            cancellationToken);
-        var mediaTask = mediaExplorer.ExploreAsync(document, cancellationToken).AsTask();
+            cancellationToken,
+            scpImageLoaded);
+        var mediaTask = document.Representation is FluxMediaImageRepresentation
+            ? ExploreDecodedFluxAsync(document, diskTask, cancellationToken)
+            : mediaExplorer.ExploreAsync(document, cancellationToken).AsTask();
         await Task.WhenAll(diskTask, mediaTask).ConfigureAwait(false);
 
         progress?.Invoke(new(
@@ -67,5 +75,24 @@ public sealed class MediaOpeningAnalysisService(
             94,
             document.MediaKind));
         return new(document, await diskTask.ConfigureAwait(false), await mediaTask.ConfigureAwait(false));
+    }
+
+    private async Task<ExploredMediaImage> ExploreDecodedFluxAsync(
+        MediaImageDocument source,
+        Task<ExploredDiskImage> diskTask,
+        CancellationToken cancellationToken)
+    {
+        var decoded = await diskTask.ConfigureAwait(false);
+        var document = decoded.Image.FormatId.Equals(DiskImageFormatIds.Unknown, StringComparison.OrdinalIgnoreCase)
+            ? source
+            : new MediaImageDocument(
+                source.Source,
+                decoded.Image.FormatId,
+                source.MediaKind,
+                new SectorMediaImageRepresentation(decoded.Image),
+                [],
+                source.Diagnostics,
+                source.Metadata);
+        return await mediaExplorer.ExploreAsync(document, cancellationToken).ConfigureAwait(false);
     }
 }

@@ -35,6 +35,26 @@ internal static partial class Program
     {
         try
         {
+            if (args.Contains("--explorer-ui", StringComparer.OrdinalIgnoreCase))
+            {
+                var explorerImagePath = Argument(args, "--image") ?? throw new ArgumentException("--image is required.");
+                try
+                {
+                    await LocalExplorerOpeningCheck.RunAsync(
+                        explorerImagePath,
+                        args.Contains("--require-files", StringComparer.OrdinalIgnoreCase),
+                        Argument(args, "--expected-format"),
+                        Argument(args, "--minimum-formats") is { } minimumFormats
+                            ? int.Parse(minimumFormats)
+                            : 0);
+                    return 0;
+                }
+                catch (Exception error)
+                {
+                    Console.Error.WriteLine(error);
+                    return 2;
+                }
+            }
             var engine = MediaEngineComposition.CreateDefault();
             if (args.Contains("--list-extensions", StringComparer.OrdinalIgnoreCase))
             {

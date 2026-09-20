@@ -48,6 +48,23 @@ public partial class DiskClassificationSelector : UserControl
         _updating = false;
     }
 
+    public void SelectFormat(string formatId)
+    {
+        var format = _catalog.ResolveFormat(formatId);
+        if (format is null) return;
+        _updating = true;
+        try
+        {
+            RefreshMachines(format.Family);
+            RefreshFormats(format.Id);
+            RefreshProtections();
+        }
+        finally
+        {
+            _updating = false;
+        }
+    }
+
     public void ApplyDetection(string? detectedFormatId, string? detectedProtectionId)
         => ApplyDetection(detectedFormatId, detectedProtectionId, detectedFormatId is null ? [] : [detectedFormatId]);
 
