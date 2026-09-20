@@ -61,9 +61,8 @@ internal static class ScpCandidateRanker
                     continue;
                 }
 
-                var evidence = new FileSystemEvidence(
-                    CountEntries(recognized.Volume.Entries),
-                    recognized.Volume.Warnings.Count,
+                var evidence = FileSystemEvidence.From(
+                    recognized.Volume,
                     DiskImageDecodeScore.Calculate(recognized.Image));
                 if (bestFileSystemEvidence is null || evidence.IsBetterThan(bestFileSystemEvidence.Value))
                 {
@@ -109,14 +108,4 @@ internal static class ScpCandidateRanker
             : new SectorImage(formatId, 512, 80, 2, 9, image.AvailableBlocks);
     }
 
-    private static int CountEntries(IEnumerable<GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry> entries) =>
-        entries.Sum(entry => 1 + CountEntries(entry.Children));
-
-    private readonly record struct FileSystemEvidence(int EntryCount, int WarningCount, double DecodeScore)
-    {
-        public bool IsBetterThan(FileSystemEvidence other) =>
-            EntryCount > other.EntryCount ||
-            (EntryCount == other.EntryCount && WarningCount < other.WarningCount) ||
-            (EntryCount == other.EntryCount && WarningCount == other.WarningCount && DecodeScore > other.DecodeScore);
-    }
 }

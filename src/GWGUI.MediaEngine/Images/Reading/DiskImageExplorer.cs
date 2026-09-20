@@ -1,5 +1,4 @@
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
-using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
@@ -43,7 +42,7 @@ public sealed class DiskImageExplorer
     public IReadOnlySet<string> SupportedFormatIds => fileSystems.SupportedFormatIds;
 
     /// <summary>CrÃ©e un explorateur utilisant la composition par dÃ©faut de MediaEngine.</summary>
-    public static DiskImageExplorer CreateDefault() => MediaEngineFactory.CreateDefaultExplorer();
+    public static DiskImageExplorer CreateDefault() => DiskImageExplorerFactory.CreateDefaultExplorer();
 
     /// <summary>ReconnaÃ®t le contenu, applique Ã©ventuellement une sÃ©lection explicite et explore ses systÃ¨mes de fichiers.</summary>
     /// <param name="path">Chemin de l'image Ã  explorer.</param>

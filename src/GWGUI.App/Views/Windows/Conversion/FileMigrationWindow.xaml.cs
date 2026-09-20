@@ -10,7 +10,7 @@ using GWGUI.App.ViewModels.Conversion;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine.Images.Creation;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
@@ -35,7 +35,7 @@ public partial class FileMigrationWindow : Window
         DataContext = this;
         _fileDialogs = new WpfFileDialogService(this);
         _dialogs = new WpfMessageDialogService(this);
-        _coordinator = new(DiskImageExplorer.CreateDefault(), MediaEngineFactory.CreateFileSystemMigrationService());
+        _coordinator = new(DiskImageExplorer.CreateDefault(), new FileSystemMigrationService());
         SelectedTarget = Targets.FirstOrDefault();
         TargetComboBox.SelectedItem = SelectedTarget;
         BrowseSourceButton.Click += BrowseSource_Click;

@@ -3072,3 +3072,15 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
   - [x] Créer `src/GWGUI.MediaFileSystems/Contracts/SectorFileSystemCandidate.cs` : associer l'image décodée candidate au volume réellement lu par MediaFileSystems.
   - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/SectorFileSystemRegistry.cs` : lire les images candidates dans l'ordre et dédupliquer leurs volumes avec l'identité MFS.
   - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` : transmettre les images candidates à MediaFileSystems et retirer sa lecture et sa déduplication des volumes.
+- [x] Placer le score des volumes SCP dans MediaFileSystems
+  - [x] Créer `src/GWGUI.MediaFileSystems/Exploration/Interpretation/FileSystemEvidence.cs` : compter les entrées du volume et comparer entrées, avertissements et score de décodage fourni par MediaEngine.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : utiliser ce score MFS et retirer son calcul local des entrées et avertissements.
+- [x] Retirer la géométrie Commodore DOS abandonnée dans MediaEngine
+  - [x] Supprimer `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CommodoreDosGeometry.cs` : cette copie de conversion piste/secteur n'a aucun appelant ; le lecteur Commodore DOS utilise celle de MediaFileSystems.
+- [x] Retirer le modèle de cible de migration resté sans appelant
+  - [x] Supprimer `src/GWGUI.MediaFileSystems/Migration/FileSystemMigrationTarget.cs` : ce doublon exact du modèle transmis par MediaEngine n'est référencé par aucun code ; MediaFileSystems reçoit directement l'identifiant du système de fichiers.
+- [x] Retirer la fabrique générale inutilisée du dossier Composition
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : construire directement le service de migration MediaEngine sans passer par la fabrique de conversion.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : retirer les fabriques de conversion sans appelant et le constructeur de migration ; ne garder que l'assemblage réel du lecteur d'image.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorerFactory.cs` : nommer la fabrique selon son seul rôle restant et adopter l'espace de noms de lecture.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` : utiliser `DiskImageExplorerFactory` dans son espace de noms.
