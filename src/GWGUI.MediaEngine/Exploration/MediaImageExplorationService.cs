@@ -1,6 +1,6 @@
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Exploration.Enums;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.FileSystems;

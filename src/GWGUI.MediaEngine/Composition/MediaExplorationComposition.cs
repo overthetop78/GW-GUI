@@ -1,3 +1,4 @@
+﻿using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Sequential;
 using GWGUI.MediaEngine.FileSystems;

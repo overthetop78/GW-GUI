@@ -1,3 +1,4 @@
+﻿using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding;

@@ -1,7 +1,6 @@
-using GWGUI.MediaEngine.Enums;
-using GWGUI.MediaEngine.Exploration.Enums;
+﻿using GWGUI.MediaEngine.Enums;
 
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Contracts;
 
 /// <summary>Reports a technical media-exploration stage for presentation by a caller.</summary>
 public sealed record MediaExplorationProgress(

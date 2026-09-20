@@ -2608,3 +2608,27 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` après vérification de son équivalence.
     - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs` devenu sans appelant.
     - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Definitions`.
+- [x] Ranger les données de progression de l’exploration dans les catégories communes
+  - [x] Déplacer le modèle et son enum
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Enums/MediaExplorationProgressStage.cs` vers `src/GWGUI.MediaEngine/Enums/MediaExplorationProgressStage.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/MediaExplorationProgress.cs` vers `src/GWGUI.MediaEngine/Contracts/MediaExplorationProgress.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : utiliser les nouveaux espaces de noms de progression.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : utiliser les nouveaux espaces de noms de progression.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : utiliser les nouveaux espaces de noms de progression.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/MediaExplorationProgress.cs` : utiliser le nouvel espace de noms de l’enum.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Enums`.
+- [x] Ranger la conversion des pistes SCP avec ce format
+  - [x] Renommer le convertisseur selon son rôle réel
+    - [x] Déplacer et renommer `src/GWGUI.MediaEngine/Exploration/Contracts/DiskTrackContractMapper.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpTrackContractMapper.cs`, avec la classe et l’espace de noms SCP.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : appeler `ScpTrackContractMapper` dans le format SCP.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs` : appeler `ScpTrackContractMapper` dans le format SCP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : appeler `ScpTrackContractMapper` dans le format SCP.
+- [x] Retirer le dossier Contracts vide sous Exploration
+  - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/Contracts` après déplacement de ses fichiers.
+- [x] Ranger la composition des codecs de bande avec les formats Tape
+  - [x] Déplacer la composition commune aux formats séquentiels
+    - [x] Déplacer `src/GWGUI.MediaEngine/Composition/SequentialMediaComposition.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialMediaComposition.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : référencer la composition sous `Images.Formats.Tape`.

@@ -1,10 +1,10 @@
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
+using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Exploration.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 

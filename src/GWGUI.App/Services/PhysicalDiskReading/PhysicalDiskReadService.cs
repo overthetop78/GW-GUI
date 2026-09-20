@@ -1,4 +1,4 @@
-using GWGUI.App.Constants.Services.PhysicalDiskReading;
+﻿using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Enums.Services.PhysicalDiskReading;
 using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
@@ -80,7 +80,7 @@ public sealed class PhysicalDiskReadService(
                     item.Head,
                     item.Cylinder,
                     item.Head)).ToArray(),
-                acquiredTrack: DiskTrackContractMapper.FromScpTrack(
+                acquiredTrack: ScpTrackContractMapper.FromScpTrack(
                     track,
                     image.Header.ResolutionNanoseconds)));
         }

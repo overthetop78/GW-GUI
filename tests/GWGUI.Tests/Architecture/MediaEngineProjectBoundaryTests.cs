@@ -1,3 +1,4 @@
+﻿using GWGUI.MediaEngine.Images.Formats.Tape;
 using System.Reflection;
 using GWGUI.App.Views.Windows.Shell;
 using GWGUI.MediaEngine.Enums;

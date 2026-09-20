@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Enums.Services.PhysicalDiskReading;
@@ -83,7 +83,7 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
         if (value.AcquiredUnit is not null)
         {
             var track = fluxService.CreateTrack(value.AcquiredUnit);
-            acquiredTrack = DiskTrackContractMapper.FromScpTrack(
+            acquiredTrack = ScpTrackContractMapper.FromScpTrack(
                 track,
                 ScpFormatConstants.ResolutionStepNanoseconds
                 * (ScpFormatConstants.InternalCaptureResolution + ScpFormatConstants.ResolutionIndexOffset));

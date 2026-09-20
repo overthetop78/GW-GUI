@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
+﻿using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Acorn;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Atari;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Commodore;
@@ -11,7 +11,7 @@ using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Commodore;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Msx;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Spectrum;
 
-namespace GWGUI.MediaEngine.Composition;
+namespace GWGUI.MediaEngine.Images.Formats.Tape;
 
 /// <summary>Assembles the sequential media codecs shared by conversion and exploration.</summary>
 public sealed class SequentialMediaComposition

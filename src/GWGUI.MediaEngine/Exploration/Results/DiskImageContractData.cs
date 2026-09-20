@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration.Contracts;
+﻿using GWGUI.MediaEngine.Exploration.Contracts;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.FileSystems;
@@ -74,7 +74,7 @@ internal static class DiskImageContractData
 
     public static IPiste FromScpTrack(ScpTrack track, int resolutionNanoseconds)
     {
-        return DiskTrackContractMapper.FromScpTrack(track, resolutionNanoseconds);
+        return ScpTrackContractMapper.FromScpTrack(track, resolutionNanoseconds);
     }
 
     public static IReadOnlyList<IFormatDetecte> CreateFormats(

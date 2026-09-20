@@ -1,10 +1,10 @@
+﻿
+using GWGUI.MediaEngine.Exploration.Contracts;
 
-using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
-
-namespace GWGUI.MediaEngine.Exploration.Contracts;
+namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 /// <summary>Convertit une piste de flux du moteur vers le contrat commun exposé aux opérations en cours.</summary>
-public static class DiskTrackContractMapper
+public static class ScpTrackContractMapper
 {
     public static IPiste FromScpTrack(ScpTrack track, int resolutionNanoseconds)
     {
