@@ -1,4 +1,4 @@
-namespace GWGUI.App.Enums.Rendering.Scp;
+namespace GWGUI.MediaEngine.Enums;
 
 public enum DiskMediaCategory
 {

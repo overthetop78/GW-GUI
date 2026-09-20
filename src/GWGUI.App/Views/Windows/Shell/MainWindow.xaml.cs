@@ -2,6 +2,7 @@ using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Detection;
+using ImageFormatWorkspace = GWGUI.MediaEngine.Images.Formats.ImageFormatWorkspace;
 using GWGUI.Infrastructure.Hardware;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.App.Profiles;

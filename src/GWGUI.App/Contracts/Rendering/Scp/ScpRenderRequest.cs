@@ -1,4 +1,5 @@
 using GWGUI.App.Enums.Rendering.Scp;
+using GWGUI.MediaEngine.Enums;
 using SkiaSharp;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;

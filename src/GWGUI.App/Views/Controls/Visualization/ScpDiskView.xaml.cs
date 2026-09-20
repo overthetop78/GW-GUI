@@ -1,6 +1,7 @@
 using GWGUI.App.Contracts.Rendering.Scp;
 using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Enums.Rendering.Scp;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.App.Functions.Rendering.Scp;
 using GWGUI.App.Interfaces.Rendering.Scp;
 using GWGUI.App.Localization.Extensions;

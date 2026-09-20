@@ -1,4 +1,5 @@
-using GWGUI.App.Enums.Rendering.Scp;
-namespace GWGUI.App.Contracts.Services.Visualization;
+using GWGUI.MediaEngine.Enums;
+
+namespace GWGUI.MediaEngine.Contracts.Visualization;
 
 public sealed record DiskVisualizationClassification(string? DecoderId, DiskMediaCategory MediaCategory);

@@ -1,17 +1,14 @@
-using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Formats.Detection;
-namespace GWGUI.App.Services.DiskImages;
+namespace GWGUI.MediaEngine.Images.Formats;
 
 /// <summary>
-/// Owns the effective image-format catalog used by the application.
+/// Owns the effective image-format catalog used by media operations.
 /// Greaseweazle capabilities and optional disk-definitions are combined here,
 /// while UI controls remain responsible only for presenting the resulting catalog.
 /// </summary>
 public sealed class ImageFormatWorkspace
 {
-    private static readonly IReadOnlySet<string> FallbackImageExtensions =
-        new HashSet<string>([".scp", ".img", ".ima", ".hfe"], StringComparer.OrdinalIgnoreCase);
-
     private readonly Func<string, string> _localize;
 
     public ImageFormatWorkspace(Func<string, string> localize)
@@ -36,7 +33,7 @@ public sealed class ImageFormatWorkspace
         var formatIds = Capabilities.FormatIds.Concat(discovered).ToHashSet(StringComparer.OrdinalIgnoreCase);
         var extensions = Capabilities.ImageExtensions.Count > 0
             ? Capabilities.ImageExtensions
-            : FallbackImageExtensions;
+            : ImageFormatFallbackExtensions.All;
 
         Capabilities = new GwFormatCapabilities(formatIds, extensions);
         Rebuild();

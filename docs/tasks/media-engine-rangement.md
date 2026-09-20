@@ -2942,3 +2942,36 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
   - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Documents/DiskImageDocumentFactory.cs` : importer la fabrique depuis `Images.Reading.Metadata` et retirer l'ancien import.
   - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer l'ancien import de fabrique par `Images.Reading.Metadata`, déjà présent.
   - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Metadata` après vérification de son contenu.
+- [x] Retirer de la vue App le choix et les données visuelles des icônes de médias
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/MediaIconIds.cs` : déclarer les identifiants stables des icônes de disquette, disque dur, optique, cassette, bande, cartouche et fichier.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Visualization/MediaIconSelector.cs` : reprendre les conditions actuelles sur type de média, format, densité et extension pour renvoyer uniquement l'identifiant d'icône ; importer explicitement `System.IO` pour `Path`.
+  - [x] Créer `src/GWGUI.App/Constants/Controls/Visual/MediaIconVisualConstants.cs` : ranger les formes, couleurs et noms des images dans une table de présentation indexée par les identifiants de MediaEngine.
+  - [x] Créer `src/GWGUI.App/Rendering/Media/MediaIconImageCache.cs` : déplacer le chargement et le cache des images WPF hors du contrôle.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Common/MediaDocumentIdentity.xaml.cs` : appeler le sélecteur de MediaEngine, appliquer la table visuelle d'App et retirer le choix de média, les formes et le cache du contrôle.
+- [x] Confier le catalogue de formats d'images à MediaEngine
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/ImageFormatFallbackExtensions.cs` : ranger les extensions de repli SCP, IMG, IMA et HFE.
+  - [x] Déplacer `src/GWGUI.App/Services/DiskImages/ImageFormatWorkspace.cs` vers `src/GWGUI.MediaEngine/Images/Formats/ImageFormatWorkspace.cs` : conserver l'assemblage du catalogue et utiliser les extensions constantes.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : importer le type du catalogue MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskDefinitionsController.cs` : importer l'espace de noms du catalogue MediaEngine.
+- [x] Déplacer la classification des images du visualiseur hors d'App
+  - [x] Déplacer `src/GWGUI.App/Enums/Rendering/Scp/DiskMediaCategory.cs` vers `src/GWGUI.MediaEngine/Enums/DiskMediaCategory.cs` : conserver les valeurs et adopter l'espace de noms MediaEngine.
+  - [x] Déplacer `src/GWGUI.App/Contracts/Services/Visualization/DiskVisualizationClassification.cs` vers `src/GWGUI.MediaEngine/Contracts/Visualization/DiskVisualizationClassification.cs` : conserver le résultat et importer l'enum MediaEngine.
+  - [x] Déplacer `src/GWGUI.App/Functions/Services/Visualization/DiskVisualizationClassificationFunctions.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/DiskVisualizationClassificationFunctions.cs` : conserver les tables et règles de machines/décodeurs dans MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : appeler la classification de MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Contracts/Rendering/Scp/ScpRenderRequest.cs` : importer l'enum MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Functions/Rendering/Scp/ScpMediaGeometryFunctions.cs` : importer l'enum MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs` : importer l'enum MediaEngine.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` : importer l'enum déplacé de MediaEngine.
+- [x] Nettoyer les imports dupliqués révélés par la compilation
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : retirer le second import `GWGUI.MediaEngine.Images.Visualization`.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` : retirer le second import `GWGUI.MediaEngine.Enums`.
+- [x] Retirer les dossiers App vidés par le déplacement de la classification
+  - [x] Supprimer le dossier vide `src/GWGUI.App/Functions/Services/Visualization` après vérification de son contenu.
+  - [x] Supprimer le dossier vide `src/GWGUI.App/Contracts/Services/Visualization` après vérification de son contenu.
+- [x] Ranger les données fixes de la classification d'images dans Constants
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/MediaIconExtensions.cs` : déclarer les extensions de cassette, de cartouche et d'image optique utilisées pour choisir l'icône.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/MediaIconSelector.cs` : employer les constantes d'extensions au lieu des chaînes intégrées au sélecteur.
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/DiskVisualizationDefaults.cs` : ranger les associations machines/décodeurs, les familles de disquettes et les identifiants de densité utilisés par le visualiseur.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/DiskVisualizationClassificationFunctions.cs` : lire ses tables fixes depuis Constants.
+- [x] Nommer les ressources visuelles fixes de l'icône dans App
+  - [x] Modifier `src/GWGUI.App/Constants/Controls/Visual/MediaIconVisualConstants.cs` : déclarer les couleurs et les noms des images en constantes et les utiliser dans sa table de rendu.
