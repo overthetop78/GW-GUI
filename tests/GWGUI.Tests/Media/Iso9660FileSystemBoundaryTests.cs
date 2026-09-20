@@ -47,7 +47,7 @@ public sealed class Iso9660FileSystemBoundaryTests
         Assert.Equal("TEST", result.Name);
         var entry = Assert.Single(result.Entries);
         Assert.Equal("HELLO.TXT", entry.Name);
-        Assert.Equal(FileSystemEntryKind.File, entry.Kind);
+        Assert.Equal(GWGUI.MediaFileSystems.FileSystemEntryKind.File, entry.Kind);
         Assert.Equal("HELLO", Encoding.ASCII.GetString(entry.Content!.ToArray()));
 
         var fileSystemsExplorer = new GWGUI.MediaFileSystems.Exploration.MediaExplorer(

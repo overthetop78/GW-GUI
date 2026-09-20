@@ -1,7 +1,7 @@
-﻿using GWGUI.MediaEngine.Contracts.Migration;
+using GWGUI.MediaEngine.Contracts.Migration;
 using System.IO;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Creation;
 
 namespace GWGUI.App.Services.Conversion;

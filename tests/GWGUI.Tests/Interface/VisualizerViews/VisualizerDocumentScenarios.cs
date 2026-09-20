@@ -21,7 +21,7 @@ using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Contracts;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Reading.Recognition;

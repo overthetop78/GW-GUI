@@ -1,5 +1,5 @@
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 

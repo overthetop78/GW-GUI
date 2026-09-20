@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.MediaEngine.Exploration.Interpretation;
 

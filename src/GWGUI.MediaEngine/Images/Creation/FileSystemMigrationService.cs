@@ -4,7 +4,6 @@ using System.IO;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Conversion.Fat12;
 using GWGUI.MediaEngine.Images.Creation;
-using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Adf;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Apple;
 using GWGUI.MediaEngine.Images.Formats.Floppy.CommodoreDos;
@@ -104,4 +103,3 @@ public sealed class FileSystemMigrationService
         else throw new InvalidDataException($"The Commodore DOS migration target '{formatId}' cannot be written to '{suffix}'.");
     }
 }
-

@@ -1,4 +1,6 @@
-namespace GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Enums;
+
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Décrit une entrée décodée dans un système de fichiers.</summary>
 public sealed record FileSystemEntry
@@ -90,3 +92,4 @@ public sealed record FileSystemEntry
     /// <summary>Métadonnées techniques propres au format de l'entrée.</summary>
     public IReadOnlyDictionary<string, string> Metadata { get; }
 }
+

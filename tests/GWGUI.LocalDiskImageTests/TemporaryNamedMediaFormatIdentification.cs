@@ -1,7 +1,8 @@
+using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using System.IO;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.MediaAudit;
 

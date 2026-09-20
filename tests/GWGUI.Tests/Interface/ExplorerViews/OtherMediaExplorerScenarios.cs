@@ -8,7 +8,7 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Reading.Sources;
 using GWGUI.MediaEngine.Images.Models.Blocks;
 using GWGUI.MediaEngine.Images.Models.Optical;

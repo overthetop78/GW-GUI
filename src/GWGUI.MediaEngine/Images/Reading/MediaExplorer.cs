@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.FileSystems;
 using FileSystemsMediaExplorer = GWGUI.MediaFileSystems.Exploration.MediaExplorer;
 
 namespace GWGUI.MediaEngine.Images.Reading;

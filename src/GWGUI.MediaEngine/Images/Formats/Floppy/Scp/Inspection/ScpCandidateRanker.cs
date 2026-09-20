@@ -110,7 +110,7 @@ internal static class ScpCandidateRanker
             : new SectorImage(formatId, 512, 80, 2, 9, image.AvailableBlocks);
     }
 
-    private static int CountEntries(IEnumerable<GWGUI.MediaEngine.FileSystems.FileSystemEntry> entries) =>
+    private static int CountEntries(IEnumerable<GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry> entries) =>
         entries.Sum(entry => 1 + CountEntries(entry.Children));
 
     private readonly record struct FileSystemEvidence(int EntryCount, int WarningCount, double DecodeScore)

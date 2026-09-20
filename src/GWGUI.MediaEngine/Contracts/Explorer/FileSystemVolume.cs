@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.FileSystems;
+namespace GWGUI.MediaEngine.Contracts.Explorer;
 
 /// <summary>Décrit un volume et les entrées décodées de son système de fichiers.</summary>
 public sealed record FileSystemVolume
@@ -65,3 +65,4 @@ public sealed record FileSystemVolume
     /// <summary>Origine technique de la numérotation du support.</summary>
     public string? DiskNumberOrigin { get; }
 }
+

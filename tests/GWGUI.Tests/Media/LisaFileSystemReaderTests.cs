@@ -1,6 +1,6 @@
 using System.Text;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaFileSystems.Definitions;
 

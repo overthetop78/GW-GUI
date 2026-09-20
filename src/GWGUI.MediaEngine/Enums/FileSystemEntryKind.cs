@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.FileSystems;
+namespace GWGUI.MediaEngine.Enums;
 
 /// <summary>Indique la nature commune d'une entrée de système de fichiers.</summary>
 public enum FileSystemEntryKind
@@ -12,3 +12,4 @@ public enum FileSystemEntryKind
     /// <summary>Entrée reconnue dont le type propre au format n'est pas interprété.</summary>
     Unknown
 }
+

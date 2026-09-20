@@ -12,7 +12,7 @@ using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Models.Blocks;
 using GWGUI.MediaEngine.Images.Models.Flux;

@@ -1,5 +1,5 @@
-﻿using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaFileSystems.FileSystems.Fat12;
 using GWGUI.MediaEngine.Constants;

@@ -160,7 +160,7 @@ public static class ExplorerDetailsPresenter
         {
             new("Explorer.Type", item.TypeText)
         };
-        if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.File)
+        if (item.Entry.Kind == GWGUI.MediaEngine.Enums.FileSystemEntryKind.File)
         {
             rows.Add(new("Explorer.Category", LocExtension.Get($"Explorer.Category.{item.Definition.Category}")));
             rows.Add(new("Explorer.ContentFormat", LocExtension.Get($"Explorer.ContentFormat.{item.Definition.ContentFormat}")));
@@ -176,7 +176,7 @@ public static class ExplorerDetailsPresenter
         ]);
         if (item.Definition.ExecutionKind != ExplorerExecutionKind.None)
             rows.Add(new("Explorer.Execution", LocExtension.Get($"Explorer.Execution.{item.Definition.ExecutionKind}")));
-        if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory)
+        if (item.Entry.Kind == GWGUI.MediaEngine.Enums.FileSystemEntryKind.Directory)
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(item.Entry.Children).ToString()));
         AddMetadataRow(rows, item.Entry.Metadata, "recordCount", "Explorer.Records");
         AddMetadataRow(rows, item.Entry.Metadata, "fullRecordCount", "Explorer.FullRecords");

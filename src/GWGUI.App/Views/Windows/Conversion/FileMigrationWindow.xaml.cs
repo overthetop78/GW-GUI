@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Contracts.Migration;
+using GWGUI.MediaEngine.Contracts.Migration;
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Localization.Extensions;
@@ -12,7 +12,7 @@ using System.IO;
 using System.Windows;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.Views.Windows.Conversion;
 

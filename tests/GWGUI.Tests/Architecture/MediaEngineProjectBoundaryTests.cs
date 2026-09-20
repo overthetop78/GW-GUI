@@ -1,11 +1,11 @@
-﻿using GWGUI.MediaEngine.Images.Formats.Tape;
+using GWGUI.MediaEngine.Images.Formats.Tape;
 using System.Reflection;
 using GWGUI.App.Views.Windows.Shell;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.Emulation.Amiga.Modules;
 using GWGUI.Emulation.Atari.Modules;
 using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaFileSystems.Exploration;
 using GWGUI.MediaAnalysis.Enums;

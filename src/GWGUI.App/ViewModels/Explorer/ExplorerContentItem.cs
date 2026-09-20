@@ -1,8 +1,9 @@
+using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using GWGUI.App.Enums.Explorer;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.Functions.Storage;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 
 namespace GWGUI.App.ViewModels.Explorer;

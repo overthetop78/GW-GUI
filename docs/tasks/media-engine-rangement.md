@@ -2750,3 +2750,115 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemReadReport.cs` devenu sans appelant.
     - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemReadFailure.cs` devenu sans appelant.
     - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemMatch.cs` devenu sans appelant.
+- [x] Ranger les données de sortie de l’explorateur dans Contracts et Enums
+  - [x] Déplacer les trois modèles hors du dossier FileSystems de MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemEntry.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs` et référencer son enum dans Enums.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemVolume.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemEntryKind.cs` vers `src/GWGUI.MediaEngine/Enums/FileSystemEntryKind.cs` et actualiser son espace de noms.
+  - [x] Raccorder les consommateurs des données de sortie
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerFileTypeCatalogScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredFileSystem.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerTreeNavigator.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemAlternativePolicy.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerFolderItem.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerContentItem.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerTreeScenarios.cs` : remplacer les noms entièrement qualifiés des modèles déplacés.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` : remplacer les noms entièrement qualifiés des modèles déplacés.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer les noms entièrement qualifiés des modèles déplacés.
+    - [x] Modifier `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : qualifier l’enum de MediaFileSystems pour son résultat de lecture optique.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems` après vérification de son contenu.
+- [x] Retirer les lignes vides finales ajoutées pendant le changement d’espace de noms
+  - [x] Nettoyer les fichiers modifiés
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerTreeNavigator.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerContentItem.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerFolderItem.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemAlternativePolicy.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredFileSystem.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerFileTypeCatalogScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerTreeScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.

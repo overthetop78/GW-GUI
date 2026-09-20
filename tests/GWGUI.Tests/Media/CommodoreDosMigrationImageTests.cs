@@ -1,6 +1,7 @@
-﻿using GWGUI.MediaEngine.Contracts.Migration;
+using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
+using GWGUI.MediaEngine.Contracts.Migration;
 using GWGUI.MediaEngine.Constants;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Creation;
 using GWGUI.MediaFileSystems.Definitions;
 
