@@ -32,7 +32,7 @@ public sealed class MediaExplorer(FileSystemsMediaExplorer fileSystems)
                 volume.ReaderId,
                 volume.FileSystem is null
                     ? null
-                    : FileSystemVolumeMapper.ConvertVolume(volume.FileSystem),
+                    : FileSystemVolumeMapper.ConvertVolume(volume.FileSystem, volume.AnalyzedEntries),
                 volume.Diagnostics))
             .ToArray();
         var diagnostics = document.Diagnostics.Concat(result.Diagnostics).ToArray();

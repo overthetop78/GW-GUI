@@ -35,15 +35,10 @@ public partial class ExplorerSection
 
     private void ShowContents(IEnumerable<FileSystemEntry> entries)
     {
-        var family = _document is not null
-            ? ExplorerFileIconClassifier.FamilyFor(_document)
-            : _mediaDocument is not null
-                ? ExplorerFileIconClassifier.FamilyFor(_mediaDocument.Document.FormatId, _mediaVolume?.FileSystem?.FileSystemId)
-                : ExplorerFileSystemFamily.Unknown;
         ContentsList.ItemsSource = entries
             .OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory)
             .ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase)
-            .Select(entry => new ExplorerContentItem(entry, family)).ToArray();
+            .Select(entry => new ExplorerContentItem(entry)).ToArray();
         ContentsList.SelectedItem = null;
         if (_document is not null) DetailsPanel.ShowDisk(_document, CurrentSystem(_document));
         else if (_mediaDocument is not null && _mediaVolume is not null)

@@ -71,7 +71,15 @@ public sealed class MediaExplorer
         foreach (var volume in detection.Volumes)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            explored.Add(ExploreVolume(document, volume));
+            var result = ExploreVolume(document, volume);
+            if (result.FileSystem is not null)
+            {
+                result = result with
+                {
+                    AnalyzedEntries = FileSystemEntryAnalyzer.AnalyzeEntries(document.FormatId, result.FileSystem)
+                };
+            }
+            explored.Add(result);
         }
         return new MediaFileSystemExplorationResult(
             detection.Volumes, explored, detection.Diagnostics, FirstFileName(explored));

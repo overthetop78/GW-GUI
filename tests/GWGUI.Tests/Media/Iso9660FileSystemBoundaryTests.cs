@@ -7,13 +7,17 @@ using GWGUI.MediaEngine.Images.Reading.Sources;
 using GWGUI.MediaFileSystems;
 using GWGUI.MediaFileSystems.Contracts;
 using GWGUI.MediaFileSystems.FileSystems.Iso9660;
+using GWGUI.MediaAnalysis.Constants;
+using GWGUI.MediaAnalysis.Enums;
+using GWGUI.App.Functions.Explorer;
+using GWGUI.App.Enums.Explorer;
 
 namespace GWGUI.Tests.Media;
 
 public sealed class Iso9660FileSystemBoundaryTests
 {
     [Fact]
-    public void ReadsCatalogAndFileThroughDecodedOpticalTrack()
+    public async Task ReadsCatalogAndFileThroughDecodedOpticalTrack()
     {
         const int sectorSize = 2_048;
         var bytes = new byte[32 * sectorSize];
@@ -52,11 +56,24 @@ public sealed class Iso9660FileSystemBoundaryTests
 
         var fileSystemsExplorer = new GWGUI.MediaFileSystems.Exploration.MediaExplorer(
             [reader], new GWGUI.MediaFileSystems.Exploration.MediaVolumeDetectorRegistry([]));
+        var analyzed = await fileSystemsExplorer.ExploreAsync(document);
+        var analyzedEntry = Assert.Single(Assert.Single(analyzed.ExploredVolumes).AnalyzedEntries);
+        Assert.Equal("HELLO.TXT", analyzedEntry.Name);
+        Assert.Equal(MediaContentCategory.Text.ToString(), analyzedEntry.Analysis?.CategoryId);
+        Assert.Equal(MediaContentIconIds.Text, analyzedEntry.Analysis?.IconId);
+        Assert.Equal("Explorer.Type.Text", analyzedEntry.Analysis?.TypeResourceKey);
         var engineResult = new GWGUI.MediaEngine.Images.Reading.MediaExplorer(fileSystemsExplorer).Explore(document);
         var engineVolume = Assert.Single(engineResult.Volumes);
         var engineEntry = Assert.Single(engineVolume.FileSystem!.Entries);
         Assert.Equal("HELLO.TXT", engineEntry.Name);
         Assert.Equal("HELLO", Encoding.ASCII.GetString(engineEntry.Content!.ToArray()));
+        Assert.Equal("Text", engineEntry.Analysis?.CategoryId);
+        Assert.Equal("text", engineEntry.Analysis?.IconId);
+        Assert.Equal("Explorer.Type.Text", engineEntry.Analysis?.TypeResourceKey);
+        var presentation = ExplorerFilePresentation.DefinitionFor(engineEntry);
+        Assert.Equal(ExplorerFileCategory.Text, presentation.Category);
+        Assert.Equal(ExplorerIconCategory.Text, presentation.IconCategory);
+        Assert.Equal("Explorer.Type.Text", presentation.TypeResourceKey);
     }
 
     private static void WriteRecord(Span<byte> destination, uint extent, uint length, byte flags, ReadOnlySpan<byte> name)

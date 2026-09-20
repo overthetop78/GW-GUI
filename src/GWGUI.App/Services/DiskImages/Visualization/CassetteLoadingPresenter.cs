@@ -80,14 +80,10 @@ internal sealed class CassetteLoadingPresenter(
     private static IReadOnlyList<string> FileDescriptions(ExploredMediaImage? explored)
     {
         if (explored?.Document.MediaKind != MediaKind.Tape) return [];
-        var family = ExplorerFileIconClassifier.FamilyFor(
-            explored.Document.FormatId,
-            explored.Volumes.Select(volume => volume.FileSystem?.FileSystemId)
-                .FirstOrDefault(id => !string.IsNullOrWhiteSpace(id)));
         return explored.Volumes
             .SelectMany(volume => volume.FileSystem?.Entries ?? [])
             .SelectMany(EnumerateFiles)
-            .Select(entry => new ExplorerContentItem(entry, family))
+            .Select(entry => new ExplorerContentItem(entry))
             .Select(item => $"{item.Name} — {item.TypeText}")
             .ToArray();
     }

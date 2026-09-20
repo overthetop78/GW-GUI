@@ -53,9 +53,10 @@ internal static class VisualizerDocumentScenarios
         var formats=new[] {new GWGUI.MediaEngine.Images.Formats.DiskFormat("test.first","family-a","format-a",[new(".a","a",true)]),new GWGUI.MediaEngine.Images.Formats.DiskFormat("test.second","family-b","format-b",[new(".b","b",true)])};
         workspace.Visualizer.Header.SetFormats(formats); workspace.Explorer.SetFormats(formats,null);
         var first=ExplorerDocumentScenarios.Document("FIRST"); var image=first.Image.WithFormatId("test.first"); var second=image.WithFormatId("test.second");
-        var document=new ExploredDiskImage(first.SourcePath,image,first.Volume,first.Metadata,detectedFileSystems:[new("reader-a",image,first.Volume),new("reader-b",second,first.Volume)],scpImage:first.ScpImage);
+        var document=new ExploredDiskImage(first.SourcePath,image,first.Volume,first.Metadata,detectedFileSystems:[new("reader-a",image,first.Volume),new("reader-b",second,first.Volume)]);
         workspace.Explore=(_,_,_)=>Task.FromResult(document);
         await workspace.Controller.LoadExplorerAsync(first.SourcePath);
+        Assert.True(workspace.Errors.Count == 0, string.Join(Environment.NewLine, workspace.Errors));
         var selector=workspace.Visualizer.Header.ClassificationSelector;
         Assert.Equal("test.first",selector.SelectedFormatId); Assert.Equal("family-a",selector.SelectedMachine);
         var machines=Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
@@ -63,7 +64,7 @@ internal static class VisualizerDocumentScenarios
         selector.SetAutomaticDetection(false);
         workspace.Visualizer.Header.ApplyDetection("test.second",null); Assert.Equal("test.first",selector.SelectedFormatId);
         selector.SetAutomaticDetection(true);
-        document=new ExploredDiskImage("unknown",image.WithFormatId("unknown"),first.Volume,first.Metadata,fileSystemRecognized:false,scpImage:first.ScpImage);
+        document=new ExploredDiskImage("unknown",image.WithFormatId("unknown"),first.Volume,first.Metadata,fileSystemRecognized:false);
         await workspace.Controller.LoadExplorerAsync("unknown"); Assert.Null(selector.SelectedFormatId); Assert.Null(selector.SelectedMachine);
         Assert.All(machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>(),item=>Assert.False(item.IsDetected));
     }
@@ -191,6 +192,8 @@ internal static class VisualizerDocumentScenarios
         };
 
         await workspace.Controller.LoadAsync(sourcePath);
+        Assert.True(workspace.Errors.Count == 0, string.Join(Environment.NewLine, workspace.Errors));
+        Assert.Equal(1, workspace.MediaReadCount);
         var completedSelection = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         workspace.Visualizer.Header.ClassificationFormatChanged += async (_, formatId) =>
         {
@@ -209,7 +212,7 @@ internal static class VisualizerDocumentScenarios
         Assert.Equal(
             ("Explorer.SelectedFormatUnsupportedTitle", "Explorer.SelectedFormatUnsupported"),
             Assert.Single(workspace.ErrorPresentations));
-        Assert.Equal([null, "test.incompatible"], requests);
+        Assert.Equal(["test.incompatible"], requests);
 
         completedSelection = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>()
@@ -219,7 +222,7 @@ internal static class VisualizerDocumentScenarios
         Assert.Equal("test.sector", selector.SelectedFormatId);
         Assert.Equal("test.sector", workspace.Visualizer.CurrentDocument?.FormatId);
         Assert.Equal(MediaRepresentationKind.Sectors, workspace.Visualizer.ActiveRepresentationKind);
-        Assert.Equal([null, "test.incompatible", "test.sector"], requests);
+        Assert.Equal(["test.incompatible"], requests);
     }
 
     private sealed class SectorDocumentReader(int cylinders, int heads, Action onRead) : IMediaImageReader

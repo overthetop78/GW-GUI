@@ -1,4 +1,5 @@
 using GWGUI.App.Services.DiskImages;
+using GWGUI.App.Functions.Rendering.Scp;
 using GWGUI.App.Views.Controls.Visualization;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,18 +21,23 @@ internal static class ViewportGeometryScenarios
         view.SetImage(image, 0); view.PanBy(50, -20);
         var request = view.CreateRenderRequest(800, 600);
         var canvas = Assert.IsType<SkiaSharp.Views.WPF.SKElement>(view.FindName("Canvas"));
-        Assert.Equal(400 + 50 * 800 / canvas.ActualWidth, request.Center.X, .01);
-        Assert.Equal(300 - 20 * 600 / canvas.ActualHeight, request.Center.Y, .01);
+        Assert.Equal(400, request.Center.X);
+        Assert.Equal(300, request.Center.Y);
         Assert.Equal(800, request.Width); Assert.Equal(600, request.Height); Assert.Same(image, request.Image);
+        view.SetZoom(2); view.PanBy(50, -20);
         var selected = new List<ScpTrack?>(); view.TrackSelected += (_, track) => selected.Add(track);
-        view.SelectTrackAt(new Point(250, 130)); Assert.Empty(selected); // Hub.
-        view.SelectTrackAt(new Point(500, 130)); Assert.Empty(selected); // Outside the disk.
-        view.SelectTrackAt(new Point(350, 130)); Assert.Same(tracks[0], view.SelectedTrack);
-        view.SelectTrackAt(new Point(310, 130)); Assert.Same(tracks[1], view.SelectedTrack);
+        var center = new Point(canvas.ActualWidth / 2 + 50, canvas.ActualHeight / 2 - 20);
+        var radius = ScpMediaGeometryFunctions.FluxRadius((int)canvas.ActualWidth, (int)canvas.ActualHeight, 2, default);
+        view.SelectTrackAt(center); Assert.Empty(selected); // Hub.
+        view.SelectTrackAt(new Point(center.X + radius + 1, center.Y)); Assert.Empty(selected); // Outside the disk.
+        view.SelectTrackAt(new Point(center.X + radius * .9, center.Y)); Assert.Same(tracks[0], view.SelectedTrack);
+        view.SelectTrackAt(new Point(center.X + radius * .4, center.Y)); Assert.Same(tracks[1], view.SelectedTrack);
         Assert.Equal(new[] { tracks[0], tracks[1] }, selected);
         Assert.Same(tracks[1], view.CreateRenderRequest(800, 600).SelectedTrack);
-        view.SetZoom(2); request = view.CreateRenderRequest(800, 600);
-        Assert.Equal(2, request.Zoom); Assert.Equal(500, request.Center.X);
+        request = view.CreateRenderRequest(800, 600);
+        Assert.Equal(2, request.Zoom);
+        Assert.Equal(400 + 50 * 800 / canvas.ActualWidth, request.Center.X, .01);
+        Assert.Equal(300 - 20 * 600 / canvas.ActualHeight, request.Center.Y, .01);
         view.ResetView(); request = view.CreateRenderRequest(800, 600);
         Assert.Equal(1, request.Zoom); Assert.Equal(400, request.Center.X); Assert.Equal(300, request.Center.Y);
         view.PanBy(-100, 80); view.SetZoom(3); view.SetImage(image, 1);

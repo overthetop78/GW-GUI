@@ -169,7 +169,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
                 requestedFormatId,
                 scpProgress,
                 progress,
-                cancellationToken);
+                cancellationToken,
+                includeFileSystems: true);
         }
 
         var disk = await _explore(path, requestedFormatId, cancellationToken);
@@ -198,7 +199,10 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     {
         var openingResult = _mediaOpeningAnalysis is null
             ? null
-            : await _mediaOpeningAnalysis.AnalyzeAsync(path, cancellationToken: cancellationToken);
+            : await _mediaOpeningAnalysis.AnalyzeAsync(
+                path,
+                cancellationToken: cancellationToken,
+                includeFileSystems: true);
         cancellationToken.ThrowIfCancellationRequested();
         var document = openingResult?.DiskExploration ?? await _explore(path, null, cancellationToken);
         cancellationToken.ThrowIfCancellationRequested();
@@ -211,6 +215,25 @@ internal sealed class DiskImageWorkspaceController : IDisposable
                 || document.ScpImage is not null);
         LastReadImage = document;
         return document;
+    }
+
+    public async Task AnalyzeAsync(
+        string path,
+        bool includeFileSystems,
+        CancellationToken cancellationToken = default)
+    {
+        if (includeFileSystems)
+        {
+            await AnalyzeAsync(path, cancellationToken);
+            return;
+        }
+
+        if (_mediaOpeningAnalysis is null)
+            throw new InvalidOperationException("Media image reading is not available.");
+        await _mediaOpeningAnalysis.AnalyzeAsync(
+            path,
+            cancellationToken: cancellationToken,
+            includeFileSystems: false);
     }
 
     public void RememberReadImage(IImageDisquette image)

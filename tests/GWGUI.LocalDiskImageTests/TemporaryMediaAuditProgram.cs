@@ -163,33 +163,28 @@ internal static partial class Program
     private static VolumeAudit CreateVolume(MediaImageDocument document, ExploredMediaVolume volume)
     {
         var fileSystem = volume.FileSystem;
-        var family = ExplorerFileIconClassifier.FamilyFor(document.FormatId, fileSystem?.FileSystemId);
         return new VolumeAudit(
             volume.Descriptor.Start, volume.Descriptor.Length, volume.Descriptor.Origin, volume.Descriptor.PartitionScheme,
             volume.Descriptor.PartitionNumber, volume.Descriptor.SessionNumber, volume.Descriptor.TrackNumber,
             volume.Descriptor.PartitionType, volume.Descriptor.PartitionId, fileSystem?.Name ?? volume.Descriptor.Name,
             volume.ReaderId, fileSystem?.FileSystemId, fileSystem?.Capacity, fileSystem?.FreeBytes, fileSystem?.FreeSpaceKnown,
             fileSystem?.Bootable, fileSystem?.Created, fileSystem?.Modified, fileSystem?.Attributes ?? [],
-            volume.Diagnostics, fileSystem?.Warnings ?? [], fileSystem is null ? [] : CreateEntries(fileSystem.Entries, family));
+            volume.Diagnostics, fileSystem?.Warnings ?? [], fileSystem is null ? [] : CreateEntries(fileSystem.Entries));
     }
 
-    private static IReadOnlyList<FileEntryAudit> CreateEntries(
-        IEnumerable<FileSystemEntry> entries,
-        GWGUI.App.Enums.Explorer.ExplorerFileSystemFamily family)
+    private static IReadOnlyList<FileEntryAudit> CreateEntries(IEnumerable<FileSystemEntry> entries)
     {
         var result = new List<FileEntryAudit>();
         foreach (var entry in entries)
-            result.Add(CreateEntry(entry, family));
+            result.Add(CreateEntry(entry));
         return result;
     }
 
-    private static FileEntryAudit CreateEntry(
-        FileSystemEntry entry,
-        GWGUI.App.Enums.Explorer.ExplorerFileSystemFamily family)
+    private static FileEntryAudit CreateEntry(FileSystemEntry entry)
     {
-        var item = new ExplorerContentItem(entry, family);
+        var item = new ExplorerContentItem(entry);
         var content = entry.Content?.ToArray();
-        var children = CreateEntries(entry.Children, family);
+        var children = CreateEntries(entry.Children);
         var contentHex = content is { Length: > 0 }
             && item.Definition.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown
                 ? Convert.ToHexString(content)

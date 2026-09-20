@@ -140,7 +140,7 @@ public sealed class DiskImageExplorer
             .Select(candidate => new ExploredFileSystem(
                 candidate.Match.ReaderId,
                 (SectorImage)candidate.Image,
-                FileSystemVolumeMapper.ConvertVolume(candidate.Match.Volume)))
+                FileSystemVolumeMapper.ConvertVolume(candidate.Match.Volume, ((SectorImage)candidate.Image).FormatId)))
             .ToArray();
         return (image, detected);
     }
@@ -152,7 +152,7 @@ public sealed class DiskImageExplorer
         if (fileSystems.TryRead(selectedImage, formatId, out var match))
         {
             return (selectedImage, [new(match.ReaderId, selectedImage,
-                FileSystemVolumeMapper.ConvertVolume(match.Volume))]);
+                FileSystemVolumeMapper.ConvertVolume(match.Volume, selectedImage.FormatId))]);
         }
         return (selectedImage, []);
     }

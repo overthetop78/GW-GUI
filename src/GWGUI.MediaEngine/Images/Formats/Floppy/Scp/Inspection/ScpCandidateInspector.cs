@@ -32,7 +32,7 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
             var matches = new List<ExploredFileSystem>();
             foreach (var match in fileSystems.ReadCandidates(image, image.FormatId).Matches)
             {
-                var volume = FileSystemVolumeMapper.ConvertVolume(match.Volume);
+                var volume = FileSystemVolumeMapper.ConvertVolume(match.Volume, image.FormatId);
                 var normalized = interpretations.NormalizeRecognizedImage(image, match.ReaderId);
                 ExploredFileSystem recognized;
                 if (ReferenceEquals(normalized, image))
@@ -42,7 +42,7 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
                 else if (fileSystems.TryRead(normalized, match.ReaderId, out var normalizedMatch))
                 {
                     recognized = new(match.ReaderId, normalized,
-                        FileSystemVolumeMapper.ConvertVolume(normalizedMatch.Volume));
+                        FileSystemVolumeMapper.ConvertVolume(normalizedMatch.Volume, normalized.FormatId));
                 }
                 else
                 {
@@ -54,7 +54,7 @@ internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, Disk
                 {
                     if (!fileSystems.TryRead(interpretation, interpretation.FormatId, out var interpretedMatch)) continue;
                     matches.Add(new(interpretedMatch.ReaderId, interpretation,
-                        FileSystemVolumeMapper.ConvertVolume(interpretedMatch.Volume)));
+                        FileSystemVolumeMapper.ConvertVolume(interpretedMatch.Volume, interpretation.FormatId)));
                 }
             }
             return matches;

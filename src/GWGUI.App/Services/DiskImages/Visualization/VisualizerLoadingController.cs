@@ -47,14 +47,14 @@ internal sealed class VisualizerLoadingController(
         var visualization = cancellation.BeginVisualization();
         var cancellationToken = visualization.Token;
         if (openingResult?.Document.Representation.RepresentationKind == MediaRepresentationKind.Flux
-            && openingResult.DiskExploration.ScpImage is { } loadedScpImage)
+            && openingResult.DiskExploration is { ScpImage: { } loadedScpImage } diskExploration)
         {
             visualizer.Header.ApplyDetection(null, null, [], true);
             try
             {
                 await scpVisualization.LoadAsync(path, loadedScpImage, displayFileName);
                 cancellationToken.ThrowIfCancellationRequested();
-                applyScpDetection(openingResult.DiskExploration);
+                applyScpDetection(diskExploration);
             }
             catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
             catch (Exception exception)
@@ -70,7 +70,8 @@ internal sealed class VisualizerLoadingController(
         {
             if (openingResult is not null)
             {
-                explored = openingResult.DiskExploration;
+                explored = openingResult.DiskExploration
+                    ?? throw new InvalidOperationException("The requested disk exploration is missing.");
                 rememberReadImage(explored);
                 setExploredMediaImage(openingResult.MediaExploration);
             }

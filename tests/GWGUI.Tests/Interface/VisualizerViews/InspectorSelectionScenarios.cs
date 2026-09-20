@@ -26,7 +26,7 @@ internal static class InspectorSelectionScenarios
         controller.SetImage(image);
         await controller.SelectTrackAsync(track);
         var inspector = head == 0 ? section.FirstInspector : section.SecondInspector;
-        var model = Assert.IsType<MediaInspectorModel>(inspector.DataContext);
+        var model = Assert.IsType<MediaInspectorModel>(inspector.Model);
         Assert.Equal("Visual.Title|", model.Title);
         Assert.Equal($"Visual.TrackTooltip|{head}|2|2", model.SelectedElement);
         var summary = model.Sections.Single(item => item.Title == "Visual.SummaryTab|");
@@ -45,15 +45,15 @@ internal static class InspectorSelectionScenarios
         Assert.StartsWith($"Visual.SectorDetail|2|{head}|3|128|", sector.Value);
         await controller.SelectTrackAsync(1 - head, otherTrack);
         var otherInspector = head == 0 ? section.SecondInspector : section.FirstInspector;
-        Assert.IsType<MediaInspectorModel>(otherInspector.DataContext);
-        Assert.Same(model, inspector.DataContext);
-        await controller.SelectTrackAsync(head, null); Assert.Null(inspector.DataContext);
+        Assert.IsType<MediaInspectorModel>(otherInspector.Model);
+        Assert.Same(model, inspector.Model);
+        await controller.SelectTrackAsync(head, null); Assert.Null(inspector.Model);
         var pending = controller.SelectTrackAsync(track);
         controller.SetImage(ExplorerDocumentScenarios.Document("replacement").ScpImage!);
-        await pending; Assert.Null(inspector.DataContext);
+        await pending; Assert.Null(inspector.Model);
         controller.SetImage(image);
         pending = controller.SelectTrackAsync(track);
-        controller.ClearImage(); await pending; Assert.Null(inspector.DataContext);
+        controller.ClearImage(); await pending; Assert.Null(inspector.Model);
     }
     internal static ScpInspectorController Controller(VisualizerTabSection section, DiskImageCancellationScope scope) =>
         new(new Window(), section, new FluxDecoderRegistry(), scope, _ => Task.CompletedTask, () => { }, (key, _) => key);
@@ -65,15 +65,15 @@ internal static class InspectorSelectionScenarios
         section.FirstInspector.Model = new("first", null, []);
         section.SecondInspector.Model = new("second", null, []);
         controller.SetImage(ExplorerDocumentScenarios.Document("first").ScpImage!);
-        Assert.Null(section.FirstInspector.DataContext);
-        Assert.Null(section.SecondInspector.DataContext);
+        Assert.Null(section.FirstInspector.Model);
+        Assert.Null(section.SecondInspector.Model);
         section.FirstInspector.Model = new("first", null, []);
         section.SecondInspector.Model = new("second", null, []);
         controller.ClearImage();
-        Assert.Null(section.FirstInspector.DataContext);
-        Assert.Null(section.SecondInspector.DataContext);
+        Assert.Null(section.FirstInspector.Model);
+        Assert.Null(section.SecondInspector.Model);
         controller.RefreshInspector();
-        Assert.Null(section.FirstInspector.DataContext);
-        Assert.Null(section.SecondInspector.DataContext);
+        Assert.Null(section.FirstInspector.Model);
+        Assert.Null(section.SecondInspector.Model);
     }
 }

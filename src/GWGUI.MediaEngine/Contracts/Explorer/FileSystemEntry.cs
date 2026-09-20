@@ -94,5 +94,7 @@ public sealed record FileSystemEntry : IFileSystemEntryView
     public IReadOnlyList<string> Diagnostics { get; }
     /// <summary>Métadonnées techniques propres au format de l'entrée.</summary>
     public IReadOnlyDictionary<string, string> Metadata { get; }
+    /// <summary>Identifiants d'affichage transmis par MediaFileSystems, s'ils sont disponibles.</summary>
+    public FileSystemEntryAnalysis? Analysis { get; init; }
 }
 

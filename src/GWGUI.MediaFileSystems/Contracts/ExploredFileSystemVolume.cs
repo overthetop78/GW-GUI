@@ -5,4 +5,7 @@ public sealed record ExploredFileSystemVolume(
     MediaVolumeDescriptor Descriptor,
     string? ReaderId,
     FileSystemVolume? FileSystem,
-    IReadOnlyList<string> Diagnostics);
+    IReadOnlyList<string> Diagnostics)
+{
+    public IReadOnlyList<FileSystemEntry> AnalyzedEntries { get; init; } = [];
+}

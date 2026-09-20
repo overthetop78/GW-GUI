@@ -89,7 +89,7 @@ internal sealed class WriteTabController(
             ? Visibility.Visible
             : Visibility.Collapsed;
         view.FormatBlock.VisualizeTracksButton.IsEnabled = true;
-        try { await (analyzeSource is null ? diskImageWorkspace.AnalyzeAsync(path) : analyzeSource(path)); }
+        try { await (analyzeSource is null ? diskImageWorkspace.AnalyzeAsync(path, includeFileSystems: false) : analyzeSource(path)); }
         catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
         { appendAnalysisFailure(exception, $"Analyzing write source: {path}"); }
         UpdateCommand();

@@ -70,7 +70,8 @@ internal sealed class ExplorerPresentationController
             cancellationToken.ThrowIfCancellationRequested();
             if (!_cancellation.IsCurrentExplorer(cancellation)) return null;
 
-            var document = openingResult.DiskExploration;
+            var document = openingResult.DiskExploration
+                ?? throw new InvalidOperationException("The requested disk exploration is missing.");
             ReportProgress(
                 DiskImageResourceKeys.ExplorerLoadingFormatFound,
                 document.PrimaryFormatId,
@@ -132,9 +133,9 @@ internal sealed class ExplorerPresentationController
 
     private MediaOpeningAnalysisResult? SelectCachedInterpretation(string path, bool newImage, string? requestedFormat)
     {
-        if (newImage || string.IsNullOrWhiteSpace(requestedFormat) || CurrentOpeningResult is null) return null;
-        if (!string.Equals(CurrentOpeningResult.DiskExploration.SourcePath, path, StringComparison.OrdinalIgnoreCase)) return null;
-        var selected = CurrentOpeningResult.DiskExploration.SelectFormat(requestedFormat);
+        if (newImage || string.IsNullOrWhiteSpace(requestedFormat) || CurrentOpeningResult?.DiskExploration is not { } disk) return null;
+        if (!string.Equals(disk.SourcePath, path, StringComparison.OrdinalIgnoreCase)) return null;
+        var selected = disk.SelectFormat(requestedFormat);
         if (selected is null) return null;
         return CurrentOpeningResult with
         {

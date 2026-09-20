@@ -1,4 +1,5 @@
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
+using GWGUI.MediaFileSystems.Contracts;
 
 namespace GWGUI.MediaFileSystems;
 
@@ -68,7 +69,9 @@ public sealed record FileSystemEntry : IFileSystemEntryView
     /// <summary>Indique si les métadonnées de l'entrée sont valides, indépendamment de la présence de son contenu.</summary>
     public bool MetadataValid { get; }
     /// <summary>Copie non modifiable des entrées enfants.</summary>
-    public IReadOnlyList<FileSystemEntry> Children { get; }
+    public IReadOnlyList<FileSystemEntry> Children { get; init; }
+    /// <summary>Identifiants d'affichage ajoutés après l'extraction de l'entrée.</summary>
+    public FileSystemEntryAnalysis? Analysis { get; init; }
     /// <summary>Copie non modifiable du contenu, collection vide pour un fichier vide, ou <see langword="null"/> lorsque le contenu est absent.</summary>
     public IReadOnlyList<byte>? Content { get; }
     /// <summary>Type natif de l'entrée, lorsqu'il est défini par le système de fichiers.</summary>

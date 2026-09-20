@@ -21,7 +21,8 @@ public sealed class MediaOpeningAnalysisService(
         string? requestedFormatId = null,
         IProgress<ScpExplorationProgress>? scpProgress = null,
         Action<MediaExplorationProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        bool includeFileSystems = true)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         progress?.Invoke(new(
@@ -43,6 +44,9 @@ public sealed class MediaOpeningAnalysisService(
         }
 
         cancellationToken.ThrowIfCancellationRequested();
+        if (!includeFileSystems)
+            return new(document, null, null);
+
         progress?.Invoke(new(
             MediaExplorationProgressStage.ReadingFileSystem,
             document.FormatId,
