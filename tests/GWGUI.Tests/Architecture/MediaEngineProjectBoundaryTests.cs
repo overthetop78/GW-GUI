@@ -34,7 +34,7 @@ public sealed class MediaEngineProjectBoundaryTests
         Assert.DoesNotContain("gwgui.mediafilesystems", appReferences);
         Assert.DoesNotContain("gwgui.mediaanalysis", appReferences);
 
-        var readers = FileSystemReaderCatalog.CreateDefault();
+        var readers = MediaFileSystemsReaderAdapter.CreateDefaultCatalog();
         foreach (var id in new[]
         {
             FileSystemIds.AcornAdfs,

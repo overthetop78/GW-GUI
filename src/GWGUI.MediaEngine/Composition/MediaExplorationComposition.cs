@@ -34,7 +34,7 @@ public sealed class MediaExplorationComposition
         ArgumentNullException.ThrowIfNull(sequentialMedia);
         return new(
         new FileSystemRegistry(
-            FileSystemReaderCatalog.CreateDefault(),
+            MediaFileSystemsReaderAdapter.CreateDefaultCatalog(),
             [
                 new SequentialContentDecoderAdapter(sequentialMedia.Decoders),
                 new MediaFileSystemsOpticalReaderAdapter(new UdfFileSystemReader()),

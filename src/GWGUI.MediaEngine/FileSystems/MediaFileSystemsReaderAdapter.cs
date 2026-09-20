@@ -7,6 +7,10 @@ public sealed class MediaFileSystemsReaderAdapter : IFileSystemReader
 {
     private readonly GWGUI.MediaFileSystems.IFileSystemReader reader;
 
+    public static IReadOnlyList<IFileSystemReader> CreateDefaultCatalog() =>
+        Array.AsReadOnly(GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog.CreateDefault()
+            .Select(reader => (IFileSystemReader)new MediaFileSystemsReaderAdapter(reader)).ToArray());
+
     public MediaFileSystemsReaderAdapter(GWGUI.MediaFileSystems.IFileSystemReader reader)
     {
         ArgumentNullException.ThrowIfNull(reader);

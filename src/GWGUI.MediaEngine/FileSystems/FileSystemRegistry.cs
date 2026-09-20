@@ -7,6 +7,7 @@ using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Interfaces.Exploration;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using FileSystemRegistryExceptions = GWGUI.MediaFileSystems.FileSystemRegistryExceptions;
 
 namespace GWGUI.MediaEngine.FileSystems;
 
@@ -18,7 +19,7 @@ public sealed class FileSystemRegistry
     private readonly FrozenDictionary<MediaRepresentationKind, IReadOnlyList<IMediaFileSystemReader>> readersByRepresentation;
 
     /// <summary>Crée le registre à partir du catalogue par défaut.</summary>
-    public FileSystemRegistry() : this(FileSystemReaderCatalog.CreateDefault(), []) { }
+    public FileSystemRegistry() : this(MediaFileSystemsReaderAdapter.CreateDefaultCatalog(), []) { }
 
     /// <summary>Crée le registre à partir d'une collection ordonnée de lecteurs.</summary>
     public FileSystemRegistry(IEnumerable<IFileSystemReader> readers)

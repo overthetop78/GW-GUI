@@ -250,7 +250,7 @@ public static class MediaEngineFactory
     private static FluxDecoderRegistry CreateFluxDecoders() => new(FluxDecoderCatalog.CreateDefault());
 
     /// <summary>CrÃ©e l'unique registre des lecteurs de systÃ¨mes de fichiers.</summary>
-    private static FileSystemRegistry CreateFileSystems() => new(FileSystemReaderCatalog.CreateDefault());
+    private static FileSystemRegistry CreateFileSystems() => new(MediaFileSystemsReaderAdapter.CreateDefaultCatalog());
 
     /// <summary>CrÃ©e le service d'interprÃ©tation partagÃ© par les explorateurs gÃ©nÃ©ral et SCP.</summary>
     private static (DiskImageInterpretationService Interpretations, DiskImageDocumentFactory Documents) CreateInterpretations(FileSystemRegistry fileSystems)

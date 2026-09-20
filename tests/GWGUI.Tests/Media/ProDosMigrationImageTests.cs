@@ -31,7 +31,7 @@ public sealed class ProDosMigrationImageTests
 
     private static void AssertFile(GWGUI.MediaEngine.Images.Models.Sectors.SectorImage image, string expectedFileSystemId)
     {
-        var reader = Assert.Single(FileSystemReaderCatalog.CreateDefault(), item => item.Id == FileSystemIds.ProDos);
+        var reader = Assert.Single(MediaFileSystemsReaderAdapter.CreateDefaultCatalog(), item => item.Id == FileSystemIds.ProDos);
         Assert.True(reader.CanRead(image));
         var volume = reader.Read(image);
         Assert.Equal(expectedFileSystemId, volume.FileSystemId);

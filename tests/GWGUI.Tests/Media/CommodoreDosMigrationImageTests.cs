@@ -20,7 +20,7 @@ public sealed class CommodoreDosMigrationImageTests
         var result = new FileSystemMigrationService().CreateImage(source, formatId);
         Assert.True(result.Report.CanExecute);
         var image = result.Image;
-        var reader = Assert.Single(FileSystemReaderCatalog.CreateDefault(), item => item.Id == FileSystemIds.CommodoreDos);
+        var reader = Assert.Single(MediaFileSystemsReaderAdapter.CreateDefaultCatalog(), item => item.Id == FileSystemIds.CommodoreDos);
         Assert.True(reader.CanRead(image));
         var volume = reader.Read(image);
         Assert.Equal("VOLUME", volume.Name);

@@ -2663,3 +2663,28 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Créer `src/GWGUI.MediaEngine/Images/Reading/MediaFileSystemsOpticalReaderAdapter.cs` : transmettre le document décodé aux lecteurs optiques et convertir leur résultat pour le registre actuel.
     - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : enregistrer les quatre lecteurs de MediaFileSystems via cet adaptateur.
     - [x] Supprimer les dossiers vides `src/GWGUI.MediaEngine/FileSystems/Iso9660` et `src/GWGUI.MediaEngine/FileSystems/Udf`.
+- [x] Supprimer la copie des erreurs du registre dans MediaEngine
+  - [x] Utiliser la définition de MediaFileSystems
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` : appeler `GWGUI.MediaFileSystems.FileSystemRegistryExceptions` pour les erreurs de configuration.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistryExceptions.cs` identique à celui de MediaFileSystems.
+- [x] Ranger toutes les interfaces encore dispersées dans les dossiers Interfaces
+  - [x] Ranger les interfaces de MediaFileSystems
+    - [x] Déplacer `src/GWGUI.MediaFileSystems/Migration/IMigrationNamePolicy.cs` vers `src/GWGUI.MediaFileSystems/Interfaces/Migration/IMigrationNamePolicy.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaFileSystems/Exploration/Sequential/IMediaSequentialContent.cs` vers `src/GWGUI.MediaFileSystems/Interfaces/Exploration/Sequential/IMediaSequentialContent.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaFileSystems/FileSystems/Acorn/FileCore/IFileCoreAddressResolver.cs` vers `src/GWGUI.MediaFileSystems/Interfaces/FileSystems/Acorn/FileCore/IFileCoreAddressResolver.cs` sans modifier son contrat.
+  - [x] Ranger les interfaces encore dépendantes des types de MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/IFileSystemReader.cs` vers `src/GWGUI.MediaEngine/Interfaces/Exploration/IFileSystemReader.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts/IRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts/IAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IAdditionalImageInterpretationPolicy.cs` sans modifier son contrat.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts`.
+- [x] Donner le catalogue des lecteurs de fichiers à MediaFileSystems
+  - [x] Déplacer le catalogue et raccorder le registre existant
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs` vers `src/GWGUI.MediaFileSystems/Exploration/FileSystemReaderCatalog.cs` : construire directement les lecteurs de MediaFileSystems, dans leur ordre actuel.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/MediaFileSystemsReaderAdapter.cs` : adapter la collection fournie par le nouveau catalogue sans dupliquer sa liste.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` : créer ses adaptateurs depuis le catalogue de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : créer ses adaptateurs depuis le catalogue de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : créer ses adaptateurs depuis le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : utiliser le catalogue adapté par MediaEngine.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : utiliser le catalogue adapté par MediaEngine.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : utiliser le catalogue adapté par MediaEngine.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier les lecteurs du catalogue adapté par MediaEngine.

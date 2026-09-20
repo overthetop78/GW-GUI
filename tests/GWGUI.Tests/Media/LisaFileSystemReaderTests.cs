@@ -29,7 +29,7 @@ public sealed class LisaFileSystemReaderTests
             Block(3, 6, [4, 5, 6])
         ], allowVariableBlockSize: true);
 
-        var reader = Assert.Single(FileSystemReaderCatalog.CreateDefault(), item => item.Id == FileSystemIds.Lisa);
+        var reader = Assert.Single(MediaFileSystemsReaderAdapter.CreateDefaultCatalog(), item => item.Id == FileSystemIds.Lisa);
         Assert.True(reader.CanRead(image));
         var entry = Assert.Single(reader.Read(image).Entries);
         Assert.Equal("HELLO", entry.Name);
