@@ -2695,3 +2695,6 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
     - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : référencer le résultat sous Contracts/Explorer.
     - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : référencer le résultat sous Contracts/Explorer.
     - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : référencer le résultat sous Contracts/Explorer.
+- [x] Vérifier la lecture optique déplacée dans MediaFileSystems
+  - [x] Garder un test autonome sur un catalogue ISO 9660 en mémoire
+    - [x] Créer `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : construire un descripteur, un répertoire et un fichier ISO en mémoire, puis vérifier que MediaFileSystems retrouve le vrai nom et le contenu via la piste de MediaEngine.
