@@ -3,7 +3,7 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
-namespace GWGUI.MediaEngine.Exploration.Metadata;
+namespace GWGUI.MediaEngine.Images.Reading.Metadata;
 
 /// <summary>Construit les métadonnées techniques d'une image sans produire de texte d'interface.</summary>
 internal sealed class DiskImageMetadataFactory(DiskSystemResolver systemResolver, DiskProtectionResolver protectionResolver)

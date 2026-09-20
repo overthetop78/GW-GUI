@@ -13,7 +13,6 @@ using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
 using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
-using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;

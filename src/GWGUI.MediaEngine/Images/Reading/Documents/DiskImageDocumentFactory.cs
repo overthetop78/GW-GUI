@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
 using GWGUI.MediaEngine.Constants;

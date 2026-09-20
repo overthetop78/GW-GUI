@@ -2933,3 +2933,12 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
 - [x] Retirer la classe d'erreur propre au seul lecteur DiskImageExplorer
   - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : construire directement la même `FileNotFoundException` avec le chemin source et ajouter `using System.IO;`.
   - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/DiskImageExplorationExceptions.cs` après disparition de son unique appel.
+- [x] Ranger la détection des caractéristiques techniques de l'image
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentIds.cs` vers `src/GWGUI.MediaEngine/Constants/DiskContentIds.cs` et adopter l'espace de noms des constantes.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/AmigaCataloglessBootImageDetector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/AmigaCataloglessBootImageDetector.cs` et adopter l'espace de noms de la lecture d'image.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/AtnImploderArchiveDetector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/AtnImploderArchiveDetector.cs` et adopter l'espace de noms de la lecture d'image.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentDetector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/DiskContentDetector.cs`, adopter l'espace de noms de la lecture d'image et importer les constantes déplacées.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadataFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/DiskImageMetadataFactory.cs` et adopter l'espace de noms de la lecture d'image.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Documents/DiskImageDocumentFactory.cs` : importer la fabrique depuis `Images.Reading.Metadata` et retirer l'ancien import.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer l'ancien import de fabrique par `Images.Reading.Metadata`, déjà présent.
+  - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Metadata` après vérification de son contenu.

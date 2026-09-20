@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Constants;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
-namespace GWGUI.MediaEngine.Exploration.Metadata;
+namespace GWGUI.MediaEngine.Images.Reading.Metadata;
 
 /// <summary>Reconnaît une image Amiga complète amorçable dont les données sont chargées directement par secteurs.</summary>
 internal static class AmigaCataloglessBootImageDetector

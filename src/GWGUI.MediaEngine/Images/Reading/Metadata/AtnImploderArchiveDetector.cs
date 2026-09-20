@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 
-namespace GWGUI.MediaEngine.Exploration.Metadata;
+namespace GWGUI.MediaEngine.Images.Reading.Metadata;
 
 /// <summary>Reconnaît une organisation sectorielle composée de blocs ATN!/File Imploder.</summary>
 internal static class AtnImploderArchiveDetector

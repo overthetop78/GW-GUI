@@ -1,4 +1,4 @@
-namespace GWGUI.MediaEngine.Exploration.Metadata;
+namespace GWGUI.MediaEngine.Constants;
 
 /// <summary>Identifiants stables des caractéristiques de contenu détectables.</summary>
 public static class DiskContentIds

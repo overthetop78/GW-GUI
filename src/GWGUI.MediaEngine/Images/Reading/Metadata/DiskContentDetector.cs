@@ -4,7 +4,7 @@ using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Contracts.Explorer;
 
-namespace GWGUI.MediaEngine.Exploration.Metadata;
+namespace GWGUI.MediaEngine.Images.Reading.Metadata;
 
 /// <summary>Détecte des caractéristiques documentées sans fabriquer d'entrées de fichiers.</summary>
 internal sealed class DiskContentDetector
