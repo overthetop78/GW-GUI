@@ -1,8 +1,8 @@
 ﻿[CmdletBinding()]
 param(
-    [string]$Root = 'F:\Rétro',
+    [string]$Root = 'F:\Retro',
     [string]$OutputRoot,
-    [string]$StartAt = 'F:\Rétro\A Trier\Atari 400-800\Atari 8bit - Applications - [ATR] (TOSEC-v2023-08-29)\8bit Mouse, The v2.01 (19xx)(Broomfield, Graham - Hunt, Colin)',
+    [string]$StartAt,
     [string]$ImagePath,
     [ValidateRange(1, [int]::MaxValue)]
     [int]$MaximumCount,

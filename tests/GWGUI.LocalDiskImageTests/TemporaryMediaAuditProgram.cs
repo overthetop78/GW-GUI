@@ -18,6 +18,8 @@ using GWGUI.MediaEngine.Images.Models.Flux;
 using GWGUI.MediaEngine.Images.Models.Optical;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Models.Sequential;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaAudit.TestInfrastructure;
 
 namespace GWGUI.MediaAudit;
@@ -35,6 +37,12 @@ internal static partial class Program
     {
         try
         {
+            if (args.Contains("--self-test", StringComparer.OrdinalIgnoreCase))
+            {
+                MediaAuditValidatorSelfTests.Run();
+                Console.WriteLine("Media audit validator self-tests passed.");
+                return 0;
+            }
             if (args.Contains("--explorer-ui", StringComparer.OrdinalIgnoreCase))
             {
                 var explorerImagePath = Argument(args, "--image") ?? throw new ArgumentException("--image is required.");
@@ -125,7 +133,7 @@ internal static partial class Program
             var associatedHash = await HashFileAsync(associated.FullName);
             associatedFiles.Add(new(associated.FullName, associated.Extension.ToLowerInvariant(), associated.Length, associatedHash));
         }
-        var explored = await engine.Explorer.ExploreAsync(document);
+        var explored = await ExploreFileSystemsAsync(engine, document);
         TemporaryNamedMediaFormatIdentification.ThrowIfIdentificationIsRequired(document, explored);
         var visualization = engine.Visualization.Registry.CreateDescriptor(explored.Document);
         var catalogFormat = new BuiltInImageFormatCatalog().Formats.FirstOrDefault(format =>
@@ -149,15 +157,14 @@ internal static partial class Program
             }
         }
 
-        var volumes = explored.Volumes.Select(volume => CreateVolume(document, volume)).ToArray();
-        var logicalFiles = volumes.SelectMany(volume => Flatten(volume.Entries)).Count(entry => entry.Kind == FileSystemEntryKind.File.ToString());
-        var validation = Validate(document, recognized, explored, visualization.Elements.Count, volumes, logicalFiles);
-        var declaredCapacity = volumes.Select(volume => volume.Capacity).Where(value => value.HasValue).Sum(value => value!.Value);
-        var freeBytes = volumes.Where(volume => volume.FreeSpaceKnown == true).Select(volume => volume.FreeBytes).Where(value => value.HasValue).Sum(value => value!.Value);
+        var volumes = explored.Volumes.Select(CreateVolume).ToArray();
+        var validation = MediaAuditValidator.Validate(document, recognized, visualization.Elements.Count, volumes);
+        var declaredCapacity = SumOrMaximum(volumes.Select(volume => volume.Capacity).Where(value => value.HasValue).Select(value => value!.Value));
+        var freeBytes = SumOrMaximum(volumes.Where(volume => volume.FreeSpaceKnown == true).Select(volume => volume.FreeBytes).Where(value => value.HasValue).Select(value => value!.Value));
         long? usedBytes = declaredCapacity > 0 ? Math.Max(0, declaredCapacity - freeBytes) : null;
 
         return new MediaAuditReport(
-            3,
+            4,
             DateTimeOffset.UtcNow,
             new SourceAudit(
                 path, file.Name, file.Extension.ToLowerInvariant(), file.Length, file.CreationTimeUtc, file.LastWriteTimeUtc,
@@ -177,19 +184,64 @@ internal static partial class Program
                 writePlan, writeDiagnostic, catalogFormat?.Family, catalogFormat?.FormFactor.ToString(), catalogFormat?.Density.ToString(),
                 catalogFormat?.Extensions.Select(extension => extension.Extension).ToArray() ?? recognized.Reader.Extensions.Order().ToArray(), destinations),
             CreateRepresentation(document),
-            new ValidationAudit(validation.Errors.Count == 0, validation.Errors, validation.Warnings));
+            validation);
     }
 
-    private static VolumeAudit CreateVolume(MediaImageDocument document, ExploredMediaVolume volume)
+    private static async Task<ExploredMediaImage> ExploreFileSystemsAsync(
+        MediaEngineComposition engine,
+        MediaImageDocument document)
+    {
+        if (document.Representation is not FluxMediaImageRepresentation)
+            return await engine.Explorer.ExploreAsync(document);
+
+        var decoded = await DiskImageExplorer.CreateDefault().ExploreAsync(document);
+        if (decoded.Image.FormatId.Equals(DiskImageFormatIds.Unknown, StringComparison.OrdinalIgnoreCase))
+            return await engine.Explorer.ExploreAsync(document);
+
+        var sectorDocument = new MediaImageDocument(
+            document.Source,
+            decoded.Image.FormatId,
+            document.MediaKind,
+            new SectorMediaImageRepresentation(decoded.Image),
+            [],
+            document.Diagnostics,
+            document.Metadata);
+        return await engine.Explorer.ExploreAsync(sectorDocument);
+    }
+
+    private static VolumeAudit CreateVolume(ExploredMediaVolume volume)
     {
         var fileSystem = volume.FileSystem;
+        var entries = fileSystem is null ? [] : CreateEntries(fileSystem.Entries);
+        var flattened = Flatten(entries).ToArray();
+        var files = flattened.Where(entry => entry.Kind == FileSystemEntryKind.File.ToString()).ToArray();
+        var occupiedSizes = files.Select(entry => entry.OccupiedSize).ToArray();
         return new VolumeAudit(
             volume.Descriptor.Start, volume.Descriptor.Length, volume.Descriptor.Origin, volume.Descriptor.PartitionScheme,
             volume.Descriptor.PartitionNumber, volume.Descriptor.SessionNumber, volume.Descriptor.TrackNumber,
             volume.Descriptor.PartitionType, volume.Descriptor.PartitionId, fileSystem?.Name ?? volume.Descriptor.Name,
             volume.ReaderId, fileSystem?.FileSystemId, fileSystem?.Capacity, fileSystem?.FreeBytes, fileSystem?.FreeSpaceKnown,
             fileSystem?.Bootable, fileSystem?.Created, fileSystem?.Modified, fileSystem?.Attributes ?? [],
-            volume.Diagnostics, fileSystem?.Warnings ?? [], fileSystem is null ? [] : CreateEntries(fileSystem.Entries));
+            volume.Diagnostics, fileSystem?.Warnings ?? [],
+            flattened.Count(entry => entry.Kind == FileSystemEntryKind.Directory.ToString()),
+            files.Length,
+            SumOrMaximum(files.Select(entry => entry.Size)),
+            occupiedSizes.All(size => size.HasValue) ? SumOrMaximum(occupiedSizes.Select(size => size!.Value)) : null,
+            entries);
+    }
+
+    private static long SumOrMaximum(IEnumerable<long> values)
+    {
+        long sum = 0;
+        try
+        {
+            foreach (var value in values) sum = checked(sum + value);
+            return sum;
+        }
+        catch (OverflowException)
+        {
+            return long.MaxValue;
+        }
     }
 
     private static IReadOnlyList<FileEntryAudit> CreateEntries(IEnumerable<FileSystemEntry> entries)
@@ -212,7 +264,8 @@ internal static partial class Program
         return new FileEntryAudit(
             entry.Name, item.Name, entry.Kind.ToString(), item.TypeText, item.Definition.Category.ToString(),
             item.Definition.ContentFormat.ToString(), item.Definition.TextEncoding.ToString(), item.Definition.ExecutionKind.ToString(),
-            item.Definition.PreviewKind.ToString(), entry.Size, entry.OccupiedSize,
+            item.Definition.PreviewKind.ToString(), entry.Analysis?.IconId, entry.Analysis?.TypeResourceKey,
+            entry.Size, entry.OccupiedSize,
             entry.Created, entry.Modified, entry.Accessed, entry.Comment, entry.RawAttributes, entry.StorageReference,
             entry.MetadataValid, entry.DataValid, entry.SyntheticName, entry.NativeTypeId, entry.LinkTarget,
             entry.Attributes, entry.Diagnostics, entry.Metadata,
@@ -220,6 +273,7 @@ internal static partial class Program
             ContentEdgeHex(content, fromEnd: false),
             ContentEdgeHex(content, fromEnd: true),
             contentHex,
+            content?.LongLength,
             content is not null,
             children);
     }
@@ -301,32 +355,6 @@ internal static partial class Program
         },
         _ => new { kind = document.Representation.RepresentationKind.ToString(), document.Representation.LogicalLength }
     };
-
-    private static (List<string> Errors, List<string> Warnings) Validate(
-        MediaImageDocument document,
-        MediaRecognitionResult recognized,
-        ExploredMediaImage explored,
-        int visualizationElementCount,
-        IReadOnlyList<VolumeAudit> volumes,
-        int logicalFileCount)
-    {
-        var errors = new List<string>();
-        var warnings = new List<string>();
-        if (!recognized.Reader.SupportsFormatId(document.FormatId)) errors.Add("The selected reader does not declare the recognized format.");
-        if (!recognized.Reader.Extensions.Contains(Path.GetExtension(document.Source.PrimaryPath), StringComparer.OrdinalIgnoreCase))
-            warnings.Add("The selected reader does not declare the source extension; the media content was recognized independently of its file name.");
-        if (visualizationElementCount == 0) errors.Add("The visualizer produced no media element.");
-        if (explored.Volumes.Count == 0) errors.Add("The explorer produced no volume.");
-        if (logicalFileCount == 0) errors.Add("No logical file was extracted from the media.");
-        foreach (var entry in volumes.SelectMany(volume => Flatten(volume.Entries)))
-        {
-            if (!entry.MetadataValid) warnings.Add($"Invalid metadata recorded for '{entry.DisplayName}'.");
-            if (entry.DataValid == false) warnings.Add($"Invalid data recorded for '{entry.DisplayName}'.");
-            if (entry.Kind == FileSystemEntryKind.File.ToString() && !entry.ContentExtracted)
-                errors.Add($"No content was extracted for '{entry.DisplayName}'.");
-        }
-        return (errors.Distinct(StringComparer.Ordinal).ToList(), warnings.Distinct(StringComparer.Ordinal).ToList());
-    }
 
     private static IEnumerable<FileEntryAudit> Flatten(IEnumerable<FileEntryAudit> entries)
     {

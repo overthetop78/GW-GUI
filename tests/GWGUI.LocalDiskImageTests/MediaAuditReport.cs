@@ -67,6 +67,10 @@ public sealed record VolumeAudit(
     IReadOnlyList<string> Attributes,
     IReadOnlyList<string> Diagnostics,
     IReadOnlyList<string> Warnings,
+    int DirectoryCount,
+    int FileCount,
+    long LogicalFileBytes,
+    long? OccupiedFileBytes,
     IReadOnlyList<FileEntryAudit> Entries);
 
 public sealed record FileEntryAudit(
@@ -79,6 +83,8 @@ public sealed record FileEntryAudit(
     string TextEncoding,
     string ExecutionKind,
     string Preview,
+    string? IconId,
+    string? TypeResourceKey,
     long Size,
     long? OccupiedSize,
     DateTimeOffset? Created,
@@ -99,6 +105,7 @@ public sealed record FileEntryAudit(
     string? ContentStartHex,
     string? ContentEndHex,
     string? ContentHex,
+    long? ContentLength,
     bool ContentExtracted,
     IReadOnlyList<FileEntryAudit> Children);
 
