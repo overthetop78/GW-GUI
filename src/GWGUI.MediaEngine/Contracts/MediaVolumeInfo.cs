@@ -11,7 +11,7 @@ public sealed class MediaVolumeInfo
         Start = descriptor.Start;
         Length = descriptor.Length;
         Origin = descriptor.Origin;
-        PartitionScheme = descriptor.PartitionScheme;
+        PartitionTable = descriptor.PartitionTable;
         PartitionNumber = descriptor.PartitionNumber;
         SessionNumber = descriptor.SessionNumber;
         TrackNumber = descriptor.TrackNumber;
@@ -24,7 +24,7 @@ public sealed class MediaVolumeInfo
     public long Start { get; }
     public long Length { get; }
     public string Origin { get; }
-    public string? PartitionScheme { get; }
+    public string? PartitionTable { get; }
     public int? PartitionNumber { get; }
     public int? SessionNumber { get; }
     public int? TrackNumber { get; }

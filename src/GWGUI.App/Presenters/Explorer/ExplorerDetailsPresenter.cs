@@ -104,7 +104,7 @@ public static class ExplorerDetailsPresenter
             new("Explorer.Volume", volumeName, syntheticName),
             new("Explorer.System", currentSystem ?? document.Document.MediaKind.ToString()),
             new("Explorer.Protection", LocExtension.Get("Explorer.Metadata.None")),
-            new("Explorer.FileSystem", volume?.FileSystemId ?? ControlVisualConstants.EmptyValue)
+            new("Explorer.FileSystem", volume?.FileSystemDisplayName ?? ControlVisualConstants.EmptyValue)
         };
         var descriptor = exploredVolume.Descriptor;
         if (descriptor.SessionNumber is { } sessionNumber)
@@ -118,9 +118,12 @@ public static class ExplorerDetailsPresenter
             if (optical.FaceCount is { } faceCount)
                 rows.Add(new("Explorer.Faces", faceCount.ToString()));
         }
-        if (!string.IsNullOrWhiteSpace(descriptor.PartitionScheme)
-            && descriptor.Origin != MediaVolumeOrigins.OpticalTrack)
-            rows.Add(new("Visual.PartitionSchemeLabel", descriptor.PartitionScheme));
+        if (descriptor.Origin != MediaVolumeOrigins.OpticalTrack)
+            rows.Add(new(
+                "Visual.PartitionTableLabel",
+                string.IsNullOrWhiteSpace(descriptor.PartitionTable)
+                    ? LocExtension.Get("Visual.PartitionTable.None")
+                    : descriptor.PartitionTable.ToUpperInvariant()));
         if (descriptor.PartitionNumber is { } partitionNumber)
             rows.Add(new("Visual.PartitionNumberLabel", partitionNumber.ToString()));
         if (!string.IsNullOrWhiteSpace(descriptor.PartitionType))

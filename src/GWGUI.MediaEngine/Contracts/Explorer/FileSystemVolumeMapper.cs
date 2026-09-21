@@ -28,7 +28,8 @@ public static class FileSystemVolumeMapper
             volume.Bootable,
             volume.DiskNumber,
             volume.DiskCount,
-            volume.DiskNumberOrigin);
+            volume.DiskNumberOrigin,
+            volume.FileSystemDisplayName);
     }
 
     public static GWGUI.MediaFileSystems.FileSystemVolume ToFileSystemsVolume(FileSystemVolume volume)
@@ -38,7 +39,7 @@ public static class FileSystemVolumeMapper
             volume.Name, volume.FileSystemId, volume.Capacity, volume.FreeBytes,
             volume.Created, volume.Modified, volume.Entries.Select(ToFileSystemsEntry),
             volume.Warnings, volume.FreeSpaceKnown, volume.Attributes, volume.Bootable,
-            volume.DiskNumber, volume.DiskCount, volume.DiskNumberOrigin);
+            volume.DiskNumber, volume.DiskCount, volume.DiskNumberOrigin, volume.FileSystemDisplayName);
     }
 
     private static GWGUI.MediaFileSystems.FileSystemEntry ToFileSystemsEntry(FileSystemEntry entry) =>

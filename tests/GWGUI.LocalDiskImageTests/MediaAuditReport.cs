@@ -49,7 +49,7 @@ public sealed record VolumeAudit(
     long Start,
     long Length,
     string Origin,
-    string? PartitionScheme,
+    string? PartitionTable,
     int? PartitionNumber,
     int? SessionNumber,
     int? TrackNumber,

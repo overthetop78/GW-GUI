@@ -7,7 +7,7 @@ public sealed record MediaVolumeDescriptor
         long start,
         long length,
         string origin,
-        string? partitionScheme = null,
+        string? partitionTable = null,
         int? partitionNumber = null,
         int? sessionNumber = null,
         int? trackNumber = null,
@@ -26,7 +26,7 @@ public sealed record MediaVolumeDescriptor
         Start = start;
         Length = length;
         Origin = origin;
-        PartitionScheme = partitionScheme;
+        PartitionTable = partitionTable;
         PartitionNumber = partitionNumber;
         SessionNumber = sessionNumber;
         TrackNumber = trackNumber;
@@ -42,7 +42,7 @@ public sealed record MediaVolumeDescriptor
 
     public string Origin { get; }
 
-    public string? PartitionScheme { get; }
+    public string? PartitionTable { get; }
 
     public int? PartitionNumber { get; }
 

@@ -1,5 +1,5 @@
 using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
-using PartitionSchemeIds = global::GWGUI.MediaFileSystems.Constants.PartitionSchemeIds;
+using PartitionTableIds = global::GWGUI.MediaFileSystems.Constants.PartitionTableIds;
 using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
 using IMediaBlockRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
@@ -74,7 +74,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
                 partition.Start,
                 partition.Length,
                 MediaVolumeOrigins.Partition,
-                PartitionSchemeIds.Mbr,
+                PartitionTableIds.Mbr,
                 partition.Number,
                 partitionType: $"0x{partition.Type:X2}"))
             .ToArray();

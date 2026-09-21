@@ -20,10 +20,12 @@ public sealed record FileSystemVolume : IFileSystemVolumeView
         bool? bootable = null,
         int? diskNumber = null,
         int? diskCount = null,
-        string? diskNumberOrigin = null)
+        string? diskNumberOrigin = null,
+        string? fileSystemDisplayName = null)
     {
         Name = name;
         FileSystemId = fileSystemId;
+        FileSystemDisplayName = string.IsNullOrWhiteSpace(fileSystemDisplayName) ? fileSystemId : fileSystemDisplayName;
         Capacity = capacity;
         FreeBytes = freeBytes;
         Created = created;
@@ -42,6 +44,8 @@ public sealed record FileSystemVolume : IFileSystemVolumeView
     public string Name { get; }
     /// <summary>Identifiant technique central du système de fichiers.</summary>
     public string FileSystemId { get; }
+    /// <summary>Nom du système de fichiers destiné à l'affichage.</summary>
+    public string FileSystemDisplayName { get; }
     /// <summary>Capacité du volume en octets.</summary>
     public long Capacity { get; }
     /// <summary>Espace libre en octets.</summary>

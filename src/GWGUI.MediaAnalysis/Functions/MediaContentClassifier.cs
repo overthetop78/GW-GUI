@@ -1,6 +1,6 @@
 using GWGUI.MediaAnalysis.Constants;
 using GWGUI.MediaAnalysis.Contracts;
-using GWGUI.MediaAnalysis.Dictionaries.FileTypes;
+using GWGUI.MediaAnalysis.Dictionaries.ContentRecognition;
 using GWGUI.MediaAnalysis.Enums;
 using GWGUI.MediaAnalysis.Interfaces;
 
@@ -32,19 +32,30 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
                 extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
                 MediaContentIconIds.File, extension, MediaContentFormat.Empty);
 
-        var known = MediaContentTypeCatalog.Find(family, extension);
-        var recognized = KnownCategory(comment, dataValid, content, family);
+        var knownRule = MediaContentRecognitionCatalog.Find(family, extension, content);
+        var known = knownRule is null
+            ? null
+            : MediaContentRecognitionFunctions.ToDefinition(knownRule, extension);
+        var recognized = KnownCategory(comment, dataValid, family);
         if (recognized is not null && (known is null || known.Category is MediaContentCategory.File or MediaContentCategory.Data))
         {
             var encoding = recognized == MediaContentCategory.Text && family == MediaFileSystemFamily.Atari8Bit
                 ? MediaTextEncoding.Atascii
                 : MediaTextEncoding.NotApplicable;
-            return MediaContentTypeRuleFactory.Rule(family, extension, recognized.Value, encoding,
-                recognized == MediaContentCategory.Executable ? MediaExecutionKind.NativeExecutable : MediaExecutionKind.None);
+            return MediaContentRecognitionFunctions.ToDefinition(
+                new(family, MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
+                    recognized.Value, encoding,
+                    recognized == MediaContentCategory.Executable
+                        ? MediaExecutionKind.NativeExecutable
+                        : MediaExecutionKind.None,
+                    PreviewFor(recognized.Value)));
         }
         if (known is not null) return known;
         if (LooksLikeText(content))
-            return MediaContentTypeRuleFactory.Rule(family, extension, MediaContentCategory.Text, MediaTextEncoding.Unknown);
+            return MediaContentRecognitionFunctions.ToDefinition(
+                new(family, MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
+                    MediaContentCategory.Text, MediaTextEncoding.Unknown,
+                    MediaExecutionKind.None, MediaPreviewKind.Text));
         return Fallback(MediaContentCategory.File,
             extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
             MediaContentIconIds.File, extension);
@@ -56,14 +67,13 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         string iconId,
         string extension = "",
         MediaContentFormat contentFormat = MediaContentFormat.Unknown) =>
-        new(null, MediaContentTypeRuleFactory.Normalize(extension), category, resourceKey,
+        new(null, MediaContentRecognitionFunctions.NormalizeExtension(extension), category, resourceKey,
             MediaExecutionKind.None, iconId, contentFormat,
             MediaTextEncoding.NotApplicable, MediaPreviewKind.None);
 
     private static MediaContentCategory? KnownCategory(
         string comment,
         bool? dataValid,
-        IReadOnlyList<byte>? content,
         MediaFileSystemFamily family)
     {
         if (dataValid == false) return MediaContentCategory.Data;
@@ -87,11 +97,6 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
             if (type.Equals("UCSD text file", StringComparison.OrdinalIgnoreCase)) return MediaContentCategory.Text;
             if (type is "UCSD graphics file" or "UCSD photo file") return MediaContentCategory.Image;
         }
-        if (IsAmigaExecutable(content) && family == MediaFileSystemFamily.Amiga) return MediaContentCategory.Executable;
-        if (IsDosExecutable(content) && family == MediaFileSystemFamily.IbmPc) return MediaContentCategory.Executable;
-        if (IsAtariExecutable(content) && family == MediaFileSystemFamily.AtariTos) return MediaContentCategory.Executable;
-        if (HasFormType(content, "ILBM")) return MediaContentCategory.Image;
-        if (HasFormType(content, "8SVX")) return MediaContentCategory.Audio;
         return null;
     }
 
@@ -103,17 +108,15 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         return printable >= sample.Length * 0.9;
     }
 
-    private static bool IsAmigaExecutable(IReadOnlyList<byte>? data) =>
-        data is { Count: >= 4 } && data[0] == 0 && data[1] == 0 && data[2] == 3 && data[3] == 0xF3;
+    private static MediaPreviewKind PreviewFor(MediaContentCategory category) => category switch
+    {
+        MediaContentCategory.Text => MediaPreviewKind.Text,
+        MediaContentCategory.BasicProgram => MediaPreviewKind.BasicListing,
+        MediaContentCategory.Executable => MediaPreviewKind.Hexadecimal,
+        MediaContentCategory.System => MediaPreviewKind.Hexadecimal,
+        MediaContentCategory.Image => MediaPreviewKind.Image,
+        MediaContentCategory.Audio => MediaPreviewKind.Audio,
+        _ => MediaPreviewKind.None
+    };
 
-    private static bool IsDosExecutable(IReadOnlyList<byte>? data) =>
-        data is { Count: >= 2 } && data[0] == (byte)'M' && data[1] == (byte)'Z';
-
-    private static bool IsAtariExecutable(IReadOnlyList<byte>? data) =>
-        data is { Count: >= 2 } && data[0] == 0x60 && data[1] == 0x1A;
-
-    private static bool HasFormType(IReadOnlyList<byte>? data, string type) =>
-        data is { Count: >= 12 } &&
-        data[0] == (byte)'F' && data[1] == (byte)'O' && data[2] == (byte)'R' && data[3] == (byte)'M' &&
-        data.Skip(8).Take(4).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(type));
 }

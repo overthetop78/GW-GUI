@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Osoite</value></data>
   <data name="Visual.StartLabel"><value>Alku</value></data>
   <data name="Visual.LengthLabel"><value>Pituus</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Jakojärjestelmä</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Jakojärjestelmä</value></data>
+  <data name="Visual.PartitionTable.None"><value>Ei ole</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Jakonumero</value></data>
   <data name="Visual.FileSystemLabel"><value>Tiedostojärjestelmä</value></data>
   <data name="Visual.RangeTitle"><value>Valittu alue</value></data>

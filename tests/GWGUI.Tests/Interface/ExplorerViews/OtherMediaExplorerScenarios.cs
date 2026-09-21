@@ -116,7 +116,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
                 volume.Descriptor.Start,
                 volume.Descriptor.Length,
                 volume.Descriptor.Origin,
-                volume.Descriptor.PartitionScheme,
+                volume.Descriptor.PartitionTable,
                 volume.Descriptor.PartitionNumber,
                 volume.Descriptor.SessionNumber,
                 volume.Descriptor.TrackNumber,

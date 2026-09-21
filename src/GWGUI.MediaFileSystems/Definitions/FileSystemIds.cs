@@ -41,6 +41,10 @@ public static class FileSystemIds
     public const string AtariDos = "atari-dos";
     /// <summary>Identifie une bibliothèque graphique Atari CLK.</summary>
     public const string AtariClkGraphicsLibrary = "atari-clk-graphics-library";
+    /// <summary>Identifie une disquette Atari contenant directement un programme de démarrage sans catalogue.</summary>
+    public const string AtariBootDisk = "atari-boot-disk";
+    /// <summary>Identifie une disquette Atari K-file amorcée par KBoot.</summary>
+    public const string AtariKFile = "atari-k-file";
     /// <summary>Identifie les volumes Atari MyDOS, y compris les grands volumes à liaisons de secteurs sur 16 bits.</summary>
     public const string AtariMyDos = "atari-mydos";
     /// <summary>Identifie Coherent.</summary>

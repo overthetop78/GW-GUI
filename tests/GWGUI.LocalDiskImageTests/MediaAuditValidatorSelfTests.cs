@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Enums;
+using FileSystemIds = GWGUI.MediaFileSystems.Definitions.FileSystemIds;
 
 namespace GWGUI.MediaAudit;
 
@@ -13,6 +14,14 @@ internal static class MediaAuditValidatorSelfTests
         ExpectFailed(
             MediaAuditValidator.ValidateVolumes(MediaKind.Floppy, 1024, [Volume(capacity: 1024)]),
             "no file was extracted");
+        ExpectPassed(
+            MediaAuditValidator.ValidateVolumes(MediaKind.Floppy, 1024,
+                [Volume(capacity: 1024, fileSystemId: FileSystemIds.AtariKFile)]),
+            "A recognized K-file using KBoot has no file catalog to enumerate.");
+        ExpectPassed(
+            MediaAuditValidator.ValidateVolumes(MediaKind.Floppy, 1024,
+                [Volume(capacity: 1024, fileSystemId: FileSystemIds.AtariBootDisk)]),
+            "A recognized Atari boot disk has no file catalog to enumerate.");
         ExpectFailed(
             MediaAuditValidator.ValidateVolumes(MediaKind.Floppy, 1024,
                 [Volume(capacity: 1024, freeBytes: 1025, entries: [File(size: 1)])]),
@@ -40,14 +49,15 @@ internal static class MediaAuditValidatorSelfTests
         long freeBytes = 0,
         long start = 0,
         long? length = null,
-        IReadOnlyList<FileEntryAudit>? entries = null)
+        IReadOnlyList<FileEntryAudit>? entries = null,
+        string fileSystemId = "self-test-fs")
     {
         entries ??= [];
         var flattened = Flatten(entries).ToArray();
         var files = flattened.Where(entry => entry.Kind == FileSystemEntryKind.File.ToString()).ToArray();
         return new VolumeAudit(
             start, length ?? capacity, "self-test", null, null, null, null, null, null, "TEST",
-            "self-test-reader", "self-test-fs", capacity, freeBytes, true, false, null, null,
+            "self-test-reader", fileSystemId, capacity, freeBytes, true, false, null, null,
             [], [], [],
             flattened.Count(entry => entry.Kind == FileSystemEntryKind.Directory.ToString()),
             files.Length,

@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
   <data name="Visual.StartLabel"><value>의 시작</value></data>
   <data name="Visual.LengthLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>파티션 계획</value></data>
+  <data name="Visual.PartitionTableLabel"><value>파티션 계획</value></data>
+  <data name="Visual.PartitionTable.None"><value>ᄋᄋᄋ</value></data>
   <data name="Visual.PartitionNumberLabel"><value>파티션 번호</value></data>
   <data name="Visual.FileSystemLabel"><value>파일 시스템</value></data>
   <data name="Visual.RangeTitle"><value>선택 범위</value></data>

@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Adresarea</value></data>
   <data name="Visual.StartLabel"><value>Începutul</value></data>
   <data name="Visual.LengthLabel"><value>Lungime</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Schema de partiție</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Schema de partiție</value></data>
+  <data name="Visual.PartitionTable.None"><value>Niciuna</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Numărul de partiție</value></data>
   <data name="Visual.FileSystemLabel"><value>Sistem de fișiere</value></data>
   <data name="Visual.RangeTitle"><value>Gama selectată</value></data>

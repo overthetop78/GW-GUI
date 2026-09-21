@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>アドレス</value></data>
   <data name="Visual.StartLabel"><value>スタート</value></data>
   <data name="Visual.LengthLabel"><value>タイトル</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>パーティション方式</value></data>
+  <data name="Visual.PartitionTableLabel"><value>パーティション方式</value></data>
+  <data name="Visual.PartitionTable.None"><value>なし</value></data>
   <data name="Visual.PartitionNumberLabel"><value>部品番号</value></data>
   <data name="Visual.FileSystemLabel"><value>ファイルシステム</value></data>
   <data name="Visual.RangeTitle"><value>選択範囲</value></data>

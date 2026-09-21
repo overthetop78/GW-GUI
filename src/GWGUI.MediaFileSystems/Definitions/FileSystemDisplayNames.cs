@@ -18,6 +18,10 @@ internal static class FileSystemDisplayNames
     public const string AtariDos = "Atari DOS";
     /// <summary>Nom affiché d'une bibliothèque graphique Atari CLK.</summary>
     public const string AtariClkGraphicsLibrary = "Atari CLK graphics library";
+    /// <summary>Nom affiché d'une disquette contenant directement un programme de démarrage Atari.</summary>
+    public const string AtariBootDisk = "Atari boot disk";
+    /// <summary>Nom affiché d'une disquette Atari K-file amorcée par KBoot.</summary>
+    public const string AtariKFile = "K-file (KBoot)";
     /// <summary>Nom affiché des volumes Atari MyDOS.</summary>
     public const string AtariMyDos = "Atari MyDOS";
     /// <summary>Nom affiché de Coherent sur Commodore 900.</summary>

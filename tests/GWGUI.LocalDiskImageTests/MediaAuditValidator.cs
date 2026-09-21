@@ -8,6 +8,7 @@ using GWGUI.MediaEngine.Images.Models.Optical;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
+using FileSystemIds = GWGUI.MediaFileSystems.Definitions.FileSystemIds;
 
 namespace GWGUI.MediaAudit;
 
@@ -184,7 +185,14 @@ internal static class MediaAuditValidator
 
         var fileCount = volumes.Sum(volume => volume.FileCount);
         if (recognizedVolumes.Length > 0 && fileCount == 0)
-            errors.Add($"A file system was recognized on {recognizedVolumes.Length} volume(s), but no file was extracted.");
+        {
+            if (recognizedVolumes.All(volume =>
+                    volume.FileSystemId!.Equals(FileSystemIds.AtariKFile, StringComparison.OrdinalIgnoreCase)
+                    || volume.FileSystemId.Equals(FileSystemIds.AtariBootDisk, StringComparison.OrdinalIgnoreCase)))
+                warnings.Add("The recognized Atari boot media has no file catalog to enumerate.");
+            else
+                errors.Add($"A file system was recognized on {recognizedVolumes.Length} volume(s), but no file was extracted.");
+        }
         else if (mediaKind == MediaKind.Floppy && fileCount == 0)
             errors.Add("The floppy contains volume data, but no logical file was extracted.");
     }

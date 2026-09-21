@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>讲 题</value></data>
   <data name="Visual.StartLabel"><value>开始</value></data>
   <data name="Visual.LengthLabel"><value>长度</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>分保计划</value></data>
+  <data name="Visual.PartitionTableLabel"><value>分保计划</value></data>
+  <data name="Visual.PartitionTable.None"><value>无</value></data>
   <data name="Visual.PartitionNumberLabel"><value>分区编号</value></data>
   <data name="Visual.FileSystemLabel"><value>文件系统</value></data>
   <data name="Visual.RangeTitle"><value>选中范围</value></data>

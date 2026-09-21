@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>כתובת</value></data>
   <data name="Visual.StartLabel"><value>תחילת ההתחלה</value></data>
   <data name="Visual.LengthLabel"><value>אורך אורך</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>תוכנית חלוקת</value></data>
+  <data name="Visual.PartitionTableLabel"><value>תוכנית חלוקת</value></data>
+  <data name="Visual.PartitionTable.None"><value>אף אחד לא</value></data>
   <data name="Visual.PartitionNumberLabel"><value>מספר חלוקת</value></data>
   <data name="Visual.FileSystemLabel"><value>מערכת הקבצים</value></data>
   <data name="Visual.RangeTitle"><value>טווח נבחר</value></data>

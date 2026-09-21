@@ -1,5 +1,5 @@
 using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
-using PartitionSchemeIds = global::GWGUI.MediaFileSystems.Constants.PartitionSchemeIds;
+using PartitionTableIds = global::GWGUI.MediaFileSystems.Constants.PartitionTableIds;
 using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
 using IMediaBlockRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
@@ -60,7 +60,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
                 partition.Start,
                 partition.Length,
                 MediaVolumeOrigins.Partition,
-                PartitionSchemeIds.Gpt,
+                PartitionTableIds.Gpt,
                 partition.Number,
                 partitionType: partition.TypeId,
                 partitionId: partition.PartitionId,

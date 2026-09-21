@@ -92,6 +92,7 @@ internal static class FileTypeExtensions
     public const string Edsk = ".edsk";
     public const string Eps = ".eps";
     public const string Erl = ".erl";
+    public const string Exp = ".exp";
     public const string Exe = ".exe";
     public const string Ext = ".ext";
     public const string Fc = ".fc";
@@ -178,6 +179,7 @@ internal static class FileTypeExtensions
     public const string O = ".o";
     public const string Obj = ".obj";
     public const string Os = ".os";
+    public const string Ovl = ".ovl";
     public const string P50 = ".p50";
     public const string Pat = ".pat";
     public const string Pc1 = ".pc1";
@@ -255,6 +257,7 @@ internal static class FileTypeExtensions
     public const string Ts = ".ts";
     public const string Ttf = ".ttf";
     public const string Ttp = ".ttp";
+    public const string Tur = ".tur";
     public const string Tx = ".tx";
     public const string Txt = ".txt";
     public const string Typ = ".typ";

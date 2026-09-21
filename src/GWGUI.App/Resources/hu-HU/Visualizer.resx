@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Címzés</value></data>
   <data name="Visual.StartLabel"><value>Kezdés</value></data>
   <data name="Visual.LengthLabel"><value>Hosszúság</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Részesedési rendszer</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Részesedési rendszer</value></data>
+  <data name="Visual.PartitionTable.None"><value>Nincs</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Részesedés száma</value></data>
   <data name="Visual.FileSystemLabel"><value>Fájlrendszer</value></data>
   <data name="Visual.RangeTitle"><value>Kiválasztott tartomány</value></data>

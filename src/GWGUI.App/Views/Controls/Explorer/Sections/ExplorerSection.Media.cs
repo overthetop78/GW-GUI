@@ -118,7 +118,7 @@ public partial class ExplorerSection
         ProtectionText.Text = LocExtension.Get("Explorer.Metadata.None");
         FileSystemText.Text = isTape
             ? TapeDescription(_mediaDocument)
-            : volume?.FileSystemId ?? ControlVisualConstants.EmptyValue;
+            : volume?.FileSystemDisplayName ?? ControlVisualConstants.EmptyValue;
         var capacity = volume?.Capacity ?? _mediaVolume?.Descriptor.Length;
         CapacityText.Text = capacity.HasValue ? StorageSizeFormatter.FormatBytes(capacity.Value) : ControlVisualConstants.EmptyValue;
         FreeText.Text = isTape

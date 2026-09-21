@@ -41,6 +41,7 @@ internal static partial class Program
             if (args.Contains("--self-test", StringComparer.OrdinalIgnoreCase))
             {
                 MediaAuditValidatorSelfTests.Run();
+                MediaContentClassifierSelfTests.Run();
                 Console.WriteLine("Media audit validator self-tests passed.");
                 return 0;
             }
@@ -218,7 +219,7 @@ internal static partial class Program
         var files = flattened.Where(entry => entry.Kind == FileSystemEntryKind.File.ToString()).ToArray();
         var occupiedSizes = files.Select(entry => entry.OccupiedSize).ToArray();
         return new VolumeAudit(
-            volume.Descriptor.Start, volume.Descriptor.Length, volume.Descriptor.Origin, volume.Descriptor.PartitionScheme,
+            volume.Descriptor.Start, volume.Descriptor.Length, volume.Descriptor.Origin, volume.Descriptor.PartitionTable,
             volume.Descriptor.PartitionNumber, volume.Descriptor.SessionNumber, volume.Descriptor.TrackNumber,
             volume.Descriptor.PartitionType, volume.Descriptor.PartitionId, fileSystem?.Name ?? volume.Descriptor.Name,
             volume.ReaderId, fileSystem?.FileSystemId, fileSystem?.Capacity, fileSystem?.FreeBytes, fileSystem?.FreeSpaceKnown,

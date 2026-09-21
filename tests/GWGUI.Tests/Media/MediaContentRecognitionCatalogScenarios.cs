@@ -1,16 +1,16 @@
-using GWGUI.MediaAnalysis.Dictionaries.FileTypes;
+using GWGUI.MediaAnalysis.Dictionaries.ContentRecognition;
 using GWGUI.MediaAnalysis.Enums;
 using GWGUI.MediaAnalysis.Functions;
 
 namespace GWGUI.Tests.Media;
 
-public sealed class MediaContentTypeCatalogScenarios
+public sealed class MediaContentRecognitionCatalogScenarios
 {
     [Fact]
     public void FamilyRuleTakesPriorityOverCommonRule()
     {
-        var atari = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".TXT");
-        var common = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Unknown, ".TXT");
+        var atari = MediaContentRecognitionCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".TXT");
+        var common = MediaContentRecognitionCatalog.Find(MediaFileSystemFamily.Unknown, ".TXT");
 
         Assert.NotNull(atari);
         Assert.NotNull(common);
@@ -30,7 +30,7 @@ public sealed class MediaContentTypeCatalogScenarios
         MediaContentCategory category,
         MediaExecutionKind execution)
     {
-        var definition = MediaContentTypeCatalog.Find(family, extension);
+        var definition = MediaContentRecognitionCatalog.Find(family, extension);
 
         Assert.NotNull(definition);
         Assert.Equal(category, definition.Category);
@@ -40,23 +40,27 @@ public sealed class MediaContentTypeCatalogScenarios
     [Fact]
     public void RowsAreUniqueAndNormalized()
     {
-        Assert.All(MediaContentTypeCatalog.Rows, row =>
+        var extensionRows = MediaContentRecognitionCatalog.Rows
+            .Where(row => row.Extension.Length > 0
+                && row.Signatures.Count == 0)
+            .ToArray();
+        Assert.All(extensionRows, row =>
         {
             Assert.StartsWith(".", row.Extension);
             Assert.Equal(row.Extension.ToLowerInvariant(), row.Extension);
         });
         Assert.Equal(
-            MediaContentTypeCatalog.Rows.Count,
-            MediaContentTypeCatalog.Rows.Select(row => (row.Family, row.Extension)).Distinct().Count());
+            extensionRows.Length,
+            extensionRows.Select(row => (row.Family, row.Extension)).Distinct().Count());
     }
 
     [Fact]
     public void AtariRulesUseSpecificThenAtariThenCommonOrder()
     {
-        var specific = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".TXT");
-        var atari = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".BAS");
-        var common = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".PNG");
-        var unknown = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".NOTKNOWN");
+        var specific = MediaContentRecognitionCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".TXT");
+        var atari = MediaContentRecognitionCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".BAS");
+        var common = MediaContentRecognitionCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".PNG");
+        var unknown = MediaContentRecognitionCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".NOTKNOWN");
 
         Assert.Equal(MediaFileSystemFamily.Atari8Bit, specific?.Family);
         Assert.Equal(MediaFileSystemFamily.Atari, atari?.Family);

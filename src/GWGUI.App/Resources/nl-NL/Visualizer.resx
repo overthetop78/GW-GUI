@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Adressen</value></data>
   <data name="Visual.StartLabel"><value>Begin</value></data>
   <data name="Visual.LengthLabel"><value>Lengte</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Partitioneringsschema</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Partitioneringsschema</value></data>
+  <data name="Visual.PartitionTable.None"><value>Geen</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Partitienummer</value></data>
   <data name="Visual.FileSystemLabel"><value>Bestandssysteem</value></data>
   <data name="Visual.RangeTitle"><value>Geselecteerd bereik</value></data>

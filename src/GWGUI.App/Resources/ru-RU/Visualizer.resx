@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>адресовать</value></data>
   <data name="Visual.StartLabel"><value>Начало</value></data>
   <data name="Visual.LengthLabel"><value>Длина</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Схема раздела</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Схема раздела</value></data>
+  <data name="Visual.PartitionTable.None"><value>Ни одного</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Номер раздела</value></data>
   <data name="Visual.FileSystemLabel"><value>Файловая система</value></data>
   <data name="Visual.RangeTitle"><value>Выбранный диапазон</value></data>

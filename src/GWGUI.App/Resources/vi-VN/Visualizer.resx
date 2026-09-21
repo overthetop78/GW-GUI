@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Địa chỉ</value></data>
   <data name="Visual.StartLabel"><value>Bắt đầu</value></data>
   <data name="Visual.LengthLabel"><value>Chiều dài</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Bộ màu phân vùng</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Bộ màu phân vùng</value></data>
+  <data name="Visual.PartitionTable.None"><value>Không có</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Số phân vùng</value></data>
   <data name="Visual.FileSystemLabel"><value>Hệ thống tập tin</value></data>
   <data name="Visual.RangeTitle"><value>Phạm vi đã chọn</value></data>

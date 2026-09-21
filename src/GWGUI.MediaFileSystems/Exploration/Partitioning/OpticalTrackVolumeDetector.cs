@@ -1,5 +1,4 @@
 using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
-using PartitionSchemeIds = global::GWGUI.MediaFileSystems.Constants.PartitionSchemeIds;
 using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
 using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
@@ -31,7 +30,6 @@ public sealed class OpticalTrackVolumeDetector : IMediaVolumeDetector
             checked(track.FirstSector * track.UserDataLength),
             checked(track.SectorCount * track.UserDataLength),
             MediaVolumeOrigins.OpticalTrack,
-            PartitionSchemeIds.Direct,
             sessionNumber: track.SessionNumber,
             trackNumber: track.TrackNumber)).ToArray();
         return new ValueTask<MediaVolumeDetectionResult?>(new MediaVolumeDetectionResult(volumes, []));

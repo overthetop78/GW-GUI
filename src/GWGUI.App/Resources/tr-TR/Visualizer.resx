@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Adrese</value></data>
   <data name="Visual.StartLabel"><value>Başlangıç Başlangıç</value></data>
   <data name="Visual.LengthLabel"><value>Uzunluk uzunluğu</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Katılımcılık</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Katılımcılık</value></data>
+  <data name="Visual.PartitionTable.None"><value>Hiçbir şey yok</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Katılımcı sayısı</value></data>
   <data name="Visual.FileSystemLabel"><value>Dosya sistemi</value></data>
   <data name="Visual.RangeTitle"><value>Seçilmiş aralık</value></data>

@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Διεύθυνση</value></data>
   <data name="Visual.StartLabel"><value>Έναρξη</value></data>
   <data name="Visual.LengthLabel"><value>Μήκος</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Καθεστώς κατάτμησης</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Καθεστώς κατάτμησης</value></data>
+  <data name="Visual.PartitionTable.None"><value>Καμία</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Αριθμός κατατμήσεων</value></data>
   <data name="Visual.FileSystemLabel"><value>Σύστημα αρχείων</value></data>
   <data name="Visual.RangeTitle"><value>Επιλεγμένο εύρος</value></data>

@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>ที่อยู่</value></data>
   <data name="Visual.StartLabel"><value>เริ่ม</value></data>
   <data name="Visual.LengthLabel"><value>ความยาว</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>รูปแบบการแบ่งกลุ่ม</value></data>
+  <data name="Visual.PartitionTableLabel"><value>รูปแบบการแบ่งกลุ่ม</value></data>
+  <data name="Visual.PartitionTable.None"><value>ไม่มี</value></data>
   <data name="Visual.PartitionNumberLabel"><value>จํานวนส่วน</value></data>
   <data name="Visual.FileSystemLabel"><value>ระบบแฟ้ม</value></data>
   <data name="Visual.RangeTitle"><value>ช่วงที่เลือกไว้</value></data>

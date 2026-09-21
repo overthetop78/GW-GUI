@@ -1,4 +1,4 @@
-using PartitionSchemeIds = global::GWGUI.MediaEngine.Constants.PartitionSchemeIds;
+using PartitionTableIds = global::GWGUI.MediaEngine.Constants.PartitionTableIds;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Rendering.Blocks;
 using GWGUI.App.Contracts.ViewModels.Visualization;
@@ -46,14 +46,14 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
                 item.Start <= start && item.Start + item.Length >= end);
             var state = sourceRange is null || sourceRange.Kind == MediaDataRangeKind.Unavailable
                 ? BlockMediaRangeState.Unknown
-                : volume?.PartitionScheme is PartitionSchemeIds.Mbr or PartitionSchemeIds.Gpt
+                : volume?.PartitionTable is PartitionTableIds.Mbr or PartitionTableIds.Gpt
                     ? BlockMediaRangeState.Allocated
                     : BlockMediaRangeState.Available;
             AddRange(ranges, new BlockMediaRange(
                 start / blocks.LogicalBlockSize,
                 (end - start) / blocks.LogicalBlockSize,
                 state,
-                volume?.PartitionScheme,
+                volume?.PartitionTable,
                 volume?.PartitionNumber,
                 volume?.FileSystemId));
         }
@@ -87,8 +87,11 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
                 new(Localize("Visual.LengthLabel"), range.Length.ToString("N0"), Localize("Visual.BlocksUnit")),
                 new(Localize("Visual.StateLabel"), Localize("Visual.BlockState." + range.State))
             };
-            if (!string.IsNullOrWhiteSpace(range.PartitionScheme))
-                entries.Add(new(Localize("Visual.PartitionSchemeLabel"), range.PartitionScheme));
+            entries.Add(new(
+                Localize("Visual.PartitionTableLabel"),
+                string.IsNullOrWhiteSpace(range.PartitionTable)
+                    ? Localize("Visual.PartitionTable.None")
+                    : range.PartitionTable.ToUpperInvariant()));
             if (range.PartitionNumber is { } partitionNumber)
                 entries.Add(new(Localize("Visual.PartitionNumberLabel"), partitionNumber.ToString()));
             if (!string.IsNullOrWhiteSpace(range.FileSystemId))
@@ -125,7 +128,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             var previous = ranges[^1];
             if (previous.Start + previous.Length == range.Start
                 && previous.State == range.State
-                && previous.PartitionScheme == range.PartitionScheme
+                && previous.PartitionTable == range.PartitionTable
                 && previous.PartitionNumber == range.PartitionNumber
                 && previous.FileSystemId == range.FileSystemId)
             {

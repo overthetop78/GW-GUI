@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>العنوان</value></data>
   <data name="Visual.StartLabel"><value>بداية</value></data>
   <data name="Visual.LengthLabel"><value>لينجث</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>نظام التجزئة</value></data>
+  <data name="Visual.PartitionTableLabel"><value>نظام التجزئة</value></data>
+  <data name="Visual.PartitionTable.None"><value>لا</value></data>
   <data name="Visual.PartitionNumberLabel"><value>رقم التجزئة</value></data>
   <data name="Visual.FileSystemLabel"><value>نظام التمويل</value></data>
   <data name="Visual.RangeTitle"><value>مجموعة مختارة</value></data>

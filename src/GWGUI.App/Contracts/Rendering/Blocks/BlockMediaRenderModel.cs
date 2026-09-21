@@ -11,7 +11,7 @@ public sealed record BlockMediaRange(
     long Start,
     long Length,
     BlockMediaRangeState State,
-    string? PartitionScheme = null,
+    string? PartitionTable = null,
     int? PartitionNumber = null,
     string? FileSystemId = null);
 

@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Adressering</value></data>
   <data name="Visual.StartLabel"><value>Början</value></data>
   <data name="Visual.LengthLabel"><value>Längd</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Partitionssystem</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Partitionssystem</value></data>
+  <data name="Visual.PartitionTable.None"><value>Ingen</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Partitionsnummer</value></data>
   <data name="Visual.FileSystemLabel"><value>Filsystem</value></data>
   <data name="Visual.RangeTitle"><value>Valt sortiment</value></data>

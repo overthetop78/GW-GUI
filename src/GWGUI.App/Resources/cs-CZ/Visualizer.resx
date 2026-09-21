@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Adresát</value></data>
   <data name="Visual.StartLabel"><value>Začátek</value></data>
   <data name="Visual.LengthLabel"><value>Délka</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Režim rozdělení</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Režim rozdělení</value></data>
+  <data name="Visual.PartitionTable.None"><value>Žádné</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Číslo oddílu</value></data>
   <data name="Visual.FileSystemLabel"><value>Souborový systém</value></data>
   <data name="Visual.RangeTitle"><value>Vybraný rozsah</value></data>

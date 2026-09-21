@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Adresse</value></data>
   <data name="Visual.StartLabel"><value>Begynn</value></data>
   <data name="Visual.LengthLabel"><value>Lengde</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Partisjonsoppsett</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Partisjonsoppsett</value></data>
+  <data name="Visual.PartitionTable.None"><value>Ingen</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Partisjonsnummer</value></data>
   <data name="Visual.FileSystemLabel"><value>Filsystem</value></data>
   <data name="Visual.RangeTitle"><value>Utvalgt område</value></data>

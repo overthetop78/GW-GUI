@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Alamat</value></data>
   <data name="Visual.StartLabel"><value>Awal</value></data>
   <data name="Visual.LengthLabel"><value>Panjang</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Skema partisi</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Skema partisi</value></data>
+  <data name="Visual.PartitionTable.None"><value>Nihil</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Nomor partisi</value></data>
   <data name="Visual.FileSystemLabel"><value>Sistem berkas</value></data>
   <data name="Visual.RangeTitle"><value>Jangkauan yang dipilih</value></data>

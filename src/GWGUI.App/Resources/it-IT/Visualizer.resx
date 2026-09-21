@@ -109,7 +109,8 @@
   <data name="Visual.AddressingLabel"><value>Indirizzo</value></data>
   <data name="Visual.StartLabel"><value>Inizio</value></data>
   <data name="Visual.LengthLabel"><value>Lunghezza</value></data>
-  <data name="Visual.PartitionSchemeLabel"><value>Schema di partecipazione</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Schema di partecipazione</value></data>
+  <data name="Visual.PartitionTable.None"><value>Nessuno</value></data>
   <data name="Visual.PartitionNumberLabel"><value>Numero di partizione</value></data>
   <data name="Visual.FileSystemLabel"><value>Sistema file</value></data>
   <data name="Visual.RangeTitle"><value>Intervallo selezionato</value></data>
