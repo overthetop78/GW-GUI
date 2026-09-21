@@ -13,12 +13,6 @@ internal static class BbcMicroFileTypeTable
     public static IReadOnlyList<MediaContentTypeDefinition> Rows { get; } =
     [
         Rule(Family, FileTypeExtensions.Txt, MediaContentCategory.Text, MediaTextEncoding.Ascii),
-        Rule(Family, FileTypeExtensions.Zip, MediaContentCategory.Archive),
-        Rule(Family, FileTypeExtensions.Ssd, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Dsd, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Adl, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Adm, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Adf, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Zip, MediaContentCategory.Archive)
     ];
 }

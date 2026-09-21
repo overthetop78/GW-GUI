@@ -89,7 +89,7 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         }
         if (IsAmigaExecutable(content) && family == MediaFileSystemFamily.Amiga) return MediaContentCategory.Executable;
         if (IsDosExecutable(content) && family == MediaFileSystemFamily.IbmPc) return MediaContentCategory.Executable;
-        if (IsAtariExecutable(content) && family == MediaFileSystemFamily.AtariSt) return MediaContentCategory.Executable;
+        if (IsAtariExecutable(content) && family == MediaFileSystemFamily.AtariTos) return MediaContentCategory.Executable;
         if (HasFormType(content, "ILBM")) return MediaContentCategory.Image;
         if (HasFormType(content, "8SVX")) return MediaContentCategory.Audio;
         return null;

@@ -8,31 +8,28 @@ Validateur : `tests/GWGUI.LocalDiskImageTests`
 
 Résultats : `artifacts/media-audit`
 
-## Préparation
+## MediaAnalysis
 
-- [x] Réinitialiser la feuille avant la nouvelle campagne.
-  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour retirer l'ancien historique et définir le fonctionnement, les contrôles et le classement des prochains défauts.
-- [x] Réinitialiser le dossier de résultats avant la nouvelle campagne.
-  - [x] Supprimer le contenu existant de `artifacts/media-audit/items` et supprimer `artifacts/media-audit/single-tests`, `checkpoint.json`, `content-signature-state.json` et `failure.json`.
-  - [x] Créer `artifacts/media-audit/items` vide pour recevoir les prochains sous-dossiers numérotés avec leur identifiant.
-- [x] Démarrer la nouvelle campagne depuis le début de `F:\Retro`.
-  - [x] Modifier `scripts/temp/analyze-media-data.ps1` pour utiliser `F:\Retro` comme racine par défaut et supprimer l'ancien point de départ imposé sous `F:\Rétro`.
-  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour déclarer `F:\Retro` comme source par défaut.
-- [ ] Exécuter la campagne continue depuis le premier fichier du premier dossier feuille.
-  - [ ] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en laissant `scripts/temp/analyze-media-data.ps1` parcourir tout `F:\Retro` jusqu'au premier défaut ou jusqu'à la fin du corpus.
+- [x] Centraliser les formats d’images de médias dans la table commune.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/CommonFileTypeTable.cs` pour y déclarer chaque extension d’image de média avec la catégorie `DiskImage` et l’icône générique actuelle.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/AmigaFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes et sa règle `.gz` déjà fournie par la table commune.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/AtariFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/AppleFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/BbcMicroFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/CommodoreFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/CpmFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/DecFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/IbmPcFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/MsxFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/UcsdFileTypeTable.cs` pour retirer ses règles `DiskImage` désormais communes.
 
-## Fonctionnement de la campagne
-
-Le script parcourt les images reconnues sous le dossier demandé. Il crée un rapport distinct pour chaque image et enregistre la progression dans `artifacts/media-audit/checkpoint.json`.
-
-Lorsqu'une image échoue, la campagne s'arrête sur cette image. Son dossier de résultat conserve :
-
-- `report.json` avec toutes les informations obtenues avant l'arrêt ;
-- `failure.json` avec l'exception et son contexte ;
-- `execution.log` avec la sortie du validateur ;
-- `failed-source.<extension>` avec une copie de l'image concernée.
-
-Une exécution directe avec `-ImagePath` écrit son résultat sous `artifacts/media-audit/single-tests` et ne modifie pas le checkpoint de la campagne complète.
+- [x] Ajouter l’héritage des règles Atari.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Enums/MediaFileSystemFamily.cs` pour ajouter le parent `Atari` et renommer `AtariSt` en `AtariTos`.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaFileSystemFamilyResolver.cs` pour renvoyer `AtariTos` pour les formats ST, STE, TT et Falcon.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/AtariFileTypeTable.cs` pour utiliser `Atari`, `Atari8Bit` et `AtariTos`, avec `.bas` au niveau Atari commun et les autres règles dans leur branche actuelle.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/FileTypes/MediaContentTypeCatalog.cs` pour rechercher dans l’ordre famille Atari précise, Atari commun, Common général.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Functions/MediaContentClassifier.cs` pour appliquer la reconnaissance exécutable TOS à `AtariTos`.
+  - [x] Modifier `tests/GWGUI.Tests/Media/MediaContentTypeCatalogScenarios.cs` pour vérifier le renommage `AtariTos` et l’héritage Atari avec surcharge spécialisée.
 
 ## Contrôles appliqués à chaque image
 

@@ -1,4 +1,5 @@
 using System.IO;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -391,7 +392,7 @@ internal static partial class Program
                 ReturnSpecialDirectories = false
             })
             .Where(path => extensions.Contains(Path.GetExtension(path)))
-            .Order(StringComparer.OrdinalIgnoreCase)
+            .Order(NaturalPathComparer.Instance)
             .ToArray();
 
         var associatedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -447,6 +448,60 @@ internal static partial class Program
 
     [GeneratedRegex("^\\s*FILE\\s+\"([^\"]+)\"", RegexOptions.IgnoreCase)]
     private static partial Regex CueFileReference();
+}
+
+internal sealed class NaturalPathComparer : IComparer<string>
+{
+    public static NaturalPathComparer Instance { get; } = new();
+
+    public int Compare(string? left, string? right)
+    {
+        if (ReferenceEquals(left, right)) return 0;
+        if (left is null) return -1;
+        if (right is null) return 1;
+
+        var leftIndex = 0;
+        var rightIndex = 0;
+        while (leftIndex < left.Length && rightIndex < right.Length)
+        {
+            if (char.IsAsciiDigit(left[leftIndex]) && char.IsAsciiDigit(right[rightIndex]))
+            {
+                var comparison = CompareNumber(left, ref leftIndex, right, ref rightIndex);
+                if (comparison != 0) return comparison;
+                continue;
+            }
+
+            var characterComparison = CultureInfo.CurrentCulture.CompareInfo.Compare(
+                left, leftIndex, 1, right, rightIndex, 1, CompareOptions.IgnoreCase);
+            if (characterComparison != 0) return characterComparison;
+            leftIndex++;
+            rightIndex++;
+        }
+
+        return (left.Length - leftIndex).CompareTo(right.Length - rightIndex);
+    }
+
+    private static int CompareNumber(string left, ref int leftIndex, string right, ref int rightIndex)
+    {
+        var leftStart = leftIndex;
+        var rightStart = rightIndex;
+        while (leftIndex < left.Length && char.IsAsciiDigit(left[leftIndex])) leftIndex++;
+        while (rightIndex < right.Length && char.IsAsciiDigit(right[rightIndex])) rightIndex++;
+
+        var leftSignificant = leftStart;
+        var rightSignificant = rightStart;
+        while (leftSignificant < leftIndex - 1 && left[leftSignificant] == '0') leftSignificant++;
+        while (rightSignificant < rightIndex - 1 && right[rightSignificant] == '0') rightSignificant++;
+
+        var leftLength = leftIndex - leftSignificant;
+        var rightLength = rightIndex - rightSignificant;
+        var lengthComparison = leftLength.CompareTo(rightLength);
+        if (lengthComparison != 0) return lengthComparison;
+
+        var valueComparison = string.CompareOrdinal(left, leftSignificant, right, rightSignificant, leftLength);
+        if (valueComparison != 0) return valueComparison;
+        return (leftIndex - leftStart).CompareTo(rightIndex - rightStart);
+    }
 }
 
 internal sealed class MediaAuditValidationException(string path, IReadOnlyList<string> errors)

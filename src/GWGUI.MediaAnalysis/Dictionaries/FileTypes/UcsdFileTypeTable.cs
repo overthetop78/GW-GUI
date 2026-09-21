@@ -15,10 +15,6 @@ internal static class UcsdFileTypeTable
         Rule(Family, FileTypeExtensions.Text, MediaContentCategory.Text, MediaTextEncoding.Ascii),
         Rule(Family, FileTypeExtensions.Foto, MediaContentCategory.Image),
         Rule(Family, FileTypeExtensions.Graf, MediaContentCategory.Image),
-        Rule(Family, FileTypeExtensions.Code, MediaContentCategory.Executable, execution: MediaExecutionKind.NativeExecutable),
-        Rule(Family, FileTypeExtensions.Td0, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Img, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Dsk, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Code, MediaContentCategory.Executable, execution: MediaExecutionKind.NativeExecutable)
     ];
 }

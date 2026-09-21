@@ -50,13 +50,6 @@ internal static class IbmPcFileTypeTable
         Rule(Family, FileTypeExtensions.Sys, MediaContentCategory.System),
         Rule(Family, FileTypeExtensions.Dll, MediaContentCategory.Library),
         Rule(Family, FileTypeExtensions.Obj, MediaContentCategory.ObjectCode),
-        Rule(Family, FileTypeExtensions.Lib, MediaContentCategory.Library),
-        Rule(Family, FileTypeExtensions.Ima, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Img, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Hfe, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Td0, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Imd, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Ext86f, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Lib, MediaContentCategory.Library)
     ];
 }

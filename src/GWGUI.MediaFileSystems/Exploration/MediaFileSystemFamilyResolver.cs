@@ -17,7 +17,7 @@ internal static class MediaFileSystemFamilyResolver
         if (formatId.StartsWith("ucsd.", StringComparison.OrdinalIgnoreCase)) return MediaFileSystemFamily.Ucsd;
         if (formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase)) return MediaFileSystemFamily.Amiga;
         if (formatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase)) return MediaFileSystemFamily.IbmPc;
-        if (formatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase)) return MediaFileSystemFamily.AtariSt;
+        if (formatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase)) return MediaFileSystemFamily.AtariTos;
         if (formatId.StartsWith("atari.", StringComparison.OrdinalIgnoreCase)) return MediaFileSystemFamily.Atari8Bit;
         if (formatId.StartsWith("apple2.dos", StringComparison.OrdinalIgnoreCase) ||
             formatId.StartsWith("apple2.appledos", StringComparison.OrdinalIgnoreCase)) return MediaFileSystemFamily.AppleDos;

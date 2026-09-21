@@ -20,11 +20,6 @@ internal static class CommodoreFileTypeTable
         Rule(Family, FileTypeExtensions.Sid, MediaContentCategory.Audio),
         Rule(Family, FileTypeExtensions.Mus, MediaContentCategory.Audio),
         Rule(Family, FileTypeExtensions.Arc, MediaContentCategory.Archive),
-        Rule(Family, FileTypeExtensions.Sda, MediaContentCategory.Archive),
-        Rule(Family, FileTypeExtensions.D64, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.D71, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.D81, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.G64, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Sda, MediaContentCategory.Archive)
     ];
 }

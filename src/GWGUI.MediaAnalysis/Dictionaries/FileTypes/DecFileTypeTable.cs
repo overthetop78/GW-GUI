@@ -23,9 +23,6 @@ internal static class DecFileTypeTable
         Rule(Family, FileTypeExtensions.Lda, MediaContentCategory.ObjectCode),
         Rule(Family, FileTypeExtensions.Rel, MediaContentCategory.ObjectCode),
         Rule(Family, FileTypeExtensions.Obj, MediaContentCategory.ObjectCode),
-        Rule(Family, FileTypeExtensions.Sys, MediaContentCategory.System),
-        Rule(Family, FileTypeExtensions.Img, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Dsk, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Sys, MediaContentCategory.System)
     ];
 }

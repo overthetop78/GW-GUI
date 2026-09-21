@@ -26,6 +26,7 @@ internal static class TemporaryLibretroMediaReader
         var outputDirectory = Path.GetFullPath(Required(args, "--output"));
         var corePath = Path.GetFullPath(Required(args, "--core"));
         var configurationPath = Path.GetFullPath(Required(args, "--configuration"));
+        var dataDirectory = Path.GetFullPath(Required(args, "--data-directory"));
         var swapImagePath = Optional(args, "--swap-image");
         var swapFrame = OptionalInt(args, "--swap-frame");
         if ((swapImagePath is null) != (swapFrame is null))
@@ -42,6 +43,14 @@ internal static class TemporaryLibretroMediaReader
         configuration = configuration with
         {
             AudioEnabled = false,
+            Firmwares = configuration.Firmwares
+                .Select(firmware => firmware with
+                {
+                    Path = Path.IsPathRooted(firmware.Path)
+                        ? Path.GetFullPath(firmware.Path)
+                        : Path.GetFullPath(Path.Combine(dataDirectory, firmware.Path))
+                })
+                .ToArray(),
             Media =
             [
                 new AtariMediaConfiguration(imagePath, AtariMediaCategory.Floppy,
@@ -137,6 +146,7 @@ internal static class TemporaryLibretroMediaReader
                     Image = imagePath,
                     Core = corePath,
                     Configuration = configurationPath,
+                    DataDirectory = dataDirectory,
                     SwapImage = swapImagePath,
                     SwapFrame = swapFrame,
                     Presses = presses.Select(item => new { Frame = item.Key, Key = item.Value.ToString() }),

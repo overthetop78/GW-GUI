@@ -25,8 +25,6 @@ internal static class MsxFileTypeTable
         Rule(Family, FileTypeExtensions.Lzh, MediaContentCategory.Archive),
         Rule(Family, FileTypeExtensions.Pma, MediaContentCategory.Archive),
         Rule(Family, FileTypeExtensions.Com, MediaContentCategory.Executable, execution: MediaExecutionKind.NativeExecutable),
-        Rule(Family, FileTypeExtensions.Rom, MediaContentCategory.System),
-        Rule(Family, FileTypeExtensions.Dsk, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Rom, MediaContentCategory.System)
     ];
 }

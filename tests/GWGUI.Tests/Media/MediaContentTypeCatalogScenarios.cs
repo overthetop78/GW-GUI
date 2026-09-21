@@ -20,7 +20,7 @@ public sealed class MediaContentTypeCatalogScenarios
 
     [Theory]
     [InlineData(MediaFileSystemFamily.IbmPc, ".BAT", MediaContentCategory.Command, MediaExecutionKind.CommandScript)]
-    [InlineData(MediaFileSystemFamily.AtariSt, ".PRG", MediaContentCategory.Executable, MediaExecutionKind.NativeExecutable)]
+    [InlineData(MediaFileSystemFamily.AtariTos, ".PRG", MediaContentCategory.Executable, MediaExecutionKind.NativeExecutable)]
     [InlineData(MediaFileSystemFamily.Atari8Bit, ".XEX", MediaContentCategory.Executable, MediaExecutionKind.NativeExecutable)]
     [InlineData(MediaFileSystemFamily.Msx, ".COM", MediaContentCategory.Executable, MediaExecutionKind.NativeExecutable)]
     [InlineData(MediaFileSystemFamily.Cpm, ".SUB", MediaContentCategory.Command, MediaExecutionKind.CommandScript)]
@@ -48,6 +48,20 @@ public sealed class MediaContentTypeCatalogScenarios
         Assert.Equal(
             MediaContentTypeCatalog.Rows.Count,
             MediaContentTypeCatalog.Rows.Select(row => (row.Family, row.Extension)).Distinct().Count());
+    }
+
+    [Fact]
+    public void AtariRulesUseSpecificThenAtariThenCommonOrder()
+    {
+        var specific = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".TXT");
+        var atari = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".BAS");
+        var common = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".PNG");
+        var unknown = MediaContentTypeCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".NOTKNOWN");
+
+        Assert.Equal(MediaFileSystemFamily.Atari8Bit, specific?.Family);
+        Assert.Equal(MediaFileSystemFamily.Atari, atari?.Family);
+        Assert.Null(common?.Family);
+        Assert.Null(unknown);
     }
 
     [Fact]

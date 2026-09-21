@@ -38,13 +38,8 @@ internal static class AmigaFileTypeTable
         Rule(Family, FileTypeExtensions.Zoo, MediaContentCategory.Archive),
         Rule(Family, FileTypeExtensions.Dms, MediaContentCategory.Archive),
         Rule(Family, FileTypeExtensions.Tar, MediaContentCategory.Archive),
-        Rule(Family, FileTypeExtensions.Gz, MediaContentCategory.Archive),
         Rule(Family, FileTypeExtensions.Library, MediaContentCategory.Library),
         Rule(Family, FileTypeExtensions.Device, MediaContentCategory.System),
-        Rule(Family, FileTypeExtensions.Handler, MediaContentCategory.System),
-        Rule(Family, FileTypeExtensions.Adf, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Hfe, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Ipf, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Handler, MediaContentCategory.System)
     ];
 }

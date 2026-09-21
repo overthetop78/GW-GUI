@@ -24,9 +24,6 @@ internal static class CpmFileTypeTable
         Rule(Family, FileTypeExtensions.Lbr, MediaContentCategory.Archive),
         Rule(Family, FileTypeExtensions.Com, MediaContentCategory.Executable, execution: MediaExecutionKind.NativeExecutable),
         Rule(Family, FileTypeExtensions.Cmd, MediaContentCategory.Executable, execution: MediaExecutionKind.NativeExecutable),
-        Rule(Family, FileTypeExtensions.Sub, MediaContentCategory.Command, MediaTextEncoding.Ascii, MediaExecutionKind.CommandScript),
-        Rule(Family, FileTypeExtensions.Dsk, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Edsk, MediaContentCategory.DiskImage),
-        Rule(Family, FileTypeExtensions.Scp, MediaContentCategory.DiskImage)
+        Rule(Family, FileTypeExtensions.Sub, MediaContentCategory.Command, MediaTextEncoding.Ascii, MediaExecutionKind.CommandScript)
     ];
 }

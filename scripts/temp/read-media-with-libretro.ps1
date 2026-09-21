@@ -12,6 +12,9 @@ param(
     [Parameter(Mandatory)]
     [string]$ConfigurationPath,
 
+    [Parameter(Mandatory)]
+    [string]$DataDirectory,
+
     [string]$SwapImagePath,
 
     [int]$SwapFrame,
@@ -87,6 +90,8 @@ $arguments.Add('--core')
 $arguments.Add((Resolve-Path -LiteralPath $CorePath).Path)
 $arguments.Add('--configuration')
 $arguments.Add((Resolve-Path -LiteralPath $ConfigurationPath).Path)
+$arguments.Add('--data-directory')
+$arguments.Add((Resolve-Path -LiteralPath $DataDirectory).Path)
 foreach ($value in $Press) {
     $arguments.Add("--press=$value")
 }
