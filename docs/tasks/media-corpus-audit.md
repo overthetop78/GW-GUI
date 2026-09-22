@@ -125,6 +125,17 @@ Sous ce titre, créer une tâche pour l'image fautive, puis des sous-tâches con
   - [x] Renommer `src/GWGUI.MediaAnalysis/Functions/MediaContentPatternMatcher.cs` en `src/GWGUI.MediaAnalysis/Functions/MediaContentSignatureMatcher.cs` et interpréter position et direction dans une fonction unique de recherche.
   - [x] Modifier `src/GWGUI.MediaAnalysis/Functions/MediaContentClassifier.cs`, `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` et `tests/GWGUI.Tests/Media/MediaContentRecognitionCatalogScenarios.cs` pour utiliser la nouvelle structure.
 
+- [x] Reconnaître les composants binaires d'ABC A Basic Compiler.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter les signatures du runtime ABC et du chargeur de relocation MKRELO.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les interpréteurs ABC comme bibliothèques et MKRELO comme exécutable.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier ces deux reconnaissances avec des contenus autonomes construits en mémoire.
+
+- [x] Reconnaître les programmes Atari BASIC tokenisés et les textes ATASCII sans extension connue.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter l'en-tête enregistré d'un programme Atari BASIC tokenisé.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cet en-tête comme `BasicProgram`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Functions/MediaContentClassifier.cs` pour reconnaître les caractères imprimables et la fin de ligne ATASCII dans les fichiers Atari 8-bit.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier un programme BASIC tokenisé et des textes ATASCII avec ou sans extension.
+
 ## Fin de la campagne
 
 La campagne est terminée lorsque le script atteint la fin du corpus sans erreur et que `artifacts/media-audit/checkpoint.json` contient l'état `complete`.

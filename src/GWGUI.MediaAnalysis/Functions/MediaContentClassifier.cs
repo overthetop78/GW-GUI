@@ -51,10 +51,13 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
                     PreviewFor(recognized.Value)));
         }
         if (known is not null) return known;
-        if (LooksLikeText(content))
+        if (LooksLikeText(content, family))
             return MediaContentRecognitionFunctions.ToDefinition(
                 new(family, MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
-                    MediaContentCategory.Text, MediaTextEncoding.Unknown,
+                    MediaContentCategory.Text,
+                    family == MediaFileSystemFamily.Atari8Bit
+                        ? MediaTextEncoding.Atascii
+                        : MediaTextEncoding.Unknown,
                     MediaExecutionKind.None, MediaPreviewKind.Text));
         return Fallback(MediaContentCategory.File,
             extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
@@ -100,11 +103,18 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         return null;
     }
 
-    private static bool LooksLikeText(IReadOnlyList<byte>? data)
+    private static bool LooksLikeText(IReadOnlyList<byte>? data, MediaFileSystemFamily family)
     {
         if (data is not { Count: > 0 }) return false;
         var sample = data.Take(Math.Min(data.Count, 512)).ToArray();
-        var printable = sample.Count(value => value is 9 or 10 or 13 || value >= 32 && value < 127);
+        var printable = sample.Count(value =>
+        {
+            if (value is 9 or 10 or 13) return true;
+            if (family != MediaFileSystemFamily.Atari8Bit) return value is >= 32 and < 127;
+            if (value == 0x9B) return true;
+            var atascii = value & 0x7F;
+            return atascii is >= 32 and < 127;
+        });
         return printable >= sample.Length * 0.9;
     }
 

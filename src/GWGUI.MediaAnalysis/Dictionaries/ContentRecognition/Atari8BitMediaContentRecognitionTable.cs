@@ -150,6 +150,9 @@ internal static class Atari8BitMediaContentRecognitionTable
         new(Family, FileTypeExtensions.Syn, [], MediaContentCategory.Font, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.ExternalApplication),
         new(Family, FileTypeExtensions.Pfd, [], MediaContentCategory.Font, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.ExternalApplication),
         new(Family, FileTypeExtensions.Muz, [], MediaContentCategory.Audio, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Audio),
-        new(Family, string.Empty, [MediaContentSignatures.AnticMusicProcessor], MediaContentCategory.Audio, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Audio)
+        new(Family, string.Empty, [MediaContentSignatures.AnticMusicProcessor], MediaContentCategory.Audio, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Audio),
+        new(Family, string.Empty, [MediaContentSignatures.AtariBinaryLoadMarker, MediaContentSignatures.AtariAbcRuntimeCode, MediaContentSignatures.AtariAbcRuntimeRunVector], MediaContentCategory.Library, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
+        new(Family, string.Empty, [MediaContentSignatures.AtariAbcRelocationLoader, MediaContentSignatures.AtariAbcRelocationInitVector], MediaContentCategory.Executable, MediaTextEncoding.NotApplicable, MediaExecutionKind.NativeExecutable, MediaPreviewKind.Hexadecimal),
+        new(Family, string.Empty, [MediaContentSignatures.AtariBasicTokenizedProgram], MediaContentCategory.BasicProgram, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.BasicListing)
     ];
 }
