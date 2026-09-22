@@ -1,4 +1,3 @@
-using GWGUI.MediaAnalysis.Constants;
 using GWGUI.MediaAnalysis.Contracts;
 using GWGUI.MediaAnalysis.Enums;
 using GWGUI.MediaAnalysis.Functions;
@@ -34,57 +33,44 @@ internal static class MediaContentClassifierSelfTests
             throw new InvalidOperationException("Extension recognition must remain part of the common catalog.");
 
         var fixedEndRule = new MediaContentRecognitionRule(
-            null, string.Empty, [new(2, MediaContentSearchDirection.End, "END"u8.ToArray())],
+            null, string.Empty, [new(2, MediaContentSearchDirection.End, ["END"u8.ToArray()])],
             MediaContentCategory.Archive, MediaTextEncoding.NotApplicable,
             MediaExecutionKind.None, MediaPreviewKind.None);
         if (!MediaContentSignatureMatcher.Matches(fixedEndRule, "prefix-END"u8.ToArray()))
             throw new InvalidOperationException("A fixed end position must locate the first byte of the signature from the end of the file.");
 
         var forwardSearchRule = new MediaContentRecognitionRule(
-            null, string.Empty, [new(null, MediaContentSearchDirection.Start, "CODE"u8.ToArray())],
+            null, string.Empty, [new(null, MediaContentSearchDirection.SearchStart, ["HEAD"u8.ToArray(), "CODE"u8.ToArray(), "END"u8.ToArray()])],
             MediaContentCategory.Data, MediaTextEncoding.NotApplicable,
             MediaExecutionKind.None, MediaPreviewKind.Hexadecimal);
-        if (!MediaContentSignatureMatcher.Matches(forwardSearchRule, "before-CODE-after"u8.ToArray()))
-            throw new InvalidOperationException("A free start search must find a signature anywhere in the file.");
+        if (!MediaContentSignatureMatcher.Matches(forwardSearchRule, "before-HEAD-gap-CODE-gap-END-after"u8.ToArray()))
+            throw new InvalidOperationException("A forward search must find every byte group successively from the start.");
+        if (MediaContentSignatureMatcher.Matches(forwardSearchRule, "before-HEAD-gap-END-gap-CODE-after"u8.ToArray()))
+            throw new InvalidOperationException("A forward search must reject byte groups found out of order.");
+        if (MediaContentSignatureMatcher.Matches(forwardSearchRule, "before-HEAD-gap-CODE-after"u8.ToArray()))
+            throw new InvalidOperationException("A forward search must stop when the current byte group cannot be found.");
 
         var backwardSearchRule = new MediaContentRecognitionRule(
-            null, string.Empty, [new(null, MediaContentSearchDirection.End, "CODE"u8.ToArray())],
+            null, string.Empty, [new(null, MediaContentSearchDirection.SearchEnd, ["END"u8.ToArray(), "CODE"u8.ToArray(), "HEAD"u8.ToArray()])],
             MediaContentCategory.Data, MediaTextEncoding.NotApplicable,
             MediaExecutionKind.None, MediaPreviewKind.Hexadecimal);
-        if (!MediaContentSignatureMatcher.Matches(backwardSearchRule, "before-CODE-after"u8.ToArray()))
-            throw new InvalidOperationException("A free end search must find a signature anywhere in the file.");
+        if (!MediaContentSignatureMatcher.Matches(backwardSearchRule, "before-HEAD-gap-CODE-gap-END-after"u8.ToArray()))
+            throw new InvalidOperationException("A backward search must find every byte group successively from the end.");
+        if (MediaContentSignatureMatcher.Matches(backwardSearchRule, "before-END-gap-CODE-gap-HEAD-after"u8.ToArray()))
+            throw new InvalidOperationException("A backward search must reject byte groups found out of order.");
+        if (MediaContentSignatureMatcher.Matches(backwardSearchRule, "before-CODE-gap-END-after"u8.ToArray()))
+            throw new InvalidOperationException("A backward search must stop when the current byte group cannot be found.");
 
         var multiHeaderRule = new MediaContentRecognitionRule(
             null, string.Empty,
             [
-                new(0, MediaContentSearchDirection.Start, "FORM"u8.ToArray()),
-                new(8, MediaContentSearchDirection.Start, "ILBM"u8.ToArray())
+                new(0, MediaContentSearchDirection.Start, ["FORM"u8.ToArray()]),
+                new(8, MediaContentSearchDirection.Start, ["ILBM"u8.ToArray()])
             ], MediaContentCategory.Image, MediaTextEncoding.NotApplicable,
             MediaExecutionKind.None, MediaPreviewKind.Image);
         if (!MediaContentSignatureMatcher.Matches(multiHeaderRule,
                 [(byte)'F', (byte)'O', (byte)'R', (byte)'M', 0, 0, 0, 4, (byte)'I', (byte)'L', (byte)'B', (byte)'M']))
             throw new InvalidOperationException("Header patterns must support named byte sequences at exact offsets.");
-
-        var abcRuntime = new byte[512];
-        ApplySignatures(abcRuntime,
-            MediaContentSignatures.AtariBinaryLoadMarker,
-            MediaContentSignatures.AtariAbcRuntimeCode,
-            MediaContentSignatures.AtariAbcRuntimeRunVector);
-        var runtimeDefinition = classifier.Classify(
-            ".x1f", MediaEntryKind.File, null, string.Empty, true,
-            abcRuntime, metadata, MediaFileSystemFamily.Atari8Bit);
-        ExpectCategory(runtimeDefinition, MediaContentCategory.Library,
-            "An ABC runtime interpreter must be recognized as a library independently of its extension.");
-
-        var abcRelocationUtility = new byte[256];
-        ApplySignatures(abcRelocationUtility,
-            MediaContentSignatures.AtariAbcRelocationLoader,
-            MediaContentSignatures.AtariAbcRelocationInitVector);
-        var relocationDefinition = classifier.Classify(
-            string.Empty, MediaEntryKind.File, null, string.Empty, true,
-            abcRelocationUtility, metadata, MediaFileSystemFamily.Atari8Bit);
-        ExpectCategory(relocationDefinition, MediaContentCategory.Executable,
-            "The ABC MKRELO relocation utility must be recognized as an executable without relying on its name.");
 
         var tokenizedBasic = new byte[]
         {
@@ -141,17 +127,4 @@ internal static class MediaContentClassifierSelfTests
             throw new InvalidOperationException(message);
     }
 
-    private static void ApplySignatures(byte[] content, params MediaContentSignature[] signatures)
-    {
-        foreach (var signature in signatures)
-        {
-            if (signature.Position is not int position)
-                throw new InvalidOperationException("This self-test requires fixed signature positions.");
-            var start = signature.Direction == MediaContentSearchDirection.Start
-                ? position
-                : content.Length - 1 - position;
-            for (var index = 0; index < signature.Bytes.Count; index++)
-                content[start + index] = signature.Bytes[index];
-        }
-    }
 }

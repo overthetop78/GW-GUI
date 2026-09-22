@@ -16,35 +16,72 @@ internal static class MediaContentSignatureMatcher
 
     private static bool MatchesSignature(IReadOnlyList<byte> content, MediaContentSignature signature)
     {
-        if (signature.Bytes.Count == 0 || signature.Bytes.Count > content.Count) return false;
+        if (signature.ByteGroups.Count == 0 || signature.ByteGroups.Any(group => group.Count == 0)) return false;
 
-        var lastStart = content.Count - signature.Bytes.Count;
-        var first = signature.Position is int position
-            ? signature.Direction == MediaContentSearchDirection.Start
-                ? position
-                : content.Count - 1 - position
-            : signature.Direction == MediaContentSearchDirection.Start
-                ? 0
-                : lastStart;
-        var last = signature.Position is not null
-            ? first
-            : signature.Direction == MediaContentSearchDirection.Start
-                ? lastStart
-                : 0;
-        var step = first <= last ? 1 : -1;
-
-        for (var start = first; step > 0 ? start <= last : start >= last; start += step)
+        return signature.Direction switch
         {
-            if (start < 0 || start > lastStart) continue;
-            var matches = true;
-            for (var index = 0; index < signature.Bytes.Count; index++)
-            {
-                if (content[start + index] == signature.Bytes[index]) continue;
-                matches = false;
-                break;
-            }
-            if (matches) return true;
+            MediaContentSearchDirection.Start => MatchesFixed(content, signature, fromEnd: false),
+            MediaContentSearchDirection.End => MatchesFixed(content, signature, fromEnd: true),
+            MediaContentSearchDirection.SearchStart => MatchesInOrder(content, signature, fromEnd: false),
+            MediaContentSearchDirection.SearchEnd => MatchesInOrder(content, signature, fromEnd: true),
+            _ => false
+        };
+    }
+
+    private static bool MatchesFixed(
+        IReadOnlyList<byte> content,
+        MediaContentSignature signature,
+        bool fromEnd)
+    {
+        if (signature.Position is not int position || signature.ByteGroups.Count != 1) return false;
+        var group = signature.ByteGroups[0];
+        var start = fromEnd ? content.Count - 1 - position : position;
+        return MatchesAt(content, group, start);
+    }
+
+    private static bool MatchesInOrder(
+        IReadOnlyList<byte> content,
+        MediaContentSignature signature,
+        bool fromEnd)
+    {
+        if (signature.Position is not null) return false;
+
+        var boundary = fromEnd ? content.Count : 0;
+        foreach (var group in signature.ByteGroups)
+        {
+            var foundAt = Find(content, group, boundary, fromEnd);
+            if (foundAt < 0) return false;
+            boundary = fromEnd ? foundAt : foundAt + group.Count;
         }
-        return false;
+        return true;
+    }
+
+    private static int Find(
+        IReadOnlyList<byte> content,
+        IReadOnlyList<byte> group,
+        int boundary,
+        bool fromEnd)
+    {
+        if (fromEnd)
+        {
+            for (var start = boundary - group.Count; start >= 0; start--)
+                if (MatchesAt(content, group, start)) return start;
+            return -1;
+        }
+
+        for (var start = boundary; start <= content.Count - group.Count; start++)
+            if (MatchesAt(content, group, start)) return start;
+        return -1;
+    }
+
+    private static bool MatchesAt(
+        IReadOnlyList<byte> content,
+        IReadOnlyList<byte> group,
+        int start)
+    {
+        if (start < 0 || start > content.Count - group.Count) return false;
+        for (var index = 0; index < group.Count; index++)
+            if (content[start + index] != group[index]) return false;
+        return true;
     }
 }

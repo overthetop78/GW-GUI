@@ -93,13 +93,10 @@ function Invoke-MediaValidator {
         [Parameter(Mandatory)][string]$Destination
     )
 
-    New-Item -ItemType Directory -Path $Destination -Force | Out-Null
-    foreach ($staleName in @('failure.json', 'execution.log')) {
-        $stalePath = Join-Path $Destination $staleName
-        if (Test-Path -LiteralPath $stalePath) { Remove-Item -LiteralPath $stalePath -Force }
+    if (Test-Path -LiteralPath $Destination) {
+        Remove-Item -LiteralPath $Destination -Recurse -Force
     }
-    Get-ChildItem -LiteralPath $Destination -File -Filter 'failed-source.*' -ErrorAction SilentlyContinue |
-        Remove-Item -Force
+    New-Item -ItemType Directory -Path $Destination | Out-Null
     $result = Invoke-DotNetProcess -Arguments @($auditAssembly, '--image', $Path, '--output', $Destination)
     $message = (@($result.Output, $result.Error) | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }) -join [Environment]::NewLine
     $message = $message.Trim()

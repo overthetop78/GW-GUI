@@ -136,6 +136,18 @@ Sous ce titre, créer une tâche pour l'image fautive, puis des sous-tâches con
   - [x] Modifier `src/GWGUI.MediaAnalysis/Functions/MediaContentClassifier.cs` pour reconnaître les caractères imprimables et la fin de ligne ATASCII dans les fichiers Atari 8-bit.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier un programme BASIC tokenisé et des textes ATASCII avec ou sans extension.
 
+- [x] Reconnaître les morceaux Advanced MusicSystem II sans extension.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter la séquence musicale fixe observée dans les sept morceaux AMS II du média arrêté.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cette signature comme contenu audio Atari 8 bits.
+
+- [x] Ajouter la recherche ordonnée de groupes d'octets au catalogue de reconnaissance.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Enums/MediaContentSearchDirection.cs` pour ajouter `SearchStart` et `SearchEnd`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Contracts/MediaContentSignature.cs` pour conserver un ou plusieurs groupes d'octets dans chaque signature existante.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour adapter les signatures fixes et déclarer les marqueurs ordonnés Atari Binary Load.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Functions/MediaContentSignatureMatcher.cs` pour rechercher les groupes successivement dans la direction demandée et arrêter immédiatement au premier groupe introuvable.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les fichiers portant les marqueurs Atari Binary Load ordonnés comme exécutables.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier l'ordre des groupes avec des octets autonomes et retirer les contrôles ABC construits depuis les constantes testées.
+
 ## Fin de la campagne
 
 La campagne est terminée lorsque le script atteint la fin du corpus sans erreur et que `artifacts/media-audit/checkpoint.json` contient l'état `complete`.
