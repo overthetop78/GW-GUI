@@ -19,7 +19,7 @@ public static class AtariDosDirectoryReader
             var flags = (AtariDosDirectoryFlags)data[offset];
             if (IsEndOfDirectory(flags)) return true;
             if (HasUnknownFlags(flags)) return false;
-            if (!IsPresent(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return false;
+            if (!IsRecorded(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return false;
             var nameIsBlank = true;
             for (var character = 0; character < AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength; character++)
             {
@@ -27,7 +27,7 @@ public static class AtariDosDirectoryReader
                 if (value is not (0 or AtariDosFileSystemLayout.NamePadding)) nameIsBlank = false;
                 if (value is not (0 or AtariDosFileSystemLayout.NamePadding) && value is < AtariDosFileSystemLayout.MinimumNameCharacter or > AtariDosFileSystemLayout.MaximumNameCharacter) return false;
             }
-            if (IsPresent(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted))
+            if (IsRecorded(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted))
             {
                 var sectorCount = data[offset + AtariDosFileSystemLayout.SectorCountOffset] | data[offset + AtariDosFileSystemLayout.SectorCountOffset + 1] << 8;
                 var firstSector = data[offset + AtariDosFileSystemLayout.FirstSectorOffset] | data[offset + AtariDosFileSystemLayout.FirstSectorOffset + 1] << 8;
@@ -73,14 +73,18 @@ public static class AtariDosDirectoryReader
                 warnings.Add(AtariDosFileSystemExceptions.InvalidDirectoryEntry(sectorNumber, slot));
                 continue;
             }
-            if (!IsPresent(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) continue;
+            if (!IsRecorded(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) continue;
+            var name = AtariDosNameCodec.Decode(sector.AsSpan(offset + AtariDosFileSystemLayout.NameOffset, AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength));
+            if (!IsFinalized(flags))
+            {
+                warnings.Add(AtariDosWarnings.OpenForOutputEntryIgnored(name, sectorNumber, slot));
+                continue;
+            }
             var sectorCount = BinaryPrimitives.ReadUInt16LittleEndian(sector.AsSpan(offset + AtariDosFileSystemLayout.SectorCountOffset));
             var firstSector = BinaryPrimitives.ReadUInt16LittleEndian(sector.AsSpan(offset + AtariDosFileSystemLayout.FirstSectorOffset));
-            var name = AtariDosNameCodec.Decode(sector.AsSpan(offset + AtariDosFileSystemLayout.NameOffset, AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength));
             var fileNumber = entryNumber & 0x3f;
             var file = AtariDosFileReader.Read(image, firstSector, sectorCount, fileNumber, usesExtendedLinks, warnings, name);
-            var metadataValid = file.IsValid && !flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
-            entries.Add(new(name, FileSystemEntryKind.File, file.Content.Count, null, string.Empty, (byte)flags, firstSector, metadataValid, [], file.Content));
+            entries.Add(new(name, FileSystemEntryKind.File, file.Content.Count, null, string.Empty, (byte)flags, firstSector, file.IsValid, [], file.Content));
         }
         return entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
@@ -121,8 +125,13 @@ public static class AtariDosDirectoryReader
 
     private static bool IsEndOfDirectory(AtariDosDirectoryFlags flags) => flags == AtariDosDirectoryFlags.None;
 
-    private static bool IsPresent(AtariDosDirectoryFlags flags) =>
+    private static bool IsRecorded(AtariDosDirectoryFlags flags) =>
         flags.HasFlag(AtariDosDirectoryFlags.InUse) || flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
+
+    private static bool IsFinalized(AtariDosDirectoryFlags flags) =>
+        IsRecorded(flags)
+        && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)
+        && !flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
 
     /// <summary>Indique si le catalogue contient au moins une entrée active avant sa fin ou sa première donnée invalide.</summary>
     public static bool ContainsRecordedEntry(IMediaSectorImage image)
@@ -136,7 +145,7 @@ public static class AtariDosDirectoryReader
                 var flags = (AtariDosDirectoryFlags)sector[offset];
                 if (IsEndOfDirectory(flags)) return false;
                 if (!LooksValidEntry(sector, offset, flags)) continue;
-                if (IsPresent(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return true;
+                if (IsRecorded(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return true;
             }
         }
         return false;
@@ -158,7 +167,7 @@ public static class AtariDosDirectoryReader
                 var offset = slot * AtariDosFileSystemLayout.DirectoryEntrySize;
                 var flags = (AtariDosDirectoryFlags)sector[offset + AtariDosFileSystemLayout.FlagsOffset];
                 if (IsEndOfDirectory(flags)) return false;
-                if (!LooksValidEntry(sector, offset, flags) || !IsPresent(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted))
+                if (!LooksValidEntry(sector, offset, flags) || !IsFinalized(flags))
                     continue;
 
                 var sectorCount = BinaryPrimitives.ReadUInt16LittleEndian(sector.AsSpan(offset + AtariDosFileSystemLayout.SectorCountOffset));
@@ -166,8 +175,7 @@ public static class AtariDosDirectoryReader
                 var name = AtariDosNameCodec.Decode(sector.AsSpan(offset + AtariDosFileSystemLayout.NameOffset, AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength));
                 var warnings = new List<string>();
                 var file = AtariDosFileReader.Read(image, firstSector, sectorCount, FileNumber(sectorNumber, slot), usesExtendedLinks, warnings, name);
-                if (file.IsValid && !flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput))
-                    return true;
+                if (file.IsValid) return true;
             }
         }
         return false;
@@ -202,9 +210,9 @@ public static class AtariDosDirectoryReader
                 break;
             }
             if (!LooksValidEntry(sector, offset, flags)) return false;
-            if (!IsPresent(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) continue;
+            if (!IsRecorded(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) continue;
             recorded++;
-            if (flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput)) continue;
+            if (!IsFinalized(flags)) continue;
             var sectorCount = BinaryPrimitives.ReadUInt16LittleEndian(
                 sector.AsSpan(offset + AtariDosFileSystemLayout.SectorCountOffset));
             var firstSector = BinaryPrimitives.ReadUInt16LittleEndian(
@@ -224,8 +232,8 @@ public static class AtariDosDirectoryReader
 
     private static bool LooksValidEntry(IReadOnlyList<byte> data, int offset, AtariDosDirectoryFlags flags)
     {
-        if (HasUnknownFlags(flags) || !IsPresent(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return false;
-        if (!IsPresent(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return true;
+        if (HasUnknownFlags(flags) || !IsRecorded(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return false;
+        if (!IsRecorded(flags) || flags.HasFlag(AtariDosDirectoryFlags.Deleted)) return true;
         var nameIsBlank = true;
         for (var character = 0; character < AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength; character++)
         {

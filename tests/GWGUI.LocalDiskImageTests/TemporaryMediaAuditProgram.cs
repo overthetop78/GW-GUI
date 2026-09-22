@@ -42,6 +42,7 @@ internal static partial class Program
             {
                 MediaAuditValidatorSelfTests.Run();
                 MediaContentClassifierSelfTests.Run();
+                AtariDosDirectoryReaderSelfTests.Run();
                 Console.WriteLine("Media audit validator self-tests passed.");
                 return 0;
             }

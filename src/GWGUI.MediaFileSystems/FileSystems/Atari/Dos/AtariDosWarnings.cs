@@ -3,6 +3,8 @@ namespace GWGUI.MediaFileSystems.FileSystems.Atari.Dos;
 /// <summary>Construit les avertissements techniques Atari DOS.</summary>
 public static class AtariDosWarnings
 {
+    /// <summary>Signale une entrée de catalogue qui n'a pas été finalisée.</summary>
+    public static string OpenForOutputEntryIgnored(string name, int sector, int slot) => $"Directory sector {sector}, entry {slot + 1} ('{name}') is still open for output and was ignored.";
     /// <summary>Signale un secteur de données tronqué.</summary>
     public static string TruncatedSector(string name, int sector) => $"Data sector {sector} for '{name}' is too short to contain its link.";
     /// <summary>Signale un compteur de secteurs incohérent.</summary>

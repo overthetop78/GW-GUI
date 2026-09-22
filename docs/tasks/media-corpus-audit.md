@@ -148,6 +148,12 @@ Sous ce titre, créer une tâche pour l'image fautive, puis des sous-tâches con
   - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les fichiers portant les marqueurs Atari Binary Load ordonnés comme exécutables.
   - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier l'ordre des groupes avec des octets autonomes et retirer les contrôles ABC construits depuis les constantes testées.
 
+- [x] Ignorer les entrées Atari DOS encore ouvertes lors de l'extraction des fichiers.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` pour centraliser la distinction entre une entrée enregistrée et une entrée finalisée, puis ne lire et ne retourner que les entrées finalisées.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosWarnings.cs` pour signaler une entrée `OpenForOutput` ignorée sans parcourir sa chaîne de secteurs.
+  - [x] Créer `tests/GWGUI.LocalDiskImageTests/AtariDosDirectoryReaderSelfTests.cs` avec un catalogue autonome contenant une entrée ouverte et une entrée finalisée qui pointent vers la même chaîne.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` pour exécuter le contrôle autonome du lecteur Atari DOS.
+
 ## Fin de la campagne
 
 La campagne est terminée lorsque le script atteint la fin du corpus sans erreur et que `artifacts/media-audit/checkpoint.json` contient l'état `complete`.
