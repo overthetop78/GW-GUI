@@ -7,16 +7,29 @@ namespace GWGUI.MediaFileSystems.FileSystems.Atari.Dos;
 /// <summary>Reconstruit une chaîne de secteurs Atari DOS.</summary>
 public static class AtariDosFileReader
 {
-    /// <summary>Lit la chaîne attendue et conserve le contenu partiel en cas d'erreur.</summary>
-    public static AtariDosFileData Read(IMediaSectorImage image, int first, int expectedSectors, int fileNumber, bool usesExtendedLinks, ICollection<string> warnings, string name)
+    /// <summary>Lit la portion de chaîne délimitée par le nombre de secteurs de l'entrée de répertoire.</summary>
+    public static AtariDosFileData Read(
+        IMediaSectorImage image,
+        int first,
+        int expectedSectors,
+        bool usesExtendedLinks,
+        ICollection<string> warnings,
+        string name)
     {
         var result = new List<byte>();
+        var sectors = new List<int>();
+        var storedFileNumbers = new List<int?>();
         var current = first;
         var visited = new HashSet<int>();
-        var count = 0;
         var valid = true;
-        while (current != 0 && count < image.BlockCount)
+        while (sectors.Count < expectedSectors)
         {
+            if (current == 0)
+            {
+                warnings.Add(AtariDosWarnings.PrematureEnd(name, expectedSectors, sectors.Count));
+                valid = false;
+                break;
+            }
             if (!visited.Add(current))
             {
                 warnings.Add(AtariDosFileSystemExceptions.CyclicDataChain(name, current));
@@ -36,7 +49,6 @@ public static class AtariDosFileReader
                 break;
             }
             var link = sector.Length - AtariDosFileSystemLayout.LinkByteCount;
-            var storedFile = sector[link] >> AtariDosFileSystemLayout.FileOwnerShift;
             var nextHigh = usesExtendedLinks ? sector[link] : sector[link] & AtariDosFileSystemLayout.NextSectorHighMask;
             var next = nextHigh << BitConstants.BitsPerByte | sector[link + 1];
             var used = (int)sector[link + 2];
@@ -46,20 +58,28 @@ public static class AtariDosFileReader
                 used = link;
                 valid = false;
             }
-            if (!usesExtendedLinks && storedFile != fileNumber && storedFile != 0)
-            {
-                warnings.Add(AtariDosFileSystemExceptions.InconsistentOwner(name, current, fileNumber, storedFile));
-                valid = false;
-            }
+            sectors.Add(current);
+            storedFileNumbers.Add(usesExtendedLinks
+                ? null
+                : sector[link] >> AtariDosFileSystemLayout.FileOwnerShift);
             result.AddRange(sector.AsSpan(0, used).ToArray());
             current = next;
-            count++;
         }
-        if (count != expectedSectors || current != 0)
+        if (expectedSectors == 0 && current != 0)
         {
-            warnings.Add(AtariDosWarnings.InconsistentCount(name, expectedSectors, count, current));
+            warnings.Add(AtariDosWarnings.UnexpectedDataForEmptyFile(name, current));
             valid = false;
         }
-        return new(result, count, valid);
+        var chain = new AtariDosSectorChain(
+            Array.AsReadOnly(sectors.ToArray()),
+            Array.AsReadOnly(storedFileNumbers.ToArray()),
+            current,
+            sectors.Count == expectedSectors);
+        return new(
+            Array.AsReadOnly(result.ToArray()),
+            chain,
+            valid && chain.IsComplete,
+            [],
+            []);
     }
 }

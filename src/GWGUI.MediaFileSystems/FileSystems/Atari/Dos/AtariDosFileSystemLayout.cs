@@ -61,6 +61,10 @@ public static class AtariDosFileSystemLayout
     public const byte MinimumExtendedVtocCode = 4;
     /// <summary>Largeur du compteur libre.</summary>
     public const int FreeSectorCountLength = sizeof(ushort);
+    /// <summary>Attribut d'une entrée dont la longueur de répertoire borne une chaîne plus longue.</summary>
+    public const string BoundedSectorViewAttribute = "bounded-sector-view";
+    /// <summary>Attribut d'une entrée dont les secteurs appartiennent aussi à une autre entrée.</summary>
+    public const string SharedSectorViewAttribute = "shared-sector-view";
 
     /// <summary>Calcule le nombre de secteurs occupés par un VTOC étendu MyDOS.</summary>
     public static int ExtendedVtocSectorCount(byte code, int sectorSize) =>

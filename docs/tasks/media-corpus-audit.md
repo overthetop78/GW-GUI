@@ -282,6 +282,23 @@ Sous ce titre, créer une tâche pour l'image fautive, puis des sous-tâches con
     - [x] Modifier `artifacts/media-audit/items/00000150-f0c483158344f96e/report.json` en relisant BBS et vérifier que le rapport indique `Floppy` avec un adressage `Logical`.
     - [x] Modifier `docs/tasks/media-corpus-audit.md` pour cocher la correction de la nature du média BBS.
 
+- [x] Refaire la reconstruction des fichiers Atari DOS à partir du répertoire complet et des chaînes sectorielles partagées.
+  - [ ] Séparer la description des entrées, la lecture bornée des chaînes et l'analyse des allocations.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosDirectoryEntry.cs` pour transporter les métadonnées brutes d'une entrée active.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosSectorChain.cs` pour transporter les secteurs parcourus, leur contenu et l'état structurel d'une chaîne bornée.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosFileReader.cs` et `AtariDosFileData.cs` pour lire exactement l'étendue déclarée et conserver séparément les diagnostics de chaîne.
+  - [x] Séparer la description des entrées, la lecture bornée des chaînes et l'analyse des allocations.
+  - [ ] Construire les fichiers après l'analyse de toutes les entrées du volume.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosAllocationAnalyzer.cs` pour reconnaître les vues sectorielles partagées et distinguer leurs propriétaires des incohérences isolées.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosDirectoryReader.cs` pour parser le répertoire avant de reconstruire les fichiers et appliquer l'analyse globale des allocations.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosWarnings.cs` pour décrire les fins prématurées, continuations et secteurs partagés sans déclarer ces vues corrompues.
+  - [x] Construire les fichiers après l'analyse de toutes les entrées du volume.
+  - [x] Vérifier la refonte avec des données autonomes et avec Bibo Menu Makers.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/AtariDosDirectoryReaderSelfTests.cs` pour construire en mémoire une chaîne principale et plusieurs vues sectorielles partagées.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/AtariDosDirectoryReaderSelfTests.cs` pour vérifier qu'un propriétaire incohérent sans partage démontré reste invalide.
+    - [x] Modifier `artifacts/media-audit/items/00000156-b27d1ec907d8977a/report.json` en relisant Bibo et vérifier les 17 fichiers, les 82 870 octets logiques et l'absence d'erreur de capacité.
+    - [x] Modifier `docs/tasks/media-corpus-audit.md` pour cocher la refonte après sa validation.
+
 - [ ] Classer les documents et images de CardStax Side A après le retour de la campagne à l'index 150.
   - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer les extensions Atari 8 bits `.crd`, `.gr8` et `.v` ; réutiliser la constante `.art` existante.
   - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer l'en-tête fixe des cartes CardStax.
