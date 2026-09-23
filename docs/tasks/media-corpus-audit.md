@@ -501,7 +501,352 @@ Sous ce titre, créer une tâche pour l'image fautive, puis des sous-tâches con
     - La recherche ciblée dans le projet confirme que le test Explorateur et ce contrôle autonome sont les seuls propriétaires WPF ; tous deux passent désormais par `WpfResourceCleanup`.
     - Le processus exécutant `--self-test` se termine normalement avec le code de sortie `0`.
 
-- [ ] Identifier le fichier Atari 8 bits sans extension `PRT` de `Financial Wizard`.
-  - [ ] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu, ses signatures éventuelles et sa classification justifiée avant toute modification du catalogue.
+- [x] Identifier le fichier Atari 8 bits sans extension `PRT` de `Financial Wizard`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu, ses signatures éventuelles et sa classification justifiée avant toute modification du catalogue.
+    - `PRT` contient trois lignes ATASCII de commandes d'imprimante : `1B 21 9B`, `1B 22 9B` et `1B 4E 9B`.
+    - Les programmes BASIC du même média ouvrent `D:PRT` et demandent à l'utilisateur de saisir les commandes de contrôle de son imprimante. `PRT` est donc un fichier de configuration d'impression.
+    - Les commandes enregistrées peuvent être remplacées par l'utilisateur. La séquence observée et la longueur de neuf octets ne définissent donc pas un format stable et ne doivent pas devenir une signature du catalogue.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour décrire la structure variable du fichier : trois enregistrements de commande commençant par `1B` et terminés par `9B`, sans imposer les commandes ni la longueur observées.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cette structure dans `Configuration` avec un aperçu hexadécimal.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Financial Wizard` est validé. La campagne s'est arrêtée sur `KHARM`, `P50` et `P50B` sans extension dans `K3 Wave Table Editor`.
+
+- [x] Identifier les fichiers Atari 8 bits sans extension `KHARM`, `P50` et `P50B` de `K3 Wave Table Editor`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur contenu, leurs signatures éventuelles et leur classification justifiée avant toute modification du catalogue.
+    - `P50B` contient l'interface « PATCH DUMP, SAVE FOR THE K3 », référence `D:KHARM` et effectue ses accès disque par CIO. `P50` est un petit module d'entrée-sortie qui prépare également les blocs IOCB et appelle CIO. `KHARM` contient du code 6502 et ses tables internes.
+    - Aucun des trois fichiers ne possède l'enveloppe Atari Binary Load `FF FF`. Ils sont chargés à des adresses imposées par l'application et ne constituent pas des exécutables autonomes ; ils doivent être classés dans `Library`.
+    - Leurs tailles et leurs noms ne participent pas à la reconnaissance. Chacun possède en revanche un début de code distinctif suffisamment long pour identifier le module sans confondre les données musicales `.P50`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter les trois débuts de code des modules internes de K3 Wave Table Editor.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer ces trois signatures dans `Library`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `K3 Wave Table Editor` est validé. La campagne s'est arrêtée sur `CORE.BIN` dans `Laserteller`.
+
+- [x] Identifier les modules Atari 8 bits `.BIN` de `Laserteller`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur contenu, leurs signatures éventuelles et leur classification justifiée avant toute modification du catalogue.
+    - `CORE.BIN`, `LASER.BIN` et `SETUP.BIN` commencent chacun par un point d'entrée 6502, contiennent du code machine et sont chargés par l'application à des adresses imposées. Ils doivent être classés dans `Library` plutôt que comme exécutables Atari Binary Load autonomes.
+    - `LASER.BIN` et `SETUP.BIN` étaient classés à tort dans `Text` par la détection générique, car leurs nombreuses chaînes d'interface rendaient plus de 90 % de l'échantillon affichable. Leurs signatures de code doivent être prioritaires sur cette détection.
+    - L'extension `.BIN`, le nom et la taille ne suffisent pas à distinguer ces modules des autres fichiers binaires Atari.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter les débuts de code distinctifs des trois modules de Laserteller.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer ces signatures dans `Library` avant la détection générique de texte.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Laserteller` est validé. La campagne s'est arrêtée sur `WIZTALK.SPK` dans `Math Wizard II`.
+
+- [x] Identifier le fichier Atari 8 bits `.SPK` de `Math Wizard II`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu, ses signatures éventuelles et sa classification justifiée avant toute modification du catalogue.
+    - `WIZTALK.SPK` est la banque de parole de « Talking Math Wizard ». Le programme BASIC associé appelle `SPEAK`, tandis que le fichier contient une table d'offsets suivie des données vocales encodées.
+    - L'extension Atari 8 bits `.SPK` suffit à désigner ces données de parole. Le nom, la taille et les octets particuliers de cette banque ne doivent pas participer à la reconnaissance.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter `.spk`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.spk` dans `Audio`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Math Wizard II` est validé. La campagne s'est arrêtée sur huit images Micro-Painter sans extension.
+
+- [x] Mettre de côté les images sans extension de `Micro-Painter` jusqu'à la reconnaissance générale de ce format.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les données observées et la raison du report.
+    - `CAR`, `COFEMILL`, `EINSTEIN`, `GUITAR`, `SAILBOAT`, `STILLIFE`, `SUNMOON` et `TIGER` sont huit images Micro-Painter de 7 684 octets.
+    - La longueur correspond au format observé, mais elle reste volontairement exclue comme critère unique. Aucun en-tête distinctif commun n'est présent ; les octets graphiques commencent immédiatement.
+    - Ce cas rejoint les images Micro-Painter sans extension déjà reportées. Il sera repris avec la reconnaissance générale des contenus graphiques dépourvus de signature.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour conserver ce média comme cas différé et reprendre au média suivant.
+
+- [x] Mettre de côté le bloc graphique sans extension `SHUT` de `Micro-Painter`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les données observées et la raison du report.
+    - `SHUT` contient 3 072 octets de données graphiques brutes, sans extension ni en-tête, parmi les images `.MIC` du média.
+    - Il ne possède pas la structure complète de 7 684 octets des images Micro-Painter. Une signature tirée de ses pixels identifierait seulement ce dessin particulier.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour conserver ce média comme cas différé et reprendre au média suivant.
+
+- [x] Identifier le fichier Atari 8 bits `.MO2` de `Mini Office II`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu et sa classification justifiée avant toute modification du catalogue.
+    - L'extension `.MO2` est partagée par plusieurs contenus de Mini Office II : `COM.MO2`, `GRAPHICS.MO2`, `MAINMENU.MO2` et `WORDPROC.MO2` sont des exécutables Atari Binary Load, tandis que `ADDRESS.MO2` est une base d'adresses structurée contenant ses champs et ses textes en ATASCII.
+    - `ADDRESS.MO2` possède l'en-tête interne `CD C4 01 0D` suivi de sa table de champs. Il doit être classé dans `Data` par cette structure, sans donner un sens unique à l'extension `.MO2` et sans employer son nom ou sa taille.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter l'en-tête de la base d'adresses Mini Office II.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cette signature dans `Data`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Mini Office II` est validé. La campagne s'est arrêtée sur `BOY1.GR9` et `NEWS.PLM` dans `Multi Graph View`.
+
+- [x] Identifier les fichiers Atari 8 bits `.GR9` et `.PLM` de `Multi Graph View`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur contenu et leur classification justifiée avant toute modification du catalogue.
+    - `BOY1.GR9` est une image Atari Graphics 9 et `NEWS.PLM` une image Atari 8 bits PLM de 80 × 96 pixels en 256 couleurs.
+    - Les deux fichiers contiennent 7 684 octets, soit les données attendues de ces formats graphiques, mais leur taille ne sera pas utilisée comme critère de reconnaissance.
+    - Dans le contexte Atari 8 bits, les extensions `.GR9` et `.PLM` suffisent à identifier ces formats d'image.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter `.gr9` et `.plm`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.gr9` et `.plm` dans `Image`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Multi Graph View` est validé. La campagne s'est arrêtée sur le fichier graphique sans extension `MAP` de `MultiDOS`.
+
+- [x] Mettre de côté le fichier graphique sans extension `MAP` de `MultiDOS`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les données observées et la raison du report.
+    - `MAP` contient 7 684 octets de données graphiques brutes sans extension ni en-tête de format distinctif.
+    - Son contenu présente des données d'écran et de palette, mais aucun critère structurel ne permet actuellement de distinguer ce fichier des autres images brutes Atari 8 bits sans employer son nom ou sa taille seule.
+    - Ce cas rejoint les images Micro-Painter sans extension déjà reportées et sera repris avec leur reconnaissance générale.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour conserver ce média comme cas différé et reprendre au média suivant.
+
+- [x] Nettoyer les artefacts détaillés des anciens arrêts désormais dépassés.
+  - [x] Modifier `artifacts/media-audit/items/00000647-e94c1b39f8e1306a`, `artifacts/media-audit/items/00000648-565acdc6615efe4a` et `artifacts/media-audit/items/00000670-3e2bb2a5af78e353` pour ne conserver que `report.json`.
+
+- [x] Identifier les fichiers musicaux sans extension de `Music Construction Set`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur rôle et leurs marqueurs structurels avant toute modification du catalogue.
+    - Chaque morceau possède deux fichiers homonymes : un fichier `.MUS` déjà reconnu et un fichier sans extension. La documentation du logiciel confirme que les morceaux Atari sont stockés par paires.
+    - Les dix fichiers sans extension commencent par le marqueur commun `1F 0A 10 00` et contiennent, 32 octets avant leur fin, le bloc terminal commun `1F 0A 00 36 1F 0A 60 36 1F 0A C0 36 1F 0A 20 37 1F 0A 80 37 1F 0A E0 37 1F 0A 40 38`.
+    - La reconnaissance combinera ces deux emplacements fixes. Elle n'utilisera ni le nom, ni la longueur variable, ni les notes propres à un morceau.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter les marqueurs de début et de fin des données musicales de `Music Construction Set`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer leur combinaison dans `Audio`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Music Construction Set` est validé. La campagne s'est arrêtée sur les morceaux et instruments de `The Music Studio`.
+
+- [x] Identifier les fichiers musicaux sans extension stable de `The Music Studio`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur structure et leur classification avant toute modification du catalogue.
+    - Les fichiers dont le nom commence par `M` contiennent les morceaux ; ceux dont le nom commence par `S` contiennent les instruments. Les fragments placés après le point proviennent des titres longs stockés dans les champs 8.3 et ne constituent pas des extensions de format fiables.
+    - Tous possèdent la même table d'instruments de 256 octets. Trois blocs binaires non textuels sont identiques aux positions 68, 187 et 238 dans les morceaux comme dans les fichiers d'instruments.
+    - La reconnaissance utilisera la combinaison de ces trois blocs fixes et ne dépendra ni du nom, ni de la pseudo-extension, ni de la longueur du morceau.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter les trois marqueurs fixes de la table d'instruments de `The Music Studio`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer leur combinaison dans `Audio`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `The Music Studio` est validé. La campagne s'est arrêtée sur `PANTHER.FN0` dans `MyDOS 4.50T & Utils`.
+
+- [x] Identifier l'extension de fonte Atari 8 bits `.FN0`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu et sa classification avant toute modification du catalogue.
+    - `PANTHER.FN0` contient une fonte bitmap Atari complète de 1 024 octets, aux côtés de `PANTHER.FNT` et de plusieurs autres fontes `.FNT` sur le même média.
+    - Dans ce contexte Atari 8 bits, `.FN0` est une extension de fonte et suffit à la classification ; la longueur ne sera pas utilisée comme critère.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter `.fn0`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.fn0` dans `Font`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `MyDOS 4.50T & Utils` est validé. La campagne s'est arrêtée sur `MEM.SA` dans `The NewsRoom`.
+
+- [x] Identifier le module interne `MEM.SA` de `The NewsRoom`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu et sa classification avant toute modification du catalogue.
+    - `MEM.SA` contient du code machine 6502 brut appelé par les autres modules de `The NewsRoom`. Il ne possède pas l'enveloppe Atari Binary Load et n'est donc pas un exécutable autonome.
+    - L'extension `.SA` n'est pas suffisamment générale pour être classée seule. Le module sera reconnu par son en-tête machine de 16 octets et classé comme bibliothèque interne.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter l'en-tête du module mémoire de `The NewsRoom`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cette signature dans `Library`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `The NewsRoom` est validé. La campagne s'est arrêtée sur `TITLE.SCN` dans `Picility v9G`.
+
+- [x] Identifier l'image Atari 8 bits `.SCN` de `Picility v9G`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu et sa classification avant toute modification du catalogue.
+    - `TITLE.SCN` contient un écran bitmap Atari suivi de ses octets de couleur. Il est chargé comme écran de titre par l'application graphique `Picility v9G`.
+    - Dans la famille Atari 8 bits, l'extension `.SCN` désigne ici un écran et suffit à le classer dans `Image`; la longueur ne sera pas utilisée comme critère.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter `.scn`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.scn` dans `Image`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Picility v9G` est validé. La campagne s'est arrêtée sur les dessins sans extension de `Player-Missile Graphics Tablet`.
+
+- [x] Identifier les dessins de `Player-Missile Graphics Tablet` indépendamment de leur nom et de leur extension.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur structure et leur classification avant toute modification du catalogue.
+    - `LOG` et `TEST1` à `TEST5` sont des dessins de l'éditeur Player-Missile, au même format que `EXAMPLE.DAT` et `EXPRINT.DAT` présents sur le média.
+    - Tous commencent par l'en-tête binaire `17 28 CA 94 46 00 70 70 70 4D 60 90 0D 0D 0D 0D`. La longueur identique de 4 206 octets ne sera pas utilisée comme critère.
+    - Une règle de contenu prioritaire permettra également de corriger la classification générique `Data` des deux fichiers `.DAT` de ce même format.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter l'en-tête des dessins de `Player-Missile Graphics Tablet`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cette signature dans `Image`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Player-Missile Graphics Tablet` est validé. La campagne s'est arrêtée sur les entrées du volume spécialisé `Atari CLK graphics library`.
+
+- [x] Mettre de côté la bibliothèque graphique CLK de `The Print Shop Companion` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les données observées et la raison du report.
+    - Le volume est correctement reconnu comme `atari-clk-graphics-library` et ses 50 entrées sont correctement extraites avec `NativeTypeId = atari-clk-graphic`, le commentaire `Atari CLK graphic` et l'attribut `graphics`.
+    - Le défaut restant concerne uniquement leur classification dans MediaAnalysis : elles restent `Unknown` bien que le système de fichiers ait déjà identifié leur type natif.
+    - Ce cas est reporté afin de définir plus tard une utilisation générale des types natifs déjà reconnus, sans ajouter une colonne à toutes les tables pour cette seule disquette.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 783 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut ou à la fin du corpus.
+    - Le média 783 est validé. La campagne s'est arrêtée à l'index 784 sur `The Print Shop - Graphics Library (Disk 1 of 3)`, qui utilise le même système `atari-clk-graphics-library` et présente le même défaut de classification différé.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 785 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut.
+    - La campagne s'est arrêtée à l'index 785 sur le disque 2/3 de la même bibliothèque CLK ; ce média est rattaché au même cas différé.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 786 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut.
+    - Le média 786 est validé. La campagne s'est arrêtée à l'index 787 sur `The Print Shop - Icons 01`, encore reconnu comme `atari-clk-graphics-library` avec uniquement ses graphismes classés `Unknown`.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` et supprimer `artifacts/media-audit/failure.json` après chaque arrêt strictement identique sur un volume `atari-clk-graphics-library`, afin de reprendre au média suivant.
+    - Les index 787 à 796, 798, 801 et 802 présentant strictement ce même cas ont été différés ; les index 797, 799, 800, 803 et 804 ont été validés normalement.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut d'une autre nature ou à la fin du corpus.
+    - La campagne s'est arrêtée à l'index 805 sur `PrintPower (1987)(Hi Tech Expressions)(US)(Side B).atr` : le volume Atari DOS contient 17 fichiers extraits, dont 14 fichiers `.001` classés `Unknown`.
+  - [x] Modifier les sous-dossiers antérieurs à `artifacts/media-audit/items/00000805-99d4401efaa283e8` afin de ne conserver que leur `report.json`.
+
+- [x] Identifier les fichiers `.001` de `PrintPower`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur rôle, les critères fiables de reconnaissance et la classification retenue avant toute modification du catalogue.
+    - `.001` est un suffixe commun aux ressources du disque et ne désigne pas un type unique : il ne doit donc pas être ajouté seul au catalogue.
+    - `FONTS.001` associe les noms affichés aux fichiers `AVANT.001`, `HEADLINE.001`, `OLDENG.001`, `TIMES.001` et `ZAPF.001`. Ce sont les fontes de PrintPower et elles doivent être classées dans `Font`.
+    - `GRAPHICS.001` associe chaque dessin à un fichier `GV1.001` à `GV7.001`, avec un numéro de variante et une catégorie. Ces sept fichiers sont des bibliothèques graphiques de PrintPower et doivent être classés dans `Image`.
+    - `BORDERS.001` associe les bordures aux fichiers `B.001` et `B2.001`, avec leur numéro de variante. Ces deux fichiers sont des bibliothèques de bordures et doivent être classés dans `Image`.
+    - Les cinq fontes partagent `6B 29` à l'offset 2 puis la même organisation bitmap. Les deux bibliothèques de bordures commencent par `14 00 00 00` et une table de vingt offsets. Les bibliothèques graphiques commencent par `05 00 00 00` et une table de cinq offsets, mais cette seule valeur n'est pas assez distinctive pour être utilisée isolément.
+    - La documentation de PrintPower confirme que le produit fournit plusieurs fontes, des graphismes et des bordures ; les fichiers d'index du média établissent précisément la fonction de chaque fichier binaire observé.
+
+- [x] Reconnaître les ressources `.001` de `PrintPower` avec le catalogue existant.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les combinaisons de critères retenues.
+    - Les fontes seront reconnues par l'extension `.001` et leur bloc fixe de 16 octets à l'offset 2.
+    - Les bibliothèques de bordures seront reconnues par l'extension `.001`, leur en-tête `14 00 00 00` à l'offset 0 et la fin fixe de leur table à l'offset 42.
+    - Les bibliothèques graphiques seront reconnues par l'extension `.001` et leur en-tête `05 00 00 00` à l'offset 0.
+    - Les trois règles seront prioritaires afin que leur contenu précis soit examiné avant toute classification générique de l'extension.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter la constante `.001`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter les signatures PrintPower des fontes, bordures et bibliothèques graphiques.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les trois structures dans `Font` ou `Image`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour corriger l'offset de la seconde signature des bordures : le dernier des vingt offsets de leur table commence à l'offset 42 et se poursuit avec les données à l'offset 44.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour placer la signature `F0 00 1A 00 9E 00 1A 00 1A 00 9E 00 1A 00 1A 00` à l'offset 42.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour limiter la signature de table des bordures aux six octets structurels communs, les valeurs suivantes décrivant des données de longueur variable.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour limiter `AtariPrintPowerBorderTable` à `F0 00 1A 00 9E 00`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne à l'index 805 jusqu'au prochain défaut ou à la fin du corpus.
+    - `PrintPower` est validé avec ses cinq fontes, ses deux bibliothèques de bordures et ses sept bibliothèques graphiques reconnues. La campagne a validé les médias suivants jusqu'à l'index 832 et s'est arrêtée à l'index 833 sur `PATTERN1.USR` de `RAMbrandt Utilities`.
+  - [x] Modifier les sous-dossiers antérieurs à `artifacts/media-audit/items/00000833-4dc17f7c21fc8914` afin de ne conserver que leur `report.json`.
+
+- [x] Identifier `PATTERN1.USR` de `RAMbrandt Utilities`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son rôle, ses critères fiables de reconnaissance et sa classification avant toute modification du catalogue.
+    - Le manuel de RAMbrandt décrit cinq motifs utilisateur prédéfinis pouvant être redéfinis puis enregistrés sur une disquette DOS au moyen du module fourni.
+    - `PATTERN1.USR` contient ces données de motifs : il commence par la table fixe `0B 00 00 03 00 06 00 09 00 0C`, suivie des données graphiques des motifs.
+    - `.USR` ne sera pas classée seule, car cette extension peut également désigner des routines machine appelées par la fonction BASIC `USR`.
+    - La combinaison de l'extension `.USR` et de l'en-tête complet classera ce format RAMbrandt dans `Image`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter la constante `.usr`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter l'en-tête du jeu de motifs utilisateur RAMbrandt.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cette combinaison dans `Image`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne à l'index 833 jusqu'au prochain défaut ou à la fin du corpus.
+    - `PATTERN1.USR` est validé comme ressource graphique RAMbrandt. La campagne a validé les médias suivants jusqu'à l'index 847 et s'est arrêtée à l'index 848 sur `Rubber Stamp v1.0`, dont la somme des tailles logiques dépasse la capacité du média.
+  - [x] Modifier les sous-dossiers antérieurs à `artifacts/media-audit/items/00000848-41bb787a8586180b` afin de ne conserver que leur `report.json`.
+
+- [x] Mettre de côté les médias qui exigent une analyse ou une refonte ultérieure et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour reporter `Rubber Stamp v1.0` avec les anomalies observées.
+    - Index 848 : `Rubber Stamp v1.0 (1985)(XLEnt Software)[cr Spiders].atr`.
+    - Le lecteur Atari DOS extrait 27 fichiers mais totalise 98 764 octets logiques sur une capacité de 92 160 octets.
+    - Les chaînes des fontes `CURSIVE1.FNT`, `ADVEN.FNT`, `ARCHAIC2.FNT`, `FANCY2.FNT`, `FANCY3.FNT`, `STANDARD.FNT`, `STYLISH.FNT` et de `DDOP.PIC` rejoignent des secteurs également attribués à `EDIT16.ASM`.
+    - Ce média est reporté afin de reprendre ultérieurement l'analyse complète de ses chaînes Atari DOS sans modifier le lecteur pour ce seul cas.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 849 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut ou à la fin du corpus.
+    - La campagne a repris à l'index 849 et s'est arrêtée à l'index 859 sur `Screen Dump II`.
+
+- [x] Identifier le fichier de paramètres d'imprimante `.PAR` de `Screen Dump II` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec le contenu observé et la classification retenue.
+    - Index 859 : `DRUCKER.PAR` contient 64 octets de paramètres binaires pour l'imprimante `DELTA 15X`, avec plusieurs séquences de contrôle `ESC`.
+    - Dans ce média Atari 8 bits, l'extension `.PAR` désigne un fichier de paramètres d'imprimante ; il est classé dans `Configuration` avec un aperçu hexadécimal.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.PAR` dans `Configuration` sur Atari 8 bits.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant à l'index 859 jusqu'au prochain défaut ou à la fin du corpus.
+    - `Screen Dump II` est validé. La campagne s'est arrêtée à l'index 871 sur `Sesame Street Print Kit`.
+
+- [x] Identifier les ressources `.004` et les configurations d'imprimante de `Sesame Street Print Kit`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les groupes observés et leurs critères de reconnaissance.
+    - Index 871 : les vingt fichiers `.004` sont les graphismes Sesame Street du kit d'impression.
+    - `CITOH`, `IMAGEWRI`, `OKIMATE1`, `P321TOSH`, `QUIETJET`, `WIDENB24` et `WIDEQUIE` sont des configurations binaires d'imprimante de 291 octets sans extension.
+    - Ces configurations partagent le bloc de contrôle fixe à l'offset 20 et le marqueur terminal à l'offset 274 ; leurs octets de paramètres variables ne sont pas utilisés comme signature.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs`, `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les graphismes `.004` et les configurations d'imprimante sans extension.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant à l'index 871 jusqu'au prochain défaut ou à la fin du corpus.
+    - `Sesame Street Print Kit` est validé. La campagne s'est arrêtée à l'index 890 sur `Softsynth`.
+
+- [x] Identifier les morceaux reconnaissables de `Softsynth`, reporter ses données brutes et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les contenus observés et le cas différé.
+    - Index 890 : vingt fichiers musicaux sans extension commencent par `53 59 4E 9B`, soit `SYN` suivi du séparateur ATASCII.
+    - `BOOSTER` est une table brute de 256 octets sans extension ni en-tête distinctif. Sa suite de valeurs forme une courbe, mais elle ne fournit pas de signature générale suffisante pour déterminer seule son type ; ce fichier est reporté.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les fichiers portant l'en-tête Softsynth dans `Audio`.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reporter `BOOSTER`, reprendre à l'index 891 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut ou à la fin du corpus.
+    - La campagne a repris à l'index 891 et s'est arrêtée à l'index 911 sur `SpartaDOS v1.1 HS [b]`.
+
+- [x] Reporter l'incohérence de capacité de `SpartaDOS v1.1 HS [b]` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec l'erreur exacte observée à l'index 911 et la raison du report.
+    - Le volume `UTILS1` annonce une capacité de 184 320 octets alors que sa plage dans l'ATR ne contient que 183 936 octets, soit un dépassement de 384 octets.
+    - Le média est marqué `[b]` dans le corpus. Il est reporté comme image incohérente sans assouplir la validation générale ni modifier le lecteur pour l'accepter.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 912 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut ou à la fin du corpus.
+    - La campagne a repris à l'index 912 et s'est arrêtée à l'index 922 sur `SpartaDOS v3.2g [m APE]`.
+
+- [x] Reporter l'incohérence de capacité de `SpartaDOS v3.2g [m APE]` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec l'erreur exacte observée à l'index 922 et son rattachement au contrôle de capacité ATR à reprendre.
+    - La capacité annoncée est de 16 776 960 octets, tandis que la plage disponible dans l'ATR contient 16 776 576 octets : le dépassement est encore de 384 octets.
+    - Cette image modifiée par APE est reportée avec `SpartaDOS v1.1 HS [b]` pour reprendre globalement le calcul de capacité des ATR concernés.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 923 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut ou à la fin du corpus.
+    - La campagne a repris à l'index 923 et s'est arrêtée à l'index 925 sur `SpartaDOS v3.3b [m OS Ram]` avec le même dépassement de 384 octets.
+
+- [x] Recenser et passer les autres ATR présentant le même dépassement de capacité de 384 octets.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque index, média, volume et capacité concernés.
+    - Index 925 : `SpartaDOS v3.3b (199x)(-)[m OS Ram].atr`, volume `SPARTA`, capacité 184 320 octets dans une plage de 183 936 octets.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` et supprimer `artifacts/media-audit/failure.json` après chaque occurrence strictement identique afin de poursuivre au média suivant.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant jusqu'au prochain défaut d'une autre nature ou à la fin du corpus.
+    - Aucun autre cas identique n'a été rencontré avant l'arrêt d'une autre nature à l'index 935 sur `Super 3D Plotter II`.
+
+- [x] Reporter l'image brute sans extension `PICTURE` de `Super 3D Plotter II` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les données observées et la raison du report.
+    - Index 935 : `PICTURE` contient 7 680 octets de données graphiques brutes, sans extension ni en-tête de format distinctif.
+    - Index 936 : la version non crackée de `Super 3D Plotter II` contient le même fichier `PICTURE` et rejoint le même cas différé.
+    - Index 967 : `Technicolor Dream (Side A)` contient un autre `PICTURE` graphique brut de 7 680 octets sans extension ni en-tête distinctif ; il rejoint ce cas différé.
+    - Ce cas rejoint les autres images Atari 8 bits brutes sans signature déjà différées ; le nom et la longueur seuls ne sont pas employés pour inventer une reconnaissance.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 936 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant jusqu'au prochain défaut ou à la fin du corpus.
+    - La campagne a repris aux index 936 puis 968 après les occurrences identiques et s'est arrêtée à l'index 985 sur `The Trick - Cheat Maker`.
+
+- [x] Reporter les fichiers propriétaires non identifiés de `The Trick - Cheat Maker` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les fichiers observés et la raison du report.
+    - Index 985 : `DRED` (15 431 octets), `TRIC` (10 391 octets) et `HORROR.SP2` (15 488 octets) sont des données propriétaires du logiciel.
+    - Aucun ne porte un en-tête Atari Binary Load ou une signature déjà connue. Leur reconnaissance demande l'analyse du format de données de `The Trick` ; le média est reporté sans règle fondée sur leurs noms ou leurs longueurs.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 986 et supprimer `artifacts/media-audit/failure.json`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant jusqu'au prochain défaut ou à la fin du corpus.
+    - La campagne a repris à l'index 986 et s'est arrêtée à l'index 989 sur les modules `DOS.2` et `DOS.4` de Turbo DOS XE.
+
+- [x] Identifier les modules système `DOS.2` et `DOS.4` de Turbo DOS XE et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur structure commune et la classification retenue.
+    - Index 989 et 998 : les variantes de `DOS.2` et `DOS.4` commencent par l'en-tête stable `01 03 00 07 40 15 4C 16 07 02`, tandis que leur fin varie entre les versions.
+    - Ces modules binaires de Turbo DOS XE sont classés dans `System` par cet en-tête ; les extensions générales `.2` et `.4` ne deviennent pas des règles globales.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour les reconnaître dans `System` sans employer leurs extensions numériques seules.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant à l'index 989 jusqu'au prochain défaut ou à la fin du corpus.
+    - Les deux modules sont validés. La campagne s'est arrêtée à l'index 990 sur `Turbo Paint`.
+
+- [x] Reporter l'image brute sans extension `S` de `Turbo Paint` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les données observées et la raison du report.
+    - Index 990 : `S` contient 7 680 octets de données graphiques brutes, sans extension ni en-tête distinctif ; il rejoint les autres images Atari 8 bits brutes différées.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 991 et supprimer `artifacts/media-audit/failure.json`.
+
+- [x] Reporter `Utilities for KMK IDE Interface [SDX]` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec toutes les anomalies observées à l'index 1018.
+    - Le volume `IDE_KMK` annonce 368 640 octets dans une plage de 368 256 octets, soit le même dépassement ATR de 384 octets déjà recensé.
+    - `LDRACOS.MAE`, `MASTER.LOG`, `MS_SL.LOG` et `SLAVE.LOG` restent des données propriétaires non identifiées. Leur extension seule ne permet pas de leur attribuer une catégorie sûre dans ce contexte.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 1019 et supprimer `artifacts/media-audit/failure.json`.
+
+- [x] Reporter les écrans d'aide encodés de `Video 130XE` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les fichiers observés et la raison du report.
+    - Index 1022 : `HELP.000`, puis `HELP.100` à `HELP.190`, contiennent des textes d'aide encodés en codes écran Atari après un en-tête variable.
+    - Les extensions numériques ne définissent pas un type général et le catalogue ne possède pas encore de reconnaissance du texte en codes écran Atari ; ces onze fichiers sont reportés ensemble.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 1023 et supprimer `artifacts/media-audit/failure.json`.
+
+- [x] Reporter les ressources propriétaires de `Visualiser` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les fichiers observés et leur rattachement aux formats différés.
+    - Index 1033 : `HELP.C10`, `HELP.C41` et `HELP.C91` sont des écrans d'aide en codes écran Atari ; ils rejoignent les écrans d'aide de `Video 130XE`.
+    - `DISK` et `MASTER` sont des blocs graphiques propriétaires sans extension ni en-tête général identifiable ; ils rejoignent les images brutes différées.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 1034 et supprimer `artifacts/media-audit/failure.json`.
+
+- [x] Identifier les fichiers de dictionnaire `.DIC` et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec le fichier observé et la classification retenue.
+    - Index 1044 : `MASTER.DIC` contient les données du dictionnaire de `The Writer's Tool` ; `.DIC` est classé comme fichier de données commun.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour classer `.DIC` dans `Data`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant à l'index 1044 jusqu'au prochain défaut ou à la fin du corpus.
+    - `MASTER.DIC` est validé. La campagne s'est arrêtée à l'index 1066 sur un ATX incomplet.
+
+- [x] Recenser et passer les ATX auxquels il manque des blocs logiques.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque index, média et nombre de blocs manquants.
+    - Index 1066 : `Atari Macro Assembler v1.0A (1981)(Atari)(US).atx`, 1 bloc manquant sur 720.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` et supprimer `artifacts/media-audit/failure.json` après chaque erreur strictement limitée à des blocs logiques manquants.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant jusqu'au prochain défaut d'une autre nature ou à la fin du corpus.
+    - La campagne s'est arrêtée à l'index 1068 sur un ATX contenant des blocs à intégrité invalide.
+
+- [x] Recenser et passer les ATX contenant des blocs à intégrité invalide.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque index, média et nombre de blocs invalides.
+    - Index 1068 : `The Music Studio`, 2 blocs invalides.
+    - Index 1069 : `SynCalc (1983)`, 1 bloc invalide.
+    - Index 1070 : `SynCalc (1985)`, 1 bloc invalide.
+    - Index 1071 : `SynChron`, 1 bloc invalide.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` et supprimer `artifacts/media-audit/failure.json` après chaque erreur strictement limitée à des blocs à intégrité invalide.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant jusqu'au prochain défaut d'une autre nature ou à la fin du corpus.
+    - La campagne s'est arrêtée à l'index 1072 sur un ATX auquel il manque 558 blocs logiques.
+
+- [x] Poursuivre le recensement des deux anomalies physiques ATX déjà identifiées.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter les occurrences suivantes de blocs absents ou invalides.
+    - Index 1072 : `Text Wizard v1.3 (Side A)[OS-B]`, 558 blocs manquants sur 720.
+    - Index 1073 : `Text Wizard v1.3 (Side B)[OS-B]`, 612 blocs manquants sur 720.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` et supprimer `artifacts/media-audit/failure.json` après chaque occurrence limitée à l'une de ces deux erreurs.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant jusqu'au prochain défaut d'une autre nature ou à la fin du corpus.
+    - La campagne s'est arrêtée à l'index 1074 sur une cassette reconnue sans fichier nommé extractible.
+
+- [x] Reporter la cassette `Adaxbaud [b]` sans fichier nommé et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec le résultat exact du lecteur séquentiel.
+    - Index 1074 : le volume `Adax` est reconnu comme `sequential-content`, avec une capacité de 62 040 octets et un bloc décodé dépourvu de nom stocké.
+    - Le lecteur signale `No named file is available for exploration`; aucun fichier nommé ne peut donc être présenté par l'explorateur. Ce cas est reporté sans créer de nom synthétique.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 1075 et supprimer `artifacts/media-audit/failure.json`.
+
+- [ ] Recenser et passer les autres cassettes reconnues sans fichier nommé extractible.
+  - [ ] Modifier `docs/tasks/media-corpus-audit.md` pour ajouter chaque index, média, volume, capacité et avertissement du lecteur.
+  - [ ] Modifier `artifacts/media-audit/checkpoint.json` et supprimer `artifacts/media-audit/failure.json` après chaque erreur strictement limitée à l'absence de fichier extrait.
+  - [ ] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant jusqu'au prochain défaut d'une autre nature ou à la fin du corpus.
 
 La campagne est terminée lorsque le script atteint la fin du corpus sans erreur et que `artifacts/media-audit/checkpoint.json` contient l'état `complete`.

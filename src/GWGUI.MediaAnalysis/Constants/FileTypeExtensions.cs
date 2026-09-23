@@ -2,6 +2,8 @@ namespace GWGUI.MediaAnalysis.Constants;
 
 internal static class FileTypeExtensions
 {
+    public const string Ext001 = ".001";
+    public const string Ext004 = ".004";
     public const string Ext256 = ".256";
     public const string Ext2mg = ".2mg";
     public const string Ext3 = ".3";
@@ -81,6 +83,7 @@ internal static class FileTypeExtensions
     public const string Dem = ".dem";
     public const string Device = ".device";
     public const string Dft = ".dft";
+    public const string Dic = ".dic";
     public const string Dgt = ".dgt";
     public const string Dig = ".dig";
     public const string Dll = ".dll";
@@ -105,6 +108,7 @@ internal static class FileTypeExtensions
     public const string Ext = ".ext";
     public const string Fc = ".fc";
     public const string Fn = ".fn";
+    public const string Fn0 = ".fn0";
     public const string Fnt = ".fnt";
     public const string Fon = ".fon";
     public const string For = ".for";
@@ -120,6 +124,7 @@ internal static class FileTypeExtensions
     public const string Gif = ".gif";
     public const string Gr = ".gr";
     public const string Gr8 = ".gr8";
+    public const string Gr9 = ".gr9";
     public const string Graf = ".graf";
     public const string Gtf = ".gtf";
     public const string Gtm = ".gtm";
@@ -198,6 +203,7 @@ internal static class FileTypeExtensions
     public const string Oss = ".oss";
     public const string Ovl = ".ovl";
     public const string P50 = ".p50";
+    public const string Par = ".par";
     public const string Pat = ".pat";
     public const string Pb = ".pb";
     public const string Pc1 = ".pc1";
@@ -215,6 +221,7 @@ internal static class FileTypeExtensions
     public const string Pi9 = ".pi9";
     public const string Pic = ".pic";
     public const string Pict = ".pict";
+    public const string Plm = ".plm";
     public const string Pma = ".pma";
     public const string Png = ".png";
     public const string Po = ".po";
@@ -244,6 +251,7 @@ internal static class FileTypeExtensions
     public const string Sc7 = ".sc7";
     public const string Sc8 = ".sc8";
     public const string Sch = ".sch";
+    public const string Scn = ".scn";
     public const string Scp = ".scp";
     public const string Scr = ".scr";
     public const string Sda = ".sda";
@@ -261,6 +269,7 @@ internal static class FileTypeExtensions
     public const string Snd = ".snd";
     public const string Sng = ".sng";
     public const string Spe = ".spe";
+    public const string Spk = ".spk";
     public const string Spl = ".spl";
     public const string Srv = ".srv";
     public const string Ssd = ".ssd";
@@ -283,6 +292,7 @@ internal static class FileTypeExtensions
     public const string Tx = ".tx";
     public const string Txt = ".txt";
     public const string Typ = ".typ";
+    public const string Usr = ".usr";
     public const string Utl = ".utl";
     public const string V = ".v";
     public const string Voc = ".voc";

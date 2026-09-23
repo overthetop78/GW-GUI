@@ -26,6 +26,7 @@ internal static class CommonMediaContentRecognitionTable
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Html, [], MediaContentCategory.Document, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Htm, [], MediaContentCategory.Document, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Dat, [], MediaContentCategory.Data, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
+        new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Dic, [], MediaContentCategory.Data, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Obj, [], MediaContentCategory.ObjectCode, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.O, [], MediaContentCategory.ObjectCode, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Sys, [], MediaContentCategory.System, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
