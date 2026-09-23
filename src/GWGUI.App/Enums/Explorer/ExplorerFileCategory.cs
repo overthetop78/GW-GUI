@@ -18,6 +18,7 @@ public enum ExplorerFileCategory
     Library,
     Image,
     Audio,
+    Rom,
     Media,
     Archive,
     DiskImage,

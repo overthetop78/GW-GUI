@@ -61,6 +61,7 @@ public static class ExplorerFilePresentation
         "library" => ExplorerIconCategory.Library,
         "image" => ExplorerIconCategory.Image,
         "audio" => ExplorerIconCategory.Audio,
+        "rom" => ExplorerIconCategory.Rom,
         "media" => ExplorerIconCategory.Media,
         "archive" => ExplorerIconCategory.Archive,
         "disk-image" => ExplorerIconCategory.DiskImage,

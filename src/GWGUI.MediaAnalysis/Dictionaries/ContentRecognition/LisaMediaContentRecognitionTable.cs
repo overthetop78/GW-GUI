@@ -11,7 +11,7 @@ internal static class LisaMediaContentRecognitionTable
     // Famille | Extension | Signatures | Catégorie | Encodage | Exécution | Aperçu
     public static IReadOnlyList<MediaContentRecognitionRule> Rows { get; } =
     [
-        new(Family, FileTypeExtensions.Txt, [], MediaContentCategory.Text, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
-        new(Family, FileTypeExtensions.Sit, [], MediaContentCategory.Archive, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None)
+        new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Txt, [], MediaContentCategory.Text, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
+        new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Sit, [], MediaContentCategory.Archive, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None)
     ];
 }

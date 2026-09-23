@@ -32,36 +32,49 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
                 extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
                 MediaContentIconIds.File, extension, MediaContentFormat.Empty);
 
-        var knownRule = MediaContentRecognitionCatalog.Find(family, extension, content);
-        var known = knownRule is null
-            ? null
-            : MediaContentRecognitionFunctions.ToDefinition(knownRule, extension);
+        var primary = DefinitionFor(MediaContentRecognitionPriority.Primary);
+        if (primary is not null) return primary;
+
+        var standard = DefinitionFor(MediaContentRecognitionPriority.Standard);
+        if (standard is not null) return standard;
+
         var recognized = KnownCategory(comment, dataValid, family);
-        if (recognized is not null && (known is null || known.Category is MediaContentCategory.File or MediaContentCategory.Data))
+        if (recognized is not null)
         {
             var encoding = recognized == MediaContentCategory.Text && family == MediaFileSystemFamily.Atari8Bit
                 ? MediaTextEncoding.Atascii
                 : MediaTextEncoding.NotApplicable;
             return MediaContentRecognitionFunctions.ToDefinition(
-                new(family, MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
+                new(family, MediaContentRecognitionPriority.Standard,
+                    MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
                     recognized.Value, encoding,
                     recognized == MediaContentCategory.Executable
                         ? MediaExecutionKind.NativeExecutable
                         : MediaExecutionKind.None,
                     PreviewFor(recognized.Value)));
         }
-        if (known is not null) return known;
         if (LooksLikeText(content, family))
             return MediaContentRecognitionFunctions.ToDefinition(
-                new(family, MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
+                new(family, MediaContentRecognitionPriority.Standard,
+                    MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
                     MediaContentCategory.Text,
                     family == MediaFileSystemFamily.Atari8Bit
                         ? MediaTextEncoding.Atascii
                         : MediaTextEncoding.Unknown,
                     MediaExecutionKind.None, MediaPreviewKind.Text));
+
+        var fallback = DefinitionFor(MediaContentRecognitionPriority.Fallback);
+        if (fallback is not null) return fallback;
+
         return Fallback(MediaContentCategory.File,
             extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
             MediaContentIconIds.File, extension);
+
+        MediaContentTypeDefinition? DefinitionFor(MediaContentRecognitionPriority priority)
+        {
+            var rule = MediaContentRecognitionCatalog.Find(family, extension, content, priority);
+            return rule is null ? null : MediaContentRecognitionFunctions.ToDefinition(rule, extension);
+        }
     }
 
     private static MediaContentTypeDefinition Fallback(

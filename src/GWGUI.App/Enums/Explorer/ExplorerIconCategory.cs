@@ -17,6 +17,7 @@ public enum ExplorerIconCategory
     Library,
     Image,
     Audio,
+    Rom,
     Media,
     Archive,
     DiskImage,

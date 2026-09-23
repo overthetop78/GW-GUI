@@ -17,6 +17,7 @@ public static class MediaContentIconIds
     public const string Library = "library";
     public const string Image = "image";
     public const string Audio = "audio";
+    public const string Rom = "rom";
     public const string Media = "media";
     public const string Archive = "archive";
     public const string DiskImage = "disk-image";

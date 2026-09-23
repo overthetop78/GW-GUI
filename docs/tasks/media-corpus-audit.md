@@ -299,12 +299,209 @@ Sous ce titre, créer une tâche pour l'image fautive, puis des sous-tâches con
     - [x] Modifier `artifacts/media-audit/items/00000156-b27d1ec907d8977a/report.json` en relisant Bibo et vérifier les 17 fichiers, les 82 870 octets logiques et l'absence d'erreur de capacité.
     - [x] Modifier `docs/tasks/media-corpus-audit.md` pour cocher la refonte après sa validation.
 
-- [ ] Classer les documents et images de CardStax Side A après le retour de la campagne à l'index 150.
+- [x] Consigner Bulletin Board Construction Set Side C comme disquette Atari DOS vierge valide et poursuivre la campagne.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour consigner le résultat de l'index 194.
+    - Image valide et vierge : `F:\Retro\A Trier\Atari 400-800\Atari 8bit - Applications - [ATR] (TOSEC-v2023-08-29)\Bullentin Board Construction Set (1985)(Antic Publishing)(Side C)\Bullentin Board Construction Set (1985)(Antic Publishing)(Side C).atr`.
+    - Le catalogue Atari DOS est vide, le VTOC déclare tous les secteurs de données libres et les trois secteurs d'amorçage sont présents. L'absence de fichier est normale pour cette disquette vierge.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 195 et supprimer `artifacts/media-audit/failure.json`, tout en conservant le rapport de l'index 194.
+
+- [x] Classer les configurations RAMDisk de BW Tape System et poursuivre la campagne.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer l'extension Atari 8 bits `.rd`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.rd` comme configuration binaire Atari 8 bits.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier avec des contenus autonomes que toutes les configurations `.rd` restent des configurations, même lorsque leurs octets ressemblent à de l'ATASCII.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant BW Tape System à l'index 197 jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de BW Tape System pour cocher cette classification et consigner le prochain point d'arrêt.
+    - BW Tape System est validé : ses quatre fichiers `.rd` sont classés comme configurations binaires Atari 8 bits. La campagne a validé les index 197 à 212, puis s'est arrêtée à l'index 213 sur le fichier sans extension `MENU` de CardStax Side A.
+
+- [x] Classer les documents et images de CardStax Side A après le retour de la campagne à l'index 150.
   - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer les extensions Atari 8 bits `.crd`, `.gr8` et `.v` ; réutiliser la constante `.art` existante.
   - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer l'en-tête fixe des cartes CardStax.
   - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les cartes `.crd` validées par leur en-tête comme documents et les fichiers `.art`, `.gr8` et `.v` comme images Atari 8 bits.
-  - [ ] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler ces classifications avec des contenus autonomes et refuser une fausse carte `.crd`.
-  - [ ] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
-  - [ ] Modifier `docs/tasks/media-corpus-audit.md` après validation de CardStax Side A pour cocher cette correction et consigner le prochain point d'arrêt.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour reconnaître les variantes existantes des programmes Atari BASIC tokenisés avec les recherches de signatures déjà disponibles, sans retirer la variante actuellement reconnue.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour ajouter la variante Atari BASIC fondée sur l'en-tête sauvegardé et la séquence tokenisée commune, tout en conservant la règle historique.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler ces classifications avec des contenus autonomes et refuser une fausse carte `.crd`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de CardStax Side A pour cocher cette correction et consigner le prochain point d'arrêt.
+    - CardStax Side A est validé : `MENU` est reconnu comme programme Atari BASIC tokenisé, tandis que les classifications `.crd`, `.art`, `.gr8` et `.v` restent valides. La campagne s'est arrêtée au média suivant, Cartridge Dumper, sur le fichier sans extension `ROM16`.
+
+- [x] Reconnaître les fichiers ROM et la ROM de cartouche Atari `ROM16`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Enums/MediaContentCategory.cs` et `src/GWGUI.MediaAnalysis/Enums/MediaContentFormat.cs` pour représenter un fichier ROM indépendamment d'un média physique.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentIconIds.cs`, `src/GWGUI.MediaAnalysis/Functions/MediaContentRecognitionFunctions.cs` et la présentation de l'explorateur pour afficher le type et l'icône ROM.
+    - [x] Copier depuis `artifacts/icon-proposals` les icônes adaptées à ROM, System, Library et Shortcut dans `src/GWGUI.App/Assets/Icons/FileTypes`, puis modifier `src/GWGUI.App/Views/Controls/Common/FileEntryIcon.xaml.cs` pour utiliser ces quatre fichiers.
+    - [x] Remplacer les choix System, Library et Shortcut par les icônes réellement fournies par le Shell de l'Explorateur Windows pour des fichiers `.sys`, `.dll` et `.lnk`, dans `src/GWGUI.App/Assets/Icons/FileTypes`, puis mettre à jour `src/GWGUI.App/Views/Controls/Common/FileEntryIcon.xaml.cs`.
+  - [x] Modifier la ressource commune `src/GWGUI.App/Resources/00-Base/Explorer.resx` pour fournir le libellé invariant `ROM` à toutes les langues prises en charge.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Contracts/MediaContentRecognitionRule.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/MediaContentRecognitionCatalog.cs` pour accepter des longueurs de contenu explicites dans une règle générale.
+  - [x] Renommer `src/GWGUI.MediaAnalysis/Functions/MediaContentSignatureMatcher.cs` en `MediaContentRecognitionRuleMatcher.cs` et l'étendre pour valider ensemble longueur et signatures.
+  - [x] Créer `src/GWGUI.MediaAnalysis/Constants/MediaContentLengths.cs` et modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour nommer la longueur et les champs structurels de la ROM de cartouche Atari 16 Kio.
+  - [x] Modifier les tables commune et Atari 8 bits de `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition` pour classer `.rom` et reconnaître une ROM brute de cartouche Atari par sa longueur et ses champs structurels.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler les ROM avec extension, la ROM Atari sans extension et les contenus invalides de même taille.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de Cartridge Dumper pour cocher cette reconnaissance et consigner le prochain point d'arrêt.
+    - Cartridge Dumper est validé : le fichier sans extension `ROM16` est reconnu comme fichier ROM de cartouche Atari 16 Kio. La campagne s'est poursuivie jusqu'à l'index 231 et s'est arrêtée sur `CONTROL` dans `Centro de Costos (1987)(Telematica SA)(CL).atr`, dont le type reste inconnu.
+
+- [x] Examiner le fichier Atari 8 bits `CONTROL` de `Centro de Costos`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les propriétés et les octets structurels de `CONTROL` fournis par `artifacts/media-audit/items/00000231-e614936017a4d9e1/report.json`, puis définir la classification justifiée avant toute modification du code.
+    - `CONTROL` est un fichier Atari DOS sans extension de 16 octets : `02` répété sept fois, `01` répété sept fois, puis `1D 9B`. `EXIS140` contient la référence `D2:CONTROL`. Il s'agit donc de données binaires propres à l'application, mais ces valeurs ne constituent pas une signature de format réutilisable. La catégorie justifiée est `Data`; le catalogue ne doit pas transformer cette valeur particulière ou le nom `CONTROL` en règle générale.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en conservant ce média comme point à reprendre ultérieurement et en poursuivant la campagne au média suivant.
+    - Le média reste documenté pour une reprise ultérieure. Aucune règle particulière n'a été ajoutée. La campagne a repris au média suivant et s'est arrêtée sur `MAP` dans `Character Set Display Utility (1989)(ANALOG Computing)[a].atr`.
+
+- [x] Identifier le fichier Atari 8 bits `MAP` de `Character Set Display Utility`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les propriétés et les octets structurels de `MAP` fournis par son rapport, puis définir sa classification justifiée avant toute modification du code.
+    - `MAP` contient un écran Micro-Painter brut : 7 680 octets de pixels suivis des quatre registres couleur `1E AF 19 E1`, soit 7 684 octets. Comme les fichiers différés de Blazing Paddles, il ne possède aucun en-tête autonome. Il reste associé au travail ultérieur sur les images Micro-Painter sans extension ; aucune règle fondée uniquement sur sa taille n'est ajoutée.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en conservant ce média avec les autres images Micro-Painter différées et en poursuivant au média suivant.
+    - La campagne a repris à l'index 244 et s'est arrêtée sur l'entrée `--------.---` de `Code3 Cruncher v2.2d (1993)(Bienias, Adam)(PL)(en)(SW).atr`.
+
+- [x] Identifier la nature de l'entrée Atari DOS `--------.---` de `Code3 Cruncher v2.2d`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les métadonnées et le contenu de cette entrée fournis par son rapport, puis déterminer si elle représente un fichier ou une décoration de catalogue avant toute modification du code.
+    - La première entrée `--------.---` contient 4 250 octets de code, commence au secteur 4 immédiatement après les trois secteurs d'amorçage et contient le système BDOS : c'est le fichier système chargé au démarrage dont le nom de catalogue a été remplacé. Les deux autres entrées homonymes sont vides et participent, avec `DISK`, `DON'T PA.CK`, `DON'T SA.VE` et `ON THI.S`, à un message affiché dans le catalogue.
+    - Une reconnaissance propre doit provenir du contexte d'amorçage fourni par le lecteur Atari DOS. Aucune règle fondée sur le nom falsifié ou sur une séquence particulière de ce programme n'est ajoutée.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en conservant ce média pour la future prise en charge des fichiers système d'amorçage renommés, puis poursuivre au média suivant.
+    - La campagne a repris à l'index 256 et s'est arrêtée sur `XSYSTEXT` dans `CodeBuster (19xx)(Wells, Tom).atr`.
+
+- [ ] Identifier le fichier Atari 8 bits `XSYSTEXT` de `CodeBuster`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec ses métadonnées et ses octets structurels fournis par le rapport, puis définir sa classification justifiée avant toute modification du code.
+    - `XSYSTEXT` est un texte ATASCII sans extension de 3 203 octets contenant des équates du système d'exploitation : caractères textuels et séparateurs de lignes `9B`. Sans extension, son rôle précis de source ne peut pas être établi de manière générale ; la classification fiable est `Text` avec l'encodage `Atascii`.
+  - [x] Mettre cette reconnaissance en attente avec les autres contenus sans extension qui nécessitent une reconnaissance directe générale.
+    - [x] Modifier `docs/tasks/media-corpus-audit.md` pour conserver la décision d'intégrer ultérieurement `ContentLengths` et `PreviewKind` aux critères du tableau existant, sans ajouter une règle particulière à `XSYSTEXT`.
+      - La reconnaissance directe devra réutiliser le tableau existant : chaque règle sera évaluée à partir des seuls critères qu'elle renseigne, notamment l'extension, les signatures, les longueurs et le type d'aperçu. Les critères renseignés seront cumulés. Une règle limitée à `PreviewKind`, à `ContentLengths`, ou à leur combinaison devra appeler l'analyse générale correspondante du contenu. Cette refonte est différée afin d'être conçue pour tous les contenus concernés et de ne pas introduire une exception ATASCII propre à `XSYSTEXT`.
+    - [x] Modifier `artifacts/media-audit/checkpoint.json` et supprimer `artifacts/media-audit/failure.json` afin de reprendre au média suivant l'index 258.
+    - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne jusqu'au prochain défaut ou à la fin du corpus.
+      - La campagne a validé les index 259 et 260, puis s'est arrêtée à l'index 261 sur `BETH.PZM` dans `Colorizer v1.1 (1992)(AtariServ).atr`.
+
+- [x] Identifier les fichiers Atari 8 bits `.PZM` de `Colorizer v1.1`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les entrées `.PZM`, leurs propriétés structurelles et la signification documentée du format avant toute modification du catalogue.
+    - `BETH.PZM` est l'unique entrée `.PZM` du média. Elle contient 15 360 octets, sans en-tête ni fin de fichier distinctifs.
+    - La documentation des suffixes Atari 8 bits identifie `.PZM` comme une image Pryzm non compressée de 80 × 192 pixels et 256 couleurs. Sa longueur correspond exactement aux 15 360 pixels de cette définition. La documentation de Colorizer confirme que l'application manipule des images Atari 8 bits à 256 couleurs composées à partir des modes GTIA.
+    - Comme `.PZM` possède ici une signification documentée et propre à la famille Atari 8 bits, la classification proposée est `Image` par extension dans le catalogue Atari 8 bits. La longueur observée reste une confirmation du fichier examiné et ne devient pas un critère général de cette règle.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs`, `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` et `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour classer `.pzm` comme image Atari 8 bits par sa seule extension, après accord de l'utilisateur.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt après la classification approuvée.
+    - `Colorizer v1.1` est validé. La campagne s'est arrêtée au média suivant, à l'index 262, sur les fichiers `.B`, `.G` et `.R` de `Colorview v2.5`.
+
+- [x] Classer correctement les trois plans RGB de `Colorview v2.5`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec les propriétés des fichiers et la définition documentée des extensions avant toute modification du catalogue.
+    - `COLORS.B`, `COLORS.G`, `COLORS.R`, `SGIRL15.B`, `SGIRL15.G` et `SGIRL15.R` contiennent chacun 7 680 octets. ColorView représente une image 80 × 192 par trois écrans de 7 680 octets, un pour chaque composante rouge, verte et bleue. Les références de formats Atari 8 bits recensent `.B`, `.G` et `.R` comme extensions des fichiers RGB.
+    - `UNICRN15.B` commence par `FF FF` et a été classé à tort comme exécutable par la signature Atari Binary Load avant que son extension puisse être consultée. L'ajout des trois extensions ne suffit donc pas à garantir la classification correcte de tous les fichiers du média.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.b`, `.g` et `.r` comme images Atari 8 bits.
+  - [x] Refaire la priorité des règles de reconnaissance sans donner systématiquement la priorité aux extensions.
+    - [x] Créer `src/GWGUI.MediaAnalysis/Enums/MediaContentRecognitionPriority.cs` avec les niveaux `Primary`, `Standard` et `Fallback`.
+    - [x] Modifier `src/GWGUI.MediaAnalysis/Contracts/MediaContentRecognitionRule.cs` pour placer la priorité après la famille, parmi les critères de reconnaissance.
+    - [x] Modifier toutes les tables de `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition` pour renseigner explicitement la priorité de chaque règle, avec les signatures structurelles fiables en `Primary`, les extensions en `Standard` et les indices faibles en `Fallback`.
+    - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/MediaContentRecognitionCatalog.cs` pour rechercher une règle dans une priorité demandée tout en conservant l'ordre famille exacte, famille parente, puis règles communes.
+    - [x] Modifier `src/GWGUI.MediaAnalysis/Functions/MediaContentClassifier.cs` pour appliquer successivement `Primary`, `Standard`, les métadonnées et la reconnaissance directe existante, puis `Fallback`.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler les trois extensions, le cas `.B` commençant par `FF FF`, un Atari Binary Load sans autre reconnaissance et la priorité des signatures structurelles fiables.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Colorview v2.5` est validé : les fichiers `.B`, `.G` et `.R` sont classés comme images même lorsque leur contenu commence par l'indice faible `FF FF`. La campagne s'est arrêtée à l'index 264 sur `ARTLOAD` dans `Colour Enhancer for Micropainter & Atari Artist`.
+
+- [x] Identifier le fichier Atari 8 bits sans extension `ARTLOAD` de `Colour Enhancer for Micropainter & Atari Artist`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec sa structure et sa classification justifiée avant toute modification du moteur de reconnaissance.
+    - `ARTLOAD` contient 1 739 octets et commence par `FE FE C7 06`. Le champ little endian `C7 06` vaut 1 735, soit exactement la longueur totale moins les quatre octets de l'en-tête.
+    - Les fichiers `ARTIST.M65` et `MYCIO.M65` du même média commencent également par `FE FE`, suivis d'un champ égal à leur longueur totale moins quatre. La documentation MAC/65 définit cette structure comme celle d'un source sauvegardé sous forme tokenisée : marque `FE FE`, longueur du programme sur deux octets, puis lignes tokenisées.
+    - `ARTLOAD` est donc un source MAC/65 tokenisé sans extension. Une règle limitée à `FE FE` ne suffit pas : la reconnaissance fiable doit aussi valider le champ de longueur et la structure successive des lignes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour décrire séparément les trois positions fixes communes aux sources MAC/65 observés : `FE FE` à l'octet 0, `0A 00` à l'octet 4 et `58 3B` à l'octet 7.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer comme source MAC/65 la combinaison complète de ces trois signatures en priorité `Fallback`.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler la combinaison complète et refuser les contenus qui ne possèdent que `FE FE`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `ARTLOAD` est reconnu comme source MAC/65 tokenisé par la combinaison des trois positions fixes. La campagne a validé les médias suivants jusqu'à l'index 273, où elle s'est arrêtée sur `NAN8` dans `Computereyes v1.3`.
+
+- [x] Identifier le fichier Atari 8 bits sans extension `NAN8` de `Computereyes v1.3`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec ses propriétés, ses signatures éventuelles et sa classification justifiée avant toute modification du catalogue.
+    - `NAN8` contient 7 680 octets de données graphiques brutes. Le média et la documentation ComputerEyes l'identifient comme une capture à huit niveaux utilisant la zone bitmap Graphics 8.
+    - Le fichier n'a ni extension ni en-tête ou fin de fichier propre au format. Sa taille correspond à la zone graphique, mais elle ne suffit pas à distinguer ce contenu d'une autre image brute de même taille. Aucune règle fondée uniquement sur le nom `NAN8` ou sur sa longueur n'est ajoutée.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json`, supprimer `artifacts/media-audit/failure.json` et poursuivre la campagne au média suivant en conservant ce cas avec les images brutes sans signature à reprendre ultérieurement.
+    - La campagne a repris à l'index 274 et s'est arrêtée sur `HERMAN9` et `NAN9` dans `Computereyes v2.0`.
+
+- [x] Identifier les fichiers Atari 8 bits sans extension `HERMAN9` et `NAN9` de `Computereyes v2.0`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leurs propriétés et leur classification justifiée avant toute modification du catalogue.
+    - `HERMAN9` et `NAN9` contiennent chacun 7 680 octets. Ce sont les images brutes Graphics 9 fournies avec ComputerEyes v2.0, sans extension, en-tête ou fin de fichier distinctifs.
+    - Comme pour `NAN8`, aucune règle fondée seulement sur leur nom ou leur longueur n'est ajoutée. Ils restent avec les images brutes sans signature à reprendre ultérieurement.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json`, supprimer `artifacts/media-audit/failure.json` et poursuivre la campagne au média suivant.
+    - La campagne s'est poursuivie jusqu'à `Disk Doctor II` et s'est arrêtée sur `LABELS.LDT`.
+
+- [x] Identifier le fichier Atari 8 bits `LABELS.LDT` de `Disk Doctor II`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son rôle documenté et sa classification avant toute modification du catalogue.
+    - Le manuel de Disk Doctor II indique que ses fichiers de labels de désassemblage reçoivent automatiquement l'extension `.LDT`. `LABELS.LDT` contient la table des noms associés aux adresses système ; il doit être classé comme fichier de données Atari 8 bits.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter l'extension `.ldt`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.ldt` dans `Data`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Disk Doctor II` est validé. La campagne s'est arrêtée plus loin sur le fichier sans extension `MENU` de `Disk Tool 4`.
+
+- [x] Identifier le fichier Atari 8 bits sans extension `MENU` de `Disk Tool 4`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec sa structure et la variante de format observée avant toute modification du catalogue.
+    - `MENU` est un programme Atari BASIC tokenisé commençant par `00 00 10 01`. Le fichier `POLYCPY4.BAS` du même média possède le même préfixe et est reconnu grâce à son extension `.BAS`. Cette variante complète l'en-tête `00 00 00 01` déjà pris en charge.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter la variante d'en-tête Atari BASIC `00 00 10 01` sans retirer la variante existante.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour reconnaître cette variante en priorité `Fallback`.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler la nouvelle variante et conserver la reconnaissance historique.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Disk Tool 4` est validé. La campagne s'est arrêtée plus loin sur `SETUP.DC` dans `DOS Control v1.0`.
+
+- [x] Identifier le fichier Atari 8 bits `SETUP.DC` de `DOS Control v1.0`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu, son rôle dans l'application et sa classification justifiée avant toute modification du catalogue.
+    - `SETUP.DC` est un fichier binaire de 4 980 octets dont l'en-tête commence par l'identifiant `DC-MOD1`. Il s'agit d'un module chargé par l'application `DC.COM`, à classer comme `Library` dans la famille Atari 8 bits.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter l'extension `.dc`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.dc` dans `Library`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `DOS Control v1.0` est validé. La campagne s'est arrêtée sur sept fichiers `.DCT` de `DOS Control v2.5`.
+
+- [x] Identifier les fichiers Atari 8 bits `.DCT` de `DOS Control v2.5`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leurs en-têtes, leur rôle et leur classification justifiée avant toute modification du catalogue.
+    - Les sept fichiers `.DCT` commencent par l'identifiant `DC-MOD20`. Ils représentent les modules de DOS Control 2.0/2.5 et doivent être classés comme `Library` dans la famille Atari 8 bits, comme les modules `.DC` de la version 1.0.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter l'extension `.dct`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.dct` dans `Library`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `DOS Control v2.5` est validé. La campagne s'est arrêtée sur neuf fichiers `.NLQ` dans `Dot-Magic`.
+
+- [x] Identifier les fichiers Atari 8 bits `.NLQ` de `Dot-Magic`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leur rôle documenté et leur classification avant toute modification du catalogue.
+    - Les fichiers `BLOCK.NLQ`, `BROADWAY.NLQ`, `CURSIVE.NLQ`, `OHIO.NLQ`, `OLDE.NLQ`, `OLDWEST.NLQ`, `ROMAN.NLQ`, `SANSERIF.NLQ` et `SCRIPT.NLQ` sont des polices Near Letter Quality. Les références de formats Atari 8 bits recensent également `.NLQ` comme police Daisy Dot. Ils doivent être classés dans `Font`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter l'extension `.nlq`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.nlq` dans `Font`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Dot-Magic` est validé. La campagne s'est arrêtée sur les fichiers `.PB`, `.3` et `.7` de `Draw7 XE`.
+
+- [x] Identifier les fichiers Atari 8 bits `.PB`, `.3` et `.7` de `Draw7 XE`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leurs propriétés, leurs signatures éventuelles et leur classification justifiée avant toute modification du catalogue.
+    - Les cinq fichiers `.PB` partagent l'en-tête `77 02 00 D8 E0 16 03 50 81 00 00 0F`. Ils stockent les commandes de dessin rejouables de Draw7 ; `EAGLE1.PB` référence le fichier suivant `EAGLE2.PB`. Ils doivent être classés dans `Data`.
+    - `PIC.3` contient 244 octets, soit 240 octets d'écran Graphics 3 et quatre octets de couleurs. `PIC.7` contient 7 684 octets, soit 7 680 octets d'écran et quatre octets de couleurs. Ces deux fichiers doivent être classés dans `Image` par leurs extensions Atari 8 bits propres à Draw7.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter les extensions `.pb`, `.3` et `.7`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.pb` dans `Data` et `.3`/`.7` dans `Image`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Draw7 XE` est validé. La campagne s'est arrêtée sur `PLANTARY` et `WATCH` sans extension dans `Drawing Board`.
+
+- [x] Identifier les fichiers Atari 8 bits sans extension `PLANTARY` et `WATCH` de `Drawing Board`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leurs propriétés, leurs signatures éventuelles et leur classification justifiée avant toute modification du catalogue.
+    - `PLANTARY` et `WATCH` font partie des huit images Drawing Board du média. Ces huit fichiers possèdent exactement la même séquence finale de 32 octets, `AE E7 02 AC E8 02 86 80 84 81 A9 00 85 92 85 CA C8 8A A2 82 95 00 E8 94 00 E8 E0 92 90 F6 A2 86`.
+    - Certains de ces fichiers étaient classés `Data` à cause de leur préfixe nul. La fin commune constitue une signature de format beaucoup plus précise et doit les classer dans `Image` sans utiliser leur nom ni leur longueur.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter la signature finale commune des images Drawing Board.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer cette signature dans `Image` en priorité `Primary`.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier que cette signature l'emporte sur le préfixe nul classé en `Fallback`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Drawing Board` est validé. La campagne s'est arrêtée sur les fichiers `.G15`, `.G9` et `.DEM` de `Easy Scan v2.0`.
+
+- [x] Identifier les fichiers Atari 8 bits `.G15`, `.G9` et `.DEM` de `Easy Scan v2.0`.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec leurs propriétés, leurs signatures éventuelles et leur classification justifiée avant toute modification du catalogue.
+    - Les fichiers `.G15` sont des images Graphics 15 de 7 684 octets et `SALLY.G9` est une image Graphics 9. Leur taille confirme les fichiers observés mais ne devient pas un critère du catalogue.
+    - `ESCAN20.DEM` commence par `00 00 30 01` et contient un programme Atari BASIC tokenisé. Comme `.DEM` peut désigner plus généralement des données de démonstration, cette classification doit exiger ensemble l'extension et cet en-tête.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour ajouter les extensions `.g15`, `.g9` et `.dem`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter l'en-tête Atari BASIC `00 00 30 01`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.g15`/`.g9` dans `Image` et la combinaison `.dem` avec l'en-tête dans `BasicProgram`.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour vérifier que `.dem` exige aussi l'en-tête attendu.
+  - [x] Restaurer le point d'entrée permanent et le nettoyage complet du validateur avant de reprendre la campagne.
+    - [x] Déplacer `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` vers `tests/GWGUI.LocalDiskImageTests/Program.cs` en conservant le validateur courant, son bloc `finally` et l'appel centralisé à `WpfResourceCleanup.Release()`.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en reprenant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+    - `Easy Scan v2.0` est validé. La campagne s'est arrêtée plus loin sur le fichier sans extension `PRT` de `Financial Wizard`.
+
+- [x] Garantir la libération complète des ressources WPF créées par `GWGUI.LocalDiskImageTests`.
+  - [x] Centraliser la fermeture et le détachement de toutes les fenêtres, l'arrêt de l'`Application` et du `Dispatcher`, et la collecte finale dans `tests/GWGUI.LocalDiskImageTests/TestInfrastructure/WpfResourceCleanup.cs`, en poursuivant le nettoyage de toutes les ressources même si l'une d'elles échoue.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/LocalExplorerOpeningCheck.cs` pour confier au nettoyage centralisé l'`Application` et le `Dispatcher` qu'il possède, puis attendre et contrôler leur destruction effective avec celle du thread STA.
+  - [x] Créer `tests/GWGUI.LocalDiskImageTests/WpfResourceCleanupSelfTests.cs` pour ouvrir une vraie fenêtre sur un thread STA et vérifier après nettoyage que son handle est détruit, que le `Dispatcher` est arrêté et que le thread est terminé.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` pour exécuter ce contrôle autonome et garantir la collecte finale même lorsqu'une étape du nettoyage échoue.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` avec le résultat de la compilation et du contrôle autonome du cycle de vie WPF.
+    - La compilation Debug ciblée de `GWGUI.LocalDiskImageTests` réussit sans erreur.
+    - Le contrôle autonome crée une vraie fenêtre et un handle natif, puis confirme la destruction du handle, l'arrêt complet du `Dispatcher` et la fin du thread STA.
+    - La recherche ciblée dans le projet confirme que le test Explorateur et ce contrôle autonome sont les seuls propriétaires WPF ; tous deux passent désormais par `WpfResourceCleanup`.
+    - Le processus exécutant `--self-test` se termine normalement avec le code de sortie `0`.
+
+- [ ] Identifier le fichier Atari 8 bits sans extension `PRT` de `Financial Wizard`.
+  - [ ] Modifier `docs/tasks/media-corpus-audit.md` avec son contenu, ses signatures éventuelles et sa classification justifiée avant toute modification du catalogue.
 
 La campagne est terminée lorsque le script atteint la fin du corpus sans erreur et que `artifacts/media-audit/checkpoint.json` contient l'état `complete`.

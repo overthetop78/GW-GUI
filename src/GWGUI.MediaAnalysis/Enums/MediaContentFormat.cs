@@ -15,6 +15,7 @@ public enum MediaContentFormat
     Library,
     Image,
     Audio,
+    Rom,
     Media,
     Archive,
     DiskImage,

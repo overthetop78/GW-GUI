@@ -26,40 +26,28 @@ public static class MediaContentRecognitionCatalog
         .. UcsdMediaContentRecognitionTable.Rows
     ];
 
-    private static readonly IReadOnlyDictionary<(MediaFileSystemFamily? Family, string Extension), MediaContentRecognitionRule> ExtensionIndex =
-        Rows.Where(row => row.Extension.Length > 0 && !MediaContentSignatureMatcher.HasSignatures(row))
-            .ToDictionary(row => (row.Family, row.Extension));
-
     public static MediaContentRecognitionRule? Find(MediaFileSystemFamily family, string? extension)
-    {
-        var normalized = MediaContentRecognitionFunctions.NormalizeExtension(extension);
-        if (normalized.Length == 0) return null;
-        if (ExtensionIndex.TryGetValue((family, normalized), out var exact)) return exact;
-        var parent = family switch
-        {
-            MediaFileSystemFamily.Atari8Bit or MediaFileSystemFamily.AtariTos => MediaFileSystemFamily.Atari,
-            _ => (MediaFileSystemFamily?)null
-        };
-        if (parent is not null && ExtensionIndex.TryGetValue((parent, normalized), out var inherited)) return inherited;
-        return ExtensionIndex.TryGetValue((null, normalized), out var common) ? common : null;
-    }
+        => Find(family, extension, null, MediaContentRecognitionPriority.Standard);
 
     public static MediaContentRecognitionRule? Find(
         MediaFileSystemFamily family,
         string? extension,
-        IReadOnlyList<byte>? content)
+        IReadOnlyList<byte>? content,
+        MediaContentRecognitionPriority priority)
     {
         var normalized = MediaContentRecognitionFunctions.NormalizeExtension(extension);
         foreach (var candidateFamily in CandidateFamilies(family))
         {
             var match = Rows.FirstOrDefault(row =>
                 row.Family == candidateFamily
-                && MediaContentSignatureMatcher.HasSignatures(row)
+                && row.Priority == priority
                 && (row.Extension.Length == 0 || row.Extension == normalized)
-                && MediaContentSignatureMatcher.Matches(row, content));
+                && (MediaContentRecognitionRuleMatcher.HasContentConditions(row)
+                    ? MediaContentRecognitionRuleMatcher.Matches(row, content)
+                    : row.Extension.Length > 0));
             if (match is not null) return match;
         }
-        return Find(family, extension);
+        return null;
     }
 
     private static IEnumerable<MediaFileSystemFamily?> CandidateFamilies(MediaFileSystemFamily family)

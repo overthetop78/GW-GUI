@@ -11,6 +11,6 @@ internal static class AtariCommonMediaContentRecognitionTable
     // Famille | Extension | Signatures | Catégorie | Encodage | Exécution | Aperçu
     public static IReadOnlyList<MediaContentRecognitionRule> Rows { get; } =
     [
-        new(Family, FileTypeExtensions.Bas, [], MediaContentCategory.BasicProgram, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.BasicListing),
+        new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Bas, [], MediaContentCategory.BasicProgram, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.BasicListing),
     ];
 }

@@ -18,6 +18,7 @@ public enum MediaContentCategory
     Library,
     Image,
     Audio,
+    Rom,
     Media,
     Archive,
     DiskImage,

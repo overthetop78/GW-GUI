@@ -3,16 +3,17 @@ using GWGUI.MediaAnalysis.Enums;
 
 namespace GWGUI.MediaAnalysis.Functions;
 
-internal static class MediaContentSignatureMatcher
+internal static class MediaContentRecognitionRuleMatcher
 {
     public static bool Matches(MediaContentRecognitionRule rule, IReadOnlyList<byte>? content)
     {
-        if (content is null || !HasSignatures(rule)) return false;
+        if (content is null || !HasContentConditions(rule)) return false;
+        if (rule.ContentLengths is { Count: > 0 } lengths && !lengths.Contains(content.Count)) return false;
         return rule.Signatures.All(signature => MatchesSignature(content, signature));
     }
 
-    public static bool HasSignatures(MediaContentRecognitionRule rule) =>
-        rule.Signatures.Count > 0;
+    public static bool HasContentConditions(MediaContentRecognitionRule rule) =>
+        rule.Signatures.Count > 0 || rule.ContentLengths is { Count: > 0 };
 
     private static bool MatchesSignature(IReadOnlyList<byte> content, MediaContentSignature signature)
     {

@@ -93,6 +93,7 @@
   <data name="Explorer.Type.Data"><value>Data file</value></data>
   <data name="Explorer.Type.Configuration"><value>Configuration file</value></data>
   <data name="Explorer.Type.Library"><value>Library</value></data>
+  <data name="Explorer.Type.Rom"><value>ROM</value></data>
   <data name="Explorer.Type.Media"><value>Media file</value></data>
   <data name="Explorer.Type.Font"><value>Font</value></data>
   <data name="Explorer.Execution"><value>Execution</value></data>

@@ -44,6 +44,7 @@ internal static class MediaContentRecognitionFunctions
             MediaContentCategory.Library => ("Explorer.Type.Library", MediaContentIconIds.Library, MediaContentFormat.Library),
             MediaContentCategory.Image => ("Explorer.Type.Image", MediaContentIconIds.Image, MediaContentFormat.Image),
             MediaContentCategory.Audio => ("Explorer.Type.Audio", MediaContentIconIds.Audio, MediaContentFormat.Audio),
+            MediaContentCategory.Rom => ("Explorer.Type.Rom", MediaContentIconIds.Rom, MediaContentFormat.Rom),
             MediaContentCategory.Media => ("Explorer.Type.Media", MediaContentIconIds.Media, MediaContentFormat.Media),
             MediaContentCategory.Archive => ("Explorer.Type.Archive", MediaContentIconIds.Archive, MediaContentFormat.Archive),
             MediaContentCategory.DiskImage => ("Explorer.Type.DiskImage", MediaContentIconIds.DiskImage, MediaContentFormat.DiskImage),

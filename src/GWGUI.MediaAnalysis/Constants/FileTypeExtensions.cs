@@ -4,6 +4,8 @@ internal static class FileTypeExtensions
 {
     public const string Ext256 = ".256";
     public const string Ext2mg = ".2mg";
+    public const string Ext3 = ".3";
+    public const string Ext7 = ".7";
     public const string Ext86f = ".86f";
     public const string Ext8svx = ".8svx";
     public const string A4r = ".a4r";
@@ -33,6 +35,7 @@ internal static class FileTypeExtensions
     public const string Atr = ".atr";
     public const string Atx = ".atx";
     public const string Aum = ".aum";
+    public const string B = ".b";
     public const string Bas = ".bas";
     public const string Bat = ".bat";
     public const string Bgm = ".bgm";
@@ -70,9 +73,12 @@ internal static class FileTypeExtensions
     public const string D8a = ".d8a";
     public const string Dan = ".dan";
     public const string Dat = ".dat";
+    public const string Dc = ".dc";
     public const string Dc42 = ".dc42";
+    public const string Dct = ".dct";
     public const string Def = ".def";
     public const string Deg = ".deg";
+    public const string Dem = ".dem";
     public const string Device = ".device";
     public const string Dft = ".dft";
     public const string Dgt = ".dgt";
@@ -105,7 +111,10 @@ internal static class FileTypeExtensions
     public const string Foto = ".foto";
     public const string Fwa = ".fwa";
     public const string Fx = ".fx";
+    public const string G = ".g";
+    public const string G15 = ".g15";
     public const string G3d = ".g3d";
+    public const string G9 = ".g9";
     public const string G64 = ".g64";
     public const string Ghe = ".ghe";
     public const string Gif = ".gif";
@@ -153,6 +162,7 @@ internal static class FileTypeExtensions
     public const string Lbr = ".lbr";
     public const string Lc = ".lc";
     public const string Lda = ".lda";
+    public const string Ldt = ".ldt";
     public const string Lha = ".lha";
     public const string Lib = ".lib";
     public const string Library = ".library";
@@ -181,6 +191,7 @@ internal static class FileTypeExtensions
     public const string Neo = ".neo";
     public const string Nfo = ".nfo";
     public const string Nib = ".nib";
+    public const string Nlq = ".nlq";
     public const string O = ".o";
     public const string Obj = ".obj";
     public const string Os = ".os";
@@ -188,6 +199,7 @@ internal static class FileTypeExtensions
     public const string Ovl = ".ovl";
     public const string P50 = ".p50";
     public const string Pat = ".pat";
+    public const string Pb = ".pb";
     public const string Pc1 = ".pc1";
     public const string Pc2 = ".pc2";
     public const string Pc3 = ".pc3";
@@ -210,9 +222,12 @@ internal static class FileTypeExtensions
     public const string Prg = ".prg";
     public const string Ptg = ".ptg";
     public const string Pts = ".pts";
+    public const string Pzm = ".pzm";
+    public const string R = ".r";
     public const string R26 = ".r26";
     public const string Rap = ".rap";
     public const string Raw = ".raw";
+    public const string Rd = ".rd";
     public const string Readme = ".readme";
     public const string Ref = ".ref";
     public const string Rel = ".rel";

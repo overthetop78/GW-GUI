@@ -11,6 +11,7 @@ using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaAudit.TestInfrastructure;
 
 namespace GWGUI.MediaAudit;
 
@@ -25,9 +26,9 @@ internal static class LocalExplorerOpeningCheck
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var finished = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        Dispatcher? dispatcher = null;
         var thread = new Thread(() =>
         {
-            Dispatcher? dispatcher = null;
             ResourceApplication? application = null;
             DiskImageCancellationScope? scope = null;
             Exception? failure = null;
@@ -158,29 +159,21 @@ internal static class LocalExplorerOpeningCheck
                 try
                 {
                     scope?.Dispose();
+                }
+                catch (Exception cleanupError)
+                {
+                    failure = Combine(failure, cleanupError);
+                }
+                try
+                {
                     if (application is not null)
-                    {
-                        foreach (Window window in application.Windows.Cast<Window>().ToArray())
-                        {
-                            try
-                            {
-                                window.Owner = null;
-                                window.Close();
-                            }
-                            finally
-                            {
-                                window.DataContext = null;
-                                window.Content = null;
-                            }
-                        }
-                        application.Shutdown();
-                    }
-                    if (dispatcher is not null && !dispatcher.HasShutdownStarted)
+                        WpfResourceCleanup.Release(application);
+                    else if (dispatcher is not null && !dispatcher.HasShutdownStarted)
                         dispatcher.InvokeShutdown();
                 }
                 catch (Exception cleanupError)
                 {
-                    failure ??= cleanupError;
+                    failure = Combine(failure, cleanupError);
                 }
                 if (failure is null) finished.TrySetResult();
                 else finished.TrySetException(failure);
@@ -188,19 +181,36 @@ internal static class LocalExplorerOpeningCheck
         }) { IsBackground = true, Name = "Local Explorer image check" };
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
+        Exception? runFailure = null;
         try
         {
             await finished.Task;
         }
+        catch (Exception error)
+        {
+            runFailure = error;
+        }
         finally
         {
-            if (!thread.Join(TimeSpan.FromSeconds(10)))
-                throw new TimeoutException("The Explorer check did not release its WPF thread.");
+            try
+            {
+                WpfResourceCleanup.WaitForShutdown(thread, dispatcher);
+            }
+            catch (Exception cleanupError)
+            {
+                runFailure = Combine(runFailure, cleanupError);
+            }
         }
+
+        if (runFailure is not null)
+            throw runFailure;
     }
 
     private static int CountFiles(FileSystemEntry entry) =>
         (entry.Kind == FileSystemEntryKind.File ? 1 : 0) + entry.Children.Sum(CountFiles);
+
+    private static Exception Combine(Exception? first, Exception second) =>
+        first is null ? second : new AggregateException(first, second);
 
     private sealed class ResourceApplication : Application
     {

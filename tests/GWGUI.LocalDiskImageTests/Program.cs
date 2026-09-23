@@ -44,6 +44,7 @@ internal static partial class Program
                 MediaContentClassifierSelfTests.Run();
                 AtariDosDirectoryReaderSelfTests.Run();
                 SpartaDosFileSystemReaderSelfTests.Run();
+                WpfResourceCleanupSelfTests.Run();
                 Console.WriteLine("Media audit validator self-tests passed.");
                 return 0;
             }

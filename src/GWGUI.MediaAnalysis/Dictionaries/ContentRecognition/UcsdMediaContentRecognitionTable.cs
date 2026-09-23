@@ -11,9 +11,9 @@ internal static class UcsdMediaContentRecognitionTable
     // Famille | Extension | Signatures | Catégorie | Encodage | Exécution | Aperçu
     public static IReadOnlyList<MediaContentRecognitionRule> Rows { get; } =
     [
-        new(Family, FileTypeExtensions.Text, [], MediaContentCategory.Text, MediaTextEncoding.Ascii, MediaExecutionKind.None, MediaPreviewKind.Text),
-        new(Family, FileTypeExtensions.Foto, [], MediaContentCategory.Image, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Image),
-        new(Family, FileTypeExtensions.Graf, [], MediaContentCategory.Image, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Image),
-        new(Family, FileTypeExtensions.Code, [], MediaContentCategory.Executable, MediaTextEncoding.NotApplicable, MediaExecutionKind.NativeExecutable, MediaPreviewKind.Hexadecimal)
+        new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Text, [], MediaContentCategory.Text, MediaTextEncoding.Ascii, MediaExecutionKind.None, MediaPreviewKind.Text),
+        new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Foto, [], MediaContentCategory.Image, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Image),
+        new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Graf, [], MediaContentCategory.Image, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Image),
+        new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Code, [], MediaContentCategory.Executable, MediaTextEncoding.NotApplicable, MediaExecutionKind.NativeExecutable, MediaPreviewKind.Hexadecimal)
     ];
 }
