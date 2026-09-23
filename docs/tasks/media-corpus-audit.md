@@ -156,4 +156,138 @@ Sous ce titre, créer une tâche pour l'image fautive, puis des sous-tâches con
 
 ## Fin de la campagne
 
+- [x] Classer les fichiers internes `FOX`, `S` et `VER` d'AtariWriter+ : l'image passe désormais l'audit sans type inconnu.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer les signatures du bloc AtariWriter+, du bloc nul et du source assembleur tokenisé.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `FOX` et `S` comme données et `VER` comme code source.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler les trois classifications avec des contenus autonomes.
+
+- [x] Classer `ATARI130` et `GRSWITCH.UTL` de la disquette Atari 1020 Plotter Utils : l'image passe désormais l'audit sans type inconnu.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer l'extension Atari `.utl`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer les deux champs fixes Micro Illustrator et le préfixe BASIC enregistré utilisé avec `.utl`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer l'image Micro Illustrator sans extension et le programme BASIC `.utl` sans masquer un `.utl` binaire.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler ces trois cas avec des contenus autonomes.
+
+- [x] Classer les routines machine `CIOUSR` d'Atari Microsoft BASIC : l'image passe désormais l'audit sans type inconnu.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer les signatures fixes de début et de fin de `CIOUSR`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `CIOUSR` comme bibliothèque Atari 8 bits.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler cette classification avec un contenu autonome.
+
+- [x] Corriger la classification des fichiers Artist Unleashed : l'audit de la face B passe sans erreur, les 24 fichiers auparavant inconnus et `OLDCAR` sont désormais les 25 images reconnues.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour ajouter les signatures Artist Unleashed et fixer le marqueur Atari Binary Load au début du fichier.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer ces fichiers comme images et utiliser le marqueur Atari Binary Load fixe.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler les deux classifications sans fichier externe.
+
+- [x] Classer les neuf ressources internes d'AwardWare Side A et reprendre la campagne au point d'arrêt.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer les signatures des caractères, modèles courts, mises en page et largeurs AwardWare.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les caractères comme police et les modèles, mises en page et largeurs comme données structurées.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler les quatre formats AwardWare avec des contenus autonomes.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de l'image AwardWare Side A pour cocher cette correction.
+
+- [x] Classer les quatre fichiers internes de B-Graph v1.0 et reprendre la campagne au point d'arrêt.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer les signatures des trois routines machine B-Graph et de son image binaire.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les routines comme bibliothèques et l'image B-Graph comme image.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler les routines et l'image B-Graph avec des contenus autonomes.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de B-Graph v1.0 pour cocher cette correction.
+
+- [x] Classer l'extension BASIC XE `.OSS` et reprendre la campagne au point d'arrêt.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer l'extension Atari 8 bits `.oss`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.oss` comme bibliothèque.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler la classification d'un fichier `.oss` sans fichier externe.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de l'image BASIC XE Extensions pour cocher cette correction.
+
+- [x] Classer l'écran binaire `PICTURE` de The Bear Essentials et reprendre la campagne au point d'arrêt.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer l'en-tête du fichier graphique Atari extrait.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer ce contenu comme image.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler la classification avec un contenu autonome.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de The Bear Essentials pour cocher cette correction.
+
+- [x] Mettre en attente Big Asembler Side B et poursuivre avec l'image suivante.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour conserver le chemin de l'image et les cinq fichiers sans signature autonome établie, sans ajouter de règle de reconnaissance.
+    - Image différée : `F:\Retro\A Trier\Atari 400-800\Atari 8bit - Applications - [ATR] (TOSEC-v2023-08-29)\Big Asembler (1990)(Cygert, Henryk)(pl)(Side B)\Big Asembler (1990)(Cygert, Henryk)(pl)(Side B).atr`.
+    - Fichiers à analyser ultérieurement avec leur application : `KOALA1`, `KOALA2`, `PIC12`, `PIC13` et `PIC2`. Leurs préfixes et leurs tailles observées ne constituent pas une signature de format.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 163 et supprimer `artifacts/media-audit/failure.json`, tout en conservant le rapport de l'index 162 pour l'analyse ultérieure.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne depuis l'image suivant Big Asembler Side B jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour cocher la mise en attente et la reprise après leur réalisation.
+    - La campagne a validé les index 163 et 164, puis s'est arrêtée à l'index 165 sur `Black Magic Composer (1992)(L.K. Safari)(Side A).atr`.
+
+- [x] Classer les fichiers musicaux de Black Magic Composer et reprendre la campagne.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer les extensions Atari 8 bits `.msc` et `.drp`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.msc` et `.drp` comme contenus audio Atari 8 bits.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler de façon autonome les deux classifications par extension.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de Black Magic Composer Side A pour cocher cette correction.
+    - Black Magic Composer Side A est validée. La campagne a poursuivi jusqu'à l'index 172 et s'est arrêtée sur les fichiers `HELP1` à `HELP4` de `Blazing Paddles (1986)(Baudville)(US).atr`.
+
+- [x] Mettre en attente Blazing Paddles et poursuivre avec l'image suivante.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour conserver le chemin de l'image et les quatre images Micro-Painter brutes sans signature autonome, sans ajouter de règle fondée sur leur taille.
+    - Image différée : `F:\Retro\A Trier\Atari 400-800\Atari 8bit - Applications - [ATR] (TOSEC-v2023-08-29)\Blazing Paddles (1986)(Baudville)(US)\Blazing Paddles (1986)(Baudville)(US).atr`.
+    - Fichiers à analyser ultérieurement : `HELP1`, `HELP2`, `HELP3` et `HELP4`. Ils correspondent à des images d'aide Micro-Painter brutes, mais ne possèdent ni extension ni signature autonome permettant une reconnaissance fiable sans contexte.
+  - [x] Modifier `artifacts/media-audit/checkpoint.json` pour reprendre à l'index 173 et supprimer `artifacts/media-audit/failure.json`, tout en conservant le rapport de l'index 172 pour l'analyse ultérieure.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en poursuivant la campagne depuis l'image suivant Blazing Paddles jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour cocher la mise en attente et la reprise après leur réalisation.
+    - La campagne a validé les index 173 à 191, puis s'est arrêtée à l'index 192 sur `MESSAGE.ISM` et `SURVEY1.SRV` de `Bullentin Board Construction Set (1985)(Antic Publishing)(Side A).atr`.
+
+- [x] Classer les données de Bulletin Board Construction Set et reprendre la campagne.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer les extensions Atari 8 bits `.ism` et `.srv`.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer `.ism` et `.srv` comme données Atari 8 bits.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler de façon autonome les deux classifications par extension.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de Bulletin Board Construction Set Side A pour cocher cette correction.
+    - Bulletin Board Construction Set Side A est validée. La campagne a poursuivi jusqu'à l'index 213 et s'est arrêtée sur quinze fichiers de `CardStax v2.1 (1993)(Paterson, David A.)(PD)(Side A)[BASIC].atr`.
+
+- [x] Retirer les contournements ajoutés pendant l'audit et revenir au premier résultat qu'ils ont faussé.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs`, `src/GWGUI.MediaFileSystems/FileSystems/Atari/BootDisk/AtariBootDiskFormatCatalog.cs` et `src/GWGUI.MediaFileSystems/FileSystems/Atari/BootDisk/AtariBootDiskFileSystemReader.cs` pour retirer le préfixe ATR dynamique et rétablir le catalogue explicite.
+  - [x] Supprimer `tests/GWGUI.LocalDiskImageTests/AtariBootDiskFileSystemReaderSelfTests.cs` et modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` pour retirer le contrôle créé pour ce contournement.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Atari/Dos/AtariDosFileReader.cs` et `tests/GWGUI.LocalDiskImageTests/AtariDosDirectoryReaderSelfTests.cs` pour retirer la borne locale fondée sur le nombre déclaré de secteurs.
+  - [x] Modifier `docs/tasks/media-corpus-audit.md` pour supprimer les deux blocs qui présentaient ces contournements comme des corrections terminées.
+  - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` pour supprimer les résultats à partir de l'index 150 et reprendre sur `BBS (19xx)(-)[req APE].atr`.
+
+- [x] Reconnaître entièrement le grand volume SpartaDOS de BBS et représenter correctement son adressage logique.
+  - [x] Distinguer la géométrie physique d'une disquette de l'adressage logique d'un grand conteneur ATR.
+    - [x] Créer `src/GWGUI.MediaEngine/Enums/SectorImageAddressingKind.cs` avec les valeurs `Physical` et `Logical`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorImage.cs` pour conserver ce type d'adressage et le préserver lors d'un changement d'identifiant de format.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrGeometry.cs` et modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrLayout.cs` ainsi que `AtrReader.cs` pour produire une géométrie physique seulement pour les profils ATR connus et un adressage logique pour les autres tailles valides.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/SectorImageTrackEncoder.cs` et `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationExceptions.cs` pour refuser l'encodage en pistes physiques d'une image dont seule la disposition logique est connue.
+  - [ ] Afficher les secteurs d'un grand ATR logique sans inventer des pistes ou des faces physiques.
+    - [x] Créer `src/GWGUI.App/Enums/Rendering/Sectors/SectorMediaLayoutKind.cs` et modifier `src/GWGUI.App/Contracts/Rendering/Sectors/SectorMediaRenderModel.cs` pour indiquer une disposition physique ou logique.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/SectorMediaInspectorPresenter.cs` pour construire une seule série logique à partir des blocs d'un ATR sans géométrie physique et présenter ses indices de blocs.
+    - [x] Modifier `src/GWGUI.App/Constants/Rendering/Sectors/SectorMediaRenderConstants.cs` pour déclarer les espacements et dimensions de la grille logique.
+    - [x] Modifier `src/GWGUI.App/Rendering/Sectors/SkiaSectorMediaRenderer.cs` pour dessiner et sélectionner cette série sous forme de grille logique, tout en conservant le rendu circulaire des géométries physiques.
+  - [x] Afficher les secteurs d'un grand ATR logique sans inventer des pistes ou des faces physiques.
+  - [ ] Lire le système de fichiers SpartaDOS et toutes ses entrées.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Definitions/FileSystemIds.cs` et `src/GWGUI.MediaFileSystems/Definitions/FileSystemDisplayNames.cs` pour déclarer SpartaDOS.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosFileSystemLayout.cs`, `SpartaDosDirectoryFlags.cs` et `SpartaDosFileSystemExceptions.cs` avec les constantes, attributs et erreurs du format.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDiskHeader.cs`, `SpartaDosDiskReader.cs` et `SpartaDosNameCodec.cs` pour valider les métadonnées du secteur d'amorçage et décoder le nom du volume.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosSectorAllocation.cs` et `SpartaDosFileData.cs` pour transporter séparément la carte d'allocation et le contenu reconstruit.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosDirectoryFlags.cs` et `SpartaDosFileSystemLayout.cs` pour exposer les attributs protégé, caché et archivé des entrées.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosSectorMapReader.cs`, `SpartaDosFileReader.cs` et `SpartaDosDirectoryReader.cs` pour parcourir les cartes de secteurs, les fichiers creux et les sous-répertoires avec leurs tailles, attributs et dates.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Atari/SpartaDos/SpartaDosFileSystemReader.cs` et modifier `src/GWGUI.MediaFileSystems/Exploration/FileSystemReaderCatalog.cs` pour détecter SpartaDOS avant les lecteurs Atari sans catalogue.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/SectorFileSystemRegistry.cs` pour sonder les lecteurs par leur structure lorsque l'identifiant dynamique d'un conteneur valide n'existe pas dans le catalogue fixe.
+  - [x] Lire le système de fichiers SpartaDOS et toutes ses entrées.
+  - [x] Vérifier le lecteur avec des données autonomes et reprendre l'audit.
+    - [x] Créer `tests/GWGUI.LocalDiskImageTests/SpartaDosFileSystemReaderSelfTests.cs` avec un volume SpartaDOS construit en mémoire contenant un dossier, un fichier normal et un fichier creux.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` pour exécuter le contrôle autonome SpartaDOS.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` pour écrire le type d'adressage physique ou logique dans chaque rapport sectoriel.
+    - [x] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne à l'index 150 et vérifier que BBS expose le volume `APE_BBS`, ses dossiers et ses fichiers avant de poursuivre.
+      - BBS est validé comme ATR logique de 8 192 secteurs de 128 octets contenant le volume SpartaDOS `APE_BBS`, avec 4 répertoires et 168 fichiers.
+      - La campagne a poursuivi jusqu'à l'index 156 et s'est arrêtée sur `Bibo Menu Makers (1985)(Bibosoft).atr`.
+    - [x] Modifier `docs/tasks/media-corpus-audit.md` après validation de BBS pour cocher cette correction et consigner le prochain point d'arrêt.
+  - [x] Conserver la nature de disquette Atari pour les ATR à adressage logique.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageDocumentFactory.cs` pour réserver sa création sectorielle aux disquettes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrReader.cs` pour annoncer tous les conteneurs ATR comme des disquettes, indépendamment de leur adressage physique ou logique.
+    - [x] Modifier `artifacts/media-audit/items/00000150-f0c483158344f96e/report.json` en relisant BBS et vérifier que le rapport indique `Floppy` avec un adressage `Logical`.
+    - [x] Modifier `docs/tasks/media-corpus-audit.md` pour cocher la correction de la nature du média BBS.
+
+- [ ] Classer les documents et images de CardStax Side A après le retour de la campagne à l'index 150.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour déclarer les extensions Atari 8 bits `.crd`, `.gr8` et `.v` ; réutiliser la constante `.art` existante.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs` pour déclarer l'en-tête fixe des cartes CardStax.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/Atari8BitMediaContentRecognitionTable.cs` pour classer les cartes `.crd` validées par leur en-tête comme documents et les fichiers `.art`, `.gr8` et `.v` comme images Atari 8 bits.
+  - [ ] Modifier `tests/GWGUI.LocalDiskImageTests/MediaContentClassifierSelfTests.cs` pour contrôler ces classifications avec des contenus autonomes et refuser une fausse carte `.crd`.
+  - [ ] Modifier `artifacts/media-audit/items` et `artifacts/media-audit/checkpoint.json` en relançant la campagne au point d'arrêt jusqu'au prochain défaut ou à la fin du corpus.
+  - [ ] Modifier `docs/tasks/media-corpus-audit.md` après validation de CardStax Side A pour cocher cette correction et consigner le prochain point d'arrêt.
+
 La campagne est terminée lorsque le script atteint la fin du corpus sans erreur et que `artifacts/media-audit/checkpoint.json` contient l'état `complete`.

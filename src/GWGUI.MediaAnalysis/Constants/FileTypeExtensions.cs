@@ -57,6 +57,7 @@ internal static class FileTypeExtensions
     public const string Com = ".com";
     public const string Cpi = ".cpi";
     public const string Cpr = ".cpr";
+    public const string Crd = ".crd";
     public const string Cpt = ".cpt";
     public const string Ctb = ".ctb";
     public const string Cur = ".cur";
@@ -81,6 +82,7 @@ internal static class FileTypeExtensions
     public const string Dms = ".dms";
     public const string Do = ".do";
     public const string Doc = ".doc";
+    public const string Drp = ".drp";
     public const string Drm = ".drm";
     public const string Drv = ".drv";
     public const string Ds = ".ds";
@@ -108,6 +110,7 @@ internal static class FileTypeExtensions
     public const string Ghe = ".ghe";
     public const string Gif = ".gif";
     public const string Gr = ".gr";
+    public const string Gr8 = ".gr8";
     public const string Graf = ".graf";
     public const string Gtf = ".gtf";
     public const string Gtm = ".gtm";
@@ -138,6 +141,7 @@ internal static class FileTypeExtensions
     public const string Ins = ".ins";
     public const string Int = ".int";
     public const string Ipf = ".ipf";
+    public const string Ism = ".ism";
     public const string Iso = ".iso";
     public const string Jl = ".jl";
     public const string Jm = ".jm";
@@ -170,6 +174,7 @@ internal static class FileTypeExtensions
     public const string Midi = ".midi";
     public const string Mod = ".mod";
     public const string Mpe = ".mpe";
+    public const string Msc = ".msc";
     public const string Msa = ".msa";
     public const string Mus = ".mus";
     public const string Muz = ".muz";
@@ -179,6 +184,7 @@ internal static class FileTypeExtensions
     public const string O = ".o";
     public const string Obj = ".obj";
     public const string Os = ".os";
+    public const string Oss = ".oss";
     public const string Ovl = ".ovl";
     public const string P50 = ".p50";
     public const string Pat = ".pat";
@@ -241,6 +247,7 @@ internal static class FileTypeExtensions
     public const string Sng = ".sng";
     public const string Spe = ".spe";
     public const string Spl = ".spl";
+    public const string Srv = ".srv";
     public const string Ssd = ".ssd";
     public const string St = ".st";
     public const string Stx = ".stx";
@@ -261,6 +268,8 @@ internal static class FileTypeExtensions
     public const string Tx = ".tx";
     public const string Txt = ".txt";
     public const string Typ = ".typ";
+    public const string Utl = ".utl";
+    public const string V = ".v";
     public const string Voc = ".voc";
     public const string Wav = ".wav";
     public const string Woz = ".woz";

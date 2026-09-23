@@ -22,6 +22,11 @@ public sealed class SkiaSectorMediaRenderer
         canvas.Clear(SectorMediaRenderConstants.BackgroundColor);
         var mediaSurface = model?.Surfaces.FirstOrDefault(item => item.Index == surface);
         if (mediaSurface is null || mediaSurface.Tracks.Count == 0) return;
+        if (model!.LayoutKind == SectorMediaLayoutKind.Logical)
+        {
+            RenderLogical(canvas, mediaSurface, selectedPosition, width, height, zoom, revealedTracks);
+            return;
+        }
 
         var center = new SKPoint(width / 2f, height / 2f);
         var outerRadius = Math.Max(1, Math.Min(width, height) / 2f - SectorMediaRenderConstants.OuterMargin) * zoom;
@@ -80,6 +85,8 @@ public sealed class SkiaSectorMediaRenderer
     {
         var mediaSurface = model?.Surfaces.FirstOrDefault(item => item.Index == surface);
         if (mediaSurface is null || mediaSurface.Tracks.Count == 0) return null;
+        if (model!.LayoutKind == SectorMediaLayoutKind.Logical)
+            return HitTestLogical(mediaSurface, width, height, point, zoom);
         var center = new SKPoint(width / 2f, height / 2f);
         var outerRadius = Math.Max(1, Math.Min(width, height) / 2f - SectorMediaRenderConstants.OuterMargin) * zoom;
         var innerRadius = outerRadius * SectorMediaRenderConstants.InnerRadiusRatio;
@@ -98,6 +105,89 @@ public sealed class SkiaSectorMediaRenderer
         var angle = (MathF.Atan2(dy, dx) * 180f / MathF.PI + 450f) % 360f;
         var sectorIndex = Math.Clamp((int)(angle / (360f / sectors.Length)), 0, sectors.Length - 1);
         return sectors[sectorIndex];
+    }
+
+    private static void RenderLogical(
+        SKCanvas canvas,
+        SectorMediaSurface surface,
+        long? selectedPosition,
+        int width,
+        int height,
+        float zoom,
+        IReadOnlySet<(int Surface, int Cylinder)>? revealedTracks)
+    {
+        var sectors = surface.Tracks.SelectMany(track => track.Sectors).OrderBy(sector => sector.LogicalBlock).ToArray();
+        if (sectors.Length == 0) return;
+        var layout = LogicalGrid(sectors.Length, width, height, zoom);
+        var revealed = revealedTracks is null || revealedTracks.Contains((surface.Index, 0));
+        for (var index = 0; index < sectors.Length; index++)
+        {
+            var bounds = LogicalCell(layout, index);
+            using var fill = new SKPaint
+            {
+                Color = revealed ? ColorFor(sectors[index].State) : SectorMediaRenderConstants.PendingColor,
+                IsAntialias = false,
+                Style = SKPaintStyle.Fill
+            };
+            canvas.DrawRect(bounds, fill);
+            if (sectors[index].Position != selectedPosition) continue;
+            using var selection = new SKPaint
+            {
+                Color = SectorMediaRenderConstants.SelectionColor,
+                IsAntialias = true,
+                Style = SKPaintStyle.Stroke,
+                StrokeWidth = SectorMediaRenderConstants.SelectionStrokeWidth
+            };
+            canvas.DrawRect(bounds, selection);
+        }
+    }
+
+    private static SectorMediaElement? HitTestLogical(
+        SectorMediaSurface surface,
+        int width,
+        int height,
+        SKPoint point,
+        float zoom)
+    {
+        var sectors = surface.Tracks.SelectMany(track => track.Sectors).OrderBy(sector => sector.LogicalBlock).ToArray();
+        if (sectors.Length == 0) return null;
+        var layout = LogicalGrid(sectors.Length, width, height, zoom);
+        if (point.X < layout.Left || point.Y < layout.Top || point.X >= layout.Right || point.Y >= layout.Bottom)
+            return null;
+        var column = (int)((point.X - layout.Left) / layout.CellWidth);
+        var row = (int)((point.Y - layout.Top) / layout.CellHeight);
+        if (column < 0 || column >= layout.Columns || row < 0 || row >= layout.Rows) return null;
+        var index = row * layout.Columns + column;
+        return index < sectors.Length ? sectors[index] : null;
+    }
+
+    private static LogicalGridLayout LogicalGrid(int count, int width, int height, float zoom)
+    {
+        var availableWidth = Math.Max(1f, width - SectorMediaRenderConstants.LogicalGridMargin * 2) * zoom;
+        var availableHeight = Math.Max(1f, height - SectorMediaRenderConstants.LogicalGridMargin * 2) * zoom;
+        var columns = Math.Max(1, (int)Math.Ceiling(Math.Sqrt(count * availableWidth / availableHeight)));
+        var rows = Math.Max(1, (count + columns - 1) / columns);
+        var cellWidth = availableWidth / columns;
+        var cellHeight = availableHeight / rows;
+        var left = (width - availableWidth) / 2f;
+        var top = (height - availableHeight) / 2f;
+        return new(left, top, columns, rows, cellWidth, cellHeight);
+    }
+
+    private static SKRect LogicalCell(LogicalGridLayout layout, int index)
+    {
+        var row = index / layout.Columns;
+        var column = index % layout.Columns;
+        var gap = SectorMediaRenderConstants.LogicalGridGap;
+        var left = layout.Left + column * layout.CellWidth + gap / 2;
+        var top = layout.Top + row * layout.CellHeight + gap / 2;
+        return new(left, top, left + Math.Max(1f, layout.CellWidth - gap), top + Math.Max(1f, layout.CellHeight - gap));
+    }
+
+    private sealed record LogicalGridLayout(float Left, float Top, int Columns, int Rows, float CellWidth, float CellHeight)
+    {
+        public float Right => Left + Columns * CellWidth;
+        public float Bottom => Top + Rows * CellHeight;
     }
 
     private static SKPath CreateRingSector(SKPoint center, float innerRadius, float outerRadius, float start, float sweep)

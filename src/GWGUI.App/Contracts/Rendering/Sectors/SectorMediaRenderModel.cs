@@ -5,7 +5,8 @@ namespace GWGUI.App.Contracts.Rendering.Sectors;
 public sealed record SectorMediaRenderModel(
     string FormatId,
     int BlockSize,
-    IReadOnlyList<SectorMediaSurface> Surfaces);
+    IReadOnlyList<SectorMediaSurface> Surfaces,
+    SectorMediaLayoutKind LayoutKind = SectorMediaLayoutKind.Physical);
 
 public sealed record SectorMediaSurface(
     int Index,

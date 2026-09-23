@@ -1,6 +1,7 @@
 ﻿using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Atr;
 
@@ -81,17 +82,17 @@ internal static class AtrLayout
     /// <param name="sectorSize">Taille nominale d'un secteur.</param>
     /// <param name="sectorCount">Nombre total de secteurs.</param>
     /// <returns>Géométrie standard connue, ou géométrie linéaire pour une disposition ATR non standard.</returns>
-    public static (int Cylinders, int Heads, int SectorsPerTrack) GetGeometry(int sectorSize, int sectorCount) =>
+    public static AtrGeometry GetGeometry(int sectorSize, int sectorCount) =>
         (sectorSize, sectorCount) switch
         {
             (SingleDensitySectorSize, > 0 and < StandardSectorCount) =>
-                (StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder),
+                new(StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder, SectorImageAddressingKind.Physical),
             (SingleDensitySectorSize, StandardSectorCount) or (DoubleDensitySectorSize, StandardSectorCount) =>
-                (StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder),
+                new(StandardCylinderCount, LogicalHeadCount, StandardSectorsPerCylinder, SectorImageAddressingKind.Physical),
             (SingleDensitySectorSize, EnhancedDensitySectorCount) =>
-                (StandardCylinderCount, LogicalHeadCount, EnhancedDensitySectorsPerCylinder),
+                new(StandardCylinderCount, LogicalHeadCount, EnhancedDensitySectorsPerCylinder, SectorImageAddressingKind.Physical),
             (SingleDensitySectorSize, ExtendedSingleDensitySectorCount) =>
-                (StandardCylinderCount, LogicalHeadCount, ExtendedSingleDensitySectorsPerCylinder),
-            _ => (sectorCount, LogicalHeadCount, 1)
+                new(StandardCylinderCount, LogicalHeadCount, ExtendedSingleDensitySectorsPerCylinder, SectorImageAddressingKind.Physical),
+            _ => new(1, LogicalHeadCount, sectorCount, SectorImageAddressingKind.Logical)
         };
 }

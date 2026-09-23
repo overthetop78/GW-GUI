@@ -52,7 +52,9 @@ public sealed class SectorFileSystemRegistry
         foreach (var image in images)
         {
             ArgumentNullException.ThrowIfNull(image);
-            var matches = ReadCandidates(image, image.FormatId).Matches;
+            var matches = readersByFormatId.TryGetValue(image.FormatId, out var formatReaders)
+                ? ReadCandidates(image, formatReaders).Matches
+                : ReadAll(image).Matches;
             foreach (var match in primary ? matches : matches.Take(1))
             {
                 if (!identities.Add(FileSystemInterpretationIdentity.Create(image.FormatId, match.Volume))) continue;

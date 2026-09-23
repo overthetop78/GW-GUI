@@ -43,6 +43,7 @@ internal static partial class Program
                 MediaAuditValidatorSelfTests.Run();
                 MediaContentClassifierSelfTests.Run();
                 AtariDosDirectoryReaderSelfTests.Run();
+                SpartaDosFileSystemReaderSelfTests.Run();
                 Console.WriteLine("Media audit validator self-tests passed.");
                 return 0;
             }
@@ -310,6 +311,7 @@ internal static partial class Program
         {
             kind = "sectors", sectors.Image.FormatId, sectors.Image.BlockSize, sectors.Image.BlockCount,
             sectors.Image.Capacity, sectors.Image.Cylinders, sectors.Image.Heads, sectors.Image.SectorsPerTrack,
+            sectors.Image.AddressingKind,
             sectors.Image.AllowsVariableBlockSize, sectors.Image.MissingBlocks,
             blocks = sectors.Image.AvailableBlocks.OrderBy(block => block.LogicalBlock).Select(block => new
             {

@@ -7,4 +7,6 @@ internal static class SectorImageVisualizationExceptions
     public static NotSupportedException MissingPolicy(string formatId) => new($"Aucune politique de visualisation n'est disponible pour le format '{formatId}'.");
     /// <summary>Crée l'erreur signalant qu'aucune piste n'a pu être produite.</summary>
     public static InvalidDataException NoTrack(string formatId) => new($"L'image sectorielle '{formatId}' ne produit aucune piste visualisable.");
+    /// <summary>Crée l'erreur signalant que les blocs logiques ne définissent pas de pistes physiques encodables.</summary>
+    public static NotSupportedException LogicalAddressing(string formatId) => new($"L'image sectorielle '{formatId}' ne déclare aucune géométrie physique utilisable pour une écriture sur disquette.");
 }

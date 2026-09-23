@@ -3,6 +3,7 @@ using GWGUI.App.Contracts.Rendering.Sectors;
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Enums.Rendering.Sectors;
 using GWGUI.App.Enums.ViewModels.Visualization;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.App.Presenters.Visualization;
@@ -14,6 +15,8 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
         IReadOnlyDictionary<int, string>? fileSystemPaths = null)
     {
         ArgumentNullException.ThrowIfNull(image);
+        if (image.AddressingKind == SectorImageAddressingKind.Logical)
+            return BuildLogicalRenderModel(image, fileSystemPaths, withData: true);
         var surfaces = Enumerable.Range(0, image.Heads).Select(surface => new SectorMediaSurface(surface,
             Enumerable.Range(0, image.Cylinders)
                 .Select(cylinder => AnalyzeTrack(image, surface, cylinder, fileSystemPaths))
@@ -24,6 +27,8 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
     public SectorMediaRenderModel BuildGeometryModel(SectorImage image)
     {
         ArgumentNullException.ThrowIfNull(image);
+        if (image.AddressingKind == SectorImageAddressingKind.Logical)
+            return BuildLogicalRenderModel(image, null, withData: false);
         var surfaces = Enumerable.Range(0, image.Heads).Select(surface => new SectorMediaSurface(surface,
             Enumerable.Range(0, image.Cylinders).Select(cylinder => new SectorMediaTrack(cylinder,
                 Enumerable.Range(0, image.SectorsPerTrack).Select(slot =>
@@ -84,22 +89,51 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
             SectorMediaElementState.Degraded => MediaInspectorEntryLevel.Warning,
             _ => MediaInspectorEntryLevel.Information
         };
+        var logical = sector.Cylinder < 0;
         var entries = new List<MediaInspectorEntry>
         {
             new(Localize("Visual.SideLabel"), surface.ToString()),
-            new(Localize("Visual.TrackLabel"), sector.Cylinder.ToString()),
-            new(Localize("Visual.SectorLabel"), sector.Number.ToString()),
             new(Localize("Visual.LogicalBlockLabel"), sector.LogicalBlock.ToString()),
             new(Localize("Visual.SizeLabel"), sector.Size.ToString(), Localize("Visual.BytesUnit")),
             new(Localize("Visual.StateLabel"), Localize("Visual.Sector" + sector.State), null, level)
         };
+        if (!logical)
+        {
+            entries.Insert(1, new(Localize("Visual.TrackLabel"), sector.Cylinder.ToString()));
+            entries.Insert(2, new(Localize("Visual.SectorLabel"), sector.Number.ToString()));
+        }
         if (!string.IsNullOrWhiteSpace(sector.FileSystemPath))
             entries.Add(new(Localize("Visual.FileSystemPathLabel"), sector.FileSystemPath));
 
         return new(
             Localize("Visual.SectorInspectorTitle"),
-            $"{Localize("Visual.TrackLabel")} {sector.Cylinder} · {Localize("Visual.SectorLabel")} {sector.Number}",
+            logical
+                ? $"LBA {sector.LogicalBlock}"
+                : $"{Localize("Visual.TrackLabel")} {sector.Cylinder} · {Localize("Visual.SectorLabel")} {sector.Number}",
             [new(Localize("Visual.SummaryTab"), ControlVisualConstants.InformationGlyph, entries)]);
+    }
+
+    private static SectorMediaRenderModel BuildLogicalRenderModel(
+        SectorImage image,
+        IReadOnlyDictionary<int, string>? fileSystemPaths,
+        bool withData)
+    {
+        var elements = Enumerable.Range(0, image.BlockCount).Select(logicalBlock =>
+        {
+            SectorBlock? block = null;
+            var available = withData && image.TryGetBlock(logicalBlock, out block);
+            return new SectorMediaElement(
+                logicalBlock,
+                logicalBlock,
+                -1,
+                logicalBlock,
+                available ? block!.Data.Count : image.BlockSize,
+                available
+                    ? StateFor(block, image.BlockSize, image.AllowsVariableBlockSize, false, false)
+                    : SectorMediaElementState.WithoutData,
+                fileSystemPaths?.GetValueOrDefault(logicalBlock));
+        }).ToArray();
+        return new(image.FormatId, image.BlockSize, [new SectorMediaSurface(0, [new SectorMediaTrack(0, elements)])], SectorMediaLayoutKind.Logical);
     }
 
     private static int LogicalBlock(SectorImage image, int surface, int cylinder, int slot)

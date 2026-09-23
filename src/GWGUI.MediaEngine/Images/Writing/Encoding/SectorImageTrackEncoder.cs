@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Images.Visualization;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Images.Writing.Encoding;
 
@@ -21,11 +22,13 @@ public sealed class SectorImageTrackEncoder
     }
 
     /// <summary>Indique si une politique d'encodage accepte l'image.</summary>
-    public bool CanEncode(SectorImage image) => policies.Resolve(image) is not null;
+    public bool CanEncode(SectorImage image) => image.AddressingKind == SectorImageAddressingKind.Physical && policies.Resolve(image) is not null;
 
     /// <summary>Encode toutes les pistes disponibles dans l'ordre cylindre puis face.</summary>
     public IReadOnlyList<EncodedDiskTrack> Encode(SectorImage image, CancellationToken cancellationToken = default)
     {
+        if (image.AddressingKind == SectorImageAddressingKind.Logical)
+            throw SectorImageVisualizationExceptions.LogicalAddressing(image.FormatId);
         var policy = policies.Resolve(image) ?? throw SectorImageVisualizationExceptions.MissingPolicy(image.FormatId);
         var tracks = new List<EncodedDiskTrack>();
         foreach (var group in image.AvailableBlocks.Select(block => (Block: block, Address: policy.VisualAddress(image, block.Address))).GroupBy(item => (item.Address.Cylinder, item.Address.Head)).OrderBy(group => group.Key.Cylinder).ThenBy(group => group.Key.Head))

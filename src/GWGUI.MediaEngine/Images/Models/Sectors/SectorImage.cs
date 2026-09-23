@@ -1,5 +1,6 @@
 using IMediaSectorBlock = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock;
 using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Images.Models.Sectors;
 
@@ -29,7 +30,7 @@ public sealed class SectorImage : IMediaSectorImage
     /// <exception cref="ArgumentException"><paramref name="formatId"/> est nul, vide ou blanc.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Une dimension, la capacité ou le nombre logique de blocs n'est pas strictement positif.</exception>
     /// <exception cref="InvalidDataException">Les blocs contiennent un doublon, un numéro hors limites ou dépassent la capacité annoncée.</exception>
-    public SectorImage(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<SectorBlock> blocks, bool allowVariableBlockSize = false, long? capacity = null, int? logicalBlockCount = null)
+    public SectorImage(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<SectorBlock> blocks, bool allowVariableBlockSize = false, long? capacity = null, int? logicalBlockCount = null, SectorImageAddressingKind addressingKind = SectorImageAddressingKind.Physical)
     {
         if (string.IsNullOrWhiteSpace(formatId)) throw SectorImageExceptions.InvalidFormatId(nameof(formatId), formatId);
         if (blockSize <= 0) throw SectorImageExceptions.InvalidDimension(nameof(blockSize), blockSize, "un entier strictement positif");
@@ -43,6 +44,7 @@ public sealed class SectorImage : IMediaSectorImage
         Cylinders = cylinders;
         Heads = heads;
         SectorsPerTrack = sectorsPerTrack;
+        AddressingKind = addressingKind;
         _allowVariableBlockSize = allowVariableBlockSize;
         _capacity = capacity;
         _logicalBlockCount = logicalBlockCount;
@@ -72,6 +74,8 @@ public sealed class SectorImage : IMediaSectorImage
     public int Heads { get; }
     /// <summary>Nombre de secteurs par piste.</summary>
     public int SectorsPerTrack { get; }
+    /// <summary>Indique si les dimensions décrivent une géométrie physique ou un espace de blocs logiques.</summary>
+    public SectorImageAddressingKind AddressingKind { get; }
     /// <summary>Indique si le format autorise des tailles de blocs différentes de <see cref="BlockSize"/>.</summary>
     public bool AllowsVariableBlockSize => _allowVariableBlockSize;
     /// <summary>Nombre total de blocs logiques annoncé par l'image.</summary>
@@ -115,5 +119,5 @@ public sealed class SectorImage : IMediaSectorImage
     /// <summary>Crée une nouvelle image avec l'identifiant indiqué en conservant exactement la géométrie, les blocs et les règles de capacité de l'image courante.</summary>
     /// <param name="formatId">Nouvel identifiant de format.</param>
     /// <returns>Nouvelle image dont seul l'identifiant change.</returns>
-    public SectorImage WithFormatId(string formatId) => new(formatId, BlockSize, Cylinders, Heads, SectorsPerTrack, AvailableBlocks, _allowVariableBlockSize, _capacity, _logicalBlockCount);
+    public SectorImage WithFormatId(string formatId) => new(formatId, BlockSize, Cylinders, Heads, SectorsPerTrack, AvailableBlocks, _allowVariableBlockSize, _capacity, _logicalBlockCount, AddressingKind);
 }

@@ -24,6 +24,8 @@ internal static class FileSystemDisplayNames
     public const string AtariKFile = "K-file (KBoot)";
     /// <summary>Nom affiché des volumes Atari MyDOS.</summary>
     public const string AtariMyDos = "Atari MyDOS";
+    /// <summary>Nom affiché des volumes SpartaDOS.</summary>
+    public const string AtariSpartaDos = "SpartaDOS";
     /// <summary>Nom affiché de Coherent sur Commodore 900.</summary>
     public const string CoherentCommodore900 = "COHERENT (Commodore 900)";
     /// <summary>Nom affiché de Commodore DOS.</summary>

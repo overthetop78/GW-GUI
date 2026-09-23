@@ -47,6 +47,8 @@ public static class FileSystemIds
     public const string AtariKFile = "atari-k-file";
     /// <summary>Identifie les volumes Atari MyDOS, y compris les grands volumes à liaisons de secteurs sur 16 bits.</summary>
     public const string AtariMyDos = "atari-mydos";
+    /// <summary>Identifie un volume SpartaDOS Atari 8 bits.</summary>
+    public const string AtariSpartaDos = "atari-spartados";
     /// <summary>Identifie Coherent.</summary>
     public const string Coherent = "coherent";
     /// <summary>Identifie Commodore DOS.</summary>

@@ -80,7 +80,8 @@ public sealed class AtrReader : IMediaImageReader
         var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         var bytes = data.ToArray();
         ValidateContainer(bytes);
-        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(bytes, cancellationToken));
+        var image = Read(bytes, cancellationToken);
+        return MediaImageDocumentFactory.CreateFloppySector(context.Source, image);
     }
 
     private static SectorImage Read(byte[] data, CancellationToken cancellationToken)
@@ -121,7 +122,7 @@ public sealed class AtrReader : IMediaImageReader
             ? (long)AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize
             : payloadLength;
         var logicalBlockCount = isTruncatedSingleDensity ? AtrLayout.StandardSectorCount : sectorCount;
-        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: capacity, logicalBlockCount: logicalBlockCount);
+        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: capacity, logicalBlockCount: logicalBlockCount, addressingKind: geometry.AddressingKind);
     }
 
     /// <summary>Charge un conteneur ATR et vÃ©rifie son en-tÃªte, ses longueurs et l'intÃ©gritÃ© de ses limites sectorielles.</summary>

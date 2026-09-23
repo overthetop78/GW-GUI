@@ -22,6 +22,7 @@ public static class FileSystemReaderCatalog
         new GWGUI.MediaFileSystems.FileSystems.Cpm.CpmFileSystemReader(),
         new GWGUI.MediaFileSystems.FileSystems.Commodore.Dos.CommodoreDosFileSystemReader(),
         new GWGUI.MediaFileSystems.FileSystems.Fat12.Fat12FileSystemReader(),
+        new GWGUI.MediaFileSystems.FileSystems.Atari.SpartaDos.SpartaDosFileSystemReader(),
         new GWGUI.MediaFileSystems.FileSystems.Atari.Dos.AtariDosFileSystemReader(),
         new GWGUI.MediaFileSystems.FileSystems.Atari.KFile.AtariKFileFileSystemReader(),
         new GWGUI.MediaFileSystems.FileSystems.Atari.ClkGraphicsLibrary.AtariClkGraphicsLibraryFileSystemReader(),
