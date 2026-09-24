@@ -75,16 +75,13 @@ Avant une publication réelle :
 1. modifier uniquement la version du manifeste du module concerné ;
 2. créer ses notes au chemin indiqué, avec les changements propres au module ;
 3. commiter et pousser le manifeste, les changements et les notes ;
-4. créer puis pousser le tag correspondant exactement à la version du manifeste.
+4. lancer `scripts\publish-modules.cmd <id>` pour ce module, ou sans identifiant pour publier successivement toutes les nouvelles versions.
 
-Le workflow accepte tout tag `module-<id>-vX.Y.Z`, retrouve le projet par le manifeste et transmet
-le même identifiant au packaging et au catalogue. Le push du tag relance les tests, reconstruit le
-paquet, vérifie son empreinte et crée la release GitHub avec `--latest=false`. Un identifiant inconnu,
-une version de tag différente du manifeste ou des notes absentes interrompt la publication.
-
-Le déclenchement manuel de `module-release.yml` construit seulement un artefact sans publier de
-release. Il ne fait pas partie de la procédure de publication et ne doit être utilisé que lorsqu'un
-contrôle séparé est explicitement demandé.
+Le script ignore une version déjà publiée. Pour chaque nouvelle version, il utilise les notes du
+module lorsqu’elles existent ; sinon il demande s’il faut poursuivre avec les notes générées par
+GitHub. Il déclenche `module-release.yml`, attend sa fin et arrête toute la publication au premier
+échec. Le workflow retrouve le projet par le manifeste, reconstruit le paquet, vérifie son empreinte,
+crée le tag et la release GitHub avec `--latest=false`, puis publie le catalogue du module.
 
 Après la release, le workflow publie le catalogue propre au module sous
 `module-<id>-catalog`. L’URL correspondante est inscrite dans le `module.json`; GW GUI ne la possède

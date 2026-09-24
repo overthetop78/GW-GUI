@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Không thể lưu cài đặt.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI lỗi</value></data>
   <data name="Error.Unexpected"><value>Một lỗi không mong muốn đã bị chặn.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Thao tác này không được hỗ trợ bởi tập tin, thiết bị hoặc nền tảng đã chọn.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Không có đủ bộ nhớ để hoàn thành thao tác này.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI gặp một vấn đề bất ngờ trong khi thực hiện hành động này.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Chỉ công nhân trò chơi Input không dừng lại.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Không có bản đồ</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Trình đếm thiết bị trò chơi Input thất bại {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Việc đăng ký nút hệ thống trò chơi Input bị lỗi.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Việc đăng ký cập nhật trò chơi Input không thành công {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Không thể bỏ đăng ký phần mềm gọi lại trò chơi Input: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Việc đặt hàng đợi thiết bị input lại bị lỗi: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Việc gọi lại thiết bị nhập vào trò chơi bị lỗi: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Gọi ngược lại hệ thống khi nhập vào nút {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Việc gọi ngược lại đọc thô trò chơi: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: đọc {1} lỗi với mã 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Kiểu nhập {1}, Tình trạng trò chơipad sẵn sàng: {2}, Không có dãy điều khiển</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Kiểu nhập {1}, Tình trạng trò chơipad sẵn sàng: {2}, trục: {3}, nút: {4}, Công tắc: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM lỗi 0x{1:X8} (Tiếng cười){2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Kiểu nhập {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Tên đã giải quyết: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Tên máy game: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Thiết bị ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Gốc Thiết bị ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Ngăn chứa ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Nhóm: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Sử dụng: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Đầu vào đã hỗ trợ: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Thông tin về người điều khiển: trục={0}, nút ={1}, Công tắc={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Nhãn trục: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Nhãn nút: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Làm mũ: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Đường dẫn PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Tên PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Không thể đọc mục nhập hệ thống tập tin.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Số đếm đã yêu cầu ({0}) Vượt quá kích cỡ bộ đệm ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Khối tập tin kế tiếp có số dãy sai.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Không có khu vực tự do nào trên đĩa.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Chỉ bù đắp zero được hỗ trợ cho thao tác này.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Dòng tập tin này không hỗ trợ việc thay đổi chiều dài.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Khối hộp {0} trong chuỗi phân vùng không chứa một khối mảng ảnh; mà là kiểu thật: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Khối phân cách vết {0} không chứa khối mảng ảnh; kiểu thật: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Khối mảng ảnh yêu cầu bị thiếu.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Một vòng lặp đã được phát hiện trong khi giải phóng khối tại nút di chuyển {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Nút vùng chọn {0} Không thể đọc được.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Không thể phân bổ khối phân bổ định vị- node.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Vị trí đã yêu cầu không hợp lệ đối tượng hệ thống này.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Thao tác định vị- node thất bại.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Khối chỉ mục sơ đồ mảng ảnh định vị- node {0}/{1} Không thể đọc được.</value></data>
 </root>

@@ -6,11 +6,16 @@ namespace GWGUI.App.Rendering.Scp;
 public sealed partial class SkiaScpRenderer
 {
     private sealed record PreparedScpTrack(
-        IReadOnlyList<PreparedScpArc> FluxArcs,
+        IReadOnlyList<PreparedScpRevolution> Revolutions,
+        PreparedScpRevolution Synthesis,
         IReadOnlyList<PreparedScpArc> StructureArcs,
         ScpTrackVisualState VisualState,
         int ValidSectors,
         int InvalidSectors,
         int UnverifiedSectors,
         bool HasFlux);
+
+    private sealed record PreparedScpRevolution(
+        IReadOnlyList<PreparedScpArc> FluxArcs,
+        double Quality);
 }

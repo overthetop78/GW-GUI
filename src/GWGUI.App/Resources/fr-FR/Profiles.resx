@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Profiles.ByOperation"><value>Profils par opération</value></data>
-  <data name="Profiles.Tab"><value>Onglet</value></data>
-  <data name="Profiles.Name"><value>Nom</value></data>
-  <data name="Profiles.System"><value>Système</value></data>
-  <data name="Profiles.Rename"><value>Renommer…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Profiles.ByOperation" xml:space="preserve"><value>Profils par opération</value></data>
+  <data name="Profiles.Tab" xml:space="preserve"><value>Onglet</value></data>
+  <data name="Profiles.Name" xml:space="preserve"><value>Nom</value></data>
+  <data name="Profiles.System" xml:space="preserve"><value>Système</value></data>
+  <data name="Profiles.Rename" xml:space="preserve"><value>Renommer…</value></data>
   <data name="Profile.SaveTitle"><value>Enregistrer le profil</value></data>
   <data name="Profile.Name"><value>Nom du profil</value></data>
   <data name="Profile.NameRequired"><value>Indiquez un nom.</value></data>
   <data name="Profile.Title"><value>Profil</value></data>
-  <data name="Common.Profile"><value>Profil</value></data>
   <data name="Profile.Default"><value>Par défaut</value></data>
   <data name="Profile.SystemRename"><value>Le profil Par défaut est permanent et ne peut pas être renommé.</value></data>
   <data name="Profile.SystemDelete"><value>Le profil Par défaut est permanent et ne peut pas être supprimé.</value></data>

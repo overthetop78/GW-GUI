@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Slå på lyd</value></data>
+  <data name="Emulation.Audio.Output"><value>Lydutgang</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latent (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolasjon</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga lydfilter</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Stereoseparering (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Lydinngang</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Denne Amiga-kjernen eksponerer ikke lydinngang.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows standardutdata</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Antipolasjon</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulerte</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Filtrertype</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Diskettdrevet lydvolum</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Diskett-drive lydtype</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Demp tomme stasjoner</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD lydvolum</value></data>
+  <data name="Emulation.Audio.Device"><value>Enhet</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Forsinkelse</value></data>
+  <data name="Emulation.Audio.Quality"><value>Kvalitet</value></data>
+  <data name="Emulation.Audio.Drives"><value>Stasjoner</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettstasjonslyd</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarisert lydfilter</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Lav</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Høy</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Lyd</value></data>
+</root>

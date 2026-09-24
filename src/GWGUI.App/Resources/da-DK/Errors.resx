@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Indstillinger kunne ikke gemmes.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI fejl</value></data>
   <data name="Error.Unexpected"><value>En uventet fejl blev opsnappet.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Denne operation understøttes ikke af den valgte fil, enhed eller platform.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Der er ikke nok hukommelse til at fuldføre operationen.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI stødte på et uventet problem under udførelsen af denne handling.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput-tråden stoppede ikke.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Ingen kortlægning</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Optælling af GameInput-enhed mislykkedes for {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Registrering af GameInput-system mislykkedes.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput opdateringsregistrering mislykkedes for {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput refresh callback kunne ikke slettes: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput-enhed kallback kø mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput-enhed der blev kaldt tilbage mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput system- knappeknapkaldgang mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw- reading callback mislykkedes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: læsning {1} mislykkedes med kode 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Indgangstype {1}, gamepad- tilstand tilgængelig: {2}, controllerarrays ikke tilgængelig</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Indgangstype {1}, gamepad- tilstand tilgængelig: {2}, akser: {3}, knapper: {4}, kontakter: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM fejl 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Indgangstype {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Opløst navn: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput navn: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Enhed ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Enhedsrod ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Beholder ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familie: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Brug: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Understøttede input: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Kontrollør information: akser ={0}, knapper ={1}, switches ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Akseetiketter: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Knapmærkater: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kortlægning: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP- sti: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP- navne: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Filsystemindgangen kunne ikke læses.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Den ønskede optælling ({0}) overstiger bufferstørrelsen ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Den næste fil blok har et forkert sekvensnummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Ingen gratis sektor er tilgængelig på disken.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Kun forskudt nul understøttes for denne operation.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Denne filsystemstrøm understøtter ikke ændring af dens længde.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Cached blok {0} i fordelingskæden ikke indeholder en bitmap-blok; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Tildelingsblok for cachet {0} indeholder ikke en bitmap-blok; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Den krævede bitmap blok mangler.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>En løkke blev opdaget, mens frigør blokke ved tildeling node {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Tildelingsnode {0} kunne ikke læses.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Der kunne ikke tildeles fordelingsnøgleblokken.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Den ønskede position er ugyldig for dette filsystem- objekt.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Aktionsknudeoperationen mislykkedes.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allokerings- node- bitmap-indeksplokken {0}/{1} kunne ikke læses.</value></data>
 </root>

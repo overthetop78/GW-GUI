@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Enable audio</value></data>
+  <data name="Emulation.Audio.Output"><value>Audio output</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latency (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolation</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Audio input</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows default output</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Anti interpolation</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulated</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Filter type</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Mute empty drives</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD audio volume</value></data>
+  <data name="Emulation.Audio.Device"><value>Device</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latency</value></data>
+  <data name="Emulation.Audio.Quality"><value>Quality</value></data>
+  <data name="Emulation.Audio.Drives"><value>Drives</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Floppy-drive sound</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarized audio filter</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Low</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>High</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+</root>

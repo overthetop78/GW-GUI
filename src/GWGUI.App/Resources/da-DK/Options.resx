@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>Valgmuligheder</value></data>
-  <data name="Options.General"><value>Generel</value></data>
-  <data name="Options.Tools"><value>Greaseweazle Værktøjer</value></data>
-  <data name="Options.Hardware"><value>Controllere og drev</value></data>
-  <data name="Options.Profiles"><value>Profiler</value></data>
-  <data name="Options.ImagesFolder"><value>Standard disk-image-mappe</value></data>
-  <data name="Options.Language"><value>Sprog</value></data>
-  <data name="Options.Theme"><value>Tema</value></data>
-<data name="Theme.Light"><value>Lys</value></data>
-  <data name="Theme.Dark"><value>Mørk</value></data>
-  <data name="Options.GwPath"><value>Sti til gw.exe</value></data>
-  <data name="Options.ToolsHelp"><value>Hvis værktøjerne mangler, vil assistenten tilbyde at downloade dem eller vælge en eksisterende installation. Opdateringer annonceres kun.</value></data>
-  <data name="Options.HardwarePersistence"><value>Hardwareindstillinger forbliver gemt, når et drev frakobles.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>Valgmuligheder</value></data>
+  <data name="Options.General" xml:space="preserve"><value>Generel</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Værktøjer</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Controllere og drev</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Profiler</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Standard disk-image-mappe</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Sprog</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>System</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Lys</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Mørk</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>Sti til gw.exe</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Hvis værktøjerne mangler, vil assistenten tilbyde at downloade dem eller vælge en eksisterende installation. Opdateringer annonceres kun.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Hardwareindstillinger forbliver gemt, når et drev frakobles.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Eksekverbar (*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Vil du fjerne denne lagrede controller og alle dens drev?</value></data>
-<data name="Options.UseConversionTags"><value>Brug tags i konverteringsfilnavne</value></data>
+  <data name="Options.HardwareTitle"><value>Hardware</value></data>
+  <data name="Options.UseConversionTags"><value>Brug tags i konverteringsfilnavne</value></data>
   <data name="Options.TagPreset"><value>Forudindstillet</value></data>
   <data name="Options.TagPresetFamily"><value>Kun familie</value></data>
   <data name="Options.TagPresetFormat"><value>Kun format</value></data>
@@ -52,7 +46,8 @@
   <data name="Options.TagPatternPreview"><value>Eksempel: {0}</value></data>
   <data name="Options.TagPatternInvalid"><value>Tagmønsteret skal indeholde {tag}.</value></data>
   <data name="Options.EnableLogs"><value>Gem logfiler</value></data>
-<data name="Options.LogsDescription"><value>Hver handling har sin egen fil i mappen GW GUI Logs.</value></data>
+  <data name="Options.Logs"><value>Logge</value></data>
+  <data name="Options.LogsDescription"><value>Hver handling har sin egen fil i mappen GW GUI Logs.</value></data>
   <data name="Options.LogActionErase"><value>Slette</value></data>
   <data name="Options.LogActionClean"><value>Rens hoveder</value></data>
   <data name="Options.OpenLogsFolder"><value>Åbn mappe</value></data>
@@ -60,187 +55,11 @@
   <data name="Options.KeepLogArchives"><value>Behold tidligere logfiler</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = ubegrænset</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motorer</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>Vælg uafhængigt den motor, der bruges til hver handling.</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>Intern GW GUI-motor</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>Den valgte motor bruges konsekvent. Hvis den ikke kan udføre handlingen, melder GW GUI det uden skjult at bruge den anden motor.</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fang musen</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>Indstilling</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>Controllere</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>Registrer controllere</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>Enhed</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Ingen controller registreret</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} controller(e) registreret</value></data>
-  <data name="Controllers.TestRumble"><value>Prøvevibrationer</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Vibrationsstyrke</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Live-input</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Betjening</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>Værdi</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>Aktiv</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>Funktioner</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>Enhedsidentitet</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>Inputtyper</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>Betjeningselementer</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>Vibrationsmotorer</value></data>
-  <data name="Controllers.ForceFeedback"><value>Tving feedback</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>Haptik</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Systemknapper</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>Rå rapporter</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Gamepad-layout</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Rat</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · kobling={1} · håndbremse={2} · gearskifte={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput-navn</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Hardwareversion</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Firmwareversion</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>Familie</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Producent</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Akse</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Knap</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Kontakt</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} akser · {1} knapper · {2} kontakter</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>Ja</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>Nej</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>Ingen</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Rå byte</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analoge værdier</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Controllerregistrering mislykkedes</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>Registrerer controllere…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Controlleren kunne ikke læses</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>Test i gang…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>Test mislykkedes</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Test fuldført</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Ekstra betjeningselementer</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Haptisk lydslutpunkt</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Haptiske placeringer</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>Anvendelse</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows-enhedskæde</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Venstre stick X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Venstre stick Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>Højre stick X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>Højre stick Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Venstre trigger</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Højre trigger</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>Styring</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>Speeder</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>Bremse</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Kobling</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>Håndbremse</value></data>
-  <data name="Controllers.Gear"><value>Redskab</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>Rulning</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>Hældning</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>Drejning</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensorer</value></data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI-navigation</value></data>
-<data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Lavfrekvensmotor</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Højfrekvensmotor</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Del</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineær</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Vinklet</value></data>
-<data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstant</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampe</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusbølge</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Firkantbølge</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Trekantbølge</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Stigende savtak</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Faldende savtak</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Fjeder</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Friktion</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Dæmper</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inerti</value></data>
-<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Flerakset controller</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-anvendelse</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>akser</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>knapper</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Samlet</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtuel</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Inputrapport</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Outputrapport</value></data>
-<data name="Options.Logs"><value>Logge</value></data>
-  <data name="Emulation.InitialDisk"><value>Startdisk</value></data>
-  <data name="Emulation.Audio"><value>Lyd</value></data>
-  <data name="Emulation.Controller"><value>Kontrollør {0}</value></data>
-  <data name="Emulation.Core.NameOptions"><value>Kerneindstillinger</value></data>
-  <data name="Emulation.MultiDrive"><value>Montere de første fire diske i DF0-DF3</value></data>
-  <data name="Emulation.LoadOptions"><value>Indlæs tilgængelige tilvalg</value></data>
-  <data name="Emulation.Configurations"><value>Konfigurationer</value></data>
-  <data name="Emulation.ReleaseMouse"><value>Udløs mus</value></data>
-  <data name="Emulation.DeleteConfirm"><value>Slet denne Amiga-konfiguration?</value></data>
-  <data name="Emulation.ModelRequired"><value>Der kræves en Amigamodel.</value></data>
-  <data name="Emulation.KickstartRequired"><value>En Kickstart sti er påkrævet.</value></data>
-  <data name="Emulation.FileRequired"><value>En krævet firmware sti er tom.</value></data>
-  <data name="Emulation.FileMissing"><value>Den markerede fil eksisterer ikke.</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>Analog døde zoner</value></data>
-  <data name="Controllers.StickDeadZone"><value>sticks</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>Triggere</value></data>
-  <data name="Controllers.OuterDeadZone"><value>Udvendig død zone</value></data>
-  <data name="Updates.Title"><value>Opdateringer</value></data>
-  <data name="Updates.Description"><value>Søg efter opdateringer til GW GUI og installerede emuleringsmoduler.</value></data>
-  <data name="Updates.Scope"><value>Søg</value></data>
-  <data name="Updates.ScopeApplication"><value>Anvendelse</value></data>
-  <data name="Updates.ScopeModules"><value>Emulationsmoduler</value></data>
-  <data name="Updates.ScopeAll"><value>Anvendelse og moduler</value></data>
-  <data name="Updates.Search"><value>Tjek for opdateringer</value></data>
-  <data name="Updates.Ready"><value>Vælg hvad du skal søge efter, og tjek derefter for opdateringer.</value></data>
-  <data name="Updates.Searching"><value>Tjekker for opdateringer...</value></data>
-  <data name="Updates.SearchFailed"><value>Kan ikke tjekke for opdateringer.</value></data>
-  <data name="Updates.UpToDate"><value>Opdateret</value></data>
-  <data name="Updates.Available"><value>Opdatering tilgængelig</value></data>
-  <data name="Updates.ApplicationRequired"><value>Kræver GW GUI vært API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>Ingen kompatibel version</value></data>
-  <data name="Updates.InstalledVersion"><value>Installeret: {0}</value></data>
-  <data name="Updates.Results"><value>Der blev fundet opdateringer.</value></data>
-  <data name="Updates.NoUpdates"><value>Alt valgt er opdateret.</value></data>
-  <data name="Updates.Install"><value>Installér valgte opdateringer</value></data>
-  <data name="Updates.InstallConfirm"><value>Download og installer {0} udvalgt komponent (er)? GW GUI vil lukke og genstarte.</value></data>
-  <data name="Updates.Preparing"><value>Downloader og forbereder opdateringer...</value></data>
-  <data name="Updates.PreparationCancelled"><value>Opdateringsforberedelse blev annulleret.</value></data>
-  <data name="Updates.PreparationFailed"><value>Kan ikke forberede opdateringen.</value></data>
-  <data name="Updates.InstallSucceeded"><value>Opdateringer blev installeret med succes.</value></data>
-  <data name="Updates.InstallRestored"><value>Opdateringen mislykkedes og den tidligere version blev genoprettet. {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>Installer et emuleringsmodul fra en ZIP arkiv eller dets direkte opdateringskatalog URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>Installer fra en fil</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>Installer fra en URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>Direkte HTTPS URL i modulet opdateringskatalog (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>Modul arkiver (*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>Indtast direkte HTTPS URL i et katalog over modulopdateringer.</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>Installér modul {0} version {1}? GW GUI vil lukke og genstarte.</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>Kan ikke forberede modulinstallationen.</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>Gennemse officielle emuleringsmoduler til rådighed for installation.</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>Vis tilgængelige moduler</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>Installer</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>Indlæs den officielle mappe for at se modulerne til installation.</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>Indlæser modulmappen...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>Der er ikke noget kompatibelt modul til rådighed i øjeblikket.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} moduler i det officielle katalog.</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>Kan ikke indlæse modulmappen.</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>Ikke installeret</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>Foreligger i: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Installeret</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>Installation af et modul tilføjer sine maskiner til GW GUI. Emulatorkerner og nødvendige firmware forvaltes separat i Emuleringstilvalget.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Opdateringer af installerede moduler</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Avanceret installation</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>Vælg uafhængigt den motor, der bruges til hver handling.</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>Intern GW GUI-motor</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Den valgte motor bruges konsekvent. Hvis den ikke kan udføre handlingen, melder GW GUI det uden skjult at bruge den anden motor.</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} - {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Indstillinger</value></data>
   <data name="Options.EmulationTitle"><value>Emulationspræferencer</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>Disponible moduler</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>Programopdateringer</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>Gennemse og installer moduler</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP arkiv- eller katalogName URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>Downloadet</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>Færdiginstallation</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI vil lukke, installere alle downloadede moduler, og genstarte.</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>Afslut installation af alle downloadede moduler? GW GUI vil lukke og genstarte.</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emuleringsindstillinger</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>Afslut installation af downloadede moduler før lukning? Vælg Nej til at annullere downloads og lukke.</value></data>
-  <data name="Theme.System"><value>System</value></data>
-  <data name="Options.HardwareTitle"><value>Hardware</value></data>
-  <data name="Emulation.Model"><value>Model</value></data>
-  <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
-  <data name="Emulation.Firmware"><value>Firmware</value></data>
-  <data name="Controllers.ReportCounts"><value>{0} input / {1} output</value></data>
-  <data name="Controllers.Revision"><value>Revision</value></data>
-  <data name="Controllers.Enum.Gamepad"><value>Gamepad</value></data>
-  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
-  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

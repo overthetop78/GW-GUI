@@ -1,4 +1,4 @@
-﻿namespace Hst.Amiga.FileSystems.Pfs3.Doctor
+namespace Hst.Amiga.FileSystems.Pfs3.Doctor
 {
     using System.Collections.Generic;
     using System.IO;
@@ -7,10 +7,10 @@
 
     public class Pfs3Doctor
     {
-        public static Volume OpenVolume(Stream stream, uint surfaces, uint blocksPerTrack, uint lowCyl, uint highCyl, uint sizeBlock)
+        public static Pfs3DoctorVolume OpenVolume(Stream stream, uint surfaces, uint blocksPerTrack, uint lowCyl, uint highCyl, uint sizeBlock)
         {
             var cylsectors = surfaces * blocksPerTrack;
-            var volume = new Volume
+            var volume = new Pfs3DoctorVolume
             {
                 firstblock = lowCyl * cylsectors,
                 lastblock = (highCyl + 1) * cylsectors - 1,
@@ -27,13 +27,13 @@
             volume.disksize = volume.lastblock - volume.firstblock + 1;
             volume.lastreserved = volume.disksize - 256;	/* temp value, calculated later */
             volume.PartitionOffset = volume.firstblock * volume.blocksize;
-            
-            volume.cache = Device.InitCache(volume, 64, 32);		/* make this configurable ? */
+
+            volume.cache = Pfs3DoctorDevice.InitCache(volume, 64, 32);		/* make this configurable ? */
 
             return volume;
         }
 
-        public static async Task Scan(Volume volume, bool repair, bool verbose = false)
+        public static async Task Scan(Pfs3DoctorVolume volume, bool repair, bool verbose = false)
         {
             // if (mode == repair)
             //     opties = SSF_FIX|SSF_ANALYSE|SSF_GEN_BMMASK;
@@ -41,7 +41,7 @@
             //     opties = SSF_UNFORMAT|SSF_FIX|SSF_ANALYSE|SSF_GEN_BMMASK;
             // else
             //     opties = SSF_CHECK|SSF_ANALYSE|SSF_GEN_BMMASK;
-		
+
             // if (verbose)
             //     opties |= SSF_VERBOSE;
 
@@ -49,23 +49,23 @@
             //
             // flags = opties;
             // if (opties & (SSF_CHECK|SSF_FIX))
-            //     flags |= SSF_GEN_BMMASK;   
+            //     flags |= SSF_GEN_BMMASK;
 
-            var ss = new ss();
-            var mode = Mode.repair;
+            var ss = new Pfs3DoctorSs();
+            var mode = Pfs3DoctorMode.repair;
             // volume.showmsg("Initializing\n");
             // ss.flags = flags;
             // ss.stage = syntax;
             // ss.pass = stats.pass = 1;
             // ss.verbose = flags & SSF_VERBOSE;
             // ss.unformat = flags & SSF_UNFORMAT;
-            
+
             InitFullScan(volume);
-            
+
             /* unformat .. */
             if (ss.unformat)
             {
-                mode = Mode.repair; 		// !! niet really correct !! fix this
+                mode = Pfs3DoctorMode.repair; 		// !! niet really correct !! fix this
                 //volume.showmsg("Unformatting...\n");
                 // if (!(rbl = (rootblock_t *)AllocBufMem (Constants.MAXRESBLOCKSIZE)))
                 // {
@@ -75,7 +75,7 @@
                 // if ((error = BuildRootBlock_hub()) || aborting)
                 //     return exitStandardScan(error);
             }
-            
+
             /* read rootblock */
             //volume.status(0, "rootblock", 100);
             await GetRootBlock(volume);
@@ -86,16 +86,16 @@
             //     return exitStandardScan(error);
             //
         }
-        
-        public static void InitFullScan(Volume volume)
+
+        public static void InitFullScan(Pfs3DoctorVolume volume)
         {
-            volume.buildblocks = new LinkedList<cachedblock>();
+            volume.buildblocks = new LinkedList<Pfs3DoctorCachedBlock>();
         }
-        
+
 /* read from disk and check
  * Returns error (0 = ERROR_NONE = ok).
  */
-public static async Task GetRootBlock(Volume volume)
+        public static async Task GetRootBlock(Pfs3DoctorVolume volume)
 {
 	//error_t error = e_none;
 	int bloknr;
@@ -104,9 +104,9 @@ public static async Task GetRootBlock(Volume volume)
 	string mfname;
 	//[FNSIZE], *t;
 	bool ok = false;
-	var stats = new stats();
+	var stats = new Pfs3DoctorStats();
 
-	stats.enterblock(stats, Constants.ROOTBLOCK);
+	Pfs3DoctorStats.enterblock(stats, Pfs3Constants.ROOTBLOCK);
 	//volume.showmsg("Checking rootblock\n");
 	// if (rbl)
 	// 	FreeBufMem(rbl);
@@ -117,9 +117,9 @@ public static async Task GetRootBlock(Volume volume)
 	// 	return e_out_of_memory;
 	// }
 
-	// read rootblock 
-	var rblBytes = await Device.GetBlock(volume, Constants.ROOTBLOCK + volume.firstblock, volume.blocksize);
-	var rootBlock = RootBlockReader.Parse(rblBytes);
+	// read rootblock
+	var rblBytes = await Pfs3DoctorDevice.GetBlock(volume, Pfs3Constants.ROOTBLOCK + volume.firstblock, volume.blocksize);
+	var rootBlock = Pfs3RootBlockReader.Parse(rblBytes);
 
 // 	// check rootblock type
 // 	if (!IsRootBlock(rbl))
@@ -142,7 +142,7 @@ public static async Task GetRootBlock(Volume volume)
 // 				"Press CONTINUE to select location to store the\n"
 // 				"mountlist", "CONTINUE", NULL);
 //
-// 			freq = AllocAslRequestTags(ASL_FileRequest, ASLFR_SleepWindow, TRUE, 
+// 			freq = AllocAslRequestTags(ASL_FileRequest, ASLFR_SleepWindow, TRUE,
 // 				ASLFR_TitleText, "Select mountfile", ASLFR_InitialFile, "mountme",
 // 				ASLFR_InitialDrawer, "df0:", ASLFR_DoSaveMode, TRUE, TAG_DONE);
 //
@@ -161,7 +161,7 @@ public static async Task GetRootBlock(Volume volume)
 // 				}
 // 			} while (!ok);
 //
-// 			FreeAslRequest(freq);	
+// 			FreeAslRequest(freq);
 // 			volume.askuser("Now starting to check/repair\n"
 // 				"relocated partition", "CONTINUE", NULL);
 //
@@ -184,7 +184,7 @@ public static async Task GetRootBlock(Volume volume)
 // 			}
 // 		}
 // 	}
-// 	
+//
 // 	error = CheckRootBlock();
 //
 // 	switch (error)
@@ -206,7 +206,7 @@ public static async Task GetRootBlock(Volume volume)
 // 				"Press CONTINUE to select location to store the\n"
 // 				"mountlist", "CONTINUE", NULL);
 //
-// 			freq = AllocAslRequestTags(ASL_FileRequest, ASLFR_SleepWindow, TRUE, 
+// 			freq = AllocAslRequestTags(ASL_FileRequest, ASLFR_SleepWindow, TRUE,
 // 				ASLFR_TitleText, "Select mountfile", ASLFR_InitialFile, "mountme",
 // 				ASLFR_InitialDrawer, "df0:", ASLFR_DoSaveMode, TRUE, TAG_DONE);
 //
@@ -225,7 +225,7 @@ public static async Task GetRootBlock(Volume volume)
 // 				}
 // 			} while (!ok);
 //
-// 			FreeAslRequest(freq);	
+// 			FreeAslRequest(freq);
 // 			volume.askuser("Now starting to check/repair\n"
 // 				"redefined partition", "CONTINUE", NULL);
 //
@@ -241,12 +241,12 @@ public static async Task GetRootBlock(Volume volume)
 // 	exitblock();
 // 	return e_none;
 }
-        
 
-public static bool IsRootBlock(RootBlock r)
+
+public static bool IsRootBlock(Pfs3RootBlock r)
 {
 	// check rootblock type
-	if (r.DiskType != Constants.ID_PFS_DISK && r.DiskType != Constants.ID_PFS2_DISK)
+	if (r.DiskType != Pfs3Constants.ID_PFS_DISK && r.DiskType != Pfs3Constants.ID_PFS2_DISK)
 	{
 		// if (ss.verbose)
 		// 	volume.showmsg($"Unexpected rootblock id 0x{r.DiskType:x8}\n", r.disktype);
@@ -255,8 +255,8 @@ public static bool IsRootBlock(RootBlock r)
 
 	// check options
 	// require non-null options to accept rootblock as such,
-	// otherwise it could be a bootblock 
-	var modemask = RootBlock.DiskOptionsEnum.MODE_HARDDISK | RootBlock.DiskOptionsEnum.MODE_SPLITTED_ANODES | RootBlock.DiskOptionsEnum.MODE_DIR_EXTENSION;
+	// otherwise it could be a bootblock
+	var modemask = Pfs3RootBlock.Pfs3DiskOptions.MODE_HARDDISK | Pfs3RootBlock.Pfs3DiskOptions.MODE_SPLITTED_ANODES | Pfs3RootBlock.Pfs3DiskOptions.MODE_DIR_EXTENSION;
 	if ((r.Options & modemask) != modemask)
 	{
 		// if (ss.verbose)

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Xoá ảnh đĩa...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Luôn luôn xoá ảnh đĩa này và tất cả dữ liệu của nó? thao tác này không thể quay lại.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Không thể xoá. Hãy tách đĩa này ra, lưu các cấu hình và đóng các phiên chạy được liệt kê trước:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Mở phiên chạy: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Không cho phép xoá tập tin gốc qua liên kết.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Chọn một phần mở rộng được hỗ trợ bởi máy và giao diện này.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Tập tin này đã có. Hãy chọn tên khác.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Thành quả: 512 byte tới {0}, trong nhiều số 512.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Tạo ra đĩa sống trống không có hệ điều hành. Chuẩn bị và định dạng nó bằng công cụ đĩa bên trong máy được mô phỏng.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Chuẩn bị đĩa</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Trắng (không có thông tin)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Định dạng tạo ra một khối trống, không có hệ điều hành. Atari HDD khởi động cũng cần thiết trình điều khiển tương thích trên đĩa được cài đặt từ máy mô phỏng. Các hình ảnh đã nén có thể chuyển tiếp sang bản sao được chiết xuất.</value></data>
+</root>

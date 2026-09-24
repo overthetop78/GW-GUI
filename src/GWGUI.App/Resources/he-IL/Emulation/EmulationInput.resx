@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>התנהגות</value></data>
+  <data name="Emulation.Input.Assign"><value>הקצה...</value></data>
+  <data name="Emulation.Input.Actions"><value>פעולות</value></data>
+  <data name="Emulation.Input.Press"><value>לחץ על מקש...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>זיהוי המכשירים משותף, אך ההקצאות נשמרות בנפרד בכל תצורת מכונה.</value></data>
+  <data name="Emulation.Input.Test"><value>בדיקת קלט</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>התקני קלט משותפים</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>לחץ על מקש או על לחצן עכבר כדי לבדוק את הזיהוי.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>שחזור ברירות מחדל</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>ניקוי התנגשויות</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>שיוך</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>מצב</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>חיפוש מקש או שיוך</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>תקין: שיוך ייחודי · התנגשות: השיוך בשימוש מספר פעמים · שמור: קיצור של Windows או GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>תקין</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>התנגשות</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>שמור</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>לא משויך</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>לחץ על הקצה ולאחר מכן השתמש במקש, בלחצן עכבר או בלחצן בקר.</value></data>
+</root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0} tuşu</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Ana makine tuşu</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>İki Amiga tuşu aynı PC tuşunu kullanıyor. Kaydetmeden önce kırmızı eşlemeleri düzeltin.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fiziksel klavyeyi doğrudan geçir</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Ayrılmış kısayollar</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>GW GUI ve Windows kısayolları etkin kalır ve makine tarafından yakalanmaz.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Makine tuşu</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Harfler, sayılar ve normal değiştirici tuşlar doğrudan iletilir. Burada yalnızca Amiga işlev ve özel tuşlarının atanması gerekir.</value></data>
+</root>

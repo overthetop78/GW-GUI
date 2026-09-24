@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Видалити зображення диска ...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Постійно видалити цей образ диска і всі його дані? Ця операція не може бути неоновою.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Вимкнення неможливе. Зняти цей диск, зберегти налаштування і закривати вказані сеанси першим:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Відкрита сесія: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Вимкнення за посиланнями не допускається. Виберіть оригінальний файл.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Виберіть розширення, що підтримується цим пристроєм та інтерфейсом.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Цей файл вже існує. Виберіть ще одне ім&apos;я.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Місткість: 512 байтів {0}, в декількох рядах 512. Зберігаючі обмеження для підтримуючої системи.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Створює порожній сирий диск без операційної системи. Приготуйте та відформатуйте його за допомогою дискових інструментів всередині емульгованої машини.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Підготовка диска</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Бланк (розформатований)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Форматування створює порожній обсяг, без операційної системи. Atari HDD завантаження також вимагає сумісного драйвера диска, встановленого з емульованої машини. Притискні зображення можуть перенаправляти записи для вилучення копії.</value></data>
+</root>

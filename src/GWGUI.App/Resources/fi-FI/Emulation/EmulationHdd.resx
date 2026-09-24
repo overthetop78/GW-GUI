@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Poista levykuva...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Poistatko levykuvan ja kaikki sen tiedot pysyvästi? Tätä toimintoa ei voida poistaa.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Poista tämä levy, tallenna asetukset ja sulje listatut istunnot ensin:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Avaa istunto: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Linkkien kautta ei saa poistaa. Valitse alkuperäinen tiedosto.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Valitse tämän koneen ja käyttöliittymän tukema laajennus.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Tämä tiedosto on jo olemassa. Valitse toinen nimi.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Kapasiteetti: 512 tavua {0}, 512:n kerrannaisissa.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Luo tyhjän raakalevyn ilman käyttöjärjestelmää. Valmistele ja muotoile se emulgoidun koneen sisällä olevilla levytyökaluilla.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Levyn valmistelu</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Tyhjä (formatoitumaton)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Muotoilu luo tyhjän äänenvoimakkuuden, ilman käyttöjärjestelmää. HDD Käynnistäminen edellyttää myös yhteensopivaa levyohjainta, joka on asennettu emulgoidusta koneesta. Pakatut kuvat voivat ohjata kirjoitukset kopioituun kopioon.</value></data>
+</root>

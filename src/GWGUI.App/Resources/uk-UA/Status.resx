@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>Сторона {0}: доріжка {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI готовий.</value></data>
+  <data name="Status.DefaultProfile"><value>Профіль: за замовчуванням</value></data>
+  <data name="Status.Profile"><value>Профіль: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Колія {0}, сторона {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Трек {0}, сторона {1} — {2} оброблено</value></data>
+  <data name="Status.ReadyShort"><value>Готовий</value></data>
+  <data name="Status.Running"><value>Біг</value></data>
+  <data name="Status.Success"><value>Успіх</value></data>
+  <data name="Status.Error"><value>Помилка</value></data>
+  <data name="Status.Cancelled"><value>Скасовано</value></data>
+</root>

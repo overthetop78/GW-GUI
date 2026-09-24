@@ -1,3 +1,5 @@
+using GWGUI.App.Constants.Controls.Visual;
+
 namespace GWGUI.App.Constants.Machine;
 
 internal static class MachinePresentationConstants
@@ -9,11 +11,11 @@ internal static class MachinePresentationConstants
     internal const string Direct3D11Renderer = "Direct3D 11";
     internal const string WpfRenderer = "WPF";
     internal const string StatusFormat = "{0} × {1} · {2:0.0} Hz · {3:0.0} FPS";
-    internal const string FloppyGlyph = "\uE7C3";
-    internal const string HardDiskGlyph = "\uEDA2";
-    internal const string CompactDiscGlyph = "\uE958";
-    internal const string CartridgeGlyph = "\uE7FC";
-    internal const string CassetteGlyph = "\uE8D4";
+    internal static string FloppyGlyph => IconGlyphs.FloppyDisk;
+    internal static string HardDiskGlyph => IconGlyphs.HardDisk;
+    internal static string CompactDiscGlyph => IconGlyphs.OpticalDisc;
+    internal static string CartridgeGlyph => IconGlyphs.Controller;
+    internal static string CassetteGlyph => IconGlyphs.Cassette;
     internal const double DefaultAspectRatio = 4d / 3d;
     internal const double WideToolbarMinimumWidth = 1450d;
     internal const double EmptyMeasurement = 0d;

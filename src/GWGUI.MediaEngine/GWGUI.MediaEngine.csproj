@@ -13,4 +13,9 @@
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
   </ItemGroup>
 
+  <ItemGroup>
+
+    <ProjectReference Include="..\GWGUI.MediaFileSystems\GWGUI.MediaFileSystems.csproj" />
+  </ItemGroup>
+
 </Project>

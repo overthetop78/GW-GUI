@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>机器</value></data>
+  <data name="Emulation.Tab.Welcome"><value>欢迎</value></data>
+  <data name="Emulation.Tab.General"><value>常规</value></data>
+  <data name="Emulation.Tab.Video"><value>视频</value></data>
+  <data name="Emulation.Tab.Storage"><value>存储</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>键盘</value></data>
+  <data name="Emulation.Tab.Mouse"><value>鼠标</value></data>
+  <data name="Emulation.Tab.Controller"><value>控制器</value></data>
+  <data name="Emulation.Tab.Advanced"><value>高级</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>快捷键</value></data>
+  <data name="Emulation.Tab.Audio"><value>音频</value></data>
+</root>

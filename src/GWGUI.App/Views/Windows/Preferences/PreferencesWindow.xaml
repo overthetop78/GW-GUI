@@ -13,22 +13,22 @@
         </Grid.RowDefinitions>
 
         <TabControl x:Name="Navigation" SelectedIndex="0" AutomationProperties.Name="{l:Loc Options.PreferencesTitle}">
-            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE713;" Text="{l:Loc Options.General}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Settings}" Text="{l:Loc Options.General}"/></TabItem.Header>
                 <options:OptionsGeneralSection x:Name="GeneralSection" />
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE9D5;" Text="{l:Loc Options.Logs}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Logs}" Text="{l:Loc Options.Logs}"/></TabItem.Header>
                 <options:OptionsLogsSection x:Name="LogsSection" />
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE950;" Text="{l:Loc Options.Hardware}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Processor}" Text="{l:Loc Options.Hardware}"/></TabItem.Header>
                 <options:OptionsHardwareSection x:Name="HardwareSection" />
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE943;" Text="{l:Loc Options.Engines}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Engine}" Text="{l:Loc Options.Engines}"/></TabItem.Header>
                 <options:OptionsEnginesSection x:Name="EnginesSection" />
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE77B;" Text="{l:Loc Options.Profiles}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Profiles}" Text="{l:Loc Options.Profiles}"/></TabItem.Header>
                 <options:OptionsProfilesSection x:Name="ProfilesSection" />
             </TabItem>
-            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Controllers.Title}"/></TabItem.Header>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="{l:Loc Icon.Controller}" Text="{l:Loc Controllers.Title}"/></TabItem.Header>
                 <options:OptionsControllersSection x:Name="ControllersSection" />
             </TabItem>
         </TabControl>

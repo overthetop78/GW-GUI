@@ -1,8 +1,8 @@
 using GWGUI.App.Options.Controllers;
 using GWGUI.App.Options.States;
 using GWGUI.App.Views.Controls.Options;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Profiles;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Profiles;
 using System.Windows;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Interface.ProfileViews;
@@ -27,14 +27,14 @@ internal static class ProfileEditingScenarios
     }
     public static void Save(int operation,int decision)
     {
-        var kind = (GWGUI.Domain.Profiles.OperationKind)operation;
+        var kind = (GWGUI.App.Profiles.OperationKind)operation;
         var collection = new GWGUI.App.Services.Profiles.OperationProfileCollection();
         var requested = 0; var confirmations = 0;
         var business = GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.App.Interfaces.Services.Dialogs.IBusinessDialogService>((method,_) => { Assert.Equal("PromptProfileName",method.Name); requested++; return decision==0?null:"sample"; });
         var dialogs = GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.App.Interfaces.Services.Dialogs.IMessageDialogService>((method,args) =>
         { Assert.Equal("Show",method.Name); Assert.Equal("Profile.Replace",args[0]); confirmations++; return decision==2?GWGUI.App.Enums.Services.Dialogs.UserDialogResult.Yes:GWGUI.App.Enums.Services.Dialogs.UserDialogResult.No; });
         var controller = new GWGUI.App.Services.Profiles.OperationProfileController(collection,business,dialogs,(key,_)=>key);
-        GWGUI.Domain.Profiles.OperationProfile Profile(string name,string value) => new("original",kind,name,new Dictionary<string,string>{{"option",value}},new HashSet<string>{"verify"});
+        GWGUI.App.Profiles.OperationProfile Profile(string name,string value) => new("original",kind,name,new Dictionary<string,string>{{"option",value}},new HashSet<string>{"verify"});
         if(decision is 1 or 2) collection.For(kind).Save(Profile("sample","before"));
         var result = controller.Save(kind,name=>Profile(name,"after") with {Id="replacement"});
         Assert.Equal(1,requested); Assert.Equal(decision is 1 or 2?1:0,confirmations);
@@ -42,9 +42,9 @@ internal static class ProfileEditingScenarios
         else Assert.Null(result);
         if(decision==1) Assert.Equal("before",collection.For(kind).GetAll().Single(x=>!x.IsSystem).Values["option"]);
         var selector = new ComboBox(); controller.Refresh(selector,kind,result?.Id);
-        Assert.Equal(result?.Id??GWGUI.Domain.Profiles.OperationProfile.Default(kind).Id,Assert.IsType<GWGUI.Domain.Profiles.OperationProfile>(selector.SelectedItem).Id);
-        foreach(var other in Enum.GetValues<GWGUI.Domain.Profiles.OperationKind>().Where(x=>x!=kind)) Assert.Single(collection.For(other).GetAll());
-        controller.Refresh(selector,kind,"deleted-id"); Assert.True(Assert.IsType<GWGUI.Domain.Profiles.OperationProfile>(selector.SelectedItem).IsSystem);
+        Assert.Equal(result?.Id??GWGUI.App.Profiles.OperationProfile.Default(kind).Id,Assert.IsType<GWGUI.App.Profiles.OperationProfile>(selector.SelectedItem).Id);
+        foreach(var other in Enum.GetValues<GWGUI.App.Profiles.OperationKind>().Where(x=>x!=kind)) Assert.Single(collection.For(other).GetAll());
+        controller.Refresh(selector,kind,"deleted-id"); Assert.True(Assert.IsType<GWGUI.App.Profiles.OperationProfile>(selector.SelectedItem).IsSystem);
     }
     internal sealed class Context
     {

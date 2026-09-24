@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>行為</value></data>
+  <data name="Emulation.Input.Assign"><value>指派...</value></data>
+  <data name="Emulation.Input.Actions"><value>動作</value></data>
+  <data name="Emulation.Input.Press"><value>請按鍵...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>裝置偵測是共用的，但指派會分別儲存在每個機器設定中。</value></data>
+  <data name="Emulation.Input.Test"><value>測試輸入</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>共用輸入裝置</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>按鍵盤按鍵或滑鼠按鈕以測試偵測。</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>還原預設值</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>清除衝突</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>對應</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>狀態</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>搜尋按鍵或對應</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>有效：唯一對應 · 衝突：對應被多次使用 · 已保留：Windows 或 GW GUI 快捷鍵</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>有效</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>衝突</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>已保留</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>未對應</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>按一下「指派」，然後按鍵盤按鍵、滑鼠按鈕或控制器按鈕。</value></data>
+</root>

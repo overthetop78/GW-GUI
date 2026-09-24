@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Pelabuhan</value></data>
-  <data name="Hardware.UsbId"><value>USB pengenal</value></data>
-  <data name="Hardware.Drive"><value>Menyetir</value></data>
-  <data name="Hardware.Available"><value>Tersedia</value></data>
-  <data name="Hardware.Scan"><value>Pindai</value></data>
-  <data name="Hardware.AddDrive"><value>Tambahkan drive…</value></data>
-  <data name="Hardware.NoDrive"><value>Tidak ada drive yang ditentukan</value></data>
-  <data name="Hardware.EditorTitle"><value>Tentukan drive</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle pengontrol</value></data>
-  <data name="Hardware.GwSelection"><value>Seleksi lolos ke gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Ukuran fisik</value></data>
-  <data name="Hardware.SizeShort"><value>Ukuran</value></data>
-  <data name="Hardware.DensityShort"><value>Kepadatan</value></data>
-  <data name="Hardware.SpeedShort"><value>Kecepatan</value></data>
-  <data name="Hardware.AvailableState"><value>Tersedia</value></data>
-  <data name="Hardware.UnavailableState"><value>Tidak tersedia</value></data>
-  <data name="Hardware.DensityDescription"><value>Kepadatan berkendara (hanya deskripsi)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Kecepatan nominal (hanya deskripsi)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Pelabuhan</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB pengenal</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Menyetir</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Tersedia</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Pindai</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Tambahkan drive…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Tidak ada drive yang ditentukan</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Tentukan drive</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle pengontrol</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Seleksi lolos ke gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Ukuran fisik</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Ukuran</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Kepadatan</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Kecepatan</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Tersedia</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Tidak tersedia</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Kepadatan berkendara (hanya deskripsi)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Kecepatan nominal (hanya deskripsi)</value></data>
   <data name="Hardware.NotConfigured"><value>Pengontrol tidak dikonfigurasi</value></data>
   <data name="Hardware.Disconnected"><value>terputus</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Drive yang dipilih terputus. Hubungkan kembali atau pindai lagi di Pilihan → Pengontrol dan drive.</value></data>

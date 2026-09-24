@@ -1,0 +1,70 @@
+using GWGUI.MediaEngine.Images.Formats.Tape;
+using System.Reflection;
+using GWGUI.App.Views.Windows.Shell;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.Emulation.Amiga.Modules;
+using GWGUI.Emulation.Atari.Modules;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Contracts.Explorer;
+using GWGUI.MediaFileSystems.Definitions;
+using GWGUI.MediaFileSystems.Exploration;
+using GWGUI.MediaAnalysis.Enums;
+
+namespace GWGUI.Tests.Architecture;
+
+public sealed class MediaEngineProjectBoundaryTests
+{
+    [Fact]
+    public void LoadedAssembliesStayWithinMediaLibraryBoundaries()
+    {
+        AssertGwguiReferences(typeof(MediaKind).Assembly, ["gwgui.mediafilesystems"]);
+        AssertGwguiReferences(typeof(MediaContentCategory).Assembly, []);
+        AssertGwguiReferences(typeof(MediaVolumeDetectorRegistry).Assembly, []);
+        AssertGwguiReferences(typeof(MediaEngineComposition).Assembly, ["gwgui.mediafilesystems"]);
+        AssertGwguiReferences(typeof(GWGUI.Infrastructure.Processes.GreaseweazleRunner).Assembly, ["gwgui.mediaengine"]);
+        AssertGwguiReferences(typeof(AmigaEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);
+        AssertGwguiReferences(typeof(AtariEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);
+
+        var appReferences = References(typeof(MainWindow).Assembly);
+        Assert.DoesNotContain("gwgui.domain", appReferences);
+        Assert.Contains("gwgui.infrastructure", appReferences);
+        Assert.Contains("gwgui.mediaengine", appReferences);
+        Assert.Contains("gwgui.emulation", appReferences);
+        Assert.DoesNotContain("gwgui.mediafilesystems", appReferences);
+        Assert.DoesNotContain("gwgui.mediaanalysis", appReferences);
+
+        var readers = GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog.CreateDefault();
+        foreach (var id in new[]
+        {
+            FileSystemIds.AcornAdfs,
+            FileSystemIds.AcornDfs,
+            FileSystemIds.AmigaDos,
+            FileSystemIds.AmigaFlatResourceArchive,
+            FileSystemIds.AppleDos,
+            FileSystemIds.CommodoreDos,
+            FileSystemIds.Fat12
+        })
+            Assert.Same(typeof(GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog).Assembly,
+                Assert.Single(readers, reader => reader.Id == id).GetType().Assembly);
+
+        var exploration = GWGUI.MediaFileSystems.Exploration.MediaExplorer.CreateDefault(
+            [new SequentialContentDecoderAdapter(SequentialMediaComposition.CreateDefault().Decoders)]);
+        Assert.IsType<SequentialContentDecoderAdapter>(
+            Assert.Single(exploration.Readers, reader => reader.Id == FileSystemIds.SequentialContent));
+    }
+
+    private static void AssertGwguiReferences(Assembly assembly, IEnumerable<string> expected)
+    {
+        var actual = References(assembly)
+            .Where(name => name.StartsWith("gwgui.", StringComparison.OrdinalIgnoreCase))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        Assert.Equal(expected.Order(StringComparer.OrdinalIgnoreCase), actual.Order(StringComparer.OrdinalIgnoreCase));
+    }
+
+    private static IReadOnlySet<string> References(Assembly assembly) => assembly
+        .GetReferencedAssemblies()
+        .Select(reference => reference.Name ?? string.Empty)
+        .Where(name => name.Length > 0)
+        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+}

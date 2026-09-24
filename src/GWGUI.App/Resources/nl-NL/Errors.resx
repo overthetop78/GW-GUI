@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Instellingen konden niet worden opgeslagen.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI fout</value></data>
   <data name="Error.Unexpected"><value>Er is een onverwachte fout onderschept.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Deze bewerking wordt niet ondersteund door het geselecteerde bestand, apparaat of platform.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Er is niet genoeg geheugen om de operatie te voltooien.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI kwam tijdens het uitvoeren van deze actie een onverwacht probleem tegen.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>De GameInput werkdraad stopte niet.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Geen kartering</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>SpelInput-apparaatsopsomming mislukt voor {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput systeemknop registratie mislukt.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput-vernieuwenregistratie mislukt voor {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput refresh callback kon niet ongeregistreerd zijn: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput apparaat callback wachtrij mislukt: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput apparaat callback mislukt: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput systeemknop terugroep mislukt: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput-raw-reading callback mislukt: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: lezen {1} mislukt met code 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: invoertype {1}, gamepad-status beschikbaar: {2}, controllerarrays niet beschikbaar</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: invoertype {1}, gamepad-status beschikbaar: {2}, assen: {3}, knoppen: {4}, schakelaars: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM fout 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: invoertype {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Opgelost naam: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Naam spelinvoer: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Apparaat ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Apparaatwortel ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Container ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familie: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Gebruik: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Ondersteunde invoer: {0} (0x){1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Controllerinformatie: assen={0}, knoppen={1}, schakelaars={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Asetiketten: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Knoppenlabels: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kaart: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP-pad: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP namen: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Het bestandssysteem-item kon niet gelezen worden.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>De gevraagde telling ({0}) overschrijdt de buffergrootte ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Het volgende bestandsblok heeft een onjuist volgnummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Er is geen vrije sector beschikbaar op de schijf.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Alleen offset nul wordt ondersteund voor deze bewerking.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Deze bestandssysteemstream ondersteunt het wijzigen van de lengte niet.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Gekacheld blok {0} in de toewijzingsketen geen bitmapblok bevat; het werkelijke type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Gekaakte toewijzingsblok {0} bevat geen bitmapblok; eigenlijk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Het vereiste bitmapblok ontbreekt.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Er werd een lus gedetecteerd tijdens het vrijmaken van blokken bij allocatieknooppunt {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Toewijzingsknooppunt {0} kon niet worden gelezen.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Het toewijzingsknooppunt kon niet worden toegewezen.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>De gevraagde positie is ongeldig voor dit bestandssysteemobject.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>De toewijzingsnode-operatie is mislukt.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocatie-node bitmap indexblok {0}'{1} kon niet worden gelezen.</value></data>
 </root>

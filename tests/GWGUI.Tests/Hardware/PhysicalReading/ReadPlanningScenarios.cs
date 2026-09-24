@@ -1,4 +1,6 @@
 using GWGUI.App.Services.PhysicalDiskReading;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 namespace GWGUI.Tests.Hardware.PhysicalReading;
 
@@ -7,7 +9,7 @@ internal static class ReadPlanningScenarios
     public static async Task EngineValidation(int variant)
     {
         using var context = new GWGUI.Tests.Interface.ReadViews.ReadOperationScenarios.Context();
-        context.Settings.Engines.PhysicalRead = GWGUI.Domain.Settings.Engines.OperationEngine.Internal;
+        context.Settings.Engines.PhysicalRead = GWGUI.Infrastructure.Settings.Engines.OperationEngine.Internal;
         context.Hardware = new(new(){ControllerUsbId="virtual",Selection="B"},"virtual-port",true,"synthetic");
         context.Model.Read.Tracks.Enabled = true; context.Model.Read.Tracks.Value = "c=2-3:h=1";
         context.Model.Read.Revs.Enabled = true; context.Model.Read.Revs.Value = "4";
@@ -40,7 +42,13 @@ internal static class ReadPlanningScenarios
             _ => options with { Tracks = [new(0, 0), new(0, 0, 1, 1)] }
         };
         var device = new ReadAcquisitionScenarios.Device();
-        await Assert.ThrowsAnyAsync<ArgumentException>(() => new PhysicalDiskFluxAcquisitionService(device).AcquireAsync(options));
+        var provider = new GreaseweazleMediaAcquisitionProvider(() => device);
+        var acquire = () => provider.AcquireAsync(
+                MediaKind.Floppy,
+                options.PortName,
+                ReadAcquisitionScenarios.CreateProviderOptions(options));
+        if (variant == 0) await Assert.ThrowsAsync<NotSupportedException>(acquire);
+        else await Assert.ThrowsAnyAsync<ArgumentException>(acquire);
         Assert.Empty(device.Calls);
     }
 }

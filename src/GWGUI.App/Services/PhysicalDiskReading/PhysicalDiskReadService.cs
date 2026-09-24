@@ -1,51 +1,57 @@
 using GWGUI.App.Constants.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Enums.Services.PhysicalDiskReading;
-using GWGUI.Infrastructure.Hardware.Greaseweazle;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Exploration.Contracts;
+using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Interfaces;
+
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.PhysicalDiskReading;
 
 public sealed class PhysicalDiskReadService(
-    PhysicalDiskFluxAcquisitionService acquisitionService,
+    FloppyFluxAcquisitionService acquisitionService,
     IScpWriter writer,
     FluxDecoderRegistry decoders,
     DiskImageExplorer explorer)
 {
-    public static PhysicalDiskReadService CreateDefault(IGreaseweazleReadDevice device) => new(
-        new PhysicalDiskFluxAcquisitionService(device),
+    public static PhysicalDiskReadService CreateDefault() => new(
+        new FloppyFluxAcquisitionService(),
         new ScpWriter(),
         new FluxDecoderRegistry(),
         DiskImageExplorer.CreateDefault());
 
     public async Task<PhysicalDiskReadResult> ReadAsync(
-        PhysicalDiskReadOptions options,
+        MediaAcquisitionResult acquisition,
         string outputPath,
         IProgress<PhysicalDiskReadOperationProgress>? progress = null,
         CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(options);
+        ArgumentNullException.ThrowIfNull(acquisition);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
-        var acquisitionProgress = new AcquisitionProgressAdapter(progress, options.Tracks);
-        var acquisition = await acquisitionService.AcquireAsync(options, acquisitionProgress, cancellationToken).ConfigureAwait(false);
+        var image = acquisitionService.CreateScpImage(acquisition);
+        var tracks = image.Tracks.Select(track => new PhysicalDiskTrackAddress(
+            track.Cylinder,
+            track.Head,
+            track.Cylinder,
+            track.Head)).ToArray();
 
         progress?.Report(new(
             PhysicalDiskReadStage.Saving,
-            options.Tracks.Count,
-            options.Tracks.Count,
-            tracks: options.Tracks));
-        await writer.WriteAsync(outputPath, acquisition.Image, cancellationToken).ConfigureAwait(false);
+            tracks.Length,
+            tracks.Length,
+            tracks: tracks));
+        await writer.WriteAsync(outputPath, image, cancellationToken).ConfigureAwait(false);
 
-        var diagnostics = DecodeTracks(acquisition.Image, progress, cancellationToken);
+        var diagnostics = DecodeTracks(image, progress, cancellationToken);
         progress?.Report(new(
             PhysicalDiskReadStage.Exploring,
-            options.Tracks.Count,
-            options.Tracks.Count,
-            tracks: options.Tracks));
-        var document = await explorer.ExploreScpAsync(outputPath, acquisition.Image, cancellationToken).ConfigureAwait(false);
+            tracks.Length,
+            tracks.Length,
+            tracks: tracks));
+        var document = await explorer.ExploreScpAsync(outputPath, image, cancellationToken).ConfigureAwait(false);
         return new(outputPath, acquisition, diagnostics, document);
     }
 
@@ -74,37 +80,11 @@ public sealed class PhysicalDiskReadService(
                     item.Head,
                     item.Cylinder,
                     item.Head)).ToArray(),
-                acquiredTrack: DiskTrackContractMapper.FromScpTrack(
+                acquiredTrack: ScpTrackContractMapper.FromScpTrack(
                     track,
                     image.Header.ResolutionNanoseconds)));
         }
         return diagnostics;
     }
 
-    private sealed class AcquisitionProgressAdapter(
-        IProgress<PhysicalDiskReadOperationProgress>? progress,
-        IReadOnlyList<PhysicalDiskTrackAddress> tracks) : IProgress<PhysicalDiskReadProgress>
-    {
-        public void Report(PhysicalDiskReadProgress value)
-        {
-            IPiste? acquiredTrack = null;
-            if (value.CapturedTrack is not null)
-            {
-                acquiredTrack = DiskTrackContractMapper.FromScpTrack(
-                    value.CapturedTrack,
-                    ScpFormatConstants.ResolutionStepNanoseconds *
-                    (PhysicalDiskReadDefaults.ScpResolution + ScpFormatConstants.ResolutionIndexOffset));
-            }
-
-            progress?.Report(new(
-                PhysicalDiskReadStage.Acquiring,
-                value.CompletedTracks,
-                value.TotalTracks,
-                value.Cylinder,
-                value.Head,
-                value.Attempt,
-                tracks,
-                acquiredTrack));
-        }
-    }
 }

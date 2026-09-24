@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -23,7 +23,8 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="GWGUI.Tests" />
-    <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
+    <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
+
     <ProjectReference Include="..\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
@@ -46,6 +47,9 @@
     <Content Include="$(PkgMicrosoft_GameInput)\redist\GameInputRedist.msi" Link="Runtime\GameInputRedist.msi" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Resource Include="Assets\app-icon.png" />
     <Resource Include="Assets\Controllers\*.png" />
+    <Resource Include="Assets\Icons\FileTypes\*.ico" />
+    <Resource Include="Assets\Media\*.png" />
+    <Resource Include="Assets\Cursors\*.cur" />
     <EmbeddedResource Include="Assets\Input\gamecontrollerdb.txt" LogicalName="GWGUI.App.Assets.Input.gamecontrollerdb.txt" />
     <None Include="Assets\Input\SDL_GameControllerDB.LICENSE" />
   </ItemGroup>
@@ -56,7 +60,18 @@
       <WithCulture>true</WithCulture>
       <ManifestResourceName>GWGUI.App.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)'))))</ManifestResourceName>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\*\Emulation\*.resx">
+      <Culture>$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName('%(Identity)'))))))</Culture>
+      <WithCulture>true</WithCulture>
+      <ManifestResourceName>GWGUI.App.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName('%(Identity)'))))))</ManifestResourceName>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\00-Base\*.resx">
+      <Culture></Culture>
+      <WithCulture>false</WithCulture>
+      <ManifestResourceName>GWGUI.App.Resources.%(Filename)</ManifestResourceName>
+      <LogicalName>GWGUI.App.Resources.%(Filename).resources</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\00-Base\Emulation\*.resx">
       <Culture></Culture>
       <WithCulture>false</WithCulture>
       <ManifestResourceName>GWGUI.App.Resources.%(Filename)</ManifestResourceName>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Удалить образ диска...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Постоянно удалять это изображение диска и все его данные? Эта операция не может быть отменена.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Отсоединить этот диск, сохранить конфигурации и закрыть перечисленные сеансы первым:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Открытая сессия: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Удаление по ссылкам не допускается.Выберите исходный файл.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Выберите расширение, поддерживаемое этой машиной и интерфейсом.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Этот файл уже существует. Выберите другое имя.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Вместимость: 512 байт {0}, в кратных 512. Консервативный предел для поддерживаемой системы.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Создает пустой необработанный диск без операционной системы. Подготовьте и отформатируйте его с помощью дисковых инструментов внутри эмулируемого компьютера.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Подготовка диска</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (неформатированный)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Форматирование создает пустой том, без операционной системы. HDD Загрузка также требует совместимого драйвера диска, установленного с эмулируемой машины.Сжатые изображения могут перенаправлять записи на извлеченную копию.</value></data>
+</root>

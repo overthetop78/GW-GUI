@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Necunoscut</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Ejectează</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Necunoscut</value></data>
+  <data name="Common.Eject"><value>Ejectează</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Media necunoscută</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Dischetă</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Hard disk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Disc optic</value></data>
+  <data name="Common.MediaKind.Tape"><value>Bandă</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sectoare</value></data>
+  <data name="Common.Representation.Blocks"><value>Blocuri</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Piste optice</value></data>
+  <data name="Common.Representation.Sequential"><value>Date secvenţiale</value></data>
+  <data name="Common.Advanced"><value>Setări avansate</value></data>
+  <data name="Common.ExpertArguments"><value>Argumentele experților</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumentele sunt transmise așa cum sunt scrise după validarea citatului.</value></data>
+  <data name="Common.DiskImageFilter"><value>imagini disc|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Toate fișierele|*.*</value></data>
+  <data name="Common.Console"><value>Consolă</value></data>
+  <data name="Common.Command"><value>Comanda</value></data>
 </root>

@@ -95,7 +95,7 @@ associant plusieurs sources distantes.
 release stable ou sans label, il remplace `update-catalog.json` au tag `application-catalog`. Une
 snapshot conserve le catalogue comme artefact du workflow sans remplacer le catalogue stable.
 
-`.github/workflows/module-release.yml` publie un seul module depuis un tag
+`.github/workflows/module-release.yml` publie un seul module demandé par `scripts/publish-modules.cmd` ou depuis un tag
 `module-<id>-vX.Y.Z`. Il crée l’archive, son fichier `.sha256` et la release du module, puis remplace
 le catalogue au tag `module-<id>-catalog`. Ce workflow découvre l’identité depuis les manifestes du
 dépôt ; aucun tableau Amiga/Atari n’est entretenu.
@@ -104,11 +104,11 @@ Le modèle `sdk/module-template/.github/workflows/release-module.yml` applique l
 le dépôt indépendant d’un auteur, avec un tag `vX.Y.Z` et un tag de catalogue `module-catalog`.
 L’adresse complète de ce dernier appartient au `module.json` de ce module.
 
-`.github/workflows/module-directory.yml` reconstruit le répertoire depuis `module-registry` et
+`scripts/publish-module-directory.cmd` déclenche `.github/workflows/module-directory.yml`, qui reconstruit le répertoire depuis `module-registry` et
 remplace `module-directory.json` dans la release technique `module-directory`. Cette publication est
 indépendante des versions de GW GUI et des versions propres aux modules.
 
-`scripts/build-update-catalog.ps1` accepte uniquement `-Scope Application` ou `-Scope Module`. Le
+`scripts/release/update-catalog/build-update-catalog.ps1` accepte uniquement `-Scope Application` ou `-Scope Module`. Le
 paramètre `-Repository OWNER/REPOSITORY` détermine les URL publiées. Une publication de module exige
 également `-Module`, `-ModuleTag` et son paquet déjà construit. Il n’existe plus de portée `All`.
 

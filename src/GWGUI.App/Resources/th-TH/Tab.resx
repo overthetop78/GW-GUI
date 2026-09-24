@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Tab.Read"><value>อ่าน</value></data>
+  <data name="Tab.Write"><value>เขียน</value></data>
+  <data name="Tab.Convert"><value>การแปลง</value></data>
+  <data name="Tab.Visualize"><value>การแสดงภาพ</value></data>
+  <data name="Tab.Tools"><value>เครื่องมือ</value></data>
+  <data name="Tab.Explorer"><value>ตัวสำรวจดิสก์</value></data>
+  <data name="Tab.Emulation"><value>การจำลอง</value></data>
+</root>

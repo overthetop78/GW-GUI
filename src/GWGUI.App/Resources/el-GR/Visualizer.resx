@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Αποκρυπτογράφος</value></data>
   <data name="Visual.LinkZoom"><value>Ζουμ συνδέσμου</value></data>
   <data name="Visual.OpenScp"><value>Ανοίξτε ένα αρχείο SCP…</value></data>
-  <data name="Visual.NoFile"><value>Δεν έχει ανοίξει αρχείο SCP</value></data>
+  <data name="Visual.NoFile"><value>Δεν έχει ανοιχτεί εικόνα</value></data>
   <data name="Visual.Waiting"><value>Αναμονή για αρχείο</value></data>
   <data name="Visual.Inspector"><value>Επιθεωρητής</value></data>
   <data name="Visual.SelectTrack"><value>Επιλέξτε ένα κομμάτι.</value></data>
@@ -39,10 +31,17 @@
   <data name="Visual.StructureData"><value>Αποκωδικοποιημένα δεδομένα</value></data>
   <data name="Visual.StructureAnomaly"><value>Διαγράφηκε/ανωμαλία</value></data>
   <data name="Visual.AnalysedRevolution"><value>Ανάλυση βασισμένη στην επανάσταση {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Τομέας C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Τομέας C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>έγκυρος</value></data>
   <data name="Visual.CrcInvalid"><value>άκυρος</value></data>
   <data name="Visual.IntegrityUnavailable"><value>δυσεύρετος</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (μοναδική πυκνότητα)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar σκληροτομημένο MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit σκληροτομημένος FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N σκληροτομημένος FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Σύστημα/στοιχεία Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>Ακατέργαστη ροή</value></data>
   <data name="Visual.StructureKind.Sync"><value>Συγχρονισμός</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Κεφαλίδα τομέα</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Στοιχεία κλάδου</value></data>
@@ -55,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Μορφοποίηση κεφαλίδας</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Μορφοποίηση δεδομένων</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Ανωμαλία χρόνου</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro λήψη (*.scp)|*.scp|Όλα τα αρχεία|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Άθροισμα ελέγχου</value></data>
   <data name="Visual.Side"><value>Πλευρά {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Ανάλυση κομματιού {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Ανάλυση επανάστασης {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Πλευρά</value></data>
   <data name="Visual.TrackLabel"><value>Τροχιά</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP καταχώρηση</value></data>
@@ -77,5 +75,96 @@
   <data name="Visual.FormatDetected"><value>Εντοπίστηκε μορφή</value></data>
   <data name="Visual.AverageRpm"><value>Μέση RPM</value></data>
   <data name="Visual.AverageDuration"><value>Μέση διάρκεια</value></data>
-  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.All"><value>Όλα</value></data>
+  <data name="Visual.Surface"><value>Επιφάνεια {0}</value></data>
+  <data name="Visual.DiscFace"><value>Πρόσωπο {0}</value></data>
+  <data name="Visual.Layer"><value>Στρώμα {0}</value></data>
+  <data name="Visual.Session"><value>Συνεδρία {0}</value></data>
+  <data name="Visual.Channel"><value>Κανάλι {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Κομμάτι {0}</value></data>
+  <data name="Visual.TicksUnit"><value>τικς</value></data>
+  <data name="Visual.BytesUnit"><value>bytes (αντίγραφο)</value></data>
+  <data name="Visual.BlocksUnit"><value>τεμάχια</value></data>
+  <data name="Visual.SectorsUnit"><value>Τομείς</value></data>
+  <data name="Visual.SectorPresent"><value>Παρών τομέας</value></data>
+  <data name="Visual.SectorAllocated"><value>Τομέας που έχει εγκατασταθεί</value></data>
+  <data name="Visual.SectorFree"><value>Ελεύθερος τομέας</value></data>
+  <data name="Visual.SectorReserved"><value>Αποθεματικός τομέας</value></data>
+  <data name="Visual.SectorUnreadable"><value>Μη αναγνώσιμος τομέας</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>Πληροφορίες τομέα</value></data>
+  <data name="Visual.SectorLabel"><value>Τομέας</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Λογικό μπλοκ</value></data>
+  <data name="Visual.SizeLabel"><value>Μέγεθος</value></data>
+  <data name="Visual.StateLabel"><value>Κατάσταση</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>Διαδρομή συστήματος αρχείων</value></data>
+  <data name="Visual.LogicalMapTitle"><value>Λογικός χάρτης</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS γεωμετρία</value></data>
+  <data name="Visual.SurfaceLabel"><value>Επιφάνεια</value></data>
+  <data name="Visual.BlockAllocated"><value>Διατιθέμενη περιοχή</value></data>
+  <data name="Visual.BlockFree"><value>Ελεύθερο εύρος</value></data>
+  <data name="Visual.BlockReserved"><value>Διατηρημένο εύρος</value></data>
+  <data name="Visual.BlockUnknown"><value>Άγνωστο εύρος</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>Αποκλεισμός πληροφοριών μέσων</value></data>
+  <data name="Visual.CapacityLabel"><value>Ικανότητα</value></data>
+  <data name="Visual.AddressingLabel"><value>Διεύθυνση</value></data>
+  <data name="Visual.StartLabel"><value>Έναρξη</value></data>
+  <data name="Visual.LengthLabel"><value>Μήκος</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Καθεστώς κατάτμησης</value></data>
+  <data name="Visual.PartitionTable.None"><value>Καμία</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>Αριθμός κατατμήσεων</value></data>
+  <data name="Visual.FileSystemLabel"><value>Σύστημα αρχείων</value></data>
+  <data name="Visual.RangeTitle"><value>Επιλεγμένο εύρος</value></data>
+  <data name="Visual.PlatterCountLabel"><value>Πλατέα προϊόντα έλασης από σίδηρο ή χάλυβα</value></data>
+  <data name="Visual.BlockState.Available"><value>Διαθέσιμα</value></data>
+  <data name="Visual.BlockState.Reserved"><value>Αποθεματικά</value></data>
+  <data name="Visual.BlockState.Allocated"><value>Διαχωρισμένη</value></data>
+  <data name="Visual.BlockState.Free"><value>Δωρεάν</value></data>
+  <data name="Visual.BlockState.Unknown"><value>Άγνωστο</value></data>
+  <data name="Visual.OpticalDataTrack"><value>Κομμάτι δεδομένων</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>Κομμάτι ήχου</value></data>
+  <data name="Visual.OpticalPregap"><value>Προεγκατάσταση</value></data>
+  <data name="Visual.OpticalSession"><value>Όριο συνεδρίας</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Πληροφορίες για τα οπτικά μέσα</value></data>
+  <data name="Visual.FaceCountLabel"><value>Πρόσωπα</value></data>
+  <data name="Visual.LayerCountLabel"><value>Στρώματα</value></data>
+  <data name="Visual.TrackCountLabel"><value>Κομμάτια</value></data>
+  <data name="Visual.SessionLabel"><value>Συνεδρία</value></data>
+  <data name="Visual.LayerLabel"><value>Στρώμα</value></data>
+  <data name="Visual.TrackKindLabel"><value>Τύπος κομματιού</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>Επιλεγμένο κομμάτι</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>Προέλευση του όγκου</value></data>
+  <data name="Visual.VolumeTitle"><value>Όγκος</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>Συνδεδεμένοι φάκελοι</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>Άγνωστο</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>Δεδομένα</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>Ήχος</value></data>
+  <data name="Visual.SequentialSignal"><value>Σήμα</value></data>
+  <data name="Visual.SequentialDecoded"><value>Αποκωδικοποιημένο μπλοκ</value></data>
+  <data name="Visual.SequentialSilence"><value>Σιωπή.</value></data>
+  <data name="Visual.SequentialError"><value>Σφάλμα αποκωδικοποίησης</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Αλληλοσυζητημένες πληροφορίες για τα μέσα μαζικής ενημέρωσης</value></data>
+  <data name="Visual.DurationLabel"><value>Διάρκεια</value></data>
+  <data name="Visual.SegmentCountLabel"><value>Τμήματα</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Τύπος τμήματος</value></data>
+  <data name="Visual.ChannelLabel"><value>Κανάλι</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>Αναγνωρισμένο περιεχόμενο</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>Σφάλμα αποκωδικοποίησης</value></data>
+  <data name="Visual.SegmentTitle"><value>Επιλεγμένο τμήμα</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>Άγνωστο</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>Σήμα</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>Σιωπή.</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Αποκωδικοποιημένο μπλοκ</value></data>
+  <data name="Visual.RevolutionSummary"><value>Όλες οι επαναστάσεις</value></data>
+  <data name="Visual.RevolutionChoice"><value>Επανάσταση {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Επανάσταση</value></data>
+  <data name="Visual.QualityDead"><value>Νεκρός.</value></data>
+  <data name="Visual.QualityPoor"><value>Φτωχός</value></data>
+  <data name="Visual.QualityPartial"><value>Μερικό αναγνώσιμο</value></data>
+  <data name="Visual.QualityGood"><value>Ωραία.</value></data>
+  <data name="Visual.QualityExcellent"><value>Τέλεια.</value></data>
+  <data name="Visual.SectorWithData"><value>Τομέας με δεδομένα</value></data>
+  <data name="Visual.SectorDegraded"><value>Τομέας που έχει υποβαθμιστεί</value></data>
+  <data name="Visual.SectorDead"><value>Νεκρός τομέας</value></data>
+  <data name="Visual.SectorWithoutData"><value>Τομέας χωρίς δεδομένα</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Πληροφορίες κασέτας</value></data>
 </root>

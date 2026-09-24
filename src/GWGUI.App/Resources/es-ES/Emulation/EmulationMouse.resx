@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Tecla para liberar el ratón</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Botón izquierdo del ratón</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Botón derecho del ratón</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Botón central del ratón</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Ratón físico</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Movimiento doble</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Velocidad del ratón</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Sticks analógicos que controlan el ratón</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Zona muerta de los sticks analógicos</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Velocidad del ratón con stick analógico</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Acciones del ratón</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Botón 4 del ratón</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Botón 5 del ratón</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Captura del ratón</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Rueda del ratón arriba</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Rueda del ratón abajo</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Rueda del ratón a la izquierda</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Rueda del ratón a la derecha</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Capturar el ratón</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Liberar el ratón</value></data>
+</root>

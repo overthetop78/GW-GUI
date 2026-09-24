@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Desconocido</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Expulsar</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Desconocido</value></data>
+  <data name="Common.Eject"><value>Expulsar</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Medios desconocidos</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Disquete</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Disco duro</value></data>
+  <data name="Common.MediaKind.Optical"><value>Disco óptico</value></data>
+  <data name="Common.MediaKind.Tape"><value>Tape</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sectores</value></data>
+  <data name="Common.Representation.Blocks"><value>Bloqueos</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Pistas ópticas</value></data>
+  <data name="Common.Representation.Sequential"><value>Datos secuenciales</value></data>
+  <data name="Common.Advanced"><value>Configuraciones avanzadas</value></data>
+  <data name="Common.ExpertArguments"><value>Argumentos de expertos</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Los argumentos se pasan tal como están escritos después de la validación de la cotización.</value></data>
+  <data name="Common.DiskImageFilter"><value>Imágenes de disco|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Todos los archivos|*.*</value></data>
+  <data name="Common.Console"><value>Consola</value></data>
+  <data name="Common.Command"><value>Dominio</value></data>
 </root>

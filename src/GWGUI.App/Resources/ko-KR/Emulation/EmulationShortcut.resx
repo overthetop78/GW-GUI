@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>에뮬레이션 바로 가기</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>마우스 해제</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>일시 중지 / 계속</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>전체 화면 / 창</value></data>
+  <data name="Emulation.Shortcut.Power"><value>전원 켜기 / 끄기</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>소프트 리셋</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>하드 리셋</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>상태 빠른 저장</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>상태 빠른 불러오기</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>스크린샷</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>활성 컴퓨터 음소거</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>누르는 동안 빨리 감기</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>미디어 삽입 또는 교체</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>미디어 꺼내기</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>다음 미디어</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>이 작업은 현재 에뮬레이터에서 아직 지원되지 않습니다.</value></data>
+</root>

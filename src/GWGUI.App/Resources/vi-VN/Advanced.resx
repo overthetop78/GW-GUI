@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Advanced"><value>Cài đặt nâng cao</value></data>
-  <data name="Common.ExpertArguments"><value>Lập luận của chuyên gia</value></data>
-  <data name="Common.ExpertArgumentsTip"><value>Các đối số được thông qua như được viết sau khi xác thực trích dẫn.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Advanced.SeekRetries"><value>Tìm kiếm lần thử lại</value></data>
   <data name="Advanced.FakeIndex"><value>Chỉ số giả</value></data>
   <data name="Advanced.HardSectors"><value>Lĩnh vực cứng</value></data>

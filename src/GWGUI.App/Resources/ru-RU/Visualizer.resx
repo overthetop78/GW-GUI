@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Декодер</value></data>
   <data name="Visual.LinkZoom"><value>Увеличение ссылки</value></data>
   <data name="Visual.OpenScp"><value>Откройте файл SCP…</value></data>
-  <data name="Visual.NoFile"><value>Файл SCP не открыт</value></data>
+  <data name="Visual.NoFile"><value>Образ не открыт</value></data>
   <data name="Visual.Waiting"><value>Ожидание файла</value></data>
   <data name="Visual.Inspector"><value>Инспектор</value></data>
   <data name="Visual.SelectTrack"><value>Выберите трек.</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>действительный</value></data>
   <data name="Visual.CrcInvalid"><value>неверный</value></data>
   <data name="Visual.IntegrityUnavailable"><value>недоступен</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (одна плотность)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar жестко сегрегированный MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Хитакит жестко сегрегированный FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N жестко секционированный FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Арбургская система/данные</value></data>
+  <data name="Visual.DecoderName.raw"><value>Сырой поток</value></data>
   <data name="Visual.StructureKind.Sync"><value>Синхронизация</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Заголовок сектора</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Данные сектора</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Форматировать заголовок</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Форматировать данные</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Аномалия времени</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro захват (*.scp)|*.scp|Все файлы|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Контрольная сумма</value></data>
   <data name="Visual.Side"><value>Сторона {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Анализ дорожки {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Анализ революции {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Сторона</value></data>
   <data name="Visual.TrackLabel"><value>Отслеживать</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP запись</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>Обнаружен формат</value></data>
   <data name="Visual.AverageRpm"><value>Средний RPM</value></data>
   <data name="Visual.AverageDuration"><value>Средняя продолжительность</value></data>
+  <data name="Visual.All"><value>Все</value></data>
+  <data name="Visual.Surface"><value>поверхность {0}</value></data>
+  <data name="Visual.DiscFace"><value>Лицо {0}</value></data>
+  <data name="Visual.Layer"><value>слой {0}</value></data>
+  <data name="Visual.Session"><value>Заседание {0}</value></data>
+  <data name="Visual.Channel"><value>Канал {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Трек-трек {0}</value></data>
+  <data name="Visual.TicksUnit"><value>клещи</value></data>
+  <data name="Visual.BytesUnit"><value>байты</value></data>
+  <data name="Visual.BlocksUnit"><value>блок</value></data>
+  <data name="Visual.SectorsUnit"><value>секторы</value></data>
+  <data name="Visual.SectorPresent"><value>Текущий сектор</value></data>
+  <data name="Visual.SectorAllocated"><value>Выделенный сектор</value></data>
+  <data name="Visual.SectorFree"><value>Свободный сектор</value></data>
+  <data name="Visual.SectorReserved"><value>Резервный сектор</value></data>
+  <data name="Visual.SectorUnreadable"><value>Нечитаемый сектор</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>Секторальная информация</value></data>
+  <data name="Visual.SectorLabel"><value>сектор</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Логический блок</value></data>
+  <data name="Visual.SizeLabel"><value>Размер</value></data>
+  <data name="Visual.StateLabel"><value>государство</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>Путь файловой системы</value></data>
+  <data name="Visual.LogicalMapTitle"><value>Логическая карта</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS геометрия</value></data>
+  <data name="Visual.SurfaceLabel"><value>поверхность</value></data>
+  <data name="Visual.BlockAllocated"><value>Выделенный диапазон</value></data>
+  <data name="Visual.BlockFree"><value>Свободный диапазон</value></data>
+  <data name="Visual.BlockReserved"><value>Зарезервированный диапазон</value></data>
+  <data name="Visual.BlockUnknown"><value>Неизвестный диапазон</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>Блокировка медиаинформации</value></data>
+  <data name="Visual.CapacityLabel"><value>Вместимость</value></data>
+  <data name="Visual.AddressingLabel"><value>адресовать</value></data>
+  <data name="Visual.StartLabel"><value>Начало</value></data>
+  <data name="Visual.LengthLabel"><value>Длина</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Схема раздела</value></data>
+  <data name="Visual.PartitionTable.None"><value>Ни одного</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>Номер раздела</value></data>
+  <data name="Visual.FileSystemLabel"><value>Файловая система</value></data>
+  <data name="Visual.RangeTitle"><value>Выбранный диапазон</value></data>
+  <data name="Visual.PlatterCountLabel"><value>Блюда</value></data>
+  <data name="Visual.BlockState.Available"><value>Доступный</value></data>
+  <data name="Visual.BlockState.Reserved"><value>Зарезервированный</value></data>
+  <data name="Visual.BlockState.Allocated"><value>выделенный</value></data>
+  <data name="Visual.BlockState.Free"><value>бесплатно</value></data>
+  <data name="Visual.BlockState.Unknown"><value>неизвестный</value></data>
+  <data name="Visual.OpticalDataTrack"><value>Отслеживание данных</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>Аудио трек</value></data>
+  <data name="Visual.OpticalPregap"><value>Прерывистая</value></data>
+  <data name="Visual.OpticalSession"><value>Сессионная граница</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Оптическая медиа информация</value></data>
+  <data name="Visual.FaceCountLabel"><value>лица</value></data>
+  <data name="Visual.LayerCountLabel"><value>слои</value></data>
+  <data name="Visual.TrackCountLabel"><value>Следы</value></data>
+  <data name="Visual.SessionLabel"><value>Заседание</value></data>
+  <data name="Visual.LayerLabel"><value>слой</value></data>
+  <data name="Visual.TrackKindLabel"><value>Тип трассы</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>Выбранный трек</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>Объемное происхождение</value></data>
+  <data name="Visual.VolumeTitle"><value>Объем</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>Связанные файлы</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>неизвестный</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>Данные</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>Аудио</value></data>
+  <data name="Visual.SequentialSignal"><value>сигнал</value></data>
+  <data name="Visual.SequentialDecoded"><value>Декодированный блок</value></data>
+  <data name="Visual.SequentialSilence"><value>Тишина</value></data>
+  <data name="Visual.SequentialError"><value>Ошибка кодирования</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Последовательная информация СМИ</value></data>
+  <data name="Visual.DurationLabel"><value>Продолжительность</value></data>
+  <data name="Visual.SegmentCountLabel"><value>Сегменты</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Тип сегмента</value></data>
+  <data name="Visual.ChannelLabel"><value>Канал</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>Распознанный контент</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>Ошибка кодирования</value></data>
+  <data name="Visual.SegmentTitle"><value>Выбранный сегмент</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>неизвестный</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>сигнал</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>Тишина</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Декодированный блок</value></data>
+  <data name="Visual.RevolutionSummary"><value>Все революции</value></data>
+  <data name="Visual.RevolutionChoice"><value>Революция {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Революция</value></data>
+  <data name="Visual.QualityDead"><value>мертвый</value></data>
+  <data name="Visual.QualityPoor"><value>бедный</value></data>
+  <data name="Visual.QualityPartial"><value>частично читаемый</value></data>
+  <data name="Visual.QualityGood"><value>Хорошо.</value></data>
+  <data name="Visual.QualityExcellent"><value>Превосходно.</value></data>
+  <data name="Visual.SectorWithData"><value>Сектор с данными</value></data>
+  <data name="Visual.SectorDegraded"><value>Деградированный сектор</value></data>
+  <data name="Visual.SectorDead"><value>Мертвый сектор</value></data>
+  <data name="Visual.SectorWithoutData"><value>Сектор без данных</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Сведения о кассете</value></data>
 </root>

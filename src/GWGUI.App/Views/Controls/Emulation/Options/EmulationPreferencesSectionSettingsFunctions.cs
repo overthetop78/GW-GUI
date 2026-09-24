@@ -1,4 +1,4 @@
-﻿using GWGUI.Domain.Settings.Emulation;
+using GWGUI.Infrastructure.Settings.Emulation;
 using GWGUI.App.Services.Storage;
 using System.Windows.Controls;
 using GWGUI.Emulation;

@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Készen áll a végrehajtásra.</value></data>
   <data name="Tool.RawOutput"><value>Nyers kimenet</value></data>
-  <data name="Maintenance.EraseTitle"><value>Erősítse meg a törlést</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Véglegesen törli az összes adatot a behelyezett lemezen?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Tiszta fejek</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Ellenőrizze, hogy be van-e helyezve egy tisztítólemez. Soha ne használjon adatlemezt.</value></data>
   <data name="Tools.Erase"><value>Lemez törlése</value></data>
   <data name="Tools.EraseWarning"><value>A lemezen lévő összes adat megsemmisül.</value></data>
-<data name="Tools.Revolutions"><value>Forradalmak</value></data>
+  <data name="Tools.LimitTracks"><value>Határértékek</value></data>
+  <data name="Tools.Revolutions"><value>Forradalmak</value></data>
   <data name="Tools.Clean"><value>Tiszta fejek</value></data>
   <data name="Tools.CleanWarning"><value>Helyezzen be egy tisztítólemezt, soha ne olyan lemezt, amely adatokat tartalmaz.</value></data>
   <data name="Tools.Cylinders"><value>Hengerek</value></data>
@@ -36,7 +25,8 @@
   <data name="Tool.Field.Select"><value>Kijelölés (µs)</value></data>
   <data name="Tool.Field.Step"><value>Fejlépés (µs)</value></data>
   <data name="Tool.Field.Settle"><value>Elszámolás (ms)</value></data>
-<data name="Tool.Field.Watchdog"><value>Automatikus kijelölés megszüntetése (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Automatikus kijelölés megszüntetése (ms)</value></data>
   <data name="Tool.Field.PreWrite"><value>Írás előtt (µs)</value></data>
   <data name="Tool.Field.PostWrite"><value>Írás után (µs)</value></data>
   <data name="Tool.Field.IndexMask"><value>Indexmaszk (µs)</value></data>
@@ -54,7 +44,8 @@
   <data name="Tool.Title.Pin"><value>Hardvercsapok</value></data>
   <data name="Tool.Title.Reset"><value>Vezérlő visszaállítása</value></data>
   <data name="Tool.Title.Delays"><value>Késések</value></data>
-<data name="Tool.InvalidParameters"><value>Érvénytelen paraméterek</value></data>
+  <data name="Tool.Title.Update"><value>A &quot;Sor&quot; kifejezés a &quot;Típus&quot; vagy &quot;Típus&quot; jelölést jelenti.</value></data>
+  <data name="Tool.InvalidParameters"><value>Érvénytelen paraméterek</value></data>
   <data name="Tool.InvalidParametersHelp"><value>A végrehajtás előtt ellenőrizze a kiemelt parancsparamétereket.</value></data>
   <data name="Tool.BootloaderTitle"><value>Bootloader mód</value></data>
   <data name="Tool.Title.Align"><value>Hajtásbeállítás diagnosztika</value></data>
@@ -62,7 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Olvasások száma</value></data>
   <data name="Tool.Field.AlignFormat"><value>Dekódolási formátum</value></data>
   <data name="Tool.Field.AlignRaw"><value>Nyers fluxus (--raw) olvasása</value></data>
-  <data name="Tools.LimitTracks"><value>Határértékek</value></data>
-  <data name="Tool.Title.Update"><value>A "Sor" kifejezés a "Típus" vagy "Típus" jelölést jelenti.</value></data>
-  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
 </root>

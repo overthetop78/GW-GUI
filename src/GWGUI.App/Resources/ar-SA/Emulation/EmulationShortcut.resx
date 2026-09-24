@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>اختصارات المحاكاة</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>تحرير الماوس</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>إيقاف مؤقت / متابعة</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>ملء الشاشة / نافذة</value></data>
+  <data name="Emulation.Shortcut.Power"><value>تشغيل / إيقاف</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>إعادة ضبط بسيطة</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>إعادة ضبط كاملة</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>حفظ سريع للحالة</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>تحميل سريع للحالة</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>لقطة شاشة</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>كتم الجهاز النشط</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>تقديم سريع أثناء الضغط</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>إدراج الوسائط أو استبدالها</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>إخراج الوسائط</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>الوسائط التالية</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>هذا الإجراء غير متوفر بعد في المحاكي الحالي.</value></data>
+</root>

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Menu.Options"><value>Vaihtoehdot</value></data>
   <data name="Menu.Preferences"><value>Asetukset…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnostiikka</value></data>
@@ -27,14 +19,7 @@
   <data name="Menu.Help"><value>Auttaa</value></data>
   <data name="Menu.Documentation"><value>Dokumentaatio</value></data>
   <data name="Menu.About"><value>Noin</value></data>
-  <data name="Tab.Read"><value>Lukea</value></data>
-  <data name="Tab.Write"><value>Kirjoittaa</value></data>
-  <data name="Tab.Convert"><value>Muuntaminen</value></data>
-  <data name="Tab.Visualize"><value>Visualisointi</value></data>
-  <data name="Tab.Tools"><value>Työkalut</value></data>
   <data name="Menu.Align"><value>Ajolinjaus…</value></data>
-  <data name="Tab.Explorer"><value>Levynhallinta</value></data>
-  <data name="Tab.Emulation"><value>Emulointi</value></data>
   <data name="Menu.Emulation"><value>Emulsio</value></data>
   <data name="Menu.EmulationPreferences"><value>Emulsioasetukset...</value></data>
 </root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>يمكنك هنا إنشاء التكوينات المحفوظة أو تحديدها أو تعديلها أو حذفها. حدد علامة تبويب {0} لتحرير التكوين المحدد.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>العلامة التجارية</value></data>
+  <data name="Emulation.Configuration.Machine"><value>الجهاز</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>إجمالي ذاكرة RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>محركات الأقراص</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>الأجهزة الطرفية</value></data>
+  <data name="Emulation.Configuration.Actions"><value>الإجراءات</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>هل تريد حذف تكوين {0} {1}؟</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>التكوين</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>خامسا - المفاوضات</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>تحذف هذه التشكيلة من &quot;أميغا&quot;؟</value></data>
+</root>

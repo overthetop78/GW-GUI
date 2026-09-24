@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>動作</value></data>
+  <data name="Emulation.Input.Assign"><value>割り当て...</value></data>
+  <data name="Emulation.Input.Actions"><value>操作</value></data>
+  <data name="Emulation.Input.Press"><value>キーを押してください...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>デバイス検出は共通ですが、割り当ては各マシン構成に個別に保存されます。</value></data>
+  <data name="Emulation.Input.Test"><value>入力をテスト</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>共有入力デバイス</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>キーボードのキーまたはマウスボタンを押して検出をテストします。</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>既定値に戻す</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>競合を消去</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>割り当て</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>状態</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>キーまたは割り当てを検索</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>有効: 一意の割り当て · 競合: 複数回使用 · 予約済み: Windows または GW GUI のショートカット</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>有効</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>競合</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>予約済み</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>未割り当て</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>［割り当て］を押してから、キーボード、マウス、またはコントローラーのボタンを押してください。</value></data>
+</root>

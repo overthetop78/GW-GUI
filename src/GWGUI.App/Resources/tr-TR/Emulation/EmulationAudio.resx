@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Sesi etkinleştir</value></data>
+  <data name="Emulation.Audio.Output"><value>Ses çıkışı</value></data>
+  <data name="Emulation.Audio.Latency"><value>Gecikme (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Enterpolasyon</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga ses filtresi</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Stereo ayrımı (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Ses girişi</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Bu Amiga çekirdeği ses girişi sağlamaz.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows varsayılan çıkışı</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Anti enterpolasyon</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Öykünülmüş</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Filtre türü</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Disket sürücüsü ses düzeyi</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Disket sürücüsü ses türü</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Boş sürücüleri sessize al</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD ses düzeyi</value></data>
+  <data name="Emulation.Audio.Device"><value>Aygıt</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Gecikme</value></data>
+  <data name="Emulation.Audio.Quality"><value>Kalite</value></data>
+  <data name="Emulation.Audio.Drives"><value>Sürücüler</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Disket sürücüsü sesi</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarize ses filtresi</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Düşük</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Yüksek</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Ses Ses</value></data>
+</root>

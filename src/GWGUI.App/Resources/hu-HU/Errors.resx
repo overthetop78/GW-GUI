@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>A beállításokat nem sikerült elmenteni.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI hiba</value></data>
   <data name="Error.Unexpected"><value>Váratlan hiba történt.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Ezt a műveletet nem támogatja a kijelölt fájl, eszköz vagy platform.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Nincs elég memória a művelet befejezéséhez.</value></data>
   <data name="Error.Description.Unexpected"><value>A GW GUI váratlan problémával szembesült, amikor ezt az akciót végezte.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>A GameInput munkásai nem álltak le.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Nincs feltérképezés</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>A GameInput eszköz felsorolása nem sikerült {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>A GameInput rendszer regisztráció nem sikerült.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>A GameInput frissítési regisztráció sikertelen {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>A GameInput frissítő visszahívása nem sikerült nem regisztrálni: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>A GameInput eszköz visszahívási sora nem sikerült: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>A GameInput eszköz visszahívása nem sikerült: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>A GameInput rendszer- gombbal történő visszahívása nem sikerült: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>A GameInput raw- olvasó visszahívása sikertelen: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: olvasás {1} nem sikerült a 0x kóddal{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: A bemeneti típus {1}, gamepad állapot áll rendelkezésre: {2}, A vezérlőrendszerek nem állnak rendelkezésre</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: A bemeneti típus {1}, gamepad állapot áll rendelkezésre: {2}, tengelyek: {3}, gombok: {4}, kapcsolók: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM hiba 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: A bemeneti típus {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>A kijelölt név: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>A bevitel neve: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Eszköz ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Szerszámgyökér ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Konténer ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Család: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Használat: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Támogatott bemenet: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>A kezelőre vonatkozó információk: tengelyek ={0}, gombok ={1}, kapcsolók ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Tengelycímkék: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Gombcímkék: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Feltérképek: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP-útvonal: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP nevek: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>A fájlrendszer bejegyzését nem sikerült leolvasni.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>A kért létszám ({0}) meghaladja a pufferméretet ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>A következő fájlblokkban hibás a sorszám.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>A lemezen nincs ingyenes szektor.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Csak a nulla offset támogatást kap erre a műveletre.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Ez a fájlrendszer-folyam nem támogatja a hossz megváltoztatását.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Elérhető blokk {0} az elosztási láncban nem tartalmaz bitmap blokkot; tényleges típus: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Elérési blokk {0} nem tartalmaz bitmap blokkot; tényleges típus: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>A szükséges bitmap blokk hiányzik.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Egy hurkot észleltek, amikor a blokkokat felszabadították a elosztó csomópontnál. {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Kiosztási csomópont {0} Nem lehetett olvasni.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>A hozzárendelési csomópontot nem lehetett hozzárendelni.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>A kért pozíció érvénytelen erre a fájlrendszerbeli objektumra.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>A hozzárendelési csomópont művelet nem sikerült.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation- csomópont bitmap index blokk {0}/{1} Nem lehetett olvasni.</value></data>
 </root>

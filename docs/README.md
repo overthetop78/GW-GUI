@@ -16,6 +16,7 @@ différées et les seules tâches encore ouvertes.
 - [Organisation et entretien de la documentation](project/documentation.md)
 - [Images de disque dur](project/hard-disk-images.md)
 - [Catalogue des formats de disque dur](project/hard-disk-format-catalog.md)
+- [Fichiers de plus de 500 lignes](project/large-source-files.md)
 
 ## Architecture actuelle
 

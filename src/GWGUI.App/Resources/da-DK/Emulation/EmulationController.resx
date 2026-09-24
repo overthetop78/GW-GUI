@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Enhed til controller {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Detektcontrollere</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga- handling</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Tastatur, mus eller controller kontrol</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Venstre stok</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Højre kæp</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Begge pinde</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turboild</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turboknap</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbopuls</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Kontrollør portordre</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Ingen controller fundet</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Controller-tildelinger</value></data>
+  <data name="Emulation.Controller.Port"><value>Port {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Controller-type</value></data>
+  <data name="Emulation.Controller.Detected"><value>Registrerede controllere</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Søg efter en handling eller input</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Op</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Ned</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Venstre</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Højre</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Fireknap 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Fireknap 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analogt joystick</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Automatisk</value></data>
+  <data name="Emulation.Controller.None"><value>Ingen</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Skift joystick / mus</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kunne ikke initialiseres. Installer eller reparer den medfølgende GameInput-runtime.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (venstre hånd)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (højre hånd)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Udseende</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Kontrollør {0}</value></data>
+</root>

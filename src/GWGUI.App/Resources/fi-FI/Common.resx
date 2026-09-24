@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Tuntematon</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Poista asemasta</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Tuntematon</value></data>
+  <data name="Common.Eject"><value>Poista asemasta</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Tuntematon media</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Levyke</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Kovalevy</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optinen levy</value></data>
+  <data name="Common.MediaKind.Tape"><value>Nauha</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Alat</value></data>
+  <data name="Common.Representation.Blocks"><value>Lohkot</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optiset radat</value></data>
+  <data name="Common.Representation.Sequential"><value>Sekvenssitiedot</value></data>
+  <data name="Common.Advanced"><value>Lisäasetukset</value></data>
+  <data name="Common.ExpertArguments"><value>Asiantuntijan argumentit</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumentit välitetään kirjoitettuna lainauksen vahvistamisen jälkeen.</value></data>
+  <data name="Common.DiskImageFilter"><value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Kaikki tiedostot|*.*</value></data>
+  <data name="Common.Console"><value>Konsoli</value></data>
+  <data name="Common.Command"><value>Komento</value></data>
 </root>

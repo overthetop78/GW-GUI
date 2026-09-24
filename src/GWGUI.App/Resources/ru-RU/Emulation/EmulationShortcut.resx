@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Сочетания эмуляции</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Освободить мышь</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Пауза / продолжить</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Полный экран / окно</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Включить / выключить</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Мягкая перезагрузка</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Жёсткая перезагрузка</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Быстрое сохранение состояния</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Быстрая загрузка состояния</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Снимок экрана</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Отключить звук активной машины</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Ускорение при удержании</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Вставить или заменить носитель</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Извлечь носитель</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Следующий носитель</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Это действие пока не поддерживается текущим эмулятором.</value></data>
+</root>

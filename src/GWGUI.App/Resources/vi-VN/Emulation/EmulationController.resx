@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Thiết bị bộ điều khiển {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Phát hiện tay cầm</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Hành động Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Điều khiển bằng bàn phím, chuột hoặc tay cầm</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Cần trái</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Cần phải</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Cả hai cần</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Bắn nhanh</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Nút turbo</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Nhịp turbo</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Thứ tự cổng tay cầm</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Không phát hiện tay cầm</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Ánh xạ tay cầm</value></data>
+  <data name="Emulation.Controller.Port"><value>Cổng {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Loại tay cầm</value></data>
+  <data name="Emulation.Controller.Detected"><value>Tay cầm đã phát hiện</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Tìm thao tác hoặc đầu vào</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Lên</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Xuống</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Trái</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Phải</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Nút bắn 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Nút bắn 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Cần điều khiển analog</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Tự động</value></data>
+  <data name="Emulation.Controller.None"><value>Không có</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Name</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (bên trái)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Tốc độ Konix (tay phải)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Giao diện</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Điều khiển {0}</value></data>
+</root>

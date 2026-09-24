@@ -12,3 +12,4 @@ gw/
 image_test/
 tmp/
 __pycache__/
+artifacts/

@@ -1,0 +1,3114 @@
+# Rangement des fichiers de MediaEngine
+
+Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enums`, `Functions`, `Interfaces`. SCP est un format dans `Images/Formats/Floppy/Scp` ; ses modèles, lecteurs, décodeurs et encodeurs propres y sont regroupés. Cette liste suit les déplacements concrets ; chaque case est cochée après l’action.
+
+- [ ] Ranger MediaEngine.
+  - [x] Regrouper les formats d’images.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/BuiltInDiskDefinitions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/BuiltInDiskDefinitions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/CapabilityAwareImageFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/AdfImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/AdfImageFormatDetectionRule.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/AppleImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/AppleImageFormatDetectionRule.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/AtariImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/AtariImageFormatDetectionRule.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/DetectedImageFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/DetectedImageFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/FormatConfidence.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/FormatConfidence.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/IbmPcImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/IbmPcImageFormatDetectionRule.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/IImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/IImageFormatDetectionRule.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetectionContext.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/ImageFormatDetectionContext.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/ImageFormatDetector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/MacintoshImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/MacintoshImageFormatDetectionRule.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Detection/RawImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Detection/RawImageFormatDetectionRule.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/DiskClassificationCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/DiskClassificationCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/DiskDefsFormatReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/DiskDefsFormatReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Adf/AcornAdfGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Adf/AcornAdfWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Adf/AdfExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AdfExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Adf/AdfReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AdfReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Adf/AmigaAdfGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Adf/AmigaAdfWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Adf/AmigaAdfWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Apple/AppleContainerExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleContainerExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Apple/AppleContainerRouter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleContainerRouter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Apple/AppleDiskImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Apple/AppleDiskImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Apple/AppleDiskImageWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Apridisk/ApridiskReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apridisk/ApridiskReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/Atari8BitGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/Atari8BitGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrFormatCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrFormatProfile.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrFormatProfile.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsContainerKind.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsContainerKind.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsImageWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsImageWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CommodoreDos/CommodoreDiskErrorCode.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDiskErrorCode.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CommodoreDos/CommodoreDosContainerExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosContainerExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CommodoreDos/CommodoreDosContainerWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosContainerWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CommodoreDos/CommodoreDosErrorMapMode.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosErrorMapMode.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Cp2/Cp2Exceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Exceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Cp2/Cp2Format.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Format.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Cp2/Cp2Layout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Layout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Cp2/Cp2Reader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Reader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskContainerKind.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskContainerKind.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskImage.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskImage.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskImageBuilder.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskSector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskSector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskTrack.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskTrack.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D64/D64Exceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Exceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D64/D64Layout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Layout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D64/D64Reader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Reader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D71/D71Exceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Exceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D71/D71Layout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Layout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D71/D71Reader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Reader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Exceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Exceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Layout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Layout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Reader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Reader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Writer.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Writer.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyImage.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyImage.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyMetadataFunctions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyMetadataFunctions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyMetadataKeys.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyMetadataKeys.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyTaggedGeometryKind.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyTaggedGeometryKind.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy/DiskCopyWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeBitPacking.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeBitPacking.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeImage.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeImage.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeMetadataFunctions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeMetadataFunctions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeMetadataKeys.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeMetadataKeys.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeProtectedTrackImageAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeProtectedTrackImageAdapter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeTrack.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeTrack.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fFileFlags.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fFileFlags.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fImage.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fImage.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fProtectedTrackImageAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fProtectedTrackImageAdapter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fTrack.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fTrack.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fTrackFlags.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fTrackFlags.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdHeadFlags.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdHeadFlags.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdImage.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdImage.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdImageBuilder.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdMetadataFunctions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdMetadataFunctions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdMetadataKeys.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdMetadataKeys.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdMode.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdMode.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdSection.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdSection.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdSector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdSector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdSectorRecordType.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdSectorRecordType.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdTrack.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdTrack.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaRleDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaRleDecoder.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaRleEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaRleEncoder.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Nib/NibExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Nib/NibLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Nib/NibReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Nib/NibWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/Apple35RawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Apple35RawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleGeometryExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleGeometryExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleII525RawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleII525RawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleIIGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleIIGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleRawImageExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleRawImageLayoutCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageLayoutCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleRawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleRawImageReadResult.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageReadResult.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleRawImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleRawImageWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/AppleTaggedImageGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleTaggedImageGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/CoherentRawImageExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/CoherentRawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/CoherentRawImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/Commodore900Geometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Commodore900Geometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/CommodoreDosGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CommodoreDosGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/EpsonQx10FormatDetector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10FormatDetector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/EpsonQx10GeometryCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10GeometryCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/EpsonQx10RawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10RawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/EpsonQx10RawImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10RawImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmBootGeometryDetector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmBootGeometryDetector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmPcGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmPcGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmPcGeometryCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmPcGeometryCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmRawImageExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmRawImageGeometryDetector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageGeometryDetector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmRawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmRawImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmRawImageWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/LinearSectorImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LinearSectorImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/LinearSectorImageWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LinearSectorImageWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/LisaFileWareGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LisaFileWareGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MacintoshGcrGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshGcrGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MacintoshMfmGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshMfmGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MacintoshRawImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshRawImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxDiskGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxDiskGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxDiskGeometryCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxDiskGeometryCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxRawImageExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxRawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxRawImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxRawImageWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/RawImgReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/UcsdIbmMfmGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdIbmMfmGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Raw/UcsdRawImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdRawImageReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Rx02/DecRx02Exceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Exceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Rx02/DecRx02Geometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Geometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Rx02/DecRx02Reader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Reader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Rx02/DecRx02SectorOrder.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02SectorOrder.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Rx02/DecRx02Writer.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Writer.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/IScpReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/IScpReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/IScpWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/IScpWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpBitCellEncoding.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpBitCellEncoding.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpDataValidator.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDataValidator.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpDiskType.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDiskType.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpDiskTypeCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDiskTypeCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpEncodedTrackFluxService.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpEncodedTrackFluxService.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpFileCache.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFileCache.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpFlags.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFlags.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpFormatAlgorithms.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFormatAlgorithms.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpFormatConstants.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFormatConstants.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpHeader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpHeader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpHeadSelection.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpHeadSelection.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpImage.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpImage.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpMetadataFunctions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpMetadataFunctions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpMetadataKeys.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpMetadataKeys.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpProtectedTrackImageAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpProtectedTrackImageAdapter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpRevolution.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolution.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpRevolutionOrigin.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolutionOrigin.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpRevolutionReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolutionReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpSection.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpSection.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpSignature.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpSignature.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpTrack.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpTrack.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpWriterDefaults.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriterDefaults.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpWriterExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriterExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/St/AtariStExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/St/AtariStGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStGeometry.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/St/AtariStGeometryDetector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStGeometryDetector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/St/AtariStReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/St/AtariStWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0AdvancedDecompressor.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0AdvancedDecompressor.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Comment.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Comment.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Crc16.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Crc16.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0EncodedSector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0EncodedSector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Exceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Exceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Format.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Format.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Header.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Header.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0HeaderFactory.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0HeaderFactory.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Image.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Image.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Layout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Layout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Reader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Reader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Section.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Section.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Sector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Sector.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0SectorDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorDecoder.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0SectorEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorEncoder.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0SectorEncoding.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorEncoding.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0SectorFlags.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorFlags.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Track.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Track.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Writer.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Writer.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TwoImg/TwoImgExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TwoImg/TwoImgFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TwoImg/TwoImgImageFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgImageFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TwoImg/TwoImgLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TwoImg/TwoImgReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/TwoImg/TwoImgWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozChunkWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozChunkWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozCrc32.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozCrc32.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozExceptions.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozLayout.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozLayout.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozVersion.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozVersion.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Woz/WozWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Floppy/Xfd/XfdReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Xfd/XfdReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/GwFormatArgument.cs` vers `src/GWGUI.MediaEngine/Images/Formats/GwFormatArgument.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/GwFormatCapabilities.cs` vers `src/GWGUI.MediaEngine/Images/Formats/GwFormatCapabilities.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/GwVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Formats/GwVisualizationPolicy.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Format.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Format.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Reader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Writer.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Writer.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/IGwFormatCapabilityReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/IGwFormatCapabilityReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/IImageFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/IImageFormatCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/ImageFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/ImageFormatModels.cs` vers `src/GWGUI.MediaEngine/Images/Formats/ImageFormatModels.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/Alcohol/AlcoholMdsFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/Alcohol/AlcoholMdsReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/CueSheetReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/CueSheetReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/CueSheetWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/CueSheetWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/Chd/ChdOpticalFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/Chd/ChdOpticalFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/Chd/ChdOpticalReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/Chd/ChdOpticalReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdDescriptorReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdDescriptorReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Parsing/GwFormatCapabilitiesParser.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Parsing/GwFormatCapabilitiesParser.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/RuntimeImageFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Uef/UefFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Uef/UefReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Uef/UefWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeFormat.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeReader.cs` sans changer son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeWriter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeWriter.cs` sans changer son contenu avant le raccordement des espaces de noms.
+  - [x] Raccorder les références des formats déplacés.
+    - [x] Modifier `src/GWGUI.App/Contracts/Rendering/Scp/ScpRenderRequest.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadOptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Contracts/Storage/DiskFormatChoice.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Contracts/ViewModels/Conversion/ConversionFormatPresentation.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Contracts/ViewModels/Visualization/ScpDocumentModel.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.Execution.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.ProfilesAndSettings.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/WriteTabController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Functions/Services/PhysicalDiskReading/ScpCaptureDiskTypeFunctions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Interfaces/Rendering/Scp/IScpRenderer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Presenters/Conversion/ConversionFormatPresenter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/ScpInspectorPresenter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Rendering/Scp/ScpTrackPreparationFunctions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Rendering/Scp/SkiaScpRenderer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/ImageFormatWorkspace.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaEngineParityCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/Visualization/ScpDocumentLoader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Services/Visualization/ScpInspectorController.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/ConversionOperationViewModel.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Common/DiskClassificationSelector.xaml.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Common/MediaDocumentIdentity.xaml.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Conversion/ConversionFormatControl.xaml.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.Infrastructure/Conversion/ConversionCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.Infrastructure/HostTools/GwFormatCapabilityReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.Infrastructure/Read/ReadCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.Infrastructure/Settings/Operations/OperationUiSettings.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.Infrastructure/Settings/SettingsMigrator.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.Infrastructure/Write/WriteCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Acquisition/FloppyFluxAcquisitionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/ScpSectorDecodingComposition.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Acorn/AcornAdfConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Acorn/BbcDfsConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/AmigaAdfConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/AmstradDskConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/AppleIISectorOrderConverter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/AppleNibbleConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/AppleSectorConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/LisaConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/MacintoshConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariScpRuntimeConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariStConversionExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariStConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariStGeometryTransformer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtrConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtrPayloadWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Commodore/CoherentConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Commodore/CommodoreDosConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Commodore/D81ConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/ConversionCompatibilityValidator.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/ConversionOutputFactory.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/ConversionPlanner.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/ConversionSourceCompatibility.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/ConversionTagFormatter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/DecRx02ConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/EpsonQx10ConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12TargetGeometryCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12TargetImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Flux/FluxContainerConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Flux/HfeFluxParityValidator.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Flux/HfeScpParityValidator.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Flux/ScpFluxParityValidator.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Flux/ScpHfeEncodingResolver.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/HfeConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/I86fBitCellFluxConverter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/IbmRawConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/MsxRawConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Scp/SectorImageScpConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Scp/SectorToFluxRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/UcsdImgConversionService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Decoding/Definitions/Commodore900GcrFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Decoding/Definitions/DecRx02Format.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Decoding/I86f/I86fSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Apple/AppleIITrackEncodingService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Apple/AppleTrackEncodingTimings.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/CommodoreTrackEncodingTimings.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Contracts/DiskTrackContractMapper.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/CompatibleFormatCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Scp/ScpAutomaticImageExplorer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Scp/ScpCandidateRanker.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Scp/ScpImageExplorationService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/ScpCaptureInfo.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/ScpCaptureInfoReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Sos/SosBootFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/BuiltInDiskDefinitions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/AdfImageFormatDetectionRule.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/AppleImageFormatDetectionRule.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/AtariImageFormatDetectionRule.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/DetectedImageFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/FormatConfidence.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/IbmPcImageFormatDetectionRule.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/IImageFormatDetectionRule.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/ImageFormatDetectionContext.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/ImageFormatDetector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/MacintoshImageFormatDetectionRule.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Detection/RawImageFormatDetectionRule.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/DiskClassificationCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/DiskDefsFormatReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AdfExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AdfReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleContainerExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleContainerRouter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apridisk/ApridiskReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/Atari8BitGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrFormatCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrFormatProfile.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsContainerKind.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsImageWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDiskErrorCode.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosContainerExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosContainerWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosErrorMapMode.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Exceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Format.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Layout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Reader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskContainerKind.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskImage.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskSector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskTrack.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Exceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Layout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Reader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Exceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Layout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Reader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Exceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Layout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Reader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Writer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyImage.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyMetadataFunctions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyMetadataKeys.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyTaggedGeometryKind.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeBitPacking.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeImage.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeMetadataFunctions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeMetadataKeys.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeProtectedTrackImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeTrack.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fFileFlags.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fImage.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fProtectedTrackImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fTrack.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fTrackFlags.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdHeadFlags.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdImage.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdMetadataFunctions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdMetadataKeys.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdMode.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdSection.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdSector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdSectorRecordType.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdTrack.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaRleDecoder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaRleEncoder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Apple35RawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleGeometryExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleII525RawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleIIGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageLayoutCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageReadResult.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleTaggedImageGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Commodore900Geometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CommodoreDosGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10FormatDetector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10GeometryCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10RawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10RawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmBootGeometryDetector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmPcGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmPcGeometryCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageGeometryDetector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LinearSectorImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LinearSectorImageWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LisaFileWareGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshGcrGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshMfmGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxDiskGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxDiskGeometryCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdIbmMfmGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Exceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Geometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Reader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02SectorOrder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Writer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/IScpReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/IScpWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpBitCellEncoding.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDataValidator.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDiskType.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDiskTypeCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpEncodedTrackFluxService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFileCache.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFlags.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFormatAlgorithms.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFormatConstants.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpHeader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpHeadSelection.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpImage.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpMetadataFunctions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpMetadataKeys.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpProtectedTrackImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolution.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolutionOrigin.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolutionReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpSection.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpSignature.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpTrack.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriterDefaults.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpWriterExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStGeometry.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStGeometryDetector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0AdvancedDecompressor.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Comment.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Crc16.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0EncodedSector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Exceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Format.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Header.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0HeaderFactory.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Image.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Layout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Reader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Section.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Sector.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorDecoder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorEncoder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorEncoding.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0SectorFlags.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Track.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Writer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgImageFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozChunkWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozCrc32.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozExceptions.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozLayout.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozVersion.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Xfd/XfdReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/GwFormatArgument.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/GwFormatCapabilities.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/GwVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Format.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Writer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/IGwFormatCapabilityReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/IImageFormatCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatModels.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Alcohol/AlcoholMdsFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Alcohol/AlcoholMdsReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/CueSheetReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/CueSheetWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Chd/ChdOpticalFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Chd/ChdOpticalReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdDescriptorReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Parsing/GwFormatCapabilitiesParser.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/RuntimeImageFormatCatalog.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeFormat.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeWriter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/PhysicalWriting/FloppyMediaWritePlanningService.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/AppleRawImageProbe.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/DecRx02ImageProbe.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Ibm/IbmDosDiskProbe.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Msx/MsxSectorImageInterpreter.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/CoherentImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/DecRx02ImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/MsxImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/RawImgRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/ScpRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Scp/ScpFamilyProbe.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Scp/ScpTrackSampler.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Td0SectorImageClassifier.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/AmigaScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleIIScpSectorReconstructor.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleScpSectorDecoder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Atari/AtariScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/CommodoreScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/DecRx02ScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/EpsonQx10/EpsonQx10SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpCandidateDecoder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Scp/ScpTrackDecodeWindowFactory.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/AppleIISectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/AppleRwts18SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/MacintoshGcrSectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Sectors/Commodore1541SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Sectors/Commodore900SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Sectors/IbmRawSectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/AppleVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/AtariVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/CommodoreVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/DecRx02VisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/SectorImageFluxVisualizer.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Application/OutputNaming/SequenceAndTagsScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/CommandsAndParsing/ExternalOutputParsingScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WritePlanningScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionSelectionScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ReadViews/ReadFormatScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ReadViews/ReadOperationScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/InspectorSelectionScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/ViewportGeometryScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/WriteViews/WriteOperationScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/WriteViews/WriteSourceScenarios.cs` : remplacer `GWGUI.MediaEngine.Formats` par `GWGUI.MediaEngine.Images.Formats` dans les espaces de noms et les références.
+  - [x] Corriger les références abrégées aux formats après leur déplacement.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` : remplacer `new Formats.` par `new GWGUI.MediaEngine.Images.Formats.`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer les références abrégées `Formats.` par `GWGUI.MediaEngine.Images.Formats.`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/IbmRawConversionService.cs` : remplacer `Formats.Floppy.Raw.IbmPcGeometryCatalog` par `GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmPcGeometryCatalog`.
+  - [x] Regrouper SCP dans son dossier de format.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Scp/Sectors/ScpCandidateFailure.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpCandidateFailure.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Scp/Sectors/ScpCandidateIds.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpCandidateIds.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Scp/Sectors/ScpCandidateRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpCandidateRegistry.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Scp/Sectors/ScpFormatSelection.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpFormatSelection.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Scp/Sectors/ScpSectorImageCandidate.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageCandidate.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Scp/Sectors/ScpSectorImageExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageExceptions.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Scp/Sectors/ScpSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageReader.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Scp/ScpDetectionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpDetectionExceptions.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Scp/ScpFamilyProbe.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbe.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Scp/ScpFamilyProbeCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbeCatalog.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Scp/ScpFamilyProbeDefinition.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbeDefinition.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Scp/ScpFormatFamily.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFormatFamily.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Scp/ScpTrackSampler.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpTrackSampler.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Scp/ScpTrackDecodeWindow.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reconstruction/ScpTrackDecodeWindow.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Scp/ScpTrackDecodeWindowFactory.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reconstruction/ScpTrackDecodeWindowFactory.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Scp/ScpAutomaticImageExplorer.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Scp/ScpCandidateInspection.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspection.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Scp/ScpCandidateInspector.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Scp/ScpCandidateRanker.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Scp/ScpExplorationProgress.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpExplorationProgress.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Scp/ScpExplorationThresholds.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpExplorationThresholds.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Scp/ScpImageExplorationService.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpImageExplorationService.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Scp/ScpFluxToSectorRepresentationConverter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/ScpFluxToSectorRepresentationConverter.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Scp/SectorImageScpConversionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpConversionExceptions.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Scp/SectorImageScpConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpConversionService.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Scp/SectorImageScpFileConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpFileConversionService.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Scp/SectorToFluxRepresentationConverter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorToFluxRepresentationConverter.cs` et ajuster son espace de noms et ses références après lecture des appelants.
+  - [x] Raccorder les références des traitements SCP regroupés.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` : remplacer `GWGUI.MediaEngine.Conversion.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection` ; `GWGUI.MediaEngine.Conversion.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/ScpSectorDecodingComposition.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/ScpFluxToSectorRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Conversion.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpConversionExceptions.cs` : remplacer `GWGUI.MediaEngine.Conversion.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpFileConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorToFluxRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Conversion.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpCandidateFailure.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpCandidateIds.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpCandidateRegistry.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpFormatSelection.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageCandidate.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageExceptions.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspection.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpExplorationProgress.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpExplorationThresholds.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpImageExplorationService.cs` : remplacer `GWGUI.MediaEngine.Decoding.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/Policies/ScpRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpDetectionExceptions.cs` : remplacer `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbe.cs` : remplacer `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition` ; `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbeCatalog.cs` : remplacer `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbeDefinition.cs` : remplacer `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFormatFamily.cs` : remplacer `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpTrackSampler.cs` : remplacer `GWGUI.MediaEngine.Recognition.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/AmigaScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleScpSectorDecoder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/CommodoreScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/DecRx02ScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpCandidateDecoder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction` ; `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Exploration.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reconstruction/ScpTrackDecodeWindow.cs` : remplacer `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reconstruction/ScpTrackDecodeWindowFactory.cs` : remplacer `GWGUI.MediaEngine.Reconstruction.Scp` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction`.
+  - [x] Raccorder les types communs de conversion après le rangement SCP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/ScpFluxToSectorRepresentationConverter.cs` : ajouter `using GWGUI.MediaEngine.Conversion;` pour `MediaRepresentationConversionResult`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorToFluxRepresentationConverter.cs` : ajouter `using GWGUI.MediaEngine.Conversion;` pour `MediaRepresentationConversionResult`.
+  - [x] Corriger une référence SCP dont le nom était accolé au préfixe remplacé.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` : rétablir `GWGUI.MediaEngine.Exploration.ScpCaptureInfo` et `ScpCaptureInfoReader` jusqu'au déplacement de ces deux fichiers SCP.
+  - [x] Ranger les autres fichiers de MediaEngine selon les responsabilités acceptées.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Acquisition/FloppyFluxAcquisitionService.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reading/FloppyFluxAcquisitionService.cs` et ajuster son espace de noms et ses références.
+    - [x] Déplacer `src/GWGUI.MediaEngine/PhysicalWriting/FloppyMediaWritePlanningService.cs` vers `src/GWGUI.MediaEngine/PhysicalMedia/Writing/FloppyMediaWritePlanningService.cs` et ajuster son espace de noms et ses références.
+  - [x] Raccorder les deux traitements déplacés.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs` : remplacer `GWGUI.MediaEngine.Acquisition` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading`.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : remplacer `GWGUI.MediaEngine.Acquisition` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading`.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskWriting/InternalPhysicalDiskWriter.cs` : remplacer `GWGUI.MediaEngine.PhysicalWriting` → `GWGUI.MediaEngine.PhysicalMedia.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reading/FloppyFluxAcquisitionService.cs` : remplacer `GWGUI.MediaEngine.Acquisition` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : remplacer `GWGUI.MediaEngine.Acquisition` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading` ; `GWGUI.MediaEngine.PhysicalWriting` → `GWGUI.MediaEngine.PhysicalMedia.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/PhysicalMedia/Writing/FloppyMediaWritePlanningService.cs` : remplacer `GWGUI.MediaEngine.PhysicalWriting` → `GWGUI.MediaEngine.PhysicalMedia.Writing`.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs` : remplacer `GWGUI.MediaEngine.Acquisition` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading`.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalReading/ReadFailureScenarios.cs` : remplacer `GWGUI.MediaEngine.Acquisition` → `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading`.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WritePlanningScenarios.cs` : remplacer `GWGUI.MediaEngine.PhysicalWriting` → `GWGUI.MediaEngine.PhysicalMedia.Writing`.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WriteVerificationScenarios.cs` : remplacer `GWGUI.MediaEngine.PhysicalWriting` → `GWGUI.MediaEngine.PhysicalMedia.Writing`.
+  - [x] Ranger les modèles et la lecture des images.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Apple/AppleBitLatch.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleBitLatch.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Apple/AppleIwmGcrDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleIwmGcrDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Apple/AppleTrackDecodeResult.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleTrackDecodeResult.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Apple/AppleTrackDecodeSelector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleTrackDecodeSelector.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Apple/AppleTrackSelectionRules.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleTrackSelectionRules.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/DecodedSector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/DecodedSector.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/Aed6200pMfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Aed6200pMfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/AmigaMfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AmigaMfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/AppleIIGcrDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleIIGcrDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/AppleMacGcrDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleMacGcrDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/AppleRwts18Decoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleRwts18Decoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/ArburgDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/ArburgDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/CenturionMfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/CenturionMfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/Commodore900GcrDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Commodore900GcrDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/CommodoreGcrDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/CommodoreGcrDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/DataGeneralFmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DataGeneralFmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/DecRx02Decoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DecRx02Decoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/EmuFmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/EmuFmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/HeathkitFmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/HeathkitFmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/HpMmfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/HpMmfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/IsoFmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/IsoFmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/IsoMfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/IsoMfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/MembrainMfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MembrainMfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/MicralNFmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicralNFmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/MicropolisMfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicropolisMfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/NorthstarMfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/NorthstarMfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/QdMo5MfmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/QdMo5MfmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/RawFluxDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/RawFluxDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/TycomFmDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/TycomFmDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Decoders/Victor9kGcrDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Victor9kGcrDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/Aed6200pMfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Aed6200pMfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AmigaMfmCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AmigaMfmCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AmigaMfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AmigaMfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AppleIIGcrCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIIGcrCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AppleIIGcrFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIIGcrFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AppleIwmGcrCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIwmGcrCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AppleIwmGcrFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIwmGcrFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AppleRwts18Codec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleRwts18Codec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/AppleRwts18Format.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleRwts18Format.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/ArburgChecksum.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgChecksum.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/ArburgFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/ArburgSystemCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgSystemCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/CenturionMfmDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CenturionMfmDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/CenturionMfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CenturionMfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/Commodore900GcrDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Commodore900GcrDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/Commodore900GcrFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Commodore900GcrFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/CommodoreGcrChecksum.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrChecksum.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/CommodoreGcrCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/CommodoreGcrDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/CommodoreGcrFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/DataGeneralChecksum.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralChecksum.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/DataGeneralFmDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralFmDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/DataGeneralFmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralFmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/DecRx02Descriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02Descriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/DecRx02Format.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02Format.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/DecRx02M2FmCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02M2FmCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/EmuFmDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/EmuFmDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/EmuFmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/EmuFmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecDisplayNames.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/FluxCodecDisplayNames.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/FluxCodecIds.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/FluxCodecIds.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/FmAddressMarkPatterns.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/FmAddressMarkPatterns.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/HeathkitFmCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/HeathkitFmDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/HeathkitFmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/HpMmfmCodec.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HpMmfmCodec.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/HpMmfmDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HpMmfmDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/HpMmfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HpMmfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/IsoFmDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoFmDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/IsoFmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoFmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/IsoMfmDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoMfmDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/IsoMfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoMfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/IsoMfmPllSelector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoMfmPllSelector.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/MembrainMfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MembrainMfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/MfmEncoding.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MfmEncoding.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/MicralNFmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicralNFmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/MicropolisMfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicropolisMfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/NorthstarMfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/NorthstarMfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/QdMo5MfmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/QdMo5MfmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/RawFluxAnalysisDefinitions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/RawFluxAnalysisDefinitions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/TycomFmFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/TycomFmFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Definitions/Victor9kGcrFormat.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Victor9kGcrFormat.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxDecoderCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderCatalog.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxDecoderConfidence.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderConfidence.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxDecodeResult.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecodeResult.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxDecoderRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderRegistry.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxDecoderRegistryExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderRegistryExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxDecoderScoring.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderScoring.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxDecodeSelection.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecodeSelection.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxStructure.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxStructure.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxStructureDescriptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxStructureDescriptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/FluxStructureKind.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxStructureKind.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/I86f/I86fSectorImageExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/I86f/I86fSectorImageExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/I86f/I86fSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/I86f/I86fSectorImageReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/IFluxDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/IFluxDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/SectorIntegrityKind.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/SectorIntegrityKind.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Sequential/Acorn/AcornTapeDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Sequential/Msx/MsxTapeDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Msx/MsxTapeDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Sequential/SequentialDecoderRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/SequentialDecoderRegistry.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Decoding/Sequential/Tzx/TzxSignalDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Tzx/TzxSignalDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/Blocks/BlockMediaDataReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Blocks/BlockMediaDataReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/MediaImageDocumentFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaImageDocumentFactory.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/MediaImageReadingService.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaImageReadingService.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/Optical/OpticalSectorReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Optical/OpticalSectorReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/Sources/ChdUncompressedRandomAccessData.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Sources/ChdUncompressedRandomAccessData.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/Sources/FileRandomAccessData.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Sources/FileRandomAccessData.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/Sources/MemoryRandomAccessData.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Sources/MemoryRandomAccessData.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reading/Sources/UnavailableRandomAccessData.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Sources/UnavailableRandomAccessData.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/AppleRawImageProbe.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/AppleRawImageProbe.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/DecRx02ImageProbe.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DecRx02ImageProbe.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/DiskImageNotRecognizedException.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageNotRecognizedException.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionContext.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionContext.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionFailure.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionFailure.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionRegistry.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/DiskSystemIds.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskSystemIds.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Ibm/IbmDosDiskProbe.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Ibm/IbmDosDiskProbe.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Ibm/IbmDosOemProbe.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Ibm/IbmDosOemProbe.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/IDiskImageRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/IDiskImageRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/MediaRecognitionCandidate.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionCandidate.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/MediaRecognitionContext.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionContext.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/MediaRecognitionRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionRegistry.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/MediaRecognitionResult.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionResult.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Msx/MsxBootSectorProbe.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Msx/MsxBootSectorProbe.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Msx/MsxSectorImageInterpreter.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Msx/MsxSectorImageInterpreter.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/AmstradImageRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/AmstradImageRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/AppleImageRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/AppleImageRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/CoherentImageRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/CoherentImageRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/DecRx02ImageRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/DecRx02ImageRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/ExtensionHintRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/ExtensionHintRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/MsxImageRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/MsxImageRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/RawImgRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/RawImgRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/ReaderBackedRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/ReaderBackedRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Policies/ScpRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/ScpRecognitionPolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Recognition/Td0SectorImageClassifier.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Td0SectorImageClassifier.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/AmigaScpSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleIIScpSectorReconstructor.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleIIScpSectorReconstructor.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleScpReconstructionDefinitions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpReconstructionDefinitions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleScpSectorDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpSectorDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Apple/AppleScpSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpSectorImageReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Atari/AtariScpReconstructionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/AtariScpReconstructionExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Atari/AtariScpSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/AtariScpSectorImageReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/CommodoreScpSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/CommodoreScpSectorImageReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/DecRx02ScpSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/EpsonQx10/EpsonQx10Exceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/EpsonQx10/EpsonQx10Exceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/EpsonQx10/EpsonQx10IsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/EpsonQx10/EpsonQx10IsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/EpsonQx10/EpsonQx10SectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/EpsonQx10/EpsonQx10SectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/AmstradIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AmstradIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/AutomaticIsoScpSelectionRules.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AutomaticIsoScpSelectionRules.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/FatIsoScpGeometryDetector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/FatIsoScpGeometryDetector.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/GenericIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/GenericIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpCandidateDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpCandidateDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpReconstructionDefinitions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpReconstructionDefinitions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpReconstructionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpReconstructionExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoScpSectorImageReader.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpSectorImageReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoSectorCandidate.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorCandidate.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoSectorCandidateSet.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorCandidateSet.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoSectorDataNormalizer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorDataNormalizer.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoSectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/IsoSectorMeasurement.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorMeasurement.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/RegularSectorGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/RegularSectorGeometry.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/RegularSectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/RegularSectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/ScpReconstructionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/ScpReconstructionExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/SectorCandidateSelector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/SectorCandidateSelector.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/AppleIISectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleIISectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/AppleRwts18SectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleRwts18SectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/AppleSectorImageBuilderExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleSectorImageBuilderExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/DecodedAppleSectorSelection.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/DecodedAppleSectorSelection.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple/MacintoshGcrSectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/MacintoshGcrSectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/Commodore1541SectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Commodore1541SectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/Commodore900SectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Commodore900SectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/IbmRawSectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/IbmRawSectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/LinearSectorImageBuilder.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/LinearSectorImageBuilder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/LinearSectorImageGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/LinearSectorImageGeometry.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Reconstruction/Sectors/SectorImageBuilderExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/SectorImageBuilderExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Blocks/BlockMediaImageRepresentation.cs` vers `src/GWGUI.MediaEngine/Images/Models/Blocks/BlockMediaImageRepresentation.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/EncodedTrackImageFactory.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/EncodedTrackImageFactory.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxBitReader.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxBitReader.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxBitstream.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxBitstream.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxDecodingParameters.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxDecodingParameters.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxMediaImageRepresentation.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxMediaImageRepresentation.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxRevolution.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxRevolution.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxRevolutionFactory.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxRevolutionFactory.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxTimingEstimator.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTimingEstimator.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxTimingMode.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTimingMode.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/FluxTransitionDecoder.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/ProtectedTrack.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/ProtectedTrack.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/ProtectedTrackImage.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/ProtectedTrackImage.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/TrackFeature.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/TrackFeature.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/TrackFeatureKind.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/TrackFeatureKind.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/TrackFluxRevolution.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/TrackFluxRevolution.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Flux/TrackTimingSegment.cs` vers `src/GWGUI.MediaEngine/Images/Models/Flux/TrackTimingSegment.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Optical/OpticalMediaImageRepresentation.cs` vers `src/GWGUI.MediaEngine/Images/Models/Optical/OpticalMediaImageRepresentation.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Sectors/SectorAddress.cs` vers `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorAddress.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Sectors/SectorBlock.cs` vers `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorBlock.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Sectors/SectorImage.cs` vers `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorImage.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Sectors/SectorImageExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorImageExceptions.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Sectors/SectorMediaImageRepresentation.cs` vers `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorMediaImageRepresentation.cs` en conservant son contenu avant le raccordement des espaces de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Representations/Sequential/SequentialMediaImageRepresentation.cs` vers `src/GWGUI.MediaEngine/Images/Models/Sequential/SequentialMediaImageRepresentation.cs` en conservant son contenu avant le raccordement des espaces de noms.
+  - [x] Raccorder les espaces de noms des modèles et de la lecture.
+    - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskTrackDiagnostic.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/BlockMediaInspectorPresenter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/OpticalMediaInspectorPresenter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/ScpInspectorPresenter.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/SectorMediaInspectorPresenter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/SequentialMediaInspectorPresenter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Rendering/Scp/ScpTrackDrawingFunctions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Rendering/Scp/ScpTrackPreparationFunctions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Rendering/Scp/SkiaScpRenderer.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/MediaVisualizationController.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Services/Emulation/EmulationModuleLoadContext.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Services/Visualization/ScpInspectorController.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/GlobalUsings.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/ScpSectorDecodingComposition.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/SequentialMediaComposition.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/SequentialSignalDecodeResult.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/AmigaAdfConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/AmstradDskConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/DecRx02ConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/EpsonQx10ConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/IbmRawConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/MsxRawConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/UcsdImgConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Acorn/AcornAdfConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Acorn/BbcDfsConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/AppleNibbleConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/AppleSectorConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/AppleSectorConversionValidationFunctions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/LisaConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/MacintoshConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariScpRuntimeConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariStConversionExceptions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariStConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtariStGeometryTransformer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Atari/AtrConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Commodore/CoherentConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Commodore/CommodoreDosConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Commodore/D81ConversionService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12ReinterpretationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12ReinterpretationService.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12TargetImageWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Optical/OpticalImageConversionService.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/DecodedSector.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderCatalog.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderConfidence.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecodeResult.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderRegistry.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderRegistryExceptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecoderScoring.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxDecodeSelection.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxStructure.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxStructureDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/FluxStructureKind.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/IFluxDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/SectorIntegrityKind.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleBitLatch.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleIwmGcrDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleTrackDecodeResult.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleTrackDecodeSelector.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleTrackSelectionRules.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Aed6200pMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AmigaMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleIIGcrDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleLisaFileWareGcrDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleMacGcrDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleRwts18Decoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/ArburgDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/CenturionMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Commodore900GcrDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/CommodoreGcrDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DataGeneralFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DecRx02Decoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/EmuFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/HeathkitFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/HpMmfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/IsoFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/IsoMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MembrainMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicralNFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicropolisMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/NorthstarMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/QdMo5MfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/RawFluxDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/TycomFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Victor9kGcrDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Aed6200pMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AmigaMfmCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AmigaMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIIGcrCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIIGcrFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIwmGcrCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIwmGcrFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleRwts18Codec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleRwts18Format.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgChecksum.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgSystemCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CenturionMfmDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CenturionMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Commodore900GcrDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Commodore900GcrFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrChecksum.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CommodoreGcrFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralChecksum.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralFmDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralFmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02Descriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02Format.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02M2FmCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/EmuFmDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/EmuFmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/FluxCodecDisplayNames.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/FluxCodecIds.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/FmAddressMarkPatterns.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HpMmfmCodec.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HpMmfmDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HpMmfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoFmDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoFmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoMfmDescriptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoMfmPllSelector.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MembrainMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MfmEncoding.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicralNFmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicropolisMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/NorthstarMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/QdMo5MfmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/RawFluxAnalysisDefinitions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/TycomFmFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Victor9kGcrFormat.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/I86f/I86fSectorImageExceptions.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/I86f/I86fSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/SequentialDecoderRegistry.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Msx/MsxTapeDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Tzx/TzxSignalDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/EncodedTrack.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/RareTrackEncodingProfiles.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/SectorImageTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/TrackEncoderBase.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Apple/AppleIITrackEncodingService.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Apple/AppleRwts18TrackEncodingService.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/AppleIIGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/ArburgTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/CenturionMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/Commodore900GcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/CommodoreGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/DataGeneralFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/DecRx02TrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/EmuFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/HeathkitFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/HpMmfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/IsoFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/IsoMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/MembrainMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/MicralNFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/MicropolisMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/NorthstarMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/QdMo5MfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/TycomFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/Victor9kGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/SequentialEncoderRegistry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Atari/AtariCassetteEncoder.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Msx/MsxTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Spectrum/SpectrumTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Tzx/TzxSignalEncoder.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageDecodeScore.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/PhysicalSectorTreeBuilder.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/AdditionalImageInterpretationRegistry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts/IAdditionalImageInterpretationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts/IRecognizedImageNormalizer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/CompatibleFormatInterpretationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/IbmAdditionalImageInterpretationPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/MsxAdditionalImageInterpretationPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/AmigaCataloglessBootImageDetector.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentDetector.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadataFactory.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskSystemResolver.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredFileSystem.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentDecoderAdapter.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/IFileSystemReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/MediaFileSystemsReaderAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11BlockPairReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11DirectoryReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11FileContentReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11FileSystemReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12ClusterChainReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12DirectoryReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12FatReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Fat12/FatSectorReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdBlockReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdDirectoryEntryReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdDirectoryHeaderReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileContentReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileSystemReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfGeometry.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AdfReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfGeometry.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfWriter.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleContainerRouter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apridisk/ApridiskReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrExceptions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atx/AtxReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsImageWriter.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosContainerExceptions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CommodoreDos/CommodoreDosContainerWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Exceptions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Cp2/Cp2Reader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskImage.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D64/D64Reader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D71/D71Reader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Reader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/D81/D81Writer.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyImage.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyMetadataFunctions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyReader.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeProtectedTrackImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeTrack.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeWriter.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fProtectedTrackImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/I86f/I86fReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdImage.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdMetadataFunctions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/ImageDisk/ImdReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaExceptions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Apple35RawImageReader.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleII525RawImageReader.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageReadResult.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CoherentRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Commodore900Geometry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CommodoreDosGeometry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10GeometryCatalog.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10RawImageReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10RawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LinearSectorImageWriter.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LisaFileWareGeometry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshGcrGeometry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdIbmMfmGeometry.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/UcsdRawImageReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Reader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Writer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ProtectedTrackScpImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDiskTypeCatalog.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpEncodedTrackFluxService.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpProtectedTrackImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolution.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/ScpFluxToSectorRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpConversionService.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpFileConversionService.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorToFluxRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageCandidate.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspection.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpImageExplorationService.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbe.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Recognition/ScpFamilyProbeCatalog.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reconstruction/ScpTrackDecodeWindow.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reconstruction/ScpTrackDecodeWindowFactory.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStWriter.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0HeaderFactory.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Image.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Reader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Writer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TwoImg/TwoImgWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Xfd/XfdReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Chd/ChdHardDiskWriter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Reader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Qcow2/Qcow2Writer.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Raw/RawHardDiskWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vdi/VdiWriter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhd/VhdWriter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vhdx/VhdxWriter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkWriter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Alcohol/AlcoholMdsReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Chd/ChdOpticalReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/CloneCd/CloneCdReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoWriter.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/AtariCas/AtariCasWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/MsxCas/MsxCasWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Tzx/TzxWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Uef/UefWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeWriter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Encoding/ISequentialMediaEncoder.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Reading/IMediaImageReader.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/MigrationResult.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageDocumentFactory.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageReadingService.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Blocks/BlockMediaDataReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Optical/OpticalSectorReader.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Sources/ChdUncompressedRandomAccessData.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Sources/FileRandomAccessData.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Sources/MemoryRandomAccessData.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Sources/UnavailableRandomAccessData.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/AppleRawImageProbe.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DecRx02ImageProbe.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageNotRecognizedException.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionContext.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionExceptions.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionFailure.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageRecognitionRegistry.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskSystemIds.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/IDiskImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionCandidate.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionContext.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionRegistry.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/MediaRecognitionResult.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Td0SectorImageClassifier.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Ibm/IbmDosDiskProbe.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Ibm/IbmDosOemProbe.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Msx/MsxBootSectorProbe.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Msx/MsxSectorImageInterpreter.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/AmstradImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/AppleImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/CoherentImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/DecRx02ImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/ExtensionHintRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/MsxImageRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/RawImgRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/ReaderBackedRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/ScpRecognitionPolicy.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/CommodoreScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/RegularSectorGeometry.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/RegularSectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/ScpReconstructionExceptions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/SectorCandidateSelector.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleIIScpSectorReconstructor.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpReconstructionDefinitions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpSectorDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/Atari8BitIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/AtariScpReconstructionExceptions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/AtariScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/EpsonQx10/EpsonQx10Exceptions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/EpsonQx10/EpsonQx10IsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/EpsonQx10/EpsonQx10SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AmstradIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AutomaticIsoScpSelectionRules.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/BbcIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/FatIsoScpGeometryDetector.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/GenericIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpCandidateDecoder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpReconstructionDefinitions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpReconstructionExceptions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpSectorImagePolicyRegistry.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorCandidate.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorCandidateSet.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorDataNormalizer.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoSectorMeasurement.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/UcsdIsoScpSectorImagePolicy.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Commodore1541SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Commodore900SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/IbmRawSectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/LinearSectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/LinearSectorImageGeometry.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/SectorImageBuilderExceptions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleIISectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleRwts18SectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleSectorImageBuilderExceptions.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/DecodedAppleSectorSelection.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/MacintoshGcrSectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Reconstruction` → `GWGUI.MediaEngine.Images.Reading.Reconstruction` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Blocks/BlockMediaImageRepresentation.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/EncodedTrackImageFactory.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxBitReader.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxBitstream.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxDecodingParameters.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxMediaImageRepresentation.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxRevolution.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxRevolutionFactory.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTimingEstimator.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTimingMode.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxTransitionDecoder.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/ProtectedTrack.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/ProtectedTrackImage.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/TrackFeature.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/TrackFeatureKind.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/TrackFluxRevolution.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/TrackTimingSegment.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Optical/OpticalMediaImageRepresentation.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorAddress.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorBlock.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorImage.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorImageExceptions.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorMediaImageRepresentation.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Sequential/SequentialMediaImageRepresentation.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/ISectorImageVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/SectorImageFluxVisualizer.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/SectorImageVisualizationPolicyRegistry.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/AppleVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/AtariVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/CommodoreVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/DecRx02VisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/ExactVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/PrefixVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/RareEncodedVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Policies/SectorImageVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/BlockMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/FluxMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/OpticalMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/SectorMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/SequentialMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Writing/FluxMediaImageWriterAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Writing/SectorMediaImageWriterAdapter.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs` : remplacer `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/InspectorSelectionScenarios.cs` : remplacer `GWGUI.MediaEngine.Decoding` → `GWGUI.MediaEngine.Images.Reading.Decoding`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer `GWGUI.MediaEngine.Reading` → `GWGUI.MediaEngine.Images.Reading` ; `GWGUI.MediaEngine.Recognition` → `GWGUI.MediaEngine.Images.Reading.Recognition` ; `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/SequentialContentFileSystemReaderTests.cs` : remplacer `GWGUI.MediaEngine.Representations` → `GWGUI.MediaEngine.Images.Models`.
+  - [x] Corriger la référence abrégée au modèle de flux.
+    - [x] Modifier `src/GWGUI.MediaEngine/PhysicalMedia/Writing/FloppyMediaWritePlanningService.cs` : remplacer `Representations.Flux.FluxRevolution` par `GWGUI.MediaEngine.Images.Models.Flux.FluxRevolution`.
+  - [x] Ranger le modèle d’option de commande partagé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Commands/Options/EnabledOption.cs` vers `src/GWGUI.MediaEngine/Contracts/Options/EnabledOption.cs` sans changer son contenu avant le raccordement des références.
+  - [x] Raccorder les utilisateurs du modèle d’option.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.App/Services/Maintenance/MaintenanceToolsController.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/ConversionOperationViewModel.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Operations/Options/FlagOptionViewModel.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Operations/Options/OperationOptionViewModelBase.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Operations/Options/ValueOptionViewModel.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Operations/ReadOperationViewModel.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Operations/WriteOperationViewModel.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Commands/Building/GwCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Commands/Building/IGwCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Commands/Options/GwOptionValidator.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Conversion/ConversionCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Maintenance/MaintenanceCommands.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Maintenance/ToolCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Read/ReadRequest.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Write/WriteRequest.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Options/EnabledOption.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/BuiltInDiskDefinitions.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/CommandsAndParsing/CommandArgumentsScenarios.cs` : remplacer `GWGUI.MediaEngine.Commands.Options` par `GWGUI.MediaEngine.Contracts.Options`.
+
+  - [x] Regrouper les services d’écriture des fichiers image sous `Images/Writing`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Writing/AtomicMediaFileSetWriter.cs` vers `src/GWGUI.MediaEngine/Images/Writing/AtomicMediaFileSetWriter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Writing/FluxMediaImageWriterAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Writing/FluxMediaImageWriterAdapter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Writing/MediaImageWriterAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Writing/MediaImageWriterAdapter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Writing/MediaImageWriterRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Writing/MediaImageWriterRegistry.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Writing/MediaImageWritingService.cs` vers `src/GWGUI.MediaEngine/Images/Writing/MediaImageWritingService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Writing/SectorMediaImageWriterAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Writing/SectorMediaImageWriterAdapter.cs` en conservant le code.
+  - [x] Raccorder les références aux services d’écriture des images.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/MediaConversionService.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Optical/OpticalImageConversionService.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/HardDisk/Vmdk/VmdkWriter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueWriter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Simh/SimhTapeWriter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Wav/WavTapeWriter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/AtomicMediaFileSetWriter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/FluxMediaImageWriterAdapter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaImageWriterAdapter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaImageWriterRegistry.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaImageWritingService.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/SectorMediaImageWriterAdapter.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs` : remplacer `GWGUI.MediaEngine.Writing` par `GWGUI.MediaEngine.Images.Writing`.
+
+  - [x] Ranger la composition du décodage SCP avec le format.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Composition/ScpSectorDecodingComposition.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/ScpSectorDecodingComposition.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/ScpSectorDecodingComposition.cs` : remplacer son espace de noms `GWGUI.MediaEngine.Composition` par `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : ajouter l’import `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` pour `ScpSectorDecodingComposition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` : ajouter l’import `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding` pour `ScpSectorDecodingComposition`.
+  - [x] Ranger les constantes de visualisation propres au format SCP.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/ScpVisualizationDefaults.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Visualization/ScpVisualizationDefaults.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Visualization/ScpVisualizationDefaults.cs` : remplacer l’espace de noms `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/SectorImageFluxVisualizer.cs` : importer `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Visualization` pour `ScpVisualizationDefaults`.
+  - [x] Regrouper les traitements du visualiseur sous `Images/Visualization`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/ISectorImageVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/ISectorImageVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/MediaVisualizationDescriptor.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationDescriptor.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/MediaVisualizationElement.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationElement.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/MediaVisualizationProviderRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationProviderRegistry.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/AppleVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/AppleVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/AtariVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/AtariVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/CommodoreVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/CommodoreVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/DecRx02VisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/DecRx02VisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/ExactVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/ExactVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/PrefixVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/PrefixVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/RareEncodedVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/RareEncodedVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Policies/SectorImageVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Policies/SectorImageVisualizationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Providers/BlockMediaVisualizationProvider.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Providers/BlockMediaVisualizationProvider.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Providers/FluxMediaVisualizationProvider.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Providers/FluxMediaVisualizationProvider.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Providers/OpticalMediaVisualizationProvider.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Providers/OpticalMediaVisualizationProvider.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Providers/SectorMediaVisualizationProvider.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Providers/SectorMediaVisualizationProvider.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/Providers/SequentialMediaVisualizationProvider.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/Providers/SequentialMediaVisualizationProvider.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/SectorImageFluxVisualizer.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/SectorImageFluxVisualizer.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/SectorImageVisualizationExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Visualization/SectorImageVisualizationPolicyRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationPolicyRegistry.cs` en conservant le code.
+  - [x] Raccorder les espaces de noms du visualiseur.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/MediaVisualizationController.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/SectorMediaView.xaml.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerLegend.xaml.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaVisualizationComposition.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/SectorImageTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Visualization/IMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/ISectorImageVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationDescriptor.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationElement.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationProviderRegistry.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AppleVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AtariVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/CommodoreVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/DecRx02VisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/ExactVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/PrefixVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/RareEncodedVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/SectorImageVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Providers/BlockMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Providers/FluxMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Providers/OpticalMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Providers/SectorMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Providers/SequentialMediaVisualizationProvider.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/SectorImageFluxVisualizer.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationExceptions.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/SectorImageVisualizationPolicyRegistry.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer `GWGUI.MediaEngine.Visualization` par `GWGUI.MediaEngine.Images.Visualization`.
+
+  - [x] Supprimer les dossiers source devenus vides après les déplacements.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Atari/ClkGraphicsLibrary`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple/Macintosh/Hfs`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple/Macintosh/Mfs`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Amiga/FlatArchive`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Sequential/Commodore`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction/Sectors/Apple`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Sequential/Spectrum`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple/InformXzip`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/CommodoreDos`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple/Macintosh`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Acorn/FileCore`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Representations/Sequential`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Commodore/Dos`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Sequential/Acorn`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Sequential/Atari`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Acorn/BbcDfs`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/AcornAtom`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction/EpsonQx10`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple/ProDos`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Partitioning`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Atari/KFile`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Representations/Sectors`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/DiskCopy`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Apridisk`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Sequential/Tzx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Visualization/Providers`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Sequential/Msx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Representations/Optical`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Optical/Alcohol`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Optical/CloneCd`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Visualization/Policies`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction/Sectors`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Acorn/Adfs`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Representations/Blocks`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Optical/BinCue`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple/Lisa`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/AtariCas`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/TwoImg`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple/Dos`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Commodore`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Atari/Dos`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Representations/Flux`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction/Atari`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction/Apple`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Recognition/Policies`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Definitions`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk/Vhd`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk/Vdi`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk/Chd`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Scp/Sectors`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk/Raw`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Apple`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Coherent`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Optical/Chd`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/MsxCas`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Optical/Iso`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/I86f`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Sequential`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Rx02`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction/Scp`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction/Iso`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Atr`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Adf`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Xfd`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Woz`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Scp`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Atx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Nib`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/D64`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Raw`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Cp2`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/D81`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/D71`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Hfe`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/Msa`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Detection`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Atari`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Decoders`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/Simh`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy/St`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Apple`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Acorn`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/HardDisk`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/Wav`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/Uef`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape/Tzx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Commands/Options`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Recognition/Scp`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/PhysicalWriting`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Cpm`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Recognition/Msx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Recognition/Ibm`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reading/Sources`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Scp`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reading/Optical`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Parsing`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Optical`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Representations`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Apple`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Scp`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Floppy`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reading/Blocks`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reconstruction`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Visualization`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/I86f`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding/Scp`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats/Tape`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Recognition`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Acquisition`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Decoding`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Commands`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Reading`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Writing`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Formats`.
+
+  - [x] Ranger la lecture des métadonnées de capture SCP avec ce format.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/ScpCaptureInfo.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCaptureInfo.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/ScpCaptureInfoReader.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCaptureInfoReader.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCaptureInfo.cs` : remplacer son espace de noms `GWGUI.MediaEngine.Exploration` par `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCaptureInfoReader.cs` : remplacer son espace de noms `GWGUI.MediaEngine.Exploration` par `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection`.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` : remplacer les noms qualifiés `GWGUI.MediaEngine.Exploration.ScpCaptureInfo` et `GWGUI.MediaEngine.Exploration.ScpCaptureInfoReader` par ceux du dossier SCP Inspection.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ReadViews/ReadOperationScenarios.cs` : importer `GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection` pour `ScpCaptureInfo`.
+  - [x] Regrouper les encodeurs et définitions propres aux disquettes Apple avec leur format.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Apple/AppleIITrackEncodingExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Apple/AppleIITrackEncodingService.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Apple/AppleRwts18EncodingExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18EncodingExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Apple/AppleRwts18TrackEncodingService.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18TrackEncodingService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Apple/AppleTrackEncodingTimings.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleTrackEncodingTimings.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Definitions/AppleLisaFileWareGcrFormat.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/Definitions/AppleLisaFileWareGcrFormat.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Definitions/AppleTrackFormatCodes.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/Definitions/AppleTrackFormatCodes.cs` en conservant le code.
+  - [x] Raccorder les références aux encodeurs et définitions Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Apple/AppleNibbleConversionService.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingExceptions.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingService.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18EncodingExceptions.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18TrackEncodingService.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleTrackEncodingTimings.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/Definitions/AppleLisaFileWareGcrFormat.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/Definitions/AppleTrackFormatCodes.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Encoders/AppleMacGcrTrackEncoder.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/AppleDiskImageWriter.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleIwmGcrDecoder.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleRwts18SectorImageBuilder.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AppleVisualizationPolicy.cs` : remplacer les espaces de noms Apple `GWGUI.MediaEngine.Encoding.Apple` et `GWGUI.MediaEngine.Encoding.Definitions` par ceux du format Apple.
+
+  - [x] Raccorder les encodeurs Apple au registre commun des encodeurs de pistes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingService.cs` : importer `GWGUI.MediaEngine.Encoding` pour `FluxEncoderRegistry` et `TrackSector`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18TrackEncodingService.cs` : importer `GWGUI.MediaEngine.Encoding` pour `FluxEncoderRegistry`.
+  - [x] Retirer les anciens sous-dossiers Apple vides d’Encoding.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Apple`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Definitions`.
+  - [x] Regrouper les encodeurs partagés sous `Images/Writing/Encoding`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/CommodoreTrackEncodingTimings.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/CommodoreTrackEncodingTimings.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/EncodedDiskTrack.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/EncodedDiskTrack.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/EncodedTrack.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/EncodedTrack.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/EncodedTrackTiming.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/EncodedTrackTiming.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/AmigaMfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AmigaMfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/AppleIIGcrTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleIIGcrTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/AppleMacGcrTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleMacGcrTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/AppleRwts18TrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleRwts18TrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/ArburgTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/ArburgTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/CenturionMfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/CenturionMfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/Commodore900GcrTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Commodore900GcrTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/CommodoreGcrTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/CommodoreGcrTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/DataGeneralFmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/DataGeneralFmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/DecRx02TrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/DecRx02TrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/EmuFmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/EmuFmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/HeathkitFmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/HeathkitFmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/HpMmfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/HpMmfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/IsoFmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoFmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/IsoMfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoMfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/MembrainMfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MembrainMfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/MicralNFmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicralNFmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/MicropolisMfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicropolisMfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/NorthstarMfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/NorthstarMfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/QdMo5MfmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/QdMo5MfmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/TycomFmTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/TycomFmTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Encoders/Victor9kGcrTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Victor9kGcrTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/FluxEncoderCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/FluxEncoderCatalog.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/FluxEncoderRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/FluxEncoderRegistry.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/FluxEncoderRegistryExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/FluxEncoderRegistryExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/ITrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/ITrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/MsbFirstBitPacker.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/MsbFirstBitPacker.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/RareTrackEncodingProfiles.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/RareTrackEncodingProfiles.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/SectorImageTrackEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/SectorImageTrackEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/SectorImageTrackTimingCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/SectorImageTrackTimingCatalog.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Sequential/Atari/AtariCassetteEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Atari/AtariCassetteEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Sequential/Msx/MsxTapeEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Sequential/SequentialEncoderRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/SequentialEncoderRegistry.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Sequential/Spectrum/SpectrumTapeEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Spectrum/SpectrumTapeEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/Sequential/Tzx/TzxSignalEncoder.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackBitEncoding.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackBitEncoding.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackEncoderBase.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncoderBase.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackEncodeRequest.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodeRequest.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackEncodingAttributeKeys.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingAttributeKeys.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackEncodingDefaults.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingDefaults.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackEncodingExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackEncodingLimits.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingLimits.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackEncodingTimings.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingTimings.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Encoding/TrackSector.cs` vers `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackSector.cs` en conservant le code.
+  - [x] Raccorder les espaces de noms des encodeurs partagés.
+    - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskWriting/PhysicalDiskWriteTrack.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.App/Functions/Services/PhysicalDiskWriting/EncodedTrackPrecompensationFunctions.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/SequentialMediaComposition.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/HfeConversionService.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/CommodoreTrackEncodingTimings.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/EncodedDiskTrack.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/EncodedTrack.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/EncodedTrackTiming.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AmigaMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleIIGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleLisaFileWareGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleMacGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleRwts18TrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/ArburgTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/CenturionMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Commodore900GcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/CommodoreGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/DataGeneralFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/DecRx02TrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/EmuFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/HeathkitFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/HpMmfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MembrainMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicralNFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MicropolisMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/NorthstarMfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/QdMo5MfmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/TycomFmTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Victor9kGcrTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/FluxEncoderCatalog.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/FluxEncoderRegistry.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/FluxEncoderRegistryExceptions.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/ITrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/MsbFirstBitPacker.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/RareTrackEncodingProfiles.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/SectorImageTrackEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/SectorImageTrackTimingCatalog.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Atari/AtariCassetteEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Msx/MsxTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/SequentialEncoderRegistry.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Spectrum/SpectrumTapeEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackBitEncoding.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncoderBase.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodeRequest.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingAttributeKeys.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingDefaults.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingExceptions.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingLimits.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingTimings.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackSector.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingService.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18TrackEncodingService.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/HfeWriter.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibReader.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibWriter.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorImageScpConversionService.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpEncodedTrackFluxService.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozReader.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozWriter.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/EncodedTrackImageFactory.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Models/Flux/FluxRevolutionFactory.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DataGeneralFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/HeathkitFmDecoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/NorthstarMfmDecoder.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleRwts18Format.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralFmFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicralNFmFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MicropolisMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/NorthstarMfmFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/QdMo5MfmFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/TycomFmFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Victor9kGcrFormat.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/ISectorImageVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AppleVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/CommodoreVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/DecRx02VisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/RareEncodedVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/SectorImageVisualizationPolicy.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/SectorImageFluxVisualizer.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `src/GWGUI.MediaEngine/PhysicalMedia/Writing/FloppyMediaWritePlanningService.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/InspectorSelectionScenarios.cs` : remplacer `GWGUI.MediaEngine.Encoding` par `GWGUI.MediaEngine.Images.Writing.Encoding`.
+
+  - [x] Supprimer les anciens dossiers d’encodage devenus vides.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Sequential/Commodore`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Sequential/Spectrum`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Sequential/Acorn`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Sequential/Atari`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Sequential/Msx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Sequential/Tzx`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Sequential`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding/Encoders`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Encoding`.
+
+  - [x] Regrouper les traitements de conversion d’image sous `Images/Conversion`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Acorn/AcornAdfConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Acorn/AcornAdfConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Acorn/BbcDfsConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Acorn/BbcDfsConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/AmigaAdfConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/AmstradDskConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/AmstradDskConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/AppleIISectorOrderConverter.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleIISectorOrderConverter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/AppleIISectorOrderExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleIISectorOrderExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/AppleNibbleConversionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleNibbleConversionExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/AppleNibbleConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleNibbleConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/AppleSectorConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleSectorConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/AppleSectorConversionValidationFunctions.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleSectorConversionValidationFunctions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/LisaConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/LisaConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Apple/MacintoshConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Apple/MacintoshConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Atari/AtariScpRuntimeConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariScpRuntimeConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Atari/AtariStConversionExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariStConversionExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Atari/AtariStConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariStConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Atari/AtariStGeometryTransformer.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariStGeometryTransformer.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Atari/AtrConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Atari/AtrPayloadWriter.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrPayloadWriter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Commodore/CoherentConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Commodore/CoherentConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Commodore/CommodoreDosConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Commodore/CommodoreDosConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Commodore/D81ConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Commodore/D81ConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionCompatibilityValidator.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionCompatibilityValidator.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionFidelity.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionFidelityLevel.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelityLevel.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionModels.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionModels.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionOutputFactory.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionOutputFactory.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionPlanner.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionPlanner.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionSourceCompatibility.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionSourceCompatibility.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/ConversionTagFormatter.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/ConversionTagFormatter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/DecRx02ConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/DecRx02ConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/EpsonQx10ConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/EpsonQx10ConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12ReinterpretationExceptions.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12ReinterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationPolicy.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12ReinterpretationService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12TargetGeometry.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12TargetGeometry.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12TargetGeometryCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12TargetGeometryCatalog.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Fat12/Fat12TargetImageWriter.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12TargetImageWriter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Flux/FluxBitCellConverter.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxBitCellConverter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Flux/FluxContainerConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Flux/HfeFluxParityValidator.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Flux/HfeFluxParityValidator.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Flux/HfeScpParityValidator.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Flux/HfeScpParityValidator.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Flux/ScpFluxParityValidator.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Flux/ScpFluxParityValidator.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Flux/ScpHfeEncodingResolver.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Flux/ScpHfeEncodingResolver.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/HfeConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/HfeConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/I86fBitCellFluxConverter.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/I86fBitCellFluxConverter.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/IbmRawConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/MediaConversionRequest.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionRequest.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/MediaConversionResult.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionResult.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/MediaConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/MediaRepresentationConversionResult.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/MediaRepresentationConversionResult.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/MediaRepresentationConverterRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/MediaRepresentationConverterRegistry.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/MsxRawConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/MsxRawConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Optical/OpticalImageConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Optical/OpticalImageConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/Sequential/SequentialMediaConversionService.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Conversion/UcsdImgConversionService.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/UcsdImgConversionService.cs` en conservant le code.
+  - [x] Raccorder les espaces de noms de la conversion d’image.
+    - [x] Modifier `src/GWGUI.App/Contracts/Services/Dialogs/ConversionConflictDecision.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/WriteTabController.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Functions/ViewModels/Conversion/ConversionConflictResolutionFunctions.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Interfaces/Services/Dialogs/IBusinessDialogService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Presenters/Conversion/ConversionFormatPresenter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Services/Dialogs/WpfBusinessDialogService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaEngineParityCatalog.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/ConversionOperationViewModel.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Conversion/ConversionFormatControl.xaml.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Conversion/ConversionFormatsSection.xaml.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.App/Views/Dialogs/Conversion/ConversionConflictWindow.xaml.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Commands/Building/GwCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Commands/Building/IGwCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.Infrastructure/Conversion/ConversionCommandBuilder.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Acorn/AcornAdfConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Acorn/BbcDfsConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/AmigaAdfConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/AmstradDskConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleIISectorOrderConverter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleIISectorOrderExceptions.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleNibbleConversionExceptions.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleNibbleConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleSectorConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/AppleSectorConversionValidationFunctions.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/LisaConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Apple/MacintoshConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariScpRuntimeConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariStConversionExceptions.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariStConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtariStGeometryTransformer.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Atari/AtrPayloadWriter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Commodore/CoherentConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Commodore/CommodoreDosConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Commodore/D81ConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionCompatibilityValidator.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelity.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionFidelityLevel.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionModels.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionOutputFactory.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionPlanner.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionSourceCompatibility.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionTagFormatter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/DecRx02ConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/EpsonQx10ConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationExceptions.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationPolicy.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12TargetGeometry.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12TargetGeometryCatalog.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12TargetImageWriter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxBitCellConverter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Flux/HfeFluxParityValidator.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Flux/HfeScpParityValidator.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Flux/ScpFluxParityValidator.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Flux/ScpHfeEncodingResolver.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/HfeConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/I86fBitCellFluxConverter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/IbmRawConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionRequest.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionResult.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaRepresentationConversionResult.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaRepresentationConverterRegistry.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MsxRawConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Optical/OpticalImageConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Sequential/SequentialMediaConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/UcsdImgConversionService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Hfe/ProtectedTrackHfeImageAdapter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleII525RawImageReader.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleRawImageWriter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/ScpFluxToSectorRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/SectorToFluxRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/I86f/I86fSectorImageReader.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleIISectorImageBuilder.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Conversion/IMediaRepresentationConverter.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `tests/GWGUI.Tests/Application/OutputNaming/SequenceAndTagsScenarios.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs` : remplacer `GWGUI.MediaEngine.Conversion` par `GWGUI.MediaEngine.Images.Conversion`.
+
+  - [x] Corriger les deux références abrégées au service FAT12 après son déplacement.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer `Conversion.Fat12.` par `GWGUI.MediaEngine.Images.Conversion.Fat12.` pour le service et le writer FAT12.
+  - [x] Supprimer les anciens dossiers de conversion devenus vides.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Sequential`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Commodore`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Optical`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Acorn`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Apple`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Atari`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Fat12`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion/Flux`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Conversion`.
+
+  - [x] Ranger chaque assemblage d’image avec le traitement qu’il construit.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` vers `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` : remplacer l’espace de noms `GWGUI.MediaEngine.Composition` par `GWGUI.MediaEngine.Images.Writing`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaVisualizationComposition.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationComposition.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/MediaVisualizationComposition.cs` : remplacer l’espace de noms `GWGUI.MediaEngine.Composition` par `GWGUI.MediaEngine.Images.Visualization`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` vers `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : remplacer l’espace de noms `GWGUI.MediaEngine.Composition` par `GWGUI.MediaEngine.Images.Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : importer les compositions de `Images/Writing`, `Images/Visualization` et `Images/Conversion`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : importer `GWGUI.MediaEngine.Images.Writing` pour la composition d’écriture.
+  - [x] Raccorder la composition de conversion aux assemblages encore communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : importer `GWGUI.MediaEngine.Composition` pour les assemblages de reconnaissance et de média séquentiel.
+  - [x] Ranger l’assemblage des lecteurs d’images avec la lecture.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` : remplacer l’espace de noms `GWGUI.MediaEngine.Composition` par `GWGUI.MediaEngine.Images.Reading`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : importer `GWGUI.MediaEngine.Images.Reading` pour `MediaRecognitionComposition`.
+  - [x] Placer les interfaces du traitement des images sous `MediaEngine/Interfaces`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Formats/IImageFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Interfaces/Formats/IImageFormatCatalog.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Formats/IGwFormatCapabilityReader.cs` vers `src/GWGUI.MediaEngine/Interfaces/Formats/IGwFormatCapabilityReader.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Visualization/ISectorImageVisualizationPolicy.cs` vers `src/GWGUI.MediaEngine/Interfaces/Visualization/ISectorImageVisualizationPolicy.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Writing/Encoding/ITrackEncoder.cs` vers `src/GWGUI.MediaEngine/Interfaces/Writing/Encoding/ITrackEncoder.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IIsoScpSectorImagePolicy.cs` vers `src/GWGUI.MediaEngine/Interfaces/Reading/Reconstruction/Iso/IIsoScpSectorImagePolicy.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Reading/Decoding/IFluxDecoder.cs` vers `src/GWGUI.MediaEngine/Interfaces/Reading/Decoding/IFluxDecoder.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Reading/Recognition/IDiskImageRecognitionPolicy.cs` vers `src/GWGUI.MediaEngine/Interfaces/Reading/Recognition/IDiskImageRecognitionPolicy.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Formats/Detection/IImageFormatDetectionRule.cs` vers `src/GWGUI.MediaEngine/Interfaces/Formats/Detection/IImageFormatDetectionRule.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/IScpReader.cs` vers `src/GWGUI.MediaEngine/Interfaces/Formats/Floppy/Scp/IScpReader.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/IScpWriter.cs` vers `src/GWGUI.MediaEngine/Interfaces/Formats/Floppy/Scp/IScpWriter.cs` en conservant son espace de noms et son contenu.
+
+  - [x] Transférer le lecteur RT-11 et ses helpers à MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` : ajouter l’identifiant commun `DecRx02 = dec.rx02`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DecDiskImageFormatIds.cs` : faire référencer `DecRx02` à l’identifiant commun de MediaFileSystems.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11BlockPairReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11BlockPairReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11BlockPairResult.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11BlockPairResult.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11Date.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11Date.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11DirectoryEntryStatus.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11DirectoryEntryStatus.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11DirectoryReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11DirectoryReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11FileContent.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileContent.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11FileContentReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileContentReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11FileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileSystemReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11HomeBlockProbe.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11HomeBlockProbe.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11Primitives.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11Primitives.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11/Rt11Radix50.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11Radix50.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11BlockPairReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11BlockPairResult.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11Date.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11DirectoryEntryStatus.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11DirectoryReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileContent.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileContentReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileSystemExceptions.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileSystemLayout.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11FileSystemReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11HomeBlockProbe.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11Primitives.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11Radix50.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs` : enregistrer le lecteur RT-11 de MediaFileSystems via son adaptateur existant.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Dec/Rt11`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Dec`.
+
+  - [x] Raccorder la sonde RX02 au contrôle du home block RT-11 transféré.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Dec/Rt11/Rt11HomeBlockProbe.cs` : exposer le contrôle du home block au moteur.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DecRx02ImageProbe.cs` : importer le contrôle RT-11 depuis MediaFileSystems.
+  - [x] Transférer le lecteur UCSD et ses helpers à MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` : ajouter l’identifiant commun UCSD IBM MFM.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/UcsdDiskImageFormatIds.cs` : faire référencer l’identifiant commun UCSD.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdBlockReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdBlockReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdBlockReadResult.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdBlockReadResult.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdByteOrder.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdByteOrder.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdDate.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDate.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdDirectoryEntriesResult.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryEntriesResult.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdDirectoryEntryReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryEntryReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdDirectoryHeader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryHeader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdDirectoryHeaderReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryHeaderReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileContent.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileContent.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileContentReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileContentReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileKind.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileKind.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileSystemExceptions.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileSystemExceptions.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileSystemLayout.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileSystemLayout.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdFileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileSystemReader.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdName.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdName.cs` en conservant le code.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Ucsd/UcsdPrimitives.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdPrimitives.cs` en conservant le code.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdBlockReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdBlockReadResult.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdByteOrder.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDate.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryEntriesResult.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryEntryReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryHeader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdDirectoryHeaderReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileContent.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileContentReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileKind.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileSystemExceptions.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileSystemLayout.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdFileSystemReader.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdName.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Ucsd/UcsdPrimitives.cs` : adapter son espace de noms et ses références aux types communs de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs` : enregistrer le lecteur UCSD de MediaFileSystems via son adaptateur existant.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Ucsd`.
+
+  - [x] Placer les interfaces du résultat média remis à App sous `MediaEngine/Interfaces`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/IDiagnostic.cs` vers `src/GWGUI.MediaEngine/Interfaces/IDiagnostic.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/IEntree.cs` vers `src/GWGUI.MediaEngine/Interfaces/IEntree.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/IEtatLectureDisquette.cs` vers `src/GWGUI.MediaEngine/Interfaces/IEtatLectureDisquette.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/IFormatDetecte.cs` vers `src/GWGUI.MediaEngine/Interfaces/IFormatDetecte.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/IImageDisquette.cs` vers `src/GWGUI.MediaEngine/Interfaces/IImageDisquette.cs` en conservant son espace de noms et son contenu.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/IPiste.cs` vers `src/GWGUI.MediaEngine/Interfaces/IPiste.cs` en conservant son espace de noms et son contenu.
+
+  - [x] Retirer la copie du marqueur SOS de MediaEngine.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Apple/Sos/SosBootFormat.cs` : exposer le contrôle du marqueur SOS au moteur.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/AppleRawImageProbe.cs` : utiliser le marqueur de MediaFileSystems et vérifier la capacité Apple dans le moteur.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Sos/SosBootFormat.cs` après raccordement de son seul appelant.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Sos`.
+  - [x] Retirer la copie des signatures Macintosh de MediaEngine.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MacintoshVolumeSignatures.cs` : exposer les signatures et l’enum MFS/HFS utilisés par le moteur.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/AppleRawImageProbe.cs` : importer les signatures Macintosh de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Apple35RawImageReader.cs` : importer l’enum Macintosh de MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/MacintoshVolumeSignatures.cs` après raccordement de ses deux appelants.
+  - [x] Retirer les copies inutilisées du nom des systèmes de fichiers et des variantes AmigaDOS.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemDisplayNames.cs` : aucun appelant ne l’utilise et MediaFileSystems possède sa définition.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosVariant.cs` : son seul appelant précédent était la copie de `FileSystemDisplayNames`.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Amiga`.
+  - [x] Raccorder les helpers FAT12 uniques de MediaFileSystems et retirer les copies de MediaEngine.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12LayoutReader.cs` : exposer le contrôle de disposition FAT12 consommé par la conversion.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/CompatibleFormatCatalog.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/IbmAdditionalImageInterpretationPolicy.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationPolicy.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12TargetGeometryCatalog.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmBootGeometryDetector.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmPcGeometryCatalog.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageGeometryDetector.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmRawImageWriter.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageReader.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxRawImageWriter.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/RawImgReader.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStGeometryDetector.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Ibm/IbmDosDiskProbe.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Ibm/IbmDosOemProbe.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Msx/MsxBootSectorProbe.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Msx/MsxSectorImageInterpreter.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Td0SectorImageClassifier.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Atari/AtariStIsoScpSectorImagePolicy.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/FatIsoScpGeometryDetector.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IbmPcIsoScpSectorImagePolicy.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/IbmRawSectorImageBuilder.cs` : utiliser `GWGUI.MediaFileSystems.FileSystems.Fat12` pour les helpers FAT12 communs.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12ClusterChain.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12ClusterChainReader.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12DirectoryReader.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12FatReader.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12FileSystemExceptions.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12FormatCatalog.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12Layout.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12LayoutReader.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12LegacyLayoutCatalog.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/Fat12Table.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatBootSectorLayout.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatBpbGeometry.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatBpbGeometryDetector.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatDateTime.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatDirectoryEntryReader.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatDirectoryLayout.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatMediaDescriptor.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatSectorRange.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Fat12/FatSectorReader.cs` après raccordement des appelants à MediaFileSystems.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Fat12`.
+- [x] Achever le retrait FAT12 de MediaEngine
+  - [x] Corriger la référence restante dans la géométrie IBM PC
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmPcGeometry.cs` : référencer `GWGUI.MediaFileSystems.FileSystems.Fat12.FatBootSectorLayout.SectorSize`.
+- [x] Supprimer le dossier racine Primitives de MediaEngine
+- [x] Ranger l’écriture atomique des images
+    - [x] Déplacer `src/GWGUI.MediaEngine/Primitives/AtomicFileWriter.cs` vers `src/GWGUI.MediaEngine/Images/Writing/AtomicFileWriter.cs` et déclarer `System.IO` et son nouvel espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Flux/FluxContainerConversionService.cs` : référencer l’écrivain dans `Images.Writing`.
+  - [x] Ranger les fonctions et le code de taille sectorielle
+    - [x] Déplacer `src/GWGUI.MediaEngine/Primitives/BitPrimitives.cs` vers `src/GWGUI.MediaEngine/Functions/BitPrimitives.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Primitives/Crc16Calculator.cs` vers `src/GWGUI.MediaEngine/Functions/Crc16Calculator.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Primitives/RotatingChecksumCalculator.cs` vers `src/GWGUI.MediaEngine/Functions/RotatingChecksumCalculator.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Primitives/SectorSizeCode.cs` vers `src/GWGUI.MediaEngine/Images/Models/Sectors/SectorSizeCode.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/AtariDiskImageFormatIds.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/IbmDiskImageFormatIds.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AcornAdfGeometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Adf/AmigaAdfGeometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingService.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18TrackEncodingService.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Atr/AtrLayout.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsGeometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsReader.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/CpcDsk/CpcDskLayout.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/DiskCopy/DiskCopyFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Msa/MsaLayout.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibLayout.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibReader.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleII525RawImageReader.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/AppleTaggedImageGeometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Commodore900Geometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/EpsonQx10GeometryCatalog.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/IbmPcGeometryCatalog.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LisaFileWareGeometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshGcrGeometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshMfmGeometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MsxDiskGeometryCatalog.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Rx02/DecRx02Geometry.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDiskTypeCatalog.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpFormatAlgorithms.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpRevolution.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/St/AtariStGeometryDetector.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/TeleDisk/Td0Crc16.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozCrc32.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Woz/WozLayout.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleBitLatch.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Apple/AppleIwmGcrDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Aed6200pMfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AmigaMfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleIIGcrDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/AppleRwts18Decoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/ArburgDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/CenturionMfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DataGeneralFmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/DecRx02Decoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/EmuFmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/HeathkitFmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/HpMmfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/IsoFmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/IsoMfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MembrainMfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/MicropolisMfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/NorthstarMfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/QdMo5MfmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/TycomFmDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Decoders/Victor9kGcrDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIIGcrFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/AppleIwmGcrFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgChecksum.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/ArburgSystemCodec.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/CenturionMfmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DataGeneralChecksum.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02Format.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/DecRx02M2FmCodec.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/EmuFmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmCodec.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HeathkitFmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/HpMmfmCodec.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoFmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/IsoMfmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MembrainMfmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/MfmEncoding.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/QdMo5MfmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/TycomFmFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Definitions/Victor9kGcrFormat.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/AmstradImageRecognitionPolicy.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleIIScpSectorReconstructor.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/CommodoreScpSectorImageReader.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleIISectorImageBuilder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleRwts18SectorImageBuilder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AppleVisualizationPolicy.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AtariVisualizationPolicy.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/DecRx02VisualizationPolicy.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/SectorImageVisualizationPolicy.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Aed6200pMfmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AmigaMfmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/AppleRwts18TrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/ArburgTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/CenturionMfmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/DataGeneralFmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/DecRx02TrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/EmuFmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/HeathkitFmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/HpMmfmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoFmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/IsoMfmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/MembrainMfmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/NorthstarMfmTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Encoders/Victor9kGcrTrackEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/MsbFirstBitPacker.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackBitEncoding.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/TrackEncodingLimits.cs` : actualiser les références aux fonctions et à la taille des secteurs.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Primitives`.
+- [x] Supprimer les imports en double issus du rangement des fonctions
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleIITrackEncodingService.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Apple/Encoding/AppleRwts18TrackEncodingService.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/BbcDfs/BbcDfsReader.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Nib/NibReader.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/Commodore900Geometry.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/LisaFileWareGeometry.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/MacintoshGcrGeometry.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpDiskTypeCatalog.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Acorn/AcornTapeDecoder.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/AmstradImageRecognitionPolicy.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/AmigaScpSectorImageReader.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleIIScpSectorReconstructor.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleMacScpSectorReconstructor.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Apple/AppleRwts18ScpSectorReconstructor.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/CommodoreScpSectorImageReader.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/DecRx02ScpSectorImageReader.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/AutomaticIsoScpSectorImagePolicy.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleIISectorImageBuilder.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Sectors/Apple/AppleRwts18SectorImageBuilder.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AppleVisualizationPolicy.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/AtariVisualizationPolicy.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/DecRx02VisualizationPolicy.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Policies/SectorImageVisualizationPolicy.cs` : supprimer les imports en double.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` : supprimer les imports en double.
+- [ ] Retirer les traitements propres à l’image du dossier Exploration
+  - [x] Ranger le score de décodage avec la lecture d’images
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/DiskImageDecodeScore.cs` vers `src/GWGUI.MediaEngine/Images/Reading/DiskImageDecodeScore.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : référencer le score depuis `Images.Reading`.
+  - [x] Ranger les résolveurs de format d’image avec sa lecture
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskProtectionResolver.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/DiskProtectionResolver.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskSystemResolver.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/DiskSystemResolver.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : référencer les métadonnées sous `Images.Reading.Metadata`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadataFactory.cs` : référencer les résolveurs sous `Images.Reading.Metadata`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : référencer les métadonnées sous `Images.Reading.Metadata`.
+- [x] Retirer les faux fichiers de secteurs de l’explorateur
+  - [x] Supprimer la construction de l’arborescence physique de repli
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : retourner un volume sans entrées lorsqu’aucun système de fichiers réel n’est reconnu.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : sélectionner une image sans fabriquer des fichiers de secteurs.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/Documents/PhysicalSectorTreeBuilder.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/Documents/PhysicalSectorEntryNames.cs` devenu sans appelant.
+- [x] Isoler la création des images vierges de la migration
+  - [x] Déplacer la fabrication des secteurs vierges dans Images/Creation
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Creation/BlankSectorImageFactory.cs` : reprendre sans changement les géométries et constructeurs des images vierges du service de migration.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : appeler la fabrique d’images vierges et retirer ses méthodes de fabrication dupliquées.
+- [x] Ranger les données de retour de la migration dans Contracts
+  - [x] Déplacer les modèles échangés avec App
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationLossKind.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationLossKind.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationLoss.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationLoss.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationValidationReport.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationValidationReport.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/MigrationResult.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/MigrationResult.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTarget.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/FileSystemMigrationTarget.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTargetCatalog.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationTargetOption.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationLossRow.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : référencer les modèles de migration dans `Contracts/Migration`.
+- [x] Supprimer les définitions de systèmes de fichiers encore copiées dans MediaEngine
+  - [x] Réutiliser les identifiants uniques de MediaFileSystems
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentDecoderAdapter.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/JolietExtensionReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/RockRidgeExtensionReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTargetCatalog.cs` : utiliser les identifiants de `GWGUI.MediaFileSystems.Definitions`.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : utiliser l’identifiant FAT12 de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : utiliser l’identifiant FAT12 de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : utiliser l’identifiant FAT12 de MediaFileSystems.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` après vérification de son équivalence.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemWarningMessages.cs` devenu sans appelant.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems/Definitions`.
+- [x] Ranger les données de progression de l’exploration dans les catégories communes
+  - [x] Déplacer le modèle et son enum
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Enums/MediaExplorationProgressStage.cs` vers `src/GWGUI.MediaEngine/Enums/MediaExplorationProgressStage.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Contracts/MediaExplorationProgress.cs` vers `src/GWGUI.MediaEngine/Contracts/MediaExplorationProgress.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : utiliser les nouveaux espaces de noms de progression.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : utiliser les nouveaux espaces de noms de progression.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : utiliser les nouveaux espaces de noms de progression.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/MediaExplorationProgress.cs` : utiliser le nouvel espace de noms de l’enum.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Enums`.
+- [x] Ranger la conversion des pistes SCP avec ce format
+  - [x] Renommer le convertisseur selon son rôle réel
+    - [x] Déplacer et renommer `src/GWGUI.MediaEngine/Exploration/Contracts/DiskTrackContractMapper.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpTrackContractMapper.cs`, avec la classe et l’espace de noms SCP.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : appeler `ScpTrackContractMapper` dans le format SCP.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs` : appeler `ScpTrackContractMapper` dans le format SCP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : appeler `ScpTrackContractMapper` dans le format SCP.
+- [x] Retirer le dossier Contracts vide sous Exploration
+  - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/Contracts` après déplacement de ses fichiers.
+- [x] Ranger la composition des codecs de bande avec les formats Tape
+  - [x] Déplacer la composition commune aux formats séquentiels
+    - [x] Déplacer `src/GWGUI.MediaEngine/Composition/SequentialMediaComposition.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialMediaComposition.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : référencer la composition sous `Images.Formats.Tape`.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : référencer la composition sous `Images.Formats.Tape`.
+- [x] Supprimer le dossier Operations de MediaEngine
+  - [x] Placer le catalogue et le service auprès de leurs responsabilités
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/FileSystemMigrationTargetCatalog.cs` vers `src/GWGUI.MediaEngine/Contracts/Migration/FileSystemMigrationTargetCatalog.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Operations/FileSystemMigrationService.cs` vers `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationTargetOption.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Conversion/FileMigrationLossRow.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : référencer le catalogue dans Contracts et le service dans Images/Creation selon son usage.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Operations`.
+- [x] Placer les lecteurs optiques de fichiers dans MediaFileSystems
+  - [x] Exposer les secteurs utilisateur des pistes déjà décodées
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Interfaces/IMediaOpticalTrack.cs` : ajouter la lecture d’un secteur utilisateur à l’interface de piste.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackDescriptor.cs` : implémenter cette lecture par `OpticalSectorReader`.
+  - [x] Déplacer les constantes et traitements propres aux systèmes de fichiers optiques
+    - [x] Déplacer `src/GWGUI.MediaEngine/Constants/Iso9660Constants.cs` vers `src/GWGUI.MediaFileSystems/Constants/Iso9660Constants.cs` avec son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Constants/UdfConstants.cs` vers `src/GWGUI.MediaFileSystems/Constants/UdfConstants.cs` avec son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfNameDecoder.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Udf/UdfNameDecoder.cs` avec ses imports.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfDescriptorValidator.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Udf/UdfDescriptorValidator.cs` avec ses imports.
+  - [x] Déplacer les lecteurs et raccorder leur appel depuis MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Iso9660/Iso9660FileSystemReader.cs` en utilisant les interfaces de média déjà décodé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Iso9660/JolietExtensionReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Iso9660/JolietExtensionReader.cs` en utilisant les constantes de MediaFileSystems.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Iso9660/RockRidgeExtensionReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Iso9660/RockRidgeExtensionReader.cs` en utilisant les interfaces et constantes de MediaFileSystems.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` vers `src/GWGUI.MediaFileSystems/FileSystems/Udf/UdfFileSystemReader.cs` en utilisant les interfaces de média déjà décodé.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Reading/MediaFileSystemsOpticalReaderAdapter.cs` : transmettre le document décodé aux lecteurs optiques et convertir leur résultat pour le registre actuel.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : enregistrer les quatre lecteurs de MediaFileSystems via cet adaptateur.
+    - [x] Supprimer les dossiers vides `src/GWGUI.MediaEngine/FileSystems/Iso9660` et `src/GWGUI.MediaEngine/FileSystems/Udf`.
+- [x] Supprimer la copie des erreurs du registre dans MediaEngine
+  - [x] Utiliser la définition de MediaFileSystems
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` : appeler `GWGUI.MediaFileSystems.FileSystemRegistryExceptions` pour les erreurs de configuration.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistryExceptions.cs` identique à celui de MediaFileSystems.
+- [x] Ranger toutes les interfaces encore dispersées dans les dossiers Interfaces
+  - [x] Ranger les interfaces de MediaFileSystems
+    - [x] Déplacer `src/GWGUI.MediaFileSystems/Migration/IMigrationNamePolicy.cs` vers `src/GWGUI.MediaFileSystems/Interfaces/Migration/IMigrationNamePolicy.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaFileSystems/Exploration/Sequential/IMediaSequentialContent.cs` vers `src/GWGUI.MediaFileSystems/Interfaces/Exploration/Sequential/IMediaSequentialContent.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaFileSystems/FileSystems/Acorn/FileCore/IFileCoreAddressResolver.cs` vers `src/GWGUI.MediaFileSystems/Interfaces/FileSystems/Acorn/FileCore/IFileCoreAddressResolver.cs` sans modifier son contrat.
+  - [x] Ranger les interfaces encore dépendantes des types de MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/IFileSystemReader.cs` vers `src/GWGUI.MediaEngine/Interfaces/Exploration/IFileSystemReader.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts/IRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` sans modifier son contrat.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts/IAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IAdditionalImageInterpretationPolicy.cs` sans modifier son contrat.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Interpretation/Contracts`.
+- [x] Donner le catalogue des lecteurs de fichiers à MediaFileSystems
+  - [x] Déplacer le catalogue et raccorder le registre existant
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemReaderCatalog.cs` vers `src/GWGUI.MediaFileSystems/Exploration/FileSystemReaderCatalog.cs` : construire directement les lecteurs de MediaFileSystems, dans leur ordre actuel.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/MediaFileSystemsReaderAdapter.cs` : adapter la collection fournie par le nouveau catalogue sans dupliquer sa liste.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` : créer ses adaptateurs depuis le catalogue de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : créer ses adaptateurs depuis le catalogue de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : créer ses adaptateurs depuis le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : utiliser le catalogue adapté par MediaEngine.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : utiliser le catalogue adapté par MediaEngine.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : utiliser le catalogue adapté par MediaEngine.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier les lecteurs du catalogue adapté par MediaEngine.
+- [x] Ranger le résultat d’ouverture transmis à App dans Contracts
+  - [x] Déplacer le modèle et ses références
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/MediaOpeningAnalysisResult.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/MediaOpeningAnalysisResult.cs` et actualiser son espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : référencer le résultat sous Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : référencer le résultat sous Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : référencer le résultat sous Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : référencer le résultat sous Contracts/Explorer.
+- [x] Vérifier la lecture optique déplacée dans MediaFileSystems
+  - [x] Garder un test autonome sur un catalogue ISO 9660 en mémoire
+    - [x] Créer `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : construire un descripteur, un répertoire et un fichier ISO en mémoire, puis vérifier que MediaFileSystems retrouve le vrai nom et le contenu via la piste de MediaEngine.
+- [x] Confier l’exploration des volumes à MediaFileSystems
+  - [x] Construire et relier l’explorateur de MediaFileSystems
+    - [x] Créer `src/GWGUI.MediaFileSystems/Contracts/ExploredFileSystemVolume.cs` : décrire le volume détecté, son lecteur, ses fichiers et ses diagnostics.
+    - [x] Créer `src/GWGUI.MediaFileSystems/Contracts/MediaFileSystemExplorationResult.cs` : regrouper les volumes détectés et leurs résultats.
+    - [x] Créer `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : sélectionner les lecteurs enregistrés pour chaque volume et retourner les vrais fichiers.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentDecoderAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialContentDecoderAdapter.cs` : rapprocher le décodeur de ses formats de bande.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialContentDecoderAdapter.cs` : exposer le décodage des bandes via l’interface de lecteur de MediaFileSystems et retourner son volume directement.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : enregistrer directement les lecteurs de MediaFileSystems, optiques et séquentiels, dans leur ordre actuel.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/MediaExplorer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : ne garder que l’assemblage du résultat destiné à App après l’appel à MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : utiliser le nouveau rangement de la porte d’entrée MediaExplorer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : utiliser le nouveau rangement de la porte d’entrée MediaExplorer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : utiliser le nouveau rangement de la porte d’entrée MediaExplorer.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : référencer la porte d’entrée MediaExplorer de MediaEngine sous Images/Reading.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : construire l’explorateur de test avec le lecteur de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier le lecteur séquentiel dans l’explorateur de MediaFileSystems.
+  - [x] Supprimer le chemin de lecture des volumes devenu inutile dans le registre de MediaEngine
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` : ne conserver que le parcours sectoriel SCP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Exploration/IFileSystemReader.cs` : retirer l’héritage de l’interface de lecture de volumes obsolète.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Interfaces/Exploration/IMediaFileSystemReader.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Images/Reading/MediaFileSystemsOpticalReaderAdapter.cs` devenu sans appelant.
+  - [x] Corriger le typage révélé par la compilation
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : déclarer la liste ordonnée des lecteurs sous leur interface commune `IEnumerable<IMediaFileSystemReader>`.
+  - [x] Distinguer les deux explorateurs dans leur composition
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : nommer explicitement l’explorateur de réponse MediaEngine et celui de fichiers MediaFileSystems.
+  - [x] Vérifier le trajet du média optique jusqu’au résultat de MediaEngine
+    - [x] Modifier `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : appeler l’explorateur de MediaEngine puis vérifier que son volume contient le vrai nom et contenu renvoyés par MediaFileSystems.
+  - [x] Retirer le dossier de décodage de bande vidé par ce déplacement
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Sequential` après contrôle de son contenu.
+- [x] Déplacer la sélection des lecteurs sectoriels vers MediaFileSystems
+  - [x] Remplacer le registre sectoriel dans ses appelants
+    - [x] Créer `src/GWGUI.MediaFileSystems/Exploration/SectorFileSystemRegistry.cs` : reprendre la sélection ordonnée, les identifiants de formats et les rapports de lecture sur `IMediaSectorImage`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : utiliser le registre de MediaFileSystems et transformer ses volumes en données de retour MediaEngine.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : utiliser le registre de MediaFileSystems et transformer les volumes lus avant leur retour.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageReader.cs` : interroger le registre sectoriel de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/ScpSectorDecodingComposition.cs` : recevoir le registre sectoriel de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : construire le registre sectoriel de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : transmettre le registre sectoriel de MediaFileSystems au décodage SCP.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : lire l’image avec le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : lire l’image avec le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : lire l’image avec le catalogue de MediaFileSystems.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier directement le catalogue de MediaFileSystems.
+  - [x] Supprimer le registre et les rapports copiés dans MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/MediaFileSystemsReaderAdapter.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs` : ne garder que les conversions de données renvoyées à App ou reçues pour la migration.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : utiliser `FileSystemVolumeMapper` pour le résultat de MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` : utiliser `FileSystemVolumeMapper` pour la source de migration.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : référencer le mapper déplacé dans Contracts/Explorer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : référencer le mapper déplacé dans Contracts/Explorer.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` après raccordement de tous ses appelants.
+    - [x] Supprimer `src/GWGUI.MediaEngine/Interfaces/Exploration/IFileSystemReader.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemReadReport.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemReadFailure.cs` devenu sans appelant.
+    - [x] Supprimer `src/GWGUI.MediaEngine/FileSystems/FileSystemMatch.cs` devenu sans appelant.
+- [x] Ranger les données de sortie de l’explorateur dans Contracts et Enums
+  - [x] Déplacer les trois modèles hors du dossier FileSystems de MediaEngine
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemEntry.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs` et référencer son enum dans Enums.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemVolume.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/FileSystems/FileSystemEntryKind.cs` vers `src/GWGUI.MediaEngine/Enums/FileSystemEntryKind.cs` et actualiser son espace de noms.
+  - [x] Raccorder les consommateurs des données de sortie
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerFileTypeCatalogScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredFileSystem.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerTreeNavigator.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemAlternativePolicy.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerFolderItem.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerContentItem.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : remplacer l’import des modèles FileSystems de MediaEngine par celui de Contracts/Explorer et référencer l’enum déplacé si utilisé.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerTreeScenarios.cs` : remplacer les noms entièrement qualifiés des modèles déplacés.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` : remplacer les noms entièrement qualifiés des modèles déplacés.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer les noms entièrement qualifiés des modèles déplacés.
+    - [x] Modifier `tests/GWGUI.Tests/Media/Iso9660FileSystemBoundaryTests.cs` : qualifier l’enum de MediaFileSystems pour son résultat de lecture optique.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/FileSystems` après vérification de son contenu.
+- [x] Retirer les lignes vides finales ajoutées pendant le changement d’espace de noms
+  - [x] Nettoyer les fichiers modifiés
+- [x] Ranger les résultats de l’explorateur dans les contrats de MediaEngine
+  - [x] Déplacer les résultats et leur constructeur
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageContractData.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredDiskImage.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredFileSystem.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredFileSystem.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaImage.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredMediaImage.cs` et actualiser son espace de noms.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredMediaVolume.cs` et actualiser son espace de noms.
+  - [x] Raccorder tous les consommateurs à ces contrats
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/MediaOpeningAnalysisResult.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileSystemFamilyResolver.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerDetailsPanel.xaml.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerMediaVolumeChoice.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadResult.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspection.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpImageExplorationService.cs` : remplacer l’import Exploration/Results par Contracts/Explorer sans import dupliqué.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerTreeScenarios.cs` : remplacer les noms entièrement qualifiés des résultats déplacés.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerFailureScenarios.cs` : remplacer les noms entièrement qualifiés des résultats déplacés.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Results` après vérification de son contenu.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileContentClassifier.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerFileIconClassifier.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerIssueBuilder.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Functions/Explorer/ExplorerTreeNavigator.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerContentItem.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/ViewModels/Explorer/ExplorerFolderItem.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolumeMapper.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemAlternativePolicy.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/DiskImageContractData.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredDiskImage.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredFileSystem.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Creation/FileSystemMigrationService.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryNamedMediaFormatIdentification.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerFileTypeCatalogScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerTreeScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmigaDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AppleDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/CommodoreDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/LisaFileSystemReaderTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+    - [x] Modifier `tests/GWGUI.Tests/Media/ProDosMigrationImageTests.cs` : supprimer les lignes vides finales ajoutées pendant le remplacement des imports.
+- [x] Ranger les services d'ouverture des images encore sous Exploration
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` et changer son espace de noms pour le service qui lit l'image et transmet le document à l'explorateur.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs` vers `src/GWGUI.MediaEngine/Images/Reading/MediaOpeningAnalysisService.cs`, changer son espace de noms et importer la façade `DiskImageExplorer` encore située sous Exploration.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : importer `Images.Reading` pour le service de lecture déplacé.
+- [x] Ranger l'assemblage du résultat de lecture d'image
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Documents/DiskImageDocumentFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Documents/DiskImageDocumentFactory.cs`, adopter l'espace de noms de lecture et ajouter `using System.IO;` pour `Path` et `FileInfo`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : importer le constructeur de documents depuis `Images.Reading.Documents`.
+  - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Documents` après vérification de son contenu.
+- [x] Ranger les métadonnées transmises à App parmi les contrats d'exploration
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentMetadata.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/DiskContentMetadata.cs` et adopter l'espace de noms des contrats.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadata.cs` vers `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageMetadata.cs` et adopter l'espace de noms des contrats.
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentDetector.cs` : importer les métadonnées depuis `Contracts.Explorer`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadataFactory.cs` : importer les métadonnées depuis `Contracts.Explorer`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredDiskImage.cs` : retirer l'import de métadonnées devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageContractData.cs` : retirer l'import de métadonnées devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerMetadataPresenter.cs` : importer les métadonnées depuis `Contracts.Explorer`.
+- [x] Retirer la classe d'erreur propre au seul lecteur DiskImageExplorer
+  - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : construire directement la même `FileNotFoundException` avec le chemin source et ajouter `using System.IO;`.
+  - [x] Supprimer `src/GWGUI.MediaEngine/Exploration/DiskImageExplorationExceptions.cs` après disparition de son unique appel.
+- [x] Ranger la détection des caractéristiques techniques de l'image
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentIds.cs` vers `src/GWGUI.MediaEngine/Constants/DiskContentIds.cs` et adopter l'espace de noms des constantes.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/AmigaCataloglessBootImageDetector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/AmigaCataloglessBootImageDetector.cs` et adopter l'espace de noms de la lecture d'image.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/AtnImploderArchiveDetector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/AtnImploderArchiveDetector.cs` et adopter l'espace de noms de la lecture d'image.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskContentDetector.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/DiskContentDetector.cs`, adopter l'espace de noms de la lecture d'image et importer les constantes déplacées.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Metadata/DiskImageMetadataFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Metadata/DiskImageMetadataFactory.cs` et adopter l'espace de noms de la lecture d'image.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Documents/DiskImageDocumentFactory.cs` : importer la fabrique depuis `Images.Reading.Metadata` et retirer l'ancien import.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer l'ancien import de fabrique par `Images.Reading.Metadata`, déjà présent.
+  - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration/Metadata` après vérification de son contenu.
+- [x] Retirer de la vue App le choix et les données visuelles des icônes de médias
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/MediaIconIds.cs` : déclarer les identifiants stables des icônes de disquette, disque dur, optique, cassette, bande, cartouche et fichier.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Visualization/MediaIconSelector.cs` : reprendre les conditions actuelles sur type de média, format, densité et extension pour renvoyer uniquement l'identifiant d'icône ; importer explicitement `System.IO` pour `Path`.
+  - [x] Créer `src/GWGUI.App/Constants/Controls/Visual/MediaIconVisualConstants.cs` : ranger les formes, couleurs et noms des images dans une table de présentation indexée par les identifiants de MediaEngine.
+  - [x] Créer `src/GWGUI.App/Rendering/Media/MediaIconImageCache.cs` : déplacer le chargement et le cache des images WPF hors du contrôle.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Common/MediaDocumentIdentity.xaml.cs` : appeler le sélecteur de MediaEngine, appliquer la table visuelle d'App et retirer le choix de média, les formes et le cache du contrôle.
+- [x] Confier le catalogue de formats d'images à MediaEngine
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/ImageFormatFallbackExtensions.cs` : ranger les extensions de repli SCP, IMG, IMA et HFE.
+  - [x] Déplacer `src/GWGUI.App/Services/DiskImages/ImageFormatWorkspace.cs` vers `src/GWGUI.MediaEngine/Images/Formats/ImageFormatWorkspace.cs` : conserver l'assemblage du catalogue et utiliser les extensions constantes.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : importer le type du catalogue MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskDefinitionsController.cs` : importer l'espace de noms du catalogue MediaEngine.
+- [x] Déplacer la classification des images du visualiseur hors d'App
+  - [x] Déplacer `src/GWGUI.App/Enums/Rendering/Scp/DiskMediaCategory.cs` vers `src/GWGUI.MediaEngine/Enums/DiskMediaCategory.cs` : conserver les valeurs et adopter l'espace de noms MediaEngine.
+  - [x] Déplacer `src/GWGUI.App/Contracts/Services/Visualization/DiskVisualizationClassification.cs` vers `src/GWGUI.MediaEngine/Contracts/Visualization/DiskVisualizationClassification.cs` : conserver le résultat et importer l'enum MediaEngine.
+  - [x] Déplacer `src/GWGUI.App/Functions/Services/Visualization/DiskVisualizationClassificationFunctions.cs` vers `src/GWGUI.MediaEngine/Images/Visualization/DiskVisualizationClassificationFunctions.cs` : conserver les tables et règles de machines/décodeurs dans MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : appeler la classification de MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Contracts/Rendering/Scp/ScpRenderRequest.cs` : importer l'enum MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Functions/Rendering/Scp/ScpMediaGeometryFunctions.cs` : importer l'enum MediaEngine.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs` : importer l'enum MediaEngine.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` : importer l'enum déplacé de MediaEngine.
+- [x] Nettoyer les imports dupliqués révélés par la compilation
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : retirer le second import `GWGUI.MediaEngine.Images.Visualization`.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` : retirer le second import `GWGUI.MediaEngine.Enums`.
+- [x] Retirer les dossiers App vidés par le déplacement de la classification
+  - [x] Supprimer le dossier vide `src/GWGUI.App/Functions/Services/Visualization` après vérification de son contenu.
+  - [x] Supprimer le dossier vide `src/GWGUI.App/Contracts/Services/Visualization` après vérification de son contenu.
+- [x] Ranger les données fixes de la classification d'images dans Constants
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/MediaIconExtensions.cs` : déclarer les extensions de cassette, de cartouche et d'image optique utilisées pour choisir l'icône.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/MediaIconSelector.cs` : employer les constantes d'extensions au lieu des chaînes intégrées au sélecteur.
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/DiskVisualizationDefaults.cs` : ranger les associations machines/décodeurs, les familles de disquettes et les identifiants de densité utilisés par le visualiseur.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/DiskVisualizationClassificationFunctions.cs` : lire ses tables fixes depuis Constants.
+- [x] Nommer les ressources visuelles fixes de l'icône dans App
+  - [x] Modifier `src/GWGUI.App/Constants/Controls/Visual/MediaIconVisualConstants.cs` : déclarer les couleurs et les noms des images en constantes et les utiliser dans sa table de rendu.
+- [ ] Revoir les fichiers de MediaEngine contre le schéma approuvé
+  - [x] Ranger la production des images candidates avec la reconnaissance d'image
+    - [x] Déplacer `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Interfaces/Reading/Recognition/IAdditionalImageInterpretationPolicy.cs` et adopter l'espace de noms des interfaces de reconnaissance.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/CompatibleFormatCatalog.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/CompatibleFormatCatalog.cs` et adopter l'espace de noms de reconnaissance.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/AdditionalImageInterpretationRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/AdditionalImageInterpretationRegistry.cs` et importer l'interface déplacée.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/CompatibleFormatInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/CompatibleFormatInterpretationPolicy.cs` et importer le catalogue et l'interface déplacés.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/IbmAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/IbmAdditionalImageInterpretationPolicy.cs` et importer l'interface déplacée.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Policies/MsxAdditionalImageInterpretationPolicy.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Policies/MsxAdditionalImageInterpretationPolicy.cs` et importer l'interface déplacée.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` : importer le registre déplacé depuis `Images.Reading.Recognition`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : importer les politiques, le registre et l'interface depuis leurs nouveaux dossiers.
+  - [x] Nettoyer les imports après le déplacement des candidats
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : retirer les deux imports dupliqués de `Images.Reading.Recognition`.
+  - [x] Ranger la normalisation des images reconnues sans dépendance aux volumes
+    - [x] Déplacer `src/GWGUI.MediaEngine/Interfaces/Exploration/Interpretation/IRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Interfaces/Reading/Recognition/IRecognizedImageNormalizer.cs` : adopter l'espace de noms Interfaces et retirer le paramètre `FileSystemVolume` inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/AtariRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Normalizers/AtariRecognizedImageNormalizer.cs` : adopter l'interface déplacée et retirer le paramètre volume inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MacRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Normalizers/MacRecognizedImageNormalizer.cs` : adopter l'interface déplacée et retirer le paramètre volume inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/Normalizers/MsxRecognizedImageNormalizer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/Normalizers/MsxRecognizedImageNormalizer.cs` : adopter l'interface déplacée et retirer le paramètre volume inutilisé.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/RecognizedImageNormalizerRegistry.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/RecognizedImageNormalizerRegistry.cs` : retirer le paramètre volume et importer l'interface déplacée.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/DiskImageInterpretationService.cs` vers `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageInterpretationService.cs` : retirer le paramètre volume et nommer les candidats comme des images.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateInspector.cs` : appeler la normalisation sans volume et utiliser le nouvel espace de noms.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : appeler les candidats d'images et importer le service depuis Images/Reading/Recognition.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : importer les normaliseurs et leur interface depuis les nouveaux espaces de noms.
+  - [x] Corriger l'import de l'identité de volume encore sous Exploration
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : conserver temporairement l'import du calcul d'identité de volume jusqu'à son déplacement vers MediaFileSystems.
+  - [x] Placer l'évaluation et la déduplication des volumes dans MediaFileSystems
+    - [x] Créer `src/GWGUI.MediaFileSystems/Interfaces/Exploration/IFileSystemEntryView.cs` : exposer nom, nature, taille, validité et enfants nécessaires au classement des volumes.
+    - [x] Créer `src/GWGUI.MediaFileSystems/Interfaces/Exploration/IFileSystemVolumeView.cs` : exposer nom, avertissements et entrées nécessaires au classement des volumes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemEntry.cs` : implémenter la vue d'entrée de MediaFileSystems sans changer les données exposées à App.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/FileSystemVolume.cs` : implémenter la vue de volume de MediaFileSystems sans changer les données exposées à App.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemAlternativePolicy.cs` vers `src/GWGUI.MediaFileSystems/Exploration/Interpretation/FileSystemAlternativePolicy.cs` : utiliser les vues MFS des volumes et entrées.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` vers `src/GWGUI.MediaFileSystems/Exploration/Interpretation/FileSystemInterpretationIdentity.cs` : recevoir identifiant de format et vue de volume MFS.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : appeler les calculs déplacés dans MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpAutomaticImageExplorer.cs` : appeler les calculs déplacés dans MediaFileSystems.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` : appeler la déduplication MFS avec identifiant de format et volume.
+  - [x] Retirer le dernier import vers l'ancien espace Interpretation
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : supprimer `using GWGUI.MediaEngine.Exploration.Interpretation` après déplacement de toutes ses classes.
+- [x] Ranger l'entrée de lecture d'image et l'appel à MediaFileSystems sous Images/Reading
+  - [x] Déplacer `src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs` vers `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` et adopter l'espace de noms de lecture.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaOpeningAnalysisService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/HfeConversionService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/Fat12/Fat12ReinterpretationService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/PhysicalMedia/Writing/FloppyMediaWritePlanningService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskWriting/InternalPhysicalDiskWriter.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/Conversion/FileMigrationCoordinator.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WriteVerificationScenarios.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WritePlanningScenarios.cs` : remplacer l'ancien import de DiskImageExplorer par son espace de noms Images.Reading, ou retirer l'import devenu inutile.
+  - [x] Supprimer les dossiers Exploration vidés de MediaEngine
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Exploration` et ses sous-dossiers vides après vérification de tous leurs contenus.
+    - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Interfaces/Exploration` et son sous-dossier vide après vérification de tous leurs contenus.
+- [x] Retirer l'ancien espace de noms Exploration des interfaces déjà rangées dans Interfaces
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IDiagnostic.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IEntree.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IEtatLectureDisquette.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IFormatDetecte.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IImageDisquette.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/IPiste.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/DiskImageContractData.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredDiskImage.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/ScpTrackContractMapper.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaOpeningAnalysisService.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadOperationProgress.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadResult.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/Operations/OperationProgressController.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` : remplacer l'ancien espace de noms `GWGUI.MediaEngine.Exploration.Contracts` par `GWGUI.MediaEngine.Interfaces` pour les contrats d'affichage ou de lecture physique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Recognition/DiskImageInterpretationService.cs` : retirer de sa documentation le paramètre volume supprimé de la méthode de normalisation.
+- [x] Confier à MediaFileSystems le nom du premier fichier affiché pendant l'analyse
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Contracts/MediaFileSystemExplorationResult.cs` : ajouter le nom optionnel du premier fichier réel au résultat de l'exploration.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : calculer ce nom depuis les volumes et leurs entrées effectivement lus, dans le même ordre qu'avant.
+  - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Explorer/ExploredMediaImage.cs` : transmettre ce nom dans le résultat destiné à App sans parcourir les entrées.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaExplorer.cs` : recopier le nom fourni par MediaFileSystems dans le résultat de MediaEngine.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` : publier ce nom dans la progression et retirer son parcours des fichiers.
+- [x] Rétablir l'import de l'étape de progression conservée par MediaEngine
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaImageExplorationService.cs` : rétablir l'import de `GWGUI.MediaEngine.Enums` nécessaire à `MediaExplorationProgressStage`.
+- [x] Confier à MediaFileSystems la lecture et la déduplication des volumes des images candidates
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Contracts/FileSystemEntry.cs` : exposer les propriétés de comparaison de l'entrée via `IFileSystemEntryView`.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Contracts/FileSystemVolume.cs` : exposer les entrées du volume via `IFileSystemVolumeView`.
+  - [x] Créer `src/GWGUI.MediaFileSystems/Contracts/SectorFileSystemCandidate.cs` : associer l'image décodée candidate au volume réellement lu par MediaFileSystems.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/SectorFileSystemRegistry.cs` : lire les images candidates dans l'ordre et dédupliquer leurs volumes avec l'identité MFS.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` : transmettre les images candidates à MediaFileSystems et retirer sa lecture et sa déduplication des volumes.
+- [x] Placer le score des volumes SCP dans MediaFileSystems
+  - [x] Créer `src/GWGUI.MediaFileSystems/Exploration/Interpretation/FileSystemEvidence.cs` : compter les entrées du volume et comparer entrées, avertissements et score de décodage fourni par MediaEngine.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpCandidateRanker.cs` : utiliser ce score MFS et retirer son calcul local des entrées et avertissements.
+- [x] Retirer la géométrie Commodore DOS abandonnée dans MediaEngine
+  - [x] Supprimer `src/GWGUI.MediaEngine/Images/Formats/Floppy/Raw/CommodoreDosGeometry.cs` : cette copie de conversion piste/secteur n'a aucun appelant ; le lecteur Commodore DOS utilise celle de MediaFileSystems.
+- [x] Retirer le modèle de cible de migration resté sans appelant
+  - [x] Supprimer `src/GWGUI.MediaFileSystems/Migration/FileSystemMigrationTarget.cs` : ce doublon exact du modèle transmis par MediaEngine n'est référencé par aucun code ; MediaFileSystems reçoit directement l'identifiant du système de fichiers.
+- [x] Retirer la fabrique générale inutilisée du dossier Composition
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Conversion/FileMigrationWindow.xaml.cs` : construire directement le service de migration MediaEngine sans passer par la fabrique de conversion.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` : retirer les fabriques de conversion sans appelant et le constructeur de migration ; ne garder que l'assemblage réel du lecteur d'image.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaEngineFactory.cs` vers `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorerFactory.cs` : nommer la fabrique selon son seul rôle restant et adopter l'espace de noms de lecture.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/DiskImageExplorer.cs` : utiliser `DiskImageExplorerFactory` dans son espace de noms.
+- [x] Confier à MediaFileSystems l'assemblage de ses lecteurs et détecteurs de volumes
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` : créer le catalogue MFS par défaut et insérer les lecteurs adaptateurs fournis par MediaEngine dans l'ordre existant.
+  - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` : construire la façade de lecture avec le catalogue MFS, sans assembler les lecteurs de systèmes de fichiers.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : vérifier l'adaptateur de bande dans le catalogue MFS désormais construit par MediaFileSystems.
+  - [x] Supprimer `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` : son assemblage des lecteurs et détecteurs est repris par MediaFileSystems.
+  - [x] Déplacer `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialContentDecoderAdapter.cs` vers `src/GWGUI.MediaEngine/Images/Reading/SequentialContentDecoderAdapter.cs` : ranger l'adaptateur entre décodage du média et exploration MFS avec la lecture.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : importer l'adaptateur déplacé depuis Images/Reading.
+- [x] Retirer le dernier fichier et le dossier Composition de MediaEngine
+  - [x] Déplacer `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` vers `src/GWGUI.MediaEngine/MediaEngineComposition.cs` : conserver à la racine la composition transversale du moteur et adopter l'espace de noms racine.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.Emulation.Amiga/Functions/AmigaRuntimeMediaFunctions.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariScpMediaFunctions.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.App/Services/Parity/MediaEngineConversionSupport.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/Program.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Supprimer le dossier vide `src/GWGUI.MediaEngine/Composition` après vérification de son contenu.
+- [x] Retirer les imports en double révélés par la compilation
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` : conserver un seul import du moteur.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : conserver un seul import du moteur.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : conserver un seul import du moteur.
+  - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : conserver un seul import du moteur.

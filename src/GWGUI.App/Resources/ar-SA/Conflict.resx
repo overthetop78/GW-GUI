@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>الملفات الموجودة</value></data>
+  <data name="Conflict.Heading"><value>بعض الملفات موجودة بالفعل</value></data>
+  <data name="Conflict.Help"><value>اختر إجراءً لكل ملف أو قم بتطبيق نفس الإجراء على جميع الملفات.</value></data>
+  <data name="Conflict.File"><value>ملف</value></data>
+  <data name="Conflict.Action"><value>فعل</value></data>
+  <data name="Conflict.Overwrite"><value>الكتابة فوق</value></data>
+  <data name="Conflict.Skip"><value>يتخطى</value></data>
+  <data name="Conflict.Number"><value>استخدم الرقم التالي</value></data>
+  <data name="Conflict.AllOverwrite"><value>الكتابة فوق الكل</value></data>
+  <data name="Conflict.AllSkip"><value>تخطي الكل</value></data>
+  <data name="Conflict.AllNumber"><value>رقم الكل</value></data>
+</root>

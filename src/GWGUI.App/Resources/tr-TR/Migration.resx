@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Dosya göçü...</value></data>
+  <data name="Migration.Title"><value>Dosya göçü</value></data>
+  <data name="Migration.Heading"><value>Migrate dosyaları başka bir dosya sistemi</value></data>
+  <data name="Migration.Source"><value>Source image</value></data>
+  <data name="Migration.NoSource"><value>Tanık bir dosya sistemi içeren bir görüntü seçin.</value></data>
+  <data name="Migration.Destination"><value>Hedef dosya sistemi ve format</value></data>
+  <data name="Migration.Output"><value>Hedef görüntü görüntü görüntü</value></data>
+  <data name="Migration.Compatibility"><value>Uyumluluk ve kayıplar</value></data>
+  <data name="Migration.Waiting"><value>Bir kaynak ve bir hedef seçin.</value></data>
+  <data name="Migration.Severity"><value>Şiddetlilık</value></data>
+  <data name="Migration.Path"><value>Kaynak yolu</value></data>
+  <data name="Migration.Description"><value>Açıklama</value></data>
+  <data name="Migration.AcceptLosses"><value>Listelenen metadata kayıpları kabul et</value></data>
+  <data name="Migration.Execute"><value>Migrate dosyaları</value></data>
+  <data name="Migration.Blocking"><value>Bloking</value></data>
+  <data name="Migration.MetadataLoss"><value>Metadata kaybı</value></data>
+  <data name="Migration.SourceSummary"><value>Cilt: {0} - Dosya sistemi: {1} - Kök girişleri: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Göçü hazırlamak için güvenilmez: {0}</value></data>
+  <data name="Migration.Completed"><value>Hedef görüntü oluşturuldu: {0}</value></data>
+  <data name="Migration.Failed"><value>Göç başarısız oldu: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Uyumlu: göçün önündeki engelleri düzeltin.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Listelenen metadata kayıplarını kabul ettikten sonra.</value></data>
+  <data name="Migration.Compatible"><value>Uyumlu: tespit edilen bir kayıp yok.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Dosya içeriği mevcut değildir.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Bu giriş türü varış noktası tarafından desteklenmez.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Adı varış için geçerli değildir.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Adı varış için çok uzun.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Birkaç giriş aynı varış adı olurdu.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Dosya varış için çok büyük.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Kaynak metadata geçersizdir.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Değişiklikler tarihi korunmayacak.</value></data>
+  <data name="Migration.Loss.Comment"><value>Yorum korunmuş olmayacak.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Kaynak özellikleri korunmuş olmayacaktır.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Hedef görüntü zaten var. Onu Değiştirin? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Hedef görüntü kaynak imajını değiştiremez.</value></data>
+</root>

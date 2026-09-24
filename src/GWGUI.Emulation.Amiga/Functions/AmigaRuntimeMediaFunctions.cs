@@ -1,11 +1,13 @@
 using System.Security.Cryptography;
 using System.Text;
-using GWGUI.MediaEngine.Composition;
+using GWGUI.MediaEngine;
 
 namespace GWGUI.Emulation.Amiga.Functions;
 
 public static class AmigaRuntimeMediaFunctions
 {
+    private static readonly MediaEngineComposition MediaEngine = MediaEngineComposition.CreateDefault();
+
     public static ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media,
         string conversionDirectory) => ValueTask.FromResult(media);
 
@@ -22,7 +24,7 @@ public static class AmigaRuntimeMediaFunctions
         Directory.CreateDirectory(conversionDirectory);
         var output = Path.Combine(conversionDirectory, $"{Path.GetFileNameWithoutExtension(path)}-{hash}.adf");
         if (File.Exists(output)) return output;
-        var converter = MediaEngineFactory.CreateAmigaAdfConversionService();
+        var converter = MediaEngine.Conversion.AmigaAdfRuntimeConverter;
         try { await converter.ConvertDetectedAsync(path, output).ConfigureAwait(false); }
         catch
         {

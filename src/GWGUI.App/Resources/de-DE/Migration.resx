@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Dateimigration...</value></data>
+  <data name="Migration.Title"><value>Dateimigration</value></data>
+  <data name="Migration.Heading"><value>Dateien in ein anderes Dateisystem migrieren</value></data>
+  <data name="Migration.Source"><value>Quelle Bild</value></data>
+  <data name="Migration.NoSource"><value>Wählen Sie ein Bild aus, das ein erkanntes Dateisystem enthält.</value></data>
+  <data name="Migration.Destination"><value>Bestimmungsdateisystem und -format</value></data>
+  <data name="Migration.Output"><value>Zielbild</value></data>
+  <data name="Migration.Compatibility"><value>Vereinbarkeit und Verluste</value></data>
+  <data name="Migration.Waiting"><value>Wählen Sie eine Quelle und ein Ziel aus.</value></data>
+  <data name="Migration.Severity"><value>Schweregrad</value></data>
+  <data name="Migration.Path"><value>Quellenpfad</value></data>
+  <data name="Migration.Description"><value>Beschreibung</value></data>
+  <data name="Migration.AcceptLosses"><value>Akzeptieren Sie die aufgeführten Metadatenverluste</value></data>
+  <data name="Migration.Execute"><value>Migrationsdateien</value></data>
+  <data name="Migration.Blocking"><value>Blockieren</value></data>
+  <data name="Migration.MetadataLoss"><value>Verlust von Metadaten</value></data>
+  <data name="Migration.SourceSummary"><value>Volumen: {0} — Dateisystem: {1} — Wurzeleinträge: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Unfähig, die Migration vorzubereiten: {0}</value></data>
+  <data name="Migration.Completed"><value>Das Zielbild wurde erstellt: {0}</value></data>
+  <data name="Migration.Failed"><value>Migration gescheitert: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Inkompatibel: Korrigieren Sie die Blocking-Verluste vor der Migration.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Kompatibel nach Annahme der aufgeführten Metadatenverluste.</value></data>
+  <data name="Migration.Compatible"><value>Kompatibel: kein Verlust erkannt.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Dateiinhalte sind nicht verfügbar.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Dieser Eintragstyp wird vom Zielort nicht unterstützt.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Der Name ist für das Ziel nicht gültig.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Der Name ist zu lang für das Ziel.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Mehrere Einträge hätten den gleichen Zielnamen.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Die Datei ist zu groß für das Ziel.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Die Quellmetadaten sind ungültig.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Das Änderungsdatum wird nicht beibehalten.</value></data>
+  <data name="Migration.Loss.Comment"><value>Der Kommentar wird nicht beibehalten.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Die Quellattribute werden nicht erhalten bleiben.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Das Zielbild existiert bereits. {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Das Zielbild kann das Ausgangsbild nicht ersetzen.</value></data>
+</root>

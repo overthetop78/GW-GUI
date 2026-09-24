@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Levykuva</value></data>
+  <data name="Explorer.DetectedFormats"><value>Tunnistettu: {0}</value></data>
   <data name="Explorer.Format"><value>Muoto</value></data>
   <data name="Explorer.OpenImage"><value>Avaa levykuva…</value></data>
   <data name="Explorer.Automatic"><value>Automaattinen tunnistus</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Tuntematon</value></data>
   <data name="Explorer.Unnamed"><value>Nimetön taltio</value></data>
   <data name="Explorer.LoadFailed"><value>Levykuvaa ei voi avata: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Yhteensopimaton muoto</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Kohdetta ”{1}” ei voi tulkita muodossa ”{0}”.&#xA;Jatka valitsemalla toinen muoto.</value></data>
   <data name="Explorer.Loading"><value>Luetaan levykuvaa…</value></data>
   <data name="Explorer.ReadDisk"><value>Lue levyke</value></data>
   <data name="Explorer.Name"><value>Nimi</value></data>
@@ -52,9 +47,111 @@
   <data name="Explorer.Compression"><value>Pakkaus</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Mukautettu sektorilataaja</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Mukautettu sektorilataaja — ei tiedostoluetteloa</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>The Companyn crack</value></data>
   <data name="Explorer.DataBlocks"><value>Datalohkot</value></data>
-  <data name="Explorer.DetectedFormats"><value>Tunnistettu: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools ei voi tuottaa tutkittavaa alan kuvaa {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Host Tools ei voinut purkaa kuvaa nimellä {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools ei voi tuottaa tutkittavaa alan kuvaa {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools ei voinut purkaa kuvaa nimellä {0}.</value></data>
+  <data name="Explorer.Session"><value>Levyn istunto</value></data>
+  <data name="Explorer.Track"><value>Mediaraita</value></data>
+  <data name="Explorer.Layers"><value>Levykerrokset</value></data>
+  <data name="Explorer.Faces"><value>Median tallennussivut</value></data>
+  <data name="Explorer.PartitionType"><value>Jakautumistyyppi</value></data>
+  <data name="Explorer.PartitionId"><value>Jakautumistunniste</value></data>
+  <data name="Explorer.TrackMode"><value>Kappaletila</value></data>
+  <data name="Explorer.FirstSector"><value>Ensimmäinen sektori</value></data>
+  <data name="Explorer.SectorCount"><value>Alaluku</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Varastoidun sektorin koko</value></data>
+  <data name="Explorer.UserDataSize"><value>Käyttäjän tietojen koko</value></data>
+  <data name="Explorer.Subchannels"><value>Alakanavat</value></data>
+  <data name="Explorer.AudioTracks"><value>Ääniraidat</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Tunnistetaan mediamuoto</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Tunnistettu muoto</value></data>
+  <data name="Explorer.TestingFormat"><value>Testausmuoto: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: tunnustettu</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: ei tunnistettu</value></data>
+  <data name="Explorer.ReadingFormat"><value>Luentamuoto: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Mediarakenteen lukeminen</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Nauhan lukeminen</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Kirjaaminen {0} / {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Nauhan purku</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Tunnistan tiedostoja</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Tiedostojärjestelmän analysointi</value></data>
+  <data name="Explorer.LoadingContents"><value>Valmistellaan kansioita ja tiedostoja</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Sisältö</value></data>
+  <data name="Explorer.FileWithExtension"><value>Tiedosto {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Asiakirja</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Lähdekoodi</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC ohjelmatiedosto</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Käynnistä ohjelma</value></data>
+  <data name="Explorer.Type.Executable"><value>Suoritettava</value></data>
+  <data name="Explorer.Type.Command"><value>Komentotiedosto</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Järjestelmätiedosto</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Olion koodi</value></data>
+  <data name="Explorer.Type.Data"><value>Tiedosto</value></data>
+  <data name="Explorer.Type.Configuration"><value>Asetukset</value></data>
+  <data name="Explorer.Type.Library"><value>Kirjasto</value></data>
+  <data name="Explorer.Type.Media"><value>Mediatiedosto</value></data>
+  <data name="Explorer.Type.Font"><value>Kirjasin</value></data>
+  <data name="Explorer.Execution"><value>Toteutus</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Oma tiedosto</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Tulkattu suoritettava tiedosto</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Komento tai komentosarja</value></data>
+  <data name="Explorer.Category"><value>Luokka</value></data>
+  <data name="Explorer.ContentFormat"><value>Sisältömuoto</value></data>
+  <data name="Explorer.TextEncoding"><value>Tekstin koodaus</value></data>
+  <data name="Explorer.Preview"><value>Esikatselu</value></data>
+  <data name="Explorer.Category.File"><value>Tiedosto</value></data>
+  <data name="Explorer.Category.Text"><value>Teksti</value></data>
+  <data name="Explorer.Category.Document"><value>Asiakirja</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Lähdekoodi</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC ohjelma</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Käynnistä ohjelma</value></data>
+  <data name="Explorer.Category.Program"><value>Ohjelma</value></data>
+  <data name="Explorer.Category.Executable"><value>Suoritettava</value></data>
+  <data name="Explorer.Category.Command"><value>Komento</value></data>
+  <data name="Explorer.Category.System"><value>Järjestelmä</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Olion koodi</value></data>
+  <data name="Explorer.Category.Data"><value>Tiedot</value></data>
+  <data name="Explorer.Category.Configuration"><value>Asetukset</value></data>
+  <data name="Explorer.Category.Library"><value>Kirjasto</value></data>
+  <data name="Explorer.Category.Image"><value>Kuva</value></data>
+  <data name="Explorer.Category.Audio"><value>Ääni</value></data>
+  <data name="Explorer.Category.Media"><value>Media</value></data>
+  <data name="Explorer.Category.Archive"><value>Arkisto</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Levykuva</value></data>
+  <data name="Explorer.Category.Link"><value>Yhteys</value></data>
+  <data name="Explorer.Category.Font"><value>Kirjasin</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Tuntematon</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Tavallinen teksti</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC ohjelma</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Oma</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Komento tai komentosarja</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Olion koodi</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>Järjestelmä binäärinen</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Strukturoidut tiedot</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Asetukset</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Kirjasto</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Kuva</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Ääni</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Arkisto</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Levykuva</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Kirjasin</value></data>
+  <data name="Explorer.Preview.None"><value>Ei ole</value></data>
+  <data name="Explorer.Preview.Text"><value>Teksti</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC luettelointi</value></data>
+  <data name="Explorer.Preview.Image"><value>Kuva</value></data>
+  <data name="Explorer.Preview.Audio"><value>Ääni</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Heksadesimaali</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Ulkoiset toimet</value></data>
+  <data name="Explorer.Cassette"><value>Kasetti</value></data>
+  <data name="Explorer.InternalName"><value>Sisäinen kuvaus</value></data>
+  <data name="Explorer.BaudRates"><value>Nopeudet</value></data>
+  <data name="Explorer.Chunks"><value>Lohkot</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK-lohkot</value></data>
+  <data name="Explorer.Records"><value>Tietueet</value></data>
+  <data name="Explorer.FullRecords"><value>Täydet</value></data>
+  <data name="Explorer.PartialRecords"><value>Osittaiset</value></data>
+  <data name="Explorer.EndRecord"><value>Loppu</value></data>
+  <data name="Explorer.ChunkType"><value>Tyyppi</value></data>
+  <data name="Explorer.BaudRate"><value>Nopeus</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Viive</value></data>
 </root>

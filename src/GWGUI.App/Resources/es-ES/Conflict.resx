@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>Archivos existentes</value></data>
+  <data name="Conflict.Heading"><value>Algunos archivos ya existen</value></data>
+  <data name="Conflict.Help"><value>Elija una acción para cada archivo o aplique la misma acción a todos los archivos.</value></data>
+  <data name="Conflict.File"><value>Archivo</value></data>
+  <data name="Conflict.Action"><value>Acción</value></data>
+  <data name="Conflict.Overwrite"><value>Exagerar</value></data>
+  <data name="Conflict.Skip"><value>Saltar</value></data>
+  <data name="Conflict.Number"><value>Usar el siguiente número</value></data>
+  <data name="Conflict.AllOverwrite"><value>Sobrescribir todo</value></data>
+  <data name="Conflict.AllSkip"><value>Saltar todo</value></data>
+  <data name="Conflict.AllNumber"><value>Numerar todos</value></data>
+</root>

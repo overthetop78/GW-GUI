@@ -1,11 +1,11 @@
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Settings.Hardware;
 namespace GWGUI.Tests.Hardware.HardwareSelection;
 internal static class DriveRoutingScenarios
 {
     public static void Selection(int change)
     {
-        var settings = new GWGUI.Domain.Settings.AppSettings();
+        var settings = new GWGUI.Infrastructure.Settings.AppSettings();
         var first = new ControllerSettings { UsbId="ONE", LastPort="virtual1", IsAvailable=true };
         var second = new ControllerSettings { UsbId="two", LastPort="virtual2", IsAvailable=true };
         var a = new DriveSettings { Id=Guid.NewGuid().ToString(), ControllerUsbId="one", Selection="A" };

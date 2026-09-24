@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>재생</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>일시 정지</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>되감기</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>빨리 감기</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>녹음</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>정지</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>카세트 없음</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>정지됨</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>재생 중</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>일시 정지</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>녹음 중</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>테이프 끝</value></data>
+</root>

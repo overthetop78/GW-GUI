@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Dictionaries.Options;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Storage;

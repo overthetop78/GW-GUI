@@ -1,4 +1,3 @@
-using GWGUI.Domain.Hardware;
 using GWGUI.Infrastructure.Hardware;
 namespace GWGUI.Tests.Hardware.HardwareSelection;
 internal static class DeviceDiscoveryScenarios
@@ -8,11 +7,11 @@ internal static class DeviceDiscoveryScenarios
         SerialDevice Device(string port,string serial)=>new(port,serial,"Greaseweazle",0x1209,0x4d69,UsbSerialNumber:serial);
         var found=new[]{Device("ONE","one"),Device("ONE","one"),Device("TWO","two"),Device("BAD","bad")};
         var discovery=GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<ISerialDeviceDiscovery>((method,_)=>method.Name=="FindSerialDevices"?found:throw new InvalidOperationException(method.Name));
-        var runner=GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Domain.Commands.Execution.IGreaseweazleRunner>((method,args)=>
+        var runner=GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Infrastructure.Commands.Execution.IGreaseweazleRunner>((method,args)=>
         {
-            Assert.Equal("RunAsync",method.Name); var command=Assert.IsType<GWGUI.Domain.Commands.GwCommand>(args[0]); var port=command.Arguments[^1];
+            Assert.Equal("RunAsync",method.Name); var command=Assert.IsType<GWGUI.Infrastructure.Commands.GwCommand>(args[0]); var port=command.Arguments[^1];
             var text=port=="BAD"?"partial output":$"Model: GW\nFirmware: 1.0\nSerial: {port.ToLowerInvariant()}\nPort: {port}"+(warning?"\nGitHub check failed":"");
-            return Task.FromResult(new GWGUI.Domain.Commands.Execution.GwExecutionResult(warning||port=="BAD"?1:0,false,TimeSpan.Zero,[new(DateTimeOffset.UnixEpoch,GWGUI.Domain.Commands.Execution.GwOutputStream.Standard,text)]));
+            return Task.FromResult(new GWGUI.Infrastructure.Commands.Execution.GwExecutionResult(warning||port=="BAD"?1:0,false,TimeSpan.Zero,[new(DateTimeOffset.UnixEpoch,GWGUI.Infrastructure.Commands.Execution.GwOutputStream.Standard,text)]));
         });
         var registry=new GreaseweazleHardwareRegistry(discovery,runner); var result=await registry.ScanAsync("virtual",[]);
         Assert.Empty(result.ConfiguredControllers); Assert.Equal(new[]{"one","two"},result.UnconfiguredControllers.Select(controller=>controller.UsbId));
@@ -21,18 +20,18 @@ internal static class DeviceDiscoveryScenarios
     }
     public static async Task Scan(bool present)
     {
-        var configured = new GWGUI.Domain.Settings.Hardware.ControllerSettings { UsbId = "SERIAL", LastPort = "OLD", IsAvailable = true };
+        var configured = new GWGUI.Infrastructure.Settings.Hardware.ControllerSettings { UsbId = "SERIAL", LastPort = "OLD", IsAvailable = true };
         var discovery = GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<ISerialDeviceDiscovery>((method, _) => {
             Assert.Equal("FindSerialDevices", method.Name);
             return present ? new SerialDevice[] { new("VIRTUAL", "id", "Greaseweazle", 0x1209, 0x4d69, UsbSerialNumber: "serial"), new("OTHER", "unknown", "unrelated") } : [];
         });
         var calls = 0;
-        var runner = GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Domain.Commands.Execution.IGreaseweazleRunner>((method, args) => {
+        var runner = GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Infrastructure.Commands.Execution.IGreaseweazleRunner>((method, args) => {
             Assert.Equal("RunAsync", method.Name); calls++;
-            var command = Assert.IsType<GWGUI.Domain.Commands.GwCommand>(args[0]);
+            var command = Assert.IsType<GWGUI.Infrastructure.Commands.GwCommand>(args[0]);
             Assert.Equal("info", command.Verb); Assert.Equal(new[] { "--device", "VIRTUAL" }, command.Arguments);
-            return Task.FromResult(new GWGUI.Domain.Commands.Execution.GwExecutionResult(0, false, TimeSpan.Zero,
-                [new(DateTimeOffset.UnixEpoch, GWGUI.Domain.Commands.Execution.GwOutputStream.Standard, "Model: GW\nFirmware: 1.0\nSerial: serial\nPort: VIRTUAL")]));
+            return Task.FromResult(new GWGUI.Infrastructure.Commands.Execution.GwExecutionResult(0, false, TimeSpan.Zero,
+                [new(DateTimeOffset.UnixEpoch, GWGUI.Infrastructure.Commands.Execution.GwOutputStream.Standard, "Model: GW\nFirmware: 1.0\nSerial: serial\nPort: VIRTUAL")]));
         });
         var result = await new GreaseweazleHardwareRegistry(discovery, runner).ScanAsync("virtual-tool", [configured]);
         var controller = Assert.Single(result.ConfiguredControllers);

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Tilføj medier</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Opret harddisk</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Hard- disk størrelse (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Ingen medier. Tilføj en diskette, harddisk eller CD understøttet af den valgte model.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Kun for rør</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga harddisk|*.hdf|Alle filer|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Den valgte model understøtter ikke en harddisk.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Denne model accepterer højst {0} diskettedrev (r).</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Denne model accepterer højst {0} harddisk (r).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Den valgte model understøtter ikke en CD drev.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CD drev</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Antal diskettedrev</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Antal harddiske</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Floppy- drevhastighed</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Skrifttype- beskyt floppy-billeder</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Omdiriger disketter</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD hastighed</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Tilføj en eksisterende harddisk</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Harddiske</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Ingen harddisk er tilknyttet denne maskine.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Disketter</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Tilføj lagerenhed</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Tilknyttet medie</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Diskgeometrien bestemmes automatisk af emulatoren.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Tom disketteafbildning oprettet: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Filen oprettes tom og skal derefter partitioneres og formateres i den emulerede maskine.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD forfatter</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>En tom disk kan kun oprettes, når den valgte maskine og emulator understøtter skrivning.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM drev</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Konfigurer</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Opret en tom diskette</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Diskafbildning</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Vælg en eksisterende diskafbildning.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Den valgte fil tilknyttes dette virtuelle drev.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Diskettedrev</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga-disketteafbildning|*.adf|Alle filer|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Harddisk</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Grænseflade</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Forudalloker filen</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Disketter og cd&apos;er indsættes eller udskiftes fra den kørende maskine.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Fjern medie</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Diskafbildningen findes allerede: {0}\nVil du erstatte den?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Tilgængelige typer, modeller og identifikatorer afhænger af den valgte maskine.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Bånddrev</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Brug disk</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Brug en eksisterende disk</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Rediger under Generelt</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Der er ingen yderligere lagerenhed tilgængelig for denne maskine.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Lagerenheder</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Allokering</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Automatisk geometri</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Tomt medie</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Byte pr. sektor</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Beregnet kapacitet: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Brugerdefineret størrelse</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cylindre</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Destinationsmappe</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Diskgeometri (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Størrelsesprofil</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Diskettedrev</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Hoveder</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Diskstørrelsen eller geometrien er ugyldig.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Reserverer den fysiske diskplads med det samme; ellers vokser billedet, når data skrives.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sektorer</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kassette</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Spilkassette</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Cd&apos;er</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Vis drevaktivitet på emulatorens skærm</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassetteport</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montere de første fire diske i DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk {0}</value></data>
+</root>

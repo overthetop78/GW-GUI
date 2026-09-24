@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0} billentyű</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Gazdagép billentyűje</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Két Amiga kulcs ugyanazt a PC kulcsot használja. A piros feltérképezéseket a megtakarítás előtt oldja meg.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fizikai billentyűzet áthaladása</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Fenntartott billentyűparancsok</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>A GW GUI és a Windows billentyűparancsai aktívak maradnak, a gép nem fogja el őket.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Gépbillentyű</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>A betűk, számok és szokásos módosítóbillentyűk közvetlenül továbbítódnak. Itt csak az Amiga funkció- és speciális billentyűit kell hozzárendelni.</value></data>
+</root>

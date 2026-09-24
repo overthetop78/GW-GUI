@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Advanced"><value>Avancerade inställningar</value></data>
-  <data name="Common.ExpertArguments"><value>Expertargument</value></data>
-  <data name="Common.ExpertArgumentsTip"><value>Argument skickas som skrivna efter offertvalidering.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Advanced.SeekRetries"><value>Sök efter försök</value></data>
   <data name="Advanced.FakeIndex"><value>Falskt index</value></data>
   <data name="Advanced.HardSectors"><value>Hårda sektorer</value></data>

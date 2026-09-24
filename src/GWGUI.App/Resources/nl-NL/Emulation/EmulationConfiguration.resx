@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Maak, selecteer, wijzig of verwijder hier opgeslagen configuraties. Selecteer het tabblad {0} om de gekozen configuratie te bewerken.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Merk</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Machine</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Totaal RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Stations</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Randapparaten</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Acties</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Configuratie {0} {1} verwijderen?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Instellingen</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Configuraties</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Deze Amiga configuratie verwijderen?</value></data>
+</root>

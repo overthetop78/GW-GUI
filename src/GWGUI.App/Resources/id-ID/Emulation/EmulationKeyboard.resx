@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Tombol {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Tombol host</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Dua tombol Amiga menggunakan tombol PC yang sama. Perbaiki pemetaan merah sebelum menyimpan.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Teruskan keyboard fisik</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Pintasan yang dicadangkan</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Pintasan GW GUI dan Windows tetap aktif dan tidak ditangkap oleh mesin.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Tombol mesin</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Huruf, angka, dan tombol pengubah biasa diteruskan langsung. Hanya tombol fungsi dan tombol khusus Amiga yang perlu dipetakan di sini.</value></data>
+</root>

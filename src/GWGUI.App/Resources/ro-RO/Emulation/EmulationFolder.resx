@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>Folder comun de stocare pentru emulare</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Discurile dure sunt organizate automat în HDD\Amiga, HDD\Atari și folderele sistemelor viitoare.</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Creați automat subfolderele lipsă</value></data>
+  <data name="Emulation.Folder.Common"><value>Foldere comune</value></data>
+  <data name="Emulation.Folder.Capture"><value>Folder capturi</value></data>
+  <data name="Emulation.Folder.State"><value>Folder stări salvate</value></data>
+  <data name="Emulation.Folder.Default"><value>Foldere implicite</value></data>
+</root>

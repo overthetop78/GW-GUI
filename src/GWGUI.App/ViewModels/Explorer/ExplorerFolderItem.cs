@@ -1,5 +1,6 @@
+using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using System.Windows;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.ViewModels.Explorer;
 

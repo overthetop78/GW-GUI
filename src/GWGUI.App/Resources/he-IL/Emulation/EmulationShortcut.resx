@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>קיצורי אמולציה</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>שחרור העכבר</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>השהיה / המשך</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>מסך מלא / חלון</value></data>
+  <data name="Emulation.Shortcut.Power"><value>הפעלה / כיבוי</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>איפוס רך</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>איפוס קשיח</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>שמירה מהירה של מצב</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>טעינה מהירה של מצב</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>צילום מסך</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>השתקת המכונה הפעילה</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>הרצה מהירה בזמן לחיצה</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>הכנס או החלף מדיה</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>הוצא מדיה</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>המדיה הבאה</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>פעולה זו עדיין אינה נתמכת באמולטור הנוכחי.</value></data>
+</root>

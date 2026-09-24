@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Порт</value></data>
-  <data name="Hardware.UsbId"><value>идентификатор USB</value></data>
-  <data name="Hardware.Drive"><value>Водить машину</value></data>
-  <data name="Hardware.Available"><value>Доступный</value></data>
-  <data name="Hardware.Scan"><value>Сканировать</value></data>
-  <data name="Hardware.AddDrive"><value>Добавить диск…</value></data>
-  <data name="Hardware.NoDrive"><value>Диск не определен</value></data>
-  <data name="Hardware.EditorTitle"><value>Определить диск</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle контроллер</value></data>
-  <data name="Hardware.GwSelection"><value>Выбор передан gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Физический размер</value></data>
-  <data name="Hardware.SizeShort"><value>Размер</value></data>
-  <data name="Hardware.DensityShort"><value>Плотность</value></data>
-  <data name="Hardware.SpeedShort"><value>Скорость</value></data>
-  <data name="Hardware.AvailableState"><value>Доступный</value></data>
-  <data name="Hardware.UnavailableState"><value>Недоступно</value></data>
-  <data name="Hardware.DensityDescription"><value>Плотность дисков (только описание)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Номинальная скорость (только описание)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Порт</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>идентификатор USB</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Водить машину</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Доступный</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Сканировать</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Добавить диск…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Диск не определен</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Определить диск</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle контроллер</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Выбор передан gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Физический размер</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Размер</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Плотность</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Скорость</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Доступный</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Недоступно</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Плотность дисков (только описание)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Номинальная скорость (только описание)</value></data>
   <data name="Hardware.NotConfigured"><value>Контроллер не настроен</value></data>
   <data name="Hardware.Disconnected"><value>отключен</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Выбранный диск отключен. Подключите его повторно или выполните сканирование еще раз в разделе «Параметры» → «Контроллеры и приводы».</value></data>

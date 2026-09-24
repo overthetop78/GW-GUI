@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Fájl migráció...</value></data>
+  <data name="Migration.Title"><value>Fájl-migráció</value></data>
+  <data name="Migration.Heading"><value>A fájlok Migrate-e más fájlrendszerre</value></data>
+  <data name="Migration.Source"><value>A forrás képe</value></data>
+  <data name="Migration.NoSource"><value>Válasszon ki egy képet, amely egy elismert fájlrendszert tartalmaz.</value></data>
+  <data name="Migration.Destination"><value>Rendeltetési fájlrendszer és formátum</value></data>
+  <data name="Migration.Output"><value>Rendeltetési kép</value></data>
+  <data name="Migration.Compatibility"><value>Összeegyeztethetőség és veszteségek</value></data>
+  <data name="Migration.Waiting"><value>Válasszon ki egy forrást és egy célállomást.</value></data>
+  <data name="Migration.Severity"><value>Súlyosság</value></data>
+  <data name="Migration.Path"><value>Forrásút</value></data>
+  <data name="Migration.Description"><value>Leírás</value></data>
+  <data name="Migration.AcceptLosses"><value>A felsorolt metaadatok veszteségeinek elfogadása</value></data>
+  <data name="Migration.Execute"><value>Migrate- fájlok</value></data>
+  <data name="Migration.Blocking"><value>Blokkolás</value></data>
+  <data name="Migration.MetadataLoss"><value>Metaadatok elvesztése</value></data>
+  <data name="Migration.SourceSummary"><value>Kötvény: {0} - Fájl rendszer: {1} - Gyökérbejegyzések: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Nem sikerült előkészíteni a kioldódást: {0}</value></data>
+  <data name="Migration.Completed"><value>A célkép a következő: {0}</value></data>
+  <data name="Migration.Failed"><value>A migráció sikertelen: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Összeegyeztethetetlen: a blokkoló veszteségek kiigazítása a migráció előtt.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Kompatibilis a felsorolt metaadatok veszteségeinek elfogadása után.</value></data>
+  <data name="Migration.Compatible"><value>Kompatibilis: nem észlelhető veszteség.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>A fájltartalom nem elérhető.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Ezt a bejegyzési típust nem támogatja a rendeltetési hely.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>A név nem érvényes a rendeltetési helyre.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>A név túl hosszú a célállomáshoz.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Több bejegyzés is ugyanazt a rendeltetési helyet jelölné.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>A fájl túl nagy a célhoz.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>A forrás metaadatai érvénytelenek.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>A módosítás dátuma nem marad fenn.</value></data>
+  <data name="Migration.Loss.Comment"><value>A megjegyzést nem tartjuk meg.</value></data>
+  <data name="Migration.Loss.Attributes"><value>A forrásjellemzők nem lesznek megőrzik.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>A célkép már létezik. Helyettesíteni? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>A célkép nem helyettesítheti a forrás képet.</value></data>
+</root>

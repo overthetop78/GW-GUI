@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Buat, pilih, ubah, atau hapus konfigurasi tersimpan di sini. Pilih tab {0} untuk mengedit konfigurasi yang dipilih.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Merek</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Mesin</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>RAM Total</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Drive</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Periferal</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Tindakan</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Hapus {0} {1} konfigurasi?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Konfigurasi</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Konfigurasi</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Hapus konfigurasi Amiga ini?</value></data>
+</root>

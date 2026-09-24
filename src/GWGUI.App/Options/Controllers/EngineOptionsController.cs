@@ -1,5 +1,5 @@
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Views.Controls.Options;
 
 

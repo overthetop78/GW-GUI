@@ -1,14 +1,16 @@
 using Microsoft.Win32.SafeHandles;
 using System.Runtime.InteropServices;
+using GWGUI.App.Constants.Input.GameInput;
+using GWGUI.App.Contracts.Input.Hid;
+using GWGUI.App.Enums.Input;
 
 namespace GWGUI.App.Services.Input.GameInput;
 
 internal sealed class HidReportDecoder : IDisposable
 {
-    private const int HidpStatusSuccess = 0x00110000;
     private readonly SafeFileHandle? _handle;
     private readonly IntPtr _preparsedData;
-    private readonly HidNative.HidCaps _caps;
+    private readonly HidCapabilities _caps;
     private readonly IReadOnlyList<Binding> _bindings;
     private readonly Func<Binding, byte[], (bool Success, uint Value)> _readValue;
     private readonly Func<Binding, byte[], (bool Success, ushort[] Usages)> _readUsages;
@@ -17,7 +19,7 @@ internal sealed class HidReportDecoder : IDisposable
     private HidReportDecoder(
         SafeFileHandle? handle,
         IntPtr preparsedData,
-        HidNative.HidCaps caps,
+        HidCapabilities caps,
         IReadOnlyList<Binding> bindings)
     {
         _handle = handle;
@@ -32,7 +34,7 @@ internal sealed class HidReportDecoder : IDisposable
     internal HidReportDecoder(ushort reportLength, IReadOnlyList<Binding> bindings,
         Func<Binding, byte[], (bool Success, uint Value)> readValue,
         Func<Binding, byte[], (bool Success, ushort[] Usages)> readUsages)
-        : this(null, IntPtr.Zero, new HidNative.HidCaps { InputReportByteLength = reportLength }, bindings)
+        : this(null, IntPtr.Zero, new HidCapabilities { InputReportByteLength = reportLength }, bindings)
     {
         _readValue = readValue;
         _readUsages = readUsages;
@@ -47,11 +49,11 @@ internal sealed class HidReportDecoder : IDisposable
 
         var handle = HidNative.CreateFileW(
             pnpPath,
-            0,
-            HidNative.FileShareRead | HidNative.FileShareWrite,
+            HidConstants.NoDesiredAccess,
+            HidConstants.FileShareRead | HidConstants.FileShareWrite,
             IntPtr.Zero,
-            HidNative.OpenExisting,
-            0,
+            HidConstants.OpenExisting,
+            HidConstants.NoFileAttributes,
             IntPtr.Zero);
         if (handle.IsInvalid)
         {
@@ -64,7 +66,7 @@ internal sealed class HidReportDecoder : IDisposable
         {
             if (!HidNative.HidD_GetPreparsedData(handle, out preparsedData) ||
                 preparsedData == IntPtr.Zero ||
-                HidNative.HidP_GetCaps(preparsedData, out var caps) != HidpStatusSuccess)
+                HidNative.HidP_GetCaps(preparsedData, out var caps) != HidConstants.StatusSuccess)
                 return false;
 
             var bindings = ReadBindings(preparsedData, caps);
@@ -94,7 +96,9 @@ internal sealed class HidReportDecoder : IDisposable
             binding.Descriptor.Type,
             binding.Descriptor.Index,
             binding.Descriptor.Label,
-            binding.Descriptor.Type == GameInputControlType.Axis ? .5f : 0f,
+            binding.Descriptor.Type == GameInputControlType.Axis
+                ? HidConstants.NeutralAxisValue
+                : HidConstants.InactiveControlValue,
             GameInputSwitchPosition.Center)).ToArray();
 
     internal IReadOnlyList<GameInputControlValue> Decode(IReadOnlyList<byte> rawReport)
@@ -106,7 +110,7 @@ internal sealed class HidReportDecoder : IDisposable
         var result = new List<GameInputControlValue>(_bindings.Count);
         foreach (var binding in _bindings)
         {
-            if (binding.ReportId != 0 && report[0] != binding.ReportId)
+            if (binding.ReportId != HidConstants.UnnumberedReportId && report[0] != binding.ReportId)
             {
                 result.Add(Neutral(binding));
                 continue;
@@ -132,7 +136,10 @@ internal sealed class HidReportDecoder : IDisposable
     {
         var (success, usages) = _readUsages(binding, report);
         return new GameInputControlValue(binding.Descriptor.Type, binding.Descriptor.Index,
-            binding.Descriptor.Label, success && usages.Contains(binding.Usage) ? 1f : 0f);
+            binding.Descriptor.Label,
+            success && usages.Contains(binding.Usage)
+                ? HidConstants.ActiveControlValue
+                : HidConstants.InactiveControlValue);
     }
 
     private (bool Success, ushort[] Usages) ReadNativeUsages(Binding binding, byte[] report)
@@ -140,7 +147,7 @@ internal sealed class HidReportDecoder : IDisposable
         var usages = new ushort[Math.Max(1, binding.UsageCount)];
         uint count = (uint)usages.Length;
         var status = HidNative.HidP_GetUsages(
-            HidNative.HidReportType.Input,
+            HidReportType.Input,
             binding.UsagePage,
             binding.LinkCollection,
             usages,
@@ -148,7 +155,8 @@ internal sealed class HidReportDecoder : IDisposable
             _preparsedData,
             report,
             (uint)report.Length);
-        return (status == HidpStatusSuccess, usages[..checked((int)Math.Min(count, (uint)usages.Length))]);
+        return (status == HidConstants.StatusSuccess,
+            usages[..checked((int)Math.Min(count, (uint)usages.Length))]);
     }
 
     private GameInputControlValue ReadAxis(Binding binding, byte[] report)
@@ -163,7 +171,7 @@ internal sealed class HidReportDecoder : IDisposable
     private (bool Success, uint Value) ReadNativeValue(Binding binding, byte[] report)
     {
         var status = HidNative.HidP_GetUsageValue(
-            HidNative.HidReportType.Input,
+            HidReportType.Input,
             binding.UsagePage,
             binding.LinkCollection,
             binding.Usage,
@@ -171,7 +179,7 @@ internal sealed class HidReportDecoder : IDisposable
             _preparsedData,
             report,
             (uint)report.Length);
-        return (status == HidpStatusSuccess, rawValue);
+        return (status == HidConstants.StatusSuccess, rawValue);
     }
 
     private GameInputControlValue ReadSwitch(Binding binding, byte[] report)
@@ -196,7 +204,8 @@ internal sealed class HidReportDecoder : IDisposable
         if (rawReport.Count == expected) return rawReport.ToArray();
 
         var result = new byte[expected];
-        var hasNumberedReports = _bindings.Any(binding => binding.ReportId != 0);
+        var hasNumberedReports = _bindings.Any(binding =>
+            binding.ReportId != HidConstants.UnnumberedReportId);
         var offset = !hasNumberedReports && rawReport.Count == expected - 1 ? 1 : 0;
         var count = Math.Min(rawReport.Count, result.Length - offset);
         for (var index = 0; index < count; index++) result[index + offset] = rawReport[index];
@@ -207,63 +216,68 @@ internal sealed class HidReportDecoder : IDisposable
         binding.Descriptor.Type,
         binding.Descriptor.Index,
         binding.Descriptor.Label,
-        binding.Descriptor.Type == GameInputControlType.Axis ? .5f : 0f,
+        binding.Descriptor.Type == GameInputControlType.Axis
+            ? HidConstants.NeutralAxisValue
+            : HidConstants.InactiveControlValue,
         GameInputSwitchPosition.Center);
 
     internal static int SignExtend(uint value, ushort bitSize, bool signed)
     {
-        if (!signed || bitSize == 0 || bitSize >= 32) return unchecked((int)value);
-        var shift = 32 - bitSize;
+        if (!signed || bitSize == 0 || bitSize >= HidConstants.MaximumSignedValueBitSize)
+            return unchecked((int)value);
+        var shift = HidConstants.MaximumSignedValueBitSize - bitSize;
         return unchecked((int)(value << shift)) >> shift;
     }
 
     internal static float Normalize(int value, int minimum, int maximum)
     {
-        if (maximum <= minimum) return 0f;
+        if (maximum <= minimum) return HidConstants.InactiveControlValue;
         return (float)Math.Clamp(
             (value - (double)minimum) / (maximum - (double)minimum),
-            0d,
-            1d);
+            HidConstants.MinimumNormalizedValue,
+            HidConstants.MaximumNormalizedValue);
     }
 
     internal static GameInputSwitchPosition DecodeHat(int value, int logicalMinimum)
     {
         var ordinal = value - logicalMinimum;
-        return ordinal is >= 0 and < 8
+        return ordinal is >= 0 and < HidConstants.HatSwitchPositionCount
             ? (GameInputSwitchPosition)(ordinal + 1)
             : GameInputSwitchPosition.Center;
     }
 
-    private static IReadOnlyList<Binding> ReadBindings(IntPtr preparsedData, HidNative.HidCaps caps)
+    private static IReadOnlyList<Binding> ReadBindings(IntPtr preparsedData, HidCapabilities caps)
     {
         var result = new List<Binding>();
         var axisIndex = 0;
         var buttonIndex = 0;
         var switchIndex = 0;
 
-        if (caps.NumberInputButtonCaps > 0 && caps.NumberInputButtonCaps <= 1024)
+        if (caps.NumberInputButtonCaps > 0
+            && caps.NumberInputButtonCaps <= HidConstants.MaximumCapabilityCount)
         {
-            var buttonCaps = new HidNative.HidButtonCaps[caps.NumberInputButtonCaps];
+            var buttonCaps = new HidButtonCapabilities[caps.NumberInputButtonCaps];
             var count = caps.NumberInputButtonCaps;
             if (HidNative.HidP_GetButtonCaps(
-                    HidNative.HidReportType.Input,
+                    HidReportType.Input,
                     buttonCaps,
                     ref count,
-                    preparsedData) == HidpStatusSuccess)
+                    preparsedData) == HidConstants.StatusSuccess)
             {
                 foreach (var cap in buttonCaps.Take(count))
                 {
                     var minimum = cap.IsRange != 0 ? cap.Union.UsageMinimum : cap.Union.Usage;
                     var maximum = cap.IsRange != 0 ? cap.Union.UsageMaximum : cap.Union.Usage;
-                    if (maximum < minimum || maximum - minimum > 1024) continue;
+                    if (maximum < minimum
+                        || maximum - minimum > HidConstants.MaximumUsageRange) continue;
                     var maximumUsageListLength = HidNative.HidP_MaxUsageListLength(
-                        HidNative.HidReportType.Input,
+                        HidReportType.Input,
                         cap.UsagePage,
                         preparsedData);
                     var usageCount = checked((int)Math.Clamp(
                         maximumUsageListLength,
                         1u,
-                        4096u));
+                        HidConstants.MaximumUsageListLength));
                     for (var usageValue = (int)minimum; usageValue <= maximum; usageValue++)
                     {
                         var usage = checked((ushort)usageValue);
@@ -286,25 +300,28 @@ internal sealed class HidReportDecoder : IDisposable
             }
         }
 
-        if (caps.NumberInputValueCaps > 0 && caps.NumberInputValueCaps <= 1024)
+        if (caps.NumberInputValueCaps > 0
+            && caps.NumberInputValueCaps <= HidConstants.MaximumCapabilityCount)
         {
-            var valueCaps = new HidNative.HidValueCaps[caps.NumberInputValueCaps];
+            var valueCaps = new HidValueCapabilities[caps.NumberInputValueCaps];
             var count = caps.NumberInputValueCaps;
             if (HidNative.HidP_GetValueCaps(
-                    HidNative.HidReportType.Input,
+                    HidReportType.Input,
                     valueCaps,
                     ref count,
-                    preparsedData) == HidpStatusSuccess)
+                    preparsedData) == HidConstants.StatusSuccess)
             {
                 foreach (var cap in valueCaps.Take(count))
                 {
                     var minimum = cap.IsRange != 0 ? cap.Union.UsageMinimum : cap.Union.Usage;
                     var maximum = cap.IsRange != 0 ? cap.Union.UsageMaximum : cap.Union.Usage;
-                    if (maximum < minimum || maximum - minimum > 1024) continue;
+                    if (maximum < minimum
+                        || maximum - minimum > HidConstants.MaximumUsageRange) continue;
                     for (var usageValue = (int)minimum; usageValue <= maximum; usageValue++)
                     {
                         var usage = checked((ushort)usageValue);
-                        var isHat = cap.UsagePage == 0x01 && usage == 0x39;
+                        var isHat = cap.UsagePage == HidConstants.GenericDesktopUsagePage
+                            && usage == HidConstants.HatSwitchUsage;
                         var descriptor = isHat
                             ? new GameInputControlDescriptor(
                                 GameInputControlType.Switch,
@@ -363,169 +380,4 @@ internal sealed class HidReportDecoder : IDisposable
         int LogicalMinimum,
         int LogicalMaximum,
         int UsageCount);
-}
-
-internal static class HidNative
-{
-    internal const uint FileShareRead = 0x00000001;
-    internal const uint FileShareWrite = 0x00000002;
-    internal const uint OpenExisting = 3;
-
-    internal enum HidReportType
-    {
-        Input,
-        Output,
-        Feature
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 4)]
-    internal unsafe struct HidCaps
-    {
-        internal ushort Usage;
-        internal ushort UsagePage;
-        internal ushort InputReportByteLength;
-        internal ushort OutputReportByteLength;
-        internal ushort FeatureReportByteLength;
-        internal fixed ushort Reserved[17];
-        internal ushort NumberLinkCollectionNodes;
-        internal ushort NumberInputButtonCaps;
-        internal ushort NumberInputValueCaps;
-        internal ushort NumberInputDataIndices;
-        internal ushort NumberOutputButtonCaps;
-        internal ushort NumberOutputValueCaps;
-        internal ushort NumberOutputDataIndices;
-        internal ushort NumberFeatureButtonCaps;
-        internal ushort NumberFeatureValueCaps;
-        internal ushort NumberFeatureDataIndices;
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    internal struct HidCapsUnion
-    {
-        internal ushort UsageMinimum;
-        internal ushort UsageMaximum;
-        internal ushort StringMinimum;
-        internal ushort StringMaximum;
-        internal ushort DesignatorMinimum;
-        internal ushort DesignatorMaximum;
-        internal ushort DataIndexMinimum;
-        internal ushort DataIndexMaximum;
-
-        internal ushort Usage => UsageMinimum;
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 4)]
-    internal unsafe struct HidButtonCaps
-    {
-        internal ushort UsagePage;
-        internal byte ReportId;
-        internal byte IsAlias;
-        internal ushort BitField;
-        internal ushort LinkCollection;
-        internal ushort LinkUsage;
-        internal ushort LinkUsagePage;
-        internal byte IsRange;
-        internal byte IsStringRange;
-        internal byte IsDesignatorRange;
-        internal byte IsAbsolute;
-        internal ushort ReportCount;
-        internal ushort Reserved2;
-        internal fixed uint Reserved[9];
-        internal HidCapsUnion Union;
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 4)]
-    internal unsafe struct HidValueCaps
-    {
-        internal ushort UsagePage;
-        internal byte ReportId;
-        internal byte IsAlias;
-        internal ushort BitField;
-        internal ushort LinkCollection;
-        internal ushort LinkUsage;
-        internal ushort LinkUsagePage;
-        internal byte IsRange;
-        internal byte IsStringRange;
-        internal byte IsDesignatorRange;
-        internal byte IsAbsolute;
-        internal byte HasNull;
-        internal byte Reserved;
-        internal ushort BitSize;
-        internal ushort ReportCount;
-        internal fixed ushort Reserved2[5];
-        internal uint UnitsExponent;
-        internal uint Units;
-        internal int LogicalMinimum;
-        internal int LogicalMaximum;
-        internal int PhysicalMinimum;
-        internal int PhysicalMaximum;
-        internal HidCapsUnion Union;
-    }
-
-    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    internal static extern SafeFileHandle CreateFileW(
-        string fileName,
-        uint desiredAccess,
-        uint shareMode,
-        IntPtr securityAttributes,
-        uint creationDisposition,
-        uint flagsAndAttributes,
-        IntPtr templateFile);
-
-    [DllImport("hid.dll", SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.U1)]
-    internal static extern bool HidD_GetPreparsedData(
-        SafeFileHandle hidDeviceObject,
-        out IntPtr preparsedData);
-
-    [DllImport("hid.dll")]
-    [return: MarshalAs(UnmanagedType.U1)]
-    internal static extern bool HidD_FreePreparsedData(IntPtr preparsedData);
-
-    [DllImport("hid.dll")]
-    internal static extern int HidP_GetCaps(
-        IntPtr preparsedData,
-        out HidCaps capabilities);
-
-    [DllImport("hid.dll")]
-    internal static extern int HidP_GetButtonCaps(
-        HidReportType reportType,
-        [Out] HidButtonCaps[] buttonCaps,
-        ref ushort buttonCapsLength,
-        IntPtr preparsedData);
-
-    [DllImport("hid.dll")]
-    internal static extern int HidP_GetValueCaps(
-        HidReportType reportType,
-        [Out] HidValueCaps[] valueCaps,
-        ref ushort valueCapsLength,
-        IntPtr preparsedData);
-
-    [DllImport("hid.dll")]
-    internal static extern uint HidP_MaxUsageListLength(
-        HidReportType reportType,
-        ushort usagePage,
-        IntPtr preparsedData);
-
-    [DllImport("hid.dll")]
-    internal static extern int HidP_GetUsages(
-        HidReportType reportType,
-        ushort usagePage,
-        ushort linkCollection,
-        [Out] ushort[] usageList,
-        ref uint usageLength,
-        IntPtr preparsedData,
-        [In] byte[] report,
-        uint reportLength);
-
-    [DllImport("hid.dll")]
-    internal static extern int HidP_GetUsageValue(
-        HidReportType reportType,
-        ushort usagePage,
-        ushort linkCollection,
-        ushort usage,
-        out uint usageValue,
-        IntPtr preparsedData,
-        [In] byte[] report,
-        uint reportLength);
 }

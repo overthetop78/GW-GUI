@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Aktifkan audio</value></data>
+  <data name="Emulation.Audio.Output"><value>Keluaran audio</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latensi (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolasi</value></data>
+  <data name="Emulation.Audio.Filter"><value>Filter audio Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Pemisahan stereo (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Masukan audio</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Core Amiga ini tidak menyediakan masukan audio.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Keluaran bawaan Windows</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Anti-interpolasi</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Diemulasikan</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Jenis filter</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Volume suara drive disket</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Jenis suara drive disket</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Bisukan drive kosong</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Volume audio CD</value></data>
+  <data name="Emulation.Audio.Device"><value>Perangkat</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latensi</value></data>
+  <data name="Emulation.Audio.Quality"><value>Kualitas</value></data>
+  <data name="Emulation.Audio.Drives"><value>Drive</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Suara drive disket</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filter audio terpolarisasi</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Rendah</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Tinggi</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+</root>

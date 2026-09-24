@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>설정을 저장할 수 없습니다.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI 오류</value></data>
   <data name="Error.Unexpected"><value>예상치 못한 오류가 차단되었습니다.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>이 작업은 선택한 파일, 장치 또는 플랫폼에 의해 지원되지 않습니다.</value></data>
   <data name="Error.Description.OutOfMemory"><value>가동을 완료하는 충분한 유효한 기억이 없습니다.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI는 이 동작을 수행하는 동안 예상치 못한 문제가 발생했습니다.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput 노동자 실은 멈추지 않았습니다.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>지도 없음</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput 장치 enumeration 실패 {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput 시스템 버튼 등록 실패.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput 새로 고침 등록 실패 {0}: ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput 새로 고침 콜백은 미등록되지 않을 수 있습니다 : 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput 장치 콜백 큐 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput 장치 콜백 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput 시스템 버튼 콜백 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput 원시 읽기 콜백 실패: {0} ₢ 킹{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {1} 코드 0x로 실패{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: 입력 유형 {1}, 유효한 gamepad 국가: {2}, 컨트롤러 배열을 사용할 수 없습니다.</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: 입력 유형 {1}, 유효한 gamepad 국가: {2}, axes: {3}, 단추: {4}, 스위치: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM 오류 0x{1:X8} (주){2}) )</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: 입력 유형 {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>해결된 이름: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput 이름: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID::PID:: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>제품정보 ID:: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>장치 루트 ID:: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>제품정보 ID:: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>가족: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>사용 : {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>지원된 입력: {0} (단위:m){1:X8}) )</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>컨트롤러 정보: axes={0}, 버튼 ={1}, 스위치 ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>축 라벨: [{0}] ] ] ] ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>단추 상표: [{0}] ] ] ] ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?</value></data>
+  <data name="Error.GameInput.Mapper"><value>모자를 씌우기: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP 경로: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP 이름: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>파일 시스템 항목은 읽을 수 없습니다.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>요청된 수 ({0}) 버퍼 크기를 초과합니다 ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>다음 파일 블록에는 잘못된 순서 번호가 있습니다.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>디스크에 무료 섹터가 없습니다.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>오프셋 0은 이 가동을 위해 지원됩니다.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>이 파일 시스템 스트림은 길이를 변경하지 않습니다.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>관련 링크 {0} 배부 체인에는 비트맵 블록이 포함되지 않습니다. 실제 유형 : {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>의약적인 할당 구획 {0} 비트맵 블록을 포함하지 않습니다. 실제 유형 : {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>필요한 bitmap 블록이 누락됩니다.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>루프는 할당 노드에서 블록을 해방하면서 감지되었습니다. {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Allocation 노드 {0} 읽지 않을 수 있었습니다.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>할당 노드 블록은 할당되지 않을 수 있습니다.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>요청된 위치는 이 파일 시스템 객체에 대해 유효하지 않습니다.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>할당 노드 작동 실패.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation-node 비트맵 인덱스 블록 {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1} 읽지 않을 수 있었습니다.</value></data>
 </root>

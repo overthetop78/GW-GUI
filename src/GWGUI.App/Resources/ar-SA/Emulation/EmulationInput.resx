@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>السلوك</value></data>
+  <data name="Emulation.Input.Assign"><value>تعيين...</value></data>
+  <data name="Emulation.Input.Actions"><value>الإجراءات</value></data>
+  <data name="Emulation.Input.Press"><value>اضغط مفتاحًا...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>اكتشاف الأجهزة مشترك، بينما تُحفظ التعيينات بشكل منفصل في كل تكوين جهاز.</value></data>
+  <data name="Emulation.Input.Test"><value>اختبار الإدخال</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>أجهزة الإدخال المشتركة</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>اضغط مفتاحًا أو زر ماوس لاختبار اكتشافه.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>استعادة الإعدادات الافتراضية</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>مسح التعارضات</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>التعيين</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>الحالة</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>البحث عن مفتاح أو تعيين</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>صالح: تعيين فريد · تعارض: التعيين مستخدم عدة مرات · محجوز: اختصار Windows أو GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>صالح</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>تعارض</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>محجوز</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>غير معيّن</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>اضغط «تعيين»، ثم استخدم مفتاح لوحة المفاتيح أو زر الماوس أو زر وحدة التحكم.</value></data>
+</root>

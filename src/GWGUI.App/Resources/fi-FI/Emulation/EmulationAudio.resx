@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Ota ääni käyttöön</value></data>
+  <data name="Emulation.Audio.Output"><value>Äänituloste</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latenssi (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolointi</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga-äänisuodatin</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Stereoiden erottaminen (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Äänisyöte</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Tämä Amiga-ydin ei paljasta äänituloa.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Ikkunoiden oletustuloste</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>interpoloinnin esto</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulgoitu</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Suodattimen tyyppi</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Levykeajoäänen tilavuus</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Levyke-ajoäänityyppi</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Mykät tyhjät asemat</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD äänenvoimakkuus</value></data>
+  <data name="Emulation.Audio.Device"><value>Laite</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Viive</value></data>
+  <data name="Emulation.Audio.Quality"><value>Laatu</value></data>
+  <data name="Emulation.Audio.Drives"><value>Asemat</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Levykeaseman ääni</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarisoitu äänisuodatin</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Matala</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaali</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Korkea</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Ääni</value></data>
+</root>

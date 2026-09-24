@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Núcleo</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Núcleo de emulação {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>A biblioteca permanece fora do GW GUI. A versão selecionada substitui a versão atualmente instalada.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Versão exigida pelo GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Última versão oficial disponível</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Versão atualmente instalada</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Clique em Procurar para consultar o servidor oficial Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Procurar versões</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Transferir e substituir</value></data>
+  <data name="Emulation.Core.NameSearching"><value>A procurar versões disponíveis…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Nenhuma versão oficial encontrada.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} versão(ões) disponível(eis).</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>A transferir {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Versão instalada: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · instalada</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Nenhuma versão instalada</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emulador</value></data>
+  <data name="Emulation.Core.Install"><value>Instalar</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Instalado</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Opções principais</value></data>
+</root>

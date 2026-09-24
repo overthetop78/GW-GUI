@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Memory.Main"><value>Основная память</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Расширения памяти</value></data>
+  <data name="Emulation.Memory.None"><value>Нет</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Конфигурация памяти совместима с {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Расширения памяти совместимы с {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM недоступна на {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Всего настроено памяти: {0} {1}</value></data>
+</root>

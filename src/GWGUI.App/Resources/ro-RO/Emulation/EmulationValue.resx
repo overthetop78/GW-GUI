@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Activat</value></data>
+  <data name="Emulation.Value.Disabled"><value>Dezactivat</value></data>
+  <data name="Emulation.Value.Minimum"><value>Minim</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Foarte mic</value></data>
+  <data name="Emulation.Value.Small"><value>Mică</value></data>
+  <data name="Emulation.Value.Medium"><value>Mediu</value></data>
+  <data name="Emulation.Value.Large"><value>Mare</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Foarte mare</value></data>
+  <data name="Emulation.Value.Maximum"><value>Maxim</value></data>
+  <data name="Emulation.Value.Standard"><value>Standard</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Îmbunătăţit</value></data>
+  <data name="Emulation.Value.Internal"><value>Intern</value></data>
+  <data name="Emulation.Value.Loud"><value>Tare</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Neutilizată</value></data>
+  <data name="Emulation.Value.None"><value>Niciunul</value></data>
+  <data name="Emulation.Value.Default"><value>Implicit</value></data>
+  <data name="Emulation.Value.Gray"><value>Gri</value></data>
+</root>

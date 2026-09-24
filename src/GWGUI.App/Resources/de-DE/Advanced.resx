@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Advanced"><value>Erweiterte Einstellungen</value></data>
-  <data name="Common.ExpertArguments"><value>Expertenargumente</value></data>
-  <data name="Common.ExpertArgumentsTip"><value>Argumente werden nach der Zitatvalidierung wie geschrieben übergeben.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Advanced.SeekRetries"><value>Versuchen Sie es erneut</value></data>
   <data name="Advanced.FakeIndex"><value>Gefälschter Index</value></data>
   <data name="Advanced.HardSectors"><value>Harte Sektoren</value></data>

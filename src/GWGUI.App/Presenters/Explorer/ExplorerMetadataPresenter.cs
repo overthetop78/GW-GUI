@@ -1,5 +1,5 @@
 using GWGUI.App.Localization.Extensions;
-using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.Presenters.Explorer;
 

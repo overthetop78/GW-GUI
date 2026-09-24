@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.Emulation;
 
 namespace GWGUI.App.Views.Controls.Shell;
@@ -41,7 +42,7 @@ public partial class MainMenu : UserControl
             {
                 Header = LocExtension.GetForModule(module, module.DisplayResourceKey),
                 Tag = module.Id,
-                Icon = new TextBlock { FontFamily = new("Segoe MDL2 Assets"), Text = "\uE7FC" }
+                Icon = new TextBlock { FontFamily = new("Segoe MDL2 Assets"), Text = IconGlyphs.Controller }
             };
             item.Click += EmulationModule_Click;
             Emulation.Items.Add(item);

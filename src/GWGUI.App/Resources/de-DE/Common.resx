@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Unbekannt</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Auswurf</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Unbekannt</value></data>
+  <data name="Common.Eject"><value>Auswurf</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Unbekannte Medien</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Diskette</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Festplattenlaufwerk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optische Scheibe</value></data>
+  <data name="Common.MediaKind.Tape"><value>Klebeband</value></data>
+  <data name="Common.Representation.Flux"><value>Strom</value></data>
+  <data name="Common.Representation.Sectors"><value>Sektoren</value></data>
+  <data name="Common.Representation.Blocks"><value>Blöcke</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optische Gleise</value></data>
+  <data name="Common.Representation.Sequential"><value>Sequenzielle Daten</value></data>
+  <data name="Common.Advanced"><value>Erweiterte Einstellungen</value></data>
+  <data name="Common.ExpertArguments"><value>Expertenargumente</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumente werden nach der Zitatvalidierung wie geschrieben übergeben.</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle Dateien|*.*</value></data>
+  <data name="Common.Console"><value>Konsole</value></data>
+  <data name="Common.Command"><value>Befehl</value></data>
 </root>

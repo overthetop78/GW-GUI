@@ -1,6 +1,6 @@
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Functions.Localization;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Commands.Execution;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Hardware.Maintenance;
 internal static class DiagnosticResultScenarios

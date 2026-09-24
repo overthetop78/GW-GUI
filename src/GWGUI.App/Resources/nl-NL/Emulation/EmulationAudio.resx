@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Audio inschakelen</value></data>
+  <data name="Emulation.Audio.Output"><value>Audio-uitvoer</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latentie (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolatie</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga-audiofilter</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Stereoscheiding (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Audio-invoer</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Deze Amiga-core biedt geen audio-invoer.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Standaarduitvoer van Windows</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Anti-interpolatie</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Geëmuleerd</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Filtertype</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Geluidsvolume diskettestation</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Geluidstype diskettestation</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Lege stations dempen</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD audiovolume</value></data>
+  <data name="Emulation.Audio.Device"><value>Apparaat</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latentie</value></data>
+  <data name="Emulation.Audio.Quality"><value>Kwaliteit</value></data>
+  <data name="Emulation.Audio.Drives"><value>Stations</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettestationsgeluid</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Gepolariseerd audiofilter</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Laag</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaal</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hoog</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Geluid</value></data>
+</root>

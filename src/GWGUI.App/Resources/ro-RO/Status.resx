@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>Partea {0}: pista {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI gata.</value></data>
+  <data name="Status.DefaultProfile"><value>Profil: implicit</value></data>
+  <data name="Status.Profile"><value>Profil: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Piesa {0}, lateral {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Piesa {0}, partea {1} — {2} procesată</value></data>
+  <data name="Status.ReadyShort"><value>Gata</value></data>
+  <data name="Status.Running"><value>Funcţionare</value></data>
+  <data name="Status.Success"><value>Succes</value></data>
+  <data name="Status.Error"><value>Eroare</value></data>
+  <data name="Status.Cancelled"><value>Anulat</value></data>
+</root>

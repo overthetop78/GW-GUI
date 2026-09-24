@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Emuleringssnarveier</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Frigi musen</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pause / fortsett</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Fullskjerm / vindu</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Slå på / av</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Myk omstart</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Hard omstart</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Hurtiglagre tilstand</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Hurtiglast tilstand</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Skjermbilde</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Demp aktiv maskin</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Spol raskt mens tasten holdes nede</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Sett inn eller bytt medium</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Løs ut medium</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Neste medium</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Denne handlingen støttes ennå ikke av gjeldende emulator.</value></data>
+</root>

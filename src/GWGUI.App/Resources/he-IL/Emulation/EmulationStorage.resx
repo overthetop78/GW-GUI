@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>הוסף</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>יצירת דיסק קשיח</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>גודל הארד-דיסק (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>No Media. Add a floppy, hard Disk או CD נתמך על ידי המודל שנבחר.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Read-רק</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga קשיח דיסק|*.hdf|כל הקבצים|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>המודל שנבחר אינו תומך בדיסק קשיח.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>המודל הזה מקבל ברוב {0} כונן צנרת (s)</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>המודל הזה מקבל ברוב {0} דיסק קשיח (s)</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>המודל שנבחר אינו תומך CD Drive</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>כונן CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>מספר כונני תקליטונים</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>מספר כוננים קשיחים</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>מהירות הנהיגה Floppy-Drive</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>תמונות מרופפיות הגנה</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redirect floppy כותב</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>מהירות CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>הוספת דיסק קשיח קיים</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>דיסקים קשיחים</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>לא משויך דיסק קשיח למכונה זו.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>תקליטונים</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>הוספת התקן אחסון</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>מדיה משויכת</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>גאומטריית הדיסק נקבעת אוטומטית בידי האמולטור.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>נוצרה תמונת תקליטון ריקה: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>הקובץ ייווצר ריק ולאחר מכן יש לחלק ולאתחל אותו במכונה המדומה.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD Writer</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>אפשר ליצור דיסק ריק רק אם המכונה והאמולטור שנבחרו תומכים בכתיבה.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM כונן</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>הגדרה</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>יצירת תקליטון ריק</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>תמונת דיסק</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>בחר תמונת דיסק קיימת.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>הקובץ שנבחר יחובר לכונן הווירטואלי הזה.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>כונן תקליטונים</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>תמונת תקליטון Amiga|*.adf|כל הקבצים|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>דיסק קשיח</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>ממשק</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>הקצאה מוקדמת של הקובץ</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>תקליטונים ותקליטורים מוכנסים או מוחלפים מתוך המכונה הפועלת.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>הסרת מדיה</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>תמונת הדיסק כבר קיימת: {0}\nהאם להחליף אותה?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>הסוגים, הדגמים והמזהים הזמינים תלויים במכונה שנבחרה.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>כונן קלטת</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>שימוש בדיסק</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>שימוש בדיסק קיים</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>שינוי ב&apos;כללי&apos;</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>אין התקן אחסון נוסף זמין למכונה זו.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>התקני אחסון</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>הקצאה</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>גאומטריה אוטומטית</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>מדיה ריקה</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>בתים למקטע</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>קיבולת מחושבת: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>גודל מותאם אישית</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>גלילים</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>תיקיית יעד</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>גאומטריית דיסק (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>פרופיל גודל</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>כונן תקליטונים</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>ראשים</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>גודל הדיסק או הגאומטריה אינם חוקיים.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>מקצה מיד את שטח הדיסק הפיזי; אחרת התמונה גדלה בעת כתיבת נתונים.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>מקטעים</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>קלטת</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>מחסנית</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>תקליטורים</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>הצג פעילות כוננים במסך האמולטור</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>חריץ מחסנית</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount the first four Disks in DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>דיסק דיסק {0}</value></data>
+</root>

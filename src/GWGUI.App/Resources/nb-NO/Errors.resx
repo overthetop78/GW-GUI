@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Innstillingene kunne ikke lagres.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI feil</value></data>
   <data name="Error.Unexpected"><value>En uventet feil ble fanget opp.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Denne operasjonen støttes ikke av den valgte filen, enheten eller plattformen.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Det er ikke nok tilgjengelig minne til å fullføre operasjonen.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI møtte et uventet problem mens du utførte denne handlingen.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput-arbeidertråden stoppet ikke.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Ingen kartlegging</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput-enhetsopptelling mislyktes for {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Registrering av spillinndata-systemknapp mislyktes.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Oppfrisking av spill for spillinndata mislyktes for {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput-oppdateringstilbakekalling kunne ikke bli uregistrert: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Inngangsenhets tilbakekallingskø mislyktes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Tilbakekalling av spillinndata- enhet mislyktes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Inndatasystemknappen tilbakekalling mislyktes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput råleseangrep mislyktes: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: Lese {1} mislykkes med kode 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: inndatatype {1}, gamepad-tilstand tilgjengelig: {2}, kontroller-arrangementer som ikke er tilgjengelige</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: inndatatype {1}, gamepad-tilstand tilgjengelig: {2}, økser: {3}, knapper: {4}, brytere: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM feil 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: inndatatype {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Oppløst navn: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Inngangsnavn: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:)PID:) {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Enhet ID:) {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Enhetsrot ID:) {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Beholder ID:) {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familie: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Bruk: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Støttet innmating: {0} (0x){1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Kontrollørinformasjon: økser={0}, knapper={1}, brytere={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Aksjemerker: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Knap etiketter: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kart: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP-sti: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP-navn: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Filsystemets oppføring kunne ikke leses.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Det forespurte antallet ({0}) overstiger bufferstørrelsen ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Neste filblokk har feil rekkefølgenummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Ingen fri sektor er tilgjengelig på disken.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Bare offset null støttes for denne operasjonen.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Denne fil-systemets strøm støtter ikke endring av lengd.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Mellomlagret blokk {0} i tildelingskjeden inneholder ikke en punktpunktblokk; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Cached tildelingsblokk {0} inneholder ikke en punktpunktblokk; faktisk type: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Den nødvendige bitmap-blokken mangler.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>En sløyfe ble detektert mens frigjøringsblokker ved tildelingsnode {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Tildelingsnode {0} Kunne ikke leses.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Tildelingsnødblokken kunne ikke tildeles.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Den forespurte posisjonen er ugyldig for dette filsystemet-objektet.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Tildelingsnødoperasjonen mislyktes.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Alocation-node punktgrafikkindeksblokk {0}/{1} Kunne ikke leses.</value></data>
 </root>

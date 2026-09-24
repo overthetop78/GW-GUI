@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Activează audio</value></data>
+  <data name="Emulation.Audio.Output"><value>Ieșire audio</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latenție (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolarea</value></data>
+  <data name="Emulation.Audio.Filter"><value>Filtru audio Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Separarea stereo (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Intrare audio</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Acest nucleu Amiga nu expune o intrare audio.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Ieșire implicită a ferestrelor</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Antirezolvare</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulat</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Tip de filtru</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Volumul sunetului de conducere floppy</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Tipul de sunet de mers cu maşina</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Mută drive-uri goale</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Volumul audio CD</value></data>
+  <data name="Emulation.Audio.Device"><value>Dispozitiv</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latență</value></data>
+  <data name="Emulation.Audio.Quality"><value>Calitate</value></data>
+  <data name="Emulation.Audio.Drives"><value>Unități</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Sunetul unității de dischetă</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtru audio polarizat</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Scăzută</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normală</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Ridicată</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+</root>

@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>실행할 준비가 되었습니다.</value></data>
   <data name="Tool.RawOutput"><value>원시 출력</value></data>
-  <data name="Maintenance.EraseTitle"><value>삭제 확인</value></data>
-  <data name="Maintenance.EraseConfirm"><value>삽입된 디스크의 모든 데이터를 영구적으로 삭제하시겠습니까?</value></data>
-  <data name="Maintenance.CleanTitle"><value>헤드 청소</value></data>
-  <data name="Maintenance.CleanConfirm"><value>클리닝 디스크가 삽입되었는지 확인하세요. 데이터 디스크를 사용하지 마십시오.</value></data>
   <data name="Tools.Erase"><value>디스크 지우기</value></data>
   <data name="Tools.EraseWarning"><value>디스크의 모든 데이터가 삭제됩니다.</value></data>
   <data name="Tools.LimitTracks"><value>트랙 제한</value></data>

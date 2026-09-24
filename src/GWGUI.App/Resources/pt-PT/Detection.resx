@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Detection.Ambiguous"><value>Formato ambíguo</value></data>
+  <data name="Detection.RawScp"><value>Captura bruta SCP reconhecida.</value></data>
+  <data name="Detection.AmigaSize"><value>Formato Amiga reconhecido pelo tamanho do ficheiro.</value></data>
+  <data name="Detection.AcornSize"><value>Formato Acorn reconhecido pelo tamanho do ficheiro.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>O tamanho não corresponde a um perfil Atari ST conhecido.</value></data>
+  <data name="Detection.AtariSize"><value>Geometria Atari ST reconhecida pelo tamanho do ficheiro.</value></data>
+  <data name="Detection.MsaInferred"><value>Recipiente Atari MSA reconhecido; confirme a geometria se necessário.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>A extensão sozinha não pode determinar o IBM PC geometria.</value></data>
+  <data name="Detection.IbmSize"><value>Geometria IBM PC reconhecida pelo tamanho do ficheiro.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Formato inferido da extensão.</value></data>
+  <data name="Detection.Multiple"><value>Vários formatos são possíveis; escolha um explicitamente.</value></data>
+  <data name="Detection.AppleDosOrder"><value>Formato Apple II DOS identificado pela ordem dos setores.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Formato Apple II ProDOS identificado pela ordem dos setores.</value></data>
+  <data name="Detection.AppleContainer"><value>Contentor de imagem de disco Apple detetado.</value></data>
+</root>

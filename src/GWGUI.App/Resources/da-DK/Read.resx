@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Read.Title"><value>Læse</value></data>
   <data name="Read.NameRequired"><value>Indtast et filnavn.</value></data>
   <data name="Read.TypeRequired"><value>Vælg en kompatibel billedtype.</value></data>
@@ -26,7 +18,8 @@
   <data name="Read.RawScp"><value>Råbillede (SCP)</value></data>
   <data name="Read.KnownFormat"><value>Kendt diskformat</value></data>
   <data name="Read.FileName"><value>Filnavn</value></data>
-<data name="Read.Revolutions"><value>Omdrejninger pr. spor</value></data>
+  <data name="Read.Folder"><value>Mappe</value></data>
+  <data name="Read.Revolutions"><value>Omdrejninger pr. spor</value></data>
   <data name="Read.Retries"><value>Forsøg igen</value></data>
   <data name="Read.Tracks"><value>Spor/sider</value></data>
   <data name="Read.AutoNumber"><value>Automatisk tal vellykkede læsninger</value></data>
@@ -52,5 +45,4 @@
   <data name="Read.InternalRawScpOnly"><value>Intern læsning opretter i øjeblikket kun rå SCP-images.</value></data>
   <data name="Read.InternalUnsupportedOptions"><value>Nogle aktiverede indstillinger understøttes endnu ikke af den interne læser.</value></data>
   <data name="Read.InternalInvalidOptions"><value>Indstillingerne for intern læsning er ugyldige.</value></data>
-  <data name="Read.Folder"><value>Mappe</value></data>
 </root>

@@ -1,4 +1,4 @@
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Enums.Explorer;
 using GWGUI.App.Functions.Explorer;
@@ -7,53 +7,94 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Dialogs.Explorer;
+using GWGUI.App.Views.Controls.Common;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Contracts.Explorer;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaEngine.Images.Models.Sequential;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
 
 
 namespace GWGUI.App.Views.Controls.Explorer;
 
 public partial class ExplorerSection : UserControl
 {
+    private static readonly IReadOnlyList<DiskFormat> BuiltInFormats = new BuiltInImageFormatCatalog().Formats;
     private ExplorerFolderItem? _rootFolder;
     private ExploredDiskImage? _document;
+    private ExploredMediaImage? _mediaDocument;
+    private ExploredMediaVolume? _mediaVolume;
     private IReadOnlyList<FileSystemEntry> _rootEntries = [];
     private IReadOnlyList<DiskFormat> _formats = [];
     private IReadOnlyList<string> _detectedFormatIds = [];
+    private string? _automaticDetectedFormatId;
     private readonly ObservableCollection<ExplorerFolderItem> _visibleFolders = [];
-    private bool _applyDetectionOnDisplay;
-
+    private bool _updatingVolumeSelector;
+    private bool _updatingSessionSelector;
+    private bool _updatingDetectedFormatSelector;
     public ExplorerSection()
     {
         InitializeComponent();
         FolderList.ItemsSource = _visibleFolders;
         SetFormats([], null);
-        Classification.ValueChanged += (_, _) => FormatChanged?.Invoke(this, EventArgs.Empty);
+        Classification.ValueChanged += (_, _) =>
+        {
+            AutomaticDetection.IsChecked = false;
+            Classification.SetAutomaticDetection(false);
+            FormatChanged?.Invoke(this, EventArgs.Empty);
+        };
         OpenButton.Click += (_, e) => OpenRequested?.Invoke(this, e);
+        EmptyOpenButton.Click += (_, e) => OpenRequested?.Invoke(this, e);
         ReadDiskButton.Click += (_, e) => ReadDiskRequested?.Invoke(this, e);
+        SessionSelector.SelectionChanged += SessionSelector_SelectionChanged;
+        AudioTrackList.SelectionChanged += AudioTrackList_SelectionChanged;
     }
 
     public event RoutedEventHandler? OpenRequested;
     public event RoutedEventHandler? ReadDiskRequested;
     public event EventHandler? FormatChanged;
     public Button OpenImageButton => OpenButton;
+    public CardSection HeaderCardControl => HeaderCardRoot;
+    public DiskClassificationSelector ClassificationSelector => Classification;
     public IReadOnlyList<ExplorerFormatChoice> FormatChoices =>
         [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
-    public string? SelectedFormatId => Classification.SelectedProtectionId ?? Classification.SelectedFormatId;
+    public string? SelectedFormatId => Classification.SelectedFormatId;
     public string? FormatIdForNewImage => AutomaticDetection.IsChecked == true ? null : SelectedFormatId;
+
+    public void SelectDetectedFormat(string formatId)
+    {
+        if (DetectedFormatSelector.ItemsSource is not IEnumerable<ExplorerFormatChoice> choices) return;
+        var choice = choices.FirstOrDefault(item => string.Equals(item.Id, formatId, StringComparison.OrdinalIgnoreCase));
+        if (choice is null) return;
+        _updatingDetectedFormatSelector = true;
+        DetectedFormatSelector.SelectedItem = choice;
+        Classification.ApplyDetection(formatId, null, _detectedFormatIds);
+        _updatingDetectedFormatSelector = false;
+    }
 
     private void AutomaticDetection_Changed(object sender, RoutedEventArgs e)
     {
+        if (!IsInitialized)
+            return;
+
         var enabled = AutomaticDetection.IsChecked == true;
         Classification.SetAutomaticDetection(enabled);
-        if (enabled && _document is not null)
-            Classification.ApplyDetection(_document.PrimaryFormatId, _document.Metadata.ProtectionId, _detectedFormatIds);
+        if (!enabled) return;
+
+        var formatId = _automaticDetectedFormatId
+            ?? _document?.PrimaryFormatId
+            ?? _mediaDocument?.Document.FormatId;
+        if (string.IsNullOrWhiteSpace(formatId)) return;
+
+        SelectDetectedFormat(formatId);
+        FormatChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetFormats(IEnumerable<DiskFormat> formats, string? selectedId)
@@ -64,160 +105,21 @@ public partial class ExplorerSection : UserControl
         if (!hadSelection && selectedId is not null) Classification.ApplyDetection(selectedId, null);
     }
 
-    public void SetLoading(bool loading) => LoadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
-
-    public void Clear(string? path = null, bool newImage = true)
+    public void SetLoading(bool loading)
     {
-        _applyDetectionOnDisplay = newImage && AutomaticDetection.IsChecked == true;
-        if (newImage) _detectedFormatIds = [];
-        PathText.Text = path ?? string.Empty;
-        DetectedFormatsText.Text = "\u2014";
-        DetectedFormatsText.ToolTip = null;
-        VolumeNameText.Foreground = BrushFor(false);
-        VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = "—";
-        SystemText.Text = ProtectionText.Text = "\u2014";
-        _rootFolder = null;
-        _document = null;
-        _rootEntries = [];
-        _visibleFolders.Clear();
-        ContentsList.ItemsSource = null;
-        WarningsButton.Visibility = Visibility.Collapsed;
-        DetailsPanel.Clear();
+        LoadingOverlay.Visibility = loading ? Visibility.Visible : Visibility.Collapsed;
+        if (loading)
+            SetLoadingProgress(LocExtension.Get("Explorer.Loading"), string.Empty, 0);
     }
 
-    public void Display(ExploredDiskImage document)
+    public void SetLoadingProgress(string stage, string detail, double value)
     {
-        _document = document;
-        PathText.Text = document.SourcePath;
-        _detectedFormatIds = _detectedFormatIds
-            .Concat(ReportedFormats(document))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-        var detectedSummary = DetectedFormatsSummary();
-        DetectedFormatsText.Text = detectedSummary;
-        DetectedFormatsText.ToolTip = detectedSummary;
-        Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
-        if (_applyDetectionOnDisplay)
-        {
-            Classification.ApplyDetection(document.PrimaryFormatId, document.Metadata.ProtectionId, _detectedFormatIds);
-        }
-
-        _applyDetectionOnDisplay = false;
-        var volumeName = ExplorerDetailsPresenter.VolumeName(document);
-        VolumeNameText.Text = volumeName.Text;
-        VolumeNameText.Foreground = BrushFor(volumeName.IsSynthetic);
-        var currentSystem = CurrentSystem(document);
-        SystemText.Text = currentSystem;
-        ProtectionText.Text = ExplorerMetadataPresenter.Protection(document.Metadata);
-        FileSystemText.Text = ExplorerDetailsPresenter.FileSystemText(document);
-        CapacityText.Text = StorageSizeFormatter.FormatBytes(document.Volume.Capacity);
-        FreeText.Text = document.FileSystemRecognized && document.Volume.FreeSpaceKnown ? StorageSizeFormatter.FormatBytes(document.Volume.FreeBytes) : ControlVisualConstants.EmptyValue;
-        EntryCountText.Text = CountEntries(document.Volume.Entries).ToString();
-        _rootEntries = document.Volume.Entries;
-        _rootFolder = new ExplorerFolderItem(volumeName.Text, null, 0, _rootEntries, volumeName.IsSynthetic) { IsExpanded = true };
-        RefreshVisibleFolders(_rootFolder);
-        FolderList.SelectedItem = _rootFolder;
-        ShowContents(_rootEntries);
-        DetailsPanel.ShowDisk(document, currentSystem);
-        var warningCount = BuildIssues(document).Count;
-        WarningsButton.Visibility = warningCount == 0 ? Visibility.Collapsed : Visibility.Visible;
-        WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {warningCount}";
+        LoadingCard.SetProgress(stage, detail, value);
     }
 
-    private static IReadOnlyList<string> ReportedFormats(ExploredDiskImage document)
-    {
-        return document.FormatsDetectes
-            .Select(format => format.FormatId)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-    }
+    internal string LoadingStage => LoadingCard.Stage;
+    internal string LoadingDetail => LoadingCard.Detail;
+    internal double LoadingValue => LoadingCard.Value;
+    internal string LoadingPercent => LoadingCard.Percent;
 
-    private string DetectedFormatsSummary()
-    {
-        var catalog = new DiskClassificationCatalog(_formats);
-        var recognized = _detectedFormatIds.Select(id => catalog.ResolveFormat(id))
-            .Where(format => format is not null).Cast<DiskFormat>()
-            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
-            .Select(format => $"{format.Family} ({format.DisplayName})")
-            .ToArray();
-        var value = recognized.Length == 0 ? "\u2014" : string.Join("  \u00b7  ", recognized);
-        return LocExtension.Get("Explorer.DetectedFormats", value);
-    }
-
-    private string CurrentSystem(ExploredDiskImage document)
-    {
-        if (Classification.SelectedMachine is { } selectedMachine)
-        {
-            return selectedMachine;
-        }
-
-        var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.PrimaryFormatId);
-        return format?.Family ?? ExplorerMetadataPresenter.Systems(document.Metadata);
-    }
-
-    private Brush BrushFor(bool synthetic)
-    {
-        var resourceKey = synthetic ? "SyntheticNameBrush" : "TextBrush";
-        return TryFindResource(resourceKey) as Brush ?? SystemColors.WindowTextBrush;
-    }
-
-    public static int CountEntries(IEnumerable<FileSystemEntry> entries) => ExplorerIssueBuilder.CountEntries(entries);
-
-    private void RefreshVisibleFolders(ExplorerFolderItem? selected = null)
-    {
-        if (_rootFolder is null) return;
-        _visibleFolders.Clear();
-        foreach (var item in ExplorerTreeNavigator.Flatten(_rootFolder)) _visibleFolders.Add(item);
-        if (selected is not null) FolderList.SelectedItem = selected;
-    }
-
-    private void ShowContents(IEnumerable<FileSystemEntry> entries)
-    {
-        var family = _document is null ? ExplorerFileSystemFamily.Unknown : ExplorerFileIconClassifier.FamilyFor(_document);
-        ContentsList.ItemsSource = entries
-            .OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory)
-            .ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase)
-            .Select(entry => new ExplorerContentItem(entry, family)).ToArray();
-        ContentsList.SelectedItem = null;
-        if (_document is not null) DetailsPanel.ShowDisk(_document, CurrentSystem(_document));
-    }
-
-    private void ContentsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (_document is null) return;
-        if (ContentsList.SelectedItem is ExplorerContentItem item) DetailsPanel.ShowItem(_document, item);
-        else DetailsPanel.ShowDisk(_document, CurrentSystem(_document));
-    }
-
-    private void FolderToggle_Click(object sender, RoutedEventArgs e)
-    {
-        if (sender is not Button { Tag: ExplorerFolderItem item } || item.Children.Count == 0) return;
-        item.IsExpanded = !item.IsExpanded;
-        RefreshVisibleFolders(item);
-        ShowContents(item.Entry?.Children ?? _rootEntries);
-        e.Handled = true;
-    }
-
-    private void FolderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (FolderList.SelectedItem is ExplorerFolderItem item) ShowContents(item.Entry?.Children ?? _rootEntries);
-    }
-
-    private void ContentsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-    {
-        if (ContentsList.SelectedItem is not ExplorerContentItem { Entry.Kind: FileSystemEntryKind.Directory } selected || _rootFolder is null) return;
-        var folder = ExplorerTreeNavigator.Find(_rootFolder, selected.Entry);
-        if (folder is null) return;
-        ExplorerTreeNavigator.ExpandPathTo(_rootFolder, folder);
-        RefreshVisibleFolders(folder);
-        ShowContents(folder.Entry!.Children);
-    }
-
-    private void WarningsButton_Click(object sender, RoutedEventArgs e)
-    {
-        if (_document is null) return;
-        new ExplorerIssuesWindow(BuildIssues(_document)) { Owner = Window.GetWindow(this) }.ShowDialog();
-    }
-
-    public static IReadOnlyList<string> BuildIssues(ExploredDiskImage document) => ExplorerIssueBuilder.Build(document);
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>ลบอิมเมจของดิสก์...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>จะลบอิมเมจและข้อมูลทั้งหมดของดิสก์นี้อย่างถาวรหรือไม่? ปฏิบัติการนี้จะยกเลิกการโหลดไม่ได้&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>การลบรายการเป็นไปไม่ได้ โปรดปิดแผ่นดิสก์นี้ก่อน, บันทึกการปรับแต่งและปิดวาระการใช้งานรายการก่อน:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>เปิดวาระการใช้งาน: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>ไม่อนุญาตให้ทําการลบแฟ้มผ่านลิงก์ เลือกแฟ้มต้นฉบับ</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>เลือกส่วนขยายที่รองรับโดยเครื่องและส่วนติดต่อผู้ใช้นี้</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>มีแฟ้มนี้อยู่แล้ว โปรดตั้งชื่อใหม่</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>ความจุ 512 ไบต์ {0}, ในจํานวนหลาย ๆ ตัวของ 512. จํากัดการอนุรักษ์สําหรับระบบที่รองรับ.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>สร้างแผ่นฟลอปปีที่ว่างอยู่โดยไม่มีระบบปฏิบัติการ เตรียมการและฟอร์แมตดิสก์โดยใช้เครื่องมือดิสก์ภายในเครื่องจําลอง</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>เตรียมการดิสก์</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>ล้างข้อมูล (ยังไม่กําหนด)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>การฟอร์แมตสร้างปริมาตรว่าง ไม่มีระบบปฏิบัติการ HDD การบูตต้องการไดรเวอร์ที่เข้ากันได้กับดิสก์ ที่ติดตั้งจากเครื่องจําลองเสียง ภาพที่ถูกบีบอัดอาจจะส่งเส้นทางไปยังสําเนาที่สกัดได้</value></data>
+</root>

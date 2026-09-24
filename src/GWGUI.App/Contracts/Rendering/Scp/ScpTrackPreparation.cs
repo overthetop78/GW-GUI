@@ -8,4 +8,5 @@ public sealed record ScpTrackPreparation(
     int ValidSectors = 0,
     int InvalidSectors = 0,
     int UnverifiedSectors = 0,
-    bool HasFlux = true);
+    bool HasFlux = true,
+    double Quality = 0);

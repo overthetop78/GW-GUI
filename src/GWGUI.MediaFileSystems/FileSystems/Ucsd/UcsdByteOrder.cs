@@ -1,0 +1,10 @@
+namespace GWGUI.MediaFileSystems.FileSystems.Ucsd;
+
+/// <summary>Décrit l'ordre des octets d'un répertoire UCSD.</summary>
+public enum UcsdByteOrder
+{
+    /// <summary>Octet faible en premier.</summary>
+    LittleEndian,
+    /// <summary>Octet fort en premier.</summary>
+    BigEndian
+}

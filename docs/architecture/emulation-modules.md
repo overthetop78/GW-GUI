@@ -166,7 +166,7 @@ Le choix du cœur, ses options natives et ses types privés restent entièrement
 3. Nommer le projet `GWGUI.Emulation.<Famille>.csproj`, ajouter un `module.json` conforme dans le
    même dossier et configurer sa copie. L'identifiant du manifeste doit correspondre à `<Famille>`
    sans distinction de casse et `entryAssembly` au nom d'assembly du projet.
-4. Construire : `scripts/emulation-modules.ps1` découvre automatiquement ce manifeste ; les scripts
+4. Construire : `scripts/release/update-catalog/emulation-modules/emulation-modules.ps1` découvre automatiquement ce manifeste ; les scripts
    publient le projet séparément et copient son paquet dans `Modules/<id>`. Aucun nom de famille
    n'est à ajouter dans les scripts ou workflows génériques.
 5. Vérifier le paquet avec ce module, avec les autres, puis avec sa DLL retirée.

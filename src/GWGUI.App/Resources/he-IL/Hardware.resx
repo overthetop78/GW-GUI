@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>נָמָל</value></data>
-  <data name="Hardware.UsbId"><value>מזהה USB</value></data>
-  <data name="Hardware.Drive"><value>לִנְהוֹג</value></data>
-  <data name="Hardware.Available"><value>זָמִין</value></data>
-  <data name="Hardware.Scan"><value>לִסְרוֹק</value></data>
-  <data name="Hardware.AddDrive"><value>הוסף כונן...</value></data>
-  <data name="Hardware.NoDrive"><value>לא הוגדר כונן</value></data>
-  <data name="Hardware.EditorTitle"><value>הגדר כונן</value></data>
-  <data name="Hardware.Controller"><value>בקר Greaseweazle</value></data>
-  <data name="Hardware.GwSelection"><value>הבחירה הועברה ל-gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>גודל פיזי</value></data>
-  <data name="Hardware.SizeShort"><value>גוֹדֶל</value></data>
-  <data name="Hardware.DensityShort"><value>צְפִיפוּת</value></data>
-  <data name="Hardware.SpeedShort"><value>מְהִירוּת</value></data>
-  <data name="Hardware.AvailableState"><value>זָמִין</value></data>
-  <data name="Hardware.UnavailableState"><value>לא זמין</value></data>
-  <data name="Hardware.DensityDescription"><value>צפיפות כונן (תיאור בלבד)</value></data>
-  <data name="Hardware.SpeedDescription"><value>מהירות נומינלית (תיאור בלבד)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>נָמָל</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>מזהה USB</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>לִנְהוֹג</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>זָמִין</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>לִסְרוֹק</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>הוסף כונן...</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>לא הוגדר כונן</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>הגדר כונן</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>בקר Greaseweazle</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>הבחירה הועברה ל-gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>גודל פיזי</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>גוֹדֶל</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>צְפִיפוּת</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>מְהִירוּת</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>זָמִין</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>לא זמין</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>צפיפות כונן (תיאור בלבד)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>מהירות נומינלית (תיאור בלבד)</value></data>
   <data name="Hardware.NotConfigured"><value>הבקר לא מוגדר</value></data>
   <data name="Hardware.Disconnected"><value>מְנוּתָק</value></data>
   <data name="Hardware.SelectedDisconnected"><value>הכונן שנבחר מנותק. חבר אותו מחדש או סרוק שוב באפשרויות ← בקרים וכוננים.</value></data>
-  <data name="Hardware.DriveLabel"><value>{0} אינץ' · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveLabel"><value>{0} אינץ&apos; · {1} · {2} · {3}</value></data>
   <data name="Hardware.DriveDialogTitle"><value>לִנְהוֹג</value></data>
   <data name="Hardware.ControllerRequired"><value>תחילה סרוק או הוסף בקר Greaseweazle.</value></data>
-  <data name="Hardware.Description"><value>{0} אינץ' · {1} · מבחר {2}{3}</value></data>
+  <data name="Hardware.Description"><value>{0} אינץ&apos; · {1} · מבחר {2}{3}</value></data>
   <data name="Hardware.ScanTitle"><value>לִסְרוֹק</value></data>
   <data name="Hardware.GwRequired"><value>תחילה בחר או הורד את gw.exe למטה.</value></data>
   <data name="Hardware.StartupTitle"><value>בדיקת חומרה</value></data>

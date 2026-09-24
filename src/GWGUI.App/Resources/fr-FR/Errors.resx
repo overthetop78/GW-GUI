@@ -1,39 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Les réglages n’ont pas pu être enregistrés.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>Erreur de GW GUI</value></data>
   <data name="Error.Unexpected"><value>Une erreur inattendue a été interceptée.&#xA;&#xA;{0}</value></data>
   <data name="Error.SaveFailed"><value>Les réglages n’ont pas pu être enregistrés. La fenêtre va tout de même se fermer.&#xA;&#xA;{0}</value></data>
   <data name="Error.LogSaved"><value>Le rapport complet a été enregistré dans :&#xA;{0}</value></data>
-  <data name="Error.Description.NetworkTimeout"><value>Le service distant n'a pas répondu avant l'expiration du délai de connexion. Vérifiez la connexion réseau, puis réessayez.</value></data>
-  <data name="Error.Description.NetworkDns"><value>L'adresse du service distant n'a pas pu être résolue. Vérifiez les paramètres réseau ou DNS, puis réessayez.</value></data>
+  <data name="Error.Description.NetworkTimeout"><value>Le service distant n&apos;a pas répondu avant l&apos;expiration du délai de connexion. Vérifiez la connexion réseau, puis réessayez.</value></data>
+  <data name="Error.Description.NetworkDns"><value>L&apos;adresse du service distant n&apos;a pas pu être résolue. Vérifiez les paramètres réseau ou DNS, puis réessayez.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Le service distant a refusé la connexion. Il est peut-être indisponible ou bloqué.</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>Le service distant est inaccessible. Vérifiez la connexion Internet, le pare-feu, le VPN ou les paramètres du proxy, puis réessayez.</value></data>
-  <data name="Error.Description.HttpStatus"><value>Le service distant a renvoyé l'état HTTP {0}. Réessayez plus tard.</value></data>
-  <data name="Error.Description.OperationTimeout"><value>L'opération n'a pas pu se terminer dans le délai imparti. Réessayez.</value></data>
-  <data name="Error.Description.OperationCancelled"><value>L'opération a été annulée avant sa fin.</value></data>
-  <data name="Error.Description.AccessDenied"><value>GW GUI n'est pas autorisé à accéder au fichier, au dossier ou au périphérique demandé.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Le service distant a renvoyé l&apos;état HTTP {0}. Réessayez plus tard.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>L&apos;opération n&apos;a pas pu se terminer dans le délai imparti. Réessayez.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>L&apos;opération a été annulée avant sa fin.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI n&apos;est pas autorisé à accéder au fichier, au dossier ou au périphérique demandé.</value></data>
   <data name="Error.Description.FileNotFound"><value>Le fichier requis est introuvable : {0}</value></data>
   <data name="Error.Description.DirectoryNotFound"><value>Le dossier requis est introuvable.</value></data>
-  <data name="Error.Description.DriveNotFound"><value>Le lecteur demandé n'est pas disponible.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Le lecteur demandé n&apos;est pas disponible.</value></data>
   <data name="Error.Description.PathTooLong"><value>Le chemin sélectionné est trop long.</value></data>
-  <data name="Error.Description.DiskFull"><value>Il n'y a pas assez d'espace libre pour terminer l'opération.</value></data>
+  <data name="Error.Description.DiskFull"><value>Il n&apos;y a pas assez d&apos;espace libre pour terminer l&apos;opération.</value></data>
   <data name="Error.Description.InvalidData"><value>Les données ou le fichier sélectionné sont invalides, incomplets ou corrompus.</value></data>
-  <data name="Error.Description.InvalidArgument"><value>L'une des valeurs fournies est invalide. Vérifiez les paramètres, puis réessayez.</value></data>
-  <data name="Error.Description.InvalidOperation"><value>L'opération ne peut pas être effectuée dans l'état actuel de l'application.</value></data>
-  <data name="Error.Description.NotSupported"><value>Cette opération n'est pas prise en charge par le fichier, le périphérique ou la plateforme sélectionnée.</value></data>
-  <data name="Error.Description.OutOfMemory"><value>Il n'y a pas assez de mémoire disponible pour terminer l'opération.</value></data>
-  <data name="Error.Description.Unexpected"><value>GW GUI a rencontré un problème inattendu pendant l'exécution de cette action.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>L&apos;une des valeurs fournies est invalide. Vérifiez les paramètres, puis réessayez.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>L&apos;opération ne peut pas être effectuée dans l&apos;état actuel de l&apos;application.</value></data>
+  <data name="Error.Description.NotSupported"><value>Cette opération n&apos;est pas prise en charge par le fichier, le périphérique ou la plateforme sélectionnée.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Il n&apos;y a pas assez de mémoire disponible pour terminer l&apos;opération.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI a rencontré un problème inattendu pendant l&apos;exécution de cette action.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Le fil de travail GameInput ne s'est pas arrêté.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Pas de cartographie</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Le dénombrement des périphériques GameInput a échoué pour {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>L'enregistrement du bouton système GameInput a échoué.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput rafraîchissement de l'enregistrement échoué pour {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput rafraîchissement callback ne peut pas être non enregistré: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>La file d'attente de rappel du périphérique GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Le rappel du périphérique GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Le rappel du bouton système GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Le callback de lecture brute de GameInput a échoué : {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: lecture {1} échoué avec le code 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: type d'entrée {1}, état du gamepad disponible: {2}, tableaux de contrôleur non disponibles</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: type d'entrée {1}, état du gamepad disponible: {2}, axes: {3}, boutons &amp; #160;: {4}, interrupteurs: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM erreur 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: type d'entrée {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Nom résolu: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Nom de la mise en jeu : {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID- Oui.PID- Oui. {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Appareil ID- Oui. {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>racine du périphérique ID- Oui. {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Conteneur ID- Oui. {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Famille {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Utilisation : {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Contribution soutenue : {0} (0x){1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Informations sur le contrôleur: axes={0}, boutons={1}, interrupteurs={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Étiquettes de l'axe: [{0}- Oui.</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Étiquettes de bouton: [{0}- Oui.</value></data>
+  <data name="Error.GameInput.Mapper"><value>Cartographie: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP chemin: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Noms de la PnP : {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>L'entrée système de fichiers n'a pas pu être lue.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Le nombre demandé ({0}) dépasse la taille du tampon ({1}) .</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Le prochain bloc de fichiers a un numéro de séquence incorrect.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Aucun secteur gratuit n'est disponible sur le disque.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Seul le zéro offset est pris en charge pour cette opération.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Ce flux de système de fichiers ne supporte pas de changer sa longueur.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Bloc de cache {0} dans la chaîne d'allocation ne contient pas de bloc bitmap; type réel: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Bloc d'attribution des droits {0} ne contient pas de bloc bitmap; type réel: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Le bloc bitmap requis est manquant.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Une boucle a été détectée lors de la libération des blocs au nœud d'allocation {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Noeud d'allocation {0} ne pouvait pas être lu.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Le bloc de nœuds d'attribution n'a pas pu être attribué.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>La position demandée est invalide pour cet objet système de fichiers.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>L'opération de répartition des nœuds a échoué.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloc d'index bitmap de l'allocation-node {0}/{1} ne pouvait pas être lu.</value></data>
 </root>

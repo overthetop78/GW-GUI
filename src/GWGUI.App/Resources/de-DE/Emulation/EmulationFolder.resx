@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>Gemeinsamer Speicherordner für Emulatoren</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Festplatten werden automatisch in HDD\Amiga, HDD\Atari und den Ordnern zukünftiger Systeme organisiert.</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Fehlende Unterordner automatisch erstellen</value></data>
+  <data name="Emulation.Folder.Common"><value>Gemeinsame Ordner</value></data>
+  <data name="Emulation.Folder.Capture"><value>Aufnahmeordner</value></data>
+  <data name="Emulation.Folder.State"><value>Ordner für gespeicherte Zustände</value></data>
+  <data name="Emulation.Folder.Default"><value>Standardordner</value></data>
+</root>

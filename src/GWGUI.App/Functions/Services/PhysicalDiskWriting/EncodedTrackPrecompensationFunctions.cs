@@ -1,5 +1,5 @@
 using GWGUI.App.Enums.Services.PhysicalDiskWriting;
-using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Images.Writing.Encoding;
 
 namespace GWGUI.App.Functions.Services.PhysicalDiskWriting;
 

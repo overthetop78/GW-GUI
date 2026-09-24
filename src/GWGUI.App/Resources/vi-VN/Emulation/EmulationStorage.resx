@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Thêm phương tiện</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Tạo ổ cứng</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Kích thước ổ cứng (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Không có phương tiện. Hãy thêm đĩa mềm, ổ cứng hoặc CD được mẫu đã chọn hỗ trợ.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Chỉ đọc</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>đĩa cứng Amiga|*.hdf|Mọi tập tin|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Mẫu đã chọn không hỗ trợ ổ cứng.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Mẫu này hỗ trợ tối đa {0} ổ đĩa mềm.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Mẫu này hỗ trợ tối đa {0} ổ cứng.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Mô hình đã chọn không hỗ trợ một CD ổ đĩa.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Ổ đĩa CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Số ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Số ổ đĩa cứng</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Tốc độ ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Chống ghi ảnh đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Chuyển hướng ghi đĩa mềm</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Tốc độ CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Thêm ổ cứng hiện có</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Ổ cứng</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Không có ổ cứng nào được gắn với máy này.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Đĩa mềm</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Thêm thiết bị lưu trữ</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Phương tiện được liên kết</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Hình học đĩa được trình giả lập tự động xác định.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Đã tạo ảnh đĩa mềm trống: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Tệp sẽ được tạo trống, sau đó phải được phân vùng và định dạng trong máy giả lập.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Ổ ghi CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Chỉ có thể tạo đĩa trống khi máy và trình giả lập đã chọn hỗ trợ ghi.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Ổ CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Cấu hình</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Tạo đĩa mềm trống</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Ảnh đĩa</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Chọn một ảnh đĩa hiện có.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Tệp đã chọn sẽ được gắn vào ổ đĩa ảo này.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Ảnh đĩa mềm Amiga|*.adf|Tất cả tệp|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Đĩa cứng</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Giao diện</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Phân bổ trước tệp</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Các đĩa CD và đĩa mềm được chèn hoặc thay thế từ máy đang chạy.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Tháo phương tiện</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Ảnh đĩa đã tồn tại: {0}\nBạn có muốn thay thế không?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Các loại, mẫu và mã định danh có sẵn phụ thuộc vào máy đã chọn.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Ổ băng từ</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Dùng đĩa</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Dùng đĩa hiện có</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Sửa trong Chung</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Không có thiết bị lưu trữ bổ sung cho máy này.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Thiết bị lưu trữ</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Phân bổ</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Hình học tự động</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Phương tiện trống</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Byte mỗi cung</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Dung lượng tính toán: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Kích thước tùy chỉnh</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Trụ</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Thư mục đích</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Hình học đĩa (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Cấu hình kích thước</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Đầu đọc</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Kích thước hoặc hình học đĩa không hợp lệ.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Dành ngay dung lượng vật lý; nếu không, ảnh sẽ tăng khi ghi dữ liệu.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Cung</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Băng cassette</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Hộp băng</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Đĩa compact</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Hiển thị hoạt động ổ đĩa trên màn hình trình giả lập</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Khe cắm hộp băng</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Gắn kết bốn đĩa đầu trong DF0–DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Đĩa {0}</value></data>
+</root>

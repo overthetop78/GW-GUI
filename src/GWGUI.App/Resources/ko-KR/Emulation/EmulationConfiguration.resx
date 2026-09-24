@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>여기에서 저장된 구성을 만들고, 선택하고, 수정하거나 삭제할 수 있습니다. 선택한 구성을 편집하려면 {0} 탭을 선택하십시오.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>브랜드</value></data>
+  <data name="Emulation.Configuration.Machine"><value>머신</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>총 RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>드라이브</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>주변 장치</value></data>
+  <data name="Emulation.Configuration.Actions"><value>작업</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>{0} {1} 구성을 삭제하시겠습니까?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>구성</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>제품 설명</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>이 Amiga 구성을 삭제?</value></data>
+</root>

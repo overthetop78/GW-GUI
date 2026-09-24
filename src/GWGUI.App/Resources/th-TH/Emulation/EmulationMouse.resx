@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>กุญแจสําหรับ Capture ของปุ่มปล่อย</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>ปุ่มเมาส์ด้านซ้าย</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>ปุ่มเมาส์ปุ่มขวา</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>ปุ่มเมาส์กลาง</value></data>
+  <data name="Emulation.Mouse.Physical"><value>เมาส์ทางกายภาพ</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>การเคลื่อนไหวคู่</value></data>
+  <data name="Emulation.Mouse.Speed"><value>ความเร็วของเมาส์</value></data>
+  <data name="Emulation.Mouse.Analog"><value>ไม้แอนาล็อกควบคุมเมาส์</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>ขอบเขตการตายของแท่งอะนาล็อก</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>ความเร็วลูกแบบอะนาล็อก</value></data>
+  <data name="Emulation.Mouse.Actions"><value>การทำงานของเมาส์</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>ปุ่มเมาส์ 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>ปุ่มเมาส์ 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>การจับเมาส์</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>ล้อเมาส์ขึ้น</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>ล้อเมาส์ลง</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>ล้อเมาส์ไปทางซ้าย</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>ล้อเมาส์ไปทางขวา</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>จับเมาส์</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>ปล่อยเมาส์</value></data>
+</root>

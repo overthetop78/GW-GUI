@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>共用模擬儲存資料夾</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>硬碟會自動整理到 HDD\Amiga、HDD\Atari 以及未來系統的資料夾中。</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>自動建立缺少的子資料夾</value></data>
+  <data name="Emulation.Folder.Common"><value>共用資料夾</value></data>
+  <data name="Emulation.Folder.Capture"><value>擷取資料夾</value></data>
+  <data name="Emulation.Folder.State"><value>儲存狀態資料夾</value></data>
+  <data name="Emulation.Folder.Default"><value>預設資料夾</value></data>
+</root>

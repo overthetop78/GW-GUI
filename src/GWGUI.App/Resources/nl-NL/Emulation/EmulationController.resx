@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Apparaat voor controller {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Controllers detecteren</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga-actie</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Invoer van toetsenbord, muis of controller</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Linkerstick</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Rechterstick</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Beide sticks</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turbovuur</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turboknop</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbopuls</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Volgorde controllerpoorten</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Geen controller gedetecteerd</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Controllertoewijzingen</value></data>
+  <data name="Emulation.Controller.Port"><value>Poort {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Controllertype</value></data>
+  <data name="Emulation.Controller.Detected"><value>Gedetecteerde controllers</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Zoek naar een actie of invoer</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Omhoog</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Omlaag</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Links</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Rechts</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Vuurknop 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Vuurknop 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analoge joystick</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Automatisch</value></data>
+  <data name="Emulation.Controller.None"><value>Geen</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Joystick/muis wisselen</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kon niet worden geïnitialiseerd. Installeer of herstel de meegeleverde GameInput-runtime.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (linker)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (rechterhand)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Uiterlijk</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
+</root>

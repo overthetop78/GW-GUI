@@ -5,18 +5,36 @@ la documentation durable puis leur feuille est supprimée. Les règles permanent
 [`../project/rules.md`](../project/rules.md) et l’organisation documentaire dans
 [`../project/documentation.md`](../project/documentation.md).
 
+## Ordre obligatoire du chantier média
+
+Les feuilles suivantes forment une seule séquence. Une feuille ne commence que lorsque toutes les
+cases de la précédente sont cochées et que son éventuel point de contrôle Git demandé par
+l'utilisateur est terminé.
+
+1. [Orchestration commune des formats et représentations](media-format-orchestration.md).
+2. Premier commit demandé après l’orchestration.
+3. [Affichage graphique de tous les supports](media-visualization.md).
+4. Deuxième commit demandé après l’affichage.
+5. [Extension aux HDD, supports optiques, cassettes et bandes](media-exploration.md).
+6. [Création et cycle de vie des images HDD](hard-disk-images.md), avec les compléments qui restent
+   après l'orchestration, l'exploration et l'affichage des HDD, CD/DVD/optiques et cassettes/bandes.
+7. Troisième commit demandé dans `hard-disk-images.md`.
+8. [Nettoyage du cycle de vie WPF et graphique](wpf-lifecycle-cleanup.md), avant de reprendre les essais manuels.
+9. [Validation finale](validation.md), en commençant par les audits manuels en lecture seule de `F:\Rétro`, `F:\86Box\Isos`, `C:\Users\overt\Documents\GW GUI\Emulation\HDD` et `C:\Users\overt\86Box VMs`.
+
+Avant chaque action, vérifier qu'elle est la première case non cochée de cette séquence. Si une
+action nécessaire manque, l'ajouter à la suite de la dernière action cochée et avant l'action qui en
+dépend. Si l'ordre restant est faux, le corriger avant toute modification du code. Réécrire une
+action imprécise avant de l'exécuter et supprimer une action devenue fausse ou sans objet.
+
 ## Travail à reprendre après validation ou disponibilité
 
 - [Publications restantes](release.md) — prochaines publications de l’application, du module Atari et, si son contrat évolue, du SDK.
 - [Atari](emulation/atari.md) — validations, accessibilité, Jaguar CD, guide et étude Atari System 1; reporté.
 - [Validations d’émulation](emulation/remaining-validations.md) — Amiga, cassette Atari800, GameInput, CPU masqué et distribution indépendante; reporté.
 - [Contrôleurs d’émulation](interface/emulation/controllers.md) — régressions visuelles, associations et validations matérielles; reporté.
-- [Validation finale](validation.md) — corpus `image_test`, Greaseweazle et entrées/sorties internes; reporté.
-
-## Images HDD et supports optiques
-
-- [Création et cycle de vie des images HDD](hard-disk-images.md) — capacités et variantes encore ouvertes.
-- [Exploration et visualisation des HDD et supports optiques](media-exploration.md) — chantier différé après le socle HDD.
+- [Validation finale](validation.md) — corpus locaux de médias en lecture seule, Greaseweazle et entrées/sorties internes;
+  commence seulement après le troisième commit du chantier média.
 
 ## Plans facultatifs ou différés par décision
 

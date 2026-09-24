@@ -85,7 +85,7 @@
                       Header="{l:Loc Menu.Preferences}" Click="Preferences_Click"/>
             <MenuItem AutomationProperties.AutomationId="UpdatesMenuItem"
                       Header="{l:Loc Updates.Title}" Click="Updates_Click">
-                <MenuItem.Icon><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE895;"/></MenuItem.Icon>
+                        <MenuItem.Icon><TextBlock FontFamily="Segoe MDL2 Assets" Text="{l:Loc Icon.Sync}"/></MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="{l:Loc Logs.History}" Click="LogHistory_Click"/>
             <Separator/>
@@ -107,7 +107,7 @@
         <MenuItem x:Name="Emulation" Header="{l:Loc Menu.Emulation}">
             <MenuItem AutomationProperties.AutomationId="EmulationPreferencesMenuItem"
                       Header="{l:Loc Menu.EmulationPreferences}" Click="EmulationPreferences_Click">
-                <MenuItem.Icon><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;"/></MenuItem.Icon>
+                        <MenuItem.Icon><TextBlock FontFamily="Segoe MDL2 Assets" Text="{l:Loc Icon.Settings}"/></MenuItem.Icon>
             </MenuItem>
             <Separator x:Name="EmulationModulesSeparator"/>
         </MenuItem>

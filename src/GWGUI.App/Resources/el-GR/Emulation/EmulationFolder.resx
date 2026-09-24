@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>Κοινόχρηστος φάκελος αποθήκευσης εξομοίωσης</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Οι σκληροί δίσκοι οργανώνονται αυτόματα στα HDD\Amiga, HDD\Atari και στους φακέλους μελλοντικών συστημάτων.</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Αυτόματη δημιουργία υποφακέλων που λείπουν</value></data>
+  <data name="Emulation.Folder.Common"><value>Κοινόχρηστοι φάκελοι</value></data>
+  <data name="Emulation.Folder.Capture"><value>Φάκελος στιγμιοτύπων</value></data>
+  <data name="Emulation.Folder.State"><value>Φάκελος αποθηκευμένων καταστάσεων</value></data>
+  <data name="Emulation.Folder.Default"><value>Προεπιλεγμένοι φάκελοι</value></data>
+</root>

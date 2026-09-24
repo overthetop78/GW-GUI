@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Disk image</value></data>
   <data name="Explorer.DetectedFormats"><value>Detected: {0}</value></data>
   <data name="Explorer.Format"><value>Format</value></data>
@@ -33,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Unknown</value></data>
   <data name="Explorer.Unnamed"><value>Unnamed volume</value></data>
   <data name="Explorer.LoadFailed"><value>Unable to open this image: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Incompatible format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Unable to interpret “{1}” using the “{0}” format.&#xA;Select another format to continue.</value></data>
   <data name="Explorer.Loading"><value>Reading disk image…</value></data>
   <data name="Explorer.ReadDisk"><value>Read disk</value></data>
   <data name="Explorer.Name"><value>Name</value></data>
@@ -60,4 +54,109 @@
   <data name="Explorer.DataBlocks"><value>Data blocks</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.Session"><value>Session</value></data>
+  <data name="Explorer.Track"><value>Track</value></data>
+  <data name="Explorer.Layers"><value>Layers</value></data>
+  <data name="Explorer.Faces"><value>Faces</value></data>
+  <data name="Explorer.PartitionType"><value>Partition type</value></data>
+  <data name="Explorer.PartitionId"><value>Partition identifier</value></data>
+  <data name="Explorer.TrackMode"><value>Track mode</value></data>
+  <data name="Explorer.FirstSector"><value>First sector</value></data>
+  <data name="Explorer.SectorCount"><value>Sector count</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Stored sector size</value></data>
+  <data name="Explorer.UserDataSize"><value>User data size</value></data>
+  <data name="Explorer.Subchannels"><value>Subchannels</value></data>
+  <data name="Explorer.AudioTracks"><value>Audio tracks</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Recognizing the media format</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Recognized format</value></data>
+  <data name="Explorer.TestingFormat"><value>Testing format: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: recognized</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: not recognized</value></data>
+  <data name="Explorer.ReadingFormat"><value>Reading format: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Reading the media structure</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Reading the tape</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Record {0} of {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Decoding tape records</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Recognizing files</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analyzing the file system</value></data>
+  <data name="Explorer.LoadingContents"><value>Preparing folders and files</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Displaying the contents</value></data>
+  <data name="Explorer.FileWithExtension"><value>File {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Document</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Source code</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC program file</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Boot program</value></data>
+  <data name="Explorer.Type.Executable"><value>Executable</value></data>
+  <data name="Explorer.Type.Command"><value>Command file</value></data>
+  <data name="Explorer.Type.SystemFile"><value>System file</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Object code</value></data>
+  <data name="Explorer.Type.Data"><value>Data file</value></data>
+  <data name="Explorer.Type.Configuration"><value>Configuration file</value></data>
+  <data name="Explorer.Type.Library"><value>Library</value></data>
+  <data name="Explorer.Type.Rom"><value>ROM</value></data>
+  <data name="Explorer.Type.Media"><value>Media file</value></data>
+  <data name="Explorer.Type.Font"><value>Font</value></data>
+  <data name="Explorer.Execution"><value>Execution</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Native executable file</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Interpreted executable file</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Command or script</value></data>
+  <data name="Explorer.Category"><value>Category</value></data>
+  <data name="Explorer.ContentFormat"><value>Content format</value></data>
+  <data name="Explorer.TextEncoding"><value>Text encoding</value></data>
+  <data name="Explorer.Preview"><value>Preview</value></data>
+  <data name="Explorer.Category.File"><value>File</value></data>
+  <data name="Explorer.Category.Text"><value>Text</value></data>
+  <data name="Explorer.Category.Document"><value>Document</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Source code</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Boot program</value></data>
+  <data name="Explorer.Category.Program"><value>Program</value></data>
+  <data name="Explorer.Category.Executable"><value>Executable</value></data>
+  <data name="Explorer.Category.Command"><value>Command</value></data>
+  <data name="Explorer.Category.System"><value>System</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Object code</value></data>
+  <data name="Explorer.Category.Data"><value>Data</value></data>
+  <data name="Explorer.Category.Configuration"><value>Configuration</value></data>
+  <data name="Explorer.Category.Library"><value>Library</value></data>
+  <data name="Explorer.Category.Image"><value>Image</value></data>
+  <data name="Explorer.Category.Audio"><value>Audio</value></data>
+  <data name="Explorer.Category.Media"><value>Media</value></data>
+  <data name="Explorer.Category.Archive"><value>Archive</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Disk image</value></data>
+  <data name="Explorer.Category.Link"><value>Link</value></data>
+  <data name="Explorer.Category.Font"><value>Font</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Unknown</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Plain text</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Native executable</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Command or script</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Object code</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>System binary</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Structured data</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Configuration</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Library</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Image</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Audio</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Archive</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Disk image</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Font</value></data>
+  <data name="Explorer.Preview.None"><value>None</value></data>
+  <data name="Explorer.Preview.Text"><value>Text</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC listing</value></data>
+  <data name="Explorer.Preview.Image"><value>Image</value></data>
+  <data name="Explorer.Preview.Audio"><value>Audio</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimal</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>External application</value></data>
+  <data name="Explorer.Cassette"><value>Cassette</value></data>
+  <data name="Explorer.InternalName"><value>Internal description</value></data>
+  <data name="Explorer.BaudRates"><value>Rates</value></data>
+  <data name="Explorer.Chunks"><value>Blocks</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK blocks</value></data>
+  <data name="Explorer.Records"><value>Records</value></data>
+  <data name="Explorer.FullRecords"><value>Full</value></data>
+  <data name="Explorer.PartialRecords"><value>Partial</value></data>
+  <data name="Explorer.EndRecord"><value>End</value></data>
+  <data name="Explorer.ChunkType"><value>Type</value></data>
+  <data name="Explorer.BaudRate"><value>Rate</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Delay</value></data>
 </root>

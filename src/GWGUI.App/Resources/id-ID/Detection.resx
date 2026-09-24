@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Detection.Ambiguous"><value>Formatnya ambigu</value></data>
+  <data name="Detection.RawScp"><value>Tangkapan SCP mentah dikenali.</value></data>
+  <data name="Detection.AmigaSize"><value>Format Amiga dikenali dari ukuran file.</value></data>
+  <data name="Detection.AcornSize"><value>Format Acorn dikenali dari ukuran file.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Ukurannya tidak cocok dengan profil Atari ST yang diketahui.</value></data>
+  <data name="Detection.AtariSize"><value>Geometri Atari ST dikenali dari ukuran file.</value></data>
+  <data name="Detection.MsaInferred"><value>Kontainer Atari MSA dikenali; konfirmasi geometri jika perlu.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>Ekstensi saja tidak dapat menentukan IBM PC geometri.</value></data>
+  <data name="Detection.IbmSize"><value>Geometri IBM PC dikenali dari ukuran file.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Format disimpulkan dari ekstensi.</value></data>
+  <data name="Detection.Multiple"><value>Beberapa format dimungkinkan; pilih salah satu secara eksplisit.</value></data>
+  <data name="Detection.AppleDosOrder"><value>Format Apple II DOS dikenali dari urutan sektor.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Format Apple II ProDOS dikenali dari urutan sektor.</value></data>
+  <data name="Detection.AppleContainer"><value>Kontainer citra diska Apple terdeteksi.</value></data>
+</root>

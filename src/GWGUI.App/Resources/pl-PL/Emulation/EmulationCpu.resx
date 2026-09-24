@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>Procesor: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>Model CPU</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>Mnożnik CPU</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>CPU zgodny cykl po cyklu</value></data>
+  <data name="Emulation.Cpu.Speed"><value>Szybkość CPU</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Oryginalna szybkość</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normalna</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Zgodna</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Zgodna z pamięcią</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Dokładna cykl po cyklu</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Procesor</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Precyzja</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Przyspieszenie</value></data>
+</root>

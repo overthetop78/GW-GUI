@@ -1,8 +1,8 @@
 using GWGUI.App.ViewModels.Conversion;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Detection;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Controllers.MainWindow;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Presenters.Conversion;
@@ -42,10 +42,10 @@ internal static class ConversionSelectionScenarios
         var view = new ConversionTabSection(); var model = new MainWindowViewModel("synthetic", "synthetic"); view.DataContext = model;
         var catalog = new BuiltInImageFormatCatalog(key => key); var detector = new ImageFormatDetector(catalog, _ => throw new InvalidOperationException());
         var responses = new Queue<string?>(["virtual.adf", "unknown.synthetic", null]); var analyzed = new List<string>(); var failures = new List<Exception>();
-        var settings = new AppSettings(); settings.Engines.Conversion = OperationEngine.Internal;
+        var settings = new AppSettings(); settings.Engines.Conversion = OperationEngine.GreaseweazleHostTools;
         model.Conversion.SetFormat("amiga.amigados", true, new HashSet<string> { ".adf" });
         model.Conversion.SetFormat("atarist.720", true, new HashSet<string> { ".st" });
-        var controller = new ConversionTabController(new Window(), view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!,
+        var controller = new ConversionTabController(new Window(), view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!, null!, null!, null!,
             ControlledDependencies.Simulate<IFileDialogService>((method, _) => { Assert.Equal("OpenFile", method.Name); return responses.Dequeue(); }),
             ControlledDependencies.Reject<IBusinessDialogService>(), ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, new TextBox { Text = "virtual-folder" }, new TextBox(), new TextBox(), () => 0, _ => { }, null!, () => { }, (error, _) => failures.Add(error), () => { }, Dispatcher.CurrentDispatcher,
             _ => throw new InvalidOperationException(), path => detector.Detect(path, 901120), path => { analyzed.Add(path); return Task.CompletedTask; });

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Menu.Options"><value>選項</value></data>
   <data name="Menu.Preferences"><value>偏好設定...</value></data>
   <data name="Menu.Diagnostics"><value>診斷</value></data>
@@ -27,14 +19,7 @@
   <data name="Menu.Help"><value>幫助</value></data>
   <data name="Menu.Documentation"><value>文件</value></data>
   <data name="Menu.About"><value>關於</value></data>
-  <data name="Tab.Read"><value>讀</value></data>
-  <data name="Tab.Write"><value>寫</value></data>
-  <data name="Tab.Convert"><value>轉換</value></data>
-  <data name="Tab.Visualize"><value>視覺化</value></data>
-  <data name="Tab.Tools"><value>工具</value></data>
   <data name="Menu.Align"><value>驅動器對準...</value></data>
-  <data name="Tab.Explorer"><value>磁碟檔案總管</value></data>
-  <data name="Tab.Emulation"><value>模擬</value></data>
   <data name="Menu.Emulation"><value>模拟</value></data>
   <data name="Menu.EmulationPreferences"><value>模拟偏好...</value></data>
 </root>

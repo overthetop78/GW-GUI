@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Eliminar la imagen del disco...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>¿Erradicar permanentemente esta imagen de disco y todos sus datos? Esta operación no puede ser deshecha.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>La eliminación es imposible. Desprenda este disco, guarde las configuraciones y cierre las sesiones enumeradas primero:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Sesión abierta: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>La eliminación a través de enlaces no está permitido. Seleccione el archivo original.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Elija una extensión soportada por esta máquina e interfaz.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Este archivo ya existe. Elige otro nombre.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Capacidad: 512 bytes to {0}, en múltiplos de 512. límite conservador para el sistema soportado.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Crea un disco crudo vacío sin un sistema operativo. Prepare y formatee el uso de herramientas de disco dentro de la máquina emulada.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Preparación de discos</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (sin formato)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>El formato crea un volumen vacío, sin un sistema operativo. HDD El arranque también requiere un controlador de disco compatible instalado desde la máquina emulada. Las imágenes comprimidas pueden redirigir escrituras a una copia extraída.</value></data>
+</root>

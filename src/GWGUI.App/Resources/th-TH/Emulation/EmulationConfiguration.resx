@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>สร้าง เลือก แก้ไข หรือลบการกำหนดค่าที่บันทึกไว้ที่นี่ เลือกแท็บ {0} เพื่อแก้ไขการกำหนดค่าที่เลือก</value></data>
+  <data name="Emulation.Configuration.Brand"><value>ยี่ห้อ</value></data>
+  <data name="Emulation.Configuration.Machine"><value>เครื่อง</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>RAM ทั้งหมด</value></data>
+  <data name="Emulation.Configuration.Readers"><value>ไดรฟ์</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>อุปกรณ์ต่อพ่วง</value></data>
+  <data name="Emulation.Configuration.Actions"><value>การดำเนินการ</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>ลบการกำหนดค่า {0} {1} หรือไม่</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>การกำหนดค่า</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>การปรับแต่ง</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>ลบการปรับแต่ง Amiga นี้หรือไม่?</value></data>
+</root>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>再生</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>一時停止</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>巻き戻し</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>早送り</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>録音</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>停止</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>カセットなし</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>停止中</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>再生中</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>一時停止中</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>録音中</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>テープ終端</value></data>
+</root>

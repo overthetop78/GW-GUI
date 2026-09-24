@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Nie można zapisać ustawień.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI błąd</value></data>
   <data name="Error.Unexpected"><value>Przechwycono nieoczekiwany błąd.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Ta operacja nie jest obsługiwana przez wybrany plik, urządzenie lub platformę.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Nie ma wystarczającej ilości dostępnej pamięci, aby zakończyć operację.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI napotkał nieoczekiwany problem podczas wykonywania tej akcji.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Nitka robotnicza GameInput nie przestała działać.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Brak mapowania</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Wyliczenie urządzenia GameInput nie powiodło się dla {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Rejestracja przycisków systemu GameInput nie powiodła się.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Rejestracja odświeżania GameInput nie powiodła się dla {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Odświeżenie GameInput nie mogło zostać niezarejestrowane: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Nie powiodła się kolejka wywołania urządzenia GameInput: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Odwołanie urządzenia GameInput nie powiodło się: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Nie powiodło się odsyłanie systemowego przycisku GameInput: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw- czytanie połączeń zwrotnych nie powiodło się: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: czytanie {1} nieudany kod 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Typ wejścia {1}, dostępny stan gamepad: {2}, tablice sterownika niedostępne</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Typ wejścia {1}, dostępny stan gamepad: {2}, osie: {3}, przyciski: {4}, przełączniki: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM błąd 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Typ wejścia {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Uzgodniona nazwa: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Nazwa GameInput: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Urządzenie ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Korzeń urządzenia ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Pojemnik ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Rodzina: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Zastosowanie: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Obsługiwane wejście: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Informacje o kontrolerze: osie ={0}, przyciski ={1}, przełączniki ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Etykiety Axis: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Etykiety przycisków: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Mapowanie: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Ścieżka PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Nazwa PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Wpis systemu plików nie mógł być odczytany.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Liczba, której dotyczy wniosek ({0}) przekracza rozmiar bufora ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Następny blok ma nieprawidłowy numer sekwencji.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Na dysku nie ma wolnego sektora.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Dla tej operacji obsługiwane jest tylko zero offsetowe.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Ten strumień plików nie obsługuje zmiany długości.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Blok buforowy {0} w łańcuchu alokacji nie zawiera bloku bitmap; rzeczywisty typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Blok przydziału buforów {0} nie zawiera bloku bitmap; rzeczywisty typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Brak wymaganego bloku bitmap.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Wykryto pętlę podczas zwalniania bloków w węźle alokacji {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Węzeł przydziału {0} Nie można go odczytać.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Blok allocation- node nie mógł zostać przydzielony.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Żądana pozycja jest niepoprawna dla tego obiektu systemu plików.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operacja allocation- node nie powiodła się.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blok indeksu mapy bitowej alokacji {0}/{1} Nie można go odczytać.</value></data>
 </root>

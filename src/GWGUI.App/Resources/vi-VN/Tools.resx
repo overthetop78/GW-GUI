@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Sẵn sàng để thực hiện.</value></data>
   <data name="Tool.RawOutput"><value>Đầu ra thô</value></data>
-  <data name="Maintenance.EraseTitle"><value>Xác nhận xóa</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Xóa vĩnh viễn tất cả dữ liệu trên đĩa được chèn?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Đầu sạch</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Xác nhận rằng đĩa dọn dẹp đã được lắp vào. Không bao giờ sử dụng đĩa dữ liệu.</value></data>
   <data name="Tools.Erase"><value>Xóa một đĩa</value></data>
   <data name="Tools.EraseWarning"><value>Tất cả dữ liệu trên đĩa sẽ bị hủy.</value></data>
   <data name="Tools.LimitTracks"><value>Giới hạn bài hát</value></data>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Medium toevoegen</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Harde schijf maken</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Grootte harde schijf (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Geen media. Voeg een diskette, harde schijf of CD ondersteund door het geselecteerde model.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Alleen-lezen</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga harde schijf|*.hdf|Alle bestanden|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Het geselecteerde model ondersteunt geen harde schijf.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Dit model ondersteunt maximaal {0} diskettestation(s).</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Dit model ondersteunt maximaal {0} harde schijf/schijven.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Het geselecteerde model ondersteunt geen CD drive.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CD station</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Aantal diskettestations</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Aantal harde schijven</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Snelheid diskettestation</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Diskette-images tegen schrijven beveiligen</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Schrijven naar diskette omleiden</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD snelheid</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Bestaande harde schijf toevoegen</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Harde schijven</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Er is geen harde schijf aan deze machine gekoppeld.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Diskettes</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Opslagapparaat toevoegen</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Gekoppeld medium</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>De schijfgeometrie wordt automatisch door de emulator bepaald.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Lege diskettekopie gemaakt: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Het bestand wordt leeg gemaakt en moet daarna in de geëmuleerde machine worden gepartitioneerd en geformatteerd.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD schrijfster</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Een lege schijf kan alleen worden gemaakt als de geselecteerde machine en emulator schrijven ondersteunen.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM station</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Configureren</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Lege diskette maken</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Schijfkopie</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Selecteer een bestaande schijfkopie.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Het geselecteerde bestand wordt aan dit virtuele station gekoppeld.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Diskettestation</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga-diskettekopie|*.adf|Alle bestanden|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Harde schijf</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Bestand vooraf toewijzen</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Diskettes en cd&apos;s worden vanuit de actieve machine geplaatst of vervangen.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Medium verwijderen</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>De schijfkopie bestaat al: {0}\nWilt u deze vervangen?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>De beschikbare typen, modellen en id&apos;s hangen af van de geselecteerde machine.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Bandstation</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Schijf gebruiken</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Bestaande schijf gebruiken</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Wijzigen in Algemeen</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Voor deze machine is geen extra opslagapparaat beschikbaar.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Opslagapparaten</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Toewijzing</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Automatische geometrie</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Leeg medium</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Bytes per sector</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Berekende capaciteit: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Aangepaste grootte</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cilinders</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Doelmap</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Schijfgeometrie (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Grootteprofiel</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Diskettestation</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Koppen</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>De schijfgrootte of geometrie is ongeldig.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Reserveert de fysieke schijfruimte direct; anders groeit het image tijdens het schrijven.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sectoren</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Cassette</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Patroon</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Compacte schijven</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Stationsactiviteit op het emulatorscherm weergeven</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Cartridgesleuf</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount de eerste vier schijven in DF0DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Schijf {0}</value></data>
+</root>

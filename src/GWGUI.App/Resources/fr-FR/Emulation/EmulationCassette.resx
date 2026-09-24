@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>Lecture</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Pause</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Rembobinage</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>Avance rapide</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Enregistrement</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Arrêt</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>Aucune cassette</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Arrêtée</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Lecture</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>En pause</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Enregistrement</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>Fin de bande</value></data>
+</root>

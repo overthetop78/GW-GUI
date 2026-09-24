@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>コントローラー{0}のデバイス</value></data>
+  <data name="Emulation.Controller.Detect"><value>コントローラーを検出</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga アクション</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>キーボード、マウス、またはコントローラーの入力</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>左スティック</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>右スティック</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>両方のスティック</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>連射</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>連射ボタン</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>連射間隔</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>コントローラーポート順</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>コントローラーが検出されません</value></data>
+  <data name="Emulation.Controller.Mappings"><value>コントローラーの割り当て</value></data>
+  <data name="Emulation.Controller.Port"><value>ポート {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>コントローラーの種類</value></data>
+  <data name="Emulation.Controller.Detected"><value>検出されたコントローラー</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>操作または入力を検索</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>上</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>下</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>左</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>右</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>射撃ボタン 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>射撃ボタン 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>アナログジョイスティック</value></data>
+  <data name="Emulation.Controller.Automatic"><value>自動</value></data>
+  <data name="Emulation.Controller.None"><value>なし</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>スイッチジョイスティック/マウス</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput を初期化できませんでした。同梱の GameInput ランタイムをインストールまたは修復してください。</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>近藤 拓彦 (左手)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking(右手)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>外観</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>コントローラー {0}</value></data>
+</root>

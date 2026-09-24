@@ -1,6 +1,6 @@
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
+using ConversionSourceCompatibility = global::GWGUI.MediaEngine.Images.Conversion.ConversionSourceCompatibility;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.App.Contracts.ViewModels.Conversion;
 using GWGUI.App.Enums.ViewModels.Conversion;
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Schijfafbeelding verwijderen...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Deze schijfafbeelding en alle gegevens definitief verwijderen? Deze bewerking kan niet ongedaan worden gemaakt.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Verwijderen is onmogelijk. Verwijder deze schijf, sla de configuraties op en sluit eerst de sessies die in de lijst staan:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Open sessie: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Verwijderen via links is niet toegestaan. Selecteer het originele bestand.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Kies een extensie die door deze machine en interface wordt ondersteund.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Dit bestand bestaat al. Kies een andere naam.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Capaciteit: 512 bytes tot {0}, in veelvouden van 512. Conservatieve limiet voor het ondersteunde systeem.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Maakt een lege rauwe schijf zonder besturingssysteem. Bereid en formatteer deze met behulp van schijfgereedschappen in de emuleerde machine.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Schijfvoorbereiding</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blanco (ongeformatteerd)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatteren creëert een leeg volume, zonder besturingssysteem. Atari HDD opstarten vereist ook een compatibele schijf driver geïnstalleerd vanaf de emuleerde machine. Gecomprimeerde afbeeldingen kunnen schrijven doorverwijzen naar een uitgepakte kopie.</value></data>
+</root>

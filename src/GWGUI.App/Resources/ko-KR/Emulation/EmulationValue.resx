@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>사용</value></data>
+  <data name="Emulation.Value.Disabled"><value>사용 안 함</value></data>
+  <data name="Emulation.Value.Minimum"><value>최소</value></data>
+  <data name="Emulation.Value.VerySmall"><value>매우 작게</value></data>
+  <data name="Emulation.Value.Small"><value>작게</value></data>
+  <data name="Emulation.Value.Medium"><value>중간</value></data>
+  <data name="Emulation.Value.Large"><value>크게</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>매우 크게</value></data>
+  <data name="Emulation.Value.Maximum"><value>최대</value></data>
+  <data name="Emulation.Value.Standard"><value>표준</value></data>
+  <data name="Emulation.Value.Enhanced"><value>향상</value></data>
+  <data name="Emulation.Value.Internal"><value>내부</value></data>
+  <data name="Emulation.Value.Loud"><value>크게</value></data>
+  <data name="Emulation.Value.NotUsed"><value>사용 안 함</value></data>
+  <data name="Emulation.Value.None"><value>없음</value></data>
+  <data name="Emulation.Value.Default"><value>기본값</value></data>
+  <data name="Emulation.Value.Gray"><value>회색</value></data>
+</root>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>控制器 {0} 裝置</value></data>
+  <data name="Emulation.Controller.Detect"><value>偵測控制器</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga 動作</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>鍵盤、滑鼠或控制器輸入</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>左搖桿</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>右搖桿</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>兩個搖桿</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>連發</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>連發按鈕</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>連發脈衝</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>控制器連接埠順序</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>未偵測到控制器</value></data>
+  <data name="Emulation.Controller.Mappings"><value>控制器對應</value></data>
+  <data name="Emulation.Controller.Port"><value>連接埠 {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>控制器類型</value></data>
+  <data name="Emulation.Controller.Detected"><value>偵測到的控制器</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>搜尋動作或輸入</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>上</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>下</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>左</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>右</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>射擊按鈕 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>射擊按鈕 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>類比搖桿</value></data>
+  <data name="Emulation.Controller.Automatic"><value>自動的</value></data>
+  <data name="Emulation.Controller.None"><value>無</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>切换乐器/调用</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>無法初始化 GameInput。請安裝或修復隨附的 GameInput 執行階段。</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix 速度( 左手)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix 速度( 右手)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>外觀</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>主计长 {0}</value></data>
+</root>

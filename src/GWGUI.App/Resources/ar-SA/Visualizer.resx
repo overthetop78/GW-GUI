@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>فك التشفير</value></data>
   <data name="Visual.LinkZoom"><value>تكبير الارتباط</value></data>
   <data name="Visual.OpenScp"><value>فتح SCP ملف...</value></data>
-  <data name="Visual.NoFile"><value>لا يوجد ملف SCP مفتوح</value></data>
+  <data name="Visual.NoFile"><value>لا توجد صورة مفتوحة</value></data>
   <data name="Visual.Waiting"><value>في انتظار الملف</value></data>
   <data name="Visual.Inspector"><value>مفتش</value></data>
   <data name="Visual.SelectTrack"><value>حدد المسار.</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>صالح</value></data>
   <data name="Visual.CrcInvalid"><value>غير صالح</value></data>
   <data name="Visual.IntegrityUnavailable"><value>غير متاح</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (الكثافة المتأنقة)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>شمال ستار MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>هيثكيت) ذات قطاع صلب) FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>شركة ميكروات ن FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>نظام أربورغ/البيانات</value></data>
+  <data name="Visual.DecoderName.raw"><value>تدفق السحب</value></data>
   <data name="Visual.StructureKind.Sync"><value>التزامن</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>رأس القطاع</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>بيانات القطاع</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>رأس التنسيق</value></data>
   <data name="Visual.StructureKind.FormatData"><value>تنسيق البيانات</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>توقيت الشذوذ</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro التقاط (*.scp)|*.scp|جميع الملفات|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>المجموع الاختباري</value></data>
   <data name="Visual.Side"><value>الجانب {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>مسار التحليل {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>:: إجراء ثورة تحليلية {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>جانب</value></data>
   <data name="Visual.TrackLabel"><value>مسار</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP الإدخال</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>تم الكشف عن التنسيق</value></data>
   <data name="Visual.AverageRpm"><value>متوسط RPM</value></data>
   <data name="Visual.AverageDuration"><value>متوسط ​​المدة</value></data>
+  <data name="Visual.All"><value>جميع</value></data>
+  <data name="Visual.Surface"><value>الوجه السطحي {0}</value></data>
+  <data name="Visual.DiscFace"><value>الوجه {0}</value></data>
+  <data name="Visual.Layer"><value>لاير {0}</value></data>
+  <data name="Visual.Session"><value>الدورة {0}</value></data>
+  <data name="Visual.Channel"><value>القناة {0}</value></data>
+  <data name="Visual.TrackNumber"><value>المسار {0}</value></data>
+  <data name="Visual.TicksUnit"><value>دغدغة</value></data>
+  <data name="Visual.BytesUnit"><value>من طرف</value></data>
+  <data name="Visual.BlocksUnit"><value>اللبنات</value></data>
+  <data name="Visual.SectorsUnit"><value>القطاعات</value></data>
+  <data name="Visual.SectorPresent"><value>القطاع الحالي</value></data>
+  <data name="Visual.SectorAllocated"><value>القطاع المخصص</value></data>
+  <data name="Visual.SectorFree"><value>القطاع الحر</value></data>
+  <data name="Visual.SectorReserved"><value>القطاع الاحتياطي</value></data>
+  <data name="Visual.SectorUnreadable"><value>القطاع غير القابل للقراءة</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>المعلومات القطاعية</value></data>
+  <data name="Visual.SectorLabel"><value>القطاع</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>اللبنة الأرضية</value></data>
+  <data name="Visual.SizeLabel"><value>الحجم</value></data>
+  <data name="Visual.StateLabel"><value>الدولة</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>مسار نظام التمويل</value></data>
+  <data name="Visual.LogicalMapTitle"><value>خريطة تنظيمية</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS الهندسة</value></data>
+  <data name="Visual.SurfaceLabel"><value>الوجه السطحي</value></data>
+  <data name="Visual.BlockAllocated"><value>النطاق المخصص</value></data>
+  <data name="Visual.BlockFree"><value>النطاق الحر</value></data>
+  <data name="Visual.BlockReserved"><value>النطاق الاحتياطي</value></data>
+  <data name="Visual.BlockUnknown"><value>النطاق غير المعروف</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>معلومات عن وسائط الإعلام</value></data>
+  <data name="Visual.CapacityLabel"><value>القدرات</value></data>
+  <data name="Visual.AddressingLabel"><value>العنوان</value></data>
+  <data name="Visual.StartLabel"><value>بداية</value></data>
+  <data name="Visual.LengthLabel"><value>لينجث</value></data>
+  <data name="Visual.PartitionTableLabel"><value>نظام التجزئة</value></data>
+  <data name="Visual.PartitionTable.None"><value>لا</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>رقم التجزئة</value></data>
+  <data name="Visual.FileSystemLabel"><value>نظام التمويل</value></data>
+  <data name="Visual.RangeTitle"><value>مجموعة مختارة</value></data>
+  <data name="Visual.PlatterCountLabel"><value>فصيلة</value></data>
+  <data name="Visual.BlockState.Available"><value>متاحة</value></data>
+  <data name="Visual.BlockState.Reserved"><value>الاحتياطي</value></data>
+  <data name="Visual.BlockState.Allocated"><value>الوظائف المخصصة</value></data>
+  <data name="Visual.BlockState.Free"><value>مجانا</value></data>
+  <data name="Visual.BlockState.Unknown"><value>غير معروف</value></data>
+  <data name="Visual.OpticalDataTrack"><value>مسار البيانات</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>مسار الصوت</value></data>
+  <data name="Visual.OpticalPregap"><value>Pregap</value></data>
+  <data name="Visual.OpticalSession"><value>الدورة الحدودية</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>الإعلام الإعلامي البديل</value></data>
+  <data name="Visual.FaceCountLabel"><value>الوجه</value></data>
+  <data name="Visual.LayerCountLabel"><value>لاير</value></data>
+  <data name="Visual.TrackCountLabel"><value>المسارات</value></data>
+  <data name="Visual.SessionLabel"><value>الدورة</value></data>
+  <data name="Visual.LayerLabel"><value>لاير</value></data>
+  <data name="Visual.TrackKindLabel"><value>نوع المسار</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>مسار مختار</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>مصدر الفول</value></data>
+  <data name="Visual.VolumeTitle"><value>فولوم</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>ملفات مرتبطة</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>غير معروف</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>البيانات</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>أوديو</value></data>
+  <data name="Visual.SequentialSignal"><value>الإشارة</value></data>
+  <data name="Visual.SequentialDecoded"><value>القطعة المتناقصة</value></data>
+  <data name="Visual.SequentialSilence"><value>الصمت</value></data>
+  <data name="Visual.SequentialError"><value>خطأ النقصان</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>معلومات سرية عن وسائط الإعلام</value></data>
+  <data name="Visual.DurationLabel"><value>المدة</value></data>
+  <data name="Visual.SegmentCountLabel"><value>الأجزاء</value></data>
+  <data name="Visual.SegmentKindLabel"><value>نوع الفصل</value></data>
+  <data name="Visual.ChannelLabel"><value>القناة</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>المحتوى المعترف به</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>خطأ النقصان</value></data>
+  <data name="Visual.SegmentTitle"><value>الجزء المختار</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>غير معروف</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>الإشارة</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>الصمت</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>القطعة المتناقصة</value></data>
+  <data name="Visual.RevolutionSummary"><value>كلّ الثورة</value></data>
+  <data name="Visual.RevolutionChoice"><value>الثورة {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>الثورة</value></data>
+  <data name="Visual.QualityDead"><value>مات</value></data>
+  <data name="Visual.QualityPoor"><value>الفقراء</value></data>
+  <data name="Visual.QualityPartial"><value>قابل للقراءة جزئيا</value></data>
+  <data name="Visual.QualityGood"><value>جيد</value></data>
+  <data name="Visual.QualityExcellent"><value>ممتاز</value></data>
+  <data name="Visual.SectorWithData"><value>القطاع الذي تتوفر فيه البيانات</value></data>
+  <data name="Visual.SectorDegraded"><value>القطاع المتدهور</value></data>
+  <data name="Visual.SectorDead"><value>القطاع الميت</value></data>
+  <data name="Visual.SectorWithoutData"><value>القطاع غير المتوفر بيانات</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>معلومات شريط الكاسيت</value></data>
 </root>

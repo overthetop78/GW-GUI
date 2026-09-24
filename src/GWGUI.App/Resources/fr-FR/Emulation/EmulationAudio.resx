@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Activer le son</value></data>
+  <data name="Emulation.Audio.Output"><value>Sortie audio</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latence</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolation</value></data>
+  <data name="Emulation.Audio.Filter"><value>Filtre Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Séparation stéréo</value></data>
+  <data name="Emulation.Audio.Input"><value>Entrée audio</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>L’Amiga ne fournit pas d’entrée audio.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Sortie Windows par défaut</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Interpolation anti</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Émulé</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Type de filtre</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Bruit des lecteurs</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Type de bruit des lecteurs</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Couper le son des lecteurs vides</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Volume audio du CD</value></data>
+  <data name="Emulation.Audio.Device"><value>Périphérique</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latence</value></data>
+  <data name="Emulation.Audio.Quality"><value>Qualité</value></data>
+  <data name="Emulation.Audio.Drives"><value>Lecteurs</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Bruit des lecteurs de disquettes</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtre audio polarisé</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Basse</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Haute</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+</root>

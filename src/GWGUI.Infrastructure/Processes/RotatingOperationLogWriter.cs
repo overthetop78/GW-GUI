@@ -1,5 +1,5 @@
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Commands;
+using GWGUI.Infrastructure.Commands.Execution;
 using System.Text;
 
 namespace GWGUI.Infrastructure.Processes;

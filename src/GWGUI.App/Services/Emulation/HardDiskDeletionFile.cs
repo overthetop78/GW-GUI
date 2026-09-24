@@ -13,19 +13,7 @@ internal static class HardDiskDeletionFile
         // Metadata-only access follows file and directory aliases, including while the candidate is locked for deletion.
         using var handle = CreateFile(path, 0, 7, 0, 3, 0, 0);
         if (handle.IsInvalid) throw new Win32Exception(Marshal.GetLastWin32Error());
-        var buffer = new StringBuilder(512);
-        var length = GetFinalPathNameByHandle(handle, buffer, (uint)buffer.Capacity, 0);
-        if (length == 0) throw new Win32Exception(Marshal.GetLastWin32Error());
-        if (length >= buffer.Capacity)
-        {
-            buffer = new StringBuilder(checked((int)length + 1));
-            length = GetFinalPathNameByHandle(handle, buffer, (uint)buffer.Capacity, 0);
-            if (length == 0) throw new Win32Exception(Marshal.GetLastWin32Error());
-            if (length >= buffer.Capacity) throw new IOException("The resolved image path changed during the lookup.");
-        }
-        var resolved = buffer.ToString();
-        if (resolved.StartsWith("\\\\?\\UNC\\", StringComparison.OrdinalIgnoreCase)) return "\\\\" + resolved[8..];
-        return resolved.StartsWith("\\\\?\\", StringComparison.Ordinal) ? resolved[4..] : resolved;
+        return ResolveHandlePath(handle);
     }
 
     internal static SafeFileHandle Open(string path)
@@ -46,6 +34,77 @@ internal static class HardDiskDeletionFile
     {
         byte delete = 1;
         if (!SetFileInformationByHandle(handle, 4, ref delete, 1)) throw new Win32Exception(Marshal.GetLastWin32Error());
+    }
+
+    internal static IReadOnlyList<SafeFileHandle> Open(IReadOnlyList<string> paths)
+    {
+        var handles = new List<SafeFileHandle>(paths.Count);
+        try
+        {
+            foreach (var path in paths) handles.Add(Open(path));
+            return handles;
+        }
+        catch
+        {
+            foreach (var handle in handles) handle.Dispose();
+            throw;
+        }
+    }
+
+    internal static void Delete(IReadOnlyList<SafeFileHandle> handles, IReadOnlyList<string> paths)
+    {
+        if (handles.Count == 0 || handles.Count != paths.Count)
+            throw new ArgumentException("Every validated image set member requires one open handle.", nameof(handles));
+        for (var index = 0; index < handles.Count; index++)
+        {
+            var handle = handles[index];
+            if (handle.IsInvalid || handle.IsClosed)
+                throw new IOException("A validated image set member is no longer open.");
+            var actual = ResolveHandlePath(handle);
+            var expected = Path.GetFullPath(paths[index]);
+            if (!string.Equals(actual, expected, StringComparison.OrdinalIgnoreCase))
+                throw new IOException("An open handle no longer identifies the validated image set member.");
+        }
+        foreach (var handle in handles) Delete(handle);
+        foreach (var handle in handles) handle.Dispose();
+        RemoveEmptySparseBundleDirectories(paths);
+    }
+
+    private static void RemoveEmptySparseBundleDirectories(IReadOnlyList<string> paths)
+    {
+        var root = paths.Select(path => new FileInfo(path).Directory)
+            .SelectMany(directory => Ancestors(directory))
+            .FirstOrDefault(directory => directory.Extension.Equals(".sparsebundle", StringComparison.OrdinalIgnoreCase));
+        if (root is null) return;
+        var bands = Path.Combine(root.FullName, "bands");
+        if (Directory.Exists(bands)) Directory.Delete(bands, recursive: false);
+        if (Directory.Exists(root.FullName)) Directory.Delete(root.FullName, recursive: false);
+    }
+
+    private static IEnumerable<DirectoryInfo> Ancestors(DirectoryInfo? directory)
+    {
+        while (directory is not null)
+        {
+            yield return directory;
+            directory = directory.Parent;
+        }
+    }
+
+    private static string ResolveHandlePath(SafeFileHandle handle)
+    {
+        var buffer = new StringBuilder(512);
+        var length = GetFinalPathNameByHandle(handle, buffer, (uint)buffer.Capacity, 0);
+        if (length == 0) throw new Win32Exception(Marshal.GetLastWin32Error());
+        if (length >= buffer.Capacity)
+        {
+            buffer = new StringBuilder(checked((int)length + 1));
+            length = GetFinalPathNameByHandle(handle, buffer, (uint)buffer.Capacity, 0);
+            if (length == 0) throw new Win32Exception(Marshal.GetLastWin32Error());
+            if (length >= buffer.Capacity) throw new IOException("The resolved image path changed during the lookup.");
+        }
+        var resolved = buffer.ToString();
+        if (resolved.StartsWith("\\\\?\\UNC\\", StringComparison.OrdinalIgnoreCase)) return "\\\\" + resolved[8..];
+        return resolved.StartsWith("\\\\?\\", StringComparison.Ordinal) ? resolved[4..] : resolved;
     }
 
     [StructLayout(LayoutKind.Sequential)]

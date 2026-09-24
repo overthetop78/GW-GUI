@@ -1,4 +1,4 @@
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.App.Contracts.ViewModels.Operations;
 using GWGUI.App.Enums.ViewModels.Operations;
 using GWGUI.App.Localization.Extensions;

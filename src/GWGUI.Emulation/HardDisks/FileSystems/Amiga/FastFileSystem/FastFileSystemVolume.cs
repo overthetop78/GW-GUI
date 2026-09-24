@@ -1,4 +1,4 @@
-﻿using Hst.Amiga.FileSystems.FastFileSystem.Blocks;
+using Hst.Amiga.FileSystems.FastFileSystem.Blocks;
 
 namespace Hst.Amiga.FileSystems.FastFileSystem
 {
@@ -13,10 +13,10 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
     public class FastFileSystemVolume : IFileSystemVolume
     {
-        private readonly Volume volume;
+        private readonly FastFileSystemVolumeState volume;
         private uint currentDirectorySector;
 
-        public FastFileSystemVolume(Volume volume, uint currentDirectorySector)
+        public FastFileSystemVolume(FastFileSystemVolumeState volume, uint currentDirectorySector)
         {
             this.volume = volume;
             this.currentDirectorySector = currentDirectorySector;
@@ -40,7 +40,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             get
             {
                 var freeBlocks = volume.BitmapTable.Sum(bitmapBlock =>
-                    bitmapBlock.Map.Sum(m => MapBlockHelper.ConvertUInt32ToBlockFreeMap(m).Count(f => f)));
+                    bitmapBlock.Map.Sum(m => FastFileSystemMapBlockHelper.ConvertUInt32ToBlockFreeMap(m).Count(f => f)));
 
                 return (long)freeBlocks * volume.BlockSize;
             }
@@ -48,13 +48,13 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
         public async Task<IEnumerable<FileSystems.Entry>> ListEntries()
         {
-            return (await Directory.ReadEntries(volume, currentDirectorySector)).Select(EntryConverter.ToEntry)
+            return (await FastFileSystemDirectory.ReadEntries(volume, currentDirectorySector)).Select(FastFileSystemEntryConverter.ToEntry)
                 .ToList();
         }
-        
-        public async Task<IEnumerable<Entry>> ListRawEntries()
+
+        public async Task<IEnumerable<FastFileSystemEntry>> ListRawEntries()
         {
-            return (await Directory.ReadEntries(volume, currentDirectorySector)).ToList();
+            return (await FastFileSystemDirectory.ReadEntries(volume, currentDirectorySector)).ToList();
         }
 
         /// <summary>
@@ -68,14 +68,14 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             {
                 throw new ArgumentException("Name contains directory separator", nameof(name));
             }
-            
-            var findEntryResult = await Directory.FindEntry(currentDirectorySector, name, volume);
+
+            var findEntryResult = await FastFileSystemDirectory.FindEntry(currentDirectorySector, name, volume);
 
             var entry = findEntryResult.Entries.LastOrDefault();
             return new FileSystems.FindEntryResult
             {
                 PartsNotFound = findEntryResult.PartsNotFound.ToList(),
-                Entry = entry == null ? null : EntryConverter.ToEntry(entry)
+                Entry = entry == null ? null : FastFileSystemEntryConverter.ToEntry(entry)
             };
         }
 
@@ -87,7 +87,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 currentDirectorySector = volume.RootBlockOffset;
             }
 
-            var findEntryResult = await Directory.FindEntry(currentDirectorySector, path, volume);
+            var findEntryResult = await FastFileSystemDirectory.FindEntry(currentDirectorySector, path, volume);
             if (findEntryResult.PartsNotFound.Any())
             {
                 throw new PathNotFoundException($"Path '{path}' not found");
@@ -105,14 +105,14 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 throw new PathNotFoundException($"Path '{path}' not found");
             }
 
-            if (entry.Type != Constants.ST_DIR &&
-                entry.Type != Constants.ST_LDIR)
+            if (entry.Type != FastFileSystemConstants.ST_DIR &&
+                entry.Type != FastFileSystemConstants.ST_LDIR)
             {
                 throw new PathNotFoundException($"Path '{path}' is not a directory");
             }
 
-            entry = await Directory.ResolveLinkEntry(volume, entry);
-            
+            entry = await FastFileSystemDirectory.ResolveLinkEntry(volume, entry);
+
             currentDirectorySector = entry.Sector;
         }
 
@@ -122,7 +122,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="dirName"></param>
         public async Task CreateDirectory(string dirName)
         {
-            await Directory.CreateDirectory(volume, currentDirectorySector, dirName);
+            await FastFileSystemDirectory.CreateDirectory(volume, currentDirectorySector, dirName);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="ignoreProtectionBits"></param>
         public async Task CreateFile(string fileName, bool overwrite = false, bool ignoreProtectionBits = false)
         {
-            using (var _ = await File.Open(volume, currentDirectorySector, fileName, FileMode.Write, overwrite,
+            using (var _ = await FastFileSystemFile.Open(volume, currentDirectorySector, fileName, FileMode.Write, overwrite,
                        ignoreProtectionBits))
             {
             }
@@ -149,7 +149,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         public async Task CreateLink(string linkName, string name, bool overwrite = false,
             bool ignoreProtectionBits = false)
         {
-            await Directory.CreateLink(volume, currentDirectorySector, linkName, name);
+            await FastFileSystemDirectory.CreateLink(volume, currentDirectorySector, linkName, name);
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <returns></returns>
         public async Task<Stream> OpenFile(string fileName, FileMode mode, bool overwrite = false, bool ignoreProtectionBits = false)
         {
-            return await File.Open(volume, currentDirectorySector, fileName, mode, overwrite, ignoreProtectionBits);
+            return await FastFileSystemFile.Open(volume, currentDirectorySector, fileName, mode, overwrite, ignoreProtectionBits);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="ignoreProtectionBits"></param>
         public async Task Delete(string name, bool ignoreProtectionBits = false)
         {
-            await Directory.RemoveEntry(volume, currentDirectorySector, name, ignoreProtectionBits);
+            await FastFileSystemDirectory.RemoveEntry(volume, currentDirectorySector, name, ignoreProtectionBits);
         }
 
         /// <summary>
@@ -183,14 +183,14 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <exception cref="IOException"></exception>
         public async Task Rename(string oldName, string newName)
         {
-            var srcEntryResult = await Directory.FindEntry(currentDirectorySector, oldName, volume);
+            var srcEntryResult = await FastFileSystemDirectory.FindEntry(currentDirectorySector, oldName, volume);
 
             if (srcEntryResult.PartsNotFound.Any())
             {
                 throw new PathNotFoundException($"Path '{oldName}' not found");
             }
 
-            var destEntryResult = await Directory.FindEntry(currentDirectorySector, newName, volume);
+            var destEntryResult = await FastFileSystemDirectory.FindEntry(currentDirectorySector, newName, volume);
             var partsNotFound = destEntryResult.PartsNotFound.ToList();
 
             if (!partsNotFound.Any())
@@ -203,7 +203,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 throw new PathNotFoundException($"Path '{partsNotFound[0]}' not found");
             }
 
-            await Directory.RenameEntry(volume, currentDirectorySector, srcEntryResult.Name, destEntryResult.Sector,
+            await FastFileSystemDirectory.RenameEntry(volume, currentDirectorySector, srcEntryResult.Name, destEntryResult.Sector,
                 destEntryResult.Name);
         }
 
@@ -214,7 +214,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="comment"></param>
         public async Task SetComment(string name, string comment)
         {
-            await Directory.SetEntryComment(volume, currentDirectorySector, name, comment);
+            await FastFileSystemDirectory.SetEntryComment(volume, currentDirectorySector, name, comment);
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="protectionBits"></param>
         public async Task SetProtectionBits(string name, ProtectionBits protectionBits)
         {
-            await Directory.SetEntryAccess(volume, currentDirectorySector, name,
+            await FastFileSystemDirectory.SetEntryAccess(volume, currentDirectorySector, name,
                 ProtectionBitsConverter.ToProtectionValue(protectionBits));
         }
 
@@ -235,7 +235,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="date"></param>
         public async Task SetDate(string name, DateTime date)
         {
-            await Directory.SetEntryDate(volume, currentDirectorySector, name, date);
+            await FastFileSystemDirectory.SetEntryDate(volume, currentDirectorySector, name, date);
         }
 
         /// <summary>
@@ -318,29 +318,29 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             var pathComponents = new LinkedList<string>();
 
             var directorySector = currentDirectorySector;
-            EntryBlock entryBlock;
+            FastFileSystemEntryBlock entryBlock;
             do
             {
-                entryBlock = await Disk.ReadEntryBlock(volume, directorySector);
-                
+                entryBlock = await FastFileSystemDisk.ReadEntryBlock(volume, directorySector);
+
                 if (entryBlock == null)
                 {
                     throw new IOException($"Entry block not found at sector {directorySector}");
                 }
-                
+
                 directorySector = entryBlock.Parent;
 
                 if (directorySector == 0)
                 {
                     continue;
                 }
-                
+
                 pathComponents.AddFirst(entryBlock.Name);
-            } while (!(entryBlock is RootBlock) && directorySector > 0);
+            } while (!(entryBlock is FastFileSystemRootBlock) && directorySector > 0);
 
             return string.Concat("/", string.Join("/", pathComponents.ToList()));
         }
-        
+
         /// <summary>
         /// Current directory block number.
         /// </summary>

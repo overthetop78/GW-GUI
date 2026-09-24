@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>디코더</value></data>
   <data name="Visual.LinkZoom"><value>링크 줌</value></data>
   <data name="Visual.OpenScp"><value>SCP 파일을 엽니다…</value></data>
-  <data name="Visual.NoFile"><value>SCP 파일이 열려 있지 않습니다.</value></data>
+  <data name="Visual.NoFile"><value>열린 이미지 없음</value></data>
   <data name="Visual.Waiting"><value>파일을 기다리는 중</value></data>
   <data name="Visual.Inspector"><value>검사관</value></data>
   <data name="Visual.SelectTrack"><value>트랙을 선택하세요.</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>유효한</value></data>
   <data name="Visual.CrcInvalid"><value>유효하지 않은</value></data>
   <data name="Visual.IntegrityUnavailable"><value>없는</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (단 하나 조밀도)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar 하드 배우 MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit 하드 배우기 FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N 하드 배우 FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg 시스템/데이터</value></data>
+  <data name="Visual.DecoderName.raw"><value>원료 유출</value></data>
   <data name="Visual.StructureKind.Sync"><value>동기화</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>섹터 헤더</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>부문 데이터</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>헤더 형식</value></data>
   <data name="Visual.StructureKind.FormatData"><value>데이터 형식</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>타이밍 이상</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro 캡처 (*.scp)|*.scp|모든 파일|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>체크섬</value></data>
   <data name="Visual.Side"><value>측면 {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>트랙 분석 중 {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>혁신의 {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1}…</value></data>
   <data name="Visual.SideLabel"><value>옆</value></data>
   <data name="Visual.TrackLabel"><value>길</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP 항목</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>형식이 감지되었습니다.</value></data>
   <data name="Visual.AverageRpm"><value>평균 RPM</value></data>
   <data name="Visual.AverageDuration"><value>평균 지속 시간</value></data>
+  <data name="Visual.All"><value>의 모든</value></data>
+  <data name="Visual.Surface"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {0}</value></data>
+  <data name="Visual.DiscFace"><value>뚱 베어 {0}</value></data>
+  <data name="Visual.Layer"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {0}</value></data>
+  <data name="Visual.Session"><value>- 연혁 {0}</value></data>
+  <data name="Visual.Channel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {0}</value></data>
+  <data name="Visual.TrackNumber"><value>의 특징 {0}</value></data>
+  <data name="Visual.TicksUnit"><value>뚱 베어</value></data>
+  <data name="Visual.BytesUnit"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.BlocksUnit"><value>의 특징</value></data>
+  <data name="Visual.SectorsUnit"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.SectorPresent"><value>현재 분야</value></data>
+  <data name="Visual.SectorAllocated"><value>관련 분야</value></data>
+  <data name="Visual.SectorFree"><value>무료 분야</value></data>
+  <data name="Visual.SectorReserved"><value>학회소개</value></data>
+  <data name="Visual.SectorUnreadable"><value>읽을 수 없는 분야</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>학회소개</value></data>
+  <data name="Visual.SectorLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Logical 구획</value></data>
+  <data name="Visual.SizeLabel"><value>의 크기</value></data>
+  <data name="Visual.StateLabel"><value>의 의</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>파일 시스템 경로</value></data>
+  <data name="Visual.LogicalMapTitle"><value>관련 링크</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS 의약</value></data>
+  <data name="Visual.SurfaceLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.BlockAllocated"><value>Allocated 범위</value></data>
+  <data name="Visual.BlockFree"><value>무료 범위</value></data>
+  <data name="Visual.BlockReserved"><value>의논하기</value></data>
+  <data name="Visual.BlockUnknown"><value>관련 제품</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>블록 미디어 정보</value></data>
+  <data name="Visual.CapacityLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.AddressingLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.StartLabel"><value>의 시작</value></data>
+  <data name="Visual.LengthLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.PartitionTableLabel"><value>파티션 계획</value></data>
+  <data name="Visual.PartitionTable.None"><value>ᄋᄋᄋ</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>파티션 번호</value></data>
+  <data name="Visual.FileSystemLabel"><value>파일 시스템</value></data>
+  <data name="Visual.RangeTitle"><value>선택 범위</value></data>
+  <data name="Visual.PlatterCountLabel"><value>플라스마</value></data>
+  <data name="Visual.BlockState.Available"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.BlockState.Reserved"><value>의논하기</value></data>
+  <data name="Visual.BlockState.Allocated"><value>의욕</value></data>
+  <data name="Visual.BlockState.Free"><value>의 %</value></data>
+  <data name="Visual.BlockState.Unknown"><value>의논하기</value></data>
+  <data name="Visual.OpticalDataTrack"><value>데이터 트랙</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>오디오 트랙</value></data>
+  <data name="Visual.OpticalPregap"><value>뚱 베어</value></data>
+  <data name="Visual.OpticalSession"><value>세션 경계</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Optical media 정보</value></data>
+  <data name="Visual.FaceCountLabel"><value>뚱 베어</value></data>
+  <data name="Visual.LayerCountLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.TrackCountLabel"><value>의 특징</value></data>
+  <data name="Visual.SessionLabel"><value>- 연혁</value></data>
+  <data name="Visual.LayerLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.TrackKindLabel"><value>트랙 유형</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>선택 트랙</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>볼륨 기원</value></data>
+  <data name="Visual.VolumeTitle"><value>의논문</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>관련 파일</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>의논하기</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>(주)</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>의 특징</value></data>
+  <data name="Visual.SequentialSignal"><value>(주)</value></data>
+  <data name="Visual.SequentialDecoded"><value>암호로 고쳐 쓴 구획</value></data>
+  <data name="Visual.SequentialSilence"><value>의약</value></data>
+  <data name="Visual.SequentialError"><value>오류 해독</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Sequential 미디어 정보</value></data>
+  <data name="Visual.DurationLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.SegmentCountLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Segment 유형</value></data>
+  <data name="Visual.ChannelLabel"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>관련 기사</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>오류 해독</value></data>
+  <data name="Visual.SegmentTitle"><value>선택된 세그먼트</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>의논하기</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>(주)</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>의약</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>암호로 고쳐 쓴 구획</value></data>
+  <data name="Visual.RevolutionSummary"><value>모든 혁명</value></data>
+  <data name="Visual.RevolutionChoice"><value>의 역사 {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>의 역사</value></data>
+  <data name="Visual.QualityDead"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.QualityPoor"><value>팟캐스트</value></data>
+  <data name="Visual.QualityPartial"><value>부분적으로 읽기 쉬운</value></data>
+  <data name="Visual.QualityGood"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Visual.QualityExcellent"><value>의 특징</value></data>
+  <data name="Visual.SectorWithData"><value>데이터와 관련된</value></data>
+  <data name="Visual.SectorDegraded"><value>고급 분야</value></data>
+  <data name="Visual.SectorDead"><value>관련 분야</value></data>
+  <data name="Visual.SectorWithoutData"><value>데이터 없이</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>카세트 정보</value></data>
 </root>

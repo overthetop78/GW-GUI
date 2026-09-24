@@ -1,5 +1,5 @@
-using GWGUI.Domain.Profiles;
-using GWGUI.Domain.Settings.Profiles;
+using GWGUI.App.Profiles;
+using GWGUI.Infrastructure.Settings.Profiles;
 namespace GWGUI.App.Services.Profiles;
 
 public sealed class OperationProfileCollection

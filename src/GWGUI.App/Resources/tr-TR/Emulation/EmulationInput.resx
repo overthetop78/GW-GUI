@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Davranış</value></data>
+  <data name="Emulation.Input.Assign"><value>Ata...</value></data>
+  <data name="Emulation.Input.Actions"><value>Eylemler</value></data>
+  <data name="Emulation.Input.Press"><value>Bir tuşa basın...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Aygıt algılama ortaktır, atamalar ise her makine yapılandırmasında ayrı kaydedilir.</value></data>
+  <data name="Emulation.Input.Test"><value>Girişleri test et</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Paylaşılan giriş aygıtları</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Algılamayı test etmek için bir klavye tuşuna veya fare düğmesine basın.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Varsayılanları geri yükle</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Çakışmaları temizle</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Atama</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Durum</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Tuş veya atama ara</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Geçerli: benzersiz atama · Çakışma: atama birden çok kez kullanılmış · Ayrılmış: Windows veya GW GUI kısayolu</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Geçerli</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Çakışma</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Ayrılmış</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Atanmamış</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Ata&apos;ya tıklayın, ardından bir klavye tuşu, fare düğmesi veya denetleyici düğmesi kullanın.</value></data>
+</root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Memory.Main"><value>Memoria principale</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Espansioni di memoria</value></data>
+  <data name="Emulation.Memory.None"><value>Nessuna</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>La configurazione della memoria è compatibile con {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Le espansioni di memoria sono compatibili con {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM non è disponibile su {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Memoria totale configurata: {0} {1}</value></data>
+</root>

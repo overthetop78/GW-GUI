@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Δημιουργήστε, επιλέξτε, τροποποιήστε ή διαγράψτε εδώ αποθηκευμένες ρυθμίσεις. Επιλέξτε την καρτέλα {0} για επεξεργασία της επιλεγμένης ρύθμισης.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Μάρκα</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Μηχάνημα</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Συνολική RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Μονάδες δίσκου</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Περιφερειακά</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Ενέργειες</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Διαγράψτε το {0} {1} διαμόρφωση;</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Διαμόρφωση</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>⁇</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Διαγραφή της διαμόρφωσης της Amiga;</value></data>
+</root>

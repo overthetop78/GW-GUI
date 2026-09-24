@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>Mevcut dosyalar</value></data>
-  <data name="Conflict.Heading"><value>Bazı dosyalar zaten mevcut</value></data>
-  <data name="Conflict.Help"><value>Her dosya için bir eylem seçin veya aynı eylemi tüm dosyalara uygulayın.</value></data>
-  <data name="Conflict.File"><value>Dosya</value></data>
-  <data name="Conflict.Action"><value>Aksiyon</value></data>
-  <data name="Conflict.Overwrite"><value>Üzerine yaz</value></data>
-  <data name="Conflict.Skip"><value>Atlamak</value></data>
-  <data name="Conflict.Number"><value>Sonraki numarayı kullan</value></data>
-  <data name="Conflict.AllOverwrite"><value>Tümünün üzerine yaz</value></data>
-  <data name="Conflict.AllSkip"><value>Tümünü atla</value></data>
-  <data name="Conflict.AllNumber"><value>Hepsini numaralandır</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>Dönüşüm</value></data>
   <data name="Conversion.SelectOutput"><value>En az bir çıktı formatı seçin.</value></data>
   <data name="Conversion.SourceAmbiguous"><value>Belirsiz kaynak</value></data>
@@ -43,47 +24,14 @@
   <data name="Conversion.Incompatible"><value>{0} bu kaynakla uyumlu değil.</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>Kullanılabilir çıktı dosyası adı bulunamadı.</value></data>
   <data name="Conversion.ReconstructedFlux"><value>yeniden oluşturulmuş akış</value></data>
-  <data name="Migration.Open"><value>Dosya göçü...</value></data>
-  <data name="Migration.Title"><value>Dosya göçü</value></data>
-  <data name="Migration.Heading"><value>Migrate dosyaları başka bir dosya sistemi</value></data>
-  <data name="Migration.NoSource"><value>Tanık bir dosya sistemi içeren bir görüntü seçin.</value></data>
-  <data name="Migration.Destination"><value>Hedef dosya sistemi ve format</value></data>
-  <data name="Migration.Output"><value>Hedef görüntü görüntü görüntü</value></data>
-  <data name="Migration.Compatibility"><value>Uyumluluk ve kayıplar</value></data>
-  <data name="Migration.Waiting"><value>Bir kaynak ve bir hedef seçin.</value></data>
-  <data name="Migration.Severity"><value>Şiddetlilık</value></data>
-  <data name="Migration.Path"><value>Kaynak yolu</value></data>
-  <data name="Migration.Description"><value>Açıklama</value></data>
-  <data name="Migration.AcceptLosses"><value>Listelenen metadata kayıpları kabul et</value></data>
-  <data name="Migration.Execute"><value>Migrate dosyaları</value></data>
-  <data name="Migration.Blocking"><value>Bloking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata kaybı</value></data>
-  <data name="Migration.SourceSummary"><value>Cilt: {0} - Dosya sistemi: {1} - Kök girişleri: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Göçü hazırlamak için güvenilmez: {0}</value></data>
-  <data name="Migration.Completed"><value>Hedef görüntü oluşturuldu: {0}</value></data>
-  <data name="Migration.Failed"><value>Göç başarısız oldu: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Uyumlu: göçün önündeki engelleri düzeltin.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Listelenen metadata kayıplarını kabul ettikten sonra.</value></data>
-  <data name="Migration.Compatible"><value>Uyumlu: tespit edilen bir kayıp yok.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>Dosya içeriği mevcut değildir.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>Bu giriş türü varış noktası tarafından desteklenmez.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>Adı varış için geçerli değildir.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>Adı varış için çok uzun.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Birkaç giriş aynı varış adı olurdu.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>Dosya varış için çok büyük.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>Kaynak metadata geçersizdir.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>Değişiklikler tarihi korunmayacak.</value></data>
-  <data name="Migration.Loss.Comment"><value>Yorum korunmuş olmayacak.</value></data>
-  <data name="Migration.Loss.Attributes"><value>Kaynak özellikleri korunmuş olmayacaktır.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>Hedef görüntü zaten var. Onu Değiştirin? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>Hedef görüntü kaynak imajını değiştiremez.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>Sektör verileri; korumalar korunmasız</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>Yeniden inşa edilmiş parçalar; orijinal flux korunmuş değil</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>Orijinal flux korunmuş</value></data>
-  <data name="Conversion.EngineExternal"><value>Host Tools: dönüştürme {0}.</value></data>
-  <data name="Conversion.EngineInternalStart"><value>İç motor: dönüştürme {0} tom için {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>İç dönüşüm tamamlandı: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>İç motor bu dönüşümü desteklemiyor: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>İç dönüşüm başarısız oldu {0}: {1}</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: dönüştürme {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>İç motor: dönüştürme {0} tom için {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>İç dönüşüm tamamlandı: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>İç motor bu dönüşümü desteklemiyor: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>İç dönüşüm başarısız oldu {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Potansiyel veri kaybı</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Bu dönüşüm tüm kaynak bilgilerini koruyamaz:&#xA;&#xA;{0}&#xA;&#xA;Devam etmek ister misiniz?</value></data>
 </root>

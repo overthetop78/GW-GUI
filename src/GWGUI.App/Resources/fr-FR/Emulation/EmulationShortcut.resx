@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Affectation des touches</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Libérer la souris</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pause / reprise</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Plein écran / mode fenêtré</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Marche / arrêt</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Redémarrage à chaud</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Redémarrage à froid</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Sauvegarde rapide de l’état</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Chargement rapide de l’état</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Capture d’écran</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Couper le son de la machine active</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Avance rapide tant que la touche est maintenue</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Insérer ou remplacer un média</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Éjecter le média</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Média suivant</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Cette action n’est pas encore fournie par l’émulateur actuel.</value></data>
+</root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}-näppäin</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Isäntänäppäin</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Kaksi Amiga-näppäintä käyttää samaa PC avain. Selvitä punaiset kuvat ennen tallennuksen.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fyysinen näppäimistön läpivienti</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Varatut pikanäppäimet</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>GW GUI:n ja Windowsin pikanäppäimet pysyvät käytössä, eikä kone kaappaa niitä.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Koneen näppäin</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Kirjaimet, numerot ja tavalliset muuntonäppäimet välitetään suoraan. Vain Amigan toiminto- ja erikoisnäppäimet määritetään tässä.</value></data>
+</root>

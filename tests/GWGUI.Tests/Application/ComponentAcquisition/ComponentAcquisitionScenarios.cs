@@ -1,4 +1,3 @@
-using GWGUI.Domain.HostTools;
 using GWGUI.Infrastructure.HostTools;
 using System.IO.Compression;
 using System.Net;

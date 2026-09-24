@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>เปิดการใช้เสียง</value></data>
+  <data name="Emulation.Audio.Output"><value>การแสดงผลเสียง</value></data>
+  <data name="Emulation.Audio.Latency"><value>แบตเตอรี (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>การเพิ่มจุดพิกัด</value></data>
+  <data name="Emulation.Audio.Filter"><value>กรองเสียง Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>การแยกสเตริโอ (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>ข้อมูลเข้าทางเสียง</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>แกน Amiga นี้ไม่เปิดเผยการป้อนเสียง</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>การแสดงผลปริยายของวินโดวส์</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>เซ็กเมนต์:</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>จําลอง</value></data>
+  <data name="Emulation.Audio.FilterType"><value>ชนิดตัวกรอง</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>ระดับเสียงของแผ่นฟลอปปี้ไดรฟ์</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>ชนิดเสียงฟลอปปี้ไดรฟ์</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>ตัดไม่มีแผ่น</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD ระดับเสียงเสียง</value></data>
+  <data name="Emulation.Audio.Device"><value>อุปกรณ์</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>ความหน่วง</value></data>
+  <data name="Emulation.Audio.Quality"><value>คุณภาพ</value></data>
+  <data name="Emulation.Audio.Drives"><value>ไดรฟ์</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>เสียงไดรฟ์ฟลอปปี้</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>ตัวกรองเสียงแบบโพลาไรซ์</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>ต่ำ</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>ปกติ</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>สูง</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>เสียง</value></data>
+</root>

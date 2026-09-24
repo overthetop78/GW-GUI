@@ -1,5 +1,5 @@
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Windows.Shell;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Jádro</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Emulační jádro {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Knihovna zůstává mimo GW GUI. Vybraná verze nahradí aktuálně nainstalovanou verzi.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Verze vyžadovaná GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Nejnovější dostupná oficiální verze</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Aktuálně nainstalovaná verze</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Kliknutím na Hledat se dotážete oficiálního serveru Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Hledat verze</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Stáhnout a nahradit</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Hledání dostupných verzí…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Nebyla nalezena žádná oficiální verze.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} verze (verze) k dispozici.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Stahování {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Nainstalovaná verze: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · nainstalováno</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Není nainstalována žádná verze</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emulátor</value></data>
+  <data name="Emulation.Core.Install"><value>Instalovat</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Instalováno</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Základní opce</value></data>
+</root>

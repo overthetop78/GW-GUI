@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Kandar floppy kosong diam</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>Keheningan suara drive yang digandakan ketika tidak ada disk dimasukkan. Nonaktifkan opsi ini untuk menjaga kebisingan mekanis yang menganggur.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>Pilih penyaringan audio analog</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>Memilih bagaimana filter audio analog asli direproduksi. Emulasi mengikuti perilaku perangkat keras. Pilihan lain memaksa filter hidup atau mati.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>Aktifkan filter audio polarisasi</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>layers-action Aktifkan untuk mereproduksi suara yang disaring. Menonaktifkan untuk menjaga tidak disaring sinyal.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>Pilih interpolasi audio</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>Memilih bagaimana sampel audio dihitung antara titik sampel yang dihasilkan. Metode kualitas tertinggi menghasilkan suara halus tapi membutuhkan lebih banyak proses.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>Atur latensi audio</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>Tata durasi buffer audio. Buffer yang lebih pendek mengurangi penundaan tapi bisa menyebabkan keretakan. Buffer yang lebih lama meningkatkan stabilitas tapi meningkatkan penundaan.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>Aktifkan dual POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>Tambahkan timulasi kedua POKEY chip untuk menghasilkan suara stereo. Aktifkan opsi ini hanya untuk perangkat lunak yang mendukung dual POKEY audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>Set pemisahan stereo</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>Mengatur pemisahan antara saluran kiri dan kanan. Sebuah nilai yang lebih rendah bercampur saluran bersama-sama. Nilai yang lebih tinggi membuat mereka jauh terpisah.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>Pilih set suara kandar floppy</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>Memilih sampel yang digunakan untuk suara mekanis dari emulasi floppy drive. Ini tidak mengubah perilaku drive atau data disk.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>Pilih model penyaring audio</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Memilih respon filter perangkat keras terhadap emulasi. Otomatis mengikuti model mesin yang dipilih. Pilihan khusus selalu menggunakan jawaban filter.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>Aktifkan dua port joystick tambahan</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>Emulasi adaptor paralel-port yang menambahkan dua port joystick. Aktifkan untuk perangkat lunak yang mendukung empat pemain simultan.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>Set interval pulse turbo</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>Mengatur waktu antara tombol otomatis menekan yang dihasilkan oleh turbo. Sebuah interval pendek menghasilkan tembakan berulang lebih cepat.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>Pilih mode kompatibilitas pengontrol</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>Memilih pemetaan pengendali khusus, seperti dual- stick kontrol, port swap, atau Joy2B+. Pilih Tidak ada untuk menjaga standar pemetaan port.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>Set sensitivitas masukan analog</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>Mengatur seberapa kuat masukan analog menanggapi gerakan. Nilai yang lebih tinggi menghasilkan respon yang lebih besar dari gerakan fisik yang sama.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Set sensitivitas masukan digital</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Mengatur seberapa cepat arah digital mencapai gerakan penuh. Nilai yang lebih tinggi membuat perubahan arah mencapai maksimum mereka lebih cepat.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Pilih mode api otomatis</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Dinonaktifkan mematikan api otomatis. Pada tombol mengulangi tembakan sementara tombol yang diberikan ditahan. Selalu mengulangi api terus menerus.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Mengatur kecepatan gerakan dayung</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Mengatur seberapa cepat masukan digital bergerak dalam bentuk dayung. Nilai yang lebih rendah bergerak lebih lambat. Nilai yang lebih tinggi bergerak lebih cepat.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Pilih FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>Memilih satuan floating-point yang dipakai untuk floating-point instruksi. Pilih Tak ada yang akan menonaktifkan FPU. Model tersedia bergantung pada yang dipilih CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>Pilih CPU akurasi emulasi</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Memilih seberapa dekat CPU Waktu mengikuti perangkat keras asli. Mode yang lebih akurat dapat meningkatkan kompatibilitas tetapi mungkin memerlukan lebih banyak proses.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Atur emulasi CPU kecepatan</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>Mengatur frekuensi prosesor yang digunakan oleh mesin yang direkayasa. Kecepatan asli mempertahankan waktu perangkat keras. Nilai lebih tinggi mempercepat CPU-perangkat lunak terbatas.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Gunakan batang analog untuk mengendalikan tetikus</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>Memungkinkan sumbu joystick analog untuk memindahkan penunjuk tetikus yang tergandakan. Aktifkan saat batang analog fisik harus mengendalikan pointer.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>Atur kecepatan tetikus analog</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>Tata kecepatan penunjuk ketika suatu batang analog mengontrol tetikus yang tergandakan. Nilai yang lebih tinggi bergerak pointer lebih jauh untuk gerakan tongkat yang sama.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>Set zona mati tetikus analog</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>Mengabaikan gerakan analog kecil-tongkat di sekitar pusat saat mengendalikan tetikus. Tingkatkan nilai jika pointer bergerak ketika tongkat dilepaskan.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Aktifkan Axlon $0F bank bayangan</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Cermin Axlon kontrol bank di alamat $0F. Aktifkan hanya untuk perangkat lunak atau ekspansi memori yang menggunakan alamat tambahan ini.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Set Axlon memori ekspansi</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Tata jumlah bank- switched Axlon memori. Dinonaktifkan menghapus ekspansi. Pilihan lain memberikan kapasitas memori yang dipilih.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Set Mosaic memori ekspansi</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Tata jumlah bank- switched Mosaic memori. Dinonaktifkan menghapus ekspansi. Pilihan lain memberikan kapasitas memori yang dipilih.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Set memori ekspansi tambahan</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Tata jumlah memori ekspansi tambahan yang didukung oleh mesin yang dipilih. Pilih Tak Ada untuk menggunakan hanya memori utama yang dikonfigurasi.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Set Fast RAM ukuran</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>Tata jumlah Fast RAM tersedia langsung ke CPU. Tambahan Fast RAM dapat membantu software yang kompatibel tetapi mengubah konfigurasi perangkat keras yang tergandakan.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Aktifkan MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>Memungkinkan perangkat lunak yang kompatibel untuk memetakan yang dapat ditulisi RAM ke dalam sistem ROM area alamat. Opsi ini hanya tersedia pada model mesin yang mendukung MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Set Zorro III RAM ukuran</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>Tata jumlah 32- bit Fast RAM tersambung melalui Zorro III bus. Gunakan hanya dengan mesin 32bit dan perangkat lunak yang kompatibel.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>Set Slow RAM ukuran</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Tata jumlah Slow RAM di area perluasan pintu jebakan. Memori ini lebih lambat dari Fast RAM dan menggunakan jangkauan alamat perangkat keras yang berbeda.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>Pilih ROM kunci dekripsi</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>Memilih berkas kunci yang dipakai untuk mendekripsi enkripsi yang berlisensi ROM gambar. Biarkan field ini kosong ketika yang dipilih ROM tidak dienkripsi.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Aktifkan startup cepat</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>Melewatkan penundaan inisialisasi perangkat keras yang dipilih ke awal yang singkat. Nonaktifkan opsi ini ketika perangkat lunak memerlukan urutan awal.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>Pilih ekstensi ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>Memilih firmware sekunder ROM dibutuhkan oleh beberapa model mesin. Biarkan bidang ini kosong ketika model yang dipilih tidak menggunakan ekstensi ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Aktifkan dipercepat SIO transfer</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>Menyebarkan transfer yang kompatibel melalui bus masukan / keluaran seri. Nonaktifkan opsi ini ketika perangkat lunak tergantung pada waktu transfer asli.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Aktifkan startup kaset</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Membuat mesin beremulasi mencoba untuk memulai dari gambar kaset yang terpasang. Nonaktifkan opsi ini ketika dimulai dari perangkat lain.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Aktifkan R-Time 8 jam</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>Emulasi R-Time 8 real-time clock sehingga kompatibel perangkat lunak dapat membaca tanggal dan waktu saat ini.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>Aktifkan P: Perangkat pencetak</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>Membuat emulasi P: Perangkat pencetak tersedia untuk perangkat lunak. Nonaktifkan opsi ini ketika emulasi perangkat printer- tidak diperlukan.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>Aktifkan R: perangkat serial</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>Membuat emulasi R: perangkat seri yang tersedia untuk perangkat lunak. Nonaktifkan opsi ini ketika emulasi perangkat serial- tidak diperlukan.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>Pilih warna artifacting high-resolusi</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>Memilih bagaimana pola resolusi tinggi menghasilkan komposit-video warna. Tidak ada yang mematikan warna artefak. Modes lain mereproduksi palet yang berbeda atau chip perilaku.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>Pilih waktu yang lebih terang</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>Memilih apakah operasi blitter selesai segera atau mengikuti emulasi waktu perangkat keras. Modus langsung lebih cepat tapi kurang waktu - akurat.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>Ijinkan perubahan tingkat -keluaran</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>Memungkinkan laju refresh keluaran untuk mengikuti perubahan dalam mode video yang termodifikasi. Terkunci menjaga tingkat penyegaran keluaran saat ini.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>Pilih rincian deteksi tabrakan</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>Memilih mana yang sprite dan playfield tabrakan dihitung. Lebih lengkap deteksi meningkatkan kompatibilitas tetapi membutuhkan lebih banyak proses.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>Kurangi kedipan tampilan interlaced</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>Pemutaran kembali keluaran video yang terinterlaced. Aktifkan untuk gambar diam-diam. Nonaktifkan untuk mempertahankan perilaku tampilan asli yang terinterlaced.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>Pilih rasio aspek yang ditampilkan</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>Memilih bagaimana gambar yang beremulasi skala horizontal dan vertikal. Auto mengikuti keluaran yang digandakan. Sebuah kekuatan pilihan tetap yang menampilkan bentuk.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>Atur gambar gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>Mengubah kecerahan nada tengah tanpa mengubah tingkat hitam dan putih secara langsung. Nilai bawah tengah nada hitam. Nilai yang lebih tinggi mencerahkan mereka.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>Pilih mode baris video</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>Memilih bagaimana garis video vertikal ditampilkan. Auto mengikuti mode yang diemulasi. Pilihan lain memaksa baris tunggal, dua kali lipat, atau scanlines ketika tersedia.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>Pilih standar video</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>Memilih waktu televisi yang telah digandakan, seperti PAL atau NTSC. Ini mempengaruhi tingkat penyegaran, waktu perangkat keras, dan kompatibilitas perangkat lunak.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>Pilih palet warna eksternal</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>Memilih palet warna yang sudah ditentukan daripada warna yang dihasilkan dari pengaturan video saat ini. Tak ada yang memakai warna yang dihasilkan.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>Pilih kedalaman warna keluaran</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>Memilih kedalaman warna yang dipakai untuk membuat gambar. 24-bit menjaga lebih detail warna. 16-bit menggunakan kisaran warna yang lebih kecil.</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>Pilih daerah perangkat keras</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>Memilih waktu regional yang digunakan oleh mesin yang diemulasi. Pilihan dapat mempengaruhi frekuensi video, CPU Waktu, dan firmware kompatibel.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>Pilih perender video</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>Memilih backend grafis yang dipakai untuk menggambar tampilan yang telah ditiru. Penyewa tersedia dapat berbeda dalam kinerja dan kompatibilitas dengan sistem host.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>Atur GTIA delay warna</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Mengatur GTIA delay fase warna digunakan untuk mereproduksi warna. Baku menggunakan nilai standar. Pilihan numerik mengubah warna yang dihasilkan.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Atur bingkai yang dilewati</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Mengatur berapa banyak frame layar yang dihilangkan. Dinonaktifkan menarik setiap frame. Nilai yang lebih tinggi mengurangi render bekerja tapi membuat gerak kurang halus.</value></data>
+</root>

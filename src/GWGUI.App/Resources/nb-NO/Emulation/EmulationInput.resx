@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Oppførsel</value></data>
+  <data name="Emulation.Input.Assign"><value>Tilordne...</value></data>
+  <data name="Emulation.Input.Actions"><value>Handlinger</value></data>
+  <data name="Emulation.Input.Press"><value>Trykk på en tast...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Enhetsregistrering deles, mens tilordninger lagres separat i hver maskinkonfigurasjon.</value></data>
+  <data name="Emulation.Input.Test"><value>Test inndata</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Delte inndataenheter</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Trykk på en tast eller museknapp for å teste registreringen.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Gjenopprett standardverdier</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Fjern konflikter</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Tilordning</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Status</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Søk etter tast eller tilordning</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Gyldig: unik tilordning · Konflikt: tilordning brukt flere ganger · Reservert: snarvei i Windows eller GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Gyldig</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Konflikt</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Reservert</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Ikke tilordnet</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Trykk på Tilordne, og bruk deretter en tast, museknapp eller kontrollerknapp.</value></data>
+</root>

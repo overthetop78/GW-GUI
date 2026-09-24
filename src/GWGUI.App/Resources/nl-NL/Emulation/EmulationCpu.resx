@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>Verwerker: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU-model</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU-vermenigvuldiger</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Cycluscompatibele CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU-snelheid</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Oorspronkelijke snelheid</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normaal</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Compatibel</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Geheugencompatibel</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Cyclusnauwkeurig</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Verwerker</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Nauwkeurigheid</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Versnelling</value></data>
+</root>

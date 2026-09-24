@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>Emulátor před zapnutím tohoto stroje vyžaduje médium. Vložte nebo nastavte jedno z požadovaných médií uvedených níže.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>Stroj nelze zapnout</value></data>
+  <data name="Emulation.Error.Machine"><value>Stroj</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>Požadovaná média</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>Je potřeba model Amiga.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Je třeba Kickstart cestu.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>Požadovaná cesta firmware je prázdná.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>Vybraný soubor neexistuje.</value></data>
+</root>

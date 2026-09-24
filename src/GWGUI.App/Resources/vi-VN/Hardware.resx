@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Cảng</value></data>
-  <data name="Hardware.UsbId"><value>USB mã định danh</value></data>
-  <data name="Hardware.Drive"><value>Lái xe</value></data>
-  <data name="Hardware.Available"><value>Có sẵn</value></data>
-  <data name="Hardware.Scan"><value>Quét</value></data>
-  <data name="Hardware.AddDrive"><value>Thêm ổ đĩa…</value></data>
-  <data name="Hardware.NoDrive"><value>Không có ổ đĩa được xác định</value></data>
-  <data name="Hardware.EditorTitle"><value>Xác định một ổ đĩa</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle bộ điều khiển</value></data>
-  <data name="Hardware.GwSelection"><value>Lựa chọn được chuyển tới gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Kích thước vật lý</value></data>
-  <data name="Hardware.SizeShort"><value>Kích cỡ</value></data>
-  <data name="Hardware.DensityShort"><value>Tỉ trọng</value></data>
-  <data name="Hardware.SpeedShort"><value>Tốc độ</value></data>
-  <data name="Hardware.AvailableState"><value>Có sẵn</value></data>
-  <data name="Hardware.UnavailableState"><value>Không có sẵn</value></data>
-  <data name="Hardware.DensityDescription"><value>Mật độ ổ đĩa (chỉ mô tả)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Tốc độ danh nghĩa (chỉ mô tả)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Cảng</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB mã định danh</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Lái xe</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Có sẵn</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Quét</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Thêm ổ đĩa…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Không có ổ đĩa được xác định</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Xác định một ổ đĩa</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle bộ điều khiển</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Lựa chọn được chuyển tới gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Kích thước vật lý</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Kích cỡ</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Tỉ trọng</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Tốc độ</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Có sẵn</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Không có sẵn</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Mật độ ổ đĩa (chỉ mô tả)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Tốc độ danh nghĩa (chỉ mô tả)</value></data>
   <data name="Hardware.NotConfigured"><value>Bộ điều khiển chưa được cấu hình</value></data>
   <data name="Hardware.Disconnected"><value>bị ngắt kết nối</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Ổ đĩa đã chọn bị ngắt kết nối. Kết nối lại hoặc quét lại trong Tùy chọn → Bộ điều khiển và ổ đĩa.</value></data>
-<data name="Hardware.DriveDialogTitle"><value>Lái xe</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-inch {1} Hóa {2} Hóa {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Lái xe</value></data>
   <data name="Hardware.ControllerRequired"><value>Trước tiên hãy quét hoặc thêm bộ điều khiển Greaseweazle.</value></data>
   <data name="Hardware.Description"><value>{0}-inch · {1} · lựa chọn {2}_{3}</value></data>
   <data name="Hardware.ScanTitle"><value>Quét</value></data>
@@ -59,5 +52,4 @@
   <data name="Hardware.ForgetLastConfirm"><value>Đây là ổ đĩa được định cấu hình cuối cùng cho Greaseweazle này. Bạn có muốn quên cả ổ đĩa và Greaseweazle không?</value></data>
   <data name="Hardware.SelectController"><value>Trước tiên, hãy chọn một hàng thuộc Greaseweazle có liên quan.</value></data>
   <data name="Hardware.MaximumDrives"><value>Có thể tự động gán tối đa hai ổ đĩa cho Greaseweazle (A và B) này.</value></data>
-  <data name="Hardware.DriveLabel"><value>{0}-inch {1} Hóa {2} Hóa {3}</value></data>
 </root>

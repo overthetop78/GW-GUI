@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Migração do arquivo...</value></data>
+  <data name="Migration.Title"><value>Migração de arquivos</value></data>
+  <data name="Migration.Heading"><value>Migrar os ficheiros para outro sistema de ficheiros</value></data>
+  <data name="Migration.Source"><value>Imagem de origem</value></data>
+  <data name="Migration.NoSource"><value>Selecione uma imagem que contenha um sistema de arquivos reconhecido.</value></data>
+  <data name="Migration.Destination"><value>Sistema de ficheiros de destino e formato</value></data>
+  <data name="Migration.Output"><value>Imagem de destino</value></data>
+  <data name="Migration.Compatibility"><value>Compatibilidade e perdas</value></data>
+  <data name="Migration.Waiting"><value>Selecione uma fonte e um destino.</value></data>
+  <data name="Migration.Severity"><value>Severidade</value></data>
+  <data name="Migration.Path"><value>Localização do código</value></data>
+  <data name="Migration.Description"><value>Designação das mercadorias</value></data>
+  <data name="Migration.AcceptLosses"><value>Aceitar as perdas de metadados listadas</value></data>
+  <data name="Migration.Execute"><value>Migrar arquivos</value></data>
+  <data name="Migration.Blocking"><value>Bloqueamento</value></data>
+  <data name="Migration.MetadataLoss"><value>Perda de metadados</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0} — Sistema de ficheiros: {1} — Inserções na base: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Não foi possível preparar a migração: {0}</value></data>
+  <data name="Migration.Completed"><value>A imagem de destino foi criada: {0}</value></data>
+  <data name="Migration.Failed"><value>A migração falhou: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Incompatível: corrigir as perdas de bloqueio antes da migração.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Compatível após aceitar as perdas de metadados listados.</value></data>
+  <data name="Migration.Compatible"><value>Compatível: nenhuma perda detectada.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>O conteúdo do arquivo está indisponível.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Este tipo de entrada não é suportado pelo destino.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>O nome não é válido para o destino.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>O nome é muito longo para o destino.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Vários itens teriam o mesmo nome de destino.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>O arquivo é muito grande para o destino.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Os metadados de origem são inválidos.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>A data de modificação não será preservada.</value></data>
+  <data name="Migration.Loss.Comment"><value>O comentário não será preservado.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Os atributos de origem não serão preservados.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>A imagem de destino já existe. Substituí- la? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>A imagem de destino não pode substituir a imagem de origem.</value></data>
+</root>

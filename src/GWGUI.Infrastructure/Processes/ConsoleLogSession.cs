@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings.Logging;
+using GWGUI.Infrastructure.Settings.Logging;
 using System.Text;
 
 namespace GWGUI.Infrastructure.Processes;

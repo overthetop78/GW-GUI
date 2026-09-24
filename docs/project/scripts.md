@@ -10,32 +10,37 @@ Ce document décrit tous les fichiers présents dans `scripts`. Les commandes so
 
 | Script | Usage | Appelé automatiquement par |
 |---|---|---|
-| `audit-docs.ps1` | Contrôle de la structure et des liens de `docs` | Aucun |
-| `build.ps1` | Construction locale de GW GUI | Aucun |
-| `build-module-directory.ps1` | Production du répertoire des modules installables | Workflow de publication du répertoire de modules |
-| `build-update-catalog.ps1` | Production du catalogue de mises à jour | Workflows de publication de l’application et des modules |
-| `build-wiki.ps1` | Validation et construction du wiki | Publication du wiki et workflow de publication de l’application |
-| `emulation-modules.ps1` | Découverte et validation des modules | Scripts de construction, de paquetage et de catalogue |
-| `organize-application-output.ps1` | Organisation interne des DLL publiées | `build.ps1` et `package.ps1` |
-| `package.ps1` | Création des paquets de l’application | Workflow de publication de l’application |
-| `package-module.ps1` | Création du paquet indépendant d’un module | Workflow de publication d’un module |
+| `temp/analyze-media-data.ps1` | Analyse et validation continue des images de médias locales avec rapports et reprise | Aucun |
+| `temp/extract_data_from_ContentHex.ps1` | Extraction des données d’analyse depuis le `ContentHex` des fichiers consignés | Aucun |
+| `local-building/build.ps1` | Construction locale de GW GUI | Aucun |
+| `local-building.cmd` | Sélection interactive ou directe d’une construction locale | Aucun |
+| `module-directory/build-module-directory.ps1` | Production du répertoire des modules installables | Workflow de publication du répertoire de modules |
+| `release/update-catalog/build-update-catalog.ps1` | Production du catalogue de mises à jour | Workflows de publication de l’application et des modules |
+| `wiki/build-wiki.ps1` | Validation et construction du wiki | Publication du wiki |
+| `release/update-catalog/emulation-modules/emulation-modules.ps1` | Découverte et validation des modules | Scripts de construction, de paquetage et de catalogue |
+| `release/package/organize_app/organize-application-output.ps1` | Organisation interne des DLL publiées | `local-building/build.ps1` et `package.ps1` |
+| `release/package/package.ps1` | Création des paquets de l’application | Workflow de publication de l’application |
+| `module-release/package-module.ps1` | Création du paquet indépendant d’un module | Workflow de publication d’un module |
+| `publish-modules.cmd` | Publication d’un module précis ou de toutes les nouvelles versions de modules | Aucun |
+| `publish-module-directory.cmd` | Déclenchement de la publication du répertoire des modules | Aucun |
 | `publish-release.cmd` | Déclenchement interactif d’une publication | Aucun |
 | `publish-wiki.cmd` | Raccourci Windows de publication du wiki | Aucun |
-| `publish-wiki.ps1` | Publication du dépôt wiki | `publish-wiki.cmd` |
-| `stop-debug-gwgui.ps1` | Arrêt manuel des processus du build Debug | Aucun |
-| `test-app-accessibility.ps1` | Validation manuelle de l’accessibilité de l’interface | Aucun |
-| `test-installer.ps1` | Validation d’une installation propre | Workflow de publication de l’application |
-| `test-installer-upgrade.ps1` | Validation d’une mise à niveau | Workflow de publication de l’application |
-| `translate-resx-argos.py` | Traduction et contrôle des ressources RESX | Aucun |
+| `wiki/publish-wiki.ps1` | Publication du dépôt wiki | `publish-wiki.cmd` |
+| `tools/stop-debug-gwgui.ps1` | Arrêt manuel des processus du build Debug | Aucun |
+| `tests/test-app-accessibility.ps1` | Validation manuelle de l’accessibilité de l’interface | Aucun |
+| `tests/test-installer.ps1` | Validation d’une installation propre | Workflow de publication de l’application |
+| `tests/test-installer-upgrade.ps1` | Validation d’une mise à niveau | Workflow de publication de l’application |
+| `tools/translate-resx-argos.py` | Traduction et contrôle des ressources RESX | Aucun |
+| `tools/find-invalid-documentation.ps1` | Recherche des éléments invalides dans la documentation : liens cassés, documents non indexés et feuilles de tâches terminées | Aucun |
 
 ## Construction et paquetage
 
-### `build.ps1`
+### `local-building/build.ps1`
 
 Construit une version locale directement utilisable dans `build/Debug/GW GUI` ou `build/Release/GW GUI`.
 
 ```powershell
-.\scripts\build.ps1 [-Configuration Debug|Release] [-Version X.Y.Z] [--Module <id>[,<id>...]] [--AllModules]
+.\scripts\local-building\build.ps1 [-Configuration Debug|Release] [-Version X.Y.Z] [--Module <id>[,<id>...]] [--AllModules]
 ```
 
 Sans `-Configuration`, le script construit successivement Debug et Release. Pour chaque configuration,
@@ -54,12 +59,29 @@ Sans `-Version`, la version de l’application vient de `src/GWGUI.App/GWGUI.App
 permet de produire explicitement une autre version locale et applique le même numéro à l’application,
 au lanceur et au programme de mise à jour.
 
-### `build-module-directory.ps1`
+### `local-building.cmd`
+
+Lance la construction locale en demandant uniquement les choix absents de la ligne de commande.
+La liste numérotée des modules est produite depuis leurs `module.json` et affiche leur identifiant et
+leur version. `A` sélectionne tous les modules, `0` n’en sélectionne aucun et plusieurs numéros ou
+identifiants peuvent être séparés par des virgules.
+
+```cmd
+scripts\local-building.cmd
+scripts\local-building.cmd --building=debug --modules=amiga,atari
+scripts\local-building.cmd --building=release --modules=A
+scripts\local-building.cmd --building=debug --modules=0
+```
+
+Si `--building` ou `--modules` manque, le CMD demande seulement cette valeur. Il appelle ensuite une
+seule fois `local-building/build.ps1` avec `-AllModules`, `-Module` ou sans sélection de module.
+
+### `module-directory/build-module-directory.ps1`
 
 Construit le répertoire distant utilisé pour afficher les modules installables dans GW GUI.
 
 ```powershell
-.\scripts\build-module-directory.ps1 `
+.\scripts\module-directory\build-module-directory.ps1 `
   [-RegistryDirectory <dossier>] `
   [-OutputPath <fichier.json>]
 ```
@@ -70,12 +92,12 @@ Par défaut, le script découvre tous les fichiers JSON de `module-registry` et 
 adresses qui ne sont pas des URL HTTPS directes terminées par `.json`. Ajouter un module au
 répertoire demande un nouveau fichier de registre, sans modification du script.
 
-### `emulation-modules.ps1`
+### `release/update-catalog/emulation-modules/emulation-modules.ps1`
 
 Fournit les fonctions communes de découverte des modules. Ce fichier est chargé avec l’opérateur PowerShell de dot-sourcing ; il ne réalise aucune opération lorsqu’il est exécuté seul.
 
 ```powershell
-. .\scripts\emulation-modules.ps1
+. .\scripts\release\update-catalog\emulation-modules\emulation-modules.ps1
 $modules = Get-GwGuiEmulationModules -RepositoryRoot (Resolve-Path .)
 $module = Resolve-GwGuiEmulationModule -RepositoryRoot (Resolve-Path .) -Module atari
 ```
@@ -84,12 +106,12 @@ $module = Resolve-GwGuiEmulationModule -RepositoryRoot (Resolve-Path .) -Module 
 
 L’ajout d’un module conforme ne demande donc aucune modification manuelle de la liste dans les scripts qui utilisent ces fonctions.
 
-### `organize-application-output.ps1`
+### `release/package/organize_app/organize-application-output.ps1`
 
 Réorganise les DLL d’un dossier publié et réécrit les chemins correspondants dans le manifeste `.deps.json`.
 
 ```powershell
-.\scripts\organize-application-output.ps1 `
+.\scripts\release\package\organize_app\organize-application-output.ps1 `
   -OutputDirectory <dossier> `
   [-ApplicationAssemblyName gwgui.app] `
   [-RootAssemblyName gwgui]
@@ -97,14 +119,14 @@ Réorganise les DLL d’un dossier publié et réécrit les chemins correspondan
 
 Le script place les ressources de langue dans `Languages`, les bibliothèques GW GUI dans `lib` et les autres dépendances dans des sous-dossiers de `lib` selon leur famille. Il déplace également le manifeste de dépendances de l’application dans `lib`. Le dossier fourni est modifié sur place et doit déjà contenir les manifestes `.deps.json` attendus.
 
-Ce script est une étape interne de `build.ps1` et `package.ps1`.
+Ce script est une étape interne de `local-building/build.ps1` et `package.ps1`.
 
-### `package-module.ps1`
+### `module-release/package-module.ps1`
 
 Crée l’archive distribuable d’un module découvert par son `module.json`.
 
 ```powershell
-.\scripts\package-module.ps1 `
+.\scripts\module-release\package-module.ps1 `
   -Module <identifiant-ou-suffixe> `
   [-Configuration Release] `
   [-DistDirectory dist]
@@ -114,12 +136,38 @@ Le script publie le projet du module pour Windows x64, vérifie la présence du 
 
 `-DistDirectory` doit désigner un emplacement situé dans le dépôt. Le script est appelé par le workflow de publication d’un module. Il peut aussi être exécuté directement pour produire une archive de module sans reconstruire ni republier GW GUI.
 
-### `package.ps1`
+### `publish-modules.cmd`
+
+Déclenche la publication GitHub des modules dont la version n’est pas encore publiée. Sans argument,
+il traite tous les modules dans l’ordre et attend la fin de chacun. Avec un identifiant, il traite
+uniquement ce module.
+
+```cmd
+scripts\publish-modules.cmd [identifiant]
+```
+
+Le script lit `id` et `moduleVersion` dans chaque `module.json`, ignore une release déjà présente,
+utilise les notes `.github\release-notes\modules\<id>\vX.Y.Z.md` lorsqu’elles existent et demande
+s’il faut continuer sans elles dans le cas contraire. Un refus, une erreur de déclenchement ou un
+échec du workflow arrête entièrement le script.
+
+### `publish-module-directory.cmd`
+
+Déclenche manuellement le workflow GitHub qui reconstruit et publie le répertoire des modules installables.
+
+```cmd
+scripts\publish-module-directory.cmd
+```
+
+Le script vérifie la présence et l’authentification de GitHub CLI, puis lance `module-directory.yml`
+sur `main`. Le workflow crée ou met à jour la release technique `module-directory`.
+
+### `release/package/package.ps1`
 
 Crée les paquets de l’application GW GUI sans module d’émulation.
 
 ```powershell
-.\scripts\package.ps1 `
+.\scripts\release\package\package.ps1 `
   -Version <X.Y.Z> `
   [-Configuration Release] `
   [-DistDirectory dist] `
@@ -130,12 +178,12 @@ Le script nettoie les sorties temporaires et les anciens paquets d’application
 
 Le répertoire de distribution doit être situé dans le dépôt. Inno Setup est requis uniquement pour produire l’installateur.
 
-### `build-update-catalog.ps1`
+### `release/update-catalog/build-update-catalog.ps1`
 
 Construit `update-catalog.json` à partir des paquets déjà produits.
 
 ```powershell
-.\scripts\build-update-catalog.ps1 `
+.\scripts\release\update-catalog\build-update-catalog.ps1 `
   -Scope Application|Module `
   -Repository <OWNER/REPOSITORY> `
   [-Version <X.Y.Z>] `
@@ -161,32 +209,32 @@ technique choisi dans le dépôt indépendant du module.
 
 ## Wiki et publication
 
-### `build-wiki.ps1`
+### `wiki/build-wiki.ps1`
 
 Valide les sources du wiki et les copie dans `build/wiki` sous une forme compatible avec GitHub Wiki.
 
 ```powershell
-.\scripts\build-wiki.ps1
+.\scripts\wiki\build-wiki.ps1
 ```
 
 Le script vérifie les pages Markdown, l’unicité de leurs noms, les liens locaux, les images et la présence du guide de chaque langue de l’interface. Il transforme ensuite les liens locaux vers leurs adresses GitHub Wiki et recrée entièrement `build/wiki`.
 
-Il est appelé par `publish-wiki.ps1` et par le workflow de publication de l’application.
+Il est appelé par `wiki/publish-wiki.ps1`.
 
 ### `publish-wiki.cmd`
 
-Raccourci Windows qui lance `publish-wiki.ps1` avec la stratégie d’exécution PowerShell adaptée.
+Raccourci Windows qui lance `wiki/publish-wiki.ps1` avec la stratégie d’exécution PowerShell adaptée.
 
 ```cmd
 scripts\publish-wiki.cmd
 ```
 
-### `publish-wiki.ps1`
+### `wiki/publish-wiki.ps1`
 
 Construit puis publie le wiki GitHub.
 
 ```powershell
-.\scripts\publish-wiki.ps1
+.\scripts\wiki\publish-wiki.ps1
 ```
 
 Après `build-wiki.ps1`, le script vérifie l’identité Git, clone `GW-GUI.wiki.git` dans un dossier temporaire unique sous `build`, remplace uniquement les fichiers suivis par `.gwgui-wiki-files.json`, crée un commit s’il existe des changements et les pousse. Le clone temporaire est supprimé à la fin. Une authentification GitHub fonctionnelle et une identité Git configurée sont nécessaires.
@@ -205,12 +253,12 @@ Le code et les notes de version à publier doivent déjà être commités et pou
 
 ## Validation
 
-### `test-app-accessibility.ps1`
+### `tests/test-app-accessibility.ps1`
 
 Effectue un contrôle manuel de l’accessibilité native et du redimensionnement DPI de l’application.
 
 ```powershell
-.\scripts\test-app-accessibility.ps1 `
+.\scripts\tests\test-app-accessibility.ps1 `
   [-ApplicationPath <gwgui.exe>] `
   [-MinimumLogicalWidth 1280] `
   [-MinimumLogicalHeight 720]
@@ -220,12 +268,12 @@ Le script lance l’application dans une session Windows avec bureau, attend sa 
 
 Ce contrôle n’est pas lancé en CI car il exige un bureau interactif. Il est conservé : aucun autre script ne vérifie les noms accessibles natifs et le comportement de la fenêtre selon le DPI.
 
-### `test-installer.ps1`
+### `tests/test-installer.ps1`
 
 Valide une installation propre, son enregistrement Windows et sa désinstallation.
 
 ```powershell
-.\scripts\test-installer.ps1 `
+.\scripts\tests\test-installer.ps1 `
   [-SetupPath <installateur.exe>] `
   [-InstallDirectory <dossier-dans-dist>] `
   [-ExpectedVersion <X.Y.Z>] `
@@ -236,12 +284,12 @@ Le script refuse d’écraser une installation existante, installe silencieuseme
 
 Il est conservé et exécuté par le workflow de publication de l’application.
 
-### `test-installer-upgrade.ps1`
+### `tests/test-installer-upgrade.ps1`
 
 Valide la mise à niveau d’une ancienne installation vers la version courante.
 
 ```powershell
-.\scripts\test-installer-upgrade.ps1 `
+.\scripts\tests\test-installer-upgrade.ps1 `
   -CurrentSetupPath <installateur.exe> `
   [-CurrentVersion <X.Y.Z>] `
   [-PreviousVersion <X.Y.Z>] `
@@ -256,43 +304,72 @@ Les trois scripts de test ont donc chacun une couverture utile : les deux contr�
 
 ## Utilitaires
 
-### `audit-docs.ps1`
+### `temp/analyze-media-data.ps1`
 
-Contrôle tous les fichiers Markdown sous `docs`, leurs liens locaux et leur accessibilité depuis
-`docs/README.md`. Il échoue aussi lorsqu’une feuille sous `docs/tasks` ne contient plus aucune case
+Compile `GWGUI.LocalDiskImageTests`, énumère les images de médias locales, analyse chacune d'elles,
+enregistre les informations décodées dans `artifacts/media-audit/items`, puis contrôle la
+reconnaissance, l'exploration, la visualisation et les conversions disponibles. Un point de reprise
+permet de continuer au même fichier après correction ; la boucle s'arrête au premier défaut.
+
+```powershell
+./scripts/temp/analyze-media-data.ps1
+```
+
+Les paramètres `Root`, `StartAt`, `OutputRoot` et `Restart` pilotent la validation continue. Le
+paramètre `ImagePath` analyse un média précis et place son rapport dans `single-tests`, sans modifier
+le point de reprise de la validation continue.
+
+### `temp/extract_data_from_ContentHex.ps1`
+
+Transforme le `ContentHex` complet des fichiers consignés dans un rapport en données d’analyse
+écrites dans `content-analysis.json`, sans relire l’image source. `ReportPath` sélectionne ce rapport
+et `EntryName` permet de limiter l’extraction à certains fichiers. Le résultat contient leurs
+métadonnées, empreintes, signatures, fins, histogrammes, entropies, chaînes lisibles et autres
+statistiques calculées depuis leurs octets.
+
+```powershell
+./scripts/temp/extract_data_from_ContentHex.ps1 -ReportPath <report.json>
+```
+
+### `tools/find-invalid-documentation.ps1`
+
+Recherche dans tous les fichiers Markdown sous `docs` les liens locaux cassés et les documents
+inaccessibles depuis `docs/README.md`. Il signale aussi lorsqu’une feuille sous `docs/tasks` ne contient plus aucune case
 ouverte, afin qu’un plan terminé soit transféré puis supprimé.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/audit-docs.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\tools\find-invalid-documentation.ps1
 ```
 
 Le script ne modifie aucun fichier. Il affiche chaque lien cassé, document non indexé ou feuille
 terminée, puis renvoie un code de sortie non nul.
 
-### `stop-debug-gwgui.ps1`
+### `tools/stop-debug-gwgui.ps1`
 
 Arrête manuellement les processus dont l’exécutable se trouve dans le dossier du build Debug.
 
 ```powershell
-.\scripts\stop-debug-gwgui.ps1 [-BuildDirectory 'build/Debug/GW GUI']
+.\scripts\tools\stop-debug-gwgui.ps1 [-BuildDirectory 'build/Debug/GW GUI']
 ```
 
 Le script demande d’abord la fermeture normale de chaque processus trouvé, attend jusqu’à trois secondes, puis force l’arrêt de ceux qui restent. Il ne supprime aucun fichier. Aucun autre script ne l’appelle ; il sert lorsqu’un build Debug lancé manuellement doit être arrêté.
 
-### `translate-resx-argos.py`
+### `tools/translate-resx-argos.py`
 
 Traduit, synchronise, nettoie et contrôle les ressources `.resx` avec les modèles Argos installés.
 
 ```powershell
-python .\scripts\translate-resx-argos.py <ressource> <clé> <texte-anglais>
-python .\scripts\translate-resx-argos.py --entry <clé> <texte-anglais> [--entry ...]
-python .\scripts\translate-resx-argos.py --sync-all
-python .\scripts\translate-resx-argos.py --clean-only
-python .\scripts\translate-resx-argos.py --audit
-python .\scripts\translate-resx-argos.py --repair-mixed
-python .\scripts\translate-resx-argos.py --format
+python .\scripts\tools\translate-resx-argos.py <ressource> <clé> <texte-anglais>
+python .\scripts\tools\translate-resx-argos.py --entry <clé> <texte-anglais> [--entry ...]
+python .\scripts\tools\translate-resx-argos.py --sync-all
+python .\scripts\tools\translate-resx-argos.py --sync-all --culture fr-FR
+python .\scripts\tools\translate-resx-argos.py --sync-all --culture fr-FR --catalog Visualizer.resx
+python .\scripts\tools\translate-resx-argos.py --clean-only
+python .\scripts\tools\translate-resx-argos.py --audit
+python .\scripts\tools\translate-resx-argos.py --repair-mixed
+python .\scripts\tools\translate-resx-argos.py --format
 ```
 
-`--root` permet de choisir un autre dossier de ressources que `src/GWGUI.App/Resources`. Le mode d’ajout insère les clés dans la ressource de base et traduit les textes traduisibles dans toutes les cultures. `--sync-all` complète les entrées absentes, `--clean-only` retire les doublons et les valeurs techniques invariantes qui doivent utiliser le repli, `--audit` ne modifie rien et contrôle la structure, la présence de chaque texte traduisible dans les 28 cultures Argos, les clés, les paramètres réservés et les fragments non traduits. `en-US` utilise volontairement les textes de `00-Base`; les valeurs techniques invariantes utilisent aussi ce repli. Une traduction identique au texte anglais reste inscrite physiquement afin que l’audit puisse distinguer une traduction produite d’une clé oubliée. `--repair-mixed` retraduit les entrées mixtes, et `--format` normalise la présentation XML des éléments `data`.
+`--root` permet de choisir un autre dossier de ressources que `src/GWGUI.App/Resources`. Le mode d’ajout insère les clés dans la ressource de base et traduit les textes traduisibles dans toutes les cultures. `--sync-all` complète les entrées absentes ; `--culture` permet de limiter cette synchronisation à une culture, y compris `en-US`, et `--catalog` à un seul fichier de ressources. `--clean-only` retire les doublons et les valeurs techniques invariantes qui doivent utiliser le repli, `--audit` ne modifie rien et contrôle la structure, la présence de chaque texte traduisible dans les 28 cultures Argos, les clés, les paramètres réservés et les fragments non traduits. `en-US` utilise volontairement les textes de `00-Base`; les valeurs techniques invariantes utilisent aussi ce repli. Une traduction identique au texte anglais reste inscrite physiquement afin que l’audit puisse distinguer une traduction produite d’une clé oubliée. `--repair-mixed` retraduit les entrées mixtes, et `--format` normalise la présentation XML des éléments `data`.
 
-Les modes de traduction modifient directement les fichiers `.resx`. Les termes protégés, paramètres et valeurs invariantes sont préservés. Les modèles Argos nécessaires doivent déjà être installés.
+Les modes de traduction modifient directement les fichiers `.resx`. Les termes protégés, paramètres et valeurs invariantes sont préservés. Les modèles Argos nécessaires doivent déjà être installés. Pour les libellés techniques courts susceptibles d’être ambigus hors contexte, le script fournit à Argos une formulation de média explicite, par exemple « Media track » pour `Explorer.Track` et « Media recording sides » pour `Explorer.Faces`. Les termes français validés restent exactement `Session`, `Piste`, `Couches` et `Faces`.

@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-<data name="Hardware.UsbId"><value>Identyfikator USB</value></data>
-  <data name="Hardware.Drive"><value>Prowadzić</value></data>
-  <data name="Hardware.Available"><value>Dostępny</value></data>
-  <data name="Hardware.Scan"><value>Skandować</value></data>
-  <data name="Hardware.AddDrive"><value>Dodaj dysk…</value></data>
-  <data name="Hardware.NoDrive"><value>Nie zdefiniowano napędu</value></data>
-  <data name="Hardware.EditorTitle"><value>Zdefiniuj napęd</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle kontroler</value></data>
-  <data name="Hardware.GwSelection"><value>Wybór przekazany do gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Rozmiar fizyczny</value></data>
-  <data name="Hardware.SizeShort"><value>Rozmiar</value></data>
-  <data name="Hardware.DensityShort"><value>Gęstość</value></data>
-  <data name="Hardware.SpeedShort"><value>Prędkość</value></data>
-  <data name="Hardware.AvailableState"><value>Dostępny</value></data>
-  <data name="Hardware.UnavailableState"><value>Nie płynny</value></data>
-  <data name="Hardware.DensityDescription"><value>Gęstość dysku (tylko opis)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Prędkość nominalna (tylko opis)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Port</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>Identyfikator USB</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Prowadzić</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Dostępny</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Skandować</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Dodaj dysk…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Nie zdefiniowano napędu</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Zdefiniuj napęd</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle kontroler</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Wybór przekazany do gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Rozmiar fizyczny</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Rozmiar</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Gęstość</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Prędkość</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Dostępny</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Nie płynny</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Gęstość dysku (tylko opis)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Prędkość nominalna (tylko opis)</value></data>
   <data name="Hardware.NotConfigured"><value>Kontroler nie skonfigurowany</value></data>
   <data name="Hardware.Disconnected"><value>bezładny</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Wybrany dysk jest odłączony. Podłącz go ponownie lub przeskanuj ponownie w Opcje → Kontrolery i dyski.</value></data>
@@ -59,5 +52,4 @@
   <data name="Hardware.ForgetLastConfirm"><value>To jest ostatni skonfigurowany dysk dla tego Greaseweazle. Czy chcesz zapomnieć zarówno o napędzie, jak i Greaseweazle?</value></data>
   <data name="Hardware.SelectController"><value>Najpierw wybierz wiersz należący do odpowiedniego Greaseweazle.</value></data>
   <data name="Hardware.MaximumDrives"><value>Do tego Greaseweazle (A i B) można automatycznie przypisać maksymalnie dwa dyski.</value></data>
-  <data name="Hardware.Port"><value>Port</value></data>
 </root>

@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>解碼器</value></data>
   <data name="Visual.LinkZoom"><value>連結縮放</value></data>
   <data name="Visual.OpenScp"><value>開啟 SCP 檔案...</value></data>
-  <data name="Visual.NoFile"><value>沒有開啟 SCP 文件</value></data>
+  <data name="Visual.NoFile"><value>未開啟映像</value></data>
   <data name="Visual.Waiting"><value>等待文件</value></data>
   <data name="Visual.Inspector"><value>督察</value></data>
   <data name="Visual.SelectTrack"><value>選擇一首曲目。</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>有效的</value></data>
   <data name="Visual.CrcInvalid"><value>無效的</value></data>
   <data name="Visual.IntegrityUnavailable"><value>不可用</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (单一密度)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>北星硬块 MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>热力小板 FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>米切尔N硬区 FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>阿尔堡系统/数据</value></data>
+  <data name="Visual.DecoderName.raw"><value>原始通量</value></data>
   <data name="Visual.StructureKind.Sync"><value>同步</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>扇區標題</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>部門數據</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>格式標題</value></data>
   <data name="Visual.StructureKind.FormatData"><value>格式化數據</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>時序異常</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro 擷取 (*.scp)|*.scp|所有檔案|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>校驗和</value></data>
   <data name="Visual.Side"><value>側邊 {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>分析音轨 {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>分析革命 {0}/ 数据{1}…</value></data>
   <data name="Visual.SideLabel"><value>邊</value></data>
   <data name="Visual.TrackLabel"><value>追蹤</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP 條目</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>偵測到格式</value></data>
   <data name="Visual.AverageRpm"><value>平均值 RPM</value></data>
   <data name="Visual.AverageDuration"><value>平均持續時間</value></data>
+  <data name="Visual.All"><value>全部( A)</value></data>
+  <data name="Visual.Surface"><value>表面 {0}</value></data>
+  <data name="Visual.DiscFace"><value>脸 {0}</value></data>
+  <data name="Visual.Layer"><value>层 {0}</value></data>
+  <data name="Visual.Session"><value>会 议 {0}</value></data>
+  <data name="Visual.Channel"><value>频道 {0}</value></data>
+  <data name="Visual.TrackNumber"><value>音轨 {0}</value></data>
+  <data name="Visual.TicksUnit"><value>勾选</value></data>
+  <data name="Visual.BytesUnit"><value>字节</value></data>
+  <data name="Visual.BlocksUnit"><value>块</value></data>
+  <data name="Visual.SectorsUnit"><value>部门</value></data>
+  <data name="Visual.SectorPresent"><value>现部门</value></data>
+  <data name="Visual.SectorAllocated"><value>分配部门</value></data>
+  <data name="Visual.SectorFree"><value>自由部门</value></data>
+  <data name="Visual.SectorReserved"><value>保留部门</value></data>
+  <data name="Visual.SectorUnreadable"><value>无法读取的扇区</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>部门信息</value></data>
+  <data name="Visual.SectorLabel"><value>部门</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>逻辑块</value></data>
+  <data name="Visual.SizeLabel"><value>大小</value></data>
+  <data name="Visual.StateLabel"><value>状态</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>文件系统路径</value></data>
+  <data name="Visual.LogicalMapTitle"><value>逻辑地图</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS 几何</value></data>
+  <data name="Visual.SurfaceLabel"><value>表面</value></data>
+  <data name="Visual.BlockAllocated"><value>分配范围</value></data>
+  <data name="Visual.BlockFree"><value>空闲范围</value></data>
+  <data name="Visual.BlockReserved"><value>保留范围</value></data>
+  <data name="Visual.BlockUnknown"><value>未知范围</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>块媒体信息</value></data>
+  <data name="Visual.CapacityLabel"><value>能力</value></data>
+  <data name="Visual.AddressingLabel"><value>讲 题</value></data>
+  <data name="Visual.StartLabel"><value>开始</value></data>
+  <data name="Visual.LengthLabel"><value>长度</value></data>
+  <data name="Visual.PartitionTableLabel"><value>分保计划</value></data>
+  <data name="Visual.PartitionTable.None"><value>无</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>分区编号</value></data>
+  <data name="Visual.FileSystemLabel"><value>文件系统</value></data>
+  <data name="Visual.RangeTitle"><value>选中范围</value></data>
+  <data name="Visual.PlatterCountLabel"><value>盘子</value></data>
+  <data name="Visual.BlockState.Available"><value>可用</value></data>
+  <data name="Visual.BlockState.Reserved"><value>预留额</value></data>
+  <data name="Visual.BlockState.Allocated"><value>拨款</value></data>
+  <data name="Visual.BlockState.Free"><value>免费</value></data>
+  <data name="Visual.BlockState.Unknown"><value>未知</value></data>
+  <data name="Visual.OpticalDataTrack"><value>数据轨</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>音频轨道</value></data>
+  <data name="Visual.OpticalPregap"><value>预设</value></data>
+  <data name="Visual.OpticalSession"><value>会话边界</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>光学媒体信息</value></data>
+  <data name="Visual.FaceCountLabel"><value>相 相 相 相 相 相 相 相 相 相 相 相 相 相 相 相</value></data>
+  <data name="Visual.LayerCountLabel"><value>层</value></data>
+  <data name="Visual.TrackCountLabel"><value>音轨</value></data>
+  <data name="Visual.SessionLabel"><value>会 议</value></data>
+  <data name="Visual.LayerLabel"><value>层</value></data>
+  <data name="Visual.TrackKindLabel"><value>音轨类型</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>选中的音轨</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>量源</value></data>
+  <data name="Visual.VolumeTitle"><value>音量</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>关联文件</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>未知</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>数据</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>音频</value></data>
+  <data name="Visual.SequentialSignal"><value>信号</value></data>
+  <data name="Visual.SequentialDecoded"><value>解码块</value></data>
+  <data name="Visual.SequentialSilence"><value>安静</value></data>
+  <data name="Visual.SequentialError"><value>解码出错</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>媒体的连续信息</value></data>
+  <data name="Visual.DurationLabel"><value>会期</value></data>
+  <data name="Visual.SegmentCountLabel"><value>分会</value></data>
+  <data name="Visual.SegmentKindLabel"><value>分节类型</value></data>
+  <data name="Visual.ChannelLabel"><value>频道</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>公认内容</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>解码出错</value></data>
+  <data name="Visual.SegmentTitle"><value>选中的段</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>未知</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>信号</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>安静</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>解码块</value></data>
+  <data name="Visual.RevolutionSummary"><value>所有革命</value></data>
+  <data name="Visual.RevolutionChoice"><value>革命 {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>革命</value></data>
+  <data name="Visual.QualityDead"><value>死了,你没死</value></data>
+  <data name="Visual.QualityPoor"><value>穷</value></data>
+  <data name="Visual.QualityPartial"><value>可部分读取</value></data>
+  <data name="Visual.QualityGood"><value>不错</value></data>
+  <data name="Visual.QualityExcellent"><value>不错</value></data>
+  <data name="Visual.SectorWithData"><value>有数据的部门</value></data>
+  <data name="Visual.SectorDegraded"><value>退化部门</value></data>
+  <data name="Visual.SectorDead"><value>死区</value></data>
+  <data name="Visual.SectorWithoutData"><value>无数据部门</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>卡式錄音帶資訊</value></data>
 </root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}-tangent</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Värdtangent</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Två Amiga-tangenter använder samma PC-tangent. Rätta de röda mappningarna innan du sparar.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Direktöverför fysiskt tangentbord</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Reserverade kortkommandon</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Kortkommandon för GW GUI och Windows förblir aktiva och fångas inte av maskinen.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Maskintangent</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Bokstäver, siffror och vanliga modifieringstangenter överförs direkt. Endast Amigas funktions- och specialtangenter behöver tilldelas här.</value></data>
+</root>

@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>พร้อมดำเนินการ.</value></data>
   <data name="Tool.RawOutput"><value>ผลผลิตดิบ</value></data>
-  <data name="Maintenance.EraseTitle"><value>ยืนยันการลบ</value></data>
-  <data name="Maintenance.EraseConfirm"><value>ลบข้อมูลทั้งหมดบนดิสก์ที่ใส่อย่างถาวรหรือไม่</value></data>
-  <data name="Maintenance.CleanTitle"><value>ทำความสะอาดหัว</value></data>
-  <data name="Maintenance.CleanConfirm"><value>ยืนยันว่าใส่ดิสก์ทำความสะอาดแล้ว ห้ามใช้ดิสก์ข้อมูล</value></data>
   <data name="Tools.Erase"><value>ลบดิสก์</value></data>
   <data name="Tools.EraseWarning"><value>ข้อมูลทั้งหมดบนดิสก์จะถูกทำลาย</value></data>
   <data name="Tools.LimitTracks"><value>จำกัดแทร็ก</value></data>

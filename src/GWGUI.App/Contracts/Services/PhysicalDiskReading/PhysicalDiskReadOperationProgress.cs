@@ -1,5 +1,5 @@
 using GWGUI.App.Enums.Services.PhysicalDiskReading;
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Interfaces;
 
 namespace GWGUI.App.Contracts.Services.PhysicalDiskReading;
 

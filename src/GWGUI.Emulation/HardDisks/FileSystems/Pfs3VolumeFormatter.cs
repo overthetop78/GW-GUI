@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.HardDisks.FileSystems;
 /// <summary>PFS3 with 512-byte data sectors and 1024-byte reserved blocks, including super-index mode.</summary>
 public static class Pfs3VolumeFormatter
 {
-    public const long MaximumCapacity = Hst.Amiga.FileSystems.Pfs3.Constants.MAXDISKSIZE1K * 512;
+    public const long MaximumCapacity = Hst.Amiga.FileSystems.Pfs3.Pfs3Constants.MAXDISKSIZE1K * 512;
 
     public static void Validate(long capacity, string label)
     {

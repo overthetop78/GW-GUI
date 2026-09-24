@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Chování</value></data>
+  <data name="Emulation.Input.Assign"><value>Přiřadit...</value></data>
+  <data name="Emulation.Input.Actions"><value>Akce</value></data>
+  <data name="Emulation.Input.Press"><value>Stiskněte klávesu...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Detekce zařízení je společná, ale přiřazení se ukládají samostatně v každé konfiguraci stroje.</value></data>
+  <data name="Emulation.Input.Test"><value>Otestovat vstupy</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Sdílená vstupní zařízení</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Stisknutím klávesy nebo tlačítka myši otestujte detekci.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Obnovit výchozí hodnoty</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Vymazat konflikty</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Přiřazení</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Stav</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Hledat klávesu nebo přiřazení</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Platné: jedinečné přiřazení · Konflikt: přiřazení použito vícekrát · Vyhrazené: zkratka Windows nebo GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Platné</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Konflikt</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Vyhrazené</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Nepřiřazeno</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Klikněte na Přiřadit a potom použijte klávesu, tlačítko myši nebo tlačítko ovladače.</value></data>
+</root>

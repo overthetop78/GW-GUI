@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>オーディオを有効化</value></data>
+  <data name="Emulation.Audio.Output"><value>オーディオ出力</value></data>
+  <data name="Emulation.Audio.Latency"><value>遅延（ms）</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>補間</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga オーディオフィルター</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>ステレオ分離度（%）</value></data>
+  <data name="Emulation.Audio.Input"><value>オーディオ入力</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>この Amiga コアはオーディオ入力を提供しません。</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows の既定出力</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>アンチ補間</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>エミュレート</value></data>
+  <data name="Emulation.Audio.FilterType"><value>フィルター種類</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>フロッピードライブ音量</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>フロッピードライブ音の種類</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>空のドライブをミュート</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD オーディオ音量</value></data>
+  <data name="Emulation.Audio.Device"><value>デバイス</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>遅延</value></data>
+  <data name="Emulation.Audio.Quality"><value>品質</value></data>
+  <data name="Emulation.Audio.Drives"><value>ドライブ</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>フロッピードライブ音</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>偏極オーディオフィルター</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>低</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>標準</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>高</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>オーディオ</value></data>
+</root>

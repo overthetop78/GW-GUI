@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
-using GWGUI.MediaEngine.Exploration.Contracts;
-using GWGUI.MediaEngine.Exploration.Results;
+using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using GWGUI.MediaEngine.Interfaces;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.Contracts.Services.PhysicalDiskReading;
 
@@ -8,7 +9,7 @@ public sealed record PhysicalDiskReadResult
 {
     public PhysicalDiskReadResult(
         string outputPath,
-        PhysicalDiskFluxAcquisition acquisition,
+        MediaAcquisitionResult acquisition,
         IReadOnlyList<PhysicalDiskTrackDiagnostic> trackDiagnostics,
         ExploredDiskImage document)
     {
@@ -24,7 +25,7 @@ public sealed record PhysicalDiskReadResult
 
     public string OutputPath { get; }
 
-    public PhysicalDiskFluxAcquisition Acquisition { get; }
+    public MediaAcquisitionResult Acquisition { get; }
 
     public IReadOnlyList<PhysicalDiskTrackDiagnostic> TrackDiagnostics { get; }
 

@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Gotowy do wykonania.</value></data>
   <data name="Tool.RawOutput"><value>Surowe wyjście</value></data>
-  <data name="Maintenance.EraseTitle"><value>Potwierdź usunięcie</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Trwale usunąć wszystkie dane z włożonego dysku?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Czyste głowy</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Sprawdź, czy dysk czyszczący jest włożony. Nigdy nie używaj dysku z danymi.</value></data>
   <data name="Tools.Erase"><value>Wymaż dysk</value></data>
   <data name="Tools.EraseWarning"><value>Wszystkie dane na dysku zostaną zniszczone.</value></data>
   <data name="Tools.LimitTracks"><value>Ogranicz utwory</value></data>
@@ -28,7 +16,8 @@
   <data name="Tools.Passes"><value>Przechodzi</value></data>
   <data name="Tools.Linger"><value>Czas trwania na cylinder (ms)</value></data>
   <data name="Tool.Field.Measurements"><value>Liczba pomiarów</value></data>
-<data name="Tool.Field.Extreme"><value>Zezwalaj na ekstremalne cylindry</value></data>
+  <data name="Tool.Field.Cylinder"><value>Cylinder</value></data>
+  <data name="Tool.Field.Extreme"><value>Zezwalaj na ekstremalne cylindry</value></data>
   <data name="Tool.Field.MotorOn"><value>Utrzymuj silnik aktywny</value></data>
   <data name="Tool.Field.Pin"><value>Kołek (8, 26 lub 28)</value></data>
   <data name="Tool.Field.SetPin"><value>Zmień pin</value></data>
@@ -64,5 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Liczba odczytów</value></data>
   <data name="Tool.Field.AlignFormat"><value>Format dekodowania</value></data>
   <data name="Tool.Field.AlignRaw"><value>Odczytaj surowy strumień (--raw)</value></data>
-  <data name="Tool.Field.Cylinder"><value>Cylinder</value></data>
 </root>

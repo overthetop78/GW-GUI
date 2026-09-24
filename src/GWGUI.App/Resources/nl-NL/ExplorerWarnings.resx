@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Warning.InvalidChecksum"><value>Rootblok {0} heeft een ongeldige controlesom.</value></data>
   <data name="Explorer.Warning.DirectoryNesting"><value>De limiet voor het nesten van mappen is bereikt.</value></data>
   <data name="Explorer.Warning.InvalidDirectoryChain"><value>Ongeldige of cyclische mapketen in blok {0}.</value></data>
@@ -64,7 +56,7 @@
   <data name="Explorer.Warning.FatNesting"><value>De nestlimiet voor de FAT-directory is bereikt.</value></data>
   <data name="Explorer.Warning.FatChain"><value>{0}: ongeldige of cyclische FAT-keten in cluster {1}.</value></data>
   <data name="Explorer.Warning.SectorMissing"><value>Sector {0} ontbreekt.</value></data>
-  <data name="Explorer.Warning.LisaCatalog"><value>De Lisa-cataloguspagina's ontbreken; bestandsnamen werden alleen hersteld van paginatags.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>De Lisa-cataloguspagina&apos;s ontbreken; bestandsnamen werden alleen hersteld van paginatags.</value></data>
   <data name="Explorer.Warning.AtariDirectory"><value>Directorysector {0} ontbreekt.</value></data>
   <data name="Explorer.Warning.AtariData"><value>{0}: ongeldige of ontbrekende Atari DOS-gegevenssector.</value></data>
   <data name="Explorer.Warning.AtariOwner"><value>Sector {0} hoort bij bestand {1}, verwacht {2}.</value></data>

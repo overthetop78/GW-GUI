@@ -4,6 +4,8 @@ namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariHardDiskFormats
 {
+    private static readonly DiskFormatRegistry Formats = DiskFormatRegistry.CreateDefault();
+
     internal static IReadOnlyList<HardDiskImageFormat> For(AtariMachineModel model)
     {
         if (AtariConfigurationFunctions.GetFamily(model) != AtariMachineFamily.St) return [];
@@ -19,11 +21,11 @@ internal static class AtariHardDiskFormats
         var result = new List<HardDiskImageFormat>();
         var storage = AtariStModelCatalog.Get(model).Storage;
         if (storage.Contains(AtariStStorageCapability.Acsi))
-            result.Add(new("atari-acsi", ".vhd", "ACSI", maximumMiB * 1024 * 1024, 40L * 1024 * 1024,
-                [HardDiskPreparation.Blank, HardDiskPreparation.AtariAhdiFat16]));
+            result.Add(Formats.Describe(new("atari-acsi", ".vhd", "ACSI", maximumMiB * 1024 * 1024, 40L * 1024 * 1024,
+                [HardDiskPreparation.Blank, HardDiskPreparation.AtariAhdiFat16])));
         if (storage.Contains(AtariStStorageCapability.Ide))
-            result.Add(new("atari-ide", ".ide", "IDE", maximumMiB * 1024 * 1024, 40L * 1024 * 1024,
-                [HardDiskPreparation.Blank, HardDiskPreparation.AtariAhdiFat16]));
+            result.Add(Formats.Describe(new("atari-ide", ".ide", "IDE", maximumMiB * 1024 * 1024, 40L * 1024 * 1024,
+                [HardDiskPreparation.Blank, HardDiskPreparation.AtariAhdiFat16])));
         return result;
     }
 }

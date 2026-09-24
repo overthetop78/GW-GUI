@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>מכונות</value></data>
+  <data name="Emulation.Tab.Welcome"><value>ברוכים הבאים</value></data>
+  <data name="Emulation.Tab.General"><value>כללי</value></data>
+  <data name="Emulation.Tab.Video"><value>וידאו</value></data>
+  <data name="Emulation.Tab.Storage"><value>אחסון</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>מקלדת</value></data>
+  <data name="Emulation.Tab.Mouse"><value>עכבר</value></data>
+  <data name="Emulation.Tab.Controller"><value>בקרים</value></data>
+  <data name="Emulation.Tab.Advanced"><value>מתקדם</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>קיצורים</value></data>
+  <data name="Emulation.Tab.Audio"><value>שמע</value></data>
+</root>

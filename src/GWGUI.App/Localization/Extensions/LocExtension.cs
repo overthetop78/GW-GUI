@@ -58,7 +58,11 @@ public sealed class LocExtension(string key) : MarkupExtension
     public static string Get(string key, params object[] arguments)
     {
         var value = ResourcesByKey.TryGetValue(key, out var resources)
-            ? resources.GetString(key, LocalizationSource.Instance.UiCulture) ?? $"[{key}]"
+            ? resources.GetString(
+                key,
+                key.StartsWith("Format.", StringComparison.Ordinal)
+                    ? CultureInfo.InvariantCulture
+                    : LocalizationSource.Instance.UiCulture) ?? $"[{key}]"
             : $"[{key}]";
         return arguments.Length == 0 ? value : string.Format(LocalizationSource.Instance.Culture, value, arguments);
     }

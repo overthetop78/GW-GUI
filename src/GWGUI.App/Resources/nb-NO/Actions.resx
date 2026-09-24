@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>Kansellere</value></data>
-  <data name="Common.Save"><value>Spare</value></data>
-  <data name="Common.Create"><value>Opprett</value></data>
-  <data name="Common.Delete"><value>Slett</value></data>
-  <data name="Common.Browse"><value>Bla gjennom...</value></data>
-  <data name="Common.Choose"><value>Velge…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>Kansellere</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Spare</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>Opprett</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Slett</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Bla gjennom...</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>Velge…</value></data>
   <data name="Common.Close"><value>Lukke</value></data>
   <data name="Common.Execute"><value>Henrette</value></data>
   <data name="Common.Stop"><value>Stoppe</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>Endre</value></data>
   <data name="Common.Hide"><value>Gjemme</value></data>
   <data name="Common.Export"><value>Eksport</value></data>
-  <data name="Common.New"><value>Ny</value></data>
-  <data name="Common.Refresh"><value>Oppdater</value></data>
-  <data name="Common.OpenFolder"><value>Åpne mappe</value></data>
+  <data name="Common.New" xml:space="preserve"><value>Ny</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>Oppdater</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>Åpne mappe</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Paus</value></data>
 </root>

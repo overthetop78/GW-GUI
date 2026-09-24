@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>머신</value></data>
+  <data name="Emulation.Tab.Welcome"><value>환영합니다</value></data>
+  <data name="Emulation.Tab.General"><value>일반</value></data>
+  <data name="Emulation.Tab.Video"><value>비디오</value></data>
+  <data name="Emulation.Tab.Storage"><value>저장소</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>키보드</value></data>
+  <data name="Emulation.Tab.Mouse"><value>마우스</value></data>
+  <data name="Emulation.Tab.Controller"><value>컨트롤러</value></data>
+  <data name="Emulation.Tab.Advanced"><value>고급</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>바로 가기</value></data>
+  <data name="Emulation.Tab.Audio"><value>오디오</value></data>
+</root>

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Diskettenabbild</value></data>
-<data name="Explorer.OpenImage"><value>Abbild öffnen…</value></data>
+  <data name="Explorer.DetectedFormats"><value>Erkannt: {0}</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.OpenImage"><value>Abbild öffnen…</value></data>
   <data name="Explorer.Automatic"><value>Automatische Erkennung</value></data>
   <data name="Explorer.Volume"><value>Datenträger</value></data>
   <data name="Explorer.FileSystem"><value>Dateisystem</value></data>
@@ -31,9 +25,12 @@
   <data name="Explorer.Unknown"><value>Unbekannt</value></data>
   <data name="Explorer.Unnamed"><value>Unbenannter Datenträger</value></data>
   <data name="Explorer.LoadFailed"><value>Dieses Abbild kann nicht geöffnet werden: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Inkompatibles Format</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>„{1}“ kann mit dem Format „{0}“ nicht interpretiert werden.&#xA;Wählen Sie ein anderes Format aus, um fortzufahren.</value></data>
   <data name="Explorer.Loading"><value>Datenträgerabbild wird gelesen…</value></data>
   <data name="Explorer.ReadDisk"><value>Diskette lesen</value></data>
-<data name="Explorer.Type"><value>Typ</value></data>
+  <data name="Explorer.Name"><value>Name</value></data>
+  <data name="Explorer.Type"><value>Typ</value></data>
   <data name="Explorer.ReadDiskConfirmTitle"><value>Diskette lesen</value></data>
   <data name="Explorer.ReadDiskConfirm"><value>Ist die Diskette in das aktuell ausgewählte Laufwerk ({0}) eingelegt und zum Lesen bereit?</value></data>
   <data name="Explorer.Type.Text"><value>Textdatei</value></data>
@@ -42,6 +39,7 @@
   <data name="Explorer.Type.Archive"><value>Archiv</value></data>
   <data name="Explorer.Type.Program"><value>Programm</value></data>
   <data name="Explorer.Type.DiskImage"><value>Datenträgerabbild</value></data>
+  <data name="Explorer.System"><value>System</value></data>
   <data name="Explorer.Protection"><value>Schutz</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Physische Sektoren — kein erkanntes Dateisystem</value></data>
   <data name="Explorer.Organization"><value>Organisation</value></data>
@@ -49,12 +47,111 @@
   <data name="Explorer.Compression"><value>Komprimierung</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Benutzerdefinierter Sektorlader</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Benutzerdefinierter Sektorlader — kein Dateikatalog</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack von The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Datenblöcke</value></data>
-  <data name="Explorer.DetectedFormats"><value>Erkannt: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Host-Tools können kein erforschbares Sektorbild für {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Host Tools konnten das Bild nicht dekodieren als {0}.</value></data>
-  <data name="Explorer.Format"><value>Format</value></data>
-  <data name="Explorer.Name"><value>Name</value></data>
-  <data name="Explorer.System"><value>System</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host-Tools können kein erforschbares Sektorbild für {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools konnten das Bild nicht dekodieren als {0}.</value></data>
+  <data name="Explorer.Session"><value>Disc-Sitzung</value></data>
+  <data name="Explorer.Track"><value>Medienspur</value></data>
+  <data name="Explorer.Layers"><value>Scheibenschichten</value></data>
+  <data name="Explorer.Faces"><value>Seiten der Aufzeichnungsmedien</value></data>
+  <data name="Explorer.PartitionType"><value>Trennwand</value></data>
+  <data name="Explorer.PartitionId"><value>Trennungskennung</value></data>
+  <data name="Explorer.TrackMode"><value>Gleislage</value></data>
+  <data name="Explorer.FirstSector"><value>Erster Sektor</value></data>
+  <data name="Explorer.SectorCount"><value>Sektoranzahl</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Gespeicherte Sektorgröße</value></data>
+  <data name="Explorer.UserDataSize"><value>Größe der Nutzerdaten</value></data>
+  <data name="Explorer.Subchannels"><value>Unterkanäle</value></data>
+  <data name="Explorer.AudioTracks"><value>Audiotracks</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Erkennen des Medienformats</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Erkenntes Format</value></data>
+  <data name="Explorer.TestingFormat"><value>Prüfformat: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: anerkannt</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: nicht anerkannt</value></data>
+  <data name="Explorer.ReadingFormat"><value>Leseformat: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Lesen der Medienstruktur</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Lesen des Bandes</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Aufzeichnung {0} von {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Entschlüsselung von Tonbandaufzeichnungen</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Erkennen von Dateien</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analyse des Dateisystems</value></data>
+  <data name="Explorer.LoadingContents"><value>Vorbereiten von Ordnern und Dateien</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Anzeige der Inhalte</value></data>
+  <data name="Explorer.FileWithExtension"><value>Datei {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokument</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Quellcode</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC Programmdatei</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Boot-Programm</value></data>
+  <data name="Explorer.Type.Executable"><value>Ausführbar</value></data>
+  <data name="Explorer.Type.Command"><value>Befehlsdatei</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Systemdatei</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Objektcode</value></data>
+  <data name="Explorer.Type.Data"><value>Datendatei</value></data>
+  <data name="Explorer.Type.Configuration"><value>Konfigurationsdatei</value></data>
+  <data name="Explorer.Type.Library"><value>Bibliothek</value></data>
+  <data name="Explorer.Type.Media"><value>Mediendatei</value></data>
+  <data name="Explorer.Type.Font"><value>Schriftzug</value></data>
+  <data name="Explorer.Execution"><value>Ausführung</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Native Executable File</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Interpretierte ausführbare Datei</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Befehl oder Schrift</value></data>
+  <data name="Explorer.Category"><value>Kategorie</value></data>
+  <data name="Explorer.ContentFormat"><value>Inhaltsformat</value></data>
+  <data name="Explorer.TextEncoding"><value>Textcodierung</value></data>
+  <data name="Explorer.Preview"><value>Vorschau</value></data>
+  <data name="Explorer.Category.File"><value>Datei</value></data>
+  <data name="Explorer.Category.Text"><value>Text</value></data>
+  <data name="Explorer.Category.Document"><value>Dokument</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Quellcode</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC Programm</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Boot-Programm</value></data>
+  <data name="Explorer.Category.Program"><value>Programm</value></data>
+  <data name="Explorer.Category.Executable"><value>Ausführbar</value></data>
+  <data name="Explorer.Category.Command"><value>Befehl</value></data>
+  <data name="Explorer.Category.System"><value>System</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Objektcode</value></data>
+  <data name="Explorer.Category.Data"><value>Daten</value></data>
+  <data name="Explorer.Category.Configuration"><value>Konfiguration</value></data>
+  <data name="Explorer.Category.Library"><value>Bibliothek</value></data>
+  <data name="Explorer.Category.Image"><value>Bild</value></data>
+  <data name="Explorer.Category.Audio"><value>Audio</value></data>
+  <data name="Explorer.Category.Media"><value>Medien</value></data>
+  <data name="Explorer.Category.Archive"><value>Archiv</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Plattenbild</value></data>
+  <data name="Explorer.Category.Link"><value>Link</value></data>
+  <data name="Explorer.Category.Font"><value>Schriftzug</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Unbekannt</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Klartext</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC Programm</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Native Executable</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Befehl oder Schrift</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Objektcode</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>System binärer</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Strukturierte Daten</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Konfiguration</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Bibliothek</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Bild</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Audio</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Archiv</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Plattenbild</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Schriftzug</value></data>
+  <data name="Explorer.Preview.None"><value>Keine</value></data>
+  <data name="Explorer.Preview.Text"><value>Text</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC Liste</value></data>
+  <data name="Explorer.Preview.Image"><value>Bild</value></data>
+  <data name="Explorer.Preview.Audio"><value>Audio</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Hexadezimal</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Externe Anwendung</value></data>
+  <data name="Explorer.Cassette"><value>Kassette</value></data>
+  <data name="Explorer.InternalName"><value>Interne Beschreibung</value></data>
+  <data name="Explorer.BaudRates"><value>Raten</value></data>
+  <data name="Explorer.Chunks"><value>Blöcke</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK-Blöcke</value></data>
+  <data name="Explorer.Records"><value>Datensätze</value></data>
+  <data name="Explorer.FullRecords"><value>Vollständig</value></data>
+  <data name="Explorer.PartialRecords"><value>Teilweise</value></data>
+  <data name="Explorer.EndRecord"><value>Ende</value></data>
+  <data name="Explorer.ChunkType"><value>Typ</value></data>
+  <data name="Explorer.BaudRate"><value>Rate</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Verzögerung</value></data>
 </root>

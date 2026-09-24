@@ -1,5 +1,5 @@
 using GWGUI.App.ViewModels.Explorer;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.Contracts.Explorer;
 
 namespace GWGUI.App.Functions.Explorer;
 

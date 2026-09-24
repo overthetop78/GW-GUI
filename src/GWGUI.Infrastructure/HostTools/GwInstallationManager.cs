@@ -1,4 +1,4 @@
-using GWGUI.Domain.HostTools;
+using GWGUI.Infrastructure.HostTools;
 using System.IO.Compression;
 using System.Net.Http.Headers;
 using System.Text.Json;

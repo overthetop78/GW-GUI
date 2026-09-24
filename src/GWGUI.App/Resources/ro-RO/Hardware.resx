@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-<data name="Hardware.UsbId"><value>USB identificator</value></data>
-  <data name="Hardware.Drive"><value>Conduce</value></data>
-  <data name="Hardware.Available"><value>Disponibil</value></data>
-  <data name="Hardware.Scan"><value>Scanează</value></data>
-  <data name="Hardware.AddDrive"><value>Adăugați o unitate...</value></data>
-  <data name="Hardware.NoDrive"><value>Nicio unitate definită</value></data>
-  <data name="Hardware.EditorTitle"><value>Definiți o unitate</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle controler</value></data>
-  <data name="Hardware.GwSelection"><value>Selecția a trecut la gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Dimensiunea fizică</value></data>
-  <data name="Hardware.SizeShort"><value>Dimensiune</value></data>
-  <data name="Hardware.DensityShort"><value>Densitate</value></data>
-  <data name="Hardware.SpeedShort"><value>Viteză</value></data>
-  <data name="Hardware.AvailableState"><value>Disponibil</value></data>
-  <data name="Hardware.UnavailableState"><value>Indisponibil</value></data>
-  <data name="Hardware.DensityDescription"><value>Densitatea unității (doar descriere)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Viteza nominală (doar descriere)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Port</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB identificator</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Conduce</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Disponibil</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Scanează</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Adăugați o unitate...</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Nicio unitate definită</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definiți o unitate</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle controler</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Selecția a trecut la gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Dimensiunea fizică</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Dimensiune</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Densitate</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Viteză</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Disponibil</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Indisponibil</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Densitatea unității (doar descriere)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Viteza nominală (doar descriere)</value></data>
   <data name="Hardware.NotConfigured"><value>Controlerul nu este configurat</value></data>
   <data name="Hardware.Disconnected"><value>deconectat</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Unitatea selectată este deconectată. Reconectați-l sau scanați din nou în Opțiuni → Controlere și unități.</value></data>
@@ -59,5 +52,4 @@
   <data name="Hardware.ForgetLastConfirm"><value>Aceasta este ultima unitate configurată pentru acest Greaseweazle. Doriți să uitați atât unitatea, cât și Greaseweazle?</value></data>
   <data name="Hardware.SelectController"><value>Selectați mai întâi un rând care aparține Greaseweazle relevant.</value></data>
   <data name="Hardware.MaximumDrives"><value>Cel mult două unități pot fi alocate automat acestui Greaseweazle (A și B).</value></data>
-  <data name="Hardware.Port"><value>Port</value></data>
 </root>

@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekoder</value></data>
   <data name="Visual.LinkZoom"><value>Perbesar tautan</value></data>
   <data name="Visual.OpenScp"><value>Buka file SCP…</value></data>
-  <data name="Visual.NoFile"><value>Tidak ada file SCP yang terbuka</value></data>
+  <data name="Visual.NoFile"><value>Tidak ada citra yang dibuka</value></data>
   <data name="Visual.Waiting"><value>Menunggu file</value></data>
   <data name="Visual.Inspector"><value>Inspektur</value></data>
   <data name="Visual.SelectTrack"><value>Pilih trek.</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>sah</value></data>
   <data name="Visual.CrcInvalid"><value>tidak sah</value></data>
   <data name="Visual.IntegrityUnavailable"><value>tidak tersedia</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (densitas tunggal)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar keras-memotong MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard- disaptored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Mikrat N hard- sectored FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg sistem / data</value></data>
+  <data name="Visual.DecoderName.raw"><value>Flux mentah</value></data>
   <data name="Visual.StructureKind.Sync"><value>Sinkronisasi</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Tajuk sektor</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Data sektor</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Format tajuk</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Memformat data</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Anomali waktu</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro menangkap (*.scp)|*.scp|Semua file|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Jumlah pemeriksaan</value></data>
   <data name="Visual.Side"><value>Sisi {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Menganalisis trek {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Menganalisa revolusi {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Samping</value></data>
   <data name="Visual.TrackLabel"><value>Melacak</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP entri</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>Format terdeteksi</value></data>
   <data name="Visual.AverageRpm"><value>RPM rata-rata</value></data>
   <data name="Visual.AverageDuration"><value>Durasi rata-rata</value></data>
+  <data name="Visual.All"><value>Semua</value></data>
+  <data name="Visual.Surface"><value>Permukaan {0}</value></data>
+  <data name="Visual.DiscFace"><value>Wajah {0}</value></data>
+  <data name="Visual.Layer"><value>Lapis {0}</value></data>
+  <data name="Visual.Session"><value>Sesi {0}</value></data>
+  <data name="Visual.Channel"><value>Kanal {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Trek {0}</value></data>
+  <data name="Visual.TicksUnit"><value>kutu</value></data>
+  <data name="Visual.BytesUnit"><value>byte</value></data>
+  <data name="Visual.BlocksUnit"><value>blok</value></data>
+  <data name="Visual.SectorsUnit"><value>sektor</value></data>
+  <data name="Visual.SectorPresent"><value>Sektor sekarang</value></data>
+  <data name="Visual.SectorAllocated"><value>Sektor teralokasi</value></data>
+  <data name="Visual.SectorFree"><value>Sektor bebas</value></data>
+  <data name="Visual.SectorReserved"><value>Sektor yang dipesan</value></data>
+  <data name="Visual.SectorUnreadable"><value>Sektor yang tidak dapat dibaca</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>Informasi sektor</value></data>
+  <data name="Visual.SectorLabel"><value>Sektor</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Blokir logikal</value></data>
+  <data name="Visual.SizeLabel"><value>Ukuran</value></data>
+  <data name="Visual.StateLabel"><value>Keadaan</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>Path sistem berkas</value></data>
+  <data name="Visual.LogicalMapTitle"><value>Peta logical</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS geometri</value></data>
+  <data name="Visual.SurfaceLabel"><value>Permukaan</value></data>
+  <data name="Visual.BlockAllocated"><value>Jangkauan dialokasikan</value></data>
+  <data name="Visual.BlockFree"><value>Jangkauan bebas</value></data>
+  <data name="Visual.BlockReserved"><value>Jangkauan yang telah disediakan</value></data>
+  <data name="Visual.BlockUnknown"><value>Jangkauan tak dikenal</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>Blokir informasi media</value></data>
+  <data name="Visual.CapacityLabel"><value>Kapasitas</value></data>
+  <data name="Visual.AddressingLabel"><value>Alamat</value></data>
+  <data name="Visual.StartLabel"><value>Awal</value></data>
+  <data name="Visual.LengthLabel"><value>Panjang</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Skema partisi</value></data>
+  <data name="Visual.PartitionTable.None"><value>Nihil</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>Nomor partisi</value></data>
+  <data name="Visual.FileSystemLabel"><value>Sistem berkas</value></data>
+  <data name="Visual.RangeTitle"><value>Jangkauan yang dipilih</value></data>
+  <data name="Visual.PlatterCountLabel"><value>Platters</value></data>
+  <data name="Visual.BlockState.Available"><value>Tersedia</value></data>
+  <data name="Visual.BlockState.Reserved"><value>Dicadangkan</value></data>
+  <data name="Visual.BlockState.Allocated"><value>Teralokasikan</value></data>
+  <data name="Visual.BlockState.Free"><value>Bebas</value></data>
+  <data name="Visual.BlockState.Unknown"><value>Tak dikenal</value></data>
+  <data name="Visual.OpticalDataTrack"><value>Trek data</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>Trek audio</value></data>
+  <data name="Visual.OpticalPregap"><value>Pregap</value></data>
+  <data name="Visual.OpticalSession"><value>Batas sesi</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Informasi media optik</value></data>
+  <data name="Visual.FaceCountLabel"><value>Wajah</value></data>
+  <data name="Visual.LayerCountLabel"><value>Lapisan</value></data>
+  <data name="Visual.TrackCountLabel"><value>Trek</value></data>
+  <data name="Visual.SessionLabel"><value>Sesi</value></data>
+  <data name="Visual.LayerLabel"><value>Lapis</value></data>
+  <data name="Visual.TrackKindLabel"><value>Jenis trek</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>Trek yang dipilih</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>Asal volume</value></data>
+  <data name="Visual.VolumeTitle"><value>Volume</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>Berkas yang terkait</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>Tak dikenal</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>Data</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>Audio</value></data>
+  <data name="Visual.SequentialSignal"><value>Sinyal</value></data>
+  <data name="Visual.SequentialDecoded"><value>Blok yang telah didekoded</value></data>
+  <data name="Visual.SequentialSilence"><value>Diam</value></data>
+  <data name="Visual.SequentialError"><value>Galat saat decoding</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Informasi media Sequential</value></data>
+  <data name="Visual.DurationLabel"><value>Durasi</value></data>
+  <data name="Visual.SegmentCountLabel"><value>Segmen</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Tipe segmen</value></data>
+  <data name="Visual.ChannelLabel"><value>Kanal</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>Isi yang dikenali</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>Galat saat decoding</value></data>
+  <data name="Visual.SegmentTitle"><value>segmen terpilih</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>Tak dikenal</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>Sinyal</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>Diam</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Blok yang telah didekoded</value></data>
+  <data name="Visual.RevolutionSummary"><value>Semua revolusi</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revolusi {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revolusi</value></data>
+  <data name="Visual.QualityDead"><value>Mati</value></data>
+  <data name="Visual.QualityPoor"><value>Buruk</value></data>
+  <data name="Visual.QualityPartial"><value>Sebagian bisa dibaca</value></data>
+  <data name="Visual.QualityGood"><value>Baik</value></data>
+  <data name="Visual.QualityExcellent"><value>Bagus sekali</value></data>
+  <data name="Visual.SectorWithData"><value>Sektor dengan data</value></data>
+  <data name="Visual.SectorDegraded"><value>Sektor yang telah ditinggalkan</value></data>
+  <data name="Visual.SectorDead"><value>Sektor mati</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektor tanpa data</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Informasi kaset</value></data>
 </root>

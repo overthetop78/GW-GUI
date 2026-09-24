@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>תמונת דיסק מחיקה...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>למחוק באופן קבוע את תמונת הדיסק ואת כל הנתונים שלה?ניתוח זה לא יכול להיות בלתי חדורה.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>מחיקה היא בלתי אפשרית. Detach this הדיסק, לשמור את התצורה לסגור את המפגשים המפורטים קודם:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>ישיבה פתוחה: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>הסרת קישורים אינה מותרת.בחר את הקובץ המקורי.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>בחר הרחבה הנתמכת על ידי מכונה וממשק זה.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>קובץ זה כבר קיים.בחר שם אחר.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>קיבולת: 512 Bytes to {0}, ב- 512.12 הגבלה שמרנית למערכת הנתמכת.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>יצירת דיסק גלם ריק ללא מערכת הפעלה. הכינו ותבניתו באמצעות כלים בדיסק בתוך המכונה החיקויה.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>הכנת דיסק</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (לא מצורף)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>עיצוב יוצר נפח ריק, ללא מערכת הפעלה. Atari HDD גם נעילה דורשת נהג דיסק תואם המותקן מהמכונה החיקויה.תמונות קומפרסוכאות עלולות להפנות את הכתיבה לעתק מופק.</value></data>
+</root>

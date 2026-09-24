@@ -86,9 +86,13 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
 
     public void Dispose()
     {
+        if (_disposed) return;
         _disposed = true;
+        Interlocked.Increment(ref _configurationVersion);
         _worker?.Dispose();
         _synchronousPipeline?.Dispose();
+        _image.Source = null;
+        _bitmap = null;
     }
 
     private void UpdateBitmap(VideoFrame processed, byte[] pixels)

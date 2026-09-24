@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Hang engedélyezése</value></data>
+  <data name="Emulation.Audio.Output"><value>Hangkimenet</value></data>
+  <data name="Emulation.Audio.Latency"><value>Láthatóság (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpoláció</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga audió szűrő</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Sztereó szétválasztás (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Hangbevitel</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Ez az Amiga mag nem tárja fel a hangfelvételt.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows alapértelmezett kimenet</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Interpoláció</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulált</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Szűrőtípus</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Floppy- meghajtó hangerő</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Floppy- meghajtó hangtípus</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Üres muta meghajtók</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD hangtérfogat</value></data>
+  <data name="Emulation.Audio.Device"><value>Eszköz</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Késleltetés</value></data>
+  <data name="Emulation.Audio.Quality"><value>Minőség</value></data>
+  <data name="Emulation.Audio.Drives"><value>Meghajtók</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Hajlékonylemez-meghajtó hangja</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarizált hangszűrő</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Alacsony</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normál</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Magas</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Hang</value></data>
+</root>

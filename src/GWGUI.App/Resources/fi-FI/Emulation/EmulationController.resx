@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Ohjaimen {0} laite</value></data>
+  <data name="Emulation.Controller.Detect"><value>Tunnista ohjaimet</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga-toiminta</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Näppäimistön, hiiren tai ohjaimen ohjaus</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Vasen tikku</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Oikea kiinni</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Molemmat tikut</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turbopalo</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turbo-painike</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbopulssi</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Kontrollerisataman järjestys</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Ohjainta ei havaittu</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Ohjaimen määritykset</value></data>
+  <data name="Emulation.Controller.Port"><value>Portti {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Ohjaimen tyyppi</value></data>
+  <data name="Emulation.Controller.Detected"><value>Havaitut ohjaimet</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Etsi toimintoa tai syötettä</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Ylös</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Alas</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Vasen</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Oikea</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Tulituspainike 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Tulituspainike 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analoginen ohjain</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Automaattinen</value></data>
+  <data name="Emulation.Controller.None"><value>Ei mitään</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Vaihda joystick/hiiri</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInputia ei voitu alustaa. Asenna tai korjaa mukana toimitettu GameInput-ajonaikainen ympäristö.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (vasen)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (oikealla)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Ulkoasu</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Kontrolleri {0}</value></data>
+</root>

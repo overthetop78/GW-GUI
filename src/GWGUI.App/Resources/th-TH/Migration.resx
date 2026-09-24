@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>การย้ายแฟ้ม...</value></data>
+  <data name="Migration.Title"><value>การย้ายแฟ้ม</value></data>
+  <data name="Migration.Heading"><value>จัดเรียงแฟ้มไปยังระบบแฟ้มอื่น</value></data>
+  <data name="Migration.Source"><value>อิมเมจต้นฉบับ</value></data>
+  <data name="Migration.NoSource"><value>เลือกภาพที่มีระบบแฟ้มที่รู้จัก</value></data>
+  <data name="Migration.Destination"><value>ปลายทางของระบบและรูปแบบแฟ้ม</value></data>
+  <data name="Migration.Output"><value>แฟ้มภาพปลายทาง</value></data>
+  <data name="Migration.Compatibility"><value>ความเสมอภาคและการสูญเสีย</value></data>
+  <data name="Migration.Waiting"><value>เลือกแหล่งและปลายทาง</value></data>
+  <data name="Migration.Severity"><value>ความจุ</value></data>
+  <data name="Migration.Path"><value>พาธของแหล่ง</value></data>
+  <data name="Migration.Description"><value>คําอธิบาย</value></data>
+  <data name="Migration.AcceptLosses"><value>ยอมรับข้อมูลกํากับที่แสดง</value></data>
+  <data name="Migration.Execute"><value>ชื่อแฟ้มการขอข้อมูล</value></data>
+  <data name="Migration.Blocking"><value>บล็อค</value></data>
+  <data name="Migration.MetadataLoss"><value>ข้อมูลกํากับภาพสูญหาย</value></data>
+  <data name="Migration.SourceSummary"><value>ระดับเสียง: {0} — ระบบไฟล์: {1} — หลัก ฐาน: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>ไม่สามารถเตรียมการอพยพได้: {0}</value></data>
+  <data name="Migration.Completed"><value>อิมเมจปลายทางถูกสร้าง: {0}</value></data>
+  <data name="Migration.Failed"><value>การย้ายภาพล้มเหลว: {0}</value></data>
+  <data name="Migration.Incompatible"><value>ไม่ เข้า กัน: แก้ไข ความ สูญ เสีย ที่ ขวาง กั้น ก่อน อพยพ.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>เข้ากันได้หลังจากยอมรับการสูญเสียข้อมูล</value></data>
+  <data name="Migration.Compatible"><value>เข้ากันได้ ไม่ตรวจพบการสูญเสีย</value></data>
+  <data name="Migration.Loss.MissingContent"><value>ไม่มีเนื้อหาแฟ้มอยู่</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>ชนิดของรายการนี้ไม่รองรับโดยปลายทาง</value></data>
+  <data name="Migration.Loss.InvalidName"><value>ชื่อสําหรับปลายทางไม่ถูกต้อง</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>ชื่อมันยาวเกินไป สําหรับจุดหมายปลายทาง</value></data>
+  <data name="Migration.Loss.NameCollision"><value>หลายรายการมีชื่อเดียวกัน</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>แฟ้มมีขนาดใหญ่เกินที่จะกําหนดปลายทาง</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>ข้อมูลกํากับภาพแบบต้นทางไม่ถูกต้อง</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>วันแก้ไขจะไม่ถูกรักษา</value></data>
+  <data name="Migration.Loss.Comment"><value>ความเห็นจะไม่ถูกบันทึก</value></data>
+  <data name="Migration.Loss.Attributes"><value>คุณสมบัติของแหล่งจะไม่รักษา</value></data>
+  <data name="Migration.OverwriteConfirm"><value>มีรูปภาพปลายทางอยู่แล้ว แทนที่หรือไม่? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>อิมเมจปลายทางไม่สามารถแทนที่อิมเมจต้นฉบับได้</value></data>
+</root>

@@ -6,6 +6,13 @@ using System.Reflection;
 using System.Text.Json;
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Localization.Extensions;
+using AmigaDirectoryNotEmptyException = Hst.Amiga.FileSystems.Exceptions.DirectoryNotEmptyException;
+using AmigaDiskFullException = Hst.Amiga.FileSystems.Exceptions.DiskFullException;
+using AmigaFileSystemException = Hst.Amiga.FileSystems.Exceptions.FileSystemException;
+using AmigaNotAFileException = Hst.Amiga.FileSystems.Exceptions.NotAFileException;
+using AmigaPathAlreadyExistsException = Hst.Amiga.FileSystems.Exceptions.PathAlreadyExistsException;
+using AmigaPathNotFoundException = Hst.Amiga.FileSystems.Exceptions.PathNotFoundException;
+using AmigaFileSystemDiagnosticException = Hst.Amiga.FileSystems.Exceptions.FileSystemDiagnosticException;
 
 namespace GWGUI.App.Functions.Localization;
 
@@ -40,8 +47,19 @@ internal static class ExceptionDescriptionFunctions
             return LocExtension.Get(ErrorDescriptionResourceKeys.DriveNotFound);
         if (exceptions.Any(candidate => candidate is PathTooLongException))
             return LocExtension.Get(ErrorDescriptionResourceKeys.PathTooLong);
-        if (exceptions.Any(IsDiskFull))
+        if (exceptions.Any(candidate => candidate is AmigaDiskFullException) || exceptions.Any(IsDiskFull))
             return LocExtension.Get(ErrorDescriptionResourceKeys.DiskFull);
+        if (exceptions.OfType<AmigaFileSystemDiagnosticException>().FirstOrDefault() is { } diagnostic)
+            return Describe(diagnostic);
+        if (exceptions.Any(candidate => candidate is AmigaPathNotFoundException))
+            return LocExtension.Get(ErrorDescriptionResourceKeys.FileNotFound,
+                LocExtension.Get(CommonResourceKeys.Unknown));
+        if (exceptions.Any(candidate => candidate is AmigaDirectoryNotEmptyException
+                or AmigaPathAlreadyExistsException))
+            return LocExtension.Get(ErrorDescriptionResourceKeys.InvalidOperation);
+        if (exceptions.Any(candidate => candidate is AmigaNotAFileException
+                or AmigaFileSystemException))
+            return LocExtension.Get(ErrorDescriptionResourceKeys.InvalidData);
         if (exceptions.Any(candidate => candidate is InvalidDataException or JsonException or FormatException))
             return LocExtension.Get(ErrorDescriptionResourceKeys.InvalidData);
         if (exceptions.Any(candidate => candidate is ArgumentException))
@@ -67,6 +85,44 @@ internal static class ExceptionDescriptionFunctions
         _ => LocExtension.Get(ErrorDescriptionResourceKeys.NetworkUnavailable)
     };
 
+    private static string Describe(AmigaFileSystemDiagnosticException error) => error.ErrorCode switch
+    {
+        Hst.Amiga.FileSystems.FileSystemErrorCode.ReadFailed =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemReadFailed, error.Arguments.ToArray()),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.CountExceedsBuffer =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemCountExceedsBuffer, error.Arguments.ToArray()),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.IncorrectDataBlockSequence =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemIncorrectDataBlockSequence),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.NoFreeSectorAvailable =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemNoFreeSectorAvailable),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.OnlyOffsetZeroSupported =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemOnlyOffsetZeroSupported),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.SetLengthUnsupported =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemSetLengthUnsupported),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.CachedChainBitmapMissing =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemCachedChainBitmapMissing,
+                error.Arguments.ToArray()),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.CachedBitmapMissing =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemCachedBitmapMissing,
+                error.Arguments.ToArray()),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.BitmapBlockMissing =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemBitmapBlockMissing),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.FreeBlockLoop =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemFreeBlockLoop, error.Arguments.ToArray()),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.AnodeMissing =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemAnodeMissing, error.Arguments.ToArray()),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.AnodeBlockAllocationFailed =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemAnodeBlockAllocationFailed),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.SeekError =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemSeekError),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.AnodeOperationFailed =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemAnodeOperationFailed),
+        Hst.Amiga.FileSystems.FileSystemErrorCode.AnodeBitmapIndexBlockMissing =>
+            LocExtension.Get(ErrorDescriptionResourceKeys.FileSystemAnodeBitmapIndexBlockMissing,
+                error.Arguments.ToArray()),
+        _ => LocExtension.Get(ErrorDescriptionResourceKeys.Unexpected)
+    };
+
     private static IEnumerable<Exception> ExceptionChain(Exception error)
     {
         for (Exception? current = error; current is not null; current = Next(current))
@@ -81,7 +137,7 @@ internal static class ExceptionDescriptionFunctions
     };
 
     private static string DisplayFileName(string? path) => string.IsNullOrWhiteSpace(path)
-        ? LocExtension.Get("Common.Unknown")
+        ? LocExtension.Get(CommonResourceKeys.Unknown)
         : Path.GetFileName(path);
 
     private static bool IsDiskFull(Exception error)

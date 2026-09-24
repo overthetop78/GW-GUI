@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Setările nu au putut fi salvate.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI eroare</value></data>
   <data name="Error.Unexpected"><value>A fost interceptată o eroare neașteptată.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Această operațiune nu este susținută de fișierul, dispozitivul sau platforma selectată.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Nu este suficientă memorie disponibilă pentru a finaliza operaţiunea.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI a întâmpinat o problemă neașteptată în timpul efectuării acestei acțiuni.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Firul de lucru GameInput nu s-a oprit.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Nicio cartografiere</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Enumerarea dispozitivului GameInput a eșuat pentru {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Înregistrarea butonului GameInput a eșuat.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Înregistrarea de reîmprospătare a GameInput a eșuat pentru {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Apelul de reîmprospătare a GameInput nu a putut fi neînregistrat: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Coada de apelare a dispozitivului GameInput a eșuat: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Apelul de răspuns al dispozitivului GameInput a eșuat: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Apelul de răspuns al sistemului GameInput a eșuat: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Apelul de citire brută a GameInput a eșuat: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: lectură {1} nu a reușit cu codul 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: tipul de intrare {1}, starea gamepad disponibilă: {2}, array-uri controlere indisponibile</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: tipul de intrare {1}, starea gamepad disponibilă: {2}, axe: {3}, butoane: {4}, comutatoare: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM eroare 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: tipul de intrare {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Nume rezolvat: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Nume GameInput: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Dispozitiv ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Rădăcină dispozitiv ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Container ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familie: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Utilizare: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Intrare susținută: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Informații despre controlor: axe ={0}, butoane ={1}, comutatoare ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Etichetele axei: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Etichetele butonului: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Calea PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Nume PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Intrarea sistemului de fișiere nu a putut fi citită.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Numărul solicitat ({0}) depășește dimensiunea tamponului ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Următorul bloc de fișiere are un număr incorect de secvență.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Nu există nici un sector liber pe disc.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Numai zero offset este suportat pentru această operațiune.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Acest flux de fișiere-sistem nu suportă schimbarea lungimii sale.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Bloc cache {0} în lanțul de alocare nu conține un bloc bitmap; tipul real: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Bloc de alocare cache {0} nu conține un bloc bitmap; tip real: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Blocul necesar de bitmap lipseşte.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>O buclă a fost detectată în timp ce eliberau blocurile la nodul de alocare {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Nodul de alocare {0} nu putea fi citit.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Blocul de alocare-nodă nu a putut fi alocat.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Poziția solicitată nu este valabilă pentru acest obiect al sistemului de fișiere.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operaţiunea de alocare-nod a eşuat.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloc de indici bitmap pentru media de alocare {0}/{1} nu putea fi citit.</value></data>
 </root>

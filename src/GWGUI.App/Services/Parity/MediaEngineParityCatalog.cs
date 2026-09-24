@@ -1,6 +1,7 @@
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Parity;
+using ConversionFidelity = global::GWGUI.MediaEngine.Images.Conversion.ConversionFidelity;
+using ConversionFidelityLevel = global::GWGUI.MediaEngine.Images.Conversion.ConversionFidelityLevel;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.App.Parity;
 namespace GWGUI.App.Services.Parity;
 
 public static class MediaEngineParityCatalog

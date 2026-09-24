@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>處理器：{0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU 型號</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU 倍頻</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>逐週期相容 CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU 速度</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>原始速度</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>一般</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>相容</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>記憶體相容</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>逐週期精確</value></data>
+  <data name="Emulation.Cpu.Processor"><value>處理器</value></data>
+  <data name="Emulation.Cpu.Precision"><value>精確度</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>加速</value></data>
+</root>

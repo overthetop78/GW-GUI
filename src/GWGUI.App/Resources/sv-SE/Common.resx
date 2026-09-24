@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Okänd</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Ejekt</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Okänd</value></data>
+  <data name="Common.Eject"><value>Ejekt</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Okänd media</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Diskett</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Hård disk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optisk disc</value></data>
+  <data name="Common.MediaKind.Tape"><value>Tape</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sektorer</value></data>
+  <data name="Common.Representation.Blocks"><value>Block</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optiska spår</value></data>
+  <data name="Common.Representation.Sequential"><value>Sekventiella data</value></data>
+  <data name="Common.Advanced"><value>Avancerade inställningar</value></data>
+  <data name="Common.ExpertArguments"><value>Expertargument</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argument skickas som skrivna efter offertvalidering.</value></data>
+  <data name="Common.DiskImageFilter"><value>Diskbilder|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alla filer|*.*</value></data>
+  <data name="Common.Console"><value>Trösta</value></data>
+  <data name="Common.Command"><value>Kommando</value></data>
 </root>

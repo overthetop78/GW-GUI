@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>Makineler</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Hoş geldiniz</value></data>
+  <data name="Emulation.Tab.General"><value>Genel</value></data>
+  <data name="Emulation.Tab.Video"><value>Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video Video</value></data>
+  <data name="Emulation.Tab.Storage"><value>Depolama</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Klavye</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Fare</value></data>
+  <data name="Emulation.Tab.Controller"><value>Denetleyiciler</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Gelişmiş</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Kısayollar</value></data>
+  <data name="Emulation.Tab.Audio"><value>Audio Audio Audio</value></data>
+</root>

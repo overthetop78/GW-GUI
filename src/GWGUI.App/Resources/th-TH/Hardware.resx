@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>ท่าเรือ</value></data>
-  <data name="Hardware.UsbId"><value>ตัวระบุ USB</value></data>
-  <data name="Hardware.Drive"><value>ขับ</value></data>
-  <data name="Hardware.Available"><value>มีอยู่</value></data>
-  <data name="Hardware.Scan"><value>สแกน</value></data>
-  <data name="Hardware.AddDrive"><value>เพิ่มไดรฟ์...</value></data>
-  <data name="Hardware.NoDrive"><value>ไม่มีการกำหนดไดรฟ์</value></data>
-  <data name="Hardware.EditorTitle"><value>กำหนดไดรฟ์</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle คอนโทรลเลอร์</value></data>
-  <data name="Hardware.GwSelection"><value>การคัดเลือกผ่านไปยัง gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>ขนาดทางกายภาพ</value></data>
-  <data name="Hardware.SizeShort"><value>ขนาด</value></data>
-  <data name="Hardware.DensityShort"><value>ความหนาแน่น</value></data>
-  <data name="Hardware.SpeedShort"><value>ความเร็ว</value></data>
-  <data name="Hardware.AvailableState"><value>มีอยู่</value></data>
-  <data name="Hardware.UnavailableState"><value>ไม่พร้อมใช้งาน</value></data>
-  <data name="Hardware.DensityDescription"><value>ความหนาแน่นของไดรฟ์ (คำอธิบายเท่านั้น)</value></data>
-  <data name="Hardware.SpeedDescription"><value>ความเร็วที่กำหนด (คำอธิบายเท่านั้น)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>ท่าเรือ</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>ตัวระบุ USB</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>ขับ</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>มีอยู่</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>สแกน</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>เพิ่มไดรฟ์...</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>ไม่มีการกำหนดไดรฟ์</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>กำหนดไดรฟ์</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle คอนโทรลเลอร์</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>การคัดเลือกผ่านไปยัง gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>ขนาดทางกายภาพ</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>ขนาด</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>ความหนาแน่น</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>ความเร็ว</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>มีอยู่</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>ไม่พร้อมใช้งาน</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>ความหนาแน่นของไดรฟ์ (คำอธิบายเท่านั้น)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>ความเร็วที่กำหนด (คำอธิบายเท่านั้น)</value></data>
   <data name="Hardware.NotConfigured"><value>ไม่ได้กำหนดค่าคอนโทรลเลอร์</value></data>
   <data name="Hardware.Disconnected"><value>ตัดการเชื่อมต่อ</value></data>
   <data name="Hardware.SelectedDisconnected"><value>ไดรฟ์ที่เลือกถูกตัดการเชื่อมต่อ เชื่อมต่อใหม่หรือสแกนอีกครั้งในตัวเลือก → ตัวควบคุมและไดรฟ์</value></data>

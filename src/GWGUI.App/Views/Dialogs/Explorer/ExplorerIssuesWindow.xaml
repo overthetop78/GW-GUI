@@ -13,7 +13,7 @@
                     <DataTemplate>
                         <Grid Margin="5,4">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="24"/><ColumnDefinition/></Grid.ColumnDefinitions>
-                            <TextBlock Text="&#xE7BA;" FontFamily="Segoe MDL2 Assets" Foreground="#C57A00" VerticalAlignment="Top" Margin="0,2,0,0"/>
+            <TextBlock Text="{l:Loc Icon.Warning}" FontFamily="Segoe MDL2 Assets" Foreground="#C57A00" VerticalAlignment="Top" Margin="0,2,0,0"/>
                             <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap"/>
                         </Grid>
                     </DataTemplate>

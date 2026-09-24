@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>המונחים</value></data>
+  <data name="Emulation.Value.Disabled"><value>מוגבלות</value></data>
+  <data name="Emulation.Value.Minimum"><value>מינימום</value></data>
+  <data name="Emulation.Value.VerySmall"><value>קטן מאוד</value></data>
+  <data name="Emulation.Value.Small"><value>קטן קטן</value></data>
+  <data name="Emulation.Value.Medium"><value>בינוני בינוני בינוני</value></data>
+  <data name="Emulation.Value.Large"><value>גדול גדול</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>גדול מאוד</value></data>
+  <data name="Emulation.Value.Maximum"><value>מקסימום</value></data>
+  <data name="Emulation.Value.Standard"><value>תקן Standard</value></data>
+  <data name="Emulation.Value.Enhanced"><value>שיפור</value></data>
+  <data name="Emulation.Value.Internal"><value>פנימית פנימית</value></data>
+  <data name="Emulation.Value.Loud"><value>חזק</value></data>
+  <data name="Emulation.Value.NotUsed"><value>לא בשימוש</value></data>
+  <data name="Emulation.Value.None"><value>ללא</value></data>
+  <data name="Emulation.Value.Default"><value>ברירת מחדל</value></data>
+  <data name="Emulation.Value.Gray"><value>אפור</value></data>
+</root>

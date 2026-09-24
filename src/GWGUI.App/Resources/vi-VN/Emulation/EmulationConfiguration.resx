@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Tạo, chọn, sửa đổi hoặc xóa cấu hình đã lưu tại đây. Chọn thẻ {0} để chỉnh sửa cấu hình đã chọn.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Thương hiệu</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Máy</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Tổng RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Ổ đĩa</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Thiết bị ngoại vi</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Hành động</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Xoá {0} {1} cấu hình?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Cấu hình</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Cấu hình</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Xoá cấu hình Amiga này không?</value></data>
+</root>

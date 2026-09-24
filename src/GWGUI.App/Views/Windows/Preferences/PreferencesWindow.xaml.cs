@@ -1,7 +1,7 @@
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Enums.Services.Navigation;
 using GWGUI.App.Functions.Options.Tags;
 using GWGUI.App.Localization.Extensions;
@@ -20,10 +20,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
-using GWGUI.Infrastructure.Hardware;
 using GWGUI.Infrastructure.Processes;
-using GWGUI.Infrastructure.Settings;
-using GWGUI.Infrastructure.HostTools;
 
 
 

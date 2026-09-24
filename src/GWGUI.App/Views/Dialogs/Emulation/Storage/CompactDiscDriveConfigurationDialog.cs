@@ -1,4 +1,5 @@
 using GWGUI.App.Constants.Localization;
+using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Storage;
 using GWGUI.App.Functions.Views.Emulation.Storage;
 using GWGUI.App.Localization.Extensions;
@@ -48,7 +49,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
             ? LocExtension.Get("Emulation.Storage.Cd.WriterHint")
             : LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
         Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.DialogHeader("\uE958", Title,
+            StorageDialogUi.DialogHeader(IconGlyphs.OpticalDisc, Title,
                 $"{LocExtension.Get(EmulationResourceKeys.CompactDiscDevice)} · {machineName}"),
             StorageDialogUi.Card(LocExtension.Get(EmulationResourceKeys.CompactDiscDevice), body),
             StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));

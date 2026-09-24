@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Fare yakalamayı bırakma tuşu</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Sol fare düğmesi</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Sağ fare düğmesi</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Orta fare düğmesi</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Fiziksel fare</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Çift hareket</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Fare hızı</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Fareyi denetleyen analog çubuklar</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Analog çubuk ölü bölgesi</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Analog çubuk fare hızı</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Fare eylemleri</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Fare düğmesi 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Fare düğmesi 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Fare yakalama</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Fare tekerleği yukarı</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Fare tekerleği aşağı</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Fare tekerleği sola</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Fare tekerleği sağa</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fareyi yakala</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Yayınlanmış fare</value></data>
+</root>

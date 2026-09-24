@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}-tast</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Vertstast</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>To Amiga-tastene bruker samme PC-nøkkel. Løs de røde kartleggingene før du lagrer.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fysisk tastatur gjennomgang</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Reserverte hurtigtaster</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Hurtigtaster for GW GUI og Windows forblir aktive og fanges ikke av maskinen.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Maskintast</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Bokstaver, tall og vanlige modifikatortaster sendes direkte. Bare Amigas funksjons- og spesialtaster må tilordnes her.</value></data>
+</root>

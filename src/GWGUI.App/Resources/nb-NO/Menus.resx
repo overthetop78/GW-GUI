@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Menu.Options"><value>Alternativer</value></data>
   <data name="Menu.Preferences"><value>Innstillinger …</value></data>
   <data name="Menu.Diagnostics"><value>Diagnostikk</value></data>
@@ -27,14 +19,7 @@
   <data name="Menu.Help"><value>Hjelp</value></data>
   <data name="Menu.Documentation"><value>Dokumentasjon</value></data>
   <data name="Menu.About"><value>Om</value></data>
-  <data name="Tab.Read"><value>Lese</value></data>
-  <data name="Tab.Write"><value>Skrive</value></data>
-  <data name="Tab.Convert"><value>Omdannelse</value></data>
-  <data name="Tab.Visualize"><value>Visualisering</value></data>
-  <data name="Tab.Tools"><value>Verktøy</value></data>
   <data name="Menu.Align"><value>Drive justering...</value></data>
-  <data name="Tab.Explorer"><value>Diskutforsker</value></data>
-  <data name="Tab.Emulation"><value>Emulering</value></data>
   <data name="Menu.Emulation"><value>Emulering</value></data>
   <data name="Menu.EmulationPreferences"><value>Emuleringsinnstillinger...</value></data>
 </root>

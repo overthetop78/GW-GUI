@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}-Taste</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Host-Taste</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Zwei Amiga-Tasten verwenden dieselbe PC-Taste. Beheben Sie die roten Zuordnungen vor dem Speichern.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Physische Tastatur direkt durchreichen</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Reservierte Tastenkürzel</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Tastenkürzel von GW GUI und Windows bleiben aktiv und werden von der Maschine nicht erfasst.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Maschinentaste</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Buchstaben, Ziffern und normale Modifikatortasten werden direkt übertragen. Nur Funktions- und Sondertasten des Amiga müssen hier zugewiesen werden.</value></data>
+</root>

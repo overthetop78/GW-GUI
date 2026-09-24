@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Phím {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Phím máy chủ</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Hai phím Amiga sử dụng cùng một PC phím. Giải quyết các bản đồ màu đỏ trước khi lưu.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Chuyển trực tiếp bàn phím vật lý</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Phím tắt dành riêng</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Các phím tắt của GW GUI và Windows vẫn hoạt động và không bị máy thu nhận.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Phím của máy</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Chữ cái, chữ số và phím bổ trợ thông thường được truyền trực tiếp. Chỉ cần gán các phím chức năng và phím đặc biệt của Amiga tại đây.</value></data>
+</root>

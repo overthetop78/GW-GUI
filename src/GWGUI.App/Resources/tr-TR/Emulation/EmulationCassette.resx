@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>Oynat</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Duraklat</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Geri sar</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>İleri sar</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Kaydet</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Durdur</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>Kaset yok</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Durduruldu</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Oynatılıyor</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>Duraklatıldı</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Kaydediliyor</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>Bant sonu</value></data>
+</root>

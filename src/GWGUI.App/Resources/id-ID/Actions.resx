@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>Membatalkan</value></data>
-  <data name="Common.Save"><value>Menyimpan</value></data>
-  <data name="Common.Create"><value>Buat</value></data>
-  <data name="Common.Delete"><value>Menghapus</value></data>
-  <data name="Common.Browse"><value>Jelajahi…</value></data>
-  <data name="Common.Choose"><value>Memilih…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>Membatalkan</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Menyimpan</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>Buat</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Menghapus</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Jelajahi…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>Memilih…</value></data>
   <data name="Common.Close"><value>Menutup</value></data>
   <data name="Common.Execute"><value>Menjalankan</value></data>
   <data name="Common.Stop"><value>Berhenti</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>Memodifikasi</value></data>
   <data name="Common.Hide"><value>Bersembunyi</value></data>
   <data name="Common.Export"><value>Ekspor</value></data>
-  <data name="Common.New"><value>Baru</value></data>
-  <data name="Common.Refresh"><value>Segarkan</value></data>
-  <data name="Common.OpenFolder"><value>Buka folder</value></data>
+  <data name="Common.New" xml:space="preserve"><value>Baru</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>Segarkan</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>Buka folder</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Jeda</value></data>
 </root>

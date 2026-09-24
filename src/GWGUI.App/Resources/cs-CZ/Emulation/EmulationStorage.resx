@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Přidat média</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Vytvořit pevný disk</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Velikost pevného disku (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Bez médií. Přidejte disketu, pevný disk nebo CD podporované zvoleným modelem.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Pouze pro čtení</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga hard disk|*.hdf|Všechny soubory|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Zvolený model nepodporuje pevný disk.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Tento model přijímá maximálně {0} mechanika / mechaniky.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Tento model přijímá maximálně {0} pevný disk (disky).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Zvolený model nepodporuje CD disk.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Jednotka CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Počet disketových jednotek</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Počet pevných disků</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Rychlost floppy- pohonu</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Write- protect floppy images</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Přesměrovat floppy píše</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Rychlost CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Přidat existující pevný disk</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Pevné disky</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>K tomuto stroji není připojen žádný pevný disk.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Diskety</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Přidat úložné zařízení</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Připojené médium</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Geometrii disku určí emulátor automaticky.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Prázdný obraz diskety byl vytvořen: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Soubor bude vytvořen prázdný. Poté jej musíte v emulovaném počítači rozdělit a naformátovat.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Vypalovačka CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Prázdný disk lze vytvořit jen tehdy, když vybraný počítač a emulátor podporují zápis.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Jednotka CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Nastavit</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Vytvořit prázdnou disketu</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Obraz disku</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Vyberte existující obraz disku.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Vybraný soubor bude připojen k této virtuální jednotce.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Disketová jednotka</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Obraz diskety Amiga|*.adf|Všechny soubory|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Pevný disk</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Rozhraní</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Předalokovat soubor</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>z běžícího stroje se vloží nebo nahradí disketa a CD.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Odebrat médium</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Obraz disku již existuje: {0}\nChcete jej nahradit?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Dostupné typy, modely a identifikátory závisí na vybraném počítači.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Pásková jednotka</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Použít disk</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Použít existující disk</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Upravit v části Obecné</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Pro tento počítač není k dispozici žádné další úložné zařízení.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Úložná zařízení</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Přidělení</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Automatická geometrie</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Prázdné médium</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Bajtů na sektor</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Vypočtená kapacita: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Vlastní velikost</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cylindry</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Cílová složka</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Geometrie disku (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Profil velikosti</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Disketová jednotka</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Hlavy</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Velikost nebo geometrie disku není platná.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Okamžitě rezervuje fyzické místo; jinak se obraz zvětšuje při zápisu dat.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sektory</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kazeta</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Nátěr</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Kompaktní disky</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Zobrazit aktivitu jednotek na obrazovce emulátoru</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Rozhraní náplně</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>První čtyři disky se připojí DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk {0}</value></data>
+</root>

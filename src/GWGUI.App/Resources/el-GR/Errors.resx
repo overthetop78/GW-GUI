@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI σφάλμα</value></data>
   <data name="Error.Unexpected"><value>Καταγράφηκε ένα απροσδόκητο σφάλμα.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Αυτή η λειτουργία δεν υποστηρίζεται από το επιλεγμένο αρχείο, συσκευή ή πλατφόρμα.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Δεν υπάρχει αρκετή διαθέσιμη μνήμη για να ολοκληρωθεί η λειτουργία.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI συνάντησε ένα απροσδόκητο πρόβλημα κατά την εκτέλεση αυτής της δράσης.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Το νήμα του εργάτη του GameInput δεν σταμάτησε.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Χωρίς χαρτογράφηση</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Αποτυχία καταμέτρησης συσκευής GameInput για {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Αποτυχία εγγραφής κουμπιού συστήματος GameInput.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Αποτυχία εγγραφής ανανέωσης του GameInput {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>Το refresh callback δεν μπόρεσε να καταχωρηθεί: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Αποτυχία επαναφοράς της ουράς της συσκευής GameInput: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Αποτυχία επανάκλησης συσκευής εισόδου παιχνιδιού: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Αποτυχία επανάκλησης συστήματος εισόδου παιχνιδιού: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Αποτυχία επανάκλησης της κλήσης από την πρώτη ανάγνωση του GameInput: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: ανάγνωση {1} απέτυχε με τον κωδικό 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: τύπος εισόδου {1}, Κατάσταση gamepad διαθέσιμη: {2}, Συστοιχία ελεγκτή μη διαθέσιμες</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: τύπος εισόδου {1}, Κατάσταση gamepad διαθέσιμη: {2}, άξονες: {3}, κουμπιά: {4}, διακόπτες: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM σφάλμα 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: τύπος εισόδου {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Επιλυμένη ονομασία: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Όνομα εισόδου παιχνιδιού: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Συσκευή ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Ρίζα συσκευής ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Εμπορευματοκιβώτιο ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Οικογένεια: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Χρήση: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Υποστηριζόμενη είσοδος: {0} (0x{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Πληροφορίες ελεγκτή: άξονες={0}, κουμπιά={1}, διακόπτες ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Ετικέτα άξονα: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Ετικέτες κουμπιών: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Χαρτογράφηση: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Διαδρομή PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Όνομα PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Η καταχώρηση του συστήματος αρχείων δεν ήταν δυνατή.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Η αιτούμενη καταμέτρηση ({0}) υπερβαίνει το μέγεθος του ρυθμιστικού αποθέματος ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Το επόμενο μπλοκ αρχείων έχει λάθος αριθμό ακολουθίας.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Δεν υπάρχει διαθέσιμος δωρεάν τομέας στο δίσκο.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Μόνο το μηδενικό όφσετ υποστηρίζεται για αυτή την λειτουργία.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Αυτή η ροή συστήματος αρχείων δεν υποστηρίζει την αλλαγή του μήκους της.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Συγκεκομμένο τετράγωνο {0} στην αλυσίδα κατανομής δεν περιέχει μπλοκ bitmap· πραγματικό τύπο: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Ακυρωμένο τμήμα κατανομής {0} δεν περιέχει μπλοκ bitmap· πραγματικό τύπο: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Λείπει το απαιτούμενο μπλοκ bitmap.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Εντοπίστηκε βρόχος κατά την απελευθέρωση των μπλοκ στον κόμβο κατανομής {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Κόμβος κατανομής {0} Δεν ήταν δυνατόν να διαβαστεί.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Το μπλοκ κατανομής-κόμβου δεν ήταν δυνατό να κατανεμηθεί.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Η ζητούμενη θέση είναι άκυρη για αυτό το αντικείμενο συστήματος αρχείων.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Η λειτουργία του κόμβου κατανομής απέτυχε.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Πεδίο δείκτη bitmap κατανομής- κόμβου {0}/{1} Δεν ήταν δυνατόν να διαβαστεί.</value></data>
 </root>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Скорочення емуляції</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Звільнити мишу</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Пауза / продовжити</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Повний екран / вікно</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Увімкнути / вимкнути</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>М’яке перезавантаження</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Жорстке перезавантаження</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Швидке збереження стану</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Швидке завантаження стану</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Знімок екрана</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Вимкнути звук активної машини</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Швидке перемотування під час утримання</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Вставити або замінити носій</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Витягти носій</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Наступний носій</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Ця дія ще не підтримується поточним емулятором.</value></data>
+</root>

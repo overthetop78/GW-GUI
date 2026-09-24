@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Write.Title"><value>Écriture</value></data>
   <data name="Write.SelectSource"><value>Choisissez une image source existante.</value></data>
   <data name="Write.Ambiguous"><value>Le format est ambigu. Choisissez explicitement un format compatible.</value></data>
@@ -32,6 +24,6 @@
   <data name="Write.InternalPreview" xml:space="preserve"><value>Écriture interne GW GUI : {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Une ou plusieurs options avancées sélectionnées ne sont pas encore prises en charge par l’écriture interne.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La vérification interne n’est pas encore disponible. Activez « Ne pas vérifier » pour utiliser l’écriture interne expérimentale.</value></data>
-  <data name="Write.InternalFailure"><value>Piste {0}, côté {1}: {2}</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>Piste {0}, côté {1}: {2}</value></data>
   <data name="Write.InternalFailureReason"><value>L’écriture interne a échoué.</value></data>
 </root>

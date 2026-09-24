@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Tab.Read"><value>读</value></data>
+  <data name="Tab.Write"><value>写</value></data>
+  <data name="Tab.Convert"><value>转换</value></data>
+  <data name="Tab.Visualize"><value>可视化</value></data>
+  <data name="Tab.Tools"><value>工具</value></data>
+  <data name="Tab.Explorer"><value>磁盘资源管理器</value></data>
+  <data name="Tab.Emulation"><value>模拟</value></data>
+</root>

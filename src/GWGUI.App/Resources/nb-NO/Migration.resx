@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Fil migrasjon...</value></data>
+  <data name="Migration.Title"><value>Fil- migrasjon</value></data>
+  <data name="Migration.Heading"><value>Migrer filer til et annet filsystem</value></data>
+  <data name="Migration.Source"><value>Kildebilde</value></data>
+  <data name="Migration.NoSource"><value>Velg et bilde som inneholder et gjenkjent filsystem.</value></data>
+  <data name="Migration.Destination"><value>Destinasjon filsystem og format</value></data>
+  <data name="Migration.Output"><value>Destinasjonsbilde</value></data>
+  <data name="Migration.Compatibility"><value>Kompatibilitet og tap</value></data>
+  <data name="Migration.Waiting"><value>Velg en kilde og et mål.</value></data>
+  <data name="Migration.Severity"><value>Sværhet</value></data>
+  <data name="Migration.Path"><value>Kildesti</value></data>
+  <data name="Migration.Description"><value>Beskrivelse</value></data>
+  <data name="Migration.AcceptLosses"><value>Godta de oppførte metadata tap</value></data>
+  <data name="Migration.Execute"><value>Migrer filer</value></data>
+  <data name="Migration.Blocking"><value>Blokkering</value></data>
+  <data name="Migration.MetadataLoss"><value>Metadatatap</value></data>
+  <data name="Migration.SourceSummary"><value>Volum: {0} — Filsystem: {1} — Rotposter: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Kan ikke forberede migrasjonen: {0}</value></data>
+  <data name="Migration.Completed"><value>Bildet av målet ble opprettet: {0}</value></data>
+  <data name="Migration.Failed"><value>Migrasjon mislykkes: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Ukompatibel: Rett opp blokkeringstapene før migrasjon.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Kompatibel etter å ha akseptert de oppførte metadata tap.</value></data>
+  <data name="Migration.Compatible"><value>Kompatibel: Ingen tap detektert.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Filinnholdet er utilgjengelig.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Denne oppføringstypen støttes ikke av målet.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Navnet er ikke gyldig for destinasjonen.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Navnet er for lenge til reisemålet.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Flere poster hadde samme destinasjonsnavn.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Filen er for stor for destinasjonen.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Kilden metadata er ugyldig.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Endringsdatoen vil ikke bli bevart.</value></data>
+  <data name="Migration.Loss.Comment"><value>Kommentaren vil ikke bli bevart.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Kildeattributtene vil ikke bli bevart.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Destinasjonsbildet eksisterer allerede. Bytt ut det? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Destinasjonsbildet kan ikke erstatte kildebildet.</value></data>
+</root>

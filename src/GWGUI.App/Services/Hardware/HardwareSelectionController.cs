@@ -1,5 +1,5 @@
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Services.Hardware;
 using GWGUI.App.Dictionaries.Options;
 using GWGUI.App.Enums.Services.Dialogs;

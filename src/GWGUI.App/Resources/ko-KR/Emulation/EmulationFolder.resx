@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>공유 에뮬레이션 저장 폴더</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>하드 디스크는 HDD\Amiga, HDD\Atari 및 향후 시스템 폴더에 자동으로 정리됩니다.</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>누락된 하위 폴더 자동 생성</value></data>
+  <data name="Emulation.Folder.Common"><value>공유 폴더</value></data>
+  <data name="Emulation.Folder.Capture"><value>캡처 폴더</value></data>
+  <data name="Emulation.Folder.State"><value>저장 상태 폴더</value></data>
+  <data name="Emulation.Folder.Default"><value>기본 폴더</value></data>
+</root>

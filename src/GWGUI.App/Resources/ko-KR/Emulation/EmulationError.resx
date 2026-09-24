@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>이 컴퓨터를 켜기 전에 에뮬레이터에 미디어가 필요합니다. 아래에 표시된 필수 미디어 중 하나를 삽입하거나 설정하세요.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>컴퓨터를 켤 수 없습니다</value></data>
+  <data name="Emulation.Error.Machine"><value>컴퓨터</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>필수 미디어</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>Amiga 모델이 필요합니다.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Kickstart 경로가 필요합니다.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>필수 펌웨어 경로가 빈.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>선택한 파일은 존재하지 않습니다.</value></data>
+</root>

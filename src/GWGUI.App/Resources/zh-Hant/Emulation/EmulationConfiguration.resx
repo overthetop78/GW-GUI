@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>在此建立、選取、修改或刪除已儲存的設定。選取 {0} 分頁以編輯所選設定。</value></data>
+  <data name="Emulation.Configuration.Brand"><value>品牌</value></data>
+  <data name="Emulation.Configuration.Machine"><value>機器</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>RAM 總量</value></data>
+  <data name="Emulation.Configuration.Readers"><value>磁碟機</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>周邊裝置</value></data>
+  <data name="Emulation.Configuration.Actions"><value>操作</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>要刪除 {0} {1} 設定嗎？</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>設定</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>配置</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>删除此 Amiga 配置吗 ?</value></data>
+</root>

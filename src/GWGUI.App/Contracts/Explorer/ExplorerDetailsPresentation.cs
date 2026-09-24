@@ -5,4 +5,5 @@ public sealed record ExplorerDetailsPresentation(
     string Title,
     ExplorerIconCategory IconCategory,
     IReadOnlyList<ExplorerDetailRow> Rows,
-    bool IsSyntheticTitle = false);
+    bool IsSyntheticTitle = false,
+    ExplorerEntryTone Tone = ExplorerEntryTone.Default);

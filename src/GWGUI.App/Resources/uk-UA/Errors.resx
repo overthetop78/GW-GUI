@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Не вдалося зберегти налаштування.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>Помилка GW GUI</value></data>
   <data name="Error.Unexpected"><value>Неочікувана помилка була перехоплена.&#xA;&#xA;{0}</value></data>
@@ -34,6 +26,51 @@
   <data name="Error.Description.InvalidArgument"><value>Однією з поданих значень є недійсним. Перегляньте налаштування та спробуйте знову.</value></data>
   <data name="Error.Description.InvalidOperation"><value>Операція не може бути завершена в поточному стані.</value></data>
   <data name="Error.Description.NotSupported"><value>Ця операція не підтримується вибраним файлом, пристроєм або платформою.</value></data>
-  <data name="Error.Description.OutOfMemory"><value>Для завершення операції не вистачає пам'яті.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Для завершення операції не вистачає пам&apos;яті.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI зіткнувся з несподіваною проблемою під час виконання цієї дії.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Нітка GameInput не зупинилася.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Ні картографування</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>Пристрій передачі даних GameInput не вдалося за {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Реєстрація кнопки входу в систему не вдалося.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Реєстрація оновлень GameInput не вдалося {0}: 0кс{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput оновлений зворотний дзвінок не може бути нерегістрований: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>Передача даних з використанням пристрою GameInput не вдалося: {0} 0кс{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Безпосередній пристрій GameInput не вдалося: {0} 0кс{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Безпосередньо не вдалося: {0} 0кс{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>Безпосередній вихідний код: {0} 0кс{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: читання {1} не вдалося з кодом 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: тип введення {1}, стан гейпада доступні: {2}, масиви контролерів 0</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: тип введення {1}, стан гейпада доступні: {2}, Ось: {3}, кнопки: {4}, перемикачі: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM 0 р.{1:X8} (Українська){2}) , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: тип введення {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Ім'я: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Назва гри: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,PID, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Пристрої ID, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Пристрої кореня ID, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Контейнери ID, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Сім'я: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Використання: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Підтримуваний вхід: {0} Ø30 мм{1:X8}) , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Інформація про контролер: axes={0}, кнопки={1}, перемикачі:{2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Мітки осей: [{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Мітки кнопок: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>мітки: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>Шлях ПнП: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>ПнП імена: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Вступ файлової системи не може бути прочитано.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Запитана кількість ({0}) перевищує розмір буфера ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Наступний блок файлів має неправильний номер послідовності.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>На диску немає вільного сектора.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Для цієї операції підтримується тільки офсетний нульовий.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Цей потік файлової системи не підтримує зміну його довжини.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Заглушка блок {0} в ланцюжку розподілу не містить бітмапа блок; фактичний тип: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Блок розподілу сидінь {0} не містить бітмапа блок; фактичний тип: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Відсутня блочний блок бітма.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>При виведенні петлю виявлено петлі при розподілі вузла {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Розподільчий вузол {0} не можна читати.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Не можна виділитися блок локації.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>За запитом, позиція недійсна для цього об'єкта файлової системи.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Не вдалося відведення.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Блок індексу бітової карти вузла розподілу {0}/{1} не вдалося прочитати.</value></data>
 </root>

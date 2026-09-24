@@ -1,5 +1,5 @@
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Settings;
 namespace GWGUI.App.Options.States;
 
 internal sealed class HostToolsOptionsState

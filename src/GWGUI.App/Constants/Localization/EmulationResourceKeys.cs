@@ -2,6 +2,13 @@ namespace GWGUI.App.Constants.Localization;
 
 public static class EmulationResourceKeys
 {
+    public const string VideoCrtGroupColor = "Emulation.Video.Crt.Group.Color";
+    public const string VideoCrtGroupBeam = "Emulation.Video.Crt.Group.Beam";
+    public const string VideoCrtGroupMask = "Emulation.Video.Crt.Group.Mask";
+    public const string VideoCrtGroupGeometry = "Emulation.Video.Crt.Group.Geometry";
+    public const string VideoCrtGroupScanlines = "Emulation.Video.Crt.Group.Scanlines";
+    public const string VideoCrtGroupInterference =
+        "Emulation.Video.Crt.Group.Interference";
     public const string Power = "Emulation.Shortcut.Power";
     public const string PauseResume = "Emulation.Shortcut.PauseResume";
     public const string SoftReset = "Emulation.Shortcut.SoftReset";
@@ -25,7 +32,7 @@ public static class EmulationResourceKeys
     public const string DeviceIdentifier = "Emulation.Device.Name.Id";
     public const string DeviceType = "Emulation.Device.Name.Type";
     public const string DeviceInterface = "Emulation.Storage.Device.Interface";
-    public const string Model = "Emulation.Model";
+    public const string Model = "Emulation.Machine.Model";
     public const string Actions = "Emulation.Input.Actions";
     public const string NotUsed = "Emulation.Value.NotUsed";
     public const string Delete = "Common.Delete";
@@ -70,7 +77,6 @@ public static class EmulationResourceKeys
     public const string VideoSamplingBicubic = "Emulation.Video.Sampling.Bicubic";
     public const string VideoSamplingXbr = "Emulation.Video.Sampling.Xbr";
     public const string VideoSamplingXbrz = "Emulation.Video.Sampling.Xbrz";
-    public const string VideoSamplingHqx = "Emulation.Video.Sampling.Hqx";
     public const string VideoSamplingScaleFx = "Emulation.Video.Sampling.ScaleFx";
     public const string VideoSamplingScaleNx = "Emulation.Video.Sampling.ScaleNx";
     public const string VideoSamplingSabr = "Emulation.Video.Sampling.Sabr";
@@ -103,7 +109,7 @@ public static class EmulationResourceKeys
     public const string VideoFixedPixelTechnologyOled = "Emulation.Video.FixedPixel.Technology.Oled";
     public const string VideoParameterBrightness = "Emulation.Video.Parameter.Brightness";
     public const string VideoParameterContrast = "Emulation.Video.Parameter.Contrast";
-    public const string VideoParameterGamma = "Emulation.Video.Parameter.Gamma";
+    public const string VideoParameterGamma = "Emulation.Video.Gamma";
     public const string VideoParameterSaturation = "Emulation.Video.Parameter.Saturation";
     public const string VideoParameterSharpness = "Emulation.Video.Parameter.Sharpness";
     public const string VideoParameterDedithering = "Emulation.Video.Parameter.Dedithering";
@@ -304,7 +310,5 @@ public static class EmulationResourceKeys
     public const string VideoPresetLcdColor = "Emulation.Video.Preset.LcdColor";
     public const string VideoPresetLcdMonochrome = "Emulation.Video.Preset.LcdMonochrome";
     public const string VideoPresetLedBacklitLcd = "Emulation.Video.Preset.LedBacklitLcd";
-    public const string VideoPresetOled = "Emulation.Video.Preset.Oled";
-    public const string VideoPresetPlasma = "Emulation.Video.Preset.Plasma";
     public const string VideoPresetVector = "Emulation.Video.Preset.Vector";
 }

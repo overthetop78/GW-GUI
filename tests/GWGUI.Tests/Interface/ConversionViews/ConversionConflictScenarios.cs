@@ -1,5 +1,5 @@
 using GWGUI.App.Views.Dialogs.Conversion;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Commands.Execution;
 using System.Windows.Threading;
 namespace GWGUI.Tests.Interface.ConversionViews;
 internal static class ConversionConflictScenarios

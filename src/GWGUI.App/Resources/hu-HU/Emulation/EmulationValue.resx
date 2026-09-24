@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Engedélyezett</value></data>
+  <data name="Emulation.Value.Disabled"><value>Letiltva</value></data>
+  <data name="Emulation.Value.Minimum"><value>Minimális</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Nagyon kicsi.</value></data>
+  <data name="Emulation.Value.Small"><value>Kicsi</value></data>
+  <data name="Emulation.Value.Medium"><value>Közepes</value></data>
+  <data name="Emulation.Value.Large"><value>Nagy</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Nagyon nagy</value></data>
+  <data name="Emulation.Value.Maximum"><value>Maximális</value></data>
+  <data name="Emulation.Value.Standard"><value>Szabvány</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Fokozott</value></data>
+  <data name="Emulation.Value.Internal"><value>Belső</value></data>
+  <data name="Emulation.Value.Loud"><value>Hangos</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Nincs használatban</value></data>
+  <data name="Emulation.Value.None"><value>Nincs</value></data>
+  <data name="Emulation.Value.Default"><value>Alapértelmezett</value></data>
+  <data name="Emulation.Value.Gray"><value>Szürke</value></data>
+</root>

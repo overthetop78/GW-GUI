@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Ядро</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Ядро емуляції {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Бібліотека залишається поза GW GUI. Вибрана версія замінює встановлену зараз.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Версія, потрібна GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Остання доступна офіційна версія</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Встановлена зараз версія</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Натисніть «Пошук», щоб звернутися до офіційного сервера Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Знайти версії</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Завантажити й замінити</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Пошук доступних версій…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Офіційну версію не знайдено.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} версія (s) доступна.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Завантаження {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Встановлена версія: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · встановлено</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Версію не встановлено</value></data>
+  <data name="Emulation.Core.Emulator"><value>Емулятор</value></data>
+  <data name="Emulation.Core.Install"><value>Встановити</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Встановити</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Параметри ядра</value></data>
+</root>

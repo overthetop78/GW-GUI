@@ -87,9 +87,9 @@ aucune adresse propre à une famille.
 
 Pour un essai local, fermer GW GUI, déposer le dossier complet dans `Modules`, puis relancer.
 Dans le dépôt, placer le projet et son manifeste dans `src/GWGUI.Emulation.<Famille>`, avec un projet
-nommé `GWGUI.Emulation.<Famille>.csproj`. `scripts/emulation-modules.ps1` le découvre alors sans
-modifier de liste. `scripts/build.ps1 -Configuration Debug` produit tous les modules découverts ;
-`scripts/package-module.ps1 -Module <id>` produit l'archive indépendante du module demandé. Les
+nommé `GWGUI.Emulation.<Famille>.csproj`. `scripts/release/update-catalog/emulation-modules/emulation-modules.ps1` le découvre alors sans
+modifier de liste. `scripts/local-building/build.ps1 -Configuration Debug` produit tous les modules découverts ;
+`scripts/module-release/package-module.ps1 -Module <id>` produit l'archive indépendante du module demandé. Les
 succès sont inscrits dans `Data/Logs/information-*.log` et les refus dans
 `Data/Logs/errors-*.log`. Les configurations et cœurs téléchargés restent dans les dossiers de
 données existants.
@@ -475,7 +475,7 @@ Les fonctions suivantes sont réalisées pour les modules conformes au SDK :
 
 - manifeste obligatoire et contrôle des versions d'API avant chargement ;
 - sous-dossier autonome avec résolution prioritaire de ses dépendances privées ;
-- archive indépendante créée par `scripts/package-module.ps1` avec empreinte SHA-256 ;
+- archive indépendante créée par `scripts/module-release/package-module.ps1` avec empreinte SHA-256 ;
 - découverte automatique depuis le projet et `module.json`, sans liste de familles à maintenir ;
 - catalogue de versions, recherche sélective et installation par l'updater après fermeture ;
 - traductions embarquées décrites à la section suivante.
@@ -510,6 +510,6 @@ Les valeurs invariantes (CPU, formats, noms de machines…) restent dans leur ba
 par langue. Les textes communs de l'hôte restent dans App.
 
 Les bindings suivent le changement de culture existant. Pour compléter les traductions,
-utiliser `scripts/translate-resx-argos.py --root src/GWGUI.Emulation.<Famille>/Resources` avec
+utiliser `scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.<Famille>/Resources` avec
 les options existantes d'Argos. Le [raccordement détaillé](emulation-module-localization.md)
 décrit les consommateurs et les noms des ressources.

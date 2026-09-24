@@ -1,4 +1,4 @@
-using GWGUI.Domain.Commands.Options;
+using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using System.ComponentModel;
 
 namespace GWGUI.App.ViewModels.Operations.Options;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Memory.Main"><value>メインメモリ</value></data>
+  <data name="Emulation.Memory.Extensions"><value>メモリ拡張</value></data>
+  <data name="Emulation.Memory.None"><value>なし</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>記憶構成はと互換性があります {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>記憶延長はと互換性があります {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM で利用できません {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>構成済みメモリ合計: {0} {1}</value></data>
+</root>

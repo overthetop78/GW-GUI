@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Inconnue</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Inconnue</value></data>
   <data name="Common.Eject"><value>Éjecter</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Médias inconnus</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Disquette</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Disque dur</value></data>
+  <data name="Common.MediaKind.Optical"><value>Disque optique</value></data>
+  <data name="Common.MediaKind.Tape"><value>Rubrique</value></data>
+  <data name="Common.Representation.Flux"><value>Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Secteurs</value></data>
+  <data name="Common.Representation.Blocks"><value>Blocs</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Pistes optiques</value></data>
+  <data name="Common.Representation.Sequential"><value>Données séquentielles</value></data>
+  <data name="Common.Advanced"><value>Paramètres avancés</value></data>
+  <data name="Common.ExpertArguments"><value>Arguments experts</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Arguments transmis tels quels après analyse des guillemets.</value></data>
+  <data name="Common.DiskImageFilter"><value>Images de disque|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Tous les fichiers|*.*</value></data>
+  <data name="Common.Console"><value>Console</value></data>
+  <data name="Common.Command"><value>Commande</value></data>
 </root>

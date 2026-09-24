@@ -1,0 +1,71 @@
+namespace GWGUI.MediaEngine.Images.Reading.Recognition;
+
+/// <summary>Conserve les informations et le contenu partagés pendant la reconnaissance d'une image de média.</summary>
+public sealed class DiskImageRecognitionContext
+{
+    /// <summary>Protège la création unique de la tâche de lecture.</summary>
+    private readonly object readLock = new();
+
+    /// <summary>Tâche unique de lecture, conservée également lorsqu'elle est annulée ou en erreur.</summary>
+    private Task<byte[]>? readTask;
+    private readonly Func<CancellationToken, Task<byte[]>> readBytes;
+
+    /// <summary>Crée le contexte associé à un fichier et au format éventuellement demandé.</summary>
+    /// <param name="path">Chemin du fichier à reconnaître.</param>
+    /// <param name="requestedFormatId">Identifiant de format explicitement demandé, ou <see langword="null"/>.</param>
+    /// <exception cref="ArgumentException">Le chemin est vide ou composé uniquement d'espaces.</exception>
+    /// <exception cref="ArgumentNullException">Le chemin est nul.</exception>
+    /// <exception cref="FileNotFoundException">Le fichier n'existe pas.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accès aux informations du fichier est refusé.</exception>
+    public DiskImageRecognitionContext(string path, string? requestedFormatId)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+        Path = path;
+        Length = new FileInfo(path).Length;
+        Extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
+        RequestedFormatId = requestedFormatId;
+        readBytes = token => File.ReadAllBytesAsync(path, token);
+    }
+
+    /// <summary>Crée un contexte avec une source de données et une taille déjà connues.</summary>
+    internal DiskImageRecognitionContext(string path, string? requestedFormatId, long length, Func<CancellationToken, Task<byte[]>> readBytes)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+        ArgumentNullException.ThrowIfNull(readBytes);
+        Path = path;
+        Length = length;
+        Extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
+        RequestedFormatId = requestedFormatId;
+        this.readBytes = readBytes;
+    }
+
+    /// <summary>Obtient le chemin reçu lors de la création du contexte.</summary>
+    public string Path { get; }
+
+    /// <summary>Obtient la longueur du fichier observée lors de la création du contexte ; le Reader valide ensuite le contenu effectivement lu.</summary>
+    public long Length { get; }
+
+    /// <summary>Obtient l'extension normalisée en minuscules, point initial inclus.</summary>
+    public string Extension { get; }
+
+    /// <summary>Obtient l'identifiant de format demandé, ou <see langword="null"/> en détection automatique.</summary>
+    public string? RequestedFormatId { get; }
+
+    /// <summary>Crée une seule tâche de lecture puis réutilise son résultat, son annulation ou son erreur pour tous les appels.</summary>
+    /// <param name="cancellationToken">Jeton appliqué uniquement lors de la création de l'unique tâche de lecture.</param>
+    /// <returns>Mémoire en lecture seule partageant exactement les octets lus par l'unique tâche.</returns>
+    /// <exception cref="OperationCanceledException">Le jeton est annulé avant ou pendant la première lecture.</exception>
+    /// <exception cref="IOException">Une erreur d'entrée-sortie empêche la lecture.</exception>
+    /// <exception cref="UnauthorizedAccessException">L'accès au fichier est refusé.</exception>
+    public async Task<ReadOnlyMemory<byte>> ReadBytesAsync(CancellationToken cancellationToken = default)
+    {
+        Task<byte[]> task;
+        lock (readLock) task = readTask ??= ReadFileAsync(cancellationToken);
+        return await task.ConfigureAwait(false);
+    }
+
+    /// <summary>Transforme également une erreur synchrone d'ouverture en tâche fautive réutilisable.</summary>
+    /// <param name="cancellationToken">Jeton de la première lecture.</param>
+    /// <returns>Octets lus dans le fichier.</returns>
+    private async Task<byte[]> ReadFileAsync(CancellationToken cancellationToken) => await readBytes(cancellationToken).ConfigureAwait(false);
+}

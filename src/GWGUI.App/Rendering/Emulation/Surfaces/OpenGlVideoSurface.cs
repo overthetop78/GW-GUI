@@ -24,6 +24,7 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
         EmulationVideoProcessingConfigurationFunctions.Normalize(null);
     private readonly IEmulationVideoProcessingPipeline _videoProcessingPipeline;
     private readonly SoftwareEmulationVideoProcessingPipeline _snapshotPipeline = new();
+    private bool _disposed;
     private OpenGlVideoProcessingProgram? _program;
     private EmulationVideoSampling _programSampling;
     private EmulationVideoDisplayTechnology _programDisplayTechnology;
@@ -129,6 +130,7 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
         }
         if (_dc != IntPtr.Zero) { ReleaseDC(hwnd.Handle, _dc); _dc = IntPtr.Zero; }
         NativeVideoWindowFunctions.Destroy(hwnd.Handle);
+        _hwnd = IntPtr.Zero;
     }
 
     public void Present(VideoFrame frame)
@@ -225,9 +227,16 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
 
     public new void Dispose()
     {
-        _videoProcessingPipeline.Dispose();
-        _snapshotPipeline.Dispose();
-        base.Dispose();
+        if (_disposed) return;
+        _disposed = true;
+        try { base.Dispose(); }
+        finally
+        {
+            _snapshot = null;
+            _snapshotSourceFrame = null;
+            _videoProcessingPipeline.Dispose();
+            _snapshotPipeline.Dispose();
+        }
     }
 
     public void ResetHistory()
