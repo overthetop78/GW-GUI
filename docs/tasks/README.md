@@ -27,6 +27,10 @@ action nécessaire manque, l'ajouter à la suite de la dernière action cochée 
 dépend. Si l'ordre restant est faux, le corriger avant toute modification du code. Réécrire une
 action imprécise avant de l'exécuter et supprimer une action devenue fausse ou sans objet.
 
+## Nouveau chantier d’émulation
+
+- [Module Amstrad et choix du moteur par machine](emulation/amstrad.md) — chantier actif de référence pour Caprice32, CrocoDS et la future reprise d’Atari/Amiga; PCW restera différé jusqu’au choix de son moteur.
+
 ## Travail à reprendre après validation ou disponibilité
 
 - [Publications restantes](release.md) — prochaines publications de l’application, du module Atari et, si son contrat évolue, du SDK.

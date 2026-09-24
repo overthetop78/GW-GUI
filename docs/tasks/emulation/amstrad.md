@@ -1,0 +1,335 @@
+# Module d’émulation Amstrad et choix du moteur par machine
+
+Cette feuille réalise [`../../project/amstrad-emulation.md`](../../project/amstrad-emulation.md).
+Elle s’exécute dans l’ordre, sans contrat parallèle, sans moteur stocké dans une configuration de
+machine et sans repli silencieux vers un autre moteur.
+
+Le sélecteur existe déjà : `EmulationCoreManagementPanel.Emulators` est la `ComboBox` de l’onglet
+Général et `EmulationModuleSettingsSection` la rafraîchit déjà. Il ne faut ni créer un second
+sélecteur, ni refaire ce panneau, ni modifier `IEmulationModule.RuntimeOptions`,
+`EmulationMachineRuntime` ou `EmulationSectionConfigurationFunctions` pour choisir le moteur.
+
+Les PCW restent dans la famille Amstrad, mais hors de cette réalisation CPC/GX4000. Leur feuille sera
+écrite après décision et validation de leur moteur.
+
+- [ ] 1. Établir les preuves techniques des moteurs Amstrad initiaux
+  - [ ] 1.1 Identifier exactement les binaires utilisables
+    - [ ] 1.1.1 Constituer la fiche de provenance de Caprice32 et CrocoDS
+      - [ ] Créer `docs/reference/amstrad-libretro.md` avec, pour chaque cœur Windows x64, dépôt officiel, licence, révision testée, URL d’archive, nom de DLL, taille, SHA-256, architecture PE et exports Libretro requis.
+    - [ ] 1.1.2 Consigner les capacités déclarées et mesurées
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` pour séparer, par cœur, formats annoncés, démarrage sans contenu, sérialisation, sauvegarde persistante, contrôle multidisque, fréquence vidéo, fréquence audio et besoin d’un chemin complet.
+  - [ ] 1.2 Fixer la compatibilité machine/moteur sans extrapolation
+    - [ ] 1.2.1 Établir la matrice de validation
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` avec une ligne par couple CPC 464, CPC 664, CPC 6128, CPC 464 Plus, CPC 6128 Plus ou GX4000 et Caprice32 ou CrocoDS, accompagnée de la preuve, de l’état validé/refusé/non testé et du motif, sans utiliser cet état pour masquer un des six modèles sur la branche.
+    - [ ] 1.2.2 Garder visibles les six modèles pendant leur mise au point
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` pour préciser que CPC 464, CPC 664, CPC 6128, CPC 464 Plus, CPC 6128 Plus et GX4000 restent visibles sur la branche, qu’un échec maintient la branche inachevée et que seules les machines PCW restent hors de cette phase.
+  - [ ] 1.3 Décrire les adaptations natives nécessaires
+    - [ ] 1.3.1 Relever les options et périphériques de chaque cœur
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` avec chaque variable native, ses valeurs acceptées, sa valeur par défaut, son effet à chaud ou après recréation, ainsi que les périphériques d’entrée réellement annoncés.
+    - [ ] 1.3.2 Relever le comportement des médias et du cycle de vie
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` avec les callbacks disque, cassette et cartouche, les changements à chaud, le reset, l’arrêt, les états, les géométries vidéo et les fréquences audio observés.
+
+- [ ] 2. Étendre le contrat existant et son sélecteur sans refaire l’App
+  - [ ] 2.1 Ajouter uniquement les informations absentes du SDK
+    - [ ] 2.1.1 Définir un moteur sélectionnable
+      - [ ] Créer `src/GWGUI.Emulation/Contracts/EmulationEmulatorDefinition.cs` avec un `record` public immuable contenant exactement `Id` et `DisplayResourceKey`, et une validation documentée exigeant deux valeurs non vides.
+    - [ ] 2.1.2 Décrire complètement l’installation active
+      - [ ] Modifier `src/GWGUI.Emulation/Contracts/EmulationEmulatorInstallation.cs` pour ajouter `string? InstallationPath` après `InstalledVersion`, avec l’invariant que version et chemin sont soit tous deux absents, soit tous deux non vides, et que le chemin désigne la DLL active effectivement chargeable.
+    - [ ] 2.1.3 Étendre le gestionnaire existant
+      - [ ] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationEmulatorManager.cs` pour ajouter `IReadOnlyList<EmulationEmulatorDefinition> GetEmulators(string machineId)` avant les opérations asynchrones existantes.
+      - [ ] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationEmulatorManager.cs` pour ajouter `ValueTask SelectEmulatorAsync(string machineId, string emulatorId, CancellationToken cancellationToken = default)` sans changer les signatures de `GetEmulatorInstallationAsync`, `FindEmulatorReleasesAsync` et `InstallEmulatorAsync`.
+  - [ ] 2.2 Faire fonctionner plusieurs choix dans le contrôleur existant
+    - [ ] 2.2.1 Définir l’objet présenté par la `ComboBox`
+      - [ ] Créer `src/GWGUI.App/Contracts/Emulation/Emulators/EmulationEmulatorChoice.cs` avec `Definition`, `DisplayName`, un accès à l’identifiant stable et `ToString()` retournant uniquement le libellé localisé.
+    - [ ] 2.2.2 Charger et sélectionner les choix sans écriture parasite
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour recevoir `IEmulationModule`, transformer `GetEmulators(machineId)` en choix localisés avec `LocExtension.GetForModule`, refuser une liste vide ou des identifiants dupliqués et affecter ces choix à la `ComboBox` existante.
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour faire sélectionner au rafraîchissement le choix dont l’identifiant égale `EmulationEmulatorInstallation.EmulatorId`, sans appeler `SelectEmulatorAsync` pendant ce chargement.
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour interpréter version et chemin tous deux absents comme moteur absent, appeler `ShowInstallation(false)`, afficher le bouton, masquer le badge, effacer immédiatement l’ancien chemin du statut et refuser un résultat incohérent où une seule des deux valeurs est renseignée.
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour appeler `ShowInstallation(true)` lorsque version et chemin sont présents, masquer le bouton, afficher le badge et écrire systématiquement le chemin complet dans `Status` avec la ressource `InstalledPathResource` à chaque `RefreshAsync`.
+    - [ ] 2.2.3 Enregistrer seulement un geste utilisateur valide
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour abonner `SelectionChanged`, ignorer l’événement pendant le chargement, appeler `SelectEmulatorAsync` avec la machine et l’identifiant choisis, puis rafraîchir seulement l’installation et le statut.
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour laisser `FindEmulatorReleasesAsync` et `InstallEmulatorAsync` agir sur le choix courant du module et ne jamais appeler `ApplySettings` ou `SaveConfigurationAsync` lors d’un changement de moteur.
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour conserver le parcours du bouton existant : afficher la recherche, choisir la release obligatoire ou la première disponible, afficher son nom pendant le téléchargement, transmettre progression et annulation, puis rappeler `RefreshAsync` et afficher le chemin installé.
+    - [ ] 2.2.4 Préserver la vue existante et son propriétaire
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs` uniquement pour passer `_module` au constructeur du contrôleur et déclencher sa libération lors de la fermeture, sans modifier `BuildEditor`, la position du panneau ni `EmulationCoreManagementPanel.cs`.
+    - [ ] 2.2.5 Garantir l’annulation et le détachement
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour implémenter une libération asynchrone idempotente qui annule et attend l’opération possédée, détache `Click` et `SelectionChanged`, puis dispose le `CancellationTokenSource` dans `finally`.
+      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour associer chaque rafraîchissement au `machineId` capturé et empêcher toute réponse terminée tardivement de modifier la vue d’une autre machine.
+  - [ ] 2.3 Adapter les preuves génériques de l’interface
+    - [ ] 2.3.1 Remplacer le scénario limité à un choix
+      - [ ] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` pour remplacer `CurrentEmulatorIsTheOnlyChoice` par un scénario vérifiant l’ordre, les libellés, la sélection donnée par l’installation et l’absence d’écriture pendant `RefreshAsync`.
+      - [ ] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` pour ajouter les scénarios du geste utilisateur, du changement de machine, de l’installation du choix courant, de l’échec de sélection et d’une réponse asynchrone obsolète.
+      - [ ] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` pour vérifier qu’une installation absente rend le bouton visible, qu’une version et un chemin présents affichent le badge et le chemin, qu’un résultat partiel est rejeté, et qu’un téléchargement réussi conserve le chemin visible après plusieurs rafraîchissements.
+    - [ ] 2.3.2 Enregistrer et nettoyer les scénarios STA
+      - [ ] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/SettingsViewsTests.cs` pour exposer chaque nouveau scénario et garantir dans `finally` la fermeture de la surface et la libération du contrôleur créé.
+  - [ ] 2.4 Versionner l’unique rupture publique
+    - [ ] 2.4.1 Passer le contrat partagé à la version 2
+      - [ ] Modifier `src/GWGUI.Emulation/Constants/EmulationHostApi.cs` pour fixer `CurrentVersion` à `new Version(2, 0)` sans changer le schéma de manifeste.
+      - [ ] Modifier `src/GWGUI.Emulation/GWGUI.Emulation.csproj` pour fixer `<Version>2.0.0</Version>` et ajouter `GWGUI.Emulation.Amstrad` aux accès internes nécessaires à l’ABI Libretro commune.
+    - [ ] 2.4.2 Mettre à jour les exemples contractuels
+      - [ ] Modifier `src/GWGUI.Emulation/README.md` pour remplacer SDK/API 1.x par SDK `2.0.0`/API `2.0`, présenter les deux nouvelles méthodes, documenter `InstallationPath` et préciser que les trois opérations d’installation portent sur le moteur sélectionné.
+      - [ ] Modifier `sdk/module-template/GWGUI.Emulation.Module.csproj` pour référencer exclusivement `GWGUI.Emulation.SDK` `2.0.0`.
+      - [ ] Modifier `sdk/module-template/module.json` pour fixer `hostApiMinimum` et `hostApiMaximum` à `2.0` en conservant `schemaVersion: 2`.
+    - [ ] 2.4.3 Adapter les tests de compatibilité du manifeste
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/Modules/EmulationModuleManifestTests.cs` pour utiliser `2.0` comme API courante dans les cas concernés, conserver les contrôles de formats et ajouter le rejet explicite d’un module limité à `1.0`.
+
+- [ ] 3. Créer la structure autonome et la configuration du module Amstrad
+  - [ ] 3.1 Créer le projet chargeable
+    - [ ] 3.1.1 Définir le projet et son manifeste
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/GWGUI.Emulation.Amstrad.csproj` avec `net10.0`, `x64`, nullable et imports implicites, les références à `GWGUI.Emulation` et `GWGUI.MediaEngine`, les ressources embarquées et la copie de `module.json`.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/module.json` avec `schemaVersion: 2`, `id: amstrad`, `entryAssembly: gwgui.emulation.amstrad.dll`, `moduleVersion: 1.0.0`, les deux bornes hôte `2.0` et l’URL du catalogue Amstrad.
+    - [ ] 3.1.2 Raccorder la solution et les tests
+      - [ ] Modifier `GWGUI.sln` pour ajouter le projet Amstrad sous `src` et mapper Debug/Release x64 sans modifier les projets existants.
+      - [ ] Modifier `tests/GWGUI.Tests/GWGUI.Tests.csproj` pour ajouter une `ProjectReference` vers le projet Amstrad sans changer les références existantes.
+  - [ ] 3.2 Définir le catalogue matériel sans moteur
+    - [ ] 3.2.1 Centraliser les identifiants stables
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Constants/AmstradConstants.cs` avec `amstrad`, les six identifiants CPC/GX4000 prévus, les noms de dossiers/fichiers et les valeurs fixes de protocole, sans texte visible ni PCW.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Enums/AmstradMachineModel.cs` avec une valeur par modèle CPC/GX4000 retenu et aucune valeur PCW.
+    - [ ] 3.2.2 Décrire les caractéristiques fixes
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradMachineDefinition.cs` avec modèle, identifiant, clé de ressource, famille Classic/Plus/GX4000, RAM nominale, clavier, ports et périphériques matériels, sans propriété de moteur.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Dictionaries/AmstradMachineCatalog.cs` avec une définition unique et une recherche stricte pour les six modèles, tous retournés par la liste publique sans propriété de masquage liée à la validation.
+  - [ ] 3.3 Définir une seule configuration par machine
+    - [ ] 3.3.1 Définir les données communes sérialisables
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradMachineConfiguration.cs` implémentant `IEmulationConfiguration` avec schéma, `Id`, `MachineId`, écran, audio, entrées et médias, sans `Core`, `Engine`, `Emulator`, version, hash ni chemin de DLL.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradInputConfiguration.cs` avec clavier CPC et deux ports joystick exprimés sans identifiant natif de cœur.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradMediaConfiguration.cs` avec chemin, emplacement commun, catégorie, lecture seule et insertion, sans champ Caprice32 ou CrocoDS.
+    - [ ] 3.3.2 Construire et présenter la configuration
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradConfigurationFunctions.cs` pour créer les valeurs par défaut, changer de modèle, appliquer les champs communs et rejeter schéma, machine, média ou port inconnus.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradSettingsDescriptionFunctions.cs` pour produire les onglets, groupes, choix et règles réellement applicables au modèle matériel.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradConfigurationSummaryFunctions.cs` pour résumer modèle, matériel et médias sans afficher le moteur.
+    - [ ] 3.3.3 Persister atomiquement la configuration
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Services/AmstradConfigurationStore.cs` avec `using System.IO;`, lecture de `Configurations/<id>/machine.json`, validation de l’identifiant et du schéma, chemins relatifs à `DataDirectory`, écriture dans le même dossier puis remplacement atomique et suppression du temporaire dans `finally`.
+
+- [ ] 4. Séparer catalogue, sélection et installation des moteurs
+  - [ ] 4.1 Définir le catalogue extensible
+    - [ ] 4.1.1 Définir l’identité interne et les compatibilités
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Enums/AmstradEmulator.cs` avec `Caprice32` et `CrocoDS`, sans sérialisation dans `AmstradMachineConfiguration`.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradEngineCatalogEntry.cs` avec enum interne, identifiant stable, clé de ressource, DLL, machines compatibles et machines dont il est le défaut.
+    - [ ] 4.1.2 Valider le catalogue
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Dictionaries/AmstradEngineCatalog.cs` avec les associations prouvées, une liste stable par machine, un défaut unique, et des erreurs pour doublon, liste vide, défaut multiple ou couple inconnu.
+  - [ ] 4.2 Persister le choix indépendamment de `machine.json`
+    - [ ] 4.2.1 Définir le document commun
+      - [ ] Créer `src/GWGUI.Emulation/Contracts/EmulationEmulatorSelectionDocument.cs` comme `record` public contenant exactement `SchemaVersion`, `MachineId` et `EmulatorId`.
+    - [ ] 4.2.2 Écrire le store commun
+      - [ ] Créer `src/GWGUI.Emulation/Services/EmulationEmulatorSelectionStore.cs` avec `using System.IO;`, échappement refusé des identifiants, lecture de `Emulators/Selections/<machine-id>.json`, validation par délégué, écriture atomique dans le même dossier et suppression du temporaire dans `finally`.
+    - [ ] 4.2.3 Appliquer les règles Amstrad
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Services/AmstradEmulatorSelectionService.cs` pour retourner le défaut du catalogue sans écrire si le fichier manque, valider tout couple avant sauvegarde et ne jamais ouvrir ni modifier un fichier de configuration.
+  - [ ] 4.3 Installer plusieurs moteurs indépendamment
+    - [ ] 4.3.1 Définir les métadonnées versionnées
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradCoreRelease.cs` avec identifiant de release, moteur, version déclarée, date, URI d’archive et nom de DLL attendu.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradCoreDiagnosticManifest.cs` avec source, version, tailles, SHA-256, architecture PE, identité et exports vérifiés.
+    - [ ] 4.3.2 Diagnostiquer et écrire les manifestes
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradCoreDiagnosticFunctions.cs` pour contrôler PE x64, exports requis, identité et version avant toute activation.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradCoreReleaseFunctions.cs` pour calculer SHA-256, extraire uniquement la DLL attendue, écrire `core.json`/`active.json` atomiquement et refuser chemins absolus ou traversées d’archive.
+    - [ ] 4.3.3 Télécharger, activer et résoudre une version
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Services/AmstradCoreReleaseService.cs` avec `using System.IO;`, recherche des releases, téléchargement annulable, progression, extraction sous `Core/<emulator-id>/<version>`, diagnostic avant activation et nettoyage `.download`/`.extract` dans `finally`.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Services/AmstradCoreProvider.cs` pour lire `Core/<emulator-id>/active.json`, vérifier que la version visée, `core.json` et la DLL existent et correspondent au moteur, puis retourner le chemin et la version installée ou `null` sans choisir un autre moteur.
+
+- [ ] 5. Implémenter les moteurs derrière une base Amstrad commune
+  - [ ] 5.1 Définir un point d’extension indépendant de Libretro
+    - [ ] 5.1.1 Définir le contrat et le contexte d’un moteur
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Interfaces/IAmstradEngine.cs` avec identifiant, machines supportées, validation du contenu et création d’une `IEmulatedMachine` depuis la configuration commune et le contexte.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradMachineCreationContext.cs` avec moteur sélectionné, bibliothèque, dossiers de session/états, exécutable hôte, factory audio et résolveur de sauvegardes.
+    - [ ] 5.1.2 Résoudre une implémentation sans condition dispersée
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Services/AmstradEngine.cs` avec un dictionnaire exhaustif d’implémentations, validation du couple machine/moteur et création par identifiant explicite, sans lire la configuration ni utiliser de repli.
+  - [ ] 5.2 Créer l’hôte Libretro réellement partagé
+    - [ ] 5.2.1 Définir les différences déléguées aux adaptateurs
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroAdapter.cs` avec identité attendue, formats, capacités, variables initiales, traduction d’options sémantiques, entrées et règles de chargement propres au cœur.
+    - [ ] 5.2.2 Implémenter le cœur et la machine communs
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroCore.cs` pour charger l’ABI commune, brancher environnement/vidéo/audio/entrée, initialiser, charger, exécuter, décharger et libérer callbacks et bibliothèque dans `finally`.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` avec `Id`, `State` et `StartAsync`, `PauseAsync`, `ResumeAsync`, `SoftResetAsync`, `HardResetAsync`, `StopAsync` idempotents, transitions d’état validées et arrêt effectif du cœur dans `finally`.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour exposer `LatestFrame`, `FramesPerSecond` et `FrameReady`, copier les images hors de la mémoire native avant publication et ne plus émettre après l’arrêt.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour exposer `LatestChunk`, `SampleRate`, `ChunkReady`, volume, mute et factory de sortie audio, vider et libérer buffers/sortie dans `finally`.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour exposer les liaisons clavier, les deux ports, `SetInput`, le périphérique par port et les capacités de pointeur annoncées par l’adaptateur.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour exposer les médias montés et implémenter insertion, éjection et sélection de disque avec validation du slot, du format, du moteur et de la prise en charge à chaud.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour exposer le transport cassette seulement pour les modèles et moteurs compatibles, avec état, commandes disponibles et annulation de l’opération active à l’arrêt.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour exposer nom/version du moteur, extensions, activité des médias, options disponibles et `SetOptionAsync`, en traduisant les clés sémantiques avec l’adaptateur conservé par la machine.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour rendre `DisposeAsync` idempotent, arrêter puis attendre le cœur, détacher les événements et libérer uniquement les ressources possédées dans `finally`.
+    - [ ] 5.2.3 Conserver l’identité des états sauvegardés
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Contracts/AmstradSavedStateHeader.cs` avec schéma, machine, moteur, version du moteur et taille de l’état natif.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradSavedStateFunctions.cs` avec `using System.IO;` pour écrire l’en-tête et les octets natifs atomiquement, puis refuser au chargement tout schéma, machine, moteur, version ou taille incompatible.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradLibretroMachine.cs` pour exposer `IsSupported`, sauvegarder et charger via `AmstradSavedStateFunctions`, respecter l’annulation et supprimer le temporaire dans `finally`.
+    - [ ] 5.2.4 Isoler l’exécution native du processus graphique
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradCoreHost.cs` pour valider la commande et le moteur, ouvrir pipe et mapping, exécuter la boucle puis arrêter et libérer chaque ressource possédée dans `finally`.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Libretro/AmstradProcessMachine.cs` pour démarrer l’hôte, attendre son initialisation, relayer les commandes, demander l’arrêt, attendre la destruction effective et fermer processus, flux et mapping dans `finally`.
+  - [ ] 5.3 Implémenter Caprice32
+    - [ ] 5.3.1 Traduire configuration et médias
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Caprice32/Caprice32Adapter.cs` pour mapper uniquement les modèles, RAM, écran, langue, entrées et options `cap32_*` prouvés, et annoncer les capacités exactes.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Caprice32/Caprice32MediaFunctions.cs` pour affecter DSK/M3U, TAP/CDT/VOC, CPR, SNA et ZIP seulement aux emplacements validés et refuser une archive ambiguë.
+    - [ ] 5.3.2 Construire la machine Caprice32
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/Caprice32/Caprice32MachineFactory.cs` pour vérifier identité/version du cœur, créer l’adaptateur puis la machine et libérer toute ressource créée partiellement dans `finally`.
+  - [ ] 5.4 Implémenter CrocoDS
+    - [ ] 5.4.1 Traduire configuration et médias
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/CrocoDS/CrocoDSAdapter.cs` pour mapper seulement les options, entrées et capacités observées, sans variable de modèle inventée ni multidisque fictif.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/CrocoDS/CrocoDSMediaFunctions.cs` pour accepter uniquement DSK, SNA et KCR validés, refuser cassette/CPR/M3U et indiquer la recréation lorsque le changement à chaud manque.
+    - [ ] 5.4.2 Construire la machine CrocoDS
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Engines/CrocoDS/CrocoDSMachineFactory.cs` pour vérifier identité/version du cœur, créer l’adaptateur puis la machine et libérer toute ressource créée partiellement dans `finally`.
+
+- [ ] 6. Raccorder le module Amstrad et ses ressources
+  - [ ] 6.1 Exposer la façade dynamique
+    - [ ] 6.1.1 Construire les services depuis le contexte du module
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModuleFactory.cs` pour construire exactement `Configurations`, `Emulators`, `Core`, le chemin de données et le client HTTP depuis `EmulationModuleContext`.
+    - [ ] 6.1.2 Implémenter les contrats publics
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` avec `Id`, `DisplayResourceKey`, `Machines` contenant toujours les six modèles du catalogue et `DefaultVisibility` cohérent avec les onglets génériques.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour implémenter `IEmulationModuleLocalization.TryGetString` au moyen de `EmulationModuleLocalization` et de `GWGUI.Emulation.Amstrad.Resources.Emulation`.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire reconnaître à `TryHandleHostCommand` uniquement la commande hôte Amstrad avec moteur, pipe et mapping valides, appeler `AmstradCoreHost`, retourner son code de sortie et renvoyer `false` pour toute autre commande.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire déléguer `Describe` à la description du modèle, `CreateConfiguration` aux valeurs par défaut, `ChangeMachine` à une nouvelle configuration du modèle demandé et `ApplySettings` à la validation des champs communs.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire déléguer `SummarizeConfiguration` au résumé matériel et `LoadConfigurationsAsync`, `SaveConfigurationAsync`, `DeleteConfigurationAsync` au store, avec vérification du type et propagation de l’annulation.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour implémenter `DescribeInputSettings`, `ApplyInputSettings` et `SaveInputSettingsAsync` en réutilisant les fonctions d’entrée et le même store de configuration.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour implémenter `DescribeStorageSettings` et `ApplyStorageSettings` en réutilisant les fonctions de stockage sans modifier le moteur sélectionné.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire retourner à `GetEmulators` exactement les définitions compatibles du catalogue et faire valider/persister à `SelectEmulatorAsync` le couple machine/moteur dans le store séparé.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire lire à `GetEmulatorInstallationAsync` le moteur sélectionné, interroger `AmstradCoreProvider` et retourner identifiant, version active et chemin complet de la DLL, ou version et chemin nuls si aucune installation valide n’existe.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire rechercher à `FindEmulatorReleasesAsync` uniquement les releases du moteur sélectionné et conserver l’association entre chaque release affichée et sa release Amstrad validée.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire installer à `InstallEmulatorAsync` uniquement une release précédemment trouvée pour le moteur sélectionné, transmettre progression et annulation et retourner le chemin de la DLL activée.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire résoudre à `CreateRuntimeAsync` exactement le moteur sélectionné et lever l’erreur commune `EmulatorNotInstalled` avec cet identifiant si son installation active est absente ou invalide, sans repli vers Caprice32.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour faire retourner à `RuntimeOptions` uniquement les clés sémantiques comprises par la machine active.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` pour construire `EmulationMachineRuntime` avec configuration préparée, factory de machine, périphériques, médias montés, ressource de nom, capture du pointeur et préparation asynchrone des médias correspondant au modèle et au moteur sélectionné.
+    - [ ] 6.1.3 Adapter médias, lecteurs et entrées
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradRuntimeMediaFunctions.cs` pour convertir les médias communs selon modèle et adaptateur en réutilisant les API publiques existantes sans recopier leur code.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradStorageSettingsFunctions.cs` pour exposer les lecteurs matériels, extensions compatibles avec le moteur courant et `RequiresMachineRecreation` sans modifier la configuration lors d’un choix de moteur.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Functions/AmstradInputSettingsFunctions.cs` pour décrire/appliquer clavier et deux ports communs, puis laisser l’adaptateur traduire les identifiants natifs.
+  - [ ] 6.2 Ajouter les ressources sans dupliquer les invariants
+    - [ ] 6.2.1 Écrire la base commune
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/00-Base/Emulation.resx` avec Amstrad, noms de machines, Caprice32, CrocoDS, CPU, RAM, ROM, formats, identifiants invariants et aucune phrase traduisible.
+    - [ ] 6.2.2 Écrire toutes les cultures distribuées avec Argos puis relecture
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/ar-SA/Emulation.resx` avec les phrases arabes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/cs-CZ/Emulation.resx` avec les phrases tchèques produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/da-DK/Emulation.resx` avec les phrases danoises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/de-DE/Emulation.resx` avec les phrases allemandes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/el-GR/Emulation.resx` avec les phrases grecques produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/en-US/Emulation.resx` avec les phrases anglaises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/es-ES/Emulation.resx` avec les phrases espagnoles produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/fi-FI/Emulation.resx` avec les phrases finnoises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/fr-FR/Emulation.resx` avec les phrases françaises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/he-IL/Emulation.resx` avec les phrases hébraïques produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/hu-HU/Emulation.resx` avec les phrases hongroises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/id-ID/Emulation.resx` avec les phrases indonésiennes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/it-IT/Emulation.resx` avec les phrases italiennes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/ja-JP/Emulation.resx` avec les phrases japonaises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/ko-KR/Emulation.resx` avec les phrases coréennes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/nb-NO/Emulation.resx` avec les phrases norvégiennes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/nl-NL/Emulation.resx` avec les phrases néerlandaises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/pl-PL/Emulation.resx` avec les phrases polonaises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/pt-BR/Emulation.resx` avec les phrases portugaises du Brésil produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/pt-PT/Emulation.resx` avec les phrases portugaises du Portugal produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/ro-RO/Emulation.resx` avec les phrases roumaines produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/ru-RU/Emulation.resx` avec les phrases russes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/sv-SE/Emulation.resx` avec les phrases suédoises produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/th-TH/Emulation.resx` avec les phrases thaïes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/tr-TR/Emulation.resx` avec les phrases turques produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/uk-UA/Emulation.resx` avec les phrases ukrainiennes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/vi-VN/Emulation.resx` avec les phrases vietnamiennes produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/zh-Hans/Emulation.resx` avec les phrases chinoises simplifiées produites par Argos puis relues, sans invariants dupliqués.
+      - [ ] Créer `src/GWGUI.Emulation.Amstrad/Resources/zh-Hant/Emulation.resx` avec les phrases chinoises traditionnelles produites par Argos puis relues, sans invariants dupliqués.
+
+- [ ] 7. Vérifier complètement Amstrad avant de reprendre les modules existants
+  - [ ] 7.1 Prouver catalogues, configuration et sélection
+    - [ ] 7.1.1 Vérifier les catalogues
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradCatalogScenarios.cs` avec des assertions exigeant exactement les six modèles visibles, des identifiants uniques, l’absence de PCW, un ordre stable, les couples de moteurs prévus et un défaut unique par machine.
+    - [ ] 7.1.2 Vérifier la configuration
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradConfigurationScenarios.cs` avec sérialisation d’une configuration par machine, absence de propriété moteur, validation des réglages et résumé matériel.
+    - [ ] 7.1.3 Vérifier la sélection séparée
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorSelectionScenarios.cs` avec défaut sans écriture, changement atomique, indépendance de `machine.json`, persistance après recréation du service, rejet des couples invalides et suppression des temporaires dans `finally`.
+  - [ ] 7.2 Prouver l’installation et exposer les scénarios
+    - [ ] 7.2.1 Vérifier l’installation sans dépendance externe
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradCoreInstallationScenarios.cs` avec HTTP et archives en mémoire pour tester moteur absent, découverte de releases, téléchargement avec progression, activation, retour conjoint de la version et du chemin complet de DLL, deux installations simultanées, versions actives distinctes, PE/export/hash invalides, annulation, remplacement atomique et nettoyage.
+    - [ ] 7.2.2 Enregistrer les scénarios xUnit
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradTests.cs` avec un test par scénario autonome et nettoyage de chaque dossier temporaire dans `finally`.
+  - [ ] 7.3 Prouver tous les contrats du module et de la machine
+    - [ ] 7.3.1 Vérifier la façade sans DLL externe
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradModuleContractScenarios.cs` avec stores et moteur contrôlés pour vérifier identité, machines, visibilité, localisation, description, création/changement/application/résumé, chargement/sauvegarde/suppression, entrées, stockage, sélection, installation et construction du runtime.
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradTests.cs` pour exposer chaque scénario de `AmstradModuleContractScenarios` à xUnit.
+    - [ ] 7.3.2 Vérifier la commande du processus hôte
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradHostCommandScenarios.cs` pour vérifier commande inconnue, arguments incomplets, moteur inconnu, commande valide, code de sortie et libération de pipe/mapping simulés dans `finally`.
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradTests.cs` pour exposer chaque scénario de `AmstradHostCommandScenarios` à xUnit.
+    - [ ] 7.3.3 Vérifier les contrats de la machine avec un cœur contrôlé
+      - [ ] Créer `tests/GWGUI.Tests/Emulation/Amstrad/AmstradMachineContractScenarios.cs` pour vérifier transitions de cycle de vie, publication vidéo/audio, mute/volume, entrées, ports, médias, cassette, activité, options, états compatibles/incompatibles, arrêt répété et absence de callback après destruction.
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradTests.cs` pour exposer chaque scénario de `AmstradMachineContractScenarios` et toujours arrêter/détruire machine, cœur, flux, thread et ressources graphiques possédés dans `finally`.
+    - [ ] 7.3.4 Vérifier les ressources du module
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradModuleContractScenarios.cs` pour vérifier que chaque clé traduisible de la base existe dans les 29 cultures, que les invariants restent uniquement dans `00-Base` et que chacun des six modèles et chaque moteur proposé possède une ressource résoluble.
+  - [ ] 7.4 Valider les DLL réelles et le cycle de vie
+    - [ ] 7.4.1 Consigner les essais manuels reproductibles
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` avec, pour chacun des six modèles et chaque moteur finalement proposé, démarrage, reset, arrêt répété, vidéo, audio, clavier, joysticks, médias, états, choix appliqué au lancement suivant et contrôle d’absence de processus, thread, handle, mapping ou DLL résiduelle.
+    - [ ] 7.4.2 Retirer les outils de validation non destinés au dépôt
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` pour lister les outils et artefacts temporaires supprimés après essai et ne conserver que les preuves reproductibles et les tests autonomes.
+
+- [ ] 8. Reprendre Atari après validation d’Amstrad sans changer ses fonctions matérielles
+  - [ ] 8.1 Retirer le moteur de la configuration persistée
+    - [ ] 8.1.1 Supprimer `Core` du modèle et du document
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Contracts/AtariMachineConfiguration.cs` pour retirer l’affectation et la propriété `Core` en conservant modèle, famille, firmwares, médias, options, entrées, audio et dossiers.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Contracts/AtariConfigurationDocument.cs` pour retirer le paramètre `Core` du JSON final.
+    - [ ] 8.1.2 Supprimer la déduction et la sérialisation historiques
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariConfigurationFunctions.cs` pour supprimer `GetCore` sans modifier `GetFamily` ni les validations matérielles.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariConfigurationStoreFunctions.cs` pour ne plus écrire, lire ou comparer un cœur et reconstruire la configuration uniquement depuis les données matérielles.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariConfigurationSummaryFunctions.cs` pour retirer la ligne `Core` du résumé.
+  - [ ] 8.2 Faire porter le moteur par le catalogue et la session
+    - [ ] 8.2.1 Séparer compatibilité matérielle et compatibilité moteur
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Contracts/AtariCompatibilityDefinition.cs` pour retirer `Core` et conserver seulement capacités, médias, firmware, ports et visibilité.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Dictionaries/AtariCoreCatalog.cs` pour exposer `GetCompatible(model)` et `GetDefault(model)` en conservant les associations actuelles.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariCoreCatalogFunctions.cs` pour autoriser plusieurs entrées par modèle, refuser les doublons et imposer exactement un défaut.
+    - [ ] 8.2.2 Transporter explicitement le moteur sélectionné
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Contracts/AtariMachineCreationContext.cs` pour ajouter l’identifiant ou l’enum moteur sélectionné avec le chemin de sa DLL.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Services/AtariEngine.cs` pour choisir la factory depuis ce moteur explicite.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Factories/AtariMachineFactory.cs` pour valider le moteur du contexte au lieu de `configuration.Core`.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Services/AtariMachine.cs` pour conserver le moteur de session et l’utiliser pour runtime, thread et comportements spécialisés.
+    - [ ] 8.2.3 Remplacer chaque lecture directe de `configuration.Core`
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariCassetteBootFunctions.cs` pour recevoir le moteur en argument.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariControllerPortFunctions.cs` pour recevoir le moteur en argument.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariRuntimeFunctions.cs` pour calculer l’activité depuis le moteur de session.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariSavedStateFunctions.cs` pour enregistrer et vérifier le moteur du runtime sans l’inscrire dans la configuration.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariStorageSettingsFunctions.cs` pour obtenir le moteur choisi ou les capacités du catalogue.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs` pour décrire le matériel depuis le modèle et réserver le moteur à la traduction native.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs` pour construire les réglages depuis le modèle et les capacités matérielles.
+  - [ ] 8.3 Adopter le contrat final et le prouver
+    - [ ] 8.3.1 Raccorder sélection, installation et runtime
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModuleFactory.cs` pour transmettre `Emulators` en plus de `Configurations` et `Core`.
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs` pour implémenter `GetEmulators`/`SelectEmulatorAsync`, persister le choix, retourner version et chemin complet de la DLL active, faire agir les méthodes d’installation sur lui et créer le runtime exact sans repli.
+    - [ ] 8.3.2 Versionner et tester la rupture Atari
+      - [ ] Modifier `src/GWGUI.Emulation.Atari/module.json` pour fixer `moduleVersion`, `hostApiMinimum` et `hostApiMaximum` à `2.0.0`, `2.0` et `2.0`.
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs` pour vérifier l’absence de moteur sérialisé et la conservation des options matérielles Atari.
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineCapabilitiesScenarios.cs` pour vérifier liste, défaut, sélection et factory de chaque modèle Atari existant.
+
+- [ ] 9. Reprendre Amiga après Atari sans changer ses fonctions matérielles
+  - [ ] 9.1 Retirer le moteur de la configuration persistée
+    - [ ] 9.1.1 Supprimer les propriétés non matérielles
+      - [ ] Modifier `src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineConfiguration.cs` pour retirer `Core` et `ValidatedCoreSha256` en conservant toutes les propriétés matérielles, médias, entrées et audio.
+      - [ ] Modifier `src/GWGUI.Emulation.Amiga/Services/AmigaConfigurationStore.cs` pour écrire le schéma final sans ces propriétés et ne jamais les employer comme sélection lors du chargement.
+    - [ ] 9.1.2 Retirer l’enum devenue sans consommateur
+      - [ ] Supprimer `src/GWGUI.Emulation.Amiga/Enums/AmigaEmulator.cs` après remplacement de toutes ses références par le catalogue moteur.
+  - [ ] 9.2 Ajouter le catalogue et la sélection explicite
+    - [ ] 9.2.1 Définir PUAE comme premier moteur extensible
+      - [ ] Créer `src/GWGUI.Emulation.Amiga/Contracts/AmigaEngineCatalogEntry.cs` avec identifiant, clé de ressource, modèles compatibles et modèles par défaut.
+      - [ ] Créer `src/GWGUI.Emulation.Amiga/Dictionaries/AmigaEngineCatalog.cs` avec PUAE unique, liste stable par modèle, défaut unique et validation stricte.
+    - [ ] 9.2.2 Transporter et utiliser le moteur choisi
+      - [ ] Modifier `src/GWGUI.Emulation.Amiga/Services/AmigaEngine.cs` pour recevoir l’identifiant sélectionné et résoudre sa factory sans lire la configuration.
+      - [ ] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModuleFactory.cs` pour transmettre le dossier `Emulators` au module.
+      - [ ] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs` pour implémenter les deux nouvelles méthodes, persister PUAE séparément, retourner version et chemin complet de la DLL active, faire agir les opérations d’installation sur ce choix et créer le runtime correspondant.
+  - [ ] 9.3 Versionner et tester la rupture Amiga
+    - [ ] 9.3.1 Mettre à jour le manifeste
+      - [ ] Modifier `src/GWGUI.Emulation.Amiga/module.json` pour fixer `moduleVersion`, `hostApiMinimum` et `hostApiMaximum` à `2.0.0`, `2.0` et `2.0`.
+    - [ ] 9.3.2 Adapter les preuves communes
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs` pour vérifier l’absence de moteur sérialisé et la conservation des options matérielles Amiga.
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineCapabilitiesScenarios.cs` pour vérifier PUAE comme liste, défaut, sélection et factory de chaque modèle Amiga existant.
+
+- [ ] 10. Aligner documentation, distribution et preuves finales
+  - [ ] 10.1 Documenter uniquement l’état réalisé
+    - [ ] 10.1.1 Mettre à jour les contrats et l’architecture
+      - [ ] Modifier `docs/architecture/emulation-module-authoring.md` avec les signatures finales, les invariants de validation et la séparation configuration/sélection/installation.
+      - [ ] Modifier `docs/architecture/emulation-sdk-versioning.md` avec SDK `2.0.0`, API hôte `2.0`, schéma de manifeste 2 et nature de la rupture.
+      - [ ] Modifier `docs/architecture/emulation.md` avec le trajet `App → IEmulationEmulatorManager → module → moteur sélectionné` et l’absence de nom de moteur dans l’App.
+      - [ ] Modifier `docs/ui/emulation.md` avec chargement du sélecteur existant, choix par machine, installation du choix et application au prochain lancement.
+    - [ ] 10.1.2 Mettre à jour les machines et le bilan Amstrad
+      - [ ] Modifier `docs/reference/emulation-machines.md` avec les six modèles CPC/GX4000 terminés sur la branche avant son intégration à `main`, et aucun PCW exécutable dans cette phase.
+      - [ ] Modifier `docs/project/amstrad-emulation.md` pour remplacer chaque formulation de cible par l’état réalisé et lier les preuves de `docs/reference/amstrad-libretro.md`.
+  - [ ] 10.2 Raccorder la distribution existante sans liste codée en dur
+    - [ ] 10.2.1 Enregistrer le module public
+      - [ ] Créer `module-registry/amstrad.json` avec `id: amstrad`, `displayName: Amstrad` et l’URL HTTPS directe de `module-amstrad-catalog/update-catalog.json`.
+    - [ ] 10.2.2 Consigner l’auto-découverte des scripts
+      - [ ] Modifier `docs/project/amstrad-emulation.md` avec le résultat de la vérification de `.github/workflows/module-release.yml`, `scripts/publish-modules.cmd`, `scripts/module-release/package-module.ps1` et `scripts/local-building.cmd`, sans demander leur modification si le manifeste Amstrad est découvert automatiquement.
+  - [ ] 10.3 Enregistrer les validations finales sans publication implicite
+    - [ ] 10.3.1 Consigner tests, build et chargement
+      - [ ] Modifier `docs/reference/amstrad-libretro.md` avec les commandes et résultats des tests ciblés, du build Debug demandé, de la présence de `build/Debug/GW GUI/gwgui.exe` et du chargement Amstrad/Atari/Amiga sous API 2.0.
+      - [ ] Modifier `docs/project/testing.md` avec les commandes reproductibles couvrant contrat moteur, Amstrad, régressions Atari/Amiga et ressources, sans test conservé dépendant d’une DLL externe.
+    - [ ] 10.3.2 Clore la feuille et préparer PCW
+      - [ ] Modifier `docs/tasks/README.md` après achèvement de toutes les cases pour retirer ce chantier actif et référencer la future feuille PCW fondée sur les décisions validées.
+      - [ ] Supprimer `docs/tasks/emulation/amstrad.md` seulement après transfert de tous les résultats durables et du travail PCW restant ; ne faire aucun commit, push, tag ou publication sans demande explicite.
