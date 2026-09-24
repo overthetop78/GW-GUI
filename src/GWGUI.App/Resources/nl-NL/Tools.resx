@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Klaar om uit te voeren.</value></data>
   <data name="Tool.RawOutput"><value>Ruwe uitvoer</value></data>
-  <data name="Maintenance.EraseTitle"><value>Bevestig het wissen</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Alle gegevens op de geplaatste schijf permanent wissen?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Schone hoofden</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Controleer of er een reinigingsschijf is geplaatst. Gebruik nooit een dataschijf.</value></data>
   <data name="Tools.Erase"><value>Wis een schijf</value></data>
   <data name="Tools.EraseWarning"><value>Alle gegevens op de schijf worden vernietigd.</value></data>
   <data name="Tools.LimitTracks"><value>Beperk nummers</value></data>
@@ -37,7 +25,8 @@
   <data name="Tool.Field.Select"><value>Selectie (µs)</value></data>
   <data name="Tool.Field.Step"><value>Hoofdstap (µs)</value></data>
   <data name="Tool.Field.Settle"><value>Vereffenen (ms)</value></data>
-<data name="Tool.Field.Watchdog"><value>Automatisch deselecteren (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Automatisch deselecteren (ms)</value></data>
   <data name="Tool.Field.PreWrite"><value>Vóór schrijven (µs)</value></data>
   <data name="Tool.Field.PostWrite"><value>Na schrijven (µs)</value></data>
   <data name="Tool.Field.IndexMask"><value>Indexmasker (µs)</value></data>
@@ -55,7 +44,8 @@
   <data name="Tool.Title.Pin"><value>Hardware-pinnen</value></data>
   <data name="Tool.Title.Reset"><value>Regelaar resetten</value></data>
   <data name="Tool.Title.Delays"><value>Vertragingen</value></data>
-<data name="Tool.InvalidParameters"><value>Ongeldige parameters</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
+  <data name="Tool.InvalidParameters"><value>Ongeldige parameters</value></data>
   <data name="Tool.InvalidParametersHelp"><value>Controleer de gemarkeerde opdrachtparameters voordat u deze uitvoert.</value></data>
   <data name="Tool.BootloaderTitle"><value>Bootloader-modus</value></data>
   <data name="Tool.Title.Align"><value>Diagnose van de uitlijning van de aandrijving</value></data>
@@ -63,6 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Aantal lezingen</value></data>
   <data name="Tool.Field.AlignFormat"><value>Decoderingsformaat</value></data>
   <data name="Tool.Field.AlignRaw"><value>Ruwe flux lezen (--raw)</value></data>
-  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
-  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

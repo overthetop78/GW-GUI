@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Устройство контроллера {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Обнаружить контроллеры</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Действие Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Ввод с клавиатуры, мыши или контроллера</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Левый стик</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Правый стик</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Оба стика</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Турбоогонь</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Кнопка турбо</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Импульс турбо</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Порядок портов контроллеров</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Контроллер не обнаружен</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Назначения контроллера</value></data>
+  <data name="Emulation.Controller.Port"><value>Порт {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Тип контроллера</value></data>
+  <data name="Emulation.Controller.Detected"><value>Обнаруженные контроллеры</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Поиск действия или ввода</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Вверх</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Вниз</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Влево</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Вправо</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Кнопка огня 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Кнопка огня 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Аналоговый джойстик</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Автоматический</value></data>
+  <data name="Emulation.Controller.None"><value>Нет</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Переключить джойстик/мышь</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Не удалось инициализировать GameInput. Установите или восстановите входящую в комплект среду выполнения GameInput.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (слева)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (правая рука)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Внешний вид</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Контроллер {0}</value></data>
+</root>

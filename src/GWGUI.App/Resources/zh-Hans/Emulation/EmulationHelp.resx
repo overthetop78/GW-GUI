@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>安静空软盘驱动器</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>在未插入磁盘的情况下, 关闭模拟驱动器声音 。 禁用此选项以保持闲置的机械噪音 。</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>选择模拟音频过滤</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>选择原始模拟音频过滤器的复制方式。 模拟跟随硬件行为. 其他选择迫使过滤器打开或关闭.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>启用极化音频过滤器</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>将极化过滤器应用于生成的音频信号。 允许它复制被过滤的声音 。 禁用以保持未过滤的信号.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>选择音频插值</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>选择在生成的样本点之间如何计算音频样本。 更高质量的方法产生更平滑的声音,但需要更多的处理.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>设定音频间隔</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>设定音频缓冲器的持续时间。 更短的缓冲能减少延迟,但能引起裂缝. 较长的缓冲能改善稳定性,但会增加延迟。</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>启用双 POKEY 立体声</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>添加第二个已模拟 POKEY 产生立体声的芯片。 仅为支持双功能的软件启用此选项 POKEY 音频。</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>设置立体分隔</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>设置左右通道的分隔。 更低的数值将频道混合在一起 。 更高的价值使他们之间的距离更远。</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>选择软盘驱动器声音集</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>选择用于模拟软盘驱动器的机械声音的样本集。 它不会改变驱动器行为或磁盘数据 。</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>选择音频过滤器模式</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>选择要模拟的硬件过滤响应。 自动遵循选中的机器模型 。 一个特定的选择总是使用过滤器的响应.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>启用两个额外的游戏杆端口</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>模拟一个并列的口号适配器,它会添加两个乐杆端口. 为支持四个同时玩家的软件启用.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>设定涡轮脉冲间隔</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>设定涡轮所生产的自动按钮之间的时间. 更短的间隔产生更快的重复射击.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>选择控制器兼容模式</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>选择特殊控制器映射, 如双杆控制, 互换端口, 或 Joy2B+. 选择无以保持标准端口映射.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>设置模拟输入敏感性</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>设定模拟输入对运动的响应强度 。 较高的值产生来自同一物理运动的较大响应.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>设置数字输入敏感性</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>设定一个数字方向达到全运动的速度 。 更高的值使方向变化更快地达到最大值.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>选择自动点火模式</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>已禁用 。 在按下按钮时重复点火 。 总是不停地重复着火.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>设定桨移动速度</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>设定数字输入如何快速地移动模拟划桨 。 一个更低的数值移动它更慢。 一个更高的价值能更快地移动它。</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>选择 FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>选择用于浮点指令的浮点单位。 无则禁用 FPU. 可用的模型取决于所选的 CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>选择 CPU 模拟精度</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>选择多近 CPU 时间跟随原始硬件。 更精确的模式可以提高相容性,但可能需要更多的处理.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>设定已模拟 CPU 速度</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>设置被模拟机器使用的处理器频率。 原速度保留硬件时间。 更高值加速 CPU-有限软件.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>使用模拟棒控制鼠标</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>允许模拟游戏杆轴来移动被模拟的鼠标指针. 当物理模拟棒控制指针时启用.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>设定模拟鼠标速度</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>当模拟棒控制被模拟的鼠标时设定指针速度. 高值将指针移动得更远,用于同一棒的移动.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>设置模拟鼠标死区</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>在控制鼠标时忽略了围绕中心的小模拟棒运动. 如果指针在放出后移动, 则增加值 。</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>启用 Axlon $0F 阴影库</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>镜像 Axlon 控制库, 地址为 0 美元F. 仅为使用此附加地址的软件或内存扩展启用.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>设定 Axlon 扩展内存</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>设定银行切换量 Axlon 记忆。 禁用删除扩展 。 其他选择提供了所选的内存容量.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>设定 Mosaic 扩展内存</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>设定银行切换量 Mosaic 记忆。 禁用删除扩展 。 其他选择提供了所选的内存容量.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>设置额外的扩展内存</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>设定选定机器支持的额外扩展内存的数量。 选择无仅使用所配置的主内存 。</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>设定 Fast RAM 大小</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>设置快取的量 RAM 直接提供给 CPU. 附加快取 RAM 可以帮助兼容软件,但可以改变被模拟的硬件配置.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>启用 MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>允许兼容软件映射可写文件 RAM 进入系统 ROM 地址区域。 此选项仅用于支持的机器模型 MapRAM。 。 。 。</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>设定 Zorro III RAM 大小</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>设定 32 位元的量 Fast RAM 通过 Zorro III 公交车。 只使用兼容的32位机和软件.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>设定 Slow RAM 大小</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>设定数量 Slow RAM 在陷阱门扩展区域。 此内存慢于 Fast RAM 并使用不同的硬件地址范围。</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>选择 ROM 解密密钥</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>选择用于解密许可加密的密钥文件 ROM 图像。 选定时留下此字段为空 ROM 未加密。</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>启用快速启动</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>跳过选中的硬件初始化延迟以缩短启动时间 。 当软件需要原始启动序列时, 禁用此选项 。</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>选择扩展 ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>选择次要固件 ROM 一些机器模型需要。 当选中的模型没有使用扩展时, 请将此字段留空 。 ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>启用加速 SIO 转让</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>通过串行输入/输出总线加快相容性传输. 当软件取决于原始传输时间时, 禁用此选项 。</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>启用磁带启动</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>让被模拟的机器尝试从所附的磁带图像开始. 从另一个设备开始时禁用此选项 。</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>启用 R-Time 8 时钟</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>模拟一个 R-Time 8 实时时钟,所以相容的软件可以读取当前的日期和时间.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>启用 P: 打印机设备</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>使模拟 P: 软件可用的打印机设备. 在不需要打印机设备模拟时禁用此选项 。</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>启用 R: 串行设备</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>使模拟 R: 软件可用串行设备。 在不需要串行设备模拟时禁用此选项 。</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>选择高分辨色彩文物</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>选择高分辨率模式如何产生复合-视频颜色。 没有人会禁用文物颜色。 其他模式复制不同的调色板或芯片行为.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>选择缓冲计时器</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>选择缓冲操作是立即完成还是跟随仿真硬件时间. 即时模式更快,但时间准确性较低。</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>允许输出刷新率变化</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>允许输出刷新速率跟随模拟视频模式的变化. 锁定保持当前输出刷新率 。</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>选择碰撞探测细节</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>选择计算出图示和播放场相撞。 更完整的检测可以提高相容性,但需要更多的处理.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>减少插合显示闪光器</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>减少相接视频输出的闪烁 。 启用它以获取更稳定的图像 。 禁用它来保存原有的相接显示行为 。</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>选择显示的宽度比</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>选择模拟图像如何横向和纵向缩放。 自动跟踪模拟输出 。 一种显示形状的固定选择力.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>调整图像γ</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>改变中子的亮度而不直接改变黑白等分. 更低的数值使中调变暗. 更高的价值让他们更加明亮。</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>选择视频线模式</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>选择垂直视频线的显示方式。 自动遵循模拟模式 。 其他选择迫使单行,双行,或可用时进行扫描.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>选择视频标准</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>选择模拟的电视时间, 例如 PAL 或 NTSC. 这影响了刷新率,硬件时间,以及软件兼容性.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>选择外部调色板</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>选择一个预定义的色调盘,而不是当前视频设置产生的颜色。 选择 None 使用生成的颜色 。</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>选择输出颜色深度</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>选择用于渲染图像的颜色深度。 24-bit 保持更多的颜色细节。 16-bit 使用较小范围的颜色。</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>选择硬件区域</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>选择模拟机器所用的区域时间。 选择会影响视频频率, CPU 时间 和相容的固件</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>选择视频渲染器</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>选择用于绘制模拟显示的图形后端。 可用的渲染器在性能和与主机系统的相容性方面可能有所不同.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>调整 GTIA 颜色延迟</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>设置 GTIA 用于复制颜色的相相延迟 。 默认使用标准值 。 数字选择会改变结果的颜色</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>设置框架跳过</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>设定省略多少个显示框 。 已禁用 。 更高的值减少渲染工作,但使运动更不平滑.</value></data>
+</root>

@@ -3,10 +3,10 @@ using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Write;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Detection;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,7 +38,13 @@ internal static class WriteSourceScenarios
         view.FormatBlock.FormatCombo.SelectedIndex = 0;
         await controller.BrowseSourceAsync();
         Assert.Equal("unknown.synthetic", model.Write.SourcePath); Assert.Null(view.FormatBlock.FormatCombo.SelectedItem);
-        Assert.Equal(catalog.Formats.Count, view.FormatBlock.FormatCombo.Items.Count); Assert.Single(failures);
+        Assert.Equal(catalog.Formats.Count(format => format.Family != "Raw" && format.SupportsPhysicalWrite), view.FormatBlock.FormatCombo.Items.Count);
+        var proposedFormats = view.FormatBlock.FormatCombo.Items.Cast<DiskFormat>().ToArray();
+        Assert.All(proposedFormats, format => Assert.True(format.SupportsPhysicalWrite));
+        Assert.DoesNotContain(
+            catalog.Formats.Where(format => !format.SupportsPhysicalWrite),
+            disabled => proposedFormats.Any(proposed => proposed.Id == disabled.Id));
+        Assert.Single(failures);
         var information = view.FormatBlock.DetectionText.Text;
         await controller.BrowseSourceAsync();
         Assert.Equal("unknown.synthetic", model.Write.SourcePath); Assert.Equal(information, view.FormatBlock.DetectionText.Text);

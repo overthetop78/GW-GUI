@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>未知</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>取り出す</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>未知</value></data>
+  <data name="Common.Eject"><value>取り出す</value></data>
+  <data name="Common.MediaKind.Unknown"><value>未知のメディア</value></data>
+  <data name="Common.MediaKind.Floppy"><value>フロッピーディスク</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>ハードディスク</value></data>
+  <data name="Common.MediaKind.Optical"><value>光学ディスク</value></data>
+  <data name="Common.MediaKind.Tape"><value>テープ</value></data>
+  <data name="Common.Representation.Flux"><value>フラックス</value></data>
+  <data name="Common.Representation.Sectors"><value>セクター</value></data>
+  <data name="Common.Representation.Blocks"><value>ブロック</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>光学トラック</value></data>
+  <data name="Common.Representation.Sequential"><value>順次データ</value></data>
+  <data name="Common.Advanced"><value>詳細設定</value></data>
+  <data name="Common.ExpertArguments"><value>専門家の議論</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>引数は、引用符の検証後に記述されたとおりに渡されます。</value></data>
+  <data name="Common.DiskImageFilter"><value>ディスク イメージ|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|すべてのファイル|*.*</value></data>
+  <data name="Common.Console"><value>コンソール</value></data>
+  <data name="Common.Command"><value>指示</value></data>
 </root>

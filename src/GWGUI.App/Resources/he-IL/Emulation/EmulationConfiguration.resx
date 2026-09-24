@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>כאן ניתן ליצור, לבחור, לשנות או למחוק תצורות שמורות. בחר בכרטיסייה {0} כדי לערוך את התצורה שנבחרה.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>מותג</value></data>
+  <data name="Emulation.Configuration.Machine"><value>מכונה</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>סך זיכרון RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>כוננים</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>ציוד היקפי</value></data>
+  <data name="Emulation.Configuration.Actions"><value>פעולות</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Delete the {0} {1} תצורה?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>תצורה</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>סודיות</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>למחוק את התצורה של עמיגה?</value></data>
+</root>

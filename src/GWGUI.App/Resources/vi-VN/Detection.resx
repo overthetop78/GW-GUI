@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Detection.Ambiguous"><value>định dạng không rõ ràng</value></data>
+  <data name="Detection.RawScp"><value>Raw SCP thu được.</value></data>
+  <data name="Detection.AmigaSize"><value>Định dạng Amiga được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.AcornSize"><value>Định dạng Acorn được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Kích thước không khớp với hồ sơ Atari ST đã biết.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST hình học được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.MsaInferred"><value>Vùng chứa Atari MSA được công nhận; xác nhận hình học nếu cần thiết.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>chỉ phần mở rộng không thể xác định được IBM PC hình học.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC hình học được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Định dạng được suy ra từ phần mở rộng.</value></data>
+  <data name="Detection.Multiple"><value>Có thể có một số định dạng; chọn một cách rõ ràng.</value></data>
+  <data name="Detection.AppleDosOrder"><value>Đã nhận dạng định dạng Apple II DOS từ thứ tự sector.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Đã nhận dạng định dạng Apple II ProDOS từ thứ tự sector.</value></data>
+  <data name="Detection.AppleContainer"><value>Đã phát hiện vùng chứa ảnh đĩa Apple.</value></data>
+</root>

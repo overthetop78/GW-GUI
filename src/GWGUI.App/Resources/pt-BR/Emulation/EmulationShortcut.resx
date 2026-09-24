@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Atalhos de emulação</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Liberar o mouse</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pausar / continuar</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Tela cheia / janela</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Ligar / desligar</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Reinicialização simples</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Reinicialização completa</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Salvamento rápido do estado</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Carregamento rápido do estado</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Captura de tela</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Silenciar a máquina ativa</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Avanço rápido enquanto pressionado</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Inserir ou substituir mídia</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Ejetar mídia</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Próxima mídia</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Esta ação ainda não é fornecida pelo emulador atual.</value></data>
+</root>

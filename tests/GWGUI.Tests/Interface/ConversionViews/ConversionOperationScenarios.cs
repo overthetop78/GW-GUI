@@ -11,15 +11,22 @@ using GWGUI.App.Views.Controls.Write;
 using GWGUI.App.Views.Controls.Conversion;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.App.Views.Dialogs.Conversion;
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
-using GWGUI.Domain.Settings.Logging;
+using GWGUI.Infrastructure.Commands;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
+using GWGUI.Infrastructure.Settings.Logging;
 using GWGUI.Infrastructure.Processes;
+using GWGUI.MediaEngine.Images.Conversion;
+using GWGUI.MediaEngine.Images.Conversion.Sequential;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential;
+using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.MediaEngine.Images.Reading.Recognition;
+using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;
 using System.Windows.Controls;
@@ -123,7 +130,17 @@ internal static class ConversionOperationScenarios
                 SecondStarted.TrySetResult();
                 return SecondPending?.Task ?? Task.FromResult(new GwExecutionResult(0, false, TimeSpan.Zero, []));
             });
-            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, files, business, dialogs,
+            var mediaReader = new MediaImageReadingService(new MediaRecognitionRegistry([]));
+            var writers = new MediaImageWriterRegistry([]);
+            var mediaWriting = new MediaImageWritingService(writers);
+            var mediaConversion = new MediaConversionService(new MediaRepresentationConverterRegistry([]), writers, mediaWriting);
+            var sequentialMediaConversion = new SequentialMediaConversionService(
+                mediaReader,
+                new SequentialDecoderRegistry([]),
+                new SequentialEncoderRegistry([]),
+                writers,
+                mediaWriting);
+            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, mediaReader, mediaConversion, sequentialMediaConversion, files, business, dialogs,
                 definitions, Operation, log, null!, new TextBox { Text = "virtual-folder" }, new TextBox(), Output, () => 0, _ => { }, null!, Operation.RequestCancellation, (_, _) => throw new InvalidOperationException(), () => { }, Dispatcher.CurrentDispatcher,
                 path => path is "virtual-tool" or "virtual-source.scp" || conflicts && path is not null && !path.Contains("(2)"));
         }

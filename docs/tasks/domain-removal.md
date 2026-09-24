@@ -1,0 +1,1084 @@
+# [x] Suppression de GWGUI.Domain
+
+But : répartir ses 125 fichiers dans les projets déjà présents, raccorder chaque consommateur, retirer toutes les références et la DLL, puis vérifier le fonctionnement.
+
+## 1. Déplacement des sources sans renommage des namespaces
+
+Le namespace reste provisoirement identique pendant les déplacements afin de distinguer les ruptures de références de projet des changements de noms. Les déplacements sont exécutés et cochés un par un.
+
+- [x] Transférer les sources vers GWGUI.App
+  - [x] Déplacer src/GWGUI.Domain/Parity/MediaParityMatrix.cs vers src/GWGUI.App/Parity/MediaParityMatrix.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Parity/MediaParityOperation.cs vers src/GWGUI.App/Parity/MediaParityOperation.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Parity/MediaParityRow.cs vers src/GWGUI.App/Parity/MediaParityRow.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Parity/ParityValidationStatus.cs vers src/GWGUI.App/Parity/ParityValidationStatus.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Profiles/IProfileStore.cs vers src/GWGUI.App/Profiles/IProfileStore.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Profiles/InMemoryProfileStore.cs vers src/GWGUI.App/Profiles/InMemoryProfileStore.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Profiles/OperationProfile.cs vers src/GWGUI.App/Profiles/OperationProfile.cs en conservant exactement son contenu pour cette étape.
+- [x] Transférer les sources vers GWGUI.Infrastructure
+  - [x] Déplacer src/GWGUI.Domain/Commands/Building/GwCommandBuilder.cs vers src/GWGUI.Infrastructure/Commands/Building/GwCommandBuilder.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Building/GwInfoRequest.cs vers src/GWGUI.Infrastructure/Commands/Building/GwInfoRequest.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Building/IGwCommandBuilder.cs vers src/GWGUI.Infrastructure/Commands/Building/IGwCommandBuilder.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/CommandLineTokenizer.cs vers src/GWGUI.Infrastructure/Commands/CommandLineTokenizer.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Execution/GwBatchExecutor.cs vers src/GWGUI.Infrastructure/Commands/Execution/GwBatchExecutor.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Execution/GwExecution.cs vers src/GWGUI.Infrastructure/Commands/Execution/GwExecution.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Execution/IGreaseweazleRunner.cs vers src/GWGUI.Infrastructure/Commands/Execution/IGreaseweazleRunner.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/GwCommand.cs vers src/GWGUI.Infrastructure/Commands/GwCommand.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Options/GwOptionValidator.cs vers src/GWGUI.Infrastructure/Commands/Options/GwOptionValidator.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Progress/GwProgressTracker.cs vers src/GWGUI.Infrastructure/Commands/Progress/GwProgressTracker.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionCommandBuilder.cs vers src/GWGUI.Infrastructure/Conversion/ConversionCommandBuilder.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Hardware/GwDeviceInfo.cs vers src/GWGUI.Infrastructure/Hardware/GwDeviceInfo.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Hardware/HardwareRoutingPolicy.cs vers src/GWGUI.Infrastructure/Hardware/HardwareRoutingPolicy.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Hardware/IHardwareRegistry.cs vers src/GWGUI.Infrastructure/Hardware/IHardwareRegistry.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Hardware/Parsing/GwInfoParser.cs vers src/GWGUI.Infrastructure/Hardware/Parsing/GwInfoParser.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Hardware/SerialDevice.cs vers src/GWGUI.Infrastructure/Hardware/SerialDevice.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/HostTools/IGwInstallationManager.cs vers src/GWGUI.Infrastructure/HostTools/IGwInstallationManager.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Maintenance/MaintenanceCommands.cs vers src/GWGUI.Infrastructure/Maintenance/MaintenanceCommands.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Maintenance/ToolCommandBuilder.cs vers src/GWGUI.Infrastructure/Maintenance/ToolCommandBuilder.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Naming/OutputConflictResolver.cs vers src/GWGUI.Infrastructure/Naming/OutputConflictResolver.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Naming/SequenceFormatter.cs vers src/GWGUI.Infrastructure/Naming/SequenceFormatter.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Read/ReadCommandBuilder.cs vers src/GWGUI.Infrastructure/Read/ReadCommandBuilder.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Read/ReadRequest.cs vers src/GWGUI.Infrastructure/Read/ReadRequest.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/AppSettings.cs vers src/GWGUI.Infrastructure/Settings/AppSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/AppTheme.cs vers src/GWGUI.Infrastructure/Settings/AppTheme.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Emulation/EmulationMediaFolderCategory.cs vers src/GWGUI.Infrastructure/Settings/Emulation/EmulationMediaFolderCategory.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Emulation/EmulationMediaFolderSettings.cs vers src/GWGUI.Infrastructure/Settings/Emulation/EmulationMediaFolderSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Emulation/EmulationShortcutDefaultFunctions.cs vers src/GWGUI.Infrastructure/Settings/Emulation/EmulationShortcutDefaultFunctions.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Emulation/EmulationShortcutDefaults.cs vers src/GWGUI.Infrastructure/Settings/Emulation/EmulationShortcutDefaults.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Engines/EngineSettings.cs vers src/GWGUI.Infrastructure/Settings/Engines/EngineSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Engines/OperationEngine.cs vers src/GWGUI.Infrastructure/Settings/Engines/OperationEngine.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Hardware/HardwareSettings.cs vers src/GWGUI.Infrastructure/Settings/Hardware/HardwareSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/ISettingsStore.cs vers src/GWGUI.Infrastructure/Settings/ISettingsStore.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Logging/LoggingSettings.cs vers src/GWGUI.Infrastructure/Settings/Logging/LoggingSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Operations/OperationUiSettings.cs vers src/GWGUI.Infrastructure/Settings/Operations/OperationUiSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Profiles/ProfileSettings.cs vers src/GWGUI.Infrastructure/Settings/Profiles/ProfileSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/SettingsMigrator.cs vers src/GWGUI.Infrastructure/Settings/SettingsMigrator.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Window/WindowPlacementPolicy.cs vers src/GWGUI.Infrastructure/Settings/Window/WindowPlacementPolicy.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Settings/Window/WindowPlacementSettings.cs vers src/GWGUI.Infrastructure/Settings/Window/WindowPlacementSettings.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Write/WriteCommandBuilder.cs vers src/GWGUI.Infrastructure/Write/WriteCommandBuilder.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Write/WriteRequest.cs vers src/GWGUI.Infrastructure/Write/WriteRequest.cs en conservant exactement son contenu pour cette étape.
+- [x] Transférer les sources vers GWGUI.MediaEngine
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/DiskGeometryConstants.cs pour définir localement les valeurs 40, 80, 1 et 2 actuellement déléguées à Domain.
+  - [x] Déplacer src/GWGUI.Domain/Commands/Options/EnabledOption.cs vers src/GWGUI.MediaEngine/Commands/Options/EnabledOption.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Constants/DiskGeometryConstants.cs vers src/GWGUI.MediaFileSystems/Constants/DiskGeometryConstants.cs en conservant les quatre valeurs utilisées par la géométrie Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/DiskGeometryConstants.cs pour relayer les quatre valeurs de GWGUI.MediaFileSystems/Constants/DiskGeometryConstants.cs au lieu de conserver une seconde définition numérique.
+  - [x] Déplacer src/GWGUI.Domain/Constants/MediaPhysicalEncodingIds.cs vers src/GWGUI.MediaEngine/Constants/MediaPhysicalEncodingIds.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Constants/MediaPhysicalMetadataKeys.cs vers src/GWGUI.MediaEngine/Constants/MediaPhysicalMetadataKeys.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaAcquisitionProgress.cs vers src/GWGUI.MediaEngine/Contracts/MediaAcquisitionProgress.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaAcquisitionResult.cs vers src/GWGUI.MediaEngine/Contracts/MediaAcquisitionResult.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaFluxRevolutionData.cs vers src/GWGUI.MediaEngine/Contracts/MediaFluxRevolutionData.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaFluxTrackData.cs vers src/GWGUI.MediaEngine/Contracts/MediaFluxTrackData.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaPhysicalDataUnit.cs vers src/GWGUI.MediaEngine/Contracts/MediaPhysicalDataUnit.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaPhysicalWriteProgress.cs vers src/GWGUI.MediaEngine/Contracts/MediaPhysicalWriteProgress.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaPhysicalWriteResult.cs vers src/GWGUI.MediaEngine/Contracts/MediaPhysicalWriteResult.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaWritePlan.cs vers src/GWGUI.MediaEngine/Contracts/MediaWritePlan.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionCompatibilityValidator.cs vers src/GWGUI.MediaEngine/Conversion/ConversionCompatibilityValidator.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionFidelity.cs vers src/GWGUI.MediaEngine/Conversion/ConversionFidelity.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionFidelityLevel.cs vers src/GWGUI.MediaEngine/Conversion/ConversionFidelityLevel.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionModels.cs vers src/GWGUI.MediaEngine/Conversion/ConversionModels.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionOutputFactory.cs vers src/GWGUI.MediaEngine/Conversion/ConversionOutputFactory.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionPlanner.cs vers src/GWGUI.MediaEngine/Conversion/ConversionPlanner.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionSourceCompatibility.cs vers src/GWGUI.MediaEngine/Conversion/ConversionSourceCompatibility.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Conversion/ConversionTagFormatter.cs vers src/GWGUI.MediaEngine/Conversion/ConversionTagFormatter.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/BuiltInDiskDefinitions.cs vers src/GWGUI.MediaEngine/Formats/BuiltInDiskDefinitions.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/CapabilityAwareImageFormatCatalog.cs vers src/GWGUI.MediaEngine/Formats/CapabilityAwareImageFormatCatalog.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/AdfImageFormatDetectionRule.cs vers src/GWGUI.MediaEngine/Formats/Detection/AdfImageFormatDetectionRule.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/AppleImageFormatDetectionRule.cs vers src/GWGUI.MediaEngine/Formats/Detection/AppleImageFormatDetectionRule.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/AtariImageFormatDetectionRule.cs vers src/GWGUI.MediaEngine/Formats/Detection/AtariImageFormatDetectionRule.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/DetectedImageFormat.cs vers src/GWGUI.MediaEngine/Formats/Detection/DetectedImageFormat.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/FormatConfidence.cs vers src/GWGUI.MediaEngine/Formats/Detection/FormatConfidence.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/IImageFormatDetectionRule.cs vers src/GWGUI.MediaEngine/Formats/Detection/IImageFormatDetectionRule.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/IbmPcImageFormatDetectionRule.cs vers src/GWGUI.MediaEngine/Formats/Detection/IbmPcImageFormatDetectionRule.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/ImageFormatDetectionContext.cs vers src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetectionContext.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/ImageFormatDetector.cs vers src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetector.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/MacintoshImageFormatDetectionRule.cs vers src/GWGUI.MediaEngine/Formats/Detection/MacintoshImageFormatDetectionRule.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Detection/RawImageFormatDetectionRule.cs vers src/GWGUI.MediaEngine/Formats/Detection/RawImageFormatDetectionRule.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/DiskClassificationCatalog.cs vers src/GWGUI.MediaEngine/Formats/DiskClassificationCatalog.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/DiskDefsFormatReader.cs vers src/GWGUI.MediaEngine/Formats/DiskDefsFormatReader.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/GwFormatArgument.cs vers src/GWGUI.MediaEngine/Formats/GwFormatArgument.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/GwFormatCapabilities.cs vers src/GWGUI.MediaEngine/Formats/GwFormatCapabilities.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/GwVisualizationPolicy.cs vers src/GWGUI.MediaEngine/Formats/GwVisualizationPolicy.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/IGwFormatCapabilityReader.cs vers src/GWGUI.MediaEngine/Formats/IGwFormatCapabilityReader.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/IImageFormatCatalog.cs vers src/GWGUI.MediaEngine/Formats/IImageFormatCatalog.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/ImageFormatCatalog.cs vers src/GWGUI.MediaEngine/Formats/ImageFormatCatalog.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/ImageFormatModels.cs vers src/GWGUI.MediaEngine/Formats/ImageFormatModels.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Parsing/GwFormatCapabilitiesParser.cs vers src/GWGUI.MediaEngine/Formats/Parsing/GwFormatCapabilitiesParser.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/RuntimeImageFormatCatalog.cs vers src/GWGUI.MediaEngine/Formats/RuntimeImageFormatCatalog.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Functions/MediaFluxTrackDataFunctions.cs vers src/GWGUI.MediaEngine/Functions/MediaFluxTrackDataFunctions.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaAcquisitionProvider.cs vers src/GWGUI.MediaEngine/Interfaces/IMediaAcquisitionProvider.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaPhysicalWriter.cs vers src/GWGUI.MediaEngine/Interfaces/IMediaPhysicalWriter.cs en conservant exactement son contenu pour cette étape.
+- [x] Transférer les sources vers GWGUI.MediaFileSystems
+  - [x] Déplacer src/GWGUI.Domain/Constants/BitConstants.cs vers src/GWGUI.MediaFileSystems/Constants/BitConstants.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Constants/MediaImageFormatIds.cs vers src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Constants/MediaVolumeOrigins.cs vers src/GWGUI.MediaFileSystems/Constants/MediaVolumeOrigins.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Constants/PartitionSchemeIds.cs vers src/GWGUI.MediaFileSystems/Constants/PartitionSchemeIds.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaSectorAddress.cs vers src/GWGUI.MediaFileSystems/Contracts/MediaSectorAddress.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaSectorGeometry.cs vers src/GWGUI.MediaFileSystems/Contracts/MediaSectorGeometry.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaSectorWriteBlock.cs vers src/GWGUI.MediaFileSystems/Contracts/MediaSectorWriteBlock.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaSectorWritePlan.cs vers src/GWGUI.MediaFileSystems/Contracts/MediaSectorWritePlan.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaSourceDescriptor.cs vers src/GWGUI.MediaFileSystems/Contracts/MediaSourceDescriptor.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaVolumeDescriptor.cs vers src/GWGUI.MediaFileSystems/Contracts/MediaVolumeDescriptor.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Contracts/MediaVolumeDetectionResult.cs vers src/GWGUI.MediaFileSystems/Contracts/MediaVolumeDetectionResult.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Enums/MediaKind.cs vers src/GWGUI.MediaFileSystems/Enums/MediaKind.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Enums/MediaRepresentationKind.cs vers src/GWGUI.MediaFileSystems/Enums/MediaRepresentationKind.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Commodore/Commodore1541Address.cs vers src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1541Address.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Commodore/Commodore1541Geometry.cs vers src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1541Geometry.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Commodore/Commodore1571Geometry.cs vers src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1571Geometry.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Commodore/Commodore1581Geometry.cs vers src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1581Geometry.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Formats/Commodore/CommodoreGeometryExceptions.cs vers src/GWGUI.MediaFileSystems/Formats/Commodore/CommodoreGeometryExceptions.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/Exploration/IMediaVolumeDetector.cs vers src/GWGUI.MediaFileSystems/Interfaces/Exploration/IMediaVolumeDetector.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaBlockRepresentation.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaBlockRepresentation.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaImageDocument.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaImageDocument.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaImageRepresentation.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaImageRepresentation.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaOpticalRepresentation.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaOpticalRepresentation.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaOpticalTrack.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaOpticalTrack.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaRandomAccessData.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaRandomAccessData.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaSectorBlock.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorBlock.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaSectorImage.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorImage.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Interfaces/IMediaSectorRepresentation.cs vers src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorRepresentation.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Primitives/BigEndianInt32.cs vers src/GWGUI.MediaFileSystems/Primitives/BigEndianInt32.cs en conservant exactement son contenu pour cette étape.
+  - [x] Déplacer src/GWGUI.Domain/Primitives/PetsciiCodec.cs vers src/GWGUI.MediaFileSystems/Primitives/PetsciiCodec.cs en conservant exactement son contenu pour cette étape.
+
+## 2. Raccordement des projets
+
+- [x] Ajouter les imports d'entrée-sortie aux fichiers C# déplacés qui utilisent ces API
+  - [x] Modifier src/GWGUI.Infrastructure/Naming/OutputConflictResolver.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/AppSettings.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/SettingsMigrator.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionOutputFactory.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionPlanner.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/BuiltInDiskDefinitions.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetectionContext.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetector.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/DiskDefsFormatReader.cs pour ajouter explicitement using System.IO.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/GwVisualizationPolicy.cs pour ajouter explicitement using System.IO.
+- [x] Réparer les références de projets après déplacement
+  - [x] Modifier src/GWGUI.Infrastructure/GWGUI.Infrastructure.csproj pour remplacer sa référence à Domain par une référence à MediaEngine, qui possède désormais les contrats physiques et les formats partagés.
+  - [x] Modifier src/GWGUI.App/GWGUI.App.csproj pour supprimer sa référence à Domain et conserver celles à Infrastructure et MediaEngine.
+  - [x] Modifier src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj pour supprimer sa référence à Domain et conserver celle à MediaFileSystems.
+  - [x] Modifier src/GWGUI.MediaFileSystems/GWGUI.MediaFileSystems.csproj pour supprimer sa référence à Domain et conserver celle à MediaAnalysis.
+  - [x] Modifier src/GWGUI.MediaAnalysis/GWGUI.MediaAnalysis.csproj pour supprimer sa référence inutilisée à Domain.
+  - [x] Modifier tests/GWGUI.Tests/GWGUI.Tests.csproj pour remplacer sa référence à Domain par une référence à MediaFileSystems.
+  - [x] Modifier tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj pour remplacer sa référence à Domain par une référence à MediaFileSystems.
+  - [x] Modifier tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/GWGUI.MediaFileExtractor.csproj pour remplacer sa référence à Domain par une référence à MediaFileSystems.
+- [x] Vérifier le raccordement initial
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le résultat d'une compilation sans restauration et les corrections concrètes à ajouter après les dernières tâches cochées.
+
+Compilation intermédiaire : `dotnet build GWGUI.sln --no-restore --nologo -v:q -m:1` réussit avec 0 avertissement et 0 erreur. Une première invocation parallèle a échoué sur des fichiers WPF générés dans `obj` ; l'invocation séquentielle a terminé correctement.
+
+## 3. Renommage des namespaces et suppression du projet
+
+Chaque action renomme le namespace déclaré, les imports et les références qualifiées du fichier indiqué. Pour les namespaces partagés, les types sont dirigés vers leur projet propriétaire ci-dessous :
+
+- GWGUI.Domain.Commands.Options : EnabledOption → GWGUI.MediaEngine.Commands.Options.EnabledOption, GwOptionValidator → GWGUI.Infrastructure.Commands.Options.GwOptionValidator.
+- GWGUI.Domain.Constants : BitConstants → GWGUI.MediaFileSystems.Constants.BitConstants, DiskGeometryConstants → GWGUI.MediaFileSystems.Constants.DiskGeometryConstants, MediaImageFormatIds → GWGUI.MediaFileSystems.Constants.MediaImageFormatIds, MediaPhysicalEncodingIds → GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds, MediaPhysicalMetadataKeys → GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys, MediaVolumeOrigins → GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins, PartitionSchemeIds → GWGUI.MediaFileSystems.Constants.PartitionSchemeIds.
+- GWGUI.Domain.Contracts : MediaAcquisitionProgress → GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress, MediaAcquisitionResult → GWGUI.MediaEngine.Contracts.MediaAcquisitionResult, MediaFluxRevolutionData → GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData, MediaFluxTrackData → GWGUI.MediaEngine.Contracts.MediaFluxTrackData, MediaPhysicalDataUnit → GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit, MediaPhysicalWriteProgress → GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress, MediaPhysicalWriteResult → GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult, MediaSectorAddress → GWGUI.MediaFileSystems.Contracts.MediaSectorAddress, MediaSectorGeometry → GWGUI.MediaFileSystems.Contracts.MediaSectorGeometry, MediaSectorWriteBlock → GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock, MediaSectorWritePlan → GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan, MediaSourceDescriptor → GWGUI.MediaFileSystems.Contracts.MediaSourceDescriptor, MediaVolumeDescriptor → GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor, MediaVolumeDetectionResult → GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult, MediaWritePlan → GWGUI.MediaEngine.Contracts.MediaWritePlan.
+- GWGUI.Domain.Conversion : ConversionCommandBuilder → GWGUI.Infrastructure.Conversion.ConversionCommandBuilder, ConversionCompatibilityValidator → GWGUI.MediaEngine.Conversion.ConversionCompatibilityValidator, ConversionFidelity → GWGUI.MediaEngine.Conversion.ConversionFidelity, ConversionFidelityLevel → GWGUI.MediaEngine.Conversion.ConversionFidelityLevel, ConversionOutput → GWGUI.MediaEngine.Conversion.ConversionOutput, ConversionOutputFactory → GWGUI.MediaEngine.Conversion.ConversionOutputFactory, ConversionPlanner → GWGUI.MediaEngine.Conversion.ConversionPlanner, ConversionSelection → GWGUI.MediaEngine.Conversion.ConversionSelection, ConversionSourceCompatibility → GWGUI.MediaEngine.Conversion.ConversionSourceCompatibility, ConversionTagFormatter → GWGUI.MediaEngine.Conversion.ConversionTagFormatter.
+- GWGUI.Domain.Interfaces : IMediaAcquisitionProvider → GWGUI.MediaEngine.Interfaces.IMediaAcquisitionProvider, IMediaBlockRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation, IMediaImageDocument → GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument, IMediaImageRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaImageRepresentation, IMediaOpticalRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaOpticalRepresentation, IMediaOpticalTrack → GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack, IMediaPhysicalWriter → GWGUI.MediaEngine.Interfaces.IMediaPhysicalWriter, IMediaRandomAccessData → GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData, IMediaSectorBlock → GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock, IMediaSectorImage → GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage, IMediaSectorRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation.
+
+- [x] Corriger les fichiers de GWGUI.App
+  - [x] Modifier src/GWGUI.App/App.xaml.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Contracts/Services/Dialogs/ConversionConflictDecision.cs : GWGUI.Domain.Conversion → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Contracts/Services/Hardware/HardwareChoice.cs : GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Contracts/Services/Hardware/StartupHardwareCheckResult.cs : GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Contracts/Services/Navigation/GwToolWindowRequest.cs : GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadResult.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Contracts/Storage/DiskFormatChoice.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Contracts/ViewModels/Conversion/ConversionFormatPresentation.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines, GWGUI.Domain.Contracts.MediaSourceDescriptor → GWGUI.MediaFileSystems.Contracts.MediaSourceDescriptor.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/ExplorerReadController.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/HostToolsUpdateController.cs : GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/MainWindowLifecycleController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.Execution.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/Read/ReadTabController.ProfilesAndSettings.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/WriteTabController.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines, GWGUI.Domain.Write → GWGUI.Infrastructure.Write.
+  - [x] Modifier src/GWGUI.App/Functions/Emulation/Shortcuts/EmulationShortcutViewFunctions.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.App/Functions/ViewModels/Conversion/ConversionConflictResolutionFunctions.cs : GWGUI.Domain.Conversion → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Interfaces/Services/Dialogs/IBusinessDialogService.cs : GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Interfaces/Services/Navigation/IWindowNavigationService.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/EngineOptionsController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/GeneralOptionsController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/HardwareOptionsController.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/HostToolsOptionsController.cs : GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/LoggingOptionsController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/ProfileOptionsController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/TagOptionsController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/States/HardwareOptionsState.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Options/States/HostToolsOptionsState.cs : GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/States/ProfileOptionsState.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Profiles → GWGUI.Infrastructure.Settings.Profiles.
+  - [x] Modifier src/GWGUI.App/Parity/MediaParityMatrix.cs : GWGUI.Domain.Parity → GWGUI.App.Parity.
+  - [x] Modifier src/GWGUI.App/Parity/MediaParityOperation.cs : GWGUI.Domain.Parity → GWGUI.App.Parity.
+  - [x] Modifier src/GWGUI.App/Parity/MediaParityRow.cs : GWGUI.Domain.Parity → GWGUI.App.Parity.
+  - [x] Modifier src/GWGUI.App/Parity/ParityValidationStatus.cs : GWGUI.Domain.Parity → GWGUI.App.Parity.
+  - [x] Modifier src/GWGUI.App/Presenters/Conversion/ConversionFormatPresenter.cs : GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Presenters/Operations/OperationResultPresenter.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier src/GWGUI.App/Presenters/Visualization/BlockMediaInspectorPresenter.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Profiles/InMemoryProfileStore.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles.
+  - [x] Modifier src/GWGUI.App/Profiles/IProfileStore.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles.
+  - [x] Modifier src/GWGUI.App/Profiles/OperationProfile.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles.
+  - [x] Modifier src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Parity → GWGUI.App.Parity, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.App/Services/Dialogs/WpfBusinessDialogService.cs : GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskDefinitionsController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Interfaces.IMediaImageRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaImageRepresentation.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/ImageFormatWorkspace.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/Selection/DiskImageFileSelectionService.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/MediaVisualizationController.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Services/Hardware/HardwareSelectionController.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Services/Hardware/StartupHardwareMonitor.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Services/Maintenance/MaintenanceToolsController.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Maintenance → GWGUI.Infrastructure.Maintenance, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Services/Operations/OperationProgressController.cs : GWGUI.Domain.Commands.Progress → GWGUI.Infrastructure.Commands.Progress.
+  - [x] Modifier src/GWGUI.App/Services/Operations/OperationRuntimeController.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier src/GWGUI.App/Services/Parity/MediaEngineParityCatalog.cs : GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Parity → GWGUI.App.Parity.
+  - [x] Modifier src/GWGUI.App/Services/Parity/MediaParityComparisonService.cs : GWGUI.Domain.Parity → GWGUI.App.Parity.
+  - [x] Modifier src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Services/Profiles/OperationProfileCollection.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Settings.Profiles → GWGUI.Infrastructure.Settings.Profiles.
+  - [x] Modifier src/GWGUI.App/Services/Profiles/OperationProfileController.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles.
+  - [x] Modifier src/GWGUI.App/Services/Terminal/TerminalPanelController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Services/Theming/ThemeManager.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Services/Windows/WindowPlacementController.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Window → GWGUI.Infrastructure.Settings.Window.
+  - [x] Modifier src/GWGUI.App/Services/Windows/WpfWindowNavigationService.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/ViewModels/Conversion/ConversionOperationViewModel.cs : GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/ViewModels/Operations/Options/FlagOptionViewModel.cs : GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/ViewModels/Operations/Options/OperationOptionViewModelBase.cs : GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/ViewModels/Operations/Options/ValueOptionViewModel.cs : GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/ViewModels/Operations/ReadOperationViewModel.cs : GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier src/GWGUI.App/ViewModels/Operations/WriteOperationViewModel.cs : GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/ViewModels/Options/LogOptionRow.cs : GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Common/DiskClassificationSelector.xaml.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Common/MediaDocumentIdentity.xaml.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Conversion/ConversionFormatControl.xaml.cs : GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Conversion/ConversionFormatsSection.xaml.cs : GWGUI.Domain.Conversion → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSection.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionMediaFolderFunctions.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineCommandBar.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPreferencesSection.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationPreferencesSectionSettingsFunctions.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Enums.MediaKind → GWGUI.MediaFileSystems.Enums.MediaKind.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Formats.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Enums.MediaKind → GWGUI.MediaFileSystems.Enums.MediaKind.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Navigation.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Read/ReadAdvancedSection.xaml.cs : GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerLegend.xaml.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.App/Views/Dialogs/Conversion/ConversionConflictWindow.xaml.cs : GWGUI.Domain.Conversion → aliases des types employés.
+  - [x] Modifier src/GWGUI.App/Views/Dialogs/Hardware/HardwareUnavailableWindow.xaml.cs : GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Views/Windows/EmulationPreferences/EmulationPreferencesWindow.xaml.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Preferences/PreferencesWindow.xaml.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Profiles → GWGUI.App.Profiles, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Tools/GwToolWindow.xaml.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Hardware.Parsing → GWGUI.Infrastructure.Hardware.Parsing.
+
+- [x] Corriger les fichiers de GWGUI.Infrastructure
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Building/GwCommandBuilder.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Maintenance → GWGUI.Infrastructure.Maintenance, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Write → GWGUI.Infrastructure.Write.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Building/GwInfoRequest.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Building/IGwCommandBuilder.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Maintenance → GWGUI.Infrastructure.Maintenance, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Write → GWGUI.Infrastructure.Write.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/CommandLineTokenizer.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Execution/GwBatchExecutor.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Execution/GwExecution.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Execution/IGreaseweazleRunner.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/GwCommand.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Options/GwOptionValidator.cs : GWGUI.Domain.Commands.Options → GWGUI.Infrastructure.Commands.Options.
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Progress/GwProgressTracker.cs : GWGUI.Domain.Commands.Progress → GWGUI.Infrastructure.Commands.Progress.
+  - [x] Modifier src/GWGUI.Infrastructure/Conversion/ConversionCommandBuilder.cs : GWGUI.Domain.Conversion → GWGUI.Infrastructure.Conversion, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.Infrastructure/Functions/Hardware/GreaseweazleHardwareScanFunctions.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleMediaAcquisitionProvider.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Functions → GWGUI.MediaEngine.Functions, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleMediaPhysicalWriter.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Functions → GWGUI.MediaEngine.Functions, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/GreaseweazleDeviceMatcher.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/GreaseweazleHardwareRegistry.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Hardware.Parsing → GWGUI.Infrastructure.Hardware.Parsing, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/GwDeviceInfo.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/HardwareRoutingPolicy.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/IHardwareRegistry.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/Media/MediaAcquisitionProviderRegistry.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/Media/MediaPhysicalWriterRegistry.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/Parsing/GwInfoParser.cs : GWGUI.Domain.Hardware.Parsing → GWGUI.Infrastructure.Hardware.Parsing, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/SerialDevice.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Hardware/WindowsSerialDeviceDiscovery.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/HostTools/GwFormatCapabilityReader.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Parsing → GWGUI.MediaEngine.Formats.Parsing.
+  - [x] Modifier src/GWGUI.Infrastructure/HostTools/GwInstallationManager.cs : GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools.
+  - [x] Modifier src/GWGUI.Infrastructure/HostTools/IGwInstallationManager.cs : GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools.
+  - [x] Modifier src/GWGUI.Infrastructure/Maintenance/MaintenanceCommands.cs : GWGUI.Domain.Maintenance → GWGUI.Infrastructure.Maintenance, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.Infrastructure/Maintenance/ToolCommandBuilder.cs : GWGUI.Domain.Maintenance → GWGUI.Infrastructure.Maintenance, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.Infrastructure/Naming/OutputConflictResolver.cs : GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier src/GWGUI.Infrastructure/Naming/SequenceFormatter.cs : GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier src/GWGUI.Infrastructure/Processes/ConsoleLogSession.cs : GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier src/GWGUI.Infrastructure/Processes/GreaseweazleRunner.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier src/GWGUI.Infrastructure/Processes/RotatingOperationLogWriter.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier src/GWGUI.Infrastructure/Read/ReadCommandBuilder.cs : GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.Infrastructure/Read/ReadRequest.cs : GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/AppSettings.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware, GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging, GWGUI.Domain.Settings.Operations → GWGUI.Infrastructure.Settings.Operations, GWGUI.Domain.Settings.Profiles → GWGUI.Infrastructure.Settings.Profiles, GWGUI.Domain.Settings.Window → GWGUI.Infrastructure.Settings.Window.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/AppTheme.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Emulation/EmulationMediaFolderCategory.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Emulation/EmulationMediaFolderSettings.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Emulation/EmulationShortcutDefaultFunctions.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Emulation/EmulationShortcutDefaults.cs : GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Engines/EngineSettings.cs : GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Engines/OperationEngine.cs : GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Hardware/HardwareSettings.cs : GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/ISettingsStore.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/JsonSettingsStore.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Logging/LoggingSettings.cs : GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Operations/OperationUiSettings.cs : GWGUI.Domain.Settings.Operations → GWGUI.Infrastructure.Settings.Operations, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Profiles/ProfileSettings.cs : GWGUI.Domain.Settings.Profiles → GWGUI.Infrastructure.Settings.Profiles.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/SettingsMigrator.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Settings.Emulation → GWGUI.Infrastructure.Settings.Emulation, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines, GWGUI.Domain.Settings.Operations → GWGUI.Infrastructure.Settings.Operations, GWGUI.Domain.Settings.Window → GWGUI.Infrastructure.Settings.Window.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Window/WindowPlacementPolicy.cs : GWGUI.Domain.Settings.Window → GWGUI.Infrastructure.Settings.Window.
+  - [x] Modifier src/GWGUI.Infrastructure/Settings/Window/WindowPlacementSettings.cs : GWGUI.Domain.Settings.Window → GWGUI.Infrastructure.Settings.Window.
+  - [x] Modifier src/GWGUI.Infrastructure/Write/WriteCommandBuilder.cs : GWGUI.Domain.Write → GWGUI.Infrastructure.Write, GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Options → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.Infrastructure/Write/WriteRequest.cs : GWGUI.Domain.Write → GWGUI.Infrastructure.Write, GWGUI.Domain.Commands.Options → aliases des types employés.
+
+- [x] Corriger les fichiers de GWGUI.LocalDiskImageTests
+  - [x] Modifier tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier tests/GWGUI.LocalDiskImageTests/Program.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+
+- [x] Corriger les fichiers de GWGUI.MediaEngine
+  - [x] Modifier src/GWGUI.MediaEngine/Acquisition/FloppyFluxAcquisitionService.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Functions → GWGUI.MediaEngine.Functions.
+  - [x] Modifier src/GWGUI.MediaEngine/Commands/Options/EnabledOption.cs : GWGUI.Domain.Commands.Options → GWGUI.MediaEngine.Commands.Options.
+  - [x] Modifier src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/AmigaDiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/AmstradDiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/AppleDiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/AtariDiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/CommodoreDiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/DiskGeometryConstants.cs : GWGUI.Domain.Constants.DiskGeometryConstants → GWGUI.MediaFileSystems.Constants.DiskGeometryConstants.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/IbmDiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/MediaPhysicalEncodingIds.cs : GWGUI.Domain.Constants → GWGUI.MediaEngine.Constants.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/MediaPhysicalMetadataKeys.cs : GWGUI.Domain.Constants → GWGUI.MediaEngine.Constants.
+  - [x] Modifier src/GWGUI.MediaEngine/Constants/MsxDiskImageFormatIds.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaAcquisitionProgress.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaAcquisitionResult.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaDataRange.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaFluxRevolutionData.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaFluxTrackData.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaImageDocument.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaPhysicalDataUnit.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaPhysicalWriteProgress.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaPhysicalWriteResult.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaWritePlan.cs : GWGUI.Domain.Contracts → GWGUI.MediaEngine.Contracts, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackDescriptor.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionCompatibilityValidator.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionFidelity.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionFidelityLevel.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionModels.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionOutputFactory.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionPlanner.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionSourceCompatibility.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/ConversionTagFormatter.cs : GWGUI.Domain.Conversion → GWGUI.MediaEngine.Conversion, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/MediaRepresentationConverterRegistry.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/Migration/FileSystemMigrationCapabilityCatalog.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/Optical/OpticalImageConversionService.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/Scp/ScpFluxToSectorRepresentationConverter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/Scp/SectorToFluxRepresentationConverter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Acorn/AcornTapeDecoder.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Msx/MsxTapeDecoder.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Encoding/CommodoreTrackEncodingTimings.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Exploration/Contracts/MediaExplorationProgress.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentDecoderAdapter.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosBitmapReader.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosChecksum.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosDirectoryReader.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosFileReader.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosRecoveryReader.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosRootBlockReader.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosTime.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Amiga/AmigaDosVolumeWriter.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/Commodore1541BamReader.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosLayout.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosNamePolicy.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosVolumeBuilder.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Commodore/Dos/CommodoreDosWritableGeometry.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/IFileSystemReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/BuiltInDiskDefinitions.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Commands.Options → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/CapabilityAwareImageFormatCatalog.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/AdfImageFormatDetectionRule.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/AppleImageFormatDetectionRule.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/AtariImageFormatDetectionRule.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/DetectedImageFormat.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/FormatConfidence.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/IbmPcImageFormatDetectionRule.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/IImageFormatDetectionRule.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetectionContext.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/ImageFormatDetector.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/MacintoshImageFormatDetectionRule.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Detection/RawImageFormatDetectionRule.cs : GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/DiskClassificationCatalog.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/DiskDefsFormatReader.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Adf/AdfReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Apple/AppleDiskImageReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Apridisk/ApridiskReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/CommodoreDos/CommodoreDosContainerWriter.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Cp2/Cp2Reader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D64/D64Layout.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D64/D64Reader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D71/D71Layout.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D71/D71Reader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Layout.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Reader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Writer.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/CoherentRawImageReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/CommodoreDosGeometry.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/EpsonQx10RawImageReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmRawImageReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxRawImageReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/RawImgReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/UcsdRawImageReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Rx02/DecRx02Reader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/St/AtariStReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Reader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Xfd/XfdReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/GwFormatArgument.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/GwFormatCapabilities.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/GwVisualizationPolicy.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Reader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Writer.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/IGwFormatCapabilityReader.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/IImageFormatCatalog.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/ImageFormatCatalog.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/ImageFormatModels.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces.IMediaRandomAccessData → GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Chd/ChdOpticalReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Parsing/GwFormatCapabilitiesParser.cs : GWGUI.Domain.Formats.Parsing → GWGUI.MediaEngine.Formats.Parsing, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/RuntimeImageFormatCatalog.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Uef/UefReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Uef/UefWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Functions/MediaFluxTrackDataFunctions.cs : GWGUI.Domain.Functions → GWGUI.MediaEngine.Functions, GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Conversion/IMediaRepresentationConverter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Exploration/IMediaFileSystemReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Interfaces/IMediaAcquisitionProvider.cs : GWGUI.Domain.Interfaces → GWGUI.MediaEngine.Interfaces, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Interfaces/IMediaPhysicalWriter.cs : GWGUI.Domain.Interfaces → GWGUI.MediaEngine.Interfaces, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Reading/IMediaImageReader.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Visualization/IMediaVisualizationProvider.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Writing/IMediaImageWriter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/PhysicalWriting/FloppyMediaWritePlanningService.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Functions → GWGUI.MediaEngine.Functions.
+  - [x] Modifier src/GWGUI.MediaEngine/Primitives/BitPrimitives.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Reading/MediaImageDocumentFactory.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces.IMediaImageRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaImageRepresentation.
+  - [x] Modifier src/GWGUI.MediaEngine/Reading/MediaImageReadingService.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Reading/Sources/ChdUncompressedRandomAccessData.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Reading/Sources/FileRandomAccessData.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Reading/Sources/MemoryRandomAccessData.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Reading/Sources/UnavailableRandomAccessData.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionRegistry.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Recognition/MediaRecognitionContext.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Reconstruction/CommodoreScpSectorImageReader.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Reconstruction/Sectors/Commodore1541SectorImageBuilder.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Representations/Blocks/BlockMediaImageRepresentation.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Representations/Flux/FluxMediaImageRepresentation.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Representations/Optical/OpticalMediaImageRepresentation.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Representations/Sectors/SectorBlock.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Representations/Sectors/SectorImage.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Representations/Sectors/SectorMediaImageRepresentation.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Representations/Sequential/SequentialMediaImageRepresentation.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaEngine/Visualization/MediaVisualizationDescriptor.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Visualization/Policies/CommodoreVisualizationPolicy.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/BlockMediaVisualizationProvider.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/FluxMediaVisualizationProvider.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/OpticalMediaVisualizationProvider.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/SectorMediaVisualizationProvider.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/SequentialMediaVisualizationProvider.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Writing/FluxMediaImageWriterAdapter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Writing/MediaImageWriterAdapter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaEngine/Writing/SectorMediaImageWriterAdapter.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+
+- [x] Corriger les fichiers de GWGUI.MediaFileSystems
+  - [x] Modifier src/GWGUI.MediaFileSystems/Constants/BitConstants.cs : GWGUI.Domain.Constants → GWGUI.MediaFileSystems.Constants.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Constants/DiskGeometryConstants.cs : GWGUI.Domain.Constants → GWGUI.MediaFileSystems.Constants.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs : GWGUI.Domain.Constants → GWGUI.MediaFileSystems.Constants.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Constants/MediaVolumeOrigins.cs : GWGUI.Domain.Constants → GWGUI.MediaFileSystems.Constants.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Constants/PartitionSchemeIds.cs : GWGUI.Domain.Constants → GWGUI.MediaFileSystems.Constants.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Contracts/MediaSectorAddress.cs : GWGUI.Domain.Contracts → GWGUI.MediaFileSystems.Contracts.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Contracts/MediaSectorGeometry.cs : GWGUI.Domain.Contracts → GWGUI.MediaFileSystems.Contracts.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Contracts/MediaSectorWriteBlock.cs : GWGUI.Domain.Contracts → GWGUI.MediaFileSystems.Contracts.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Contracts/MediaSectorWritePlan.cs : GWGUI.Domain.Contracts → GWGUI.MediaFileSystems.Contracts.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Contracts/MediaSourceDescriptor.cs : GWGUI.Domain.Contracts → GWGUI.MediaFileSystems.Contracts.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Contracts/MediaVolumeDescriptor.cs : GWGUI.Domain.Contracts → GWGUI.MediaFileSystems.Contracts.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Contracts/MediaVolumeDetectionResult.cs : GWGUI.Domain.Contracts → GWGUI.MediaFileSystems.Contracts.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Definitions/FileSystemDisplayNames.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Enums/MediaKind.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Enums/MediaRepresentationKind.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/MediaVolumeDetectorRegistry.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Interfaces.Exploration → GWGUI.MediaFileSystems.Interfaces.Exploration.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Partitioning/GptVolumeDetector.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Interfaces.Exploration → GWGUI.MediaFileSystems.Interfaces.Exploration.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Partitioning/MbrVolumeDetector.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Interfaces.Exploration → GWGUI.MediaFileSystems.Interfaces.Exploration.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Partitioning/OpticalTrackVolumeDetector.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Interfaces.Exploration → GWGUI.MediaFileSystems.Interfaces.Exploration.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Partitioning/WholeMediaVolumeDetector.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Interfaces.Exploration → GWGUI.MediaFileSystems.Interfaces.Exploration.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Sequential/SequentialContentFileSystemReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Sequential/SequentialContentVolumeDetector.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Interfaces.Exploration → GWGUI.MediaFileSystems.Interfaces.Exploration.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosBitmapReader.cs : GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosChecksum.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosDirectoryReader.cs : GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosFileReader.cs : GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosFileSystemReader.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosRecoveryReader.cs : GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosRootBlockReader.cs : GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosTime.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Amiga/AmigaDosVolumeWriter.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosFileSystemReader.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosTrackSectorListReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosVolumeWriter.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/Dos/AppleDosVtocReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosBitmapReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosDirectoryReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosFileContentReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosFileSystemReader.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosVolumeHeaderReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/ProDos/ProDosVolumeWriter.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Apple/Sos/SosVolumeWriter.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/Commodore1541BamReader.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/Commodore1581BamReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosDirectoryReader.cs : GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosFileReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosFileSystemReader.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosGeometry.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosLayout.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosNamePolicy.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosRecognizer.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosSectorReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosVolumeBuilder.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore, GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosVolumeWriter.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Commodore/Dos/CommodoreDosWritableGeometry.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12ClusterChainReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12DirectoryReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12FatReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12FileSystemReader.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12FormatCatalog.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12LayoutReader.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12LegacyLayoutCatalog.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12Table.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/Fat12VolumeWriter.cs : GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/FileSystems/Fat12/FatSectorReader.cs : GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1541Address.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1541Geometry.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore, GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1571Geometry.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Formats/Commodore/Commodore1581Geometry.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore, GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Formats/Commodore/CommodoreGeometryExceptions.cs : GWGUI.Domain.Formats.Commodore → GWGUI.MediaFileSystems.Formats.Commodore.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/Exploration/IMediaFileSystemReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/Exploration/IMediaVolumeDetector.cs : GWGUI.Domain.Interfaces.Exploration → GWGUI.MediaFileSystems.Interfaces.Exploration, GWGUI.Domain.Contracts → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IFileSystemReader.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaBlockRepresentation.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaImageDocument.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaImageRepresentation.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaOpticalRepresentation.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaOpticalTrack.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaRandomAccessData.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorBlock.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorImage.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaSectorRepresentation.cs : GWGUI.Domain.Interfaces → GWGUI.MediaFileSystems.Interfaces.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Primitives/BigEndianInt32.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+  - [x] Modifier src/GWGUI.MediaFileSystems/Primitives/PetsciiCodec.cs : GWGUI.Domain.Primitives → GWGUI.MediaFileSystems.Primitives.
+
+- [x] Corriger les fichiers de GWGUI.Tests
+  - [x] Modifier tests/GWGUI.Tests/Application/ComponentAcquisition/ComponentAcquisitionScenarios.cs : GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools.
+  - [x] Modifier tests/GWGUI.Tests/Application/ExternalProcesses/ProcessBoundaryScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier tests/GWGUI.Tests/Application/OperationLifecycle/BatchExecutionScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier tests/GWGUI.Tests/Application/OutputNaming/OutputConflictScenarios.cs : GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier tests/GWGUI.Tests/Application/OutputNaming/OutputNamingTests.cs : GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier tests/GWGUI.Tests/Application/OutputNaming/SequenceAndTagsScenarios.cs : GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Naming → GWGUI.Infrastructure.Naming.
+  - [x] Modifier tests/GWGUI.Tests/Application/Profiles/ProfileStateScenarios.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles.
+  - [x] Modifier tests/GWGUI.Tests/Application/Profiles/ProfilesTests.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles.
+  - [x] Modifier tests/GWGUI.Tests/Application/SettingsStorage/MigrationAndRecoveryScenarios.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier tests/GWGUI.Tests/Application/SettingsStorage/SettingsRoundTripScenarios.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Application/SettingsStorage/StorageLocationScenarios.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Application/TestInfrastructure/TestInfrastructureTests.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/CommandsAndParsing/CommandArgumentsScenarios.cs : GWGUI.Domain.Maintenance → GWGUI.Infrastructure.Maintenance, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Write → GWGUI.Infrastructure.Write, GWGUI.Domain.Commands.CommandLineTokenizer → GWGUI.Infrastructure.Commands.CommandLineTokenizer, GWGUI.Domain.Commands.GwCommand → GWGUI.Infrastructure.Commands.GwCommand, GWGUI.Domain.Commands.Options.EnabledOption → GWGUI.MediaEngine.Commands.Options.EnabledOption.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/CommandsAndParsing/ExternalOutputParsingScenarios.cs : GWGUI.Domain.Formats.Parsing → GWGUI.MediaEngine.Formats.Parsing, GWGUI.Domain.Hardware.Parsing.GwInfoParser → GWGUI.Infrastructure.Hardware.Parsing.GwInfoParser.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/CommandsAndParsing/ProgressAndLogsScenarios.cs : GWGUI.Domain.Commands.Progress → GWGUI.Infrastructure.Commands.Progress, GWGUI.Domain.Commands.Execution.GwOutputStream → GWGUI.Infrastructure.Commands.Execution.GwOutputStream, GWGUI.Domain.Commands.GwCommand → GWGUI.Infrastructure.Commands.GwCommand, GWGUI.Domain.Settings.Logging.OperationLogSettings → GWGUI.Infrastructure.Settings.Logging.OperationLogSettings.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/FirmwareUpdate/FirmwareUpdateScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/HardwareSelection/DeviceDiscoveryScenarios.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Commands.Execution.GwOutputStream → GWGUI.Infrastructure.Commands.Execution.GwOutputStream, GWGUI.Domain.Commands.Execution.GwExecutionResult → GWGUI.Infrastructure.Commands.Execution.GwExecutionResult, GWGUI.Domain.Commands.Execution.IGreaseweazleRunner → GWGUI.Infrastructure.Commands.Execution.IGreaseweazleRunner, GWGUI.Domain.Commands.GwCommand → GWGUI.Infrastructure.Commands.GwCommand, GWGUI.Domain.Settings.Hardware.ControllerSettings → GWGUI.Infrastructure.Settings.Hardware.ControllerSettings.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/HardwareSelection/DriveRoutingScenarios.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware, GWGUI.Domain.Settings.AppSettings → GWGUI.Infrastructure.Settings.AppSettings.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/HardwareSelection/HardwareRefreshScenarios.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Hardware → GWGUI.Infrastructure.Settings.Hardware.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/Maintenance/DiagnosticResultScenarios.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/Maintenance/MaintenanceRequestScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Maintenance.ToolCommandBuilder → GWGUI.Infrastructure.Maintenance.ToolCommandBuilder.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/PhysicalReading/ReadFailureScenarios.cs : GWGUI.Domain.Constants → aliases des types employés.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/PhysicalReading/ReadPlanningScenarios.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Settings.Engines.OperationEngine → GWGUI.Infrastructure.Settings.Engines.OperationEngine.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/PhysicalWriting/WritePlanningScenarios.cs : GWGUI.Domain.Contracts.MediaWritePlan → GWGUI.MediaEngine.Contracts.MediaWritePlan.
+  - [x] Modifier tests/GWGUI.Tests/Interface/Accessibility/AccessibleControlsScenarios.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ConversionViews/ConversionConflictScenarios.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Conversion → aliases des types employés, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines, GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ConversionViews/ConversionSelectionScenarios.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs : GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces.IMediaImageRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaImageRepresentation.
+  - [x] Modifier tests/GWGUI.Tests/Interface/Help/HelpTargetScenarios.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/MaintenanceViews/ToolOperationScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier tests/GWGUI.Tests/Interface/MaintenanceViews/ToolSelectionScenarios.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/Navigation/NavigationScenarios.cs : GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/Navigation/WindowLayoutScenarios.cs : GWGUI.Domain.Settings.Window → GWGUI.Infrastructure.Settings.Window.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ProfileViews/ProfileEditingScenarios.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Profiles → GWGUI.Infrastructure.Settings.Profiles, GWGUI.Domain.Profiles.OperationProfile → GWGUI.App.Profiles.OperationProfile, GWGUI.Domain.Profiles.OperationKind → GWGUI.App.Profiles.OperationKind.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ProfileViews/ProfileSelectionScenarios.cs : GWGUI.Domain.Profiles → GWGUI.App.Profiles.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ReadViews/ReadFormatScenarios.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Read → GWGUI.Infrastructure.Read, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier tests/GWGUI.Tests/Interface/ReadViews/ReadOperationScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines, GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier tests/GWGUI.Tests/Interface/SettingsViews/SettingsEditingScenarios.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier tests/GWGUI.Tests/Interface/SettingsViews/SettingsFailureScenarios.cs : GWGUI.Domain.Hardware → GWGUI.Infrastructure.Hardware, GWGUI.Domain.HostTools → GWGUI.Infrastructure.HostTools, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/SettingsViews/SettingsValidationScenarios.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier tests/GWGUI.Tests/Interface/Themes/ThemeResourcesScenarios.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/Themes/ThemesTests.cs : GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces.IMediaImageRepresentation → GWGUI.MediaFileSystems.Interfaces.IMediaImageRepresentation.
+  - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Interfaces → aliases des types employés, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+  - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs : GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums.
+  - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs : GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Interface/WriteViews/WriteOperationScenarios.cs : GWGUI.Domain.Commands → GWGUI.Infrastructure.Commands, GWGUI.Domain.Commands.Building → GWGUI.Infrastructure.Commands.Building, GWGUI.Domain.Commands.Execution → GWGUI.Infrastructure.Commands.Execution, GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines, GWGUI.Domain.Settings.Logging → GWGUI.Infrastructure.Settings.Logging.
+  - [x] Modifier tests/GWGUI.Tests/Interface/WriteViews/WriteSourceScenarios.cs : GWGUI.Domain.Formats → GWGUI.MediaEngine.Formats, GWGUI.Domain.Formats.Detection → GWGUI.MediaEngine.Formats.Detection, GWGUI.Domain.Settings → GWGUI.Infrastructure.Settings, GWGUI.Domain.Settings.Engines → GWGUI.Infrastructure.Settings.Engines.
+  - [x] Modifier tests/GWGUI.Tests/Media/SequentialContentFileSystemReaderTests.cs : GWGUI.Domain.Constants → aliases des types employés, GWGUI.Domain.Contracts → aliases des types employés, GWGUI.Domain.Enums → GWGUI.MediaFileSystems.Enums, GWGUI.Domain.Interfaces → aliases des types employés.
+
+## 4. Suppression du projet et contrôles
+
+- [x] Vérifier la compilation après renommage
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le résultat de `dotnet build GWGUI.sln --no-restore --nologo -v:q -m:1` et lister les fichiers à corriger après la dernière tâche cochée.
+
+La compilation s'arrête sur deux types autrefois visibles dans le même namespace mais désormais répartis entre projets : `EnabledOption` dans `GwOptionValidator.cs` et `ConversionOutput` dans `ConversionCommandBuilder.cs`. Les corrections suivent.
+
+- [x] Corriger les dépendances révélées par la compilation
+  - [x] Modifier src/GWGUI.Infrastructure/Commands/Options/GwOptionValidator.cs pour importer GWGUI.MediaEngine.Commands.Options.EnabledOption.
+  - [x] Modifier src/GWGUI.Infrastructure/Conversion/ConversionCommandBuilder.cs pour importer GWGUI.MediaEngine.Conversion.ConversionOutput.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner une nouvelle compilation sans restauration, puis ajouter immédiatement toute correction encore nécessaire.
+
+La compilation suivante réussit avec 0 erreur et 41 avertissements CS0105 dus à des imports identiques présents deux fois après renommage. Les 12 fichiers concernés sont listés ci-dessous.
+
+- [x] Supprimer les imports dupliqués
+  - [x] Modifier src/GWGUI.App/App.xaml.cs pour ne garder qu'un import GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Controllers/MainWindow/MainWindowLifecycleController.cs pour ne garder qu'un import GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Options/Controllers/HardwareOptionsController.cs pour ne garder qu'un import GWGUI.Infrastructure.Hardware.
+  - [x] Modifier src/GWGUI.App/Views/Windows/EmulationPreferences/EmulationPreferencesWindow.xaml.cs pour ne garder qu'un import GWGUI.Infrastructure.Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Preferences/PreferencesWindow.xaml.cs pour ne garder qu'un import de chacun des namespaces GWGUI.Infrastructure.Hardware, HostTools et Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs pour ne garder qu'un import de chacun des namespaces GWGUI.Infrastructure.Hardware, HostTools et Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs pour ne garder qu'un import de chacun des namespaces GWGUI.Infrastructure.Hardware, HostTools et Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs pour ne garder qu'un import de chacun des namespaces GWGUI.Infrastructure.Hardware, HostTools et Settings.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs pour ne garder qu'un import de chacun des namespaces GWGUI.Infrastructure.Hardware, HostTools et Settings.
+  - [x] Modifier tests/GWGUI.Tests/Application/ComponentAcquisition/ComponentAcquisitionScenarios.cs pour ne garder qu'un import GWGUI.Infrastructure.HostTools.
+  - [x] Modifier tests/GWGUI.Tests/Application/SettingsStorage/SettingsRoundTripScenarios.cs pour ne garder qu'un import GWGUI.Infrastructure.Settings.
+  - [x] Modifier tests/GWGUI.Tests/Hardware/HardwareSelection/DeviceDiscoveryScenarios.cs pour ne garder qu'un import GWGUI.Infrastructure.Hardware.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner une compilation finale sans avertissement avant le retrait du projet.
+
+Après suppression des imports dupliqués, `dotnet build GWGUI.sln --no-restore --nologo -v:q -m:1` réussit avec 0 avertissement et 0 erreur.
+
+- [x] Actualiser les contrôles liés au nom de la DLL
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le résultat du test d'architecture existant avant correction de ses attentes.
+  - [x] Modifier tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs pour contrôler les références des assemblages déplacés et l'absence de Domain.
+  - [x] Modifier tests/GWGUI.Tests/Application/Launcher/LauncherDecisionScenarios.cs pour remplacer son exemple gwgui.domain.dll par un assemblage présent, sans changer la vérification de recherche de DLL.
+
+Le test d'architecture existant échoue à sa première ancienne attente : `MediaFileSystems` référence actuellement 0 assemblage GWGUI dans ses métadonnées alors qu'il attend `gwgui.domain`. L'inspection des sources signale aussi 18 fichiers `App` qui nomment maintenant des types `MediaFileSystems` ; cette frontière doit être corrigée avant de valider le test.
+- [x] Retirer le projet vide
+  - [x] Modifier GWGUI.sln pour retirer la déclaration, les configurations et l'appartenance du projet GWGUI.Domain.
+  - [x] Supprimer src/GWGUI.Domain/GWGUI.Domain.csproj après retrait de toutes les références de projet.
+- [x] Vérifier les sources et les tests après retrait
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le résultat d'une compilation sans restauration et des tests d'architecture et de contrats après suppression de Domain.
+
+La solution compile sans `GWGUI.Domain.csproj` avec 0 avertissement et 0 erreur. Les 3 tests du lanceur passent. Le test d'architecture confirme une référence directe de l'assemblage `App` vers `gwgui.mediafilesystems` ; il reste en échec tant que les contrats visibles par `App` ne sont pas exposés par `MediaEngine`.
+
+- [x] Rétablir MediaEngine comme API média d'App
+  - [x] Replacer les catégories publiques du média dans MediaEngine
+    - [x] Déplacer src/GWGUI.MediaFileSystems/Enums/MediaKind.cs vers src/GWGUI.MediaEngine/Enums/MediaKind.cs et remplacer son namespace par GWGUI.MediaEngine.Enums.
+    - [x] Déplacer src/GWGUI.MediaFileSystems/Enums/MediaRepresentationKind.cs vers src/GWGUI.MediaEngine/Enums/MediaRepresentationKind.cs et remplacer son namespace par GWGUI.MediaEngine.Enums.
+  - [x] Retirer les catégories du contrat de lecture de systèmes de fichiers
+    - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaImageDocument.cs pour exposer IsTape et IsHardDisk au lieu de MediaKind.
+    - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaImageRepresentation.cs pour retirer RepresentationKind, qui appartient au moteur.
+    - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/Exploration/IMediaFileSystemReader.cs pour retirer RepresentationKinds inutilisé dans cette bibliothèque.
+    - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IFileSystemReader.cs pour retirer l'implémentation de RepresentationKinds.
+    - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Sequential/SequentialContentVolumeDetector.cs pour reconnaître la bande par IsTape et les capacités séquentielles du média chargé.
+    - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Partitioning/MbrVolumeDetector.cs pour reconnaître le disque dur par IsHardDisk.
+    - [x] Modifier src/GWGUI.MediaFileSystems/Exploration/Partitioning/GptVolumeDetector.cs pour reconnaître le disque dur par IsHardDisk.
+  - [x] Réexposer la représentation dans MediaEngine
+    - [x] Créer src/GWGUI.MediaEngine/Interfaces/IMediaImageRepresentation.cs étendant l'interface de lecture de MediaFileSystems et exposant MediaRepresentationKind.
+    - [x] Modifier src/GWGUI.MediaEngine/Representations/Flux/FluxMediaImageRepresentation.cs pour implémenter cette interface MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Representations/Sequential/SequentialMediaImageRepresentation.cs pour implémenter cette interface MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Representations/Sectors/SectorMediaImageRepresentation.cs pour implémenter cette interface MediaEngine en plus du contrat sectoriel.
+    - [x] Modifier src/GWGUI.MediaEngine/Representations/Blocks/BlockMediaImageRepresentation.cs pour implémenter cette interface MediaEngine en plus du contrat de blocs.
+    - [x] Modifier src/GWGUI.MediaEngine/Representations/Optical/OpticalMediaImageRepresentation.cs pour implémenter cette interface MediaEngine en plus du contrat optique.
+    - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaImageDocument.cs pour exposer les enums et la représentation du moteur et implémenter explicitement IsTape, IsHardDisk et le contrat de représentation de MediaFileSystems.
+    - [x] Modifier src/GWGUI.MediaEngine/Reading/MediaImageDocumentFactory.cs pour accepter la représentation MediaEngine.
+
+Les raccordements des consommateurs de ces types seront ajoutés après les actions ci-dessus et avant compilation.
+
+  - [x] Raccorder les consommateurs des catégories déplacées
+    - [x] Modifier docs/tasks/domain-removal.md pour lister les remplacements de namespaces par fichier.
+    - [x] Modifier src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Exploration/ExplorerPresentationController.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/MediaVisualizationController.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/VisualizerLoadingController.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Common/MediaDocumentIdentity.xaml.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Display.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Explorer/Sections/ExplorerSection.Media.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerLegend.xaml.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleMediaAcquisitionProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleMediaPhysicalWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.Infrastructure/Hardware/Media/MediaAcquisitionProviderRegistry.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Acquisition/FloppyFluxAcquisitionService.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaAcquisitionResult.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaWritePlan.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/MediaRepresentationConverterRegistry.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/Optical/OpticalImageConversionService.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/Scp/ScpFluxToSectorRepresentationConverter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/Scp/SectorToFluxRepresentationConverter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Acorn/AcornTapeDecoder.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Msx/MsxTapeDecoder.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Exploration/Contracts/MediaExplorationProgress.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentDecoderAdapter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/FileSystems/IFileSystemReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/AcornAtom/AcornAtomDskReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Adf/AdfReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Apple/AppleDiskImageReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Apridisk/ApridiskReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Atr/AtrReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Atx/AtxReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/BbcDfs/BbcDfsReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Cp2/Cp2Reader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/CpcDsk/CpcDskReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D64/D64Reader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D71/D71Reader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/D81/D81Reader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Hfe/HfeReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/I86f/I86fReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/ImageDisk/ImdReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Msa/MsaReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/CoherentRawImageReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/EpsonQx10RawImageReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/IbmRawImageReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/MsxRawImageReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/RawImgReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Raw/UcsdRawImageReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Rx02/DecRx02Reader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/St/AtariStReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/TeleDisk/Td0Reader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Floppy/Xfd/XfdReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Reader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Writer.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Chd/ChdOpticalReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Uef/UefReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Uef/UefWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Conversion/IMediaRepresentationConverter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Exploration/IMediaFileSystemReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Interfaces/IMediaAcquisitionProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Interfaces/IMediaPhysicalWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Reading/IMediaImageReader.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Visualization/IMediaVisualizationProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Interfaces/Writing/IMediaImageWriter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/PhysicalWriting/FloppyMediaWritePlanningService.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/MediaVisualizationDescriptor.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/BlockMediaVisualizationProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/FluxMediaVisualizationProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/OpticalMediaVisualizationProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/SectorMediaVisualizationProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/SequentialMediaVisualizationProvider.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Writing/FluxMediaImageWriterAdapter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Writing/MediaImageWriterAdapter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier src/GWGUI.MediaEngine/Writing/SectorMediaImageWriterAdapter.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.LocalDiskImageTests/Program.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Hardware/PhysicalReading/ReadPlanningScenarios.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/ExplorerDocumentScenarios.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+    - [x] Modifier tests/GWGUI.Tests/Media/SequentialContentFileSystemReaderTests.cs pour importer les catégories média depuis GWGUI.MediaEngine.Enums.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner la compilation après raccordement des enums et détailler les corrections nécessaires.
+
+La compilation signale 51 imports d'enums en double et un cast de représentation App vers l'ancien contrat ; ces fichiers sont corrigés ci-dessous.
+
+  - [x] Corriger les raccordements signalés par la compilation
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs pour caster la représentation vers le contrat MediaEngine.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/MediaVisualizationController.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Acorn/AcornTapeDecoder.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Msx/MsxTapeDecoder.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Reader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Writer.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Chd/ChdOpticalReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Uef/UefReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Uef/UefWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeReader.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeWriter.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/MediaVisualizationDescriptor.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/BlockMediaVisualizationProvider.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/FluxMediaVisualizationProvider.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/OpticalMediaVisualizationProvider.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/SectorMediaVisualizationProvider.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier src/GWGUI.MediaEngine/Visualization/Providers/SequentialMediaVisualizationProvider.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/VisualizerDocumentScenarios.cs pour supprimer les imports GWGUI.MediaEngine.Enums dupliqués.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner la compilation après la correction des imports et du cast.
+
+Le build suivant a 0 avertissement et 5 erreurs dans quatre tests de représentation et un test de rendu séquentiel.
+
+  - [x] Adapter les représentations de test au contrat public du moteur
+    - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs pour accepter IMediaImageRepresentation de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs pour implémenter IMediaImageRepresentation de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs pour accepter IMediaImageRepresentation de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs pour implémenter IMediaImageRepresentation de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs pour qualifier SequentialSegmentKind du rendu App.
+
+  - [x] Exposer la source par MediaEngine et ses seules données utiles à MediaFileSystems
+    - [x] Créer src/GWGUI.MediaFileSystems/Interfaces/IMediaSourceDescriptor.cs avec PrimaryPath et KnownLength.
+    - [x] Déplacer src/GWGUI.MediaFileSystems/Contracts/MediaSourceDescriptor.cs vers src/GWGUI.MediaEngine/Contracts/MediaSourceDescriptor.cs, adapter namespace et implémenter IMediaSourceDescriptor.
+    - [x] Modifier src/GWGUI.MediaFileSystems/Interfaces/IMediaImageDocument.cs pour exposer IMediaSourceDescriptor.
+    - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaImageDocument.cs pour implémenter explicitement la source du contrat MediaFileSystems.
+    - [x] Modifier src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/Optical/OpticalImageConversionService.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Exploration/DiskImageExplorer.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Exploration/MediaImageExplorationService.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Exploration/MediaOpeningAnalysisService.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkReader.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsReader.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdReader.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Reading/MediaImageDocumentFactory.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Reading/MediaImageReadingService.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Recognition/DiskImageRecognitionRegistry.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier src/GWGUI.MediaEngine/Recognition/MediaRecognitionContext.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.LocalDiskImageTests/MediaFileExtractor/Program.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.LocalDiskImageTests/Program.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.LocalDiskImageTests/TemporaryMediaAuditProgram.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+    - [x] Modifier tests/GWGUI.Tests/Media/SequentialContentFileSystemReaderTests.cs pour utiliser MediaSourceDescriptor de MediaEngine.
+
+  - [x] Exposer les volumes et identifiants publics par MediaEngine
+    - [x] Créer src/GWGUI.MediaEngine/Contracts/MediaVolumeInfo.cs avec les propriétés du volume détecté par MediaFileSystems.
+    - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaImageDocument.cs pour exposer MediaVolumeInfo et conserver les descripteurs MediaFileSystems dans son contrat explicite.
+    - [x] Modifier src/GWGUI.MediaEngine/Exploration/MediaExplorer.cs pour comparer les descripteurs internes des volumes.
+    - [x] Modifier src/GWGUI.MediaEngine/Exploration/Results/ExploredMediaVolume.cs pour exposer MediaVolumeInfo depuis le descripteur interne.
+    - [x] Créer src/GWGUI.MediaEngine/Constants/MediaVolumeOrigins.cs avec les constantes reprises de MediaFileSystems.
+    - [x] Créer src/GWGUI.MediaEngine/Constants/PartitionSchemeIds.cs avec les constantes reprises de MediaFileSystems.
+    - [x] Modifier src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs pour utiliser MediaVolumeOrigins de MediaEngine.
+    - [x] Modifier src/GWGUI.App/Presenters/Visualization/BlockMediaInspectorPresenter.cs pour utiliser PartitionSchemeIds de MediaEngine.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le build des contrats publics et ajouter les corrections de compilation nécessaires.
+
+Le build a 0 avertissement et une erreur dans un test qui réinjecte les vues publiques de volumes dans le constructeur du document. Le test doit reconstruire les descripteurs de systèmes de fichiers depuis ses propres données.
+
+  - [x] Corriger le montage des volumes du test
+    - [x] Modifier tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs pour reconstruire MediaVolumeDescriptor depuis les informations de volume simulées.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner la nouvelle compilation et le résultat du test de frontière.
+
+La solution compile avec 0 avertissement et 0 erreur. Le test d'architecture s'arrête sur son attente obsolète pour l'assembly contenant MediaKind : l'enum se trouve désormais dans MediaEngine, qui référence MediaFileSystems.
+
+  - [x] Ajuster l'attente d'architecture au nouvel emplacement de MediaKind
+    - [x] Modifier tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs pour attendre la référence MediaFileSystems de l'assembly MediaEngine dès la vérification de MediaKind.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le nouveau résultat du test de frontière.
+
+Le test progresse jusqu'à Infrastructure : après le déplacement des catégories, son assembly référence seulement MediaEngine. Son attente doit être corrigée.
+
+  - [x] Corriger la référence attendue d'Infrastructure
+    - [x] Modifier tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs pour attendre MediaEngine seul pour Infrastructure.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le résultat du test de frontière après correction.
+
+Le test atteint désormais App et confirme encore une référence d'assembly vers MediaFileSystems. Trois appels App au constructeur public de MediaImageDocument portent le type MediaVolumeDescriptor de MediaFileSystems dans sa signature ; ils passent par une fabrique MediaEngine pour les documents sans volume initial.
+
+  - [x] Retirer la signature MediaFileSystems des créations de documents par App
+    - [x] Modifier src/GWGUI.MediaEngine/Contracts/MediaImageDocument.cs pour créer un document sans volume initial via une fabrique publique MediaEngine.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs pour utiliser la fabrique lors de ses deux créations.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs pour utiliser la fabrique lors de sa création.
+  - [x] Ajuster les arguments de la fabrique
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs pour retirer les deux arguments de volumes devenus inutiles.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs pour retirer l'argument de volumes devenu inutile.
+  - [x] Corriger les trois appels de fabrique révélés par le build
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs pour enlever le premier des deux tableaux vides à chaque appel.
+    - [x] Modifier src/GWGUI.App/Services/DiskImages/Visualization/ScpVisualizationController.cs pour enlever le premier des deux tableaux vides.
+
+- [x] Actualiser les documents actifs après le retrait de Domain
+  - [x] Modifier docs/architecture/overview.md pour décrire les projets et dépendances réellement présents et leurs responsabilités.
+  - [x] Modifier docs/architecture/media-library-boundaries.md pour retirer Domain du graphe et décrire les contrats déclarés côté MediaFileSystems.
+  - [x] Modifier docs/project/media-support-planning.md pour affecter les anciens contrats Domain aux projets responsables.
+  - [x] Modifier docs/architecture/media-engine-file-layout.md pour signaler que la mention historique de Domain est remplacée par la nouvelle répartition.
+  - [x] Modifier docs/project/media-library-file-inventory.md pour ajouter l'état actuel du retrait de Domain à ses relevés historiques.
+  - [x] Modifier docs/tasks/media-library-separation.md pour signaler le retrait de Domain et la poursuite des étapes 3 à 7 sous la chaîne décidée.
+
+- [x] Vérifier le retrait et les frontières
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le build et le test de frontière réussis après la fabrique MediaEngine.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner les résultats de la suite GWGUI.Tests hors GpuExhaustive et les corrections nécessaires.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner la vérification finale des références Domain dans sources, projets, solution et scripts.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner les limites du travail de séparation restant ouvertes.
+
+Après la fabrique MediaEngine, dotnet build GWGUI.sln --no-restore --nologo -v:q -m:1 réussit (0 avertissement, 0 erreur) et MediaEngineProjectBoundaryTests réussit ; App ne référence plus directement MediaFileSystems ni MediaAnalysis.
+
+- [x] Retirer les anciens artefacts Domain des sorties locales
+  - [x] Supprimer src/GWGUI.Domain avec ses seuls dossiers de sortie bin et obj et ses dossiers source vides après vérification des chemins.
+  - [x] Recréer build/Debug/GW GUI avec scripts/local-building/build.ps1 pour produire une application sans gwgui.domain.dll.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner la présence de gwgui.exe et l'absence de gwgui.domain.dll dans build/Debug/GW GUI.
+
+Le script pwsh -NoProfile -File scripts/local-building/build.ps1 -Configuration Debug réussit. uild/Debug/GW GUI/gwgui.exe existe ; aucune DLL Domain ni référence Domain dans les manifestes JSON du paquet.
+
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-build --nologo --filter 'Category!=GpuExhaustive' -v:q : 893 réussites, 13 échecs, 0 ignoré. Les échecs portent sur ExplorerFileTypeCatalogScenarios (catégorie Atari BASIC), OtherMediaExplorerScenarios (nom Atari CAS), ExplorerViewsTests (sélection/état), HelpTests (3 traductions attendues), VisualizerViewsTests (5 scénarios). Les assertions inspectées concernent classification, libellés traduits et géométrie WPF ; les fichiers de logique et de tests cités dans leurs piles ne sont pas modifiés par ce retrait. Aucun ajustement hors périmètre n'est appliqué à ces comportements.
+
+- [x] Vérifier les projets compilés séparément
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner le build du projet GWGUI.LocalDiskImageTests et toute correction nécessaire.
+
+Le premier build --no-restore de GWGUI.LocalDiskImageTests compile mais remonte MSB9008 depuis des actifs obj périmés qui mentionnent encore Domain ; le csproj actuel référence déjà MediaFileSystems, MediaEngine et App. Une restauration propre des actifs de ce projet précède la vérification.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner la restauration et le build propres de GWGUI.LocalDiskImageTests.
+  - [x] Modifier docs/tasks/domain-removal.md pour consigner la compilation de GWGUI.MediaFileExtractor après restauration.
+
+Après dotnet restore ... --disable-build-servers, GWGUI.LocalDiskImageTests.csproj compile avec 0 avertissement et 0 erreur via dotnet build --no-restore --disable-build-servers -m:1 -p:UseSharedCompilation=false.
+
+GWGUI.MediaFileExtractor.csproj compile aussi avec 0 avertissement et 0 erreur.
+- [x] Restaurer l'encodage du projet de tests
+  - [x] Modifier tests/GWGUI.Tests/GWGUI.Tests.csproj pour rétablir son BOM UTF-8 d'origine après le remplacement de la référence Domain.
+
+Contrôle final : aucune référence GWGUI.Domain dans les sources, projets, solution ou scripts ; seule reste l'assertion négative du test d'architecture. src/GWGUI.Domain a disparu, et le paquet Debug courant ne contient pas Domain. git diff --check ne signale plus de whitespace.
+
+Le retrait de Domain est terminé. L'extraction des autres lecteurs de systèmes de fichiers et le raccordement de MediaAnalysis à la lecture de l'explorateur restent des travaux ouverts dans media-library-separation.md ; ce retrait n'en change pas les cases. Les 13 échecs de la suite générale sont consignés plus haut sans changement de comportement pour les contourner.
+
+- [x] Finaliser le point principal
+  - [x] Modifier docs/tasks/domain-removal.md pour cocher le point principal après toutes ses tâches réalisées.

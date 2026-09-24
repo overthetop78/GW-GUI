@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Tastă {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Tastă gazdă</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Două taste Amiga folosesc același PC cheie. Rezolvați cartografiile roșii înainte de a salva.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Tastatură fizică trece prin</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Comenzi rapide rezervate</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Comenzile rapide GW GUI și Windows rămân active și nu sunt capturate de mașină.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Tasta mașinii</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Literele, cifrele și modificatorii obișnuiți sunt transmiși direct. Doar tastele funcționale și speciale Amiga trebuie asociate aici.</value></data>
+</root>

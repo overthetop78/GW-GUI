@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Ayarlar kaydedilemedi.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI hatası</value></data>
   <data name="Error.Unexpected"><value>Beklenmeyen bir hatayla karşılaşıldı.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Bu işlem seçilmiş dosya, cihaz veya platform tarafından desteklenmemektedir.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Operasyonu tamamlamak için yeterli bellek yoktur.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI bu eylemi yaparken beklenmedik bir problemle karşılaştı.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput işçi thread durmadı.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Hiçbir haritalama</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput cihazı enumeration başarısız oldu {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput system düğmesi kaydı başarısız oldu.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput yeni kayıt başarısız oldu {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput yeni çağrı geri kayıt edilemez olabilir: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput cihazı geri dönüş kuyruğu başarısız oldu: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput cihazı geri döndü: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput sistemi-button callback başarısız oldu: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput ham-reading callback başarısız oldu: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: Okuma okuma okuma okuma okuma okuma okuma okuma okuma okuma okuma {1} Kod 0x ile başarısız oldu{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: giriş türü {1}, gamepad durumu mevcut: {2}, Kontrollü diziler mevcut değildir</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: giriş türü {1}, gamepad durumu mevcut: {2}, axes: {3}, düğmeler: {4}, Anahtarlar: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM 0x{1:X8} ( (() ( ((){2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: giriş türü {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Çözülen adı: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput adı: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Device Device Device ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Cihaz kök ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Konteyner Konteyner ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Aile: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Kullanım: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Desteklenen giriş: {0} (0xx{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Kontrolcü bilgi: axes ={0}, düğmeler ={1}, Anahtarlar ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Axis etiketleri: [Ingampiyon:{0}]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Düğme etiketleri: [{0}]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP yolu: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP isimleri: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Dosya sistemi girişi okunamadı.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Talep edilen sayı (The requested count){0}) tampon boyutu aşıyor ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Bir sonraki dosya bloğu yanlış bir dizi numarası vardır.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Diskte ücretsiz sektör mevcut değildir.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Bu operasyon için sadece sıfır dengelemek destekleniyor.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Bu dosya-sistem akışı, uzunluğu değiştirmeyi desteklemez.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Önbellek blok {0} Dağıtım zincirinde birazmap bloğu yoktur; gerçek tip: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Önbelli dağıtım blok {0} Birazmap bloğu içermiyor; gerçek tip: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Gerekli bitmap bloğu eksik.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>A loop, tahsis node ücretsiz bloklar tespit edildi {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Allocation Node {0} okuyamazdı.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Dağıtım-node bloğu tahsis edilemezdi.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Talep edilen pozisyon bu dosya-sistem nesnesi için geçersizdir.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Dağıtım-node operasyonu başarısız oldu.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation-node bitmap indeks blok blok {0}/ / / / / / /{1} okuyamazdı.</value></data>
 </root>

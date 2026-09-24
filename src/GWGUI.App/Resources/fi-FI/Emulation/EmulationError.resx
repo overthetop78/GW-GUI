@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>Emulaattori tarvitsee median ennen tämän koneen käynnistämistä. Aseta tai määritä jokin alla näytetyistä vaadituista medioista.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>Konetta ei voitu käynnistää</value></data>
+  <data name="Emulation.Error.Machine"><value>Kone</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>Vaaditut mediat</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>Tarvitaan Amiga-malli.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Potkukäynnistyspolku on pakollinen.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>Tarvittava firmware-polku on tyhjä.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>Valittua tiedostoa ei ole olemassa.</value></data>
+</root>

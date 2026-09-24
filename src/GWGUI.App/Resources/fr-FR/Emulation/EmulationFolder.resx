@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>Dossier de stockage commun des émulateurs</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Les disques durs sont rangés automatiquement dans HDD\Amiga, HDD\Atari et les dossiers des futurs systèmes.</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Créer automatiquement les sous-dossiers manquants</value></data>
+  <data name="Emulation.Folder.Common"><value>Dossiers communs</value></data>
+  <data name="Emulation.Folder.Capture"><value>Dossier des captures</value></data>
+  <data name="Emulation.Folder.State"><value>Dossier des états sauvegardés</value></data>
+  <data name="Emulation.Folder.Default"><value>Valeurs par défaut</value></data>
+</root>

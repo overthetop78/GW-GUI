@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Klawisz {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Klawisz hosta</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Dwa klawisze Amigi używają tego samego PC klucz. Rozwiąż czerwone mappings przed zapisaniem.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Bezpośrednie przekazywanie klawiatury fizycznej</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Zarezerwowane skróty</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Skróty GW GUI i Windows pozostają aktywne i nie są przechwytywane przez maszynę.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Klawisz maszyny</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Litery, cyfry i zwykłe klawisze modyfikujące są przesyłane bezpośrednio. Tutaj przypisuje się tylko klawisze funkcyjne i specjalne Amigi.</value></data>
+</root>

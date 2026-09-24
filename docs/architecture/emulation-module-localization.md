@@ -45,7 +45,7 @@ id-ID, it-IT, ja-JP, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
 sv-SE, th-TH, tr-TR, uk-UA, vi-VN, zh-Hans, zh-Hant.
 
 Conserver les 29 cultures, plus `00-Base`. Argos est l'outil installé pour compléter uniquement
-les traductions nouvelles ou manquantes ; le script existant est `scripts/translate-resx-argos.py`.
+les traductions nouvelles ou manquantes ; le script existant est `scripts/tools/translate-resx-argos.py`.
 
 ## Consommateurs à raccorder ou à préserver
 
@@ -304,12 +304,11 @@ pour rendre les attributions vérifiables sans modifier le logiciel.
 | `Emulation.Firmware.Rom.Xegs` | Emulation.resx | Atari | XEGS ROM |
 | `Emulation.Folder.Default` | Emulation.resx | Atari | Default folders |
 | `Emulation.Fpu.Model` | Emulation.resx | Amiga, Atari | FPU |
-| `Emulation.Key.AtariBreak` | Emulation.resx | Atari | Break |
-| `Emulation.Key.AtariHelp` | Emulation.resx | Atari | Help |
-| `Emulation.Key.AtariUndo` | Emulation.resx | Atari | Undo |
-| `Emulation.Key.Help` | Emulation.resx | Amiga | Help |
+| `Emulation.Key.Break` | Emulation.resx | Atari | Break |
+| `Emulation.Key.Help` | Emulation.resx | Amiga, Atari | Help |
 | `Emulation.Key.LeftAmiga` | Emulation.resx | Amiga | Left Amiga |
 | `Emulation.Key.RightAmiga` | Emulation.resx | Amiga | Right Amiga |
+| `Emulation.Key.Undo` | Emulation.resx | Atari | Undo |
 | `Emulation.Memory.Extensions` | Emulation.resx | Amiga, Atari | Memory extensions |
 | `Emulation.Memory.Fast` | Emulation.resx | Amiga | Fast RAM |
 | `Emulation.Memory.Main` | Emulation.resx | Amiga, Atari | Main memory |

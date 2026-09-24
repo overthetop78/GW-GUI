@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>يتطلب المحاكي وسيطًا قبل تشغيل هذا الجهاز. أدخل أو قم بإعداد أحد الوسائط المطلوبة الموضحة أدناه.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>تعذر تشغيل الجهاز</value></data>
+  <data name="Emulation.Error.Machine"><value>الجهاز</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>الوسائط المطلوبة</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>هناك حاجة إلى نموذج لـ (أميغا).</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>(كيكستارت) مطلوب</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>الطريق المطلوب هو البرمجيات الفارغة</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>الملف المختار غير موجود</value></data>
+</root>

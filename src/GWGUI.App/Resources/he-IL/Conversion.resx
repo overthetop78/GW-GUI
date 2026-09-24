@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>קבצים קיימים</value></data>
-  <data name="Conflict.Heading"><value>כמה קבצים כבר קיימים</value></data>
-  <data name="Conflict.Help"><value>בחר פעולה עבור כל קובץ או החל את אותה פעולה על כל הקבצים.</value></data>
-  <data name="Conflict.File"><value>קוֹבֶץ</value></data>
-  <data name="Conflict.Action"><value>פְּעוּלָה</value></data>
-  <data name="Conflict.Overwrite"><value>החלף</value></data>
-  <data name="Conflict.Skip"><value>לְדַלֵג</value></data>
-  <data name="Conflict.Number"><value>השתמש במספר הבא</value></data>
-  <data name="Conflict.AllOverwrite"><value>תחליף הכל</value></data>
-  <data name="Conflict.AllSkip"><value>דלג על הכל</value></data>
-  <data name="Conflict.AllNumber"><value>מספר הכל</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>הֲמָרָה</value></data>
   <data name="Conversion.SelectOutput"><value>בחר פורמט פלט אחד לפחות.</value></data>
   <data name="Conversion.SourceAmbiguous"><value>מקור מעורפל</value></data>
@@ -43,47 +24,14 @@
   <data name="Conversion.Incompatible"><value>{0} אינו תואם למקור זה.</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>לא נמצא שם קובץ פלט זמין.</value></data>
   <data name="Conversion.ReconstructedFlux"><value>שטף משוחזר</value></data>
-  <data name="Migration.Open"><value>תגית:</value></data>
-  <data name="Migration.Title"><value>תגית: Migration</value></data>
-  <data name="Migration.Heading"><value>קבצים נוספים למערכת קבצים</value></data>
-  <data name="Migration.Source"><value>מקור תמונה</value></data>
-  <data name="Migration.NoSource"><value>בחר תמונה המכילה מערכת קבצים מוכרת.</value></data>
-  <data name="Migration.Destination"><value>מערכת הקבצים והפורמט</value></data>
-  <data name="Migration.Output"><value>תמונת יעד</value></data>
-  <data name="Migration.Compatibility"><value>תאימות והפסדים</value></data>
-  <data name="Migration.Waiting"><value>בחרו מקור והמטרה</value></data>
-  <data name="Migration.Severity"><value>מספר</value></data>
-  <data name="Migration.Path"><value>נתיב מקור</value></data>
-  <data name="Migration.Description"><value>תיאור תיאור</value></data>
-  <data name="Migration.AcceptLosses"><value>קבלו את ההפסדים ה- metadata</value></data>
-  <data name="Migration.Execute"><value>קבצים Migrate</value></data>
-  <data name="Migration.Blocking"><value>חסימת</value></data>
-  <data name="Migration.MetadataLoss"><value>אובדן מטא-נתונים</value></data>
-  <data name="Migration.SourceSummary"><value>נפח: {0} מערכת הקבצים: {1} ערכים שורשים: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>לא ניתן להכין את ההגירה: {0}</value></data>
-  <data name="Migration.Completed"><value>תמונת היעד נוצרה: {0}</value></data>
-  <data name="Migration.Failed"><value>הגירה נכשלה: {0}</value></data>
-  <data name="Migration.Incompatible"><value>לא עולה בקנה אחד: לתקן את ההפסדים לפני הגירה.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>לאחר קבלת ההפסדים המפורטים ב- metadata.</value></data>
-  <data name="Migration.Compatible"><value>המונחים: no Loss found</value></data>
-  <data name="Migration.Loss.MissingContent"><value>תוכן קובץ אינו זמין.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>סוג כניסה זה אינו נתמך על ידי היעד.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>השם אינו חוקי עבור היעד.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>השם ארוך מדי בשביל היעד.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>למספר ערכים יש את אותו שם יעד.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>הקובץ גדול מדי עבור היעד.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>מקור metadata הוא לא חוקי.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>תאריך השינוי לא יישמר.</value></data>
-  <data name="Migration.Loss.Comment"><value>התגובה לא תשתמר.</value></data>
-  <data name="Migration.Loss.Attributes"><value>תכונות המקור לא ישמרו.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>תמונת היעד כבר קיימת.החלפתה? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>תמונת היעד אינה יכולה להחליף את תמונת המקור.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>מידע על מגזרים; הגנה לא נשמרת</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>עקבות משוחזרים; שפעת מקורית לא נשמרת</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>השטף המקורי נשמר</value></data>
-  <data name="Conversion.EngineExternal"><value>כלי מארח: המרת {0}.</value></data>
-  <data name="Conversion.EngineInternalStart"><value>מנוע פנימי: המרת {0} to to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>המרה פנימית הושלמה: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>המנוע הפנימי אינו תומך בהמרות זו: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>המרה פנימית נכשלה {0}: {1}</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>כלי מארח: המרת {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>מנוע פנימי: המרת {0} to to {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>המרה פנימית הושלמה: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>המנוע הפנימי אינו תומך בהמרות זו: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>המרה פנימית נכשלה {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>אובדן נתונים פוטנציאלי</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>המרה זו אינה יכולה לשמור על כל מידע המקור:&#xA;&#xA;{0}&#xA;&#xA;רוצים להמשיך?</value></data>
 </root>

@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>Opzioni</value></data>
-  <data name="Options.General"><value>Generale</value></data>
-  <data name="Options.Tools"><value>Greaseweazle Strumenti</value></data>
-  <data name="Options.Hardware"><value>Controller e azionamenti</value></data>
-  <data name="Options.Profiles"><value>Profili</value></data>
-  <data name="Options.ImagesFolder"><value>Cartella immagine disco predefinita</value></data>
-  <data name="Options.Language"><value>Lingua</value></data>
-  <data name="Options.Theme"><value>Tema</value></data>
-  <data name="Theme.System"><value>Sistema</value></data>
-  <data name="Theme.Light"><value>Leggero</value></data>
-  <data name="Theme.Dark"><value>Buio</value></data>
-  <data name="Options.GwPath"><value>Percorso verso gw.exe</value></data>
-  <data name="Options.ToolsHelp"><value>Se mancano gli strumenti, l'assistente offrirà di scaricarli o di scegliere un'installazione esistente. Gli aggiornamenti vengono solo annunciati.</value></data>
-  <data name="Options.HardwarePersistence"><value>Le impostazioni hardware rimangono memorizzate quando un'unità viene disconnessa.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>Opzioni</value></data>
+  <data name="Options.General" xml:space="preserve"><value>Generale</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Strumenti</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Controller e azionamenti</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Profili</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Cartella immagine disco predefinita</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Lingua</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>Sistema</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Leggero</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Buio</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>Percorso verso gw.exe</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Se mancano gli strumenti, l&apos;assistente offrirà di scaricarli o di scegliere un&apos;installazione esistente. Gli aggiornamenti vengono solo annunciati.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Le impostazioni hardware rimangono memorizzate quando un&apos;unità viene disconnessa.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|eseguibile (*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Rimuovere questo controller memorizzato e tutte le relative unità?</value></data>
-<data name="Options.UseConversionTags"><value>Utilizza i tag nei nomi dei file di conversione</value></data>
+  <data name="Options.HardwareTitle"><value>Hardware</value></data>
+  <data name="Options.UseConversionTags"><value>Utilizza i tag nei nomi dei file di conversione</value></data>
   <data name="Options.TagPreset"><value>Preimpostato</value></data>
   <data name="Options.TagPresetFamily"><value>Solo famiglia</value></data>
   <data name="Options.TagPresetFormat"><value>Solo formato</value></data>
@@ -62,185 +55,11 @@
   <data name="Options.KeepLogArchives"><value>Conserva i registri precedenti</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = illimitato</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motori</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>Scegli in modo indipendente il motore usato per ogni operazione.</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>Motore interno di GW GUI</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>Il motore selezionato viene usato rigorosamente. Se non può eseguire l’operazione, GW GUI lo segnala senza usare silenziosamente l’altro motore.</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>Modello</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Cattura il mouse</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>Configurazione</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>Controller</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>Rileva controller</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>Dispositivo</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>Modello</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Nessun controller rilevato</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} controller rilevati</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>Prova vibrazione</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Intensità vibrazione</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Ingressi in tempo reale</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Controllo</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>Valore</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>Attivo</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>Funzionalità</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>Identità del dispositivo</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>Tipi di ingresso</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>Controlli</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>Motori di vibrazione</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Ritorno di forza</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>Feedback aptico</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Pulsanti di sistema</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>Rapporti grezzi</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} in ingresso / {1} in uscita</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Layout del controller</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Volante</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · frizione={1} · freno a mano={2} · cambio={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>Nome GameInput</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revisione</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Versione hardware</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Versione firmware</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>Famiglia</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Produttore</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Asse</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Pulsante</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Commutatore</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} assi · {1} pulsanti · {2} commutatori</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>Sì</value></data>
-  <data name="Controllers.No"><value>No.</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>Nessuno</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Byte grezzo</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Valori analogici</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Rilevamento dei controller non riuscito</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>Rilevamento controller…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Lettura del controller non riuscita</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>Test in corso…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>Test non riuscito</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Test completato</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Controlli aggiuntivi</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Endpoint audio aptico</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Posizioni aptiche</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>Utilizzo</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Catena dispositivi Windows</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Stick sinistro X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Stick sinistro Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>Stick destro X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>Stick destro Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Grilletto sinistro</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Grilletto destro</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>Sterzo</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>Acceleratore</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>Freno</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Frizione</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>Freno a mano</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>Marcia</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>Rollio</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>Beccheggio</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>Imbardata</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensori</value></data>
-  <data name="Controllers.Enum.UiNavigation"><value>UI navigazione</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Controller</value></data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Motore a bassa frequenza</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Motore ad alta frequenza</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Condividi</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineare</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Angolare</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normale</value></data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Costante</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampa</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Onda sinusoidale</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Onda quadra</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Onda triangolare</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Dente di sega crescente</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Dente di sega decrescente</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Molla</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Attrito</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Smorzatore</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inerzia</value></data>
-<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Controller multiasse</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Utilizzo HID</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>assi</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>pulsanti</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Aggregato</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtuale</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Rapporto di ingresso</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Rapporto di uscita</value></data>
-<data name="Emulation.InitialDisk"><value>Disco iniziale</value></data>
-  <data name="Emulation.Audio"><value>Audio audio</value></data>
-  <data name="Emulation.Core.NameOptions"><value>Opzioni di base</value></data>
-  <data name="Emulation.MultiDrive"><value>Montare i primi quattro dischi in DF0–DF3</value></data>
-  <data name="Emulation.DiskNumber"><value>Disconnessione {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>Caricare le opzioni disponibili</value></data>
-  <data name="Emulation.Configurations"><value>Configurazioni</value></data>
-  <data name="Emulation.ReleaseMouse"><value>Topo di rilascio</value></data>
-  <data name="Emulation.DeleteConfirm"><value>Eliminare questa configurazione di Amiga?</value></data>
-  <data name="Emulation.ModelRequired"><value>È richiesto un modello Amiga.</value></data>
-  <data name="Emulation.KickstartRequired"><value>È necessario un percorso Kickstart.</value></data>
-  <data name="Emulation.FileRequired"><value>Un percorso firmware richiesto è vuoto.</value></data>
-  <data name="Emulation.FileMissing"><value>Il file selezionato non esiste.</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — {1} : {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>Zone morte analogiche</value></data>
-  <data name="Controllers.StickDeadZone"><value>Bacchette</value></data>
-  <data name="Controllers.OuterDeadZone"><value>Zona morta esterna</value></data>
-  <data name="Updates.Title"><value>Aggiornamenti</value></data>
-  <data name="Updates.Description"><value>Ricerca di aggiornamenti GW GUI e moduli di emulazione installati.</value></data>
-  <data name="Updates.Scope"><value>Ricerca</value></data>
-  <data name="Updates.ScopeApplication"><value>Applicazione</value></data>
-  <data name="Updates.ScopeModules"><value>Moduli di emissione</value></data>
-  <data name="Updates.ScopeAll"><value>Applicazione e moduli</value></data>
-  <data name="Updates.Search"><value>Controllare gli aggiornamenti</value></data>
-  <data name="Updates.Ready"><value>Scegli cosa cercare, quindi controlla gli aggiornamenti.</value></data>
-  <data name="Updates.Searching"><value>Controllo degli aggiornamenti...</value></data>
-  <data name="Updates.SearchFailed"><value>Non è possibile controllare gli aggiornamenti.</value></data>
-  <data name="Updates.UpToDate"><value>Fino ad oggi</value></data>
-  <data name="Updates.Available"><value>Aggiornamento disponibile</value></data>
-  <data name="Updates.ApplicationRequired"><value>Richiesta GW GUI host API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>Nessuna versione compatibile</value></data>
-  <data name="Updates.InstalledVersion"><value>Installato: {0}</value></data>
-  <data name="Updates.Results"><value>Sono stati trovati degli aggiornamenti.</value></data>
-  <data name="Updates.NoUpdates"><value>Tutto selezionato è aggiornato.</value></data>
-  <data name="Updates.Install"><value>Installa gli aggiornamenti selezionati</value></data>
-  <data name="Updates.InstallConfirm"><value>Scaricare e installare {0} componenti selezionati? GW GUI si chiuderà e riavviare.</value></data>
-  <data name="Updates.Preparing"><value>Scarica e prepara gli aggiornamenti...</value></data>
-  <data name="Updates.PreparationCancelled"><value>La preparazione dell'aggiornamento è stata annullata.</value></data>
-  <data name="Updates.PreparationFailed"><value>Non è possibile preparare l'aggiornamento.</value></data>
-  <data name="Updates.InstallSucceeded"><value>Gli aggiornamenti sono stati installati con successo.</value></data>
-  <data name="Updates.InstallRestored"><value>L'aggiornamento è fallito e la versione precedente è stata ripristinata. {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>Installare un modulo di emulazione da un ZIP archivio o il suo catalogo di aggiornamento diretto URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>Installare da un file</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>Installare da un URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>Direttore diretto HTTPS URL del catalogo di aggiornamento del modulo (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>Archivi del modulo (*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>Inserisci il tasto HTTPS URL di un catalogo di aggiornamento modulo.</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>Modulo di installazione {0} versione {1}? GW GUI si chiuderà e riavviare.</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>Non è possibile preparare l'installazione del modulo.</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>Sfoglia moduli di emulazione ufficiali disponibili per l'installazione.</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>Mostra moduli disponibili</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>Installazione</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>Caricare la directory ufficiale per visualizzare i moduli disponibili per l'installazione.</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>Caricamento della directory del modulo...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>Attualmente non è disponibile nessun modulo compatibile.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} moduli nel catalogo ufficiale.</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>Non è possibile caricare la directory del modulo.</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>Non installato</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>Versione disponibile: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Installato</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>Installazione di un modulo aggiunge le sue macchine a GW GUI. I core emulatori e il firmware richiesto vengono gestiti separatamente nelle opzioni di emulazione.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Aggiornamenti per moduli installati</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Installazione avanzata</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>Scegli in modo indipendente il motore usato per ogni operazione.</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>Motore interno di GW GUI</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Il motore selezionato viene usato rigorosamente. Se non può eseguire l’operazione, GW GUI lo segnala senza usare silenziosamente l’altro motore.</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Preferenze</value></data>
   <data name="Options.EmulationTitle"><value>Preferenze di emissione</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>Moduli disponibili</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>Aggiornamenti di applicazione</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>Sfoglia e installa moduli</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP archivio o catalogo URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>Scaricato</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>Installazione di finitura</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI si chiuderà, installerà tutti i moduli scaricati e riavviare.</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>Finisci di installare tutti i moduli scaricati? GW GUI si chiuderà e riavviare.</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} impostazioni di emulazione</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>Finisci di installare i moduli scaricati prima di chiudere? Scegli No per annullare i download e chiudere.</value></data>
-  <data name="Options.HardwareTitle"><value>Hardware</value></data>
-  <data name="Emulation.Controller"><value>Controller {0}</value></data>
-  <data name="Emulation.Firmware"><value>Firmware</value></data>
-  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>Triggers</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

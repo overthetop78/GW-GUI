@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Obraz disku</value></data>
+  <data name="Explorer.DetectedFormats"><value>Zjištěno: {0}</value></data>
   <data name="Explorer.Format"><value>Formát</value></data>
   <data name="Explorer.OpenImage"><value>Otevřít obraz…</value></data>
   <data name="Explorer.Automatic"><value>Automatická detekce</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Neznámý</value></data>
   <data name="Explorer.Unnamed"><value>Svazek bez názvu</value></data>
   <data name="Explorer.LoadFailed"><value>Tento obraz nelze otevřít: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Nekompatibilní formát</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Soubor „{1}“ nelze interpretovat pomocí formátu „{0}“.&#xA;Pokračujte výběrem jiného formátu.</value></data>
   <data name="Explorer.Loading"><value>Načítání obrazu disku…</value></data>
   <data name="Explorer.ReadDisk"><value>Načíst disketu</value></data>
   <data name="Explorer.Name"><value>Název</value></data>
@@ -42,7 +37,8 @@
   <data name="Explorer.Type.Image"><value>Obrázek</value></data>
   <data name="Explorer.Type.Audio"><value>Zvukový soubor</value></data>
   <data name="Explorer.Type.Archive"><value>Archiv</value></data>
-<data name="Explorer.Type.DiskImage"><value>Obraz disku</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Obraz disku</value></data>
   <data name="Explorer.System"><value>Systém</value></data>
   <data name="Explorer.Protection"><value>Ochrana</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fyzické sektory — nebyl rozpoznán žádný souborový systém</value></data>
@@ -51,10 +47,111 @@
   <data name="Explorer.Compression"><value>Komprese</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Vlastní zavaděč sektorů</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Vlastní zavaděč — bez katalogu souborů</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack od The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Datové bloky</value></data>
-  <data name="Explorer.DetectedFormats"><value>Zjištěno: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Hostitelské nástroje nemohou produkovat vysvětlující obraz odvětví pro {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Hostitelské nástroje nemohly dekódovat obrázek jako {0}.</value></data>
-  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Hostitelské nástroje nemohou produkovat vysvětlující obraz odvětví pro {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Hostitelské nástroje nemohly dekódovat obrázek jako {0}.</value></data>
+  <data name="Explorer.Session"><value>Disková relace</value></data>
+  <data name="Explorer.Track"><value>Media track</value></data>
+  <data name="Explorer.Layers"><value>Vrstvy disků</value></data>
+  <data name="Explorer.Faces"><value>Strany záznamu médií</value></data>
+  <data name="Explorer.PartitionType"><value>Typ rozdělení</value></data>
+  <data name="Explorer.PartitionId"><value>Identifikátor oddílu</value></data>
+  <data name="Explorer.TrackMode"><value>Režim koleje</value></data>
+  <data name="Explorer.FirstSector"><value>První sektor</value></data>
+  <data name="Explorer.SectorCount"><value>Počet sektorů</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Velikost skladovaného sektoru</value></data>
+  <data name="Explorer.UserDataSize"><value>Velikost uživatelských dat</value></data>
+  <data name="Explorer.Subchannels"><value>Subkanály</value></data>
+  <data name="Explorer.AudioTracks"><value>Zvukové stopy</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Rozpoznávání formátu médií</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Rozpoznávaný formát</value></data>
+  <data name="Explorer.TestingFormat"><value>Formát zkoušky: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: rozpoznán</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: nerozpoznán</value></data>
+  <data name="Explorer.ReadingFormat"><value>Formát čtení: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Čtení struktury médií</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Čtení pásky</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Záznam {0} ze {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Dekódování záznamů pásek</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Rozpoznávání souborů</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Analyzuji souborový systém</value></data>
+  <data name="Explorer.LoadingContents"><value>Příprava složek a souborů</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Zobrazuji obsah</value></data>
+  <data name="Explorer.FileWithExtension"><value>Soubor {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokument</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Zdrojový kód</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC soubor programu</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program pro bóty</value></data>
+  <data name="Explorer.Type.Executable"><value>Spustitelné</value></data>
+  <data name="Explorer.Type.Command"><value>Příkazový soubor</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Systémový soubor</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Kód objektu</value></data>
+  <data name="Explorer.Type.Data"><value>Soubor dat</value></data>
+  <data name="Explorer.Type.Configuration"><value>Soubor nastavení</value></data>
+  <data name="Explorer.Type.Library"><value>Knihovna</value></data>
+  <data name="Explorer.Type.Media"><value>Soubor médií</value></data>
+  <data name="Explorer.Type.Font"><value>Písmo</value></data>
+  <data name="Explorer.Execution"><value>Provedení</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Name</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Interpretovaný spustitelný soubor</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Příkaz nebo skript</value></data>
+  <data name="Explorer.Category"><value>Kategorie</value></data>
+  <data name="Explorer.ContentFormat"><value>Formát obsahu</value></data>
+  <data name="Explorer.TextEncoding"><value>Kódování textu</value></data>
+  <data name="Explorer.Preview"><value>Náhled</value></data>
+  <data name="Explorer.Category.File"><value>Soubor</value></data>
+  <data name="Explorer.Category.Text"><value>Text</value></data>
+  <data name="Explorer.Category.Document"><value>Dokument</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Zdrojový kód</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program pro bóty</value></data>
+  <data name="Explorer.Category.Program"><value>Program</value></data>
+  <data name="Explorer.Category.Executable"><value>Spustitelné</value></data>
+  <data name="Explorer.Category.Command"><value>Příkaz</value></data>
+  <data name="Explorer.Category.System"><value>Systém</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Kód objektu</value></data>
+  <data name="Explorer.Category.Data"><value>Údaje</value></data>
+  <data name="Explorer.Category.Configuration"><value>Nastavení</value></data>
+  <data name="Explorer.Category.Library"><value>Knihovna</value></data>
+  <data name="Explorer.Category.Image"><value>Obrázek</value></data>
+  <data name="Explorer.Category.Audio"><value>Audio</value></data>
+  <data name="Explorer.Category.Media"><value>Média</value></data>
+  <data name="Explorer.Category.Archive"><value>Archiv</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Obrázek na disku</value></data>
+  <data name="Explorer.Category.Link"><value>Odkaz</value></data>
+  <data name="Explorer.Category.Font"><value>Písmo</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Neznámé</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Jednoduchý text</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Původní spustitelný</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Příkaz nebo skript</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Kód objektu</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>Binární systém</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Strukturované údaje</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Nastavení</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Knihovna</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Obrázek</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Audio</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Archiv</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Obrázek na disku</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Písmo</value></data>
+  <data name="Explorer.Preview.None"><value>Žádné</value></data>
+  <data name="Explorer.Preview.Text"><value>Text</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC Zařazení</value></data>
+  <data name="Explorer.Preview.Image"><value>Obrázek</value></data>
+  <data name="Explorer.Preview.Audio"><value>Audio</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimální</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Vnější aplikace</value></data>
+  <data name="Explorer.Cassette"><value>Kazeta</value></data>
+  <data name="Explorer.InternalName"><value>Interní popis</value></data>
+  <data name="Explorer.BaudRates"><value>Rychlosti</value></data>
+  <data name="Explorer.Chunks"><value>Bloky</value></data>
+  <data name="Explorer.FskBlocks"><value>Bloky FSK</value></data>
+  <data name="Explorer.Records"><value>Záznamy</value></data>
+  <data name="Explorer.FullRecords"><value>Plné</value></data>
+  <data name="Explorer.PartialRecords"><value>Částečné</value></data>
+  <data name="Explorer.EndRecord"><value>Konec</value></data>
+  <data name="Explorer.ChunkType"><value>Typ</value></data>
+  <data name="Explorer.BaudRate"><value>Rychlost</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Prodleva</value></data>
 </root>

@@ -1,5 +1,5 @@
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Settings.Hardware;
+using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Contracts.Services.Dialogs;
 using GWGUI.App.Enums.Services.Dialogs;
 

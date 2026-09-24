@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.State.Locked"><value>잠금</value></data>
+  <data name="Emulation.State.Immediate"><value>즉시</value></data>
+  <data name="Emulation.State.Waiting"><value>대기</value></data>
+  <data name="Emulation.State.ImmediateBlits"><value>블리터 동작</value></data>
+</root>

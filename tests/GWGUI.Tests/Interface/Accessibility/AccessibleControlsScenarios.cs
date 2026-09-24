@@ -7,7 +7,7 @@ using System.Windows.Automation;
 using System.Windows.Input;
 using System.Windows.Threading;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.Tests.Interface.ReadViews;
 using GWGUI.Tests.Interface.WriteViews;
 using GWGUI.Tests.Interface.ConversionViews;

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>Машины</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Добро пожаловать</value></data>
+  <data name="Emulation.Tab.General"><value>Общие</value></data>
+  <data name="Emulation.Tab.Video"><value>Видео</value></data>
+  <data name="Emulation.Tab.Storage"><value>Хранилище</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Клавиатура</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Мышь</value></data>
+  <data name="Emulation.Tab.Controller"><value>Контроллеры</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Дополнительно</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Горячие клавиши</value></data>
+  <data name="Emulation.Tab.Audio"><value>Аудио</value></data>
+</root>

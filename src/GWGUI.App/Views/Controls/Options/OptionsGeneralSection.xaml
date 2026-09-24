@@ -26,7 +26,7 @@
                         <StackPanel Grid.Column="1" Margin="10,0,0,0">
                             <TextBlock Text="{l:Loc Options.Theme}"/>
                             <ComboBox x:Name="ThemeCombo" Margin="0,6,0,0" VerticalContentAlignment="Center" SelectionChanged="Theme_SelectionChanged" AutomationProperties.Name="{l:Loc Options.Theme}">
-                                <ComboBoxItem Content="{l:Loc Theme.System}"/><ComboBoxItem Content="{l:Loc Theme.Light}"/><ComboBoxItem Content="{l:Loc Theme.Dark}"/>
+                                <ComboBoxItem Content="{l:Loc Options.Theme.System}"/><ComboBoxItem Content="{l:Loc Options.Theme.Light}"/><ComboBoxItem Content="{l:Loc Options.Theme.Dark}"/>
                             </ComboBox>
                         </StackPanel>
                     </Grid>
@@ -57,7 +57,7 @@
                     <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="0,7,0,0">
                         <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                         <Border Background="#0E1217" BorderBrush="#303B46" BorderThickness="1" CornerRadius="5" Padding="12,8"><TextBlock x:Name="TagPatternPreview" Foreground="#65E572" FontFamily="Cascadia Mono,Consolas" FontSize="15" VerticalAlignment="Center"/></Border>
-                        <Button Grid.Column="1" Margin="8,0,0,0" Content="{l:Loc Options.NextTagExampleIcon}" ToolTip="{l:Loc Options.NextTagExample}" Click="NextTagExample_Click" AutomationProperties.Name="{l:Loc Options.NextTagExample}"/>
+                <Button Grid.Column="1" Margin="8,0,0,0" Content="{l:Loc Icon.Options.NextTagExampleIcon}" ToolTip="{l:Loc Options.NextTagExample}" Click="NextTagExample_Click" AutomationProperties.Name="{l:Loc Options.NextTagExample}"/>
                     </Grid>
                 </Grid>
             </Border>

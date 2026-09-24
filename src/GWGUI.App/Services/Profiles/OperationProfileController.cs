@@ -1,4 +1,4 @@
-using GWGUI.Domain.Profiles;
+using GWGUI.App.Profiles;
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using System.Windows.Controls;

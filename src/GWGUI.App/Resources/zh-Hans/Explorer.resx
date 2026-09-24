@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>磁盘映像</value></data>
+  <data name="Explorer.DetectedFormats"><value>检测到：{0}</value></data>
   <data name="Explorer.Format"><value>格式</value></data>
   <data name="Explorer.OpenImage"><value>打开映像…</value></data>
   <data name="Explorer.Automatic"><value>自动检测</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>未知</value></data>
   <data name="Explorer.Unnamed"><value>未命名卷</value></data>
   <data name="Explorer.LoadFailed"><value>无法打开此映像：{0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>格式不兼容</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>无法将“{1}”解析为“{0}”格式。&#xA;请选择其他格式以继续。</value></data>
   <data name="Explorer.Loading"><value>正在读取磁盘映像…</value></data>
   <data name="Explorer.ReadDisk"><value>读取磁盘</value></data>
   <data name="Explorer.Name"><value>名称</value></data>
@@ -52,9 +47,111 @@
   <data name="Explorer.Compression"><value>压缩</value></data>
   <data name="Explorer.CustomSectorLoader"><value>自定义扇区加载器</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>自定义加载器 — 无文件目录</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>The Company 破解版</value></data>
   <data name="Explorer.DataBlocks"><value>数据块</value></data>
-  <data name="Explorer.DetectedFormats"><value>检测到：{0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>主机工具无法生成可扩展扇形图像 {0}. . . . . . . . . . . .</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>主机工具无法解码图像为 {0}. . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>主机工具无法生成可扩展扇形图像 {0}. . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>主机工具无法解码图像为 {0}. . . . . . . . . . . .</value></data>
+  <data name="Explorer.Session"><value>磁盘会话</value></data>
+  <data name="Explorer.Track"><value>媒体轨道</value></data>
+  <data name="Explorer.Layers"><value>磁盘层</value></data>
+  <data name="Explorer.Faces"><value>媒体录音侧面</value></data>
+  <data name="Explorer.PartitionType"><value>分区类型</value></data>
+  <data name="Explorer.PartitionId"><value>分区标识符</value></data>
+  <data name="Explorer.TrackMode"><value>音轨模式</value></data>
+  <data name="Explorer.FirstSector"><value>第一部门</value></data>
+  <data name="Explorer.SectorCount"><value>区数</value></data>
+  <data name="Explorer.StoredSectorSize"><value>存储的扇区大小</value></data>
+  <data name="Explorer.UserDataSize"><value>用户数据大小</value></data>
+  <data name="Explorer.Subchannels"><value>子频道</value></data>
+  <data name="Explorer.AudioTracks"><value>音频音轨</value></data>
+  <data name="Explorer.LoadingRecognition"><value>承认媒体形式</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>公认格式</value></data>
+  <data name="Explorer.TestingFormat"><value>测试格式 : {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: 承认</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: 不承认</value></data>
+  <data name="Explorer.ReadingFormat"><value>读取格式 : {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>阅读媒体结构</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>读取磁带</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>记录 {0} 编 {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>解码磁带记录</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>识别文件</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>分析文件系统</value></data>
+  <data name="Explorer.LoadingContents"><value>准备文件夹和文件</value></data>
+  <data name="Explorer.LoadingDisplay"><value>显示内容</value></data>
+  <data name="Explorer.FileWithExtension"><value>文件 {0}</value></data>
+  <data name="Explorer.Type.Document"><value>文档</value></data>
+  <data name="Explorer.Type.SourceCode"><value>源代码</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC 程序文件</value></data>
+  <data name="Explorer.Type.BootProgram"><value>启动程序</value></data>
+  <data name="Explorer.Type.Executable"><value>可执行文件</value></data>
+  <data name="Explorer.Type.Command"><value>命令文件</value></data>
+  <data name="Explorer.Type.SystemFile"><value>系统文件</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>对象代码</value></data>
+  <data name="Explorer.Type.Data"><value>数据文件</value></data>
+  <data name="Explorer.Type.Configuration"><value>配置文件</value></data>
+  <data name="Explorer.Type.Library"><value>图书馆</value></data>
+  <data name="Explorer.Type.Media"><value>媒体文件</value></data>
+  <data name="Explorer.Type.Font"><value>字体</value></data>
+  <data name="Explorer.Execution"><value>执行</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>原生可执行文件</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>已解译可执行文件</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>命令或脚本</value></data>
+  <data name="Explorer.Category"><value>类别</value></data>
+  <data name="Explorer.ContentFormat"><value>内容格式</value></data>
+  <data name="Explorer.TextEncoding"><value>文本编码</value></data>
+  <data name="Explorer.Preview"><value>预览</value></data>
+  <data name="Explorer.Category.File"><value>文件</value></data>
+  <data name="Explorer.Category.Text"><value>文本</value></data>
+  <data name="Explorer.Category.Document"><value>文档</value></data>
+  <data name="Explorer.Category.SourceCode"><value>源代码</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC 程序</value></data>
+  <data name="Explorer.Category.BootProgram"><value>启动程序</value></data>
+  <data name="Explorer.Category.Program"><value>程序</value></data>
+  <data name="Explorer.Category.Executable"><value>可执行文件</value></data>
+  <data name="Explorer.Category.Command"><value>命令</value></data>
+  <data name="Explorer.Category.System"><value>系统</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>对象代码</value></data>
+  <data name="Explorer.Category.Data"><value>数据</value></data>
+  <data name="Explorer.Category.Configuration"><value>配置</value></data>
+  <data name="Explorer.Category.Library"><value>图书馆</value></data>
+  <data name="Explorer.Category.Image"><value>图像</value></data>
+  <data name="Explorer.Category.Audio"><value>音频</value></data>
+  <data name="Explorer.Category.Media"><value>媒体</value></data>
+  <data name="Explorer.Category.Archive"><value>存档</value></data>
+  <data name="Explorer.Category.DiskImage"><value>磁盘图像</value></data>
+  <data name="Explorer.Category.Link"><value>链接</value></data>
+  <data name="Explorer.Category.Font"><value>字体</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>未知</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>纯文本</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC 程序</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>原生可执行文件</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>命令或脚本</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>对象代码</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>系统二进制</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>结构化数据</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>配置</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>图书馆</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>图像</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>音频</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>存档</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>磁盘图像</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>字体</value></data>
+  <data name="Explorer.Preview.None"><value>无</value></data>
+  <data name="Explorer.Preview.Text"><value>文本</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC 列名</value></data>
+  <data name="Explorer.Preview.Image"><value>图像</value></data>
+  <data name="Explorer.Preview.Audio"><value>音频</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>十六进制</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>外部应用程序</value></data>
+  <data name="Explorer.Cassette"><value>盒式磁带</value></data>
+  <data name="Explorer.InternalName"><value>内部说明</value></data>
+  <data name="Explorer.BaudRates"><value>速率</value></data>
+  <data name="Explorer.Chunks"><value>块</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK 块</value></data>
+  <data name="Explorer.Records"><value>记录</value></data>
+  <data name="Explorer.FullRecords"><value>完整</value></data>
+  <data name="Explorer.PartialRecords"><value>部分</value></data>
+  <data name="Explorer.EndRecord"><value>结束</value></data>
+  <data name="Explorer.ChunkType"><value>类型</value></data>
+  <data name="Explorer.BaudRate"><value>速率</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>延迟</value></data>
 </root>

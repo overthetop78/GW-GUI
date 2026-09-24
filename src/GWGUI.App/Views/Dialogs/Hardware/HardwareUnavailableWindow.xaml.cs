@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Enums.Services.Dialogs;
 using System.Windows;
 using System.Windows.Controls;

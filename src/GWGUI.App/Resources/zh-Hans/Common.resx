@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>未知</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>弹出</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>未知</value></data>
+  <data name="Common.Eject"><value>弹出</value></data>
+  <data name="Common.MediaKind.Unknown"><value>未知的媒体</value></data>
+  <data name="Common.MediaKind.Floppy"><value>软盘</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>硬盘</value></data>
+  <data name="Common.MediaKind.Optical"><value>光盘</value></data>
+  <data name="Common.MediaKind.Tape"><value>磁带</value></data>
+  <data name="Common.Representation.Flux"><value>豪华</value></data>
+  <data name="Common.Representation.Sectors"><value>部门</value></data>
+  <data name="Common.Representation.Blocks"><value>块</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>光学轨道</value></data>
+  <data name="Common.Representation.Sequential"><value>序列数据</value></data>
+  <data name="Common.Advanced"><value>高级设置</value></data>
+  <data name="Common.ExpertArguments"><value>专家论证</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>参数在引用验证后按写入方式传递。</value></data>
+  <data name="Common.DiskImageFilter"><value>磁盘图像|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|所有文件|*.*</value></data>
+  <data name="Common.Console"><value>安慰</value></data>
+  <data name="Common.Command"><value>命令</value></data>
 </root>

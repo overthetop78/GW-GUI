@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>ディスクイメージを削除します。...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>ディスクイメージと全てのデータを永久に削除しますか?この操作は元に戻すことはできません。&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>削除は不可能です。このディスクを取り外し、設定を保存し、リストされたセッションを最初に閉じます。&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>セッションを開く: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>リンクによる削除はお断りしております。元のファイルを選択します。</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>このマシンとインターフェイスでサポートされている拡張機能を選択します。</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>既に存在するファイル。別の名前を選択します。</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>容量: 512バイトへの {0}, 512 の複数で。サポートされているシステムのための保存制限。</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>オペレーティングシステムなしで空のディスクを作成します。 組み込みマシン内のディスクツールを使用して準備し、フォーマットします。</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>ディスクの準備</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>ブランク(未定)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>フォーマットは、オペレーティングシステムなしで空のボリュームを作成します。 Atari HDD 起動には、エミュレートされたマシンからインストールされている互換性のあるディスクドライバが必要です。圧縮された画像は、抽出されたコピーに書き込みをリダイレクトする場合があります。</value></data>
+</root>

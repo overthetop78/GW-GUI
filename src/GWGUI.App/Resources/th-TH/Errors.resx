@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>ไม่สามารถบันทึกการตั้งค่าได้&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI ผิดพลาด</value></data>
   <data name="Error.Unexpected"><value>ข้อผิดพลาดที่ไม่คาดคิดถูกดักจับ&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>ปฏิบัติการนี้ไม่รองรับโดยแฟ้ม, อุปกรณ์, หรือแพลตฟอร์มที่เลือกไว้</value></data>
   <data name="Error.Description.OutOfMemory"><value>มีหน่วยความจําไม่พอที่จะให้ปฏิบัติการนี้เสร็จสมบูรณ์</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI เกิดปัญหาที่ไม่คาดคิดขึ้นในระหว่างทําการกระทํานี้</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>เธรดงาน Gameinput ยังไม่หยุด</value></data>
+  <data name="Error.GameInput.NoMapping"><value>ไม่มีการจับคู่</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>การเติมเชื้อเพลิงอุปกรณ์ของเกม (GameItut) ล้มเหลว {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>การลงทะเบียนปุ่มบนระบบของเกม (GameItutuple) ล้มเหลว</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>การลงทะเบียนใหม่ของเกมในเมนูถูกยุบล้มเหลว {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>ไม่สามารถเรียกปรับปรุงเกมได้: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>การเรียกเข้าคิวอุปกรณ์ GameItuple ล้มเหลว: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>การเรียกอุปกรณ์ของเกมในเสียบล้มเหลว: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>การเรียกปุ่มระบบของเกมIntuple ล้มเหลว: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>การอ่านค่าดิบของเกม: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: การอ่าน {1} ล้มเหลวในการใช้รหัส 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: ชนิดการนําเข้า {1}, สถานะเกมที่ใช้ได้: {2}, ไม่มีข้อมูลรายการของตัวควบคุม</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: ชนิดการนําเข้า {1}, สถานะเกมที่ใช้ได้: {2}, แกน: {3}, ปุ่ม: {4}, สวิทช์: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM มีข้อผิดพลาด 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: ชนิดการนําเข้า {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>ชื่อที่กลับมา: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>ชื่อของเกม: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VIDสืบค้นเมื่อ 5 July 2015.PIDสืบค้นเมื่อ 5 July 2015. {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>อุปกรณ์ IDสืบค้นเมื่อ 5 July 2015. {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>รากอุปกรณ์ IDสืบค้นเมื่อ 5 July 2015. {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>ตัวบรรจุ IDสืบค้นเมื่อ 5 July 2015. {0}</value></data>
+  <data name="Error.GameInput.Family"><value>ตระกูล: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>วิธีใช้: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>ข้อมูลที่รองรับ: {0} (0x){1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>ข้อมูลตัวควบคุม: ax={0}, ปุ่ม={1}, สวิทช์={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>แถบกํากับแกน: [{0})</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>ป้ายบนปุ่ม:{0})</value></data>
+  <data name="Error.GameInput.Mapper"><value>การเคาะ: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>เส้นทางไปยัง PnP: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>ชื่อของ PNP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>ไม่สามารถอ่านรายการของระบบได้</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>จํานวนที่ร้องขอ (September){0}เยอะเกินกว่าขนาดบัฟเฟอร์ (Bruffy cross){1})</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>บล็อกแฟ้มถัดไปมีลําดับลําดับไม่ถูกต้อง</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>ไม่มีส่วนอิสระบนดิสก์</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>รองรับการปรับค่าศูนย์เท่านั้น</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>ระบบแฟ้มนี้ไม่รองรับการเปลี่ยนความยาวของแฟ้ม</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>บล็อคแคช {0} ในห่วงโซ่การเรียงตั้งไม่มีบล็อกบิตแมพ; ชนิดจริง: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>บล็อคการวางแคช {0} ไม่มีส่วนบล๊อคบิตแมพ; ชนิดจริง: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>บล็อกบิตแมพที่ต้องใช้หายไป</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>ตรวจพบห่วงขณะที่ทําการปล่อยบล็อกที่โหนดการวางผัง {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>โหนดการวาง {0} ไม่สามารถอ่านได้</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>ไม่สามารถปรับลดการอุดตันของรอยหยักได้</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>ตําแหน่งที่ต้องการไม่ถูกต้องสําหรับวัตถุระบบแฟ้มนี้</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>ปฏิบัติการการแทนที่- การระบุพิกัดล้มเหลว</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>บล็อกดัชนีการแทนที่ {0}/{1} ไม่สามารถอ่านได้</value></data>
 </root>

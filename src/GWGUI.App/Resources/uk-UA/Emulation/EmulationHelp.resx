@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Порожня пухкі диски</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>Увімкніть емульований привідний звук при відсутності диска. Вимкніть цей варіант, щоб зберегти свічку механічного шуму.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>Виберіть аналоговий аудіофільтр</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>Виберіть, як відтворюється оригінальний аналоговий аудіофільтр. Використовуються наступні апаратні поведінки. Інший вибір змушує фільтрувати або вимкнути.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>Увімкнути поляризований аудіофільтр</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>Застосовується поляризований фільтр для створеного звукового сигналу. Увімкніть його для відтворення фільтрованого звуку. Вимкніть його, щоб зберегти нефільтрований сигнал.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>Вибір інтерполяції аудіо</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>Виберіть, як аудіо зразки обчислюються між створеними пунктами зразку. Додаткові методи виробляють гладкі звуки, але вимагають більшої обробки.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>Настроювання аудіо-відкладки</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>Встановлює тривалість буфера аудіо. Скоріше буфер зменшує затримку, але може викликати тріщину. Довший буфер покращує стійкість, але підвищує затримку.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>Увімкнути подвійний POKEY стерео</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>Додавання другого емульта POKEY чіп, щоб зробити стерео звук. Увімкнути цей параметр тільки для програмного забезпечення, яке підтримує подвійний POKEY аудіо.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>Налаштування стереорозділу</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>Налаштовує відділення між лівими і правими каналами. Нижня вартість змішує канали разом. Більша вартість зберігає їх далеко.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>Виберіть набір звуку на флоппінг</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>Вибирає набір зразків, що використовується для механічних звуків емульсійних приводів. Не змінює поведінку диска або дані диска.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>Виберіть модель фільтра аудіо</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Виберіть відповідь апаратного фільтра для емульсії. Авто слід вибрати модель машини. Особливий вибір завжди використовує функцію фільтра.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>Увімкнути два додаткові джойстикові порти</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>Виконує паралельно-портовий адаптер, який додає два джойстик-порти. Увімкніть програмне забезпечення, яке підтримує чотири одночасного гравця.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>Встановіть інтервал пульсу турбо</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>Встановлює час між автоматичними кнопками, виробленими турбо. Короткий інтервал виробляє більш швидке повторне стрільбу.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>Виберіть режим сумісності контролера</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>Виберіть спеціальну копію контролера, такі як подвійний контроль помади, замісні порти або Joy2B+. Виберіть Ні, щоб зберегти стандартне відображення порту.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>Встановити чутливість аналогового введення</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>Встановлює, як сильно аналоговий вхід реагує на рух. Більша вартість виробляє більший відгук від того ж фізичного руху.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Налаштування чутливості цифрового введення</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Встановлює, як швидко рухає цифровий напрямок. Найвища вартість дозволяє швидко змінювати напрямок.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Виберіть режим автоматичного вогню</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Вимкнено вимкнено автоматично. На кнопці повторюється вогонь під час накладеної кнопки. Завжди повторює вогонь безперервно.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Налаштування швидкості руху веслами</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Налаштовує, як швидко цифровий вхід переходить на емулятор. Низьке значення переміщує його більш повільно. Найвища вартість рухається її більш швидко.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Виберіть FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>Вибирає плаваючий пристрій, який використовується для інструкцій плаваючого точка. Виберіть Ні для вимкнення FPU. Доступні моделі залежать від вибраного CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>Обрати CPU точність емульсії</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Виберіть, як тісно CPU терміни виконання оригінального обладнання. Більш точні режими можуть поліпшити сумісність, але можуть знадобитися більше обробки.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Встановити емульований CPU швидкість</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>встановлює частоту процесора, що використовується емульгованим машином. Оригінальна швидкість зберігає терміни апаратного забезпечення. Вищі значення прискорюють CPU-обмежена програма.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Використовуйте аналогові палички для управління мишкою</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>Дозволяє аналоговим джойстиком, щоб перемістити емульований тостер мишки. Увімкніть його, коли фізична аналогова паличка повинна контролювати тостер.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>Налаштування швидкості мишки аналогової миші</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>Налаштовує швидкість тостера при аналоговому палиці, що регулює ізольовану мишу. Більша вартість переходить на один і той же накопичувач.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>Настроювання аналогової мишки мертвої зони</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>Ігнорує невеликі аналогові рухи по центру під час контролінгу миші. Підвищіть значення, якщо точилка рухається, поки палиця вивільняється.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Увімкнути Axlon $0F тінейський банк</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Дзеркала Axlon контрольний банк за адресою $0F. Увімкнути його тільки для розширення програмного забезпечення або пам&apos;яті, які використовують цю додаткову адресу.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Комплекти Axlon розширення пам&apos;яті</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Налаштовує суму банківського відчуження Axlon пам&apos;ять. Вимкнено видаляє розширення. Інші вибірки забезпечують вибрану пам&apos;ять.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Комплекти Mosaic розширення пам&apos;яті</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Налаштовує суму банківського відчуження Mosaic пам&apos;ять. Вимкнено видаляє розширення. Інші вибірки забезпечують вибрану пам&apos;ять.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Встановити додаткову пам&apos;ять розширення</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Налаштовує кількість додаткової пам&apos;яті розширення, що підтримується вибраною машиною. Виберіть Ні, щоб використовувати тільки налаштовану основну пам&apos;ять.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Комплекти Fast RAM розмір</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>встановлює кількість швидко RAM доступний безпосередньо до CPU. Додаткова швидка RAM може допомогти сумісному програмному забезпеченню, але змінює конфігурацію емульгованої апаратної конфігурації.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Увімкнути MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>Дозволяє сумісне програмне забезпечення на карті RAM в систему ROM адресна зона. Ця опція доступна тільки на машинних моделях, які підтримують MapRAMй</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Комплекти Zorro III RAM розмір</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>Встановлює кількість 32-бітних Fast RAM підключений через Zorro III автобус. Використовуйте його тільки з сумісними 32-розрядними машинами та програмним забезпеченням.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>Комплекти Slow RAM розмір</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Настроювання кількості Slow RAM в зоні розширення трапези. Ця пам&apos;ять сповільнюється, ніж Fast RAM і використовує різні діапазони апаратних адрес.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>Виберіть ROM ключ розшифрування</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>Виберіть файл, який використовується для розшифрування ліцензійного зашифрованого ROM зображення. Залишити це поле порожній, коли вибраний ROM не зашифрований.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Увімкнути швидкий стартап</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>Затримки для скорочення запуску обладнання. Вимкніть цей параметр, коли програмне забезпечення вимагає початкової послідовності запуску.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>Виберіть розширений ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>Вибирає вторинну прошивку ROM необхідні деякі моделі машин. Залиште це поле порожнім, коли вибрана модель не використовує розширену модель ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Увімкнути прискорене SIO Послуги</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>Прискорює сумісні передачі через серійний вхід / вихідний автобус. Вимкніть цей параметр, коли програмне забезпечення залежить від початкових термінів передачі.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Увімкнути запуску касета</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Зробіть емульсійну машинку, щоб почати з прикріпленого зображення касети. Вимкніть цей параметр при запуску з іншого пристрою.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Увімкнути R-Time 8 годинник</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>Покращує R-Time 8 В режимі реального часу, так що сумісне програмне забезпечення може читати поточну дату та час.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>Увімкнути P: Пристрої принтера</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>Зробіть емульсію P: Пристрої принтера доступні для програмного забезпечення. Вимкніть цей параметр при емульсії принтера не потрібно.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>Увімкнути R: послідовний пристрій</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>Зробіть емульсію R: серійний пристрій, доступний для програмного забезпечення. Вимкніть цей варіант при послідовно-розробному емульсії не потрібно.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>Виберіть колір високої роздільної здатності</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>Вибирає, як високорозчинні візерунки виробляють композитно-відео кольорів. Не вимикає декоративні кольори. В інших режимах відтворюються різні палітри або поведінка чіпа.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>Виберіть термін дії бліттера</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>Вибирає, чи закінчуються операції з розмитненням негайно або слідувати за встановленим терміном обладнання. Режим іммедіате швидше, але менше часу.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>Дозволити зміни оновлень</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>Дозволяє виводити частоту оновлень, щоб слідувати змінам у встановленому режимі відео. Заблокований зберігає поточний вихідний частоту.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>Виберіть деталь виявлення зіткнення</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>Вибирає, які розраховується спрайт і поле зіткнення. Більш повне виявлення покращує сумісність, але вимагає більшої обробки.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>Зменшення переплетених дисплеєм</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>Зменшує мерехтіння в переплетених відеовиході. Увімкніть його для застібки зображення. Вимкніть його для збереження початкової міжрядової поведінки дисплея.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>Виберіть співвідношення сторін</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>Вибирає, як емульований образ масштабується горизонтально і вертикально. Автоматично слідувати за встановленим виходом. Фіксований вибір сил, які відображають форму.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>Регулювання зображення гамма</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>Зміни яскравості півтонів без безпосередньо змін чорного і білого рівня. Низькі значення затемніють півтони. Визначені вище значення.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>Виберіть режим відеолінії</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>Виберіть, як відображаються вертикальні відеолінії. Авто слідувати за встановленим режимом. Інші варіанти, що діють одиничні лінії, подвійні лінії або скан-лінії при наявності.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>Виберіть стандарт відео</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>Вибирає емульовані телевізійні строки, такі як PAL або NTSC. Це впливає на швидкість оновлення, термін служби обладнання та сумісність програмного забезпечення.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>Виберіть зовнішню колірну палітру</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>Виберіть задану кольорову палітру замість кольорів, створених з поточних налаштувань відео. Виберіть Ні для використання створених кольорів.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>Виберіть глибину кольору виходу</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>Виберіть глибину кольору, яка використовується для відображення зображення. 24-bit зберігає більше деталей кольору. 16-bit використовує менший діапазон кольорів.</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>Виберіть область обладнання</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>Виберіть регіональний час, який використовується емульсійною машиною. Вибір може вплинути на частоту відео, CPU час і сумісна прошивка.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>Виберіть відео рендерера</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>Вибирає графіку задньої частини, що використовується для відображення емуляції. Доступні рендерери можуть відрізнятися в продуктивності та сумісності з системою хост.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>Налаштування GTIA затримки кольору</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Комплекти GTIA Затримка фази кольорової фази, що використовується для відтворення кольорів. За замовчуванням використовується стандартне значення. Чисельні вибірки зміщують отриманий відтінок.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Набори рам</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Налаштовує, як багато кадрів відображення вдається. Вимкнено малювати кожну раму. Більші значення знижують роботу, але роблять рух менш гладким.</value></data>
+</root>

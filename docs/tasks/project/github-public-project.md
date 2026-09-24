@@ -58,7 +58,7 @@ stratégie NuGet Trusted Publishing doit également être réassociée au nouvea
       - [ ] Modifier `src/GWGUI.Emulation.Atari/module.json` pour utiliser le catalogue Atari encore publié par `<ORGANISATION>/GW-GUI`, sans anticiper son futur dépôt indépendant.
   - [ ] 3.3 Remplacer les adresses des outils de publication
     - [ ] 3.3.1 Modifier les scripts du wiki
-      - [ ] Modifier `scripts/build-wiki.ps1` et `scripts/publish-wiki.ps1` pour lire, publier et afficher le wiki sous `<ORGANISATION>/GW-GUI`.
+- [ ] Modifier `scripts/wiki/build-wiki.ps1` et `scripts/wiki/publish-wiki.ps1` pour lire, publier et afficher le wiki sous `<ORGANISATION>/GW-GUI`.
     - [ ] 3.3.2 Modifier les métadonnées de l’application
       - [ ] Modifier `installer/GWGUI.iss` et `src/GWGUI.App/GWGUI.App.csproj` pour utiliser l’organisation comme éditeur ou adresse de dépôt, sans remplacer le titulaire du copyright sans décision explicite.
     - [ ] 3.3.3 Modifier les métadonnées du SDK
@@ -192,7 +192,7 @@ stratégie NuGet Trusted Publishing doit également être réassociée au nouvea
     - [ ] 11.3.2 Supprimer les sources devenues externes
       - [ ] Supprimer de `GW-GUI` les projets officiels déplacés seulement après avoir installé et chargé leurs paquets publiés depuis leurs nouveaux dépôts, puis modifier la solution, les scripts et les tests qui les référençaient.
     - [ ] 11.3.3 Conserver un développement local explicite
-      - [ ] Modifier `scripts/build.ps1`, `scripts/package.ps1` et leur documentation pour que les modules externes de développement puissent être fournis explicitement sans réintroduire une liste de modules dans l’application.
+      - [ ] Modifier `scripts/local-building/build.ps1`, `scripts/release/package/package.ps1` et leur documentation pour que les modules externes de développement puissent être fournis explicitement sans réintroduire une liste de modules dans l’application.
   - [ ] 11.4 Séparer éventuellement le dépôt du SDK
     - [ ] 11.4.1 Déplacer les sources et la publication du SDK
       - [ ] Créer `<ORGANISATION>/GWGUI.Emulation.SDK` avec les sources, le README NuGet, les notes et un workflow Trusted Publishing propre, puis modifier les références du dépôt principal et des modules vers ce dépôt.

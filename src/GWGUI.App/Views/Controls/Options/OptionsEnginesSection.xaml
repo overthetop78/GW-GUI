@@ -5,7 +5,7 @@
              xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="18">
-            <TextBlock Text="{l:Loc Engines.Description}" TextWrapping="Wrap" Margin="0,0,0,12"/>
+        <TextBlock Text="{l:Loc Options.Engines.Description}" TextWrapping="Wrap" Margin="0,0,0,12"/>
             <Border Style="{StaticResource Card}" Padding="16">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -20,27 +20,27 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="{l:Loc Read.Title}" VerticalAlignment="Center" Margin="0,8"/>
                     <ComboBox Grid.Column="1" x:Name="PhysicalReadCombo" Margin="0,5" SelectionChanged="Engine_SelectionChanged">
-                        <ComboBoxItem Content="{l:Loc Engines.Internal}"/>
+                    <ComboBoxItem Content="{l:Loc Options.Engines.Internal}"/>
                         <ComboBoxItem Content="{l:Loc HostTools.Title}"/>
                     </ComboBox>
                     <TextBlock Grid.Row="1" Text="{l:Loc Write.Title}" VerticalAlignment="Center" Margin="0,8"/>
                     <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PhysicalWriteCombo" Margin="0,5" SelectionChanged="Engine_SelectionChanged">
-                        <ComboBoxItem Content="{l:Loc Engines.Internal}"/>
+                    <ComboBoxItem Content="{l:Loc Options.Engines.Internal}"/>
                         <ComboBoxItem Content="{l:Loc HostTools.Title}"/>
                     </ComboBox>
                     <TextBlock Grid.Row="2" Text="{l:Loc Conversion.Title}" VerticalAlignment="Center" Margin="0,8"/>
                     <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ConversionCombo" Margin="0,5" SelectionChanged="Engine_SelectionChanged">
-                        <ComboBoxItem Content="{l:Loc Engines.Internal}"/>
+                    <ComboBoxItem Content="{l:Loc Options.Engines.Internal}"/>
                         <ComboBoxItem Content="{l:Loc HostTools.Title}"/>
                     </ComboBox>
                     <TextBlock Grid.Row="3" Text="{l:Loc Tab.Explorer}" VerticalAlignment="Center" Margin="0,8"/>
                     <ComboBox Grid.Row="3" Grid.Column="1" x:Name="ExplorerReadCombo" Margin="0,5" SelectionChanged="Engine_SelectionChanged">
-                        <ComboBoxItem Content="{l:Loc Engines.Internal}"/>
+                    <ComboBoxItem Content="{l:Loc Options.Engines.Internal}"/>
                         <ComboBoxItem Content="{l:Loc HostTools.Title}"/>
                     </ComboBox>
                 </Grid>
             </Border>
-            <TextBlock Text="{l:Loc Engines.StrictChoice}" TextWrapping="Wrap" Margin="0,12,0,0" Foreground="{DynamicResource MutedTextBrush}"/>
+        <TextBlock Text="{l:Loc Options.Engines.StrictChoice}" TextWrapping="Wrap" Margin="0,12,0,0" Foreground="{DynamicResource MutedTextBrush}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

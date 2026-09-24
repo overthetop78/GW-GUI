@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Listo para ejecutar.</value></data>
   <data name="Tool.RawOutput"><value>Salida bruta</value></data>
-  <data name="Maintenance.EraseTitle"><value>Confirmar borrado</value></data>
-  <data name="Maintenance.EraseConfirm"><value>¿Borrar permanentemente todos los datos del disco insertado?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Cabezas limpias</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Confirme que haya un disco de limpieza insertado. Nunca utilice un disco de datos.</value></data>
   <data name="Tools.Erase"><value>borrar un disco</value></data>
   <data name="Tools.EraseWarning"><value>Todos los datos del disco serán destruidos.</value></data>
   <data name="Tools.LimitTracks"><value>Limitar pistas</value></data>
@@ -37,7 +25,8 @@
   <data name="Tool.Field.Select"><value>Selección (μs)</value></data>
   <data name="Tool.Field.Step"><value>Paso de cabeza (μs)</value></data>
   <data name="Tool.Field.Settle"><value>resolver (ms)</value></data>
-<data name="Tool.Field.Watchdog"><value>Deseleccionar automáticamente (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Deseleccionar automáticamente (ms)</value></data>
   <data name="Tool.Field.PreWrite"><value>Antes de escribir (μs)</value></data>
   <data name="Tool.Field.PostWrite"><value>Después de escribir (μs)</value></data>
   <data name="Tool.Field.IndexMask"><value>Máscara de índice (μs)</value></data>
@@ -64,5 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Número de lecturas</value></data>
   <data name="Tool.Field.AlignFormat"><value>Formato de decodificación</value></data>
   <data name="Tool.Field.AlignRaw"><value>Leer flujo bruto (--raw)</value></data>
-  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
 </root>

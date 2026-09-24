@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Kikötő</value></data>
-  <data name="Hardware.UsbId"><value>USB azonosító</value></data>
-  <data name="Hardware.Drive"><value>Hajtás</value></data>
-  <data name="Hardware.Available"><value>Elérhető</value></data>
-  <data name="Hardware.Scan"><value>Letapogatás</value></data>
-  <data name="Hardware.AddDrive"><value>Meghajtó hozzáadása…</value></data>
-  <data name="Hardware.NoDrive"><value>Nincs meghajtó meghatározva</value></data>
-  <data name="Hardware.EditorTitle"><value>Határozzon meg egy meghajtót</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle vezérlő</value></data>
-  <data name="Hardware.GwSelection"><value>A kiválasztás átment a gw-nek</value></data>
-  <data name="Hardware.PhysicalSize"><value>Fizikai méret</value></data>
-  <data name="Hardware.SizeShort"><value>Méret</value></data>
-  <data name="Hardware.DensityShort"><value>Sűrűség</value></data>
-  <data name="Hardware.SpeedShort"><value>Sebesség</value></data>
-  <data name="Hardware.AvailableState"><value>Elérhető</value></data>
-  <data name="Hardware.UnavailableState"><value>Nem elérhető</value></data>
-  <data name="Hardware.DensityDescription"><value>Hajtássűrűség (csak leírás)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Névleges sebesség (csak leírás)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Kikötő</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB azonosító</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Hajtás</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Elérhető</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Letapogatás</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Meghajtó hozzáadása…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Nincs meghajtó meghatározva</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Határozzon meg egy meghajtót</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle vezérlő</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>A kiválasztás átment a gw-nek</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fizikai méret</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Méret</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Sűrűség</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Sebesség</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Elérhető</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Nem elérhető</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Hajtássűrűség (csak leírás)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Névleges sebesség (csak leírás)</value></data>
   <data name="Hardware.NotConfigured"><value>A vezérlő nincs konfigurálva</value></data>
   <data name="Hardware.Disconnected"><value>szétkapcsolt</value></data>
   <data name="Hardware.SelectedDisconnected"><value>A kiválasztott meghajtó le van választva. Csatlakoztassa újra, vagy ellenőrizze újra az Opciók → Vezérlők és meghajtók menüpontban.</value></data>

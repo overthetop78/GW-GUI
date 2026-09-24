@@ -12,10 +12,10 @@ using GWGUI.App.Interfaces.Services.Navigation;
 using GWGUI.App.Contracts.Services.Navigation;
 using GWGUI.App.Enums.Services.Navigation;
 using GWGUI.App.Services.Windows;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.HostTools;
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Commands.Execution;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.HostTools;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows.Media;
 
@@ -28,14 +28,22 @@ internal static class NavigationScenarios
     internal static readonly string[] SectionNames =
         ["ReadTabBlock", "WriteTabBlock", "ConvertTabBlock", "VisualizerTabBlock", "DiskExplorer", "ToolsTabBlock", "EmulationBlock"];
 
-    internal static MainWindow Shell => shell ??= new MainWindow(
-        ControlledDependencies.Reject<IMessageDialogService>(),
-        ControlledDependencies.Reject<IFileDialogService>(),
-        ControlledDependencies.Reject<IBusinessDialogService>(), navigation,
-        hostTools: ControlledDependencies.Reject<IGwInstallationManager>(),
-        runner: ControlledDependencies.Reject<IGreaseweazleRunner>(),
-        settingsStore: ControlledDependencies.Reject<ISettingsStore>(),
-        hardwareRegistry: ControlledDependencies.Reject<IHardwareRegistry>(), dataDirectory: "virtual-data");
+    internal static MainWindow Shell
+    {
+        get
+        {
+            if (shell?.Content is not null) return shell;
+            shell = new MainWindow(
+                ControlledDependencies.Reject<IMessageDialogService>(),
+                ControlledDependencies.Reject<IFileDialogService>(),
+                ControlledDependencies.Reject<IBusinessDialogService>(), navigation,
+                hostTools: ControlledDependencies.Reject<IGwInstallationManager>(),
+                runner: ControlledDependencies.Reject<IGreaseweazleRunner>(),
+                settingsStore: ControlledDependencies.Reject<ISettingsStore>(),
+                hardwareRegistry: ControlledDependencies.Reject<IHardwareRegistry>(), dataDirectory: "virtual-data");
+            return shell;
+        }
+    }
 
     internal static IEnumerable<T> Visuals<T>(DependencyObject parent) where T : DependencyObject
     {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>เปิดใช้งาน</value></data>
+  <data name="Emulation.Value.Disabled"><value>ปิดการใช้งาน</value></data>
+  <data name="Emulation.Value.Minimum"><value>น้อยที่สุด</value></data>
+  <data name="Emulation.Value.VerySmall"><value>เล็กมาก</value></data>
+  <data name="Emulation.Value.Small"><value>เล็ก</value></data>
+  <data name="Emulation.Value.Medium"><value>สื่อ</value></data>
+  <data name="Emulation.Value.Large"><value>ใหญ่</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>ใหญ่มาก</value></data>
+  <data name="Emulation.Value.Maximum"><value>ค่ามากที่สุด</value></data>
+  <data name="Emulation.Value.Standard"><value>มาตรฐาน</value></data>
+  <data name="Emulation.Value.Enhanced"><value>เพิ่มขนาด</value></data>
+  <data name="Emulation.Value.Internal"><value>ภายใน</value></data>
+  <data name="Emulation.Value.Loud"><value>ดัง</value></data>
+  <data name="Emulation.Value.NotUsed"><value>ไม่ได้ใช้</value></data>
+  <data name="Emulation.Value.None"><value>ไม่มี</value></data>
+  <data name="Emulation.Value.Default"><value>ค่าเริ่มต้น</value></data>
+  <data name="Emulation.Value.Gray"><value>สีเทา</value></data>
+</root>

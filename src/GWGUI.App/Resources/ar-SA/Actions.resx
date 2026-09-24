@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>يلغي</value></data>
-  <data name="Common.Save"><value>يحفظ</value></data>
-  <data name="Common.Create"><value>إنشاء</value></data>
-  <data name="Common.Delete"><value>يمسح</value></data>
-  <data name="Common.Browse"><value>تصفح…</value></data>
-  <data name="Common.Choose"><value>يختار…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>يلغي</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>يحفظ</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>إنشاء</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>يمسح</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>تصفح…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>يختار…</value></data>
   <data name="Common.Close"><value>يغلق</value></data>
   <data name="Common.Execute"><value>ينفذ</value></data>
   <data name="Common.Stop"><value>قف</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>يُعدِّل</value></data>
   <data name="Common.Hide"><value>يخفي</value></data>
   <data name="Common.Export"><value>يصدّر</value></data>
-  <data name="Common.New"><value>جديد</value></data>
-  <data name="Common.Refresh"><value>تحديث</value></data>
-  <data name="Common.OpenFolder"><value>فتح المجلد</value></data>
+  <data name="Common.New" xml:space="preserve"><value>جديد</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>تحديث</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>فتح المجلد</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>إيقاف مؤقت</value></data>
 </root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>مفتاح {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>مفتاح المضيف</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>يستخدم مفتاحان من طراز Amiga نفس PC مفتاح، حلّ الخرائط الحمراء قبل الادخار</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>لوح مفاتيح الفيزيائية</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>اختصارات محجوزة</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>تظل اختصارات GW GUI وWindows نشطة ولا يلتقطها الجهاز.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>مفتاح الجهاز</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>تُنقل الأحرف والأرقام ومفاتيح التعديل العادية مباشرة. يجب تعيين مفاتيح الوظائف والمفاتيح الخاصة بـ Amiga فقط هنا.</value></data>
+</root>

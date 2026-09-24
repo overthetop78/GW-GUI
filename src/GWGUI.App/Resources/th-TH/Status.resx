@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>ด้านข้าง {0}: แทร็ก {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI พร้อมแล้ว</value></data>
+  <data name="Status.DefaultProfile"><value>โปรไฟล์: ค่าเริ่มต้น</value></data>
+  <data name="Status.Profile"><value>โปรไฟล์: {0}</value></data>
+  <data name="Status.TrackProgress"><value>เพลง {0}, ด้าน {1} - {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>เพลง {0}, ด้าน {1} - {2} ถูกประมวลผล</value></data>
+  <data name="Status.ReadyShort"><value>พร้อม</value></data>
+  <data name="Status.Running"><value>วิ่ง</value></data>
+  <data name="Status.Success"><value>ความสำเร็จ</value></data>
+  <data name="Status.Error"><value>ข้อผิดพลาด</value></data>
+  <data name="Status.Cancelled"><value>ยกเลิก</value></data>
+</root>

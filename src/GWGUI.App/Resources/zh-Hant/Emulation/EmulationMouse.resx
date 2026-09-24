@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>釋放滑鼠擷取的按鍵</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>滑鼠左鍵</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>滑鼠右鍵</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>滑鼠中鍵</value></data>
+  <data name="Emulation.Mouse.Physical"><value>實體滑鼠</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>雙倍移動</value></data>
+  <data name="Emulation.Mouse.Speed"><value>滑鼠速度</value></data>
+  <data name="Emulation.Mouse.Analog"><value>控制滑鼠的類比搖桿</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>類比搖桿死區</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>類比搖桿滑鼠速度</value></data>
+  <data name="Emulation.Mouse.Actions"><value>滑鼠動作</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>滑鼠按鈕 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>滑鼠按鈕 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>滑鼠擷取</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>滑鼠滾輪向上</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>滑鼠滾輪向下</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>滑鼠滾輪向左</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>滑鼠滾輪向右</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>擷取滑鼠</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>释放鼠标</value></data>
+</root>

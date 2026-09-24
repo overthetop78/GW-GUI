@@ -1,39 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Impossibile salvare le impostazioni.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI errore</value></data>
   <data name="Error.Unexpected"><value>È stato intercettato un errore imprevisto.&#xA;&#xA;{0}</value></data>
   <data name="Error.SaveFailed"><value>Impossibile salvare le impostazioni. La finestra si chiuderà comunque.&#xA;&#xA;{0}</value></data>
   <data name="Error.LogSaved"><value>Il rapporto completo è stato salvato in:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Il servizio remoto non ha risposto prima che la connessione venga disattivata. Controllare la connessione di rete e riprovare.</value></data>
-  <data name="Error.Description.NetworkDns"><value>L'indirizzo di servizio remoto non poteva essere risolto. Controllare le impostazioni di rete o DNS e riprovare.</value></data>
+  <data name="Error.Description.NetworkDns"><value>L&apos;indirizzo di servizio remoto non poteva essere risolto. Controllare le impostazioni di rete o DNS e riprovare.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Il servizio remoto ha rifiutato la connessione. Potrebbe non essere disponibile o bloccato.</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>Il servizio remoto non poteva essere raggiunto. Controllare le impostazioni di connessione Internet, firewall, VPN o proxy e riprovare.</value></data>
   <data name="Error.Description.HttpStatus"><value>Il servizio remoto ha restituito lo stato HTTP {0}. Riprova più tardi.</value></data>
-  <data name="Error.Description.OperationTimeout"><value>L'operazione non ha finito entro il tempo consentito. Riprova.</value></data>
-  <data name="Error.Description.OperationCancelled"><value>L'operazione è stata annullata prima che finisse.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>L&apos;operazione non ha finito entro il tempo consentito. Riprova.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>L&apos;operazione è stata annullata prima che finisse.</value></data>
   <data name="Error.Description.AccessDenied"><value>GW GUI non ha il permesso di accedere al file richiesto, alla cartella o al dispositivo.</value></data>
   <data name="Error.Description.FileNotFound"><value>Il file richiesto non è stato trovato: {0}</value></data>
   <data name="Error.Description.DirectoryNotFound"><value>La cartella richiesta non è stata trovata.</value></data>
-  <data name="Error.Description.DriveNotFound"><value>L'unità richiesta non è disponibile.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>L&apos;unità richiesta non è disponibile.</value></data>
   <data name="Error.Description.PathTooLong"><value>Il percorso selezionato è troppo lungo.</value></data>
-  <data name="Error.Description.DiskFull"><value>Non c'è abbastanza spazio libero del disco per completare l'operazione.</value></data>
+  <data name="Error.Description.DiskFull"><value>Non c&apos;è abbastanza spazio libero del disco per completare l&apos;operazione.</value></data>
   <data name="Error.Description.InvalidData"><value>I dati o file selezionati sono non validi, incompleti o corrotti.</value></data>
   <data name="Error.Description.InvalidArgument"><value>Uno dei valori forniti non è valido. Verifica le impostazioni e riprova.</value></data>
-  <data name="Error.Description.InvalidOperation"><value>L'operazione non può essere completata nello stato attuale dell'applicazione.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>L&apos;operazione non può essere completata nello stato attuale dell&apos;applicazione.</value></data>
   <data name="Error.Description.NotSupported"><value>Questa operazione non è supportata dal file selezionato, dal dispositivo o dalla piattaforma.</value></data>
-  <data name="Error.Description.OutOfMemory"><value>Non c'è abbastanza memoria disponibile per completare l'operazione.</value></data>
-  <data name="Error.Description.Unexpected"><value>GW GUI ha incontrato un problema inaspettato durante l'esecuzione di questa azione.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Non c&apos;è abbastanza memoria disponibile per completare l&apos;operazione.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI ha incontrato un problema inaspettato durante l&apos;esecuzione di questa azione.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>Il filo del lavoratore GameInput non si è fermato.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Non si può fare</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>L'enumerazione del dispositivo GameInput non è riuscita per {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>Registrazione del pulsante del sistema di ingresso del gioco non è riuscita.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>Registrazione di aggiornamento GameInput non riuscita per {0}: 0{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput rinfresco callback non potrebbe essere non registrato: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>La coda di chiamata del dispositivo GameInput non è riuscita: {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>Il dispositivo di input di Callback non è riuscito: {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>Il sistema di input-button callback non è riuscito: {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw-reading callback fallito: {0} 0{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: lettura {1} non riuscito con il codice 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: tipo di ingresso {1}, stato di gamepad disponibile: {2}, controller arrays non disponibili</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: tipo di ingresso {1}, stato di gamepad disponibile: {2}, Axes: {3}, pulsanti: {4}, interruttori: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM errore 0x{1:X8} ({2})</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: tipo di ingresso {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Nome risolto: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>Nome di GameInput: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:PID: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Dispositivo ID: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Radice del dispositivo ID: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Contenitore ID: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Famiglia: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Utilizzo: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Ingresso supportato: {0} - Si'.{1:X8})</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Informazioni sul controller: axes={0}, # I bottoni #{1}, interruttore ={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Etichette di asse: [{0}#</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Etichette di bottoni: [{0}#</value></data>
+  <data name="Error.GameInput.Mapper"><value>Mapping: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP path: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>Nome PnP: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>L'ingresso del file-system non poteva essere letto.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Il conteggio richiesto ({0}) supera la dimensione del buffer ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Il blocco file successivo ha un numero di sequenza errato.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Nessun settore libero è disponibile sul disco.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Solo lo zero di offset è supportato per questa operazione.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Questo flusso di file-system non supporta la modifica della sua lunghezza.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Blocco di cavità {0} nella catena di allocazione non contiene un blocco bitmap; tipo effettivo: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Blocco di allocazione Cached {0} non contiene un blocco bitmap; tipo effettivo: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Manca il blocco bitmap richiesto.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>Un loop è stato rilevato durante la liberazione dei blocchi al nodo di allocazione {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Nodo di allocazione {0} non si poteva leggere.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Il blocco di nodo di allocazione non poteva essere assegnato.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>La posizione richiesta non è valida per questo oggetto file-system.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>L'operazione di allocazione-nodo non è riuscita.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blocco indice bitmap a nodo di allocazione {0}/{1} non si poteva leggere.</value></data>
 </root>

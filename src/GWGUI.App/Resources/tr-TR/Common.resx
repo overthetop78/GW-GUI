@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Bilinmiyor</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Çıkar</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Bilinmiyor</value></data>
+  <data name="Common.Eject"><value>Çıkar</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Bilinmeyen medya</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Disket</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>Hard disk</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optik disk</value></data>
+  <data name="Common.MediaKind.Tape"><value>Bant</value></data>
+  <data name="Common.Representation.Flux"><value>Flux Flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Sektörler</value></data>
+  <data name="Common.Representation.Blocks"><value>Bloklar</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optik izler</value></data>
+  <data name="Common.Representation.Sequential"><value>Sequential data</value></data>
+  <data name="Common.Advanced"><value>Gelişmiş ayarlar</value></data>
+  <data name="Common.ExpertArguments"><value>Uzman argümanları</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argümanlar, teklif doğrulamasından sonra yazıldığı gibi iletilir.</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk görüntüleri|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|All files|*.*</value></data>
+  <data name="Common.Console"><value>Konsol</value></data>
+  <data name="Common.Command"><value>Emretmek</value></data>
 </root>

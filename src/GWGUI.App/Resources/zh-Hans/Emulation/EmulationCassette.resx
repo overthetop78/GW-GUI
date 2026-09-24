@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>播放</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>暂停</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>倒带</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>快进</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>录制</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>停止</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>无磁带</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>已停止</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>正在播放</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>已暂停</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>正在录制</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>磁带末尾</value></data>
+</root>

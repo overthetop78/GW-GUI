@@ -1,12 +1,62 @@
 using GWGUI.App.Contracts.ViewModels.Visualization;
+using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
+
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Presenters.Visualization;
 
 public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<string, object[], string> localize)
 {
+    public MediaInspectorModel BuildCommonModel(ScpImage image, ScpTrack track, string? decoderId)
+    {
+        var model = BuildModel(image, track, decoderId);
+        var sections = new List<MediaInspectorSection>
+        {
+            new(Localize("Visual.SummaryTab"), ControlVisualConstants.InformationGlyph,
+            [
+                new(Localize("Visual.SideLabel"), model.Head.ToString()),
+                new(Localize("Visual.TrackLabel"), model.Cylinder.ToString()),
+                new(Localize("Visual.ScpEntryLabel"), model.ScpEntry.ToString()),
+                new(Localize("Visual.RevolutionsTitle"), model.RevolutionCount.ToString())
+            ])
+        };
+
+        if (model.Revolutions.Count > 0)
+        {
+            sections.Add(new(Localize("Visual.RevolutionsTitle"), ControlVisualConstants.InformationGlyph,
+                model.Revolutions.Select(revolution => new MediaInspectorEntry(
+                    Localize("Visual.NumberPrefix") + revolution.Number,
+                    $"{revolution.Transitions:N0}{Localize("Visual.ValueSeparator")}{revolution.DurationMilliseconds:F2} ms{Localize("Visual.ValueSeparator")}{revolution.Rpm:F2} RPM",
+                    Localize("Visual.TransitionsUnit"))).ToArray()));
+        }
+
+        if (model.Decode is { } decode)
+        {
+            sections.Add(new(Localize("Visual.AnalysisTitle"), ControlVisualConstants.InformationGlyph,
+            [
+                new(Localize("Visual.FormatDetected"), decode.Decoder),
+                new(Localize("Visual.ConfidenceLabel"), decode.Confidence.ToString("P0")),
+                new(Localize("Visual.CellLabel"), decode.CellTicks.ToString("F1"), Localize("Visual.TicksUnit")),
+                new(Localize("Visual.StructuresLabel"), decode.StructureCount.ToString())
+            ]));
+        }
+
+        if (model.Structures.Count > 0)
+            sections.Add(new(Localize("Visual.StructuresTitle"), ControlVisualConstants.InformationGlyph,
+                model.Structures.Select(entry => new MediaInspectorEntry(entry.Name, entry.Detail)).ToArray()));
+
+        if (model.Sectors.Count > 0)
+            sections.Add(new(Localize("Visual.SectorsTitle"), ControlVisualConstants.InformationGlyph,
+                model.Sectors.Select((sector, index) => new MediaInspectorEntry(Localize("Visual.NumberPrefix") + (index + 1), sector)).ToArray()));
+
+        return new(
+            Localize("Visual.Title"),
+            Localize("Visual.TrackTooltip", model.Head, model.Cylinder, model.RevolutionCount),
+            sections);
+    }
+
     public ScpInspectorModel BuildModel(ScpImage image, ScpTrack track, string? decoderId)
     {
         var best = decoders.DecodeBest(track.Revolutions.Select(revolution => revolution.Flux).ToArray(), decoderId);

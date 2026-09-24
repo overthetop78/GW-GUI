@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Verhalten</value></data>
+  <data name="Emulation.Input.Assign"><value>Zuweisen...</value></data>
+  <data name="Emulation.Input.Actions"><value>Aktionen</value></data>
+  <data name="Emulation.Input.Press"><value>Taste drücken...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Die Geräteerkennung ist gemeinsam, Zuweisungen werden jedoch getrennt in jeder Maschinenkonfiguration gespeichert.</value></data>
+  <data name="Emulation.Input.Test"><value>Eingaben testen</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Gemeinsame Eingabegeräte</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Drücken Sie zum Testen eine Tastaturtaste oder eine Maustaste.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Standardwerte wiederherstellen</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Konflikte löschen</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Zuordnung</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Status</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Taste oder Zuordnung suchen</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Gültig: eindeutige Assoziation · Konflikt: Assoziation wurde mehr als einmal verwendet · Reserviert: Windows oder GW GUI Abkürzung</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Gültig</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Konflikt</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Reserviert</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Nicht zugewiesen</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Auf „Zuweisen“ klicken und dann eine Tastaturtaste, Maustaste oder Controller-Taste drücken.</value></data>
+</root>

@@ -1,5 +1,5 @@
 using GWGUI.App.Contracts.Rendering.Scp;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 using SkiaSharp;
 
 namespace GWGUI.App.Rendering.Scp;
@@ -23,16 +23,29 @@ public sealed partial class SkiaScpRenderer
         canvas.DrawPath(otherPath, other);
     }
 
-    private static SKPaint FluxPaint(SKColor color) => new() { Color = color, IsAntialias = false, Style = SKPaintStyle.Stroke };
-    private static SKPaint StructurePaint(SKColor color) => new() { Color = color, IsAntialias = true, Style = SKPaintStyle.Stroke, StrokeCap = SKStrokeCap.Round };
+    private static SKPaint FluxPaint(SKColor color) => new()
+    {
+        Color = color,
+        IsAntialias = false,
+        Style = SKPaintStyle.Stroke,
+        StrokeCap = SKStrokeCap.Butt
+    };
+
+    private static SKPaint StructurePaint(SKColor color) => new()
+    {
+        Color = color,
+        IsAntialias = true,
+        Style = SKPaintStyle.Stroke,
+        StrokeCap = SKStrokeCap.Round
+    };
 
     private static SKColor StructureColor(FluxStructureKind kind) => kind switch
     {
-        FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader => new SKColor(255, 205, 64),
-        FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData => new SKColor(67, 220, 255),
-        FluxStructureKind.DeletedDataAddressMark => new SKColor(255, 75, 96),
-        FluxStructureKind.TimingAnomaly => new SKColor(83, 173, 255),
-        _ => new SKColor(196, 117, 255)
+        FluxStructureKind.IdAddressMark or FluxStructureKind.AppleAddress or FluxStructureKind.CommodoreHeader or FluxStructureKind.FormatHeader => new SKColor(218, 174, 82),
+        FluxStructureKind.DataAddressMark or FluxStructureKind.AppleData or FluxStructureKind.FormatData => new SKColor(83, 161, 181),
+        FluxStructureKind.DeletedDataAddressMark => new SKColor(201, 82, 91),
+        FluxStructureKind.TimingAnomaly => new SKColor(194, 132, 72),
+        _ => new SKColor(138, 151, 160)
     };
 
     private static void DrawCentered(SKCanvas canvas, SKPoint center, string text, SKColor color)

@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>Параметры</value></data>
-  <data name="Options.General"><value>Общий</value></data>
-  <data name="Options.Tools"><value>Greaseweazle Инструменты</value></data>
-  <data name="Options.Hardware"><value>Контроллеры и приводы</value></data>
-  <data name="Options.Profiles"><value>Профили</value></data>
-  <data name="Options.ImagesFolder"><value>Папка образа диска по умолчанию</value></data>
-  <data name="Options.Language"><value>Язык</value></data>
-  <data name="Options.Theme"><value>Тема</value></data>
-  <data name="Theme.System"><value>Система</value></data>
-  <data name="Theme.Light"><value>Свет</value></data>
-  <data name="Theme.Dark"><value>Темный</value></data>
-  <data name="Options.GwPath"><value>Путь к gw.exe</value></data>
-  <data name="Options.ToolsHelp"><value>Если инструменты отсутствуют, помощник предложит их скачать или выбрать существующую установку. Обновления только анонсируются.</value></data>
-  <data name="Options.HardwarePersistence"><value>Настройки оборудования сохраняются при отключении диска.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>Параметры</value></data>
+  <data name="Options.General" xml:space="preserve"><value>Общий</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Инструменты</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Контроллеры и приводы</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Профили</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Папка образа диска по умолчанию</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Язык</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Тема</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>Система</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Свет</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Темный</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>Путь к gw.exe</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Если инструменты отсутствуют, помощник предложит их скачать или выбрать существующую установку. Обновления только анонсируются.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Настройки оборудования сохраняются при отключении диска.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executable (исполняемый)*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Удалить этот сохраненный контроллер и все его диски?</value></data>
   <data name="Options.HardwareTitle"><value>Аппаратное обеспечение</value></data>
@@ -63,184 +55,11 @@
   <data name="Options.KeepLogArchives"><value>Сохраняйте предыдущие журналы</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = неограниченно</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Движки</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>Независимо выберите движок для каждой операции.</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>Внутренний движок GW GUI</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>Выбранный движок используется строго. Если он не может выполнить операцию, GW GUI сообщит об этом, не переключаясь незаметно на другой движок.</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>Модель</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Захватывать мышь</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>конфигурация</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>Контроллеры</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>Обнаружить контроллеры</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>Устройство</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>Модель</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Контроллеры не обнаружены</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>Обнаружено контроллеров: {0}</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>Проверить вибрацию</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Сила вибрации</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Входы в реальном времени</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Элемент управления</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>Значение</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>Активен</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>Возможности</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>Идентификация устройства</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>Типы ввода</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>Элементы управления</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>Моторы вибрации</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Силовая обратная связь</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>Тактильная отдача</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Системные кнопки</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>Необработанные отчёты</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>Вход: {0} / выход: {1}</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Раскладка геймпада</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Руль</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · сцепление={1} · ручной тормоз={2} · переключатель={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>Имя GameInput</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Ревизия</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Версия оборудования</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Версия прошивки</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>Семейство</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Производитель</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Ось</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Кнопка</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Переключатель</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>Оси: {0} · кнопки: {1} · переключатели: {2}</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>Да</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>Нет</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>Нет</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Необработанный байт</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Аналоговые значения</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Не удалось обнаружить контроллеры</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>Поиск контроллеров…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Не удалось прочитать контроллер</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>Выполняется тест…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>Тест не пройден</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Тест завершён</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Дополнительные элементы управления</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Аудиовыход тактильной отдачи</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Расположение тактильной отдачи</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>Назначение</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Цепочка устройств Windows</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Левый стик X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Левый стик Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>Правый стик X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>Правый стик Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Левый триггер</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Правый триггер</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>Рулевое управление</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>Газ</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>Тормоз</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Сцепление</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>Ручной тормоз</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>Передача</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>Крен</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>Тангаж</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>Рыскание</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Датчики</value></data>
-  <data name="Controllers.Enum.UiNavigation"><value>UI навигация</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Геймпад</value></data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Низкочастотный мотор</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Высокочастотный мотор</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Поделиться</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Линейный</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Угловой</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Нормальный</value></data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Постоянный</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Нарастание</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Синусоидальная волна</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Прямоугольная волна</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Треугольная волна</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Восходящая пилообразная волна</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Нисходящая пилообразная волна</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Пружина</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Трение</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Демпфер</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Инерция</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Джойстик</value></data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Многоосевой контроллер</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Использование HID</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>оси</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>кнопки</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Агрегированный</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Виртуальный</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Входной отчёт</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Выходной отчёт</value></data>
-<data name="Emulation.InitialDisk"><value>Первоначальный диск</value></data>
-  <data name="Emulation.Audio"><value>Аудио</value></data>
-  <data name="Emulation.Controller"><value>Контроллер {0}</value></data>
-  <data name="Emulation.Core.NameOptions"><value>Основные варианты</value></data>
-  <data name="Emulation.MultiDrive"><value>нажмите первые четыре диска DF0-DF3</value></data>
-  <data name="Emulation.DiskNumber"><value>Диск {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>Доступные варианты загрузки</value></data>
-  <data name="Emulation.Configurations"><value>Конфигурации</value></data>
-  <data name="Emulation.Firmware"><value>Прошивка</value></data>
-  <data name="Emulation.ReleaseMouse"><value>Выпустить мышь</value></data>
-  <data name="Emulation.DeleteConfirm"><value>Удалить эту конфигурацию Amiga?</value></data>
-  <data name="Emulation.ModelRequired"><value>Требуется модель Amiga.</value></data>
-  <data name="Emulation.KickstartRequired"><value>Требуется путь Kickstart.</value></data>
-  <data name="Emulation.FileRequired"><value>Требуемый путь прошивки пуст.</value></data>
-  <data name="Emulation.FileMissing"><value>Выбранного файла не существует.</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>Аналоговые мертвые зоны</value></data>
-  <data name="Controllers.StickDeadZone"><value>палки</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>триггеры</value></data>
-  <data name="Controllers.OuterDeadZone"><value>Внешняя мертвая зона</value></data>
-  <data name="Updates.Title"><value>Обновления</value></data>
-  <data name="Updates.Description"><value>Поиск обновлений для GW GUI и установленных модулях эмуляции.</value></data>
-  <data name="Updates.Scope"><value>Поиск</value></data>
-  <data name="Updates.ScopeApplication"><value>Применение</value></data>
-  <data name="Updates.ScopeModules"><value>Модули эмуляции</value></data>
-  <data name="Updates.ScopeAll"><value>Применение и модули</value></data>
-  <data name="Updates.Search"><value>Проверьте обновления</value></data>
-  <data name="Updates.Ready"><value>Выберите, что искать, а затем проверьте обновления.</value></data>
-  <data name="Updates.Searching"><value>Проверка обновлений...</value></data>
-  <data name="Updates.SearchFailed"><value>Невозможно проверить наличие обновлений.</value></data>
-  <data name="Updates.UpToDate"><value>До настоящего времени</value></data>
-  <data name="Updates.Available"><value>Доступно обновление</value></data>
-  <data name="Updates.ApplicationRequired"><value>Требование GW GUI ведущий API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>Нет совместимой версии</value></data>
-  <data name="Updates.InstalledVersion"><value>Установлено: {0}</value></data>
-  <data name="Updates.Results"><value>Обновления были найдены.</value></data>
-  <data name="Updates.NoUpdates"><value>Все выбранное актуально.</value></data>
-  <data name="Updates.Install"><value>Установите выбранные обновления</value></data>
-  <data name="Updates.InstallConfirm"><value>Скачать и установить {0} Выбранный(ые) компонент(ы)? GW GUI Закроется и возобновится.</value></data>
-  <data name="Updates.Preparing"><value>Загрузка и подготовка обновлений...</value></data>
-  <data name="Updates.PreparationCancelled"><value>Подготовка обновлений была отменена.</value></data>
-  <data name="Updates.PreparationFailed"><value>Невозможность подготовить обновление.</value></data>
-  <data name="Updates.InstallSucceeded"><value>Обновления были успешно установлены.</value></data>
-  <data name="Updates.InstallRestored"><value>Обновление не удалось, и предыдущая версия была восстановлена. {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>Установите модуль эмуляции из ZIP архив или каталог прямых обновлений URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>Установка из файла</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>Установка из URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>Прямой HTTPS URL каталог обновлений модулей (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>Модульные архивы (*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>Войди в прямой HTTPS URL каталог обновления модулей.</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>Установить модуль {0} версия {1}? GW GUI Закроется и возобновится.</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>Невозможность подготовки модуля установки.</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>Просмотрите официальные модули эмуляции, доступные для установки.</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>Показать доступные модули</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>устанавливать</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>Загрузите официальный каталог, чтобы увидеть модули, доступные для установки.</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>Загрузка каталога модулей...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>В настоящее время совместимый модуль недоступен.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} Модули в официальном каталоге.</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>Невозможно загрузить каталог модулей.</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>Не установлен</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>Доступная версия: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>установленный</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>Установка модуля добавляет его машины к GW GUI. Ядра эмулятора и требуемое прошивка управляются отдельно в вариантах эмуляции.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Обновления для установленных модулей</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Усовершенствованная установка</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>Независимо выберите движок для каждой операции.</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>Внутренний движок GW GUI</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Выбранный движок используется строго. Если он не может выполнить операцию, GW GUI сообщит об этом, не переключаясь незаметно на другой движок.</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} - {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Предпочтения</value></data>
   <data name="Options.EmulationTitle"><value>Эмуляционные предпочтения</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>Доступные модули</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>Обновления приложений</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>Просмотр и установка модулей</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP архив или каталог URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>Загруженный</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>Завершить установку</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI Закроется, установит все загруженные модули и перезапустит.</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>Завершить установку всех загруженных модулей? GW GUI Закроется и возобновится.</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} настройки эмуляции</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>Завершить установку загруженных модулей перед закрытием? Выбрать Нет, чтобы отменить загрузку и закрыть.</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

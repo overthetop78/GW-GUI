@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>コア</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0}エミュレーションコア</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>ライブラリは外部に残します GW GUI. 選択したバージョンは、現在インストールされているバージョンを置き換えます。</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>GW GUIが必要とするバージョン</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>利用可能な最新の公式バージョン</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>現在インストールされているバージョン</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>検索をクリックして公式Libretroサーバーを確認します。</value></data>
+  <data name="Emulation.Core.NameSearch"><value>バージョンを検索</value></data>
+  <data name="Emulation.Core.NameDownload"><value>ダウンロードして置換</value></data>
+  <data name="Emulation.Core.NameSearching"><value>利用可能なバージョンを検索中…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>公式バージョンが見つかりません。</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0}個のバージョンが利用可能です。</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>ダウンロード {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>インストール済みバージョン: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · インストール済み</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>バージョンがインストールされていません</value></data>
+  <data name="Emulation.Core.Emulator"><value>エミュレーター</value></data>
+  <data name="Emulation.Core.Install"><value>インストール</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>インストール済み</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>コアオプション</value></data>
+</root>

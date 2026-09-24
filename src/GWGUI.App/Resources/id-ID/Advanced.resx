@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Advanced"><value>Pengaturan lanjutan</value></data>
-  <data name="Common.ExpertArguments"><value>Argumen ahli</value></data>
-  <data name="Common.ExpertArgumentsTip"><value>Argumen disampaikan seperti yang tertulis setelah validasi kutipan.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Advanced.SeekRetries"><value>Carilah percobaan ulang</value></data>
   <data name="Advanced.FakeIndex"><value>Indeks palsu</value></data>
   <data name="Advanced.HardSectors"><value>Sektor keras</value></data>

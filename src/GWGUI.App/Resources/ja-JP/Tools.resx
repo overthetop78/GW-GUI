@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>実行する準備ができました。</value></data>
   <data name="Tool.RawOutput"><value>生の出力</value></data>
-  <data name="Maintenance.EraseTitle"><value>消去の確認</value></data>
-  <data name="Maintenance.EraseConfirm"><value>挿入されたディスク上のすべてのデータを完全に消去しますか?</value></data>
-  <data name="Maintenance.CleanTitle"><value>ヘッドをクリーンにする</value></data>
-  <data name="Maintenance.CleanConfirm"><value>クリーニングディスクが挿入されていることを確認してください。データディスクは絶対に使用しないでください。</value></data>
   <data name="Tools.Erase"><value>ディスクを消去する</value></data>
   <data name="Tools.EraseWarning"><value>ディスク上のすべてのデータは破壊されます。</value></data>
   <data name="Tools.LimitTracks"><value>トラックを制限する</value></data>

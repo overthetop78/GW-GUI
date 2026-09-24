@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Comportament</value></data>
+  <data name="Emulation.Input.Assign"><value>Atribuiți...</value></data>
+  <data name="Emulation.Input.Actions"><value>Acțiuni</value></data>
+  <data name="Emulation.Input.Press"><value>Apăsați o tastă...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Detectarea dispozitivelor este comună, iar atribuirile sunt salvate separat în fiecare configurație de mașină.</value></data>
+  <data name="Emulation.Input.Test"><value>Testați intrările</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Dispozitive de intrare comune</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Apăsați o tastă sau un buton al mouse-ului pentru a testa detectarea.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Restabilește valorile implicite</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Șterge conflictele</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Asociere</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Stare</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Caută o tastă sau o asociere</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Valid: asociere unică · Conflict: asociere folosită de mai multe ori · Rezervat: scurtătură Windows sau GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Valabil</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Conflict</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Rezervat</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Neatribuit</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Apăsați Atribuire, apoi utilizați o tastă, un buton al mouse-ului sau al controlerului.</value></data>
+</root>

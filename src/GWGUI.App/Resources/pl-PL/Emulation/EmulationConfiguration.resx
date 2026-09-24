@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Utwórz, wybierz, zmodyfikuj lub usuń zapisane konfiguracje maszyny. {0} zakładka do edycji wybranej konfiguracji.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Marka</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Maszyna</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Łączna pamięć RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Napędy</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Urządzenia peryferyjne</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Akcje</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Usuń {0} {1} konfiguracja?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Konfiguracja</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Konfiguracje</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Usuwa konfigurację Amigi?</value></data>
+</root>

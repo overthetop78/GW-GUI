@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>Prosessor: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU-modell</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU multiplikator</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Sykluskompatibel CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU-hastighet</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Opprinnelig hastighet</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normal</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Kompatible</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Minnekompatible</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Syklus nøyaktig</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Prosessor</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Presisjon</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Akselerasjon</value></data>
+</root>

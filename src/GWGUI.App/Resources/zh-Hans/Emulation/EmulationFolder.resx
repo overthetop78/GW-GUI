@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>共享模拟存储文件夹</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>硬盘会自动整理到 HDD\Amiga、HDD\Atari 以及未来系统的文件夹中。</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>自动创建缺少的子文件夹</value></data>
+  <data name="Emulation.Folder.Common"><value>共享文件夹</value></data>
+  <data name="Emulation.Folder.Capture"><value>捕获文件夹</value></data>
+  <data name="Emulation.Folder.State"><value>保存状态文件夹</value></data>
+  <data name="Emulation.Folder.Default"><value>默认文件夹</value></data>
+</root>

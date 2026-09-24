@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Připraveno k provedení.</value></data>
   <data name="Tool.RawOutput"><value>Surový výstup</value></data>
-  <data name="Maintenance.EraseTitle"><value>Potvrďte vymazání</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Trvale vymazat všechna data na vloženém disku?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Čisté hlavy</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Ujistěte se, že je vložen čisticí disk. Nikdy nepoužívejte datový disk.</value></data>
   <data name="Tools.Erase"><value>Vymazat disk</value></data>
   <data name="Tools.EraseWarning"><value>Všechna data na disku budou zničena.</value></data>
   <data name="Tools.LimitTracks"><value>Omezit stopy</value></data>
@@ -37,7 +25,8 @@
   <data name="Tool.Field.Select"><value>Výběr (µs)</value></data>
   <data name="Tool.Field.Step"><value>Krok hlavy (µs)</value></data>
   <data name="Tool.Field.Settle"><value>Vyrovnat (ms)</value></data>
-<data name="Tool.Field.Watchdog"><value>Automatické zrušení výběru (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Automatické zrušení výběru (ms)</value></data>
   <data name="Tool.Field.PreWrite"><value>Před zápisem (µs)</value></data>
   <data name="Tool.Field.PostWrite"><value>Po zápisu (µs)</value></data>
   <data name="Tool.Field.IndexMask"><value>Indexová maska ​​(µs)</value></data>
@@ -55,7 +44,8 @@
   <data name="Tool.Title.Pin"><value>Hardwarové kolíky</value></data>
   <data name="Tool.Title.Reset"><value>Resetujte ovladač</value></data>
   <data name="Tool.Title.Delays"><value>Zpoždění</value></data>
-<data name="Tool.InvalidParameters"><value>Neplatné parametry</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
+  <data name="Tool.InvalidParameters"><value>Neplatné parametry</value></data>
   <data name="Tool.InvalidParametersHelp"><value>Před provedením zkontrolujte zvýrazněné parametry příkazu.</value></data>
   <data name="Tool.BootloaderTitle"><value>Režim bootloader</value></data>
   <data name="Tool.Title.Align"><value>Diagnostika vyrovnání pohonu</value></data>
@@ -63,6 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Počet přečtení</value></data>
   <data name="Tool.Field.AlignFormat"><value>Formát dekódování</value></data>
   <data name="Tool.Field.AlignRaw"><value>Číst nezpracovaný tok (--raw)</value></data>
-  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
-  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Λιμάνι</value></data>
-  <data name="Hardware.UsbId"><value>USB αναγνωριστικό</value></data>
-  <data name="Hardware.Drive"><value>Οδηγώ</value></data>
-  <data name="Hardware.Available"><value>Διαθέσιμος</value></data>
-  <data name="Hardware.Scan"><value>Σάρωση</value></data>
-  <data name="Hardware.AddDrive"><value>Προσθήκη μονάδας δίσκου…</value></data>
-  <data name="Hardware.NoDrive"><value>Δεν έχει οριστεί μονάδα δίσκου</value></data>
-  <data name="Hardware.EditorTitle"><value>Ορίστε μια μονάδα δίσκου</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle ελεγκτής</value></data>
-  <data name="Hardware.GwSelection"><value>Η επιλογή πέρασε στο gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Φυσικό μέγεθος</value></data>
-  <data name="Hardware.SizeShort"><value>Μέγεθος</value></data>
-  <data name="Hardware.DensityShort"><value>Πυκνότητα</value></data>
-  <data name="Hardware.SpeedShort"><value>Ταχύτητα</value></data>
-  <data name="Hardware.AvailableState"><value>Διαθέσιμος</value></data>
-  <data name="Hardware.UnavailableState"><value>Δυσεύρετος</value></data>
-  <data name="Hardware.DensityDescription"><value>Πυκνότητα κίνησης (μόνο περιγραφή)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Ονομαστική ταχύτητα (μόνο περιγραφή)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Λιμάνι</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB αναγνωριστικό</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Οδηγώ</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Διαθέσιμος</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Σάρωση</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Προσθήκη μονάδας δίσκου…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Δεν έχει οριστεί μονάδα δίσκου</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Ορίστε μια μονάδα δίσκου</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle ελεγκτής</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Η επιλογή πέρασε στο gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Φυσικό μέγεθος</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Μέγεθος</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Πυκνότητα</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Ταχύτητα</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Διαθέσιμος</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Δυσεύρετος</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Πυκνότητα κίνησης (μόνο περιγραφή)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Ονομαστική ταχύτητα (μόνο περιγραφή)</value></data>
   <data name="Hardware.NotConfigured"><value>Ο ελεγκτής δεν έχει ρυθμιστεί</value></data>
   <data name="Hardware.Disconnected"><value>ασύνδετος</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Η επιλεγμένη μονάδα δίσκου έχει αποσυνδεθεί. Συνδέστε το ξανά ή σαρώστε ξανά στις Επιλογές → Ελεγκτές και μονάδες δίσκου.</value></data>

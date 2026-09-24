@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>选项</value></data>
-  <data name="Options.General"><value>一般的</value></data>
-  <data name="Options.Tools"><value>Greaseweazle 工具</value></data>
-  <data name="Options.Hardware"><value>控制器和驱动器</value></data>
-  <data name="Options.Profiles"><value>型材</value></data>
-  <data name="Options.ImagesFolder"><value>默认磁盘映像文件夹</value></data>
-  <data name="Options.Language"><value>语言</value></data>
-  <data name="Options.Theme"><value>主题</value></data>
-  <data name="Theme.System"><value>系统</value></data>
-  <data name="Theme.Light"><value>光</value></data>
-  <data name="Theme.Dark"><value>黑暗的</value></data>
-  <data name="Options.GwPath"><value>gw.exe 的路径</value></data>
-  <data name="Options.ToolsHelp"><value>如果缺少工具，助手将提供下载或选择现有安装。更新仅公布。</value></data>
-  <data name="Options.HardwarePersistence"><value>当驱动器断开连接时，硬件设置仍会被存储。</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>选项</value></data>
+  <data name="Options.General" xml:space="preserve"><value>一般的</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle 工具</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>控制器和驱动器</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>型材</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>默认磁盘映像文件夹</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>语言</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>主题</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>系统</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>光</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>黑暗的</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>gw.exe 的路径</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>如果缺少工具，助手将提供下载或选择现有安装。更新仅公布。</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>当驱动器断开连接时，硬件设置仍会被存储。</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe) 互联网档案馆的存檔,存档日期2013-10-02.|gw.exe|可执行文件 (*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>删除这个存储的控制器及其所有驱动器？</value></data>
   <data name="Options.HardwareTitle"><value>硬件</value></data>
@@ -63,184 +55,11 @@
   <data name="Options.KeepLogArchives"><value>保留以前的日志</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = 无限制</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>引擎</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>为每项操作分别选择所使用的引擎。</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 内部引擎</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>严格使用所选引擎。如果无法执行操作，GW GUI 会进行报告，而不会静默改用另一个引擎。</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>型号</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>捕获鼠标</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>配置</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>控制器</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>检测控制器</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>设备</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>型号</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>未检测到控制器</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>检测到 {0} 个控制器</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>测试振动</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>振动强度</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>实时输入</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>控件</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>值</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>活动</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>功能</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>设备标识</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>输入类型</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>控件</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>振动电机</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>力反馈</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>触觉反馈</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>系统按钮</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>原始报告</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>输入 {0} / 输出 {1}</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>手柄布局</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>方向盘</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · 离合器={1} · 手刹={2} · 换挡器={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput 名称</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>修订版</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>硬件版本</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>固件版本</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>系列</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>制造商</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>轴</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>按钮</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>开关</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} 个轴 · {1} 个按钮 · {2} 个开关</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>是</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>否</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>无</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>原始字节</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>模拟值</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>控制器检测失败</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>正在检测控制器…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>控制器读取失败</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>正在测试…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>测试失败</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>测试完成</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>附加控件</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>触觉音频端点</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>触觉位置</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>用途</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows 设备链</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>左摇杆 X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>左摇杆 Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>右摇杆 X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>右摇杆 Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>左扳机</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>右扳机</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>转向</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>油门</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>刹车</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>离合器</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>手刹</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>挡位</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>横滚</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>俯仰</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>偏航</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>传感器</value></data>
-  <data name="Controllers.Enum.UiNavigation"><value>UI 导航</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>游戏手柄</value></data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>低频电机</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>高频电机</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>共享</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>线性</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>角度</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>法向</value></data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>恒定</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>斜坡</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>正弦波</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>方波</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>三角波</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>上升锯齿波</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>下降锯齿波</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>弹簧</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>摩擦</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>阻尼器</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>惯性</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>操纵杆</value></data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>多轴控制器</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID 用途</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>轴</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>按钮</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>聚合</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>虚拟</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>输入报告</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>输出报告</value></data>
-<data name="Emulation.InitialDisk"><value>初始磁盘</value></data>
-  <data name="Emulation.Audio"><value>音频</value></data>
-  <data name="Emulation.Controller"><value>主计长 {0}</value></data>
-  <data name="Emulation.Core.NameOptions"><value>核心备选方案</value></data>
-  <data name="Emulation.MultiDrive"><value>挂载 DF0 – DF3 中的前四张磁盘</value></data>
-  <data name="Emulation.DiskNumber"><value>磁盘 {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>装入可用选项</value></data>
-  <data name="Emulation.Configurations"><value>配置</value></data>
-  <data name="Emulation.Firmware"><value>固件</value></data>
-  <data name="Emulation.ReleaseMouse"><value>释放鼠标</value></data>
-  <data name="Emulation.DeleteConfirm"><value>删除此 Amiga 配置吗 ?</value></data>
-  <data name="Emulation.ModelRequired"><value>需要一个Amiga模型。</value></data>
-  <data name="Emulation.KickstartRequired"><value>需要一个 Kickstart 路径 。</value></data>
-  <data name="Emulation.FileRequired"><value>所需的固件路径为空 。</value></data>
-  <data name="Emulation.FileMissing"><value>选中的文件不存在 。</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} - —— - 说吧 - 说吧 - At man. {1} : 调取 {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>类似死亡区域</value></data>
-  <data name="Controllers.StickDeadZone"><value>棍子( 棍子 )</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>触发器</value></data>
-  <data name="Controllers.OuterDeadZone"><value>外死亡区</value></data>
-  <data name="Updates.Title"><value>更新</value></data>
-  <data name="Updates.Description"><value>搜索更新到 GW GUI 并安装了模拟模块。</value></data>
-  <data name="Updates.Scope"><value>搜索</value></data>
-  <data name="Updates.ScopeApplication"><value>应用</value></data>
-  <data name="Updates.ScopeModules"><value>模拟模块</value></data>
-  <data name="Updates.ScopeAll"><value>应用程序和模块</value></data>
-  <data name="Updates.Search"><value>检查更新</value></data>
-  <data name="Updates.Ready"><value>选择搜索内容, 然后检查更新 。</value></data>
-  <data name="Updates.Searching"><value>正在检查更新...</value></data>
-  <data name="Updates.SearchFailed"><value>无法检查更新 。</value></data>
-  <data name="Updates.UpToDate"><value>最新数据</value></data>
-  <data name="Updates.Available"><value>更新可用</value></data>
-  <data name="Updates.ApplicationRequired"><value>要求数 GW GUI 东道主 API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>无相容版本</value></data>
-  <data name="Updates.InstalledVersion"><value>已安装 : {0}</value></data>
-  <data name="Updates.Results"><value>发现了最新消息 。</value></data>
-  <data name="Updates.NoUpdates"><value>所有选中的内容都更新了 。</value></data>
-  <data name="Updates.Install"><value>安装选中的更新</value></data>
-  <data name="Updates.InstallConfirm"><value>下载和安装 {0} 选中组件 ? GW GUI 将关闭并重新启动。</value></data>
-  <data name="Updates.Preparing"><value>正在下载和准备更新...</value></data>
-  <data name="Updates.PreparationCancelled"><value>更新准备被取消 。</value></data>
-  <data name="Updates.PreparationFailed"><value>无法准备更新 。</value></data>
-  <data name="Updates.InstallSucceeded"><value>更新已成功安装 。</value></data>
-  <data name="Updates.InstallRestored"><value>更新失败, 先前的版本被恢复 。 {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>从 a 安装仿真模块 ZIP 归档或直接更新目录 URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>从文件中安装</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>从 a 安装 URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>直接 HTTPS URL 模块更新目录 (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>模块档案(*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>输入直线 HTTPS URL 模块更新目录。</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>安装模块 {0} 版本 {1}? GW GUI 将关闭并重新启动。</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>无法准备模块安装 。</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>浏览可供安装的官方模拟模块。</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>显示可用的模块</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>安装</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>装入正式目录以查看可用的模块以供安装 。</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>正在装入模块目录...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>目前没有兼容的模块。</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} 模块在正式目录中。</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>无法装入模块目录 。</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>未安装</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>可用版本 : {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>已安装</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>安装模块后, 其机器将添加到 GW GUI. 模拟核心和所需的固件在模拟选项中分别管理.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>已安装模块的更新</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>高级安装</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>为每项操作分别选择所使用的引擎。</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>GW GUI 内部引擎</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>严格使用所选引擎。如果无法执行操作，GW GUI 会进行报告，而不会静默改用另一个引擎。</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} - —— - 说吧 - 说吧 - At man. {1} : 调取 {2}</value></data>
   <data name="Options.PreferencesTitle"><value>首选项</value></data>
   <data name="Options.EmulationTitle"><value>模拟偏好</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>可用模块</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>应用程序更新</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>浏览并安装模块</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP 归档或目录 URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>已下载</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>完成安装</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI 将关闭、安装所有已下载的模块并重新启动。</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>完成安装所有已下载模块吗 ? GW GUI 将关闭并重新启动。</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} 模拟设置</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>关闭前完成安装已下载模块? 选择否取消下载并关闭 。</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

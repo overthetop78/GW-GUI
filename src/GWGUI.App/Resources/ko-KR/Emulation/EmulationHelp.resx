@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Silence 빈 플로피 드라이브</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>디스크가 삽입되지 않는 동안 에뮬트 드라이브 사운드를 침묵합니다. 이 옵션을 비활성화하여 idle 기계적 소음을 유지합니다.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>아날로그 오디오 필터링 선택</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>원래 아날로그 오디오 필터가 재생되는 방법을 선택하십시오. Emulated는 기계설비 행동을 따릅니다. 다른 선택은 필터를 켜거나 해제합니다.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>극화된 오디오 필터 사용</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>생성된 오디오 신호에 극화된 필터를 적용합니다. 필터링된 사운드를 재현할 수 있습니다. unfiltered 신호를 지키는 그것.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>오디오 교환 선택</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>오디오 샘플이 생성 된 샘플 포인트 사이에 계산되는 방법을 선택하십시오. Higher-quality 방법은 더 부드러운 소리를 생산하지만 더 많은 처리가 필요합니다.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>오디오 대기 시간 설정</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>오디오 버퍼의 지속 시간을 설정합니다. 더 짧은 완충기는 지연을 감소시키고 그러나 균열을 일으킬 수 있습니다. 더 긴 완충기는 안정성을 개량하고 그러나 지연을 증가합니다.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>듀얼 POKEY 기본 정보</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>두 번째 에뮬레이션 추가 POKEY 스테레오 사운드를 생산하는 칩. 이 옵션은 이중 지원 소프트웨어에서만 사용 가능 POKEY 오디오.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>설정 스테레오 분리</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>왼쪽과 오른쪽 채널 사이의 분리를 설정합니다. 낮은 값은 채널을 함께 섞는다. 더 높은 가치는 그들을 멀리 떨어져 유지합니다.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>플로피 드라이브 사운드 세트 선택</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>floppy 드라이브의 기계적 소리에 사용되는 샘플 세트를 선택합니다. 드라이브 동작이나 디스크 데이터를 변경하지 않습니다.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>오디오 필터 모델 선택</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>emulate에 하드웨어 필터 응답을 선택합니다. 자동차는 선택된 기계 모형을 따릅니다. 특정 선택은 항상 필터 응답을 사용합니다.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>2개의 추가 조이스틱 포트 사용 가능</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>두 개의 조이스틱 포트를 추가하는 평행 포트 어댑터를 격리합니다. 4개의 동시 선수를 지원하는 소프트웨어를 위해 그것을 가능하게 합니다.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>터보 맥박 간격을 놓으십시오</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>터보로 제작된 자동 버튼 프레스 사이에 시간을 설정합니다. 더 짧은 간격은 더 빠른 반복된 발포를 일으킵니다.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>컨트롤러 호환성 모드 선택</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>듀얼 스틱 컨트롤, 스왑 포트 또는 같은 특수 컨트롤러 매핑을 선택하십시오. Joy2B+. 표준 포트 매핑을 유지하기 위해 아무도를 선택하십시오.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>아날로그 입력 감도 설정</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>아날로그 입력이 운동에 어떻게 반응하는지 설정한다. 더 높은 가치는 동일한 물리적 운동에서 더 큰 응답을 생성합니다.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>디지털 입력 감도 설정</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>디지털 방향이 전체 움직임에 도달하는 방법을 설정한다. 더 높은 가치는 방향 변화가 최대를 더 빨리 도달합니다.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>autofire 모드 선택</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>자동 불을 꺼지십시오. 버튼에서 지정된 버튼이 개최되는 동안 불을 반복합니다. 항상 불을 지속적으로 반복합니다.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>패들 운동 속도 설정</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>빠른 디지털 입력이 emulated 패들 이동하는 방법을 설정합니다. 낮은 값은 더 천천히 이동합니다. 더 높은 가치는 더 빨리 움직입니다.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>선택하기 FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>부동점 지침에 사용되는 부동점 단위를 선택하십시오. 사용 안 함 FPU. 사용 가능한 모델은 선택된 상태에 따라 달라집니다. CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>제품정보 CPU emulation 정확도</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>자주 묻는 질문 CPU 타이밍은 본래 기계설비를 따릅니다. 더 정확한 형태는 겸용성을 개량할 수 있고 그러나 더 가공을 요구할지도 모릅니다.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>에뮬레이션 설정 CPU 속도:</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>에뮬레이션 기계에 의해 사용되는 프로세서 주파수를 설정합니다. 원래 속도는 하드웨어 타이밍을 보존합니다. 더 높은 값은 가속 CPU-limited 소프트웨어.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>쥐를 통제하는 아날로그 지팡이를 사용하십시오</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>에뮬레이션 된 마우스 포인터를 이동하기 위해 아날로그 조이스틱 axes를 허용합니다. 물리적 아날로그 스틱이 포인터를 제어 할 때 활성화하십시오.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>아날로그 마우스 속도를 설정</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>아날로그 지팡이가 emulated 쥐를 통제할 때 포인터 속도를 놓으십시오. 더 높은 값은 동일한 스틱 움직임에 대한 포인터를 훨씬 움직입니다.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>아날로그 마우스 죽은 영역을 설정</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>쥐를 통제하는 동안 센터의 주위에 작은 아날로그 지팡이 운동을 무시하십시오. 점퍼가 스틱이 출시되는 동안 이동하면 값을 증가시킵니다.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Axlon $0F 그림자 은행 사용</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>미러 Axlon 은행 주소 $0F. 이 추가 주소를 사용하는 소프트웨어 또는 메모리 확장에만 사용.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>설치하기 Axlon 확장 메모리</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>은행 전환 금액 설정 Axlon 기억. Disabled는 확장을 제거합니다. 다른 선택은 선택한 메모리 용량을 제공합니다.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>설치하기 Mosaic 확장 메모리</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>은행 전환 금액 설정 Mosaic 기억. Disabled는 확장을 제거합니다. 다른 선택은 선택한 메모리 용량을 제공합니다.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>추가 확장 메모리 설정</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>선택된 기계에 의해 지원되는 추가 확장 기억의 양을 놓습니다. 구성된 메모리만 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>설치하기 Fast RAM 크기 (mm)</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>금액 설정 Fast RAM 직접 사용 가능 CPU. 추가 Fast RAM 호환 소프트웨어를 돕고, 에뮬레이션 하드웨어 구성을 변경할 수 있습니다.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>MapRAM 활성화</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>호환 가능한 소프트웨어를지도 writable 허용 RAM 시스템에 ROM 주소 영역. 이 옵션은 지원되는 기계 모델에서만 가능합니다. MapRAM·</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>설치하기 Zorro III RAM 크기 (mm)</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>32 비트의 금액을 설정 Fast RAM 연결하기 Zorro III 버스. 호환 32 비트 기계 및 소프트웨어에서만 사용하십시오.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>설치하기 Slow RAM 크기 (mm)</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>금액 설정 Slow RAM 트랩 도어 확장 영역에서. 이 기억은 더 느립니다 Fast RAM 다른 하드웨어 주소 범위를 사용합니다.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>선택하기 ROM 해독 열쇠</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>암호화된 암호화된 키 파일을 선택 ROM 이미지. 선택한 경우 이 필드를 비워 ROM 암호화되지 않습니다.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>빠른 시작</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>선택된 하드웨어 초기화 지연을 단축합니다. 이 옵션을 비활성화하면 소프트웨어가 원래의 시작 순서가 필요합니다.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>확장 선택 ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>이차 펌웨어 선택 ROM 몇몇 기계 모형에 의해 요구. 선택된 모형이 장시간 사용하지 않는 때 이 분야를 빈 남겨두십시오 ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>가속 가능 SIO 관련 기사</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>serial input/output 버스를 통해서 양립한 이동을 가속화하십시오. 소프트웨어가 본래 이동 타이밍에 달려 있을 때 이 선택권을 해제하십시오.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Enable 카세트 시작</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>기계가 부착 된 카세트 이미지에서 시작하려고합니다. 다른 장치에서 시작 할 때이 옵션을 비활성화하십시오.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>R-Time 8 시계를 가능하게 하십시오</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>에뮬레이션 R-Time 8 실시간 시계 그래서 호환 소프트웨어는 현재 날짜와 시간을 읽을 수 있습니다.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>P를 가능하게 하십시오: 인쇄 기계 장치</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>수정 된 것 P: 소프트웨어에 사용할 수 있는 프린터 장치. 프린터 장치 에뮬레이션이 필요하지 않을 때이 옵션을 비활성화하십시오.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>R를 가능하게 하십시오: serial 장치</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>수정 된 것 R: 소프트웨어에 유효한 serial 장치. serial-device 에뮬레이션이 필요하지 않을 때이 옵션을 비활성화하십시오.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>고해상도 컬러 아트ifacting 선택</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>고해상도 패턴이 합성 비디오 색상을 생산하는 방법을 선택하십시오. 아무도는 artifact 색깔을 비활성화합니다. 다른 모드는 다른 팔레트 또는 칩 동작을 재현합니다.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>blitter 타이밍 선택</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>blitter 작업이 즉시 완료되거나 emulated 하드웨어 타이밍을 따르는지 선택합니다. Immediate 형태는 더 빠릅니다 그러나 타이밍 정확도.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>산출을 허용하십시오</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>출력 재생률을 허용하여 에뮬레이션 된 비디오 모드에서 변경을 따르십시오. Locked는 현재 산출 재생율을 지킵니다.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>충돌 감지 세부 사항 선택</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>스프라이트와 플레이 필드 충돌이 계산되는 선택. 더 완전한 탐지는 겸용성을 개량하고 그러나 더 가공을 요구합니다.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>interlaced 디스플레이 깜박임 감소</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>interlaced 영상 산출에 있는 흔들림을 감소시킵니다. 세심한 이미지를 위해 사용 가능. 원래의 인터레이드 디스플레이 동작을 보존할 수 있습니다.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>표시된 측면 비율 선택</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>에뮬레이션 이미지가 가로와 수직으로 확장되는 방법을 선택합니다. 자동은 격리된 산출을 따릅니다. 모양을 표시하는 고정 선택 힘.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>이미지 감마를 조정하십시오</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>직접 검은 색과 흰색 수준을 변경하지 않고 중간 톤의 밝기를 변경합니다. 더 낮은 값 어두운 중간 스톤. 더 높은 가치는 그들을 밝게합니다.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>비디오 라인 모드 선택</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>수직 비디오 라인이 표시되는 방법을 선택하십시오. 자동은 격리한 형태를 따릅니다. 다른 선택 힘 유효한 때 단 하나 선, 두 배 선, 또는 검사.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>비디오 표준 선택</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>에뮬레이션된 TV 타이밍을 선택하여 PAL 또는 NTSC. 이 영향을 재생율, 하드웨어 타이밍, 및 소프트웨어 호환성에 영향을줍니다.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>외부 색상 팔레트 선택</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>현재 비디오 설정에서 생성 된 색상 대신 사전 정의 색상 팔레트를 선택합니다. 생성된 색상을 사용하려면 아무도를 선택하십시오.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>출력 색상 깊이 선택</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>이미지를 렌더링하는 데 사용되는 색상 깊이를 선택합니다. 24-bit 더 많은 색상 세부 사항 유지. 16-bit 색상의 작은 범위를 사용합니다.</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>하드웨어 지역을 선택하십시오.</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>emulated 기계에 의해 사용되는 지역 타이밍을 선택합니다. 선택은 영상 빈도에 영향을 미칠 수 있습니다, CPU 타이밍 및 호환 펌웨어.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>동영상 연출자 선택</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>에뮬레이션 디스플레이를 그리기 위해 사용되는 그래픽 백엔드를 선택합니다. 사용 가능한 렌더링기는 호스트 시스템과 성능 및 호환성과 다를 수 있습니다.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>지원하다 GTIA 색깔 지연</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>설정하기 GTIA 색상 단계 지연 재현 색상에 사용. 기본값은 표준 값을 사용합니다. 숫자 선택은 결과 줄을 이동.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>프레임 건너뛰기</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>얼마나 많은 디스플레이 프레임이 omitted 설정. Disabled는 각 구조를 그립니다. 높은 값은 렌더링 작업을 감소하지만 모션을 덜 부드럽게 만듭니다.</value></data>
+</root>

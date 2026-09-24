@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Emülasyon kısayolları</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Fareyi serbest bırak</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Duraklat / sürdür</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Tam ekran / pencere</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Aç / kapat</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Yazılımsal sıfırlama</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Donanımsal sıfırlama</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Hızlı durum kaydı</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Hızlı durum yükleme</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Ekran görüntüsü</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Etkin makinenin sesini kapat</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Basılı tutarken hızlı ileri sar</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Ortam tak veya değiştir</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Ortamı çıkar</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Sonraki ortam</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Bu işlem mevcut emülatör tarafından henüz desteklenmiyor.</value></data>
+</root>

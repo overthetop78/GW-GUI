@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Advanced"><value>Speciális beállítások</value></data>
-  <data name="Common.ExpertArguments"><value>Szakértői érvek</value></data>
-  <data name="Common.ExpertArgumentsTip"><value>Az argumentumok az idézet érvényesítése után a leírtak szerint kerülnek átadásra.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Advanced.SeekRetries"><value>Próbálkozzon újra</value></data>
   <data name="Advanced.FakeIndex"><value>Hamis index</value></data>
   <data name="Advanced.HardSectors"><value>Kemény szektorok</value></data>

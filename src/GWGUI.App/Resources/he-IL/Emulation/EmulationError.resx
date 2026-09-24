@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>האמולטור דורש מדיה לפני שניתן להפעיל מכונה זו. הכנס או הגדר אחד מאמצעי המדיה הנדרשים המוצגים להלן.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>לא ניתן להפעיל את המכונה</value></data>
+  <data name="Emulation.Error.Machine"><value>מכונה</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>מדיה נדרשת</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>מודל אמיגה נדרש.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>יש צורך בנתיב Kickstart.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>נתיב קושחה נדרש הוא ריק.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>הקובץ שנבחר אינו קיים.</value></data>
+</root>

@@ -2,7 +2,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
 using GWGUI.Emulation;
-using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Images.Reading.Decoding;
 
 namespace GWGUI.App.Services.Emulation;
 

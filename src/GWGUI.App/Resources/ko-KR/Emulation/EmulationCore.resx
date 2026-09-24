@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>코어</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0} 에뮬레이션 코어</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>라이브러리는 외부를 그대로 유지 GW GUI. 선택한 버전은 현재 설치된 버전으로 교체합니다.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>GW GUI에 필요한 버전</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>사용 가능한 최신 공식 버전</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>현재 설치된 버전</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>검색을 클릭하여 공식 Libretro 서버를 조회합니다.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>버전 검색</value></data>
+  <data name="Emulation.Core.NameDownload"><value>다운로드 및 교체</value></data>
+  <data name="Emulation.Core.NameSearching"><value>사용 가능한 버전 검색 중…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>공식 버전을 찾지 못했습니다.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0}개 버전을 사용할 수 있습니다.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>다운로드 {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>설치된 버전: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · 설치됨</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>설치된 버전 없음</value></data>
+  <data name="Emulation.Core.Emulator"><value>에뮬레이터</value></data>
+  <data name="Emulation.Core.Install"><value>설치하기</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>설치</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>핵심 옵션</value></data>
+</root>

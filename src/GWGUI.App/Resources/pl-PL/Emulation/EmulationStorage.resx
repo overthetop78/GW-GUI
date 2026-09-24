@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Dodaj nośnik</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Utwórz dysk twardy</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Rozmiar dysku twardego (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Brak nośników. Dodaj dyskietkę, dysk twardy lub płytę CD obsługiwaną przez wybrany model.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Tylko do odczytu</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Dysk twardy Amiga|*.hdf|Wszystkie pliki|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Wybrany model nie obsługuje dysku twardego.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Ten model obsługuje maksymalnie {0} stacji dyskietek.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Ten model obsługuje maksymalnie {0} dysków twardych.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Wybrany model nie obsługuje CD napęd.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Napęd CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Liczba stacji dyskietek</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Liczba dysków twardych</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Szybkość stacji dyskietek</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Chroń obrazy dyskietek przed zapisem</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Przekieruj zapis na dyskietkę</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Szybkość CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Dodaj istniejący dysk twardy</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Dyski twarde</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Do tej maszyny nie przypisano dysku twardego.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Dyskietki</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Dodaj urządzenie pamięci masowej</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Powiązany nośnik</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Geometria dysku jest określana automatycznie przez emulator.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Utworzono pusty obraz dyskietki: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Plik zostanie utworzony jako pusty, a następnie musi zostać podzielony na partycje i sformatowany w emulowanej maszynie.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Nagrywarka CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Pusty dysk można utworzyć tylko wtedy, gdy wybrana maszyna i emulator obsługują zapis.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Napęd CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Konfiguruj</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Utwórz pustą dyskietkę</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Obraz dysku</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Wybierz istniejący obraz dysku.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Wybrany plik zostanie podłączony do tego napędu wirtualnego.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Stacja dyskietek</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Obraz dyskietki Amiga|*.adf|Wszystkie pliki|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Dysk twardy</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Interfejs</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Wstępnie przydziel plik</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Pompie i płyty CD są wstawiane lub wymieniane z uruchomionej maszyny.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Usuń nośnik</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Obraz dysku już istnieje: {0}\nCzy chcesz go zastąpić?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Dostępne typy, modele i identyfikatory zależą od wybranej maszyny.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Napęd taśmowy</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Użyj dysku</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Użyj istniejącego dysku</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Zmień w Ogólne</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Brak dodatkowego urządzenia pamięci masowej dla tej maszyny.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Urządzenia pamięci masowej</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Przydział</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Geometria automatyczna</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Pusty nośnik</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Bajtów na sektor</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Obliczona pojemność: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Rozmiar niestandardowy</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cylindry</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Folder docelowy</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Geometria dysku (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Profil rozmiaru</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Stacja dyskietek</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Głowice</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Rozmiar lub geometria dysku są nieprawidłowe.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Natychmiast rezerwuje fizyczne miejsce; w przeciwnym razie obraz rośnie podczas zapisu.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sektory</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kaseta</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Kartridż</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Płyty kompaktowe</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Pokazuj aktywność napędów na ekranie emulatora</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Gniazdo kartridża</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Zamontować pierwsze cztery dyski w DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Dysk {0}</value></data>
+</root>

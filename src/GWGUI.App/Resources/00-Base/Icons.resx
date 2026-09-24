@@ -1,22 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.SaveIcon"><value>💾</value></data>
-  <data name="Common.TrashIcon"><value>🗑</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Icon.Common.SaveIcon"><value>💾</value></data>
+  <data name="Icon.Common.TrashIcon"><value>🗑</value></data>
   <data name="Icon.Save"><value></value></data>
   <data name="Icon.Reset"><value></value></data>
   <data name="Icon.Copy"><value></value></data>
   <data name="Icon.Console"><value></value></data>
-  <data name="Options.NextTagExampleIcon"><value>↻</value></data>
+  <data name="Icon.Options.NextTagExampleIcon"><value>↻</value></data>
+  <data name="Icon.Edit"><value>&#xE70F;</value></data>
+  <data name="Icon.Settings"><value>&#xE713;</value></data>
+  <data name="Icon.Directory"><value>&#xE719;</value></data>
+  <data name="Icon.Search"><value>&#xE721;</value></data>
+  <data name="Icon.CaptureScreen"><value>&#xE722;</value></data>
+  <data name="Icon.Refresh"><value>&#xE72C;</value></data>
+  <data name="Icon.Current"><value>&#xE73E;</value></data>
+  <data name="Icon.Fullscreen"><value>&#xE740;</value></data>
+  <data name="Icon.Delete"><value>&#xE74D;</value></data>
+  <data name="Icon.Muted"><value>&#xE74F;</value></data>
+  <data name="Icon.Keyboard"><value>&#xE765;</value></data>
+  <data name="Icon.Audio"><value>&#xE767;</value></data>
+  <data name="Icon.Play"><value>&#xE768;</value></data>
+  <data name="Icon.Pause"><value>&#xE769;</value></data>
+  <data name="Icon.Profiles"><value>&#xE77B;</value></data>
+  <data name="Icon.Warning"><value>&#xE7BA;</value></data>
+  <data name="Icon.FloppyDisk"><value>&#xE7C3;</value></data>
+  <data name="Icon.Power"><value>&#xE7E8;</value></data>
+  <data name="Icon.Display"><value>&#xE7F4;</value></data>
+  <data name="Icon.Controller"><value>&#xE7FC;</value></data>
+  <data name="Icon.Home"><value>&#xE80F;</value></data>
+  <data name="Icon.OpenFolder"><value>&#xE838;</value></data>
+  <data name="Icon.Sync"><value>&#xE895;</value></data>
+  <data name="Icon.Download"><value>&#xE896;</value></data>
+  <data name="Icon.Configuration"><value>&#xE8A5;</value></data>
+  <data name="Icon.Connection"><value>&#xE8AB;</value></data>
+  <data name="Icon.File"><value>&#xE8B7;</value></data>
+  <data name="Icon.Close"><value>&#xE8BB;</value></data>
+  <data name="Icon.Cassette"><value>&#xE8D4;</value></data>
+  <data name="Icon.Load"><value>&#xE8E5;</value></data>
+  <data name="Icon.Tools"><value>&#xE90F;</value></data>
+  <data name="Icon.Engine"><value>&#xE943;</value></data>
+  <data name="Icon.Acceleration"><value>&#xE945;</value></data>
+  <data name="Icon.Information"><value>&#xE946;</value></data>
+  <data name="Icon.Processor"><value>&#xE950;</value></data>
+  <data name="Icon.OpticalDisc"><value>&#xE958;</value></data>
+  <data name="Icon.Mouse"><value>&#xE962;</value></data>
+  <data name="Icon.Memory"><value>&#xE964;</value></data>
+  <data name="Icon.Visualization"><value>&#xE9D2;</value></data>
+  <data name="Icon.Logs"><value>&#xE9D5;</value></data>
+  <data name="Icon.Compatibility"><value>&#xEA18;</value></data>
+  <data name="Icon.Error"><value>&#xEA39;</value></data>
+  <data name="Icon.OpenImage"><value>&#xED25;</value></data>
+  <data name="Icon.HardDisk"><value>&#xEDA2;</value></data>
+  <data name="Icon.Add"><value>&#xFF0B;</value></data>
 </root>

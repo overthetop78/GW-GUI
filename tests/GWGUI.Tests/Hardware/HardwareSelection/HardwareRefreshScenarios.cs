@@ -1,7 +1,7 @@
 using GWGUI.App.Services.Hardware;
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.Tests.Application.TestInfrastructure;
 namespace GWGUI.Tests.Hardware.HardwareSelection;
 internal static class HardwareRefreshScenarios

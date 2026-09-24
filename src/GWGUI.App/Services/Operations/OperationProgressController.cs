@@ -1,4 +1,4 @@
-using GWGUI.Domain.Commands.Progress;
+using GWGUI.Infrastructure.Commands.Progress;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
@@ -7,7 +7,7 @@ using GWGUI.App.Views.Controls.Visualization;
 using System.Windows;
 using System.Windows.Media;
 
-using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Interfaces;
 
 
 namespace GWGUI.App.Services.Operations;

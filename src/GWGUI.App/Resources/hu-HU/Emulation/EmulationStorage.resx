@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Média hozzáadása</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>A merevlemez létrehozása</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Hard- lemezméret (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Nincs média. A kiválasztott modell által támogatott floppy, merevlemez vagy CD hozzáadása.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Csak olvasd el</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga merevlemez|*.hdf|Minden fájl|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>A kiválasztott modell nem támogatja a merevlemezt.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Ez a modell legfeljebb {0} a féktárcsa (ek).</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Ez a modell legfeljebb {0} merevlemez (ok).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>A kiválasztott modell nem támogatja a CD meghajtót.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CD-meghajtó</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Hajlékonylemez-meghajtók száma</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Merevlemezek száma</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Floppy- hajtási sebesség</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Írás- védje floppy képek</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>A floppy átirata</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD sebesség</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Meglévő merevlemez hozzáadása</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Merevlemezek</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Ehhez a géphez nincs merevlemez társítva.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Hajlékonylemezek</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Tárolóeszköz hozzáadása</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Társított adathordozó</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>A lemez geometriáját az emulátor automatikusan határozza meg.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Üres lemezkép létrehozva: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>A fájl üresen jön létre, majd az emulált gépen particionálni és formázni kell.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD író</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Üres lemez csak akkor hozható létre, ha a kiválasztott gép és emulátor támogatja az írást.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM-meghajtó</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Beállítás</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Üres hajlékonylemez létrehozása</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Lemezkép</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Válasszon egy meglévő lemezképet.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>A kiválasztott fájl ehhez a virtuális meghajtóhoz lesz csatolva.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Hajlékonylemez-meghajtó</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga hajlékonylemez-kép|*.adf|Minden fájl|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Merevlemez</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Csatoló</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Fájl előzetes lefoglalása</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>A folyamatgépből a floppykat és a CD-ket kell beilleszteni vagy lecserélni.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Adathordozó eltávolítása</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>A lemezkép már létezik: {0}\nLecseréli?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Az elérhető típusok, modellek és azonosítók a kiválasztott géptől függenek.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Szalagos meghajtó</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Lemez használata</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Meglévő lemez használata</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Módosítás az Általános lapon</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Ehhez a géphez nem érhető el további tárolóeszköz.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Tárolóeszközök</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Lefoglalás</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Automatikus geometria</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Üres adathordozó</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Bájt szektoronként</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Számított kapacitás: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Egyéni méret</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cilinderek</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Célmappa</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Lemezgeometria (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Méretprofil</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Hajlékonylemez-meghajtó</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Fejek</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>A lemez mérete vagy geometriája érvénytelen.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Azonnal lefoglalja a fizikai lemezterületet; különben a képfájl írás közben növekszik.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Szektorok</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kazetta</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Játékkazetta</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Kompaktlemezek</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Meghajtóaktivitás megjelenítése az emulátor képernyőjén</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kazettafoglalat</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Az első négy lemez csatlakoztatása DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Lemez {0}</value></data>
+</root>

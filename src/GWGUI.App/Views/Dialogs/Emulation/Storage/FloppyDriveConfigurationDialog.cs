@@ -1,4 +1,5 @@
 using GWGUI.App.Constants.Localization;
+using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Storage;
 using GWGUI.App.Functions.Views.Common;
 using GWGUI.App.Functions.Views.Emulation.Storage;
@@ -73,8 +74,8 @@ public sealed class FloppyDriveConfigurationDialog : Window
         behavior.Children.Add(_redirectWrites);
         var body = new StackPanel();
         body.Children.Add(StorageDialogUi.SideBySide(
-            StorageDialogUi.IconCard("\uE964", LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive),
-            StorageDialogUi.IconCard("\uE713", LocExtension.Get("Emulation.Input.Behavior"), behavior)));
+            StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive),
+            StorageDialogUi.IconCard(IconGlyphs.Settings, LocExtension.Get("Emulation.Input.Behavior"), behavior)));
         if (options.CanCreateBlankMedia)
         {
             var create = new Button
@@ -88,12 +89,12 @@ public sealed class FloppyDriveConfigurationDialog : Window
             blankMedia.Children.Add(create);
             blankMedia.Children.Add(StorageDialogUi.Info(
                 LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
-            body.Children.Add(StorageDialogUi.IconCard("\uE7C3",
+        body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.FloppyDisk,
                 LocExtension.Get("Emulation.Storage.Media.Blank"), blankMedia));
         }
 
         Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.DialogHeader("\uE964", Title,
+            StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title,
                 $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"),
             body,
             StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));

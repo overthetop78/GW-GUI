@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Mag</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0} emulációs mag</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>A könyvtár külső GW GUI. A kiválasztott verzió a jelenleg telepített változat helyébe lép.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>A GW GUI által igényelt verzió</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Legújabb elérhető hivatalos verzió</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Jelenleg telepített verzió</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Kattintson a Keresés gombra a hivatalos Libretro-kiszolgáló lekérdezéséhez.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Verziók keresése</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Letöltés és csere</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Elérhető verziók keresése…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Nem található hivatalos verzió.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} verzió érhető el.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Letöltés {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Telepített verzió: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · telepítve</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Nincs telepített verzió</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emulátor</value></data>
+  <data name="Emulation.Core.Install"><value>Telepítés</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Telepítve</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Alapopciók</value></data>
+</root>

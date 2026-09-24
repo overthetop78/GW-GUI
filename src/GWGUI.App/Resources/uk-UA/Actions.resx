@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>Скасувати</value></data>
-  <data name="Common.Save"><value>зберегти</value></data>
-  <data name="Common.Create"><value>Створити</value></data>
-  <data name="Common.Delete"><value>Видалити</value></data>
-  <data name="Common.Browse"><value>Перегляд…</value></data>
-  <data name="Common.Choose"><value>Виберіть…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>Скасувати</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>зберегти</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>Створити</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Видалити</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Перегляд…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>Виберіть…</value></data>
   <data name="Common.Close"><value>Закрити</value></data>
   <data name="Common.Execute"><value>Виконати</value></data>
   <data name="Common.Stop"><value>СТІЙ</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>Змінити</value></data>
   <data name="Common.Hide"><value>Сховати</value></data>
   <data name="Common.Export"><value>Експорт</value></data>
-  <data name="Common.New"><value>Новий</value></data>
-  <data name="Common.Refresh"><value>Оновити</value></data>
-  <data name="Common.OpenFolder"><value>Відкрити папку</value></data>
+  <data name="Common.New" xml:space="preserve"><value>Новий</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>Оновити</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>Відкрити папку</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Пауза</value></data>
 </root>

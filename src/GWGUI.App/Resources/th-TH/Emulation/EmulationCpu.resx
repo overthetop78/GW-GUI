@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>ตัวประมวลผล: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>โมเดล CPU</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>ตัวคูณ CPU</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>การใช้ไซโคลนร่วมกัน CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>ความเร็ว CPU</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>ความเร็วดั้งเดิม</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>ปกติ</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>เข้ากันได้</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>การจับคู่หน่วยความจํา</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>หมุนตามตัวอักษร</value></data>
+  <data name="Emulation.Cpu.Processor"><value>หน่วยประมวลผล</value></data>
+  <data name="Emulation.Cpu.Precision"><value>ความแม่นยำ</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>การเร่งความเร็ว</value></data>
+</root>

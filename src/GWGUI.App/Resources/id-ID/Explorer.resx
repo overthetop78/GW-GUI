@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Citra disk</value></data>
-<data name="Explorer.OpenImage"><value>Buka citra…</value></data>
+  <data name="Explorer.DetectedFormats"><value>Terdeteksi: {0}</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.OpenImage"><value>Buka citra…</value></data>
   <data name="Explorer.Automatic"><value>Deteksi otomatis</value></data>
-<data name="Explorer.FileSystem"><value>Sistem berkas</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.FileSystem"><value>Sistem berkas</value></data>
   <data name="Explorer.Capacity"><value>Kapasitas</value></data>
   <data name="Explorer.Free"><value>Ruang kosong</value></data>
   <data name="Explorer.Entries"><value>Item</value></data>
@@ -30,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Tidak diketahui</value></data>
   <data name="Explorer.Unnamed"><value>Volume tanpa nama</value></data>
   <data name="Explorer.LoadFailed"><value>Citra ini tidak dapat dibuka: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Format tidak kompatibel</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>“{1}” tidak dapat ditafsirkan menggunakan format “{0}”.&#xA;Pilih format lain untuk melanjutkan.</value></data>
   <data name="Explorer.Loading"><value>Membaca citra disk…</value></data>
   <data name="Explorer.ReadDisk"><value>Baca disket</value></data>
   <data name="Explorer.Name"><value>Nama</value></data>
@@ -40,7 +37,8 @@
   <data name="Explorer.Type.Image"><value>Gambar</value></data>
   <data name="Explorer.Type.Audio"><value>Berkas audio</value></data>
   <data name="Explorer.Type.Archive"><value>Arsip</value></data>
-<data name="Explorer.Type.DiskImage"><value>Citra diska</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Citra diska</value></data>
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Perlindungan</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sektor fisik — tidak ada sistem berkas yang dikenali</value></data>
@@ -49,12 +47,111 @@
   <data name="Explorer.Compression"><value>Kompresi</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Pemuat sektor khusus</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Pemuat sektor khusus — tanpa katalog berkas</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack oleh The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Blok data</value></data>
-  <data name="Explorer.DetectedFormats"><value>Terdeteksi: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Perkakas Host tidak dapat menghasilkan gambar sektor yang diexceduble untuk {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Perkakas Host tidak dapat mendekode gambar sebagai {0}.</value></data>
-  <data name="Explorer.Format"><value>Format</value></data>
-  <data name="Explorer.Volume"><value>Volume</value></data>
-  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Perkakas Host tidak dapat menghasilkan gambar sektor yang diexceduble untuk {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Perkakas Host tidak dapat mendekode gambar sebagai {0}.</value></data>
+  <data name="Explorer.Session"><value>Sesi diska</value></data>
+  <data name="Explorer.Track"><value>Trek media</value></data>
+  <data name="Explorer.Layers"><value>Lapisan diska</value></data>
+  <data name="Explorer.Faces"><value>Sisi perekam media</value></data>
+  <data name="Explorer.PartitionType"><value>Tipe partisi</value></data>
+  <data name="Explorer.PartitionId"><value>Pengenal partisi</value></data>
+  <data name="Explorer.TrackMode"><value>Mode trek</value></data>
+  <data name="Explorer.FirstSector"><value>Sektor pertama</value></data>
+  <data name="Explorer.SectorCount"><value>Cacah sektor</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Ukuran sektor tersimpan</value></data>
+  <data name="Explorer.UserDataSize"><value>Ukuran data pengguna</value></data>
+  <data name="Explorer.Subchannels"><value>Subchances</value></data>
+  <data name="Explorer.AudioTracks"><value>Trek audio</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Mengenali format media</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Format yang dikenali</value></data>
+  <data name="Explorer.TestingFormat"><value>Format pengujian: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: dikenal</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: tidak dikenal</value></data>
+  <data name="Explorer.ReadingFormat"><value>Format pembacaan: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Membaca struktur media</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Membaca rekaman</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Rekam {0} dari {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Menghilangkan rekaman</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Mengenali berkas</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Menganalisa sistem berkas</value></data>
+  <data name="Explorer.LoadingContents"><value>Menyiapkan folder dan berkas</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Menampilkan isi</value></data>
+  <data name="Explorer.FileWithExtension"><value>Berkas {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokumen</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Kode sumber</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC berkas program</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Program boot</value></data>
+  <data name="Explorer.Type.Executable"><value>Dapat dieksekusi</value></data>
+  <data name="Explorer.Type.Command"><value>Berkas perintah</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Berkas sistem</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Kode objek</value></data>
+  <data name="Explorer.Type.Data"><value>Berkas data</value></data>
+  <data name="Explorer.Type.Configuration"><value>Berkas konfigurasi</value></data>
+  <data name="Explorer.Type.Library"><value>Pustaka</value></data>
+  <data name="Explorer.Type.Media"><value>Berkas media</value></data>
+  <data name="Explorer.Type.Font"><value>Fonta</value></data>
+  <data name="Explorer.Execution"><value>Eksekusi</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Berkas eksekusi asli</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Berkas eksekusi yang diinterpretasi</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Perintah atau skrip</value></data>
+  <data name="Explorer.Category"><value>Kategori</value></data>
+  <data name="Explorer.ContentFormat"><value>Format isi</value></data>
+  <data name="Explorer.TextEncoding"><value>Pengkodean teks</value></data>
+  <data name="Explorer.Preview"><value>Pratilik</value></data>
+  <data name="Explorer.Category.File"><value>Berkas</value></data>
+  <data name="Explorer.Category.Text"><value>Teks</value></data>
+  <data name="Explorer.Category.Document"><value>Dokumen</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Kode sumber</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Program boot</value></data>
+  <data name="Explorer.Category.Program"><value>Program</value></data>
+  <data name="Explorer.Category.Executable"><value>Dapat dieksekusi</value></data>
+  <data name="Explorer.Category.Command"><value>Perintah</value></data>
+  <data name="Explorer.Category.System"><value>Sistem</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Kode objek</value></data>
+  <data name="Explorer.Category.Data"><value>Data</value></data>
+  <data name="Explorer.Category.Configuration"><value>Konfigurasi</value></data>
+  <data name="Explorer.Category.Library"><value>Pustaka</value></data>
+  <data name="Explorer.Category.Image"><value>Gambar</value></data>
+  <data name="Explorer.Category.Audio"><value>Audio</value></data>
+  <data name="Explorer.Category.Media"><value>Media</value></data>
+  <data name="Explorer.Category.Archive"><value>Arsip</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Image diska</value></data>
+  <data name="Explorer.Category.Link"><value>Taut</value></data>
+  <data name="Explorer.Category.Font"><value>Fonta</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Tak dikenal</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Teks biasa</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Executable asli</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Perintah atau skrip</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Kode objek</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>biner sistem</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Data yang telah distruktur</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Konfigurasi</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Pustaka</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Gambar</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Audio</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Arsip</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Image diska</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Fonta</value></data>
+  <data name="Explorer.Preview.None"><value>Nihil</value></data>
+  <data name="Explorer.Preview.Text"><value>Teks</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC daftar</value></data>
+  <data name="Explorer.Preview.Image"><value>Gambar</value></data>
+  <data name="Explorer.Preview.Audio"><value>Audio</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Heksadesimal</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Aplikasi eksternal</value></data>
+  <data name="Explorer.Cassette"><value>Kaset</value></data>
+  <data name="Explorer.InternalName"><value>Deskripsi internal</value></data>
+  <data name="Explorer.BaudRates"><value>Kecepatan</value></data>
+  <data name="Explorer.Chunks"><value>Blok</value></data>
+  <data name="Explorer.FskBlocks"><value>Blok FSK</value></data>
+  <data name="Explorer.Records"><value>Rekaman</value></data>
+  <data name="Explorer.FullRecords"><value>Penuh</value></data>
+  <data name="Explorer.PartialRecords"><value>Parsial</value></data>
+  <data name="Explorer.EndRecord"><value>Akhir</value></data>
+  <data name="Explorer.ChunkType"><value>Jenis</value></data>
+  <data name="Explorer.BaudRate"><value>Kecepatan</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Jeda</value></data>
 </root>

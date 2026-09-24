@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>メディアを追加</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>ハードディスクを作成</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>ハードディスク容量（MiB）</value></data>
+  <data name="Emulation.Storage.Media.None"><value>メディアがありません。選択したモデルが対応するフロッピー、ハードディスク、または CD を追加してください。</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>読み取り専用</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga ハードディスク|*.hdf|すべてのファイル|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>選択したモデルはハードディスクに対応していません。</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>このモデルは最大 {0} 台のフロッピードライブに対応します。</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>このモデルは最大 {0} 台のハードディスクに対応します。</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>選択したモデルは CD ドライブに対応していません。</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>CDドライブ</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>フロッピードライブ数</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>ハードディスク数</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>フロッピードライブ速度</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>フロッピーイメージを書き込み保護</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>フロッピー書き込みをリダイレクト</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD 速度</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>既存のハードディスクを追加</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>ハードディスク</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>このマシンにはハードディスクが関連付けられていません。</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>フロッピーディスク</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>ストレージデバイスを追加</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>関連付けられたメディア</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>ディスクジオメトリはエミュレーターによって自動的に決定されます。</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>空のフロッピーイメージを作成しました: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>ファイルは空の状態で作成されます。その後、エミュレートされたマシンでパーティション作成とフォーマットが必要です。</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD ライター</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>空のディスクは、選択したマシンとエミュレーターが書き込みに対応している場合にのみ作成できます。</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM ドライブ</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>設定</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>空のフロッピーを作成</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>ディスクイメージ</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>既存のディスクイメージを選択してください。</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>選択したファイルはこの仮想ドライブに接続されます。</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>フロッピードライブ</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga フロッピーイメージ|*.adf|すべてのファイル|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>ハードディスク</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>インターフェイス</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>ファイルを事前割り当て</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>フレッピーとCDは、ランニングマシンからインサートまたは交換されます。</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>メディアを取り外す</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>ディスクイメージは既に存在します: {0}\n置き換えますか？</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>利用可能な種類、モデル、識別子は選択したマシンによって異なります。</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>テープドライブ</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>ディスクを使用</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>既存のディスクを使用</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>全般で変更</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>このマシンで利用できる追加のストレージデバイスはありません。</value></data>
+  <data name="Emulation.Storage.Device.List"><value>ストレージデバイス</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>割り当て</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>自動ジオメトリ</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>空のメディア</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>セクターあたりのバイト数</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>計算された容量: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>カスタムサイズ</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>シリンダー</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>保存先フォルダー</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>ディスクジオメトリ (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>サイズプロファイル</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>フロッピードライブ</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>ヘッド</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>ディスクサイズまたはジオメトリが無効です。</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>物理ディスク領域を直ちに予約します。無効の場合、書き込みに応じてイメージが拡張されます。</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>セクター</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>カセットテープ</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>カートリッジ</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>コンパクトディスク</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>エミュレーター画面にドライブの動作状況を表示</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>カートリッジスロット</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>最初の4ディスクを取付けて下さい DF0–DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>ディスク {0}</value></data>
+</root>

@@ -1,7 +1,7 @@
 using GWGUI.App.Options.Controllers;
 using GWGUI.App.Views.Controls.Options;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using System.Windows;
 namespace GWGUI.Tests.Interface.SettingsViews;
 internal static class SettingsEditingScenarios

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Operation.Finished"><value>Завершено: код {0}, продолжительность {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Команда выполнена успешно.</value></data>
+  <data name="Operation.Cancelled"><value>Команда отменена.</value></data>
+  <data name="Operation.ExitCode"><value>Команда завершилась кодом {0}.</value></data>
+  <data name="Operation.StopTitle"><value>Остановить операцию</value></data>
+  <data name="Operation.StopConfirm"><value>Остановить текущую операцию Greaseweazle?</value></data>
+  <data name="Operation.Busy"><value>Команда Greaseweazle уже запущена. Подождите, пока он завершится или остановится, прежде чем открывать этот инструмент.</value></data>
+  <data name="Operation.Error"><value>Ошибка: {0}</value></data>
+</root>

@@ -1,4 +1,4 @@
-﻿namespace Hst.Amiga.FileSystems.Pfs3
+namespace Hst.Amiga.FileSystems.Pfs3
 {
     using System;
     using System.Collections.Generic;
@@ -12,10 +12,10 @@
 
     public class Pfs3Volume : IFileSystemVolume
     {
-        public readonly globaldata g;
+        public readonly Pfs3GlobalData g;
         private uint dirNodeNr;
 
-        public Pfs3Volume(globaldata g, uint dirNodeNr)
+        public Pfs3Volume(Pfs3GlobalData g, uint dirNodeNr)
         {
             this.g = g;
             this.dirNodeNr = dirNodeNr;
@@ -32,12 +32,12 @@
         /// Name of volume
         /// </summary>
         public string Name => g.RootBlock.DiskName;
-        
+
         /// <summary>
         /// Size of volume in bytes
         /// </summary>
         public long Size => (long)g.RootBlock.DiskSize * g.blocksize;
-        
+
         /// <summary>
         /// Free volume disk space in bytes
         /// </summary>
@@ -49,12 +49,12 @@
         /// <returns></returns>
         public async Task<IEnumerable<Entry>> ListEntries()
         {
-            return (await Directory.GetDirEntries(dirNodeNr, g)).Select(DirEntryConverter.ToEntry).ToList();
+            return (await Pfs3Directory.GetDirEntries(dirNodeNr, g)).Select(Pfs3DirEntryConverter.ToEntry).ToList();
         }
 
-        public async Task<IEnumerable<direntry>> ListRawEntries()
+        public async Task<IEnumerable<Pfs3DirEntry>> ListRawEntries()
         {
-            return await Directory.GetDirEntries(dirNodeNr, g);
+            return await Pfs3Directory.GetDirEntries(dirNodeNr, g);
         }
 
         /// <summary>
@@ -68,17 +68,17 @@
             {
                 throw new ArgumentException("Name contains directory separator", nameof(name));
             }
-            
+
             var objectInfo = await GetCurrentDirectory();
-            var found = await Directory.SearchInDir(dirNodeNr, name, objectInfo, g);
+            var found = await Pfs3Directory.SearchInDir(dirNodeNr, name, objectInfo, g);
 
             return new FindEntryResult
             {
                 PartsNotFound = found ? new List<string>() : new List<string> { name },
-                Entry = found ? DirEntryConverter.ToEntry(objectInfo.file.direntry) : null
+                Entry = found ? Pfs3DirEntryConverter.ToEntry(objectInfo.file.direntry) : null
             };
         }
-        
+
         /// <summary>
         /// Change current directory
         /// </summary>
@@ -87,32 +87,32 @@
         {
             var currentDirectory = await GetCurrentDirectory();
             var isRootPath = path.StartsWith("/");
-            if (isRootPath && !Macro.IsRoot(currentDirectory))
+            if (isRootPath && !Pfs3Macro.IsRoot(currentDirectory))
             {
-                currentDirectory = await Directory.GetRoot(g);
+                currentDirectory = await Pfs3Directory.GetRoot(g);
             }
-            
-            if (!isRootPath && (await Directory.Find(currentDirectory, path, g)).Any())
+
+            if (!isRootPath && (await Pfs3Directory.Find(currentDirectory, path, g)).Any())
             {
                 throw new PathNotFoundException($"Path '{path}' not found");
             }
 
             // throw exception, if not root path and path is not a directory
-            if (!isRootPath && currentDirectory.file.direntry != null && !Macro.IsDir(currentDirectory))
+            if (!isRootPath && currentDirectory.file.direntry != null && !Pfs3Macro.IsDir(currentDirectory))
             {
                 throw new PathNotFoundException($"Path '{path}' is not a directory");
             }
 
             if (currentDirectory.file.direntry != null &&
-                currentDirectory.file.direntry.type == Constants.ST_LINKDIR)
+                currentDirectory.file.direntry.type == Pfs3Constants.ST_LINKDIR)
             {
                 dirNodeNr = currentDirectory.file.direntry.ExtraFields.link;
                 return;
             }
-            
-            dirNodeNr = Macro.IsRoot(currentDirectory) ? (uint)Macro.ANODE_ROOTDIR : currentDirectory.file.direntry.anode;
+
+            dirNodeNr = Pfs3Macro.IsRoot(currentDirectory) ? (uint)Pfs3Macro.ANODE_ROOTDIR : currentDirectory.file.direntry.anode;
         }
-        
+
         /// <summary>
         /// Create directory in current directory
         /// </summary>
@@ -120,7 +120,7 @@
         public async Task CreateDirectory(string dirName)
         {
             var currentDirectory = await GetCurrentDirectory();
-            var entry = await Directory.NewDir(currentDirectory, dirName, g);
+            var entry = await Pfs3Directory.NewDir(currentDirectory, dirName, g);
 
             // TODO: Examine when it's necessary to keep entry in volume file entries after creating new dir
             for (var node = g.currentvolume.fileentries.First; node != null; node = node.Next)
@@ -146,7 +146,7 @@
             {
             }
         }
-        
+
         /// <summary>
         /// Create link in current directory.
         /// </summary>
@@ -160,39 +160,39 @@
 
             var currentDirectory = await GetCurrentDirectory();
             var linkFromDir = currentDirectory;
-            
-            var linkTo = new objectinfo();
-            var linkToFound = await Directory.FindObject(currentDirectory, name, linkTo, g);
-            
+
+            var linkTo = new Pfs3ObjectInfo();
+            var linkToFound = await Pfs3Directory.FindObject(currentDirectory, name, linkTo, g);
+
             if (!linkToFound)
             {
                 throw new PathNotFoundException($"Path not found '{name}'");
             }
-            
-            var type = new ListType
+
+            var type = new Pfs3ListType
             {
-                value = Constants.ET_FILEENTRY
+                value = Pfs3Constants.ET_FILEENTRY
             };
 
             // make list entry resolves link to entry to real entry, if link to entry is a link dir or file
-            IEntry fileFe;
-            if ((fileFe = await Lock.MakeListEntry(linkTo, type, g)) == null)
+            IPfs3Entry fileFe;
+            if ((fileFe = await Pfs3Lock.MakeListEntry(linkTo, type, g)) == null)
             {
                 throw new IOException("make list entry error");
             }
-            
-            var newLink = new objectinfo();
-            await Directory.CreateLink(linkFromDir, linkName, fileFe.ListEntry.info, newLink, g);
-            
-            Lock.FreeListEntry(fileFe, g);
+
+            var newLink = new Pfs3ObjectInfo();
+            await Pfs3Directory.CreateLink(linkFromDir, linkName, fileFe.ListEntry.info, newLink, g);
+
+            Pfs3Lock.FreeListEntry(fileFe, g);
         }
 
         public void ClearCachedData()
         {
             foreach (var fileentry in g.currentvolume.fileentries)
             {
-                fileentry.ListEntry.type.flags.access = Constants.ET_FILEENTRY;
-                fileentry.ListEntry.filelock.fl_Access = Constants.ET_FILEENTRY;
+                fileentry.ListEntry.type.flags.access = Pfs3Constants.ET_FILEENTRY;
+                fileentry.ListEntry.filelock.fl_Access = Pfs3Constants.ET_FILEENTRY;
             }
 
             g.currentvolume.fileentries.Clear();
@@ -217,9 +217,9 @@
             g.currentvolume.indexblksBySeqNr.Clear();
             g.currentvolume.superblks.Clear();
             g.currentvolume.superblksBySeqNr.Clear();
-            
 
-            g.glob_lrudata.LRUarray = Array.Empty<LruCachedBlock>();
+
+            g.glob_lrudata.LRUarray = Array.Empty<Pfs3LruCachedBlock>();
             g.glob_lrudata.poolsize = 0;
             g.glob_lrudata.LRUpool.Clear();
             g.glob_lrudata.LRUqueue.Clear();
@@ -238,12 +238,12 @@
         {
             g.IgnoreProtectionBits = ignoreProtectionBits;
             var currentDirectory = await GetCurrentDirectory();
-            
-            var fileEntry = await File.Open(currentDirectory, fileName, mode, overwrite, g) as fileentry;
-            
-            File.MakeSharedFileEntriesAndClear(g);
-            
-            return new EntryStream(fileEntry, g);
+
+            var fileEntry = await Pfs3File.Open(currentDirectory, fileName, mode, overwrite, g) as Pfs3FileEntry;
+
+            Pfs3File.MakeSharedFileEntriesAndClear(g);
+
+            return new Pfs3EntryStream(fileEntry, g);
         }
 
         /// <summary>
@@ -256,11 +256,11 @@
             g.IgnoreProtectionBits = ignoreProtectionBits;
             var currentDirectory = await GetCurrentDirectory();
             var objectInfo = currentDirectory.Clone();
-            if ((await Directory.Find(objectInfo, name, g)).Any())
+            if ((await Pfs3Directory.Find(objectInfo, name, g)).Any())
             {
                 throw new PathNotFoundException($"Path '{name}' not found");
             }
-            await Directory.DeleteObject(objectInfo, g);
+            await Pfs3Directory.DeleteObject(objectInfo, g);
         }
 
         /// <summary>
@@ -273,13 +273,13 @@
         {
             var currentDirectory = await GetCurrentDirectory();
             var srcInfo = currentDirectory.Clone();
-            if ((await Directory.Find(srcInfo, oldName, g)).Any())
+            if ((await Pfs3Directory.Find(srcInfo, oldName, g)).Any())
             {
                 throw new PathNotFoundException($"Path '{oldName}' not found");
             }
 
             var destInfo = currentDirectory.Clone();
-            var remainingParts = await Directory.Find(destInfo, newName, g);
+            var remainingParts = await Pfs3Directory.Find(destInfo, newName, g);
 
             if (remainingParts.Length == 0)
             {
@@ -290,8 +290,8 @@
             {
                 throw new PathNotFoundException($"Path '{remainingParts[0]}' not found");
             }
-            
-            await Directory.RenameAndMove(currentDirectory, srcInfo, destInfo, remainingParts[0], g);
+
+            await Pfs3Directory.RenameAndMove(currentDirectory, srcInfo, destInfo, remainingParts[0], g);
         }
 
         /// <summary>
@@ -303,11 +303,11 @@
         {
             var currentDirectory = await GetCurrentDirectory();
             var objectInfo = currentDirectory.Clone();
-            if ((await Directory.Find(objectInfo, name, g)).Any())
+            if ((await Pfs3Directory.Find(objectInfo, name, g)).Any())
             {
                 throw new PathNotFoundException($"Path '{name}' not found");
             }
-            await Directory.AddComment(objectInfo, comment, g);
+            await Pfs3Directory.AddComment(objectInfo, comment, g);
         }
 
         /// <summary>
@@ -319,11 +319,11 @@
         {
             var currentDirectory = await GetCurrentDirectory();
             var objectInfo = currentDirectory.Clone();
-            if ((await Directory.Find(objectInfo, name, g)).Any())
+            if ((await Pfs3Directory.Find(objectInfo, name, g)).Any())
             {
                 throw new PathNotFoundException($"Path '{name}' not found");
             }
-            await Directory.ProtectFile(objectInfo, ProtectionBitsConverter.ToProtectionValue(protectionBits), g);
+            await Pfs3Directory.ProtectFile(objectInfo, ProtectionBitsConverter.ToProtectionValue(protectionBits), g);
         }
 
         /// <summary>
@@ -335,36 +335,36 @@
         {
             var currentDirectory = await GetCurrentDirectory();
             var objectInfo = currentDirectory.Clone();
-            if ((await Directory.Find(objectInfo, name, g)).Any())
+            if ((await Pfs3Directory.Find(objectInfo, name, g)).Any())
             {
                 throw new PathNotFoundException($"Path '{name}' not found");
             }
-            await Directory.SetDate(objectInfo, date, g);
+            await Pfs3Directory.SetDate(objectInfo, date, g);
         }
 
-        private async Task<objectinfo> GetCurrentDirectory()
+        private async Task<Pfs3ObjectInfo> GetCurrentDirectory()
         {
-            if (dirNodeNr == Constants.ANODE_ROOTDIR)
+            if (dirNodeNr == Pfs3Constants.ANODE_ROOTDIR)
             {
-                return await Directory.GetRoot(g);
+                return await Pfs3Directory.GetRoot(g);
             }
 
-            var canode = new canode();
-            await anodes.GetAnode(canode, dirNodeNr, g);
-            
-            var dirBlock = await Directory.LoadDirBlock(canode.blocknr, g);
-            
-            return new objectinfo
+            var canode = new Pfs3Canode();
+            await Pfs3Anodes.GetAnode(canode, dirNodeNr, g);
+
+            var dirBlock = await Pfs3Directory.LoadDirBlock(canode.blocknr, g);
+
+            return new Pfs3ObjectInfo
             {
-                volume = new volumeinfo
+                volume = new Pfs3VolumeInfo
                 {
-                    root = (uint)(dirNodeNr == Constants.ST_USERDIR ? 0 : 1),
+                    root = (uint)(dirNodeNr == Pfs3Constants.ST_USERDIR ? 0 : 1),
                     volume = g.currentvolume
                 },
-                file = new fileinfo
+                file = new Pfs3FileInfo
                 {
                     dirblock = dirBlock,
-                    direntry = new direntry(0, Constants.ST_USERDIR, dirNodeNr, 0, 0, DateTime.Now, string.Empty, string.Empty, new extrafields(), g)
+                    direntry = new Pfs3DirEntry(0, Pfs3Constants.ST_USERDIR, dirNodeNr, 0, 0, DateTime.Now, string.Empty, string.Empty, new Pfs3ExtraFields(), g)
                 }
             };
         }
@@ -380,9 +380,9 @@
         {
             var g = await Pfs3Helper.Mount(stream, partitionBlock);
             g.ResolveLinkPaths = resolveLinkPaths;
-            
-            var dirNodeNr = (uint)Macro.ANODE_ROOTDIR;
-            
+
+            var dirNodeNr = (uint)Pfs3Macro.ANODE_ROOTDIR;
+
             return new Pfs3Volume(g, dirNodeNr);
         }
 
@@ -427,12 +427,12 @@
         public async Task<string> GetCurrentPath()
         {
             var currentDirectory = await GetCurrentDirectory();
-            var parentDirectory = new objectinfo();
+            var parentDirectory = new Pfs3ObjectInfo();
             var pathComponents = new LinkedList<string>();
 
             do
             {
-                if (!await Directory.GetParent(currentDirectory, parentDirectory, g))
+                if (!await Pfs3Directory.GetParent(currentDirectory, parentDirectory, g))
                 {
                     break;
                 }
@@ -446,7 +446,7 @@
 
                 pathComponents.AddFirst(currentDirectory.file.direntry.Name);
             } while (currentDirectory.file.dirblock.dirblock != null &&
-                     currentDirectory.file.dirblock.dirblock.anodenr != Constants.ANODE_ROOTDIR);
+                     currentDirectory.file.dirblock.dirblock.anodenr != Pfs3Constants.ANODE_ROOTDIR);
 
             return string.Concat("/", string.Join("/", pathComponents.ToList()));
         }

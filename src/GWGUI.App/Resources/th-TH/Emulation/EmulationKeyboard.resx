@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>ปุ่ม {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>ปุ่มโฮสต์</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>ใช้ปุ่ม Amiga สองปุ่ม ใช้ปุ่ม PC แบบเดียวกัน ใช้การสลับรูปแบบสีแดงก่อนที่จะบันทึก</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>ผ่านแป้นพิมพ์ทางกายภาพ</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>แป้นพิมพ์ลัดที่สงวนไว้</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>แป้นพิมพ์ลัดของ GW GUI และ Windows ยังคงทำงานและเครื่องจะไม่จับไว้</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>ปุ่มของเครื่อง</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>ตัวอักษร ตัวเลข และปุ่มปรับแต่งทั่วไปจะถูกส่งโดยตรง ที่นี่ต้องกำหนดเฉพาะปุ่มฟังก์ชันและปุ่มพิเศษของ Amiga</value></data>
+</root>

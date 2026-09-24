@@ -1,4 +1,4 @@
-using GWGUI.Domain.Formats;
+using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.Contracts.Storage;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,16 +48,28 @@ public partial class DiskClassificationSelector : UserControl
         _updating = false;
     }
 
+    public void SelectFormat(string formatId)
+    {
+        var format = _catalog.ResolveFormat(formatId);
+        if (format is null) return;
+        _updating = true;
+        try
+        {
+            RefreshMachines(format.Family);
+            RefreshFormats(format.Id);
+            RefreshProtections();
+        }
+        finally
+        {
+            _updating = false;
+        }
+    }
+
     public void ApplyDetection(string? detectedFormatId, string? detectedProtectionId)
         => ApplyDetection(detectedFormatId, detectedProtectionId, detectedFormatId is null ? [] : [detectedFormatId]);
 
     public void ApplyDetection(string? detectedFormatId, string? detectedProtectionId, IEnumerable<string> detectedFormatIds)
     {
-        if (!AutomaticDetection)
-        {
-            return;
-        }
-
         var resolved = detectedFormatIds
             .Select(_catalog.ResolveFormat)
             .Where(format => format is not null)
@@ -68,6 +80,15 @@ public partial class DiskClassificationSelector : UserControl
         _detectedFormatByMachine = resolved
             .GroupBy(format => format.Family, StringComparer.OrdinalIgnoreCase)
             .ToDictionary(group => group.Key, group => group.First().Id, StringComparer.OrdinalIgnoreCase);
+        if (!AutomaticDetection)
+        {
+            _updating = true;
+            RefreshMachines(SelectedMachine);
+            RefreshFormats(SelectedFormatId);
+            _updating = false;
+            return;
+        }
+
         var format = _catalog.ResolveFormat(detectedFormatId) ?? resolved.FirstOrDefault();
         _updating = true;
         RefreshMachines(format?.Family);
@@ -121,7 +142,7 @@ public partial class DiskClassificationSelector : UserControl
         if (_updating) return;
         var detected = SelectedMachine is { } machine ? _detectedFormatByMachine.GetValueOrDefault(machine) : null;
         _updating = true; RefreshFormats(detected); RefreshProtections(); _updating = false;
-        ValueChanged?.Invoke(this, EventArgs.Empty);
+        if (SelectedFormatId is not null) ValueChanged?.Invoke(this, EventArgs.Empty);
     }
     private void Format_Changed(object sender, SelectionChangedEventArgs e)
     {

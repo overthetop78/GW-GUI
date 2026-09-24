@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Siap Laksanakan.</value></data>
   <data name="Tool.RawOutput"><value>Keluaran mentah</value></data>
-  <data name="Maintenance.EraseTitle"><value>Konfirmasikan penghapusan</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Hapus secara permanen semua data pada disk yang dimasukkan?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Bersihkan kepala</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Konfirmasikan bahwa disk pembersih telah dimasukkan. Jangan pernah menggunakan disk data.</value></data>
   <data name="Tools.Erase"><value>Hapus disk</value></data>
   <data name="Tools.EraseWarning"><value>Semua data di disk akan dimusnahkan.</value></data>
   <data name="Tools.LimitTracks"><value>Batasi trek</value></data>
@@ -56,7 +44,8 @@
   <data name="Tool.Title.Pin"><value>Pin perangkat keras</value></data>
   <data name="Tool.Title.Reset"><value>Setel ulang pengontrol</value></data>
   <data name="Tool.Title.Delays"><value>Penundaan</value></data>
-<data name="Tool.InvalidParameters"><value>Parameter tidak valid</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
+  <data name="Tool.InvalidParameters"><value>Parameter tidak valid</value></data>
   <data name="Tool.InvalidParametersHelp"><value>Periksa parameter perintah yang disorot sebelum menjalankan.</value></data>
   <data name="Tool.BootloaderTitle"><value>Mode pemuat boot</value></data>
   <data name="Tool.Title.Align"><value>Diagnostik penyelarasan penggerak</value></data>
@@ -64,5 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Jumlah bacaan</value></data>
   <data name="Tool.Field.AlignFormat"><value>Format penguraian kode</value></data>
   <data name="Tool.Field.AlignRaw"><value>Baca fluks mentah (--raw)</value></data>
-  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

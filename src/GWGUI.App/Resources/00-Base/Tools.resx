@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Ready to execute.</value></data>
   <data name="Tool.RawOutput"><value>Raw output</value></data>
-  <data name="Maintenance.EraseTitle"><value>Confirm erase</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Permanently erase all data on the inserted disk?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Clean heads</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Confirm that a cleaning disk is inserted. Never use a data disk.</value></data>
   <data name="Tools.Erase"><value>Erase a disk</value></data>
   <data name="Tools.EraseWarning"><value>All data on the disk will be destroyed.</value></data>
   <data name="Tools.LimitTracks"><value>Limit tracks</value></data>

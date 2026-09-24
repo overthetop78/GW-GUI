@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Έτοιμο για εκτέλεση.</value></data>
   <data name="Tool.RawOutput"><value>Ακατέργαστη έξοδος</value></data>
-  <data name="Maintenance.EraseTitle"><value>Επιβεβαίωση διαγραφής</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Να διαγραφούν οριστικά όλα τα δεδομένα στον δίσκο που έχει εισαχθεί;</value></data>
-  <data name="Maintenance.CleanTitle"><value>Καθαρά κεφάλια</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Επιβεβαιώστε ότι έχει τοποθετηθεί ένας δίσκος καθαρισμού. Μην χρησιμοποιείτε ποτέ δίσκο δεδομένων.</value></data>
   <data name="Tools.Erase"><value>Διαγράψτε έναν δίσκο</value></data>
   <data name="Tools.EraseWarning"><value>Όλα τα δεδομένα στο δίσκο θα καταστραφούν.</value></data>
   <data name="Tools.LimitTracks"><value>Περιορίστε τα κομμάτια</value></data>

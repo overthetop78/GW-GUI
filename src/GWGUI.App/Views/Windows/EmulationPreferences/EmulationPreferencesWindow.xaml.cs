@@ -1,9 +1,8 @@
-﻿using GWGUI.App.Contracts.Emulation.Machine;
+using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Functions.Localization;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Storage;
-using GWGUI.Domain.Settings;
 using GWGUI.Infrastructure.Settings;
 using System.ComponentModel;
 using System.IO;

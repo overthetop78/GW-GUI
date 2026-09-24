@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Hafen</value></data>
-  <data name="Hardware.UsbId"><value>USB-Bezeichner</value></data>
-  <data name="Hardware.Drive"><value>Fahren</value></data>
-  <data name="Hardware.Available"><value>Verfügbar</value></data>
-<data name="Hardware.AddDrive"><value>Ein Laufwerk hinzufügen…</value></data>
-  <data name="Hardware.NoDrive"><value>Kein Laufwerk definiert</value></data>
-  <data name="Hardware.EditorTitle"><value>Definieren Sie ein Laufwerk</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle-Controller</value></data>
-  <data name="Hardware.GwSelection"><value>Auswahl an gw übergeben</value></data>
-  <data name="Hardware.PhysicalSize"><value>Körperliche Größe</value></data>
-  <data name="Hardware.SizeShort"><value>Größe</value></data>
-  <data name="Hardware.DensityShort"><value>Dichte</value></data>
-  <data name="Hardware.SpeedShort"><value>Geschwindigkeit</value></data>
-  <data name="Hardware.AvailableState"><value>Verfügbar</value></data>
-  <data name="Hardware.UnavailableState"><value>Nicht verfügbar</value></data>
-  <data name="Hardware.DensityDescription"><value>Laufwerksdichte (nur Beschreibung)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Nenngeschwindigkeit (nur Beschreibung)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Hafen</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB-Bezeichner</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Fahren</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Verfügbar</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Scan</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Ein Laufwerk hinzufügen…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Kein Laufwerk definiert</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definieren Sie ein Laufwerk</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle-Controller</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Auswahl an gw übergeben</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Körperliche Größe</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Größe</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Dichte</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Geschwindigkeit</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Verfügbar</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Nicht verfügbar</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Laufwerksdichte (nur Beschreibung)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Nenngeschwindigkeit (nur Beschreibung)</value></data>
   <data name="Hardware.NotConfigured"><value>Controller nicht konfiguriert</value></data>
   <data name="Hardware.Disconnected"><value>getrennt</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Die Verbindung zum ausgewählten Laufwerk wird getrennt. Schließen Sie es erneut an oder scannen Sie erneut unter Optionen → Controller und Laufwerke.</value></data>
@@ -36,7 +29,8 @@
   <data name="Hardware.DriveDialogTitle"><value>Fahren</value></data>
   <data name="Hardware.ControllerRequired"><value>Scannen Sie zuerst einen Greaseweazle-Controller oder fügen Sie ihn hinzu.</value></data>
   <data name="Hardware.Description"><value>{0}-Zoll · {1} · Auswahl {2}{3}</value></data>
-<data name="Hardware.GwRequired"><value>Wählen Sie unten zuerst gw.exe aus oder laden Sie es herunter.</value></data>
+  <data name="Hardware.ScanTitle"><value>Scan</value></data>
+  <data name="Hardware.GwRequired"><value>Wählen Sie unten zuerst gw.exe aus oder laden Sie es herunter.</value></data>
   <data name="Hardware.StartupTitle"><value>Hardware-Check</value></data>
   <data name="Hardware.StartupMissing"><value>Konfigurierte Hardware konnte nicht gefunden werden</value></data>
   <data name="Hardware.StartupExplanation"><value>Die Konfiguration bleibt erhalten, aber ihre Laufwerke bleiben nicht verfügbar, bis ihr Greaseweazle wieder gefunden wird.</value></data>
@@ -58,6 +52,4 @@
   <data name="Hardware.ForgetLastConfirm"><value>Dies ist das zuletzt konfigurierte Laufwerk für diesen Greaseweazle. Möchten Sie sowohl das Laufwerk als auch den Greaseweazle vergessen?</value></data>
   <data name="Hardware.SelectController"><value>Wählen Sie zunächst eine Zeile aus, die zum relevanten Greaseweazle gehört.</value></data>
   <data name="Hardware.MaximumDrives"><value>Diesem Greaseweazle (A und B) können maximal zwei Laufwerke automatisch zugeordnet werden.</value></data>
-  <data name="Hardware.Scan"><value>Scan</value></data>
-  <data name="Hardware.ScanTitle"><value>Scan</value></data>
 </root>

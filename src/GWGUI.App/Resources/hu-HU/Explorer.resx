@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Lemezkép</value></data>
+  <data name="Explorer.DetectedFormats"><value>Észlelve: {0}</value></data>
   <data name="Explorer.Format"><value>Formátum</value></data>
   <data name="Explorer.OpenImage"><value>Lemezkép megnyitása…</value></data>
   <data name="Explorer.Automatic"><value>Automatikus felismerés</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Ismeretlen</value></data>
   <data name="Explorer.Unnamed"><value>Névtelen kötet</value></data>
   <data name="Explorer.LoadFailed"><value>A lemezkép nem nyitható meg: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Nem kompatibilis formátum</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>A(z) „{1}” nem értelmezhető a(z) „{0}” formátummal.&#xA;A folytatáshoz válasszon másik formátumot.</value></data>
   <data name="Explorer.Loading"><value>Lemezkép olvasása…</value></data>
   <data name="Explorer.ReadDisk"><value>Lemez olvasása</value></data>
   <data name="Explorer.Name"><value>Név</value></data>
@@ -42,7 +37,8 @@
   <data name="Explorer.Type.Image"><value>Kép</value></data>
   <data name="Explorer.Type.Audio"><value>Hangfájl</value></data>
   <data name="Explorer.Type.Archive"><value>Archívum</value></data>
-<data name="Explorer.Type.DiskImage"><value>Lemezkép</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Lemezkép</value></data>
   <data name="Explorer.System"><value>Rendszer</value></data>
   <data name="Explorer.Protection"><value>Védelem</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fizikai szektorok — nem ismerhető fel fájlrendszer</value></data>
@@ -51,10 +47,111 @@
   <data name="Explorer.Compression"><value>Tömörítés</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Egyéni szektorbetöltő</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Egyéni szektorbetöltő — nincs fájlkatalógus</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>A The Company crackje</value></data>
   <data name="Explorer.DataBlocks"><value>Adatblokkok</value></data>
-  <data name="Explorer.DetectedFormats"><value>Észlelve: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>A Host Tools nem tud magyarázható ágazati képet alkotni {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>A Host Tools nem tudta dekódolni a képet {0}.</value></data>
-  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>A Host Tools nem tud magyarázható ágazati képet alkotni {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>A Host Tools nem tudta dekódolni a képet {0}.</value></data>
+  <data name="Explorer.Session"><value>Lemezülés</value></data>
+  <data name="Explorer.Track"><value>Médiatávolság</value></data>
+  <data name="Explorer.Layers"><value>Lemezrétegek</value></data>
+  <data name="Explorer.Faces"><value>Médiafelvevő oldalak</value></data>
+  <data name="Explorer.PartitionType"><value>Felosztás típusa</value></data>
+  <data name="Explorer.PartitionId"><value>Részesedés azonosítója</value></data>
+  <data name="Explorer.TrackMode"><value>A pálya üzemmódja</value></data>
+  <data name="Explorer.FirstSector"><value>Első ágazat</value></data>
+  <data name="Explorer.SectorCount"><value>Szektor száma</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Tárolt szektor mérete</value></data>
+  <data name="Explorer.UserDataSize"><value>Felhasználói adatok mérete</value></data>
+  <data name="Explorer.Subchannels"><value>Alcsatornák</value></data>
+  <data name="Explorer.AudioTracks"><value>Hangsáv</value></data>
+  <data name="Explorer.LoadingRecognition"><value>A média formátumának felismerése</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Elismert formátum</value></data>
+  <data name="Explorer.TestingFormat"><value>Vizsgálati formátum: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: elismert</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: nem ismert</value></data>
+  <data name="Explorer.ReadingFormat"><value>Olvasási formátum: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>A médiastruktúra olvasása</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>A szalag olvasása</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Nyilvántartás {0} II. {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>A szalagok dekódolása</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Fájlok felismerése</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>A fájlrendszer elemzése</value></data>
+  <data name="Explorer.LoadingContents"><value>A mappák és fájlok előkészítése</value></data>
+  <data name="Explorer.LoadingDisplay"><value>A tartalom megjelenítése</value></data>
+  <data name="Explorer.FileWithExtension"><value>Fájl {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Dokumentum</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Forráskód</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC programfájl</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Indítóprogram</value></data>
+  <data name="Explorer.Type.Executable"><value>Végrehajtható</value></data>
+  <data name="Explorer.Type.Command"><value>Parancsfájl</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Rendszerfájl</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Objektum kódja</value></data>
+  <data name="Explorer.Type.Data"><value>Adatfájl</value></data>
+  <data name="Explorer.Type.Configuration"><value>Beállítófájl</value></data>
+  <data name="Explorer.Type.Library"><value>Könyvtár</value></data>
+  <data name="Explorer.Type.Media"><value>Médiafájl</value></data>
+  <data name="Explorer.Type.Font"><value>Betűtípus</value></data>
+  <data name="Explorer.Execution"><value>Végrehajtás</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Az indító végrehajtható fájl</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Elefántolt végrehajtható fájl</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Parancs- vagy parancsfájl</value></data>
+  <data name="Explorer.Category"><value>Kategória</value></data>
+  <data name="Explorer.ContentFormat"><value>Tartalom formátuma</value></data>
+  <data name="Explorer.TextEncoding"><value>Szövegkódolás</value></data>
+  <data name="Explorer.Preview"><value>Előnézet</value></data>
+  <data name="Explorer.Category.File"><value>Fájl</value></data>
+  <data name="Explorer.Category.Text"><value>Szöveg</value></data>
+  <data name="Explorer.Category.Document"><value>Dokumentum</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Forráskód</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Indítóprogram</value></data>
+  <data name="Explorer.Category.Program"><value>Program</value></data>
+  <data name="Explorer.Category.Executable"><value>Végrehajtható</value></data>
+  <data name="Explorer.Category.Command"><value>Parancsolás</value></data>
+  <data name="Explorer.Category.System"><value>Rendszer</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Objektum kódja</value></data>
+  <data name="Explorer.Category.Data"><value>Adatok</value></data>
+  <data name="Explorer.Category.Configuration"><value>Beállítás</value></data>
+  <data name="Explorer.Category.Library"><value>Könyvtár</value></data>
+  <data name="Explorer.Category.Image"><value>Képek</value></data>
+  <data name="Explorer.Category.Audio"><value>Hang</value></data>
+  <data name="Explorer.Category.Media"><value>Média</value></data>
+  <data name="Explorer.Category.Archive"><value>Archívum</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Lemezkép</value></data>
+  <data name="Explorer.Category.Link"><value>Kapcsolat</value></data>
+  <data name="Explorer.Category.Font"><value>Betűtípus</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Ismeretlen</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Egyszerű szöveg</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC program</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>A nemzeti végrehajtható</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Parancs- vagy parancsfájl</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Objektum kódja</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>Rendszerbináris</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Strukturált adatok</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Beállítás</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Könyvtár</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Képek</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Hang</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Archívum</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Lemezkép</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Betűtípus</value></data>
+  <data name="Explorer.Preview.None"><value>Nincs</value></data>
+  <data name="Explorer.Preview.Text"><value>Szöveg</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC felsorolás</value></data>
+  <data name="Explorer.Preview.Image"><value>Képek</value></data>
+  <data name="Explorer.Preview.Audio"><value>Hang</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimális</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Külső alkalmazás</value></data>
+  <data name="Explorer.Cassette"><value>Kazetta</value></data>
+  <data name="Explorer.InternalName"><value>Belső leírás</value></data>
+  <data name="Explorer.BaudRates"><value>Sebességek</value></data>
+  <data name="Explorer.Chunks"><value>Blokkok</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK-blokkok</value></data>
+  <data name="Explorer.Records"><value>Rekordok</value></data>
+  <data name="Explorer.FullRecords"><value>Teljesek</value></data>
+  <data name="Explorer.PartialRecords"><value>Részlegesek</value></data>
+  <data name="Explorer.EndRecord"><value>Vége</value></data>
+  <data name="Explorer.ChunkType"><value>Típus</value></data>
+  <data name="Explorer.BaudRate"><value>Sebesség</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Késleltetés</value></data>
 </root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Touche {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Clé d&apos;accueil</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Deux touches Amiga utilisent la même PC clé. Résolvez les mappages rouges avant de les enregistrer.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Transmettre directement le clavier physique</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Raccourcis réservés</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Les raccourcis de GW GUI et de Windows restent actifs et ne sont pas capturés par la machine.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Touche de la machine</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Les lettres, les chiffres et les modificateurs ordinaires sont transmis directement. Seules les touches de fonction et les touches spéciales de l’Amiga doivent être associées ici.</value></data>
+</root>

@@ -1,229 +1,469 @@
 # Extension aux disques durs, supports optiques, cassettes et bandes
 
 Cette feuille commence seulement lorsque toutes les cases de
-[`media-format-orchestration.md`](media-format-orchestration.md) sont cochées. Elle réutilise le
-`MediaImageDocument`, les registres et les représentations communes obtenus pendant ce premier
-chantier. Les tâches sont exécutées et cochées une par une, dans l’ordre.
+[`media-visualization.md`](media-visualization.md) sont cochées et que le deuxième commit demandé a
+été créé. Elle réutilise le `MediaImageDocument`, les registres, les représentations communes et les
+vues obtenus pendant les deux premiers chantiers. Les tâches sont exécutées et cochées une par une,
+dans l’ordre.
 
-- [ ] 1. Définir les formats réellement pris en charge avant leur implémentation
-  - [ ] 1.1 Inventorier les images de disques durs
-    - [ ] Créer `docs/reference/hard-disk-image-formats.md` avec RAW/IMG, VHD, VHDX, VDI, VMDK, QCOW2 et CHD, leurs signatures, fichiers associés, adressages, partitions, allocations, compression, parents, capacités de lecture et capacités d’écriture réellement envisageables.
-    - [ ] Modifier `docs/tasks/media-exploration.md` après cet inventaire pour ajouter une action distincte avec chemin exact pour chaque Reader, Writer et convertisseur HDD retenu au-delà du premier format RAW.
-  - [ ] 1.2 Inventorier les images optiques
-    - [ ] Créer `docs/reference/optical-image-formats.md` avec ISO, BIN/CUE, CCD/IMG/SUB, MDF/MDS et CHD, leurs signatures, fichiers associés, secteurs, sous-canaux, pistes audio ou données, sessions, couches, faces, capacités de lecture et capacités d’écriture réellement envisageables.
-    - [ ] Modifier `docs/tasks/media-exploration.md` après cet inventaire pour ajouter une action distincte avec chemin exact pour chaque Reader, Writer et convertisseur optique retenu au-delà d’ISO et BIN/CUE.
-  - [ ] 1.3 Inventorier les images de cassettes et bandes
-    - [ ] Créer `docs/reference/tape-image-formats.md` avec WAV et les formats structurés retenus, leurs signatures, échantillons, impulsions, blocs, fichiers, silences, faces, pistes, canaux, sens de lecture, capacités de lecture et capacités d’écriture réellement envisageables.
-    - [ ] Modifier `docs/tasks/media-exploration.md` après cet inventaire pour ajouter une action distincte avec chemin exact pour chaque Reader, Writer, décodeur et encodeur de cassette ou bande retenu au-delà de WAV.
+- [x] 1. Définir les formats réellement pris en charge avant leur implémentation
+  - [x] 1.1 Inventorier les images de disques durs
+    - [x] Créer `docs/reference/hard-disk-image-formats.md` avec RAW/IMG, VHD, VHDX, VDI, VMDK, QCOW2 et CHD, leurs signatures, fichiers associés, adressages, partitions, allocations, compression, parents, capacités de lecture et capacités d’écriture réellement envisageables.
+    - [x] Modifier `docs/tasks/media-exploration.md` après cet inventaire pour ajouter une action distincte avec chemin exact pour chaque Reader, Writer et convertisseur HDD retenu au-delà du premier format RAW.
+  - [x] 1.2 Inventorier les images optiques
+    - [x] Créer `docs/reference/optical-image-formats.md` avec ISO, BIN/CUE, CCD/IMG/SUB, MDF/MDS et CHD, leurs signatures, fichiers associés, secteurs, sous-canaux, pistes audio ou données, sessions, couches, faces, capacités de lecture et capacités d’écriture réellement envisageables.
+    - [x] Modifier `docs/tasks/media-exploration.md` après cet inventaire pour ajouter une action distincte avec chemin exact pour chaque Reader, Writer et convertisseur optique retenu au-delà d’ISO et BIN/CUE.
+  - [x] 1.3 Inventorier les images de cassettes et bandes
+    - [x] Créer `docs/reference/tape-image-formats.md` avec WAV et les formats structurés retenus, leurs signatures, échantillons, impulsions, blocs, fichiers, silences, faces, pistes, canaux, sens de lecture, capacités de lecture et capacités d’écriture réellement envisageables.
+    - [x] Modifier `docs/tasks/media-exploration.md` après cet inventaire pour ajouter une action distincte avec chemin exact pour chaque Reader, Writer, décodeur et encodeur de cassette ou bande retenu au-delà de WAV.
 
-- [ ] 2. Ajouter les images de disques durs
-  - [ ] 2.1 Lire une première image HDD brute
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskFormat.cs` avec les extensions, contraintes de taille et capacités déclarées sans identifier une image `.img` par sa seule extension.
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskReader.cs` pour produire un `MediaImageDocument` contenant une représentation Blocks avec adresses 64 bits et géométrie CHS uniquement lorsqu’elle est fournie ou confirmée.
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskWriter.cs` pour écrire une représentation Blocks brute lorsque toutes les plages nécessaires sont disponibles.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `RawHardDiskReader` après les Readers de disquettes pouvant employer l’extension `.img`.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `RawHardDiskWriter` avec ses capacités exactes.
-  - [ ] 2.2 Détecter les partitions et volumes HDD
-    - [ ] Créer `src/GWGUI.MediaEngine/Exploration/Partitioning/MbrVolumeDetector.cs` avec partitions primaires, chaîne EBR, limites 64 bits, boucles, chevauchements et entrées invalides retournées comme diagnostics.
-    - [ ] Créer `src/GWGUI.MediaEngine/Exploration/Partitioning/GptVolumeDetector.cs` avec en-têtes principal et secondaire, CRC, GUID, plages utilisables et noms de partitions.
-    - [ ] Créer `src/GWGUI.MediaEngine/Exploration/MediaVolumeDetectorRegistry.cs` pour sélectionner les détecteurs de volumes compatibles sans dépendre du Visualiseur.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` pour enregistrer volume direct, MBR/EBR et GPT dans `MediaVolumeDetectorRegistry`.
-  - [ ] 2.3 Visualiser un disque dur
-    - [ ] Créer `src/GWGUI.MediaEngine/Visualization/Blocks/BlockVisualizationProvider.cs` pour produire les plages LBA, partitions, volumes et zones connues à partir de la représentation Blocks.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaVisualizationComposition.cs` pour enregistrer `BlockVisualizationProvider`.
-  - [ ] 2.4 Explorer les fichiers d’un disque dur
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml` pour présenter la liste des partitions et volumes avant leur arborescence.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` pour charger à la demande le volume HDD sélectionné depuis `ExploredMediaImage`.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerDetailsPanel.xaml.cs` pour afficher les informations de partition, de volume et d’espace disponibles.
+- [x] 2. Ajouter les images de disques durs
+  - [x] 2.1 Compléter la fondation Blocks avant les Readers HDD
+    - [x] Modifier `docs/reference/hard-disk-image-formats.md` pour supprimer les mentions erronées de Writers ou constructeurs déjà présents et décrire chaque Writer retenu comme une nouvelle implémentation.
+    - [x] Modifier `docs/tasks/media-exploration.md` pour aligner les variantes HDD à implémenter sur l’inventaire corrigé : VHD/VHDX autonomes, VMDK monolithiques, QCOW2 autonome et CHD non compressé, sans dépendre de constructeurs inexistants.
+    - [x] Créer `src/GWGUI.MediaEngine/Interfaces/IMediaRandomAccessData.cs` avec une lecture asynchrone bornée par adresse 64 bits, sans dépendance à un format de conteneur.
+    - [x] Créer `src/GWGUI.MediaEngine/Enums/MediaDataRangeKind.cs` avec les états anglais `Stored`, `Zero`, `Unallocated` et `Unavailable` réutilisables par les conteneurs adressables.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/MediaDataRange.cs` avec adresse logique, longueur, état d’allocation, source et adresse source bornées nécessaires aux représentations adressables.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/HardDiskGeometry.cs` avec cylindres, têtes, secteurs par piste et taille de secteur facultatifs, validés et adressés en 64 bits.
+    - [x] Modifier `src/GWGUI.MediaEngine/Representations/Blocks/BlockMediaImageRepresentation.cs` pour exposer taille de bloc logique, capacité, plages typées, géométrie facultative et accès aux données sans tuples limités au rendu.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/BlockMediaVisualizationProvider.cs` pour consommer les nouvelles plages sans lire ni interpréter le conteneur HDD.
+    - [x] Créer `src/GWGUI.MediaEngine/Reading/Sources/FileRandomAccessData.cs` pour implémenter les lectures bornées d’un fichier sans charger les grandes images HDD en mémoire.
+  - [x] 2.2 Lire une première image HDD brute
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/HardDiskImageFormatIds.cs` avec les identifiants invariants RAW, VHD, VHDX, VDI, VMDK, QCOW2 et CHD HDD.
+    - [x] Créer `src/GWGUI.MediaEngine/Enums/HardDiskImageVariant.cs` avec les variantes anglaises `Raw`, `Fixed`, `Dynamic`, `Differencing`, `Sparse` et `StreamOptimized` partagées par les formats HDD.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` avec les extensions HDD réutilisées par les Readers et Writers, sans dupliquer les extensions génériques déjà présentes.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/HardDiskFormatConstants.cs` avec les tailles de secteur logique 512 et 4096 partagées par plusieurs formats HDD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskFormat.cs` avec les extensions, contraintes de taille et capacités déclarées sans identifier une image `.img` par sa seule extension.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskReader.cs` pour produire un `MediaImageDocument` contenant une représentation Blocks avec adresses 64 bits et géométrie CHS uniquement lorsqu’elle est fournie ou confirmée.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer RAW HDD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Raw/RawHardDiskWriter.cs` pour écrire une représentation Blocks brute lorsque toutes les plages nécessaires sont disponibles.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `RawHardDiskReader` après les Readers de disquettes pouvant employer l’extension `.img`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `RawHardDiskWriter` avec ses capacités exactes.
+  - [x] 2.3 Lire et écrire VHD
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/HardDiskFormatConstants.cs` avec les signatures, tailles et valeurs VHD utilisées par son Reader et son Writer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer VHD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdFormat.cs` avec la signature `conectix` et les capacités autonomes fixe ou dynamique retenues.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdReader.cs` pour exposer les secteurs logiques des variantes fixe et dynamique après validation de leurs pieds, en-têtes, BAT et bitmaps, et refuser explicitement une image différentielle tant qu’aucun résolveur de parents n’existe.
+    - [x] Créer `src/GWGUI.MediaEngine/Reading/Blocks/BlockMediaDataReader.cs` pour lire une plage logique continue à travers les segments `Stored`, `Zero` et `Unallocated`, et refuser les trous ou données `Unavailable`, afin que les Writers de disques durs partagent le même traitement.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhd/VhdWriter.cs` pour produire les nouvelles variantes fixe et dynamique autonomes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `VhdReader` par signature.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `VhdWriter` avec ses variantes réellement inscriptibles.
+  - [x] 2.4 Lire et écrire VHDX
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/HardDiskFormatConstants.cs` avec les alignements, tailles, états BAT et GUID VHDX utilisés par son Reader et son Writer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer VHDX.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxFormat.cs` avec la signature `vhdxfile`, les secteurs logiques 512 ou 4096 et les capacités autonomes fixe ou dynamique retenues.
+    - [x] Créer `src/GWGUI.MediaEngine/Functions/Crc32CFunctions.cs` avec le calcul CRC32C réutilisable requis pour valider et écrire les structures VHDX.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxReader.cs` pour valider en-têtes, CRC32C, journal propre, régions, BAT et métadonnées avant d’exposer les blocs, et refuser explicitement une image différentielle.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vhdx/VhdxWriter.cs` pour produire les nouvelles variantes fixe et dynamique autonomes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `VhdxReader` par signature.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `VhdxWriter` avec ses tailles de secteurs réellement inscriptibles.
+  - [x] 2.5 Lire et écrire VDI
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/HardDiskFormatConstants.cs` avec la version, les types, la taille de bloc et les marqueurs de table VDI utilisés par son Reader et son Writer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer VDI.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiFormat.cs` avec la signature `0xBEDA107F`, les versions reconnues et les capacités fixe ou dynamique autonomes.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiReader.cs` pour valider le pré-en-tête, la table de blocs, les offsets, la capacité et les UUID avant d’exposer les plages.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vdi/VdiWriter.cs` pour produire les nouvelles variantes fixe et dynamique autonomes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `VdiReader` par signature.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `VdiWriter` avec ses variantes réellement inscriptibles.
+  - [x] 2.6 Lire et écrire VMDK
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/HardDiskFormatConstants.cs` avec la signature, la version, les tailles de grain et les marqueurs VMDK utilisés par son Reader et son Writer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer VMDK.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkFormat.cs` avec les signatures du descripteur et des extents, les fichiers associés et les capacités des variantes retenues.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkReader.cs` pour réunir un descripteur et son extent FLAT ou SPARSE monolithique dans un seul document logique, et refuser explicitement streamOptimized, split, VMFS et les parents non encore pris en charge.
+    - [x] Créer `src/GWGUI.MediaEngine/Writing/AtomicMediaFileSetWriter.cs` pour préparer tous les fichiers d’un format multifichier dans le dossier cible, puis les publier ensemble avec restauration des destinations précédentes si une publication échoue.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Vmdk/VmdkWriter.cs` pour produire les nouveaux ensembles autonomes monolithicFlat et monolithicSparse seulement.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `VmdkReader` par signature et ensemble de fichiers associés.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `VmdkWriter` seulement pour monolithicFlat et monolithicSparse.
+  - [x] 2.7 Lire et écrire QCOW2
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/HardDiskFormatConstants.cs` avec les versions, bits de fonctions, masques de clusters et paramètres de refcount QCOW2 utilisés par son Reader et son Writer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer QCOW2.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Format.cs` avec la signature `QFI\xFB`, les versions 2 et 3 et les bits de fonctions compris.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Reader.cs` pour valider en-tête, tables L1/L2, clusters et refcounts du profil autonome non chiffré avant d’exposer les plages.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Qcow2/Qcow2Writer.cs` pour produire les profils V2/V3 autonomes, sans compression ni parent, avec clusters et refcounts pris en charge.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `Qcow2Reader` par signature et refuser les fonctions incompatibles inconnues.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `Qcow2Writer` avec ses capacités exactes.
+  - [x] 2.8 Lire et écrire CHD HDD
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/HardDiskFormatConstants.cs` avec la signature, la taille d'en-tête, la carte non compressée et les métadonnées V5 partagées par le Reader et le Writer CHD HDD.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l'identifiant invariant du Writer CHD HDD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskFormat.cs` avec la signature `MComprHD`, la version V5 et l’exigence d’une métadonnée de média HDD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskReader.cs` pour lire le profil V5 autonome non compressé, ses hunks, unités et métadonnées `GDDD`.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/HardDisk/Chd/ChdHardDiskWriter.cs` pour produire le profil V5 HDD autonome non compressé avec géométrie explicite.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `ChdHardDiskReader` uniquement lorsque les métadonnées classent le CHD comme HDD.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `ChdHardDiskWriter` avec son profil réellement inscriptible.
+  - [x] 2.9 Détecter les partitions et volumes HDD
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/PartitionSchemeIds.cs` avec les identifiants invariants des schémas MBR, GPT et volume direct.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaVolumeOrigins.cs` avec les origines invariantes de partition et de volume direct.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/MediaVolumeDescriptor.cs` pour exposer le type, l'identifiant et le nom de partition réellement lus sans les interpréter dans l'application.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/MediaVolumeDetectionResult.cs` avec les volumes détectés et leurs diagnostics communs.
+    - [x] Créer `src/GWGUI.MediaEngine/Interfaces/Exploration/IMediaVolumeDetector.cs` avec la détection asynchrone d'un document Blocks sans dépendance au Visualiseur.
+    - [x] Créer `src/GWGUI.MediaEngine/Functions/Crc32Functions.cs` avec le CRC-32 standard réutilisable pour les structures GPT.
+    - [x] Créer `src/GWGUI.MediaEngine/Exploration/Partitioning/MbrVolumeDetector.cs` avec partitions primaires, chaîne EBR, limites 64 bits, boucles, chevauchements et entrées invalides retournées comme diagnostics.
+    - [x] Créer `src/GWGUI.MediaEngine/Exploration/Partitioning/GptVolumeDetector.cs` avec en-têtes principal et secondaire, CRC, GUID, plages utilisables et noms de partitions.
+    - [x] Créer `src/GWGUI.MediaEngine/Exploration/Partitioning/WholeMediaVolumeDetector.cs` pour fournir un volume direct seulement lorsqu'aucun schéma de partitions ne correspond.
+    - [x] Créer `src/GWGUI.MediaEngine/Exploration/MediaVolumeDetectorRegistry.cs` pour sélectionner les détecteurs de volumes compatibles sans dépendre du Visualiseur.
+    - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaExplorer.cs` pour demander les volumes au registre avant l'exploration des systèmes de fichiers et conserver une API synchrone de compatibilité.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour attendre la détection asynchrone des volumes sans bloquer le thread de l'interface.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` pour enregistrer volume direct, MBR/EBR et GPT dans `MediaVolumeDetectorRegistry`.
+    - [x] 2.10 Visualiser un disque dur
+      - [x] Modifier `src/GWGUI.MediaEngine/Exploration/MediaExplorer.cs` pour retourner le document enrichi avec les volumes détectés afin qu'ils soient réutilisables par le Visualiseur et l'Explorateur.
+      - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour détecter les volumes avant de préparer le rendu Blocks et utiliser le document enrichi.
+      - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/BlockMediaVisualizationProvider.cs` pour découper la progression aux limites des plages LBA et des volumes sans créer un second fournisseur Blocks.
+      - [x] Modifier `src/GWGUI.App/Presenters/Visualization/BlockMediaInspectorPresenter.cs` pour représenter séparément les partitions connues, conserver les zones sans partition comme disponibles et transmettre la géométrie CHS au rendu.
+    - [x] 2.11 Explorer les fichiers d’un disque dur
+      - [x] Créer `src/GWGUI.App/ViewModels/Explorer/ExplorerMediaVolumeChoice.cs` avec le volume exploré et son libellé de partition ou de volume.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml` pour présenter la liste des partitions et volumes avant leur arborescence.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` pour charger à la demande le volume HDD sélectionné depuis `ExploredMediaImage`.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerDetailsPanel.xaml` pour prévoir les lignes nécessaires aux informations de partition en plus des informations de volume existantes.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerDetailsPanel.xaml.cs` pour alimenter toutes les lignes déclarées par le panneau de détails.
+      - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` pour afficher les informations disponibles de partition, de volume et d’espace sans déplacer cette logique dans la vue.
 
-- [ ] 3. Ajouter les images de CD, DVD et autres supports optiques
-  - [ ] 3.1 Lire ISO et BIN/CUE
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoFormat.cs` avec la structure monofichier et les capacités réellement prises en charge.
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoReader.cs` pour produire une représentation OpticalTracks sans confondre ISO 9660 avec l’encodage de disquette ISO FM ou MFM.
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoWriter.cs` seulement avec les variantes d’écriture validées dans `docs/reference/optical-image-formats.md`.
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/CueSheetReader.cs` pour lire les fichiers référencés, pistes, index, modes et pregaps.
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs` pour réunir le descripteur CUE et ses fichiers BIN dans un seul `MediaImageDocument`.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `IsoReader` et `BinCueReader` avec leurs signatures et fichiers associés.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `IsoWriter` uniquement si son implémentation a été conservée après l’inventaire.
-  - [ ] 3.2 Explorer ISO 9660 et UDF
-    - [ ] Créer `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` pour produire l’arborescence commune depuis un volume optique compatible.
-    - [ ] Créer `src/GWGUI.MediaEngine/FileSystems/Iso9660/JolietExtensionReader.cs` pour appliquer les noms Joliet réellement présents.
-    - [ ] Créer `src/GWGUI.MediaEngine/FileSystems/Iso9660/RockRidgeExtensionReader.cs` pour appliquer les informations Rock Ridge réellement présentes.
-    - [ ] Créer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` avec les versions UDF explicitement retenues dans `docs/reference/optical-image-formats.md`.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` pour enregistrer les Readers ISO 9660, Joliet, Rock Ridge et UDF.
-  - [ ] 3.3 Visualiser la structure optique
-    - [ ] Créer `src/GWGUI.MediaEngine/Visualization/Optical/OpticalVisualizationProvider.cs` pour produire sessions, pistes, secteurs, couches et faces uniquement lorsqu’ils sont décrits par le document.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaVisualizationComposition.cs` pour enregistrer `OpticalVisualizationProvider`.
-  - [ ] 3.4 Explorer sessions, volumes et pistes
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml` pour présenter les sessions et volumes optiques avant leurs arborescences.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` pour parcourir le volume sélectionné et présenter séparément les pistes audio.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerDetailsPanel.xaml.cs` pour afficher les informations de session, piste, couche et système de fichiers sans créer de fichiers fictifs.
+- [x] 3. Ajouter les images de CD, DVD et autres supports optiques
+  - [x] 3.1 Lire ISO et BIN/CUE
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/OpticalImageFormatIds.cs` avec les identifiants invariants ISO, BIN/CUE, CloneCD, Alcohol MDS et CHD optique.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` avec les extensions optiques réutilisées sans dupliquer les extensions génériques présentes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec les identifiants invariants des Writers ISO et BIN/CUE.
+    - [x] Créer `src/GWGUI.MediaEngine/Enums/OpticalTrackMode.cs` avec les modes audio et données compris par les Readers et Writers retenus.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/OpticalTrackIndex.cs` avec le numéro d'index et sa position sectorielle signée dans la piste.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/OpticalTrackDescriptor.cs` avec session, piste, mode, secteurs, données utilisateur, source, index, pregap, postgap, drapeaux, catalogue, ISRC et sous-canaux réellement disponibles.
+    - [x] Créer `src/GWGUI.MediaEngine/Reading/Sources/UnavailableRandomAccessData.cs` pour préserver les anciens descripteurs optiques limités aux métadonnées sans fabriquer de contenu lisible.
+    - [x] Modifier `src/GWGUI.MediaEngine/Representations/Optical/OpticalMediaImageRepresentation.cs` pour porter les descripteurs de pistes typés et conserver son constructeur de compatibilité.
+    - [x] Créer `src/GWGUI.MediaEngine/Reading/Optical/OpticalSectorReader.cs` pour lire les données stockées ou utilisateur d'une piste sans connaître le format du conteneur.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoFormat.cs` avec la structure monofichier et les capacités réellement prises en charge.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoReader.cs` pour produire une représentation OpticalTracks sans confondre ISO 9660 avec l’encodage de disquette ISO FM ou MFM.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoWriter.cs` seulement avec les variantes d’écriture validées dans `docs/reference/optical-image-formats.md`.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Contracts/OpticalTrackIndex.cs` vers `src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackIndex.cs` afin de regrouper les contrats optiques devenus nombreux.
+    - [x] Déplacer `src/GWGUI.MediaEngine/Contracts/OpticalTrackDescriptor.cs` vers `src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackDescriptor.cs` sans changer son contrat public.
+    - [x] Créer `src/GWGUI.MediaEngine/Enums/CueFileKind.cs` avec les types de fichiers CUE binaires et WAVE PCM distingués sans accepter les formats audio compressés.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/CueTrackDeclaration.cs` avec le numéro, le mode, les index, pregap, postgap, drapeaux et ISRC lus dans le CUE.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/CueFileDescriptor.cs` avec le chemin déclaré, son type et ses pistes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Optical/CueTrackDeclaration.cs` pour conserver les métadonnées textuelles comprises au niveau de chaque piste.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/CueSheetDocument.cs` avec les fichiers, le catalogue et les métadonnées CUE comprises.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/CueSheetConstants.cs` avec les commandes, types, modes et unités invariants compris par le Reader et le Writer CUE.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/CueSheetReader.cs` pour lire les fichiers référencés, pistes, index, modes et pregaps.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueFormat.cs` avec le descripteur CUE, les fichiers BIN associés et les capacités réellement prises en charge.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/OpticalSectorConstants.cs` avec les tailles et décalages invariants des modes de secteurs optiques pris en charge.
+    - [x] Modifier `src/GWGUI.MediaEngine/Formats/Optical/Iso/IsoFormat.cs` pour utiliser la taille sectorielle optique commune sans la dupliquer.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs` pour réunir le descripteur CUE et ses fichiers BIN dans un seul `MediaImageDocument`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/CueSheetConstants.cs` avec l'indentation et l'encodage employés par le Writer CUE.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/CueSheetWriter.cs` pour écrire les commandes CUE comprises sans perdre les pistes, index, pregaps, catalogues ou ISRC disponibles.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackDescriptor.cs` pour distinguer un pregap généré des secteurs de pregap réellement stockés et accessibles dans la source.
+    - [x] Modifier `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueReader.cs` pour fournir séparément la position et la longueur des pregaps stockés.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/BinCue/BinCueWriter.cs` pour écrire tous les fichiers de pistes, puis publier le CUE seulement lorsque l’ensemble est complet.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `IsoReader` et `BinCueReader` avec leurs signatures et fichiers associés.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `IsoWriter` et `BinCueWriter` avec les pertes qu’ils refusent conformément à `docs/reference/optical-image-formats.md`.
+  - [x] 3.2 Lire CCD/IMG/SUB sans fabriquer les sous-canaux absents
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/CloneCdConstants.cs` avec la section, les clés, versions et tailles invariantes nécessaires au Reader CloneCD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdFormat.cs` avec la section `[CloneCD]`, les versions 2 et 3, les fichiers IMG obligatoire et SUB facultatif ainsi que les capacités de lecture retenues.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/CloneCdConstants.cs` avec les clés des sections TRACK et INDEX validées dans la documentation GNU ccd2cue.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/CloneCdTocEntry.cs` avec les champs numériques compris d'une entrée de table des matières CCD.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/CloneCdDescriptor.cs` avec la version, les sessions, le catalogue, la TOC et les déclarations de pistes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/CloneCdConstants.cs` avec le préfixe distinct des sections `[TRACK n]` utilisé par le Reader CCD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdDescriptorReader.cs` pour lire les sections disque, sessions et entrées de TOC du fichier CCD.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/CloneCd/CloneCdReader.cs` pour réunir CCD, secteurs IMG de 2352 octets et enregistrements SUB de 96 octets dans un seul `MediaImageDocument`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `CloneCdReader` par descripteur et vérifier ses fichiers associés avant de le sélectionner.
+  - [x] 3.3 Lire MDF/MDS sans promettre une réécriture incomplète
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/AlcoholMdsConstants.cs` avec la disposition binaire MDS validée depuis le Reader de référence.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsFormat.cs` avec la signature `MEDIA DESCRIPTOR`, les versions comprises, les fichiers MDF associés et les capacités de lecture retenues.
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/Optical/OpticalTrackDescriptor.cs` pour décrire le pas de sous-canaux séparés ou entrelacés sans supposer des enregistrements contigus.
+    - [x] Modifier `src/GWGUI.MediaEngine/Reading/Optical/OpticalSectorReader.cs` pour employer ce pas lors de la lecture d'un sous-canal.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/AlcoholMdsConstants.cs` avec les positions MSF et les valeurs de modes nécessaires au calcul strict des pistes MDS.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/AlcoholMdsTrackBlock.cs` avec les champs validés d'un bloc de piste MDS.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/AlcoholMdsSessionBlock.cs` avec les limites, numéros et pistes d'une session MDS.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/Alcohol/AlcoholMdsReader.cs` pour valider les offsets et produire les sessions, pistes, modes de secteurs, sous-canaux et couches réellement décrits.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `AlcoholMdsReader` par signature et ensemble de fichiers associés.
+  - [x] 3.4 Lire les CHD optiques en les distinguant des CHD HDD
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/ChdConstants.cs` avec la signature, l’en-tête V5, la carte, les codecs et les métadonnées communes aux CHD HDD et optiques, puis retirer ces constantes communes de `HardDiskFormatConstants.cs` et adapter les trois fichiers `Formats/HardDisk/Chd/*.cs`.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/Chd/ChdOpticalFormat.cs` avec la signature `MComprHD`, le profil V5 et les métadonnées `CHTR`, `CHT2` ou `DVD ` qui classent le média.
+    - [x] Créer `src/GWGUI.MediaEngine/Reading/Sources/ChdUncompressedRandomAccessData.cs` pour exposer les octets logiques d’un CHD V5 autonome non compressé à travers sa carte de hunks, sans supposer que les hunks sont contigus dans le fichier.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/ChdConstants.cs` avec la taille d’un frame CD CHD, l’alignement des pistes et les formes de métadonnées `CHTR` et `CHT2` nécessaires au Reader optique.
+    - [x] Modifier `src/GWGUI.MediaEngine/Enums/OpticalTrackMode.cs` et `src/GWGUI.MediaEngine/Constants/OpticalSectorConstants.cs` avec les modes Mode 2 Form 1, Form 2 et mixte réellement déclarables par une métadonnée CHD.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/Optical/ChdOpticalTrackMetadata.cs` avec les informations de piste validées issues de `CHTR` ou `CHT2`, sans exposer la syntaxe texte au reste du moteur.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Optical/Chd/ChdOpticalReader.cs` pour lire les hunks et métadonnées optiques du profil V5 autonome non compressé retenu, valider les codecs déclarés et refuser explicitement les codecs compressés ou un parent manquant.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `ChdOpticalReader` après classification par métadonnées et sans intercepter les CHD HDD.
+  - [x] 3.5 Orchestrer les conversions optiques avec les Writers réellement disponibles
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/MediaConversionDestination.cs` avec l’identifiant de format, l’extension, l’identifiant du Writer et l’indication multifichier fournis par le registre, sans dépendance à l’interface graphique.
+    - [x] Créer `src/GWGUI.MediaEngine/Conversion/Optical/OpticalImageConversionService.cs` pour sélectionner le Reader et le Writer enregistrés, comparer leurs capacités et refuser avant écriture toute perte de piste, secteur, session, couche ou sous-canal.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` pour enregistrer les conversions vers ISO ou BIN/CUE permises par les capacités du document source.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` pour exposer le service de conversion optique assemblé avec les registres de lecture et d’écriture communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/MediaConversionService.cs` pour exposer les destinations que les Writers enregistrés acceptent réellement pour un document déjà lu.
+    - [x] Créer `src/GWGUI.Domain/Formats/RuntimeImageFormatCatalog.cs` pour combiner le catalogue existant avec des formats fournis à l’exécution, sans dupliquer un identifiant déjà connu.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` pour présenter les destinations optiques fournies par MediaEngine sans interpréter leurs formats dans l’application.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs` pour autoriser une destination fournie directement par un Writer MediaEngine même si elle n’existe pas dans l’ancienne matrice de parité des disquettes.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` pour accepter à l’aperçu et à l’exécution les destinations internes réellement fournies par MediaEngine, sans les limiter à l’ancienne matrice de parité.
+  - [x] 3.6 Explorer ISO 9660 et UDF
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/FileSystemRegistry.cs` pour enregistrer ensemble les Readers sectoriels existants et de nouveaux `IMediaFileSystemReader` optiques, tout en conservant les API sectorielles actuelles.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/Iso9660Constants.cs` et modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` avec les positions, signatures et identifiants invariants communs à ISO 9660, Joliet et Rock Ridge.
+    - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` pour produire l’arborescence commune depuis un volume optique compatible.
+    - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Iso9660/JolietExtensionReader.cs` pour appliquer les noms Joliet réellement présents.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/Iso9660Constants.cs` avec les positions, signatures et indicateurs SUSP/Rock Ridge nécessaires au décodage des noms alternatifs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/Iso9660Constants.cs` pour exposer les octets invariants de la signature Rock Ridge sans dupliquer de valeur dans le Reader.
+    - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Iso9660/RockRidgeExtensionReader.cs` pour appliquer les informations Rock Ridge réellement présentes.
+    - [x] Modifier `docs/reference/optical-image-formats.md` pour fixer les révisions et les structures UDF acceptées par le premier Reader sans annoncer les cartes de partitions non prises en charge.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/UdfConstants.cs` avec les identifiants, positions, tailles et limites UDF communs nécessaires au Reader.
+    - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfDescriptorValidator.cs` pour valider les tags, emplacements, sommes de contrôle et CRC des descripteurs UDF.
+    - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfNameDecoder.cs` pour décoder les chaînes CS0 et d-string sans placer cette logique dans l’orchestrateur.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Udf/UdfDescriptorValidator.cs` pour valider les descripteurs imbriqués dont l’emplacement logique dépend de leur extent sans désactiver les contrôles de somme et de CRC.
+    - [x] Créer `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` avec les versions UDF explicitement retenues dans `docs/reference/optical-image-formats.md`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/Iso9660Constants.cs` avec les signatures SUSP qui prouvent réellement la présence de Rock Ridge.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` pour permettre à une extension de confirmer son système de fichiers après lecture du descripteur primaire.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/RockRidgeExtensionReader.cs` pour ne reconnaître un volume que lorsque ses entrées SUSP prouvent la présence de Rock Ridge.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` pour enregistrer les Readers ISO 9660, Joliet, Rock Ridge et UDF.
+  - [x] 3.7 Alimenter le visualiseur optique déjà créé
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/MediaVisualizationElement.cs` pour porter les numéros de session, piste et couche réellement connus avec l’étendue de secteurs existante.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/MediaVisualizationDescriptor.cs` pour exposer les couches connues et accepter qu’aucune face ne soit déclarée par le format.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/OpticalMediaVisualizationProvider.cs` pour exposer les sessions, pistes, secteurs, couches et faces fournies par les nouveaux Readers sans créer de valeur absente.
+  - [x] 3.8 Explorer sessions, volumes et pistes
+    - [x] Modifier `src/GWGUI.MediaEngine/Contracts/MediaVolumeDescriptor.cs` pour associer un volume optique à son numéro de piste lorsque le conteneur le fournit.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaVolumeOrigins.cs` pour déclarer l’origine technique commune des volumes issus d’une piste optique.
+    - [x] Créer `src/GWGUI.MediaEngine/Exploration/Partitioning/OpticalTrackVolumeDetector.cs` pour produire un volume par piste de données avec sa session, sa piste et son étendue réelle, sans transformer les pistes audio en volumes de fichiers.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Iso9660/Iso9660FileSystemReader.cs` pour sélectionner la piste exacte portée par le descripteur de volume.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Udf/UdfFileSystemReader.cs` pour sélectionner la piste exacte portée par le descripteur de volume.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` pour exécuter le détecteur de pistes optiques avant les détecteurs de partitions et le volume direct de secours.
+    - [x] Créer `src/GWGUI.App/ViewModels/Explorer/ExplorerOpticalMediaChoices.cs` avec les choix d’interface propres aux sessions et pistes optiques, sans les représenter comme des fichiers.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml` pour présenter le choix de session, les volumes de données et les pistes audio dans une zone distincte avant les arborescences.
+    - [x] Modifier `src/GWGUI.App/Presenters/Explorer/ExplorerDetailsPresenter.cs` pour préparer les détails techniques d’une piste optique réelle.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerDetailsPanel.xaml.cs` pour afficher les informations de session, piste, couche et système de fichiers sans créer de fichiers fictifs.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Explorer/ExplorerSection.xaml.cs` pour filtrer les volumes par session, parcourir le volume sélectionné et présenter séparément les pistes audio.
+  - [x] 3.9 Réconcilier la hiérarchie optique terminée
+    - [x] Modifier `docs/tasks/media-exploration.md` pour supprimer les doublons de groupes 3.1, 3.2 et 3.3 et conserver une seule case cochée avant les sous-tâches de chaque groupe.
 
-- [ ] 4. Ajouter les images de cassettes et bandes
-  - [ ] 4.1 Lire une première source audio WAV
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeFormat.cs` avec les variantes PCM retenues et les capacités déclarées.
-    - [ ] Créer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeReader.cs` pour produire une représentation Sequential avec échantillons, canaux et chronologie sans inventer de blocs décodés.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `WavTapeReader` avec sa signature RIFF/WAVE.
-  - [ ] 4.2 Décoder et explorer les contenus structurés
-    - [ ] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/SequentialDecoderRegistry.cs` pour sélectionner un décodeur selon le signal et la machine demandée sans intégrer leurs algorithmes au registre.
-    - [ ] Créer `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentVolumeDetector.cs` pour transformer les programmes, fichiers et blocs reconnus en volume explorable tout en conservant les segments inconnus comme diagnostics.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` pour enregistrer `SequentialContentVolumeDetector`.
-  - [ ] 4.3 Visualiser cassette et bande
-    - [ ] Créer `src/GWGUI.MediaEngine/Visualization/Sequential/SequentialVisualizationProvider.cs` pour produire lignes, faces, pistes, canaux, segments et positions temporelles réellement disponibles.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Composition/MediaVisualizationComposition.cs` pour enregistrer `SequentialVisualizationProvider`.
+- [x] 4. Ajouter les images de cassettes et bandes
+  - [x] 4.1 Enrichir la représentation séquentielle avant d’ajouter ses formats
+    - [x] Créer `src/GWGUI.MediaEngine/Enums/SequentialSegmentKind.cs` avec les valeurs anglaises nécessaires aux échantillons, impulsions, porteuses, silences, blocs de données, enregistrements, marques de bande et segments inconnus.
+    - [x] Créer `src/GWGUI.MediaEngine/Enums/SequentialTravelDirection.cs` avec les sens anglais inconnu, avant et arrière utilisés par les bandes sans les confondre avec l’ordre de rendu.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/SequentialMediaSegment.cs` avec position, durée ou longueur, face, piste, canal, sens, type, données accessibles et métadonnées réellement connues.
+    - [x] Modifier `src/GWGUI.MediaEngine/Representations/Sequential/SequentialMediaImageRepresentation.cs` pour remplacer les tuples d’affichage par les segments communs sans charger obligatoirement tout le média en mémoire.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/SequentialMediaVisualizationProvider.cs` pour consommer `SequentialMediaSegment` sans interpréter les protocoles de cassette.
+  - [x] 4.2 Lire et écrire une source audio WAV
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/TapeImageFormatIds.cs` avec les identifiants invariants WAV, Atari CAS, TZX, Spectrum TAP, Commodore TAP, UEF, MSX CAS et SIMH TAP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` avec les extensions WAV, CAS, TZX, CDT, TSX, TAP et UEF communes aux formats séquentiels.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer WAV.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/WavConstants.cs` avec les signatures RIFF/WAVE, identifiants de chunks et tailles invariantes du profil PCM entier.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeFormat.cs` avec les variantes PCM retenues et les capacités déclarées.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeReader.cs` pour produire une représentation Sequential avec chunks, échantillons, canaux et chronologie sans inventer de blocs décodés.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Wav/WavTapeWriter.cs` pour écrire du PCM entier avec fréquence, profondeur et canaux explicites sans mixage implicite.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `WavTapeReader` avec sa signature RIFF/WAVE.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `WavTapeWriter` avec ses capacités PCM exactes.
+  - [x] 4.3 Lire et écrire Atari CAS
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/AtariCasConstants.cs` avec la signature, les identifiants de chunks, la taille d’en-tête et l’unité temporelle FSK du format CAS.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer Atari CAS.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasFormat.cs` avec la signature `FUJI` et les chunks `baud`, `data` et `fsk ` compris.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasReader.cs` pour produire dans l’ordre les débits, octets, marques et impulsions FSK sans perdre les chunks inconnus.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasWriter.cs` pour réécrire les chunks compris et recopier à l’identique les chunks inconnus conservés.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/SequentialDecodedBlock.cs` avec les octets décodés, leur provenance, leur validité et leurs métadonnées sans dépendance à un protocole de cassette.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/SequentialDecodeResult.cs` avec les blocs validés, les segments non décodés, les diagnostics et le score du décodeur.
+    - [x] Créer `src/GWGUI.MediaEngine/Interfaces/Decoding/ISequentialMediaDecoder.cs` avec l’identifiant, les formats et machines compatibles ainsi que le décodage asynchrone commun.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/AtariCasConstants.cs` avec les fréquences FSK, la trame série et les clés de métadonnées invariantes nécessaires au décodeur et à l’encodeur Atari.
+    - [x] Modifier `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasReader.cs` pour employer les clés communes Atari CAS au lieu de les dupliquer.
+    - [x] Modifier `src/GWGUI.MediaEngine/Formats/Tape/AtariCas/AtariCasWriter.cs` pour employer les clés communes Atari CAS au lieu de les dupliquer.
+    - [x] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` pour transformer les segments Atari CAS ou WAV compatibles en blocs validés avec leurs zones non décodées.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/SequentialEncodeRequest.cs` avec les blocs validés, le format cible et les paramètres explicites nécessaires à un encodeur séquentiel.
+    - [x] Créer `src/GWGUI.MediaEngine/Interfaces/Encoding/ISequentialMediaEncoder.cs` avec l’identifiant, les formats et machines compatibles ainsi que la production asynchrone d’une représentation séquentielle.
+    - [x] Créer `src/GWGUI.MediaEngine/Reading/Sources/MemoryRandomAccessData.cs` pour exposer les octets produits par un encodeur sans créer de fichier temporaire.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/AtariCasConstants.cs` avec les durées standards de la première marque et des marques suivantes employées par l’encodeur.
+    - [x] Créer `src/GWGUI.MediaEngine/Encoding/Sequential/Atari/AtariCassetteEncoder.cs` pour produire les segments standards Atari à partir de blocs validés sans remplacer les segments source inconnus.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `AtariCasReader` par signature.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `AtariCasWriter` avec ses chunks inscriptibles.
+  - [x] 4.4 Lire et écrire TZX, CDT et TSX avec un parser commun
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/TzxConstants.cs` avec l’en-tête, la version, les identifiants et les tailles invariantes des blocs TZX 1.20 retenus.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer TZX commun.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxFormat.cs` avec la signature `ZXTape!`, la version 1.20, les extensions de contexte et les identifiants de blocs retenus.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxReader.cs` pour valider longueurs, boucles, appels et sauts puis conserver dans l’ordre blocs compris et inconnus.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Tzx/TzxWriter.cs` pour réécrire les blocs compris et préserver à l’identique les blocs inconnus dont la longueur est connue.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/SequentialSignalDecodeResult.cs` pour séparer la chronologie décodée des blocs source conservés nécessaires à une réécriture sans perte.
+    - [x] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/Tzx/TzxSignalDecoder.cs` pour convertir les blocs de signal en segments temporels sans décider du système de fichiers.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/TzxConstants.cs` avec la pause standard employée lors de la création explicite d’un bloc de données TZX.
+    - [x] Modifier `src/GWGUI.MediaEngine/Recognition/DiskSystemIds.cs` avec l’identifiant technique Spectrum partagé par les décodeurs et encodeurs de bande.
+    - [x] Créer `src/GWGUI.MediaEngine/Encoding/Sequential/Tzx/TzxSignalEncoder.cs` pour produire les blocs TZX compatibles depuis des impulsions ou blocs validés.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `TzxReader` une fois et appliquer le contexte Spectrum, Amstrad ou MSX sans dupliquer le parser.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `TzxWriter` avec les extensions TZX, CDT et TSX compatibles.
+  - [x] 4.5 Lire et écrire les formats simples partageant TAP ou CAS
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/SpectrumTapConstants.cs` avec les tailles, drapeaux, temporisations, identifiants de décodeur et d’encodeur du format Spectrum TAP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer Spectrum TAP.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapFormat.cs` avec sa structure sans signature et l’exigence d’un contexte Spectrum ou d’une validation complète des longueurs.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapReader.cs` pour lire les blocs length-prefixed, flags et checksums en signalant la chronologie absente.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/SpectrumTap/SpectrumTapWriter.cs` pour écrire uniquement des blocs Spectrum complets déjà décodés.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/SpectrumTapConstants.cs` avec les seuils invariants nécessaires à la détection du signal Spectrum dans un WAV PCM.
+    - [x] Créer `src/GWGUI.MediaEngine/Functions/PcmSampleFunctions.cs` avec la validation du profil PCM et l’extraction d’un canal entier partagées par les décodeurs de cassette WAV.
+    - [x] Modifier `src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` pour employer les fonctions PCM communes sans conserver un second décodage des mêmes échantillons.
+    - [x] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/Spectrum/SpectrumTapeDecoder.cs` pour valider les blocs Spectrum issus de TAP, TZX ou WAV et conserver les zones inconnues.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/SpectrumTapConstants.cs` avec les paramètres PCM explicites acceptés pour produire un signal WAV Spectrum.
+    - [x] Créer `src/GWGUI.MediaEngine/Encoding/Sequential/Spectrum/SpectrumTapeEncoder.cs` pour produire le signal ou les blocs standards Spectrum demandés par le Writer cible.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/CommodoreTapConstants.cs` avec les signatures, versions, plateformes, standards vidéo, unités de durée et identifiants communs du format Commodore TAP.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer Commodore TAP.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapFormat.cs` avec les signatures `C64-TAPE-RAW` et `C16-TAPE-RAW`, les versions 0 à 2, la plateforme et le standard vidéo.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/CommodoreTapConstants.cs` avec les clés de métadonnées communes au Reader, au Writer, au décodeur et à l’encodeur.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapReader.cs` pour convertir les durées encodées en segments d’impulsions sans créer de fichiers Commodore.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/CommodoreTapConstants.cs` et `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapReader.cs` pour centraliser les positions et tailles des champs de l’en-tête Commodore TAP.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/CommodoreTap/CommodoreTapWriter.cs` pour encoder les impulsions représentables par la version et la plateforme choisies.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/CommodoreTapConstants.cs` avec les durées, tolérances, marqueurs et paramètres PCM du protocole cassette Commodore standard.
+    - [x] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/Commodore/CommodoreTapeDecoder.cs` pour reconnaître les blocs dans les impulsions TAP ou WAV et retourner aussi les zones non décodées.
+    - [x] Créer `src/GWGUI.MediaEngine/Encoding/Sequential/Commodore/CommodoreTapeEncoder.cs` pour produire les impulsions Commodore depuis les blocs validés.
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/MsxCasConstants.cs` avec l’en-tête, l’alignement et les identifiants communs du format MSX CAS.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer MSX CAS.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasFormat.cs` avec la séquence d’en-tête MSX, son alignement et les pertes de chronologie du format.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasReader.cs` pour lire les groupes d’octets uniquement après contexte MSX explicite ou validation complète des séparateurs.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/MsxCas/MsxCasWriter.cs` pour écrire la suite d’octets et séparateurs MSX sans inventer de temporisations dans le document.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MsxCasConstants.cs` avec les paramètres FSK, la trame série, les clés de provenance et les paramètres PCM communs au décodage et à l’encodage MSX.
+    - [x] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/Msx/MsxTapeDecoder.cs` pour valider les blocs MSX issus de CAS, TSX ou WAV avec leurs pertes et zones inconnues.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MsxCasConstants.cs` avec les durées explicites des silences et porteuses servant à reconstruire un signal MSX standard.
+    - [x] Créer `src/GWGUI.MediaEngine/Encoding/Sequential/Msx/MsxTapeEncoder.cs` pour produire le signal standard MSX depuis des blocs validés en déclarant qu’il s’agit d’une reconstruction.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer les trois Readers dans l’ordre signature certaine, validation structurelle et contexte explicite, sans choisir par la seule extension.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer les trois Writers avec leurs capacités exactes.
+  - [x] 4.6 Lire et écrire UEF
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/UefConstants.cs` avec la signature, la version 0.10, l’en-tête des chunks, les identifiants cassette compris, les limites de décompression et les clés de métadonnées communes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer UEF.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Uef/UefFormat.cs` avec la signature `UEF File!`, le conteneur gzip facultatif, la version 0.10 et les chunks cassette retenus.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Uef/UefReader.cs` pour produire porteuses, données, bits, silences, phase, débit et marqueurs de bandes ou faces tout en conservant les chunks inconnus.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Uef/UefWriter.cs` pour écrire les chunks compris et préserver les chunks inconnus sans les interpréter.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/FskSerialDecodeResult.cs` avec les octets et le nombre de trames FSK série testées et valides.
+    - [x] Créer `src/GWGUI.MediaEngine/Functions/FskSerialFunctions.cs` avec la recherche de phase, la classification des deux fréquences et le décodage UART paramétrable communs.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/AtariCasConstants.cs` avec le nombre minimal d’échantillons par bit partagé par le décodage FSK Atari.
+    - [x] Modifier `src/GWGUI.MediaEngine/Functions/FskSerialFunctions.cs` pour exposer le décodage de bits UART déjà reconstruits aux formats qui conservent directement leur signal FSK.
+    - [x] Modifier `src/GWGUI.MediaEngine/Decoding/Sequential/Atari/AtariCassetteDecoder.cs` pour employer le décodage FSK série commun et supprimer sa copie locale.
+    - [x] Modifier `src/GWGUI.MediaEngine/Decoding/Sequential/Msx/MsxTapeDecoder.cs` pour employer le décodage FSK série commun et supprimer sa copie locale.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/UefConstants.cs` avec les fréquences, la trame série et les champs invariants des blocs Acorn nécessaires au décodeur et à l’encodeur.
+    - [x] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/Acorn/AcornTapeDecoder.cs` pour valider les flux asynchrones Acorn ou KCS et extraire leurs blocs sans logique d’interface.
+    - [x] Modifier `src/GWGUI.MediaEngine/Functions/FskSerialFunctions.cs` avec la génération PCM commune des bits, porteuses et trames UART FSK paramétrables.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Msx/MsxTapeEncoder.cs` pour employer la génération PCM FSK commune et supprimer sa copie locale.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/UefConstants.cs` avec la taille maximale d’un bloc de données du cassette filing system Acorn.
+    - [x] Modifier `src/GWGUI.MediaEngine/Functions/PcmSampleFunctions.cs` avec l’ajout de silence PCM partagé par les encodeurs séquentiels.
+    - [x] Modifier `src/GWGUI.MediaEngine/Encoding/Sequential/Msx/MsxTapeEncoder.cs` pour employer l’ajout de silence PCM commun et supprimer sa copie locale.
+    - [x] Créer `src/GWGUI.MediaEngine/Encoding/Sequential/Acorn/AcornTapeEncoder.cs` pour produire les chunks ou échantillons standards demandés par le Writer cible.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `UefReader` après décompression bornée de son éventuel conteneur gzip.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `UefWriter` avec sortie directe ou gzip explicite.
+  - [x] 4.7 Lire et écrire les enregistrements de bande SIMH
+    - [x] Créer `src/GWGUI.MediaEngine/Constants/SimhTapeConstants.cs` avec les masques, marqueurs, tailles et limites invariantes du format d’enregistrements SIMH.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` avec l’identifiant invariant du Writer de bande SIMH.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeFormat.cs` avec longueurs 32 bits, indicateur d’erreur, alignement pair et marqueurs de bande, espace et fin de média.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeReader.cs` pour valider les longueurs avant et arrière de toute l’image avant de la reconnaître sans signature.
+    - [x] Créer `src/GWGUI.MediaEngine/Formats/Tape/Simh/SimhTapeWriter.cs` pour écrire enregistrements, alignements et marqueurs dans leur ordre séquentiel.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaRecognitionComposition.cs` pour enregistrer `SimhTapeReader` après tous les formats TAP signés et seulement sur validation structurelle complète ou choix explicite.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaWritingComposition.cs` pour enregistrer `SimhTapeWriter` avec ses marqueurs inscriptibles.
+  - [x] 4.8 Orchestrer les décodeurs, encodeurs et conversions séquentielles
+    - [x] Créer `src/GWGUI.MediaEngine/Decoding/Sequential/SequentialDecoderRegistry.cs` pour sélectionner un décodeur selon le signal et la machine demandée sans intégrer leurs algorithmes au registre.
+    - [x] Créer `src/GWGUI.MediaEngine/Encoding/Sequential/SequentialEncoderRegistry.cs` pour sélectionner un encodeur selon les blocs, la machine et le format cible sans intégrer leurs algorithmes au registre.
+    - [x] Créer `src/GWGUI.MediaEngine/Contracts/SequentialMediaConversionPlan.cs` avec le document cible, les diagnostics et les pertes déclarées avant l’écriture.
+    - [x] Créer `src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs` pour chaîner Reader, décodeur éventuel, encodeur éventuel et Writer en déclarant les pertes avant écriture.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` pour enregistrer les décodeurs, encodeurs et couples de conversion réellement compatibles.
+    - [x] Modifier `src/GWGUI.MediaEngine/Conversion/Sequential/SequentialMediaConversionService.cs` pour résoudre automatiquement une machine non ambiguë et permettre à l’application de préparer chaque conversion avant son exécution.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` pour exposer le service de conversion séquentielle assemblé avec les registres communs.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs` pour router une destination séquentielle vers le service commun après acceptation explicite de ses pertes.
+    - [x] Modifier `src/GWGUI.App/Presenters/Visualization/SequentialMediaInspectorPresenter.cs` pour distinguer explicitement le segment de rendu du segment MediaEngine et convertir ses temps ou types facultatifs sans ambiguïté de compilation.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` pour présenter les destinations séquentielles fournies par MediaEngine, demander l’acceptation des pertes déclarées et les transmettre à l’exécution sans interpréter les formats dans l’application.
+    - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` pour transmettre le service de conversion séquentielle au contrôleur de l’onglet Conversion.
+  - [x] 4.9 Décoder et explorer les contenus structurés
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/MediaVolumeOrigins.cs` avec l’origine invariante d’un contenu séquentiel décodé.
+    - [x] Modifier `src/GWGUI.MediaEngine/FileSystems/Definitions/FileSystemIds.cs` avec l’identifiant invariant du contenu séquentiel explorable.
+    - [x] Créer `src/GWGUI.MediaEngine/Composition/SequentialMediaComposition.cs` pour assembler une seule fois les décodeurs et encodeurs séquentiels partagés par conversion et exploration.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaConversionComposition.cs` pour recevoir la composition séquentielle commune au lieu de reconstruire ses registres.
+    - [x] Créer `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentVolumeDetector.cs` pour transformer les programmes, fichiers et blocs reconnus en volume explorable tout en conservant les segments inconnus comme diagnostics.
+    - [x] Créer `src/GWGUI.MediaEngine/Exploration/Sequential/SequentialContentFileSystemReader.cs` pour exposer les blocs décodés ou enregistrements bruts comme fichiers, avec leurs noms et diagnostics disponibles.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaExplorationComposition.cs` pour enregistrer `SequentialContentVolumeDetector` et `SequentialContentFileSystemReader` avec le registre de décodeurs commun.
+    - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` pour construire la composition séquentielle avant conversion et exploration puis la leur transmettre.
+  - [x] 4.10 Alimenter le visualiseur séquentiel déjà créé
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/MediaVisualizationElement.cs` pour conserver séparément la ligne de rendu, la face, la piste et le canal séquentiels réellement fournis, y compris leur index zéro.
+    - [x] Modifier `src/GWGUI.MediaEngine/Visualization/Providers/SequentialMediaVisualizationProvider.cs` pour produire lignes, faces, pistes, canaux, segments et positions temporelles réellement fournies par les nouveaux Readers.
+  - [x] 4.11 Réconcilier la hiérarchie achevée du point cassette et bande
+    - [x] Modifier `docs/tasks/media-exploration.md` pour cocher les groupes 4.6 à 4.8 à leur emplacement hiérarchique et supprimer leurs trois titres cochés dupliqués.
 
-- [ ] 5. Préparer les futurs appareils physiques sans déplacer leur code dans MediaEngine
-  - [ ] 5.1 Généraliser l’acquisition physique
-    - [ ] Créer `src/GWGUI.Domain/Interfaces/IMediaAcquisitionProvider.cs` avec les capacités du support et une sortie `MediaAcquisitionResult` sans type matériel concret.
-    - [ ] Créer `src/GWGUI.Infrastructure/Hardware/Media/MediaAcquisitionProviderRegistry.cs` pour sélectionner un fournisseur par support et appareil.
-    - [ ] Modifier `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` pour appeler le registre d’acquisition puis transmettre son résultat au service de traitement de MediaEngine.
-  - [ ] 5.2 Généraliser l’écriture physique
-    - [ ] Créer `src/GWGUI.Domain/Interfaces/IMediaPhysicalWriter.cs` avec les capacités du support et une entrée `MediaWritePlan` sans type matériel concret.
-    - [ ] Créer `src/GWGUI.Infrastructure/Hardware/Media/MediaPhysicalWriterRegistry.cs` pour sélectionner un Writer physique par support et appareil.
-    - [ ] Modifier `src/GWGUI.App/Controllers/MainWindow/WriteTabController.cs` pour demander le plan à MediaEngine puis appeler le Writer physique sélectionné.
-  - [ ] 5.3 Conserver Greaseweazle derrière les nouveaux contrats
-    - [ ] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` après création de son adaptateur Infrastructure afin de ne plus construire directement une représentation propre à MediaEngine.
-    - [ ] Modifier `src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs` après création de son adaptateur Infrastructure afin de ne plus interpréter directement les pistes à écrire.
-    - [ ] Modifier `docs/tasks/media-exploration.md` avant ces deux adaptations pour ajouter les chemins exacts des fichiers Infrastructure Greaseweazle à créer ou modifier après lecture de leur fonctionnement actuel.
+- [x] 5. Préparer les futurs appareils physiques sans déplacer leur code dans MediaEngine
+  - [x] 5.1 Généraliser l’acquisition physique
+    - [x] Créer `src/GWGUI.Domain/Interfaces/IMediaAcquisitionProvider.cs` avec les capacités du support et une sortie `MediaAcquisitionResult` sans type matériel concret.
+    - [x] Créer `src/GWGUI.Infrastructure/Hardware/Media/MediaAcquisitionProviderRegistry.cs` pour sélectionner un fournisseur par support et appareil.
+  - [x] 5.2 Généraliser l’écriture physique
+    - [x] Créer `src/GWGUI.Domain/Interfaces/IMediaPhysicalWriter.cs` avec les capacités du support et une entrée `MediaWritePlan` sans type matériel concret.
+    - [x] Créer `src/GWGUI.Infrastructure/Hardware/Media/MediaPhysicalWriterRegistry.cs` pour sélectionner un Writer physique par support et appareil.
+  - [x] 5.3 Conserver Greaseweazle derrière les nouveaux contrats
+    - [x] Modifier `docs/tasks/media-exploration.md` pour ajouter les chemins exacts des contrats neutres, adaptateurs Infrastructure, services MediaEngine et raccordements App nécessaires après lecture du fonctionnement Greaseweazle actuel.
+    - [x] 5.3.1 Compléter les contrats neutres sans type Greaseweazle, MediaEngine ou App
+      - [x] Créer `src/GWGUI.Domain/Constants/MediaPhysicalMetadataKeys.cs` avec les clés invariantes de position, temporisation, révolution et appareil partagées par les unités physiques.
+      - [x] Créer `src/GWGUI.Domain/Contracts/MediaPhysicalDataUnit.cs` avec la position ordonnée, les octets neutres et les métadonnées d’une unité acquise ou à écrire.
+      - [x] Créer `src/GWGUI.Domain/Contracts/MediaAcquisitionProgress.cs` avec les unités terminées, le total, la tentative et l’éventuelle unité acquise.
+      - [x] Créer `src/GWGUI.Domain/Contracts/MediaPhysicalWriteProgress.cs` avec les unités écrites, le total, la position et l’état de vérification.
+      - [x] Créer `src/GWGUI.Domain/Contracts/MediaPhysicalWriteResult.cs` avec les unités écrites, le total, l’annulation et les diagnostics techniques.
+      - [x] Modifier `src/GWGUI.Domain/Contracts/MediaAcquisitionResult.cs` pour transporter des `MediaPhysicalDataUnit`, les métadonnées globales et les diagnostics matériels.
+      - [x] Modifier `src/GWGUI.Domain/Contracts/MediaWritePlan.cs` pour transporter la représentation, les `MediaPhysicalDataUnit`, leur ordre et les contraintes du Writer.
+      - [x] Modifier `src/GWGUI.Domain/Interfaces/IMediaAcquisitionProvider.cs` pour transmettre la progression neutre avec l’acquisition.
+      - [x] Modifier `src/GWGUI.Domain/Interfaces/IMediaPhysicalWriter.cs` pour retourner le résultat neutre et transmettre la progression d’écriture.
+      - [x] Modifier `src/GWGUI.Infrastructure/Hardware/Media/MediaAcquisitionProviderRegistry.cs` pour relayer la progression neutre au fournisseur sélectionné.
+      - [x] Modifier `src/GWGUI.Infrastructure/Hardware/Media/MediaPhysicalWriterRegistry.cs` pour retourner le résultat et relayer la progression neutre au Writer sélectionné.
+    - [x] 5.3.2 Adapter l’acquisition Greaseweazle puis la reconstruction MediaEngine
+      - [x] Créer `src/GWGUI.Infrastructure/Constants/GreaseweazleMediaOptionKeys.cs` avec les clés invariantes des options d’acquisition et d’écriture consommées par les adaptateurs Greaseweazle.
+      - [x] Créer `src/GWGUI.Domain/Constants/MediaPhysicalEncodingIds.cs` avec l’identifiant versionné de l’encodage neutre d’une piste de flux et de ses révolutions.
+      - [x] Modifier `src/GWGUI.Domain/Constants/MediaPhysicalMetadataKeys.cs` avec la clé de l’encodage neutre déclaré par une unité physique.
+      - [x] Modifier `src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleProtocol.cs` avec la durée de capture matérielle des disquettes à secteurs durs retirée de la couche App.
+      - [x] Créer `src/GWGUI.Domain/Contracts/MediaFluxRevolutionData.cs` avec la durée d’index et les intervalles de flux neutres d’une révolution.
+      - [x] Créer `src/GWGUI.Domain/Contracts/MediaFluxTrackData.cs` avec la liste ordonnée des révolutions neutres d’une piste.
+      - [x] Modifier `src/GWGUI.Domain/Constants/MediaPhysicalEncodingIds.cs` avec la signature, les tailles et les limites invariantes de l’encodage de piste de flux V1.
+      - [x] Créer `src/GWGUI.Domain/Functions/MediaFluxTrackDataFunctions.cs` pour sérialiser et désérialiser une piste de flux versionnée sans dupliquer ce format entre Infrastructure et MediaEngine.
+      - [x] Modifier `src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleProtocol.cs` avec l’identifiant invariant des fournisseurs physiques Greaseweazle.
+      - [x] Créer `src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleMediaAcquisitionProvider.cs` pour capturer et normaliser les pistes en unités de flux neutres sans référence à MediaEngine ou App.
+      - [x] Modifier `src/GWGUI.MediaEngine/Formats/Floppy/Scp/ScpFormatConstants.cs` avec la version et la résolution utilisées pour construire une capture SCP interne.
+      - [x] Créer `src/GWGUI.MediaEngine/Acquisition/FloppyFluxAcquisitionService.cs` pour reconstruire une image SCP MediaEngine depuis les unités neutres et leurs métadonnées.
+      - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` pour exposer le service de reconstruction d’acquisition de flux.
+      - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadResult.cs` pour conserver le résultat d’acquisition neutre à la place de l’ancien objet mêlant capture matérielle et image SCP.
+      - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskReadService.cs` pour sauvegarder, décoder et explorer le résultat reconstruit par MediaEngine sans appeler directement le matériel.
+      - [x] Modifier `src/GWGUI.Domain/Contracts/MediaAcquisitionProgress.cs` pour conserver les métadonnées neutres de la position en cours avant que son unité soit disponible.
+      - [x] Modifier `src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleMediaAcquisitionProvider.cs` pour renseigner cylindre et tête dans chaque progression de tentative.
+      - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskReading/InternalPhysicalDiskReader.cs` pour assembler le fournisseur Infrastructure, son registre et le service MediaEngine sans exposer le périphérique au service App.
+      - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ReadTabController.cs` pour lancer le pipeline d’acquisition enregistré par une fabrique injectable et conserver la progression et le résultat actuels sans assembler Infrastructure ou MediaEngine dans le contrôleur.
+      - [x] Supprimer `src/GWGUI.App/Services/PhysicalDiskReading/PhysicalDiskFluxAcquisitionService.cs` après transfert complet de l’accès matériel dans le fournisseur Infrastructure.
+      - [x] Supprimer `src/GWGUI.App/Functions/Services/PhysicalDiskReading/GreaseweazleScpImageBuilder.cs` après transfert complet de la reconstruction SCP dans MediaEngine.
+    - [x] 5.3.3 Préparer le plan MediaEngine puis adapter l’écriture Greaseweazle
+      - [x] Créer `src/GWGUI.MediaEngine/PhysicalWriting/FloppyMediaWritePlanningService.cs` pour lire une image, produire les flux à écrire et retourner un `MediaWritePlan` neutre.
+      - [x] Modifier `src/GWGUI.MediaEngine/Composition/MediaEngineComposition.cs` pour exposer le service de préparation d’écriture physique.
+      - [x] Créer `src/GWGUI.Infrastructure/Hardware/Greaseweazle/GreaseweazleMediaPhysicalWriter.cs` pour convertir les temporisations neutres en ticks du périphérique et écrire les unités du plan.
+      - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs` pour appeler le registre de Writers avec un plan neutre et convertir seulement le résultat vers le contrat d’interface existant.
+      - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskWriting/InternalPhysicalDiskWriter.cs` pour demander le plan à MediaEngine puis assembler le Writer Infrastructure et son registre.
+      - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/WriteTabController.cs` pour lancer le Writer enregistré à partir du plan MediaEngine en conservant la progression et les messages actuels.
+      - [x] Supprimer `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskFluxAcquisition.cs`, ancien contrat couplant App à `ScpImage` et aux captures Greaseweazle, après remplacement par `MediaAcquisitionResult`.
+      - [x] Supprimer `src/GWGUI.App/Contracts/Services/PhysicalDiskReading/PhysicalDiskReadProgress.cs`, ancien contrat de progression couplé à `ScpTrack`, après remplacement par les progressions neutre et d’opération.
+      - [x] Modifier `src/GWGUI.App/Constants/Services/PhysicalDiskReading/PhysicalDiskReadDefaults.cs` pour retirer les constantes de capture et de construction SCP transférées dans Infrastructure et MediaEngine, en conservant seulement les valeurs par défaut encore utilisées par l’interface.
 
-- [ ] 6. Ajouter l’interface et toutes ses traductions
-  - [ ] 6.1 Définir chaque texte avant traduction
-    - [ ] Modifier `src/GWGUI.App/Resources/00-Base/Explorer.resx` avec les libellés invariants ou anglais nécessaires aux partitions, sessions, volumes, pistes et contenus séquentiels.
-    - [ ] Modifier `docs/tasks/media-exploration.md` après définition des libellés de l’Explorateur pour ajouter une action séparée avec chemin exact pour chaque `Explorer.resx` de langue existant, toutes langues devant être traduites avec Argos avant validation de l’interface.
-
-- [ ] 7. Valider chaque famille après son implémentation
+- [x] 6. Ajouter l’interface et toutes ses traductions
+  - [x] 6.1 Définir les libellés de l’Explorateur
+    - [x] Modifier `src/GWGUI.App/Resources/00-Base/Explorer.resx` avec les libellés anglais nécessaires aux partitions, sessions, volumes, pistes et contenus séquentiels.
+    - [x] Modifier `docs/tasks/media-exploration.md` pour inscrire la traduction de toutes les cultures avant leur exécution.
+  - [x] 6.2 Définir la confirmation de conversion séquentielle avec pertes
+    - [x] Modifier `src/GWGUI.App/Resources/00-Base/Conversion.resx` avec `Conversion.SequentialLossesTitle` et `Conversion.SequentialLossesConfirm` en anglais, en conservant le paramètre `{0}` du détail des pertes.
+  - [x] 6.3 Donner à Argos le contexte technique des libellés courts
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` pour traduire les clés ambiguës depuis un libellé de média explicite et appliquer les termes français validés `Session`, `Piste`, `Couches` et `Faces`.
+    - [x] Modifier `docs/project/scripts.md` pour documenter la traduction contextuelle des libellés techniques par le script Argos.
+  - [x] 6.4 Régénérer ensemble toutes les traductions de l’Explorateur
+    - [x] Modifier avec Argos `src/GWGUI.App/Resources/{ar-SA,cs-CZ,da-DK,de-DE,el-GR,es-ES,fi-FI,fr-FR,he-IL,hu-HU,id-ID,it-IT,ja-JP,ko-KR,nb-NO,nl-NL,pl-PL,pt-BR,pt-PT,ro-RO,ru-RU,sv-SE,th-TH,tr-TR,uk-UA,vi-VN,zh-Hans,zh-Hant}/Explorer.resx` en remplaçant toutes les nouvelles traductions, puis vérifier que session, piste, couche et face conservent leur sens technique dans chaque langue.
+  - [x] 6.5 Générer ensemble toutes les traductions de la confirmation de conversion
+    - [x] Modifier `src/GWGUI.App/Resources/00-Base/Conversion.resx` pour encoder les sauts de ligne de `Conversion.SequentialLossesConfirm` avec `&#xA;` afin qu’ils soient rendus par WPF et préservés pendant la traduction.
+    - [x] Modifier avec Argos `src/GWGUI.App/Resources/{ar-SA,cs-CZ,da-DK,de-DE,el-GR,es-ES,fi-FI,fr-FR,he-IL,hu-HU,id-ID,it-IT,ja-JP,ko-KR,nb-NO,nl-NL,pl-PL,pt-BR,pt-PT,ro-RO,ru-RU,sv-SE,th-TH,tr-TR,uk-UA,vi-VN,zh-Hans,zh-Hant}/Conversion.resx` avec les deux nouveaux messages et leur paramètre `{0}` préservé.
+- [x] 7. Valider chaque famille après son implémentation
 
   Ce point commence seulement lorsque les points 1 à 6 sont entièrement terminés. Il contient les
   tests généraux autonomes de `GWGUI.Tests`, créés ou adaptés après stabilisation du code et sans
-  dépendance au corpus local `image_test`.
+dépendance aux corpus locaux de médias.
 
-  - [ ] 7.1 Couvrir les Readers et structures sans matériel externe
-    - [ ] Créer `tests/GWGUI.Tests/MediaEngine/HardDisk/RawHardDiskMediaTests.cs` avec des images minimales en mémoire couvrant adressage 64 bits, MBR, EBR, GPT, volumes directs et informations inconnues.
-    - [ ] Créer `tests/GWGUI.Tests/MediaEngine/Optical/OpticalMediaTests.cs` avec ISO et BIN/CUE minimaux couvrant fichiers associés, sessions, pistes, ISO 9660 et informations absentes.
-    - [ ] Créer `tests/GWGUI.Tests/MediaEngine/Tape/SequentialMediaTests.cs` avec WAV et segments minimaux couvrant chronologie, canaux, pistes, faces et données non décodées.
-  - [ ] 7.2 Couvrir l’Explorateur
-    - [ ] Créer `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` avec sélection de partitions, sessions, volumes et contenus séquentiels.
-  - [ ] 7.3 Consigner les résultats réels
-    - [ ] Modifier `docs/project/testing.md` avec les commandes, fichiers d’essai et résultats obtenus pour HDD, optique et bande, en distinguant les validations automatisées des validations manuelles.
-    - [ ] Modifier `docs/project/testing.md` avec le résultat de `scripts/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` après la dernière famille.
-    - [ ] Modifier `docs/architecture/media-format-orchestration.md` avec les Readers, Writers, représentations, visualiseurs, systèmes de fichiers et limites réellement implémentés.
-    - [ ] Modifier `docs/project/media-support-planning.md` pour remplacer les questions résolues par les décisions effectivement validées et conserver uniquement les inconnues restantes.
+  - [x] 7.1 Couvrir les Readers et structures sans matériel externe
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalReading/ReadAcquisitionScenarios.cs` pour valider l'acquisition Greaseweazle neutre, sa reconstruction SCP et sa progression sans dépendre des contrats supprimés de l'application.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalReading/ReadFailureScenarios.cs` pour valider les échecs, reprises et annulations avec les contrats neutres d'acquisition.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalReading/ReadPlanningScenarios.cs` pour valider les options invalides directement sur le fournisseur Greaseweazle actuel.
+    - [x] Modifier `src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs` pour refuser explicitement les options de vérification non prises en charge et les ports vides avant tout accès au Writer.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WriteVerificationScenarios.cs` pour employer le plan d'écriture MediaEngine et le registre de Writers physiques actuels.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/PhysicalWritingTests.cs` pour enregistrer le scénario actuel de rejet explicite d'une vérification non prise en charge.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WritePlanningScenarios.cs` pour employer le plan d'écriture MediaEngine et le Writer Greaseweazle actuels.
+    - [x] Modifier `tests/GWGUI.Tests/Hardware/PhysicalWriting/WriteCancellationScenarios.cs` pour valider les annulations avec le plan d'écriture et le registre de Writers physiques actuels.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionSelectionScenarios.cs` pour employer le résultat actuel de détection de format.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs` pour construire le contrôleur avec le service de conversion séquentielle actuel.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs` pour distinguer explicitement le segment séquentiel MediaEngine du segment de rendu.
+    - [x] Créer `tests/GWGUI.Tests/MediaEngine/HardDisk/RawHardDiskMediaTests.cs` avec des images minimales en mémoire couvrant adressage 64 bits, MBR, EBR, GPT, volumes directs et informations inconnues.
+    - [x] Créer `tests/GWGUI.Tests/MediaEngine/Optical/OpticalMediaTests.cs` avec ISO et BIN/CUE minimaux couvrant fichiers associés, sessions, pistes, ISO 9660 et informations absentes.
+    - [x] Créer `tests/GWGUI.Tests/MediaEngine/Tape/SequentialMediaTests.cs` avec WAV et segments minimaux couvrant chronologie, canaux, pistes, faces et données non décodées.
+  - [x] 7.2 Couvrir l’Explorateur
+    - [x] Créer `tests/GWGUI.Tests/Interface/ExplorerViews/OtherMediaExplorerScenarios.cs` avec sélection de partitions, sessions, volumes et contenus séquentiels.
+  - [x] 7.3 Consigner les résultats réels
+    - [x] Modifier `docs/project/testing.md` avec les commandes, fichiers d’essai et résultats obtenus pour HDD, optique et bande, en distinguant les validations automatisées des validations manuelles.
+    - [x] Modifier `docs/project/testing.md` avec le résultat de `scripts/local-building/build.ps1 -Configuration Debug` et la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` après la dernière famille.
+    - [x] Modifier `docs/architecture/media-format-orchestration.md` avec les Readers, Writers, représentations, visualiseurs, systèmes de fichiers et limites réellement implémentés.
+    - [x] Modifier `docs/project/media-support-planning.md` pour remplacer les questions résolues par les décisions effectivement validées et conserver uniquement les inconnues restantes.
 
-- [ ] 8. Finaliser l’affichage graphique de tous les supports
-
-  Après achèvement et validation des points 1 à 7, créer le commit demandé par l’utilisateur avec
-  tout le travail terminé jusque-là. Ce point de contrôle Git est explicitement autorisé par la
-  demande du 10 septembre 2026. Commencer ensuite seulement les actions ci-dessous.
-
-  - [ ] 8.1 Construire la présentation commune du Visualiseur
-    - [ ] Modifier `docs/project/media-support-planning.md` pour consigner les choix graphiques réellement appliqués aux vues Flux, Sectors, Blocks, OpticalTracks et Sequential, sans présenter comme physique une information absente de l’image.
-    - [ ] Créer `src/GWGUI.App/Contracts/ViewModels/Visualization/MediaInspectorModel.cs` avec le titre du support, ses sections d’informations, l’élément sélectionné et uniquement les propriétés fournies par le document média.
-    - [ ] Créer `src/GWGUI.App/Contracts/ViewModels/Visualization/MediaInspectorSection.cs` avec un titre, une icône et une liste ordonnée de valeurs affichables.
-    - [ ] Créer `src/GWGUI.App/Contracts/ViewModels/Visualization/MediaInspectorEntry.cs` avec le libellé, la valeur, l’unité éventuelle et le niveau d’information ou d’erreur.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/MediaInspectorPanel.xaml` avec des cartes de synthèse et de détails réutilisables par tous les supports.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/MediaInspectorPanel.xaml.cs` pour recevoir un `MediaInspectorModel` sans connaître le format du fichier ouvert.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml` pour organiser une zone de rendu principale, une barre d’outils courte, une légende, une progression et le panneau d’informations adaptable à la largeur disponible.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml.cs` pour sélectionner automatiquement la vue correspondant à Flux, Sectors, Blocks, OpticalTracks ou Sequential et conserver zoom, sélection et position entre les actualisations du même document.
-    - [ ] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour transmettre le document et son descripteur à la vue sélectionnée sans décider du rendu d’après l’extension.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml` pour afficher le nom, le format, le support, la représentation et uniquement les sélecteurs utiles à la vue active.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerHeaderSection.xaml.cs` pour alimenter ces informations depuis le document et masquer les commandes incompatibles avec sa représentation.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerLegend.xaml` pour afficher une légende compacte composée d’éléments colorés et expliqués, propre à la représentation active.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerLegend.xaml.cs` pour construire la légende depuis le descripteur sans liste codée par extension.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/TrackProgressStrip.xaml` pour représenter une progression générique par pistes, secteurs, plages, pistes optiques ou segments.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/TrackProgressStrip.xaml.cs` pour recevoir l’unité, le total, l’avancement et l’état sans dépendre de `SkiaScpRenderer`.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml` pour afficher dynamiquement les surfaces, plateaux, couches, faces, canaux ou lignes annoncés par le descripteur.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTrackOverview.xaml.cs` pour générer ces lignes de progression et synchroniser leur sélection avec la vue principale.
-
-  - [ ] 8.2 Finaliser la vue d’une disquette en flux
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml` pour présenter séparément les faces disponibles, la surface circulaire du flux, le zoom et la sélection d’une piste ou d’une révolution.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/ScpDiskView.xaml.cs` pour conserver la face sélectionnée, relier le pointeur aux pistes préparées et afficher les données de flux correspondantes dans `MediaInspectorPanel`.
-    - [ ] Modifier `src/GWGUI.App/Rendering/Scp/SkiaScpRenderer.cs` pour préparer progressivement chaque piste et dessiner uniquement les transitions, révolutions, densités et anomalies réellement présentes dans la capture.
-    - [ ] Modifier `src/GWGUI.App/Rendering/Scp/ScpTrackDrawingFunctions.cs` pour appliquer une palette lisible sur thèmes clair et sombre sans confondre absence de décodage, zone vide et erreur physique.
-    - [ ] Modifier `src/GWGUI.App/Presenters/Visualization/ScpInspectorPresenter.cs` pour produire le modèle commun avec face, piste, révolution, durées, transitions, encodage détecté et structures décodées disponibles.
-    - [ ] Modifier `src/GWGUI.App/Services/Visualization/ScpInspectorController.cs` pour alimenter `MediaInspectorPanel` dans la vue principale et dans la fenêtre détachée.
-    - [ ] Modifier `src/GWGUI.App/Views/Windows/Visualization/ScpInspectorWindow.xaml` pour héberger `MediaInspectorPanel` avec le modèle de la sélection Flux.
-    - [ ] Modifier `src/GWGUI.App/Views/Windows/Visualization/ScpInspectorWindow.xaml.cs` pour recevoir et actualiser le modèle commun de la sélection Flux.
-    - [ ] Supprimer `src/GWGUI.App/Views/Controls/Visualization/ScpInspectorPanel.xaml` après migration de la vue principale et de la fenêtre détachée vers `MediaInspectorPanel`.
-    - [ ] Supprimer `src/GWGUI.App/Views/Controls/Visualization/ScpInspectorPanel.xaml.cs` après suppression du contrôle XAML correspondant.
-
-  - [ ] 8.3 Finaliser la vue d’une disquette sectorielle
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Sectors/SectorMediaRenderModel.cs` avec les faces, pistes, secteurs, tailles, identifiants, positions, états connus et correspondance avec les fichiers lorsque l’Explorateur la fournit.
-    - [ ] Créer `src/GWGUI.App/Rendering/Sectors/SkiaSectorMediaRenderer.cs` pour dessiner les faces comme des surfaces de pistes concentriques divisées en secteurs, avec l’ordre et la direction fournis par le descripteur.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SectorMediaView.xaml` avec les faces disponibles, la carte sectorielle, le zoom et la sélection, sans commandes propres aux révolutions du flux.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SectorMediaView.xaml.cs` pour relier la sélection d’un secteur à son adresse, sa taille, son état connu et son contenu logique dans `MediaInspectorPanel`.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/SectorMediaInspectorPresenter.cs` pour construire les informations de face, piste et secteur sans déduire de défaut physique depuis une image de données.
-    - [ ] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour envoyer les images sectorielles à `SectorMediaView` et cesser de fabriquer un SCP synthétique.
-    - [ ] Supprimer `src/GWGUI.MediaEngine/Visualization/SectorImageFluxVisualizer.cs` après suppression vérifiée de son dernier appel.
-
-  - [ ] 8.4 Finaliser la vue d’une image de disque dur
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Blocks/BlockMediaRenderModel.cs` avec les plages LBA, partitions, volumes, zones réservées, allouées, libres ou inconnues et la géométrie CHS uniquement lorsqu’elle est établie.
-    - [ ] Créer `src/GWGUI.App/Rendering/Blocks/SkiaBlockMediaRenderer.cs` pour agréger les grandes plages sans créer un élément graphique par secteur et dessiner une carte logique sélectionnable.
-    - [ ] Créer `src/GWGUI.App/Rendering/Blocks/SkiaHardDiskGeometryRenderer.cs` pour représenter plusieurs plateaux et surfaces seulement lorsque le document fournit une géométrie CHS exploitable.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/BlockMediaView.xaml` avec la carte logique et, lorsqu’elle existe, la vue CHS, ainsi que la sélection de partition, volume, plage ou surface.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/BlockMediaView.xaml.cs` pour choisir la vue disponible, synchroniser le zoom et alimenter `MediaInspectorPanel` avec les adresses et capacités connues.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/BlockMediaInspectorPresenter.cs` pour présenter capacité, adressage, partitions, volumes, systèmes de fichiers et géométrie sans inventer le nombre de plateaux.
-
-  - [ ] 8.5 Finaliser la vue d’une image de CD ou DVD
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Optical/OpticalMediaRenderModel.cs` avec les faces, couches, sessions, pistes, index, plages de secteurs et la nature audio ou données réellement décrites.
-    - [ ] Créer `src/GWGUI.App/Rendering/Optical/SkiaOpticalMediaRenderer.cs` pour dessiner un disque par face, répartir couches, sessions et pistes selon leur ordre réel et agréger les secteurs lorsque nécessaire.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml` avec le disque, les sélecteurs de face, couche et session disponibles, le zoom et la sélection de piste.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/OpticalMediaView.xaml.cs` pour synchroniser les sélecteurs avec le rendu et afficher les informations optiques connues dans `MediaInspectorPanel`.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/OpticalMediaInspectorPresenter.cs` pour présenter face, couche, session, piste, index, mode, durée et volume associé sans déduire une structure absente.
-
-  - [ ] 8.6 Finaliser la vue d’une image de cassette ou de bande
-    - [ ] Créer `src/GWGUI.App/Contracts/Rendering/Sequential/SequentialMediaRenderModel.cs` avec les faces, pistes, canaux, segments, positions temporelles, silences, blocs décodés et la forme d’onde facultative.
-    - [ ] Créer `src/GWGUI.App/Rendering/Sequential/SkiaSequentialMediaRenderer.cs` pour répartir la chronologie sur plusieurs lignes et voies, préparer progressivement les segments et conserver leur ordre ainsi que leur sens de lecture.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml` avec les lignes temporelles, les sélecteurs de face, piste ou canal disponibles, le zoom horizontal et la sélection d’un segment.
-    - [ ] Créer `src/GWGUI.App/Views/Controls/Visualization/SequentialMediaView.xaml.cs` pour synchroniser défilement, zoom et sélection puis afficher les informations temporelles dans `MediaInspectorPanel`.
-    - [ ] Créer `src/GWGUI.App/Presenters/Visualization/SequentialMediaInspectorPresenter.cs` pour présenter position, durée, canal, piste, type de segment, fichier ou bloc reconnu et erreurs de décodage disponibles.
-
-  - [ ] 8.7 Harmoniser l’apparence et l’accessibilité
-    - [ ] Modifier `src/GWGUI.App/Resources/ApplicationStyles.xaml` avec les styles communs des surfaces, sélecteurs, légendes, badges, cartes d’informations et états de sélection du Visualiseur sur thèmes clair et sombre.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml` pour conserver une utilisation complète aux tailles minimale et maximale de la fenêtre, avec panneau d’informations repliable et défilement uniquement dans les zones nécessaires.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Visualization/MediaInspectorPanel.xaml` pour fournir ordre de tabulation, noms accessibles, contraste et lecture correcte des valeurs indisponibles.
-
-  - [ ] 8.8 Ajouter tous les textes du Visualiseur
-    - [ ] Modifier `src/GWGUI.App/Resources/00-Base/Visualizer.resx` avec les clés communes et les valeurs anglaises ou invariantes nécessaires aux cinq représentations, sans dupliquer CPU, CHS, LBA, CD, DVD ni les noms de formats.
-    - [ ] Modifier `src/GWGUI.App/Resources/ar-SA/Visualizer.resx` avec les traductions arabes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/cs-CZ/Visualizer.resx` avec les traductions tchèques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/da-DK/Visualizer.resx` avec les traductions danoises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/de-DE/Visualizer.resx` avec les traductions allemandes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/el-GR/Visualizer.resx` avec les traductions grecques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/en-US/Visualizer.resx` avec les textes anglais des nouvelles clés du Visualiseur qui ne sont pas déjà hérités de la base commune.
-    - [ ] Modifier `src/GWGUI.App/Resources/es-ES/Visualizer.resx` avec les traductions espagnoles des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/fi-FI/Visualizer.resx` avec les traductions finnoises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/fr-FR/Visualizer.resx` avec les traductions françaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/he-IL/Visualizer.resx` avec les traductions hébraïques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/hu-HU/Visualizer.resx` avec les traductions hongroises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/id-ID/Visualizer.resx` avec les traductions indonésiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/it-IT/Visualizer.resx` avec les traductions italiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ja-JP/Visualizer.resx` avec les traductions japonaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ko-KR/Visualizer.resx` avec les traductions coréennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/nb-NO/Visualizer.resx` avec les traductions norvégiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/nl-NL/Visualizer.resx` avec les traductions néerlandaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/pl-PL/Visualizer.resx` avec les traductions polonaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/pt-BR/Visualizer.resx` avec les traductions portugaises du Brésil des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/pt-PT/Visualizer.resx` avec les traductions portugaises du Portugal des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ro-RO/Visualizer.resx` avec les traductions roumaines des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/ru-RU/Visualizer.resx` avec les traductions russes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/sv-SE/Visualizer.resx` avec les traductions suédoises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/th-TH/Visualizer.resx` avec les traductions thaïlandaises des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/tr-TR/Visualizer.resx` avec les traductions turques des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/uk-UA/Visualizer.resx` avec les traductions ukrainiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/vi-VN/Visualizer.resx` avec les traductions vietnamiennes des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/zh-Hans/Visualizer.resx` avec les traductions chinoises simplifiées des nouvelles clés du Visualiseur produites avec Argos.
-    - [ ] Modifier `src/GWGUI.App/Resources/zh-Hant/Visualizer.resx` avec les traductions chinoises traditionnelles des nouvelles clés du Visualiseur produites avec Argos.
-
-  - [ ] 8.9 Ajouter les tests généraux des vues
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationRoutingTests.cs` avec le routage de Flux, Sectors, Blocks, OpticalTracks et Sequential vers leur vue sans décision fondée sur l’extension.
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/FloppyVisualizationTests.cs` avec la séparation des informations Flux et Sectors, la progression et la sélection simulées sans fichier du corpus local.
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/OtherMediaVisualizationTests.cs` avec les sélections Blocks, OpticalTracks et Sequential, les informations absentes et les grandes plages simulées sans fichier du corpus local.
-    - [ ] Créer `tests/GWGUI.Tests/Interface/VisualizerViews/MediaVisualizationLayoutTests.cs` avec les tailles minimales, le panneau replié, les thèmes clair et sombre et les noms accessibles des commandes.
-
-  - [ ] 8.10 Produire le build destiné à la vérification visuelle
-    - [ ] Modifier `docs/project/testing.md` avec le résultat de `scripts/build.ps1 -Configuration Debug`, la présence vérifiée de `build/Debug/GW GUI/gwgui.exe` et les chemins manuels à ouvrir pour observer Flux, Sectors, Blocks, OpticalTracks et Sequential.
-
-  Après achèvement et validation de toutes les cases du point 8, créer le second commit demandé par
-  l’utilisateur avec cette base graphique. Continuer ensuite avec la première case non cochée de
-  [`hard-disk-images.md`](hard-disk-images.md). Aucun essai manuel du corpus `image_test` ne commence
-  avant l’achèvement de cette feuille complémentaire et le troisième commit qui la termine.
+Après achèvement et validation de toutes les cases de cette feuille, continuer avec la première case
+non cochée de [`hard-disk-images.md`](hard-disk-images.md). Le troisième commit demandé est créé
+après cette feuille complémentaire et avant les essais manuels des corpus locaux de médias.

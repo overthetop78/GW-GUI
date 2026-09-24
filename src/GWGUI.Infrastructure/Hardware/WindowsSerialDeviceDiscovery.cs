@@ -1,4 +1,4 @@
-using GWGUI.Domain.Hardware;
+using GWGUI.Infrastructure.Hardware;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Avain laukaisuun</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Hiiren vasen painike</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Oikea hiiren painike</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Keskimmäinen hiiren painike</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Fyysinen hiiri</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Kaksinkertainen liike</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Hiirinopeus</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analogiset tikut, jotka ohjaavat hiirtä</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Analogisen kepin kuollut vyöhyke</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Analog-stick hiiren nopeus</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Hiiritoiminnot</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Hiiren painike 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Hiiren painike 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Hiiren kaappaus</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Hiiren rulla ylös</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Hiiren rulla alas</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Hiiren rulla vasemmalle</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Hiiren rulla oikealle</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Kaappaa hiiri</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Vapauta hiiri</value></data>
+</root>

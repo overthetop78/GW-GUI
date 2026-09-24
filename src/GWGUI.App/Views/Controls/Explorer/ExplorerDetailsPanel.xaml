@@ -62,6 +62,26 @@
                 <TextBlock x:Name="DetailLabel8" Foreground="{DynamicResource MutedTextBrush}"/>
                 <TextBlock x:Name="DetailValue8" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
             </Grid>
+            <Grid x:Name="DetailRow9" Margin="4,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <TextBlock x:Name="DetailLabel9" Foreground="{DynamicResource MutedTextBrush}"/>
+                <TextBlock x:Name="DetailValue9" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            </Grid>
+            <Grid x:Name="DetailRow10" Margin="4,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <TextBlock x:Name="DetailLabel10" Foreground="{DynamicResource MutedTextBrush}"/>
+                <TextBlock x:Name="DetailValue10" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            </Grid>
+            <Grid x:Name="DetailRow11" Margin="4,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <TextBlock x:Name="DetailLabel11" Foreground="{DynamicResource MutedTextBrush}"/>
+                <TextBlock x:Name="DetailValue11" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            </Grid>
+            <Grid x:Name="DetailRow12" Margin="4,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="120"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <TextBlock x:Name="DetailLabel12" Foreground="{DynamicResource MutedTextBrush}"/>
+                <TextBlock x:Name="DetailValue12" Grid.Column="1" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

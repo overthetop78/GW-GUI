@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>ไฟล์ที่มีอยู่</value></data>
+  <data name="Conflict.Heading"><value>มีไฟล์บางไฟล์อยู่แล้ว</value></data>
+  <data name="Conflict.Help"><value>เลือกการดำเนินการสำหรับแต่ละไฟล์หรือใช้การดำเนินการเดียวกันกับทุกไฟล์</value></data>
+  <data name="Conflict.File"><value>ไฟล์</value></data>
+  <data name="Conflict.Action"><value>การกระทำ</value></data>
+  <data name="Conflict.Overwrite"><value>เขียนทับ</value></data>
+  <data name="Conflict.Skip"><value>ข้าม</value></data>
+  <data name="Conflict.Number"><value>ใช้หมายเลขถัดไป</value></data>
+  <data name="Conflict.AllOverwrite"><value>เขียนทับทั้งหมด</value></data>
+  <data name="Conflict.AllSkip"><value>ข้ามทั้งหมด</value></data>
+  <data name="Conflict.AllNumber"><value>หมายเลขทั้งหมด</value></data>
+</root>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>Spela</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Paus</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Spola tillbaka</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>Spola framåt</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Spela in</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Stoppa</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>Ingen kassett</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Stoppad</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Spelar</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>Pausad</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Spelar in</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>Bandets slut</value></data>
+</root>

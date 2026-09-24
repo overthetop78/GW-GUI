@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Emulatiesneltoetsen</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Muis vrijgeven</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pauzeren / hervatten</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Volledig scherm / venster</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Aan / uit</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Warme reset</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Koude reset</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Snel status opslaan</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Snel status laden</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Schermafbeelding</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Actieve machine dempen</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Snel vooruit tijdens ingedrukt houden</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Medium plaatsen of vervangen</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Medium uitwerpen</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Volgend medium</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Deze actie wordt nog niet ondersteund door de huidige emulator.</value></data>
+</root>

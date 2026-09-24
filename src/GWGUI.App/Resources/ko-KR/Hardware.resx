@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>포트</value></data>
-  <data name="Hardware.UsbId"><value>USB 식별자</value></data>
-  <data name="Hardware.Drive"><value>운전하다</value></data>
-  <data name="Hardware.Available"><value>사용 가능</value></data>
-  <data name="Hardware.Scan"><value>주사</value></data>
-  <data name="Hardware.AddDrive"><value>드라이브 추가…</value></data>
-  <data name="Hardware.NoDrive"><value>정의된 드라이브가 없습니다.</value></data>
-  <data name="Hardware.EditorTitle"><value>드라이브 정의</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle 컨트롤러</value></data>
-  <data name="Hardware.GwSelection"><value>선택 사항이 gw에 전달되었습니다.</value></data>
-  <data name="Hardware.PhysicalSize"><value>물리적 크기</value></data>
-  <data name="Hardware.SizeShort"><value>크기</value></data>
-  <data name="Hardware.DensityShort"><value>밀도</value></data>
-  <data name="Hardware.SpeedShort"><value>속도</value></data>
-  <data name="Hardware.AvailableState"><value>사용 가능</value></data>
-  <data name="Hardware.UnavailableState"><value>사용할 수 없음</value></data>
-  <data name="Hardware.DensityDescription"><value>드라이브 밀도(설명만)</value></data>
-  <data name="Hardware.SpeedDescription"><value>공칭 속도(설명만)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>포트</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB 식별자</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>운전하다</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>사용 가능</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>주사</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>드라이브 추가…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>정의된 드라이브가 없습니다.</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>드라이브 정의</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle 컨트롤러</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>선택 사항이 gw에 전달되었습니다.</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>물리적 크기</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>크기</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>밀도</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>속도</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>사용 가능</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>사용할 수 없음</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>드라이브 밀도(설명만)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>공칭 속도(설명만)</value></data>
   <data name="Hardware.NotConfigured"><value>컨트롤러가 구성되지 않았습니다.</value></data>
   <data name="Hardware.Disconnected"><value>연결이 끊어진</value></data>
   <data name="Hardware.SelectedDisconnected"><value>선택한 드라이브의 연결이 끊어졌습니다. 다시 연결하거나 옵션 → 컨트롤러 및 드라이브에서 다시 검색하세요.</value></data>

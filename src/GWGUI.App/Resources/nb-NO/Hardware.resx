@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Havn</value></data>
-  <data name="Hardware.UsbId"><value>USB identifikator</value></data>
-  <data name="Hardware.Drive"><value>Kjøre</value></data>
-  <data name="Hardware.Available"><value>Tilgjengelig</value></data>
-  <data name="Hardware.Scan"><value>Skann</value></data>
-  <data name="Hardware.AddDrive"><value>Legg til en stasjon …</value></data>
-  <data name="Hardware.NoDrive"><value>Ingen stasjon definert</value></data>
-  <data name="Hardware.EditorTitle"><value>Definer en stasjon</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle kontroller</value></data>
-  <data name="Hardware.GwSelection"><value>Utvalget overført til gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Fysisk størrelse</value></data>
-  <data name="Hardware.SizeShort"><value>Størrelse</value></data>
-  <data name="Hardware.DensityShort"><value>Tetthet</value></data>
-  <data name="Hardware.SpeedShort"><value>Fart</value></data>
-  <data name="Hardware.AvailableState"><value>Tilgjengelig</value></data>
-  <data name="Hardware.UnavailableState"><value>Utilgjengelig</value></data>
-  <data name="Hardware.DensityDescription"><value>Kjøretetthet (bare beskrivelse)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Nominell hastighet (kun beskrivelse)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Havn</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB identifikator</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Kjøre</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Tilgjengelig</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Skann</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Legg til en stasjon …</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Ingen stasjon definert</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definer en stasjon</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle kontroller</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Utvalget overført til gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fysisk størrelse</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Størrelse</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Tetthet</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Fart</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Tilgjengelig</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Utilgjengelig</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Kjøretetthet (bare beskrivelse)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Nominell hastighet (kun beskrivelse)</value></data>
   <data name="Hardware.NotConfigured"><value>Kontrolleren er ikke konfigurert</value></data>
   <data name="Hardware.Disconnected"><value>koblet fra</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Den valgte stasjonen er frakoblet. Koble den til igjen eller skann på nytt i Alternativer → Kontrollere og stasjoner.</value></data>

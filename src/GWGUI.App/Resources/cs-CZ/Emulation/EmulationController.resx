@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Zařízení ovladače {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Detect regulátory</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Akce Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Ovládání klávesnice, myši nebo regulátoru</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Levá tyč</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Pravá tyč</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Obě tyčinky</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turbo oheň</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turbo tlačítko</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbo pulz</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Řád portu kontroléra</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Nebyl zjištěn žádný ovladač</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Mapování ovladače</value></data>
+  <data name="Emulation.Controller.Port"><value>Přístav {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Typ ovladače</value></data>
+  <data name="Emulation.Controller.Detected"><value>Zjištěné ovladače</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Hledat akci nebo vstup</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Nahoru</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Dolů</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Vlevo</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Vpravo</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Tlačítko střelby 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Tlačítko střelby 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analogový joystick</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Automatický</value></data>
+  <data name="Emulation.Controller.None"><value>Žádná</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Přepnout joystick / myš</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput se nepodařilo inicializovat. Nainstalujte nebo opravte přiložené běhové prostředí GameInput.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (left- hand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (pravá ruka)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Vzhled</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Kontrolor {0}</value></data>
+</root>

@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Porto</value></data>
-  <data name="Hardware.UsbId"><value>USB identificador</value></data>
-  <data name="Hardware.Drive"><value>Conduzir</value></data>
-  <data name="Hardware.Available"><value>Disponível</value></data>
-  <data name="Hardware.Scan"><value>Digitalizar</value></data>
-  <data name="Hardware.AddDrive"><value>Adicione uma unidade…</value></data>
-  <data name="Hardware.NoDrive"><value>Nenhuma unidade definida</value></data>
-  <data name="Hardware.EditorTitle"><value>Definir uma unidade</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle controlador</value></data>
-  <data name="Hardware.GwSelection"><value>Seleção passada para gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Tamanho físico</value></data>
-  <data name="Hardware.SizeShort"><value>Tamanho</value></data>
-  <data name="Hardware.DensityShort"><value>Densidade</value></data>
-  <data name="Hardware.SpeedShort"><value>Velocidade</value></data>
-  <data name="Hardware.AvailableState"><value>Disponível</value></data>
-  <data name="Hardware.UnavailableState"><value>Indisponível</value></data>
-  <data name="Hardware.DensityDescription"><value>Densidade da unidade (apenas descrição)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Velocidade nominal (apenas descrição)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Porto</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB identificador</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Conduzir</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Disponível</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Digitalizar</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Adicione uma unidade…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Nenhuma unidade definida</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definir uma unidade</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle controlador</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Seleção passada para gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Tamanho físico</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Tamanho</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Densidade</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Velocidade</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Disponível</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Indisponível</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Densidade da unidade (apenas descrição)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Velocidade nominal (apenas descrição)</value></data>
   <data name="Hardware.NotConfigured"><value>Controlador não configurado</value></data>
   <data name="Hardware.Disconnected"><value>desconectado</value></data>
   <data name="Hardware.SelectedDisconnected"><value>A unidade selecionada está desligada. Volte a ligá-lo ou verifique novamente em Opções → Controladores e unidades.</value></data>

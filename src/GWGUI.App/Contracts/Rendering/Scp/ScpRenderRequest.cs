@@ -1,6 +1,8 @@
 using GWGUI.App.Enums.Rendering.Scp;
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Enums;
 using SkiaSharp;
+
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Contracts.Rendering.Scp;
 
@@ -8,6 +10,7 @@ public sealed record ScpRenderRequest(
     ScpImage? Image,
     int Head,
     ScpTrack? SelectedTrack,
+    int? SelectedRevolutionIndex,
     int Width,
     int Height,
     SKPoint Center,

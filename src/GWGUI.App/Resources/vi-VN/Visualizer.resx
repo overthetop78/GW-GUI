@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Bộ giải mã</value></data>
   <data name="Visual.LinkZoom"><value>Thu phóng liên kết</value></data>
   <data name="Visual.OpenScp"><value>Mở tệp SCP…</value></data>
-  <data name="Visual.NoFile"><value>Không có tệp SCP nào được mở</value></data>
+  <data name="Visual.NoFile"><value>Không có ảnh đĩa nào được mở</value></data>
   <data name="Visual.Waiting"><value>Đang chờ một tập tin</value></data>
   <data name="Visual.Inspector"><value>Thanh tra</value></data>
   <data name="Visual.SelectTrack"><value>Chọn một bản nhạc.</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>có hiệu lực</value></data>
   <data name="Visual.CrcInvalid"><value>không hợp lệ</value></data>
   <data name="Visual.IntegrityUnavailable"><value>không có sẵn</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (nồng độ cao)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>Hành tinh Bắc Cực được bao quanh bởi một hành tinh nhỏ. MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Hathkit cứng-tried FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Name FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Hệ thống/dữ liệu Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>cúm thô</value></data>
   <data name="Visual.StructureKind.Sync"><value>Đồng bộ hóa</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Tiêu đề ngành</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Dữ liệu ngành</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Định dạng tiêu đề</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Định dạng dữ liệu</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Bất thường về thời gian</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro chụp (*.scp)|*.scp|Tất cả các tệp|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Tổng kiểm tra</value></data>
   <data name="Visual.Side"><value>Bên {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Đang phân tích bản nhạc {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Phân tích cách mạng {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Bên</value></data>
   <data name="Visual.TrackLabel"><value>Theo dõi</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP mục nhập</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>Đã phát hiện định dạng</value></data>
   <data name="Visual.AverageRpm"><value>RPM trung bình</value></data>
   <data name="Visual.AverageDuration"><value>Thời lượng trung bình</value></data>
+  <data name="Visual.All"><value>Tất cả</value></data>
+  <data name="Visual.Surface"><value>Bề mặt {0}</value></data>
+  <data name="Visual.DiscFace"><value>Mặt {0}</value></data>
+  <data name="Visual.Layer"><value>Lớp {0}</value></data>
+  <data name="Visual.Session"><value>Phiên chạy {0}</value></data>
+  <data name="Visual.Channel"><value>Kênh {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Vết {0}</value></data>
+  <data name="Visual.TicksUnit"><value>giây</value></data>
+  <data name="Visual.BytesUnit"><value>byte</value></data>
+  <data name="Visual.BlocksUnit"><value>khối</value></data>
+  <data name="Visual.SectorsUnit"><value>&amp; Phân khu</value></data>
+  <data name="Visual.SectorPresent"><value>Khu vực hiện tại</value></data>
+  <data name="Visual.SectorAllocated"><value>Khu vực đã được điều chỉnh</value></data>
+  <data name="Visual.SectorFree"><value>Khu vực tự do</value></data>
+  <data name="Visual.SectorReserved"><value>Khu vực đã bảo tồn</value></data>
+  <data name="Visual.SectorUnreadable"><value>Khu vực không thể đọc</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>Thông tin khu vực</value></data>
+  <data name="Visual.SectorLabel"><value>Khu vực</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Khối luân lýStencils</value></data>
+  <data name="Visual.SizeLabel"><value>Cỡ</value></data>
+  <data name="Visual.StateLabel"><value>Tình trạng</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>Đường dẫn hệ thống tập tin</value></data>
+  <data name="Visual.LogicalMapTitle"><value>Sơ đồ luân lýStencils</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS Hình học</value></data>
+  <data name="Visual.SurfaceLabel"><value>Bề mặt</value></data>
+  <data name="Visual.BlockAllocated"><value>Phạm vi đã được chọn</value></data>
+  <data name="Visual.BlockFree"><value>Phạm vi tự do</value></data>
+  <data name="Visual.BlockReserved"><value>Phạm vi đã bảo tồn</value></data>
+  <data name="Visual.BlockUnknown"><value>Phạm vi lạ</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>Chặn thông tin phương tiện</value></data>
+  <data name="Visual.CapacityLabel"><value>Thành quả</value></data>
+  <data name="Visual.AddressingLabel"><value>Địa chỉ</value></data>
+  <data name="Visual.StartLabel"><value>Bắt đầu</value></data>
+  <data name="Visual.LengthLabel"><value>Chiều dài</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Bộ màu phân vùng</value></data>
+  <data name="Visual.PartitionTable.None"><value>Không có</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>Số phân vùng</value></data>
+  <data name="Visual.FileSystemLabel"><value>Hệ thống tập tin</value></data>
+  <data name="Visual.RangeTitle"><value>Phạm vi đã chọn</value></data>
+  <data name="Visual.PlatterCountLabel"><value>Chất dẻo</value></data>
+  <data name="Visual.BlockState.Available"><value>Sẵn sàng</value></data>
+  <data name="Visual.BlockState.Reserved"><value>Đã lưu</value></data>
+  <data name="Visual.BlockState.Allocated"><value>Đã tiêm chủng</value></data>
+  <data name="Visual.BlockState.Free"><value>Tự do</value></data>
+  <data name="Visual.BlockState.Unknown"><value>Không rõ</value></data>
+  <data name="Visual.OpticalDataTrack"><value>Theo dõi dữ liệu</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>Theo dõi âm thanh</value></data>
+  <data name="Visual.OpticalPregap"><value>Chuẩn</value></data>
+  <data name="Visual.OpticalSession"><value>Giới hạn phiên chạy</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Thông tin phương tiện quang phổ</value></data>
+  <data name="Visual.FaceCountLabel"><value>Mặt</value></data>
+  <data name="Visual.LayerCountLabel"><value>Lớp</value></data>
+  <data name="Visual.TrackCountLabel"><value>Vết</value></data>
+  <data name="Visual.SessionLabel"><value>Phiên chạy</value></data>
+  <data name="Visual.LayerLabel"><value>Lớp</value></data>
+  <data name="Visual.TrackKindLabel"><value>Kiểu vết</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>Đã chọn</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>Nguồn gốc khối</value></data>
+  <data name="Visual.VolumeTitle"><value>Âm lượng</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>Tập tin đã kết hợp</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>Không rõ</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>Dữ liệu</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>Âm thanh</value></data>
+  <data name="Visual.SequentialSignal"><value>Tín hiệu</value></data>
+  <data name="Visual.SequentialDecoded"><value>Khối đã mã hoá</value></data>
+  <data name="Visual.SequentialSilence"><value>Yên lặng</value></data>
+  <data name="Visual.SequentialError"><value>Lỗi giải mã</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Thông tin phương tiện liên lạc</value></data>
+  <data name="Visual.DurationLabel"><value>Thời gian</value></data>
+  <data name="Visual.SegmentCountLabel"><value>Đoạn thẳng</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Kiểu đoạn</value></data>
+  <data name="Visual.ChannelLabel"><value>Kênh</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>Name</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>Lỗi giải mã</value></data>
+  <data name="Visual.SegmentTitle"><value>Đoạn đã chọn</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>Không rõ</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>Tín hiệu</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>Yên lặng</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Khối đã mã hoá</value></data>
+  <data name="Visual.RevolutionSummary"><value>Tất cả các cuộc cách mạng</value></data>
+  <data name="Visual.RevolutionChoice"><value>Cách mạng {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Cách mạng</value></data>
+  <data name="Visual.QualityDead"><value>Chết</value></data>
+  <data name="Visual.QualityPoor"><value>Tội nghiệp</value></data>
+  <data name="Visual.QualityPartial"><value>Có thể đọc một phần</value></data>
+  <data name="Visual.QualityGood"><value>Tốt</value></data>
+  <data name="Visual.QualityExcellent"><value>Tuyệt vời</value></data>
+  <data name="Visual.SectorWithData"><value>Khu vực có dữ liệu</value></data>
+  <data name="Visual.SectorDegraded"><value>Phân khu bị hạ cấp</value></data>
+  <data name="Visual.SectorDead"><value>Khu vực chết</value></data>
+  <data name="Visual.SectorWithoutData"><value>Khu vực không có dữ liệu</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Thông tin băng cassette</value></data>
 </root>

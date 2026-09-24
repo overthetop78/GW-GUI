@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>プロセッサー: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU モデル</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU 倍率</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>サイクル互換 CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU 速度</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>元の速度</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>通常</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>互換</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>メモリ互換</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>サイクル単位で正確</value></data>
+  <data name="Emulation.Cpu.Processor"><value>プロセッサ</value></data>
+  <data name="Emulation.Cpu.Precision"><value>精度</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>高速化</value></data>
+</root>

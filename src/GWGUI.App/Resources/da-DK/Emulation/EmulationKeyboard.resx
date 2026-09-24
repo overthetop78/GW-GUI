@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}-tast</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Værtstast</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>To Amiga- taster bruger samme PC-tasten. Løs de røde tilknytninger før du gemmer.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fysisk tastatur- gennem- gennem-</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Reserverede genveje</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Genveje i GW GUI og Windows forbliver aktive og opfanges ikke af maskinen.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Maskintast</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Bogstaver, tal og almindelige ændringstaster sendes direkte. Kun Amiga-funktions- og specialtaster skal tilknyttes her.</value></data>
+</root>

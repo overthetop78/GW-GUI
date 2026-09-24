@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Conflict.Title"><value>Fișiere existente</value></data>
-  <data name="Conflict.Heading"><value>Unele fișiere există deja</value></data>
-  <data name="Conflict.Help"><value>Alegeți o acțiune pentru fiecare fișier sau aplicați aceeași acțiune tuturor fișierelor.</value></data>
-  <data name="Conflict.File"><value>Fişier</value></data>
-  <data name="Conflict.Action"><value>Acţiune</value></data>
-  <data name="Conflict.Overwrite"><value>Suprascrie</value></data>
-  <data name="Conflict.Skip"><value>Sari peste</value></data>
-  <data name="Conflict.Number"><value>Utilizați următorul număr</value></data>
-  <data name="Conflict.AllOverwrite"><value>Suprascrie toate</value></data>
-  <data name="Conflict.AllSkip"><value>Sari peste toate</value></data>
-  <data name="Conflict.AllNumber"><value>Număr toate</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conversion.Title"><value>Conversie</value></data>
   <data name="Conversion.SelectOutput"><value>Selectați cel puțin un format de ieșire.</value></data>
   <data name="Conversion.SourceAmbiguous"><value>Sursă ambiguă</value></data>
@@ -43,47 +24,14 @@
   <data name="Conversion.Incompatible"><value>{0} nu este compatibil cu această sursă.</value></data>
   <data name="Conversion.NoAvailableOutputName"><value>Nu a putut fi găsit niciun nume de fișier de ieșire disponibil.</value></data>
   <data name="Conversion.ReconstructedFlux"><value>flux reconstruit</value></data>
-  <data name="Migration.Open"><value>Migrarea fişierelor...</value></data>
-  <data name="Migration.Title"><value>Migrarea fișierelor</value></data>
-  <data name="Migration.Heading"><value>Migrați fișierele într-un alt sistem de fișiere</value></data>
-  <data name="Migration.Source"><value>Imagine sursă</value></data>
-  <data name="Migration.NoSource"><value>Alegeți o imagine care conține un sistem de fișiere recunoscut.</value></data>
-  <data name="Migration.Destination"><value>Sistemul și formatul fișierelor de destinație</value></data>
-  <data name="Migration.Output"><value>Imaginea de destinație</value></data>
-  <data name="Migration.Compatibility"><value>Compatibilitate și pierderi</value></data>
-  <data name="Migration.Waiting"><value>Selectaţi o sursă şi o destinaţie.</value></data>
-  <data name="Migration.Severity"><value>Severitate</value></data>
-  <data name="Migration.Path"><value>Calea sursei</value></data>
-  <data name="Migration.Description"><value>Descriere</value></data>
-  <data name="Migration.AcceptLosses"><value>Acceptă pierderile de metadate listate</value></data>
-  <data name="Migration.Execute"><value>Migrați fișierele</value></data>
-  <data name="Migration.Blocking"><value>Blocare</value></data>
-  <data name="Migration.MetadataLoss"><value>Pierderea datelor</value></data>
-  <data name="Migration.SourceSummary"><value>Volum: {0}  {1}  {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Imposibil de pregătit migrația: {0}</value></data>
-  <data name="Migration.Completed"><value>Imaginea de destinație a fost creată: {0}</value></data>
-  <data name="Migration.Failed"><value>Migrația a eșuat: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatibil: corectarea pierderilor de blocare înainte de migrare.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatibil după acceptarea pierderilor de metadate listate.</value></data>
-  <data name="Migration.Compatible"><value>Compatibil: nu s-a detectat nicio pierdere.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>Conținutul fișierului nu este disponibil.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>Acest tip de intrare nu este susținut de destinație.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>Numele nu este valabil pentru destinație.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>Numele este prea lung pentru destinaţie.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Mai multe intrări ar avea același nume de destinație.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>Dosarul este prea mare pentru destinație.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>Metadatele sursă nu sunt valide.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>Data modificării nu va fi păstrată.</value></data>
-  <data name="Migration.Loss.Comment"><value>Comentariu nu va fi conservat.</value></data>
-  <data name="Migration.Loss.Attributes"><value>Atribuțiile sursă nu vor fi păstrate.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>Imaginea de destinație există deja. {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>Imaginea de destinație nu poate înlocui imaginea sursă.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>date sectoriale; protecţii neconservate</value></data>
   <data name="Conversion.Fidelity.ReconstructedTracks"><value>Piese refăcute; flux original neconservat</value></data>
   <data name="Conversion.Fidelity.PreservedFlux"><value>flux original conservat</value></data>
-  <data name="Conversion.EngineExternal"><value>Unelte gazdă: conversie {0}.</value></data>
-  <data name="Conversion.EngineInternalStart"><value>Motor intern: conversie {0} la {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete"><value>Conversia internă finalizată: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable"><value>Motorul intern nu suportă această conversie: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed"><value>Conversia internă a eșuat pentru {0}: {1}</value></data>
+  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Unelte gazdă: conversie {0}.</value></data>
+  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Motor intern: conversie {0} la {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Conversia internă finalizată: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>Motorul intern nu suportă această conversie: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Conversia internă a eșuat pentru {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Pierderea potențială a datelor</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Această conversie nu poate păstra toate informațiile sursă:&#xA;&#xA;{0}&#xA;&#xA;Vrei să continui?</value></data>
 </root>

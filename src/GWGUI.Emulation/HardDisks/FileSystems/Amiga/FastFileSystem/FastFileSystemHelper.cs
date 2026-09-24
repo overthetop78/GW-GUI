@@ -1,4 +1,4 @@
-﻿namespace Hst.Amiga.FileSystems.FastFileSystem
+namespace Hst.Amiga.FileSystems.FastFileSystem
 {
     using System;
     using System.Collections.Generic;
@@ -13,9 +13,9 @@
 
     public static class FastFileSystemHelper
     {
-        public static async Task<IEnumerable<RootBlock>> FindRootBlocks(Stream stream)
+        public static async Task<IEnumerable<FastFileSystemRootBlock>> FindRootBlocks(Stream stream)
         {
-            var rootBlocks = new List<RootBlock>();
+            var rootBlocks = new List<FastFileSystemRootBlock>();
 
             var buffer = new byte[512];
             int bytesRead;
@@ -41,7 +41,7 @@
                     continue;
                 }
 
-                var rootBlock = RootBlockParser.Parse(buffer);
+                var rootBlock = FastFileSystemRootBlockParser.Parse(buffer);
                 rootBlocks.Add(rootBlock);
             } while (bytesRead == buffer.Length);
 
@@ -53,10 +53,10 @@
         /// </summary>
         /// <param name="volume"></param>
         /// <param name="outputPath"></param>
-        public static async Task ExtractVolume(Volume volume,
+        public static async Task ExtractVolume(FastFileSystemVolumeState volume,
             string outputPath)
         {
-            var entries = (await Directory.ReadEntries(volume, volume.RootBlockOffset, true)).ToList();
+            var entries = (await FastFileSystemDirectory.ReadEntries(volume, volume.RootBlockOffset, true)).ToList();
 
             await ExtractDirectory(volume, volume.RootBlock, entries, volume.RootBlock.DiskName);
         }
@@ -71,7 +71,7 @@
         /// <param name="parent"></param>
         /// <param name="entries"></param>
         /// <param name="outputPath"></param>
-        private static async Task ExtractDirectory(Volume volume, EntryBlock parent, IEnumerable<Entry> entries,
+        private static async Task ExtractDirectory(FastFileSystemVolumeState volume, FastFileSystemEntryBlock parent, IEnumerable<FastFileSystemEntry> entries,
             string outputPath)
         {
             if (!System.IO.Directory.Exists(outputPath))
@@ -92,7 +92,7 @@
                     continue;
                 }
 
-                var entryStream = await File.Open(volume, GetSector(volume, parent), entry.Name, FileMode.Read);
+                var entryStream = await FastFileSystemFile.Open(volume, GetSector(volume, parent), entry.Name, FileMode.Read);
 
                 if (entryStream == null)
                 {
@@ -126,7 +126,7 @@
         /// <param name="stream">Stream to mount</param>
         /// <returns></returns>
         /// <exception cref="IOException"></exception>
-        public static async Task<Volume> MountAdf(Stream stream)
+        public static async Task<FastFileSystemVolumeState> MountAdf(Stream stream)
         {
             var adfSize = stream.Length;
             if (adfSize == FloppyDiskConstants.DoubleDensity.Size)
@@ -155,7 +155,7 @@
         /// <param name="blockSize">Size of blocks in bytes</param>
         /// <param name="rootBlockOffset">Root block offset</param>
         /// <returns></returns>
-        public static async Task<Volume> MountHdf(Stream stream, uint size, uint reserved = 0, uint blockSize = 512,
+        public static async Task<FastFileSystemVolumeState> MountHdf(Stream stream, uint size, uint reserved = 0, uint blockSize = 512,
             uint rootBlockOffset = 0)
         {
             var blocks = size / blockSize;
@@ -182,7 +182,7 @@
         /// <param name="fileSystemBlockSize"></param>
         /// <param name="rootBlockOffset"></param>
         /// <returns></returns>
-        public static async Task<Volume> Mount(Stream stream, uint lowCyl, uint highCyl, uint surfaces,
+        public static async Task<FastFileSystemVolumeState> Mount(Stream stream, uint lowCyl, uint highCyl, uint surfaces,
             uint blocksPerTrack, uint reserved = 2, uint blockSize = 512, uint fileSystemBlockSize = 512,
             uint rootBlockOffset = 0)
         {
@@ -202,13 +202,13 @@
             }
 
             var mode = (int)bootBlockBytes[3];
-            var useOfs = Macro.UseOfs(mode);
-            var useIntl = Macro.UseIntl(mode);
-            var useFfs = Macro.UseFfs(mode);
-            var useDirCache = Macro.UseDirCache(mode);
-            var useLnfs = Macro.UseLnfs(mode);
+            var useOfs = FastFileSystemMacro.UseOfs(mode);
+            var useIntl = FastFileSystemMacro.UseIntl(mode);
+            var useFfs = FastFileSystemMacro.UseFfs(mode);
+            var useDirCache = FastFileSystemMacro.UseDirCache(mode);
+            var useLnfs = FastFileSystemMacro.UseLnfs(mode);
 
-            var offsetsPerBitmapBlock = BlockHelper.CalculateOffsetsPerBitmapBlockCount(fileSystemBlockSize);
+            var offsetsPerBitmapBlock = FastFileSystemBlockHelper.CalculateOffsetsPerBitmapBlockCount(fileSystemBlockSize);
 
             var dataBlockSize =
                 useFfs ? fileSystemBlockSize : fileSystemBlockSize - (SizeOf.ULong * 4) - (SizeOf.Long * 2);
@@ -219,7 +219,7 @@
             if (rootBlockOffset == 0)
             {
                 rootBlockOffset =
-                    OffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl, reserved, surfaces, blocksPerTrack,
+                    FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl, reserved, surfaces, blocksPerTrack,
                         fileSystemBlockSize);
             }
 
@@ -228,9 +228,9 @@
             var rootBlockBytes = await stream.ReadBytes((int)fileSystemBlockSize);
 
             // parse root block bytes
-            var rootBlock = RootBlockParser.Parse(rootBlockBytes);
+            var rootBlock = FastFileSystemRootBlockParser.Parse(rootBlockBytes);
 
-            var volume = new Volume
+            var volume = new FastFileSystemVolumeState
             {
                 PartitionStartOffset = (long)lowCyl * blocksPerCylinder * blockSize,
                 DosType = mode,
@@ -254,16 +254,16 @@
                 Mounted = true
             };
 
-            await Bitmap.AdfReadBitmap(volume, blocks, rootBlock);
+            await FastFileSystemBitmap.AdfReadBitmap(volume, blocks, rootBlock);
 
             volume.NextFreeBlock = volume.BitmapBlocks[volume.BitmapBlocks.Length - 1] + 1;
 
             return volume;
         }
 
-        public static uint GetSector(Volume volume, EntryBlock entryBlock)
+        public static uint GetSector(FastFileSystemVolumeState volume, FastFileSystemEntryBlock entryBlock)
         {
-            return entryBlock.SecType == Constants.ST_ROOT ? volume.RootBlockOffset : entryBlock.HeaderKey;
+            return entryBlock.SecType == FastFileSystemConstants.ST_ROOT ? volume.RootBlockOffset : entryBlock.HeaderKey;
         }
 
         public static uint CalculateHashtableSize(uint fileSystemBlockSize)

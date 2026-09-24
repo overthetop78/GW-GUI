@@ -1,11 +1,13 @@
 using System.Globalization;
-using GWGUI.MediaEngine.Composition;
-using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine;
+using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariScpMediaFunctions
 {
+    private static readonly MediaEngineComposition MediaEngine = MediaEngineComposition.CreateDefault();
+
     internal static bool IsScp(string path) => Path.GetExtension(path).Equals(
         DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
 
@@ -33,7 +35,7 @@ internal static class AtariScpMediaFunctions
             AtariSessionMediaConstants.RuntimeFileNumberOffset,
             Path.GetFileNameWithoutExtension(media.Path) + extension);
         var runtimePath = Path.Combine(runtimeDirectory, runtimeName);
-        var converter = MediaEngineFactory.CreateAtariScpRuntimeConversionService();
+        var converter = MediaEngine.Conversion.AtariScpRuntimeConverter;
         if (configuration.Family == AtariMachineFamily.St)
             converter.ConvertToStAsync(media.Path, runtimePath).GetAwaiter().GetResult();
         else

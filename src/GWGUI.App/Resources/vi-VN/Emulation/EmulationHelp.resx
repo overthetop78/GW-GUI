@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Name</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>Làm yên lặng tiếng ổ đĩa mô phỏng trong khi không cho vào đĩa. Tắt tùy chọn này để giữ nhiễu cơ chế không hoạt động.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>Chọn bộ lọc âm thanh tương tự</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>Chọn cách bộ lọc âm thanh gốc được sao lưu. Kết hợp theo hành vi phần cứng. Những lựa chọn khác ép bộ lọc bật hay tắt.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>Kích hoạt bộ lọc âm thanh phân cực</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>Phù hợp với bộ lọc phân cực để tạo ra tín hiệu âm thanh. Bật nó để sao chép lại âm thanh đã lọc. Tắt nó để giữ tín hiệu chưa lọc.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>Chọn độ phân giải âm thanh</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>Chọn cách tính các mẫu âm thanh giữa các điểm mẫu được tạo ra. Phương pháp chất lượng cao tạo ra âm thanh mịn hơn nhưng yêu cầu xử lý nhiều hơn.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>Đặt tần số âm thanh</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>Đặt thời gian của bộ đệm âm thanh. Một bộ đệm ngắn hơn làm giảm sự chậm trễ nhưng có thể gây ra sự rạn nứt. Bộ đệm dài hơn cải thiện sự ổn định nhưng làm tăng sự chậm trễ.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>Bật cả hai POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>Thêm một sự bắt chước thứ hai POKEY Chip để tạo ra âm thanh stereo. Bật tùy chọn này chỉ cho phần mềm hỗ trợ nhị phân POKEY âm thanh.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>Đặt tách âm thanh</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>Đặt sự phân cách giữa kênh trái và kênh bên phải. Giá trị thấp hơn trộn các kênh lại với nhau. Một giá trị cao hơn giữ chúng cách xa nhau hơn.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>Chọn bộ âm thanh ổ đĩa mềm</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>Chọn tập mẫu dùng cho âm thanh cơ học của ổ đĩa mềm mô phỏng. Nó không thay đổi hành vi ổ đĩa hay dữ liệu đĩa.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>Chọn mô hình lọc âm thanh</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Chọn phản ứng bộ lọc phần cứng để mô phỏng. Tự động theo mô hình máy được chọn. Một lựa chọn cụ thể luôn sử dụng phản ứng lọc đó.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>Kích hoạt hai cổng bổ sung cần điều khiển</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>Tính ra một người thích nghi xuất khẩu song song có thêm hai cổng cần điều khiển. Bật nó cho phần mềm hỗ trợ bốn người chơi đồng thời.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>Đặt khoảng cách xung tốc</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>Đặt thời gian giữa các nút tự động được tạo ra bởi máy gia tốc. Một khoảng thời gian ngắn hơn tạo ra tiếng súng liên tục nhanh hơn.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>Chọn chế độ tương thích điều khiển</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>Chọn một bản đồ điều khiển đặc biệt, như điều khiển song đũa, cổng trao đổi, hay Joy2B+. Chọn Không để giữ bản đồ cổng chuẩn.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>Đặt độ nhạy tương tự đầu vào</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>Đặt độ mạnh của một đầu vào tương tự phản ứng với chuyển động. Một giá trị cao hơn tạo ra một phản ứng lớn hơn từ cùng một chuyển động vật lý.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Đặt độ nhạy nhập kỹ thuật số</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Thiết lập độ nhanh của một hướng số đạt đầy đủ chuyển động. Một giá trị cao hơn sẽ thay đổi hướng nhanh hơn.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Chọn chế độ tự động lửa</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Tắt tự động bắn. Khi bấm nút, nó sẽ tiếp tục bắn khi phím đã được bấm. Luôn bắn liên tục.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Đặt tốc độ chuyển động chèo</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Đặt cách di chuyển nhanh nhất của đầu vào số Giá trị thấp hơn di chuyển chậm hơn. Một giá trị cao hơn di chuyển nhanh hơn.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Chọn FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>Chọn đơn vị điểm nổi dùng cho hướng dẫn điểm nổi. Chọn Không có để tắt FPU. Mô hình sẵn sàng phụ thuộc vào điều đã chọn CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>Chọn CPU Độ chính xác bộ mô phỏng</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Chọn gần thế nào CPU Thời gian theo sau phần cứng gốc. Các chế độ chính xác hơn có thể cải thiện sự tương thích nhưng có thể đòi hỏi xử lý nhiều hơn.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Đặt sự bắt chước CPU Tốc độ</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>Đặt tần số xử lý được máy mô phỏng dùng. Tốc độ gốc bảo tồn phần cứng đúng giờ. Giá trị cao hơn tăng tốc CPU- Phần mềm giới hạn.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Dùng thanh tương tự để điều khiển con chuột</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>Cho phép trục cần điều khiển tương tự di chuyển con trỏ chuột mô phỏng. Bật nó khi một cây gậy tương tự vật lý nên điều khiển con trỏ.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>Đặt tốc độ tương tự như chuột</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>Đặt tốc độ con trỏ khi một thanh tương tự điều khiển con chuột đã mô phỏng. Một giá trị cao hơn sẽ di chuyển con trỏ xa hơn cho cùng một chuyển động.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>Đặt vùng chết tương tự của chuột</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>Bỏ qua những chuyển động tương tự nhỏ xung quanh trung tâm trong khi điều khiển con chuột. Tăng giá trị nếu con trỏ di chuyển trong khi cây gậy được thả ra.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Bật Axlon $0F ngân hàng bóng</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>phản chiếu ngân hàng điều khiển Axlon tại địa chỉ 0F. Bật nó chỉ cho phần mềm hoặc bộ nhớ mở rộng dùng địa chỉ thêm này.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Đặt Axlon Bộ nhớ mở rộng</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Đặt số tiền bị cướp ngân hàng Axlon trí nhớ. Tắt bỏ việc mở rộng. Các lựa chọn khác cung cấp khả năng bộ nhớ đã chọn.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Đặt Mosaic Bộ nhớ mở rộng</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Đặt số tiền bị cướp ngân hàng Mosaic trí nhớ. Tắt bỏ việc mở rộng. Các lựa chọn khác cung cấp khả năng bộ nhớ đã chọn.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Đặt bộ nhớ mở rộng bổ sung</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Đặt số lượng bộ nhớ mở rộng thêm được máy đã chọn hỗ trợ. Chọn Không dùng bộ nhớ chính đã cấu hình.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Đặt Fast RAM Cỡ</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>Đặt số lượng nhanh RAM sẵn sàng ngay đến CPU. Nhanh thêm RAM có thể giúp tương thích với phần mềm nhưng thay đổi cấu hình phần cứng mô phỏng.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Bật MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>Cho phép phần mềm tương thích với bản đồ RAM vào hệ thống ROM Khu vực địa chỉ. Tùy chọn này chỉ sẵn sàng trên mô hình máy hỗ trợ MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Đặt Zorro III RAM Cỡ</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>Đặt số lượng 32- bit Fast RAM đã kết nối qua các Zorro III Xe buýt. Dùng nó chỉ với 32 bit máy và phần mềm tương thích.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>Đặt Slow RAM Cỡ</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Đặt số lượng Slow RAM trong khu vực mở rộng cửa sập. Bộ nhớ này chậm hơn Fast RAM và sử dụng phạm vi địa chỉ phần cứng khác nhau.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>Chọn ROM Phím giải mã</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>Chọn tập tin khóa dùng để giải mã một tập tin đã được cấp phép ROM hình ảnh. Để ô này trống khi chọn ROM chưa được mã hóa.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Bật chạy nhanh</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>Nhảy qua đã chọn phần cứng bị hoãn để khởi chạy lại. Tắt tùy chọn này khi phần mềm cần thiết trình tự khởi chạy.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>Chọn phần mở rộng ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>Chọn phần mềm phụ ROM yêu cầu bởi một số mô hình máy móc. Để ô này trống khi mô hình đã chọn không sử dụng mở rộng ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Bật tăng tốc SIO Truyền:</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>Tốc độ chuyển đổi tương thích qua xe buýt đầu vào/ra hàng loạt. Tắt tùy chọn này khi phần mềm phụ thuộc vào thời gian truyền.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Bật khởi chạy băng</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Làm cho máy mô phỏng cố gắng bắt đầu từ hình ảnh được gắn vào. Tắt tùy chọn này khi chạy từ thiết bị khác.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Bật R-Time 8 đồng hồ</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>Tính toán một R-Time 8 Đồng hồ thời gian thực để phần mềm tương thích có thể đọc ngày giờ hiện tại.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>Bật P: Thiết bị máy in</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>Làm cho người bị bắt chước P: Thiết bị máy in sẵn sàng cho phần mềm. Tắt tùy chọn này nếu không cần thiết khả năng xác thực máy in.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>Bật R: Thiết bị nối tiếp</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>Làm cho người bị bắt chước R: Thiết bị nối tiếp sẵn sàng cho phần mềm. Tắt tùy chọn này khi không cần thiết xác nhận hàng loạt.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>Chọn tạo mẫu màu phân giải cao</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>Chọn cách mà các mô hình độ phân giải cao tạo ra màu sắc tổng hợp. Không ai vô hiệu hóa màu sắc đồ tạo tác. Các chế độ khác tái tạo bảng màu khác nhau hoặc hành vi chip.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>Chọn thời gian blitter</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>Chọn nếu thao tác blitter hoàn tất ngay lập tức hoặc theo thời gian phần cứng đã bắt chước. Chế độ lập tức nhanh hơn nhưng ít chính xác hơn.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>Cho phép các thay đổi độ tươi đầu ra</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>Cho phép tốc độ cập nhật kết xuất theo các thay đổi trong chế độ video đã mô phỏng. Đã khóa giữ tốc độ cập nhật kết xuất hiện thời.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>Chọn chi tiết phát hiện va chạm</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>Chọn những vụ va chạm ở sân chơi. Phát hiện đầy đủ hơn cải thiện sự tương thích nhưng đòi hỏi nhiều xử lý hơn.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>Giảm bộ bật/tắt màn hình</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>Giảm sự nhấp nháy trong kết xuất video có dây. Bật nó với ảnh riêng. Tắt nó để bảo tồn hành vi hiển thị có dây gốc.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>Chọn tỷ lệ hình thể hiển thị</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>Chọn cách co dãn ảnh mô phỏng theo chiều ngang và dọc. Tự động theo kết xuất đã mô phỏng. Một lực lựa chọn cố định có hình dạng.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>Điều chỉnh gamma của ảnh</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>Thay đổi độ sáng của các miton mà không thay đổi trực tiếp mức độ đen trắng. Giá trị thấp hơn là Dark mitons. Những giá trị cao hơn làm chúng sáng lên.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>Chọn chế độ dòng phim</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>Chọn cách hiển thị đường dọc. Tự động theo chế độ mô phỏng. Những sự lựa chọn khác buộc một đường thẳng, hai đường thẳng, hoặc đường scanlines khi có thể.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>Chọn tiêu chuẩn phim ảnh</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>Chọn thời điểm cho truyền hình mô phỏng, như PAL hay NTSC. tác động đến tốc độ cập nhật, thời gian phần cứng và tương thích với phần mềm.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>Chọn bảng màu bên ngoài</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>Chọn bảng màu đã định sẵn thay vì màu được tạo ra từ thiết lập ảnh động hiện thời. Chọn Không dùng màu đã tạo.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>Chọn độ sâu màu xuất</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>Chọn độ sâu màu dùng để vẽ ảnh. 24-bit giữ cho nhiều màu sắc chi tiết hơn. 16-bit sử dụng một dải màu nhỏ hơn.</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>Chọn vùng phần cứng</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>Chọn thời gian vùng dùng bởi máy mô phỏng. Lựa chọn có thể ảnh hưởng đến tần số video, CPU Thời gian và phần mềm tương thích.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>Chọn bộ làm phim</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>Chọn hậu phương đồ hoạ dùng để vẽ màn hình mô phỏng. Những người làm ra có thể khác nhau về hiệu suất và tương thích với hệ thống máy.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>Điều chỉnh GTIA Trễ màu</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Đặt GTIA Trễ màu dùng để sinh sản màu. Mặc định dùng giá trị chuẩn. Sự lựa chọn số thay đổi màu sắc.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Đặt bỏ qua khung</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Đặt số khung hiển thị bị bỏ qua. Tắt mọi khung hình. Giá trị cao hơn giảm việc vẽ nhưng làm cho chuyển động ít mịn hơn.</value></data>
+</root>

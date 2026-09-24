@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Firmware.Rom.Extended"><value>ROM เพิ่มเติม</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>ตรวจพบ ROMs</value></data>
+  <data name="Emulation.Firmware.Use"><value>ใช้</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>เปิดโฟลเดอร์ ROM</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>เข้ากันได้บางส่วน</value></data>
+  <data name="Emulation.Firmware.Official"><value>เป็นทางการ</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>ไม่รองรับ</value></data>
+</root>

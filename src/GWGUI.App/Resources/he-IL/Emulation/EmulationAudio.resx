@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>אודיו</value></data>
+  <data name="Emulation.Audio.Output"><value>הפקה Audio</value></data>
+  <data name="Emulation.Audio.Latency"><value>עצלות (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>זיהום</value></data>
+  <data name="Emulation.Audio.Filter"><value>פילטר אודיו</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>הפרדה Stereo (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>קלט אודיו</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>הליבה של עמיגה זו אינה חושפת קלט אודיו.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Windows ברירת מחדל</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>נגד ההתערבות</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>מדומה</value></data>
+  <data name="Emulation.Audio.FilterType"><value>סוג פילטר</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>נפח הקול Floppy-Drive</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>סוג של צליל Floppy-Drive</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>כונן ריק</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>נפח אודיו CD</value></data>
+  <data name="Emulation.Audio.Device"><value>התקן</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>השהיה</value></data>
+  <data name="Emulation.Audio.Quality"><value>איכות</value></data>
+  <data name="Emulation.Audio.Drives"><value>כוננים</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>צליל כונן תקליטונים</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>מסנן שמע מקוטב</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>נמוכה</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>רגילה</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>גבוהה</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>אודיו Audio</value></data>
+</root>

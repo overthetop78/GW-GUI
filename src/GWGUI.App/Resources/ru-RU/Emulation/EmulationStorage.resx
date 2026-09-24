@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Добавить носитель</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Создать жёсткий диск</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Размер жёсткого диска (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Нет носителей. Добавьте дискету, жёсткий диск или CD, поддерживаемые выбранной моделью.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Только чтение</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Жёсткий диск Amiga|*.hdf|Все файлы|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Выбранная модель не поддерживает жёсткий диск.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Эта модель поддерживает не более {0} дисководов.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Эта модель поддерживает не более {0} жёстких дисков.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>выбранная модель не поддерживает CD Drive.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Привод CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Количество дисководов</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Количество жёстких дисков</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Скорость дисковода</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Защита образов дискет от записи</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Перенаправление записи на дискету</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Скорость CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Добавить существующий жёсткий диск</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Жёсткие диски</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>К этой машине не подключён жёсткий диск.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Дискеты</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Добавить устройство хранения</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Связанный носитель</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Геометрия диска определяется эмулятором автоматически.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Создан пустой образ дискеты: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Файл будет создан пустым, после чего его нужно разбить на разделы и отформатировать в эмулируемой машине.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD писатель</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Пустой диск можно создать, только если выбранная машина и эмулятор поддерживают запись.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Привод CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Настроить</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Создать пустую дискету</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Образ диска</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Выберите существующий образ диска.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Выбранный файл будет подключен к этому виртуальному приводу.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Дисковод</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Образ дискеты Amiga|*.adf|Все файлы|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Жесткий диск</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Интерфейс</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Предварительно выделить файл</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies и CD вставляются или заменяются с запущенной машины.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Извлечь носитель</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Образ диска уже существует: {0}\nЗаменить его?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Доступные типы, модели и идентификаторы зависят от выбранной машины.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Ленточный накопитель</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Использовать диск</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Использовать существующий диск</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Изменить в разделе «Общие»</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Для этой машины нет дополнительных устройств хранения.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Устройства хранения</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Выделение места</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Автоматическая геометрия</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Пустой носитель</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Байт на сектор</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Расчётная ёмкость: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Другой размер</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Цилиндры</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Папка назначения</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Геометрия диска (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Профиль размера</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Дисковод</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Головки</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Недопустимый размер диска или геометрия.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Сразу резервирует физическое место; иначе образ растёт по мере записи.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Секторы</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Кассета</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Картридж</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Компакт-диски</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Показывать активность дисководов на экране эмулятора</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Слот для картриджа</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>нажмите первые четыре диска DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Диск {0}</value></data>
+</root>

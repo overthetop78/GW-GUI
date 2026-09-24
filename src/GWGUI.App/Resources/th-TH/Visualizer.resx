@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>ตัวถอดรหัส</value></data>
   <data name="Visual.LinkZoom"><value>ลิงค์ซูม.</value></data>
   <data name="Visual.OpenScp"><value>เปิด SCP แฟ้ม...</value></data>
-  <data name="Visual.NoFile"><value>ไม่มีไฟล์ SCP เปิดอยู่</value></data>
+  <data name="Visual.NoFile"><value>ไม่มีอิมเมจเปิดอยู่</value></data>
   <data name="Visual.Waiting"><value>กำลังรอไฟล์</value></data>
   <data name="Visual.Inspector"><value>สารวัตร</value></data>
   <data name="Visual.SelectTrack"><value>เลือกแทร็ก</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>ถูกต้อง</value></data>
   <data name="Visual.CrcInvalid"><value>ไม่ถูกต้อง</value></data>
   <data name="Visual.IntegrityUnavailable"><value>ไม่พร้อมใช้งาน</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (ความหนาแน่นของเสียง)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>นอร์ธสตาร์ ยากที่จะทดสอบ MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit ทํางานหนัก FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>เข้ารหัส N แบบแข็งตัว FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>ระบบ/ ดาต้าของอาร์บูร์ก</value></data>
+  <data name="Visual.DecoderName.raw"><value>ฟลอกซ์แบบ Raw</value></data>
   <data name="Visual.StructureKind.Sync"><value>การซิงโครไนซ์</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>ส่วนหัวของภาค</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>ข้อมูลภาคส่วน</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>จัดรูปแบบส่วนหัว</value></data>
   <data name="Visual.StructureKind.FormatData"><value>จัดรูปแบบข้อมูล</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>ความผิดปกติของเวลา</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro จับภาพ (*.scp)|*.scp|ไฟล์ทั้งหมด|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>เช็คซัม</value></data>
   <data name="Visual.Side"><value>ด้านข้าง {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>กำลังวิเคราะห์แทร็ก {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>วิเคราะห์ การ ปฏิวัติ {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>ด้านข้าง</value></data>
   <data name="Visual.TrackLabel"><value>ติดตาม</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP รายการ</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>ตรวจพบรูปแบบ</value></data>
   <data name="Visual.AverageRpm"><value>ค่าเฉลี่ย RPM</value></data>
   <data name="Visual.AverageDuration"><value>ระยะเวลาเฉลี่ย</value></data>
+  <data name="Visual.All"><value>ทั้งหมด</value></data>
+  <data name="Visual.Surface"><value>พื้นผิว {0}</value></data>
+  <data name="Visual.DiscFace"><value>หน้า {0}</value></data>
+  <data name="Visual.Layer"><value>ชั้น {0}</value></data>
+  <data name="Visual.Session"><value>วาระ {0}</value></data>
+  <data name="Visual.Channel"><value>ช่อง {0}</value></data>
+  <data name="Visual.TrackNumber"><value>เพลง {0}</value></data>
+  <data name="Visual.TicksUnit"><value>เห็บ</value></data>
+  <data name="Visual.BytesUnit"><value>ไบต์</value></data>
+  <data name="Visual.BlocksUnit"><value>บล็อก</value></data>
+  <data name="Visual.SectorsUnit"><value>ส่วนต่าง ๆ</value></data>
+  <data name="Visual.SectorPresent"><value>ขอบเขตปัจจุบัน</value></data>
+  <data name="Visual.SectorAllocated"><value>ส่วนที่รวมแล้ว</value></data>
+  <data name="Visual.SectorFree"><value>ส่วนอิสระ</value></data>
+  <data name="Visual.SectorReserved"><value>ส่วนที่สํารองไว้</value></data>
+  <data name="Visual.SectorUnreadable"><value>ส่วนที่ยังไม่อ่าน</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>ข้อมูลขอบเขต</value></data>
+  <data name="Visual.SectorLabel"><value>ส่วน</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>บล็อกตรรกะ</value></data>
+  <data name="Visual.SizeLabel"><value>ขนาด</value></data>
+  <data name="Visual.StateLabel"><value>สถานะ</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>พาธของแฟ้มของระบบ</value></data>
+  <data name="Visual.LogicalMapTitle"><value>แผนที่ตรรกะ</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS เรขาคณิต</value></data>
+  <data name="Visual.SurfaceLabel"><value>พื้นผิว</value></data>
+  <data name="Visual.BlockAllocated"><value>ช่วงที่ปรับให้พอดี</value></data>
+  <data name="Visual.BlockFree"><value>ช่วงว่าง</value></data>
+  <data name="Visual.BlockReserved"><value>ช่วงที่สํารองไว้</value></data>
+  <data name="Visual.BlockUnknown"><value>ไม่ทราบช่วง</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>บล็อคข้อมูลของสื่อ</value></data>
+  <data name="Visual.CapacityLabel"><value>ความจุ</value></data>
+  <data name="Visual.AddressingLabel"><value>ที่อยู่</value></data>
+  <data name="Visual.StartLabel"><value>เริ่ม</value></data>
+  <data name="Visual.LengthLabel"><value>ความยาว</value></data>
+  <data name="Visual.PartitionTableLabel"><value>รูปแบบการแบ่งกลุ่ม</value></data>
+  <data name="Visual.PartitionTable.None"><value>ไม่มี</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>จํานวนส่วน</value></data>
+  <data name="Visual.FileSystemLabel"><value>ระบบแฟ้ม</value></data>
+  <data name="Visual.RangeTitle"><value>ช่วงที่เลือกไว้</value></data>
+  <data name="Visual.PlatterCountLabel"><value>แพลตเซอร์</value></data>
+  <data name="Visual.BlockState.Available"><value>มี</value></data>
+  <data name="Visual.BlockState.Reserved"><value>สงวน</value></data>
+  <data name="Visual.BlockState.Allocated"><value>ปรับแก้ค่าสี</value></data>
+  <data name="Visual.BlockState.Free"><value>ว่าง</value></data>
+  <data name="Visual.BlockState.Unknown"><value>ไม่ทราบ</value></data>
+  <data name="Visual.OpticalDataTrack"><value>แทร็กข้อมูล</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>แทร็กเสียง</value></data>
+  <data name="Visual.OpticalPregap"><value>พรีแกป</value></data>
+  <data name="Visual.OpticalSession"><value>ขอบเขตของเซสชัน</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>ข้อมูลสื่อแบบ Optical</value></data>
+  <data name="Visual.FaceCountLabel"><value>พื้นผิว</value></data>
+  <data name="Visual.LayerCountLabel"><value>เลเยอร์</value></data>
+  <data name="Visual.TrackCountLabel"><value>แทร็กเสียง</value></data>
+  <data name="Visual.SessionLabel"><value>วาระ</value></data>
+  <data name="Visual.LayerLabel"><value>ชั้น</value></data>
+  <data name="Visual.TrackKindLabel"><value>ชนิดเพลง</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>แทร็กที่เลือกไว้</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>ต้นฉบับของระดับเสียง</value></data>
+  <data name="Visual.VolumeTitle"><value>ระดับเสียง</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>แฟ้มที่สัมพันธ์กัน</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>ไม่ทราบ</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>ข้อมูล</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>เสียง</value></data>
+  <data name="Visual.SequentialSignal"><value>สัญญาณ</value></data>
+  <data name="Visual.SequentialDecoded"><value>บล็อกที่ถอดรหัสได้</value></data>
+  <data name="Visual.SequentialSilence"><value>เงียบ</value></data>
+  <data name="Visual.SequentialError"><value>การถอดรหัสผิดพลาด</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>ข้อมูลสื่อแบบต่อเนื่อง</value></data>
+  <data name="Visual.DurationLabel"><value>ความยาว</value></data>
+  <data name="Visual.SegmentCountLabel"><value>เลเยอร์</value></data>
+  <data name="Visual.SegmentKindLabel"><value>ประเภทการไล่สี</value></data>
+  <data name="Visual.ChannelLabel"><value>ช่อง</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>เนื้อหาที่จดจําได้</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>การถอดรหัสผิดพลาด</value></data>
+  <data name="Visual.SegmentTitle"><value>ส่วนของเส้นตรงที่เลือก</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>ไม่ทราบ</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>สัญญาณ</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>เงียบ</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>บล็อกที่ถอดรหัสได้</value></data>
+  <data name="Visual.RevolutionSummary"><value>การปฏิวัติทั้งหมด</value></data>
+  <data name="Visual.RevolutionChoice"><value>การ ปฏิวัติ {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>การ ปฏิวัติ</value></data>
+  <data name="Visual.QualityDead"><value>ตาย</value></data>
+  <data name="Visual.QualityPoor"><value>จน</value></data>
+  <data name="Visual.QualityPartial"><value>อ่านบางส่วนได้</value></data>
+  <data name="Visual.QualityGood"><value>ดี</value></data>
+  <data name="Visual.QualityExcellent"><value>เยี่ยม</value></data>
+  <data name="Visual.SectorWithData"><value>ขอบเขตที่มีข้อมูล</value></data>
+  <data name="Visual.SectorDegraded"><value>สัดส่วนที่ลดแล้ว</value></data>
+  <data name="Visual.SectorDead"><value>ขอบเขตตาย</value></data>
+  <data name="Visual.SectorWithoutData"><value>ขอบเขตข้อมูลไม่มี</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>ข้อมูลเทปคาสเซ็ต</value></data>
 </root>

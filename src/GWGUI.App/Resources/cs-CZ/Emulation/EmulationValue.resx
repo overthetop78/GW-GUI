@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Povoleno</value></data>
+  <data name="Emulation.Value.Disabled"><value>Zakázáno</value></data>
+  <data name="Emulation.Value.Minimum"><value>Minimální</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Velmi malé</value></data>
+  <data name="Emulation.Value.Small"><value>Malé</value></data>
+  <data name="Emulation.Value.Medium"><value>Střední</value></data>
+  <data name="Emulation.Value.Large"><value>Velké</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Velmi velké</value></data>
+  <data name="Emulation.Value.Maximum"><value>Maximální</value></data>
+  <data name="Emulation.Value.Standard"><value>Standardní</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Vylepšená</value></data>
+  <data name="Emulation.Value.Internal"><value>Vnitřní</value></data>
+  <data name="Emulation.Value.Loud"><value>Hlasitý</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Nepoužívá se</value></data>
+  <data name="Emulation.Value.None"><value>Žádné</value></data>
+  <data name="Emulation.Value.Default"><value>Výchozí</value></data>
+  <data name="Emulation.Value.Gray"><value>Šedá</value></data>
+</root>

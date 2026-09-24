@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Ảnh đĩa</value></data>
+  <data name="Explorer.DetectedFormats"><value>Đã phát hiện: {0}</value></data>
   <data name="Explorer.Format"><value>Định dạng</value></data>
   <data name="Explorer.OpenImage"><value>Mở ảnh…</value></data>
   <data name="Explorer.Automatic"><value>Tự động nhận diện</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Không rõ</value></data>
   <data name="Explorer.Unnamed"><value>Ổ đĩa chưa đặt tên</value></data>
   <data name="Explorer.LoadFailed"><value>Không thể mở ảnh này: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Định dạng không tương thích</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Không thể diễn giải “{1}” bằng định dạng “{0}”.&#xA;Chọn định dạng khác để tiếp tục.</value></data>
   <data name="Explorer.Loading"><value>Đang đọc ảnh đĩa…</value></data>
   <data name="Explorer.ReadDisk"><value>Đọc đĩa</value></data>
   <data name="Explorer.Name"><value>Tên</value></data>
@@ -52,9 +47,111 @@
   <data name="Explorer.Compression"><value>Nén</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Trình nạp sector tùy chỉnh</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Trình nạp tùy chỉnh — không có danh mục tệp</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack bởi The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Khối dữ liệu</value></data>
-  <data name="Explorer.DetectedFormats"><value>Đã phát hiện: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Công cụ máy không thể tạo ra ảnh phân khu dễ xem cho {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Công cụ máy không thể giải mã ảnh như {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Công cụ máy không thể tạo ra ảnh phân khu dễ xem cho {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Công cụ máy không thể giải mã ảnh như {0}.</value></data>
+  <data name="Explorer.Session"><value>Phiên chạy đĩa</value></data>
+  <data name="Explorer.Track"><value>Truyền thông</value></data>
+  <data name="Explorer.Layers"><value>Lớp đĩa</value></data>
+  <data name="Explorer.Faces"><value>Mặt ghi âm phương tiện</value></data>
+  <data name="Explorer.PartitionType"><value>Kiểu phân vùng</value></data>
+  <data name="Explorer.PartitionId"><value>Bộ nhận diện phân vùng</value></data>
+  <data name="Explorer.TrackMode"><value>Theo dõi</value></data>
+  <data name="Explorer.FirstSector"><value>Phần đầu</value></data>
+  <data name="Explorer.SectorCount"><value>Số lượng khu vực</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Kích cỡ phân khu lưu trữ</value></data>
+  <data name="Explorer.UserDataSize"><value>Kích cỡ dữ liệu người dùng</value></data>
+  <data name="Explorer.Subchannels"><value>Các tàu con</value></data>
+  <data name="Explorer.AudioTracks"><value>Các vết âm thanh</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Nhận dạng phương tiện</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Định dạng nhận diện</value></data>
+  <data name="Explorer.TestingFormat"><value>Định dạng thử ra: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: nhận diện</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: không nhận ra</value></data>
+  <data name="Explorer.ReadingFormat"><value>Định dạng đọc: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Đọc cấu trúc phương tiện</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Đang đọc băng</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Thu {0} Tháng Baof {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Đang giải mã các tập tin băng</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Nhận dạng tập tin</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Đang phân tích hệ thống tập tin</value></data>
+  <data name="Explorer.LoadingContents"><value>Đang chuẩn bị thư mục và tập tin</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Hiển thị nội dung</value></data>
+  <data name="Explorer.FileWithExtension"><value>Tập tin {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Tài liệu</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Mã nguồn</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC tập tin chương trình</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Chương trình khởi động</value></data>
+  <data name="Explorer.Type.Executable"><value>Có thể thực hiện</value></data>
+  <data name="Explorer.Type.Command"><value>Tập tin lệnh</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Tập tin hệ thống</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Mã đối tượng</value></data>
+  <data name="Explorer.Type.Data"><value>Tập tin dữ liệu</value></data>
+  <data name="Explorer.Type.Configuration"><value>Tập tin cấu hình</value></data>
+  <data name="Explorer.Type.Library"><value>Thư viện</value></data>
+  <data name="Explorer.Type.Media"><value>Tập tin phương tiện</value></data>
+  <data name="Explorer.Type.Font"><value>Phông</value></data>
+  <data name="Explorer.Execution"><value>Thực hiện</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Tập tin thực hiện được bản địa</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Tập tin thực hiện được giải mã qua mạng</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Lệnh hay văn lệnh</value></data>
+  <data name="Explorer.Category"><value>Loại</value></data>
+  <data name="Explorer.ContentFormat"><value>Định dạng nội dung</value></data>
+  <data name="Explorer.TextEncoding"><value>Bảng mã Văn bản</value></data>
+  <data name="Explorer.Preview"><value>Xem thử</value></data>
+  <data name="Explorer.Category.File"><value>Tập tin</value></data>
+  <data name="Explorer.Category.Text"><value>Văn bản</value></data>
+  <data name="Explorer.Category.Document"><value>Tài liệu</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Mã nguồn</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC chương trình</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Chương trình khởi động</value></data>
+  <data name="Explorer.Category.Program"><value>Chương trình</value></data>
+  <data name="Explorer.Category.Executable"><value>Có thể thực hiện</value></data>
+  <data name="Explorer.Category.Command"><value>Câu lệnh</value></data>
+  <data name="Explorer.Category.System"><value>Hệ thống</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Mã đối tượng</value></data>
+  <data name="Explorer.Category.Data"><value>Dữ liệu</value></data>
+  <data name="Explorer.Category.Configuration"><value>Cấu hình</value></data>
+  <data name="Explorer.Category.Library"><value>Thư viện</value></data>
+  <data name="Explorer.Category.Image"><value>Ảnh</value></data>
+  <data name="Explorer.Category.Audio"><value>Âm thanh</value></data>
+  <data name="Explorer.Category.Media"><value>Vật chứa</value></data>
+  <data name="Explorer.Category.Archive"><value>Kho lưu</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Ảnh đĩa</value></data>
+  <data name="Explorer.Category.Link"><value>Liên kết</value></data>
+  <data name="Explorer.Category.Font"><value>Phông</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Không rõ</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Văn bản thường</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC chương trình</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Thực hiện được bản địa</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Lệnh hay văn lệnh</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Mã đối tượng</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>Hệ nhị phân hệ thống</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Dữ liệu đã cấu trúc</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Cấu hình</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Thư viện</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Ảnh</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Âm thanh</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Kho lưu</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Ảnh đĩa</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Phông</value></data>
+  <data name="Explorer.Preview.None"><value>Không có</value></data>
+  <data name="Explorer.Preview.Text"><value>Văn bản</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC danh sách</value></data>
+  <data name="Explorer.Preview.Image"><value>Ảnh</value></data>
+  <data name="Explorer.Preview.Audio"><value>Âm thanh</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Thập lục phân</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Ứng dụng bên ngoài</value></data>
+  <data name="Explorer.Cassette"><value>Băng cassette</value></data>
+  <data name="Explorer.InternalName"><value>Mô tả nội bộ</value></data>
+  <data name="Explorer.BaudRates"><value>Tốc độ</value></data>
+  <data name="Explorer.Chunks"><value>Khối</value></data>
+  <data name="Explorer.FskBlocks"><value>Khối FSK</value></data>
+  <data name="Explorer.Records"><value>Bản ghi</value></data>
+  <data name="Explorer.FullRecords"><value>Đầy đủ</value></data>
+  <data name="Explorer.PartialRecords"><value>Một phần</value></data>
+  <data name="Explorer.EndRecord"><value>Kết thúc</value></data>
+  <data name="Explorer.ChunkType"><value>Loại</value></data>
+  <data name="Explorer.BaudRate"><value>Tốc độ</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Độ trễ</value></data>
 </root>

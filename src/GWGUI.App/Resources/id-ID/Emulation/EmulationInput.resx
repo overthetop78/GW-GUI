@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Perilaku</value></data>
+  <data name="Emulation.Input.Assign"><value>Tetapkan...</value></data>
+  <data name="Emulation.Input.Actions"><value>Tindakan</value></data>
+  <data name="Emulation.Input.Press"><value>Tekan tombol...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Deteksi perangkat digunakan bersama, sedangkan penetapan disimpan terpisah pada setiap konfigurasi mesin.</value></data>
+  <data name="Emulation.Input.Test"><value>Uji input</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Perangkat input bersama</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Tekan tombol keyboard atau mouse untuk menguji deteksinya.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Pulihkan bawaan</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Hapus konflik</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Pemetaan</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Status</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Cari tombol atau pemetaan</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Valid: pemetaan unik · Konflik: pemetaan dipakai beberapa kali · Dicadangkan: pintasan Windows atau GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Berlaku</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Konflik</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Dicadangkan</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Belum dipetakan</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Klik Tetapkan, lalu gunakan tombol keyboard, mouse, atau pengontrol.</value></data>
+</root>

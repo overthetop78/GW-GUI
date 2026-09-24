@@ -1,5 +1,6 @@
 using GWGUI.App.Contracts.Emulation.Settings;
 using GWGUI.App.Contracts.Views.Emulation.Settings;
+using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Localization.Extensions;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,9 +9,9 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 
 internal static partial class EmulationSettingsLayout
 {
-    private const string ProcessorIcon = "\uE950";
-    private const string CompatibilityIcon = "\uEA18";
-    private const string AccelerationIcon = "\uE945";
+    private static string ProcessorIcon => IconGlyphs.Processor;
+    private static string CompatibilityIcon => IconGlyphs.Compatibility;
+    private static string AccelerationIcon => IconGlyphs.Acceleration;
 
     internal static Grid CpuSettingsPage(EmulationCpuSettingsContent settings)
     {

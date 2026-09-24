@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Menu.Options"><value>Options</value></data>
+  <data name="Menu.Preferences"><value>Preferences…</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnostics</value></data>
+  <data name="Menu.Information"><value>Information</value></data>
+  <data name="Menu.Bandwidth"><value>USB bandwidth</value></data>
+  <data name="Menu.Rpm"><value>RPM speed</value></data>
+  <data name="Menu.Seek"><value>Seek head…</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
+  <data name="Menu.Pins"><value>Pins…</value></data>
+  <data name="Menu.Reset"><value>Reset</value></data>
+  <data name="Menu.Delays"><value>Delays…</value></data>
+  <data name="Menu.Firmware"><value>Firmware…</value></data>
+  <data name="Menu.Help"><value>Help</value></data>
+  <data name="Menu.Documentation"><value>Documentation</value></data>
+  <data name="Menu.About"><value>About</value></data>
+  <data name="Menu.Align"><value>Drive alignment…</value></data>
+  <data name="Menu.Emulation"><value>Emulation</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulation preferences…</value></data>
 </root>

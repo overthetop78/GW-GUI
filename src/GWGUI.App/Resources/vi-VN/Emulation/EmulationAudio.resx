@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Bật âm thanh</value></data>
+  <data name="Emulation.Audio.Output"><value>Đầu ra âm thanh</value></data>
+  <data name="Emulation.Audio.Latency"><value>Độ trễ (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Nội suy</value></data>
+  <data name="Emulation.Audio.Filter"><value>Bộ lọc âm thanh Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Tách âm stereo (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Đầu vào âm thanh</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Lõi Amiga này không cung cấp đầu vào âm thanh.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Đầu ra mặc định của Windows</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Chống nội suy</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Mô phỏng</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Loại bộ lọc</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Âm lượng tiếng ổ đĩa mềm</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Loại tiếng ổ đĩa mềm</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Tắt tiếng ổ đĩa trống</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Âm lượng CD</value></data>
+  <data name="Emulation.Audio.Device"><value>Thiết bị</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Độ trễ</value></data>
+  <data name="Emulation.Audio.Quality"><value>Chất lượng</value></data>
+  <data name="Emulation.Audio.Drives"><value>Ổ đĩa</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Âm thanh ổ đĩa mềm</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Bộ lọc âm thanh phân cực</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Thấp</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Bình thường</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Cao</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Âm thanh</value></data>
+</root>

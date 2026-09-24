@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>Seçenekler</value></data>
-  <data name="Options.General"><value>Genel</value></data>
-  <data name="Options.Tools"><value>Greaseweazle Araçlar</value></data>
-  <data name="Options.Hardware"><value>Kontrolörler ve sürücüler</value></data>
-  <data name="Options.Profiles"><value>Profiller</value></data>
-  <data name="Options.ImagesFolder"><value>Varsayılan disk görüntüsü klasörü</value></data>
-  <data name="Options.Language"><value>Dil</value></data>
-  <data name="Options.Theme"><value>Tema</value></data>
-  <data name="Theme.System"><value>Sistem</value></data>
-  <data name="Theme.Light"><value>Işık</value></data>
-  <data name="Theme.Dark"><value>Karanlık</value></data>
-  <data name="Options.GwPath"><value>gw.exe'a giden yol</value></data>
-  <data name="Options.ToolsHelp"><value>Araçlar eksikse asistan bunları indirmeyi veya mevcut bir kurulumu seçmeyi teklif edecektir. Güncellemeler yalnızca duyurulur.</value></data>
-  <data name="Options.HardwarePersistence"><value>Bir sürücünün bağlantısı kesildiğinde donanım ayarları kayıtlı kalır.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>Seçenekler</value></data>
+  <data name="Options.General" xml:space="preserve"><value>Genel</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Araçlar</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Kontrolörler ve sürücüler</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Profiller</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Varsayılan disk görüntüsü klasörü</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Dil</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>Sistem</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Işık</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Karanlık</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>gw.exe&apos;a giden yol</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Araçlar eksikse asistan bunları indirmeyi veya mevcut bir kurulumu seçmeyi teklif edecektir. Güncellemeler yalnızca duyurulur.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Bir sürücünün bağlantısı kesildiğinde donanım ayarları kayıtlı kalır.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executable (Operaable)*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Bu depolanan denetleyici ve tüm sürücüleri kaldırılsın mı?</value></data>
   <data name="Options.HardwareTitle"><value>Donanım</value></data>
@@ -63,184 +55,11 @@
   <data name="Options.KeepLogArchives"><value>Önceki günlükleri sakla</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = sınırsız</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motorlar</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>Her işlem için kullanılacak motoru bağımsız olarak seçin.</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>Dahili GW GUI motoru</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>Seçilen motor kesin olarak kullanılır. İşlemi yapamazsa GW GUI diğer motoru sessizce kullanmak yerine bunu bildirir.</value></data>
-  <data name="Emulation.Model"><value>Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fareyi yakala</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>Yapı oluşturma</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>Kumandalar</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>Kumandaları algıla</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>Aygıt</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Kumanda algılanmadı</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} kumanda algılandı</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>Titreşimi test et</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Titreşim gücü</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Canlı girişler</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Denetim</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>Değer</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>Etkin</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>Yetenekler</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>Aygıt kimliği</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>Giriş türleri</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>Denetimler</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>Titreşim motorları</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Kuvvet geri bildirimi</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>Dokunsal geri bildirim</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Sistem düğmeleri</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>Ham raporlar</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} giriş / {1} çıkış</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Kumanda düzeni</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Direksiyon</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · debriyaj={1} · el freni={2} · vites={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput adı</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revizyon</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Donanım sürümü</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Ürün yazılımı sürümü</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>Aile</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Üretici</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Eksen</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Düğme</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Anahtar</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} eksen · {1} düğme · {2} anahtar</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>Evet</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>Hayır</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>Yok</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ham bayt</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analog değerler</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Kumanda algılama başarısız</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>Denetleyiciler algılanıyor…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Kumanda okuma başarısız</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>Test sürüyor…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>Test başarısız</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Test tamamlandı</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Ek denetimler</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Dokunsal ses uç noktası</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Dokunsal konumlar</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>Kullanım</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows aygıt zinciri</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Sol çubuk X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Sol çubuk Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>Sağ çubuk X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>Sağ çubuk Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Sol tetik</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Sağ tetik</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>Direksiyon</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>Gaz</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>Fren</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Debriyaj</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>El freni</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>Vites</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>Yalpa</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>Yunuslama</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>Sapma</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensörler</value></data>
-  <data name="Controllers.Enum.UiNavigation"><value>UI navigasyon</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Oyun kumandası</value></data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Düşük frekans motoru</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Yüksek frekans motoru</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Paylaş</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Doğrusal</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Açısal</value></data>
-<data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Sabit</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampa</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinüs dalgası</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Kare dalga</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Üçgen dalga</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Yükselen testere dişi</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Düşen testere dişi</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Yay</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Sürtünme</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Sönümleyici</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Atalet</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Oyun çubuğu</value></data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Çok eksenli denetleyici</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID kullanımı</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>eksenler</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>düğmeler</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Birleştirilmiş</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Sanal</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Giriş raporu</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Çıkış raporu</value></data>
-<data name="Emulation.InitialDisk"><value>İlk disk</value></data>
-  <data name="Emulation.Audio"><value>Ses Ses</value></data>
-  <data name="Emulation.Controller"><value>Sorumlu denetçi {0}</value></data>
-  <data name="Emulation.Core.NameOptions"><value>Core seçenekleri</value></data>
-  <data name="Emulation.MultiDrive"><value>İlk dört diski içeri girin DF0–DF3</value></data>
-  <data name="Emulation.DiskNumber"><value>Disk Disk Disk Disk {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>Mevcut seçenekler</value></data>
-  <data name="Emulation.Configurations"><value>Yapılar</value></data>
-  <data name="Emulation.Firmware"><value>Firmaware</value></data>
-  <data name="Emulation.ReleaseMouse"><value>Yayınlanmış fare</value></data>
-  <data name="Emulation.DeleteConfirm"><value>Bu Amiga yapılandırmasını mi silin?</value></data>
-  <data name="Emulation.ModelRequired"><value>Amiga modeli gereklidir.</value></data>
-  <data name="Emulation.KickstartRequired"><value>Bir Kickstart yolu gereklidir.</value></data>
-  <data name="Emulation.FileRequired"><value>Gerekli bir bilgisayar yolu boş.</value></data>
-  <data name="Emulation.FileMissing"><value>Seçilen dosya mevcut değildir.</value></data>
-<data name="Controllers.Enum.Normal"><value>Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - {1} : {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>Analog ölü bölgeler</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>Tesirli Tesir</value></data>
-  <data name="Controllers.OuterDeadZone"><value>Dış Ölü Bölge</value></data>
-  <data name="Updates.Title"><value>Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates Updates</value></data>
-  <data name="Updates.Description"><value>Arama için güncelleştirmeler için GW GUI ve emulation modüllerini kurdu.</value></data>
-  <data name="Updates.Scope"><value>Arama Arama Arama Arama Arama Arama Arama Arama Arama Arama</value></data>
-  <data name="Updates.ScopeApplication"><value>Uygulama Uygulama Uygulama Uygulama Uygulama Uygulama Uygulama Uygulama Uygulama Uygulama Uygulama Uygulama</value></data>
-  <data name="Updates.ScopeModules"><value>Emulation modülleri</value></data>
-  <data name="Updates.ScopeAll"><value>Uygulama ve modülasyon</value></data>
-  <data name="Updates.Search"><value>Güncellemeler için Check for updates</value></data>
-  <data name="Updates.Ready"><value>Ne aramayı seçin, sonra güncelleştirmeleri kontrol edin.</value></data>
-  <data name="Updates.Searching"><value>Güncellemeler için kontrol edin...</value></data>
-  <data name="Updates.SearchFailed"><value>Güncellemeler için kontrol etmek için kullanılamaz.</value></data>
-  <data name="Updates.UpToDate"><value>Bugüne kadar</value></data>
-  <data name="Updates.Available"><value>Güncellemeler mevcut Güncellemeler Güncellemeler</value></data>
-  <data name="Updates.ApplicationRequired"><value>Gereklilikler GW GUI host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>Uyumlu sürüm yok</value></data>
-  <data name="Updates.InstalledVersion"><value>Yüklemek: {0}</value></data>
-  <data name="Updates.Results"><value>Güncellemeler bulundu.</value></data>
-  <data name="Updates.NoUpdates"><value>Seçilen her şey tarihe kadar.</value></data>
-  <data name="Updates.Install"><value>Seçilen güncelleştirmeleri yükleme</value></data>
-  <data name="Updates.InstallConfirm"><value>Download and install {0} Seçilmiş bileşen(s)? GW GUI Yakın ve yeniden başlayacak.</value></data>
-  <data name="Updates.Preparing"><value>Güncellemeleri indirin ve hazırlar ...</value></data>
-  <data name="Updates.PreparationCancelled"><value>Güncelleme hazırlığı iptal edildi.</value></data>
-  <data name="Updates.PreparationFailed"><value>Güncellemeyi hazırlamak için kullanılamaz.</value></data>
-  <data name="Updates.InstallSucceeded"><value>Güncellemeler başarıyla kuruldu.</value></data>
-  <data name="Updates.InstallRestored"><value>Güncelleme başarısız oldu ve önceki sürüm restore edildi. {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>Bir emulation modülü bir an emulation modülü bir a emulation modülü from a emulation modülü from a an emulation modülü from a emulation ZIP arşiv veya doğrudan güncelleme kataloğu URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>Bir dosyadan yükleme</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>Bir yerden yükleme URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan Doğrudan HTTPS URL Modül güncelleştirme kataloğu (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>Modül arşivleri (The Module archives)*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>Doğrudan girin HTTPS URL Bir modül güncellemesi kataloğu.</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>Yükleme modülü {0} sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm {1}? GW GUI Yakın ve yeniden başlayacak.</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>Modül kurulumunu hazırlamak için kullanılamaz.</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>Kurulum için mevcut resmi emulation modüllerine göz atın.</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>Mevcut modüller göster</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>Yükleme yükleme</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>Kurulum için mevcut olan modülleri görmek için resmi rehberi gönderin.</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>Modül kılavuzunu Yükler...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>Şu anda uyumlu modül mevcut değildir.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} Resmi katalogdaki modüller.</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>Modül dizisini yüklemek için kullanılamaz.</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>Yüklemek için yükleme</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>Mevcut sürüm: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Yüklemek için</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>Bir modül yükleme makinelerinin makinelerini makinelerini ekliyor GW GUI. Emulator çekirdeği ve gerekli donanım, Emulation seçeneklerinde ayrı olarak yönetilir.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Oluşturulan modüller için Güncellemeler</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Gelişmiş yükleme</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>Her işlem için kullanılacak motoru bağımsız olarak seçin.</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>Dahili GW GUI motoru</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Seçilen motor kesin olarak kullanılır. İşlemi yapamazsa GW GUI diğer motoru sessizce kullanmak yerine bunu bildirir.</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Tercihler</value></data>
   <data name="Options.EmulationTitle"><value>Emulation tercihleri</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>Mevcut modüller</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>Uygulama güncelleştirmeleri</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>Göz ve yükleme modülleri</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP arşiv veya katalog URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>Downloaded Downloaded</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>Bidek yükleme</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI Yakın olacak, tüm indirilen modülleri kuracak ve yeniden başlatacaktır.</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>Tüm indirilmiş modülleri yüklemeyi bitirin mi? GW GUI Yakın ve yeniden başlayacak.</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} Anülasyon ayarları</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>Kapanıştan önce yüklenen modüllerin kurulumunun tamamlanmasını bitirmek için izin vermeyin? İndirmeleri ve yakınları iptal etmek için seçin.</value></data>
-  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

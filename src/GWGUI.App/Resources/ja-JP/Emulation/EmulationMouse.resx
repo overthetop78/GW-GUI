@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>マウスキャプチャ解除キー</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>マウス左ボタン</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>マウス右ボタン</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>マウス中央ボタン</value></data>
+  <data name="Emulation.Mouse.Physical"><value>物理マウス</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>移動量を 2 倍</value></data>
+  <data name="Emulation.Mouse.Speed"><value>マウス速度</value></data>
+  <data name="Emulation.Mouse.Analog"><value>マウスを操作するアナログスティック</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>アナログスティックのデッドゾーン</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>アナログスティックのマウス速度</value></data>
+  <data name="Emulation.Mouse.Actions"><value>マウス操作</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>マウスボタン 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>マウスボタン 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>マウスのキャプチャ</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>マウスホイール上</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>マウスホイール下</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>マウスホイール左</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>マウスホイール右</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>マウスをキャプチャ</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>マウスを解放する</value></data>
+</root>

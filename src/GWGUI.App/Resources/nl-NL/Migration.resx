@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Bestandsmigratie...</value></data>
+  <data name="Migration.Title"><value>Bestandsmigratie</value></data>
+  <data name="Migration.Heading"><value>Bestanden migreren naar een ander bestandssysteem</value></data>
+  <data name="Migration.Source"><value>Bronafbeelding</value></data>
+  <data name="Migration.NoSource"><value>Selecteer een afbeelding met een erkend bestandssysteem.</value></data>
+  <data name="Migration.Destination"><value>Het systeem en de indeling van het bestandsdoel</value></data>
+  <data name="Migration.Output"><value>Bestemmingsafbeelding</value></data>
+  <data name="Migration.Compatibility"><value>Verenigbaarheid en verliezen</value></data>
+  <data name="Migration.Waiting"><value>Selecteer een bron en een bestemming.</value></data>
+  <data name="Migration.Severity"><value>Severity</value></data>
+  <data name="Migration.Path"><value>Bronpad</value></data>
+  <data name="Migration.Description"><value>Omschrijving</value></data>
+  <data name="Migration.AcceptLosses"><value>Accepteer de verliezen aan opgenomen metagegevens</value></data>
+  <data name="Migration.Execute"><value>Bestanden migreren</value></data>
+  <data name="Migration.Blocking"><value>Blokkeren</value></data>
+  <data name="Migration.MetadataLoss"><value>Verlies van metadata</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0}  {1} • Begin-items: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Kan de migratie niet voorbereiden: {0}</value></data>
+  <data name="Migration.Completed"><value>De bestemmingsafbeelding is aangemaakt: {0}</value></data>
+  <data name="Migration.Failed"><value>Migratie mislukt: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Onverenigbaar: correctie van de blokkeringsverliezen vóór migratie.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Compatibel na aanvaarding van de opgegeven metadataverliezen.</value></data>
+  <data name="Migration.Compatible"><value>Compatibel: geen verlies gedetecteerd.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Bestandsinhoud is niet beschikbaar.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Dit invoertype wordt niet ondersteund door de bestemming.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>De naam is niet geldig voor de bestemming.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>De naam is te lang voor de bestemming.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Verschillende vermeldingen zouden dezelfde bestemmingsnaam hebben.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Het bestand is te groot voor de bestemming.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>De bronmetadata is ongeldig.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>De datum van wijziging wordt niet bewaard.</value></data>
+  <data name="Migration.Loss.Comment"><value>Het commentaar zal niet worden bewaard.</value></data>
+  <data name="Migration.Loss.Attributes"><value>De bronattributen worden niet bewaard.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>De bestemmingsafbeelding bestaat al. Vervangen? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>De doelafbeelding kan de bronafbeelding niet vervangen.</value></data>
+</root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>Ο εξομοιωτής απαιτεί ένα μέσο πριν ενεργοποιηθεί αυτό το μηχάνημα. Εισαγάγετε ή ρυθμίστε ένα από τα απαιτούμενα μέσα που εμφανίζονται παρακάτω.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>Δεν ήταν δυνατή η ενεργοποίηση του μηχανήματος</value></data>
+  <data name="Emulation.Error.Machine"><value>Μηχάνημα</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>Απαιτούμενα μέσα</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>Απαιτείται ένα μοντέλο Amiga.</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Απαιτείται διαδρομή Kickstart.</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>Μια απαιτούμενη διαδρομή firmware είναι κενή.</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>Το επιλεγμένο αρχείο δεν υπάρχει.</value></data>
+</root>

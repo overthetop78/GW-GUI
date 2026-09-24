@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>ลักษณะการทำงาน</value></data>
+  <data name="Emulation.Input.Assign"><value>กำหนด...</value></data>
+  <data name="Emulation.Input.Actions"><value>การทำงาน</value></data>
+  <data name="Emulation.Input.Press"><value>กดปุ่ม...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>การตรวจหาอุปกรณ์ใช้ร่วมกัน แต่การกำหนดจะบันทึกแยกในแต่ละการตั้งค่าเครื่อง</value></data>
+  <data name="Emulation.Input.Test"><value>ทดสอบอินพุต</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>อุปกรณ์อินพุตที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>กดปุ่มแป้นพิมพ์หรือปุ่มเมาส์เพื่อทดสอบการตรวจหา</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>คืนค่าเริ่มต้น</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>ล้างข้อขัดแย้ง</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>การกำหนด</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>สถานะ</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>ค้นหาปุ่มหรือการกำหนด</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>ถูกต้อง: การกำหนดไม่ซ้ำ · ขัดแย้ง: ใช้การกำหนดหลายครั้ง · สงวนไว้: ปุ่มลัด Windows หรือ GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>ถูกต้อง</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>ขัดแย้ง</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>สงวนไว้</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>ยังไม่กำหนด</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>กด กำหนด แล้วใช้ปุ่มคีย์บอร์ด ปุ่มเมาส์ หรือปุ่มคอนโทรลเลอร์</value></data>
+</root>

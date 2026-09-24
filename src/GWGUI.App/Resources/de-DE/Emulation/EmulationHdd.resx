@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Disk-Image löschen...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Löschen Sie dieses Disk-Image und alle seine Daten dauerhaft?&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Löschen ist unmöglich. Diese Festplatte entfernen, die Konfigurationen speichern und die aufgelisteten Sitzungen zuerst schließen:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Offene Sitzung: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Löschen durch Links ist nicht erlaubt.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Wählen Sie eine Erweiterung, die von dieser Maschine und Schnittstelle unterstützt wird.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Diese Datei existiert bereits. Wählen Sie einen anderen Namen.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Kapazität: 512 Bytes bis {0}, In Vielfachen von 512. Konservativer Grenzwert für das unterstützte System.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Erstellt eine leere Rohdiskette ohne Betriebssystem. Bereiten und formatieren Sie sie mit Plattenwerkzeugen innerhalb der emulierten Maschine vor.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Vorbereitung der Scheibe</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Leer (nicht formatiert)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatierung erzeugt ein leeres Volume, ohne Betriebssystem. Atari HDD Beim Booten ist außerdem ein kompatibler Festplattentreiber erforderlich, der von der emulierten Maschine installiert ist.</value></data>
+</root>

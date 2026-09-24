@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Tiedoston muutto...</value></data>
+  <data name="Migration.Title"><value>Tiedoston siirtyminen</value></data>
+  <data name="Migration.Heading"><value>Siirrä tiedostoja toiseen tiedostojärjestelmään</value></data>
+  <data name="Migration.Source"><value>Lähdekuva</value></data>
+  <data name="Migration.NoSource"><value>Valitse tiedostojärjestelmä, joka sisältää tunnistetun tiedostojärjestelmän.</value></data>
+  <data name="Migration.Destination"><value>Määränpäätiedostojärjestelmä ja -muoto</value></data>
+  <data name="Migration.Output"><value>Kohdekuva</value></data>
+  <data name="Migration.Compatibility"><value>Soveltuvuus ja menetykset</value></data>
+  <data name="Migration.Waiting"><value>Valitse lähde ja kohde.</value></data>
+  <data name="Migration.Severity"><value>Vakavuus</value></data>
+  <data name="Migration.Path"><value>Lähdepolku</value></data>
+  <data name="Migration.Description"><value>Tavaran kuvaus</value></data>
+  <data name="Migration.AcceptLosses"><value>Hyväksy listatut metatietohäviöt</value></data>
+  <data name="Migration.Execute"><value>Siirrä tiedostoja</value></data>
+  <data name="Migration.Blocking"><value>Esteet</value></data>
+  <data name="Migration.MetadataLoss"><value>Metatietojen menetys</value></data>
+  <data name="Migration.SourceSummary"><value>Määrä: {0} ... Tiedostojärjestelmä: {1} ... {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Muuttoliikettä ei voitu valmistella: {0}</value></data>
+  <data name="Migration.Completed"><value>Kohdekuva luotiin: {0}</value></data>
+  <data name="Migration.Failed"><value>Muuttoliike epäonnistui: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Yhteensopimaton: Korjaa estohäviöt ennen siirtymistä.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Yhteensopiva sen jälkeen, kun on hyväksytty luetellut metatiedot.</value></data>
+  <data name="Migration.Compatible"><value>Yhteensopiva: ei havaittu menetystä.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Tiedoston sisältö ei ole saatavilla.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Määränpää ei tue tätä tietuetyyppiä.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Nimi ei ole voimassa määräpaikassa.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Nimi on liian pitkä määränpäähän.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Useilla kirjoituksilla olisi sama kohdenimi.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Tiedosto on liian suuri määränpäähän.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Lähdemetatiedot ovat virheellisiä.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Muutospäivää ei säilytetä.</value></data>
+  <data name="Migration.Loss.Comment"><value>Kommenttia ei säilytetä.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Lähdeattribuutteja ei säilytetä.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Kohdekuva on jo olemassa. {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Kohdekuva ei voi korvata lähdekuvaa.</value></data>
+</root>

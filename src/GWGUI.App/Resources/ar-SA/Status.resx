@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>الجانب {0}: المسار {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI جاهز.</value></data>
+  <data name="Status.DefaultProfile"><value>الملف الشخصي: افتراضي</value></data>
+  <data name="Status.Profile"><value>الملف الشخصي: {0}</value></data>
+  <data name="Status.TrackProgress"><value>المسار {0}, الجانب {1} - {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>المسار {0}, الجانب {1} - {2} مجهزة</value></data>
+  <data name="Status.ReadyShort"><value>مستعد</value></data>
+  <data name="Status.Running"><value>جري</value></data>
+  <data name="Status.Success"><value>نجاح</value></data>
+  <data name="Status.Error"><value>خطأ</value></data>
+  <data name="Status.Cancelled"><value>تم الإلغاء</value></data>
+</root>

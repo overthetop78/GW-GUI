@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Adaugă suport</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Creează hard disk</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Dimensiunea discului dur (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Nu mass-media. Adăugați un floppy, hard disk sau CD-ul susținut de modelul selectat.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Numai citire</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Hard disk Amiga|*.hdf|Toate fișierele|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Modelul selectat nu suportă un hard disk.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Acest model acceptă cel mult {0} unitate floppy (s).</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Acest model acceptă cel mult {0} hard disk (s).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Modelul selectat nu suportă un CD unitate.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Unitate CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Număr de unități de dischetă</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Număr de discuri fixe</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Viteza de deplasare a motorului</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Imagini dischete cu protecție de scriere</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redirectează scrierea floppy</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Viteză CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Adăugați un disc dur existent</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Discuri dure</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Niciun disc dur nu este asociat acestei mașini.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Dischete</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Adăugați un dispozitiv de stocare</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Suport asociat</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Geometria discului este determinată automat de emulator.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Imagine de dischetă goală creată: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Fișierul va fi creat gol și apoi trebuie partiționat și formatat în mașina emulată.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Unitate de inscripționare CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Un disc gol poate fi creat numai dacă mașina și emulatorul selectate acceptă scrierea.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Unitate CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Configurare</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Creați o dischetă goală</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Imagine de disc</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Selectați o imagine de disc existentă.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Fișierul selectat va fi atașat acestei unități virtuale.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Unitate de dischetă</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Imagine de dischetă Amiga|*.adf|Toate fișierele|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Hard disk</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Interfață</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Prealocați fișierul</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>se introduc sau se înlocuiesc flopi și CD-uri de pe mașina de rulare.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Eliminați suportul</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Imaginea de disc există deja: {0}\nDoriți să o înlocuiți?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Tipurile, modelele și identificatorii disponibili depind de mașina selectată.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Unitate de bandă</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Utilizați discul</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Utilizați un disc existent</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Modificați în General</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Nu este disponibil niciun dispozitiv de stocare suplimentar pentru această mașină.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Dispozitive de stocare</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Alocare</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Geometrie automată</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Suport gol</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Octeți pe sector</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Capacitate calculată: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Dimensiune particularizată</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cilindri</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Folder destinație</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Geometrie disc (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Profil de dimensiune</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Unitate de dischetă</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Capete</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Dimensiunea sau geometria discului nu este validă.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Rezervă imediat spațiul fizic; altfel imaginea crește pe măsură ce se scriu date.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sectoare</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Casetă</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Cartuș</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Discuri compacte</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Afișează activitatea unităților pe ecranul emulatorului</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot pentru cartuș</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montați primele patru discuri în DF0DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disc {0}</value></data>
+</root>

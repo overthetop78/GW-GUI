@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>Machines</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Welkom</value></data>
+  <data name="Emulation.Tab.General"><value>Algemeen</value></data>
+  <data name="Emulation.Tab.Video"><value>Video</value></data>
+  <data name="Emulation.Tab.Storage"><value>Opslag</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Toetsenbord</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Muis</value></data>
+  <data name="Emulation.Tab.Controller"><value>Controllers</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Geavanceerd</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Sneltoetsen</value></data>
+  <data name="Emulation.Tab.Audio"><value>Geluid</value></data>
+</root>

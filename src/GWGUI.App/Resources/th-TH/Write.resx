@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Write.Title"><value>เขียน</value></data>
   <data name="Write.SelectSource"><value>เลือกอิมเมจต้นฉบับที่มีอยู่</value></data>
   <data name="Write.Ambiguous"><value>รูปแบบไม่ชัดเจน เลือกรูปแบบที่เข้ากันได้อย่างชัดเจน</value></data>
@@ -32,6 +24,6 @@
   <data name="Write.InternalPreview" xml:space="preserve"><value>การเขียนภายใน GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>ตัวเลือกขั้นสูงบางรายการยังไม่รองรับ</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>ยังไม่มีการตรวจสอบภายใน โปรดเปิด “ไม่ตรวจสอบ”</value></data>
-  <data name="Write.InternalFailure"><value>เพลง {0}, ด้าน {1}: {2}</value></data>
+  <data name="Write.InternalFailure" xml:space="preserve"><value>เพลง {0}, ด้าน {1}: {2}</value></data>
   <data name="Write.InternalFailureReason"><value>การเขียนภายในล้มเหลว</value></data>
 </root>

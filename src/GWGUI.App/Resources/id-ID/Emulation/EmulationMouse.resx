@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Tombol pelepas tangkapan mouse</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Tombol kiri mouse</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Tombol kanan mouse</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Tombol tengah mouse</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Mouse fisik</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Gerakan ganda</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Kecepatan mouse</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Stik analog pengendali mouse</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Zona mati stik analog</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Kecepatan mouse stik analog</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Tindakan mouse</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Tombol mouse 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Tombol mouse 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Penangkapan mouse</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Roda tetikus ke atas</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Roda tetikus ke bawah</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Roda tetikus ke kiri</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Roda tetikus ke kanan</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Tangkap mouse</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Rilis tetikus</value></data>
+</root>

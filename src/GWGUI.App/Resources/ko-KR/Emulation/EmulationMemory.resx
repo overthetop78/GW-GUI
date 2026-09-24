@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Memory.Main"><value>주 메모리</value></data>
+  <data name="Emulation.Memory.Extensions"><value>메모리 확장</value></data>
+  <data name="Emulation.Memory.None"><value>없음</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>기억 윤곽은 호환이 됩니다 {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>기억 연장은과 호환이 됩니다 {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM 유효하지 않습니다 {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>구성된 총 메모리: {0} {1}</value></data>
+</root>

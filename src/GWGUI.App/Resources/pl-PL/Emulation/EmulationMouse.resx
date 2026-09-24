@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Klawisz zwalniania myszy</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Lewy przycisk myszy</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Prawy przycisk myszy</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Środkowy przycisk myszy</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Mysz fizyczna</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Podwójny ruch</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Szybkość myszy</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Drążki analogowe sterujące myszą</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Martwa strefa drążków analogowych</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Szybkość myszy z drążka analogowego</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Akcje myszy</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Przycisk myszy 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Przycisk myszy 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Przechwytywanie myszy</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Kółko myszy w górę</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Kółko myszy w dół</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Kółko myszy w lewo</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Kółko myszy w prawo</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Przechwytuj mysz</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Uwolnić mysz</value></data>
+</root>

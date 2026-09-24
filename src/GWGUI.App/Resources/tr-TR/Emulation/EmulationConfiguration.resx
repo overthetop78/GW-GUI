@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Configuration.Description"><value>Kaydedilmiş yapılandırmaları burada oluşturun, seçin, değiştirin veya silin. Seçili yapılandırmayı düzenlemek için {0} sekmesini seçin.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Marka</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Makine</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Toplam RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Sürücüler</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Çevre birimleri</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Eylemler</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>{0} {1} yapılandırması silinsin mi?</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Yapı oluşturma</value></data>
+  <data name="Emulation.Configurations" xml:space="preserve"><value>Yapılar</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Bu Amiga yapılandırmasını mi silin?</value></data>
+</root>

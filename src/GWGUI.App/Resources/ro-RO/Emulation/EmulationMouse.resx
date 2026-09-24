@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Cheie de lansare</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Butonul stâng al mouse-ului</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Butonul dreapta al mouse-ului</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Butonul mijlociu al șoarecelui</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Șoarece fizic</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Dubla mișcare</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Viteza șoareceului</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Stick-uri analogice care controlează mouse-ul</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Zona moartă cu baston analogic</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Viteza de mouse- stick analogic</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Acțiuni mouse</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Buton mouse 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Buton mouse 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Capturare mouse</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Rotița mouse-ului în sus</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Rotița mouse-ului în jos</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Rotița mouse-ului la stânga</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Rotița mouse-ului la dreapta</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Capturează mouse-ul</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Eliberați mouse-ul</value></data>
+</root>

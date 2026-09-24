@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>Olemassa olevat tiedostot</value></data>
+  <data name="Conflict.Heading"><value>Jotkut tiedostot ovat jo olemassa</value></data>
+  <data name="Conflict.Help"><value>Valitse toiminto jokaiselle tiedostolle tai käytä samaa toimintoa kaikkiin tiedostoihin.</value></data>
+  <data name="Conflict.File"><value>Tiedosto</value></data>
+  <data name="Conflict.Action"><value>Toiminta</value></data>
+  <data name="Conflict.Overwrite"><value>Korvaa</value></data>
+  <data name="Conflict.Skip"><value>Ohita</value></data>
+  <data name="Conflict.Number"><value>Käytä seuraavaa numeroa</value></data>
+  <data name="Conflict.AllOverwrite"><value>Korvaa kaikki</value></data>
+  <data name="Conflict.AllSkip"><value>Ohita kaikki</value></data>
+  <data name="Conflict.AllNumber"><value>Numeroi kaikki</value></data>
+</root>

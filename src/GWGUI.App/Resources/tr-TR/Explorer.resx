@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Disk görüntüsü</value></data>
+  <data name="Explorer.DetectedFormats"><value>Algılandı: {0}</value></data>
   <data name="Explorer.Format"><value>Biçim</value></data>
   <data name="Explorer.OpenImage"><value>Görüntü aç…</value></data>
   <data name="Explorer.Automatic"><value>Otomatik algılama</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Bilinmiyor</value></data>
   <data name="Explorer.Unnamed"><value>Adsız birim</value></data>
   <data name="Explorer.LoadFailed"><value>Bu görüntü açılamıyor: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Uyumsuz biçim</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>“{1}”, “{0}” biçimi kullanılarak yorumlanamıyor.&#xA;Devam etmek için başka bir biçim seçin.</value></data>
   <data name="Explorer.Loading"><value>Disk görüntüsü okunuyor…</value></data>
   <data name="Explorer.ReadDisk"><value>Disketi oku</value></data>
   <data name="Explorer.Name"><value>Ad</value></data>
@@ -42,7 +37,8 @@
   <data name="Explorer.Type.Image"><value>Görüntü</value></data>
   <data name="Explorer.Type.Audio"><value>Ses dosyası</value></data>
   <data name="Explorer.Type.Archive"><value>Arşiv</value></data>
-<data name="Explorer.Type.DiskImage"><value>Disk kalıbı</value></data>
+  <data name="Explorer.Type.Program"><value>Program Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Disk kalıbı</value></data>
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Koruma</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fiziksel sektörler — tanınan dosya sistemi yok</value></data>
@@ -51,10 +47,111 @@
   <data name="Explorer.Compression"><value>Sıkıştırma</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Özel sektör yükleyici</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Özel sektör yükleyici — dosya kataloğu yok</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>The Company tarafından crack</value></data>
   <data name="Explorer.DataBlocks"><value>Veri blokları</value></data>
-  <data name="Explorer.DetectedFormats"><value>Algılandı: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools, uygun bir sektör imajı üretemez {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Host Tools, görüntüyü olarak kodlayamadı {0}.</value></data>
-  <data name="Explorer.Type.Program"><value>Program Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools, uygun bir sektör imajı üretemez {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools, görüntüyü olarak kodlayamadı {0}.</value></data>
+  <data name="Explorer.Session"><value>Disiplin seansı</value></data>
+  <data name="Explorer.Track"><value>Media track</value></data>
+  <data name="Explorer.Layers"><value>Disk tabakaları</value></data>
+  <data name="Explorer.Faces"><value>Media Records side side</value></data>
+  <data name="Explorer.PartitionType"><value>Katılımcı türü</value></data>
+  <data name="Explorer.PartitionId"><value>Katılımcı tanımlayıcı</value></data>
+  <data name="Explorer.TrackMode"><value>Track modu</value></data>
+  <data name="Explorer.FirstSector"><value>İlk sektör</value></data>
+  <data name="Explorer.SectorCount"><value>Sektör sayi</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Mağazacılık büyüklüğü</value></data>
+  <data name="Explorer.UserDataSize"><value>Kullanıcı Verileri Boyut</value></data>
+  <data name="Explorer.Subchannels"><value>Subchannels</value></data>
+  <data name="Explorer.AudioTracks"><value>Ses parçaları</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Medya formatını tanımak</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Tanımlanmış format</value></data>
+  <data name="Explorer.TestingFormat"><value>Test formatı: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: Tanık tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış tanınmış</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: Tanınmadın</value></data>
+  <data name="Explorer.ReadingFormat"><value>Okuma formatı: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Medya yapısını okumak</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>kaseti okumak</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record Record {0} Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of Of {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Decoding kaset kayıtları</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Dosyayı tanımak</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Dosya sistemini analiz edin</value></data>
+  <data name="Explorer.LoadingContents"><value>klasörleri ve dosyaları hazırlamak</value></data>
+  <data name="Explorer.LoadingDisplay"><value>İçerikleri görüntülemek</value></data>
+  <data name="Explorer.FileWithExtension"><value>Dosya {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Doküman Doküman Doküman Doküman</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Kaynak Kodu</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC Program dosyası</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Boot programı</value></data>
+  <data name="Explorer.Type.Executable"><value>Executableable</value></data>
+  <data name="Explorer.Type.Command"><value>Komutan dosya</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Sistem dosyası</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Object code</value></data>
+  <data name="Explorer.Type.Data"><value>Data file</value></data>
+  <data name="Explorer.Type.Configuration"><value>Yapılandırma dosyası</value></data>
+  <data name="Explorer.Type.Library"><value>Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane</value></data>
+  <data name="Explorer.Type.Media"><value>Media file</value></data>
+  <data name="Explorer.Type.Font"><value>Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font</value></data>
+  <data name="Explorer.Execution"><value>Execution Execution</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Yerli eklenebilir dosya</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Eski eski dosyayı yorumladı</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Komut veya senaryo</value></data>
+  <data name="Explorer.Category"><value>Kategori Kategori</value></data>
+  <data name="Explorer.ContentFormat"><value>İçerik formatı</value></data>
+  <data name="Explorer.TextEncoding"><value>Text encoding</value></data>
+  <data name="Explorer.Preview"><value>Öfke</value></data>
+  <data name="Explorer.Category.File"><value>Dosya</value></data>
+  <data name="Explorer.Category.Text"><value>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</value></data>
+  <data name="Explorer.Category.Document"><value>Doküman Doküman Doküman Doküman</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Kaynak Kodu</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC Program programı programı programı programı programı programı programı programı programı programı programı programı</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Boot programı</value></data>
+  <data name="Explorer.Category.Program"><value>Program Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı</value></data>
+  <data name="Explorer.Category.Executable"><value>Executableable</value></data>
+  <data name="Explorer.Category.Command"><value>Komutan</value></data>
+  <data name="Explorer.Category.System"><value>Sistem Sistem Sistemi</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Object code</value></data>
+  <data name="Explorer.Category.Data"><value>Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data Data</value></data>
+  <data name="Explorer.Category.Configuration"><value>Yapılandırma</value></data>
+  <data name="Explorer.Category.Library"><value>Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane</value></data>
+  <data name="Explorer.Category.Image"><value>Image Image Image</value></data>
+  <data name="Explorer.Category.Audio"><value>Ses Ses</value></data>
+  <data name="Explorer.Category.Media"><value>Medya Medya</value></data>
+  <data name="Explorer.Category.Archive"><value>Archive Archive Archive</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Disk görüntüsü</value></data>
+  <data name="Explorer.Category.Link"><value>Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link Link</value></data>
+  <data name="Explorer.Category.Font"><value>Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen Bilinmeyen</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Düz metin çevirisi</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC Program programı programı programı programı programı programı programı programı programı programı programı programı</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Yerli executable</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Komut veya senaryo</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Object code</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>Sistem ikilisi</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Yapılı veriler</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>Yapılandırma</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane Kütüphane</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Image Image Image</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Ses Ses</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>Archive Archive Archive</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Disk görüntüsü</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font Font</value></data>
+  <data name="Explorer.Preview.None"><value>Hiçbir şey yok</value></data>
+  <data name="Explorer.Preview.Text"><value>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC liste listesi listesi listesi listesi</value></data>
+  <data name="Explorer.Preview.Image"><value>Image Image Image</value></data>
+  <data name="Explorer.Preview.Audio"><value>Ses Ses</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>Hexadecimal</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Dış uygulama dış uygulama dış uygulama</value></data>
+  <data name="Explorer.Cassette"><value>Kaset</value></data>
+  <data name="Explorer.InternalName"><value>Dahili açıklama</value></data>
+  <data name="Explorer.BaudRates"><value>Hızlar</value></data>
+  <data name="Explorer.Chunks"><value>Bloklar</value></data>
+  <data name="Explorer.FskBlocks"><value>FSK blokları</value></data>
+  <data name="Explorer.Records"><value>Kayıtlar</value></data>
+  <data name="Explorer.FullRecords"><value>Tam</value></data>
+  <data name="Explorer.PartialRecords"><value>Kısmi</value></data>
+  <data name="Explorer.EndRecord"><value>Son</value></data>
+  <data name="Explorer.ChunkType"><value>Tür</value></data>
+  <data name="Explorer.BaudRate"><value>Hız</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Gecikme</value></data>
 </root>

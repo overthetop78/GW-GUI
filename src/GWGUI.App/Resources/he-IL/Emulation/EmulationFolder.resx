@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Folder.StorageBase"><value>תיקיית אחסון משותפת לאמולציה</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>הדיסקים הקשיחים מאורגנים אוטומטית בתוך HDD\Amiga, HDD\Atari ובתיקיות של מערכות עתידיות.</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>צור אוטומטית תיקיות משנה חסרות</value></data>
+  <data name="Emulation.Folder.Common"><value>תיקיות משותפות</value></data>
+  <data name="Emulation.Folder.Capture"><value>תיקיית צילומים</value></data>
+  <data name="Emulation.Folder.State"><value>תיקיית מצבים שמורים</value></data>
+  <data name="Emulation.Folder.Default"><value>תיקיות ברירת מחדל</value></data>
+</root>

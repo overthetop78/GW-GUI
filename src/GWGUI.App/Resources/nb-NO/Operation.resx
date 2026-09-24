@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Operation.Finished"><value>Ferdig: kode {0}, varighet {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Kommandoen er fullført.</value></data>
+  <data name="Operation.Cancelled"><value>Kommandoen ble avbrutt.</value></data>
+  <data name="Operation.ExitCode"><value>Kommandoen endte med koden {0}.</value></data>
+  <data name="Operation.StopTitle"><value>Stopp driften</value></data>
+  <data name="Operation.StopConfirm"><value>Vil du stoppe gjeldende Greaseweazle operasjon?</value></data>
+  <data name="Operation.Busy"><value>En Greaseweazle-kommando kjører allerede. Vent til det er ferdig eller stopp det før du åpner dette verktøyet.</value></data>
+  <data name="Operation.Error"><value>Feil: {0}</value></data>
+</root>

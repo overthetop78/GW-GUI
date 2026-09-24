@@ -1,4 +1,4 @@
-using GWGUI.Domain.Hardware;
+using GWGUI.Infrastructure.Hardware;
 namespace GWGUI.Infrastructure.Hardware;
 
 public static class GreaseweazleDeviceMatcher

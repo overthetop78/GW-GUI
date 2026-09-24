@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Operation.Finished"><value>已完成: 代码 {0}, 持续时间 {1}.</value></data>
+  <data name="Operation.Succeeded"><value>命令成功完成。</value></data>
+  <data name="Operation.Cancelled"><value>命令已取消。</value></data>
+  <data name="Operation.ExitCode"><value>命令以代码结尾 {0}.</value></data>
+  <data name="Operation.StopTitle"><value>停止运行</value></data>
+  <data name="Operation.StopConfirm"><value>停止当前的 Greaseweazle 操作？</value></data>
+  <data name="Operation.Busy"><value>Greaseweazle 命令已在运行。等待其完成或停止，然后再打开此工具。</value></data>
+  <data name="Operation.Error"><value>错误：{0}</value></data>
+</root>

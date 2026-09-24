@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>ポート</value></data>
-  <data name="Hardware.UsbId"><value>USB 識別子</value></data>
-  <data name="Hardware.Drive"><value>ドライブ</value></data>
-  <data name="Hardware.Available"><value>利用可能</value></data>
-  <data name="Hardware.Scan"><value>スキャン</value></data>
-  <data name="Hardware.AddDrive"><value>ドライブを追加…</value></data>
-  <data name="Hardware.NoDrive"><value>ドライブが定義されていません</value></data>
-  <data name="Hardware.EditorTitle"><value>ドライブを定義する</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle コントローラー</value></data>
-  <data name="Hardware.GwSelection"><value>選択はgwに渡しました</value></data>
-  <data name="Hardware.PhysicalSize"><value>物理的なサイズ</value></data>
-  <data name="Hardware.SizeShort"><value>サイズ</value></data>
-  <data name="Hardware.DensityShort"><value>密度</value></data>
-  <data name="Hardware.SpeedShort"><value>スピード</value></data>
-  <data name="Hardware.AvailableState"><value>利用可能</value></data>
-  <data name="Hardware.UnavailableState"><value>利用不可</value></data>
-  <data name="Hardware.DensityDescription"><value>ドライブ密度 (説明のみ)</value></data>
-  <data name="Hardware.SpeedDescription"><value>公称速度 (説明のみ)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>ポート</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB 識別子</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>ドライブ</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>利用可能</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>スキャン</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>ドライブを追加…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>ドライブが定義されていません</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>ドライブを定義する</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle コントローラー</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>選択はgwに渡しました</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>物理的なサイズ</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>サイズ</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>密度</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>スピード</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>利用可能</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>利用不可</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>ドライブ密度 (説明のみ)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>公称速度 (説明のみ)</value></data>
   <data name="Hardware.NotConfigured"><value>コントローラーが設定されていません</value></data>
   <data name="Hardware.Disconnected"><value>切断された</value></data>
   <data name="Hardware.SelectedDisconnected"><value>選択したドライブが切断されました。再接続するか、「オプション」→「コントローラーとドライブ」で再度スキャンしてください。</value></data>

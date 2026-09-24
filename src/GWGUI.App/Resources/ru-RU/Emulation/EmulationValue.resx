@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Включено</value></data>
+  <data name="Emulation.Value.Disabled"><value>Отключено</value></data>
+  <data name="Emulation.Value.Minimum"><value>Минимум</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Очень маленький</value></data>
+  <data name="Emulation.Value.Small"><value>Маленький</value></data>
+  <data name="Emulation.Value.Medium"><value>Средний</value></data>
+  <data name="Emulation.Value.Large"><value>Большой</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Очень большой</value></data>
+  <data name="Emulation.Value.Maximum"><value>Максимум</value></data>
+  <data name="Emulation.Value.Standard"><value>Стандартный</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Улучшенный</value></data>
+  <data name="Emulation.Value.Internal"><value>Внутренний</value></data>
+  <data name="Emulation.Value.Loud"><value>Громкий</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Не используется</value></data>
+  <data name="Emulation.Value.None"><value>Нет</value></data>
+  <data name="Emulation.Value.Default"><value>По умолчанию</value></data>
+  <data name="Emulation.Value.Gray"><value>Серый</value></data>
+</root>

@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>デコーダ</value></data>
   <data name="Visual.LinkZoom"><value>リンクズーム</value></data>
   <data name="Visual.OpenScp"><value>SCP ファイルを開きます…</value></data>
-  <data name="Visual.NoFile"><value>SCP ファイルが開いていません</value></data>
+  <data name="Visual.NoFile"><value>イメージが開かれていません</value></data>
   <data name="Visual.Waiting"><value>ファイルを待っています</value></data>
   <data name="Visual.Inspector"><value>検査官</value></data>
   <data name="Visual.SelectTrack"><value>トラックを選択します。</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>有効</value></data>
   <data name="Visual.CrcInvalid"><value>無効</value></data>
   <data name="Visual.IntegrityUnavailable"><value>利用不可</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (単一密度)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>ノーススターハード セクター MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit 硬質加工 FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>マイクラルNハードセクター FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>アーブルグシステム/データ</value></data>
+  <data name="Visual.DecoderName.raw"><value>未加工フラックス</value></data>
   <data name="Visual.StructureKind.Sync"><value>同期</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>セクターヘッダー</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>セクターデータ</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>ヘッダーのフォーマット</value></data>
   <data name="Visual.StructureKind.FormatData"><value>データのフォーマット</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>タイミング異常</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro キャプチャ (*.scp)|*.scp|すべてのファイル|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>チェックサム</value></data>
   <data name="Visual.Side"><value>側面 {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>分析のトラック {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>回転を解析中 {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>側</value></data>
   <data name="Visual.TrackLabel"><value>追跡</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP エントリ</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>フォーマットが検出されました</value></data>
   <data name="Visual.AverageRpm"><value>平均 RPM</value></data>
   <data name="Visual.AverageDuration"><value>平均持続時間</value></data>
+  <data name="Visual.All"><value>全て すべて</value></data>
+  <data name="Visual.Surface"><value>表面を覆う {0}</value></data>
+  <data name="Visual.DiscFace"><value>フェイス {0}</value></data>
+  <data name="Visual.Layer"><value>レイヤー {0}</value></data>
+  <data name="Visual.Session"><value>セッション {0}</value></data>
+  <data name="Visual.Channel"><value>チャンネル {0}</value></data>
+  <data name="Visual.TrackNumber"><value>コース {0}</value></data>
+  <data name="Visual.TicksUnit"><value>チェック</value></data>
+  <data name="Visual.BytesUnit"><value>バイト</value></data>
+  <data name="Visual.BlocksUnit"><value>ブロック</value></data>
+  <data name="Visual.SectorsUnit"><value>業界別</value></data>
+  <data name="Visual.SectorPresent"><value>プレゼン部門</value></data>
+  <data name="Visual.SectorAllocated"><value>割賦部門</value></data>
+  <data name="Visual.SectorFree"><value>無料のセクター</value></data>
+  <data name="Visual.SectorReserved"><value>営業部 営業部</value></data>
+  <data name="Visual.SectorUnreadable"><value>未読化分野</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>セクター情報</value></data>
+  <data name="Visual.SectorLabel"><value>セクター</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>論理ブロック</value></data>
+  <data name="Visual.SizeLabel"><value>寸法:</value></data>
+  <data name="Visual.StateLabel"><value>ステート</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>ファイルシステムパス</value></data>
+  <data name="Visual.LogicalMapTitle"><value>ロジカルマップ</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS ジオメトリ</value></data>
+  <data name="Visual.SurfaceLabel"><value>表面を覆う</value></data>
+  <data name="Visual.BlockAllocated"><value>割り当てられた範囲</value></data>
+  <data name="Visual.BlockFree"><value>自由範囲</value></data>
+  <data name="Visual.BlockReserved"><value>取扱分野</value></data>
+  <data name="Visual.BlockUnknown"><value>未知の範囲</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>メディア情報ブロック</value></data>
+  <data name="Visual.CapacityLabel"><value>容量:</value></data>
+  <data name="Visual.AddressingLabel"><value>アドレス</value></data>
+  <data name="Visual.StartLabel"><value>スタート</value></data>
+  <data name="Visual.LengthLabel"><value>タイトル</value></data>
+  <data name="Visual.PartitionTableLabel"><value>パーティション方式</value></data>
+  <data name="Visual.PartitionTable.None"><value>なし</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>部品番号</value></data>
+  <data name="Visual.FileSystemLabel"><value>ファイルシステム</value></data>
+  <data name="Visual.RangeTitle"><value>選択範囲</value></data>
+  <data name="Visual.PlatterCountLabel"><value>プラッタ</value></data>
+  <data name="Visual.BlockState.Available"><value>利用できる</value></data>
+  <data name="Visual.BlockState.Reserved"><value>スタッフ紹介</value></data>
+  <data name="Visual.BlockState.Allocated"><value>割り当てられた</value></data>
+  <data name="Visual.BlockState.Free"><value>無料で無料</value></data>
+  <data name="Visual.BlockState.Unknown"><value>未知の</value></data>
+  <data name="Visual.OpticalDataTrack"><value>データ・トラック</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>オーディオトラック</value></data>
+  <data name="Visual.OpticalPregap"><value>プレギャップ</value></data>
+  <data name="Visual.OpticalSession"><value>セッション境界</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>光学媒体情報</value></data>
+  <data name="Visual.FaceCountLabel"><value>フェイス</value></data>
+  <data name="Visual.LayerCountLabel"><value>レイヤー</value></data>
+  <data name="Visual.TrackCountLabel"><value>コース</value></data>
+  <data name="Visual.SessionLabel"><value>セッション</value></data>
+  <data name="Visual.LayerLabel"><value>レイヤー</value></data>
+  <data name="Visual.TrackKindLabel"><value>トラッキングタイプ</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>選択されたトラック</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>ボリューム起源</value></data>
+  <data name="Visual.VolumeTitle"><value>ボリューム</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>関連するファイル</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>未知の</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>コンテンツ</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>オーディオ</value></data>
+  <data name="Visual.SequentialSignal"><value>信号信号</value></data>
+  <data name="Visual.SequentialDecoded"><value>解読ブロック</value></data>
+  <data name="Visual.SequentialSilence"><value>サイレンス</value></data>
+  <data name="Visual.SequentialError"><value>エラーのデコード</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>順次メディア情報</value></data>
+  <data name="Visual.DurationLabel"><value>期間</value></data>
+  <data name="Visual.SegmentCountLabel"><value>セグメント</value></data>
+  <data name="Visual.SegmentKindLabel"><value>セグメントタイプ</value></data>
+  <data name="Visual.ChannelLabel"><value>チャンネル</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>認識されたコンテンツ</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>エラーのデコード</value></data>
+  <data name="Visual.SegmentTitle"><value>選択されたセグメント</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>未知の</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>信号信号</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>サイレンス</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>解読ブロック</value></data>
+  <data name="Visual.RevolutionSummary"><value>あらゆる革命</value></data>
+  <data name="Visual.RevolutionChoice"><value>革命 {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>革命</value></data>
+  <data name="Visual.QualityDead"><value>デッドキャスト</value></data>
+  <data name="Visual.QualityPoor"><value>ポーア</value></data>
+  <data name="Visual.QualityPartial"><value>部分的に読みやすく</value></data>
+  <data name="Visual.QualityGood"><value>おすすめ</value></data>
+  <data name="Visual.QualityExcellent"><value>優優優優優優</value></data>
+  <data name="Visual.SectorWithData"><value>データのセクタ</value></data>
+  <data name="Visual.SectorDegraded"><value>分解されたセクター</value></data>
+  <data name="Visual.SectorDead"><value>デッドセクター</value></data>
+  <data name="Visual.SectorWithoutData"><value>データを使わないセクター</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>カセット情報</value></data>
 </root>

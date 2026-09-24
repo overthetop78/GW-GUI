@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Migration.Open"><value>Миграция файлов...</value></data>
+  <data name="Migration.Title"><value>Файлы миграции</value></data>
+  <data name="Migration.Heading"><value>Перенос файлов в другую файловую систему</value></data>
+  <data name="Migration.Source"><value>Источник изображения</value></data>
+  <data name="Migration.NoSource"><value>Выберите изображение, содержащее распознаваемую файловую систему.</value></data>
+  <data name="Migration.Destination"><value>Файловая система и формат Destination</value></data>
+  <data name="Migration.Output"><value>Изображение назначения</value></data>
+  <data name="Migration.Compatibility"><value>Совместимость и потери</value></data>
+  <data name="Migration.Waiting"><value>Выберите источник и пункт назначения.</value></data>
+  <data name="Migration.Severity"><value>тяжелая</value></data>
+  <data name="Migration.Path"><value>Путь к источнику</value></data>
+  <data name="Migration.Description"><value>Описание</value></data>
+  <data name="Migration.AcceptLosses"><value>Принять перечисленные потери метаданных</value></data>
+  <data name="Migration.Execute"><value>Миграция файлов</value></data>
+  <data name="Migration.Blocking"><value>блокировка</value></data>
+  <data name="Migration.MetadataLoss"><value>Потеря метаданных</value></data>
+  <data name="Migration.SourceSummary"><value>Объем: {0} - Файловая система: {1} - Корневые записи: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Невозможность подготовить миграцию: {0}</value></data>
+  <data name="Migration.Completed"><value>Образ места назначения был создан: {0}</value></data>
+  <data name="Migration.Failed"><value>Миграция не удалась: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Несовместимые: исправлять блокирующие потери до миграции.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Совместимы после принятия перечисленных потерь метаданных.</value></data>
+  <data name="Migration.Compatible"><value>Совместим: не обнаружено потерь.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Содержимое файла недоступно.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Этот тип входа не поддерживается пунктом назначения.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Название не является действительным для пункта назначения.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Название слишком длинное для пункта назначения.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Некоторые из них будут иметь одинаковое название.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Файл слишком большой для назначения.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Метаданные источника недействительны.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Дата модификации не будет сохранена.</value></data>
+  <data name="Migration.Loss.Comment"><value>Комментарий не будет сохранен.</value></data>
+  <data name="Migration.Loss.Attributes"><value>При этом атрибуты источника не будут сохранены.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Образ места назначения уже существует. {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Изображение назначения не может заменить исходное изображение.</value></data>
+</root>

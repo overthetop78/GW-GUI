@@ -26,9 +26,9 @@ internal static class ExplorerTreeScenarios
         Assert.Equal("DIR", Assert.IsType<ExplorerContentItem>(Assert.Single(contents.Items.Cast<object>())).Entry.Name);
         Assert.True(details.IsShowingDisk); Assert.Equal("VOLUME", details.DisplayedTitle);
         Assert.Equal("virtual/VOLUME.scp", ExplorerDocumentScenarios.Find<TextBox>(section, "PathText").Text);
-        var empty = new GWGUI.MediaEngine.FileSystems.FileSystemEntry("EMPTY", GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory, 0, null, "", 0, 0, true, []);
+        var empty = new GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry("EMPTY", GWGUI.MediaEngine.Enums.FileSystemEntryKind.Directory, 0, null, "", 0, 0, true, []);
         var source = ExplorerDocumentScenarios.Document("EMPTY-VOLUME", false);
-        var document = new GWGUI.MediaEngine.Exploration.Results.ExploredDiskImage(source.SourcePath, source.Image,
+        var document = new GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage(source.SourcePath, source.Image,
             new("EMPTY-VOLUME", "synthetic", 512, 256, null, null, [empty], []), source.Metadata, scpImage: source.ScpImage);
         section.Clear(); section.Display(document);
         folders.SelectedIndex = 1;

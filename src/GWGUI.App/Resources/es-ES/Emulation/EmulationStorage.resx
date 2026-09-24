@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Añadir medio</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Crear disco duro</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Tamaño del disco duro (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>No hay medios. Añada un disquete, disco duro o CD compatible con el modelo seleccionado.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Solo lectura</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Disco duro Amiga|*.hdf|Todos los archivos|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>El modelo seleccionado no admite disco duro.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Este modelo admite como máximo {0} unidad(es) de disquete.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Este modelo admite como máximo {0} disco(s) duro(s).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>El modelo seleccionado no admite un CD unidad.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Unidad de CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Número de disqueteras</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Número de discos duros</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Velocidad de disquetera</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Proteger imágenes de disquete contra escritura</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redirigir escrituras de disquete</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Velocidad de CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Añadir un disco duro existente</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Discos duros</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>No hay ningún disco duro asociado a esta máquina.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Disquetes</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Añadir dispositivo de almacenamiento</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Medio asociado</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>El emulador determina automáticamente la geometría del disco.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Imagen de disquete vacía creada: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>El archivo se creará vacío. Después deberá particionarse y formatearse en la máquina emulada.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Grabadora de CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Solo se puede crear un disco vacío si la máquina y el emulador seleccionados admiten escritura.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Unidad de CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Configurar</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Crear un disquete vacío</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Imagen de disco</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Seleccione una imagen de disco existente.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>El archivo seleccionado se conectará a esta unidad virtual.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Unidad de disquete</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Imagen de disquete Amiga|*.adf|Todos los archivos|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Disco duro</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Interfaz</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Preasignar el archivo</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Se insertan o reemplazan las Floppies y los CDs de la máquina de correr.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Retirar medio</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>La imagen de disco ya existe: {0}\n¿Desea reemplazarla?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Los tipos, modelos e identificadores disponibles dependen de la máquina seleccionada.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Unidad de cinta</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Usar disco</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Usar un disco existente</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Modificar en General</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>No hay ningún dispositivo de almacenamiento adicional disponible para esta máquina.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Dispositivos de almacenamiento</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Asignación</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Geometría automática</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Medio vacío</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Bytes por sector</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Capacidad calculada: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Tamaño personalizado</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cilindros</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Carpeta de destino</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Geometría del disco (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Perfil de tamaño</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Unidad de disquete</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Cabezas</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>El tamaño o la geometría del disco no son válidos.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Reserva inmediatamente el espacio físico; de lo contrario, la imagen crece al escribir datos.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sectores</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Casete</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Cartucho</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Discos compactos</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Mostrar la actividad de las unidades en la pantalla del emulador</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Ranura de cartucho</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montar los primeros cuatro discos en DF0–DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk {0}</value></data>
+</root>

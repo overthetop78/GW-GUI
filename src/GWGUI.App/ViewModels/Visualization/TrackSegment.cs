@@ -5,13 +5,25 @@ using System.Windows.Media;
 
 namespace GWGUI.App.ViewModels.Visualization;
 
-public sealed class TrackSegment(int cylinder, int head, Brush brush) : INotifyPropertyChanged
+public sealed class TrackSegment(long position, int surface, Brush brush) : INotifyPropertyChanged
 {
     private Brush _brush = brush;
+    private bool _isSelected;
 
-    public int Cylinder { get; } = cylinder;
-    public int Head { get; } = head;
+    public long Position { get; } = position;
+    public int Surface { get; } = surface;
     public TrackSegmentState State { get; private set; }
+    public bool IsSelected
+    {
+        get => _isSelected;
+        private set
+        {
+            if (_isSelected == value) return;
+            _isSelected = value;
+            OnPropertyChanged();
+        }
+    }
+
     public Brush Brush
     {
         get => _brush;
@@ -27,6 +39,8 @@ public sealed class TrackSegment(int cylinder, int head, Brush brush) : INotifyP
         State = state;
         Brush = brush;
     }
+
+    public void SetSelected(bool selected) => IsSelected = selected;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

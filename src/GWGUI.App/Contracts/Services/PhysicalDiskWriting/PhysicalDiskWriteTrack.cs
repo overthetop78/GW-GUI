@@ -1,4 +1,4 @@
-using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Images.Writing.Encoding;
 
 namespace GWGUI.App.Contracts.Services.PhysicalDiskWriting;
 

@@ -1,5 +1,5 @@
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Window;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Window;
 using GWGUI.App.Functions.Services.Windows;
 using System.Windows;
 

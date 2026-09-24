@@ -1,4 +1,4 @@
-using GWGUI.Domain.Conversion;
+using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
 using GWGUI.App.Views.Dialogs.Conversion;
 
 namespace GWGUI.App.Contracts.Services.Dialogs;

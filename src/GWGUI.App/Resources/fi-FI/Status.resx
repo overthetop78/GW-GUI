@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>Sivu {0}: raita {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI valmis.</value></data>
+  <data name="Status.DefaultProfile"><value>Profiili: Oletus</value></data>
+  <data name="Status.Profile"><value>Profiili: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Raita {0}, sivu {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Raita {0}, sivu {1} — {2} käsitelty</value></data>
+  <data name="Status.ReadyShort"><value>Valmis</value></data>
+  <data name="Status.Running"><value>Juoksemassa</value></data>
+  <data name="Status.Success"><value>Menestys</value></data>
+  <data name="Status.Error"><value>Virhe</value></data>
+  <data name="Status.Cancelled"><value>Peruutettu</value></data>
+</root>

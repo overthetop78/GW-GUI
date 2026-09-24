@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>โปรแกรมจำลองต้องมีสื่อก่อนจึงจะเปิดเครื่องนี้ได้ โปรดใส่ฟลอปปีดิสก์หรือตั้งค่าฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>ไม่สามารถเปิดเครื่องได้</value></data>
+  <data name="Emulation.Error.Machine"><value>เครื่อง</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>สื่อที่จำเป็น</value></data>
+  <data name="Emulation.ModelRequired" xml:space="preserve"><value>จําเป็นต้องสร้างโมเดลอะมิกา</value></data>
+  <data name="Emulation.KickstartRequired" xml:space="preserve"><value>ต้องใช้เส้นทางของคิกเริรต์</value></data>
+  <data name="Emulation.FileRequired" xml:space="preserve"><value>เส้นทางของเครื่องคอมไพล์ไม่มีความต้องการ</value></data>
+  <data name="Emulation.FileMissing" xml:space="preserve"><value>แฟ้มที่เลือกไว้ยังไม่มีอยู่</value></data>
+</root>

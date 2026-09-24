@@ -1,44 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Options.Title"><value>Опції</value></data>
-  <data name="Options.General"><value>Загальний</value></data>
-  <data name="Options.Tools"><value>Greaseweazle Інструменти</value></data>
-  <data name="Options.Hardware"><value>Контролери та приводи</value></data>
-  <data name="Options.Profiles"><value>Профілі</value></data>
-  <data name="Options.ImagesFolder"><value>Стандартна папка образу диска</value></data>
-  <data name="Options.Language"><value>Мова</value></data>
-  <data name="Options.Theme"><value>Тема</value></data>
-  <data name="Theme.System"><value>система</value></data>
-  <data name="Theme.Light"><value>світло</value></data>
-  <data name="Theme.Dark"><value>Темний</value></data>
-  <data name="Options.GwPath"><value>Шлях до gw.exe</value></data>
-  <data name="Options.ToolsHelp"><value>Якщо інструменти відсутні, помічник запропонує завантажити їх або вибрати наявну установку. Оновлення лише анонсуються.</value></data>
-  <data name="Options.HardwarePersistence"><value>Налаштування апаратного забезпечення зберігаються, коли диск від’єднано.</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Options.Title" xml:space="preserve"><value>Опції</value></data>
+  <data name="Options.General" xml:space="preserve"><value>Загальний</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Інструменти</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Контролери та приводи</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Профілі</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Стандартна папка образу диска</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Мова</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Тема</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>система</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>світло</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Темний</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>Шлях до gw.exe</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Якщо інструменти відсутні, помічник запропонує завантажити їх або вибрати наявну установку. Оновлення лише анонсуються.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Налаштування апаратного забезпечення зберігаються, коли диск від’єднано.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Виконаний (*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Видалити цей збережений контролер і всі його диски?</value></data>
   <data name="Options.HardwareTitle"><value>Обладнання</value></data>
   <data name="Options.UseConversionTags"><value>Використовуйте теги в назвах файлів перетворення</value></data>
   <data name="Options.TagPreset"><value>Попереднє налаштування</value></data>
-  <data name="Options.TagPresetFamily"><value>Тільки сім'я</value></data>
+  <data name="Options.TagPresetFamily"><value>Тільки сім&apos;я</value></data>
   <data name="Options.TagPresetFormat"><value>Тільки формат</value></data>
-  <data name="Options.TagPresetFamilyFormat"><value>Сім'я і формат</value></data>
-  <data name="Options.TagPresetFamilyExtension"><value>Сім'я і розширення</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Сім&apos;я і формат</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Сім&apos;я і розширення</value></data>
   <data name="Options.TagPresetDetailed"><value>Родина, формат і розширення</value></data>
   <data name="Options.TagPattern"><value>Шаблон тегу конверсії</value></data>
   <data name="Options.TagVariablesTitle"><value>Доступні змінні</value></data>
-  <data name="Options.TagVariableName"><value>Ім'я вихідного файлу</value></data>
+  <data name="Options.TagVariableName"><value>Ім&apos;я вихідного файлу</value></data>
   <data name="Options.TagVariableFamily"><value>Сімейство: PC, ST, AMIGA…</value></data>
   <data name="Options.TagVariableFormat"><value>Формат: 720, 1440, DD…</value></data>
   <data name="Options.TagVariableExtension"><value>Розширення: IMA, ST, ADF…</value></data>
@@ -63,184 +55,11 @@
   <data name="Options.KeepLogArchives"><value>Зберігайте попередні журнали</value></data>
   <data name="Options.LogUnlimitedHint"><value>0 = необмежений</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Рушії</value></data>
-  <data name="Engines.Description" xml:space="preserve"><value>Окремо виберіть рушій для кожної операції.</value></data>
-  <data name="Engines.Internal" xml:space="preserve"><value>Внутрішній рушій GW GUI</value></data>
-  <data name="Engines.StrictChoice" xml:space="preserve"><value>Вибраний рушій використовується без перемикання. Якщо він не може виконати операцію, GW GUI повідомить про це й не застосовуватиме інший рушій непомітно.</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>Модель</value></data>
-  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Захоплювати мишу</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>Налаштування</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>Контролери</value></data>
-  <data name="Controllers.Detect" xml:space="preserve"><value>Виявити контролери</value></data>
-  <data name="Controllers.Device" xml:space="preserve"><value>Пристрій</value></data>
-  <data name="Controllers.VisualModel" xml:space="preserve"><value>Модель</value></data>
-  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Контролери не виявлено</value></data>
-  <data name="Controllers.DetectedCount" xml:space="preserve"><value>Виявлено контролерів: {0}</value></data>
-  <data name="Controllers.TestRumble" xml:space="preserve"><value>Перевірити вібрацію</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Сила вібрації</value></data>
-  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Входи в реальному часі</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Елемент керування</value></data>
-  <data name="Controllers.Value" xml:space="preserve"><value>Значення</value></data>
-  <data name="Controllers.Active" xml:space="preserve"><value>Активний</value></data>
-  <data name="Controllers.Capabilities" xml:space="preserve"><value>Можливості</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>Ідентифікація пристрою</value></data>
-  <data name="Controllers.InputKinds" xml:space="preserve"><value>Типи вводу</value></data>
-  <data name="Controllers.Controls" xml:space="preserve"><value>Елементи керування</value></data>
-  <data name="Controllers.Rumble" xml:space="preserve"><value>Вібраційні двигуни</value></data>
-  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Силовий зворотний зв’язок</value></data>
-  <data name="Controllers.Haptics" xml:space="preserve"><value>Тактильний відгук</value></data>
-  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Системні кнопки</value></data>
-  <data name="Controllers.RawReports" xml:space="preserve"><value>Необроблені звіти</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>Вхід: {0} / вихід: {1}</value></data>
-  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Розкладка геймпада</value></data>
-  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Кермо</value></data>
-  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · зчеплення={1} · ручне гальмо={2} · перемикач={3}</value></data>
-  <data name="Controllers.GameInputName" xml:space="preserve"><value>Назва GameInput</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Ревізія</value></data>
-  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Версія обладнання</value></data>
-  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Версія прошивки</value></data>
-  <data name="Controllers.Family" xml:space="preserve"><value>Сімейство</value></data>
-  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Виробник</value></data>
-  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Вісь</value></data>
-  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Кнопка</value></data>
-  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Перемикач</value></data>
-  <data name="Controllers.ControlCounts" xml:space="preserve"><value>Осі: {0} · кнопки: {1} · перемикачі: {2}</value></data>
-  <data name="Controllers.Yes" xml:space="preserve"><value>Так</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>Ні</value></data>
-  <data name="Controllers.None" xml:space="preserve"><value>Немає</value></data>
-<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Необроблений байт</value></data>
-  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Аналогові значення</value></data>
-  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Не вдалося виявити контролери</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve"><value>Виявлення контролерів…</value></data>
-  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Не вдалося прочитати контролер</value></data>
-  <data name="Controllers.TestRunning" xml:space="preserve"><value>Триває тест…</value></data>
-  <data name="Controllers.TestFailed" xml:space="preserve"><value>Тест не пройдено</value></data>
-  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Тест завершено</value></data>
-  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Додаткові елементи керування</value></data>
-  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Кінцева точка тактильного аудіо</value></data>
-  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Розташування тактильної віддачі</value></data>
-  <data name="Controllers.Usage" xml:space="preserve"><value>Використання</value></data>
-  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Ланцюжок пристроїв Windows</value></data>
-  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Лівий стік X</value></data>
-  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Лівий стік Y</value></data>
-  <data name="Controllers.RightStickX" xml:space="preserve"><value>Правий стік X</value></data>
-  <data name="Controllers.RightStickY" xml:space="preserve"><value>Правий стік Y</value></data>
-  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Лівий тригер</value></data>
-  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Правий тригер</value></data>
-  <data name="Controllers.Steering" xml:space="preserve"><value>Керування</value></data>
-  <data name="Controllers.Throttle" xml:space="preserve"><value>Газ</value></data>
-  <data name="Controllers.Brake" xml:space="preserve"><value>Гальмо</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Зчеплення</value></data>
-  <data name="Controllers.Handbrake" xml:space="preserve"><value>Ручне гальмо</value></data>
-  <data name="Controllers.Gear" xml:space="preserve"><value>Передача</value></data>
-  <data name="Controllers.Roll" xml:space="preserve"><value>Крен</value></data>
-  <data name="Controllers.Pitch" xml:space="preserve"><value>Тангаж</value></data>
-  <data name="Controllers.Yaw" xml:space="preserve"><value>Рискання</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Датчики</value></data>
-  <data name="Controllers.Enum.UiNavigation"><value>UI навігація</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Геймпад</value></data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Низькочастотний мотор</value></data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Високочастотний мотор</value></data>
-  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Поділитися</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Лінійний</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Кутовий</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Нормальний</value></data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Постійний</value></data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Наростання</value></data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Синусоїдальна хвиля</value></data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Прямокутна хвиля</value></data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Трикутна хвиля</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Висхідна пилкоподібна хвиля</value></data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Низхідна пилкоподібна хвиля</value></data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Пружина</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Тертя</value></data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Демпфер</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Інерція</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Джойстик</value></data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Багатовісний контролер</value></data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Використання HID</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>осі</value></data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>кнопки</value></data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Агрегований</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Віртуальний</value></data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Вхідний звіт</value></data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Вихідний звіт</value></data>
-<data name="Emulation.InitialDisk"><value>Початковий диск</value></data>
-  <data name="Emulation.Audio"><value>Молода</value></data>
-  <data name="Emulation.Controller"><value>Контролер {0}</value></data>
-  <data name="Emulation.Core.NameOptions"><value>Параметри ядра</value></data>
-  <data name="Emulation.MultiDrive"><value>Встановити перші чотири диски в DF0–DF3</value></data>
-  <data name="Emulation.DiskNumber"><value>КРЕДИТ {0}</value></data>
-  <data name="Emulation.LoadOptions"><value>Доступні варіанти завантаження</value></data>
-  <data name="Emulation.Configurations"><value>Конфігурації</value></data>
-  <data name="Emulation.Firmware"><value>Прошивка</value></data>
-  <data name="Emulation.ReleaseMouse"><value>Видаляє мишу</value></data>
-  <data name="Emulation.DeleteConfirm"><value>Видалення цієї конфігурації Amiga?</value></data>
-  <data name="Emulation.ModelRequired"><value>Для цього потрібен модель Аміга.</value></data>
-  <data name="Emulation.KickstartRequired"><value>Для цього потрібен шлях Kickstart.</value></data>
-  <data name="Emulation.FileRequired"><value>Необхідний шлях прошивки порожній.</value></data>
-  <data name="Emulation.FileMissing"><value>Вибраний файл не існує.</value></data>
-<data name="Options.EmulationMachineTitle"><value>{0} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - {1} , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , {2}</value></data>
-  <data name="Controllers.AnalogDeadZones"><value>Аналогові мертві зони</value></data>
-  <data name="Controllers.StickDeadZone"><value>липкі</value></data>
-  <data name="Controllers.TriggerDeadZone"><value>Тригери</value></data>
-  <data name="Controllers.OuterDeadZone"><value>Зовнішня зона мертвих</value></data>
-  <data name="Updates.Title"><value>Оновлення</value></data>
-  <data name="Updates.Description"><value>Пошук оновлень GW GUI і встановлених модулях емульсії.</value></data>
-  <data name="Updates.Scope"><value>Пошук</value></data>
-  <data name="Updates.ScopeApplication"><value>Заява</value></data>
-  <data name="Updates.ScopeModules"><value>Модульні модулі</value></data>
-  <data name="Updates.ScopeAll"><value>Застосування та модулі</value></data>
-  <data name="Updates.Search"><value>Перевірити оновлення</value></data>
-  <data name="Updates.Ready"><value>Виберіть те, що шукати, потім перевірити оновлення.</value></data>
-  <data name="Updates.Searching"><value>Перевірка оновлень...</value></data>
-  <data name="Updates.SearchFailed"><value>Неможливо перевірити оновлення.</value></data>
-  <data name="Updates.UpToDate"><value>До дати</value></data>
-  <data name="Updates.Available"><value>Оновлення</value></data>
-  <data name="Updates.ApplicationRequired"><value>Вимагати GW GUI халат API {0}.</value></data>
-  <data name="Updates.Incompatible"><value>Немає сумісної версії</value></data>
-  <data name="Updates.InstalledVersion"><value>Встановити: {0}</value></data>
-  <data name="Updates.Results"><value>Оновити були знайдені.</value></data>
-  <data name="Updates.NoUpdates"><value>Все вибрано до дати.</value></data>
-  <data name="Updates.Install"><value>Встановити вибрані оновлення</value></data>
-  <data name="Updates.InstallConfirm"><value>Завантажити і встановити {0} вибраний компонент(s)? GW GUI закриє і перезавантажить.</value></data>
-  <data name="Updates.Preparing"><value>Завантаження та підготовка оновлень...</value></data>
-  <data name="Updates.PreparationCancelled"><value>Відмінено оновлення препарату.</value></data>
-  <data name="Updates.PreparationFailed"><value>Неможливо підготувати оновлення.</value></data>
-  <data name="Updates.InstallSucceeded"><value>Вдосконалено оновлення.</value></data>
-  <data name="Updates.InstallRestored"><value>Відновлено оновлення, а попередній варіант. {0}</value></data>
-  <data name="Updates.ModuleInstallDescription"><value>Встановіть модуль емульсії з модуля ZIP Архів або каталог прямого оновлення URL.</value></data>
-  <data name="Updates.ModuleInstallFromFile"><value>Встановити з файлу</value></data>
-  <data name="Updates.ModuleInstallFromUrl"><value>Встановити з URL</value></data>
-  <data name="Updates.ModuleCatalogUrlHint"><value>Зручності HTTPS URL каталог оновлення модуля (.json)</value></data>
-  <data name="Updates.ModuleArchiveFilter"><value>Архіви модуля (модульні архіви)*.zip)|*.zip</value></data>
-  <data name="Updates.ModuleCatalogUrlRequired"><value>Введіть номер мобільного, який Ви вказали при укладаннi договору з банком - для ідентифікації. HTTPS URL каталог оновлення модуля.</value></data>
-  <data name="Updates.ModuleInstallConfirm"><value>Модуль ВТС {0} верстка {1}? GW GUI закриє і перезавантажить.</value></data>
-  <data name="Updates.ModuleInstallFailed"><value>Неможливо підготувати модульну установку.</value></data>
-  <data name="Updates.ModuleDirectoryDescription"><value>Для установки доступні офіційні емульсійні модулі.</value></data>
-  <data name="Updates.ModuleDirectorySearch"><value>Показати доступні модулі</value></data>
-  <data name="Updates.ModuleDirectoryInstall"><value>Встановити</value></data>
-  <data name="Updates.ModuleDirectoryReady"><value>Завантажте офіційну каталог, щоб переглянути модулі, доступні для установки.</value></data>
-  <data name="Updates.ModuleDirectorySearching"><value>Завантаження каталогу модуля...</value></data>
-  <data name="Updates.ModuleDirectoryEmpty"><value>Немає сумісного модуля в даний час доступний.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} модулі в офіційному каталозі.</value></data>
-  <data name="Updates.ModuleDirectoryFailed"><value>Неможливо завантажити каталог модуля.</value></data>
-  <data name="Updates.ModuleNotInstalled"><value>Не встановлено</value></data>
-  <data name="Updates.ModuleAvailableVersion"><value>Доступна версія: {0}</value></data>
-  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Встановити</value></data>
-  <data name="Updates.ModulePackageExplanation"><value>Встановлення модуля додає свої машини GW GUI. Виготовляємо емуляторні ядра та необхідну прошивку, які можна використовувати окремо в опції емуляції.</value></data>
-  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Оновлення для встановлених модулів</value></data>
-  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Розширена установка</value></data>
+  <data name="Options.Engines.Description" xml:space="preserve"><value>Окремо виберіть рушій для кожної операції.</value></data>
+  <data name="Options.Engines.Internal" xml:space="preserve"><value>Внутрішній рушій GW GUI</value></data>
+  <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Вибраний рушій використовується без перемикання. Якщо він не може виконати операцію, GW GUI повідомить про це й не застосовуватиме інший рушій непомітно.</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - {1} , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Навігація</value></data>
   <data name="Options.EmulationTitle"><value>Налаштування емуляційних</value></data>
-  <data name="Updates.ModuleDirectoryTitle"><value>Доступні модулі</value></data>
-  <data name="Updates.NavigationApplicationSubtitle"><value>Оновлення додатків</value></data>
-  <data name="Updates.NavigationDirectorySubtitle"><value>Перегляд і установка модулів</value></data>
-  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP Архів або каталог URL</value></data>
-  <data name="Updates.ModuleDownloaded"><value>Завантажити</value></data>
-  <data name="Updates.FinishModuleInstallations"><value>Оздоблення монтажної установки</value></data>
-  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI закриє, встановіть всі завантажені модулі, і перезапустіть.</value></data>
-  <data name="Updates.FinishModuleInstallationsConfirm"><value>Оздоблення установки всіх завантажених модулів? GW GUI закриє і перезавантажить.</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} налаштування емульсії</value></data>
-  <data name="Updates.CloseWithPendingModulesConfirm"><value>Оздоблення установки завантажених модулів перед закриттям? Виберіть Ні для скасування завантаження і закриття.</value></data>
-  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\GWGUI.Domain\GWGUI.Domain.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.MediaFileSystems\GWGUI.MediaFileSystems.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.MediaAnalysis\GWGUI.MediaAnalysis.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Launcher\GWGUI.Launcher.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />

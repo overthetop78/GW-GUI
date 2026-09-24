@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekooderi</value></data>
   <data name="Visual.LinkZoom"><value>Linkin zoomaus</value></data>
   <data name="Visual.OpenScp"><value>Avaa tiedosto SCP…</value></data>
-  <data name="Visual.NoFile"><value>Ei SCP tiedostoa auki</value></data>
+  <data name="Visual.NoFile"><value>Levykuvaa ei ole avattu</value></data>
   <data name="Visual.Waiting"><value>Odotetaan tiedostoa</value></data>
   <data name="Visual.Inspector"><value>Tarkastaja</value></data>
   <data name="Visual.SelectTrack"><value>Valitse kappale.</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>voimassa</value></data>
   <data name="Visual.CrcInvalid"><value>virheellinen</value></data>
   <data name="Visual.IntegrityUnavailable"><value>ei ole saatavilla</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (yksinkertainen tiheys)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar kova-asenteinen MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit kovasektori FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Mikraalinen N kovasektori FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburgin järjestelmä/tiedot</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raakavirta</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synkronointi</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Sektorin otsikko</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Sektoritiedot</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Muotoile otsikko</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Muotoile tiedot</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Ajoituspoikkeama</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro sieppaus (*.scp)|*.scp|Kaikki tiedostot|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Tarkistussumma</value></data>
   <data name="Visual.Side"><value>Sivu {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analysoidaan raitaa {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Vallankumouksen analysointi {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Sivu</value></data>
   <data name="Visual.TrackLabel"><value>Seurata</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP merkintä</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>Muoto havaittu</value></data>
   <data name="Visual.AverageRpm"><value>Keskimääräinen RPM</value></data>
   <data name="Visual.AverageDuration"><value>Keskimääräinen kesto</value></data>
+  <data name="Visual.All"><value>Kaikki</value></data>
+  <data name="Visual.Surface"><value>Pinta {0}</value></data>
+  <data name="Visual.DiscFace"><value>Kasvot {0}</value></data>
+  <data name="Visual.Layer"><value>Taso {0}</value></data>
+  <data name="Visual.Session"><value>Istunto {0}</value></data>
+  <data name="Visual.Channel"><value>Kanava {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Kappale {0}</value></data>
+  <data name="Visual.TicksUnit"><value>punkit</value></data>
+  <data name="Visual.BytesUnit"><value>tavua</value></data>
+  <data name="Visual.BlocksUnit"><value>lohkot</value></data>
+  <data name="Visual.SectorsUnit"><value>alat</value></data>
+  <data name="Visual.SectorPresent"><value>Nykyinen ala</value></data>
+  <data name="Visual.SectorAllocated"><value>Toimiala</value></data>
+  <data name="Visual.SectorFree"><value>Vapaa-aika</value></data>
+  <data name="Visual.SectorReserved"><value>Varattu sektori</value></data>
+  <data name="Visual.SectorUnreadable"><value>Ei luettavissa</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>Alakohtaiset tiedot</value></data>
+  <data name="Visual.SectorLabel"><value>Ala</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Looginen lohko</value></data>
+  <data name="Visual.SizeLabel"><value>Koko</value></data>
+  <data name="Visual.StateLabel"><value>Tila</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>Tiedostojärjestelmän polku</value></data>
+  <data name="Visual.LogicalMapTitle"><value>Looginen kartta</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS geometria</value></data>
+  <data name="Visual.SurfaceLabel"><value>Pinta</value></data>
+  <data name="Visual.BlockAllocated"><value>Allocated range</value></data>
+  <data name="Visual.BlockFree"><value>Vapaa</value></data>
+  <data name="Visual.BlockReserved"><value>Varattu alue</value></data>
+  <data name="Visual.BlockUnknown"><value>Tuntematon alue</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>Lohkon mediatiedot</value></data>
+  <data name="Visual.CapacityLabel"><value>Kapasiteetti</value></data>
+  <data name="Visual.AddressingLabel"><value>Osoite</value></data>
+  <data name="Visual.StartLabel"><value>Alku</value></data>
+  <data name="Visual.LengthLabel"><value>Pituus</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Jakojärjestelmä</value></data>
+  <data name="Visual.PartitionTable.None"><value>Ei ole</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>Jakonumero</value></data>
+  <data name="Visual.FileSystemLabel"><value>Tiedostojärjestelmä</value></data>
+  <data name="Visual.RangeTitle"><value>Valittu alue</value></data>
+  <data name="Visual.PlatterCountLabel"><value>Platetit</value></data>
+  <data name="Visual.BlockState.Available"><value>Saatavilla</value></data>
+  <data name="Visual.BlockState.Reserved"><value>Varattu</value></data>
+  <data name="Visual.BlockState.Allocated"><value>Sijaitetut</value></data>
+  <data name="Visual.BlockState.Free"><value>Vapaa</value></data>
+  <data name="Visual.BlockState.Unknown"><value>Tuntematon</value></data>
+  <data name="Visual.OpticalDataTrack"><value>Dataraita</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>Ääniraita</value></data>
+  <data name="Visual.OpticalPregap"><value>Valmis</value></data>
+  <data name="Visual.OpticalSession"><value>Istunnon raja</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Optiset viestintävälineet</value></data>
+  <data name="Visual.FaceCountLabel"><value>Kasvot</value></data>
+  <data name="Visual.LayerCountLabel"><value>Tasot</value></data>
+  <data name="Visual.TrackCountLabel"><value>Kappaleet</value></data>
+  <data name="Visual.SessionLabel"><value>Istunto</value></data>
+  <data name="Visual.LayerLabel"><value>Taso</value></data>
+  <data name="Visual.TrackKindLabel"><value>Kappaletyyppi</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>Valittu kappale</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>Määrä</value></data>
+  <data name="Visual.VolumeTitle"><value>Määrä</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>Liittyvät tiedostot</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>Tuntematon</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>Tiedot</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>Ääni</value></data>
+  <data name="Visual.SequentialSignal"><value>Signaali</value></data>
+  <data name="Visual.SequentialDecoded"><value>Purettu lohko</value></data>
+  <data name="Visual.SequentialSilence"><value>Hiljaa.</value></data>
+  <data name="Visual.SequentialError"><value>Purkuvirhe</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Sekvenssitiedot</value></data>
+  <data name="Visual.DurationLabel"><value>Kesto</value></data>
+  <data name="Visual.SegmentCountLabel"><value>Segmentit</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Segmenttityyppi</value></data>
+  <data name="Visual.ChannelLabel"><value>Kanava</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>Tunnistettu sisältö</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>Purkuvirhe</value></data>
+  <data name="Visual.SegmentTitle"><value>Valittu segmentti</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>Tuntematon</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>Signaali</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>Hiljaa.</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Purettu lohko</value></data>
+  <data name="Visual.RevolutionSummary"><value>Kaikki vallankumoukset</value></data>
+  <data name="Visual.RevolutionChoice"><value>Vallankumous {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Vallankumous</value></data>
+  <data name="Visual.QualityDead"><value>Kuollut</value></data>
+  <data name="Visual.QualityPoor"><value>Heikko</value></data>
+  <data name="Visual.QualityPartial"><value>Osittain luettavissa</value></data>
+  <data name="Visual.QualityGood"><value>Hyvä.</value></data>
+  <data name="Visual.QualityExcellent"><value>Erinomaista.</value></data>
+  <data name="Visual.SectorWithData"><value>Sektori, jossa tietoja</value></data>
+  <data name="Visual.SectorDegraded"><value>Heikentynyt ala</value></data>
+  <data name="Visual.SectorDead"><value>Kuollut sektori</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektori ilman tietoja</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Kasetin tiedot</value></data>
 </root>

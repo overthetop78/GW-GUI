@@ -1,4 +1,4 @@
-using GWGUI.App.Enums.Rendering.Scp;
+using GWGUI.MediaEngine.Enums;
 namespace GWGUI.App.Functions.Rendering.Scp;
 
 public static class ScpMediaGeometryFunctions

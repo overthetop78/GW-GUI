@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>صورة القرص</value></data>
+  <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
   <data name="Explorer.Format"><value>التنسيق</value></data>
   <data name="Explorer.OpenImage"><value>فتح صورة…</value></data>
   <data name="Explorer.Automatic"><value>اكتشاف تلقائي</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>غير معروف</value></data>
   <data name="Explorer.Unnamed"><value>وحدة تخزين بلا اسم</value></data>
   <data name="Explorer.LoadFailed"><value>تعذر فتح هذه الصورة: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>تنسيق غير متوافق</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>تعذّر تفسير «{1}» باستخدام التنسيق «{0}».&#xA;اختر تنسيقًا آخر للمتابعة.</value></data>
   <data name="Explorer.Loading"><value>جارٍ قراءة صورة القرص…</value></data>
   <data name="Explorer.ReadDisk"><value>قراءة القرص</value></data>
   <data name="Explorer.Name"><value>الاسم</value></data>
@@ -52,9 +47,111 @@
   <data name="Explorer.Compression"><value>الضغط</value></data>
   <data name="Explorer.CustomSectorLoader"><value>مُحمّل قطاعات مخصص</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>مُحمّل مخصص — لا يوجد فهرس ملفات</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>كراك بواسطة The Company</value></data>
   <data name="Explorer.DataBlocks"><value>كتل البيانات</value></data>
-  <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>لا يمكن لأدوات المضيف أن تنتج صورة قطاعية قابلة للاستهلاك {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>لا يمكن لأدوات الرهائن أن تفكك الصورة على أنها {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>لا يمكن لأدوات المضيف أن تنتج صورة قطاعية قابلة للاستهلاك {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>لا يمكن لأدوات الرهائن أن تفكك الصورة على أنها {0}.</value></data>
+  <data name="Explorer.Session"><value>الدورة</value></data>
+  <data name="Explorer.Track"><value>مسار وسائط الإعلام</value></data>
+  <data name="Explorer.Layers"><value>طبقات العزل</value></data>
+  <data name="Explorer.Faces"><value>تسجيل وسائط الإعلام</value></data>
+  <data name="Explorer.PartitionType"><value>نوع التجزئة</value></data>
+  <data name="Explorer.PartitionId"><value>جهاز تحديد هوية القطع</value></data>
+  <data name="Explorer.TrackMode"><value>طريقة المسار</value></data>
+  <data name="Explorer.FirstSector"><value>القطاع الأول</value></data>
+  <data name="Explorer.SectorCount"><value>عدد القطاعات</value></data>
+  <data name="Explorer.StoredSectorSize"><value>حجم القطاع المخزن</value></data>
+  <data name="Explorer.UserDataSize"><value>حجم بيانات المستعملين</value></data>
+  <data name="Explorer.Subchannels"><value>الشاشات الفرعية</value></data>
+  <data name="Explorer.AudioTracks"><value>مسارات الصوت</value></data>
+  <data name="Explorer.LoadingRecognition"><value>وإذ تقر بصيغة وسائط الإعلام</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>الشكل المعترف به</value></data>
+  <data name="Explorer.TestingFormat"><value>استمارة الاختبار: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: معترف به</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: غير معترف بها</value></data>
+  <data name="Explorer.ReadingFormat"><value>استمارة القراءة: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>قراءة هيكل وسائط الإعلام</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>قراءة الشريط</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>السجل {0} of of {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>سجلات شريط التناقص</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>الملفات</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>تحليل نظام الملفات</value></data>
+  <data name="Explorer.LoadingContents"><value>إعداد الملفات والملفات</value></data>
+  <data name="Explorer.LoadingDisplay"><value>عرض المحتويات</value></data>
+  <data name="Explorer.FileWithExtension"><value>ملف {0}</value></data>
+  <data name="Explorer.Type.Document"><value>الوثيقة</value></data>
+  <data name="Explorer.Type.SourceCode"><value>رمز المصدر</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC ملف برنامجي</value></data>
+  <data name="Explorer.Type.BootProgram"><value>برنامج الأحذية</value></data>
+  <data name="Explorer.Type.Executable"><value>التنفيذ</value></data>
+  <data name="Explorer.Type.Command"><value>ملف قيادة</value></data>
+  <data name="Explorer.Type.SystemFile"><value>ملف النظام</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>رمز الاعتراض</value></data>
+  <data name="Explorer.Type.Data"><value>ملف البيانات</value></data>
+  <data name="Explorer.Type.Configuration"><value>ملف التجمّع</value></data>
+  <data name="Explorer.Type.Library"><value>المكتبة</value></data>
+  <data name="Explorer.Type.Media"><value>ملف وسائط الإعلام</value></data>
+  <data name="Explorer.Type.Font"><value>فونت</value></data>
+  <data name="Explorer.Execution"><value>التنفيذ</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>ملف تنفيذي أصلي</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>ملف قابل للتنفيذ</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>القيادة أو النص</value></data>
+  <data name="Explorer.Category"><value>الفئة</value></data>
+  <data name="Explorer.ContentFormat"><value>شكل المحتوى</value></data>
+  <data name="Explorer.TextEncoding"><value>النص</value></data>
+  <data name="Explorer.Preview"><value>استعراض</value></data>
+  <data name="Explorer.Category.File"><value>ملف</value></data>
+  <data name="Explorer.Category.Text"><value>النص</value></data>
+  <data name="Explorer.Category.Document"><value>الوثيقة</value></data>
+  <data name="Explorer.Category.SourceCode"><value>رمز المصدر</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC البرنامج</value></data>
+  <data name="Explorer.Category.BootProgram"><value>برنامج الأحذية</value></data>
+  <data name="Explorer.Category.Program"><value>Program</value></data>
+  <data name="Explorer.Category.Executable"><value>التنفيذ</value></data>
+  <data name="Explorer.Category.Command"><value>القيادة</value></data>
+  <data name="Explorer.Category.System"><value>النظام</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>رمز الاعتراض</value></data>
+  <data name="Explorer.Category.Data"><value>البيانات</value></data>
+  <data name="Explorer.Category.Configuration"><value>الاتحاد</value></data>
+  <data name="Explorer.Category.Library"><value>المكتبة</value></data>
+  <data name="Explorer.Category.Image"><value>الصورة</value></data>
+  <data name="Explorer.Category.Audio"><value>أوديو</value></data>
+  <data name="Explorer.Category.Media"><value>وسائط الإعلام</value></data>
+  <data name="Explorer.Category.Archive"><value>المحفوظات</value></data>
+  <data name="Explorer.Category.DiskImage"><value>صورة قرص</value></data>
+  <data name="Explorer.Category.Link"><value>لينك</value></data>
+  <data name="Explorer.Category.Font"><value>فونت</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>غير معروف</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>نص قُضي</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC البرنامج</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>قابلة للتنفيذ</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>القيادة أو النص</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>رمز الاعتراض</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>النظام الثنائي</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>البيانات الهيكلية</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>الاتحاد</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>المكتبة</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>الصورة</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>أوديو</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>المحفوظات</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>صورة قرص</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>فونت</value></data>
+  <data name="Explorer.Preview.None"><value>لا</value></data>
+  <data name="Explorer.Preview.Text"><value>النص</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC الإدراج</value></data>
+  <data name="Explorer.Preview.Image"><value>الصورة</value></data>
+  <data name="Explorer.Preview.Audio"><value>أوديو</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>سداسيمال</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>التطبيق الخارجي</value></data>
+  <data name="Explorer.Cassette"><value>شريط كاسيت</value></data>
+  <data name="Explorer.InternalName"><value>الوصف الداخلي</value></data>
+  <data name="Explorer.BaudRates"><value>السرعات</value></data>
+  <data name="Explorer.Chunks"><value>الكتل</value></data>
+  <data name="Explorer.FskBlocks"><value>كتل FSK</value></data>
+  <data name="Explorer.Records"><value>السجلات</value></data>
+  <data name="Explorer.FullRecords"><value>الكاملة</value></data>
+  <data name="Explorer.PartialRecords"><value>الجزئية</value></data>
+  <data name="Explorer.EndRecord"><value>النهاية</value></data>
+  <data name="Explorer.ChunkType"><value>النوع</value></data>
+  <data name="Explorer.BaudRate"><value>السرعة</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>التأخير</value></data>
 </root>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Smazat obrázek disku...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Trvale smazat tento obrázek disku a všechna jeho data? Tuto operaci nelze zrušit.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Vymazání je nemožné. Oddělte tento disk, uložte konfigurace a ukončete první uvedená sezení:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Otevřená relace: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Vymazání odkazy není povoleno. Vyberte originální soubor.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Vyberte rozšíření podporované tímto strojem a rozhraním.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Tento soubor již existuje. Vyberte jiné jméno.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Kapacita: 512 bytů do {0}, v násobcích 512. Konzervativní limit pro podporovaný systém.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Vytvoří prázdný surový disk bez operačního systému. Připravuje a formátuje jej pomocí diskových nástrojů uvnitř emulovaného stroje.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Příprava disků</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Prázdné (neformátované)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formátování vytváří prázdný objem, bez operačního systému. Atari HDD booting také vyžaduje kompatibilní disk ovladač nainstalovaný z emulovaného stroje. Komprimované obrázky mohou přesměrovat zápisy na extrahovanou kopii.</value></data>
+</root>

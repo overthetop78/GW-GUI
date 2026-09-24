@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>อิมเมจดิสก์</value></data>
+  <data name="Explorer.DetectedFormats"><value>ตรวจพบ: {0}</value></data>
   <data name="Explorer.Format"><value>รูปแบบ</value></data>
   <data name="Explorer.OpenImage"><value>เปิดอิมเมจ…</value></data>
   <data name="Explorer.Automatic"><value>ตรวจหาอัตโนมัติ</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>ไม่ทราบ</value></data>
   <data name="Explorer.Unnamed"><value>โวลุ่มไม่มีชื่อ</value></data>
   <data name="Explorer.LoadFailed"><value>ไม่สามารถเปิดอิมเมจนี้ได้: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>รูปแบบไม่เข้ากัน</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>ไม่สามารถตีความ “{1}” โดยใช้รูปแบบ “{0}” ได้&#xA;เลือกรูปแบบอื่นเพื่อดำเนินการต่อ</value></data>
   <data name="Explorer.Loading"><value>กำลังอ่านอิมเมจดิสก์…</value></data>
   <data name="Explorer.ReadDisk"><value>อ่านดิสก์</value></data>
   <data name="Explorer.Name"><value>ชื่อ</value></data>
@@ -52,9 +47,111 @@
   <data name="Explorer.Compression"><value>การบีบอัด</value></data>
   <data name="Explorer.CustomSectorLoader"><value>ตัวโหลดเซกเตอร์แบบกำหนดเอง</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>ตัวโหลดแบบกำหนดเอง — ไม่มีแค็ตตาล็อกไฟล์</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack โดย The Company</value></data>
   <data name="Explorer.DataBlocks"><value>บล็อกข้อมูล</value></data>
-  <data name="Explorer.DetectedFormats"><value>ตรวจพบ: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>เครื่องมือของโฮสต์ไม่สามารถสร้างภาพของภาคต่าง ๆ ที่สามารถขยายได้ {0}. .</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>เครื่องมือของโฮสต์ ไม่สามารถถอดรหัสภาพได้ {0}. .</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>เครื่องมือของโฮสต์ไม่สามารถสร้างภาพของภาคต่าง ๆ ที่สามารถขยายได้ {0}. .</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>เครื่องมือของโฮสต์ ไม่สามารถถอดรหัสภาพได้ {0}. .</value></data>
+  <data name="Explorer.Session"><value>วาระการเขียน</value></data>
+  <data name="Explorer.Track"><value>แทร็กสื่อ</value></data>
+  <data name="Explorer.Layers"><value>ชั้นแผ่น</value></data>
+  <data name="Explorer.Faces"><value>ด้านการบันทึกเสียงแบบสื่อ</value></data>
+  <data name="Explorer.PartitionType"><value>ประเภทพาร์ทิชัน</value></data>
+  <data name="Explorer.PartitionId"><value>ตัวระบุส่วนย่อย</value></data>
+  <data name="Explorer.TrackMode"><value>โหมดแทร็ก</value></data>
+  <data name="Explorer.FirstSector"><value>ส่วนแรก</value></data>
+  <data name="Explorer.SectorCount"><value>จํานวนส่วน</value></data>
+  <data name="Explorer.StoredSectorSize"><value>ขนาดส่วนที่เก็บไว้</value></data>
+  <data name="Explorer.UserDataSize"><value>ขนาดข้อมูลของผู้ใช้</value></data>
+  <data name="Explorer.Subchannels"><value>คําบรรยาย</value></data>
+  <data name="Explorer.AudioTracks"><value>แทร็กเสียง</value></data>
+  <data name="Explorer.LoadingRecognition"><value>การจดจํารูปแบบของสื่อ</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>รูปแบบที่รู้จัก</value></data>
+  <data name="Explorer.TestingFormat"><value>รูปแบบการทดสอบ: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: ยอมรับ</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: ไม่สามารถจัดการ</value></data>
+  <data name="Explorer.ReadingFormat"><value>รูปแบบการอ่าน: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>กําลังอ่านโครงสร้างสื่อ</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>กําลังอ่านเทป</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>บันทึก {0} ของ {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>กําลังถอดรหัสบันทึกเทป</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>กําลังจดจําแฟ้มต่างๆ</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>รองรับระบบแฟ้ม</value></data>
+  <data name="Explorer.LoadingContents"><value>กําลังเตรียมโฟลเดอร์และแฟ้มต่าง ๆ</value></data>
+  <data name="Explorer.LoadingDisplay"><value>กําลังแสดงเนื้อหา</value></data>
+  <data name="Explorer.FileWithExtension"><value>แฟ้ม {0}</value></data>
+  <data name="Explorer.Type.Document"><value>เอกสาร</value></data>
+  <data name="Explorer.Type.SourceCode"><value>รหัสต้นทาง</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC แฟ้มโปรแกรม</value></data>
+  <data name="Explorer.Type.BootProgram"><value>โปรแกรมบูต</value></data>
+  <data name="Explorer.Type.Executable"><value>ประมวลผลได้</value></data>
+  <data name="Explorer.Type.Command"><value>แฟ้มคําสั่ง</value></data>
+  <data name="Explorer.Type.SystemFile"><value>แฟ้มของระบบ</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>รหัสวัตถุ</value></data>
+  <data name="Explorer.Type.Data"><value>แฟ้มข้อมูล</value></data>
+  <data name="Explorer.Type.Configuration"><value>แฟ้มปรับแต่ง</value></data>
+  <data name="Explorer.Type.Library"><value>ไลบรารี</value></data>
+  <data name="Explorer.Type.Media"><value>แฟ้มสื่อ</value></data>
+  <data name="Explorer.Type.Font"><value>แบบอักษร</value></data>
+  <data name="Explorer.Execution"><value>ประมวลผล</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>แฟ้มประมวลผลหลัก</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>แปลแฟ้มประมวลผลที่ประมวลผลได้</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>คําสั่งหรือสคริปต์</value></data>
+  <data name="Explorer.Category"><value>ประเภท</value></data>
+  <data name="Explorer.ContentFormat"><value>รูปแบบเนื้อหา</value></data>
+  <data name="Explorer.TextEncoding"><value>การเข้ารหัสข้อความ</value></data>
+  <data name="Explorer.Preview"><value>แสดงตัวอย่าง</value></data>
+  <data name="Explorer.Category.File"><value>แฟ้ม</value></data>
+  <data name="Explorer.Category.Text"><value>ข้อความ</value></data>
+  <data name="Explorer.Category.Document"><value>เอกสาร</value></data>
+  <data name="Explorer.Category.SourceCode"><value>รหัสต้นทาง</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC โปรแกรม</value></data>
+  <data name="Explorer.Category.BootProgram"><value>โปรแกรมบูต</value></data>
+  <data name="Explorer.Category.Program"><value>โปรแกรม</value></data>
+  <data name="Explorer.Category.Executable"><value>ประมวลผลได้</value></data>
+  <data name="Explorer.Category.Command"><value>คําสั่ง</value></data>
+  <data name="Explorer.Category.System"><value>ระบบ</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>รหัสวัตถุ</value></data>
+  <data name="Explorer.Category.Data"><value>ข้อมูล</value></data>
+  <data name="Explorer.Category.Configuration"><value>ปรับแต่ง</value></data>
+  <data name="Explorer.Category.Library"><value>ไลบรารี</value></data>
+  <data name="Explorer.Category.Image"><value>ภาพ</value></data>
+  <data name="Explorer.Category.Audio"><value>เสียง</value></data>
+  <data name="Explorer.Category.Media"><value>สื่อ</value></data>
+  <data name="Explorer.Category.Archive"><value>แฟ้มจัดเก็บ</value></data>
+  <data name="Explorer.Category.DiskImage"><value>อิมเมจของดิสก์</value></data>
+  <data name="Explorer.Category.Link"><value>เชื่อมโยง</value></data>
+  <data name="Explorer.Category.Font"><value>แบบอักษร</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>ไม่ทราบ</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>ข้อความธรรมดา</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC โปรแกรม</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>โปรแกรมประมวลผลดั้งเดิม</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>คําสั่งหรือสคริปต์</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>รหัสวัตถุ</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>ไบนารีของระบบ</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>ข้อมูลที่ถูกสร้าง</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>ปรับแต่ง</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>ไลบรารี</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>ภาพ</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>เสียง</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>แฟ้มจัดเก็บ</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>อิมเมจของดิสก์</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>แบบอักษร</value></data>
+  <data name="Explorer.Preview.None"><value>ไม่มี</value></data>
+  <data name="Explorer.Preview.Text"><value>ข้อความ</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC รายการ</value></data>
+  <data name="Explorer.Preview.Image"><value>ภาพ</value></data>
+  <data name="Explorer.Preview.Audio"><value>เสียง</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>ฐานสิบหก</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>โปรแกรมภายนอก</value></data>
+  <data name="Explorer.Cassette"><value>เทปคาสเซ็ต</value></data>
+  <data name="Explorer.InternalName"><value>คำอธิบายภายใน</value></data>
+  <data name="Explorer.BaudRates"><value>อัตรา</value></data>
+  <data name="Explorer.Chunks"><value>บล็อก</value></data>
+  <data name="Explorer.FskBlocks"><value>บล็อก FSK</value></data>
+  <data name="Explorer.Records"><value>ระเบียน</value></data>
+  <data name="Explorer.FullRecords"><value>เต็ม</value></data>
+  <data name="Explorer.PartialRecords"><value>บางส่วน</value></data>
+  <data name="Explorer.EndRecord"><value>สิ้นสุด</value></data>
+  <data name="Explorer.ChunkType"><value>ชนิด</value></data>
+  <data name="Explorer.BaudRate"><value>อัตรา</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>หน่วงเวลา</value></data>
 </root>

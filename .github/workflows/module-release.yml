@@ -1,4 +1,5 @@
 name: Build emulation module package
+run-name: Publish module ${{ inputs.module || github.ref_name }}
 
 on:
   workflow_dispatch:
@@ -7,6 +8,11 @@ on:
         description: Module id from src/GWGUI.Emulation.*/module.json
         required: true
         type: string
+      generate_notes:
+        description: Generate release notes when the module notes file is absent
+        required: true
+        default: false
+        type: boolean
   push:
     tags:
       - module-*-v*
@@ -31,7 +37,7 @@ jobs:
         env:
           REQUESTED_MODULE: ${{ inputs.module }}
         run: |
-          . .\scripts\emulation-modules.ps1
+          . .\scripts\release\update-catalog\emulation-modules\emulation-modules.ps1
           $definitions = @(Get-GwGuiEmulationModules -RepositoryRoot (Resolve-Path .))
           if ("${{ github.event_name }}" -eq 'push') {
             if ($env:GITHUB_REF_NAME -notmatch '^module-([A-Za-z0-9][A-Za-z0-9._-]*)-v(\d+\.\d+\.\d+)$') {
@@ -63,7 +69,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'GW GUI tests failed.' }
       - name: Build module archive
         shell: pwsh
-        run: .\scripts\package-module.ps1 -Module $env:MODULE_ID -Configuration Release
+        run: .\scripts\module-release\package-module.ps1 -Module $env:MODULE_ID -Configuration Release
       - name: Verify module archive and checksum
         shell: pwsh
         run: |
@@ -89,7 +95,7 @@ jobs:
           }
       - name: Build and validate update catalog
         shell: pwsh
-        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -Repository '${{ github.repository }}' -ModuleTag $env:MODULE_RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
+        run: .\scripts\release\update-catalog\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -Repository '${{ github.repository }}' -ModuleTag $env:MODULE_RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
       - uses: actions/upload-artifact@v6
         with:
           name: GW-GUI-Module-${{ env.MODULE_ID }}-${{ env.MODULE_VERSION }}-win-x64
@@ -98,18 +104,34 @@ jobs:
             ${{ env.MODULE_ARCHIVE }}.sha256
             dist/update-catalog.json
           if-no-files-found: error
-      - name: Publish tagged module release
-        if: github.event_name == 'push'
+      - name: Publish module release
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if (-not (Test-Path -LiteralPath $env:MODULE_NOTES -PathType Leaf)) {
+          $arguments = @(
+            'release', 'create', $env:MODULE_RELEASE_TAG,
+            $env:MODULE_ARCHIVE,
+            "$env:MODULE_ARCHIVE.sha256",
+            '--latest=false',
+            '--title', "GW GUI $env:MODULE_NAME module $env:MODULE_VERSION"
+          )
+          if (Test-Path -LiteralPath $env:MODULE_NOTES -PathType Leaf) {
+            $arguments += @('--notes-file', $env:MODULE_NOTES)
+          } elseif ("${{ github.event_name }}" -eq 'workflow_dispatch' -and "${{ inputs.generate_notes }}" -eq 'true') {
+            $arguments += '--generate-notes'
+          } else {
             throw "Module release notes are missing: $env:MODULE_NOTES"
           }
-          gh release create $env:GITHUB_REF_NAME $env:MODULE_ARCHIVE "$env:MODULE_ARCHIVE.sha256" --verify-tag --latest=false --title "GW GUI $env:MODULE_NAME module $env:MODULE_VERSION" --notes-file $env:MODULE_NOTES
+          if ("${{ github.event_name }}" -eq 'push') {
+            if ($env:GITHUB_REF_NAME -ne $env:MODULE_RELEASE_TAG) {
+              throw "Module release tag $env:GITHUB_REF_NAME does not match $env:MODULE_RELEASE_TAG."
+            }
+            $arguments += '--verify-tag'
+          }
+          gh @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to publish the module release.' }
       - name: Publish validated update catalog
-        if: github.event_name == 'push'
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}

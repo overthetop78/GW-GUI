@@ -1,6 +1,6 @@
 using GWGUI.App.Views.Controls.Options;
 using GWGUI.App.ViewModels.Operations.Options;
-using GWGUI.Domain.Profiles;
+using GWGUI.App.Profiles;
 using System.Windows;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Interface.ProfileViews;

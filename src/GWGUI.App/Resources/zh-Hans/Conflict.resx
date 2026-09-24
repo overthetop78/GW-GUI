@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>现有文件</value></data>
+  <data name="Conflict.Heading"><value>有些文件已经存在</value></data>
+  <data name="Conflict.Help"><value>为每个文件选择一个操作或对所有文件应用相同的操作。</value></data>
+  <data name="Conflict.File"><value>文件</value></data>
+  <data name="Conflict.Action"><value>行动</value></data>
+  <data name="Conflict.Overwrite"><value>覆盖</value></data>
+  <data name="Conflict.Skip"><value>跳过</value></data>
+  <data name="Conflict.Number"><value>使用下一个号码</value></data>
+  <data name="Conflict.AllOverwrite"><value>覆盖全部</value></data>
+  <data name="Conflict.AllSkip"><value>全部跳过</value></data>
+  <data name="Conflict.AllNumber"><value>全部编号</value></data>
+</root>

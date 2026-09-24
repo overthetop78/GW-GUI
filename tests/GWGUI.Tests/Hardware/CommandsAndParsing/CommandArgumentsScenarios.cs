@@ -1,25 +1,25 @@
-using GWGUI.Domain.Read;
-using GWGUI.Domain.Write;
-using GWGUI.Domain.Maintenance;
+using GWGUI.Infrastructure.Read;
+using GWGUI.Infrastructure.Write;
+using GWGUI.Infrastructure.Maintenance;
 namespace GWGUI.Tests.Hardware.CommandsAndParsing;
 internal static class CommandArgumentsScenarios
 {
     public static void Options(string argument,string? value,bool valid)
     {
-        GWGUI.Domain.Commands.Options.EnabledOption[] options=[new(argument,value)];
-        GWGUI.Domain.Commands.GwCommand Build()=>ReadCommandBuilder.Build(new("virtual","virtual folder/a\"b.scp",ReadResultKind.RawScp,null,options));
+        GWGUI.MediaEngine.Contracts.Options.EnabledOption[] options=[new(argument,value)];
+        GWGUI.Infrastructure.Commands.GwCommand Build()=>ReadCommandBuilder.Build(new("virtual","virtual folder/a\"b.scp",ReadResultKind.RawScp,null,options));
         if(!valid) { Assert.ThrowsAny<ArgumentException>(Build); return; }
         var command=Build(); Assert.Equal("virtual folder/a\"b.scp",command.Arguments[^1]); Assert.Equal(argument,command.Arguments[0]);
         Assert.Equal(value is null?2:3,command.Arguments.Count); if(value is not null) Assert.Equal(value,command.Arguments[1]);
     }
     public static void ExclusiveAndExpert()
     {
-        foreach(var pair in new[]{new[]{new GWGUI.Domain.Commands.Options.EnabledOption("--fake-index","300rpm"),new("--hard-sectors")},new[]{new GWGUI.Domain.Commands.Options.EnabledOption("--densel","H"),new("--gen-tg43")}})
+        foreach(var pair in new[]{new[]{new GWGUI.MediaEngine.Contracts.Options.EnabledOption("--fake-index","300rpm"),new("--hard-sectors")},new[]{new GWGUI.MediaEngine.Contracts.Options.EnabledOption("--densel","H"),new("--gen-tg43")}})
             Assert.Throws<ArgumentException>(()=>ReadCommandBuilder.Build(new("virtual","out",ReadResultKind.RawScp,null,pair)));
         Assert.Throws<ArgumentException>(()=>ReadCommandBuilder.Build(new("virtual","out",ReadResultKind.RawScp,null,[],ExpertArguments:"--tracks \"unclosed")));
         var explicitDefinitions=ReadCommandBuilder.Build(new("virtual","out",ReadResultKind.KnownFormat,"amstrad.cpc",[new("--diskdefs","virtual config")]));
         Assert.Equal(new[]{"--format","amstrad.cpc","--diskdefs","virtual config","out"},explicitDefinitions.Arguments);
-        Assert.Equal(new[]{"--one","two words","--path",@"virtual\path"},GWGUI.Domain.Commands.CommandLineTokenizer.Tokenize("  --one \"two words\"\t--path virtual\\path  "));
+        Assert.Equal(new[]{"--one","two words","--path",@"virtual\path"},GWGUI.Infrastructure.Commands.CommandLineTokenizer.Tokenize("  --one \"two words\"\t--path virtual\\path  "));
     }
     public static void Read()
     {

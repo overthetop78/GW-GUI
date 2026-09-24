@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Haven</value></data>
-  <data name="Hardware.UsbId"><value>USB identificatie</value></data>
-  <data name="Hardware.Drive"><value>Drijfveer</value></data>
-  <data name="Hardware.Available"><value>Beschikbaar</value></data>
-  <data name="Hardware.Scan"><value>Scannen</value></data>
-  <data name="Hardware.AddDrive"><value>Een schijf toevoegen…</value></data>
-  <data name="Hardware.NoDrive"><value>Geen schijf gedefinieerd</value></data>
-  <data name="Hardware.EditorTitle"><value>Definieer een schijf</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle regelaar</value></data>
-  <data name="Hardware.GwSelection"><value>Selectie doorgegeven aan g</value></data>
-  <data name="Hardware.PhysicalSize"><value>Fysieke grootte</value></data>
-  <data name="Hardware.SizeShort"><value>Maat</value></data>
-  <data name="Hardware.DensityShort"><value>Dikte</value></data>
-  <data name="Hardware.SpeedShort"><value>Snelheid</value></data>
-  <data name="Hardware.AvailableState"><value>Beschikbaar</value></data>
-  <data name="Hardware.UnavailableState"><value>Niet beschikbaar</value></data>
-  <data name="Hardware.DensityDescription"><value>Drive-dichtheid (alleen beschrijving)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Nominale snelheid (alleen beschrijving)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Haven</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB identificatie</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Drijfveer</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Beschikbaar</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Scannen</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Een schijf toevoegen…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Geen schijf gedefinieerd</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definieer een schijf</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle regelaar</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Selectie doorgegeven aan g</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fysieke grootte</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Maat</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Dikte</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Snelheid</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Beschikbaar</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Niet beschikbaar</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Drive-dichtheid (alleen beschrijving)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Nominale snelheid (alleen beschrijving)</value></data>
   <data name="Hardware.NotConfigured"><value>Controller niet geconfigureerd</value></data>
   <data name="Hardware.Disconnected"><value>losgekoppeld</value></data>
   <data name="Hardware.SelectedDisconnected"><value>De geselecteerde schijf is losgekoppeld. Sluit hem opnieuw aan of scan opnieuw in Opties → Controllers en schijven.</value></data>
-<data name="Hardware.DriveDialogTitle"><value>Drijfveer</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-inch · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Drijfveer</value></data>
   <data name="Hardware.ControllerRequired"><value>Scan of voeg eerst een Greaseweazle-controller toe.</value></data>
   <data name="Hardware.Description"><value>{0}-inch · {1} · selectie {2}{3}</value></data>
   <data name="Hardware.ScanTitle"><value>Scannen</value></data>
@@ -59,5 +52,4 @@
   <data name="Hardware.ForgetLastConfirm"><value>Dit is de laatst geconfigureerde schijf voor deze Greaseweazle. Wilt u zowel de schijf als de Greaseweazle vergeten?</value></data>
   <data name="Hardware.SelectController"><value>Selecteer eerst een rij die bij de relevante Greaseweazle hoort.</value></data>
   <data name="Hardware.MaximumDrives"><value>Aan deze Greaseweazle kunnen maximaal twee schijven automatisch worden toegewezen (A en B).</value></data>
-  <data name="Hardware.DriveLabel"><value>{0}-inch · {1} · {2} · {3}</value></data>
 </root>

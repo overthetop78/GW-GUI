@@ -1,4 +1,5 @@
-using GWGUI.Domain.Conversion;
+using ConversionFidelity = global::GWGUI.MediaEngine.Images.Conversion.ConversionFidelity;
+using ConversionFidelityLevel = global::GWGUI.MediaEngine.Images.Conversion.ConversionFidelityLevel;
 using GWGUI.App.Contracts.ViewModels.Conversion;
 using GWGUI.App.Localization.Extensions;
 using System.Windows.Controls;

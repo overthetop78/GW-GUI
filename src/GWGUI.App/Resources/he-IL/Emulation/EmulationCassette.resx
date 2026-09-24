@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>הפעלה</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>השהיה</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>הרצה לאחור</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>הרצה קדימה</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>הקלטה</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>עצירה</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>אין קלטת</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>נעצרה</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>מתנגנת</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>מושהית</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>הקלטה</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>סוף הקלטת</value></data>
+</root>

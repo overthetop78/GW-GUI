@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Клавіша {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Клавіша хоста</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>два ключі Amiga використовують те ж саме PC ключ. Розчинити червоні картографічні скидки перед збереженням.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Наскрізне передавання фізичної клавіатури</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Зарезервовані сполучення клавіш</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Сполучення клавіш GW GUI і Windows залишаються активними та не перехоплюються машиною.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Клавіша машини</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Літери, цифри та звичайні клавіші-модифікатори передаються безпосередньо. Тут потрібно призначати лише функціональні та спеціальні клавіші Amiga.</value></data>
+</root>

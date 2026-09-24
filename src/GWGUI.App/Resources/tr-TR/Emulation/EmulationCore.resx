@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Core.Name"><value>Çekirdek</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0} öykünme çekirdeği</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Kütüphane dışsal kalır GW GUI. Seçilen sürüm şu anda yüklenen sürüme değiştirir.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>GW GUI tarafından gereken sürüm</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Kullanılabilir en son resmî sürüm</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Şu anda yüklü sürüm</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Resmî Libretro sunucusunu sorgulamak için Ara düğmesine tıklayın.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Sürümleri ara</value></data>
+  <data name="Emulation.Core.NameDownload"><value>İndir ve değiştir</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Kullanılabilir sürümler aranıyor…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Resmî sürüm bulunamadı.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} sürüm kullanılabilir.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Downloading {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Yüklü sürüm: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · yüklendi</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Yüklü sürüm yok</value></data>
+  <data name="Emulation.Core.Emulator"><value>Emülatör</value></data>
+  <data name="Emulation.Core.Install"><value>Yükleme yükleme</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Yüklemek için</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Core seçenekleri</value></data>
+</root>

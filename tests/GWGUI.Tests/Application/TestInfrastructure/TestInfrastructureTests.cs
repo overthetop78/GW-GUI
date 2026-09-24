@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 namespace GWGUI.Tests.Application.TestInfrastructure;
 
 [Collection("WPF")]

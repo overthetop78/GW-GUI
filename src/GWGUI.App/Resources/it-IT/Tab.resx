@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Tab.Read"><value>Leggere</value></data>
+  <data name="Tab.Write"><value>Scrivere</value></data>
+  <data name="Tab.Convert"><value>Conversione</value></data>
+  <data name="Tab.Visualize"><value>Visualizzazione</value></data>
+  <data name="Tab.Tools"><value>Utensili</value></data>
+  <data name="Tab.Explorer"><value>Esplora disco</value></data>
+  <data name="Tab.Emulation"><value>Emulazione</value></data>
+</root>

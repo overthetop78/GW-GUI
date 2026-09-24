@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths:
       - module-registry/**
-      - scripts/build-module-directory.ps1
+      - scripts/module-directory/build-module-directory.ps1
       - .github/workflows/module-directory.yml
 
 permissions:
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v5
       - name: Build module directory
         shell: pwsh
-        run: .\scripts\build-module-directory.ps1
+        run: .\scripts\module-directory\build-module-directory.ps1
       - name: Publish module directory
         shell: pwsh
         env:

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Explorer.Image"><value>Образ диска</value></data>
+  <data name="Explorer.DetectedFormats"><value>Обнаружено: {0}</value></data>
   <data name="Explorer.Format"><value>Формат</value></data>
   <data name="Explorer.OpenImage"><value>Открыть образ…</value></data>
   <data name="Explorer.Automatic"><value>Автоматическое определение</value></data>
@@ -32,6 +25,8 @@
   <data name="Explorer.Unknown"><value>Неизвестно</value></data>
   <data name="Explorer.Unnamed"><value>Том без имени</value></data>
   <data name="Explorer.LoadFailed"><value>Не удалось открыть образ: {0}</value></data>
+  <data name="Explorer.SelectedFormatUnsupportedTitle"><value>Несовместимый формат</value></data>
+  <data name="Explorer.SelectedFormatUnsupported"><value>Невозможно интерпретировать «{1}» в формате «{0}».&#xA;Выберите другой формат, чтобы продолжить.</value></data>
   <data name="Explorer.Loading"><value>Чтение образа диска…</value></data>
   <data name="Explorer.ReadDisk"><value>Прочитать дискету</value></data>
   <data name="Explorer.Name"><value>Имя</value></data>
@@ -52,9 +47,111 @@
   <data name="Explorer.Compression"><value>Сжатие</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Пользовательский загрузчик секторов</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Пользовательский загрузчик — нет каталога файлов</value></data>
-  <data name="Explorer.Content.crack-the-company"><value>Crack от The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Блоки данных</value></data>
-  <data name="Explorer.DetectedFormats"><value>Обнаружено: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools не может создать образ сектора для поиска. {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed"><value>Host Tools не смогли расшифровать изображение {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools не может создать образ сектора для поиска. {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools не смогли расшифровать изображение {0}.</value></data>
+  <data name="Explorer.Session"><value>Диск-сессия</value></data>
+  <data name="Explorer.Track"><value>Медиа-трек</value></data>
+  <data name="Explorer.Layers"><value>Дисковые слои</value></data>
+  <data name="Explorer.Faces"><value>Ступени для записи медиа</value></data>
+  <data name="Explorer.PartitionType"><value>Тип раздела</value></data>
+  <data name="Explorer.PartitionId"><value>Идентификатор раздела</value></data>
+  <data name="Explorer.TrackMode"><value>Режим отслеживания</value></data>
+  <data name="Explorer.FirstSector"><value>Первый сектор</value></data>
+  <data name="Explorer.SectorCount"><value>Секторальный счет</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Размер складского сектора</value></data>
+  <data name="Explorer.UserDataSize"><value>Размер данных пользователя</value></data>
+  <data name="Explorer.Subchannels"><value>Подканалы</value></data>
+  <data name="Explorer.AudioTracks"><value>Аудио треки</value></data>
+  <data name="Explorer.LoadingRecognition"><value>Признание формата СМИ</value></data>
+  <data name="Explorer.LoadingFormatFound"><value>Признанный формат</value></data>
+  <data name="Explorer.TestingFormat"><value>Формат тестирования: {0}</value></data>
+  <data name="Explorer.TestedFormatRecognized"><value>{0}: признанный</value></data>
+  <data name="Explorer.TestedFormatRejected"><value>{0}: не признано</value></data>
+  <data name="Explorer.ReadingFormat"><value>Формат чтения: {0}</value></data>
+  <data name="Explorer.LoadingMedia"><value>Чтение структуры СМИ</value></data>
+  <data name="Explorer.LoadingTapeReading"><value>Чтение ленты</value></data>
+  <data name="Explorer.LoadingTapeRecord"><value>рекорд {0} из {1}</value></data>
+  <data name="Explorer.LoadingTapeDecoding"><value>Дешифровка записей с магнитной ленты</value></data>
+  <data name="Explorer.LoadingFileRecognition"><value>Распознавание файлов</value></data>
+  <data name="Explorer.LoadingFileSystem"><value>Анализ файловой системы</value></data>
+  <data name="Explorer.LoadingContents"><value>Подготовка папок и файлов</value></data>
+  <data name="Explorer.LoadingDisplay"><value>Отображение содержимого</value></data>
+  <data name="Explorer.FileWithExtension"><value>Файлы {0}</value></data>
+  <data name="Explorer.Type.Document"><value>Документация</value></data>
+  <data name="Explorer.Type.SourceCode"><value>Исходный код</value></data>
+  <data name="Explorer.Type.BasicProgram"><value>BASIC файл программы</value></data>
+  <data name="Explorer.Type.BootProgram"><value>Программа бут</value></data>
+  <data name="Explorer.Type.Executable"><value>исполняемый</value></data>
+  <data name="Explorer.Type.Command"><value>Командовый файл</value></data>
+  <data name="Explorer.Type.SystemFile"><value>Системный файл</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Объектный код</value></data>
+  <data name="Explorer.Type.Data"><value>Файлы данных</value></data>
+  <data name="Explorer.Type.Configuration"><value>Файл конфигурации</value></data>
+  <data name="Explorer.Type.Library"><value>Библиотека</value></data>
+  <data name="Explorer.Type.Media"><value>Медиафайлы</value></data>
+  <data name="Explorer.Type.Font"><value>шрифт</value></data>
+  <data name="Explorer.Execution"><value>Казнь</value></data>
+  <data name="Explorer.Execution.NativeExecutable"><value>Native executable файл</value></data>
+  <data name="Explorer.Execution.InterpretedProgram"><value>Интерпретируемый исполняемый файл</value></data>
+  <data name="Explorer.Execution.CommandScript"><value>Командный или письменный</value></data>
+  <data name="Explorer.Category"><value>Категория</value></data>
+  <data name="Explorer.ContentFormat"><value>Формат контента</value></data>
+  <data name="Explorer.TextEncoding"><value>Текстовое кодирование</value></data>
+  <data name="Explorer.Preview"><value>Предварительный просмотр</value></data>
+  <data name="Explorer.Category.File"><value>Файлы</value></data>
+  <data name="Explorer.Category.Text"><value>Текст</value></data>
+  <data name="Explorer.Category.Document"><value>Документация</value></data>
+  <data name="Explorer.Category.SourceCode"><value>Исходный код</value></data>
+  <data name="Explorer.Category.BasicProgram"><value>BASIC программа</value></data>
+  <data name="Explorer.Category.BootProgram"><value>Программа бут</value></data>
+  <data name="Explorer.Category.Program"><value>Программа</value></data>
+  <data name="Explorer.Category.Executable"><value>исполняемый</value></data>
+  <data name="Explorer.Category.Command"><value>Командование</value></data>
+  <data name="Explorer.Category.System"><value>Система</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Объектный код</value></data>
+  <data name="Explorer.Category.Data"><value>Данные</value></data>
+  <data name="Explorer.Category.Configuration"><value>конфигурация</value></data>
+  <data name="Explorer.Category.Library"><value>Библиотека</value></data>
+  <data name="Explorer.Category.Image"><value>Изображение</value></data>
+  <data name="Explorer.Category.Audio"><value>Аудио</value></data>
+  <data name="Explorer.Category.Media"><value>СМИ</value></data>
+  <data name="Explorer.Category.Archive"><value>архив</value></data>
+  <data name="Explorer.Category.DiskImage"><value>Изображение диска</value></data>
+  <data name="Explorer.Category.Link"><value>Ссылка</value></data>
+  <data name="Explorer.Category.Font"><value>шрифт</value></data>
+  <data name="Explorer.ContentFormat.Unknown"><value>неизвестный</value></data>
+  <data name="Explorer.ContentFormat.PlainText"><value>Простой текст</value></data>
+  <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC программа</value></data>
+  <data name="Explorer.ContentFormat.NativeExecutable"><value>Исполняемый натив</value></data>
+  <data name="Explorer.ContentFormat.CommandScript"><value>Командный или письменный</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Объектный код</value></data>
+  <data name="Explorer.ContentFormat.SystemBinary"><value>Бинарная система</value></data>
+  <data name="Explorer.ContentFormat.StructuredData"><value>Структурированные данные</value></data>
+  <data name="Explorer.ContentFormat.Configuration"><value>конфигурация</value></data>
+  <data name="Explorer.ContentFormat.Library"><value>Библиотека</value></data>
+  <data name="Explorer.ContentFormat.Image"><value>Изображение</value></data>
+  <data name="Explorer.ContentFormat.Audio"><value>Аудио</value></data>
+  <data name="Explorer.ContentFormat.Archive"><value>архив</value></data>
+  <data name="Explorer.ContentFormat.DiskImage"><value>Изображение диска</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>шрифт</value></data>
+  <data name="Explorer.Preview.None"><value>Ни одного</value></data>
+  <data name="Explorer.Preview.Text"><value>Текст</value></data>
+  <data name="Explorer.Preview.BasicListing"><value>BASIC список</value></data>
+  <data name="Explorer.Preview.Image"><value>Изображение</value></data>
+  <data name="Explorer.Preview.Audio"><value>Аудио</value></data>
+  <data name="Explorer.Preview.Hexadecimal"><value>шестидесятичный</value></data>
+  <data name="Explorer.Preview.ExternalApplication"><value>Внешнее применение</value></data>
+  <data name="Explorer.Cassette"><value>Кассета</value></data>
+  <data name="Explorer.InternalName"><value>Внутреннее описание</value></data>
+  <data name="Explorer.BaudRates"><value>Скорости</value></data>
+  <data name="Explorer.Chunks"><value>Блоки</value></data>
+  <data name="Explorer.FskBlocks"><value>Блоки FSK</value></data>
+  <data name="Explorer.Records"><value>Записи</value></data>
+  <data name="Explorer.FullRecords"><value>Полные</value></data>
+  <data name="Explorer.PartialRecords"><value>Частичные</value></data>
+  <data name="Explorer.EndRecord"><value>Конец</value></data>
+  <data name="Explorer.ChunkType"><value>Тип</value></data>
+  <data name="Explorer.BaudRate"><value>Скорость</value></data>
+  <data name="Explorer.DelayBeforeBlock"><value>Задержка</value></data>
 </root>

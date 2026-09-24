@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Menu.Options"><value>Opcje</value></data>
   <data name="Menu.Preferences"><value>Preferencje…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnostyka</value></data>
@@ -27,14 +19,7 @@
   <data name="Menu.Help"><value>Pomoc</value></data>
   <data name="Menu.Documentation"><value>Dokumentacja</value></data>
   <data name="Menu.About"><value>O</value></data>
-  <data name="Tab.Read"><value>Czytać</value></data>
-  <data name="Tab.Write"><value>Pisać</value></data>
-  <data name="Tab.Convert"><value>Konwersja</value></data>
-  <data name="Tab.Visualize"><value>Wyobrażanie sobie</value></data>
-  <data name="Tab.Tools"><value>Narzędzia</value></data>
   <data name="Menu.Align"><value>Ustawianie napędu…</value></data>
-  <data name="Tab.Explorer"><value>Eksplorator dysku</value></data>
-  <data name="Tab.Emulation"><value>Emulacja</value></data>
   <data name="Menu.Emulation"><value>Emulacja</value></data>
   <data name="Menu.EmulationPreferences"><value>Preferencje emulacji...</value></data>
 </root>

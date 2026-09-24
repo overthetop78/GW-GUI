@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>קבצים קיימים</value></data>
+  <data name="Conflict.Heading"><value>כמה קבצים כבר קיימים</value></data>
+  <data name="Conflict.Help"><value>בחר פעולה עבור כל קובץ או החל את אותה פעולה על כל הקבצים.</value></data>
+  <data name="Conflict.File"><value>קוֹבֶץ</value></data>
+  <data name="Conflict.Action"><value>פְּעוּלָה</value></data>
+  <data name="Conflict.Overwrite"><value>החלף</value></data>
+  <data name="Conflict.Skip"><value>לְדַלֵג</value></data>
+  <data name="Conflict.Number"><value>השתמש במספר הבא</value></data>
+  <data name="Conflict.AllOverwrite"><value>תחליף הכל</value></data>
+  <data name="Conflict.AllSkip"><value>דלג על הכל</value></data>
+  <data name="Conflict.AllNumber"><value>מספר הכל</value></data>
+</root>

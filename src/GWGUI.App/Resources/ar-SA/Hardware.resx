@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>ميناء</value></data>
-  <data name="Hardware.UsbId"><value>معرف USB</value></data>
-  <data name="Hardware.Drive"><value>يقود</value></data>
-  <data name="Hardware.Available"><value>متاح</value></data>
-  <data name="Hardware.Scan"><value>مسح</value></data>
-  <data name="Hardware.AddDrive"><value>إضافة محرك…</value></data>
-  <data name="Hardware.NoDrive"><value>لم يتم تحديد محرك الأقراص</value></data>
-  <data name="Hardware.EditorTitle"><value>تحديد محرك الأقراص</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle تحكم</value></data>
-  <data name="Hardware.GwSelection"><value>تم تمرير التحديد إلى غيغاواط</value></data>
-  <data name="Hardware.PhysicalSize"><value>الحجم المادي</value></data>
-  <data name="Hardware.SizeShort"><value>مقاس</value></data>
-  <data name="Hardware.DensityShort"><value>كثافة</value></data>
-  <data name="Hardware.SpeedShort"><value>سرعة</value></data>
-  <data name="Hardware.AvailableState"><value>متاح</value></data>
-  <data name="Hardware.UnavailableState"><value>غير متاح</value></data>
-  <data name="Hardware.DensityDescription"><value>كثافة محرك الأقراص (الوصف فقط)</value></data>
-  <data name="Hardware.SpeedDescription"><value>السرعة الاسمية (الوصف فقط)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>ميناء</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>معرف USB</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>يقود</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>متاح</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>مسح</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>إضافة محرك…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>لم يتم تحديد محرك الأقراص</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>تحديد محرك الأقراص</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle تحكم</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>تم تمرير التحديد إلى غيغاواط</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>الحجم المادي</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>مقاس</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>كثافة</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>سرعة</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>متاح</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>غير متاح</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>كثافة محرك الأقراص (الوصف فقط)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>السرعة الاسمية (الوصف فقط)</value></data>
   <data name="Hardware.NotConfigured"><value>لم يتم تكوين وحدة التحكم</value></data>
   <data name="Hardware.Disconnected"><value>غير متصل</value></data>
   <data name="Hardware.SelectedDisconnected"><value>تم قطع اتصال محرك الأقراص المحدد. أعد توصيله أو قم بالمسح الضوئي مرة أخرى في الخيارات → وحدات التحكم ومحركات الأقراص.</value></data>

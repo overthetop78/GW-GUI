@@ -1,5 +1,5 @@
 using GWGUI.App.Services.Theming;
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;

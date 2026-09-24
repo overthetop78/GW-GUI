@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Comportamento</value></data>
+  <data name="Emulation.Input.Assign"><value>Assegna...</value></data>
+  <data name="Emulation.Input.Actions"><value>Azioni</value></data>
+  <data name="Emulation.Input.Press"><value>Premi un tasto...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Il rilevamento dei dispositivi è condiviso, mentre le assegnazioni vengono salvate separatamente in ogni configurazione della macchina.</value></data>
+  <data name="Emulation.Input.Test"><value>Prova ingressi</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Dispositivi di input condivisi</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Premi un tasto della tastiera o un pulsante del mouse per provarne il rilevamento.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Ripristina valori predefiniti</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Cancella conflitti</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Associazione</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Stato</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Cerca un tasto o un’associazione</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Valido: associazione unica · Conflitto: associazione usata più volte · Riservato: scorciatoia di Windows o GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Valido</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Conflitto</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Riservato</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Non assegnato</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Premere Assegna, quindi usare un tasto, un pulsante del mouse o del controller.</value></data>
+</root>

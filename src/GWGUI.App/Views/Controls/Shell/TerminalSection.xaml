@@ -3,7 +3,7 @@
         <Grid>
             <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
             <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition/></Grid.ColumnDefinitions>
-                <TextBlock Text="{l:Loc Terminal.Prompt}" Foreground="#54E88B" FontFamily="Consolas" FontSize="15" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <TextBlock Text="{l:Loc Shell.Terminal.Prompt}" Foreground="#54E88B" FontFamily="Consolas" FontSize="15" VerticalAlignment="Center" Margin="0,0,8,0"/>
                 <TextBox Grid.Column="1" x:Name="Command" Background="Transparent" Foreground="#B7F7C3" BorderThickness="0" Padding="0,4" IsReadOnly="True" FontFamily="Consolas" AutomationProperties.Name="{l:Loc Common.Command}"/>
             </Grid>
             <TextBox Grid.Row="1" x:Name="Output" Margin="0,5,42,0" Background="Transparent" Foreground="#D9DEE7" BorderThickness="0" Padding="0" IsReadOnly="True" FontFamily="Consolas" VerticalScrollBarVisibility="Hidden" AcceptsReturn="True" Text="{l:Loc Status.Ready}" AutomationProperties.Name="{l:Loc Tool.RawOutput}"/>

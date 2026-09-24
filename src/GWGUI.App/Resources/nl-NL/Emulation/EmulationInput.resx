@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Input.Behavior"><value>Gedrag</value></data>
+  <data name="Emulation.Input.Assign"><value>Toewijzen...</value></data>
+  <data name="Emulation.Input.Actions"><value>Acties</value></data>
+  <data name="Emulation.Input.Press"><value>Druk op een toets...</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Apparaatdetectie wordt gedeeld, maar toewijzingen worden apart opgeslagen in elke machineconfiguratie.</value></data>
+  <data name="Emulation.Input.Test"><value>Invoer testen</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Gedeelde invoerapparaten</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Druk op een toetsenbordtoets of muisknop om de detectie te testen.</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Standaardwaarden herstellen</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Conflicten wissen</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Toewijzing</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Status</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Zoek een toets of toewijzing</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Geldig: unieke toewijzing · Conflict: toewijzing meermaals gebruikt · Gereserveerd: Windows- of GW GUI-sneltoets</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Geldig</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Conflict</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Gereserveerd</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Niet toegewezen</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Klik op Toewijzen en gebruik daarna een toets, muisknop of controllerknop.</value></data>
+</root>

@@ -1,5 +1,5 @@
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.Tests.Application.TestInfrastructure;
 namespace GWGUI.Tests.Application.SettingsStorage;
 internal static class MigrationAndRecoveryScenarios
@@ -22,6 +22,7 @@ internal static class MigrationAndRecoveryScenarios
         Assert.Equal(version<=6?0:1,settings.UnconfiguredControllers.Count);
         Assert.Equal("virtual-emulation",settings.EmulationStorageFolder); Assert.Equal(Path.Combine("virtual-emulation","Captures"),settings.EmulationCaptureFolder);
         Assert.Equal(Path.Combine("virtual-emulation","States"),settings.EmulationStateFolder); Assert.Equal("last",settings.LastDiskImageFolder);
+        Assert.Equal("last", settings.LastVisualizerImageFolder); Assert.Equal("last", settings.LastExplorerImageFolder);
         var json=System.Text.Json.JsonSerializer.Serialize(settings); SettingsMigrator.Migrate(settings); Assert.Equal(json,System.Text.Json.JsonSerializer.Serialize(settings));
     }
     public static void Migrate(int version)

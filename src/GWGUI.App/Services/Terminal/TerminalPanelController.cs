@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Views.Controls.Shell;
 using System.IO;
 using System.Windows;

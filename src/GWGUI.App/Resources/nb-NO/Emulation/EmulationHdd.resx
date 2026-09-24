@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Slett diskbilde...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Slett diskbildet permanent og alle dataene? Denne operasjonen kan ikke angres.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Sleeting er umulig. Avslapp denne disken, lagre konfigurasjonene og lukk de oppførte øktene først:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Åpne økt: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Utslepp gjennom lenker er ikke tillatt. Velg den opprinnelige filen.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Velg en utvidelse som støttes av denne maskinen og grensesnittet.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Denne filen eksisterer allerede. Velg et annet navn.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Kapasitet: 512 byte til {0}, i multiplum av 512. Konservativ grense for det støttede systemet.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Oppretter en tom rådisk uten et operativsystem. Forbered og formater den ved hjelp av diskverktøy inne i den emulerte maskinen.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Diskforberedelse</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (uformatert)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatering skaper et tomt volum, uten operativsystem. Atari HDD oppstart krever også en kompatibel diskdriver installert fra den emulerte maskinen. Komprimerte bilder kan omdirigere skriver til en ekstrahert kopi.</value></data>
+</root>

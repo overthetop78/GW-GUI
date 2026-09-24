@@ -1,7 +1,7 @@
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Hardware.Parsing;
+using GWGUI.Infrastructure.Commands;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.Infrastructure.Hardware.Parsing;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Functions.Localization;
 using GWGUI.App.Services.Logging;

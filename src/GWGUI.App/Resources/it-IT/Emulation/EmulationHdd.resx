@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Elimina l&apos;immagine del disco...</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Eliminare permanentemente questa immagine del disco e tutti i suoi dati? Questa operazione non può essere annullata.&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Cancellazione è impossibile. Ritaccare questo disco, salvare le configurazioni e chiudere le sessioni elencate prima:&#xA;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Sessione aperta: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Non è consentito l&apos;eliminazione tramite link. Selezionare il file originale.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Scegli un&apos;estensione supportata da questa macchina e interfaccia.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Questo file esiste già. Scegli un altro nome.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Capacità: 512 byte a {0}, in multipli di 512. Limite conservatore per il sistema supportato.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Crea un disco grezzo vuoto senza un sistema operativo. Prepara e formattalo utilizzando strumenti di disco all&apos;interno della macchina emulata.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Preparazione del disco</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Coperto (non formattato)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>La formattazione crea un volume vuoto, senza un sistema operativo. Atari HDD Il boot richiede anche un driver disco compatibile installato dalla macchina emulata. Le immagini compresse possono reindirizzare le scritture a una copia estratta.</value></data>
+</root>

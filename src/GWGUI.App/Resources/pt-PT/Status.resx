@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Status.FaceTrackProgress"><value>Lado {0}: rasto {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI pronto.</value></data>
+  <data name="Status.DefaultProfile"><value>Perfil: Padrão</value></data>
+  <data name="Status.Profile"><value>Perfil: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Trilho {0}, lado {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Rastreio {0}, lado {1} — {2} processado</value></data>
+  <data name="Status.ReadyShort"><value>Pronto</value></data>
+  <data name="Status.Running"><value>Corrida</value></data>
+  <data name="Status.Success"><value>Sucesso</value></data>
+  <data name="Status.Error"><value>Erro</value></data>
+  <data name="Status.Cancelled"><value>Cancelado</value></data>
+</root>

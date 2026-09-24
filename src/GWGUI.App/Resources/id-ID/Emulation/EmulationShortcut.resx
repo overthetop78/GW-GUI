@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Shortcut.Global"><value>Pintasan emulasi</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Lepaskan mouse</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Jeda / lanjutkan</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Layar penuh / jendela</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Nyalakan / matikan</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Reset lunak</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Reset keras</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Simpan cepat status</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Muat cepat status</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Tangkapan layar</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Bisukan mesin aktif</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Percepat saat ditahan</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Masukkan atau ganti media</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Keluarkan media</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Media berikutnya</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Tindakan ini belum didukung oleh emulator saat ini.</value></data>
+</root>

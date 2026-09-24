@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Conflict.Title"><value>Các tập tin hiện có</value></data>
+  <data name="Conflict.Heading"><value>Một số tệp đã tồn tại</value></data>
+  <data name="Conflict.Help"><value>Chọn một hành động cho mỗi tệp hoặc áp dụng cùng một hành động cho tất cả các tệp.</value></data>
+  <data name="Conflict.File"><value>Tài liệu</value></data>
+  <data name="Conflict.Action"><value>Hoạt động</value></data>
+  <data name="Conflict.Overwrite"><value>Ghi đè</value></data>
+  <data name="Conflict.Skip"><value>Nhảy</value></data>
+  <data name="Conflict.Number"><value>Sử dụng số tiếp theo</value></data>
+  <data name="Conflict.AllOverwrite"><value>Ghi đè tất cả</value></data>
+  <data name="Conflict.AllSkip"><value>Bỏ qua tất cả</value></data>
+  <data name="Conflict.AllNumber"><value>Đánh số tất cả</value></data>
+</root>

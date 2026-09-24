@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>已启用</value></data>
+  <data name="Emulation.Value.Disabled"><value>已禁用</value></data>
+  <data name="Emulation.Value.Minimum"><value>最小</value></data>
+  <data name="Emulation.Value.VerySmall"><value>很小</value></data>
+  <data name="Emulation.Value.Small"><value>小</value></data>
+  <data name="Emulation.Value.Medium"><value>中</value></data>
+  <data name="Emulation.Value.Large"><value>大</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>很大</value></data>
+  <data name="Emulation.Value.Maximum"><value>最大</value></data>
+  <data name="Emulation.Value.Standard"><value>标准</value></data>
+  <data name="Emulation.Value.Enhanced"><value>增强</value></data>
+  <data name="Emulation.Value.Internal"><value>内部</value></data>
+  <data name="Emulation.Value.Loud"><value>响亮</value></data>
+  <data name="Emulation.Value.NotUsed"><value>未使用</value></data>
+  <data name="Emulation.Value.None"><value>无</value></data>
+  <data name="Emulation.Value.Default"><value>默认</value></data>
+  <data name="Emulation.Value.Gray"><value>灰色</value></data>
+</root>

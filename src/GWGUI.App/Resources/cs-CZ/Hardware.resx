@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Přístav</value></data>
-  <data name="Hardware.UsbId"><value>USB identifikátor</value></data>
-  <data name="Hardware.Drive"><value>Řídit</value></data>
-  <data name="Hardware.Available"><value>K dispozici</value></data>
-  <data name="Hardware.Scan"><value>Skenovat</value></data>
-  <data name="Hardware.AddDrive"><value>Přidat disk…</value></data>
-  <data name="Hardware.NoDrive"><value>Není definován žádný disk</value></data>
-  <data name="Hardware.EditorTitle"><value>Definujte jednotku</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle ovladač</value></data>
-  <data name="Hardware.GwSelection"><value>Výběr předán gw</value></data>
-  <data name="Hardware.PhysicalSize"><value>Fyzická velikost</value></data>
-  <data name="Hardware.SizeShort"><value>Velikost</value></data>
-  <data name="Hardware.DensityShort"><value>Hustota</value></data>
-  <data name="Hardware.SpeedShort"><value>Rychlost</value></data>
-  <data name="Hardware.AvailableState"><value>K dispozici</value></data>
-  <data name="Hardware.UnavailableState"><value>Není k dispozici</value></data>
-  <data name="Hardware.DensityDescription"><value>Hustota pohonu (pouze popis)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Nominální rychlost (pouze popis)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Přístav</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB identifikátor</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Řídit</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>K dispozici</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Skenovat</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Přidat disk…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Není definován žádný disk</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definujte jednotku</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle ovladač</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Výběr předán gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fyzická velikost</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Velikost</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Hustota</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Rychlost</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>K dispozici</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Není k dispozici</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Hustota pohonu (pouze popis)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Nominální rychlost (pouze popis)</value></data>
   <data name="Hardware.NotConfigured"><value>Ovladač není nakonfigurován</value></data>
   <data name="Hardware.Disconnected"><value>odpojeno</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Zvolený disk je odpojen. Znovu jej reovalizujte nebo skenujte v Options → Ovládací jednotky a mechaniky.</value></data>
-<data name="Hardware.DriveDialogTitle"><value>Řídit</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}- palec · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Řídit</value></data>
   <data name="Hardware.ControllerRequired"><value>Nejprve naskenujte nebo přidejte ovladač Greaseweazle.</value></data>
   <data name="Hardware.Description"><value>{0}-inch · {1} · výběr {2}{3}</value></data>
   <data name="Hardware.ScanTitle"><value>Skenovat</value></data>
@@ -59,5 +52,4 @@
   <data name="Hardware.ForgetLastConfirm"><value>Toto je poslední nakonfigurovaná jednotka pro toto Greaseweazle. Chcete zapomenout disk i Greaseweazle?</value></data>
   <data name="Hardware.SelectController"><value>Nejprve vyberte řádek, který patří k příslušné Greaseweazle.</value></data>
   <data name="Hardware.MaximumDrives"><value>K tomuto Greaseweazle lze automaticky přiřadit maximálně dva disky (A a B).</value></data>
-  <data name="Hardware.DriveLabel"><value>{0}- palec · {1} · {2} · {3}</value></data>
 </root>

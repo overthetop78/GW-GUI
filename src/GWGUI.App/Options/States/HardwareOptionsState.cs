@@ -1,6 +1,6 @@
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Dictionaries.Options;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Hardware;

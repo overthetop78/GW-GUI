@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Urządzenie kontrolera {0}</value></data>
+  <data name="Emulation.Controller.Detect"><value>Wykryj kontrolery</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Akcja Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Sterowanie klawiaturą, myszą lub kontrolerem</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Lewy drążek</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Prawy drążek</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Oba drążki</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turboogień</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Przycisk turbo</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Impuls turbo</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Kolejność portów kontrolerów</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Nie wykryto kontrolera</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Mapowania kontrolera</value></data>
+  <data name="Emulation.Controller.Port"><value>Port {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Typ kontrolera</value></data>
+  <data name="Emulation.Controller.Detected"><value>Wykryte kontrolery</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Szukaj akcji lub wejścia</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Góra</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Dół</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Lewo</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Prawo</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Przycisk ognia 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Przycisk ognia 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analogowy</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Automatyczny</value></data>
+  <data name="Emulation.Controller.None"><value>Brak</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Przełącz joystick / mysz</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Nie można zainicjować GameInput. Zainstaluj lub napraw dołączone środowisko uruchomieniowe GameInput.</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (left-hand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (prawa ręka)</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Wygląd</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Sterownik {0}</value></data>
+</root>

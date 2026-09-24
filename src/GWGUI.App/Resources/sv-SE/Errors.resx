@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="App.SettingsSaveFailed"><value>Inställningarna kunde inte sparas.&#xA;&#xA;{0}</value></data>
   <data name="Error.Title"><value>GW GUI fel</value></data>
   <data name="Error.Unexpected"><value>Ett oväntat fel fångades upp.&#xA;&#xA;{0}</value></data>
@@ -36,4 +28,49 @@
   <data name="Error.Description.NotSupported"><value>Denna operation stöds inte av den valda filen, enheten eller plattformen.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Det finns inte tillräckligt med tillgängligt minne för att slutföra operationen.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI stötte på ett oväntat problem samtidigt som man utför denna åtgärd.</value></data>
+  <data name="Error.Description.GameInputWorkerStopTimeout"><value>GameInput-arbetsgängan stannade inte.</value></data>
+  <data name="Error.GameInput.NoMapping"><value>Ingen kartläggning</value></data>
+  <data name="Error.GameInput.DeviceEnumerationFailure"><value>GameInput-enhetsuppräkning misslyckades för {0}.</value></data>
+  <data name="Error.GameInput.SystemButtonRegistrationFailure"><value>GameInput system knapp registrering misslyckades.</value></data>
+  <data name="Error.GameInput.RefreshRegistrationFailure"><value>GameInput uppdatera registrering misslyckades för {0}: 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RefreshUnregisterFailure"><value>GameInput uppfrisk återkoppling kunde inte vara oregistrerad: 0x{0:X16}</value></data>
+  <data name="Error.GameInput.DeviceCallbackQueueFailure"><value>GameInput-enhet callback-kö misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.DeviceCallbackFailure"><value>GameInput-enhetsuppringning misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.SystemButtonCallbackFailure"><value>GameInput system-knapp callback misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.RawReadingCallbackFailure"><value>GameInput raw-reading callback misslyckades: {0} 0x{1:X8}</value></data>
+  <data name="Error.GameInput.ReadFailure"><value>{0}: Läs läsläsning {1} Misslyckades med kod 0x{2:X8}</value></data>
+  <data name="Error.GameInput.ControllerArraysUnavailable"><value>{0}: Input Typ {1}, gamepad state tillgängligt: {2}, Controller arrays otillgängliga</value></data>
+  <data name="Error.GameInput.ControllerReading"><value>{0}: Input Typ {1}, gamepad state tillgängligt: {2}, Axlar: {3}, knappar: {4}, Switches: {5}</value></data>
+  <data name="Error.GameInput.InteropFailure"><value>{0}: COM fel 0x{1:X8} (b) (b){2}) ) )</value></data>
+  <data name="Error.GameInput.DetailedReading"><value>{0}: Input Typ {1}</value></data>
+  <data name="Error.GameInput.ResolvedName"><value>Lösta namn: {0}</value></data>
+  <data name="Error.GameInput.GameInputName"><value>GameInput namn: {0}</value></data>
+  <data name="Error.GameInput.VidPid"><value>VID:: ::PID:: :: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.DeviceId"><value>Enhet ID:: :: {0}</value></data>
+  <data name="Error.GameInput.DeviceRootId"><value>Enhetsrot ID:: :: {0}</value></data>
+  <data name="Error.GameInput.ContainerId"><value>Container ID:: :: {0}</value></data>
+  <data name="Error.GameInput.Family"><value>Familj: {0}</value></data>
+  <data name="Error.GameInput.Usage"><value>Användning: {0:X4}:{1:X4}</value></data>
+  <data name="Error.GameInput.SupportedInput"><value>Stöds input: {0} (0x){1:X8}) ) )</value></data>
+  <data name="Error.GameInput.ControllerInfo"><value>Kontrollinformation: axlar={0}, knappar ={1}, switchar={2}</value></data>
+  <data name="Error.GameInput.AxisLabels"><value>Axis etiketter: [{0}] ] ] ]</value></data>
+  <data name="Error.GameInput.ButtonLabels"><value>Knapp etiketter: [{0}] ] ] ]</value></data>
+  <data name="Error.GameInput.Mapper"><value>Kartläggning: {0}</value></data>
+  <data name="Error.GameInput.Pnp"><value>PnP-väg: {0}</value></data>
+  <data name="Error.GameInput.PnpNames"><value>PnP-namn: {0}</value></data>
+  <data name="Error.Description.FileSystem.ReadFailed"><value>Filsystemets inträde kunde inte läsas.</value></data>
+  <data name="Error.Description.FileSystem.CountExceedsBuffer"><value>Den begärda räkningen ({0}överstiger buffertstorleken ({1}).</value></data>
+  <data name="Error.Description.FileSystem.IncorrectDataBlockSequence"><value>Nästa filblock har ett felaktigt sekvensnummer.</value></data>
+  <data name="Error.Description.FileSystem.NoFreeSectorAvailable"><value>Ingen fri sektor finns tillgänglig på disken.</value></data>
+  <data name="Error.Description.FileSystem.OnlyOffsetZeroSupported"><value>Endast kompensera noll stöds för denna operation.</value></data>
+  <data name="Error.Description.FileSystem.SetLengthUnsupported"><value>Denna filsystemström stöder inte ändra dess längd.</value></data>
+  <data name="Error.Description.FileSystem.CachedChainBitmapMissing"><value>Cached block {0} i fördelningskedjan innehåller inte ett bitmapblock; faktisk typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.CachedBitmapMissing"><value>Cached allocation block {0} innehåller inte ett bitmap-block; faktisk typ: {1}.</value></data>
+  <data name="Error.Description.FileSystem.BitmapBlockMissing"><value>Det erforderliga bitmap blocket saknas.</value></data>
+  <data name="Error.Description.FileSystem.FreeBlockLoop"><value>En slinga upptäcktes medan du frigjorde block vid tilldelningsnod {0}.</value></data>
+  <data name="Error.Description.FileSystem.AnodeMissing"><value>Tilldelning nod {0} kunde inte läsas.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBlockAllocationFailed"><value>Tilldelningsnod blocket kunde inte fördelas.</value></data>
+  <data name="Error.Description.FileSystem.SeekError"><value>Den begärda positionen är ogiltig för detta filsystemobjekt.</value></data>
+  <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Tilldelningsnoden-operationen misslyckades.</value></data>
+  <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Tilldelning-node bitmap index block {0}////{1} kunde inte läsas.</value></data>
 </root>

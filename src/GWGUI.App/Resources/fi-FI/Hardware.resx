@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Hardware.Port"><value>Portti</value></data>
-  <data name="Hardware.UsbId"><value>USB tunniste</value></data>
-  <data name="Hardware.Drive"><value>Ajaa</value></data>
-  <data name="Hardware.Available"><value>Saatavilla</value></data>
-  <data name="Hardware.Scan"><value>Skannata</value></data>
-  <data name="Hardware.AddDrive"><value>Lisää asema…</value></data>
-  <data name="Hardware.NoDrive"><value>Asemaa ei ole määritetty</value></data>
-  <data name="Hardware.EditorTitle"><value>Määritä asema</value></data>
-  <data name="Hardware.Controller"><value>Greaseweazle ohjain</value></data>
-  <data name="Hardware.GwSelection"><value>Valinta siirtyi gw:lle</value></data>
-  <data name="Hardware.PhysicalSize"><value>Fyysinen koko</value></data>
-  <data name="Hardware.SizeShort"><value>Koko</value></data>
-  <data name="Hardware.DensityShort"><value>Tiheys</value></data>
-  <data name="Hardware.SpeedShort"><value>Nopeus</value></data>
-  <data name="Hardware.AvailableState"><value>Saatavilla</value></data>
-  <data name="Hardware.UnavailableState"><value>Ei saatavilla</value></data>
-  <data name="Hardware.DensityDescription"><value>Ajotiheys (vain kuvaus)</value></data>
-  <data name="Hardware.SpeedDescription"><value>Nimellinen nopeus (vain kuvaus)</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Hardware.Port" xml:space="preserve"><value>Portti</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB tunniste</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Ajaa</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Saatavilla</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Skannata</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Lisää asema…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>Asemaa ei ole määritetty</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Määritä asema</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle ohjain</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Valinta siirtyi gw:lle</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fyysinen koko</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Koko</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Tiheys</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Nopeus</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Saatavilla</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Ei saatavilla</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Ajotiheys (vain kuvaus)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Nimellinen nopeus (vain kuvaus)</value></data>
   <data name="Hardware.NotConfigured"><value>Ohjainta ei ole määritetty</value></data>
   <data name="Hardware.Disconnected"><value>irti</value></data>
   <data name="Hardware.SelectedDisconnected"><value>Valitun aseman yhteys on katkaistu. Liitä se uudelleen tai skannaa uudelleen kohdassa Asetukset → Ohjaimet ja asemat.</value></data>

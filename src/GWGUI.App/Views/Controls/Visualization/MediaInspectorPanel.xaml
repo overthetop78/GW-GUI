@@ -1,0 +1,95 @@
+<UserControl x:Class="GWGUI.App.Views.Controls.Visualization.MediaInspectorPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions"
+             MinWidth="0" MinHeight="0">
+    <UserControl.Resources>
+        <Style x:Key="InspectorInfoButton" TargetType="Button">
+            <Setter Property="MinWidth" Value="0"/><Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Padding" Value="9,4"/><Setter Property="Background" Value="#FFE5EEF4"/>
+            <Setter Property="Foreground" Value="#FF243640"/><Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Surface" Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="Background" Value="#FFD4E4ED"/></Trigger>
+                            <Trigger Property="IsPressed" Value="True"><Setter TargetName="Surface" Property="Background" Value="#FFC2D8E4"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="9,6" MinWidth="0" ClipToBounds="False">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <DockPanel>
+            <Button x:Name="MoreInfoButton" DockPanel.Dock="Right" Style="{StaticResource InspectorInfoButton}"
+                    Visibility="Collapsed" Click="MoreInfoButton_Click">
+                <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{l:Loc Icon.Information}" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,5,0"/>
+                    <TextBlock Text="{l:Loc Menu.Information}"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Text="{Binding SurfaceTitle, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+        </DockPanel>
+
+        <ItemsControl x:Name="SectionItems" Grid.Row="1" MinWidth="0" Margin="0,4,0,0">
+            <ItemsControl.ItemsPanel><ItemsPanelTemplate><UniformGrid Rows="1"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,0,6,0" Padding="7,4" CornerRadius="5" Background="#FFF1F5F7" MinWidth="0" ClipToBounds="True">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Section.Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                            <ItemsControl ItemsSource="{Binding PreviewEntries}" Margin="0,3,0,0">
+                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,11,1">
+                                            <TextBlock Text="{Binding Label}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding Value}" FontWeight="SemiBold"/><TextBlock Text="{Binding Unit}" Margin="3,0,0,0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Popup x:Name="DetailsPopup" Placement="Left" AllowsTransparency="False" StaysOpen="False">
+            <Border Width="440" MaxHeight="420" Padding="14" Background="#FFFFFFFF" BorderBrush="#FF9CAAB4" BorderThickness="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="DetailsSections">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,12">
+                                    <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                    <ItemsControl ItemsSource="{Binding Entries}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0,3">
+                                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding Label}" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,12,0"/>
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Value}" FontWeight="SemiBold" TextAlignment="Right"/>
+                                                        <TextBlock Text="{Binding Unit}" Margin="3,0,0,0"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

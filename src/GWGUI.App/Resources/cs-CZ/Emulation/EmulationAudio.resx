@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Audio.Enabled"><value>Povolit audio</value></data>
+  <data name="Emulation.Audio.Output"><value>Audio výstup</value></data>
+  <data name="Emulation.Audio.Latency"><value>Postoj Evropského parlamentu ze dne 16. prosince2016 (dosud nezveřejněný v Úředním věstníku) a rozhodnutí Rady ze dne 15. prosince2016.</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolace</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga audio filtr</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Oddělování stereoskopických vlastností (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Audio vstup</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Toto Amiga jádro neodhaluje audio vstup.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Výchozí výstup Windows</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Protiinterpolace</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulované</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Typ filtru</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Objem zvuku floppy- pohonu</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Typ zvuku floppy- drive</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Ztlumit prázdné mechaniky</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Zvukový zvuk CD</value></data>
+  <data name="Emulation.Audio.Device"><value>Zařízení</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latence</value></data>
+  <data name="Emulation.Audio.Quality"><value>Kvalita</value></data>
+  <data name="Emulation.Audio.Drives"><value>Jednotky</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Zvuk disketové mechaniky</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarizovaný zvukový filtr</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Nízká</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normální</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Vysoká</value></data>
+  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+</root>

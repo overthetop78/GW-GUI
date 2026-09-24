@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Controller.Device"><value>Controller {0} device</value></data>
+  <data name="Emulation.Controller.Detect"><value>Detect controllers</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Left stick</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Right stick</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Both sticks</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turbo button</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>No controller detected</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Controller mappings</value></data>
+  <data name="Emulation.Controller.Port"><value>Port {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Controller type</value></data>
+  <data name="Emulation.Controller.Detected"><value>Detected controllers</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Search for an action or input</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Up</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Down</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Left</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Right</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Fire button 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Fire button 2</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analog joystick</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Automatic</value></data>
+  <data name="Emulation.Controller.None"><value>None</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Switch joystick/mouse</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput could not be initialized. Install or repair the included GameInput runtime.</value></data>
+  <data name="Emulation.Controller.Visual.Model.quickshot" xml:space="preserve"><value>QuickShot</value></data>
+  <data name="Emulation.Controller.Visual.Model.quickshot-deluxe" xml:space="preserve"><value>QuickShot Deluxe</value></data>
+  <data name="Emulation.Controller.Visual.Model.quickshot-ii-turbo" xml:space="preserve"><value>QuickShot II Turbo</value></data>
+  <data name="Emulation.Controller.Visual.Model.competition-pro-5000" xml:space="preserve"><value>Competition Pro 5000</value></data>
+  <data name="Emulation.Controller.Visual.Model.zipstik-super-pro" xml:space="preserve"><value>Zipstik Super Pro</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (left-hand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (right-hand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-analog" xml:space="preserve"><value>Konix Speedking Analog</value></data>
+  <data name="Emulation.Controller.Visual.Model.suncom-tac-2" xml:space="preserve"><value>Suncom TAC-2</value></data>
+  <data name="Emulation.Controller.Visual.Model.powerplay-cruiser" xml:space="preserve"><value>Powerplay Cruiser</value></data>
+  <data name="Emulation.Controller.Visual.Model.suzo-the-arcade-turbo" xml:space="preserve"><value>Suzo The Arcade Turbo</value></data>
+  <data name="Emulation.Controller.Visual.Model.commodore-cd32" xml:space="preserve"><value>Commodore CD32</value></data>
+  <data name="Emulation.Controller.Visual.Model.competition-pro-cd32" xml:space="preserve"><value>Competition Pro CD32</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-cx40" xml:space="preserve"><value>Atari CX40</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-5200-controller" xml:space="preserve"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-7800-pro-line-cx24" xml:space="preserve"><value>Atari 7800 Pro-Line CX24</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-7800-control-pad-europe" xml:space="preserve"><value>Atari 7800 Control Pad (Europe)</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve"><value>Atari Jaguar Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve"><value>Atari Jaguar Pro Controller</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
+  <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
+</root>

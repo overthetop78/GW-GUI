@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Services.Hardware;
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Enums.Services.Navigation;
@@ -15,7 +15,6 @@ using GWGUI.App.Views.Windows.Shell;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
-using GWGUI.Infrastructure.Settings;
 
 namespace GWGUI.App.Controllers.MainWindow;
 
@@ -99,7 +98,7 @@ internal sealed class MainWindowLifecycleController(
         if (settingsSaveInProgress) return;
         if (operation.IsRunning)
         {
-            var answer = dialogs.Show(LocExtension.Get("App.OperationRunningClose"), LocExtension.Get("App.Title"), UserDialogButtons.YesNo, UserDialogIcon.Warning);
+            var answer = dialogs.Show(LocExtension.Get("Shell.OperationRunningClose"), LocExtension.Get("App.Title"), UserDialogButtons.YesNo, UserDialogIcon.Warning);
             if (answer != UserDialogResult.Yes) return;
             operation.RequestCancellation();
         }

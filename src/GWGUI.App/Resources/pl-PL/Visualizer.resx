@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Dekoder</value></data>
   <data name="Visual.LinkZoom"><value>Zoom łącza</value></data>
   <data name="Visual.OpenScp"><value>Otwórz plik SCP…</value></data>
-  <data name="Visual.NoFile"><value>Żaden plik SCP nie jest otwarty</value></data>
+  <data name="Visual.NoFile"><value>Nie otwarto żadnego obrazu</value></data>
   <data name="Visual.Waiting"><value>Czekam na plik</value></data>
   <data name="Visual.Inspector"><value>Inspektor</value></data>
   <data name="Visual.SelectTrack"><value>Wybierz utwór.</value></data>
@@ -39,10 +31,17 @@
   <data name="Visual.StructureData"><value>Zdekodowane dane</value></data>
   <data name="Visual.StructureAnomaly"><value>Usunięto/anomalię</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analiza oparta na rewolucji {0}.</value></data>
-<data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} bajtów · {4} {5}</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} bajtów · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>ważny</value></data>
   <data name="Visual.CrcInvalid"><value>nieważny</value></data>
   <data name="Visual.IntegrityUnavailable"><value>nie płynny</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (pojedyncza gęstość)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hard- sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Zestaw Heathkit twardy FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Mikral N twardy FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>System / dane Arburg</value></data>
+  <data name="Visual.DecoderName.raw"><value>Strumień surowców</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synchronizacja</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>Nagłówek sektora</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>Dane sektorowe</value></data>
@@ -55,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>Formatuj nagłówek</value></data>
   <data name="Visual.StructureKind.FormatData"><value>Formatuj dane</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>Anomalia czasowa</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro przechwytywanie (*.scp)|*.scp|Wszystkie pliki|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>Suma kontrolna</value></data>
   <data name="Visual.Side"><value>Strona {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analizuję utwór {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analiza rewolucji {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Strona</value></data>
   <data name="Visual.TrackLabel"><value>Ścieżka</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP wpis</value></data>
@@ -77,5 +75,96 @@
   <data name="Visual.FormatDetected"><value>Wykryto format</value></data>
   <data name="Visual.AverageRpm"><value>średnia RPM</value></data>
   <data name="Visual.AverageDuration"><value>Średni czas trwania</value></data>
-  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.All"><value>Wszystkie</value></data>
+  <data name="Visual.Surface"><value>Powierzchnia {0}</value></data>
+  <data name="Visual.DiscFace"><value>Twarz {0}</value></data>
+  <data name="Visual.Layer"><value>Warstwa {0}</value></data>
+  <data name="Visual.Session"><value>Sesja {0}</value></data>
+  <data name="Visual.Channel"><value>Kanał {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Ścieżka {0}</value></data>
+  <data name="Visual.TicksUnit"><value>kleszcze</value></data>
+  <data name="Visual.BytesUnit"><value>bajty</value></data>
+  <data name="Visual.BlocksUnit"><value>bloki</value></data>
+  <data name="Visual.SectorsUnit"><value>sektory</value></data>
+  <data name="Visual.SectorPresent"><value>Obecny sektor</value></data>
+  <data name="Visual.SectorAllocated"><value>Sektor przydzielony</value></data>
+  <data name="Visual.SectorFree"><value>Sektor wolny</value></data>
+  <data name="Visual.SectorReserved"><value>Sektor zastrzeżony</value></data>
+  <data name="Visual.SectorUnreadable"><value>Sektor niemożliwy do odczytania</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>Informacje sektorowe</value></data>
+  <data name="Visual.SectorLabel"><value>Sektor</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Blok logiczny</value></data>
+  <data name="Visual.SizeLabel"><value>Rozmiar</value></data>
+  <data name="Visual.StateLabel"><value>Państwo</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>Ścieżka systemu plików</value></data>
+  <data name="Visual.LogicalMapTitle"><value>Mapa logiczna</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS geometria</value></data>
+  <data name="Visual.SurfaceLabel"><value>Powierzchnia</value></data>
+  <data name="Visual.BlockAllocated"><value>Zakres przydzielony</value></data>
+  <data name="Visual.BlockFree"><value>Szerokość</value></data>
+  <data name="Visual.BlockReserved"><value>Zakres zastrzeżony</value></data>
+  <data name="Visual.BlockUnknown"><value>Nieznany zakres</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>Blokowanie informacji medialnych</value></data>
+  <data name="Visual.CapacityLabel"><value>Zdolność</value></data>
+  <data name="Visual.AddressingLabel"><value>Postępowanie</value></data>
+  <data name="Visual.StartLabel"><value>Początek</value></data>
+  <data name="Visual.LengthLabel"><value>Długość</value></data>
+  <data name="Visual.PartitionTableLabel"><value>System partycji</value></data>
+  <data name="Visual.PartitionTable.None"><value>Brak</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>Numer części</value></data>
+  <data name="Visual.FileSystemLabel"><value>System plików</value></data>
+  <data name="Visual.RangeTitle"><value>Zaznaczony zakres</value></data>
+  <data name="Visual.PlatterCountLabel"><value>Płyty</value></data>
+  <data name="Visual.BlockState.Available"><value>Dostępne</value></data>
+  <data name="Visual.BlockState.Reserved"><value>Zastrzeżony</value></data>
+  <data name="Visual.BlockState.Allocated"><value>Przydzielone</value></data>
+  <data name="Visual.BlockState.Free"><value>Wolny</value></data>
+  <data name="Visual.BlockState.Unknown"><value>Nieznany</value></data>
+  <data name="Visual.OpticalDataTrack"><value>Ścieżka danych</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>Ścieżka dźwiękowa</value></data>
+  <data name="Visual.OpticalPregap"><value>Pregap</value></data>
+  <data name="Visual.OpticalSession"><value>Granica sesji</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Informacje o nośnikach optycznych</value></data>
+  <data name="Visual.FaceCountLabel"><value>Twarze</value></data>
+  <data name="Visual.LayerCountLabel"><value>Warstwy</value></data>
+  <data name="Visual.TrackCountLabel"><value>Ścieżki</value></data>
+  <data name="Visual.SessionLabel"><value>Sesja</value></data>
+  <data name="Visual.LayerLabel"><value>Warstwa</value></data>
+  <data name="Visual.TrackKindLabel"><value>Typ toru</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>Wybrany utwór</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>Pochodzenie wielkości</value></data>
+  <data name="Visual.VolumeTitle"><value>Wielkość</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>Powiązane pliki</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>Nieznany</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>Dane</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>Audio</value></data>
+  <data name="Visual.SequentialSignal"><value>Sygnał</value></data>
+  <data name="Visual.SequentialDecoded"><value>Odkodowany blok</value></data>
+  <data name="Visual.SequentialSilence"><value>Cisza</value></data>
+  <data name="Visual.SequentialError"><value>Błąd odkodowania</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Informacje o środkach sekwencyjnych</value></data>
+  <data name="Visual.DurationLabel"><value>Czas trwania</value></data>
+  <data name="Visual.SegmentCountLabel"><value>Segmenty</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Rodzaj segmentu</value></data>
+  <data name="Visual.ChannelLabel"><value>Kanał</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>Uznane treści</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>Błąd odkodowania</value></data>
+  <data name="Visual.SegmentTitle"><value>Wybrany segment</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>Nieznany</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>Sygnał</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>Cisza</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Odkodowany blok</value></data>
+  <data name="Visual.RevolutionSummary"><value>Wszystkie obroty</value></data>
+  <data name="Visual.RevolutionChoice"><value>Rewolucja {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Rewolucja</value></data>
+  <data name="Visual.QualityDead"><value>Martwy</value></data>
+  <data name="Visual.QualityPoor"><value>Biedna</value></data>
+  <data name="Visual.QualityPartial"><value>Częściowo czytelny</value></data>
+  <data name="Visual.QualityGood"><value>Dobrze.</value></data>
+  <data name="Visual.QualityExcellent"><value>Doskonale.</value></data>
+  <data name="Visual.SectorWithData"><value>Sektor z danymi</value></data>
+  <data name="Visual.SectorDegraded"><value>Sektor zdegradowany</value></data>
+  <data name="Visual.SectorDead"><value>Sektor martwy</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sektor bez danych</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Informacje o kasecie</value></data>
 </root>

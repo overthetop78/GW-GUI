@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cpu.Summary"><value>Processzor: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU modell</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU szorzó</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Cikle- kompatibilis CPU</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU sebesség</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Eredeti sebesség</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normál</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Kompatibilis</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Memóriakompatibilis</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>A ciklus pontos</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Processzor</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Pontosság</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Gyorsítás</value></data>
+</root>

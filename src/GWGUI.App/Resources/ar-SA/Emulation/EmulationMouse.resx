@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>مفتاح كبش إطلاق</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>زر الفأر الأيسر</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>زر الفأر</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>زر الفأر الأوسط</value></data>
+  <data name="Emulation.Mouse.Physical"><value>الفأر الفيزيائي</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>حركة مزدوجة</value></data>
+  <data name="Emulation.Mouse.Speed"><value>سرعة الإستخدام</value></data>
+  <data name="Emulation.Mouse.Analog"><value>عصا الأنالو تتحكم في الفأر</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>منطقة الموتى</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>سرعة الفأر</value></data>
+  <data name="Emulation.Mouse.Actions"><value>إجراءات الماوس</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>زر الماوس 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>زر الماوس 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>التقاط الماوس</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>عجلة الماوس لأعلى</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>عجلة الماوس لأسفل</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>عجلة الماوس لليسار</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>عجلة الماوس لليمين</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>التقاط الماوس</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>إطلاق النار</value></data>
+</root>

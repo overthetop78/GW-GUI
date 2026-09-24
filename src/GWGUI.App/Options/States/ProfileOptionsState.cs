@@ -1,5 +1,5 @@
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Profiles;
+using GWGUI.Infrastructure.Settings;
+using GWGUI.Infrastructure.Settings.Profiles;
 using GWGUI.App.ViewModels.Options;
 using System.Collections.ObjectModel;
 

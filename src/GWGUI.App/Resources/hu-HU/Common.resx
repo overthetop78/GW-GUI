@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Unknown"><value>Ismeretlen</value></data>
-  <data name="Common.Eject" xml:space="preserve"><value>Kibocsátás</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Unknown" xml:space="preserve"><value>Ismeretlen</value></data>
+  <data name="Common.Eject"><value>Kibocsátás</value></data>
+  <data name="Common.MediaKind.Unknown"><value>Ismeretlen adathordozók</value></data>
+  <data name="Common.MediaKind.Floppy"><value>Hajlékonylemez</value></data>
+  <data name="Common.MediaKind.HardDisk"><value>merevlemez</value></data>
+  <data name="Common.MediaKind.Optical"><value>Optikai tárcsa</value></data>
+  <data name="Common.MediaKind.Tape"><value>Videofelvétel</value></data>
+  <data name="Common.Representation.Flux"><value>flux</value></data>
+  <data name="Common.Representation.Sectors"><value>Szektorok</value></data>
+  <data name="Common.Representation.Blocks"><value>Blokkok</value></data>
+  <data name="Common.Representation.OpticalTracks"><value>Optikai sínek</value></data>
+  <data name="Common.Representation.Sequential"><value>Szakaszos adatok</value></data>
+  <data name="Common.Advanced"><value>Speciális beállítások</value></data>
+  <data name="Common.ExpertArguments"><value>Szakértői érvek</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Az argumentumok az idézet érvényesítése után a leírtak szerint kerülnek átadásra.</value></data>
+  <data name="Common.DiskImageFilter"><value>Lemezképek|*.scp;*.adf;*.st;*.msa;*.atr;*.atx;*.xfd;*.cas;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Minden fájl|*.*</value></data>
+  <data name="Common.Console"><value>Konzol</value></data>
+  <data name="Common.Command"><value>Parancs</value></data>
 </root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Tasto {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Tasto host</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Due chiavi Amiga usano lo stesso PC chiave. Risolvere le mappe rosse prima di salvare.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Passaggio diretto della tastiera fisica</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Scorciatoie riservate</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Le scorciatoie di GW GUI e Windows rimangono attive e non vengono acquisite dalla macchina.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Tasto della macchina</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Lettere, numeri e modificatori normali vengono trasmessi direttamente. Qui devono essere associati solo i tasti funzione e speciali dell’Amiga.</value></data>
+</root>

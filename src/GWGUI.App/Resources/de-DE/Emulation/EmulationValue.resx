@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Value.Enabled"><value>Aktiviert</value></data>
+  <data name="Emulation.Value.Disabled"><value>Deaktiviert</value></data>
+  <data name="Emulation.Value.Minimum"><value>Mindestens</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Sehr klein</value></data>
+  <data name="Emulation.Value.Small"><value>Klein</value></data>
+  <data name="Emulation.Value.Medium"><value>Mittel</value></data>
+  <data name="Emulation.Value.Large"><value>Groß</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Sehr groß</value></data>
+  <data name="Emulation.Value.Maximum"><value>Höchstzahl</value></data>
+  <data name="Emulation.Value.Standard"><value>Standard</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Erweitert</value></data>
+  <data name="Emulation.Value.Internal"><value>Intern</value></data>
+  <data name="Emulation.Value.Loud"><value>Laut</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Nicht verwendet</value></data>
+  <data name="Emulation.Value.None"><value>Keine</value></data>
+  <data name="Emulation.Value.Default"><value>Standard</value></data>
+  <data name="Emulation.Value.Gray"><value>Grau</value></data>
+</root>

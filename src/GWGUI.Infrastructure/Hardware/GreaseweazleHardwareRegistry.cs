@@ -1,8 +1,8 @@
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Hardware.Parsing;
-using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.Infrastructure.Hardware.Parsing;
+using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.Infrastructure.Functions.Hardware;
 namespace GWGUI.Infrastructure.Hardware;
 

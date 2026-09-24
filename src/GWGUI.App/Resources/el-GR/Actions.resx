@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Common.Cancel"><value>Ματαίωση</value></data>
-  <data name="Common.Save"><value>Εκτός</value></data>
-  <data name="Common.Create"><value>Δημιουργία</value></data>
-  <data name="Common.Delete"><value>Διαγράφω</value></data>
-  <data name="Common.Browse"><value>Ξεφυλλίζω…</value></data>
-  <data name="Common.Choose"><value>Επιλέγω…</value></data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Common.Cancel" xml:space="preserve"><value>Ματαίωση</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Εκτός</value></data>
+  <data name="Common.Create" xml:space="preserve"><value>Δημιουργία</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Διαγράφω</value></data>
+  <data name="Common.Browse" xml:space="preserve"><value>Ξεφυλλίζω…</value></data>
+  <data name="Common.Choose" xml:space="preserve"><value>Επιλέγω…</value></data>
   <data name="Common.Close"><value>Κοντά</value></data>
   <data name="Common.Execute"><value>Εκτελώ</value></data>
   <data name="Common.Stop"><value>Στάση</value></data>
@@ -27,8 +19,8 @@
   <data name="Common.Modify"><value>Τροποποιώ</value></data>
   <data name="Common.Hide"><value>Κρύβω</value></data>
   <data name="Common.Export"><value>Εξαγωγή</value></data>
-  <data name="Common.New"><value>Νέο</value></data>
-  <data name="Common.Refresh"><value>Ανανέωση</value></data>
-  <data name="Common.OpenFolder"><value>Άνοιγμα φακέλου</value></data>
+  <data name="Common.New" xml:space="preserve"><value>Νέο</value></data>
+  <data name="Common.Refresh" xml:space="preserve"><value>Ανανέωση</value></data>
+  <data name="Common.OpenFolder" xml:space="preserve"><value>Άνοιγμα φακέλου</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Παύση</value></data>
 </root>

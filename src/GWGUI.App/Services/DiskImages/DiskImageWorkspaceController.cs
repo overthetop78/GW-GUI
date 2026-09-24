@@ -1,31 +1,33 @@
-using GWGUI.Domain.Commands.Building;
-using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Formats.Detection;
-using GWGUI.Domain.Settings;
-using GWGUI.Domain.Settings.Engines;
+using GWGUI.Infrastructure.Commands.Building;
+using GWGUI.Infrastructure.Commands.Execution;
+using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Detection;
+using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Contracts.Progress;
 using GWGUI.App.Contracts.Rendering.Scp;
 using GWGUI.App.Contracts.Visualization;
-using GWGUI.App.Functions.Services.Visualization;
+using GWGUI.App.Constants.Localization;
+using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Services.Visualization;
+using GWGUI.App.Services.DiskImages.Visualization;
+using GWGUI.App.Services.DiskImages.Exploration;
+using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
-using GWGUI.MediaEngine.Visualization;
-using GWGUI.MediaEngine.Exploration;
+using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Images.Reading;
+using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
+using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Flux;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.Interfaces;
+using GWGUI.MediaEngine.Contracts.Explorer;
 using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-
-using GWGUI.Infrastructure.Processes;
-using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.MediaEngine.Exploration.Contracts;
-
+using System.Windows.Threading;
 
 namespace GWGUI.App.Services.DiskImages;
 
@@ -33,25 +35,27 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 {
     private readonly ExplorerSection _explorer;
     private readonly VisualizerTabSection _visualizer;
-    private readonly MainWindowViewModel _viewModel;
-    private readonly TrackProgressStrip _face0Progress;
-    private readonly TrackProgressStrip _face1Progress;
-    private readonly Func<AppSettings> _getSettings;
-    private readonly Func<ImageFormatDetector> _getFormatDetector;
-    private readonly Func<GwFormatCapabilities> _getCapabilities;
-    private readonly IFileDialogService _fileDialogs;
-    private readonly IGwCommandBuilder _commandBuilder;
-    private readonly IGreaseweazleRunner _visualizationRunner;
-    private readonly ScpInspectorController _inspector;
-    private readonly ScpDocumentLoader _scpLoader;
     private readonly Func<string, string?, CancellationToken, Task<ExploredDiskImage>> _explore;
-    private readonly SectorImageFluxVisualizer _sectorVisualizer;
-    private readonly Func<bool> _operationIsRunning;
+    private readonly MediaVisualizationProviderRegistry? _visualizationProviders;
+    private readonly MediaVisualizationController _mediaVisualization;
+    private readonly ScpVisualizationController _scpVisualization;
+    private readonly ExplorerPresentationController _explorerLoading;
+    private readonly MediaImageExplorationService? _mediaExploration;
+    private readonly MediaOpeningAnalysisService? _mediaOpeningAnalysis;
+    private readonly CassetteLoadingPresenter _cassetteLoading;
+    private readonly DiskImageFileSelectionService _fileSelection;
+    private readonly VisualizerLoadingController _visualizerLoading;
     private readonly Action<Exception, string, string, string> _showError;
     private readonly Func<string, object[], string> _localize;
     private readonly DiskImageCancellationScope _cancellation;
-    private ScpImage? _scpImage;
-    private ExploredDiskImage? _exploredImage;
+    private readonly object _sharedLoadSync = new();
+    private ExploredDiskImage? _visualizerExploredImage;
+    private ExploredMediaImage? _exploredMediaImage;
+    private SharedLoadRequest? _pendingSharedLoad;
+    private bool _sharedLoadPumpRunning;
+    internal IReadOnlyList<(int Head, int Cylinder)> ScpTrackPresentationOrder =>
+        _scpVisualization.TrackPresentationOrder;
+    internal int SectorRevealedTrackCount => _mediaVisualization.SectorRevealedTrackCount;
 
     public DiskImageWorkspaceController(
         ExplorerSection explorer,
@@ -68,35 +72,126 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         ScpInspectorController inspector,
         ScpDocumentLoader scpLoader,
         DiskImageExplorer diskImageExplorer,
-        SectorImageFluxVisualizer sectorVisualizer,
         DiskImageCancellationScope cancellation,
         Func<bool> operationIsRunning,
         Action<Exception, string, string, string> showError,
         Func<string, object[], string> localize,
-        Func<string, string?, CancellationToken, Task<ExploredDiskImage>>? explore = null)
+        Func<string, string?, CancellationToken, Task<ExploredDiskImage>>? explore = null,
+        MediaImageReadingService? mediaReader = null,
+        MediaExplorer? mediaExplorer = null,
+        MediaVisualizationProviderRegistry? visualizationProviders = null)
     {
         _explorer = explorer;
         _visualizer = visualizer;
-        _viewModel = viewModel;
-        _face0Progress = face0Progress;
-        _face1Progress = face1Progress;
-        _getSettings = getSettings;
-        _getFormatDetector = getFormatDetector;
-        _getCapabilities = getCapabilities;
-        _fileDialogs = fileDialogs;
-        _commandBuilder = commandBuilder;
-        _visualizationRunner = visualizationRunner;
-        _inspector = inspector;
-        _scpLoader = scpLoader;
         _explore = explore ?? diskImageExplorer.ExploreAsync;
-        _sectorVisualizer = sectorVisualizer;
+        _visualizationProviders = visualizationProviders;
+        if (mediaReader is not null && mediaExplorer is not null)
+        {
+            _mediaExploration = new MediaImageExplorationService(mediaReader, mediaExplorer);
+            _mediaOpeningAnalysis = new MediaOpeningAnalysisService(
+                mediaReader,
+                diskImageExplorer,
+                mediaExplorer);
+        }
+        _fileSelection = new DiskImageFileSelectionService(getSettings, fileDialogs, localize);
+        _mediaVisualization = new MediaVisualizationController(
+            visualizer,
+            viewModel,
+            face0Progress,
+            face1Progress,
+            visualizationProviders,
+            localize);
+        _scpVisualization = new ScpVisualizationController(
+            visualizer,
+            viewModel,
+            face0Progress,
+            face1Progress,
+            inspector,
+            scpLoader,
+            cancellation,
+            visualizationProviders,
+            operationIsRunning,
+            showError,
+            localize);
+        _explorerLoading = new ExplorerPresentationController(
+            explorer,
+            visualizer,
+            AnalyzeOpeningAsync,
+            cancellation,
+            ApplyClassification,
+            document => LastReadImage = document,
+            mediaImage => _exploredMediaImage = mediaImage,
+            showError,
+            localize);
+        _cassetteLoading = new CassetteLoadingPresenter(
+            explorer,
+            visualizer,
+            viewModel,
+            face0Progress,
+            face1Progress,
+            _mediaVisualization,
+            ReportSharedProgress,
+            localize);
+        _visualizerLoading = new VisualizerLoadingController(
+            visualizer,
+            getSettings,
+            getFormatDetector,
+            getCapabilities,
+            commandBuilder,
+            visualizationRunner,
+            cancellation,
+            _mediaExploration,
+            _mediaVisualization,
+            _scpVisualization,
+            () => _exploredMediaImage,
+            mediaImage => _exploredMediaImage = mediaImage,
+            (path, token) => AnalyzeAsync(path, token),
+            RememberReadImage,
+            ApplyScpDetection,
+            ClearVisualizer,
+            operationIsRunning);
         _cancellation = cancellation;
-        _operationIsRunning = operationIsRunning;
         _showError = showError;
         _localize = localize;
     }
 
-    public string? ExplorerPath { get; private set; }
+    private async Task<MediaOpeningAnalysisResult> AnalyzeOpeningAsync(
+        string path,
+        string? requestedFormatId,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? scpProgress,
+        Action<MediaExplorationProgress>? progress,
+        CancellationToken cancellationToken,
+        Action<ScpImage>? scpImageLoaded)
+    {
+        if (_mediaOpeningAnalysis is not null)
+        {
+            return await _mediaOpeningAnalysis.AnalyzeAsync(
+                path,
+                requestedFormatId,
+                scpProgress,
+                progress,
+                cancellationToken,
+                includeFileSystems: true,
+                scpImageLoaded: scpImageLoaded);
+        }
+
+        var disk = await _explore(path, requestedFormatId, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
+        var representation = disk.ScpImage is { } scpImage
+            ? (GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation)new FluxMediaImageRepresentation(
+                ScpProtectedTrackImageAdapter.Create(scpImage))
+            : new SectorMediaImageRepresentation(disk.Image);
+        var document = MediaImageDocument.CreateUnexplored(
+            new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId),
+            disk.PrimaryFormatId,
+            MediaKind.Floppy,
+            representation,
+            [],
+            new Dictionary<string, string>(StringComparer.Ordinal));
+        return new(document, disk, null);
+    }
+
+    public string? ExplorerPath => _explorerLoading.Path;
     public string? LastCapturedPath { get; set; }
     public IImageDisquette? LastReadImage { get; private set; }
 
@@ -104,10 +199,43 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         string path,
         CancellationToken cancellationToken = default)
     {
-        var document = await _explore(path, null, cancellationToken);
+        var openingResult = _mediaOpeningAnalysis is null
+            ? null
+            : await _mediaOpeningAnalysis.AnalyzeAsync(
+                path,
+                cancellationToken: cancellationToken,
+                includeFileSystems: true);
         cancellationToken.ThrowIfCancellationRequested();
+        var document = openingResult?.DiskExploration ?? await _explore(path, null, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
+        _exploredMediaImage = openingResult?.MediaExploration;
+        _visualizer.Header.ApplyDetection(
+            document.PrimaryFormatId,
+            document.Metadata.ProtectionId,
+            document.FormatsDetectes.Select(format => format.FormatId),
+            openingResult?.Document.Representation.RepresentationKind == MediaRepresentationKind.Flux
+                || document.ScpImage is not null);
         LastReadImage = document;
         return document;
+    }
+
+    public async Task AnalyzeAsync(
+        string path,
+        bool includeFileSystems,
+        CancellationToken cancellationToken = default)
+    {
+        if (includeFileSystems)
+        {
+            await AnalyzeAsync(path, cancellationToken);
+            return;
+        }
+
+        if (_mediaOpeningAnalysis is null)
+            throw new InvalidOperationException("Media image reading is not available.");
+        await _mediaOpeningAnalysis.AnalyzeAsync(
+            path,
+            cancellationToken: cancellationToken,
+            includeFileSystems: false);
     }
 
     public void RememberReadImage(IImageDisquette image)
@@ -116,234 +244,173 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         LastReadImage = image;
     }
 
-    public string? SelectImage()
-    {
-        var settings = _getSettings();
-        var initialDirectory = !string.IsNullOrWhiteSpace(settings.LastDiskImageFolder) && Directory.Exists(settings.LastDiskImageFolder)
-            ? settings.LastDiskImageFolder
-            : settings.DefaultImagesFolder;
-        var path = _fileDialogs.OpenFile(new(_localize("Common.DiskImageFilter", []), initialDirectory));
-        if (path is not null) settings.LastDiskImageFolder = Path.GetDirectoryName(path);
-        return path;
-    }
+    public string? SelectVisualizerImage() => _fileSelection.SelectVisualizerImage();
 
-    public async Task LoadAsync(string path, string? displayFileName = null)
-    {
-        var explored = await LoadExplorerAsync(path, true);
-        if (explored is null) return;
-        await LoadVisualizerAsync(path, displayFileName, explored);
-    }
+    public string? SelectExplorerImage() => _fileSelection.SelectExplorerImage();
 
-    public async Task<ExploredDiskImage?> LoadExplorerAsync(string path, bool newImage = true)
+    public Task LoadAsync(string path, string? displayFileName = null)
     {
-        var cancellation = _cancellation.BeginExplorer();
-        ExplorerPath = path;
-        _explorer.Clear(path, newImage);
-        _explorer.SetLoading(true);
-        try
+        var request = new SharedLoadRequest(
+            path,
+            displayFileName,
+            new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously));
+        var startPump = false;
+        lock (_sharedLoadSync)
         {
-            var requestedFormat = newImage ? _explorer.FormatIdForNewImage : _explorer.SelectedFormatId;
-            var document = SelectCachedInterpretation(path, newImage, requestedFormat);
-            document ??= await ExploreWithSelectedEngineAsync(path, requestedFormat, cancellation.Token);
-            if (!cancellation.IsCancellationRequested)
+            _pendingSharedLoad?.Completion.TrySetResult(false);
+            _pendingSharedLoad = request;
+            if (!_sharedLoadPumpRunning)
             {
-                _exploredImage = document;
-                LastReadImage = document;
-                _explorer.Display(document);
-                var detectedFormatIds = document.FormatsDetectes
-                    .Select(format => format.FormatId)
-                    .ToArray();
-                _visualizer.Header.ApplyDetection(
-                    document.PrimaryFormatId,
-                    document.Metadata.ProtectionId,
-                    detectedFormatIds);
-                ApplyClassification();
+                _sharedLoadPumpRunning = true;
+                startPump = true;
             }
-            return cancellation.IsCancellationRequested ? null : document;
         }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return null; }
-        catch (Exception exception)
-        {
-            if (!_cancellation.IsCurrentExplorer(cancellation) || cancellation.IsCancellationRequested) return null;
-            if (_cancellation.IsCurrentExplorer(cancellation)) _explorer.SetLoading(false);
-            _showError(exception, $"Opening disk image in Explorer: {path}", "Tab.Explorer", "Explorer.LoadFailed");
-            return null;
-        }
-        finally
-        {
-            if (_cancellation.IsCurrentExplorer(cancellation)) _explorer.SetLoading(false);
-        }
+
+        _cancellation.CancelAll();
+        if (startPump) _ = ProcessSharedLoadsAsync();
+        return request.Completion.Task;
     }
 
-    private ExploredDiskImage? SelectCachedInterpretation(
-        string path,
-        bool newImage,
-        string? requestedFormat)
+    private async Task ProcessSharedLoadsAsync()
     {
-        if (newImage || string.IsNullOrWhiteSpace(requestedFormat) || _exploredImage is null)
+        while (true)
         {
-            return null;
-        }
+            SharedLoadRequest request;
+            lock (_sharedLoadSync)
+            {
+                if (_pendingSharedLoad is null)
+                {
+                    _sharedLoadPumpRunning = false;
+                    return;
+                }
 
-        if (!string.Equals(_exploredImage.SourcePath, path, StringComparison.OrdinalIgnoreCase))
-        {
-            return null;
-        }
+                request = _pendingSharedLoad;
+                _pendingSharedLoad = null;
+            }
 
-        return _exploredImage.SelectFormat(requestedFormat);
+            var cancellation = _cancellation.BeginSharedLoad();
+            var completed = true;
+            Exception? failure = null;
+            try
+            {
+                await LoadCoreAsync(request.Path, request.DisplayFileName, cancellation.Token);
+            }
+            catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
+            {
+                completed = false;
+            }
+            catch (Exception exception)
+            {
+                failure = exception;
+            }
+            finally
+            {
+                _cancellation.CompleteSharedLoad(cancellation);
+            }
+
+            if (failure is not null) request.Completion.TrySetException(failure);
+            else request.Completion.TrySetResult(completed);
+        }
     }
 
-    private async Task<ExploredDiskImage> ExploreWithSelectedEngineAsync(
+    private async Task LoadCoreAsync(
         string path,
-        string? requestedFormat,
+        string? displayFileName,
         CancellationToken cancellationToken)
     {
-        var settings = _getSettings();
-        if (settings.Engines.ExplorerRead == OperationEngine.Internal)
-            return await _explore(path, requestedFormat, cancellationToken);
-
-        if (string.IsNullOrWhiteSpace(settings.GwExecutablePath) || !File.Exists(settings.GwExecutablePath))
-            throw new InvalidOperationException(_localize("App.GwNotConfigured", []));
-
-        var detection = _getFormatDetector().Detect(path, new FileInfo(path).Length);
-        var format = !string.IsNullOrWhiteSpace(requestedFormat)
-            ? new BuiltInImageFormatCatalog(key => _localize(key, [])).Formats.FirstOrDefault(item => item.Id == requestedFormat)
-            : detection.Format;
-        if (format is null)
-            throw new InvalidDataException(_localize("Detection.Ambiguous", []));
-
-        var extension = format.Extensions.FirstOrDefault(item => item.IsDefault)?.Extension
-            ?? format.Extensions.FirstOrDefault()?.Extension;
-        if (string.IsNullOrWhiteSpace(extension) || extension.Equals(".scp", StringComparison.OrdinalIgnoreCase))
-            throw new NotSupportedException(_localize("Explorer.ExternalEngineUnavailable", [format.DisplayName]));
-
-        var temporaryPath = Path.Combine(Path.GetTempPath(), $"gwgui-explorer-{Guid.NewGuid():N}{extension}");
+        cancellationToken.ThrowIfCancellationRequested();
+        var shownName = displayFileName ?? Path.GetFileName(path);
+        ClearVisualizer(shownName);
+        ReportSharedProgress(_localize(DiskImageResourceKeys.ExplorerLoadingRecognition, []), shownName, 0, true);
+        await _visualizer.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.Render);
+        cancellationToken.ThrowIfCancellationRequested();
+        Task? fluxPresentation = null;
         try
         {
-            var output = new ConversionOutput(format.Id, extension, temporaryPath, false);
-            var command = _commandBuilder.BuildConversion(settings.GwExecutablePath, path, output);
-            var result = await _visualizationRunner.RunAsync(command, cancellationToken: cancellationToken);
-            if (!result.IsSuccess || !File.Exists(temporaryPath))
-                throw new InvalidDataException(_localize("Explorer.ExternalEngineFailed", [format.DisplayName]));
-            return await _explore(temporaryPath, format.Id, cancellationToken);
+            var explored = await LoadExplorerAsync(path, true, ReportSharedProgress, image =>
+            {
+                fluxPresentation = _visualizer.Dispatcher.InvokeAsync(() =>
+                    _scpVisualization.LoadAsync(path, image, displayFileName, preserveProgress: true))
+                    .Task.Unwrap();
+            });
+            if (fluxPresentation is not null) await fluxPresentation;
+            cancellationToken.ThrowIfCancellationRequested();
+            if (explored is null) return;
+            var openingResult = _explorerLoading.CurrentOpeningResult;
+            if (openingResult is null || !ReferenceEquals(openingResult.DiskExploration, explored)) return;
+            await _visualizerLoading.LoadAsync(path, displayFileName, explored, openingResult,
+                fluxPresented: ReferenceEquals(_scpVisualization.Image, explored.ScpImage));
+            cancellationToken.ThrowIfCancellationRequested();
         }
         finally
         {
-            TryDelete(temporaryPath);
+            try
+            {
+                if (!cancellationToken.IsCancellationRequested
+                    && _explorerLoading.CurrentOpeningResult?.Document.MediaKind == MediaKind.Tape)
+                {
+                    await _cassetteLoading.CompleteAsync(
+                        cancellationToken,
+                        shownName,
+                        _exploredMediaImage);
+                }
+            }
+            finally
+            {
+                _explorer.SetLoading(false);
+                _scpVisualization.HideProgress();
+            }
         }
     }
 
-    public async Task LoadVisualizerAsync(string path, string? displayFileName = null, ExploredDiskImage? exploredImage = null)
+    public Task<ExploredDiskImage?> LoadExplorerAsync(string path, bool newImage = true) =>
+        _explorerLoading.LoadAsync(path, newImage);
+
+    private async Task<ExploredDiskImage?> LoadExplorerAsync(
+        string path,
+        bool newImage,
+        Action<string, string, double, bool>? sharedProgress,
+        Action<ScpImage>? scpImageLoaded) =>
+        await _explorerLoading.LoadAsync(path, newImage, sharedProgress, scpImageLoaded);
+
+    internal static string LoadFailureMessageKey(bool newImage, string? requestedFormat) =>
+        !newImage && !string.IsNullOrWhiteSpace(requestedFormat)
+            ? DiskImageResourceKeys.ExplorerSelectedFormatUnsupported
+            : DiskImageResourceKeys.ExplorerLoadFailed;
+
+    private string FormatName(string formatId) =>
+        new BuiltInImageFormatCatalog(key => _localize(key, [])).Formats
+            .FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase))?.DisplayName
+        ?? formatId;
+
+    internal sealed class SelectedFormatUnsupportedException(
+        string formatName,
+        string fileName,
+        Exception innerException) : Exception(innerException.Message, innerException)
     {
-        var cancellation = _cancellation.BeginVisualization();
-        var explored = exploredImage;
-        try
-        {
-            if (explored is null)
-            {
-                explored = await AnalyzeAsync(path, cancellation.Token);
-            }
-            else
-            {
-                LastReadImage = explored;
-            }
-        }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
-        {
-            return;
-        }
-        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
-        {
-            explored = null;
-        }
-
-        if (cancellation.IsCancellationRequested) return;
-        if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
-        {
-            await LoadScpAsync(path, displayFileName);
-            return;
-        }
-
-        ClearVisualizer(displayFileName ?? Path.GetFileName(path));
-        if (_operationIsRunning()) return;
-        try
-        {
-            cancellation.Token.ThrowIfCancellationRequested();
-            if (explored is not null
-                && _sectorVisualizer.CanVisualize(explored.Image)
-                && explored.Image.AvailableBlocks.Count > 0)
-            {
-                ShowProgress(_localize("Visual.Loading", []), 0, true);
-                var visualization = await Task.Run(() => _sectorVisualizer.Create(explored.Image, cancellation.Token), cancellation.Token);
-                var summary = $"{explored.Image.FormatId} · {explored.Image.Cylinders}×{explored.Image.Heads}×{explored.Image.SectorsPerTrack} · {explored.Image.AvailableBlocks.Count}/{explored.Image.BlockCount}";
-                await DisplayScpAsync(visualization, displayFileName ?? Path.GetFileName(path), summary, cancellation);
-                return;
-            }
-        }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return; }
-        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException) { }
-        finally
-        {
-            if (_cancellation.IsCurrentVisualization(cancellation)) HideProgress();
-        }
-
-        var detection = _getFormatDetector().Detect(path, new FileInfo(path).Length);
-        if (!GwVisualizationPolicy.CanConvertToScp(path, detection, _getCapabilities())) return;
-        var settings = _getSettings();
-        if (string.IsNullOrWhiteSpace(settings.GwExecutablePath) || !File.Exists(settings.GwExecutablePath)) return;
-        var formatId = detection.Format?.Id ?? "raw.scp";
-        var temporaryPath = Path.Combine(Path.GetTempPath(), $"gwgui-visual-{Guid.NewGuid():N}.scp");
-        string? stagedSourcePath = null;
-        var gateEntered = false;
-        try
-        {
-            await _cancellation.EnterVisualizationConversionAsync(cancellation.Token);
-            gateEntered = true;
-            cancellation.Token.ThrowIfCancellationRequested();
-            var conversionSourcePath = path;
-            if (Path.GetExtension(path).Equals(".atr", StringComparison.OrdinalIgnoreCase))
-            {
-                stagedSourcePath = Path.Combine(Path.GetTempPath(), $"gwgui-visual-{Guid.NewGuid():N}.img");
-                await GWGUI.MediaEngine.Conversion.Atari.AtrPayloadWriter.WriteRawPayloadAsync(path, stagedSourcePath, cancellation.Token);
-                conversionSourcePath = stagedSourcePath;
-            }
-            var command = _commandBuilder.BuildConversion(settings.GwExecutablePath, conversionSourcePath, new ConversionOutput(formatId, ".scp", temporaryPath, false));
-            var result = await _visualizationRunner.RunAsync(command, cancellationToken: cancellation.Token);
-            cancellation.Token.ThrowIfCancellationRequested();
-            if (!result.IsSuccess || !File.Exists(temporaryPath)) return;
-            await LoadScpAsync(temporaryPath, displayFileName ?? Path.GetFileName(path));
-        }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
-        finally
-        {
-            if (gateEntered) _cancellation.ExitVisualizationConversion();
-            TryDelete(stagedSourcePath);
-            TryDelete(temporaryPath);
-        }
+        internal string FormatName { get; } = formatName;
+        internal string FileName { get; } = fileName;
     }
 
-    public async Task LoadScpAsync(string path, string? displayFileName = null)
+    public Task LoadVisualizerAsync(
+        string path,
+        string? displayFileName = null,
+        ExploredDiskImage? exploredImage = null) =>
+        _visualizerLoading.LoadAsync(path, displayFileName, exploredImage);
+
+    public Task LoadScpAsync(string path, string? displayFileName = null) =>
+        _scpVisualization.LoadAsync(path, displayFileName);
+
+    private void ApplyScpDetection(ExploredDiskImage detected)
     {
-        var cancellation = _cancellation.BeginScp();
-        try
-        {
-            ShowProgress(_localize("Visual.Loading", []), 0, true);
-            _visualizer.Header.SummaryText.Text = _localize("Visual.Loading", []);
-            var document = await _scpLoader.LoadAsync(path, cancellation.Token);
-            await DisplayScpAsync(document.Image, displayFileName ?? document.FileName, document.Summary, cancellation);
-        }
-        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
-        catch (Exception exception)
-        {
-            if (!_cancellation.IsCurrentScp(cancellation) || cancellation.IsCancellationRequested) return;
-            _scpImage = null;
-            _visualizer.Header.SummaryText.Text = _localize("Visual.Invalid", []);
-            _showError(exception, $"Opening disk image in Visualizer: {path}", "Visual.Title", "Error.Unexpected");
-        }
-        finally
-        {
-            if (_cancellation.IsCurrentScp(cancellation)) HideProgress();
-        }
+        _visualizerExploredImage = detected;
+        LastReadImage = detected;
+        var detectedFormatIds = detected.FormatsDetectes.Select(format => format.FormatId).ToArray();
+        _visualizer.Header.ApplyDetection(
+            detected.PrimaryFormatId,
+            detected.Metadata.ProtectionId,
+            detectedFormatIds);
+        ApplyClassification();
     }
 
     public void ApplyClassification()
@@ -363,110 +430,138 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _visualizer.SecondSide.SetMediaCategory(classification.MediaCategory);
     }
 
+    public async Task SelectVisualizerRepresentationAsync(string? formatId)
+    {
+        try
+        {
+            _visualizer.Header.SelectRepresentation(formatId);
+            await SelectVisualizerRepresentationCoreAsync(formatId);
+            if (!string.IsNullOrWhiteSpace(formatId)
+                && SameExplorerAndVisualizerSource()
+                && _explorerLoading.CurrentImage?.SelectFormat(formatId) is { } explorerSelection)
+            {
+                _explorerLoading.CurrentImage = explorerSelection;
+                _explorer.Display(explorerSelection, preserveAutomaticFormat: true);
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // Un changement de représentation annule normalement la présentation précédente.
+        }
+        catch (Exception exception)
+        {
+            if (string.IsNullOrWhiteSpace(formatId)) return;
+            var sourcePath = VisualizerSourcePath();
+            var presentedException = new SelectedFormatUnsupportedException(
+                FormatName(formatId),
+                Path.GetFileName(sourcePath ?? string.Empty),
+                exception);
+            _showError(
+                presentedException,
+                $"Selecting Visualizer format {formatId} for disk image: {sourcePath}",
+                "Explorer.SelectedFormatUnsupportedTitle",
+                "Explorer.SelectedFormatUnsupported");
+        }
+    }
+
+    public async Task SelectExplorerRepresentationAsync()
+    {
+        var formatId = _explorer.SelectedFormatId;
+        if (string.IsNullOrWhiteSpace(formatId) || string.IsNullOrWhiteSpace(ExplorerPath))
+        {
+            return;
+        }
+
+        var explorerSelection = _explorerLoading.CurrentImage?.SelectFormat(formatId);
+        if (explorerSelection is null)
+        {
+            var explicitlyExplored = await LoadExplorerAsync(ExplorerPath, false);
+            explorerSelection = explicitlyExplored?.SelectFormat(formatId);
+            if (explorerSelection is null) return;
+        }
+
+        _explorerLoading.CurrentImage = explorerSelection;
+        _explorer.Display(explorerSelection, preserveAutomaticFormat: true);
+        if (!SameExplorerAndVisualizerSource())
+        {
+            return;
+        }
+
+        _visualizerExploredImage = explorerSelection;
+        _visualizer.Header.SelectRepresentation(formatId);
+        await SelectVisualizerRepresentationAsync(formatId);
+    }
+
+    private bool SameExplorerAndVisualizerSource() =>
+        !string.IsNullOrWhiteSpace(ExplorerPath)
+        && !string.IsNullOrWhiteSpace(_scpVisualization.SourcePath)
+        && string.Equals(ExplorerPath, _scpVisualization.SourcePath, StringComparison.OrdinalIgnoreCase);
+
+    private async Task SelectVisualizerRepresentationCoreAsync(string? formatId)
+    {
+        var sourcePath = VisualizerSourcePath();
+        if (string.IsNullOrWhiteSpace(sourcePath)) return;
+        var cancellation = _cancellation.BeginVisualization();
+        var cancellationToken = cancellation.Token;
+        if (string.IsNullOrWhiteSpace(formatId))
+        {
+            await _scpVisualization.RestoreFluxRepresentationAsync(cancellationToken);
+            if (_cancellation.IsCurrentVisualization(cancellation)) _scpVisualization.HideProgress();
+            return;
+        }
+
+        var selected = _visualizerExploredImage?.SelectFormat(formatId)
+            ?? _explorerLoading.CurrentImage?.SelectFormat(formatId)
+            ?? await _explore(sourcePath, formatId, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) return;
+        _visualizerExploredImage = selected;
+        var document = MediaImageDocument.CreateUnexplored(
+            new MediaSourceDescriptor(sourcePath, [], RequestedFormatId: formatId),
+            selected.Image.FormatId,
+            MediaKind.Floppy,
+            new SectorMediaImageRepresentation(selected.Image),
+            [],
+            new Dictionary<string, string>(StringComparer.Ordinal));
+        var descriptor = _visualizationProviders?.CreateDescriptor(document);
+        if (descriptor is null) return;
+        await _mediaVisualization.PresentSectorImageAsync(
+            document,
+            descriptor,
+            selected.Image,
+            cancellationToken);
+    }
+
+    private string? VisualizerSourcePath() =>
+        _scpVisualization.SourcePath
+        ?? _visualizerExploredImage?.SourcePath
+        ?? _explorerLoading.CurrentImage?.SourcePath
+        ?? _exploredMediaImage?.Document.Source.PrimaryPath
+        ?? ExplorerPath;
+
     public void ClearVisualizer(string fileName)
     {
-        _cancellation.CancelScp();
-        _scpImage = null;
-        _inspector.ClearImage();
-        _visualizer.Header.FileNameText.Text = fileName;
-        _visualizer.Header.SummaryText.Text = _localize("Visual.NoFile", []);
-        _visualizer.FirstSide.SetImage(null, 0);
-        _visualizer.SecondSide.SetImage(null, 1);
-        _visualizer.Overview.Configure(new Dictionary<int, IReadOnlyList<int>>());
-        _face0Progress.Reset();
-        _face1Progress.Reset();
-        HideProgress();
+        _visualizerExploredImage = null;
+        _scpVisualization.Clear(fileName);
     }
 
     public void CancelAll() => _cancellation.CancelAll();
 
-    public Task PrepareViewsForInspectorAsync(CancellationToken cancellationToken) => PrepareViewsAsync(cancellationToken);
+    public Task PrepareViewsForInspectorAsync(CancellationToken cancellationToken) =>
+        _scpVisualization.PrepareViewsAsync(cancellationToken);
 
-    public void HideProgressForInspector() => HideProgress();
+    public void HideProgressForInspector() => _scpVisualization.HideProgress();
 
     public void Dispose() => _cancellation.Dispose();
 
-    private async Task DisplayScpAsync(ScpImage image, string fileName, string summary, CancellationTokenSource cancellation)
-    {
-        if (cancellation.IsCancellationRequested) return;
-        _scpImage = image;
-        _visualizer.Header.FileNameText.Text = fileName;
-        var heads = image.Tracks.Select(track => track.Head).ToHashSet();
-        _visualizer.Header.SummaryText.Text = summary;
-        _visualizer.FirstSide.SetImage(image, 0);
-        _visualizer.SecondSide.SetImage(image, 1);
-        _inspector.SetImage(image);
-        _visualizer.FirstSide.Visibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed;
-        _visualizer.SecondSide.Visibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
-        Grid.SetColumn(_visualizer.FirstSide, 0);
-        Grid.SetColumnSpan(_visualizer.FirstSide, heads.Count == 1 && heads.Contains(0) ? 2 : 1);
-        Grid.SetColumn(_visualizer.SecondSide, heads.Count == 1 && heads.Contains(1) ? 0 : 1);
-        Grid.SetColumnSpan(_visualizer.SecondSide, heads.Count == 1 && heads.Contains(1) ? 2 : 1);
-        await PrepareViewsAsync(cancellation.Token);
-    }
+    internal void ReportSharedProgress(string stage, string detail, double value, bool indeterminate)
+        => _scpVisualization.ReportSharedProgress(stage, detail, value, indeterminate);
 
-    private async Task PrepareViewsAsync(CancellationToken cancellationToken)
-    {
-        if (_scpImage is null) return;
-        var heads = _scpImage.Tracks.Select(track => track.Head).Distinct().Order().ToArray();
-        var total = Math.Max(1, _scpImage.Tracks.Count);
-        var completedByHead = heads.ToDictionary(head => head, _ => 0);
-        var cylindersByHead = heads.ToDictionary(head => head, head =>
-            (IReadOnlyList<int>)_scpImage.Tracks.Where(track => track.Head == head).OrderBy(track => track.Cylinder).Select(track => track.Cylinder).ToArray());
-        _visualizer.Overview.Configure(cylindersByHead);
-        _face0Progress.Configure(0, cylindersByHead.GetValueOrDefault(0) ?? [], _localize("Visual.Side", [0]));
-        _face1Progress.Configure(1, cylindersByHead.GetValueOrDefault(1) ?? [], _localize("Visual.Side", [1]));
-        _viewModel.ProgressVisibility = Visibility.Visible;
-        _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
-        _viewModel.Face0ProgressVisibility = heads.Contains(0) ? Visibility.Visible : Visibility.Collapsed;
-        _viewModel.Face1ProgressVisibility = heads.Contains(1) ? Visibility.Visible : Visibility.Collapsed;
-        _viewModel.ProgressText = _localize("Visual.AnalysingTrack", [0, total]);
-        var preparations = heads.Select(head =>
-        {
-            var view = head == 0 ? _visualizer.FirstSide : _visualizer.SecondSide;
-            var strip = head == 0 ? _face0Progress : _face1Progress;
-            var cylinders = cylindersByHead[head];
-            var progress = new Progress<ScpTrackPreparation>(preparation =>
-            {
-                if (cancellationToken.IsCancellationRequested) return;
-                var value = ++completedByHead[head];
-                var current = Math.Min(total, completedByHead.Values.Sum());
-                for (var index = 0; index < Math.Min(value, cylinders.Count); index++) strip.SetState(cylinders[index], TrackSegmentState.Success);
-                if (value < cylinders.Count) strip.SetActive(cylinders[value]); else strip.ClearActive();
-                _visualizer.Overview.MarkPrepared(preparation);
-                _viewModel.ProgressText = _localize("Visual.AnalysingTrack", [current, total]);
-                view.RefreshPreparedTracks();
-            });
-            return view.PrepareAsync(progress, cancellationToken);
-        });
-        await Task.WhenAll(preparations);
-    }
+    internal static TimeSpan RemainingSectorTrackPresentationDelay(TimeSpan elapsedSincePresentation)
+        => MediaVisualizationController.RemainingSectorTrackPresentationDelay(elapsedSincePresentation);
 
-    private void ShowProgress(string text, double value, bool indeterminate)
-    {
-        _viewModel.ProgressText = text;
-        _viewModel.ProgressValue = value;
-        _viewModel.ProgressIndeterminate = indeterminate;
-        _viewModel.ProgressVisibility = Visibility.Visible;
-        _viewModel.GlobalProgressVisibility = Visibility.Visible;
-        _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
-        _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
-        _viewModel.Face0ProgressValue = 0;
-        _viewModel.Face1ProgressValue = 0;
-        _face0Progress.Reset();
-        _face1Progress.Reset();
-    }
+    private sealed record SharedLoadRequest(
+        string Path,
+        string? DisplayFileName,
+        TaskCompletionSource<bool> Completion);
 
-    private void HideProgress()
-    {
-        if (_operationIsRunning()) return;
-        _viewModel.ProgressVisibility = Visibility.Collapsed;
-        _viewModel.ProgressIndeterminate = false;
-    }
-
-    private static void TryDelete(string? path)
-    {
-        try { if (path is not null && File.Exists(path)) File.Delete(path); }
-        catch { }
-    }
 }

@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>Decoder</value></data>
   <data name="Visual.LinkZoom"><value>Link zoom</value></data>
   <data name="Visual.OpenScp"><value>Open an SCP file…</value></data>
-  <data name="Visual.NoFile"><value>No SCP file open</value></data>
+  <data name="Visual.NoFile"><value>No image open</value></data>
   <data name="Visual.Waiting"><value>Waiting for a file</value></data>
   <data name="Visual.Inspector"><value>Inspector</value></data>
   <data name="Visual.SelectTrack"><value>Select a track.</value></data>
@@ -80,6 +72,7 @@
   <data name="Visual.Integrity.Checksum"><value>Checksum</value></data>
   <data name="Visual.Side"><value>Side {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analysing track {0}/{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analysing revolution {0}/{1}…</value></data>
   <data name="Visual.SideLabel"><value>Side</value></data>
   <data name="Visual.TrackLabel"><value>Track</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP entry</value></data>
@@ -106,4 +99,96 @@
   <data name="Visual.DecoderName.apple2.rwts18"><value>Apple II Brøderbund RWTS18</value></data>
   <data name="Visual.DecoderName.applelisa.fileware.gcr"><value>Apple Lisa FileWare GCR</value></data>
   <data name="Visual.DecoderName.commodore900.gcr"><value>Commodore 900 GCR</value></data>
+  <data name="Visual.All"><value>All</value></data>
+  <data name="Visual.Surface"><value>Surface {0}</value></data>
+  <data name="Visual.DiscFace"><value>Face {0}</value></data>
+  <data name="Visual.Layer"><value>Layer {0}</value></data>
+  <data name="Visual.Session"><value>Session {0}</value></data>
+  <data name="Visual.Channel"><value>Channel {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Track {0}</value></data>
+  <data name="Visual.TicksUnit"><value>ticks</value></data>
+  <data name="Visual.BytesUnit"><value>bytes</value></data>
+  <data name="Visual.BlocksUnit"><value>blocks</value></data>
+  <data name="Visual.SectorsUnit"><value>sectors</value></data>
+  <data name="Visual.SectorPresent"><value>Present sector</value></data>
+  <data name="Visual.SectorAllocated"><value>Allocated sector</value></data>
+  <data name="Visual.SectorFree"><value>Free sector</value></data>
+  <data name="Visual.SectorReserved"><value>Reserved sector</value></data>
+  <data name="Visual.SectorUnreadable"><value>Unreadable sector</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>Sector information</value></data>
+  <data name="Visual.SectorLabel"><value>Sector</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>Logical block</value></data>
+  <data name="Visual.SizeLabel"><value>Size</value></data>
+  <data name="Visual.StateLabel"><value>State</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>File system path</value></data>
+  <data name="Visual.LogicalMapTitle"><value>Logical map</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS geometry</value></data>
+  <data name="Visual.SurfaceLabel"><value>Surface</value></data>
+  <data name="Visual.BlockAllocated"><value>Allocated range</value></data>
+  <data name="Visual.BlockFree"><value>Free range</value></data>
+  <data name="Visual.BlockReserved"><value>Reserved range</value></data>
+  <data name="Visual.BlockUnknown"><value>Unknown range</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>Block media information</value></data>
+  <data name="Visual.CapacityLabel"><value>Capacity</value></data>
+  <data name="Visual.AddressingLabel"><value>Addressing</value></data>
+  <data name="Visual.StartLabel"><value>Start</value></data>
+  <data name="Visual.LengthLabel"><value>Length</value></data>
+  <data name="Visual.PartitionTableLabel"><value>Partition table</value></data>
+  <data name="Visual.PartitionTable.None"><value>None</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>Partition number</value></data>
+  <data name="Visual.FileSystemLabel"><value>File system</value></data>
+  <data name="Visual.RangeTitle"><value>Selected range</value></data>
+  <data name="Visual.PlatterCountLabel"><value>Platters</value></data>
+  <data name="Visual.BlockState.Available"><value>Available</value></data>
+  <data name="Visual.BlockState.Reserved"><value>Reserved</value></data>
+  <data name="Visual.BlockState.Allocated"><value>Allocated</value></data>
+  <data name="Visual.BlockState.Free"><value>Free</value></data>
+  <data name="Visual.BlockState.Unknown"><value>Unknown</value></data>
+  <data name="Visual.OpticalDataTrack"><value>Data track</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>Audio track</value></data>
+  <data name="Visual.OpticalPregap"><value>Pregap</value></data>
+  <data name="Visual.OpticalSession"><value>Session boundary</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>Optical media information</value></data>
+  <data name="Visual.FaceCountLabel"><value>Faces</value></data>
+  <data name="Visual.LayerCountLabel"><value>Layers</value></data>
+  <data name="Visual.TrackCountLabel"><value>Tracks</value></data>
+  <data name="Visual.SessionLabel"><value>Session</value></data>
+  <data name="Visual.LayerLabel"><value>Layer</value></data>
+  <data name="Visual.TrackKindLabel"><value>Track type</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>Selected track</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>Volume origin</value></data>
+  <data name="Visual.VolumeTitle"><value>Volume</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>Associated files</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>Unknown</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>Data</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>Audio</value></data>
+  <data name="Visual.SequentialSignal"><value>Signal</value></data>
+  <data name="Visual.SequentialDecoded"><value>Decoded block</value></data>
+  <data name="Visual.SequentialSilence"><value>Silence</value></data>
+  <data name="Visual.SequentialError"><value>Decoding error</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>Sequential media information</value></data>
+  <data name="Visual.DurationLabel"><value>Duration</value></data>
+  <data name="Visual.SegmentCountLabel"><value>Segments</value></data>
+  <data name="Visual.SegmentKindLabel"><value>Segment type</value></data>
+  <data name="Visual.ChannelLabel"><value>Channel</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>Recognized content</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>Decoding error</value></data>
+  <data name="Visual.SegmentTitle"><value>Selected segment</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>Unknown</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>Signal</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>Silence</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>Decoded block</value></data>
+  <data name="Visual.RevolutionSummary"><value>All revolutions</value></data>
+  <data name="Visual.RevolutionChoice"><value>Revolution {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>Revolution</value></data>
+  <data name="Visual.QualityDead"><value>Dead</value></data>
+  <data name="Visual.QualityPoor"><value>Poor</value></data>
+  <data name="Visual.QualityPartial"><value>Partially readable</value></data>
+  <data name="Visual.QualityGood"><value>Good</value></data>
+  <data name="Visual.QualityExcellent"><value>Excellent</value></data>
+  <data name="Visual.SectorWithData"><value>Sector with data</value></data>
+  <data name="Visual.SectorDegraded"><value>Degraded sector</value></data>
+  <data name="Visual.SectorDead"><value>Dead sector</value></data>
+  <data name="Visual.SectorWithoutData"><value>Sector without data</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>Cassette information</value></data>
 </root>

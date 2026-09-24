@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Tab.Machines"><value>เครื่อง</value></data>
+  <data name="Emulation.Tab.Welcome"><value>ยินดีต้อนรับ</value></data>
+  <data name="Emulation.Tab.General"><value>ทั่วไป</value></data>
+  <data name="Emulation.Tab.Video"><value>วิดีโอ</value></data>
+  <data name="Emulation.Tab.Storage"><value>ที่เก็บข้อมูล</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>แป้นพิมพ์</value></data>
+  <data name="Emulation.Tab.Mouse"><value>เมาส์</value></data>
+  <data name="Emulation.Tab.Controller"><value>ตัวควบคุม</value></data>
+  <data name="Emulation.Tab.Advanced"><value>ขั้นสูง</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>ปุ่มลัด</value></data>
+  <data name="Emulation.Tab.Audio"><value>เสียง</value></data>
+</root>

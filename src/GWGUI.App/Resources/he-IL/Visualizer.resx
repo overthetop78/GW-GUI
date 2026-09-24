@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Visual.Decoder"><value>מפענח</value></data>
   <data name="Visual.LinkZoom"><value>זום קישור</value></data>
   <data name="Visual.OpenScp"><value>Open a SCP קובץ</value></data>
-  <data name="Visual.NoFile"><value>לא פתוח קובץ SCP</value></data>
+  <data name="Visual.NoFile"><value>לא נפתחה תמונה</value></data>
   <data name="Visual.Waiting"><value>מחכה לקובץ</value></data>
   <data name="Visual.Inspector"><value>מְפַקֵחַ</value></data>
   <data name="Visual.SelectTrack"><value>בחר רצועה.</value></data>
@@ -44,6 +36,12 @@
   <data name="Visual.CrcValid"><value>תָקֵף</value></data>
   <data name="Visual.CrcInvalid"><value>לֹא בְּתוֹקֶף</value></data>
   <data name="Visual.IntegrityUnavailable"><value>לא זמין</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (דחיסות של משקל)</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>צפוןסטאר - Hard-sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit - בתפקיד FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N קשוח FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>מערכת ארגובורג / נתונים</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raw Flux</value></data>
   <data name="Visual.StructureKind.Sync"><value>סִנכְּרוּן</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>כותרת מגזר</value></data>
   <data name="Visual.StructureKind.DataAddressMark"><value>נתוני מגזר</value></data>
@@ -56,10 +54,9 @@
   <data name="Visual.StructureKind.FormatHeader"><value>עיצוב כותרת</value></data>
   <data name="Visual.StructureKind.FormatData"><value>פורמט נתונים</value></data>
   <data name="Visual.StructureKind.TimingAnomaly"><value>חריגה בתזמון</value></data>
-  <data name="Visual.OpenFilter"><value>SuperCard Pro לכידה (*.scp)|*.scp|כל הקבצים|*.*</value></data>
-  <data name="Visual.Integrity.Checksum"><value>סכום בדיקה</value></data>
   <data name="Visual.Side"><value>צד {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Analysing track {0}/ /{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>מהפכה {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1}…</value></data>
   <data name="Visual.SideLabel"><value>צַד</value></data>
   <data name="Visual.TrackLabel"><value>מַסלוּל</value></data>
   <data name="Visual.ScpEntryLabel"><value>ערך SCP</value></data>
@@ -78,4 +75,96 @@
   <data name="Visual.FormatDetected"><value>פורמט זוהה</value></data>
   <data name="Visual.AverageRpm"><value>ממוצע RPM</value></data>
   <data name="Visual.AverageDuration"><value>משך זמן ממוצע</value></data>
+  <data name="Visual.All"><value>הכל</value></data>
+  <data name="Visual.Surface"><value>Surface Surface Surface Surface {0}</value></data>
+  <data name="Visual.DiscFace"><value>פנים פנים {0}</value></data>
+  <data name="Visual.Layer"><value>שכבת שכבה {0}</value></data>
+  <data name="Visual.Session"><value>ישיבת ישיבות {0}</value></data>
+  <data name="Visual.Channel"><value>ערוץ ערוצים {0}</value></data>
+  <data name="Visual.TrackNumber"><value>Track Track {0}</value></data>
+  <data name="Visual.TicksUnit"><value>סמן</value></data>
+  <data name="Visual.BytesUnit"><value>Bytes</value></data>
+  <data name="Visual.BlocksUnit"><value>בלוקים</value></data>
+  <data name="Visual.SectorsUnit"><value>מגזרים</value></data>
+  <data name="Visual.SectorPresent"><value>מגזר נוכחי</value></data>
+  <data name="Visual.SectorAllocated"><value>מגזר Allocated</value></data>
+  <data name="Visual.SectorFree"><value>המגזר החופשי</value></data>
+  <data name="Visual.SectorReserved"><value>המגזר השומר</value></data>
+  <data name="Visual.SectorUnreadable"><value>מגזר לא ידוע</value></data>
+  <data name="Visual.SectorInspectorTitle"><value>מידע</value></data>
+  <data name="Visual.SectorLabel"><value>מגזר</value></data>
+  <data name="Visual.LogicalBlockLabel"><value>בלוק הגיוני</value></data>
+  <data name="Visual.SizeLabel"><value>גודל</value></data>
+  <data name="Visual.StateLabel"><value>מדינת מדינת</value></data>
+  <data name="Visual.FileSystemPathLabel"><value>מערכת File system</value></data>
+  <data name="Visual.LogicalMapTitle"><value>מפה הגיונית</value></data>
+  <data name="Visual.ChsGeometryTitle"><value>CHS גיאומטריה</value></data>
+  <data name="Visual.SurfaceLabel"><value>Surface Surface Surface Surface</value></data>
+  <data name="Visual.BlockAllocated"><value>טווח Allocated</value></data>
+  <data name="Visual.BlockFree"><value>טווח חופשי</value></data>
+  <data name="Visual.BlockReserved"><value>טווח שמורה</value></data>
+  <data name="Visual.BlockUnknown"><value>טווח לא ידוע</value></data>
+  <data name="Visual.BlockInspectorTitle"><value>חסימת מידע תקשורתי</value></data>
+  <data name="Visual.CapacityLabel"><value>יכולת</value></data>
+  <data name="Visual.AddressingLabel"><value>כתובת</value></data>
+  <data name="Visual.StartLabel"><value>תחילת ההתחלה</value></data>
+  <data name="Visual.LengthLabel"><value>אורך אורך</value></data>
+  <data name="Visual.PartitionTableLabel"><value>תוכנית חלוקת</value></data>
+  <data name="Visual.PartitionTable.None"><value>אף אחד לא</value></data>
+  <data name="Visual.PartitionNumberLabel"><value>מספר חלוקת</value></data>
+  <data name="Visual.FileSystemLabel"><value>מערכת הקבצים</value></data>
+  <data name="Visual.RangeTitle"><value>טווח נבחר</value></data>
+  <data name="Visual.PlatterCountLabel"><value>פלאטר</value></data>
+  <data name="Visual.BlockState.Available"><value>זמין</value></data>
+  <data name="Visual.BlockState.Reserved"><value>שמורה</value></data>
+  <data name="Visual.BlockState.Allocated"><value>הכל</value></data>
+  <data name="Visual.BlockState.Free"><value>חינם חינם</value></data>
+  <data name="Visual.BlockState.Unknown"><value>לא ידוע</value></data>
+  <data name="Visual.OpticalDataTrack"><value>עקבו אחרי</value></data>
+  <data name="Visual.OpticalAudioTrack"><value>עקבו אחרי Audio track</value></data>
+  <data name="Visual.OpticalPregap"><value>Pregap</value></data>
+  <data name="Visual.OpticalSession"><value>גבול</value></data>
+  <data name="Visual.OpticalInspectorTitle"><value>מידע תקשורתי אופטי</value></data>
+  <data name="Visual.FaceCountLabel"><value>הפנים</value></data>
+  <data name="Visual.LayerCountLabel"><value>שכבות</value></data>
+  <data name="Visual.TrackCountLabel"><value>Tracks</value></data>
+  <data name="Visual.SessionLabel"><value>ישיבת ישיבות</value></data>
+  <data name="Visual.LayerLabel"><value>שכבת שכבה</value></data>
+  <data name="Visual.TrackKindLabel"><value>סוג Track</value></data>
+  <data name="Visual.OpticalTrackTitle"><value>מסלול נבחר</value></data>
+  <data name="Visual.VolumeOriginLabel"><value>מקור</value></data>
+  <data name="Visual.VolumeTitle"><value>נפח</value></data>
+  <data name="Visual.AssociatedFilesTitle"><value>קבצים</value></data>
+  <data name="Visual.OpticalTrackKind.Unknown"><value>לא ידוע</value></data>
+  <data name="Visual.OpticalTrackKind.Data"><value>נתונים נתונים</value></data>
+  <data name="Visual.OpticalTrackKind.Audio"><value>אודיו Audio</value></data>
+  <data name="Visual.SequentialSignal"><value>אות</value></data>
+  <data name="Visual.SequentialDecoded"><value>בלוק Decoded</value></data>
+  <data name="Visual.SequentialSilence"><value>שקט</value></data>
+  <data name="Visual.SequentialError"><value>ירידה בשגיאה</value></data>
+  <data name="Visual.SequentialInspectorTitle"><value>מידע תקשורתי חיוני</value></data>
+  <data name="Visual.DurationLabel"><value>משך</value></data>
+  <data name="Visual.SegmentCountLabel"><value>המונחים</value></data>
+  <data name="Visual.SegmentKindLabel"><value>סוג Segment</value></data>
+  <data name="Visual.ChannelLabel"><value>ערוץ ערוצים</value></data>
+  <data name="Visual.RecognizedNameLabel"><value>תוכן מוכר</value></data>
+  <data name="Visual.DecodeErrorLabel"><value>ירידה בשגיאה</value></data>
+  <data name="Visual.SegmentTitle"><value>פלח נבחר</value></data>
+  <data name="Visual.SequentialSegmentKind.Unknown"><value>לא ידוע</value></data>
+  <data name="Visual.SequentialSegmentKind.Signal"><value>אות</value></data>
+  <data name="Visual.SequentialSegmentKind.Silence"><value>שקט</value></data>
+  <data name="Visual.SequentialSegmentKind.DecodedBlock"><value>בלוק Decoded</value></data>
+  <data name="Visual.RevolutionSummary"><value>כל המהפכה</value></data>
+  <data name="Visual.RevolutionChoice"><value>המהפכה {0}</value></data>
+  <data name="Visual.RevolutionLabel"><value>המהפכה</value></data>
+  <data name="Visual.QualityDead"><value>מת מת</value></data>
+  <data name="Visual.QualityPoor"><value>עניים עניים</value></data>
+  <data name="Visual.QualityPartial"><value>לקריאה חלקית</value></data>
+  <data name="Visual.QualityGood"><value>טוב טוב טוב טוב</value></data>
+  <data name="Visual.QualityExcellent"><value>מעולה</value></data>
+  <data name="Visual.SectorWithData"><value>מגזר עם נתונים</value></data>
+  <data name="Visual.SectorDegraded"><value>המגזר Degraded</value></data>
+  <data name="Visual.SectorDead"><value>Deadמגזר</value></data>
+  <data name="Visual.SectorWithoutData"><value>מגזר ללא נתונים</value></data>
+  <data name="Visual.CassetteInspectorTitle"><value>פרטי הקלטת</value></data>
 </root>

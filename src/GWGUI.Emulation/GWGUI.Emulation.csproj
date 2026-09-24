@@ -12,6 +12,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/overthetop78/GW-GUI</RepositoryUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
@@ -29,5 +30,7 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
+    <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />
   </ItemGroup>
 </Project>

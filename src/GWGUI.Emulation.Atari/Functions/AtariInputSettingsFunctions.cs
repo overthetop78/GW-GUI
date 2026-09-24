@@ -329,9 +329,9 @@ internal static class AtariInputSettingsFunctions
 
     private static string KeyResource(EmulationKey key) => key switch
     {
-        EmulationKey.Help => AtariInputSettingsFunctionsConstants.ResourceKeyAtariHelp,
-        EmulationKey.AtariUndo => AtariInputSettingsFunctionsConstants.ResourceKeyAtariUndo,
-        EmulationKey.AtariBreak => AtariInputSettingsFunctionsConstants.ResourceKeyAtariBreak,
+        EmulationKey.Help => AtariInputSettingsFunctionsConstants.ResourceKeyHelp,
+        EmulationKey.Undo => AtariInputSettingsFunctionsConstants.ResourceKeyUndo,
+        EmulationKey.Break => AtariInputSettingsFunctionsConstants.ResourceKeyBreak,
         _ => key.ToString()
     };
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Phím nhả chuột</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Nút chuột trái</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Nút chuột phải</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Nút chuột giữa</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Chuột vật lý</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Di chuyển gấp đôi</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Tốc độ chuột</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Cần analog điều khiển chuột</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Vùng chết cần analog</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Tốc độ chuột bằng cần analog</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Thao tác chuột</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Nút chuột 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Nút chuột 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Bắt chuột</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Con lăn chuột lên</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Con lăn chuột xuống</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Con lăn chuột sang trái</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Con lăn chuột sang phải</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Bắt chuột</value></data>
+  <data name="Emulation.ReleaseMouse" xml:space="preserve"><value>Mở chuột</value></data>
+</root>

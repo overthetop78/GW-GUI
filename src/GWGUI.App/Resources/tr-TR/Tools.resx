@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Tool.Ready"><value>Yürütmeye hazır.</value></data>
   <data name="Tool.RawOutput"><value>Ham çıktı</value></data>
-  <data name="Maintenance.EraseTitle"><value>Silmeyi onayla</value></data>
-  <data name="Maintenance.EraseConfirm"><value>Takılan diskteki tüm veriler kalıcı olarak silinsin mi?</value></data>
-  <data name="Maintenance.CleanTitle"><value>Kafaları temizleyin</value></data>
-  <data name="Maintenance.CleanConfirm"><value>Temizleme diskinin takıldığını doğrulayın. Asla veri diski kullanmayın.</value></data>
   <data name="Tools.Erase"><value>Diski sil</value></data>
   <data name="Tools.EraseWarning"><value>Diskteki tüm veriler yok edilecek.</value></data>
   <data name="Tools.LimitTracks"><value>Parçaları sınırla</value></data>
@@ -32,6 +20,7 @@
   <data name="Tool.Field.Extreme"><value>Aşırı silindirlere izin ver</value></data>
   <data name="Tool.Field.MotorOn"><value>Motoru aktif tutun</value></data>
   <data name="Tool.Field.Pin"><value>Pim (8, 26 veya 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Değişim pin</value></data>
   <data name="Tool.Field.High"><value>Yüksek seviye</value></data>
   <data name="Tool.Field.Select"><value>Seçim (μs)</value></data>
   <data name="Tool.Field.Step"><value>Baş adımı (μs)</value></data>
@@ -55,7 +44,8 @@
   <data name="Tool.Title.Pin"><value>Donanım pinleri</value></data>
   <data name="Tool.Title.Reset"><value>Denetleyiciyi sıfırla</value></data>
   <data name="Tool.Title.Delays"><value>Gecikmeler</value></data>
-<data name="Tool.InvalidParameters"><value>Geçersiz parametreler</value></data>
+  <data name="Tool.Title.Update"><value>Firmaware</value></data>
+  <data name="Tool.InvalidParameters"><value>Geçersiz parametreler</value></data>
   <data name="Tool.InvalidParametersHelp"><value>Çalıştırmadan önce vurgulanan komut parametrelerini kontrol edin.</value></data>
   <data name="Tool.BootloaderTitle"><value>Önyükleyici modu</value></data>
   <data name="Tool.Title.Align"><value>Sürücü hizalama teşhisi</value></data>
@@ -63,6 +53,4 @@
   <data name="Tool.Field.AlignReads"><value>Okuma sayısı</value></data>
   <data name="Tool.Field.AlignFormat"><value>Kod çözme formatı</value></data>
   <data name="Tool.Field.AlignRaw"><value>Ham akışı okuyun (--raw)</value></data>
-  <data name="Tool.Title.Update"><value>Firmaware</value></data>
-  <data name="Tool.Field.SetPin"><value>Değişim pin</value></data>
 </root>

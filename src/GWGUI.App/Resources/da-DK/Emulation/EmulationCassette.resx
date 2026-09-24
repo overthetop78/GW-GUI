@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Cassette.Command.Play"><value>Afspil</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Pause</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Spol tilbage</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>Spol frem</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Optag</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Stop</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>Ingen kassette</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Stoppet</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Afspiller</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>Sat på pause</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Optager</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>Slut på bånd</value></data>
+</root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Keyboard.SystemKey"><value>Klávesa {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Klávesa hostitele</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Dva Amiga klíče používají stejné PC klíč. Před uložením vyřešte červené mapování.</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fyzická klávesnice průchod</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Vyhrazené klávesové zkratky</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Klávesové zkratky GW GUI a Windows zůstávají aktivní a stroj je nezachytává.</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Klávesa stroje</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Písmena, číslice a běžné modifikační klávesy se přenášejí přímo. Zde je třeba přiřadit pouze funkční a speciální klávesy Amigy.</value></data>
+</root>

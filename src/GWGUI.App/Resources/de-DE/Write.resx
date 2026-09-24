@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Write.Title"><value>Schreiben</value></data>
   <data name="Write.SelectSource"><value>Wählen Sie ein vorhandenes Quellbild.</value></data>
   <data name="Write.Ambiguous"><value>Das Format ist nicht eindeutig. Wählen Sie explizit ein kompatibles Format.</value></data>
@@ -29,7 +21,7 @@
   <data name="Write.VisualizeFormatRequired"><value>Wählen Sie das Festplattenformat aus, bevor Sie die Spuren anzeigen.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Internes Schreiben (experimentell)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Schreibt direkt mit der internen Engine ohne gw.exe.</value></data>
-  <data name="Write.InternalPreview"><value>GW GUI Internes Schreiben: {0}</value></data>
+  <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI Internes Schreiben: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Mindestens eine ausgewählte erweiterte Option wird beim internen Schreiben noch nicht unterstützt.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Die interne Überprüfung ist noch nicht verfügbar. Aktivieren Sie „Nicht überprüfen“.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Spur {0}, Seite {1}: {2}</value></data>

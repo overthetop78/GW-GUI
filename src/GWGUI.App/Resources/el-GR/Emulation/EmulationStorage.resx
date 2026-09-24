@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Storage.Media.Add"><value>Προσθήκη μέσου</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Δημιουργία σκληρού δίσκου</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Μέγεθος σκληρού δίσκου (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Δεν υπάρχει μέσο. Προσθέστε μια δισκέτα, σκληρό δίσκο ή CD που υποστηρίζεται από το επιλεγμένο μοντέλο.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Μόνο ανάγνωση</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>σκληρός δίσκος Amiga|*.hdf|Όλα τα αρχεία|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Το επιλεγμένο μοντέλο δεν υποστηρίζει ένα σκληρό δίσκο.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Το μοντέλο αυτό δέχεται το πολύ {0} floppy drive(s).</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Το μοντέλο αυτό δέχεται το πολύ {0} σκληρό δίσκο( ών).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Το επιλεγμένο μοντέλο δεν υποστηρίζει CD κίνηση.</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Μονάδα CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Αριθμός μονάδων δισκέτας</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Αριθμός σκληρών δίσκων</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Ταχύτητα κίνησης δισκέτας</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Εικόνες με δισκέτα για την προστασία εγγραφής</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Επανακατεύθυνση δισκέτας γράφει</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Ταχύτητα CD</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Προσθήκη υπάρχοντος σκληρού δίσκου</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Σκληροί δίσκοι</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Δεν έχει συνδεθεί σκληρός δίσκος σε αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Δισκέτες</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Προσθήκη συσκευής αποθήκευσης</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Συσχετισμένο μέσο</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Η γεωμετρία του δίσκου καθορίζεται αυτόματα από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Δημιουργήθηκε κενή εικόνα δισκέτας: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Το αρχείο θα δημιουργηθεί κενό και πρέπει να διαμεριστεί και να μορφοποιηθεί στο εξομοιούμενο μηχάνημα.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Εγγραφέας CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Κενός δίσκος δημιουργείται μόνο όταν το επιλεγμένο μηχάνημα και ο εξομοιωτής υποστηρίζουν εγγραφή.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Μονάδα CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Ρύθμιση</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Δημιουργία κενής δισκέτας</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Εικόνα δίσκου</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Επιλέξτε μια υπάρχουσα εικόνα δίσκου.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Το επιλεγμένο αρχείο θα συνδεθεί σε αυτήν την εικονική μονάδα.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Μονάδα δισκέτας</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Εικόνα δισκέτας Amiga|*.adf|Όλα τα αρχεία|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Σκληρός δίσκος</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Διασύνδεση</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Προκατανομή αρχείου</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Τα floppies και τα CD εισάγονται ή αντικαθίστανται από το μηχάνημα που εκτελείται.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Αφαίρεση μέσου</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Η εικόνα δίσκου υπάρχει ήδη: {0}\nΘέλετε να την αντικαταστήσετε;</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Οι διαθέσιμοι τύποι, τα μοντέλα και τα αναγνωριστικά εξαρτώνται από το επιλεγμένο μηχάνημα.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Μονάδα ταινίας</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Χρήση δίσκου</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Χρήση υπάρχοντος δίσκου</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Τροποποίηση στα Γενικά</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Δεν υπάρχει άλλη διαθέσιμη συσκευή αποθήκευσης για αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Συσκευές αποθήκευσης</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Δέσμευση</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Αυτόματη γεωμετρία</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Κενό μέσο</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Byte ανά τομέα</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Υπολογισμένη χωρητικότητα: {0}</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Προσαρμοσμένο μέγεθος</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Κύλινδροι</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Φάκελος προορισμού</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Γεωμετρία δίσκου (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Προφίλ μεγέθους</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Μονάδα δισκέτας</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Κεφαλές</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Το μέγεθος ή η γεωμετρία του δίσκου δεν είναι έγκυρα.</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Δεσμεύει αμέσως τον φυσικό χώρο· διαφορετικά το είδωλο μεγαλώνει κατά την εγγραφή.</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Τομείς</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Κασέτα</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Φυσίγγιο</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Συμπαγείς δίσκοι</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Εμφάνιση δραστηριότητας μονάδων στην οθόνη του εξομοιωτή</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Κουλοχέρης</value></data>
+  <data name="Emulation.MultiDrive" xml:space="preserve"><value>Προσάρτηση των πρώτων τεσσάρων δίσκων στο DF0 ⁇ DF3</value></data>
+  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Δίσκος {0}</value></data>
+</root>
