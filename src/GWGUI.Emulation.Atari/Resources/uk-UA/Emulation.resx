@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Атарі XG-1 Світло гармати</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Синій/коричневий 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Синій/коричневий 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Емульти Atari ST, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , STE, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , TT і комп'ютери Falcon.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Налаштовує Atari 8-бітні комп'ютери та консолі Atari 5200.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Вбудовує Atari 2600 консолі.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Вбудовує консолі Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Поєднує портативну ігрову систему Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulates Atari Ягуар і Ягуар CD консолі.</value></data>
 </root>

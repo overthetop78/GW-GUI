@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>平行的四玩家游戏棒适配器</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>爱乐棒</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 控制器</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>模拟Amiga电脑, CDTV 财务报告和已审计财务报表 CD32 系统。</value></data>
 </root>

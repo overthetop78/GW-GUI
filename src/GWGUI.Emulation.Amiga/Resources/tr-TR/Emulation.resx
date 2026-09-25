@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga medya|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga sevinçstick</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 kontrolör</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Amiga bilgisayarlarını taklit et, CDTV ve CD32 sistemler.</value></data>
 </root>

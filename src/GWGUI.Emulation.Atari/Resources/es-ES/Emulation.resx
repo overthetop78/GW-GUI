@@ -78,5 +78,11 @@
   <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
   <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
   <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Controlador de Jaguar Atari</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emulas Atari ST, STE, TT y computadoras de Halcon.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emula las computadoras Atari de 8 bits y la consola Atari 5200.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Emula la consola Atari 2600.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emula la consola Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emula el sistema portátil Atari Lynx juego.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulas Atari Jaguar y Jaguar CD consolas.</value></data>
 </root>

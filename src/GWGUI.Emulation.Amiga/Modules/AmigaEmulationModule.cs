@@ -219,7 +219,8 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         cancellationToken.ThrowIfCancellationRequested();
         _ = AmigaModelCatalog.Get(machineId);
         var version = new AmigaCoreReleaseService(_httpClient, _coreDirectory).GetInstalledVersion();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(AmigaEmulationModuleConstants.Puae, version));
+        return ValueTask.FromResult(new EmulationEmulatorInstallation(
+            AmigaCoreCatalog.Get(AmigaEmulationModuleConstants.Puae), version));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
@@ -308,7 +309,7 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
                 new EmulationEmulatorMessageContext(AmigaEmulationModuleConstants.Puae)));
         var audio = runtime.Audio ?? new AmigaAudioConfiguration();
-        var creationContext = new AmigaMachineCreationContext(services.SessionsDirectory, corePath,
+        var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString(AmigaEmulationModuleConstants.N), AmigaEmulationModuleConstants.Saves));
@@ -327,7 +328,7 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     private static Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> CreateMachineFactory(
         AmigaEngine engine,
         AmigaMachineConfiguration configuration,
-        AmigaMachineCreationContext context) =>
+        EmulatorCreationContext context) =>
         media => engine.CreateMachine(configuration with { Media = ToAmigaMedia(media) }, context);
 
     private static IReadOnlyList<AmigaMediaConfiguration> ToAmigaMedia(IEnumerable<EmulationMedia> media) =>

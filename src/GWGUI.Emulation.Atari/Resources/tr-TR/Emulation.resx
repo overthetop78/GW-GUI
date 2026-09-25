@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
   <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emulates Atari ST, STE, TT Ve Falcon bilgisayarları.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emulates Atari 8-bit bilgisayarlar ve Atari 5200 konsolu.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Atari 2600 konsolunu bağışlayın.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800 konsolunu emulates.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Hareketli Atari Lynx oyun sistemini destekler.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulates Atari ve Jaguar Jaguar CD Konsollar.</value></data>
 </root>

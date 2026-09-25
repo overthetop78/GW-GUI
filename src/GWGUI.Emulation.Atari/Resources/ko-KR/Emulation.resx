@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>아타리 조이 2B+ Controller</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>파란색/갈색 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>파란색/갈색 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>아타리를 격리 ST, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , STE, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , TT Falcon 컴퓨터.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Atari 8 비트 컴퓨터와 Atari 5200 콘솔을 격리합니다.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Atari 2600 콘솔을 격리합니다.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800 콘솔을 격리합니다.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>휴대용 Atari Lynx 게임 시스템을 격리합니다.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Atari Jaguar와 Jaguar를 격리 CD 콘솔.</value></data>
 </root>

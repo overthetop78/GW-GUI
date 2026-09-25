@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ 主计长</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>蓝色/棕色 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>蓝色/棕色 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>模拟 Atari ST, , , , , , , STE, , , , , , , TT 和猎鹰电脑。</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>模拟Atari 8位计算机和Atari 5200控制台.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>模拟Atari 2600控制台.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>模拟Atari 7800控制台.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>模拟便携式Atari Lynx游戏系统.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>模拟 Atari 美洲虎和美洲虎 CD 控制台 控制台 控制台</value></data>
 </root>

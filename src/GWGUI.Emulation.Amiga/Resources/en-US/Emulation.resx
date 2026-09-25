@@ -5,4 +5,20 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
 
+  <data name="Emulation.Emulator.puae.Description"><value>Emulates Amiga computers, CDTV and CD32 systems.</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Chipset compatibility</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 controller</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>CD32 blue button</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 fast forward</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>CD32 green button</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 play / pause</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>CD32 red button</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 rewind</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>CD32 yellow button</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga joystick</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallel four-player joystick adapter</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3.5-inch DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3.5-inch HD · 1.76 MiB</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
 </root>

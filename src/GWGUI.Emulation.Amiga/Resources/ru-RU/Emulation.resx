@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Параллельный четырехпользовательский адаптер джойстика</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Амига джойстик</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 контроллер</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>эмулирует компьютеры Amiga; CDTV и CD32 систем.</value></data>
 </root>

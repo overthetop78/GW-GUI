@@ -44,8 +44,7 @@ internal static class AtariCoreCatalogFunctions
         {
             foreach (var model in entry.Models)
             {
-                if (!result.TryAdd(model, entry.Emulator))
-                    throw new InvalidDataException(AtariCoreCatalogErrors.DuplicateModel);
+                result.TryAdd(model, entry.Emulator);
             }
         }
         if (Enum.GetValues<AtariMachineModel>().Any(model => !result.ContainsKey(model)))

@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
   <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emulátok Atari ST, STE, TT és a sólyom számítógépeket.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emulates Atari 8- bites számítógépek és az Atari 5200 konzol.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Emulálja az Atari 2600 konzolt.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emulálja az Atari 7800 konzolt.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulálja a hordozható Atari Lynx játékrendszert.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulates Atari Jaguar és Jaguar CD konzolok.</value></data>
 </root>

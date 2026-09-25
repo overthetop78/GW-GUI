@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Имитирует Atari ST, STE, TT Компьютеры Falcon.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Имитирует 8-битные компьютеры Atari и консоль Atari 5200.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Консоль Atari 2600.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Выпускается консоль Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Имитирует портативную игровую систему Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Выпущены Atari Jaguar и Jaguar CD Консоли.</value></data>
 </root>

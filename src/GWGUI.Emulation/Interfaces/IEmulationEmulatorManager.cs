@@ -15,8 +15,16 @@ public interface IEmulationEmulatorManager
 
     async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
         IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) =>
-        [await GetEmulatorInstallationAsync(configuration, cancellationToken).ConfigureAwait(false)];
+        CancellationToken cancellationToken = default)
+    {
+        var installation = await GetEmulatorInstallationAsync(configuration, cancellationToken)
+            .ConfigureAwait(false);
+        if (string.IsNullOrWhiteSpace(installation.EmulatorId)
+            || string.IsNullOrWhiteSpace(installation.DisplayName)
+            || string.IsNullOrWhiteSpace(installation.DescriptionResourceKey))
+            throw new InvalidOperationException(nameof(EmulationEmulatorInstallation));
+        return [installation];
+    }
 
     async ValueTask<IEmulationConfiguration> UseEmulatorAsync(
         IEmulationConfiguration configuration,

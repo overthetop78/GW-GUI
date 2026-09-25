@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Name</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>Điều khiển CD32</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Kết hợp máy tính Amiga, CDTV và CD32 Hệ thống.</value></data>
 </root>

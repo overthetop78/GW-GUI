@@ -32,7 +32,7 @@ internal static class AtariConfigurationStoreFunctions
         if (document.Firmwares is null || document.Media is null || document.Options is null
             || document.Input is null || document.Folders is null)
             throw new InvalidDataException(AtariConfigurationStoreConstants.InvalidDocumentError);
-        if (AtariConfigurationFunctions.GetCore(document.Model) != document.Core)
+        if (!AtariCoreCatalog.GetAll(document.Model).Any(entry => entry.Emulator == document.Core))
             throw new InvalidDataException(AtariConfigurationStoreConstants.CoreMismatchError);
         return new AtariMachineConfiguration(document.Model,
             document.Firmwares.Select(firmware => firmware with
@@ -48,7 +48,8 @@ internal static class AtariConfigurationStoreFunctions
             document.Id,
             AtariConstants.CurrentConfigurationSchemaVersion,
             document.AudioEnabled,
-            ResolveFolders(document.Folders, pathBase));
+            ResolveFolders(document.Folders, pathBase),
+            document.Core);
     }
 
     internal static string? StorePath(string? path, string pathBase)

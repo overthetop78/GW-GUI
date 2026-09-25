@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>สื่อต่าง ๆ ของ Amga|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|ทุกแฟ้ม|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>แท่งควบคุม Amiga</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>ตัวควบคุม CD32</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>จําลองคอมพิวเตอร์อะมิกา CDTV ถึง CD32 ระบบ</value></data>
 </root>

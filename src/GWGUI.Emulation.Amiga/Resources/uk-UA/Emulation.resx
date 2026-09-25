@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Аміга медіа|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Всі файли|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Аміга джойстик</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 контролер</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Емульти комп'ютерів Amiga, CDTV і CD32 системи.</value></data>
 </root>

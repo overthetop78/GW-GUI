@@ -62,19 +62,20 @@ internal static class EmulationModuleSettingsNavigationScenarios
             controller.ConfigurationChanged += (_, _) => useCount++;
             var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
             await controller.RefreshAsync();
-            Assert.Equal(["emulator-a", "emulator-b"], panel.Emulators.Items.Cast<string>());
-            Assert.Equal("emulator-a", panel.Emulators.SelectedItem);
+            Assert.Equal(["emulator-a", "emulator-b"], panel.Emulators.Items
+                .Cast<EmulationEmulatorInstallation>().Select(item => item.EmulatorId));
+            Assert.Equal("emulator-a", panel.Emulators.SelectedValue);
             Assert.Equal(0, useCount);
             Assert.True(panel.Emulators.IsEnabled);
             Assert.Equal(Visibility.Visible, panel.Installed.Visibility);
             Assert.Equal(Visibility.Collapsed, panel.Install.Visibility);
 
-            panel.Emulators.SelectedItem = "emulator-b";
+            panel.Emulators.SelectedValue = "emulator-b";
             await System.Windows.Threading.Dispatcher.Yield(
                 System.Windows.Threading.DispatcherPriority.ContextIdle);
             Assert.Equal("emulator-b", ((MachineConfigurationScenarios.Configuration)configuration).Value);
             Assert.Equal(1, useCount);
-            Assert.Equal("emulator-b", panel.Emulators.SelectedItem);
+            Assert.Equal("emulator-b", panel.Emulators.SelectedValue);
 
             saved = true;
             await controller.RefreshAsync();
@@ -116,7 +117,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
         {
             controller.ConfigurationChanged += (_, _) => useCount++;
             await controller.RefreshAsync();
-            panel.Emulators.SelectedItem = "emulator-b";
+            panel.Emulators.SelectedValue = "emulator-b";
             await operationStarted.Task.WaitAsync(TimeSpan.FromSeconds(1));
 
             await controller.DisposeAsync();
@@ -124,8 +125,8 @@ internal static class EmulationModuleSettingsNavigationScenarios
             Assert.True(operationCancelled);
             Assert.Equal(0, useCount);
             Assert.Equal("emulator-a", ((MachineConfigurationScenarios.Configuration)configuration).Value);
-            panel.Emulators.SelectedItem = "emulator-a";
-            panel.Emulators.SelectedItem = "emulator-b";
+            panel.Emulators.SelectedValue = "emulator-a";
+            panel.Emulators.SelectedValue = "emulator-b";
             await System.Windows.Threading.Dispatcher.Yield(
                 System.Windows.Threading.DispatcherPriority.ContextIdle);
             Assert.Equal(0, useCount);

@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Azul/marrom 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Azul/marrom 2</value></data>
   <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emula o Atari ST, STE, TT e computadores Falcon.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emula computadores de 8 bits Atari e o console Atari 5200.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Emula a consola Atari 2600.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emula a consola Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emula o sistema de jogos portátil Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emula Atari Jaguar e Jaguar CD Console.</value></data>
 </root>

@@ -13,11 +13,14 @@ public sealed record AtariMachineConfiguration : IEmulationConfiguration
         Guid id = default,
         int schemaVersion = AtariConstants.CurrentConfigurationSchemaVersion,
         bool audioEnabled = true,
-        AtariFolderConfiguration? folders = null)
+        AtariFolderConfiguration? folders = null,
+        AtariEmulator? core = null)
     {
         Model = model;
         Family = AtariConfigurationFunctions.GetFamily(model);
-        Core = AtariConfigurationFunctions.GetCore(model);
+        Core = core ?? AtariConfigurationFunctions.GetCore(model);
+        if (!AtariCoreCatalog.GetAll(model).Any(entry => entry.Emulator == Core))
+            throw new ArgumentException(nameof(core));
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];
         Options = options is null ? new Dictionary<string, string>() : new Dictionary<string, string>(options);
@@ -35,7 +38,7 @@ public sealed record AtariMachineConfiguration : IEmulationConfiguration
     public AtariMachineModel Model { get; }
     public string MachineId => Model.ToString();
     public AtariMachineFamily Family { get; }
-    public AtariEmulator Core { get; }
+    public AtariEmulator Core { get; init; }
     public IReadOnlyList<AtariFirmwareConfiguration> Firmwares { get; init; }
     public IReadOnlyList<AtariMediaConfiguration> Media { get; init; }
     public IReadOnlyDictionary<string, string> Options { get; init; }

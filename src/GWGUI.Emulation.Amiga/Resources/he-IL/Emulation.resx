@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|כל הקבצים|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>עמיגה שמחה</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 בקר</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>מחשבים אמיגה CDTV ו CD32 מערכות.</value></data>
 </root>

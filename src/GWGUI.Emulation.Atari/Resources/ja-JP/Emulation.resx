@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atariの喜び2B+ コントローラー</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>青/茶色 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>青/茶色 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>アタリをエミュレートする ST, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , STE, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , TT パソコンとファルコンコンピュータ</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>アタリ8ビットコンピュータとアタリ5200コンソールをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Atari 2600コンソールをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800コンソールをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>ポータブルアタリLynxゲームシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>アタリ・ジャガーとジャガーをエミュレート CD コンソール。</value></data>
 </root>

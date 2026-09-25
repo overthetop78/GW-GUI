@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Controller.Joystick"><value>Tongkat joyga Amiga</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>Pengontrol CD32</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Emulasi komputer Amiga, CDTV dan CD32 sistem.</value></data>
 </root>

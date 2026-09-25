@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>כחול/חום 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>כחול/חום 2</value></data>
   <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Embedd Atari ST, STE, TT מחשבי פלקון</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>מחשבים Atari 8-bit וקונסולת Atari 5200.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>קונסולת Atari 2600</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>קונסולת Atari 7800</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>מאמת את מערכת המשחק של Atari Lynx הניידת.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Atari יגואר ויגואר CD הקונסולות</value></data>
 </root>

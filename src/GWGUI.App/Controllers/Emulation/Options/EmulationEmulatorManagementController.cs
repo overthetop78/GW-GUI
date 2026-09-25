@@ -15,6 +15,7 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
     private readonly Func<IEmulationConfiguration> _getConfiguration;
     private readonly Action<IEmulationConfiguration> _setConfiguration;
     private readonly Func<bool> _hasSavedConfiguration;
+    private readonly IEmulationModuleLocalization? _localization;
     private EmulationCoreManagementPanel? _view;
     private CancellationTokenSource? _operation;
     private Task _operationTask = Task.CompletedTask;
@@ -26,12 +27,14 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
     internal EmulationEmulatorManagementController(IEmulationEmulatorManager manager,
         Func<IEmulationConfiguration> getConfiguration,
         Action<IEmulationConfiguration> setConfiguration,
-        Func<bool> hasSavedConfiguration)
+        Func<bool> hasSavedConfiguration,
+        IEmulationModuleLocalization? localization = null)
     {
         _manager = manager;
         _getConfiguration = getConfiguration;
         _setConfiguration = setConfiguration;
         _hasSavedConfiguration = hasSavedConfiguration;
+        _localization = localization;
     }
 
     internal event EventHandler? ConfigurationChanged;
@@ -77,8 +80,12 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
         _loading = true;
         try
         {
-            view.Emulators.ItemsSource = installations.Select(item => item.EmulatorId).ToArray();
-            view.Emulators.SelectedItem = selected.EmulatorId;
+            view.Emulators.DisplayMemberPath = nameof(EmulationEmulatorInstallation.DisplayName);
+            view.Emulators.SelectedValuePath = nameof(EmulationEmulatorInstallation.EmulatorId);
+            view.Emulators.ItemsSource = installations;
+            view.Emulators.SelectedValue = selected.EmulatorId;
+            view.SetDescription(LocExtension.GetLocalized(_localization,
+                selected.DescriptionResourceKey));
             view.ShowInstallation(selected.InstalledVersion is not null);
             view.SetStatus(string.Empty);
         }
@@ -91,7 +98,7 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
 
     private async void EmulatorChanged(object sender, SelectionChangedEventArgs args)
     {
-        if (_disposed || _loading || sender is not ComboBox { SelectedItem: string emulatorId }) return;
+        if (_disposed || _loading || sender is not ComboBox { SelectedValue: string emulatorId }) return;
         await RunAsync(async cancellationToken =>
         {
             var configuration = await _manager.UseEmulatorAsync(

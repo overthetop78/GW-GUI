@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptateur parallèle pour quatre joysticks</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Joystick Amiga</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>Contrôleur CD32</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Emule les ordinateurs Amiga, CDTV et CD32 systèmes.</value></data>
 </root>

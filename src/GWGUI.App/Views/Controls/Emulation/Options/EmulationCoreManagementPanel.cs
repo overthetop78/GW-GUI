@@ -25,6 +25,7 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         Maximum = EmulationCoreManagementConstants.CompletedProgress,
         Visibility = Visibility.Collapsed
     };
+    internal TextBlock Description { get; } = new() { TextWrapping = TextWrapping.Wrap };
     internal TextBlock Status { get; } = new() { TextWrapping = TextWrapping.Wrap };
 
     internal EmulationCoreManagementPanel(Func<string, object[], string> localize)
@@ -39,6 +40,7 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         AutomationProperties.SetLiveSetting(Status, AutomationLiveSetting.Assertive);
 
         var content = new Grid { Margin = new Thickness(16, 12, 16, 12) };
+        content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -67,12 +69,18 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         Grid.SetColumn(Cancel, 3);
         content.Children.Add(Cancel);
 
-        Status.Margin = new Thickness(0, 10, 0, 6);
+        Description.Margin = new Thickness(0, 10, 0, 2);
+        Description.SetResourceReference(ForegroundProperty, ControlVisualConstants.MutedTextBrushResource);
+        Grid.SetRow(Description, 1);
+        Grid.SetColumnSpan(Description, 4);
+        content.Children.Add(Description);
+
+        Status.Margin = new Thickness(0, 4, 0, 6);
         Status.SetResourceReference(ForegroundProperty, ControlVisualConstants.MutedTextBrushResource);
-        Grid.SetRow(Status, 1);
+        Grid.SetRow(Status, 2);
         Grid.SetColumnSpan(Status, 4);
         content.Children.Add(Status);
-        Grid.SetRow(Progress, 2);
+        Grid.SetRow(Progress, 3);
         Grid.SetColumnSpan(Progress, 4);
         content.Children.Add(Progress);
 
@@ -80,6 +88,8 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         card.SetResourceReference(FrameworkElement.StyleProperty, "Card");
         Content = card;
     }
+
+    internal void SetDescription(string text) => Description.Text = text;
 
     internal void ShowInstallation(bool installed)
     {

@@ -2,11 +2,13 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Factories;
 
-internal abstract class AtariMachineFactory(AtariEmulator emulator) : IAtariMachineFactory
+internal abstract class AtariMachineFactory(AtariEmulator emulator) : IEmulatorAdapter
 {
-    public AtariEmulator Emulator { get; } = emulator;
+    private AtariEmulator Emulator { get; } = emulator;
+    public string EmulatorId => AtariCoreCatalog.Get(Emulator).Id;
 
-    public IEmulatedMachine Create(AtariMachineConfiguration configuration, AtariMachineCreationContext context)
+    public AtariMachine Create(AtariMachineConfiguration configuration,
+        EmulatorCreationContext context)
     {
         if (!OperatingSystem.IsWindows())
             throw new PlatformNotSupportedException();

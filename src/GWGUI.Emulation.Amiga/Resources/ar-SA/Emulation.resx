@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>وسائط الإعلام في أميغا|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|جميع الملفات|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga funstick</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>متحكم في الوثيقة CD32</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>يُمَنِعُ حواسيبَ أَميغا، CDTV و CD32 أنظمة</value></data>
 </root>

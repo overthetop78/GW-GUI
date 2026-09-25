@@ -101,4 +101,10 @@
   <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blue/brown 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blue/brown 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description" xml:space="preserve"><value>Emulates Atari ST, STE, TT and Falcon computers.</value></data>
+  <data name="Emulation.Emulator.atari800.Description" xml:space="preserve"><value>Emulates Atari 8-bit computers and the Atari 5200 console.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description" xml:space="preserve"><value>Emulates the Atari 2600 console.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description" xml:space="preserve"><value>Emulates the Atari 7800 console.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulates the portable Atari Lynx game system.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description" xml:space="preserve"><value>Emulates Atari Jaguar and Jaguar CD consoles.</value></data>
 </root>

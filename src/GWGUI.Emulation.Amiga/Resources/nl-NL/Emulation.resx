@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Chipset.Name"><value>Spaanplaat</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-controller</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga joystick</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Emuleert Amiga computers, CDTV en CD32 systemen.</value></data>
 </root>

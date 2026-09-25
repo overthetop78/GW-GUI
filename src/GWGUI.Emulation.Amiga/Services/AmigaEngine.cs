@@ -3,13 +3,19 @@ namespace GWGUI.Emulation.Amiga.Services;
 
 public sealed class AmigaEngine
 {
-    private readonly IAmigaMachineFactory _puaeFactory = new PuaeMachineFactory();
+    private readonly IReadOnlyDictionary<string, IEmulatorAdapter> _adapters;
+
+    public AmigaEngine()
+    {
+        var adapters = AmigaCoreCatalog.CreateAdapters();
+        _adapters = adapters.ToDictionary(adapter => adapter.EmulatorId, StringComparer.Ordinal);
+    }
 
     internal IEmulatedMachine CreateMachine(AmigaMachineConfiguration configuration,
-        AmigaMachineCreationContext context)
+        EmulatorCreationContext context)
     {
         ArgumentNullException.ThrowIfNull(configuration);
         ArgumentNullException.ThrowIfNull(context);
-        return _puaeFactory.Create(configuration, context);
+        return _adapters[AmigaEmulationModuleConstants.Puae].Create(configuration, context);
     }
 }

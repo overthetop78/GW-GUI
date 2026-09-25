@@ -76,7 +76,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
             _emulatorManagement = new EmulationEmulatorManagementController(manager,
                 () => _configuration,
                 SetConfiguration,
-                () => _saved.Any(configuration => configuration.MachineId == _configuration.MachineId));
+                () => _saved.Any(configuration => configuration.MachineId == _configuration.MachineId),
+                module as IEmulationModuleLocalization);
             _emulatorManagement.ConfigurationChanged += EmulatorConfigurationChanged;
         }
         if (module is IEmulationFirmwareManager firmwareManager)

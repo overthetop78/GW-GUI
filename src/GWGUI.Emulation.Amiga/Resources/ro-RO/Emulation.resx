@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Chipset.Name"><value>Chipsset</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>joystick amiga</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>Controlor CD32</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Emulează computerele Amiga, CDTV şi CD32 sisteme.</value></data>
 </root>

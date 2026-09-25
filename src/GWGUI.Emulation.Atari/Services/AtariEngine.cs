@@ -4,25 +4,21 @@ namespace GWGUI.Emulation.Atari.Services;
 
 public sealed class AtariEngine
 {
-    private readonly IReadOnlyDictionary<AtariEmulator, IAtariMachineFactory> _factories;
+    private readonly IReadOnlyDictionary<string, IEmulatorAdapter> _adapters;
 
     public AtariEngine()
     {
-        IAtariMachineFactory[] factories =
-        [
-            new HatariMachineFactory(), new Atari800MachineFactory(), new StellaMachineFactory(),
-            new ProSystemMachineFactory(), new BeetleLynxMachineFactory(), new VirtualJaguarMachineFactory()
-        ];
-        _factories = factories.ToDictionary(factory => factory.Emulator);
+        var adapters = AtariCoreCatalog.CreateAdapters();
+        _adapters = adapters.ToDictionary(adapter => adapter.EmulatorId, StringComparer.Ordinal);
     }
 
     internal IEmulatedMachine CreateMachine(AtariMachineConfiguration configuration,
-        AtariMachineCreationContext context)
+        EmulatorCreationContext context)
     {
         ArgumentNullException.ThrowIfNull(configuration);
         ArgumentNullException.ThrowIfNull(context);
-        return _factories.TryGetValue(configuration.Core, out var factory)
-            ? factory.Create(configuration, context)
+        return _adapters.TryGetValue(AtariCoreCatalog.Get(configuration.Core).Id, out var adapter)
+            ? adapter.Create(configuration, context)
             : throw new ArgumentOutOfRangeException(nameof(configuration));
     }
 }

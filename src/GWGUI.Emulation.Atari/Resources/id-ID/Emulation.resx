@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
   <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
   <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emulasi Atari ST, STE, TT dan komputer Falcon.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emulasi Atari 8- bit komputer dan Atari 5200 konsol.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Emulasi konsol Atari 2600.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emulasi konsol Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Mengemulasi sistem permainan Atari Lynx yang portabel.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulasi Atari Jaguar dan Jaguar CD konsol.</value></data>
 </root>

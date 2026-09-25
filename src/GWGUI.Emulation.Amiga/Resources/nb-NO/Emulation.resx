@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>AMiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alle filer|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-kontroller</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga joystick</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Emulerer Amiga datamaskiner, CDTV og CD32 - Systemer.</value></data>
 </root>

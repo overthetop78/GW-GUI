@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo"><value>Stereo POKEY</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>emulgerer Atari ST, STE, TT Falcon datamaskiner.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emulgerer Atari 8-bits datamaskiner og Atari 5200 konsollen.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>I tillegg til Atari 2600-konsollen.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emulerer Atari 7800 konsollen.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulerer det bærbare Atari Lynx spillsystemet.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>I tillegg til Atari Jaguar og Jaguar CD konsoller.</value></data>
 </root>

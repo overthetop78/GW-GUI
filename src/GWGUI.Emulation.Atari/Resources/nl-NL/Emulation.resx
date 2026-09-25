@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
   <data name="Emulation.Atari.Video.Contrast"><value>Contrast</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emuleert Atari ST, STE, TT en Falcon computers.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emuleert Atari 8-bit computers en de Atari 5200 console.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Emuleert de Atari 2600 console.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emuleert de Atari 7800 console.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuleert het draagbare Atari Lynx spelsysteem.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuleert Atari Jaguar en Jaguar CD consoles.</value></data>
 </root>

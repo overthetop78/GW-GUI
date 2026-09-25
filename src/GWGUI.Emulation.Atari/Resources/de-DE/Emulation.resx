@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Video.Region"><value>Region</value></data>
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emuliert Atari ST, STE, TT und Falcon Computer.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emuliert Atari 8-Bit-Computer und die Atari 5200-Konsole.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Emuliert die Atari 2600 Konsole.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emuliert die Atari 7800 Konsole.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuliert das tragbare Atari Lynx-Spielsystem.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuliert Atari Jaguar und Jaguar CD Konsolen.</value></data>
 </root>

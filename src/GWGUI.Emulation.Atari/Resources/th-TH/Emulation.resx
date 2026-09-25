@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari จอย 2B+ controller</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>สีน้ำเงิน/น้ำตาล 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>สีน้ำเงิน/น้ำตาล 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>จําลอง อะตาริ ST. STE. TT และคอมพิวเตอร์ของฟอลคอน</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>จําลองคอมพิวเตอร์ 8 บิต และแผงควบคุม Atari 52.00</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>จําลองแผงควบคุม Aatari 2600</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>จําลองแผงควบคุมอาตาริ 7800</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>จําลองระบบเกม Atarari Lynx แบบพกพา</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>ภาพ จําลอง ของ อา ตา รี CD คอนโซล</value></data>
 </root>

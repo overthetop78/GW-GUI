@@ -79,4 +79,10 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ ελεγκτής</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Μπλε/καφέ 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Μπλε/καφέ 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Προσομοιάζει το Atari ST, STE, TT και υπολογιστές Falcon.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Προσομοιάζει τους υπολογιστές Atari 8-bit και την κονσόλα Atari 5200.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Προσομοιάζει την κονσόλα Atari 2600.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Προσομοιάζει την κονσόλα Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Προσομοιάζει το φορητό σύστημα παιχνιδιών Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Προσομοιάζει την Atari Jaguar και την Jaguar CD κονσόλες.</value></data>
 </root>

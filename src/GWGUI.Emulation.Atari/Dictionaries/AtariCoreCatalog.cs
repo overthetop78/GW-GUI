@@ -35,10 +35,18 @@ public static class AtariCoreCatalog
 
     private static readonly IReadOnlyDictionary<AtariEmulator, AtariCoreCatalogEntry> ByEmulator =
         Entries.ToDictionary(entry => entry.Emulator);
+    private static readonly IReadOnlyDictionary<string, AtariCoreCatalogEntry> ById =
+        Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);
     private static readonly IReadOnlyDictionary<AtariMachineModel, AtariEmulator> ByModel =
         AtariCoreCatalogFunctions.CreateModelAssociations(Entries);
 
     public static IReadOnlyList<AtariCoreCatalogEntry> All => Entries;
+
+    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
+    [
+        new HatariMachineFactory(), new Atari800MachineFactory(), new StellaMachineFactory(),
+        new ProSystemMachineFactory(), new BeetleLynxMachineFactory(), new VirtualJaguarMachineFactory()
+    ];
 
     public static AtariCoreCatalogEntry Get(AtariEmulator emulator) => ByEmulator.TryGetValue(emulator, out var entry)
         ? entry
@@ -47,6 +55,17 @@ public static class AtariCoreCatalog
     public static AtariCoreCatalogEntry Get(AtariMachineModel model) => ByModel.TryGetValue(model, out var emulator)
         ? Get(emulator)
         : throw new ArgumentOutOfRangeException(nameof(model), model, AtariCoreCatalogErrors.MissingModel);
+
+    public static AtariCoreCatalogEntry Get(string id) => ById.TryGetValue(id, out var entry)
+        ? entry
+        : throw new ArgumentOutOfRangeException(nameof(id), id, null);
+
+    public static IReadOnlyList<AtariCoreCatalogEntry> GetAll(AtariMachineModel model) =>
+        Entries.Where(entry => entry.Models.Contains(model)).ToArray();
+
+    public static EmulationEmulatorDefinition GetDefinition(AtariCoreCatalogEntry entry) => new(
+        entry.Id, entry.LibraryName, $"Emulation.Emulator.{entry.Id}.Description",
+        entry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));
 
     public static AtariCoreInstallationPaths GetInstallationPaths(AtariEmulator emulator,
         string installationRoot, string version) =>

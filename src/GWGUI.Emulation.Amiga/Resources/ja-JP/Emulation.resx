@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>並列4プレーヤージョイスティックアダプター</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>美賀ジョイスティック</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 コントローラー</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>明和コンピュータをエミュレートし、 CDTV と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と CD32 システム。</value></data>
 </root>

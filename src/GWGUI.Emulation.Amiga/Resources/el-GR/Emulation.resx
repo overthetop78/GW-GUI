@@ -19,4 +19,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Όλα τα αρχεία|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Το ξυλάκι της Amiga</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>Ελεγκτής CD32</value></data>
+  <data name="Emulation.Emulator.puae.Description"><value>Προσομοιάζει υπολογιστές Amiga, CDTV και CD32 συστήματα.</value></data>
 </root>
