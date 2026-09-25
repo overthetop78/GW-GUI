@@ -71,7 +71,13 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         _machines.SelectedIndex = 0;
         _configuration = module.CreateConfiguration(choices[0].Definition.Id);
         if (module is IEmulationEmulatorManager manager)
-            _emulatorManagement = new EmulationEmulatorManagementController(manager, CurrentMachineId);
+        {
+            _emulatorManagement = new EmulationEmulatorManagementController(manager,
+                () => _configuration,
+                SetConfiguration,
+                () => _saved.Any(configuration => configuration.MachineId == _configuration.MachineId));
+            _emulatorManagement.ConfigurationChanged += async (_, _) => await ExecuteUserChangeAsync();
+        }
         if (module is IEmulationFirmwareManager firmwareManager)
         {
             _firmwareManagement = new EmulationFirmwareManagementController(_module, firmwareManager,

@@ -37,20 +37,50 @@ internal static class EmulationModuleSettingsNavigationScenarios
         finally { module.Cleanup(); }
     }
 
-    internal static async Task CurrentEmulatorIsTheOnlyChoice()
+    internal static async Task UnsavedMachineChoosesExactlyOneEmulator()
     {
-        var manager = ControlledDependencies.Simulate<IEmulationEmulatorManager>((method, _) => method.Name switch
+        IEmulationConfiguration configuration = new MachineConfigurationScenarios.Configuration(
+            "synthetic", Guid.NewGuid(), "machine-a", "emulator-a");
+        var useCount = 0;
+        var saved = false;
+        var manager = ControlledDependencies.Simulate<IEmulationEmulatorManager>((method, arguments) => method.Name switch
         {
             "GetEmulatorInstallationAsync" => ValueTask.FromResult(
-                new EmulationEmulatorInstallation("current-emulator", "1.0.0")),
+                new EmulationEmulatorInstallation(
+                    ((MachineConfigurationScenarios.Configuration)configuration).Value, "1.0.0")),
+            "GetEmulatorInstallationsAsync" => ValueTask.FromResult<IReadOnlyList<EmulationEmulatorInstallation>>(
+                [new("emulator-a", "1.0.0"), new("emulator-b", null)]),
+            "UseEmulatorAsync" => UseEmulator((string)arguments[1]!),
             _ => throw new InvalidOperationException(method.Name)
         });
-        var controller = new EmulationEmulatorManagementController(manager, () => "machine-a");
+        var controller = new EmulationEmulatorManagementController(manager,
+            () => configuration,
+            value => configuration = value,
+            () => saved);
+        controller.ConfigurationChanged += (_, _) => useCount++;
         var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
         await controller.RefreshAsync();
-        Assert.Equal("current-emulator", Assert.Single(panel.Emulators.Items.Cast<string>()));
+        Assert.Equal(["emulator-a", "emulator-b"], panel.Emulators.Items.Cast<string>());
+        Assert.Equal("emulator-a", panel.Emulators.SelectedItem);
+        Assert.Equal(0, useCount);
+        Assert.True(panel.Emulators.IsEnabled);
         Assert.Equal(Visibility.Visible, panel.Installed.Visibility);
         Assert.Equal(Visibility.Collapsed, panel.Install.Visibility);
+
+        panel.Emulators.SelectedItem = "emulator-b";
+        await System.Windows.Threading.Dispatcher.Yield(
+            System.Windows.Threading.DispatcherPriority.ContextIdle);
+        Assert.Equal("emulator-b", ((MachineConfigurationScenarios.Configuration)configuration).Value);
+        Assert.Equal(1, useCount);
+        Assert.Equal("emulator-b", panel.Emulators.SelectedItem);
+
+        saved = true;
+        await controller.RefreshAsync();
+        Assert.False(panel.Emulators.IsEnabled);
+
+        ValueTask<IEmulationConfiguration> UseEmulator(string selected) =>
+            ValueTask.FromResult<IEmulationConfiguration>(
+                ((MachineConfigurationScenarios.Configuration)configuration) with { Value = selected });
     }
 
     internal static void ModuleWindowUsesTheGenericSectionAndDynamicTitle()
