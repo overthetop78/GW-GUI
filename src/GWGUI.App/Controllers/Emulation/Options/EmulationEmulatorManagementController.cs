@@ -9,16 +9,18 @@ using GWGUI.Emulation;
 
 namespace GWGUI.App.Controllers.Emulation.Options;
 
-internal sealed class EmulationEmulatorManagementController
+internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
 {
     private readonly IEmulationEmulatorManager _manager;
     private readonly Func<IEmulationConfiguration> _getConfiguration;
     private readonly Action<IEmulationConfiguration> _setConfiguration;
     private readonly Func<bool> _hasSavedConfiguration;
-    private EmulationCoreManagementPanel _view = null!;
+    private EmulationCoreManagementPanel? _view;
     private CancellationTokenSource? _operation;
+    private Task _operationTask = Task.CompletedTask;
     private bool _loading;
     private bool _busy;
+    private bool _disposed;
     private int _emulatorCount;
 
     internal EmulationEmulatorManagementController(IEmulationEmulatorManager manager,
@@ -36,6 +38,8 @@ internal sealed class EmulationEmulatorManagementController
 
     internal UIElement CreateView()
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        DetachView();
         _view = new EmulationCoreManagementPanel((key, arguments) => LocExtension.Get(key, arguments));
         _view.Install.Click += InstallClicked;
         _view.Cancel.Click += CancelClicked;
@@ -43,16 +47,28 @@ internal sealed class EmulationEmulatorManagementController
         return _view;
     }
 
+    private void DetachView()
+    {
+        if (_view is null) return;
+        _view.Install.Click -= InstallClicked;
+        _view.Cancel.Click -= CancelClicked;
+        _view.Emulators.SelectionChanged -= EmulatorChanged;
+        _view = null;
+    }
+
     internal async Task RefreshAsync()
     {
+        if (_disposed || _view is not { } view) return;
         var configuration = _getConfiguration();
         var installations = await _manager.GetEmulatorInstallationsAsync(configuration);
+        if (_disposed || !ReferenceEquals(_view, view)) return;
         if (installations.Count == 0 || installations.Any(item => string.IsNullOrWhiteSpace(item.EmulatorId)))
             throw new InvalidOperationException(nameof(installations));
         if (installations.Select(item => item.EmulatorId).Distinct(StringComparer.Ordinal).Count()
             != installations.Count)
             throw new InvalidOperationException(nameof(installations));
         var selected = await _manager.GetEmulatorInstallationAsync(configuration);
+        if (_disposed || !ReferenceEquals(_view, view)) return;
         if (!installations.Any(item => string.Equals(item.EmulatorId, selected.EmulatorId,
                 StringComparison.Ordinal)))
             throw new InvalidOperationException(nameof(selected));
@@ -61,10 +77,10 @@ internal sealed class EmulationEmulatorManagementController
         _loading = true;
         try
         {
-            _view.Emulators.ItemsSource = installations.Select(item => item.EmulatorId).ToArray();
-            _view.Emulators.SelectedItem = selected.EmulatorId;
-            _view.ShowInstallation(selected.InstalledVersion is not null);
-            _view.SetStatus(string.Empty);
+            view.Emulators.ItemsSource = installations.Select(item => item.EmulatorId).ToArray();
+            view.Emulators.SelectedItem = selected.EmulatorId;
+            view.ShowInstallation(selected.InstalledVersion is not null);
+            view.SetStatus(string.Empty);
         }
         finally
         {
@@ -75,7 +91,7 @@ internal sealed class EmulationEmulatorManagementController
 
     private async void EmulatorChanged(object sender, SelectionChangedEventArgs args)
     {
-        if (_loading || _view.Emulators.SelectedItem is not string emulatorId) return;
+        if (_disposed || _loading || sender is not ComboBox { SelectedItem: string emulatorId }) return;
         await RunAsync(async cancellationToken =>
         {
             var configuration = await _manager.UseEmulatorAsync(
@@ -90,50 +106,94 @@ internal sealed class EmulationEmulatorManagementController
     {
         await RunAsync(async cancellationToken =>
         {
-            _view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.SearchingResource));
+            var view = _view ?? throw new ObjectDisposedException(nameof(EmulationEmulatorManagementController));
+            view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.SearchingResource));
             var configuration = _getConfiguration();
             var releases = await _manager.FindEmulatorReleasesAsync(configuration, cancellationToken);
             var release = releases.FirstOrDefault(candidate => candidate.IsRequired)
                 ?? releases.FirstOrDefault()
                 ?? throw new InvalidOperationException(
                     LocExtension.Get(EmulationCoreManagementConstants.NoneFoundResource));
-            _view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.DownloadingResource,
+            view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.DownloadingResource,
                 release.DisplayName));
-            var progress = new Progress<double>(value => _view.Progress.Value = value);
+            var progress = new Progress<double>(value =>
+            {
+                if (!_disposed && ReferenceEquals(_view, view)) view.Progress.Value = value;
+            });
             var path = await _manager.InstallEmulatorAsync(
                 configuration, release, progress, cancellationToken);
             await RefreshAsync();
-            _view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.InstalledPathResource, path));
+            if (!_disposed && ReferenceEquals(_view, view))
+                view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.InstalledPathResource, path));
         });
     }
 
     private void CancelClicked(object sender, RoutedEventArgs args) => _operation?.Cancel();
 
-    private async Task RunAsync(Func<CancellationToken, Task> action)
+    private Task RunAsync(Func<CancellationToken, Task> action)
     {
-        _operation?.Dispose();
-        _operation = new CancellationTokenSource();
+        if (_disposed) return Task.CompletedTask;
+        var operation = new CancellationTokenSource();
+        _operation = operation;
+        _operationTask = RunOperationAsync(action, operation);
+        return _operationTask;
+    }
+
+    private async Task RunOperationAsync(Func<CancellationToken, Task> action,
+        CancellationTokenSource operation)
+    {
         SetBusy(true);
-        try { await action(_operation.Token); }
+        try { await action(operation.Token); }
         catch (OperationCanceledException)
         {
-            _view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.CancelledResource));
+            if (!_disposed && _view is { } view)
+                view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.CancelledResource));
         }
         catch (Exception error)
         {
-            ControlErrorPresenter.ShowUnexpected(_view, error, ControlErrorContexts.EmulatorManagement,
-                LocExtension.Get(EmulationCoreManagementConstants.EmulatorResource));
+            if (!_disposed && _view is { } view)
+                ControlErrorPresenter.ShowUnexpected(view, error, ControlErrorContexts.EmulatorManagement,
+                    LocExtension.Get(EmulationCoreManagementConstants.EmulatorResource));
         }
-        finally { SetBusy(false); }
+        finally
+        {
+            if (ReferenceEquals(_operation, operation))
+            {
+                _operation = null;
+                SetBusy(false);
+            }
+            operation.Dispose();
+        }
     }
 
     private void SetBusy(bool busy)
     {
         _busy = busy;
-        _view.Emulators.IsEnabled = !busy && !_hasSavedConfiguration() && _emulatorCount > 1;
-        _view.Install.IsEnabled = !busy;
-        _view.Cancel.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
-        _view.Progress.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
-        if (!busy) _view.Progress.Value = EmulationCoreManagementConstants.InitialProgress;
+        if (_disposed || _view is not { } view) return;
+        view.Emulators.IsEnabled = !busy && !_hasSavedConfiguration() && _emulatorCount > 1;
+        view.Install.IsEnabled = !busy;
+        view.Cancel.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
+        view.Progress.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
+        if (!busy) view.Progress.Value = EmulationCoreManagementConstants.InitialProgress;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_disposed) return;
+        _disposed = true;
+        DetachView();
+        var operation = _operation;
+        try
+        {
+            operation?.Cancel();
+            await _operationTask;
+        }
+        finally
+        {
+            if (ReferenceEquals(_operation, operation)) _operation = null;
+            operation?.Dispose();
+            _operationTask = Task.CompletedTask;
+            ConfigurationChanged = null;
+        }
     }
 }

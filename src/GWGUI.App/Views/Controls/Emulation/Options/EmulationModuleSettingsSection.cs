@@ -27,7 +27,7 @@ using System.IO;
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
 
-internal sealed partial class EmulationModuleSettingsSection : UserControl
+internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsyncDisposable
 {
     private readonly IEmulationModule _module;
     private readonly GWGUI.VideoPresentation.Services.VideoPresentationProfileStore _profiles;
@@ -49,6 +49,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private IReadOnlyList<IEmulationConfiguration> _saved = [];
     private IEmulationConfiguration _configuration;
     private bool _loading;
+    private bool _disposed;
     private readonly SemaphoreSlim _saveInputGate = new(1, 1);
     private EmulationMachineTab _selectedTab = EmulationMachineTab.General;
 
@@ -76,7 +77,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
                 () => _configuration,
                 SetConfiguration,
                 () => _saved.Any(configuration => configuration.MachineId == _configuration.MachineId));
-            _emulatorManagement.ConfigurationChanged += async (_, _) => await ExecuteUserChangeAsync();
+            _emulatorManagement.ConfigurationChanged += EmulatorConfigurationChanged;
         }
         if (module is IEmulationFirmwareManager firmwareManager)
         {
@@ -114,6 +115,9 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
     internal event EventHandler<EmulationMachineEditingContext>? EditingContextChanged;
     internal IEmulationConfiguration CurrentConfiguration => _configuration;
+
+    private async void EmulatorConfigurationChanged(object? sender, EventArgs args) =>
+        await ExecuteUserChangeAsync();
 
     internal void SetVideoShaderLoading(string moduleId, Guid configurationId, bool isLoading)
     {
@@ -163,6 +167,25 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         RebuildEditor();
         if (_emulatorManagement is not null) await _emulatorManagement.RefreshAsync();
         NotifyEditingContextChanged();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_disposed) return;
+        _disposed = true;
+        try
+        {
+            if (_emulatorManagement is not null)
+            {
+                _emulatorManagement.ConfigurationChanged -= EmulatorConfigurationChanged;
+                await _emulatorManagement.DisposeAsync();
+            }
+        }
+        finally
+        {
+            _machines.SelectionChanged -= MachineChanged;
+            Content = null;
+        }
     }
 
 }

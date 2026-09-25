@@ -12,6 +12,10 @@ public sealed class SettingsViewsTests(StaExecutionScenarios sta)
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.VerticalMachinesPreserveConfigurationStateAndTabs);
     [Fact] public Task UnsavedModuleMachineChoosesExactlyOneEmulator() =>
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.UnsavedMachineChoosesExactlyOneEmulator);
+    [Fact] public Task EmulatorControllerDisposalCancelsAndDetaches() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorControllerDisposalCancelsAndDetaches);
+    [Fact] public Task ModuleWindowReopensWithANewVisualTree() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.ModuleWindowReopensWithANewVisualTree);
     [Fact] public Task EachModuleUsesTheGenericSettingsWindow() =>
         sta.Run(EmulationModuleSettingsNavigationScenarios.ModuleWindowUsesTheGenericSectionAndDynamicTitle);
     [Fact] public Task EngineChangesPersistAndApply() => sta.Run(SettingsEditingScenarios.Engines);
