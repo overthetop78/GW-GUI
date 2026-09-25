@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Atari.Modules;
 
 public sealed class AtariEmulationModuleFactory : IEmulationModuleFactory
 {
-    public string Id => AtariEmulationModuleConstants.Atari;
+    public string Id => EmulationModuleConstants.Atari;
 
     public IEmulationModule Create(EmulationModuleContext context)
     {

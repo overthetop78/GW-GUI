@@ -1,8 +1,9 @@
-using GWGUI.Emulation.Atari.Constants;
-using GWGUI.Emulation.Atari.Contracts;
-using GWGUI.Emulation.Atari.Enums;
-using GWGUI.Emulation.Atari.Functions;
-using GWGUI.Emulation.Atari.Services;
+using GWGUI.Emulation.Atari.Common.Constants;
+using GWGUI.Emulation.Atari.Common.Contracts;
+using GWGUI.Emulation.Atari.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Constants;
+using GWGUI.Emulation.Atari.Common.Services;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 
@@ -13,16 +14,16 @@ internal static class AtariCassetteScenarios
     internal static void PlaybackSendsOneReturnPulse()
     {
         Assert.Equal([EmulationCassetteCommand.Play],
-            AtariCassetteInputController.AvailableCommands);
+            CassetteInputController.AvailableCommands);
         Assert.Equal(EmulationCassetteState.Empty,
-            AtariCassetteStateFunctions.From(mounted: false, motorActive: false));
+            CassetteStateFunctions.From(mounted: false, motorActive: false));
         Assert.Equal(EmulationCassetteState.Stopped,
-            AtariCassetteStateFunctions.From(mounted: true, motorActive: false));
+            CassetteStateFunctions.From(mounted: true, motorActive: false));
         Assert.Equal(EmulationCassetteState.Playing,
-            AtariCassetteStateFunctions.From(mounted: true, motorActive: true));
+            CassetteStateFunctions.From(mounted: true, motorActive: true));
 
-        var controller = new AtariCassetteInputController(
-            Configuration(AtariMachineModel.Atari800, Cassette(autoBoot: false), cassetteBoot: false));
+        var controller = new CassetteInputController(
+            Configuration(MachineModel.Atari800, Cassette(autoBoot: false), cassetteBoot: false));
         controller.SetPhysicalInput(EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.A }
@@ -40,9 +41,9 @@ internal static class AtariCassetteScenarios
     {
         foreach (var model in new[]
                  {
-                     AtariMachineModel.Atari400, AtariMachineModel.Atari800,
-                     AtariMachineModel.Atari800Xl, AtariMachineModel.Atari130Xe,
-                     AtariMachineModel.Xegs, AtariMachineModel.XlXe
+                     MachineModel.Atari400, MachineModel.Atari800,
+                     MachineModel.Atari800Xl, MachineModel.Atari130Xe,
+                     MachineModel.Xegs, MachineModel.XlXe
                  })
         {
             var media = Cassette(autoBoot: true);
@@ -50,33 +51,33 @@ internal static class AtariCassetteScenarios
             var prepared = new Atari800PreparedMedia(media, Atari800ContentType.Cassette,
                 "virtual.cas", null);
 
-            Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+            Assert.Equal(EightBitSettingsConstants.Enabled,
                 Atari800MediaFunctions.ApplyOptions(configuration, prepared)
-                    [AtariEightBitSettingsConstants.CassetteBootOptionKey]);
-            Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+                    [EightBitSettingsConstants.CassetteBootOptionKey]);
+            Assert.Equal(EightBitSettingsConstants.Enabled,
                 Atari800MediaFunctions.ApplyOptions(configuration with
                     {
                         Options = new Dictionary<string, string>(configuration.Options)
                         {
-                            [AtariEightBitSettingsConstants.SioAccelerationOptionKey] =
-                                AtariEightBitSettingsConstants.Disabled
+                            [EightBitSettingsConstants.SioAccelerationOptionKey] =
+                                EightBitSettingsConstants.Disabled
                         }
-                    }, prepared)[AtariEightBitSettingsConstants.SioAccelerationOptionKey]);
+                    }, prepared)[EightBitSettingsConstants.SioAccelerationOptionKey]);
         }
     }
 
     internal static void AutomaticBootSendsOneDelayedReturnOnlyForOriginalModels()
     {
-        foreach (var model in new[] { AtariMachineModel.Atari400, AtariMachineModel.Atari800 })
+        foreach (var model in new[] { MachineModel.Atari400, MachineModel.Atari800 })
         {
-            var controller = new AtariCassetteInputController(
+            var controller = new CassetteInputController(
                 Configuration(model, Cassette(autoBoot: true), cassetteBoot: false));
             controller.SetPhysicalInput(EmulationInputSnapshot.Empty with
             {
                 Keys = new HashSet<EmulationKey> { EmulationKey.A }
             });
 
-            for (var frame = 0; frame < AtariCassetteInputController.AutomaticReturnDelayFrames; frame++)
+            for (var frame = 0; frame < CassetteInputController.AutomaticReturnDelayFrames; frame++)
                 Assert.Equal([EmulationKey.A], controller.NextFrame().Keys);
 
             var pulse = controller.NextFrame();
@@ -88,27 +89,27 @@ internal static class AtariCassetteScenarios
 
         foreach (var model in new[]
                  {
-                     AtariMachineModel.Atari800Xl, AtariMachineModel.Atari130Xe,
-                     AtariMachineModel.Xegs, AtariMachineModel.XlXe
+                     MachineModel.Atari800Xl, MachineModel.Atari130Xe,
+                     MachineModel.Xegs, MachineModel.XlXe
                  })
         {
-            var controller = new AtariCassetteInputController(
+            var controller = new CassetteInputController(
                 Configuration(model, Cassette(autoBoot: true), cassetteBoot: false));
-            for (var frame = 0; frame <= AtariCassetteInputController.AutomaticReturnDelayFrames; frame++)
+            for (var frame = 0; frame <= CassetteInputController.AutomaticReturnDelayFrames; frame++)
                 Assert.DoesNotContain(EmulationKey.Return, controller.NextFrame().Keys);
         }
     }
 
-    private static AtariMachineConfiguration Configuration(AtariMachineModel model,
-        AtariMediaConfiguration media, bool cassetteBoot) => new(model, media: [media],
+    private static MachineConfiguration Configuration(MachineModel model,
+        MediaConfiguration media, bool cassetteBoot) => new(model, media: [media],
         options: new Dictionary<string, string>
         {
-            [AtariEightBitSettingsConstants.CassetteBootOptionKey] = cassetteBoot
-                ? AtariEightBitSettingsConstants.Enabled
-                : AtariEightBitSettingsConstants.Disabled
+            [EightBitSettingsConstants.CassetteBootOptionKey] = cassetteBoot
+                ? EightBitSettingsConstants.Enabled
+                : EightBitSettingsConstants.Disabled
         });
 
-    private static AtariMediaConfiguration Cassette(bool autoBoot) => new(
-        "virtual.cas", AtariMediaCategory.Cassette, EmulationMediaSlot.Cassette0,
+    private static MediaConfiguration Cassette(bool autoBoot) => new(
+        "virtual.cas", MediaCategory.Cassette, EmulationMediaSlot.Cassette0,
         CassetteAutoBoot: autoBoot);
 }

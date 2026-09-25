@@ -1,17 +1,18 @@
-using GWGUI.Emulation.Atari.Contracts;
-using GWGUI.Emulation.Atari.Enums;
-using GWGUI.Emulation.Atari.Functions;
-using GWGUI.Emulation.Amiga.Contracts;
-using GWGUI.Emulation.Amiga.Enums;
+using GWGUI.Emulation.Atari.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Functions;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
+using AtariMachineConfiguration = GWGUI.Emulation.Atari.Common.Contracts.MachineConfiguration;
+using AmigaMachineConfiguration = GWGUI.Emulation.Amiga.Common.Contracts.MachineConfiguration;
+using AmigaMediaCategory = GWGUI.Emulation.Amiga.Common.Enums.MediaCategory;
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 internal static class MachineConfigurationMappingScenarios
 {
     public static void AtariOption(string source,string value,string target,string? expected)
     {
-        var configuration = new AtariMachineConfiguration(AtariMachineModel.Ste,options:new Dictionary<string,string>{{source,value},{"custom","kept"}});
-        var mapped = AtariMachineOptionFunctions.Apply(configuration);
+        var configuration = new AtariMachineConfiguration(MachineModel.Ste,options:new Dictionary<string,string>{{source,value},{"custom","kept"}});
+        var mapped = MachineOptionFunctions.Apply(configuration);
         if(expected is null) Assert.False(mapped.ContainsKey(target)); else Assert.Equal(expected,mapped[target]);
         Assert.Equal(value,configuration.Options[source]); Assert.Equal("kept",mapped["custom"]);
     }
@@ -36,8 +37,8 @@ internal static class MachineConfigurationMappingScenarios
         Assert.Equal("200",mapped.Options["puae_cpu_throttle"]); Assert.Equal("4",mapped.Options["puae_cpu_multiplier"]);
         Assert.False(mapped.Options.ContainsKey("puae_floppy_multidrive")); Assert.False(mapped.Options.ContainsKey("configuration.cpuSpeed"));
         Assert.Equal("original-rom",original.KickstartPath); Assert.False(original.Options!.ContainsKey("puae_crop")); Assert.Equal(original.Id,mapped.Id);
-        var storage = GWGUI.Emulation.Amiga.Functions.AmigaStorageSettingsFunctions.Describe(mapped);
-        var changed = GWGUI.Emulation.Amiga.Functions.AmigaStorageSettingsFunctions.Apply(mapped,storage with
+        var storage = GWGUI.Emulation.Amiga.Common.Functions.StorageSettingsFunctions.Describe(mapped);
+        var changed = GWGUI.Emulation.Amiga.Common.Functions.StorageSettingsFunctions.Apply(mapped,storage with
         {
             ConfiguredSlots=[EmulationMediaSlot.Floppy0], MountedMedia=[new("virtual.adf",EmulationMediaSlot.Floppy0,EmulationMediaType.Floppy,true,true)]
         });
@@ -48,14 +49,14 @@ internal static class MachineConfigurationMappingScenarios
     {
         using var http = new System.Net.Http.HttpClient();
         var module = new GWGUI.Emulation.Atari.Modules.AtariEmulationModule("virtual-config","virtual-base",http,"virtual-core");
-        var original = new AtariMachineConfiguration(Enum.Parse<AtariMachineModel>(model),options:new Dictionary<string,string>{{"removed","old"},{"preserved","kept"}});
+        var original = new AtariMachineConfiguration(Enum.Parse<MachineModel>(model),options:new Dictionary<string,string>{{"removed","old"},{"preserved","kept"}});
         var mapped = Assert.IsType<AtariMachineConfiguration>(module.ApplySettings(original,new Dictionary<string,string?>{{"removed",null},{"specific","synthetic"}}));
         Assert.False(mapped.Options.ContainsKey("removed")); Assert.Equal("synthetic",mapped.Options["specific"]); Assert.Equal("kept",mapped.Options["preserved"]);
         Assert.Equal(original.Model,mapped.Model); Assert.Equal(original.Core,mapped.Core); Assert.Equal(original.Id,mapped.Id);
         Assert.Equal("old",original.Options["removed"]); Assert.False(original.Options.ContainsKey("specific"));
         var runtimeOptions=module.RuntimeOptions(mapped);
         Assert.Equal("synthetic",runtimeOptions["specific"]); Assert.Equal("kept",runtimeOptions["preserved"]);
-        if(original.Family==AtariMachineFamily.St)
+        if(original.Family==MachineFamily.St)
         {
             Assert.Equal(model is "Ste" or "MegaSte" ? "ste" : model=="Tt" ? "tt" : model=="Falcon" ? "falcon" : "st",runtimeOptions["hatari_machinetype"]);
         }
@@ -63,9 +64,9 @@ internal static class MachineConfigurationMappingScenarios
     }
     public static void EightBitNormalization()
     {
-        var original = new AtariMachineConfiguration(AtariMachineModel.Atari400,options:new Dictionary<string,string>
+        var original = new AtariMachineConfiguration(MachineModel.Atari400,options:new Dictionary<string,string>
         {{"gwgui_atari_video_standard","bad"},{"atari800_internalbasic","bad"},{"atari800_show_diskled","bad"},{"atari800_axlon_shadow","enabled"},{"custom","kept"}});
-        var options = AtariEightBitSettingsFunctions.Normalize(original);
+        var options = EightBitSettingsFunctions.Normalize(original);
         Assert.Equal("Ntsc",options["gwgui_atari_video_standard"]);
         Assert.Equal("disabled",options["atari800_internalbasic"]); Assert.Equal("enabled",options["atari800_show_diskled"]);
         Assert.Equal("disabled",options["atari800_axlon_shadow"]); Assert.Equal("kept",options["custom"]);
@@ -74,8 +75,8 @@ internal static class MachineConfigurationMappingScenarios
     public static void Options()
     {
         var options = new Dictionary<string, string> { ["gwgui_atari_main_memory"] = "4194304", ["gwgui_atari_cpu_frequency"] = "16", ["custom"] = "kept" };
-        var configuration = new AtariMachineConfiguration(AtariMachineModel.Ste, options: options);
-        var mapped = AtariMachineOptionFunctions.Apply(configuration);
+        var configuration = new AtariMachineConfiguration(MachineModel.Ste, options: options);
+        var mapped = MachineOptionFunctions.Apply(configuration);
         Assert.Equal("4", mapped["hatari_ramsize"]); Assert.Equal("16", mapped["hatari_cpu_freq"]); Assert.Equal("ste", mapped["hatari_machinetype"]);
         Assert.Equal("kept", mapped["custom"]); Assert.Equal(3, options.Count); Assert.Equal(3, configuration.Options.Count);
         var amiga = AmigaMachineConfiguration.A500("virtual-rom", "virtual-floppy");
@@ -84,12 +85,12 @@ internal static class MachineConfigurationMappingScenarios
     }
     public static void Media()
     {
-        var mapped = GWGUI.Emulation.Amiga.Functions.EmulationMediaConversionFunctions.ToCommon([
+        var mapped = GWGUI.Emulation.Amiga.Common.Functions.EmulationMediaConversionFunctions.ToCommon([
             new("disk-a", AmigaMediaCategory.Floppy), new("hard-disk", AmigaMediaCategory.HardDrive), new("disk-b", AmigaMediaCategory.Floppy)]);
         Assert.Equal(new[] { EmulationMediaSlot.Floppy0, EmulationMediaSlot.HardDisk0, EmulationMediaSlot.Floppy1 }, mapped.Select(item => item.Slot));
         Assert.Equal(Path.GetFullPath("disk-b"), mapped[2].Path);
         var original = new EmulationMedia("virtual", EmulationMediaSlot.Floppy1, EmulationMediaType.Floppy, true, false);
-        var atari = GWGUI.Emulation.Atari.Functions.EmulationMediaConversionFunctions.ToAtari(original, []);
-        Assert.Equal(original, GWGUI.Emulation.Atari.Functions.EmulationMediaConversionFunctions.ToCommon(atari));
+        var atari = GWGUI.Emulation.Atari.Common.Functions.EmulationMediaConversionFunctions.ToAtari(original, []);
+        Assert.Equal(original, GWGUI.Emulation.Atari.Common.Functions.EmulationMediaConversionFunctions.ToCommon(atari));
     }
 }

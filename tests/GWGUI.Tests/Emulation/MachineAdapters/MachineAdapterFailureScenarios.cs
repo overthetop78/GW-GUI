@@ -1,15 +1,15 @@
 using GWGUI.App.Services.Emulation;
-using GWGUI.Emulation.Atari.Functions;
-using GWGUI.Emulation.Atari.Exceptions;
-using GWGUI.Emulation.Atari.Enums;
+using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Exceptions;
+using GWGUI.Emulation.Atari.Common.Enums;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
 using GWGUI.Tests.Emulation.EmulationContracts;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Amiga.Contracts;
-using GWGUI.Emulation.Amiga.Interfaces;
-using GWGUI.Emulation.Amiga.Services;
+using GWGUI.Emulation.Amiga.Common.Contracts;
+using GWGUI.Emulation.Amiga.Common.Interfaces;
+using GWGUI.Emulation.Amiga.Common.Services;
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 internal static class MachineAdapterFailureScenarios
 {
@@ -20,7 +20,7 @@ internal static class MachineAdapterFailureScenarios
             : (Exception)new InvalidOperationException("synthetic adapter refusal");
         using var core = new Core { InitializeError=failure<2?error:null, FrameError=failure==2?error:null };
         var cleanups=0;
-        await using var machine = new AmigaMachine(Guid.NewGuid(),AmigaMachineConfiguration.A500("virtual-rom"),core,"virtual-session",
+        await using var machine = new Machine(Guid.NewGuid(),MachineConfiguration.A500("virtual-rom"),core,[],"virtual-session",
             deleteSession:path=>{Assert.Equal("virtual-session",path);cleanups++;});
         if(failure<2)
         {
@@ -49,7 +49,7 @@ internal static class MachineAdapterFailureScenarios
         }
         await machine.DisposeAsync(); await machine.DisposeAsync(); Assert.Equal(1,cleanups); Assert.Equal(1,core.Disposals);
     }
-    private sealed class Core : IAmigaCore
+    private sealed class Core : IEmulatorCore
     {
         public Exception? InitializeError, FrameError, MediaError;
         public bool BlockFrame;
@@ -59,12 +59,12 @@ internal static class MachineAdapterFailureScenarios
         public ManualResetEventSlim FrameRelease {get;}=new();
         public VideoFrame? LatestVideoFrame=>null; public AudioChunk? LatestAudioChunk=>null;
         public bool TryDequeueAudio(out AudioChunk? chunk){chunk=null;return false;}
-        public IReadOnlyList<AmigaCoreOption> Options=>[]; public IReadOnlyList<string> Diagnostics=>["synthetic diagnostic"];
+        public IReadOnlyList<CoreOption> Options=>[]; public IReadOnlyList<string> Diagnostics=>["synthetic diagnostic"];
         public IReadOnlyDictionary<int,bool> LedStates=>new Dictionary<int,bool>();
         public string CoreName=>"synthetic"; public string CoreVersion=>"1"; public string CoreSha256=>"synthetic";
         public IReadOnlySet<string> SupportedContentExtensions=>new HashSet<string>{"adf"};
         public double FramesPerSecond=>1000; public int SampleRate=>44100; public int DiskCount=>0; public int CurrentDiskIndex=>0;
-        public void Initialize(AmigaMachineConfiguration configuration,string sessionDirectory,string? saveDirectory=null)
+        public void Initialize(MachineConfiguration configuration,string sessionDirectory,string? saveDirectory=null)
         {Assert.Equal("virtual-rom",configuration.KickstartPath);Assert.Equal("virtual-session",sessionDirectory);if(InitializeError is {} error)throw error;}
         public void RunFrame(){FrameEntered.TrySetResult();if(BlockFrame){if(!FrameRelease.Wait(TimeSpan.FromSeconds(5)))throw new TimeoutException();BlockFrame=false;}if(FrameError is {} error)throw error;}
         public void Stop(){Stops++;Stopped.TrySetResult();}
@@ -80,9 +80,9 @@ internal static class MachineAdapterFailureScenarios
     }
     public static async Task Boundary(string category,string code,string expectedCategory,string expectedCode)
     {
-        var configuration = new GWGUI.Emulation.Atari.Contracts.AtariMachineConfiguration(AtariMachineModel.Ste);
-        var original = new AtariEmulationException(Enum.Parse<AtariErrorCategory>(category),Enum.Parse<AtariErrorCode>(code),"synthetic core response");
-        var translated = Assert.IsType<EmulationMessageException>(AtariMessageFunctions.Translate(original,configuration));
+        var configuration = new GWGUI.Emulation.Atari.Common.Contracts.MachineConfiguration(MachineModel.Ste);
+        var original = new EmulationException(Enum.Parse<ErrorCategory>(category),Enum.Parse<ErrorCode>(code),"synthetic core response");
+        var translated = Assert.IsType<EmulationMessageException>(MessageFunctions.Translate(original,configuration));
         Assert.Same(original,translated.InnerException);
         Assert.Equal(expectedCategory,translated.MessageData.Category.ToString()); Assert.Equal(expectedCode,translated.MessageData.MessageCode.ToString());
         Assert.Equal(EmulationMessageTarget.Dialog,translated.MessageData.Target); Assert.Equal(EmulationMessageSeverity.Error,translated.MessageData.Severity);
@@ -90,7 +90,7 @@ internal static class MachineAdapterFailureScenarios
         await using var session = new MachineSession(machine.Value,_ => throw new InvalidOperationException("No external core"),[]);
         Assert.Same(translated,await Assert.ThrowsAsync<EmulationMessageException>(session.PowerOnAsync));
         Assert.False(session.IsPowered); Assert.Equal(new[] {"StartAsync","StopAsync","DisposeAsync"},machine.Calls);
-        var unrelated = new IOException("host failure"); Assert.Same(unrelated,AtariMessageFunctions.Translate(unrelated,configuration));
+        var unrelated = new IOException("host failure"); Assert.Same(unrelated,MessageFunctions.Translate(unrelated,configuration));
     }
     public static async Task RecreationFailure()
     {

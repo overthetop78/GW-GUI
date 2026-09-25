@@ -12,44 +12,36 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
         Localization.TryGetString(key, culture, out value);
 
-    private readonly AmigaConfigurationStore _store;
+    private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
     private readonly string _firmwareDirectory;
-    private readonly AmigaEngine _engine = new();
-    private IReadOnlyDictionary<string, AmigaCoreRelease> _availableReleases =
-        new Dictionary<string, AmigaCoreRelease>(StringComparer.Ordinal);
+    private readonly Engine _engine = new();
+    private EmulatorManagementContext EmulatorManagement => new(_httpClient, _coreDirectory);
 
     public AmigaEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient,
         string coreDirectory)
     {
-        _store = new AmigaConfigurationStore(configurationDirectory, pathBase);
+        _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
         _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
-            EmulationPathConstants.MachinesDirectoryName, AmigaFirmwareConstants.DirectoryName,
+            EmulationPathConstants.MachinesDirectoryName, FirmwareConstants.DirectoryName,
             EmulationPathConstants.FirmwareDirectoryName);
     }
 
-    public string Id => AmigaEmulationModuleConstants.Amiga;
-    public string DisplayResourceKey => AmigaEmulationModuleConstants.ResourceFamilyAmiga;
-    public IReadOnlyList<EmulationMachineDefinition> Machines => AmigaMachineCatalog.All;
+    public string Id => EmulationModuleConstants.Amiga;
+    public string DisplayResourceKey => EmulationModuleConstants.ResourceFamilyAmiga;
+    public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
-    {
-        exitCode = 0;
-        if (arguments is not [AmigaEmulationModuleConstants.AmigaCoreHost, var pipeName, var videoMapName]) return false;
-        if (!OperatingSystem.IsWindows())
-            throw new PlatformNotSupportedException();
-        AmigaCoreHost.Run(pipeName, videoMapName);
-        return true;
-    }
+        => _engine.TryHandleHostCommand(arguments, out exitCode);
 
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
-        var model = AmigaModelCatalog.Get(machineId);
+        var model = ModelCatalog.Get(machineId);
         var visibility = DefaultVisibility with
         {
             Tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
@@ -59,14 +51,14 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
                 _ => item.Value
             })
         };
-        var current = configuration as AmigaMachineConfiguration
-            ?? (AmigaMachineConfiguration)CreateConfiguration(machineId);
+        var current = configuration as MachineConfiguration
+            ?? (MachineConfiguration)CreateConfiguration(machineId);
         return new EmulationMachineSettings(machineId, visibility,
-            AmigaSettingsDescriptionFunctions.Create(model, current));
+            SettingsDescriptionFunctions.Create(model, current));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId) =>
-        AmigaMachineConfiguration.A500(string.Empty) with
+        MachineConfiguration.A500(string.Empty) with
         {
             Model = machineId,
             Id = Guid.NewGuid(),
@@ -75,18 +67,18 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
-        if (configuration is not AmigaMachineConfiguration)
+        if (configuration is not MachineConfiguration)
             throw new ArgumentException(nameof(configuration));
-        var model = AmigaModelCatalog.Get(machineId);
-        return AmigaMachineConfiguration.A500(string.Empty) with
+        var model = ModelCatalog.Get(machineId);
+        return MachineConfiguration.A500(string.Empty) with
         {
             Model = model.Id,
             Options = new Dictionary<string, string>
             {
-                [AmigaEmulationModuleConstants.OptionModel] = model.BackendModel,
-                [AmigaEmulationModuleConstants.OptionVideoStandard] = AmigaEmulationModuleConstants.PAL,
-                [AmigaEmulationModuleConstants.OptionFloppyMultidrive] = AmigaEmulationModuleConstants.Disabled,
-                [AmigaEmulationModuleConstants.OptionFloppyWriteProtection] = AmigaEmulationModuleConstants.Disabled
+                [EmulationModuleConstants.OptionModel] = model.BackendModel,
+                [EmulationModuleConstants.OptionVideoStandard] = EmulationModuleConstants.PAL,
+                [EmulationModuleConstants.OptionFloppyMultidrive] = EmulationModuleConstants.Disabled,
+                [EmulationModuleConstants.OptionFloppyWriteProtection] = EmulationModuleConstants.Disabled
             },
             Id = Guid.NewGuid(),
             InitialDiskPath = null
@@ -96,61 +88,61 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
         IReadOnlyDictionary<string, string?> values)
     {
-        if (configuration is not AmigaMachineConfiguration amiga)
+        if (configuration is not MachineConfiguration amiga)
             throw new ArgumentException(nameof(configuration));
         var options = new Dictionary<string, string>(amiga.Options ?? new Dictionary<string, string>());
         foreach (var value in values)
         {
-            if (value.Key is AmigaSettingsConstants.KickstartPath or AmigaSettingsConstants.ExtendedRomPath
-                or AmigaSettingsConstants.RomKeyPath or AmigaSettingsConstants.AudioEnabled
-                or AmigaSettingsConstants.CpuOriginalSpeed
-                or AmigaSettingsConstants.CpuSpeed or AmigaSettingsConstants.AudioOutput
-                or AmigaSettingsConstants.AudioLatency or AmigaSettingsConstants.AudioStereoSeparation
-                or AmigaSettingsConstants.ParallelJoystickAdapter) continue;
+            if (value.Key is SettingsConstants.KickstartPath or SettingsConstants.ExtendedRomPath
+                or SettingsConstants.RomKeyPath or SettingsConstants.AudioEnabled
+                or SettingsConstants.CpuOriginalSpeed
+                or SettingsConstants.CpuSpeed or SettingsConstants.AudioOutput
+                or SettingsConstants.AudioLatency or SettingsConstants.AudioStereoSeparation
+                or SettingsConstants.ParallelJoystickAdapter) continue;
             if (value.Value is null) options.Remove(value.Key);
             else options[value.Key] = value.Value;
         }
-        if (values.TryGetValue(AmigaEmulationModuleConstants.OptionSoundVolumeCd, out var cdVolume)
+        if (values.TryGetValue(EmulationModuleConstants.OptionSoundVolumeCd, out var cdVolume)
             && !string.IsNullOrWhiteSpace(cdVolume))
-            options[AmigaEmulationModuleConstants.OptionSoundVolumeCd] = cdVolume.TrimEnd('%') + AmigaEmulationModuleConstants.Value;
-        if (values.GetValueOrDefault(AmigaSettingsConstants.CpuSpeed)?.Split('|') is [var throttle, var multiplier])
+            options[EmulationModuleConstants.OptionSoundVolumeCd] = cdVolume.TrimEnd('%') + EmulationModuleConstants.Value;
+        if (values.GetValueOrDefault(SettingsConstants.CpuSpeed)?.Split('|') is [var throttle, var multiplier])
         {
-            options[AmigaEmulationModuleConstants.OptionCpuThrottle] = throttle;
-            options[AmigaEmulationModuleConstants.OptionCpuMultiplier] = multiplier;
+            options[EmulationModuleConstants.OptionCpuThrottle] = throttle;
+            options[EmulationModuleConstants.OptionCpuMultiplier] = multiplier;
         }
-        var currentAudio = amiga.Audio ?? new AmigaAudioConfiguration();
-        var hasOutput = values.TryGetValue(AmigaSettingsConstants.AudioOutput, out var output);
-        var latency = int.TryParse(values.GetValueOrDefault(AmigaSettingsConstants.AudioLatency), out var latencyValue)
+        var currentAudio = amiga.Audio ?? new AudioConfiguration();
+        var hasOutput = values.TryGetValue(SettingsConstants.AudioOutput, out var output);
+        var latency = int.TryParse(values.GetValueOrDefault(SettingsConstants.AudioLatency), out var latencyValue)
             ? latencyValue : currentAudio.LatencyMilliseconds;
-        var stereo = int.TryParse(values.GetValueOrDefault(AmigaSettingsConstants.AudioStereoSeparation),
+        var stereo = int.TryParse(values.GetValueOrDefault(SettingsConstants.AudioStereoSeparation),
             out var stereoValue) ? stereoValue : currentAudio.StereoSeparation;
-        var currentInput = amiga.Input ?? new AmigaInputConfiguration();
+        var currentInput = amiga.Input ?? new InputConfiguration();
         var input = currentInput with
         {
             ParallelJoystickAdapterEnabled = values.TryGetValue(
-                AmigaSettingsConstants.ParallelJoystickAdapter, out var parallelJoystickAdapter)
-                    ? parallelJoystickAdapter == AmigaEmulationModuleConstants.Enabled
+                SettingsConstants.ParallelJoystickAdapter, out var parallelJoystickAdapter)
+                    ? parallelJoystickAdapter == EmulationModuleConstants.Enabled
                     : currentInput.ParallelJoystickAdapterEnabled
         };
         return amiga with
         {
             Options = options,
-            KickstartPath = values.TryGetValue(AmigaSettingsConstants.KickstartPath, out var kickstartPath)
+            KickstartPath = values.TryGetValue(SettingsConstants.KickstartPath, out var kickstartPath)
                 ? kickstartPath ?? string.Empty : amiga.KickstartPath,
-            ExtendedRomPath = values.TryGetValue(AmigaSettingsConstants.ExtendedRomPath, out var extendedRomPath)
+            ExtendedRomPath = values.TryGetValue(SettingsConstants.ExtendedRomPath, out var extendedRomPath)
                 ? OptionalPath(extendedRomPath) : amiga.ExtendedRomPath,
-            RomKeyPath = values.TryGetValue(AmigaSettingsConstants.RomKeyPath, out var romKeyPath)
+            RomKeyPath = values.TryGetValue(SettingsConstants.RomKeyPath, out var romKeyPath)
                 ? OptionalPath(romKeyPath) : amiga.RomKeyPath,
-            AudioEnabled = values.TryGetValue(AmigaSettingsConstants.AudioEnabled, out var audioEnabled)
-                ? audioEnabled == AmigaEmulationModuleConstants.Enabled : amiga.AudioEnabled,
+            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var audioEnabled)
+                ? audioEnabled == EmulationModuleConstants.Enabled : amiga.AudioEnabled,
             Audio = currentAudio with
             {
                 OutputDeviceId = hasOutput
                     ? string.IsNullOrWhiteSpace(output) ? null : output
                     : currentAudio.OutputDeviceId,
                 LatencyMilliseconds = latency,
-                Interpolation = options.GetValueOrDefault(AmigaEmulationModuleConstants.OptionSoundInterpol) ?? currentAudio.Interpolation,
-                Filter = options.GetValueOrDefault(AmigaEmulationModuleConstants.OptionSoundFilter) ?? currentAudio.Filter,
+                Interpolation = options.GetValueOrDefault(EmulationModuleConstants.OptionSoundInterpol) ?? currentAudio.Interpolation,
+                Filter = options.GetValueOrDefault(EmulationModuleConstants.OptionSoundFilter) ?? currentAudio.Filter,
                 StereoSeparation = stereo
             },
             Input = input
@@ -162,34 +154,34 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         string.IsNullOrWhiteSpace(path) ? null : path;
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        new Dictionary<string, string>((configuration as AmigaMachineConfiguration
+        new Dictionary<string, string>((configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration))).Options
             ?? new Dictionary<string, string>());
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
-        AmigaConfigurationSummaryFunctions.Create(configuration as AmigaMachineConfiguration
+        ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));
 
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
-        AmigaInputSettingsFunctions.Describe(configuration as AmigaMachineConfiguration
+        InputSettingsFunctions.Describe(configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration,
-        EmulationInputSettings settings) => AmigaInputSettingsFunctions.Apply(
-        configuration as AmigaMachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+        EmulationInputSettings settings) => InputSettingsFunctions.Apply(
+        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is AmigaMachineConfiguration amiga
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration amiga
         ? new ValueTask(_store.SaveAsync(amiga, cancellationToken))
         : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
-        AmigaStorageSettingsFunctions.Describe(configuration as AmigaMachineConfiguration
+        StorageSettingsFunctions.Describe(configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));
 
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration,
-        EmulationStorageSettings settings) => AmigaStorageSettingsFunctions.Apply(
-        configuration as AmigaMachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+        EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(
+        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
         CancellationToken cancellationToken = default) =>
@@ -199,9 +191,9 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
     {
-        if (configuration is not AmigaMachineConfiguration amiga)
+        if (configuration is not MachineConfiguration amiga)
             return ValueTask.FromException(new ArgumentException(nameof(configuration)));
-        AmigaConfigurationValidationFunctions.ValidateForSave(amiga);
+        ConfigurationValidationFunctions.ValidateForSave(amiga);
         return new ValueTask(_store.SaveAsync(amiga, cancellationToken));
     }
 
@@ -213,40 +205,36 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         return ValueTask.CompletedTask;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
+    public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
         CancellationToken cancellationToken = default)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        _ = AmigaModelCatalog.Get(machineId);
-        var version = new AmigaCoreReleaseService(_httpClient, _coreDirectory).GetInstalledVersion();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(
-            AmigaCoreCatalog.Get(AmigaEmulationModuleConstants.Puae), version));
+        _ = ModelCatalog.Get(machineId);
+        var definition = EmulatorCatalog.GetAll(machineId).Single();
+        return await _engine.Adapter(definition.Id)
+            .GetInstallationAsync(EmulatorManagement, cancellationToken).ConfigureAwait(false);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
         CancellationToken cancellationToken = default)
     {
-        _ = AmigaModelCatalog.Get(machineId);
-        var releases = await new AmigaCoreReleaseService(_httpClient, _coreDirectory)
-            .GetAvailableAsync(cancellationToken).ConfigureAwait(false);
-        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id,
-            item.IsRequired)).ToArray();
+        _ = ModelCatalog.Get(machineId);
+        var definition = EmulatorCatalog.GetAll(machineId).Single();
+        return await _engine.Adapter(definition.Id)
+            .FindReleasesAsync(EmulatorManagement, cancellationToken).ConfigureAwait(false);
     }
 
     public async ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release,
         IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
-        _ = AmigaModelCatalog.Get(machineId);
-        if (!_availableReleases.TryGetValue(release.Id, out var selected))
-            throw new ArgumentException(nameof(release));
-        return await new AmigaCoreReleaseService(_httpClient, _coreDirectory)
-            .InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        _ = ModelCatalog.Get(machineId);
+        var definition = EmulatorCatalog.GetAll(machineId).Single();
+        return await _engine.Adapter(definition.Id)
+            .InstallAsync(EmulatorManagement, release, progress, cancellationToken).ConfigureAwait(false);
     }
 
     public string GetFirmwareDirectory(string machineId)
     {
-        _ = AmigaModelCatalog.Get(machineId);
+        _ = ModelCatalog.Get(machineId);
         return _firmwareDirectory;
     }
 
@@ -254,15 +242,15 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        _ = configuration as AmigaMachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        var entries = new AmigaFirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
+        _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var entries = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
             .Select(firmware => new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
                 firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
                 FirmwareCompatibility(firmware, machineId), firmware.Type switch
                 {
-                    AmigaFirmwareType.Kickstart => AmigaSettingsConstants.KickstartPath,
-                    AmigaFirmwareType.ExtendedRom => AmigaSettingsConstants.ExtendedRomPath,
-                    AmigaFirmwareType.RomKey => AmigaSettingsConstants.RomKeyPath,
+                    FirmwareType.Kickstart => SettingsConstants.KickstartPath,
+                    FirmwareType.ExtendedRom => SettingsConstants.ExtendedRomPath,
+                    FirmwareType.RomKey => SettingsConstants.RomKeyPath,
                     _ => null
                 })).ToArray();
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(entries);
@@ -271,21 +259,21 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration,
         EmulationFirmwareCandidate firmware)
     {
-        var amiga = configuration as AmigaMachineConfiguration
+        var amiga = configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
         return firmware.DestinationFieldId switch
         {
-            AmigaSettingsConstants.KickstartPath => amiga with { KickstartPath = firmware.Path },
-            AmigaSettingsConstants.ExtendedRomPath => amiga with { ExtendedRomPath = firmware.Path },
-            AmigaSettingsConstants.RomKeyPath => amiga with { RomKeyPath = firmware.Path },
+            SettingsConstants.KickstartPath => amiga with { KickstartPath = firmware.Path },
+            SettingsConstants.ExtendedRomPath => amiga with { ExtendedRomPath = firmware.Path },
+            SettingsConstants.RomKeyPath => amiga with { RomKeyPath = firmware.Path },
             _ => throw new InvalidOperationException(nameof(firmware))
         };
     }
 
-    private static EmulationFirmwareCompatibility FirmwareCompatibility(AmigaFirmware firmware, string machineId)
+    private static EmulationFirmwareCompatibility FirmwareCompatibility(Firmware firmware, string machineId)
     {
-        if (firmware.Type == AmigaFirmwareType.Unknown) return EmulationFirmwareCompatibility.Incompatible;
-        if (firmware.Type == AmigaFirmwareType.RomKey) return EmulationFirmwareCompatibility.Compatible;
+        if (firmware.Type == FirmwareType.Unknown) return EmulationFirmwareCompatibility.Incompatible;
+        if (firmware.Type == FirmwareType.RomKey) return EmulationFirmwareCompatibility.Compatible;
         if (!firmware.CompatibleModels.Contains(machineId, StringComparer.OrdinalIgnoreCase))
             return EmulationFirmwareCompatibility.Incompatible;
         return firmware.IsOfficial ? EmulationFirmwareCompatibility.Official
@@ -296,47 +284,47 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
         EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {
-        if (configuration is not AmigaMachineConfiguration amiga)
+        if (configuration is not MachineConfiguration amiga)
             throw new ArgumentException(nameof(configuration));
         if (!File.Exists(amiga.KickstartPath))
-            throw new FileNotFoundException(AmigaEmulationModuleConstants.Kickstart, amiga.KickstartPath);
-        var runtime = await AmigaRuntimeMediaFunctions.PrepareConfigurationAsync(amiga,
+            throw new FileNotFoundException(EmulationModuleConstants.Kickstart, amiga.KickstartPath);
+        var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(amiga,
             services.ConvertedMediaDirectory).ConfigureAwait(false);
-        var corePath = await new AmigaCoreProvider(_httpClient, _coreDirectory)
-            .FindInstalledPathAsync(cancellationToken).ConfigureAwait(false)
+        var emulator = _engine.Adapter(runtime);
+        var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement, cancellationToken)
+            .ConfigureAwait(false)
             ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(AmigaEmulationModuleConstants.Puae)));
-        var audio = runtime.Audio ?? new AmigaAudioConfiguration();
+                new EmulationEmulatorMessageContext(EmulationModuleConstants.Puae)));
+        var audio = runtime.Audio ?? new AudioConfiguration();
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
-            value => Path.Combine(services.StatesDirectory, value.Id.ToString(AmigaEmulationModuleConstants.N), AmigaEmulationModuleConstants.Saves));
-        var storage = AmigaStorageSettingsFunctions.Describe(runtime);
+            value => Path.Combine(services.StatesDirectory, value.Id.ToString(EmulationModuleConstants.N), EmulationModuleConstants.Saves));
+        var storage = StorageSettingsFunctions.Describe(runtime);
         var devices = storage.AvailableDevices
             .Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();
-        var mounted = EmulationMediaConversionFunctions.ToCommon(
-            AmigaExternalCore.ResolveConfiguredMedia(runtime));
+        var mounted = emulator.ResolveConfiguredMedia(runtime);
         return new EmulationMachineRuntime(runtime,
             CreateMachineFactory(_engine, runtime, creationContext), devices, mounted,
-            AmigaMachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, true,
-            (media, _) => AmigaRuntimeMediaFunctions.PrepareMediaAsync(media,
+            MachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, true,
+            (media, _) => RuntimeMediaFunctions.PrepareMediaAsync(media,
                 services.ConvertedMediaDirectory));
     }
 
     private static Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> CreateMachineFactory(
-        AmigaEngine engine,
-        AmigaMachineConfiguration configuration,
+        Engine engine,
+        MachineConfiguration configuration,
         EmulatorCreationContext context) =>
         media => engine.CreateMachine(configuration with { Media = ToAmigaMedia(media) }, context);
 
-    private static IReadOnlyList<AmigaMediaConfiguration> ToAmigaMedia(IEnumerable<EmulationMedia> media) =>
-        media.Select(item => new AmigaMediaConfiguration(item.Path, item.Type switch
+    private static IReadOnlyList<MediaConfiguration> ToAmigaMedia(IEnumerable<EmulationMedia> media) =>
+        media.Select(item => new MediaConfiguration(item.Path, item.Type switch
         {
-            EmulationMediaType.Floppy => AmigaMediaCategory.Floppy,
-            EmulationMediaType.HardDisk => AmigaMediaCategory.HardDrive,
-            EmulationMediaType.CompactDisc => AmigaMediaCategory.CompactDisc,
+            EmulationMediaType.Floppy => MediaCategory.Floppy,
+            EmulationMediaType.HardDisk => MediaCategory.HardDrive,
+            EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
             _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
         }, IsReadOnly: item.IsReadOnly)).ToArray();
 }

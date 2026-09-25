@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Atari.Functions;
-using GWGUI.Emulation.Atari.Enums;
+using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Enums;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 
@@ -24,7 +24,7 @@ internal static class AtariMediaActivityScenarios
         Assert.False(ledStates[1]);
         Assert.True(ledStates[2]);
 
-        var activity = EmulationMediaActivityFunctions.FromLedStates(AtariEmulator.Hatari, ledStates);
+        var activity = EmulationMediaActivityFunctions.FromLedStates(Emulator.Hatari, ledStates);
         Assert.True(activity[EmulationMediaSlot.Floppy0]);
         Assert.False(activity[EmulationMediaSlot.Floppy1]);
         Assert.True(activity[EmulationMediaSlot.HardDisk0]);
@@ -53,7 +53,7 @@ internal static class AtariMediaActivityScenarios
         Assert.False(ledStates[3]);
         Assert.True(ledStates[4]);
 
-        var activity = EmulationMediaActivityFunctions.FromLedStates(AtariEmulator.Atari800, ledStates);
+        var activity = EmulationMediaActivityFunctions.FromLedStates(Emulator.Atari800, ledStates);
         Assert.True(activity[EmulationMediaSlot.Floppy1]);
         Assert.True(activity[EmulationMediaSlot.Cassette0]);
 

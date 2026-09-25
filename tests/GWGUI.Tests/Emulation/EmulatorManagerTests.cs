@@ -39,6 +39,9 @@ public sealed class EmulatorManagerTests
                     Assert.False(string.IsNullOrWhiteSpace(item.DescriptionResourceKey));
                     Assert.Contains(configuration.MachineId, item.Emulator.MachineIds);
                 });
+                var chosen = await manager.UseEmulatorAsync(configuration, selected.EmulatorId);
+                var persistedChoice = await manager.GetEmulatorInstallationAsync(chosen);
+                Assert.Equal(selected.EmulatorId, persistedChoice.EmulatorId);
             }
         }
         finally

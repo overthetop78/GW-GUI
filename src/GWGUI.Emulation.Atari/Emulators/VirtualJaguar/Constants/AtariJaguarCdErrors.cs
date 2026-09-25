@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Constants;
+using GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Contracts;
+using GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Functions;
+
 namespace GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Constants;
 
 internal static class AtariJaguarCdErrors

@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Constants;
+using GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Contracts;
+using GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Functions;
+
 namespace GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Functions;
 
 internal static class AtariJaguarCdFunctions
@@ -6,21 +10,21 @@ internal static class AtariJaguarCdFunctions
         AtariJaguarCdConstants.CompleteDiscExtensions.Any(reportedExtensions.Contains);
 
     internal static AtariPreparedJaguarCd Prepare(
-        AtariMachineConfiguration machine,
-        AtariMediaConfiguration media,
+        MachineConfiguration machine,
+        MediaConfiguration media,
         bool needsFullPath,
         IReadOnlySet<string> reportedExtensions)
     {
-        if (machine.Model != AtariMachineModel.JaguarCd)
+        if (machine.Model != MachineModel.JaguarCd)
             throw new ArgumentException(AtariJaguarCdErrors.ModelRequired, nameof(machine));
-        if (media.Category != AtariMediaCategory.CompactDisc || media.Slot != GWGUI.Emulation.Contracts.EmulationMediaSlot.Cd0)
+        if (media.Category != MediaCategory.CompactDisc || media.Slot != GWGUI.Emulation.Contracts.EmulationMediaSlot.Cd0)
             throw new ArgumentException(AtariJaguarCdErrors.CompleteDiscRequired, nameof(media));
         var extension = Path.GetExtension(media.Path);
-        var normalizedExtension = extension.TrimStart(AtariConstants.ExtensionPrefix);
+        var normalizedExtension = extension.TrimStart(CommonConstants.ExtensionPrefix);
         if (!AtariJaguarCdConstants.CompleteDiscExtensions.Contains(normalizedExtension)
             || !reportedExtensions.Contains(normalizedExtension))
             throw Unsupported(AtariJaguarCdErrors.CompleteDiscRequired);
-        var path = AtariContentFunctions.Validate(media.Path, reportedExtensions);
+        var path = ContentFunctions.Validate(media.Path, reportedExtensions);
         ValidateReadable(path);
         var activityPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { Path.GetFullPath(path) };
         if (extension.Equals(AtariJaguarCdConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
@@ -30,15 +34,15 @@ internal static class AtariJaguarCdFunctions
     }
 
     internal static void RejectForStandardJaguar(
-        AtariMachineModel model,
-        AtariMediaConfiguration media)
+        MachineModel model,
+        MediaConfiguration media)
     {
-        if (model != AtariMachineModel.JaguarCd && media.Category == AtariMediaCategory.CompactDisc)
+        if (model != MachineModel.JaguarCd && media.Category == MediaCategory.CompactDisc)
             throw new ArgumentException(AtariJaguarCdErrors.ModelRequired, nameof(media));
     }
 
-    internal static AtariEmulationException Unsupported(string message) =>
-        new(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
+    internal static EmulationException Unsupported(string message) =>
+        new(ErrorCategory.Content, ErrorCode.ContentUnsupported,
             message);
 
     private static IReadOnlyList<string> ValidateCueTracks(string cuePath)
@@ -71,9 +75,9 @@ internal static class AtariJaguarCdFunctions
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
-            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentNotFound,
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound,
                 AtariJaguarCdErrors.FileUnreadable,
-                new Dictionary<string, string> { [AtariConstants.PathContextKey] = path }, exception);
+                new Dictionary<string, string> { [CommonConstants.PathContextKey] = path }, exception);
         }
     }
 }

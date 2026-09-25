@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Amiga.Modules;
 
 public sealed class AmigaEmulationModuleFactory : IEmulationModuleFactory
 {
-    public string Id => AmigaEmulationModuleConstants.Amiga;
+    public string Id => EmulationModuleConstants.Amiga;
 
     public IEmulationModule Create(EmulationModuleContext context)
     {

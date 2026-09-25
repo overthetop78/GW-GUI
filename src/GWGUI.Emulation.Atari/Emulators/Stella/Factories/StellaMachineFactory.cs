@@ -1,3 +1,3 @@
 namespace GWGUI.Emulation.Atari.Emulators.Stella.Factories;
 
-internal sealed class StellaMachineFactory() : AtariMachineFactory(AtariEmulator.Stella);
+internal sealed class StellaMachineFactory() : MachineFactory(Emulator.Stella);

@@ -7,9 +7,9 @@ using System.Text;
 using System.Text.Json;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
-using GWGUI.Emulation.Atari.Contracts;
-using GWGUI.Emulation.Atari.Enums;
-using GWGUI.Emulation.Atari.Services;
+using GWGUI.Emulation.Atari.Common.Contracts;
+using GWGUI.Emulation.Atari.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Services;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 
@@ -36,7 +36,7 @@ internal static class TemporaryLibretroMediaReader
         Directory.CreateDirectory(outputDirectory);
         Directory.CreateDirectory(sessionDirectory);
 
-        var configuration = JsonSerializer.Deserialize<AtariMachineConfiguration>(
+        var configuration = JsonSerializer.Deserialize<MachineConfiguration>(
             File.ReadAllText(configurationPath),
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
             ?? throw new InvalidDataException($"Configuration Atari invalide : {configurationPath}");
@@ -53,7 +53,7 @@ internal static class TemporaryLibretroMediaReader
                 .ToArray(),
             Media =
             [
-                new AtariMediaConfiguration(imagePath, AtariMediaCategory.Floppy,
+                new MediaConfiguration(imagePath, MediaCategory.Floppy,
                     EmulationMediaSlot.Floppy0, IsReadOnly: true)
             ]
         };
@@ -61,11 +61,11 @@ internal static class TemporaryLibretroMediaReader
         var captures = new List<object>();
         var diskOperations = new List<object>();
         byte[]? previousDcb = null;
-        AtariExternalCore? core = null;
+        ExternalCore? core = null;
 
         try
         {
-            core = new AtariExternalCore(corePath, AtariEmulator.Atari800);
+            core = new ExternalCore(corePath, Emulator.Atari800);
             core.Initialize(configuration, sessionDirectory);
             for (var frame = 1; frame <= CaptureFrames[^1]; frame++)
             {
@@ -79,11 +79,11 @@ internal static class TemporaryLibretroMediaReader
                     {
                         Media =
                         [
-                            new AtariMediaConfiguration(swapImagePath!, AtariMediaCategory.Floppy,
+                            new MediaConfiguration(swapImagePath!, MediaCategory.Floppy,
                                 EmulationMediaSlot.Floppy0, IsReadOnly: true)
                         ]
                     };
-                    core = new AtariExternalCore(corePath, AtariEmulator.Atari800);
+                    core = new ExternalCore(corePath, Emulator.Atari800);
                     core.Initialize(swapConfiguration, sessionDirectory);
                     core.LoadState(state);
                 }
@@ -217,11 +217,11 @@ internal static class TemporaryLibretroMediaReader
     private static EmulationInputSnapshot WithKey(EmulationKey key) =>
         EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { key } };
 
-    private static byte[] ReadSystemRam(AtariExternalCore core)
+    private static byte[] ReadSystemRam(ExternalCore core)
     {
-        var field = typeof(AtariExternalCore).GetField("_exports", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?? throw new MissingFieldException(typeof(AtariExternalCore).FullName, "_exports");
-        var exports = (AtariExternalCoreExports?)field.GetValue(core)
+        var field = typeof(ExternalCore).GetField("_exports", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?? throw new MissingFieldException(typeof(ExternalCore).FullName, "_exports");
+        var exports = (ExternalCoreExports?)field.GetValue(core)
             ?? throw new InvalidOperationException("Le cœur Atari n'est pas initialisé.");
         var size = exports.GetMemorySize(SystemRamId);
         var pointer = exports.GetMemoryData(SystemRamId);
@@ -231,11 +231,11 @@ internal static class TemporaryLibretroMediaReader
         return ram;
     }
 
-    private static byte[] ReadSystemRamRange(AtariExternalCore core, int offset, int length)
+    private static byte[] ReadSystemRamRange(ExternalCore core, int offset, int length)
     {
-        var field = typeof(AtariExternalCore).GetField("_exports", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?? throw new MissingFieldException(typeof(AtariExternalCore).FullName, "_exports");
-        var exports = (AtariExternalCoreExports?)field.GetValue(core)
+        var field = typeof(ExternalCore).GetField("_exports", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?? throw new MissingFieldException(typeof(ExternalCore).FullName, "_exports");
+        var exports = (ExternalCoreExports?)field.GetValue(core)
             ?? throw new InvalidOperationException("Le cœur Atari n'est pas initialisé.");
         var size = exports.GetMemorySize(SystemRamId);
         var pointer = exports.GetMemoryData(SystemRamId);

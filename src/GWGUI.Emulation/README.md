@@ -40,7 +40,10 @@ Adding, updating or removing a module takes effect after restarting GW GUI.
 - `IEmulatedMachine` exposes lifecycle, input, media, video, audio and saved-state services.
 - `IEmulationEmulatorManager`, `IEmulationFirmwareManager`, `IEmulationInputSettingsManager` and
   `IEmulationStorageSettingsManager` add optional capabilities.
-- `IEmulationModuleLocalization` supplies translations embedded in the module.
+- `IEmulationModuleLocalization` supplies translations embedded in the module. The application owns
+  the localization display and lookup flow, while a module owns only the translated strings specific
+  to its machines and emulators. This keeps the application independent from concrete modules: it
+  requests a key through the interface without referencing Atari, Amiga, Amstrad or any emulator.
 
 The complete contract, manifest rules, packaging format and publication workflow are documented in
 the [module authoring guide](https://github.com/overthetop78/GW-GUI/blob/main/docs/architecture/emulation-module-authoring.md).
