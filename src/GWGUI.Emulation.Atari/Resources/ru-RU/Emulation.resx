@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Выпускается консоль Atari 7800.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Имитирует портативную игровую систему Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Выпущены Atari Jaguar и Jaguar CD Консоли.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Выбранный эмулятор Atari не использует общий контроллер картриджей.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Выбранный автомат Atari требует носителей картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Расширение картриджа не поддерживается выбранным эмулятором Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Картридж Atari нельзя открыть для чтения.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Эмулятор Atari отказал в замене картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Эмулятор Atari отклонял как замену, так и предыдущий патрон.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Этот эмулятор Atari не может работать без картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Выбранный эмулятор Atari не выставляет выбор региона картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Этот эмулятор Atari не может использовать режим синхронизации картриджа, названный SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Воспроизведение звука включено</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Воспроизведение звука отключено</value></data>
 </root>

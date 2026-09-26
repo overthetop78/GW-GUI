@@ -184,9 +184,9 @@ Architecture cible :
   - [x] 17.1 Définir la structure commune canonique
     - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour définir, dans chaque catégorie de `Common`, la liste canonique des fichiers communs à Atari, Amiga et Amstrad, ainsi que les fichiers supplémentaires autorisés lorsqu'ils décrivent réellement une machine, un format ou une capacité propre à une famille.
   - [x] 17.2 Regrouper les constantes Atari
-    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Constants/` pour regrouper les petites classes apparentées dans les fichiers canoniques de leur domaine, supprimer les anciens fichiers dispersés et conserver chaque fichier sous 200 lignes sauf justification fonctionnelle documentée.
+    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Constants/` pour regrouper les petites classes apparentées dans les fichiers canoniques de leur domaine et supprimer les anciens fichiers dispersés.
   - [x] 17.3 Regrouper les constantes Amiga
-    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Constants/` pour employer les mêmes fichiers canoniques qu'Atari, déplacer les constantes existantes dans leur domaine, créer les domaines communs réellement nécessaires et conserver chaque fichier sous 200 lignes sauf justification fonctionnelle documentée.
+    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Constants/` pour employer les mêmes fichiers canoniques qu'Atari, déplacer les constantes existantes dans leur domaine et créer les domaines communs réellement nécessaires.
   - [x] 17.4 Aligner le squelette Amstrad
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amstrad/Common/Constants/` et `src/GWGUI.Emulation.Amstrad/Common/README.md` pour fournir les mêmes emplacements canoniques sans inventer de valeurs propres à des machines Amstrad encore absentes.
   - [x] 17.5 Harmoniser les noms de données équivalentes
@@ -195,7 +195,7 @@ Architecture cible :
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Contracts/`, `Enums/` et `Dictionaries/` pour regrouper les petits types apparentés par domaine, employer les noms génériques canoniques et conserver séparément uniquement les types propres aux machines Atari.
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Contracts/`, `Enums/` et `Dictionaries/` pour reprendre les mêmes domaines et noms canoniques, en conservant séparément uniquement les types propres aux machines Amiga.
   - [x] 17.7 Harmoniser les fonctions
-    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Functions/` pour regrouper les fonctions apparentées dans les domaines canoniques sans dépasser inutilement 200 lignes et sans déplacer dans `Common` une traduction propre à un émulateur.
+    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Functions/` pour regrouper les fonctions apparentées dans les domaines canoniques sans déplacer dans `Common` une traduction propre à un émulateur.
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Functions/` pour reprendre les mêmes domaines et noms canoniques, créer les domaines communs utiles et laisser absentes les fonctions sans comportement Amiga réel.
   - [x] 17.8 Harmoniser les interfaces, services et fabriques
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Interfaces/`, `Services/`, `Factories/` et `Exceptions/` pour employer les prises et services canoniques, regrouper les petits éléments apparentés et conserver séparément les capacités réellement propres à Atari.
@@ -206,7 +206,7 @@ Architecture cible :
 
 - [x] 18. Vérifier le nouveau découpage de Common
   - [x] 18.1 Vérifier la structure canonique
-    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` pour vérifier les fichiers canoniques de toutes les catégories de `Common`, l'absence des anciens fichiers dispersés et la limite de 200 lignes pour les fichiers non explicitement spécifiques à une machine.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` pour vérifier les fichiers canoniques de toutes les catégories de `Common` et l'absence des anciens fichiers dispersés.
   - [x] 18.2 Vérifier le fonctionnement conservé
     - [x] Modifier les tests d'émulation concernés sous `tests/GWGUI.Tests/Emulation/` pour employer les nouveaux types de constantes uniquement lorsqu'ils sont directement testés, sans ajouter de test sans comportement observable.
   - [x] 18.3 Consigner les résultats
@@ -214,8 +214,154 @@ Architecture cible :
 ## Résultats du découpage complet de Common
 
 - Les constantes générales Atari, Amiga et Amstrad utilisent les 18 mêmes fichiers canoniques.
-- Les petits contrats, enums et constantes sont regroupés par domaine ; aucun fichier C# sous les deux Common fonctionnels ne dépasse 200 lignes.
-- Atari sépare désormais les familles `AtariClassic`, `Atari8Bit` et `AtariST`.
+- Les petits contrats, enums et constantes sont regroupés par domaine et par responsabilité.
+- Dans chaque module, les catégories transversales aux machines sont regroupées sous
+  `Common/Machines/Common`, tandis que les données de modèles restent sous leur famille matérielle.
+- Atari sépare désormais `Atari8Bit`, `Atari2600`, `Atari5200`, `Atari7800`, `AtariLynx`,
+  `AtariJaguar` et `AtariST`. Les six familles non-ST produisent le contrat matériel commun
+  `HardwareModelDefinition`, puis `HardwareModelCatalog` les agrège pour les fonctions communes et
+  les adaptateurs d’émulation.
 - Amiga sépare désormais `AmigaComputers`, `AmigaCDTV` et `AmigaCD32`, puis agrège leurs catalogues par l'interface générale.
 - La compilation des tests réussit sans avertissement ni erreur et les 241 tests d'émulation et d'architecture ciblés réussissent.
 - L'audit final trouve 0 répertoire vide et `git diff --check` ne signale aucune erreur.
+
+- [x] 19. Corriger la propriété concrète des émulateurs et le relais des traductions
+  - [x] 19.1 Retirer les métadonnées concrètes de Common
+    - [x] Créer `EmulatorConstants.cs` dans les six adaptateurs Atari avec leur identité, DLL,
+      source, révision et compatibilités, puis modifier le catalogue commun pour découvrir ces données.
+    - [x] Créer `Emulators/PUAE/Constants/PuaeConstants.cs` et modifier le catalogue Amiga pour que
+      PUAE fournisse lui-même son identité et sa définition localisable.
+  - [x] 19.2 Nettoyer les données et noms internes
+    - [x] Modifier les fichiers PUAE pour retirer les préfixes internes `Amiga`, réutiliser les
+      empreintes de firmwares et extensions communes et regrouper les constantes d'installation.
+    - [x] Renommer les fichiers et types `AtariJaguarCd*` sous Virtual Jaguar en `JaguarCd*` et
+      modifier Atari800 pour réutiliser la clé de réglage possédée par `Common/Machines/Atari8Bit`.
+    - [x] Supprimer tous les répertoires vides du dépôt hors `.git`, dont les neuf
+      répertoires vides sous `src/GWGUI.Emulation.Amstrad`.
+  - [x] 19.3 Prouver le relais de localisation
+    - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs`
+      et `SettingsViewsTests.cs` pour vérifier qu'une description fournie uniquement par
+      `IEmulationModuleLocalization` est affichée par l'App.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` pour vérifier la
+      propriété des métadonnées, les noms internes et l'absence de dossiers vides.
+
+## Résultats de la propriété des émulateurs et de la localisation
+
+- La compilation de `GWGUI.Tests` réussit sans erreur ; seuls deux avertissements `NU1900` signalent
+  l'indisponibilité réseau de l'audit NuGet.
+- Les 41 tests ciblés d'architecture, d'adaptateurs et de vues réussissent.
+- Les 264 tests d'émulation, d'architecture et de vues concernés réussissent ; l'unique échec du lot
+  élargi reste `MediaEngineProjectBoundaryTests.LoadedAssembliesStayWithinMediaLibraryBoundaries`,
+  extérieur à ce rangement et déjà consigné.
+- Les sept descriptions d'émulateurs Atari et Amiga sont présentes dans les 30 catalogues de chaque
+  module et leur clé est relayée jusqu'à l'App.
+
+- [x] 20. Rendre les données génériques et les erreurs réellement indépendantes des émulateurs
+  - [x] 20.1 Remplacer les clés PUAE présentes dans Common par des clés Amiga
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Constants/SettingsConstants.cs` et ses
+      consommateurs pour employer uniquement des clés `gwgui_amiga_*` dans Common et Modules.
+    - [x] Créer `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Constants/PuaeOptionConstants.cs` et
+      `Functions/PuaeOptionFunctions.cs` avec la conversion entre les clés génériques et natives.
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Interfaces/IEmulatorAdapter.cs`,
+      `Emulators/PUAE/Factories/PuaeMachineFactory.cs` et `Modules/AmigaEmulationModule.cs` pour
+      normaliser les anciennes configurations et préparer la configuration native à la frontière.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs`
+      pour vérifier l'aller-retour entre clés génériques et clés PUAE.
+  - [x] 20.2 Centraliser la conversion des erreurs vers le contrat public
+    - [x] Créer `src/GWGUI.Emulation/Services/EmulationErrorService.cs` et
+      `Exceptions/EmulationLocalizedException.cs`, puis modifier `Enums/EmulationMessageCode.cs`
+      pour transporter une erreur localisée ou une erreur générique réutilisable.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Functions/RuntimeFunctions.cs`,
+      `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Commands.cs` et
+      `src/GWGUI.App/Presenters/Common/ControlErrorPresenter.cs` pour relayer ce contrat jusqu'à App.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs`
+      pour vérifier la catégorie, le code public et la conservation de l'exception technique interne.
+  - [x] 20.3 Regrouper et traduire toutes les erreurs PUAE
+    - [x] Créer `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Exceptions/PuaeExceptions.cs` avec des
+      appels aux clés `Emulation.Error.PUAE.*`, sans constante contenant une phrase d'erreur.
+    - [x] Modifier les services sous `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/` pour
+      remplacer leurs phrases et constantes d'erreur par les appels à `PuaeExceptions`.
+    - [x] Supprimer `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Constants/ExternalDiskControlConstants.cs`
+      devenu vide et retirer les anciennes phrases des autres fichiers de constantes PUAE.
+    - [x] Modifier les 30 fichiers `src/GWGUI.Emulation.Amiga/Resources/*/Emulation.resx` avec
+      `scripts/tools/translate-resx-argos.py`, puis corriger par le même script la phrase paramétrée
+      afin que les paramètres `{0}` et `{1}` restent identiques dans toutes les cultures.
+  - [x] 20.4 Retirer les clés natives des émulateurs Atari de Common
+    - [x] Créer les constantes et fonctions de conversion nécessaires sous
+      `src/GWGUI.Emulation.Atari/Emulators/Hatari/`, `Atari800/`, `Stella/` et `VirtualJaguar/`, avec
+      les clés natives actuellement présentes dans `Common/Constants` et `Common/Machines/Atari8Bit`.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/SettingsConstants.cs`,
+      `MachineConstants.cs`, `MediaConstants.cs`, `AudioConstants.cs` et `SettingsTextConstants.cs`
+      ainsi que leurs consommateurs pour ne conserver que des identifiants génériques Atari.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs`,
+      `Common/Factories/MachineFactory.cs`, les fabriques sous `Emulators/*/Factories/` et
+      `Modules/AtariEmulationModule.cs` pour convertir les configurations uniquement à la frontière.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs`
+      et `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` pour vérifier les conversions
+      et interdire les préfixes natifs dans Common et Modules.
+  - [x] 20.4.1 Retirer la compatibilité de configuration et restaurer les interfaces inchangées
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs`,
+      `IEmulatorMediaAdapter.cs` et `src/GWGUI.Emulation.Amiga/Common/Interfaces/IEmulatorAdapter.cs`
+      pour retrouver exactement leurs membres antérieurs au rangement interne.
+    - [x] Modifier les catalogues, fabriques et modules Atari et Amiga pour conserver les métadonnées
+      et conversions dans les classes concrètes, sans normalisation d'ancienne configuration au chargement.
+    - [x] Modifier les fonctions d'options sous `Emulators/` et
+      `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs` pour
+      supprimer les conversions et assertions de compatibilité avec les anciennes clés natives.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` pour vérifier que
+      les deux `IEmulatorAdapter` conservent la surface contractuelle antérieure au rangement.
+  - [x] 20.4.2 Restaurer le contrat public de GWGUI.Emulation
+    - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationMessageCode.cs` et
+      `src/GWGUI.App/Presenters/Common/ControlErrorPresenter.cs` pour retirer la valeur publique
+      ajoutée et réutiliser le transport de texte existant.
+    - [x] Supprimer `src/GWGUI.Emulation/Exceptions/EmulationLocalizedException.cs` et modifier
+      `src/GWGUI.Emulation/Services/EmulationErrorService.cs` pour choisir uniquement entre un
+      message de module déjà localisé et un code générique existant.
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Commands.cs` et les tests
+      concernés afin que les erreurs PUAE localisées atteignent App sans nouvelle interface publique.
+  - [x] 20.5 Verrouiller la chaîne commune de connexion des émulateurs
+    - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour décrire exactement la chaîne
+      `App -> GWGUI.Emulation -> module familial -> IEmulatorAdapter -> émulateur`, sans attribuer
+      aux interfaces génériques une donnée ou une opération propre à un cœur.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/README.md` pour reproduire exactement le
+      contrat `IEmulatorAdapter`, `EmulatorCreationContext` et `EmulatorManagementContext` commun
+      à Atari et Amiga quand le projet Amstrad sera créé, sans créer de classes factices.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` pour comparer le
+      texte normalisé des interfaces et contextes communs Atari/Amiga, vérifier leur surface exacte
+      et interdire toute dépendance App ou GWGUI.Emulation vers un module familial concret.
+  - [x] 20.5.1 Limiter le texte localisé aux erreurs provenant de PUAE
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.cs` et `Machine.Commands.cs`
+      pour accepter une fonction interne facultative de présentation des erreurs de démarrage, sans
+      ajouter de membre à une interface.
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour
+      injecter la conversion du texte PUAE déjà localisé vers le message public existant.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs`
+      uniquement si nécessaire pour vérifier qu'un cœur synthétique reste une erreur générique.
+  - [x] 20.5.2 Supprimer la limite arbitraire de taille des fichiers
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` pour retirer le
+      rejet des fichiers dépassant 200 lignes tout en conservant les contrôles architecturaux utiles.
+    - [x] Modifier `docs/reference/emulator-adapter-file-map.md` et
+      `docs/tasks/emulation/emulation-family-common-organization.md` pour supprimer cette règle et
+      décrire uniquement un découpage fondé sur les responsabilités.
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Commands.cs` pour restaurer
+      l'espacement lisible supprimé uniquement afin de satisfaire l'ancienne limite.
+  - [x] 20.6 Vérifier et nettoyer le résultat
+    - [x] Modifier `docs/tasks/emulation/emulation-family-common-organization.md` avec les résultats
+      de l'audit Argos, de la compilation, des tests ciblés et de `git diff --check`.
+    - [x] Supprimer les répertoires vides du dépôt hors `.git` après les compilations et inscrire le
+      résultat dans `docs/tasks/emulation/emulation-family-common-organization.md`.
+
+## Résultats de l'indépendance des émulateurs et des erreurs
+
+- Les contrats publics préexistants de `GWGUI.Emulation` et les interfaces familiales préexistantes
+  sont inchangés ; `IEmulatorAdapter` est textuellement identique entre Atari et Amiga hors espace
+  de noms.
+- Les audits trouvent 0 clé native Atari ou PUAE dans `Common` et `Modules`, ainsi que 0 phrase
+  d'erreur PUAE hors de `Emulators/PUAE/Exceptions`.
+- L'audit Argos réussit pour les 28 cultures, le catalogue Amiga et ses 1 876 entrées localisées.
+- La compilation de `GWGUI.Tests` réussit sans erreur ; les avertissements `NU1900` proviennent de
+  l'indisponibilité réseau de l'audit NuGet.
+- Le lot élargi exécute 265 tests : les 264 tests d'émulation, d'architecture concernée et de vues
+  réussissent. Le seul échec est le contrôle MediaEngine préexistant sur sa référence à
+  `gwgui.mediaanalysis`, extérieur à ce rangement.
+- L'audit final trouve 0 répertoire vide hors `.git` et `git diff --check` ne signale aucune erreur.

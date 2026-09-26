@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Exceptions;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Constants;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Contracts;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
@@ -15,7 +16,7 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
 
-internal sealed class AmigaProcessCore : IEmulatorCore
+internal sealed class ProcessCore : IEmulatorCore
 {
     private readonly string _hostExecutablePath;
     private readonly string? _corePath;
@@ -31,7 +32,7 @@ internal sealed class AmigaProcessCore : IEmulatorCore
     private bool _disposed;
     private bool _connectionFailed;
 
-    internal AmigaProcessCore(string hostExecutablePath, string? corePath = null)
+    internal ProcessCore(string hostExecutablePath, string? corePath = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(hostExecutablePath);
         _hostExecutablePath = Path.GetFullPath(hostExecutablePath);
@@ -66,9 +67,9 @@ internal sealed class AmigaProcessCore : IEmulatorCore
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_initialized) throw new InvalidOperationException(ProcessCoreConstants.TheAmigaCoreProcessIsAlreadyInitialized);
+        if (_initialized) throw new InvalidOperationException(PuaeExceptions.ProcessAlreadyInitialized());
         if (!File.Exists(_hostExecutablePath))
-            throw new FileNotFoundException(ProcessCoreConstants.TheGWGUIExecutableUsedToHostTheAmigaCoreWasNotFound, _hostExecutablePath);
+            throw new FileNotFoundException(PuaeExceptions.HostExecutableNotFound(), _hostExecutablePath);
 
         var pipeName = $"gwgui-amiga-{Guid.NewGuid():N}";
         var videoMapName = $"gwgui-amiga-video-{Guid.NewGuid():N}";
@@ -88,7 +89,7 @@ internal sealed class AmigaProcessCore : IEmulatorCore
         startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
         startInfo.ArgumentList.Add(pipeName);
         startInfo.ArgumentList.Add(videoMapName);
-        _process = Process.Start(startInfo) ?? throw new InvalidOperationException(ProcessCoreConstants.TheAmigaCoreHostProcessCouldNotBeStarted);
+        _process = Process.Start(startInfo) ?? throw new InvalidOperationException(PuaeExceptions.ProcessStartFailed());
         try { EmulationChildProcessLifetime.Attach(_process); }
         catch
         {
@@ -135,7 +136,7 @@ internal sealed class AmigaProcessCore : IEmulatorCore
         CoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
         LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response,
-            _videoMap ?? throw new InvalidOperationException(ProcessCoreConstants.TheSharedAmigaVideoBufferIsUnavailable)) ?? LatestVideoFrame;
+            _videoMap ?? throw new InvalidOperationException(PuaeExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
         foreach (var chunk in CoreHostProtocol.ReadAudio(Response))
         {
             LatestAudioChunk = chunk;
@@ -233,9 +234,9 @@ internal sealed class AmigaProcessCore : IEmulatorCore
     private void Begin(HostCommand command)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_connectionFailed) throw new InvalidOperationException(ProcessCoreConstants.TheAmigaCoreProcessIsNoLongerAvailable);
+        if (_connectionFailed) throw new InvalidOperationException(PuaeExceptions.ProcessUnavailable());
         if (command != HostCommand.Initialize && !_initialized)
-            throw new InvalidOperationException(ProcessCoreConstants.TheAmigaCoreProcessIsNotInitialized);
+            throw new InvalidOperationException(PuaeExceptions.ProcessNotInitialized());
         _writer!.Write((byte)command);
     }
 
@@ -255,8 +256,8 @@ internal sealed class AmigaProcessCore : IEmulatorCore
             _connectionFailed = true;
             TerminateProcess();
             throw new InvalidOperationException(timedOut
-                ? ProcessCoreConstants.TheAmigaCoreProcessDidNotAnswerWithin30SecondsAndWasStopped
-                : $"Communication with the Amiga core process failed.{exit}", error);
+                ? PuaeExceptions.ProcessTimeout()
+                : PuaeExceptions.ProcessCommunicationFailed(exit), error);
         }
     }
 
@@ -267,7 +268,7 @@ internal sealed class AmigaProcessCore : IEmulatorCore
         await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
         var length = BinaryPrimitives.ReadInt32LittleEndian(header);
         if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException($"The Amiga core process sent invalid response length {length}.");
+            throw new InvalidDataException(PuaeExceptions.InvalidResponseLength(length));
         var response = GC.AllocateUninitializedArray<byte>(length);
         await _pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);
         return response;
@@ -285,6 +286,6 @@ internal sealed class AmigaProcessCore : IEmulatorCore
         catch (Exception) { }
     }
 
-    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(ProcessCoreConstants.TheAmigaHostResponseIsUnavailable);
+    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(PuaeExceptions.HostResponseUnavailable());
 
 }

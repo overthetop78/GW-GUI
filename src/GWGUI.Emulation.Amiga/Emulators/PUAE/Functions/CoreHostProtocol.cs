@@ -20,21 +20,21 @@ internal static class CoreHostProtocol
     internal static string? ReadString(BinaryReader reader) => EmulationHostProtocolFunctions.ReadString(reader);
     internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> bytes) => EmulationHostProtocolFunctions.WriteBytes(writer, bytes);
     internal static byte[] ReadBytes(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadBytes(reader, CoreHostConstants.HostName);
+        EmulationHostProtocolFunctions.ReadBytes(reader, PuaeConstants.DisplayName);
     internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input) => EmulationHostProtocolFunctions.WriteInput(writer, input);
     internal static EmulationInputSnapshot ReadInput(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadInput(reader, CoreHostConstants.HostName);
+        EmulationHostProtocolFunctions.ReadInput(reader, PuaeConstants.DisplayName);
     internal static void WriteFrame(BinaryWriter writer, VideoFrame? frame) => EmulationHostProtocolFunctions.WriteFrame(writer, frame);
     internal static VideoFrame? ReadFrame(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadFrame(reader, CoreHostConstants.HostName);
+        EmulationHostProtocolFunctions.ReadFrame(reader, PuaeConstants.DisplayName);
     internal static void WriteSharedFrame(BinaryWriter writer, VideoFrame? frame, MemoryMappedViewAccessor videoMap) =>
-        EmulationHostProtocolFunctions.WriteSharedFrame(writer, frame, videoMap, CoreHostConstants.HostName);
+        EmulationHostProtocolFunctions.WriteSharedFrame(writer, frame, videoMap, PuaeConstants.DisplayName);
     internal static VideoFrame? ReadSharedFrame(BinaryReader reader, MemoryMappedViewAccessor videoMap) =>
-        EmulationHostProtocolFunctions.ReadSharedFrame(reader, videoMap, CoreHostConstants.HostName);
+        EmulationHostProtocolFunctions.ReadSharedFrame(reader, videoMap, PuaeConstants.DisplayName);
     internal static void WriteAudio(BinaryWriter writer, IReadOnlyList<AudioChunk> chunks) => EmulationHostProtocolFunctions.WriteAudio(writer, chunks);
     internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadAudio(reader, CoreHostConstants.HostName);
+        EmulationHostProtocolFunctions.ReadAudio(reader, PuaeConstants.DisplayName);
     internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => EmulationHostProtocolFunctions.WriteLedStates(writer, states);
     internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadLedStates(reader, CoreHostConstants.HostName);
+        EmulationHostProtocolFunctions.ReadLedStates(reader, PuaeConstants.DisplayName);
 }

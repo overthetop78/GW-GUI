@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>يُمَكِّنُ من قِبلَ "أتاري 7800"</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>يُمَرِكُ نظامَ لعبةِ أتاري لينكس المحمولِ.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>إمليست أتاري جاغور وجاغور CD -أيتها الهمجيّة</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>لا يستخدم مرشد الآتاري المختار متحكم الخراطيش المشترك</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>آلة (أتاري) المختارة تحتاج إلى وسائل إعلام</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>ولا يدعم تمديد الخراطيش ناقل أطاري المختار.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>لا يمكن فتح خرطوشة أتاري للقراءة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>رفض مرشد الآتاري الخراطيش البديل.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>رفض مرشد أتاري الاستبدال وخراطيش سابق.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>هذا الناقل (آتاري) لا يمكنه البقاء مُسيطراً بدون خرطوشة</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>لا يكشف مرشد الآتاري المختار عن اختيار منطقة الخراطيش.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>هذا المرشد (أتاري) لا يمكنه استخدام طريقة توقيت الخراطيش التي تُدعى SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>"اللعبة الصوتية مُتاحة"</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>"اللعبة الصوتية معاق"</value></data>
 </root>

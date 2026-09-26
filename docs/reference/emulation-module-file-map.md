@@ -50,7 +50,7 @@ pas seulement sur la ressemblance du nom.
 |  | `Constants/AtariAudioOutputConstants.cs` |  | Atari : centralise pour Audio Output Constants les valeurs `MinimumVolume`, `MaximumVolume`, `DefaultVolume`, `FirstSampleIndex`, `MinimumSampleValue`, `MaximumSampleValue`. |
 |  | `Constants/AtariCartridgeConstants.cs` |  | Atari : centralise pour Cartridge Constants les valeurs `StellaRegionOptionKey`, `JaguarRegionOptionKey`, `AutomaticRegionValue`, `NtscRegionValue`, `PalRegionValue`, `SecamRegionValue`, …. |
 |  | `Constants/AtariCartridgeErrors.cs` |  | Atari : centralise pour Cartridge Errors les valeurs `UnsupportedCore`, `CartridgeRequired`, `ExtensionUnsupported`, `FileUnreadable`, `ReplacementFailed`, `RollbackFailed`, …. |
-|  | `Constants/AtariClassicModelConstants.cs` |  | Atari : centralise pour Classic Model Constants les valeurs `Atari400And800ModelId`, `Atari800XlModelId`, `Atari130XeModelId`, `XlXeModelId`, `XlXe576KModelId`, `XlXe1088KModelId`, …. |
+|  | `Common/Machines/<famille>/Constants/ModelConstants.cs` |  | Atari : chaque famille `Atari8Bit`, `Atari2600`, `Atari5200`, `Atari7800`, `AtariLynx`, `AtariJaguar` ou `AtariST` possède ses identifiants, ressources et caractéristiques sans catalogue « Classic » transversal. |
 |  | `Constants/AtariCompatibilityConstants.cs` |  | Atari : centralise pour Compatibility Constants les valeurs `NoControllerPort`, `OneControllerPort`, `TwoControllerPorts`, `FourControllerPorts`, `EmptyCollectionCount`, `SingleChoiceCount`, …. |
 |  | `Constants/AtariConfigurationMigrationConstants.cs` |  | Atari : centralise pour Configuration Migration Constants les valeurs `SchemaVersionPropertyName`. |
 |  | `Constants/AtariConfigurationOptionConstants.cs` |  | Atari : centralise pour Configuration Option Constants les valeurs `VideoStandard`, `VideoResolution`, `MainMemory`, `AudioOutput`, `AudioLatency`, `AudioVolume`, …. |
@@ -126,8 +126,7 @@ pas seulement sur la ressemblance du nom.
 | `Contracts/AmigaModel.cs` |  |  | Amiga : définit `AmigaModel` avec `AmigaModel` pour transporter ces données sans comportement de service. |
 | `Contracts/AmigaSavedStateHeader.cs` | `Contracts/AtariSavedStateHeader.cs` |  | Amiga : définit `AmigaSavedStateHeader` avec `AmigaSavedStateHeader` pour transporter ces données sans comportement de service. Atari : définit `AtariSavedStateHeader` avec `AtariSavedStateHeader` pour transporter ces données sans comportement de service. |
 |  | `Contracts/Atari800PreparedMedia.cs` |  | Atari : définit `Atari800PreparedMedia` avec `Atari800PreparedMedia` pour transporter ces données sans comportement de service. |
-|  | `Contracts/AtariClassicModelDefinition.cs` |  | Atari : définit `AtariClassicModelDefinition` avec `AtariClassicModelDefinition` pour transporter ces données sans comportement de service. |
-|  | `Contracts/AtariClassicPortDefinition.cs` |  | Atari : définit `AtariClassicPortDefinition` avec `AtariClassicPortDefinition` pour transporter ces données sans comportement de service. |
+|  | `Common/Machines/Common/Contracts/HardwareModelContracts.cs` |  | Atari : définit les contrats partagés `HardwareModelDefinition` et `HardwarePortDefinition` produits directement par les catalogues des familles non-ST. |
 |  | `Contracts/AtariCompatibilityDefinition.cs` |  | Atari : définit `AtariCompatibilityDefinition` avec `AtariCompatibilityDefinition` pour transporter ces données sans comportement de service. |
 |  | `Contracts/AtariConfigurationDocument.cs` |  | Atari : définit `AtariConfigurationDocument` avec `AtariConfigurationDocument` pour transporter ces données sans comportement de service. |
 |  | `Contracts/AtariControllerPort.cs` |  | Atari : définit `AtariControllerPort` avec `AtariControllerPort` pour transporter ces données sans comportement de service. |
@@ -185,7 +184,7 @@ pas seulement sur la ressemblance du nom.
 | `Dictionaries/AmigaFirmwareCatalog.cs` | `Dictionaries/AtariFirmwareCatalog.cs` |  | Amiga : construit le catalogue `AmigaFirmwareCatalog` et expose `AmigaFirmwareCatalog`, `Scan`, `Inspect`. Atari : construit le catalogue `AtariFirmwareCatalog` et expose `AtariFirmwareCatalog`, `Get`, `ForModel`. |
 | `Dictionaries/AmigaMachineCatalog.cs` |  |  | Amiga : construit le catalogue `AmigaMachineCatalog` et expose `AmigaMachineCatalog`, `All`. |
 | `Dictionaries/AmigaModelCatalog.cs` | `Dictionaries/AtariModelCatalog.cs` |  | Amiga : construit le catalogue `AmigaModelCatalog` et expose `AmigaModelCatalog`, `All`, `Get`, `FromLegacyId`, `BackendModelFor`. Atari : construit le catalogue `AtariModelCatalog` et expose `AtariModelCatalog`, `All`, `Parse`. |
-|  | `Dictionaries/AtariClassicModelCatalog.cs` |  | Atari : construit le catalogue `AtariClassicModelCatalog` et expose `AtariClassicModelCatalog`, `Get`. |
+|  | `Common/Machines/Common/Dictionaries/HardwareModelCatalog.cs` |  | Atari : agrège les catalogues des six familles non-ST et expose `All` et `Get` sur le contrat matériel commun. |
 |  | `Dictionaries/AtariCompatibilityCatalog.cs` |  | Atari : construit le catalogue `AtariCompatibilityCatalog` et expose `AtariCompatibilityCatalog`, `Get`. |
 |  | `Dictionaries/AtariCoreCatalog.cs` |  | Atari : construit le catalogue `AtariCoreCatalog` et expose `AtariCoreCatalog`, `Get`, `GetInstallationPaths`, `GetActiveManifestPath`. |
 |  | `Dictionaries/AtariEightBitSettingsCatalog.cs` |  | Atari : construit le catalogue `AtariEightBitSettingsCatalog` et expose `AtariEightBitSettingsCatalog`, `SupportsOriginalComputerOptions`, `SupportsComputerOptions`, `SupportsMapRam`, `Mosaic`, `Axlon`, …. |
@@ -203,12 +202,7 @@ pas seulement sur la ressemblance du nom.
 |  | `Enums/Atari800ContentType.cs` |  | Atari : définit l’ensemble fermé `Atari800ContentType` utilisé par les contrats et services du module. |
 |  | `Enums/AtariCartridgePlatform.cs` |  | Atari : définit l’ensemble fermé `AtariCartridgePlatform` utilisé par les contrats et services du module. |
 |  | `Enums/AtariCartridgeRegion.cs` |  | Atari : définit l’ensemble fermé `AtariCartridgeRegion` utilisé par les contrats et services du module. |
-|  | `Enums/AtariClassicAudioCapability.cs` |  | Atari : définit l’ensemble fermé `AtariClassicAudioCapability` utilisé par les contrats et services du module. |
-|  | `Enums/AtariClassicCpu.cs` |  | Atari : définit l’ensemble fermé `AtariClassicCpu` utilisé par les contrats et services du module. |
-|  | `Enums/AtariClassicPortCapability.cs` |  | Atari : définit l’ensemble fermé `AtariClassicPortCapability` utilisé par les contrats et services du module. |
-|  | `Enums/AtariClassicRegion.cs` |  | Atari : définit l’ensemble fermé `AtariClassicRegion` utilisé par les contrats et services du module. |
-|  | `Enums/AtariClassicStorageCapability.cs` |  | Atari : définit l’ensemble fermé `AtariClassicStorageCapability` utilisé par les contrats et services du module. |
-|  | `Enums/AtariClassicVideoCapability.cs` |  | Atari : définit l’ensemble fermé `AtariClassicVideoCapability` utilisé par les contrats et services du module. |
+|  | `Common/Machines/Common/Enums/HardwareModelEnums.cs` |  | Atari : définit `HardwareAudioCapability`, `HardwareVideoCapability`, `HardwareCpu`, `HardwareRegion`, `HardwarePortCapability` et `HardwareStorageCapability` pour le contrat partagé. |
 |  | `Enums/AtariEightBitSettingDisposition.cs` |  | Atari : définit l’ensemble fermé `AtariEightBitSettingDisposition` utilisé par les contrats et services du module. |
 |  | `Enums/AtariEnvironmentLanguage.cs` |  | Atari : définit l’ensemble fermé `AtariEnvironmentLanguage` utilisé par les contrats et services du module. |
 |  | `Enums/AtariErrorCategory.cs` |  | Atari : définit l’ensemble fermé `AtariErrorCategory` utilisé par les contrats et services du module. |
@@ -279,7 +273,7 @@ pas seulement sur la ressemblance du nom.
 |  | `Functions/AtariCartridgeFunctions.cs` |  | Atari : fournit les transformations/validations `AtariCartridgeFunctions`, `Supports`, `Prepare`, `ValidateNoUnsupportedMetadata`, `ApplyOptions`, `GetMediaOptions` dans `AtariCartridgeFunctions`. |
 |  | `Functions/AtariCassetteBootFunctions.cs` |  | Atari : fournit les transformations/validations `AtariCassetteBootFunctions`, `IsRequested`, `RequiresDelayedReturn` dans `AtariCassetteBootFunctions`. |
 |  | `Functions/AtariCassetteStateFunctions.cs` |  | Atari : fournit les transformations/validations `AtariCassetteStateFunctions`, `From` dans `AtariCassetteStateFunctions`. |
-|  | `Functions/AtariClassicModelFunctions.cs` |  | Atari : fournit les transformations/validations `AtariClassicModelFunctions`, `Index`, `Create`, `CreateEightBit`, `CreateJaguar`, `IsFirmwareCompatible`, … dans `AtariClassicModelFunctions`. |
+|  | `Common/Machines/Common/Functions/HardwareModelFunctions.cs` |  | Atari : construit, indexe et valide les `HardwareModelDefinition` sans constante propre à une famille. |
 |  | `Functions/AtariCompatibilityFunctions.cs` |  | Atari : fournit les transformations/validations `AtariCompatibilityFunctions`, `Index`, `Editable`, `Forced`, `Unavailable`, `Hidden`, … dans `AtariCompatibilityFunctions`. |
 |  | `Functions/AtariConfigurationFunctions.cs` |  | Atari : fournit les transformations/validations `AtariConfigurationFunctions`, `GetCore`, `GetFamily`, `Validate` dans `AtariConfigurationFunctions`. |
 |  | `Functions/AtariConfigurationMigrationFunctions.cs` |  | Atari : fournit les transformations/validations `AtariConfigurationMigrationFunctions`, `MigrateToCurrent` dans `AtariConfigurationMigrationFunctions`. |
@@ -303,7 +297,7 @@ pas seulement sur la ressemblance du nom.
 |  | `Functions/AtariFirmwareRuntimeFunctions.cs` |  | Atari : fournit les transformations/validations `AtariFirmwareRuntimeFunctions`, `PrepareSystemDirectory`, `ClearManagedFirmwareFiles`, `ValidateRequiredFirmware`, `ResolveDefinition`, `ValidateReadableFile` dans `AtariFirmwareRuntimeFunctions`. |
 |  | `Functions/AtariFirmwareScanFunctions.cs` |  | Atari : fournit les transformations/validations `AtariFirmwareScanFunctions`, `FamilyDirectoryName`, `EnsureFamilyDirectories`, `IsRelevantFile`, `EnumerateCandidates`, `ComputeMd5Async`, … dans `AtariFirmwareScanFunctions`. |
 |  | `Functions/AtariFirmwareSelectionFunctions.cs` |  | Atari : fournit les transformations/validations `AtariFirmwareSelectionFunctions`, `IsSystemRom`, `FieldId`, `ReplaceField` dans `AtariFirmwareSelectionFunctions`. |
-|  | `Functions/AtariHardwareSettingsFunctions.cs` |  | Atari : fournit les transformations/validations `AtariHardwareSettingsFunctions`, `Invariant`, `CpuPrecision`, `Fpu`, `StRegion`, `ClassicRegion`, … dans `AtariHardwareSettingsFunctions`. |
+|  | `Common/Machines/Common/Functions/MachineFunctions.Hardware.cs` |  | Atari : présente les choix matériels communs, dont `HardwareRegionChoice`, à partir des contrats de machines. |
 |  | `Functions/AtariHatariContentFunctions.cs` |  | Atari : fournit les transformations/validations `AtariHatariContentFunctions`, `Prepare`, `Cleanup` dans `AtariHatariContentFunctions`. |
 |  | `Functions/AtariHatariStorageFunctions.cs` |  | Atari : fournit les transformations/validations `AtariHatariStorageFunctions`, `Prepare`, `ApplyWriteProtection`, `Cleanup`, `ResolveBus` dans `AtariHatariStorageFunctions`. |
 |  | `Functions/AtariInputFunctions.cs` |  | Atari : fournit les transformations/validations `AtariInputFunctions`, `Freeze`, `State`, `Accumulate`, `ConsumeRelativePointer` dans `AtariInputFunctions`. |

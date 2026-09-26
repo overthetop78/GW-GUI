@@ -8,7 +8,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
     private readonly IEmulatorAdapter _adapter;
-    private readonly IEmulatorMediaAdapter _mediaAdapter;
+    private readonly MachineFactory _mediaAdapter;
     private ExternalCoreInfo _info;
     private ExternalCoreLibrary? _library;
     private ExternalCoreExports? _exports;
@@ -30,7 +30,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         _corePath = Path.GetFullPath(absoluteCorePath);
         Emulator = emulator;
         _adapter = EmulatorCatalog.CreateAdapter(emulator);
-        _mediaAdapter = (IEmulatorMediaAdapter)_adapter;
+        _mediaAdapter = (MachineFactory)_adapter;
         _info = ExternalCoreProbe.Inspect(absoluteCorePath, emulator);
         CoreSha256 = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(_corePath))).ToLowerInvariant();
     }
@@ -73,16 +73,17 @@ internal sealed partial class ExternalCore : IEmulatorCore
             var absoluteSession = Path.GetFullPath(sessionDirectory);
             _configuration = configuration;
             _sessionDirectory = absoluteSession;
-            var systemDirectory = Path.Combine(absoluteSession, CommonConstants.SystemDirectoryName);
+            var systemDirectory = Path.Combine(absoluteSession, CoreDirectoryConstants.SystemDirectoryName);
             var media = _mediaAdapter.SelectPrimaryMedia(configuration);
             _library = new ExternalCoreLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
-            var configuredOptions = _mediaAdapter.GetConfiguredOptions(configuration);
+            var configuredOptions = _mediaAdapter.PrepareOptions(
+                _mediaAdapter.GetConfiguredOptions(configuration));
             _callbacks = new ExternalHostCallbacks(Emulator,
                 systemDirectory,
-                Path.Combine(absoluteSession, CommonConstants.ContentDirectoryName),
-                saveDirectory ?? Path.Combine(absoluteSession, CommonConstants.SavesDirectoryName),
-                Path.Combine(absoluteSession, CommonConstants.AssetsDirectoryName),
+                Path.Combine(absoluteSession, CoreDirectoryConstants.ContentDirectoryName),
+                saveDirectory ?? Path.Combine(absoluteSession, CoreDirectoryConstants.SavesDirectoryName),
+                Path.Combine(absoluteSession, CoreDirectoryConstants.AssetsDirectoryName),
                 configuredOptions);
             CoreFunctions.InstallCallbacks(_exports, _callbacks);
             _exports.Initialize();
@@ -95,7 +96,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
             media = _preparedContent?.Configuration;
             if (_preparedContent?.ActivityPaths is { } activityPaths)
                 _callbacks.TrackOpticalMedia(activityPaths);
-            var runtimeOptions = _preparedContent?.RuntimeOptions ?? configuration.Options;
+            var runtimeOptions = _mediaAdapter.PrepareOptions(
+                _preparedContent?.RuntimeOptions ?? configuration.Options);
             foreach (var option in runtimeOptions)
                 if (!configuration.Options.TryGetValue(option.Key, out var configuredValue)
                     || !string.Equals(configuredValue, option.Value, StringComparison.Ordinal))
@@ -148,5 +150,10 @@ internal sealed partial class ExternalCore : IEmulatorCore
             throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         ControllerPortFunctions.ConfigurePort(RequireExports(), RequireCallbacks(), configuration, port, peripheral);
     }
-    public void SetOption(string key, string value) => RequireCallbacks().SetOption(key, value);
+    public void SetOption(string key, string value)
+    {
+        var option = _mediaAdapter.PrepareOptions(
+            new Dictionary<string, string>(StringComparer.Ordinal) { [key] = value }).Single();
+        RequireCallbacks().SetOption(option.Key, option.Value);
+    }
 }

@@ -123,10 +123,12 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
             else _mediaPaths.Add(fullPath);
             _currentDiskPath = fullPath;
-        }, cancellationToken);
+        }, cancellationToken, EmulationMessageCategory.Media,
+            EmulationMessageCode.MediaOperationFailed);
 
     public ValueTask EjectMediaAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => { _core.EjectMedia(); _currentDiskPath = null; }, cancellationToken);
+        QueueCommand(() => { _core.EjectMedia(); _currentDiskPath = null; }, cancellationToken,
+            EmulationMessageCategory.Media, EmulationMessageCode.MediaOperationFailed);
 
     public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) =>
         InsertMediaAsync(path, cancellationToken);
@@ -139,7 +141,8 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         {
             _core.SelectDisk(index);
             if (index < _mediaPaths.Count) _currentDiskPath = _mediaPaths[index];
-        }, cancellationToken);
+        }, cancellationToken, EmulationMessageCategory.Media,
+            EmulationMessageCode.MediaOperationFailed);
 
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
@@ -152,7 +155,8 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
                 HashOptionalFile(Configuration.ExtendedRomPath), HashOptionalFile(Configuration.RomKeyPath),
                 StateStore.HashBytes(state), _mediaPaths.Select(StateStore.HashPath).ToArray());
             StateStore.Write(path, header, state);
-        }, cancellationToken);
+        }, cancellationToken, EmulationMessageCategory.SavedState,
+            EmulationMessageCode.SavedStateOperationFailed);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
@@ -161,19 +165,21 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             if (saved.Header.FormatVersion is < 1 or > 3 || saved.Header.Model != Configuration.Model
                 || saved.Header.CoreSha256 != _core.CoreSha256
                 || saved.Header.KickstartSha256 != StateStore.HashFile(Configuration.KickstartPath))
-                throw new InvalidDataException(MachineConstants.TheAmigaStateDoesNotMatchTheRunningMachine);
+                throw MachineExceptions.SavedStateIncompatible();
             if (saved.Header.FormatVersion >= 2
                 && (saved.Header.ExtendedRomSha256 != HashOptionalFile(Configuration.ExtendedRomPath)
                     || saved.Header.RomKeySha256 != HashOptionalFile(Configuration.RomKeyPath)
                     || saved.Header.MediaSha256 != HashOptionalPath(_currentDiskPath)
                     || !OptionsEqual(saved.Header.Options, _currentOptions)))
-                throw new InvalidDataException(MachineConstants.TheAmigaStateFirmwareMediaOrOptionsDoNotMatchTheRunningMachine);
+                throw MachineExceptions.SavedStateIncompatible();
             if (saved.Header.FormatVersion >= 3
                 && !(saved.Header.MediaSha256s ?? []).SequenceEqual(_mediaPaths.Select(StateStore.HashPath), StringComparer.OrdinalIgnoreCase))
-                throw new InvalidDataException(MachineConstants.TheAmigaStateMediaListDoesNotMatchTheRunningMachine);
+                throw MachineExceptions.SavedStateIncompatible();
             _core.LoadState(saved.State);
-        }, cancellationToken);
+        }, cancellationToken, EmulationMessageCategory.SavedState,
+            EmulationMessageCode.SavedStateOperationFailed);
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => { _core.SetOption(key, value); _currentOptions[key] = value; }, cancellationToken);
+        QueueCommand(() => { _core.SetOption(key, value); _currentOptions[key] = value; }, cancellationToken,
+            EmulationMessageCategory.Machine, EmulationMessageCode.OptionInvalid);
 }

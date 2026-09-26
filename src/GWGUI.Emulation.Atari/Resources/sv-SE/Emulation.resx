@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emulerar Atari 7800-konsolen.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulerar det bärbara Atari Lynx spelsystemet.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulerar Atari Jaguar och Jaguar CD konsoler.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Den valda Atari emulatorn använder inte den delade patronkontrollen.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Den valda Atari-maskinen kräver kartongmedia.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Patronförlängningen stöds inte av den valda Atari emulatorn.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Ataripatronen kan inte öppnas för läsning.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari emulatorn avvisade ersättningspatronen.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari-emulatorn avvisade både ersättaren och den tidigare patronen.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Denna Atari emulator kan inte fortsätta att drivas utan patron.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Den valda Atari emulatorn exponerar inte kartellregionval.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Denna Atari emulator kan inte använda patron timing läget heter SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Ljuduppspelning är aktiverad</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Ljuduppspelning är inaktiverad</value></data>
 </root>

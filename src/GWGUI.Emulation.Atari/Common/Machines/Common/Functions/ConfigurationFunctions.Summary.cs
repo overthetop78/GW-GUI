@@ -1,0 +1,90 @@
+using System.Globalization;
+using System.Security.Cryptography;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Atari.Modules;
+
+namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
+
+internal static class ConfigurationSummaryFunctions
+{
+    private static readonly EmulationModuleLocalization Localization = new(
+        typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
+
+    internal static EmulationConfigurationSummary Create(MachineConfiguration configuration)
+    {
+        var model = MachineCatalog.All.First(item => item.Id == configuration.MachineId);
+        var details = new List<string>();
+        if (configuration.Options.TryGetValue(SettingsConstants.Cpu, out var cpu)
+            && !string.IsNullOrWhiteSpace(cpu)) details.Add($"CPU {cpu}");
+
+        if (configuration.Options.ContainsKey(SettingsConstants.MainMemory)
+            || configuration.Options.ContainsKey(SettingsConstants.AlternateMemory))
+        {
+            var main = LongOption(configuration.Options, SettingsConstants.MainMemory);
+            var alternate = LongOption(configuration.Options, SettingsConstants.AlternateMemory);
+            details.Add($"RAM {FormatMemory(main + alternate)}");
+        }
+
+        if (configuration.Firmwares.Count > 0)
+            details.Add(string.Join(MachineConfigurationConstants.FirmwareSeparator,
+                configuration.Firmwares.Select(Firmware)));
+        details.Add($"Core {configuration.Core}");
+        details.Add(Text(configuration.AudioEnabled
+            ? ConfigurationSummaryFunctionsConstants.AudioEnabledResourceKey
+            : ConfigurationSummaryFunctionsConstants.AudioDisabledResourceKey));
+        return new EmulationConfigurationSummary(model.DisplayResourceKey, details);
+    }
+
+    private static string Firmware(FirmwareConfiguration firmware)
+    {
+        var role = firmware.Category == FirmwareCategory.Tos
+            ? MachineConfigurationConstants.TosLabel
+            : firmware.Category.ToString();
+        var version = FirmwareVersion(firmware);
+        return $"{role} {(version ?? ShortName(firmware.Path))}";
+    }
+
+    private static string? FirmwareVersion(FirmwareConfiguration firmware)
+    {
+        if (!File.Exists(firmware.Path)) return null;
+        try
+        {
+            if (firmware.Category == FirmwareCategory.Tos)
+            {
+                using var stream = File.OpenRead(firmware.Path);
+                Span<byte> header = stackalloc byte[4];
+                if (stream.Read(header) == header.Length)
+                {
+                    var encoded = (header[2] << 8) | header[3];
+                    var major = encoded >> 8;
+                    var minor = encoded & 0xff;
+                    if (major is >= 1 and <= 4 && minor <= 99) return $"{major}.{minor:D2}";
+                }
+            }
+            using var file = File.OpenRead(firmware.Path);
+            var md5 = Convert.ToHexStringLower(MD5.HashData(file));
+            return FirmwareScanFunctions.Identify(md5)?.Version;
+        }
+        catch (Exception error) when (error is IOException or UnauthorizedAccessException) { return null; }
+    }
+
+    private static string ShortName(string path)
+    {
+        var name = Path.GetFileNameWithoutExtension(path);
+        return name.Length <= ConfigurationSummaryFunctionsConstants.MaximumShortNameLength
+            ? name
+            : name[..ConfigurationSummaryFunctionsConstants.TruncatedShortNameLength]
+              + ConfigurationSummaryFunctionsConstants.Ellipsis;
+    }
+    private static long LongOption(IReadOnlyDictionary<string, string> options, string key) =>
+        options.TryGetValue(key, out var value) && long.TryParse(value, NumberStyles.Integer,
+            CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
+    private static string FormatMemory(long bytes) => bytes < 1024 * 1024
+        ? $"{bytes / 1024d:0.#} KiB"
+        : $"{bytes / 1024d / 1024d:0.##} MiB";
+
+    private static string Text(string resourceKey) =>
+        Localization.TryGetString(resourceKey, CultureInfo.CurrentUICulture, out var value)
+            ? value
+            : resourceKey;
+}

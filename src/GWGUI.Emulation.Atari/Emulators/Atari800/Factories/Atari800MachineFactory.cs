@@ -1,12 +1,21 @@
 using GWGUI.Emulation.Atari.Emulators.Atari800.Constants;
+using GWGUI.Emulation.Atari.Emulators.Atari800.Exceptions;
 using GWGUI.Emulation.Atari.Emulators.Atari800.Contracts;
 using GWGUI.Emulation.Atari.Emulators.Atari800.Enums;
 using GWGUI.Emulation.Atari.Emulators.Atari800.Functions;
 
 namespace GWGUI.Emulation.Atari.Emulators.Atari800.Factories;
 
-internal sealed class Atari800MachineFactory() : MachineFactory(Emulator.Atari800)
+internal sealed class Atari800MachineFactory() : MachineFactory(EmulatorConstants.Entry)
 {
+    internal override IReadOnlySet<string> GetCartridgeExtensions(MachineConfiguration configuration) =>
+        configuration.Model == MachineModel.Atari5200
+            ? Atari800MediaConstants.ConsoleCartridgeExtensions
+            : Atari800MediaConstants.ComputerCartridgeExtensions;
+
+    public override IReadOnlyDictionary<string, string> PrepareOptions(
+        IReadOnlyDictionary<string, string> options) => Atari800OptionFunctions.ToNative(options);
+
     public override MediaConfiguration? SelectPrimaryMedia(MachineConfiguration configuration) =>
         Atari800MediaFunctions.Primary(configuration.Media);
 

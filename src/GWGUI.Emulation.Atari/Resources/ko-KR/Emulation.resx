@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800 콘솔을 격리합니다.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>휴대용 Atari Lynx 게임 시스템을 격리합니다.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Atari Jaguar와 Jaguar를 격리 CD 콘솔.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>선택한 Atari 에뮬레이터는 공유 카트리지 컨트롤러를 사용하지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>선택된 Atari 기계는 카트리지 매체를 요구합니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>카트리지 확장은 선택한 Atari 에뮬레이터에 의해 지원되지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari 카트리지는 독서를 위해 열 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari 에뮬레이터는 교체 카트리지를 거부했습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari 에뮬레이터는 교체 및 이전 카트리지를 모두 거부했습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>이 Atari 에뮬레이터는 카트리지없이 전원을 유지 할 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>선택된 Atari 에뮬레이터는 카트리지 지역을 노출하지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>이 Atari 에뮬레이터는 카트리지 타이밍 모드를 사용할 수 없습니다 SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Sound 재생이 활성화됩니다.</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>사운드 재생은 비활성화</value></data>
 </root>

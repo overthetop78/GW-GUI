@@ -1,5 +1,3 @@
-using GWGUI.Emulation.Atari.Common.Dictionaries;
-
 namespace GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Dictionaries;
 
 
@@ -122,27 +120,27 @@ public static class EightBitSettingsCatalog
     public static IReadOnlyList<MemoryExpansionChoice> Axlon(MachineModel model) =>
         SupportsOriginalComputerOptions(model) ? AxlonChoices : [];
 
-    public static long CpuFrequency(ClassicRegion region) => region switch
+    public static long CpuFrequency(HardwareRegion region) => region switch
     {
-        ClassicRegion.Pal => EightBitSettingsConstants.PalCpuFrequencyHz,
-        ClassicRegion.Ntsc => EightBitSettingsConstants.NtscCpuFrequencyHz,
+        HardwareRegion.Pal => EightBitSettingsConstants.PalCpuFrequencyHz,
+        HardwareRegion.Ntsc => EightBitSettingsConstants.NtscCpuFrequencyHz,
         _ => throw new ArgumentOutOfRangeException(nameof(region), region, null)
     };
 
-    public static IReadOnlyList<string> OriginalOsRevisions(ClassicRegion region) => region switch
+    public static IReadOnlyList<string> OriginalOsRevisions(HardwareRegion region) => region switch
     {
-        ClassicRegion.Pal => [EightBitSettingsCatalogConstants.Auto, EightBitSettingsCatalogConstants.RevAPAL, EightBitSettingsCatalogConstants.RevBNTSC, EightBitSettingsCatalogConstants.AltirraOS],
-        ClassicRegion.Ntsc => [EightBitSettingsCatalogConstants.Auto, EightBitSettingsCatalogConstants.RevANTSC, EightBitSettingsCatalogConstants.RevBNTSC, EightBitSettingsCatalogConstants.AltirraOS],
+        HardwareRegion.Pal => [EightBitSettingsCatalogConstants.Auto, EightBitSettingsCatalogConstants.RevAPAL, EightBitSettingsCatalogConstants.RevBNTSC, EightBitSettingsCatalogConstants.AltirraOS],
+        HardwareRegion.Ntsc => [EightBitSettingsCatalogConstants.Auto, EightBitSettingsCatalogConstants.RevANTSC, EightBitSettingsCatalogConstants.RevBNTSC, EightBitSettingsCatalogConstants.AltirraOS],
         _ => [EightBitSettingsCatalogConstants.Auto, EightBitSettingsCatalogConstants.AltirraOS]
     };
 
-    public static bool IsOriginalOsCompatible(FirmwareDefinition definition, ClassicRegion region) =>
+    public static bool IsOriginalOsCompatible(FirmwareDefinition definition, HardwareRegion region) =>
         definition.Category switch
         {
             FirmwareCategory.AtariOsA when definition.Version == EightBitSettingsCatalogConstants.RevAPAL =>
-                region == ClassicRegion.Pal,
+                region == HardwareRegion.Pal,
             FirmwareCategory.AtariOsA when definition.Version == EightBitSettingsCatalogConstants.RevANTSC =>
-                region == ClassicRegion.Ntsc,
+                region == HardwareRegion.Ntsc,
             FirmwareCategory.AtariOsB => true,
             _ => true
         };

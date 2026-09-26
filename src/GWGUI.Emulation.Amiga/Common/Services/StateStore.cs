@@ -38,20 +38,21 @@ internal static class StateStore
         using var stream = File.OpenRead(path);
         Span<byte> magic = stackalloc byte[StateStoreConstants.Magic.Length];
         stream.ReadExactly(magic);
-        if (!magic.SequenceEqual(StateStoreConstants.Magic)) throw new InvalidDataException(StateStoreConstants.TheFileIsNotAGWGUIAmigaState);
+        if (!magic.SequenceEqual(StateStoreConstants.Magic)) throw MachineExceptions.SavedStateInvalid();
         Span<byte> lengthBytes = stackalloc byte[4];
         stream.ReadExactly(lengthBytes);
         var length = BinaryPrimitives.ReadInt32LittleEndian(lengthBytes);
-        if (length is <= 0 or > 1024 * 1024) throw new InvalidDataException(StateStoreConstants.TheAmigaStateHeaderLengthIsInvalid);
+        if (length is <= 0 or > StateStoreConstants.MaximumHeaderLength)
+            throw MachineExceptions.SavedStateInvalid();
         var headerBytes = new byte[length];
         stream.ReadExactly(headerBytes);
         var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes, JsonOptions)
-            ?? throw new InvalidDataException(StateStoreConstants.TheAmigaStateHeaderIsInvalid);
+            ?? throw MachineExceptions.SavedStateInvalid();
         using var state = new MemoryStream();
         stream.CopyTo(state);
         var stateBytes = state.ToArray();
         if (header.StateSha256 is { Length: > 0 } expected && !HashBytes(stateBytes).Equals(expected, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException(StateStoreConstants.TheAmigaStatePayloadIsCorrupted);
+            throw MachineExceptions.SavedStateInvalid();
         return (header, stateBytes);
     }
 
@@ -64,7 +65,7 @@ internal static class StateStore
     internal static string HashPath(string path)
     {
         if (File.Exists(path)) return HashFile(path);
-        if (!Directory.Exists(path)) throw new FileNotFoundException(StateStoreConstants.TheAmigaMediaPathWasNotFound, path);
+        if (!Directory.Exists(path)) throw MachineExceptions.MediaNotFound();
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         Span<byte> length = stackalloc byte[sizeof(int)];
         foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.Value, SearchOption.AllDirectories)

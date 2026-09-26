@@ -7,8 +7,9 @@ public sealed class ConfigurationStore
 {
     private readonly string _directory;
     private readonly string _pathBase;
-    private static readonly SemaphoreSlim SaveGate = new(1, 1);
-    private int _activeLoads;
+    private static readonly SemaphoreSlim SaveGate = new(
+        ConfigurationStoreConstants.InitialWriterCount,
+        ConfigurationStoreConstants.MaximumWriterCount);
 
     public ConfigurationStore(string directory, string? pathBase = null)
     {
@@ -17,42 +18,32 @@ public sealed class ConfigurationStore
         _pathBase = Path.GetFullPath(pathBase ?? directory);
     }
 
-    public bool IsLoading => Volatile.Read(ref _activeLoads) > ConfigurationStoreConstants.NoActiveLoads;
-
     public async Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(
         CancellationToken cancellationToken = default)
     {
-        Interlocked.Increment(ref _activeLoads);
-        try
+        Directory.CreateDirectory(_directory);
+        var configurations = new List<MachineConfiguration>();
+        foreach (var path in ConfigurationPaths())
         {
-            Directory.CreateDirectory(_directory);
-            var configurations = new List<MachineConfiguration>();
-            foreach (var path in ConfigurationPaths())
+            cancellationToken.ThrowIfCancellationRequested();
+            try
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                try
-                {
-                    var json = ConfigurationFileAccessFunctions.ReadAllText(path);
-                    var document = JsonConfigurationRecoveryFunctions
-                        .DeserializeRemovingInvalidProperties(json,
-                            ConfigurationMigrationFunctions.MigrateToCurrent,
-                            out var repairedJson);
-                    if (!string.Equals(json, repairedJson, StringComparison.Ordinal))
-                        await JsonConfigurationRecoveryFunctions.WriteAtomicallyAsync(path, repairedJson,
-                            cancellationToken).ConfigureAwait(false);
-                    configurations.Add(ConfigurationStoreFunctions.FromDocument(document, _pathBase));
-                }
-                catch (JsonException) { }
-                catch (IOException) { }
-                catch (InvalidDataException) { }
-                catch (ArgumentException) { }
+                var json = ConfigurationFileAccessFunctions.ReadAllText(path);
+                var document = JsonConfigurationRecoveryFunctions
+                    .DeserializeRemovingInvalidProperties(json,
+                        ConfigurationStoreFunctions.Deserialize,
+                        out var repairedJson);
+                if (!string.Equals(json, repairedJson, StringComparison.Ordinal))
+                    await JsonConfigurationRecoveryFunctions.WriteAtomicallyAsync(path, repairedJson,
+                        cancellationToken).ConfigureAwait(false);
+                configurations.Add(ConfigurationStoreFunctions.FromDocument(document, _pathBase));
             }
-            return configurations;
+            catch (JsonException) { }
+            catch (IOException) { }
+            catch (InvalidDataException) { }
+            catch (ArgumentException) { }
         }
-        finally
-        {
-            Interlocked.Decrement(ref _activeLoads);
-        }
+        return configurations;
     }
 
     public async Task SaveAsync(MachineConfiguration configuration,
@@ -80,7 +71,8 @@ public sealed class ConfigurationStore
         if (id == Guid.Empty) throw new ArgumentException(nameof(id));
         var machineDirectory = Path.Combine(_directory,
             id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-        if (Directory.Exists(machineDirectory)) Directory.Delete(machineDirectory, recursive: true);
+        if (Directory.Exists(machineDirectory))
+            Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);
         var legacyPath = Path.Combine(_directory,
             id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)
             + ConfigurationStoreConstants.LegacyFileExtension);

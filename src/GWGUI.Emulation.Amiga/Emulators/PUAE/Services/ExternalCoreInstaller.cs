@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Exceptions;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Constants;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Contracts;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
@@ -10,20 +11,20 @@ using System.Text.Json;
 
 namespace GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
 
-public sealed class AmigaExternalCoreInstaller
+public sealed class ExternalCoreInstaller
 {
-    public const string CoreRevision = ExternalCoreInstallerConstants.Value96ebfcfc;
-    public const string DownloadUrl = ExternalCoreInstallerConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip;
+    public const string CoreRevision = CoreReleaseConstants.Value96ebfcfc;
+    public const string DownloadUrl = CoreReleaseConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
 
-    public AmigaExternalCoreInstaller(HttpClient httpClient, string directory)
+    public ExternalCoreInstaller(HttpClient httpClient, string directory)
     {
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
     }
 
-    public string LibraryPath => Path.Combine(_directory, ExternalCoreInstallerConstants.OptionLibretroDll);
+    public string LibraryPath => Path.Combine(_directory, CoreReleaseConstants.OptionLibretroDll);
 
     public bool IsInstalled
     {
@@ -39,8 +40,8 @@ public sealed class AmigaExternalCoreInstaller
     public async Task<string> InstallAsync(CancellationToken cancellationToken = default)
     {
         Directory.CreateDirectory(_directory);
-        var package = LibraryPath + ExternalCoreInstallerConstants.Download;
-        var extracted = LibraryPath + ExternalCoreInstallerConstants.Extract;
+        var package = LibraryPath + CoreReleaseConstants.Download;
+        var extracted = LibraryPath + CoreReleaseConstants.Extract;
         try
         {
             using var response = await _httpClient.GetAsync(DownloadUrl, HttpCompletionOption.ResponseHeadersRead,
@@ -54,8 +55,8 @@ public sealed class AmigaExternalCoreInstaller
             using (var archive = ZipFile.OpenRead(package))
             {
                 var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals(ExternalCoreInstallerConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(ExternalCoreInstallerConstants.TheOfficialAmigaCoreArchiveDoesNotContainPuaeLibretroDll);
+                    Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
+                    ?? throw new InvalidDataException(PuaeExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             CoreReleaseService.VerifyWindowsX64Library(extracted);
@@ -81,10 +82,10 @@ public sealed class AmigaExternalCoreInstaller
             source,
             librarySize = new FileInfo(libraryPath).Length,
             librarySha256 = sha256,
-            architecture = ExternalCoreInstallerConstants.X64,
+            architecture = CoreReleaseConstants.X64,
             installedUtc = DateTimeOffset.UtcNow
         };
-        await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, ExternalCoreInstallerConstants.CoreJson),
+        await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson),
             JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }),
             cancellationToken).ConfigureAwait(false);
     }

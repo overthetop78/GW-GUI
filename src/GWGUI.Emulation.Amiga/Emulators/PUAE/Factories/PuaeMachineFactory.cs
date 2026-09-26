@@ -13,13 +13,20 @@ internal sealed class PuaeMachineFactory : IEmulatorAdapter
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
-    public string EmulatorId => EmulationModuleConstants.Puae;
-    public EmulationEmulatorDefinition Definition => EmulatorCatalog.Get(EmulatorId);
+    public EmulatorCatalogEntry CatalogEntry { get; } = new(
+        Emulator.External,
+        new EmulationEmulatorDefinition(
+            PuaeConstants.Id, PuaeConstants.DisplayName, PuaeConstants.DescriptionResourceKey,
+            MachineCatalog.All.Select(machine => machine.Id).ToHashSet(StringComparer.Ordinal)));
+    public Emulator Emulator => CatalogEntry.Emulator;
+    public string EmulatorId => CatalogEntry.Definition.Id;
+    public string EmulatorKey => Emulator.ToString();
+    public EmulationEmulatorDefinition Definition => CatalogEntry.Definition;
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
         exitCode = 0;
-        if (arguments is not [EmulationModuleConstants.CoreHost, var pipeName, var videoMapName])
+        if (arguments is not [PuaeConstants.CoreHostCommand, var pipeName, var videoMapName])
             return false;
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
         CoreHost.Run(pipeName, videoMapName);
@@ -56,7 +63,7 @@ internal sealed class PuaeMachineFactory : IEmulatorAdapter
 
     public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
         CancellationToken cancellationToken) =>
-        await new AmigaCoreProvider(context.HttpClient, context.CoreDirectory)
+        await new CoreProvider(context.HttpClient, context.CoreDirectory)
             .FindInstalledPathAsync(cancellationToken).ConfigureAwait(false);
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
@@ -66,12 +73,16 @@ internal sealed class PuaeMachineFactory : IEmulatorAdapter
         EmulatorCreationContext context)
     {
         var machineId = Guid.NewGuid();
-        var core = new AmigaProcessCore(context.HostExecutablePath, context.CorePath);
-        var configured = configuration.EnsureId();
+        var core = new ProcessCore(context.HostExecutablePath, context.CorePath);
+        var configured = PuaeOptionFunctions.ToNative(configuration.EnsureId());
         return new Machine(machineId, configured, core,
             ExternalCore.ResolveConfiguredMedia(configured),
-            Path.Combine(context.SessionsDirectory, machineId.ToString(PuaeMachineFactoryConstants.N)),
+            Path.Combine(context.SessionsDirectory,
+                machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             configuration.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
-            context.SaveDirectoryResolver?.Invoke(configuration));
+            context.SaveDirectoryResolver?.Invoke(configuration),
+            startErrorTranslator: error => EmulationErrorService.TranslateLocalized(error,
+                EmulationMessageCategory.Machine,
+                new EmulationMachineMessageContext(configuration.Model)));
     }
 }

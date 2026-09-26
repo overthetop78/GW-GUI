@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuliert die Atari 7800 Konsole.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuliert das tragbare Atari Lynx-Spielsystem.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuliert Atari Jaguar und Jaguar CD Konsolen.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Der ausgewählte Atari-Emulator verwendet nicht den freigegebenen Cartridge-Controller.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Die ausgewählte Atari-Maschine benötigt Patronenmedien.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Die Patronenverlängerung wird vom ausgewählten Atari-Emulator nicht unterstützt.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Die Atari-Patrone kann nicht zum Lesen geöffnet werden.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Der Atari-Emulator lehnte die Ersatzkartusche ab.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Der Atari-Emulator lehnte sowohl den Ersatz als auch die vorherige Patrone ab.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Dieser Atari-Emulator kann ohne eine Patrone nicht eingeschaltet bleiben.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Der ausgewählte Atari-Emulator zeigt keine Auswahl der Patronenregion an.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Dieser Atari-Emulator kann den Cartridge-Timing-Modus namens SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Sound-Wiedergabe ist aktiviert</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Sound-Wiedergabe ist deaktiviert</value></data>
 </root>

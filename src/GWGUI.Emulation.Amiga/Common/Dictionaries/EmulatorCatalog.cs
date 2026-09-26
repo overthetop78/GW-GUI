@@ -2,13 +2,9 @@ namespace GWGUI.Emulation.Amiga.Common.Dictionaries;
 
 internal static class EmulatorCatalog
 {
-    private static readonly EmulationEmulatorDefinition Puae = new(
-        EmulationModuleConstants.Puae,
-        "PUAE",
-        "Emulation.Emulator.puae.Description",
-        MachineCatalog.All.Select(machine => machine.Id).ToHashSet(StringComparer.Ordinal));
-
-    internal static IReadOnlyList<EmulationEmulatorDefinition> All => [Puae];
+    internal static IReadOnlyList<EmulationEmulatorDefinition> All =>
+        CreateAdapters().Select(adapter => adapter.Definition)
+            .OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
         typeof(EmulatorCatalog).Assembly.GetTypes()
@@ -18,17 +14,19 @@ internal static class EmulatorCatalog
             .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
             .ToArray();
 
-    internal static EmulationEmulatorDefinition Get(Emulator emulator) => emulator switch
-    {
-        Emulator.External => Puae,
-        _ => throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null)
-    };
+    internal static IEmulatorAdapter CreateAdapter(Emulator emulator) =>
+        CreateAdapters().SingleOrDefault(adapter => string.Equals(
+            adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal))
+        ?? throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
+
+    internal static EmulationEmulatorDefinition Get(Emulator emulator) =>
+        CreateAdapter(emulator).Definition;
 
     internal static EmulationEmulatorDefinition Get(string emulatorId) =>
-        string.Equals(emulatorId, Puae.Id, StringComparison.Ordinal)
-            ? Puae
-            : throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
+        CreateAdapters().SingleOrDefault(adapter => string.Equals(
+            adapter.EmulatorId, emulatorId, StringComparison.Ordinal))?.Definition
+        ?? throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
 
     internal static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) =>
-        Puae.MachineIds.Contains(machineId) ? [Puae] : [];
+        All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 }

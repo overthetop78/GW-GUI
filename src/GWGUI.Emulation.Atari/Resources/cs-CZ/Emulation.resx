@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuluje konzoli Atari7800.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuluje přenosný herní systém Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuláty Atari Jaguar a Jaguar CD konzole.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Zvolený emulátor Atari nepoužívá sdílený regulátor zásobní vložky.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Zvolený stroj Atari vyžaduje zásobní média.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Prodloužení zásobní vložky není podporováno zvoleným emulátorem Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Zásobní vložku Atari nelze otevřít pro čtení.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Emulátor Atari náhradní zásobní vložku odmítl.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Emulátor Atari odmítl jak náhradní, tak i předchozí zásobní vložku.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Tento emulátor Atari nemůže zůstat zapnut bez zásobní vložky.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Zvolený emulátor Atari nevykazuje výběr oblasti náplně.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Tento emulátor Atari nemůže používat režim načasování náplně s názvem SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Přehrávání zvuku je povoleno</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Přehrávání zvuku je zakázáno</value></data>
 </root>

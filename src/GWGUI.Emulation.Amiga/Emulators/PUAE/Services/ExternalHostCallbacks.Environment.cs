@@ -3,10 +3,11 @@ using GWGUI.Emulation.Amiga.Emulators.PUAE.Contracts;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Functions;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Exceptions;
 
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
-using static GWGUI.Emulation.Amiga.Emulators.PUAE.Constants.AmigaExternalHostCallbacksConstants;
+using static GWGUI.Emulation.Amiga.Emulators.PUAE.Constants.ExternalHostCallbacksConstants;
 
 namespace GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
 
@@ -29,16 +30,17 @@ internal sealed partial class ExternalHostCallbacks
                     return true;
                 case ExternalCoreApiConstants.GetCanDuplicateFrames:
                 case ExternalCoreApiConstants.GetInputBitmasks:
-                    if (data != 0) Marshal.WriteByte(data, 1);
+                    if (data != nint.Zero)
+                        Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);
                     return true;
                 case ExternalCoreApiConstants.SetMessage:
                     return CaptureMessage(data, extended: false);
                 case ExternalCoreApiConstants.SetPixelFormat:
                     _pixelFormat = Marshal.ReadInt32(data) switch
                     {
-                        1 => EmulationPixelFormat.Xrgb8888,
-                        2 => EmulationPixelFormat.Rgb565,
-                    var value => throw new NotSupportedException(UnsupportedPixelFormat(value))
+                        ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,
+                        ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,
+                    var value => throw new NotSupportedException(PuaeExceptions.UnsupportedPixelFormat(value))
                     };
                     return true;
                 case ExternalCoreApiConstants.GetCoreOptionsVersion:
@@ -56,7 +58,13 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.GetVariable:
                     return ReturnOption(data);
                 case ExternalCoreApiConstants.GetVariableUpdate:
-                    if (data != 0) Marshal.WriteByte(data, Interlocked.Exchange(ref _optionsUpdated, 0) != 0 ? (byte)1 : (byte)0);
+                    if (data != nint.Zero)
+                        Marshal.WriteByte(data,
+                            Interlocked.Exchange(ref _optionsUpdated,
+                                ExternalCoreInteropConstants.InactiveState)
+                            != ExternalCoreInteropConstants.InactiveState
+                                ? ExternalCoreInteropConstants.NativeBooleanTrue
+                                : ExternalCoreInteropConstants.NativeBooleanFalse);
                     return true;
                 case ExternalCoreApiConstants.GetDiskControlVersion:
                     if (data != 0) Marshal.WriteInt32(data, 1);
@@ -83,11 +91,13 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
                     return CaptureOptionsDisplayCallback(data);
                 case ExternalCoreApiConstants.SetSupportNoGame:
-                    SupportsNoGame = data != 0 && Marshal.ReadByte(data) != 0;
+                    SupportsNoGame = data != nint.Zero
+                        && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                     return true;
                 case ExternalCoreApiConstants.GetMessageInterfaceVersion:
-                    if (data != 0) Marshal.WriteInt32(data, 1);
-                    return data != 0;
+                    if (data != nint.Zero)
+                        Marshal.WriteInt32(data, ExternalCoreInteropConstants.MessageInterfaceVersion);
+                    return data != nint.Zero;
                 case ExternalCoreApiConstants.SetMessageExtended:
                     return CaptureMessage(data, extended: true);
                 case ExternalCoreApiConstants.SetFastForwardingOverride:
@@ -138,7 +148,7 @@ internal sealed partial class ExternalHostCallbacks
                 .Select(value => new CoreOptionValue(value, value)).ToArray() ?? [];
             var defaultValue = values.FirstOrDefault()?.Value ?? string.Empty;
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
-            catalog.Add(new CoreOption(key, name, null, null, defaultValue, values,
+            catalog.Add(new CoreOption(key, name, null, null, defaultValue, defaultValue, values,
                 !_optionVisibility.TryGetValue(key, out var visible) || visible));
         }
         OptionCatalog = catalog;
@@ -177,7 +187,7 @@ internal sealed partial class ExternalHostCallbacks
                 if (value is null) break;
                 values.Add(new CoreOptionValue(value, StringAt(definition, valueOffset + IntPtr.Size) ?? value));
             }
-            catalog.Add(new CoreOption(key, name, description, category, defaultValue, values,
+            catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values,
                 !_optionVisibility.TryGetValue(key, out var visible) || visible));
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
         }
@@ -237,12 +247,12 @@ internal sealed partial class ExternalHostCallbacks
     {
         foreach (var key in _configuredOptionKeys)
         {
-            if (key.Equals(AmigaExternalHostCallbacksConstants.OptionKickstart, StringComparison.Ordinal)) continue;
+            if (key.Equals(ExternalHostCallbacksConstants.OptionKickstart, StringComparison.Ordinal)) continue;
             var configuredValue = _options[key];
             var option = OptionCatalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
             if (option is null || option.Values.Count == 0) continue;
             if (!option.Values.Any(value => value.Value.Equals(configuredValue, StringComparison.Ordinal)))
-                throw new InvalidDataException(InvalidOptionValue(configuredValue, key));
+                throw new InvalidDataException(PuaeExceptions.InvalidOptionValue(configuredValue, key));
         }
     }
 
@@ -251,7 +261,7 @@ internal sealed partial class ExternalHostCallbacks
         if (data == 0) return false;
         var textPointer = Marshal.ReadIntPtr(data);
         var message = textPointer == 0 ? null : Marshal.PtrToStringUTF8(textPointer);
-        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[message{(extended ? AmigaExternalHostCallbacksConstants.Extended : string.Empty)}] {message}");
+        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}");
         return true;
     }
 

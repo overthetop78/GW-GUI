@@ -13,10 +13,11 @@ internal sealed partial class ExternalHostCallbacks
 {
     private void HandleVideo(nint data, uint width, uint height, nuint pitch)
     {
-        if (data == 0 || width == 0 || height == 0) return;
+        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension
+            || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;
         var byteCount = checked((int)(pitch * height));
         var pixels = new byte[byteCount];
-        Marshal.Copy(data, pixels, 0, byteCount);
+        Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
         LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height),
             checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height,
             ++_videoSequence, _clock.Elapsed);
@@ -61,9 +62,9 @@ internal sealed partial class ExternalHostCallbacks
 
     private nuint HandleAudioBatch(nint data, nuint frames)
     {
-        if (data == 0 || frames == 0) return frames;
+        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;
         var samples = new short[checked((int)frames * 2)];
-        Marshal.Copy(data, samples, 0, samples.Length);
+        Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);
         PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames),
             ++_audioSequence, _clock.Elapsed));
         return frames;

@@ -16,7 +16,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         {
             ObjectDisposedException.ThrowIf(_disposed, this);
             if (State != EmulationMachineState.Created)
-                throw new InvalidOperationException(MachineConstants.InvalidStartStateMessage);
+                throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
             State = EmulationMachineState.Starting;
             _stopSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);

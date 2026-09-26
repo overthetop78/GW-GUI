@@ -39,13 +39,13 @@ private bool SetRotation(nint data)
         if (data == nint.Zero) return false;
         switch (Marshal.ReadInt32(data))
         {
-            case CommonConstants.PixelFormatXrgb8888:
+            case ExternalCoreInteropConstants.PixelFormatXrgb8888:
                 _pixelFormat = EmulationPixelFormat.Xrgb8888;
                 return true;
-            case CommonConstants.PixelFormatRgb565:
+            case ExternalCoreInteropConstants.PixelFormatRgb565:
                 _pixelFormat = EmulationPixelFormat.Rgb565;
                 return true;
-            case CommonConstants.PixelFormat0Rgb1555:
+            case ExternalCoreInteropConstants.PixelFormat0Rgb1555:
                 _pixelFormat = EmulationPixelFormat.Rgb1555;
                 return true;
             default:

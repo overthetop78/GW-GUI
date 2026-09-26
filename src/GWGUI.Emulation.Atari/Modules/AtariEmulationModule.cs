@@ -31,8 +31,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             EmulationPathConstants.FirmwareDirectoryName);
     }
 
-    public string Id => EmulationModuleConstants.Atari;
-    public string DisplayResourceKey => EmulationModuleConstants.ResourceFamilyAtari;
+    public string Id => EmulationModuleConstants.ModuleId;
+    public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
@@ -147,7 +147,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         {
             Firmwares = firmwares, Options = options, Folders = folders,
             AudioEnabled = values.GetValueOrDefault(SettingsConstants.AudioEnabled)
-                == EmulationModuleConstants.Enabled
+                == SettingsDescriptionFunctionsConstants.Enabled
         };
     }
 
@@ -155,9 +155,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var atari = configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
-        return CompatibilityCatalog.Get(atari.Model).Core == Emulator.Hatari
-            ? MachineOptionFunctions.Apply(atari)
-            : atari.Options;
+        var adapter = (MachineFactory)_engine.Adapter(atari);
+        return adapter.PrepareOptions(adapter.GetConfiguredOptions(atari));
     }
 
 
@@ -223,12 +222,12 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
         CancellationToken cancellationToken = default)
     {
-        var emulator = EmulatorCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
+        var emulator = CoreCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
         var installation = await new CoreReleaseService(_httpClient, _coreDirectory)
             .GetActiveInstallationAsync(emulator, cancellationToken).ConfigureAwait(false);
         var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
-        var core = EmulatorCatalog.Get(emulator);
-        return new EmulationEmulatorInstallation(EmulatorCatalog.GetDefinition(core), version);
+        var core = CoreCatalog.Get(emulator);
+        return new EmulationEmulatorInstallation(CoreCatalog.GetDefinition(core), version);
     }
 
     public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
@@ -236,7 +235,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var atari = configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
-        return await GetInstallationAsync(EmulatorCatalog.Get(atari.Core), cancellationToken)
+        return await GetInstallationAsync(CoreCatalog.Get(atari.Core), cancellationToken)
             .ConfigureAwait(false);
     }
 
@@ -246,7 +245,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         var atari = configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
         var results = new List<EmulationEmulatorInstallation>();
-        foreach (var core in EmulatorCatalog.GetAll(atari.Model))
+        foreach (var core in CoreCatalog.GetAll(atari.Model))
             results.Add(await GetInstallationAsync(core, cancellationToken).ConfigureAwait(false));
         return results;
     }
@@ -257,7 +256,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         cancellationToken.ThrowIfCancellationRequested();
         var atari = configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
-        var core = EmulatorCatalog.Get(emulatorId);
+        var core = CoreCatalog.Get(emulatorId);
         if (!core.Models.Contains(atari.Model))
             throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
         return ValueTask.FromResult<IEmulationConfiguration>(atari with { Core = core.Emulator });
@@ -269,13 +268,13 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         var installation = await new CoreReleaseService(_httpClient, _coreDirectory)
             .GetActiveInstallationAsync(core.Emulator, cancellationToken).ConfigureAwait(false);
         var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
-        return new EmulationEmulatorInstallation(EmulatorCatalog.GetDefinition(core), version);
+        return new EmulationEmulatorInstallation(CoreCatalog.GetDefinition(core), version);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
         CancellationToken cancellationToken = default)
     {
-        var emulator = EmulatorCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
+        var emulator = CoreCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
         var releases = await new CoreReleaseService(_httpClient, _coreDirectory)
             .GetAvailableAsync(emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
@@ -294,7 +293,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     public async ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release,
         IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
-        var emulator = EmulatorCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
+        var emulator = CoreCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
         if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != emulator)
             throw new ArgumentException(nameof(release));
         var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value =>
@@ -355,7 +354,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             var scanned = await FirmwareScanFunctions.ScanFileAsync(path, atari.Model, null,
                 cancellationToken).ConfigureAwait(false);
             var name = scanned.Definition?.Category == FirmwareCategory.Tos
-                ? $"{ConfigurationSummaryFunctionsConstants.TOS} {scanned.Definition.Version}"
+                ? $"{MachineConfigurationConstants.TosLabel} {scanned.Definition.Version}"
                 : Path.GetFileName(scanned.Path);
             var compatibility = ToFirmwareCompatibility(scanned.Compatibility);
             entries.Add(new EmulationFirmwareCandidate(scanned.Md5 ?? scanned.Path, scanned.Path, name, null,
@@ -405,17 +404,18 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(EmulatorCatalog.Get(atari.Core).Id)));
-        var audioDevice = atari.Options.GetValueOrDefault(ConfigurationOptionConstants.AudioOutput);
-        if (string.Equals(audioDevice, ConfigurationOptionConstants.DefaultAudioOutput,
+                new EmulationEmulatorMessageContext(CoreCatalog.Get(atari.Core).Id)));
+        var audioDevice = atari.Options.GetValueOrDefault(VideoAudioSettingsConstants.AudioOutputOption);
+        if (string.Equals(audioDevice, VideoAudioSettingsConstants.DefaultAudioOutput,
                 StringComparison.Ordinal)) audioDevice = null;
-        var latency = atari.Options.TryGetValue(ConfigurationOptionConstants.AudioLatency,
+        var latency = atari.Options.TryGetValue(VideoAudioSettingsConstants.AudioLatencyOption,
                 out var configuredLatency) && int.TryParse(configuredLatency, out var parsedLatency)
-            ? parsedLatency : ConfigurationOptionConstants.DefaultAudioLatencyMilliseconds;
+            ? parsedLatency : VideoAudioSettingsConstants.DefaultAudioLatencyMilliseconds;
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audioDevice, latency),
-            value => Path.Combine(services.StatesDirectory, value.Id.ToString(EmulationModuleConstants.N)));
+            value => Path.Combine(services.StatesDirectory,
+                value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
         var compatibility = CompatibilityCatalog.Get(atari.Model);
         var storage = StorageSettingsFunctions.Describe(atari);
         var devices = storage.AvailableDevices

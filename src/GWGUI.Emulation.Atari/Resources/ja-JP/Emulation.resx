@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800コンソールをエミュレートします。</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>ポータブルアタリLynxゲームシステムをエミュレートします。</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>アタリ・ジャガーとジャガーをエミュレート CD コンソール。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>選択したアタリエミュレータは、共有カートリッジコントローラーを使用していません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>選択したアタリマシンは、カートリッジ媒体が必要です。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>カートリッジエクステンションは、選択したアタリエミュレータではサポートされていません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>読書にはアタリカートリッジは開けません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>カートリッジの交換を拒絶したアタリエミュレータ。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>吸入エミュレータは、交換と前回カートリッジの両方を拒否しました。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>カートリッジを使わずに、アタリエミュレータは使用できません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>選択したアタリエミュレータは、カートリッジ領域の選択を暴露しません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>このアタリエミュレータは、カートリッジタイミングモードを名前付けて使用できません SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>サウンド再生が有効になっています</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>再生が無効になっています</value></data>
 </root>

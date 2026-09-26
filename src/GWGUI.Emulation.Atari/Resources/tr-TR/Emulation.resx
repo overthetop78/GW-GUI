@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800 konsolunu emulates.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Hareketli Atari Lynx oyun sistemini destekler.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulates Atari ve Jaguar Jaguar CD Konsollar.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Seçilmiş Atari emülatör, paylaşılan kartuş kontrolörünü kullanmaz.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Seçilmiş Atari makinesi kartuş medyası gerektirir.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>kartuş uzatması, seçilmiş Atari emülatör tarafından desteklenmez.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari kartuş okuma için açılamaz.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari Simulator, yedek kartuşu reddetti.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari Simulator hem değiştirme hem de önceki kartuşu reddetti.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Bu Atari emülatör bir kartuş olmadan desteklenmez.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Seçilmiş Atari emülatörü kartuş bölge seçimi açığa çıkarmaz.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Bu Atari emülatör, kartuş zamanlama modunu adı altında kullanamaz SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Sound playback etkinleştirilir</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Ses oyun gerisi engellidir</value></data>
 </root>

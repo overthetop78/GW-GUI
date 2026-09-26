@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Atari.Emulators.Hatari.Constants;
+using GWGUI.Emulation.Atari.Emulators.Hatari.Exceptions;
 using GWGUI.Emulation.Atari.Emulators.Hatari.Contracts;
 using GWGUI.Emulation.Atari.Emulators.Hatari.Functions;
 using GWGUI.Emulation.Atari.Emulators.Hatari.Services;

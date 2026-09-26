@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Exceptions;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Constants;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Contracts;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
@@ -117,10 +118,11 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, AmigaExternalHostCallbacksConstants.UnknownAmigaCoreOption);
+            throw new ArgumentOutOfRangeException(nameof(key), key, PuaeExceptions.UnknownCoreOption());
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value, $"Invalid value for Amiga option {key}.");
+            throw new ArgumentOutOfRangeException(nameof(value), value,
+                PuaeExceptions.InvalidOptionValue(value, key));
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, 1);
         _updateOptionsDisplay?.Invoke();

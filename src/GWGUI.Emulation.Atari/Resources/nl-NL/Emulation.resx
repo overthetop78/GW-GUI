@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuleert de Atari 7800 console.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuleert het draagbare Atari Lynx spelsysteem.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuleert Atari Jaguar en Jaguar CD consoles.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>De geselecteerde Atari emulator gebruikt de gedeelde cartridge controller niet.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>De geselecteerde Atari machine heeft cartridge media nodig.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>De patroonextensie wordt niet ondersteund door de geselecteerde Atari emulator.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>De Atari patroon kan niet worden geopend om te lezen.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>De Atari emulator wees de vervangende patroon af.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>De Atari emulator wees zowel de vervanging als de vorige cartridge af.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Deze Atari emulator kan niet aan staan zonder een patroon.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>De geselecteerde Atari-emulator geeft geen selectie uit de cartridgeregio.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Deze Atari-emulator kan de cartridge-timingmodus niet gebruiken SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Geluidsweergave is ingeschakeld</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Geluidsweergave is uitgeschakeld</value></data>
 </root>

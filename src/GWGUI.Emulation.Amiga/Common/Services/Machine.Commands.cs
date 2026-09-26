@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Amiga.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-private static string? HashOptionalFile(string? path) => path is null ? null : StateStore.HashFile(path);
+    private static string? HashOptionalFile(string? path) => path is null ? null : StateStore.HashFile(path);
     private static string? HashOptionalPath(string? path) => path is null ? null : StateStore.HashPath(path);
 
     private static bool OptionsEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
@@ -15,17 +15,26 @@ private static string? HashOptionalFile(string? path) => path is null ? null : S
         return left is null ? right.Count == 0 : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
     }
 
-    private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
+    private ValueTask QueueCommand(Action action, CancellationToken cancellationToken,
+        EmulationMessageCategory category = EmulationMessageCategory.Machine,
+        EmulationMessageCode code = EmulationMessageCode.MachineStartFailed)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
-            throw new InvalidOperationException(MachineConstants.TheAmigaMachineMustBeRunningBeforeChangingAFloppy);
+            throw MachineExceptions.MachineNotRunning();
         var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        _commands.Enqueue(new PendingCommand(action, completion));
+        _commands.Enqueue(new PendingCommand(() =>
+        {
+            try { action(); }
+            catch (Exception error)
+            {
+                throw EmulationErrorService.Translate(error, category, code,
+                    new EmulationMachineMessageContext(Configuration.Model));
+            }
+        }, completion));
         lock (_gate) Monitor.PulseAll(_gate);
         return new ValueTask(completion.Task.WaitAsync(cancellationToken));
     }
-
     private void Run(CancellationToken cancellationToken)
     {
         var initialized = false;
@@ -93,6 +102,11 @@ private static string? HashOptionalFile(string? path) => path is null ? null : S
         }
         catch (Exception error)
         {
+            error = _startErrorTranslator?.Invoke(error)
+                ?? EmulationErrorService.Translate(error,
+                    EmulationMessageCategory.Machine,
+                    EmulationMessageCode.MachineStartFailed,
+                    new EmulationMachineMessageContext(Configuration.Model));
             if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.AmigaDiagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
             _started?.TrySetException(error);
             FailPendingCommands(error);
@@ -107,12 +121,11 @@ private static string? HashOptionalFile(string? path) => path is null ? null : S
             }
             try { _audioOutput?.Stop(); }
             catch (Exception) { }
-            FailPendingCommands(new OperationCanceledException(MachineConstants.TheAmigaMachineStopped));
+            FailPendingCommands(new OperationCanceledException());
             lock (_gate)
                 if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
         }
     }
-
     private void FailPendingCommands(Exception error)
     {
         while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);

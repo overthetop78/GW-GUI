@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Exceptions;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Constants;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Contracts;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
@@ -72,13 +73,13 @@ internal sealed class ExternalDiskControl
         var previousIndex = _getImageIndex!();
         var wasEjected = _getEjectState!();
         if (!wasEjected && !_setEjectState!(true))
-            throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaMediaDriveCouldNotBeEjected);
+            throw new InvalidOperationException(PuaeExceptions.MediaEjectFailed());
         try
         {
             if (!_setImageIndex!((uint)index))
-                throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaCoreCouldNotSelectTheRequestedDisk);
+                throw new InvalidOperationException(PuaeExceptions.RequestedDiskSelectionFailed());
             if (!_setEjectState!(false))
-                throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaMediaDriveCouldNotInsertTheRequestedImage);
+                throw new InvalidOperationException(PuaeExceptions.RequestedMediaInsertFailed());
         }
         catch
         {
@@ -110,13 +111,13 @@ internal sealed class ExternalDiskControl
 
     internal void Insert(string path)
     {
-        if (!File.Exists(path) && !Directory.Exists(path)) throw new FileNotFoundException(ExternalDiskControlConstants.TheAmigaMediaImageOrDirectoryWasNotFound, path);
+        if (!File.Exists(path) && !Directory.Exists(path)) throw new FileNotFoundException(PuaeExceptions.MediaNotFound(), path);
         EnsureAvailable();
         var wasEjected = _getEjectState!();
-        if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaMediaDriveCouldNotBeEjected);
+        if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(PuaeExceptions.MediaEjectFailed());
         var count = _getImageCount!();
         var index = count == 0 ? 0u : Math.Min(_getImageIndex!(), count - 1);
-        if (count == 0 && !_addImage!()) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaCoreCouldNotCreateAMediaSlot);
+        if (count == 0 && !_addImage!()) throw new InvalidOperationException(PuaeExceptions.MediaSlotCreationFailed());
 
         var nativePath = Marshal.StringToCoTaskMemUTF8(Path.GetFullPath(path));
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
@@ -124,9 +125,9 @@ internal sealed class ExternalDiskControl
         try
         {
             Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath }, game, false);
-            if (!_replaceImage!(index, game)) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaCoreRefusedTheMediaImage);
-            if (!_setImageIndex!(index)) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaCoreCouldNotSelectTheMediaImage);
-            if (!_setEjectState!(false)) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaMediaDriveCouldNotInsertTheImage);
+            if (!_replaceImage!(index, game)) throw new InvalidOperationException(PuaeExceptions.MediaRefused());
+            if (!_setImageIndex!(index)) throw new InvalidOperationException(PuaeExceptions.MediaSelectionFailed());
+            if (!_setEjectState!(false)) throw new InvalidOperationException(PuaeExceptions.MediaInsertFailed());
             inserted = true;
         }
         finally
@@ -140,17 +141,17 @@ internal sealed class ExternalDiskControl
     internal void Eject()
     {
         EnsureAvailable();
-        if (!_setEjectState!(true)) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaMediaDriveCouldNotBeEjected);
+        if (!_setEjectState!(true)) throw new InvalidOperationException(PuaeExceptions.MediaEjectFailed());
     }
 
     private void EnsureAvailable()
     {
-        if (!IsAvailable) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaCoreHasNotProvidedDiskControl);
+        if (!IsAvailable) throw new InvalidOperationException(PuaeExceptions.DiskControlUnavailable());
     }
 
     private static T Delegate<T>(nint pointer) where T : Delegate
     {
-        if (pointer == 0) throw new InvalidOperationException(ExternalDiskControlConstants.TheAmigaCoreProvidedIncompleteDiskControl);
+        if (pointer == 0) throw new InvalidOperationException(PuaeExceptions.DiskControlIncomplete());
         return Marshal.GetDelegateForFunctionPointer<T>(pointer);
     }
 

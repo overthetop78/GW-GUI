@@ -15,7 +15,7 @@ public sealed class CoreReleaseService : ICoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator,
         CancellationToken cancellationToken = default)
     {
-        var entry = EmulatorCatalog.Get(emulator);
+        var entry = CoreCatalog.Get(emulator);
         using var request = new HttpRequestMessage(HttpMethod.Head, entry.ArchiveUri);
         using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
             cancellationToken).ConfigureAwait(false);
@@ -28,8 +28,8 @@ public sealed class CoreReleaseService : ICoreReleaseService
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
-        var entry = EmulatorCatalog.Get(release.Emulator);
-        var paths = EmulatorCatalog.GetInstallationPaths(release.Emulator, _installationRoot,
+        var entry = CoreCatalog.Get(release.Emulator);
+        var paths = CoreCatalog.GetInstallationPaths(release.Emulator, _installationRoot,
             release.DeclaredVersion);
         Directory.CreateDirectory(paths.VersionDirectory);
         var download = paths.LibraryPath + CoreReleaseConstants.TemporaryDownloadExtension;
@@ -49,7 +49,7 @@ public sealed class CoreReleaseService : ICoreReleaseService
             CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath);
             await CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest,
                 cancellationToken).ConfigureAwait(false);
-            var activeManifestPath = EmulatorCatalog.GetActiveManifestPath(release.Emulator, _installationRoot);
+            var activeManifestPath = CoreCatalog.GetActiveManifestPath(release.Emulator, _installationRoot);
             await CoreReleaseFunctions.WriteActiveInstallationAtomicallyAsync(activeManifestPath,
                 new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken)
                 .ConfigureAwait(false);
@@ -67,10 +67,10 @@ public sealed class CoreReleaseService : ICoreReleaseService
         CancellationToken cancellationToken = default)
     {
         var marker = await CoreReleaseFunctions.ReadJsonAsync<CoreActiveInstallation>(
-            EmulatorCatalog.GetActiveManifestPath(emulator, _installationRoot), cancellationToken)
+            CoreCatalog.GetActiveManifestPath(emulator, _installationRoot), cancellationToken)
             .ConfigureAwait(false);
         if (marker is null) return null;
-        var paths = EmulatorCatalog.GetInstallationPaths(emulator, _installationRoot, marker.ReleaseVersion);
+        var paths = CoreCatalog.GetInstallationPaths(emulator, _installationRoot, marker.ReleaseVersion);
         return File.Exists(paths.LibraryPath) && File.Exists(paths.ManifestPath) ? paths : null;
     }
 }

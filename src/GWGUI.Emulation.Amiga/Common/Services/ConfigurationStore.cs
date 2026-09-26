@@ -5,10 +5,15 @@ namespace GWGUI.Emulation.Amiga.Common.Services;
 
 public sealed class ConfigurationStore
 {
-    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web) { WriteIndented = true };
+    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
+    {
+        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson
+    };
     private readonly string _directory;
     private readonly string _pathBase;
-    private static readonly SemaphoreSlim SaveGate = new(1, 1);
+    private static readonly SemaphoreSlim SaveGate = new(
+        ConfigurationStoreConstants.InitialWriterCount,
+        ConfigurationStoreConstants.MaximumWriterCount);
 
     public ConfigurationStore(string directory, string? pathBase = null)
     {
@@ -21,8 +26,8 @@ public sealed class ConfigurationStore
         Directory.CreateDirectory(_directory);
         var configurations = new List<MachineConfiguration>();
         var paths = Directory.EnumerateDirectories(_directory)
-            .Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineJson))
-            .Concat(Directory.EnumerateFiles(_directory, ConfigurationStoreConstants.Json))
+            .Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName))
+            .Concat(Directory.EnumerateFiles(_directory, ConfigurationStoreConstants.JsonSearchPattern))
             .Where(File.Exists)
             .Order(StringComparer.OrdinalIgnoreCase);
         foreach (var path in paths)
@@ -34,12 +39,14 @@ public sealed class ConfigurationStore
                 var configuration = JsonConfigurationRecoveryFunctions
                     .DeserializeRemovingInvalidProperties(json, root =>
                         root.Deserialize<MachineConfiguration>(JsonOptions)
-                        ?? throw new JsonException("The Amiga configuration is empty."),
+                        ?? throw new JsonException(),
                         out var repairedJson);
                 if (!string.Equals(json, repairedJson, StringComparison.Ordinal))
                     await JsonConfigurationRecoveryFunctions.WriteAtomicallyAsync(path, repairedJson,
                         cancellationToken).ConfigureAwait(false);
-                if (configuration is not null && configuration.SchemaVersion is > 0 and <= 3)
+                if (configuration is not null
+                    && configuration.SchemaVersion is >= ConfigurationStoreConstants.MinimumSchemaVersion
+                    and <= ConfigurationStoreConstants.CurrentSchemaVersion)
                     configurations.Add(ResolvePaths(configuration.EnsureId()));
             }
             catch (JsonException) { }
@@ -54,18 +61,24 @@ public sealed class ConfigurationStore
         string? temporary = null;
         try
         {
-            configuration = configuration.EnsureId() with { SchemaVersion = 3 };
-            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.N));
+            configuration = configuration.EnsureId() with
+            {
+                SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion
+            };
+            var machineDirectory = Path.Combine(_directory,
+                configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
             Directory.CreateDirectory(machineDirectory);
-            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineJson);
-            temporary = target + "." + Guid.NewGuid().ToString(ConfigurationStoreConstants.N)
-                + ConfigurationStoreConstants.Tmp;
-            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
+            var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);
+            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator
+                + Guid.NewGuid().ToString(
+                ConfigurationStoreConstants.MachineIdentifierFormat)
+                + ConfigurationStoreConstants.TemporaryFileSuffix;
+            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write,
+                             FileShare.None, ConfigurationStoreConstants.WriteBufferSize,
+                             ConfigurationStoreConstants.UseAsyncFileAccess))
                 await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken)
                     .ConfigureAwait(false);
-            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target,
-                ConfigurationStoreConstants.ReplacementRetryCount,
-                ConfigurationStoreConstants.ReplacementRetryDelayMilliseconds);
+            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);
         }
         finally
         {
@@ -76,9 +89,13 @@ public sealed class ConfigurationStore
 
     public void Delete(Guid id)
     {
-        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.N));
-        if (Directory.Exists(target)) Directory.Delete(target, true);
-        var legacy = Path.Combine(_directory, $"{id:N}.json");
+        var target = Path.Combine(_directory,
+            id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        if (Directory.Exists(target))
+            Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);
+        var legacy = Path.Combine(_directory,
+            id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)
+            + ConfigurationStoreConstants.LegacyFileExtension);
         if (File.Exists(legacy)) File.Delete(legacy);
     }
 
@@ -108,8 +125,11 @@ public sealed class ConfigurationStore
         var fullPath = Path.GetFullPath(path);
         var relative = Path.GetRelativePath(_pathBase, fullPath);
         if (Path.IsPathFullyQualified(relative)) return fullPath;
-        if (relative != ConfigurationStoreConstants.Value && !relative.StartsWith(ConfigurationStoreConstants.Value + Path.DirectorySeparatorChar, StringComparison.Ordinal))
-            return relative.Replace(Path.DirectorySeparatorChar, '/');
+        if (relative != ConfigurationStoreConstants.ParentDirectoryName
+            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName
+                + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+            return relative.Replace(Path.DirectorySeparatorChar,
+                ConfigurationStoreConstants.StoredDirectorySeparator);
         return fullPath;
     }
 
@@ -117,6 +137,8 @@ public sealed class ConfigurationStore
     {
         if (string.IsNullOrWhiteSpace(path)) return null;
         if (Path.IsPathFullyQualified(path)) return path;
-        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace('/', Path.DirectorySeparatorChar)));
+        return Path.GetFullPath(Path.Combine(_pathBase,
+            path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator,
+                Path.DirectorySeparatorChar)));
     }
 }

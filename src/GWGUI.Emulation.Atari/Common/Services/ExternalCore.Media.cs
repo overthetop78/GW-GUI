@@ -16,7 +16,7 @@ public void InsertMedia(MediaConfiguration media)
             ReplacePreparedContent(media);
             return;
         }
-        if (CartridgeFunctions.Supports(Emulator))
+        if (_mediaAdapter.SupportsCartridge)
         {
             ReplaceCartridge(media);
             return;
@@ -35,7 +35,7 @@ public void InsertMedia(MediaConfiguration media)
     public void EjectMedia(EmulationMediaSlot slot)
     {
         if (!_mediaAdapter.SupportsEjection(slot))
-            throw new NotSupportedException(CartridgeErrors.EjectionUnsupported);
+            throw CartridgeExceptions.EjectionUnsupported();
         RequireCallbacks().DiskControl.Eject();
         MediaRuntimeFunctions.MarkEjected(_mountedMedia, slot);
     }
@@ -68,7 +68,7 @@ public void InsertMedia(MediaConfiguration media)
     {
         var exports = RequireExports();
         var size = exports.GetSerializedSize();
-        if (size == nuint.Zero || size > CommonConstants.MaximumStateSize)
+        if (size == nuint.Zero || size > SavedStateConstants.MaximumStateSize)
             throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid,
                 ErrorMessages.StateSizeInvalid);
         var state = GC.AllocateUninitializedArray<byte>(checked((int)size));
@@ -78,7 +78,7 @@ public void InsertMedia(MediaConfiguration media)
             if (!exports.Serialize(buffer, size))
                 throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid,
                     ErrorMessages.StateSaveFailed);
-            Marshal.Copy(buffer, state, CommonConstants.FirstBufferIndex, state.Length);
+            Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);
             return state;
         }
         finally
@@ -89,14 +89,14 @@ public void InsertMedia(MediaConfiguration media)
 
     public void LoadState(ReadOnlySpan<byte> state)
     {
-        if (state.IsEmpty || state.Length > CommonConstants.MaximumStateSize)
+        if (state.IsEmpty || state.Length > SavedStateConstants.MaximumStateSize)
             throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid,
                 ErrorMessages.StateSizeInvalid);
         var bytes = state.ToArray();
         var buffer = Marshal.AllocHGlobal(bytes.Length);
         try
         {
-            Marshal.Copy(bytes, CommonConstants.FirstBufferIndex, buffer, bytes.Length);
+            Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);
             if (!RequireExports().Unserialize(buffer, (nuint)bytes.Length))
                 throw new EmulationException(ErrorCategory.State, ErrorCode.StateIncompatible,
                     ErrorMessages.StateLoadFailed);

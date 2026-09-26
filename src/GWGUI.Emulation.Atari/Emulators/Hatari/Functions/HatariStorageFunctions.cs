@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Atari.Emulators.Hatari.Constants;
+using GWGUI.Emulation.Atari.Emulators.Hatari.Exceptions;
 using GWGUI.Emulation.Atari.Emulators.Hatari.Contracts;
 using GWGUI.Emulation.Atari.Emulators.Hatari.Functions;
 using GWGUI.Emulation.Atari.Emulators.Hatari.Services;
@@ -30,7 +31,7 @@ internal static class HatariStorageFunctions
         catch (Exception error) when (error is ArgumentException or InvalidDataException)
         {
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                error.Message, new Dictionary<string, string> { [CommonConstants.PathContextKey] = media.Path }, error);
+                error.Message, new Dictionary<string, string> { [ErrorContextConstants.Path] = media.Path }, error);
         }
     }
 
@@ -96,7 +97,7 @@ internal static class HatariStorageFunctions
             throw new DirectoryNotFoundException(HatariStorageErrors.StorageMissing);
         }
         if (!supportedExtensions.Contains(HatariStorageConstants.GemdosMarkerExtension
-                .TrimStart(CommonConstants.ExtensionPrefix)))
+                .TrimStart(MediaConstants.ExtensionPrefix)))
             throw new InvalidDataException(HatariStorageErrors.StorageExtensionInvalid);
         var directory = Path.GetFullPath(media.Path).TrimEnd(Path.DirectorySeparatorChar,
             Path.AltDirectorySeparatorChar);

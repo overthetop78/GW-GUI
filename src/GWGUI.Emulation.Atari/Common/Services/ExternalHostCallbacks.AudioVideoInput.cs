@@ -19,20 +19,21 @@ private void OnVideo(nint data, uint width, uint height, nuint pitch)
                 };
             return;
         }
-        if (width == CommonConstants.EmptyFrameDimension ||
-            height == CommonConstants.EmptyFrameDimension || pitch == CommonConstants.EmptyNativeSize) return;
+        if (width == ExternalCoreInteropConstants.EmptyFrameDimension ||
+            height == ExternalCoreInteropConstants.EmptyFrameDimension ||
+            pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;
         var length = VideoFunctions.FrameLength(height, pitch);
         if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
         var pixels = _videoBuffers.Rent(length);
         VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
         if (_emulator == Emulator.Hatari && !_usesNativeLedInterface)
-            EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(CommonConstants.FirstBufferIndex, length),
+            EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(BufferConstants.FirstBufferIndex, length),
                 checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
         else if (_emulator == Emulator.Atari800)
             EmulationMediaActivityFunctions.CaptureAtari800Overlay(
-                pixels.AsSpan(CommonConstants.FirstBufferIndex, length), checked((int)width), checked((int)height),
+                pixels.AsSpan(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height),
                 checked((int)pitch), _pixelFormat, _ledStates);
-        LatestVideoFrame = new VideoFrame(pixels.AsMemory(CommonConstants.FirstBufferIndex, length),
+        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length),
             checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,
             ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
     }
@@ -44,8 +45,8 @@ private void OnVideo(nint data, uint width, uint height, nuint pitch)
 
     private nuint OnAudioBatch(nint data, nuint frames)
     {
-        if (data == nint.Zero || frames == CommonConstants.EmptyNativeSize ||
-            frames > AudioConstants.MaximumFramesPerBatch) return CommonConstants.EmptyNativeSize;
+        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize ||
+            frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;
         var frameCount = checked((int)frames);
         var samples = AudioFunctions.CopyBatch(data, frameCount);
         AddAudio(samples, frameCount);
@@ -65,7 +66,8 @@ private void OnVideo(nint data, uint width, uint height, nuint pitch)
         _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);
     }
     private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);
-    private void OnSetLedState(int led, int state) => _ledStates[led] = state != CommonConstants.InactiveState;
+    private void OnSetLedState(int led, int state) =>
+        _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
     private void OnFileRead(string path, long length)
     {
         if (length > 0 && _emulator == Emulator.VirtualJaguar && _opticalActivityPaths.Contains(path))

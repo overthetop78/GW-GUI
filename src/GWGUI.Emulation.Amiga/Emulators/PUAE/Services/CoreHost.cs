@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Exceptions;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Constants;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Contracts;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
@@ -13,13 +14,13 @@ namespace GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
 
 public static class CoreHost
 {
-    [SupportedOSPlatform(CoreHostValues.Windows)]
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
     public static void Run(string pipeName, string videoMapName)
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
         using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        using var pipe = new NamedPipeClientStream(CoreHostValues.Value, pipeName, PipeDirection.InOut, PipeOptions.None);
+        using var pipe = new NamedPipeClientStream(CoreHostConstants.Value, pipeName, PipeDirection.InOut, PipeOptions.None);
         pipe.Connect(15_000);
         using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
         using var transportWriter = new BinaryWriter(pipe, System.Text.Encoding.UTF8, true);
@@ -43,7 +44,7 @@ public static class CoreHost
                         var session = reader.ReadString();
                         var saves = CoreHostProtocol.ReadString(reader);
                         var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions)
-                            ?? throw new InvalidDataException(CoreHostValues.TheAmigaHostConfigurationIsInvalid);
+                            ?? throw new InvalidDataException(PuaeExceptions.HostConfigurationInvalid());
                         core = new ExternalCore(corePath);
                         core.Initialize(configuration, session, saves);
                         writer.Write(true);
@@ -90,7 +91,7 @@ public static class CoreHost
                     case HostCommand.SetOption: EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString()); WriteSuccess(writer); break;
                     case HostCommand.SelectDisk: EnsureCore(core).SelectDisk(reader.ReadInt32()); WriteSuccess(writer); break;
                     case HostCommand.Dispose: core?.Dispose(); core = null; WriteSuccess(writer); break;
-                    default: throw new InvalidDataException($"Unknown Amiga host command {(byte)command}.");
+                    default: throw new InvalidDataException(PuaeExceptions.UnknownHostCommand((byte)command));
                 }
             }
             catch (Exception error)
@@ -102,12 +103,13 @@ public static class CoreHost
             }
             writer.Flush();
             CoreHostProtocol.WriteBytes(transportWriter,
-                responseStream.GetBuffer().AsSpan(0, checked((int)responseStream.Length)));
+                responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex,
+                    checked((int)responseStream.Length)));
             if (exit) break;
         }
         core?.Dispose();
     }
 
-    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(CoreHostValues.TheAmigaHostIsNotInitialized);
+    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(PuaeExceptions.HostNotInitialized());
     private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);
 }

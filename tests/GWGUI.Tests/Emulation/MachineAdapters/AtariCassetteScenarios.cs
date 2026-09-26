@@ -1,7 +1,8 @@
 using GWGUI.Emulation.Atari.Common.Constants;
-using GWGUI.Emulation.Atari.Common.Contracts;
-using GWGUI.Emulation.Atari.Common.Enums;
-using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Constants;
 using GWGUI.Emulation.Atari.Common.Services;
 using GWGUI.Emulation.Contracts;

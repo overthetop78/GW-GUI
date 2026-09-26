@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Atari.Emulators.Atari800.Constants;
+using GWGUI.Emulation.Atari.Emulators.Atari800.Exceptions;
 using GWGUI.Emulation.Atari.Emulators.Atari800.Contracts;
 using GWGUI.Emulation.Atari.Emulators.Atari800.Enums;
 using GWGUI.Emulation.Atari.Emulators.Atari800.Functions;
@@ -61,8 +62,8 @@ internal static class Atari800MediaFunctions
     {
         var options = new Dictionary<string, string>(EightBitSettingsFunctions.Normalize(machine),
             StringComparer.Ordinal);
-        options[Atari800MediaConstants.SystemOptionKey] = SystemValue(machine, options);
-        options.Remove(ConfigurationOptionConstants.MainMemory);
+        options[EightBitSettingsConstants.SystemOptionKey] = SystemValue(machine, options);
+        options.Remove(SettingsConstants.MainMemory);
         var configuredCassetteBoot = options.TryGetValue(EightBitSettingsConstants.CassetteBootOptionKey,
             out var cassetteBoot) && string.Equals(cassetteBoot, EightBitSettingsConstants.Enabled,
             StringComparison.OrdinalIgnoreCase);
@@ -73,12 +74,12 @@ internal static class Atari800MediaFunctions
                 : EightBitSettingsConstants.Disabled;
         options[EightBitSettingsConstants.SioAccelerationOptionKey] =
             EightBitSettingsConstants.Enabled;
-        if (options.TryGetValue(ConfigurationOptionConstants.VideoStandard, out var standard))
+        if (options.TryGetValue(VideoAudioSettingsConstants.StandardOption, out var standard))
             options[EightBitSettingsConstants.VideoStandardOptionKey] =
-                string.Equals(standard, ClassicRegion.Pal.ToString(), StringComparison.OrdinalIgnoreCase)
+                string.Equals(standard, HardwareRegion.Pal.ToString(), StringComparison.OrdinalIgnoreCase)
                     ? EightBitSettingsConstants.Pal : EightBitSettingsConstants.Ntsc;
-        options.Remove(ConfigurationOptionConstants.VideoStandard);
-        MoveOption(options, ConfigurationOptionConstants.VideoResolution,
+        options.Remove(VideoAudioSettingsConstants.StandardOption);
+        MoveOption(options, VideoAudioSettingsConstants.ResolutionOption,
             EightBitSettingsConstants.ResolutionOptionKey);
         if (RequiresFullOverlayWidth(options))
             options[EightBitSettingsConstants.ResolutionOptionKey] = "384x240";
@@ -107,12 +108,12 @@ internal static class Atari800MediaFunctions
         IReadOnlyDictionary<string, string> options)
     {
         if (machine.Model != MachineModel.XlXe)
-            return ClassicModelCatalog.Get(machine.Model).StableModelId;
-        return options.GetValueOrDefault(ConfigurationOptionConstants.MainMemory) switch
+            return HardwareModelCatalog.Get(machine.Model).StableModelId;
+        return options.GetValueOrDefault(SettingsConstants.MainMemory) switch
         {
-            Atari800MediaFunctionsConstants.Value589824 => ClassicModelConstants.XlXe576KModelId,
-            Atari800MediaFunctionsConstants.Value1114112 => ClassicModelConstants.XlXe1088KModelId,
-            _ => ClassicModelConstants.XlXeModelId
+            Atari800MediaFunctionsConstants.Value589824 => Atari8BitModelConstants.XlXe576KModelId,
+            Atari800MediaFunctionsConstants.Value1114112 => Atari8BitModelConstants.XlXe1088KModelId,
+            _ => Atari8BitModelConstants.XlXeModelId
         };
     }
 
@@ -159,5 +160,6 @@ internal static class Atari800MediaFunctions
                 Atari800MediaErrors.InvalidExtension);
     }
 
-    private static string Extension(string path) => Path.GetExtension(path).TrimStart(CommonConstants.ExtensionPrefix);
+    private static string Extension(string path) =>
+        Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);
 }

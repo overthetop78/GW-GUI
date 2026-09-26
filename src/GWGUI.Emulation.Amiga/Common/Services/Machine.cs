@@ -11,6 +11,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly Action<string>? _deleteSession;
+    private readonly Func<Exception, Exception>? _startErrorTranslator;
     private IAudioOutput? _audioOutput;
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
@@ -31,7 +32,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration,
         IEmulatorCore core, IReadOnlyList<MediaConfiguration> resolvedMedia,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Action<string>? deleteSession = null)
+        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null)
     {
         Id = id;
         Configuration = configuration;
@@ -39,6 +40,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
         _deleteSession = deleteSession;
+        _startErrorTranslator = startErrorTranslator;
         _audioOutput = audioOutput;
         _mediaPaths = resolvedMedia
             .Select(item => Path.GetFullPath(item.Path)).ToList();

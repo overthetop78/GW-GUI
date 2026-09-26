@@ -1,6 +1,6 @@
 using System.Reflection;
 using GWGUI.Emulation.Contracts;
-using GWGUI.Emulation.Atari.Common.Dictionaries;
+using GWGUI.Emulation.Atari.Emulators.Libretro.Dictionaries;
 using GWGUI.Emulation.Atari.Modules;
 using GWGUI.Emulation.Atari.Common.Services;
 
@@ -27,8 +27,8 @@ public sealed class AtariEmulatorAdapterTests
         var adapters = Assert.IsAssignableFrom<System.Collections.IEnumerable>(field!.GetValue(new Engine()));
         var ids = adapters.Cast<object>().Select(item => item.GetType().GetProperty("Key")!.GetValue(item) as string)
             .Order(StringComparer.Ordinal).ToArray();
-        Assert.Equal(EmulatorCatalog.All.Select(item => item.Id).Order(StringComparer.Ordinal), ids);
-        foreach (var entry in EmulatorCatalog.All)
+        Assert.Equal(CoreCatalog.All.Select(item => item.Id).Order(StringComparer.Ordinal), ids);
+        foreach (var entry in CoreCatalog.All)
         {
             var adapter = adapters.Cast<object>().Single(item =>
                 string.Equals(item.GetType().GetProperty("Key")!.GetValue(item) as string,
@@ -36,7 +36,7 @@ public sealed class AtariEmulatorAdapterTests
             var value = adapter.GetType().GetProperty("Value")!.GetValue(adapter)!;
             var definition = Assert.IsType<EmulationEmulatorDefinition>(
                 value.GetType().GetProperty("Definition")!.GetValue(value));
-            Assert.Equal(EmulatorCatalog.GetDefinition(entry).MachineIds.Order(StringComparer.Ordinal),
+            Assert.Equal(CoreCatalog.GetDefinition(entry).MachineIds.Order(StringComparer.Ordinal),
                 definition.MachineIds.Order(StringComparer.Ordinal));
         }
     }

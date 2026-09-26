@@ -90,13 +90,13 @@ public static class CoreHost
                 catch (Exception error)
                 {
                     responseStream.SetLength(0);
-                    responseStream.Position = CommonConstants.FirstBufferIndex;
+                    responseStream.Position = BufferConstants.FirstBufferIndex;
                     CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
                     CoreHostFunctions.WriteError(writer, error);
                 }
                 writer.Flush();
                 CoreHostFunctions.WriteBytes(transportWriter,
-                    responseStream.GetBuffer().AsSpan(CommonConstants.FirstBufferIndex,
+                    responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex,
                         checked((int)responseStream.Length)));
                 if (exit) break;
             }

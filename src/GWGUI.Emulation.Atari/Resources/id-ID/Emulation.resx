@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emulasi konsol Atari 7800.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Mengemulasi sistem permainan Atari Lynx yang portabel.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulasi Atari Jaguar dan Jaguar CD konsol.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Emulator Atari yang dipilih tidak menggunakan pengontrol cartridge yang sama.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Mesin Atari yang dipilih memerlukan media cartridge.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Ekstensi cartridge tidak didukung oleh emulator Atari terpilih.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Peluru Atari tidak bisa dibuka untuk dibaca.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Emulator Atari menolak peluru pengganti.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Emulator Atari menolak pengganti dan kartrid sebelumnya.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Emulator Atari ini tak bisa terus menyala tanpa peluru.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Emulator Atari yang dipilih tidak mengekspos seleksi daerah cartridge.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Emulator Atari ini tidak dapat menggunakan mode waktu cartridge bernama SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Pemutaran suara diaktifkan</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Pemutaran suara dinonaktifkan</value></data>
 </root>

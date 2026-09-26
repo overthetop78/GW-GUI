@@ -7,7 +7,7 @@ using GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
-using static GWGUI.Emulation.Amiga.Emulators.PUAE.Constants.AmigaExternalHostCallbacksConstants;
+using static GWGUI.Emulation.Amiga.Emulators.PUAE.Constants.ExternalHostCallbacksConstants;
 
 namespace GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
 

@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Amiga.Common.Machines.AmigaCD32.Dictionaries;
 
-using CommonModelConstants = GWGUI.Emulation.Amiga.Common.Constants.ModelConstants;
+using CommonModelConstants = GWGUI.Emulation.Amiga.Common.Machines.Common.Constants.ModelConstants;
 using FamilyModelConstants = GWGUI.Emulation.Amiga.Common.Machines.AmigaCD32.Constants.ModelConstants;
 
 internal static class ModelCatalog

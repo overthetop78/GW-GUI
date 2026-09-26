@@ -11,10 +11,13 @@ private void ReplaceCartridge(MediaConfiguration media)
         var configuration = _configuration ??
             throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         var exports = RequireExports();
-        var prepared = CartridgeFunctions.Prepare(configuration, media, Emulator,
+        var cartridgeExtensions = _mediaAdapter.CartridgeExtensions ??
+            throw CartridgeExceptions.UnsupportedCore();
+        var prepared = CartridgeFunctions.Prepare(configuration, media, Emulator, cartridgeExtensions,
             _info.NeedsFullPath, _info.Extensions);
         CartridgeFunctions.ValidateNoUnsupportedMetadata(media);
-        foreach (var option in CartridgeFunctions.GetMediaOptions(media, Emulator))
+        foreach (var option in _mediaAdapter.PrepareOptions(
+                     CartridgeFunctions.GetMediaOptions(media, _mediaAdapter.SupportsCartridgeRegion)))
             RequireCallbacks().SetOption(option.Key, option.Value);
         var candidate = ContentFunctions.Create(prepared.RuntimePath,
             prepared.NeedsFullPath, _info.Extensions);
@@ -29,11 +32,9 @@ private void ReplaceCartridge(MediaConfiguration media)
         {
             candidate.Dispose();
             if (previousContent is null || !exports.LoadGame(previousContent.GameInfo))
-                throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                    CartridgeErrors.RollbackFailed);
+                throw CartridgeExceptions.RollbackFailed();
             _gameLoaded = true;
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                CartridgeErrors.ReplacementFailed);
+            throw CartridgeExceptions.ReplacementFailed();
         }
 
         _gameLoaded = true;

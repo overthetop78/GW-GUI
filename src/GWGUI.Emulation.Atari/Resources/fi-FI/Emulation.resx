@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuloi Atari 7800 -konsolia.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulgoi kannettavan Atari Lynx pelijärjestelmän.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulatoi Atari Jaguaria ja Jaguaria CD Konsoleja.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Valittu Atari-emulaattori ei käytä jaettua patruunan ohjainta.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Valittu Atari-kone tarvitsee patruunamediaa.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Valittu Atari-emulaattori ei tue sylinteriampullin jatkojalustaa.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atarin sylinteriampullia ei voi avata lukemista varten.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari-emulaattori hylkäsi korvaavan sylinteriampullin.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari-emulaattori hylkäsi sekä korvaavan että edellisen sylinteriampullin.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Tämä Atari-emulaattori ei voi pysyä päällä ilman sylinteriampullia.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Valittu Atari-emulaattori ei paljasta patruunaalueen valintaa.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Tämä Atari-emulaattori ei voi käyttää sylinteriampullin ajoitustilaa nimeltä SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Äänisoitin on käytössä</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Äänitallennus ei ole käytössä</value></data>
 </root>

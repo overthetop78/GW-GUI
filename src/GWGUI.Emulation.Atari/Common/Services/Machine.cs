@@ -35,7 +35,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
         _cassetteInput = new CassetteInputController(configuration);
         _audio.SetMuted(!configuration.AudioEnabled);
-        if (configuration.Options.TryGetValue(ConfigurationOptionConstants.AudioVolume, out var volume)
+        if (configuration.Options.TryGetValue(VideoAudioSettingsConstants.AudioVolumeOption, out var volume)
             && int.TryParse(volume, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volumePercent))
             _audio.SetVolume(volumePercent / 100f);
         _saveDirectory = saveDirectory;

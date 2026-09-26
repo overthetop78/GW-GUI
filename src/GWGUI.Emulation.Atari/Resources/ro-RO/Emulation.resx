@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emulează consola Atari 7800.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulează sistemul portabil de joc Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulează Atari Jaguar și Jaguar CD console.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Emulatorul Atari selectat nu utilizează dispozitivul de control al cartuşului comun.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Mașina Atari selectată necesită medii de cartuș.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Extensia cartuşului nu este susţinută de emulatorul Atari selectat.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Cartuşul Atari nu poate fi deschis pentru citire.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Emulatorul Atari a respins cartuşul de înlocuire.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Emulatorul Atari a respins atât înlocuirea, cât şi cartuşul anterior.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Acest emulator Atari nu poate rămâne pornit fără cartuş.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Emulatorul Atari selectat nu expune selectarea regiunii cartuşului.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Acest emulator Atari nu poate utiliza modul de sincronizare al cartuşului numit SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Redare sunet este activat</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Redarea sunetului este dezactivată</value></data>
 </root>

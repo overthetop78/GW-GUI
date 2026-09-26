@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Exceptions;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Constants;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Contracts;
 using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
@@ -13,10 +14,10 @@ namespace GWGUI.Emulation.Amiga.Emulators.PUAE.Services;
 
 public sealed class CoreReleaseService
 {
-    public const string RequiredReleaseId = CoreReleaseServiceConstants.Validated96ebfcfc;
-    public const string RequiredDisplayName = CoreReleaseServiceConstants.Value96ebfcfc31072026GWGUI;
+    public const string RequiredReleaseId = CoreReleaseConstants.Validated96ebfcfc;
+    public const string RequiredDisplayName = CoreReleaseConstants.Value96ebfcfc31072026GWGUI;
     public static readonly Uri LatestOfficialUri = new(
-        CoreReleaseServiceConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip);
+        CoreReleaseConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip);
 
     private readonly HttpClient _httpClient;
     private readonly string _directory;
@@ -27,22 +28,22 @@ public sealed class CoreReleaseService
         _directory = Path.GetFullPath(directory);
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, CoreReleaseServiceConstants.OptionLibretroDll);
+    public string RequiredLibraryPath => Path.Combine(_directory, CoreReleaseConstants.OptionLibretroDll);
 
     public string? GetInstalledVersion()
     {
         if (!File.Exists(RequiredLibraryPath)) return null;
-        var manifestPath = Path.Combine(_directory, CoreReleaseServiceConstants.CoreJson);
-        if (!File.Exists(manifestPath)) return CoreReleaseServiceConstants.Unknown;
+        var manifestPath = Path.Combine(_directory, CoreReleaseConstants.CoreJson);
+        if (!File.Exists(manifestPath)) return CoreReleaseConstants.Unknown;
         try
         {
             using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
-            return document.RootElement.TryGetProperty(CoreReleaseServiceConstants.Version, out var version)
-                ? version.GetString() ?? CoreReleaseServiceConstants.Unknown
-                : CoreReleaseServiceConstants.Unknown;
+            return document.RootElement.TryGetProperty(CoreReleaseConstants.Version, out var version)
+                ? version.GetString() ?? CoreReleaseConstants.Unknown
+                : CoreReleaseConstants.Unknown;
         }
-        catch (JsonException) { return CoreReleaseServiceConstants.Unknown; }
-        catch (IOException) { return CoreReleaseServiceConstants.Unknown; }
+        catch (JsonException) { return CoreReleaseConstants.Unknown; }
+        catch (IOException) { return CoreReleaseConstants.Unknown; }
     }
 
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(
@@ -50,7 +51,7 @@ public sealed class CoreReleaseService
     {
         var releases = new List<CoreRelease>
         {
-            new(RequiredReleaseId, RequiredDisplayName, new Uri(AmigaExternalCoreInstaller.DownloadUrl),
+            new(RequiredReleaseId, RequiredDisplayName, new Uri(ExternalCoreInstaller.DownloadUrl),
                 new DateTimeOffset(2026, 7, 31, 1, 0, 0, TimeSpan.Zero), true, true)
         };
 
@@ -59,9 +60,9 @@ public sealed class CoreReleaseService
             cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
-        var suffix = published?.UtcDateTime.ToString(CoreReleaseServiceConstants.YyyyMMddHHmm) ?? CoreReleaseServiceConstants.Latest;
+        var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
         releases.Add(new CoreRelease($"official-{suffix}",
-            published is null ? CoreReleaseServiceConstants.LibretroLatest
+            published is null ? CoreReleaseConstants.LibretroLatest
                 : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · Libretro",
             LatestOfficialUri, published, false, true));
         return releases;
@@ -83,12 +84,12 @@ public sealed class CoreReleaseService
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);
         if (release.IsRequired)
-            return await new AmigaExternalCoreInstaller(_httpClient, _directory)
+            return await new ExternalCoreInstaller(_httpClient, _directory)
                 .InstallAsync(cancellationToken).ConfigureAwait(false);
 
         var destination = RequiredLibraryPath;
-        var download = destination + CoreReleaseServiceConstants.Download;
-        var extracted = destination + CoreReleaseServiceConstants.Extract;
+        var download = destination + CoreReleaseConstants.Download;
+        var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
             using var response = await _httpClient.GetAsync(release.DownloadUri,
@@ -104,7 +105,8 @@ public sealed class CoreReleaseService
                 int read;
                 while ((read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > 0)
                 {
-                    await target.WriteAsync(buffer.AsMemory(0, read), cancellationToken).ConfigureAwait(false);
+                    await target.WriteAsync(buffer.AsMemory(BufferConstants.FirstBufferIndex, read),
+                        cancellationToken).ConfigureAwait(false);
                     written += read;
                     if (total > 0) progress?.Report(written / (double)total.Value);
                 }
@@ -114,8 +116,8 @@ public sealed class CoreReleaseService
             {
                 using var archive = ZipFile.OpenRead(download);
                 var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals(CoreReleaseServiceConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(CoreReleaseServiceConstants.TheOfficialArchiveDoesNotContainPuaeLibretroDll);
+                    Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
+                    ?? throw new InvalidDataException(PuaeExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             else File.Copy(download, extracted, true);
@@ -123,7 +125,7 @@ public sealed class CoreReleaseService
             VerifyWindowsX64Library(extracted);
             var sha256 = Hash(extracted);
             File.Move(extracted, destination, true);
-            await AmigaExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri,
+            await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri,
                 destination, sha256, cancellationToken).ConfigureAwait(false);
             progress?.Report(1);
             return destination;
@@ -140,14 +142,14 @@ public sealed class CoreReleaseService
         using var stream = File.OpenRead(path);
         using var reader = new BinaryReader(stream);
         if (stream.Length < 0x40 || reader.ReadUInt16() != 0x5A4D)
-            throw new InvalidDataException(CoreReleaseServiceConstants.TheDownloadedAmigaCoreIsNotAPEFile);
+            throw new InvalidDataException(PuaeExceptions.DownloadedCoreNotPe());
         stream.Position = 0x3c;
         var peOffset = reader.ReadInt32();
         if (peOffset < 0x40 || peOffset > stream.Length - 6)
-            throw new InvalidDataException(CoreReleaseServiceConstants.TheDownloadedAmigaCoreHasAnInvalidPEHeader);
+            throw new InvalidDataException(PuaeExceptions.DownloadedCoreInvalidPe());
         stream.Position = peOffset;
         if (reader.ReadUInt32() != 0x00004550 || reader.ReadUInt16() != 0x8664)
-            throw new InvalidDataException(CoreReleaseServiceConstants.TheDownloadedAmigaCoreIsNotAWindowsX64Library);
+            throw new InvalidDataException(PuaeExceptions.DownloadedCoreWrongArchitecture());
     }
 
     private static string Hash(string path)

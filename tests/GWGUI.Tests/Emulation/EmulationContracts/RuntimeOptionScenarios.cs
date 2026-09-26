@@ -1,10 +1,12 @@
 using GWGUI.App.Functions.Emulation.Machine;
 using GWGUI.Emulation.Atari.Common.Constants;
 using GWGUI.Emulation.Atari.Common.Contracts;
-using GWGUI.Emulation.Atari.Common.Dictionaries;
-using GWGUI.Emulation.Atari.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Dictionaries;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Constants;
-using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 

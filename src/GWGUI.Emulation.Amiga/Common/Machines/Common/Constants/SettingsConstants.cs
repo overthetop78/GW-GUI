@@ -1,0 +1,56 @@
+namespace GWGUI.Emulation.Amiga.Common.Machines.Common.Constants;
+
+internal static class SettingsConstants
+{
+    internal const string KickstartPath = "configuration.kickstartPath";
+    internal const string ExtendedRomPath = "configuration.extendedRomPath";
+    internal const string RomKeyPath = "configuration.romKeyPath";
+    internal const string AudioEnabled = "configuration.audioEnabled";
+    internal const string CpuOriginalSpeed = "configuration.cpuOriginalSpeed";
+    internal const string CpuSpeed = "configuration.cpuSpeed";
+    internal const string AudioOutput = "configuration.audioOutput";
+    internal const string AudioLatency = "configuration.audioLatency";
+    internal const string AudioStereoSeparation = "configuration.audioStereoSeparation";
+    internal const string ParallelJoystickAdapter = "configuration.parallelJoystickAdapter";
+    internal const string OptionModel = "gwgui_amiga_model";
+    internal const string OptionCpuModel = "gwgui_amiga_cpu_model";
+    internal const string OptionCpuCompatibility = "gwgui_amiga_cpu_compatibility";
+    internal const string OptionCpuThrottle = "gwgui_amiga_cpu_throttle";
+    internal const string OptionCpuMultiplier = "gwgui_amiga_cpu_multiplier";
+    internal const string OptionFpuModel = "gwgui_amiga_fpu_model";
+    internal const string OptionChipmemSize = "gwgui_amiga_chipmem_size";
+    internal const string OptionBogomemSize = "gwgui_amiga_bogomem_size";
+    internal const string OptionFastmemSize = "gwgui_amiga_fastmem_size";
+    internal const string OptionZ3memSize = "gwgui_amiga_z3mem_size";
+    internal const string OptionVideoStandard = "gwgui_amiga_video_standard";
+    internal const string OptionVideoResolution = "gwgui_amiga_video_resolution";
+    internal const string OptionVideoAspect = "gwgui_amiga_video_aspect";
+    internal const string OptionCrop = "gwgui_amiga_crop";
+    internal const string OptionVideoVresolution = "gwgui_amiga_video_vresolution";
+    internal const string OptionVideoAllowHzChange = "gwgui_amiga_video_allow_hz_change";
+    internal const string OptionGfxFramerate = "gwgui_amiga_gfx_framerate";
+    internal const string OptionGfxColors = "gwgui_amiga_gfx_colors";
+    internal const string OptionGfxGamma = "gwgui_amiga_gfx_gamma";
+    internal const string OptionImmediateBlits = "gwgui_amiga_immediate_blits";
+    internal const string OptionCollisionLevel = "gwgui_amiga_collision_level";
+    internal const string OptionGfxFlickerfixer = "gwgui_amiga_gfx_flickerfixer";
+    internal const string OptionSoundInterpol = "gwgui_amiga_sound_interpol";
+    internal const string OptionSoundFilter = "gwgui_amiga_sound_filter";
+    internal const string OptionSoundFilterType = "gwgui_amiga_sound_filter_type";
+    internal const string OptionSoundVolumeCd = "gwgui_amiga_sound_volume_cd";
+    internal const string OptionFloppySound = "gwgui_amiga_floppy_sound";
+    internal const string OptionFloppySoundType = "gwgui_amiga_floppy_sound_type";
+    internal const string OptionFloppySoundEmptyMute = "gwgui_amiga_floppy_sound_empty_mute";
+    internal const string OptionFloppyMultidrive = "gwgui_amiga_floppy_multidrive";
+    internal const string OptionFloppySpeed = "gwgui_amiga_floppy_speed";
+    internal const string OptionFloppyWriteProtection = "gwgui_amiga_floppy_write_protection";
+    internal const string OptionFloppyWriteRedirect = "gwgui_amiga_floppy_write_redirect";
+    internal const string OptionMouseSpeed = "gwgui_amiga_mouse_speed";
+    internal const string OptionAnalogmouse = "gwgui_amiga_analogmouse";
+    internal const string OptionAnalogmouseDeadzone = "gwgui_amiga_analogmouse_deadzone";
+    internal const string OptionAnalogmouseSpeed = "gwgui_amiga_analogmouse_speed";
+    internal const string OptionAnalogmouseSpeedRight = "gwgui_amiga_analogmouse_speed_right";
+    internal const string OptionTurboFire = "gwgui_amiga_turbo_fire";
+    internal const string OptionTurboFireButton = "gwgui_amiga_turbo_fire_button";
+    internal const string OptionTurboPulse = "gwgui_amiga_turbo_pulse";
+}

@@ -8,5 +8,6 @@ namespace GWGUI.Emulation.Amiga.Emulators.PUAE.Constants;
 
 internal static class CoreHostConstants
 {
-    internal const string HostName = "Amiga";
+    internal const string Windows = "windows";
+    internal const string Value = ".";
 }

@@ -25,7 +25,7 @@ internal sealed class SharedVideoWriter : IDisposable
         _memory = MemoryMappedFile.CreateNew(Name,
             checked((long)SlotCapacity * EmulationHostProtocolConstants.VideoSlotCount),
             MemoryMappedFileAccess.ReadWrite);
-        View = _memory.CreateViewAccessor(CommonConstants.FirstBufferIndex,
+        View = _memory.CreateViewAccessor(BufferConstants.FirstBufferIndex,
             checked((long)SlotCapacity * EmulationHostProtocolConstants.VideoSlotCount),
             MemoryMappedFileAccess.ReadWrite);
     }

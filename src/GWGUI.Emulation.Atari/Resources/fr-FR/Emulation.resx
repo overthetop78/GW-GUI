@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emule la console Atari 7800.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emule le système portable de jeu Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emule Atari Jaguar et Jaguar CD Les consoles.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>L'émulateur Atari sélectionné n'utilise pas le contrôleur de cartouche partagé.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>La machine Atari sélectionnée nécessite un support de cartouche.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>L'extension de la cartouche n'est pas prise en charge par l'émulateur Atari sélectionné.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>La cartouche Atari ne peut pas être ouverte à la lecture.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>L'émulateur Atari a rejeté la cartouche de remplacement.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>L'émulateur Atari a rejeté le remplacement et la cartouche précédente.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Cet émulateur Atari ne peut pas rester allumé sans cartouche.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>L'émulateur Atari sélectionné n'expose pas la sélection de la région de cartouche.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Cet émulateur Atari ne peut pas utiliser le mode de synchronisation de la cartouche nommé SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>La lecture du son est activée</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>La lecture du son est désactivée</value></data>
 </root>

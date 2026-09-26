@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emulálja az Atari 7800 konzolt.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulálja a hordozható Atari Lynx játékrendszert.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulates Atari Jaguar és Jaguar CD konzolok.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>A kiválasztott Atari emulátor nem használja a megosztott patronos vezérlőt.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>A kiválasztott Atari géphez patront kell használni.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>A patron kiterjesztését nem támasztja alá a kiválasztott Atari emulátor.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Az Atari patront nem lehet felnyitni olvasásra.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Az Atari emulátor elutasította a patront.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Az Atari emulátor a pótlást és az előző patront is elutasította.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Az Atari emulátor nem maradhat bekapcsolva patron nélkül.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>A kiválasztott Atari emulátor nem teszi lehetővé a patron területének kiválasztását.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Ez az Atari emulátor nem használhatja a patron időzítő módját. SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Hanglejátszás engedélyezve</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>A hanglejátszás kikapcsolva</value></data>
 </root>

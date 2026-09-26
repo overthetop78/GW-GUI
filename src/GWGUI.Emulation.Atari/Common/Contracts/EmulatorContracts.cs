@@ -12,14 +12,3 @@ internal sealed record EmulatorCreationContext(
 internal sealed record EmulatorManagementContext(
     HttpClient HttpClient,
     string CoreDirectory);
-
-internal sealed record EmulatorPreparedContent(
-    MediaConfiguration Configuration,
-    string RuntimePath,
-    bool NeedsFullPath,
-    IReadOnlyDictionary<string, string> RuntimeOptions,
-    SessionMedia? SessionMedia = null,
-    SessionMedia? BootMedia = null,
-    IReadOnlyCollection<string>? ActivityPaths = null,
-    bool RequiresDiskControl = false,
-    object? State = null);

@@ -21,4 +21,7 @@ public sealed class Engine
             ? adapter.Create(configuration, context)
             : throw new ArgumentOutOfRangeException(nameof(configuration));
     }
+
+    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) =>
+        _adapters[EmulatorCatalog.Get(configuration.Core).Id];
 }

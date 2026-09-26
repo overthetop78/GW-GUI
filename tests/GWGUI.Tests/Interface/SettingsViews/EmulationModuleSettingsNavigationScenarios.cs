@@ -151,6 +151,38 @@ internal static class EmulationModuleSettingsNavigationScenarios
         }
     }
 
+    internal static async Task EmulatorDescriptionUsesModuleLocalization()
+    {
+        IEmulationConfiguration configuration = new MachineConfigurationScenarios.Configuration(
+            "synthetic", Guid.NewGuid(), "machine-a", "emulator-a");
+        var definition = new EmulationEmulatorDefinition(
+            "emulator-a", "Emulator A", "Emulation.Emulator.emulator-a.Description",
+            new HashSet<string>(StringComparer.Ordinal) { "machine-a" });
+        var installation = new EmulationEmulatorInstallation(definition, "1.0.0");
+        var manager = ControlledDependencies.Simulate<IEmulationEmulatorManager>((method, _) => method.Name switch
+        {
+            "GetEmulatorInstallationAsync" => ValueTask.FromResult(installation),
+            "GetEmulatorInstallationsAsync" =>
+                ValueTask.FromResult<IReadOnlyList<EmulationEmulatorInstallation>>([installation]),
+            _ => throw new InvalidOperationException(method.Name)
+        });
+        var controller = new EmulationEmulatorManagementController(manager,
+            () => configuration, value => configuration = value, () => false,
+            new EmulatorLocalization(definition.DescriptionResourceKey, "Description traduite"));
+        try
+        {
+            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+            await controller.RefreshAsync();
+            Assert.Equal("Emulator A", Assert.IsType<EmulationEmulatorInstallation>(
+                panel.Emulators.SelectedItem).DisplayName);
+            Assert.Equal("Description traduite", panel.Description.Text);
+        }
+        finally
+        {
+            await controller.DisposeAsync();
+        }
+    }
+
     internal static async Task ModuleWindowReopensWithANewVisualTree()
     {
         var module = new MachineConfigurationScenarios.Module();
@@ -200,6 +232,20 @@ internal static class EmulationModuleSettingsNavigationScenarios
         {
             window.Close();
             module.Cleanup();
+        }
+    }
+
+    private sealed class EmulatorLocalization(string key, string translation)
+        : IEmulationModuleLocalization
+    {
+        public bool TryGetString(string resourceKey, System.Globalization.CultureInfo culture,
+            out string value)
+        {
+            _ = culture;
+            value = string.Equals(resourceKey, key, StringComparison.Ordinal)
+                ? translation
+                : string.Empty;
+            return value.Length > 0;
         }
     }
 }

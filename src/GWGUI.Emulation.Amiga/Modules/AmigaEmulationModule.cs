@@ -30,8 +30,8 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             EmulationPathConstants.FirmwareDirectoryName);
     }
 
-    public string Id => EmulationModuleConstants.Amiga;
-    public string DisplayResourceKey => EmulationModuleConstants.ResourceFamilyAmiga;
+    public string Id => EmulationModuleConstants.ModuleId;
+    public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
@@ -75,10 +75,10 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             Model = model.Id,
             Options = new Dictionary<string, string>
             {
-                [EmulationModuleConstants.OptionModel] = model.BackendModel,
-                [EmulationModuleConstants.OptionVideoStandard] = EmulationModuleConstants.PAL,
-                [EmulationModuleConstants.OptionFloppyMultidrive] = EmulationModuleConstants.Disabled,
-                [EmulationModuleConstants.OptionFloppyWriteProtection] = EmulationModuleConstants.Disabled
+                [SettingsConstants.OptionModel] = model.BackendModel,
+                [SettingsConstants.OptionVideoStandard] = SettingsDescriptionFunctionsConstants.PAL,
+                [SettingsConstants.OptionFloppyMultidrive] = SettingsDescriptionFunctionsConstants.Disabled,
+                [SettingsConstants.OptionFloppyWriteProtection] = SettingsDescriptionFunctionsConstants.Disabled
             },
             Id = Guid.NewGuid(),
             InitialDiskPath = null
@@ -102,13 +102,15 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             if (value.Value is null) options.Remove(value.Key);
             else options[value.Key] = value.Value;
         }
-        if (values.TryGetValue(EmulationModuleConstants.OptionSoundVolumeCd, out var cdVolume)
+        if (values.TryGetValue(SettingsConstants.OptionSoundVolumeCd, out var cdVolume)
             && !string.IsNullOrWhiteSpace(cdVolume))
-            options[EmulationModuleConstants.OptionSoundVolumeCd] = cdVolume.TrimEnd('%') + EmulationModuleConstants.Value;
+            options[SettingsConstants.OptionSoundVolumeCd] =
+                cdVolume.TrimEnd(SettingsDescriptionFunctionsConstants.PercentSuffix)
+                + SettingsDescriptionFunctionsConstants.PercentSuffix;
         if (values.GetValueOrDefault(SettingsConstants.CpuSpeed)?.Split('|') is [var throttle, var multiplier])
         {
-            options[EmulationModuleConstants.OptionCpuThrottle] = throttle;
-            options[EmulationModuleConstants.OptionCpuMultiplier] = multiplier;
+            options[SettingsConstants.OptionCpuThrottle] = throttle;
+            options[SettingsConstants.OptionCpuMultiplier] = multiplier;
         }
         var currentAudio = amiga.Audio ?? new AudioConfiguration();
         var hasOutput = values.TryGetValue(SettingsConstants.AudioOutput, out var output);
@@ -121,7 +123,7 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         {
             ParallelJoystickAdapterEnabled = values.TryGetValue(
                 SettingsConstants.ParallelJoystickAdapter, out var parallelJoystickAdapter)
-                    ? parallelJoystickAdapter == EmulationModuleConstants.Enabled
+                    ? parallelJoystickAdapter == SettingsDescriptionFunctionsConstants.Enabled
                     : currentInput.ParallelJoystickAdapterEnabled
         };
         return amiga with
@@ -134,15 +136,15 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             RomKeyPath = values.TryGetValue(SettingsConstants.RomKeyPath, out var romKeyPath)
                 ? OptionalPath(romKeyPath) : amiga.RomKeyPath,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var audioEnabled)
-                ? audioEnabled == EmulationModuleConstants.Enabled : amiga.AudioEnabled,
+                ? audioEnabled == SettingsDescriptionFunctionsConstants.Enabled : amiga.AudioEnabled,
             Audio = currentAudio with
             {
                 OutputDeviceId = hasOutput
                     ? string.IsNullOrWhiteSpace(output) ? null : output
                     : currentAudio.OutputDeviceId,
                 LatencyMilliseconds = latency,
-                Interpolation = options.GetValueOrDefault(EmulationModuleConstants.OptionSoundInterpol) ?? currentAudio.Interpolation,
-                Filter = options.GetValueOrDefault(EmulationModuleConstants.OptionSoundFilter) ?? currentAudio.Filter,
+                Interpolation = options.GetValueOrDefault(SettingsConstants.OptionSoundInterpol) ?? currentAudio.Interpolation,
+                Filter = options.GetValueOrDefault(SettingsConstants.OptionSoundFilter) ?? currentAudio.Filter,
                 StereoSeparation = stereo
             },
             Input = input
@@ -287,7 +289,7 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (configuration is not MachineConfiguration amiga)
             throw new ArgumentException(nameof(configuration));
         if (!File.Exists(amiga.KickstartPath))
-            throw new FileNotFoundException(EmulationModuleConstants.Kickstart, amiga.KickstartPath);
+            throw new FileNotFoundException(FirmwareCatalogConstants.Kickstart, amiga.KickstartPath);
         var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(amiga,
             services.ConvertedMediaDirectory).ConfigureAwait(false);
         var emulator = _engine.Adapter(runtime);
@@ -296,12 +298,14 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(EmulationModuleConstants.Puae)));
+                new EmulationEmulatorMessageContext(emulator.EmulatorId)));
         var audio = runtime.Audio ?? new AudioConfiguration();
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
-            value => Path.Combine(services.StatesDirectory, value.Id.ToString(EmulationModuleConstants.N), EmulationModuleConstants.Saves));
+            value => Path.Combine(services.StatesDirectory,
+                value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
+                CoreDirectoryConstants.SavesDirectoryName));
         var storage = StorageSettingsFunctions.Describe(runtime);
         var devices = storage.AvailableDevices
             .Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();

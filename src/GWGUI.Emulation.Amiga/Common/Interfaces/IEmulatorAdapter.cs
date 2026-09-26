@@ -3,6 +3,7 @@ namespace GWGUI.Emulation.Amiga.Common.Interfaces;
 internal interface IEmulatorAdapter
 {
     string EmulatorId { get; }
+    string EmulatorKey { get; }
     EmulationEmulatorDefinition Definition { get; }
     bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);
     ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(

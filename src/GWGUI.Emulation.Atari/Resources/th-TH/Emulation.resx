@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>จําลองแผงควบคุมอาตาริ 7800</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>จําลองระบบเกม Atarari Lynx แบบพกพา</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>ภาพ จําลอง ของ อา ตา รี CD คอนโซล</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>ตัวจําลอง Atari ที่เลือกไว้ ไม่ใช้ตัวควบคุมการใช้ตลับหมึกร่วมกัน</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>เครื่อง Atari ที่เลือกไว้ ต้องการสื่อตลับหมึก</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>ส่วนขยายตลับหมึกไม่ถูกรองรับจากตัวจําลอง Atararari ที่เลือกไว้</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>ไม่สามารถเปิดแฟ้มอตาริเพื่ออ่านได้</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>เครื่องจําลองอะตาริปฏิเสธตลับหมึกที่มาแทน</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>เครื่องจําลองอะตาริปฏิเสธ ทั้งการแทนที่และตลับหมึกก่อนหน้า</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>ตัวจําลองอะตารินี้ไม่สามารถทํางานได้โดยไม่มีตลับหมึก</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>ตัวจําลอง Atari ที่เลือกไว้ ไม่ได้ทําการเปิดเผยการเลือกขอบเขตของตลับหมึก</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>ตัวจําลอง Atari นี้ไม่สามารถใช้การจับเวลาของตลับหมึกได้ชื่อ SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>เปิดใช้งานการเล่นเสียง</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>ปิดการเล่นเสียง</value></data>
 </root>

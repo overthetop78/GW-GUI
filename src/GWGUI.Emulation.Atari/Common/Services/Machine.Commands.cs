@@ -16,7 +16,7 @@ private MachineConfiguration CurrentConfiguration() =>
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
-            throw new InvalidOperationException(MachineConstants.InvalidStateMessage);
+            throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
         var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         _commands.Enqueue(new MachineCommand(action, completion));
         lock (_gate) Monitor.PulseAll(_gate);
@@ -77,7 +77,7 @@ private MachineConfiguration CurrentConfiguration() =>
             try { _core.Dispose(); } catch (Exception) { }
             try { _audio.Stop(); } catch (Exception) { }
             MachineFunctions.DeleteSessionDirectory(_sessionDirectory);
-            FailPendingCommands(new OperationCanceledException(MachineConstants.StoppedMessage));
+            FailPendingCommands(new OperationCanceledException(ErrorMessages.MachineStopped));
             lock (_gate)
                 if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
         }
@@ -111,7 +111,7 @@ private MachineConfiguration CurrentConfiguration() =>
     {
         _audio.Reset();
         if (Configuration.Core == Emulator.Hatari)
-            _core.SetOption(MachineValues.HatariResetType, resetType);
+            _core.SetOption(MachineValues.ResetType, resetType);
         _core.HardReset();
     }
 

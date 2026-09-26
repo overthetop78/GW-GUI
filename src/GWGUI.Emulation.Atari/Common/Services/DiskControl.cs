@@ -77,7 +77,7 @@ internal sealed class DiskControl
         using var content = ContentFunctions.Create(path, true,
             new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
-                Path.GetExtension(path).TrimStart(CommonConstants.ExtensionPrefix)
+                Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix)
             });
         var inserted = false;
         try

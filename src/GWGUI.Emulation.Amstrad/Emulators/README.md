@@ -8,7 +8,9 @@ Pour ajouter un cœur :
 1. créer son dossier ;
 2. implémenter `Common/Interfaces/IEmulatorAdapter.cs`, jamais directement les contrats de `GWGUI.Emulation` ;
 3. traduire les commandes définies par la machine vers l’API native du cœur ;
-4. enregistrer sa `EmulationEmulatorDefinition` dans le catalogue Amstrad.
+4. fournir dans son propre dossier son identité, sa `EmulationEmulatorDefinition`, sa DLL, sa source
+   et ses données d’installation ; le catalogue Amstrad découvre les adaptateurs sans connaître de
+   cœur concret en dur.
 
 Chaque dossier d’émulateur contient directement ses propres catégories
 `Constants`, `Contracts`, `Dictionaries`, `Enums`, `Exceptions`, `Factories`,

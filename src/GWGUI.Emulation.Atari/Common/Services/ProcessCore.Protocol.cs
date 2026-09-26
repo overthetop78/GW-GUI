@@ -68,7 +68,8 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
     private static void ThrowRemoteError(HostError error)
     {
         if (error.Category is { } category && error.Code is { } code)
-            throw new EmulationException(category, code, error.Message, error.Context);
+            throw new EmulationException(category, code, error.Message, error.Context,
+                isLocalized: error.IsLocalized);
         throw new InvalidOperationException(error.Message);
     }
 

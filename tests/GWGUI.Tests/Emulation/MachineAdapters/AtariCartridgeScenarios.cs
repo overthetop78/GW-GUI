@@ -1,6 +1,6 @@
-using GWGUI.Emulation.Atari.Common.Contracts;
-using GWGUI.Emulation.Atari.Common.Enums;
-using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.Tests.Emulation.MachineAdapters;

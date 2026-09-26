@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuluje konsolę Atari 7800.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuluje przenośny system gier Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulaty Atari Jaguar i Jaguar CD konsole.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Wybrany emulator Atari nie korzysta ze sterownika dzielonego wkładu.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Wybrana maszyna Atari wymaga wkładek.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Wydłużenie wkładu nie jest obsługiwane przez wybrany emulator Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Nie można otworzyć wkładu Atari do czytania.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Emulator Atari odrzucił wkład zastępczy.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Emulator Atari odrzucił zarówno zamianę jak i poprzedni wkład.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Emulator Atari nie może pozostać włączony bez wkładu.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Wybrany emulator Atari nie powoduje wystawienia wyboru regionu wkładu.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Ten emulator Atari nie może używać trybu rozrządu wkładzie o nazwie SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Odtwarzanie dźwięku jest włączone</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Odtwarzanie dźwięku jest wyłączone</value></data>
 </root>

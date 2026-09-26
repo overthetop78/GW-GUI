@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>模拟Atari 7800控制台.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>模拟便携式Atari Lynx游戏系统.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>模拟 Atari 美洲虎和美洲虎 CD 控制台 控制台 控制台</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>选中的 Atari 模拟器不使用共享的相册控制器 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>所选的Atari机器需要弹匣介质.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>所选的 Atari 模拟器不支持弹匣扩展 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari 弹匣无法打开读取 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari模拟器拒绝更换弹匣。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari模拟器拒绝更换和上个弹匣。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>这个Atari模拟器没有弹匣就无法继续使用动力。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>选中的 Atari 模拟器不显示弹匣区域选择 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>此 Atari 模拟器无法使用命名的弹匣计时模式 SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>已启用声音播放</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>音效播放已禁用</value></data>
 </root>

@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>קונסולת Atari 7800</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>מאמת את מערכת המשחק של Atari Lynx הניידת.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Atari יגואר ויגואר CD הקונסולות</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>חיקוי Atari שנבחר אינו משתמש בקר מחסנית משותף.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>מכונת Atari שנבחרה דורשת אמצעי מחסנית.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>הרחבה של המחסנית אינה נתמך על ידי חיקוי Atari שנבחר.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>את מחסנית Atari לא ניתן לפתוח לקריאה.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>ה- Atariחיקויor דחה את מחסנית ההחלפה.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>ה- Atari מחקר דחה גם את ההחלפה וגם את המחסנית הקודמת.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>חיקוי אטרי זה לא יכול להישאר מופעל ללא מחסנית.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>חיקוי Atari שנבחר אינו חושף את בחירת אזור מחסנית.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>זה Atari חיקויor לא יכול להשתמש במצב תזמון מחסנית בשם SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Sound Playback הוא זמין</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Sound Playback הוא מוגבל</value></data>
 </root>

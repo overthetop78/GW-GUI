@@ -5,10 +5,13 @@ using GWGUI.Emulation.Atari.Emulators.Hatari.Services;
 
 namespace GWGUI.Emulation.Atari.Emulators.Hatari.Factories;
 
-internal sealed class HatariMachineFactory() : MachineFactory(Emulator.Hatari)
+internal sealed class HatariMachineFactory() : MachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyDictionary<string, string> GetConfiguredOptions(MachineConfiguration configuration) =>
-        MachineOptionFunctions.Apply(configuration);
+        HatariOptionFunctions.Apply(configuration);
+
+    public override IReadOnlyDictionary<string, string> PrepareOptions(
+        IReadOnlyDictionary<string, string> options) => HatariOptionFunctions.ToNativeOptions(options);
 
     public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration,
         MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)

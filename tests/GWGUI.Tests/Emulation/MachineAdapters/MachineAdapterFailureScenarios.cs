@@ -1,14 +1,17 @@
 using GWGUI.App.Services.Emulation;
-using GWGUI.Emulation.Atari.Common.Functions;
-using GWGUI.Emulation.Atari.Common.Exceptions;
-using GWGUI.Emulation.Atari.Common.Enums;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
+using GWGUI.Emulation.Atari.Emulators.Libretro.Exceptions;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Atari.Emulators.Libretro.Enums;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
 using GWGUI.Tests.Emulation.EmulationContracts;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga.Common.Contracts;
+using GWGUI.Emulation.Amiga.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Amiga.Common.Interfaces;
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Interfaces;
 using GWGUI.Emulation.Amiga.Common.Services;
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 internal static class MachineAdapterFailureScenarios
@@ -24,9 +27,11 @@ internal static class MachineAdapterFailureScenarios
             deleteSession:path=>{Assert.Equal("virtual-session",path);cleanups++;});
         if(failure<2)
         {
-            Assert.Same(error,await Assert.ThrowsAsync<FileNotFoundException>(()=>machine.StartAsync().AsTask()));
+            var translated=await Assert.ThrowsAsync<EmulationMessageException>(()=>machine.StartAsync().AsTask());
+            Assert.Same(error,translated.InnerException);
+            Assert.Equal(EmulationMessageCode.MachineStartFailed,translated.MessageData.MessageCode);
             await machine.StopAsync(); Assert.Equal(EmulationMachineState.Faulted,machine.State);
-            Assert.Equal("synthetic diagnostic",error.Data["AmigaDiagnostics"]);
+            Assert.Equal("synthetic diagnostic",translated.Data["AmigaDiagnostics"]);
             Assert.Equal(0,core.Stops);
         }
         else if(failure==2)
@@ -41,7 +46,9 @@ internal static class MachineAdapterFailureScenarios
             await machine.PauseAsync(); core.MediaError=error;
             var media = new EmulationMedia("virtual.adf",EmulationMediaSlot.Floppy0,EmulationMediaType.Floppy,false,true);
             var inserting = machine.Media.InsertAsync(media,default).AsTask(); core.FrameRelease.Set();
-            Assert.Same(error,await Assert.ThrowsAsync<InvalidOperationException>(()=>inserting));
+            var translated=await Assert.ThrowsAsync<EmulationMessageException>(()=>inserting);
+            Assert.Same(error,translated.InnerException);
+            Assert.Equal(EmulationMessageCode.MediaOperationFailed,translated.MessageData.MessageCode);
             Assert.Empty(machine.Media.MountedMedia); Assert.Equal(EmulationMachineState.Paused,machine.State);
             core.MediaError=null; await machine.Media.InsertAsync(media,default);
             Assert.Equal(media,Assert.Single(machine.Media.MountedMedia));
@@ -80,7 +87,7 @@ internal static class MachineAdapterFailureScenarios
     }
     public static async Task Boundary(string category,string code,string expectedCategory,string expectedCode)
     {
-        var configuration = new GWGUI.Emulation.Atari.Common.Contracts.MachineConfiguration(MachineModel.Ste);
+        var configuration = new GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration(MachineModel.Ste);
         var original = new EmulationException(Enum.Parse<ErrorCategory>(category),Enum.Parse<ErrorCode>(code),"synthetic core response");
         var translated = Assert.IsType<EmulationMessageException>(MessageFunctions.Translate(original,configuration));
         Assert.Same(original,translated.InnerException);
@@ -90,7 +97,10 @@ internal static class MachineAdapterFailureScenarios
         await using var session = new MachineSession(machine.Value,_ => throw new InvalidOperationException("No external core"),[]);
         Assert.Same(translated,await Assert.ThrowsAsync<EmulationMessageException>(session.PowerOnAsync));
         Assert.False(session.IsPowered); Assert.Equal(new[] {"StartAsync","StopAsync","DisposeAsync"},machine.Calls);
-        var unrelated = new IOException("host failure"); Assert.Same(unrelated,MessageFunctions.Translate(unrelated,configuration));
+        var unrelated = new IOException("host failure");
+        var fallback = Assert.IsType<EmulationMessageException>(MessageFunctions.Translate(unrelated,configuration));
+        Assert.Same(unrelated,fallback.InnerException);
+        Assert.Equal(EmulationMessageCode.MachineStartFailed,fallback.MessageData.MessageCode);
     }
     public static async Task RecreationFailure()
     {

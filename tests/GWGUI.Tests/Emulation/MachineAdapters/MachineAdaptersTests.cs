@@ -1,7 +1,7 @@
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 public sealed class MachineAdaptersTests
 {
-    public static IEnumerable<object[]> AtariModels => GWGUI.Emulation.Atari.Common.Dictionaries.ModelCatalog.All.Select(model=>new object[]{model.Id});
+    public static IEnumerable<object[]> AtariModels => GWGUI.Emulation.Atari.Common.Machines.Common.Dictionaries.ModelCatalog.All.Select(model=>new object[]{model.Id});
     [Theory] [MemberData(nameof(AtariModels))] public void EachAtariModuleMapsSettingsWithoutLoadingItsCore(string model)=>MachineConfigurationMappingScenarios.AtariModule(model);
     [Fact] public void EightBitSettingsNormalizeUnsupportedValuesAndDependencies()=>MachineConfigurationMappingScenarios.EightBitNormalization();
     [Theory] [InlineData(0)] [InlineData(1)] [InlineData(2)] [InlineData(3)] public Task AmigaCoreFailuresLeaveConsistentStateAndCleanSession(int failure)=>MachineAdapterFailureScenarios.AmigaBoundary(failure);

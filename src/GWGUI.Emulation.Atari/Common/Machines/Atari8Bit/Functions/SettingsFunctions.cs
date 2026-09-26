@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Atari.Common.Functions;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Functions;
 
@@ -10,10 +10,10 @@ public static class EightBitSettingsFunctions
         var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
         if (EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model))
         {
-            Validate(options, ConfigurationOptionConstants.VideoResolution,
+            Validate(options, VideoAudioSettingsConstants.ResolutionOption,
                 EightBitSettingsCatalog.OriginalComputerResolutions,
                 EightBitSettingsCatalog.OriginalComputerResolutions[0]);
-            SetDefault(options, ConfigurationOptionConstants.VideoResolution,
+            SetDefault(options, VideoAudioSettingsConstants.ResolutionOption,
                 EightBitSettingsCatalog.OriginalComputerResolutions[0]);
         }
 
@@ -23,8 +23,8 @@ public static class EightBitSettingsFunctions
                              or EightBitSettingDisposition.HiddenInternal))
                 options.Remove(setting.Key);
 
-        Validate(options, ConfigurationOptionConstants.VideoStandard,
-            Enum.GetNames<ClassicRegion>(), ClassicRegion.Ntsc.ToString());
+        Validate(options, VideoAudioSettingsConstants.StandardOption,
+            Enum.GetNames<HardwareRegion>(), HardwareRegion.Ntsc.ToString());
         Validate(options, EightBitSettingsConstants.ArtifactingModeOptionKey,
             EightBitSettingsCatalog.ArtifactingModes, EightBitSettingsConstants.None);
 
@@ -86,8 +86,8 @@ public static class EightBitSettingsFunctions
 
         SetDefault(options, EightBitSettingsConstants.ControllerCompatibilityOptionKey,
             EightBitSettingsConstants.None);
-        SetDefault(options, ConfigurationOptionConstants.VideoStandard,
-            ClassicModelCatalog.Get(configuration.Model).DefaultRegion.ToString());
+        SetDefault(options, VideoAudioSettingsConstants.StandardOption,
+            HardwareModelCatalog.Get(configuration.Model).DefaultRegion.ToString());
         SetDefault(options, EightBitSettingsConstants.ArtifactingModeOptionKey,
             EightBitSettingsConstants.None);
         SetDefault(options, EightBitSettingsConstants.PaddleActiveOptionKey,

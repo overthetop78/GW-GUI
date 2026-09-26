@@ -85,4 +85,15 @@
   <data name="Emulation.Emulator.prosystem.Description"><value>Đang đặt máy điều khiển Atari 7800.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Kết hợp với hệ thống Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Chim sẻ Atari Báo và Báo Mỹ CD - Cái gì?</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Trình giả lập Atari đã chọn không dùng bộ điều khiển hộp đã chia sẻ.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Máy Atari được chọn cần thiết phương tiện thông tin đạn dược.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Không hỗ trợ phần mở rộng hộp mực do trình giả lập Atari đã chọn.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Không thể mở hộp Atari để đọc.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Bộ giả lập Atari đã từ chối hộp thay thế.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Bộ giả lập Atari đã từ chối cả hai thiết bị thay thế và đạn trước.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Trình giả lập Atari này không thể tiếp tục chạy nếu không có đạn.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Trình giả lập Atari đã chọn không phơi bày vùng chọn.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Trình giả lập Atari này không thể sử dụng chế độ đúng giờ hộp mực được đặt tên SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Phát lại âm thanh đã bật</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Không cho phát lại âm thanh</value></data>
 </root>
