@@ -1,4 +1,7 @@
 using System.Reflection;
+using System.Text.Json;
+using GWGUI.Emulation.Amiga.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Amiga.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Amiga.Modules;
 using GWGUI.Emulation.Amiga.Common.Services;
 
@@ -6,6 +9,22 @@ namespace GWGUI.Tests.Emulation.Amiga;
 
 public sealed class AmigaEmulatorAdapterTests
 {
+    [Fact]
+    public void MachineConfigurationCrossesTheCoreHostJsonBoundary()
+    {
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        var original = new MachineConfiguration("A500", "kickstart.rom", Core: Emulator.External);
+
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(
+            JsonSerializer.Serialize(original, options), options);
+
+        Assert.NotNull(restored);
+        Assert.Equal(original.Id, restored.Id);
+        Assert.Equal(original.Model, restored.Model);
+        Assert.Equal(original.Core, restored.Core);
+        Assert.Equal(original.KickstartPath, restored.KickstartPath);
+    }
+
     [Fact]
     public void PuaeUsesItsPhysicalNamespaceAndTheCommonAdapter()
     {

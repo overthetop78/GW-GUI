@@ -1,5 +1,8 @@
 using System.Reflection;
+using System.Text.Json;
 using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Atari.Emulators.Libretro.Dictionaries;
 using GWGUI.Emulation.Atari.Modules;
 using GWGUI.Emulation.Atari.Common.Services;
@@ -8,6 +11,21 @@ namespace GWGUI.Tests.Emulation.Atari;
 
 public sealed class AtariEmulatorAdapterTests
 {
+    [Fact]
+    public void MachineConfigurationCrossesTheCoreHostJsonBoundary()
+    {
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        var original = new MachineConfiguration(MachineModel.Atari800Xl);
+
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(
+            JsonSerializer.Serialize(original, options), options);
+
+        Assert.NotNull(restored);
+        Assert.Equal(original.Id, restored.Id);
+        Assert.Equal(original.Model, restored.Model);
+        Assert.Equal(original.Core, restored.Core);
+    }
+
     [Fact]
     public void ConcreteAdaptersUseTheirPhysicalNamespaces()
     {

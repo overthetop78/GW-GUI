@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using System.Text.Json.Serialization;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 
@@ -26,6 +27,22 @@ public sealed record FolderConfiguration(
 
 public sealed record MachineConfiguration : IEmulationConfiguration
 {
+    [JsonConstructor]
+    public MachineConfiguration(
+        int schemaVersion,
+        Guid id,
+        MachineModel model,
+        Emulator core,
+        IReadOnlyList<FirmwareConfiguration> firmwares,
+        IReadOnlyList<MediaConfiguration> media,
+        IReadOnlyDictionary<string, string> options,
+        InputConfiguration input,
+        bool audioEnabled,
+        FolderConfiguration folders)
+        : this(model, firmwares, media, options, input, id, schemaVersion, audioEnabled, folders, core)
+    {
+    }
+
     public MachineConfiguration(
         MachineModel model,
         IReadOnlyList<FirmwareConfiguration>? firmwares = null,

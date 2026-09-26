@@ -46,9 +46,9 @@ internal static class ControlErrorPresenter
 
     private static string MessageHeading(EmulationMessage message) => message.MessageCode switch
     {
-        EmulationMessageCode.RequiredMediaMissing =>
+        EmulationMessageCode.RequiredMediaMissing or EmulationMessageCode.MachineStartFailed =>
             LocExtension.Get(ControlErrorPresenterConstants.PowerFailureTitleResource),
-        _ => LocExtension.Get(ControlErrorPresenterConstants.UnexpectedResource)
+        _ => LocExtension.Get(ControlErrorPresenterConstants.EmulationErrorTitleResource)
     };
 
     private static string MessageText(EmulationMessage message)

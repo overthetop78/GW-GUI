@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Для цього потрібен шлях Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Необхідний шлях прошивки порожній.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Вибраний файл не існує.</value></data>
+  <data name="Emulation.Error.Title"><value>Похибка про емульацію</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Не встановлено необхідний емулятор.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>емулятор відхилений за запитом операції.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>емулятор не може бути оновлений, коли він знаходиться в використанні.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Не потрібно прошивку відсутні.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Вибрані прошивки несумісні з цією машиною.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Не знайдено настроченого медіафайлу.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Вибрані ЗМІ не підтримуються цим емулятором.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Варіант емулятора недійсний.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Зв'язок з процесом емулятора не вдалося.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Не можна розпочати емульований апарат.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Не вдалося медіа-операції.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Збережений стан недійсним або пошкодженим.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>У збереженому стані не сумісний з цією конфігурацією машини.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Не вдалося досягнути роботи з збереженою державою.</value></data>
 </root>

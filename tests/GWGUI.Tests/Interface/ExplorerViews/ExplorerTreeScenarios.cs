@@ -1,5 +1,6 @@
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.ViewModels.Explorer;
+using GWGUI.App.Localization.Extensions;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Interface.ExplorerViews;
 internal static class ExplorerTreeScenarios
@@ -18,9 +19,9 @@ internal static class ExplorerTreeScenarios
         contents.SelectedItem = file;
         Assert.Same(file, contents.SelectedItem);
         Assert.False(details.IsShowingDisk); Assert.Equal("FILE.BIN", details.DisplayedTitle);
-        Assert.Equal("note", Assert.IsType<TextBlock>(details.FindName("DetailValue4")).Text);
-        Assert.Equal(file.SizeText, Assert.IsType<TextBlock>(details.FindName("DetailValue2")).Text);
-        Assert.Equal(file.ModifiedText, Assert.IsType<TextBlock>(details.FindName("DetailValue3")).Text);
+        Assert.Equal("note", DetailValue(details, "Explorer.Comment"));
+        Assert.Equal(file.SizeText, DetailValue(details, "Explorer.Size"));
+        Assert.Equal(file.ModifiedText, DetailValue(details, "Explorer.Modified"));
         folders.SelectedIndex = 0;
         Assert.Null(contents.SelectedItem);
         Assert.Equal("DIR", Assert.IsType<ExplorerContentItem>(Assert.Single(contents.Items.Cast<object>())).Entry.Name);
@@ -35,5 +36,13 @@ internal static class ExplorerTreeScenarios
         Assert.Empty(contents.Items); Assert.Null(contents.SelectedItem); Assert.True(details.IsShowingDisk);
         folders.SelectedIndex = 0;
         Assert.Equal("EMPTY", Assert.IsType<ExplorerContentItem>(Assert.Single(contents.Items.Cast<object>())).Entry.Name);
+    }
+
+    private static string DetailValue(ExplorerDetailsPanel details, string resourceKey)
+    {
+        var expectedLabel = LocExtension.Get(resourceKey);
+        var index = Enumerable.Range(1, 12).Single(value =>
+            Assert.IsType<TextBlock>(details.FindName($"DetailLabel{value}")).Text == expectedLabel);
+        return Assert.IsType<TextBlock>(details.FindName($"DetailValue{index}")).Text;
     }
 }

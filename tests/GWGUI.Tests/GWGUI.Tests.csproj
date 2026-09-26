@@ -29,6 +29,7 @@
     <ProjectReference Include="..\..\src\GWGUI.App\GWGUI.App.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation\GWGUI.Emulation.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Amstrad\GWGUI.Emulation.Amstrad.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
   </ItemGroup>
 

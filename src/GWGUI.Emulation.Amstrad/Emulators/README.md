@@ -1,22 +1,10 @@
-# Adaptateurs de cœurs Amstrad
+# Émulateurs Amstrad
 
-Chaque cœur possède un dossier `Emulators/<nom-du-cœur>/`. Ce dossier contient son adaptateur, ses URL,
-son installation et la traduction de ses options, médias, entrées et sorties natives.
+La première version contient uniquement `Emulators/Caprice32`.
 
-Pour ajouter un cœur :
+Cet adaptateur possède l’identité du cœur, `cap32_libretro.dll`, le téléchargement, le protocole
+d’hébergement, les callbacks Libretro, les options `cap32_*`, les règles de média et ses erreurs.
+Il implémente `Common/Interfaces/IEmulatorAdapter.cs` ; ni `Common`, ni `Modules`, ni l’App ne
+référencent directement un type Caprice32.
 
-1. créer son dossier ;
-2. implémenter `Common/Interfaces/IEmulatorAdapter.cs`, jamais directement les contrats de `GWGUI.Emulation` ;
-3. traduire les commandes définies par la machine vers l’API native du cœur ;
-4. fournir dans son propre dossier son identité, sa `EmulationEmulatorDefinition`, sa DLL, sa source
-   et ses données d’installation ; le catalogue Amstrad découvre les adaptateurs sans connaître de
-   cœur concret en dur.
-
-Chaque dossier d’émulateur contient directement ses propres catégories
-`Constants`, `Contracts`, `Dictionaries`, `Enums`, `Exceptions`, `Factories`,
-`Functions`, `Interfaces` et `Services` lorsqu’elles sont nécessaires. Ses
-espaces de noms suivent ces dossiers.
-
-L’émulateur dépend de `Common` et implémente ses prises. `Common`, `Modules`,
-`GWGUI.Emulation` et `GWGUI.App` ne référencent jamais l’espace de noms ou les
-types de l’émulateur concret.
+Les autres émulateurs et les autres familles Amstrad seront ajoutés dans des chantiers séparés.

@@ -29,6 +29,7 @@
     <PackageReference Include="LTRData.DiscUtils.HfsPlus" Version="1.0.88" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
     <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />

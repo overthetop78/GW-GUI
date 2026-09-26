@@ -13,5 +13,4 @@ internal static class ModelConstants
     internal const string Value13 = "1.3";
     internal const string Value204 = "2.04";
     internal const string Value31 = "3.1";
-    internal const string UnsupportedModel = "Unsupported Amiga model.";
 }

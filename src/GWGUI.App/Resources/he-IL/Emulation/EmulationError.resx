@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>יש צורך בנתיב Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>נתיב קושחה נדרש הוא ריק.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>הקובץ שנבחר אינו קיים.</value></data>
+  <data name="Emulation.Error.Title"><value>טעות</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>החיקוי הנדרש אינו מותקן.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>החיקוי דחה את המבצע המבוקש.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>החיקוי אינו יכול להיות מעודכן בזמן השימוש.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>קושחה נדרשת חסרה.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>הקושחה שנבחרה אינה תואמת למכונה זו.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>הקובץ הקבוע לא נמצא.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>התקשורת שנבחרה אינה נתמכת על ידי החיקוי הזה.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>אפשרות של חיקוי היא בלתי חוקית.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>התקשורת עם תהליך החיקוי נכשלה.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>לא ניתן להתחיל את המכונה החיקויית.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>פעולת התקשורת נכשלה.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>המדינה הנושחת היא בלתי חוקית או ניזוקה.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>המדינה הנ הצילה אינה תואמת לתצורת מכונה זו.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>פעולת המדינה הצילה נכשלה.</value></data>
 </root>

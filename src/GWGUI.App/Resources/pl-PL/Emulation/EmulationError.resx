@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Wymagany jest tor Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Wymagany program firmware jest pusty.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Wybrany plik nie istnieje.</value></data>
+  <data name="Emulation.Error.Title"><value>Błąd emulacji</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Wymagany emulator nie jest zainstalowany.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Emulator odrzucił żądaną operację.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Emulatora nie można zaktualizować w czasie jego stosowania.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Brak wymaganego oprogramowania firmowego.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Wybrane oprogramowanie firmowe jest niezgodne z tą maszyną.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Nie znaleziono skonfigurowanego pliku multimedialnego.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Wybrane media nie są obsługiwane przez ten emulator.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Opcja emulatora jest niepoprawna.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Komunikacja z procesem emulatora nie powiodła się.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Nie można uruchomić emulowanej maszyny.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Operacja medialna nie powiodła się.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Zapisany stan jest nieprawidłowy lub uszkodzony.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Zapisany stan nie jest kompatybilny z tą konfiguracją maszyny.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Operacja w stanie Savedded zakończyła się niepowodzeniem.</value></data>
 </root>

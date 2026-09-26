@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>gwgui.emulation.amstrad</AssemblyName>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <InternalsVisibleTo Include="GWGUI.Tests" />
+    <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
+    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\*\*.resx">
+      <WithCulture>false</WithCulture>
+      <LogicalName>GWGUI.Emulation.Amstrad.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Target Name="RemoveHostProvidedAssembliesFromCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"
+                               Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.Filename)').StartsWith('gwgui.'))" />
+    </ItemGroup>
+  </Target>
+</Project>

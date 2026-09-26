@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Требуется путь Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Требуемый путь прошивки пуст.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Выбранного файла не существует.</value></data>
+  <data name="Emulation.Error.Title"><value>ошибка эмуляции</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Необходимый эмулятор не устанавливается.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Эмулятор отклонил запрошенную операцию.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Эмулятор не может быть обновлен, пока он используется.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Необходимая прошивка отсутствует.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Выбранное прошивка несовместима с этой машиной.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Настроенный медиафайл не найден.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Выбранные носители не поддерживаются этим эмулятором.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Опция эмулятора недействительна.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Связь с эмулятором не удалась.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Эмулированная машина не могла быть запущена.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Операция СМИ провалилась.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Спасенное состояние является недействительным или поврежденным.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Сохраненное состояние не совместимо с этой конфигурацией машины.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Операция «спасенное государство» провалилась.</value></data>
 </root>

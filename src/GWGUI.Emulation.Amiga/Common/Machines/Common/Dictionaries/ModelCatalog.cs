@@ -17,7 +17,7 @@ public static class ModelCatalog
 
     public static Model Get(string id) => All.FirstOrDefault(model => model.Id.Equals(id, StringComparison.Ordinal))
         ?? FromLegacyId(id)
-        ?? throw new ArgumentOutOfRangeException(nameof(id), id, ModelConstants.UnsupportedModel);
+        ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
 
     public static Model? FromLegacyId(string id) => id switch
     {

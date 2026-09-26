@@ -20,7 +20,7 @@ public sealed class MediaEngineProjectBoundaryTests
     {
         AssertGwguiReferences(typeof(MediaKind).Assembly, ["gwgui.mediafilesystems"]);
         AssertGwguiReferences(typeof(MediaContentCategory).Assembly, []);
-        AssertGwguiReferences(typeof(MediaVolumeDetectorRegistry).Assembly, []);
+        AssertGwguiReferences(typeof(MediaVolumeDetectorRegistry).Assembly, ["gwgui.mediaanalysis"]);
         AssertGwguiReferences(typeof(MediaEngineComposition).Assembly, ["gwgui.mediafilesystems"]);
         AssertGwguiReferences(typeof(GWGUI.Infrastructure.Processes.GreaseweazleRunner).Assembly, ["gwgui.mediaengine"]);
         AssertGwguiReferences(typeof(AmigaEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);

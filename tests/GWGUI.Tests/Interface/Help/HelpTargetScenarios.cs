@@ -32,7 +32,11 @@ internal static class HelpTargetScenarios
                 runner: ControlledDependencies.Reject<IGreaseweazleRunner>(), settingsStore: ControlledDependencies.Reject<ISettingsStore>(),
                 hardwareRegistry: ControlledDependencies.Reject<IHardwareRegistry>(),
                 openDocumentation: url => { targets.Add(url); if (fail) throw failure; },
-                logError: (error, context) => { Assert.Equal("Opening documentation", context); errors.Add(error); }, dataDirectory: "virtual-data");
+                logError: (error, context) =>
+                {
+                    Assert.Equal(LocExtension.Get("Menu.Documentation"), context);
+                    errors.Add(error);
+                }, dataDirectory: "virtual-data");
             var menu = Assert.IsType<MainMenu>(shell.FindName("ApplicationMenu"));
             var command = Assert.Single(menu.HelpMenuItem.Items.Cast<MenuItem>(), item => Equals(item.Header, LocExtension.Get("Menu.Documentation")));
             command.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));

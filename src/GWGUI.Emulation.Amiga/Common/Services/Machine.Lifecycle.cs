@@ -13,7 +13,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         {
             ThrowIfDisposed();
             if (State is not EmulationMachineState.Created and not EmulationMachineState.Stopped)
-                throw new InvalidOperationException($"Cannot start an Amiga machine in state {State}.");
+                throw MachineExceptions.MachineNotRunning();
             State = EmulationMachineState.Starting;
             _stop = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);

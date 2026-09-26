@@ -1,5 +1,10 @@
 namespace GWGUI.Emulation.Amstrad.Common.Constants;
 
-internal static class MediaConstants
+public static class MediaConstants
 {
+    internal const char SupportedExtensionSeparator = '|';
+    internal const char ExtensionPrefix = '.';
+    internal const string ExtensionListSeparator = ", ";
+    public const int DefaultMountOrder = 0;
 }
+
