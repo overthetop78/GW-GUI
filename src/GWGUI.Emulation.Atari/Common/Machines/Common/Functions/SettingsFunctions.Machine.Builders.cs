@@ -70,10 +70,10 @@ internal static partial class SettingsDescriptionFunctions
             ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
             NumericValue: numericValue);
 
-    private static string? ShortHelp(string id) => FieldHelpResources.TryGetValue(id, out var resource)
+    private static string? ShortHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
         ? resource + ".Short" : null;
 
-    private static string? DetailedHelp(string id) => FieldHelpResources.TryGetValue(id, out var resource)
+    private static string? DetailedHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
         ? resource + ".Detailed" : null;
 
     private static string Value(MachineConfiguration configuration, string key, string fallback) =>

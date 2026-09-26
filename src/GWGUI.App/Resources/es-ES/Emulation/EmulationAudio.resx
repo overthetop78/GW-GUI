@@ -27,7 +27,7 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Sonido de la disquetera</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtro de audio polarizado</value></data>
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Baja</value></data>
-  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Audio.Quality.Normal"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Alta</value></data>
-  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.Audio"><value>Audio</value></data>
 </root>

@@ -23,6 +23,7 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
     private bool _busy;
     private bool _disposed;
     private int _emulatorCount;
+    private EmulationEmulatorInstallation? _selectedInstallation;
 
     internal EmulationEmulatorManagementController(IEmulationEmulatorManager manager,
         Func<IEmulationConfiguration> getConfiguration,
@@ -44,18 +45,22 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
         ObjectDisposedException.ThrowIf(_disposed, this);
         DetachView();
         _view = new EmulationCoreManagementPanel((key, arguments) => LocExtension.Get(key, arguments));
-        _view.Install.Click += InstallClicked;
+        _view.Search.Click += SearchClicked;
+        _view.Download.Click += InstallClicked;
         _view.Cancel.Click += CancelClicked;
         _view.Emulators.SelectionChanged += EmulatorChanged;
+        _view.Versions.SelectionChanged += VersionChanged;
         return _view;
     }
 
     private void DetachView()
     {
         if (_view is null) return;
-        _view.Install.Click -= InstallClicked;
+        _view.Search.Click -= SearchClicked;
+        _view.Download.Click -= InstallClicked;
         _view.Cancel.Click -= CancelClicked;
         _view.Emulators.SelectionChanged -= EmulatorChanged;
+        _view.Versions.SelectionChanged -= VersionChanged;
         _view = null;
     }
 
@@ -86,14 +91,49 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
             view.Emulators.SelectedValue = selected.EmulatorId;
             view.SetDescription(LocExtension.GetLocalized(_localization,
                 selected.DescriptionResourceKey));
-            view.ShowInstallation(selected.InstalledVersion is not null);
-            view.SetStatus(string.Empty);
+            _selectedInstallation = selected;
+            view.SetInstalledVersion(selected.InstalledVersion is null
+                ? LocExtension.Get(EmulationCoreManagementConstants.NotInstalledResource)
+                : LocExtension.Get(EmulationCoreManagementConstants.InstalledResource,
+                    selected.InstalledVersion));
+            view.ShowReleases(false);
+            view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.SearchPromptResource));
         }
         finally
         {
             _loading = false;
             SetBusy(_busy);
         }
+    }
+
+    private async void SearchClicked(object sender, RoutedEventArgs args)
+    {
+        await RunAsync(async cancellationToken =>
+        {
+            var view = _view ?? throw new ObjectDisposedException(nameof(EmulationEmulatorManagementController));
+            view.ShowReleases(false);
+            view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.SearchingResource));
+            var configuration = _getConfiguration();
+            var releases = await _manager.FindEmulatorReleasesAsync(configuration, cancellationToken);
+            if (_disposed || !ReferenceEquals(_view, view)) return;
+            if (releases.Count == 0)
+            {
+                view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.NoneFoundResource));
+                return;
+            }
+
+            var installedVersion = _selectedInstallation?.InstalledVersion;
+            var displayed = releases.Select(release => DisplayRelease(release, installedVersion)).ToArray();
+            view.Versions.DisplayMemberPath = nameof(EmulationEmulatorRelease.DisplayName);
+            view.Versions.SelectedValuePath = nameof(EmulationEmulatorRelease.Id);
+            view.Versions.ItemsSource = displayed;
+            view.Versions.SelectedItem = displayed.FirstOrDefault(item => item.IsRequired)
+                ?? displayed.FirstOrDefault(item => IsInstalled(item, installedVersion))
+                ?? displayed[0];
+            view.ShowReleases(true);
+            view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.VersionsFoundResource,
+                releases.Count));
+        });
     }
 
     private async void EmulatorChanged(object sender, SelectionChangedEventArgs args)
@@ -111,16 +151,11 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
 
     private async void InstallClicked(object sender, RoutedEventArgs args)
     {
+        if (_view?.Versions.SelectedItem is not EmulationEmulatorRelease release) return;
         await RunAsync(async cancellationToken =>
         {
             var view = _view ?? throw new ObjectDisposedException(nameof(EmulationEmulatorManagementController));
-            view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.SearchingResource));
             var configuration = _getConfiguration();
-            var releases = await _manager.FindEmulatorReleasesAsync(configuration, cancellationToken);
-            var release = releases.FirstOrDefault(candidate => candidate.IsRequired)
-                ?? releases.FirstOrDefault()
-                ?? throw new InvalidOperationException(
-                    LocExtension.Get(EmulationCoreManagementConstants.NoneFoundResource));
             view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.DownloadingResource,
                 release.DisplayName));
             var progress = new Progress<double>(value =>
@@ -133,6 +168,31 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
             if (!_disposed && ReferenceEquals(_view, view))
                 view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.InstalledPathResource, path));
         });
+    }
+
+    private void VersionChanged(object sender, SelectionChangedEventArgs args)
+    {
+        if (sender is ComboBox { SelectedItem: EmulationEmulatorRelease release })
+            ((ComboBox)sender).ToolTip = release.DisplayName;
+    }
+
+    private static bool IsInstalled(EmulationEmulatorRelease release, string? installedVersion) =>
+        !string.IsNullOrWhiteSpace(installedVersion)
+        && (string.Equals(release.Version, installedVersion, StringComparison.Ordinal)
+            || string.Equals(release.Id, installedVersion, StringComparison.Ordinal));
+
+    private static EmulationEmulatorRelease DisplayRelease(EmulationEmulatorRelease release,
+        string? installedVersion)
+    {
+        var labels = new List<string>();
+        if (release.IsRequired)
+            labels.Add(LocExtension.Get(EmulationCoreManagementConstants.RequiredVersionResource));
+        if (IsInstalled(release, installedVersion))
+            labels.Add(LocExtension.Get(EmulationCoreManagementConstants.ProjectVersionResource));
+        return labels.Count == 0 ? release : release with
+        {
+            DisplayName = $"{release.DisplayName} · {string.Join(" · ", labels)}"
+        };
     }
 
     private void CancelClicked(object sender, RoutedEventArgs args) => _operation?.Cancel();
@@ -178,7 +238,8 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
         _busy = busy;
         if (_disposed || _view is not { } view) return;
         view.Emulators.IsEnabled = !busy && !_hasSavedConfiguration() && _emulatorCount > 1;
-        view.Install.IsEnabled = !busy;
+        view.Search.IsEnabled = !busy;
+        view.Download.IsEnabled = !busy && view.Versions.SelectedItem is not null;
         view.Cancel.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
         view.Progress.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
         if (!busy) view.Progress.Value = EmulationCoreManagementConstants.InitialProgress;

@@ -34,6 +34,6 @@
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Não foi possível inicializar o GameInput. Instale ou repare o runtime do GameInput incluído.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (esquerda)</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (mão direita)</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
+  <data name="Emulation.Controller.Visual"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controlador {0}</value></data>
 </root>

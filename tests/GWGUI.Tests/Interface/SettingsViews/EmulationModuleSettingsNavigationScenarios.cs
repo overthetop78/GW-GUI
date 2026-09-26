@@ -1,11 +1,15 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Net.Http;
 using GWGUI.App.Contracts.Emulation.Machine;
+using GWGUI.App.Contracts.Views.Emulation.Settings;
 using GWGUI.App.Controllers.Emulation.Options;
+using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Views.Controls.Emulation.Options;
 using GWGUI.App.Views.Windows.EmulationModuleOptions;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Interfaces;
+using GWGUI.Emulation.Amiga.Modules;
 using GWGUI.Tests.Application.TestInfrastructure;
 using GWGUI.Tests.Interface.EmulationViews;
 
@@ -13,6 +17,17 @@ namespace GWGUI.Tests.Interface.SettingsViews;
 
 internal static class EmulationModuleSettingsNavigationScenarios
 {
+    internal static void VideoFieldsKeepTheirHelpContent()
+    {
+        var control = new ComboBox();
+        var grid = EmulationSettingsLayout.VideoSettingsFields(new EmulationVideoSettingsField(
+            "Resolution", control, Explanation: "Short help", DetailedExplanation: "Detailed help"));
+
+        var label = Assert.Single(MachineConfigurationScenarios.Controls<EmulationSettingsFieldLabel>(grid));
+        Assert.Equal(string.Empty, label.Text);
+        Assert.Contains(label.Inlines, inline => inline is System.Windows.Documents.InlineUIContainer);
+    }
+
     internal static async Task VerticalMachinesPreserveConfigurationStateAndTabs()
     {
         var module = new MachineConfigurationScenarios.Module();
@@ -68,7 +83,9 @@ internal static class EmulationModuleSettingsNavigationScenarios
             Assert.Equal(0, useCount);
             Assert.True(panel.Emulators.IsEnabled);
             Assert.Equal(Visibility.Visible, panel.Installed.Visibility);
-            Assert.Equal(Visibility.Collapsed, panel.Install.Visibility);
+            Assert.Equal(Visibility.Visible, panel.Search.Visibility);
+            Assert.Equal(Visibility.Collapsed, panel.Versions.Visibility);
+            Assert.Equal(Visibility.Collapsed, panel.Download.Visibility);
 
             panel.Emulators.SelectedValue = "emulator-b";
             await System.Windows.Threading.Dispatcher.Yield(
@@ -89,6 +106,69 @@ internal static class EmulationModuleSettingsNavigationScenarios
         ValueTask<IEmulationConfiguration> UseEmulator(string selected) =>
             ValueTask.FromResult<IEmulationConfiguration>(
                 ((MachineConfigurationScenarios.Configuration)configuration) with { Value = selected });
+    }
+
+    internal static async Task EmulatorVersionsAreSelectedAndInstalledExplicitly()
+    {
+        IEmulationConfiguration configuration = new MachineConfigurationScenarios.Configuration(
+            "synthetic", Guid.NewGuid(), "machine-a", "emulator-a");
+        var installedVersion = "reference";
+        string? installedRelease = null;
+        var installation = () => new EmulationEmulatorInstallation("emulator-a", installedVersion);
+        var manager = ControlledDependencies.Simulate<IEmulationEmulatorManager>((method, arguments) =>
+            method.Name switch
+            {
+                "GetEmulatorInstallationAsync" => ValueTask.FromResult(installation()),
+                "GetEmulatorInstallationsAsync" =>
+                    ValueTask.FromResult<IReadOnlyList<EmulationEmulatorInstallation>>([installation()]),
+                "FindEmulatorReleasesAsync" =>
+                    ValueTask.FromResult<IReadOnlyList<EmulationEmulatorRelease>>(
+                    [
+                        new("latest", "Latest", "latest"),
+                        new("reference", "Reference", "reference", IsRequired: true)
+                    ]),
+                "InstallEmulatorAsync" => Install((EmulationEmulatorRelease)arguments[1]!),
+                _ => throw new InvalidOperationException(method.Name)
+            });
+        var controller = new EmulationEmulatorManagementController(manager,
+            () => configuration, value => configuration = value, () => false);
+        try
+        {
+            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+            await controller.RefreshAsync();
+
+            panel.Search.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            await System.Windows.Threading.Dispatcher.Yield(
+                System.Windows.Threading.DispatcherPriority.ContextIdle);
+
+            var releases = panel.Versions.Items.Cast<EmulationEmulatorRelease>().ToArray();
+            Assert.Equal(2, releases.Length);
+            var reference = Assert.Single(releases, release => release.Id == "reference");
+            Assert.True(reference.IsRequired);
+            Assert.Contains("Reference", reference.DisplayName, StringComparison.Ordinal);
+            Assert.NotEqual("Reference", reference.DisplayName);
+            Assert.Equal("reference", Assert.IsType<EmulationEmulatorRelease>(
+                panel.Versions.SelectedItem).Id);
+            Assert.Equal(Visibility.Visible, panel.Download.Visibility);
+
+            panel.Versions.SelectedItem = releases.Single(release => release.Id == "latest");
+            panel.Download.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            await System.Windows.Threading.Dispatcher.Yield(
+                System.Windows.Threading.DispatcherPriority.ContextIdle);
+
+            Assert.Equal("latest", installedRelease);
+        }
+        finally
+        {
+            await controller.DisposeAsync();
+        }
+
+        ValueTask<string> Install(EmulationEmulatorRelease release)
+        {
+            installedRelease = release.Id;
+            installedVersion = release.Version;
+            return ValueTask.FromResult("installed-core.dll");
+        }
     }
 
     internal static async Task EmulatorControllerDisposalCancelsAndDetaches()
@@ -216,6 +296,61 @@ internal static class EmulationModuleSettingsNavigationScenarios
             await System.Windows.Threading.Dispatcher.Yield(
                 System.Windows.Threading.DispatcherPriority.ApplicationIdle);
             module.Cleanup();
+        }
+    }
+
+    internal static async Task AmigaModuleWindowBuildsItsVisualTree()
+    {
+        var root = Path.Combine(Path.GetTempPath(), $"gwgui-amiga-settings-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(root);
+        using var httpClient = new HttpClient();
+        Window? owner = null;
+        EmulationModuleOptionsWindow? window = null;
+        try
+        {
+            var module = new AmigaEmulationModule(
+                Path.Combine(root, "Configurations"), root, httpClient, Path.Combine(root, "Core"));
+            var configuration = module.ChangeMachine(module.CreateConfiguration("A500"), "A600");
+            await module.SaveConfigurationAsync(configuration);
+            owner = new Window { Width = 800, Height = 600 };
+            owner.Show();
+            window = new EmulationModuleOptionsWindow(module) { Owner = owner };
+            var renderedVisibleTree = false;
+            window.ContentRendered += (_, _) =>
+            {
+                var section = Assert.IsType<EmulationModuleSettingsSection>(window.ModuleContent.Content);
+                var machines = Assert.Single(MachineConfigurationScenarios.Controls<ListBox>(section),
+                    control => control.Items.Count == module.Machines.Count && control.IsVisible);
+                var tabs = Assert.Single(MachineConfigurationScenarios.Controls<TabControl>(section),
+                    control => control.Items.Count == 10 && control.IsVisible);
+                renderedVisibleTree = window.IsVisible && section.IsVisible && machines.IsVisible && tabs.IsVisible
+                    && section.ActualWidth > 0 && section.ActualHeight > 0
+                    && machines.ActualWidth > 0 && tabs.ActualWidth > 0;
+                window.Dispatcher.BeginInvoke(window.Close);
+            };
+
+            window.ShowDialog();
+            await System.Windows.Threading.Dispatcher.Yield(
+                System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            Assert.True(renderedVisibleTree);
+        }
+        finally
+        {
+            if (window?.IsVisible == true)
+            {
+                window.Close();
+                await System.Windows.Threading.Dispatcher.Yield(
+                    System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            }
+            if (window is not null)
+            {
+                Assert.False(window.IsVisible);
+                Assert.Null(window.ModuleContent.Content);
+            }
+            if (owner?.IsVisible == true) owner.Close();
+            await System.Windows.Threading.Dispatcher.Yield(
+                System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            Directory.Delete(root, true);
         }
     }
 

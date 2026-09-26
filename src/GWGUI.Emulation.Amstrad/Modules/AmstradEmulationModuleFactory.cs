@@ -9,6 +9,8 @@ public sealed class AmstradEmulationModuleFactory : IEmulationModuleFactory
     public IEmulationModule Create(EmulationModuleContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
+        Directory.CreateDirectory(Path.Combine(context.ModuleDirectory,
+            EmulationPathConstants.FirmwareDirectoryName));
         return new AmstradEmulationModule(
             Path.Combine(context.ModuleDirectory, "Configurations"),
             context.DataDirectory, context.HttpClient,

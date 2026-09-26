@@ -124,7 +124,11 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private EmulationVideoSettingsField CreateVideoSettingsField(EmulationSettingsField field) =>
         new(LocExtension.GetForModule(_module, field.LabelResourceKey), CreateField(field),
-            IsTrailingCheckBox: field.Editor == EmulationSettingsEditor.Toggle);
+            IsTrailingCheckBox: field.Editor == EmulationSettingsEditor.Toggle,
+            Explanation: field.ExplanationResourceKey is null ? null
+                : LocExtension.GetForModule(_module, field.ExplanationResourceKey),
+            DetailedExplanation: field.DetailedExplanationResourceKey is null ? null
+                : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey));
 
     private void AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab)
     {

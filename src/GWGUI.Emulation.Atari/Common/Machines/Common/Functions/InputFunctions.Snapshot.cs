@@ -4,19 +4,6 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    private static readonly IReadOnlyDictionary<string, int> CommonButtons =
-        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-        {
-            [InputSnapshotFunctionsConstants.Fire1] = 0, [InputSnapshotFunctionsConstants.Fire2] = 8, [InputSnapshotFunctionsConstants.Turbo] = 9,
-            [InputSnapshotFunctionsConstants.Up] = 4, [InputSnapshotFunctionsConstants.Down] = 5, [InputSnapshotFunctionsConstants.Left] = 6, [InputSnapshotFunctionsConstants.Right] = 7,
-            [InputSnapshotFunctionsConstants.A] = 8, [InputSnapshotFunctionsConstants.B] = 0, [InputSnapshotFunctionsConstants.C] = 1,
-            [InputSnapshotFunctionsConstants.Pause] = 2, [InputSnapshotFunctionsConstants.Option] = 3, [InputSnapshotFunctionsConstants.Option1] = 10, [InputSnapshotFunctionsConstants.Option2] = 11,
-            [InputSnapshotFunctionsConstants.Start] = 3, [InputSnapshotFunctionsConstants.Reset] = 9,
-            [InputSnapshotFunctionsConstants.Key0] = 9, [InputSnapshotFunctionsConstants.Key1] = 10, [InputSnapshotFunctionsConstants.Key2] = 11, [InputSnapshotFunctionsConstants.Key3] = 12,
-            [InputSnapshotFunctionsConstants.Key4] = 13, [InputSnapshotFunctionsConstants.Key5] = 14, [InputSnapshotFunctionsConstants.Key6] = 15,
-            [InputSnapshotFunctionsConstants.Star] = 1, [InputSnapshotFunctionsConstants.Hash] = 8
-        };
-
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
         InputConfiguration? configuration, MachineModel model)
     {
@@ -108,15 +95,15 @@ internal static class InputSnapshotFunctions
             return action switch
             {
                 InputSnapshotFunctionsConstants.Option1 => 10, InputSnapshotFunctionsConstants.Option2 => 11, InputSnapshotFunctionsConstants.Pause => 3,
-                _ => CommonButtons.GetValueOrDefault(action, -1)
+                _ => InputSnapshotDictionary.CommonButtons.GetValueOrDefault(action, -1)
             };
         if (model == MachineModel.Atari5200)
             return action switch
             {
                 InputSnapshotFunctionsConstants.Pause => 2, InputSnapshotFunctionsConstants.Start => 3, InputSnapshotFunctionsConstants.Key0 => 10, InputSnapshotFunctionsConstants.Key1 => 11, InputSnapshotFunctionsConstants.Key2 => 12,
                 InputSnapshotFunctionsConstants.Key3 => 13, InputSnapshotFunctionsConstants.Key7 => 14, InputSnapshotFunctionsConstants.Star => 9, InputSnapshotFunctionsConstants.Hash => 1,
-                _ => CommonButtons.GetValueOrDefault(action, -1)
+                _ => InputSnapshotDictionary.CommonButtons.GetValueOrDefault(action, -1)
             };
-        return CommonButtons.GetValueOrDefault(action, -1);
+        return InputSnapshotDictionary.CommonButtons.GetValueOrDefault(action, -1);
     }
 }

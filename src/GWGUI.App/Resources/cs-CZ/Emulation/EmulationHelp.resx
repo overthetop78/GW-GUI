@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Nastaví GTIA zpoždění barevné fáze použité k reprodukci barev. Výchozí používá standardní hodnotu. Číselné volby posunou výsledné odstíny.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Nastavení přeskočení rámu</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Nastaví, kolik zobrazovacích rámů je vynecháno. Zakázané nakreslí každý snímek. Vyšší hodnoty snižují ztvárnění práce, ale zmenšují pohyb.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Vyberte emulovaný procesor</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Vybere model procesoru instalovaný v emulovaném stroji. Dostupné modely závisí na zvoleném stroji a emulátoru.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Použijte původní rychlost procesoru</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Spustí procesor při načasování původního stroje místo použití zrychlené nebo vlastní frekvence.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Nastavit velikost hlavní paměti</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Vybere množství hlavní paměti instalované v emulovaném stroji. Dostupné rozměry jsou omezeny na konfigurace podporované tímto strojem.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Vyberte firmware systému</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Vybere systém ROM používá se pro spuštění emulovaného stroje. Firmware musí odpovídat zvolenému modelu a regionální konfiguraci.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Vyberte BASIC firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Vybere BASIC ROM k dispozici emulovanému stroji, pokud je firmware podporován zvoleným modelem.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Vyberte XEGS firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Vybere firmware používaný Atari XEGS profil. Použijte firmware kompatibilní s vybraným strojovým regionem.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Zobrazit úložnou činnost</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Ukazuje aktivitu, kterou hlásí emulované paměťové zařízení, zatímco je přístup k médiím.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Vyberte složku s pevným diskem</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Při podporování ukládání zálohované složky se zvolí složka s hostitelem vystavená emulátoru jako úložiště pevného disku.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Zobrazit rychlost ukládání</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Ukazuje aktuální rychlost přenosu, kterou hlásí emulované paměťové zařízení.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Zobrazit aktuální sektor</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Zobrazuje sektor, ke kterému je v současné době přístup emulované paměťové zařízení.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Vyberte emulované rozlišení</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Vybere vnitřní rozlišení videa vyrobené emulátorem před GW GUI Srovná obrázek s oknem.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Obilí emulovaných hranic</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Odstraňuje hranice generované emulovaným výstupem videa při zachování poměru stran obrazu použitého GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Nastavit odstín videa</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Přemísťuje odstín barev generovaný emulovaným videotvorem.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Nastavit nasycení barev</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Mění intenzitu barev generovaných emulovaným videotunerem.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Nastavit kontrast obrázku</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Mění rozdíl mezi tmavými a jasnými barvami v emulovaném výstupu videa.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Nastavit jas obrázku</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Změní celkový jas emulovaného výstupu videa.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Povolit emulovaný zvuk</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Umožňuje nebo zakazuje zvuk produkovaný emulovaným strojem.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Vybrat audio výstup</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Vybere zvukové zařízení, které slouží k přehrávání zvuku z emulovaného stroje.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Nastavit hlasitost emulovaného zvuku</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Nastaví přehrávací objem zvuku vytvořeného emulovaným strojem.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Povolit zvuky floppy- drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Umožňuje mechanické zvuky, které reprodukují aktivitu z emulovaného disketového pohonu.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Nastavit hlasitost zvuku floppy- drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Nastaví přehrávací objem mechanických zvuků emulovaného floppy- pohonu.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Nastavení CD hlasitost zvuku</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Nastaví hlasitost přehrávání zvukových stop čtených z emulovaného kompaktního disku.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Nastavit rychlost pohybu myši</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Nastavuje, jak se pohyb hostitele myši převádí na pohyb hlášený emulovanému stroji.</value></data>
 </root>

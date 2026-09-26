@@ -22,5 +22,5 @@
   <data name="Common.New" xml:space="preserve"><value>Nouveau</value></data>
   <data name="Common.Refresh" xml:space="preserve"><value>Actualiser</value></data>
   <data name="Common.OpenFolder" xml:space="preserve"><value>Ouvrir le dossier</value></data>
-  <data name="Common.Pause" xml:space="preserve"><value>Pause</value></data>
+  <data name="Common.Pause"><value>Pause</value></data>
 </root>

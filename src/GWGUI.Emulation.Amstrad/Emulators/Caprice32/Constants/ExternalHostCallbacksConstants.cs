@@ -19,6 +19,7 @@ internal static class ExternalHostCallbacksConstants
     internal const uint PointerY = 1;
     internal const uint PointerPressed = 2;
     internal const int PointerCoordinateScale = 128;
+    internal const int PointerCoordinateCenter = 1;
     internal const int PointerCoordinateMinimum = -32767;
     internal const int PointerCoordinateMaximum = 32767;
     internal const int CoreOptionPointerFieldsBeforeValues = 6;

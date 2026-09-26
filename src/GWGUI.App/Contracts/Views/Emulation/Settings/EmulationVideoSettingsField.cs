@@ -6,4 +6,6 @@ internal sealed record EmulationVideoSettingsField(
     string Label,
     FrameworkElement Control,
     int ColumnSpan = 1,
-    bool IsTrailingCheckBox = false);
+    bool IsTrailingCheckBox = false,
+    string? Explanation = null,
+    string? DetailedExplanation = null);

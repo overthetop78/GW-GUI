@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Amiga.Common.Constants;
 using System.Collections.Concurrent;
 
 namespace GWGUI.Emulation.Amiga.Common.Services;
@@ -114,17 +115,26 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         if (muted) FlushAudio();
     }
 
-    public ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() =>
+    public async ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default)
+    {
+        var fullPath = Path.GetFullPath(path);
+        if (_currentDiskPath is not null)
         {
-            var fullPath = Path.GetFullPath(path);
+            await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
+            await Task.Delay(MediaConstants.DiskChangeDelayMilliseconds, cancellationToken)
+                .ConfigureAwait(false);
+        }
+
+        await QueueCommand(() =>
+        {
             _core.InsertMedia(fullPath);
             var index = Math.Max(0, _core.CurrentDiskIndex);
             if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
             else _mediaPaths.Add(fullPath);
             _currentDiskPath = fullPath;
         }, cancellationToken, EmulationMessageCategory.Media,
-            EmulationMessageCode.MediaOperationFailed);
+            EmulationMessageCode.MediaOperationFailed).ConfigureAwait(false);
+    }
 
     public ValueTask EjectMediaAsync(CancellationToken cancellationToken = default) =>
         QueueCommand(() => { _core.EjectMedia(); _currentDiskPath = null; }, cancellationToken,

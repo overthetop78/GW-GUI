@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Mengatur GTIA delay fase warna digunakan untuk mereproduksi warna. Baku menggunakan nilai standar. Pilihan numerik mengubah warna yang dihasilkan.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Atur bingkai yang dilewati</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Mengatur berapa banyak frame layar yang dihilangkan. Dinonaktifkan menarik setiap frame. Nilai yang lebih tinggi mengurangi render bekerja tapi membuat gerak kurang halus.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Pilih prosesor yang tertimulasi</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Memilih model prosesor yang terpasang di mesin yang terukur. Model yang tersedia bergantung pada mesin dan emulator yang dipilih.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Gunakan kecepatan prosesor asli</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Menjalankan prosesor pada waktu mesin asli bukannya menerapkan dipercepat atau frekuensi custom.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Set ukuran memori utama</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Memilih jumlah memori utama yang terpasang di mesin yang telah digandakan. Ukuran yang tersedia terbatas pada konfigurasi yang didukung oleh mesin itu.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Pilih firmware sistem</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Memilih sistem ROM digunakan untuk memulai mesin yang telah digandakan. firmware harus cocok dengan model yang dipilih dan konfigurasi regional.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Pilih BASIC firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Memilih BASIC ROM tersedia untuk mesin yang terukur ketika firmware itu didukung oleh model yang dipilih.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Pilih XEGS firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Memilih firmware yang digunakan oleh Atari XEGS profile. Gunakan firmware kompatibel dengan daerah mesin yang dipilih.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Tampilkan aktivitas penyimpanan</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Menampilkan aktivitas yang dilaporkan oleh perangkat penyimpanan yang telah digandakan ketika media sedang diakses.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Pilih folder hard- disk</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Memilih folder host yang terpapar emulator sebagai penyimpanan disk keras ketika penyimpanan folderbacked didukung didukung.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Tampilkan kecepatan penyimpanan</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Menunjukkan kecepatan transfer saat ini dilaporkan oleh perangkat penyimpanan yang telah digandakan.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Tampilkan sektor saat ini</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Menunjukkan sektor yang saat ini diakses oleh perangkat penyimpanan yang telah digandakan.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Pilih resolusi yang tertimulasi</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Memilih resolusi video internal yang dihasilkan oleh emulator sebelum GW GUI sisik gambar untuk jendela.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Potong batas yang telah digandakan</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Hapus batas yang dihasilkan oleh keluaran video yang telah digandakan ketika mempertahankan rasio aspek gambar yang dipakai GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Sesuaikan hue video</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Mengangkat warna yang dihasilkan oleh perangkat keras video yang termodifikasi.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Atur saturasi warna</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Mengubah intensitas warna yang dihasilkan oleh perangkat keras video yang termodifikasi.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Atur kontras gambar</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Mengubah perbedaan antara warna gelap dan terang dalam keluaran video yang digandakan.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Atur kecerahan gambar</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Mengubah kecerahan keseluruhan keluaran video yang telah digandakan.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Aktifkan audio yang teremulasi</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Mengaktifkan atau mematikan suara yang dihasilkan oleh mesin yang diemulasi.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Pilih keluaran audio</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Memilih perangkat audio host yang digunakan untuk memainkan suara dari mesin yang tergandakan.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Atur volume audio yang tertimulasi</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Tata volume putar suara yang dihasilkan oleh mesin yang terukur.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Aktifkan suara floppy- drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Mengaktifkan suara mekanis yang mereproduksi aktivitas dari emulasi floppy drive.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Set volume suara floppy- drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Mengatur volume putar dari emulasi floppy- drive suara mekanis.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Set CD volume audio</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Tata volume putar trek audio dibaca dari compact- disc drive yang tertimulasi.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Set kecepatan gerakan mouse</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Atur bagaimana pergerakan mouse diubah menjadi pergerakan yang dilaporkan pada mesin yang telah digandakan.</value></data>
 </root>

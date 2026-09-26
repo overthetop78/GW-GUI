@@ -7,7 +7,7 @@
   <data name="Profiles.ByOperation" xml:space="preserve"><value>Profile według operacji</value></data>
   <data name="Profiles.Tab" xml:space="preserve"><value>Patka</value></data>
   <data name="Profiles.Name" xml:space="preserve"><value>Nazwa</value></data>
-  <data name="Profiles.System" xml:space="preserve"><value>System</value></data>
+  <data name="Profiles.System"><value>System</value></data>
   <data name="Profiles.Rename" xml:space="preserve"><value>Przemianować…</value></data>
   <data name="Profile.SaveTitle"><value>Zapisz profil</value></data>
   <data name="Profile.Name"><value>Nazwa profilu</value></data>

@@ -8,7 +8,7 @@
   <data name="Hardware.UsbId" xml:space="preserve"><value>USB-Bezeichner</value></data>
   <data name="Hardware.Drive" xml:space="preserve"><value>Fahren</value></data>
   <data name="Hardware.Available" xml:space="preserve"><value>Verfügbar</value></data>
-  <data name="Hardware.Scan" xml:space="preserve"><value>Scan</value></data>
+  <data name="Hardware.Scan"><value>Scan</value></data>
   <data name="Hardware.AddDrive" xml:space="preserve"><value>Ein Laufwerk hinzufügen…</value></data>
   <data name="Hardware.NoDrive" xml:space="preserve"><value>Kein Laufwerk definiert</value></data>
   <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definieren Sie ein Laufwerk</value></data>

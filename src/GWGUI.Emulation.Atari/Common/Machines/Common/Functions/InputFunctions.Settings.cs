@@ -1,7 +1,10 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
-using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
+using Atari8BitKeyboard = GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Constants.Atari8BitKeyboardConstants;
+using Atari8BitKeyboardDictionary = GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Dictionaries.Atari8BitKeyboardDictionary;
+using AtariStKeyboard = GWGUI.Emulation.Atari.Common.Machines.AtariST.Constants.AtariStKeyboardConstants;
+using AtariStKeyboardDictionary = GWGUI.Emulation.Atari.Common.Machines.AtariST.Dictionaries.AtariStKeyboardDictionary;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
@@ -64,10 +67,13 @@ internal static partial class InputSettingsFunctions
     {
         var emulator = CompatibilityCatalog.Get(model).Core;
         IEnumerable<EmulationKey> keys = emulator == Emulator.Atari800
-            ? InputSettingsConstants.Atari800SpecialKeys
-            : InputSettingsConstants.FunctionKeys.Concat(InputSettingsConstants.ComputerSpecialKeys);
+            ? Atari8BitKeyboard.SpecialKeys
+            : AtariStKeyboard.SpecialKeys;
         if (model == MachineModel.Atari400) keys = keys.Where(key => key != EmulationKey.Help);
-        return keys.Distinct().Select(key => Definition(key.ToString(), KeyResource(key), DefaultKey(key),
+        var defaults = emulator == Emulator.Atari800
+            ? Atari8BitKeyboardDictionary.DefaultHostKeys
+            : AtariStKeyboardDictionary.DefaultHostKeys;
+        return keys.Distinct().Select(key => Definition(key.ToString(), KeyResource(key), DefaultKey(key, defaults),
             key is EmulationKey.AtariOption or EmulationKey.AtariSelect or EmulationKey.AtariStart
                 ? key.ToString()[5..] : null)).ToArray();
     }

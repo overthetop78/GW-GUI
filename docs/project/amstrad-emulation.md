@@ -90,6 +90,38 @@ Ils sont documentés mais ne figurent pas dans le catalogue exécutable de cette
 CrocoDS n’est pas retenu : il n’apporte pas de capacité nécessaire à cette première version par
 rapport à Caprice32.
 
+## Versions du cœur
+
+Le gestionnaire générique affiche les versions retournées par l’adaptateur, la version installée et
+la version marquée comme référence fonctionnelle de GW GUI. L’installation porte toujours sur la
+version explicitement sélectionnée. Pour Caprice32, le serveur officiel Libretro ne publie qu’une
+archive individuelle `latest` ; il ne fournit pas d’historique daté de DLL Caprice32. L’adaptateur
+expose donc cette version officielle et la marque comme référence tant qu’aucune archive stable
+distincte n’est publiée.
+
+## Pointeur Caprice32 et souris CPC
+
+Le périphérique Libretro `RETRO_DEVICE_POINTER` de Caprice32 pilote le pointeur de l’interface
+virtuelle interne du cœur. Il ne représente pas une souris branchée sur le CPC et ne permet donc
+pas, à lui seul, de déplacer le pointeur d’un logiciel CPC tel que SymbOS.
+
+Des souris matérielles ont existé sur CPC, notamment les interfaces AMX et Kempston. Leur prise en
+charge exige que le cœur émule explicitement l’interface matérielle correspondante et traduise les
+événements hôte vers ce matériel. La version Libretro de Caprice32 actuellement intégrée ne publie
+pas ce périphérique matériel par son interface d’entrée. GW GUI capture et transmet donc
+correctement la souris au cœur, mais ne doit pas annoncer une souris CPC fonctionnelle tant que le
+cœur utilisé ne fournit pas AMX, Kempston ou une interface équivalente.
+
+## Configuration machine et profil vidéo
+
+La configuration machine appartient au module : modèle, CPU, RAM, ROM, périphériques, médias et
+options de l’émulateur. Le profil de présentation vidéo appartient à GW GUI : moteur de rendu,
+ratio de présentation, échantillonnage et shaders. Il est donc persisté séparément, sous
+`Data/Emulation/VideoPresentation/<identifiant-module-encodé>/`, mais reste référencé par
+l’identifiant de la configuration machine. Les dossiers `616D696761`, `616D7374726164` et
+`6174617269` correspondent respectivement aux modules `amiga`, `amstrad` et `atari`; ils ne sont ni
+des sessions d’émulation actives ni des fichiers temporaires.
+
 ## Ressources
 
 Les noms propres invariants — Amstrad, CPC, GX4000, Caprice32, CPU, RAM et formats — résident dans

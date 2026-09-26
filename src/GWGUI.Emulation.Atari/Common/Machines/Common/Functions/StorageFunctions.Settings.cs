@@ -33,7 +33,13 @@ internal static partial class StorageSettingsFunctions
                     ? configuration.Folders.HardDisks : null,
                 IsPermanent: StorageConfigurationFunctions.IsPrimaryDevice(configuration.Model, slot),
                 HardDiskFormats: rule.Category == MediaCategory.HardDisk
-                    ? HardDiskFormats.For(configuration.Model) : null)))
+                    ? HardDiskFormats.For(configuration.Model) : null,
+                ConfigurationKind: rule.Category switch
+                {
+                    MediaCategory.Floppy => EmulationStorageConfigurationKind.FloppyDrive,
+                    MediaCategory.HardDisk => EmulationStorageConfigurationKind.HardDiskDrive,
+                    _ => EmulationStorageConfigurationKind.None
+                })))
             .ToArray();
         var primary = StorageConfigurationFunctions.PrimaryDevice(configuration.Model)?.Slot;
         var configured = configuration.Options

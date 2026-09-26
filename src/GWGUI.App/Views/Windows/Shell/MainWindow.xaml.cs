@@ -321,6 +321,7 @@ public partial class MainWindow : Window
             CaptureWindowSettings, CaptureReadSettings, CaptureWriteSettings, CaptureProfiles,
             CaptureConversionSettings, () => ((App)Application.Current).SetTheme(_settings.Theme),
             _pendingModuleInstallations.Clear);
+        ErrorLog.EntryWritten += AppendErrorToConsole;
     }
 
 }

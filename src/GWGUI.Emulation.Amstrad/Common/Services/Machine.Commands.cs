@@ -168,12 +168,26 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public async ValueTask DisposeAsync()
     {
         if (_disposed) return;
-        await StopAsync().ConfigureAwait(false);
-        _stop?.Dispose();
-        _core.Dispose();
-        _audioOutput?.Dispose();
-        DeleteSessionDirectory();
         _disposed = true;
+        try { await StopAsync().ConfigureAwait(false); }
+        finally
+        {
+            try { _stop?.Dispose(); }
+            finally
+            {
+                _stop = null;
+                try { _core.Dispose(); }
+                finally
+                {
+                    try { _audioOutput?.Dispose(); }
+                    finally
+                    {
+                        _audioOutput = null;
+                        DeleteSessionDirectory();
+                    }
+                }
+            }
+        }
     }
 
     private void DeleteSessionDirectory()

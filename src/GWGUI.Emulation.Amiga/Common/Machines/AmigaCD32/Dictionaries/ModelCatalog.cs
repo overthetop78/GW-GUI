@@ -10,6 +10,6 @@ internal static class ModelCatalog
         new(FamilyModelConstants.CD32, FamilyModelConstants.DisplayName, FamilyModelConstants.CD32,
             [CommonModelConstants.Value68020], CommonModelConstants.AGA, 2048, 0, 0, true,
             FamilyModelConstants.FirmwareVersion, 0, false, 0, 2, true, ControllerPortCount: 2,
-            HasBuiltInFloppyDrive: false)
+            HasBuiltInFloppyDrive: false, HasKeyboard: false)
     ];
 }

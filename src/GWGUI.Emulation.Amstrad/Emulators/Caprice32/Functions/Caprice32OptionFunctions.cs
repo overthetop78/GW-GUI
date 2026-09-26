@@ -34,8 +34,8 @@ internal static class Caprice32OptionFunctions
     private static string Language() =>
         System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
         {
-            "fr" => Caprice32OptionConstants.French,
-            "es" => Caprice32OptionConstants.Spanish,
+            Caprice32OptionConstants.FrenchLanguageCode => Caprice32OptionConstants.French,
+            Caprice32OptionConstants.SpanishLanguageCode => Caprice32OptionConstants.Spanish,
             _ => Caprice32OptionConstants.English
         };
 }

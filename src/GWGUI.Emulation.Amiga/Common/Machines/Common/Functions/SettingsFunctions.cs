@@ -4,42 +4,6 @@ namespace GWGUI.Emulation.Amiga.Common.Machines.Common.Functions;
 
 internal static partial class SettingsDescriptionFunctions
 {
-    private static readonly IReadOnlyDictionary<string, string> FieldHelpResources =
-        new Dictionary<string, string>(StringComparer.Ordinal)
-        {
-            [SettingsConstants.OptionFpuModel] = "Emulation.Help.Cpu.FpuModel",
-            [SettingsConstants.OptionCpuCompatibility] = "Emulation.Help.Cpu.Precision",
-            [SettingsConstants.CpuSpeed] = "Emulation.Help.Cpu.Speed",
-            [SettingsConstants.OptionBogomemSize] = "Emulation.Help.Memory.Slow",
-            [SettingsConstants.OptionFastmemSize] = "Emulation.Help.Memory.Fast",
-            [SettingsConstants.OptionZ3memSize] = "Emulation.Help.Memory.Z3",
-            [SettingsConstants.ExtendedRomPath] = "Emulation.Help.Firmware.ExtendedRom",
-            [SettingsConstants.RomKeyPath] = "Emulation.Help.Firmware.RomKey",
-            [SettingsConstants.OptionVideoStandard] = "Emulation.Help.Video.Standard",
-            [SettingsConstants.OptionVideoAspect] = "Emulation.Help.Video.AspectRatio",
-            [SettingsConstants.OptionVideoVresolution] = "Emulation.Help.Video.LineMode",
-            [SettingsConstants.OptionVideoAllowHzChange] = "Emulation.Help.Video.HzChange",
-            [SettingsConstants.OptionGfxFramerate] = "Emulation.Help.Video.FrameSkip",
-            [SettingsConstants.OptionGfxColors] = "Emulation.Help.Video.Colors",
-            [SettingsConstants.OptionGfxGamma] = "Emulation.Help.Video.Gamma",
-            [SettingsConstants.OptionImmediateBlits] = "Emulation.Help.Video.ImmediateBlits",
-            [SettingsConstants.OptionCollisionLevel] = "Emulation.Help.Video.CollisionLevel",
-            [SettingsConstants.OptionGfxFlickerfixer] = "Emulation.Help.Video.FlickerFixer",
-            [SettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency",
-            [SettingsConstants.OptionSoundInterpol] = "Emulation.Help.Audio.Interpolation",
-            [SettingsConstants.OptionSoundFilter] = "Emulation.Help.Audio.Filter",
-            [SettingsConstants.OptionSoundFilterType] = "Emulation.Help.Audio.FilterType",
-            [SettingsConstants.AudioStereoSeparation] = "Emulation.Help.Audio.StereoSeparation",
-            [SettingsConstants.OptionFloppySoundType] = "Emulation.Help.Audio.Floppy.SoundType",
-            [SettingsConstants.OptionFloppySoundEmptyMute] = "Emulation.Help.Audio.Floppy.MuteEmpty",
-            [SettingsConstants.OptionAnalogmouse] = "Emulation.Help.Mouse.Analog",
-            [SettingsConstants.OptionAnalogmouseDeadzone] = "Emulation.Help.Mouse.AnalogDeadzone",
-            [SettingsConstants.OptionAnalogmouseSpeed] = "Emulation.Help.Mouse.AnalogSpeed",
-            [SettingsConstants.OptionAnalogmouseSpeedRight] = "Emulation.Help.Mouse.AnalogSpeed",
-            [SettingsConstants.OptionTurboPulse] = "Emulation.Help.Controller.TurboPulse",
-            [SettingsConstants.ParallelJoystickAdapter] = "Emulation.Help.Controller.ParallelAdapter"
-        };
-
     internal static IReadOnlyList<EmulationSettingsBlock> Create(Model model,
         MachineConfiguration configuration)
     {

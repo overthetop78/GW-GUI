@@ -80,9 +80,9 @@
   <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Motor de baixa frequência</value></data>
   <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Motor de alta frequência</value></data>
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Partilhar</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Linear</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Angular</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Linear"><value>Linear</value></data>
+  <data name="Controllers.Enum.Angular"><value>Angular</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Constante</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampa</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Onda sinusoidal</value></data>
@@ -94,13 +94,13 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Fricção</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Amortecedor</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inércia</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Controlador multieixos</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Utilização HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>eixos</value></data>
   <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>botões</value></data>
   <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Agregado</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtual</value></data>
+  <data name="Controllers.Enum.Virtual"><value>Virtual</value></data>
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Relatório de entrada</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Relatório de saída</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Zonas mortas análogas</value></data>

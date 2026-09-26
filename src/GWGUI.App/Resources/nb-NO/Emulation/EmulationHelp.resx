@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Setter GTIA fargefaseforsinkelse som brukes til å reprodusere farger. Standard bruker standardverdien. Numeriske valg skifter de resulterende nyansene.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Sett rammehopping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Angi hvor mange visningsrammer som er utelatt. Deaktivert trekker hver ramme. Høyere verdier reduserer gjengivelsesarbeidet, men gjør bevegelsen mindre glatt.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Velg den emulerte prosessoren</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Velger prosessormodellen som er installert i den emulerte maskinen. Tilgjengelige modeller er avhengige av den valgte maskinen og emulatoren.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Bruk den originale prosessorhastigheten</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Kjører prosessoren ved tidspunktet for den opprinnelige maskinen i stedet for å påføre en akselerert eller egendefinert frekvens.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Angi hovedminnestørrelsen</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Velger mengden av hovedminne installert i den emulerte maskinen. Tilgjengelige størrelser er begrenset til konfigurasjoner som støttes av den maskinen.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Velg systemfirmware</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Velger systemet ROM brukes til å starte den emulerte maskinen. Firmware må matche den valgte modellen og regional konfigurasjon.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Velg den BASIC firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Velger den BASIC ROM Tilgjengelig for den emulerte maskinen når den firmware støttes av den valgte modellen.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Velg den XEGS firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Velger fastvaren som brukes av Atari XEGS profil. Bruk firmware kompatibel med den valgte maskinregionen.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Vis lagringsaktivitet</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Viser aktivitet som rapporteres av den emulerte lagringsenheten mens media er tilgjengelig.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Velg harddiskmappen</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Velger vertsmappen som utsettes for emulatoren som harddisklagring når mappestøttet lagring støttes.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Vis lagringshastighet</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Viser den aktuelle overføringshastighet som er rapportert av den emulerte lagringsenheten.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Vis den nåværende sektoren</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Viser den sektoren som for tiden er tilgjengelig av den emulerte lagringsenheten.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Velg den emulerte oppløsningen</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Velger den interne videooppløsningen som emulatoren har produsert før GW GUI skalerer bildet for vinduet.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Beskjær de emulerte grensene</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Fjerner grenser som genereres av den emulerte videoutgangen mens du bevarer bildeaspektforholdet som brukes av GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Juster videofargen</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Flytter fargetonen som genereres av den emulerte video hardware.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Juster fargemetning</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Endrer intensiteten i farger generert av den emulerte video hardware.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Juster bildekontrast</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Endrer forskjellen mellom mørke og lyse farger i den emulerte videoutgangen.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Juster bildelysstyrke</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Endrer den totale lysstyrken til den emulerte videoutgangen.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Aktiver emulgert lyd</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Aktiverer eller deaktiverer lyden som produseres av den emulerte maskinen.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Velg lydutgang</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Velger vertslydenheten som brukes til å spille lyd fra den emulerte maskinen.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Sett det emulerte lydvolumet</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Setter lydvolumet som produseres av den emulerte maskinen.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Slå på diskett-drive- lyder</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Aktiverer mekaniske lyder som reproducerer aktivitet fra den emulerte diskettstasjonen.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Sett diskett-driv lydvolum</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Angi avspillingsvolumet til de emulerte diskettdrive mekaniske lydene.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Sett CD lydvolum</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Angi lydsporenes lydvolum som leses fra den emulerte kompaktdisc-stasjonen.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Sett bevegelseshastighet på musen</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Justerer hvordan vertsmusbevegelsen konverteres til bevegelse som er rapportert til den emulerte maskinen.</value></data>
 </root>

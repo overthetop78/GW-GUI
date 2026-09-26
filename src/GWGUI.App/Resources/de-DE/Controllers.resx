@@ -30,7 +30,7 @@
   <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Lenkrad</value></data>
   <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · Kupplung={1} · Handbremse={2} · Schaltung={3}</value></data>
   <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput-Name</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revision</value></data>
+  <data name="Controllers.Revision"><value>Revision</value></data>
   <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Hardwareversion</value></data>
   <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Firmwareversion</value></data>
   <data name="Controllers.Family" xml:space="preserve"><value>Familie</value></data>
@@ -76,13 +76,13 @@
   <data name="Controllers.Yaw" xml:space="preserve"><value>Gieren</value></data>
   <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensoren</value></data>
   <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI-Navigation</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Gamepad</value></data>
+  <data name="Controllers.Enum.Gamepad"><value>Gamepad</value></data>
   <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Niederfrequenzmotor</value></data>
   <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Hochfrequenzmotor</value></data>
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Teilen</value></data>
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>linear</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Winkelförmig</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstant</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampe</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinuswelle</value></data>
@@ -94,7 +94,7 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Reibung</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Dämpfer</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Trägheit</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Mehrachsen-Controller</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-Verwendung</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>Achsen</value></data>

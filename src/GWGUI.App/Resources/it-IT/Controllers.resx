@@ -94,7 +94,7 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Attrito</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Smorzatore</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inerzia</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Controller multiasse</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Utilizzo HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>assi</value></data>
@@ -105,6 +105,6 @@
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Rapporto di uscita</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Zone morte analogiche</value></data>
   <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Bacchette</value></data>
-  <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Triggers</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Triggers</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Zona morta esterna</value></data>
 </root>

@@ -1,6 +1,10 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
+using CdtvKeyboard = GWGUI.Emulation.Amiga.Common.Machines.AmigaCDTV.Constants.AmigaCdtvKeyboardConstants;
+using CdtvKeyboardDictionary = GWGUI.Emulation.Amiga.Common.Machines.AmigaCDTV.Dictionaries.AmigaCdtvKeyboardDictionary;
+using CdtvModelConstants = GWGUI.Emulation.Amiga.Common.Machines.AmigaCDTV.Constants.ModelConstants;
+using ComputerKeyboard = GWGUI.Emulation.Amiga.Common.Machines.AmigaComputers.Constants.AmigaComputerKeyboardConstants;
+using ComputerKeyboardDictionary = GWGUI.Emulation.Amiga.Common.Machines.AmigaComputers.Dictionaries.AmigaComputerKeyboardDictionary;
 
 namespace GWGUI.Emulation.Amiga.Common.Machines.Common.Functions;
 
@@ -10,8 +14,10 @@ internal static partial class InputSettingsFunctions
     {
         var input = configuration.Input ?? new InputConfiguration();
         var model = ModelCatalog.Get(configuration.Model);
-        var keyboard = new EmulationInputBindingSet(KeyboardDefinitions(),
-            input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
+        var keyboard = model.HasKeyboard
+            ? new EmulationInputBindingSet(KeyboardDefinitions(model),
+                input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard)
+            : null;
         var mouse = new EmulationInputBindingSet(MouseDefinitions(model),
             (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>())
                 .Where(item => item.Value != MouseAction.None)
@@ -70,14 +76,14 @@ internal static partial class InputSettingsFunctions
         return configuration with { Input = input, Options = options };
     }
 
-    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions()
+    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(Model model)
     {
-        var keys = Enumerable.Range(1, 10).Select(index => $"F{index}")
-            .Select(key => Definition(key, key, key)).ToList();
-        keys.Add(Definition(nameof(EmulationKey.Help), InputSettingsFunctionsConstants.ResourceKeyHelp, InputSettingsFunctionsConstants.Insert));
-        keys.Add(Definition(nameof(EmulationKey.LeftAmiga), InputSettingsFunctionsConstants.ResourceKeyLeftAmiga, InputSettingsFunctionsConstants.PageUp));
-        keys.Add(Definition(nameof(EmulationKey.RightAmiga), InputSettingsFunctionsConstants.ResourceKeyRightAmiga, InputSettingsFunctionsConstants.PageDown));
-        return keys;
+        var keys = model.Id == CdtvModelConstants.CDTV
+            ? CdtvKeyboard.SpecialKeys : ComputerKeyboard.SpecialKeys;
+        var defaults = model.Id == CdtvModelConstants.CDTV
+            ? CdtvKeyboardDictionary.DefaultHostKeys : ComputerKeyboardDictionary.DefaultHostKeys;
+        return keys.Select(key => Definition(key.ToString(), KeyResource(key),
+            DefaultKey(key, defaults))).ToArray();
     }
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions(Model model)

@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Controllers.Title" xml:space="preserve"><value>Controllers</value></data>
+  <data name="Controllers.Title"><value>Controllers</value></data>
   <data name="Controllers.Detect" xml:space="preserve"><value>Controllers detecteren</value></data>
   <data name="Controllers.Device" xml:space="preserve"><value>Apparaat</value></data>
   <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
@@ -83,7 +83,7 @@
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineair</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Hoekvormig</value></data>
   <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normaal</value></data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Constant</value></data>
+  <data name="Controllers.Enum.Effect.Constant"><value>Constant</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Helling</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusgolf</value></data>
   <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Blokgolf</value></data>
@@ -94,7 +94,7 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Wrijving</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Demper</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Traagheid</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Meerassige controller</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-gebruik</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>assen</value></data>

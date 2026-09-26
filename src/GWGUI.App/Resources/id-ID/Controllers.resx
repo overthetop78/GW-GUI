@@ -76,13 +76,13 @@
   <data name="Controllers.Yaw" xml:space="preserve"><value>Belok</value></data>
   <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensor</value></data>
   <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI navigasi</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Gamepad</value></data>
+  <data name="Controllers.Enum.Gamepad"><value>Gamepad</value></data>
   <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Motor frekuensi rendah</value></data>
   <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Motor frekuensi tinggi</value></data>
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Bagikan</value></data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Linear</value></data>
+  <data name="Controllers.Enum.Linear"><value>Linear</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Sudut</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstan</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Landai</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Gelombang sinus</value></data>
@@ -94,17 +94,17 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Gesekan</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Peredam</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inersia</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Pengontrol multi-sumbu</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Penggunaan HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>sumbu</value></data>
   <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>tombol</value></data>
   <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Gabungan</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtual</value></data>
+  <data name="Controllers.Enum.Virtual"><value>Virtual</value></data>
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Laporan masukan</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Laporan keluaran</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Zona mati Analog</value></data>
   <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Tongkat</value></data>
-  <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Triggers</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Triggers</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Zona mati luar</value></data>
 </root>

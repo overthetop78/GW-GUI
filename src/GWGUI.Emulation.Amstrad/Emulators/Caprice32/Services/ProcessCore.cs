@@ -32,6 +32,9 @@ internal sealed class ProcessCore : IEmulatorCore
     private bool _initialized;
     private bool _disposed;
     private bool _connectionFailed;
+    private MachineConfiguration? _configuration;
+    private string? _sessionDirectory;
+    private string? _saveDirectory;
 
     internal ProcessCore(string hostExecutablePath, string? corePath = null)
     {
@@ -72,42 +75,39 @@ internal sealed class ProcessCore : IEmulatorCore
         if (!File.Exists(_hostExecutablePath))
             throw new FileNotFoundException(Caprice32Exceptions.HostExecutableNotFound(), _hostExecutablePath);
 
+        _configuration = configuration;
+        _sessionDirectory = Path.GetFullPath(sessionDirectory);
+        _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
         var pipeName = $"{ProcessCoreConstants.PipePrefix}{Guid.NewGuid():N}";
         var videoMapName = $"{ProcessCoreConstants.VideoMapPrefix}{Guid.NewGuid():N}";
         _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        _videoMap = _videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
-            MemoryMappedFileAccess.ReadWrite);
-        _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte,
-            PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize,
-            ProcessCoreConstants.PipeBufferSize);
-        var startInfo = new ProcessStartInfo(_hostExecutablePath)
-        {
-            UseShellExecute = false,
-            CreateNoWindow = true,
-            WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
-        };
-        startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
-        startInfo.ArgumentList.Add(pipeName);
-        startInfo.ArgumentList.Add(videoMapName);
-        _process = Process.Start(startInfo) ?? throw new InvalidOperationException(Caprice32Exceptions.ProcessStartFailed());
-        try { EmulationChildProcessLifetime.Attach(_process); }
-        catch
-        {
-            if (!_process.HasExited) _process.Kill(true);
-            _process.Dispose();
-            _process = null;
-            throw;
-        }
         try
         {
+            _videoMap = _videoMemory.CreateViewAccessor(0,
+                EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1,
+                PipeTransmissionMode.Byte, PipeOptions.Asynchronous,
+                ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
+            var startInfo = new ProcessStartInfo(_hostExecutablePath)
+            {
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
+            };
+            startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
+            startInfo.ArgumentList.Add(pipeName);
+            startInfo.ArgumentList.Add(videoMapName);
+            _process = Process.Start(startInfo)
+                ?? throw new InvalidOperationException(Caprice32Exceptions.ProcessStartFailed());
+            EmulationChildProcessLifetime.Attach(_process);
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
             _writer.Write(_corePath ?? string.Empty);
-            _writer.Write(Path.GetFullPath(sessionDirectory));
-            CoreHostProtocol.WriteString(_writer, saveDirectory is null ? null : Path.GetFullPath(saveDirectory));
+            _writer.Write(_sessionDirectory);
+            CoreHostProtocol.WriteString(_writer, _saveDirectory);
             _writer.Write(JsonSerializer.Serialize(configuration, CoreHostProtocol.JsonOptions));
             CompleteRequest();
             CoreSha256 = Response.ReadString();
@@ -126,7 +126,7 @@ internal sealed class ProcessCore : IEmulatorCore
         }
         catch
         {
-            Dispose();
+            ReleaseHost();
             throw;
         }
     }
@@ -154,11 +154,13 @@ internal sealed class ProcessCore : IEmulatorCore
 
     public void HardReset()
     {
-        SimpleRequest(HostCommand.HardReset);
-        LatestVideoFrame = null;
-        LatestAudioChunk = null;
-        while (_audio.TryDequeue(out _)) { }
-        _input.Reset();
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(Caprice32Exceptions.ProcessNotInitialized());
+        var sessionDirectory = _sessionDirectory
+            ?? throw new InvalidOperationException(Caprice32Exceptions.ProcessNotInitialized());
+        var saveDirectory = _saveDirectory;
+        ReleaseHost();
+        Initialize(configuration, sessionDirectory, saveDirectory);
     }
     public void SoftReset() => SimpleRequest(HostCommand.SoftReset);
     public void Stop() => SimpleRequest(HostCommand.Stop);
@@ -200,31 +202,54 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         if (_disposed) return;
         _disposed = true;
-        if (!_connectionFailed && _pipe?.IsConnected == true)
+        ReleaseHost();
+    }
+
+    private void ReleaseHost()
+    {
+        try
         {
-            try
+            if (!_connectionFailed && _pipe?.IsConnected == true)
             {
-                _writer!.Write((byte)HostCommand.Dispose);
-                CompleteRequest();
+                try
+                {
+                    _writer!.Write((byte)HostCommand.Dispose);
+                    CompleteRequest();
+                }
+                catch (Exception) { }
             }
-            catch (Exception) { }
         }
-        _responseReader?.Dispose();
-        _writer?.Dispose();
-        _pipe?.Dispose();
-        _videoMap?.Dispose();
-        _videoMemory?.Dispose();
-        if (_process is not null)
+        finally
         {
-            try
+            DisposeSafely(_responseReader); _responseReader = null;
+            DisposeSafely(_writer); _writer = null;
+            DisposeSafely(_pipe); _pipe = null;
+            DisposeSafely(_videoMap); _videoMap = null;
+            DisposeSafely(_videoMemory); _videoMemory = null;
+            var process = _process;
+            _process = null;
+            if (process is not null)
             {
-                if (!_process.WaitForExit(5_000)) _process.Kill(true);
-                _process.WaitForExit(5_000);
+                try
+                {
+                    if (!process.WaitForExit(5_000)) process.Kill(true);
+                    process.WaitForExit(5_000);
+                }
+                catch (Exception) { }
+                finally { DisposeSafely(process); }
             }
-            catch (Exception) { }
-            _process.Dispose();
+            while (_audio.TryDequeue(out _)) { }
+            LatestVideoFrame = null;
+            LatestAudioChunk = null;
+            Options = [];
+            Diagnostics = [];
+            LedStates = new Dictionary<int, bool>();
+            DiskCount = 0;
+            CurrentDiskIndex = -1;
+            _input.Reset();
+            _initialized = false;
+            _connectionFailed = false;
         }
-        while (_audio.TryDequeue(out _)) { }
     }
 
     private void StringRequest(HostCommand command, string value)
@@ -285,13 +310,23 @@ internal sealed class ProcessCore : IEmulatorCore
 
     private void TerminateProcess()
     {
-        _pipe?.Dispose();
-        if (_process is null) return;
+        DisposeSafely(_pipe);
+        _pipe = null;
+        var process = _process;
+        _process = null;
+        if (process is null) return;
         try
         {
-            if (!_process.HasExited) _process.Kill(true);
-            _process.WaitForExit(5_000);
+            if (!process.HasExited) process.Kill(true);
+            process.WaitForExit(5_000);
         }
+        catch (Exception) { }
+        finally { DisposeSafely(process); }
+    }
+
+    private static void DisposeSafely(IDisposable? value)
+    {
+        try { value?.Dispose(); }
         catch (Exception) { }
     }
 

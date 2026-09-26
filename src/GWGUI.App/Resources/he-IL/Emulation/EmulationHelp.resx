@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>המונחים: GTIA עיכוב שלב הצבעים המשמש להתרבות צבעים. Default משתמשת בערך הסטנדרטי. אפשרויות נומרניות משנות את הצבעים וכתוצאה מכך.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>המונחים:</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>הגדר כמה מסגרות תצוגה מושמטות. מוגבלות שואבת כל מסגרת. ערכים גבוהים יותר להפחית את העבודה אבל לעשות פחות חלקה.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>בחר את המעבד הגנוב</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>בחר את מודל המעבד המותקן במכונה ה-Autoed.מודלים הזמינים תלויים במכונה שנבחרה ו-Alexor.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>השתמש במהירות המעבד המקורית</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>הפעלת המעבד בתזמון של המכונה המקורית במקום יישום תדר מואץ או מותאם אישית.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>הגדר את גודל הזיכרון העיקרי</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>בחר את כמות הזיכרון הראשי המותקן במכונה המיושמת.הגדלים הזמינים מוגבלים לתצורה הנתמכת על ידי מכונה זו.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>בחר את מערכת ה-Sleca</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>בחר את המערכת ROM המשמש כדי להתחיל את המכונה החיקוי.הקושחה חייבת להתאים את המודל הנבחר ואת התצורה האזורית.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>בחר את BASIC קושחה</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>בחר את BASIC ROM זמין למכונה המיושמת כאשר קושחה זו נתמך על ידי המודל שנבחר.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>בחר את XEGS קושחה</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>בחר את הקושחה בשימוש על ידי Atari XEGS השתמש ב-Corat תואם את אזור המכונה שנבחר.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>הצג פעילות אחסון</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>פעילות הצגות מדווחת על ידי מכשיר אחסון חיקוי בעוד התקשורת היא גישה.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>בחר תיקיה קשה</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>בחר את התיקיה המארחת שנחשפו למחסן החיקוי כאחסון קשה-דיסק כאשר אחסון נתמכת תיקיה.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>מהירות אחסון</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>מציג את מהירות ההעברה הנוכחית שדווחה על ידי מכשיר אחסון חיקוי.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>הצג את המגזר הנוכחי</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>מציג את המגזר כיום נגיש על ידי מכשיר אחסון חיקוי.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>בחר את ההחלטה החיקויית</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>בחר את פתרון הוידאו הפנימי המיוצר על ידי החיקוי לפני GW GUI מקנה את התמונה לחלון.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Crop הגבולות הגנובים</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>הסרת הגבולות שנוצרו על ידי פלט וידאו חיקוי תוך שמירה על יחס התמונה המשמש על ידי GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>התאמת צבע הוידאו</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>מעביר את גוון הצבעים שנוצר על ידי חומרת וידאו חיקוי.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>המונחים: color saturation</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>שינויים בעוצמת הצבעים שנוצרו על ידי חומרת וידאו חיקוי.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>ניגוד תמונה</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>משנה את ההבדל בין צבעים כהים ובהירים בפלט וידאו מפוחד.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>המונחים: brightness</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>משנה את הבהירות הכוללת של פלט הוידאו הגנוב.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>תגית: Audio</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>צלילי אכילה או דיסוציאציה המיוצרים על ידי המכונה החיקוי.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>בחר את תפוקה אודיו</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>בחר את מכשיר השמע המארח המשמש כדי לנגן קול מהמכונה החיקויית.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>המונחים: soundנפח</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>הגדר את נפח השמע של קול המיוצר על ידי המכונה חיקוי.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>תגית: floppy-drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>ניתן צלילים מכניים המשכפלים פעילות מהכונן המצופה.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>המונחים: sound</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>הגדר את נפח ה-backback של הצלילים המכניים הגנובים של ה-Foppy-drive.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>המונחים CD נפח אודיו</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>הגדר את נפח השמע של מסלולים לקרוא מן כונן קומפקטי קומפקטי disc.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>מהירות תנועת העכבר</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>מכוונן כיצד תנועת העכבר המארחת מומרת לתנועה שדווחה למכונה החיקויית.</value></data>
 </root>

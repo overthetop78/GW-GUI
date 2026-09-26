@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace GWGUI.Emulation.Atari.Common.Machines.AtariST.Functions;
 
 internal static class StModelFunctions
@@ -6,6 +8,15 @@ internal static class StModelFunctions
 
     internal static IReadOnlyList<T> EnumValues<T>() where T : struct, Enum =>
         Array.AsReadOnly(Enum.GetValues<T>());
+
+    internal static StRegion Region(CultureInfo culture)
+    {
+        if (string.Equals(culture.Name, HardwareSettingsFunctionsConstants.EnGB,
+                StringComparison.OrdinalIgnoreCase))
+            return StRegion.UnitedKingdom;
+        return RegionDictionary.ByLanguage.GetValueOrDefault(culture.TwoLetterISOLanguageName,
+            StRegion.UnitedStates);
+    }
 
     internal static IReadOnlyList<int> InclusiveRange(int minimum, int maximum, int step)
     {

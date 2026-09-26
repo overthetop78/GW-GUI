@@ -76,7 +76,7 @@
   <data name="Controllers.Yaw" xml:space="preserve"><value>Vybočení</value></data>
   <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Senzory</value></data>
   <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI navigace</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Gamepad</value></data>
+  <data name="Controllers.Enum.Gamepad"><value>Gamepad</value></data>
   <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Nízkofrekvenční motor</value></data>
   <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Vysokofrekvenční motor</value></data>
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Sdílet</value></data>
@@ -94,7 +94,7 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Tření</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Tlumič</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Setrvačnost</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Víceosý ovladač</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Použití HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>osy</value></data>

@@ -28,11 +28,13 @@ private static EmulationSettingsField Information(string id, EmulationMachineTab
         SettingsConstants.AudioOutput, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioDevice,
         EmulationSettingsEditor.Selection, value ?? string.Empty,
         [new EmulationSettingsChoice(string.Empty, SettingsDescriptionFunctionsConstants.ResourceAudioDefaultOutput)],
-        ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices);
+        ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices,
+        ExplanationResourceKey: ShortHelp(SettingsConstants.AudioOutput),
+        DetailedExplanationResourceKey: DetailedHelp(SettingsConstants.AudioOutput));
 
-    private static string? ShortHelp(string id) => FieldHelpResources.TryGetValue(id, out var resource)
+    private static string? ShortHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
         ? resource + ".Short" : null;
 
-    private static string? DetailedHelp(string id) => FieldHelpResources.TryGetValue(id, out var resource)
+    private static string? DetailedHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
         ? resource + ".Detailed" : null;
 }

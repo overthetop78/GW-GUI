@@ -17,7 +17,8 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     private readonly string _coreDirectory;
     private readonly string _firmwareDirectory;
     private readonly Engine _engine = new();
-    private EmulatorManagementContext EmulatorManagement => new(_httpClient, _coreDirectory);
+    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
+        new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
     public AmigaEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient,
         string coreDirectory)
@@ -48,6 +49,7 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             {
                 EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
                 EmulationMachineTab.Controllers => model.ControllerPortCount > 0,
+                EmulationMachineTab.Keyboard => model.HasKeyboard,
                 _ => item.Value
             })
         };
@@ -212,8 +214,9 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         _ = ModelCatalog.Get(machineId);
         var definition = EmulatorCatalog.GetAll(machineId).Single();
-        return await _engine.Adapter(definition.Id)
-            .GetInstallationAsync(EmulatorManagement, cancellationToken).ConfigureAwait(false);
+        var adapter = _engine.Adapter(definition.Id);
+        return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
+            .ConfigureAwait(false);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
@@ -221,8 +224,9 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         _ = ModelCatalog.Get(machineId);
         var definition = EmulatorCatalog.GetAll(machineId).Single();
-        return await _engine.Adapter(definition.Id)
-            .FindReleasesAsync(EmulatorManagement, cancellationToken).ConfigureAwait(false);
+        var adapter = _engine.Adapter(definition.Id);
+        return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken)
+            .ConfigureAwait(false);
     }
 
     public async ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release,
@@ -230,8 +234,9 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         _ = ModelCatalog.Get(machineId);
         var definition = EmulatorCatalog.GetAll(machineId).Single();
-        return await _engine.Adapter(definition.Id)
-            .InstallAsync(EmulatorManagement, release, progress, cancellationToken).ConfigureAwait(false);
+        var adapter = _engine.Adapter(definition.Id);
+        return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken)
+            .ConfigureAwait(false);
     }
 
     public string GetFirmwareDirectory(string machineId)
@@ -289,11 +294,13 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (configuration is not MachineConfiguration amiga)
             throw new ArgumentException(nameof(configuration));
         if (!File.Exists(amiga.KickstartPath))
-            throw new FileNotFoundException(FirmwareCatalogConstants.Kickstart, amiga.KickstartPath);
+            throw new EmulationMessageException(new EmulationMessage(
+                EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing,
+                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
         var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(amiga,
             services.ConvertedMediaDirectory).ConfigureAwait(false);
         var emulator = _engine.Adapter(runtime);
-        var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement, cancellationToken)
+        var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken)
             .ConfigureAwait(false)
             ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,

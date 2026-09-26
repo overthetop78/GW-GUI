@@ -11,7 +11,7 @@ internal static class ConfigurationStoreConstants
     internal const string ParentDirectoryName = "..";
     internal const char StoredDirectorySeparator = '/';
     internal const int WriteBufferSize = 4096;
-    internal const int CurrentSchemaVersion = 3;
+    internal const int CurrentSchemaVersion = 1;
     internal const int MinimumSchemaVersion = 1;
     internal const string TemporaryNameSeparator = ".";
     internal const int InitialWriterCount = 1;
@@ -20,4 +20,3 @@ internal static class ConfigurationStoreConstants
     internal const bool UseAsyncFileAccess = true;
     internal const bool RecursiveDirectoryDelete = true;
 }
-

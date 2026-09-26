@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace GWGUI.Emulation.Atari.Common.Machines.AtariST.Contracts;
 
 public sealed record StModelDefinition(
@@ -24,7 +26,7 @@ public sealed record StModelDefinition(
     public int DefaultMainMemoryKib => MainMemoryKib.First();
     public int DefaultAlternateMemoryMib => AlternateMemoryMib.First();
     public string RecommendedTosVersion => TosVersions.Last();
-    public StRegion DefaultRegion => StRegion.UnitedStates;
+    public StRegion DefaultRegion => StModelFunctions.Region(CultureInfo.CurrentUICulture);
 }
 
 internal sealed record TosHeader(string Version, StRegion Region, TosVariant Variant,

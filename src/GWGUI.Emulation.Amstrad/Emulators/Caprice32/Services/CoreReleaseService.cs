@@ -15,8 +15,6 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Services;
 
 public sealed class CoreReleaseService
 {
-    public const string RequiredReleaseId = CoreReleaseConstants.Latest;
-    public const string RequiredDisplayName = CoreReleaseConstants.LibretroLatest;
     public static readonly Uri LatestOfficialUri = new(
         CoreReleaseConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestCaprice32LibretroDllZip);
 

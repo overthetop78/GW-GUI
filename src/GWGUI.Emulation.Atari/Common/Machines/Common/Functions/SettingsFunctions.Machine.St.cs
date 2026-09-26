@@ -31,6 +31,8 @@ internal static partial class SettingsDescriptionFunctions
             new EmulationSettingsField(SettingsConstants.HardDiskFolder, EmulationMachineTab.General,
                 SettingsDescriptionFunctionsConstants.DefaultFolders, SettingsDescriptionFunctionsConstants.ResourceStorageHardDiskList, EmulationSettingsEditor.DirectoryPath,
                 configuration.Folders.HardDisks,
+                ExplanationResourceKey: ShortHelp(SettingsConstants.HardDiskFolder),
+                DetailedExplanationResourceKey: DetailedHelp(SettingsConstants.HardDiskFolder),
                 DefaultFolderCategory: EmulationDefaultFolderCategory.HardDisk)));
     }
 

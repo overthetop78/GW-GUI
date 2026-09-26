@@ -15,4 +15,6 @@ internal static class Caprice32OptionConstants
     internal const string English = "english";
     internal const string French = "french";
     internal const string Spanish = "spanish";
+    internal const string FrenchLanguageCode = "fr";
+    internal const string SpanishLanguageCode = "es";
 }

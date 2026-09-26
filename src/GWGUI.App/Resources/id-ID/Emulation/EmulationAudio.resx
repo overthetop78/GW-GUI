@@ -27,7 +27,7 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Suara drive disket</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filter audio terpolarisasi</value></data>
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Rendah</value></data>
-  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Audio.Quality.Normal"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Tinggi</value></data>
-  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.Audio"><value>Audio</value></data>
 </root>

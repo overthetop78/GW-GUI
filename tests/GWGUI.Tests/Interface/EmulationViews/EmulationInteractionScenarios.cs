@@ -1,13 +1,50 @@
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Contracts.Machine;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Services.Logging;
+using GWGUI.App.Services.Terminal;
 using GWGUI.App.Views.Controls.Emulation.Machine;
+using GWGUI.App.Views.Controls.Shell;
+using GWGUI.Infrastructure.Settings;
+using System.IO;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Interface.EmulationViews;
 internal static class EmulationInteractionScenarios
 {
+    public static void ErrorLogAppearsOnceInConsoleAndDetaches()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "gwgui-error-console-" + Guid.NewGuid().ToString("N"));
+        var terminal = new TerminalSection();
+        var controller = new TerminalPanelController(terminal, new RowDefinition(), new GridSplitter(),
+            new AppSettings());
+        Action<string> append = controller.AppendError;
+        ErrorLog.EntryWritten += append;
+        try
+        {
+            var error = new InvalidOperationException("synthetic emulation failure");
+            Assert.NotNull(ErrorLog.Write(error, "Atari ST - starting emulation", directory));
+
+            var output = terminal.OutputTextBox.Text;
+            Assert.Contains("Atari ST - starting emulation", output, StringComparison.Ordinal);
+            Assert.Contains(error.ToString(), output, StringComparison.Ordinal);
+            Assert.Equal(1, output.Split("synthetic emulation failure", StringSplitOptions.None).Length - 1);
+            Assert.True(controller.IsVisible);
+
+            ErrorLog.EntryWritten -= append;
+            Assert.NotNull(ErrorLog.Write(new InvalidOperationException("after detach"),
+                "detached", directory));
+            Assert.DoesNotContain("after detach", terminal.OutputTextBox.Text, StringComparison.Ordinal);
+        }
+        finally
+        {
+            ErrorLog.EntryWritten -= append;
+            terminal.Content = null;
+            if (Directory.Exists(directory)) Directory.Delete(directory, true);
+        }
+    }
+
     public static void Commands(bool failure)
     {
         var host = new DockPanel(); var calls = new List<int>(); var errors = new List<Exception>(); var restored = 0;

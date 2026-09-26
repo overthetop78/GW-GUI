@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>설정하기 GTIA 색상 단계 지연 재현 색상에 사용. 기본값은 표준 값을 사용합니다. 숫자 선택은 결과 줄을 이동.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>프레임 건너뛰기</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>얼마나 많은 디스플레이 프레임이 omitted 설정. Disabled는 각 구조를 그립니다. 높은 값은 렌더링 작업을 감소하지만 모션을 덜 부드럽게 만듭니다.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>에뮬레이션 프로세서를 선택하십시오.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>에뮬레이션 기계에 설치된 프로세서 모델을 선택합니다. 사용 가능한 모델은 선택한 기계와 에뮬레이터에 달려 있습니다.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>본래 가공업자 속도를 사용하십시오</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>가속 또는 사용자 지정 주파수를 적용 대신 원래 기계의 타이밍에 프로세서를 실행합니다.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>주요 메모리 크기를 설정</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>에뮬레이션 기계에 설치된 주요 메모리의 양을 선택합니다. 사용 가능한 크기는 해당 기계에 의해 지원되는 구성에 제한됩니다.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>시스템 펌웨어 선택</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>시스템 선택 ROM 에뮬레이션 머신을 시작하는데 사용됨. 펌웨어는 선택한 모델과 지역 구성과 일치해야 합니다.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>을 선택 BASIC 펌웨어</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>의 선택 BASIC ROM 선택한 모델에 의해 펌웨어가 지원될 때 에뮬레이션 머신에 사용할 수 있습니다.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>을 선택 XEGS 펌웨어</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Atari에 의해 사용되는 펌웨어를 선택 XEGS profile. 선택한 기계 영역과 호환되는 펌웨어를 사용합니다.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>관련 상품</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>미디어가 액세스되고있는 동안 에뮬레이션 저장 장치에 의해보고 된 활동.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>하드 디스크 폴더 선택</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>폴더 백업 저장이 지원될 때 하드 디스크 저장소로 emulator에 노출된 호스트 폴더를 선택합니다.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>저장 속도</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>현재 전송 속도를 emulated 저장 장치에 의해 보고했습니다.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>현재 섹터 보기</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>현재 에뮬레이션 저장 장치에 의해 접근 된 영역을 표시합니다.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>격리된 해상도를 선택하십시오.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>emulator가 제작한 내부 영상 해상도를 선택 GW GUI 창의 이미지를 스케일링합니다.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>의향을 뽑아</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>에뮬레이션 영상 출력으로 생성된 경계를 제거하고 이미지의 종횡비를 보존하는 동안 GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>비디오 hue를 조정</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>에뮬레이션 비디오 하드웨어에 의해 생성 된 색상의 험을 이동합니다.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>색깔 포화를 조정하십시오</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>에뮬레이션 비디오 하드웨어에 의해 생성 된 색상의 강도를 변경합니다.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>이미지 대비 조정</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>에뮬레이션 비디오 출력의 어두운 밝은 색상과 차이를 변경합니다.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>이미지 광도를 조정하십시오</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>emulated 영상 산출의 전반적인 광도를 변화하십시오.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Enable 에뮬레이션 오디오</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>에뮬레이션 머신에서 생산된 음질 또는 비활성화.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>오디오 출력 선택</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>에뮬레이션 머신에서 사운드를 재생하는 데 사용되는 호스트 오디오 장치를 선택합니다.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>에뮬레이션된 오디오 볼륨 설정</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>에뮬레이션 머신에 의해 생산된 사운드의 재생 볼륨을 설정합니다.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>floppy-drive 소리 사용</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>에뮬레이션 플로피 드라이브에서 재생하는 기계적 소리.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>floppy-drive 사운드 볼륨 설정</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>에뮬레이션 floppy-drive 기계식 사운드의 재생 볼륨을 설정합니다.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 CD 오디오 볼륨</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>오디오 트랙의 재생 볼륨을 emulated 컴팩트 디스크 드라이브에서 읽습니다.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>마우스 운동 속도 설정</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>호스트 마우스 운동이 에뮬레이션 기계에보고 된 운동으로 변환되는 방법을 조정합니다.</value></data>
 </root>

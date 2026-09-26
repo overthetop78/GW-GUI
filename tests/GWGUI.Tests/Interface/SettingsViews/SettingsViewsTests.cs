@@ -16,8 +16,14 @@ public sealed class SettingsViewsTests(StaExecutionScenarios sta)
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorControllerDisposalCancelsAndDetaches);
     [Fact] public Task EmulatorDescriptionUsesModuleLocalization() =>
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorDescriptionUsesModuleLocalization);
+    [Fact] public Task EmulatorVersionsAreSelectedAndInstalledExplicitly() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorVersionsAreSelectedAndInstalledExplicitly);
+    [Fact] public Task VideoFieldsKeepTheirHelpContent() =>
+        sta.Run(EmulationModuleSettingsNavigationScenarios.VideoFieldsKeepTheirHelpContent);
     [Fact] public Task ModuleWindowReopensWithANewVisualTree() =>
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.ModuleWindowReopensWithANewVisualTree);
+    [Fact] public Task AmigaModuleWindowBuildsItsVisualTree() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.AmigaModuleWindowBuildsItsVisualTree);
     [Fact] public Task EachModuleUsesTheGenericSettingsWindow() =>
         sta.Run(EmulationModuleSettingsNavigationScenarios.ModuleWindowUsesTheGenericSectionAndDynamicTitle);
     [Fact] public Task EngineChangesPersistAndApply() => sta.Run(SettingsEditingScenarios.Engines);

@@ -8,6 +8,7 @@ internal static class SettingsConstants
     internal const string AudioOutput = "configuration.audioOutput";
     internal const string AudioLatency = "configuration.audioLatency";
     internal const string Ram = "configuration.ramKib";
+    internal const string FirmwareIntegrated = "configuration.firmwareIntegrated";
     internal const string VideoResolution = "configuration.videoResolution";
     internal const string VideoMonitor = "configuration.videoMonitor";
     internal const string VideoIntensity = "configuration.videoIntensity";

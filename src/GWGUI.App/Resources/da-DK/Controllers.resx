@@ -25,12 +25,12 @@
   <data name="Controllers.Haptics" xml:space="preserve"><value>Haptik</value></data>
   <data name="Controllers.SystemButtons" xml:space="preserve"><value>Systemknapper</value></data>
   <data name="Controllers.RawReports" xml:space="preserve"><value>Rå rapporter</value></data>
-  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} input / {1} output</value></data>
+  <data name="Controllers.ReportCounts"><value>{0} input / {1} output</value></data>
   <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Gamepad-layout</value></data>
   <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Rat</value></data>
   <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · kobling={1} · håndbremse={2} · gearskifte={3}</value></data>
   <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput-navn</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revision</value></data>
+  <data name="Controllers.Revision"><value>Revision</value></data>
   <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Hardwareversion</value></data>
   <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Firmwareversion</value></data>
   <data name="Controllers.Family" xml:space="preserve"><value>Familie</value></data>
@@ -76,13 +76,13 @@
   <data name="Controllers.Yaw" xml:space="preserve"><value>Drejning</value></data>
   <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensorer</value></data>
   <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI-navigation</value></data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Gamepad</value></data>
+  <data name="Controllers.Enum.Gamepad"><value>Gamepad</value></data>
   <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Lavfrekvensmotor</value></data>
   <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Højfrekvensmotor</value></data>
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Del</value></data>
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineær</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Vinklet</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstant</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampe</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusbølge</value></data>
@@ -94,7 +94,7 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Friktion</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Dæmper</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inerti</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Flerakset controller</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-anvendelse</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>akser</value></data>

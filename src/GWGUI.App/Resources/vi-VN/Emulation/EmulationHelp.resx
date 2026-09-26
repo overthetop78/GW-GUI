@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Đặt GTIA Trễ màu dùng để sinh sản màu. Mặc định dùng giá trị chuẩn. Sự lựa chọn số thay đổi màu sắc.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Đặt bỏ qua khung</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Đặt số khung hiển thị bị bỏ qua. Tắt mọi khung hình. Giá trị cao hơn giảm việc vẽ nhưng làm cho chuyển động ít mịn hơn.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Chọn bộ xử lý đã mô phỏng</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Chọn mô hình bộ xử lý được cài đặt trong máy mô phỏng. Mô hình sẵn sàng phụ thuộc vào máy và trình giả lập đã chọn.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Dùng tốc độ xử lý gốc</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Chạy bộ xử lý tại thời điểm của máy gốc thay vì áp dụng một tần số tăng tốc hoặc tùy chỉnh.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Đặt kích cỡ bộ nhớ chính</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Chọn số lượng bộ nhớ chính được cài đặt trong máy mô phỏng. Kích cỡ sẵn sàng chỉ dành cho cấu hình được máy đó hỗ trợ.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Chọn phần mềm cứng hệ thống</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Chọn hệ thống ROM dùng để khởi chạy máy mô phỏng. Phần mềm phải khớp với cấu hình kiểu đã chọn và khu vực.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Chọn BASIC Phần mềm vững chắc</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Chọn BASIC ROM sẵn sàng cho máy mô phỏng khi phần mềm đó được hỗ trợ bởi mô hình đã chọn.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Chọn XEGS Phần mềm vững chắc</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Chọn phần mềm công ty được dùng bởi Atari XEGS Dùng tương thích phần cứng với vùng máy đã chọn.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Hiện hoạt động lưu trữ</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Hiện các hoạt động được báo cáo bởi thiết bị lưu trữ mô phỏng trong khi truyền thông đang được truy cập.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Chọn thư mục khó gỡ</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Chọn thư mục máy được phơi bày với trình giả lập là kho lưu trữ « dsk » khi hỗ trợ kho lưu đã tạo thư mục.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Hiện tốc độ lưu trữ</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Hiện tốc độ truyền tải được báo cáo bởi thiết bị lưu trữ mô phỏng.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Hiện &amp; phân khu vực hiện tại</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Hiện khu vực đang truy cập bởi thiết bị lưu trữ mô phỏng.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Chọn độ phân giải bắt chước</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Chọn độ phân giải video nội bộ được tạo ra bởi trình giả lập trước GW GUI treo ảnh lên cửa sổ.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Cắt viền đã mô phỏng</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Loại bỏ các viền tạo bởi kết xuất video mô phỏng trong khi bảo tồn tỷ lệ hình ảnh được dùng bởi GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Điều chỉnh sắc màu phim</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Dịch màu sắc được tạo ra bởi phần cứng video mô phỏng.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Điều chỉnh độ bão hoà màu</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Thay đổi cường độ màu sắc được tạo ra bởi phần cứng video mô phỏng.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Điều chỉnh độ tương phản ảnh</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Thay đổi sự khác biệt giữa màu tối và sáng trong hiệu suất video mô phỏng.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Điều chỉnh độ sáng của ảnh</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Thay đổi độ sáng tổng thể của kết xuất video mô phỏng.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Bật khả năng mô phỏng âm thanh</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Kích hoạt hoặc tắt âm thanh được tạo bởi máy mô phỏng.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Chọn đầu ra âm thanh</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Chọn thiết bị âm thanh dùng để phát ra âm thanh từ máy mô phỏng.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Đặt âm lượng mô phỏng</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Đặt khối âm thanh phát lại do máy tính mô phỏng phát ra.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Kích hoạt âm thanh sấy mềm</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Kích hoạt âm thanh cơ học mà mô phỏng hoạt động từ ổ đĩa mềm.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Đặt âm lượng âm lượng chạy mềm</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Đặt âm lượng phát lại của các âm thanh cơ chế mềm mô phỏng.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Đặt CD âm thanh</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Đặt âm lượng phát lại của các bản ghi âm được đọc từ ổ đĩa co dãn mô phỏng.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Đặt tốc độ di chuyển của chuột</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Điều chỉnh cách chuyển động của máy con chuột được chuyển đổi sang chuyển động được báo cáo tới máy tính mô phỏng.</value></data>
 </root>

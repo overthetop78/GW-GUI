@@ -11,7 +11,8 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
     private readonly Engine _engine = new();
-    private EmulatorManagementContext EmulatorManagement => new(_httpClient, _coreDirectory);
+    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
+        new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
     public AmstradEmulationModule(string configurationDirectory, string pathBase,
         HttpClient httpClient, string coreDirectory)
@@ -165,14 +166,16 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        return _engine.Adapter(DefaultEmulatorId(machineId))
-            .GetInstallationAsync(EmulatorManagement, cancellationToken);
+        var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
+        return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
-        _engine.Adapter(RequireConfiguration(configuration).EmulatorId)
-            .GetInstallationAsync(EmulatorManagement, cancellationToken);
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
+        return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
+    }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
@@ -180,8 +183,11 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         var amstrad = RequireConfiguration(configuration);
         var installations = new List<EmulationEmulatorInstallation>();
         foreach (var emulator in EmulatorCatalog.GetAll(amstrad.Model))
-            installations.Add(await _engine.Adapter(emulator.Id)
-                .GetInstallationAsync(EmulatorManagement, cancellationToken).ConfigureAwait(false));
+        {
+            var adapter = _engine.Adapter(emulator.Id);
+            installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
+                .ConfigureAwait(false));
+        }
         return installations;
     }
 
@@ -200,29 +206,33 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         string machineId, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        return _engine.Adapter(DefaultEmulatorId(machineId))
-            .FindReleasesAsync(EmulatorManagement, cancellationToken);
+        var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
+        return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
-        _engine.Adapter(RequireConfiguration(configuration).EmulatorId)
-            .FindReleasesAsync(EmulatorManagement, cancellationToken);
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
+        return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
+    }
 
     public ValueTask<string> InstallEmulatorAsync(string machineId,
         EmulationEmulatorRelease release, IProgress<double>? progress = null,
         CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        return _engine.Adapter(DefaultEmulatorId(machineId))
-            .InstallAsync(EmulatorManagement, release, progress, cancellationToken);
+        var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
+        return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
     }
 
     public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
         EmulationEmulatorRelease release, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default) =>
-        _engine.Adapter(RequireConfiguration(configuration).EmulatorId)
-            .InstallAsync(EmulatorManagement, release, progress, cancellationToken);
+        CancellationToken cancellationToken = default)
+    {
+        var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
+        return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
+    }
 
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(
         IEmulationConfiguration configuration, EmulationRuntimeServices services,
@@ -231,7 +241,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         if (configuration is not MachineConfiguration amstrad)
             throw new ArgumentException(nameof(configuration));
         var adapter = _engine.Adapter(amstrad);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement, cancellationToken)
+        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken)
             .ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,

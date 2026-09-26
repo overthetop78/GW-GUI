@@ -147,7 +147,7 @@
   <data name="Explorer.BaudRates"><value>Snelheden</value></data>
   <data name="Explorer.Chunks"><value>Blokken</value></data>
   <data name="Explorer.FskBlocks"><value>FSK-blokken</value></data>
-  <data name="Explorer.Records"><value>Records</value></data>
+  <data name="Explorer.Records"><value>Gegevens</value></data>
   <data name="Explorer.FullRecords"><value>Volledig</value></data>
   <data name="Explorer.PartialRecords"><value>Gedeeltelijk</value></data>
   <data name="Explorer.EndRecord"><value>Einde</value></data>

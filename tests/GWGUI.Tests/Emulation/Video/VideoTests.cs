@@ -2,6 +2,33 @@ namespace GWGUI.Tests.Emulation.Video;
 [Collection("WPF")]
 public class VideoTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionScenarios sta)
 {
+    [Fact]
+    public void EveryVideoParameterLabelResolvesInFrench()
+    {
+        var localization = GWGUI.App.Localization.Sources.LocalizationSource.Instance;
+        var previous = (localization.Culture, localization.UiCulture);
+        try
+        {
+            var french = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
+            localization.SetCultures(french, french);
+            Assert.Equal("Emulation.Video.Gamma",
+                GWGUI.VideoPresentation.Dictionaries.EmulationVideoProcessingCatalog
+                    .ParameterResourceKeys[GWGUI.VideoPresentation.Dictionaries
+                        .EmulationVideoProcessingCatalog.Gamma]);
+            foreach (var resourceKey in GWGUI.VideoPresentation.Dictionaries
+                         .EmulationVideoProcessingCatalog.ParameterResourceKeys.Values)
+            {
+                var label = GWGUI.App.Localization.Extensions.LocExtension.Get(resourceKey);
+                Assert.False(string.IsNullOrWhiteSpace(label), resourceKey);
+                Assert.NotEqual($"[{resourceKey}]", label);
+            }
+        }
+        finally
+        {
+            localization.SetCultures(previous.Culture, previous.UiCulture);
+        }
+    }
+
     [Fact] public void VideoProcessingNormalizesEnumsIntensitiesAndLegacyPalette() => VideoGeometryScenarios.ProcessingLimits();
     [Fact] public void VideoProcessingAppliesBrightnessBeforeContrast() => VideoGeometryScenarios.ProcessingOrder();
     [Theory] [InlineData(0)] [InlineData(1)] [InlineData(2)]
@@ -17,6 +44,7 @@ public class VideoTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionS
     public void AspectRatioFitsAvailableArea(double width, double height, double aspect, double expectedWidth, double expectedHeight) => VideoGeometryScenarios.Fit(width,height,aspect,expectedWidth,expectedHeight);
     [Theory] [InlineData(0, 100, 1)] [InlineData(100, -1, 1)] [InlineData(100, 100, double.NaN)] [InlineData(100, 100, double.PositiveInfinity)] [InlineData(100, 100, 0)]
     public void InvalidGeometryProducesEmptyArea(double width, double height, double aspect) => VideoGeometryScenarios.InvalidFit(width,height,aspect);
+    [Fact] public void PresenterUsesTheAspectRatioReportedByTheEmulator() => VideoGeometryScenarios.FrameAspect();
     [Fact] public void ImageAdjustmentsClampAndPreserveInput()=>VideoGeometryScenarios.Adjustments();
     [Theory]
     [InlineData(-10,2d)]

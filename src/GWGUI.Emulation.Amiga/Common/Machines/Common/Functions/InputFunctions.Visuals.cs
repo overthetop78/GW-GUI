@@ -6,6 +6,18 @@ namespace GWGUI.Emulation.Amiga.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
+    private static string KeyResource(EmulationKey key) => key switch
+    {
+        EmulationKey.Help => InputSettingsFunctionsConstants.ResourceKeyHelp,
+        EmulationKey.LeftAmiga => InputSettingsFunctionsConstants.ResourceKeyLeftAmiga,
+        EmulationKey.RightAmiga => InputSettingsFunctionsConstants.ResourceKeyRightAmiga,
+        _ => key.ToString()
+    };
+
+    private static string DefaultKey(EmulationKey key,
+        IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) =>
+        defaults.GetValueOrDefault(key, key).ToString();
+
 private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type switch
     {
         ControllerType.Joystick =>

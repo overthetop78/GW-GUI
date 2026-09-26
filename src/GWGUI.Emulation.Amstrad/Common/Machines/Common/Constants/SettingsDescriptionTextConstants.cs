@@ -19,6 +19,7 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string ResourceMemoryMain = "Emulation.Memory.Main";
     internal const string ResourceRom = "Emulation.Tab.Rom";
     internal const string ResourceFirmwareSystemRom = "Emulation.Firmware.Rom.System";
+    internal const string ResourceFirmwareIntegrated = "Emulation.Amstrad.Firmware.Integrated";
     internal const string ResourceVideo = "Emulation.Video.Settings.Display";
     internal const string ResourceVideoResolution = "Emulation.Video.Resolution";
     internal const string ResourceVideoMonitor = "Emulation.Amstrad.Video.Monitor";

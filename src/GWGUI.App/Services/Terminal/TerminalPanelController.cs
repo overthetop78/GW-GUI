@@ -27,6 +27,16 @@ public sealed class TerminalPanelController(
 
     public Task ExportAsync(string path) => File.WriteAllTextAsync(path, GetCompleteText());
 
+    public void AppendError(string entry)
+    {
+        if (!string.IsNullOrEmpty(terminal.OutputTextBox.Text)
+            && !terminal.OutputTextBox.Text.EndsWith(Environment.NewLine, StringComparison.Ordinal))
+            terminal.OutputTextBox.AppendText(Environment.NewLine);
+        terminal.OutputTextBox.AppendText(entry);
+        terminal.OutputTextBox.ScrollToEnd();
+        SetVisibility(true);
+    }
+
     public void Toggle() => SetVisibility(!IsVisible);
 
     public void SetVisibility(bool visible)

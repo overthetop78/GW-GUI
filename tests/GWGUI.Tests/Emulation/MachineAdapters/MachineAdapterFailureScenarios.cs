@@ -56,11 +56,40 @@ internal static class MachineAdapterFailureScenarios
         }
         await machine.DisposeAsync(); await machine.DisposeAsync(); Assert.Equal(1,cleanups); Assert.Equal(1,core.Disposals);
     }
+    public static async Task AmigaDiskChangeIsObservedBetweenEjectAndInsert()
+    {
+        var core = new Core { ExpectedMediaPath = "disk-2.adf" };
+        var cleanups = 0;
+        var machine = new Machine(Guid.NewGuid(), MachineConfiguration.A500("virtual-rom"), core,
+            [new MediaConfiguration("disk-1.adf",
+                GWGUI.Emulation.Amiga.Common.Machines.Common.Enums.MediaCategory.Floppy)], "virtual-session",
+            deleteSession: path => { Assert.Equal("virtual-session", path); cleanups++; });
+        try
+        {
+            await machine.StartAsync();
+            var media = new EmulationMedia("disk-2.adf", EmulationMediaSlot.Floppy0,
+                EmulationMediaType.Floppy, false, true);
+
+            await machine.Media.InsertAsync(media, default);
+
+            Assert.Equal(["Eject", "Insert"], core.MediaCalls);
+            Assert.True(core.FrameAtInsert > core.FrameAtEject);
+            Assert.Equal("disk-2.adf", Assert.Single(machine.Media.MountedMedia).Path);
+        }
+        finally
+        {
+            await machine.DisposeAsync();
+        }
+        Assert.Equal(1, cleanups);
+        Assert.Equal(1, core.Disposals);
+    }
     private sealed class Core : IEmulatorCore
     {
         public Exception? InitializeError, FrameError, MediaError;
+        public string ExpectedMediaPath = "virtual.adf";
         public bool BlockFrame;
-        public int Stops,Disposals;
+        public int Stops,Disposals,Frames,FrameAtEject,FrameAtInsert;
+        public List<string> MediaCalls { get; } = [];
         public TaskCompletionSource Stopped {get;}=new(TaskCreationOptions.RunContinuationsAsynchronously);
         public TaskCompletionSource FrameEntered {get;}=new(TaskCreationOptions.RunContinuationsAsynchronously);
         public ManualResetEventSlim FrameRelease {get;}=new();
@@ -73,13 +102,13 @@ internal static class MachineAdapterFailureScenarios
         public double FramesPerSecond=>1000; public int SampleRate=>44100; public int DiskCount=>0; public int CurrentDiskIndex=>0;
         public void Initialize(MachineConfiguration configuration,string sessionDirectory,string? saveDirectory=null)
         {Assert.Equal("virtual-rom",configuration.KickstartPath);Assert.Equal("virtual-session",sessionDirectory);if(InitializeError is {} error)throw error;}
-        public void RunFrame(){FrameEntered.TrySetResult();if(BlockFrame){if(!FrameRelease.Wait(TimeSpan.FromSeconds(5)))throw new TimeoutException();BlockFrame=false;}if(FrameError is {} error)throw error;}
+        public void RunFrame(){Interlocked.Increment(ref Frames);FrameEntered.TrySetResult();if(BlockFrame){if(!FrameRelease.Wait(TimeSpan.FromSeconds(5)))throw new TimeoutException();BlockFrame=false;}if(FrameError is {} error)throw error;}
         public void Stop(){Stops++;Stopped.TrySetResult();}
         public void Dispose(){Disposals++;FrameRelease.Set();}
-        public void InsertMedia(string path){Assert.Equal(Path.GetFullPath("virtual.adf"),path);if(MediaError is {} error)throw error;}
+        public void InsertMedia(string path){MediaCalls.Add("Insert");FrameAtInsert=Volatile.Read(ref Frames);Assert.Equal(Path.GetFullPath(ExpectedMediaPath),path);if(MediaError is {} error)throw error;}
         public void HardReset()=>throw new InvalidOperationException("unexpected reset");
         public void SetInput(EmulationInputSnapshot snapshot)=>throw new InvalidOperationException("unexpected input");
-        public void EjectMedia()=>throw new InvalidOperationException("unexpected eject");
+        public void EjectMedia(){MediaCalls.Add("Eject");FrameAtEject=Volatile.Read(ref Frames);}
         public void SelectDisk(int index)=>throw new InvalidOperationException("unexpected disk selection");
         public byte[] SaveState()=>throw new InvalidOperationException("unexpected save");
         public void LoadState(ReadOnlySpan<byte> state)=>throw new InvalidOperationException("unexpected load");

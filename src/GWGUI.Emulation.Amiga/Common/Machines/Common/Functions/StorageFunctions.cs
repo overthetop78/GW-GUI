@@ -14,12 +14,14 @@ internal static class StorageSettingsFunctions
                 IsRemovable: true,
                 DisplayLabel: $"DF{index}:",
                 FloppyOptions: FloppyOptions(configuration, index),
-                IsPermanent: index == 0 && model.HasBuiltInFloppyDrive))
+                IsPermanent: index == 0 && model.HasBuiltInFloppyDrive,
+                ConfigurationKind: EmulationStorageConfigurationKind.FloppyDrive))
             .Concat(model.SupportsHardDrives
                 ? Enumerable.Range(0, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
                     new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
                     EmulationMediaType.HardDisk, HardDiskFormats.All.Select(format => format.Extension).ToArray(), false,
-                    DisplayLabel: $"DH{index}:", HardDiskFormats: HardDiskFormats.All)) : [])
+                    DisplayLabel: $"DH{index}:", HardDiskFormats: HardDiskFormats.All,
+                    ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive)) : [])
             .Concat(model.HasCdDrive
                 ? [new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                     [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Ccd, StorageSettingsFunctionsConstants.Chd, StorageSettingsFunctionsConstants.Nrg, StorageSettingsFunctionsConstants.Mds, StorageSettingsFunctionsConstants.Iso], DisplayLabel: StorageSettingsFunctionsConstants.CD0,

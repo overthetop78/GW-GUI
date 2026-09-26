@@ -12,7 +12,7 @@
   <data name="Hardware.AddDrive" xml:space="preserve"><value>Tilføj et drev...</value></data>
   <data name="Hardware.NoDrive" xml:space="preserve"><value>Intet drev defineret</value></data>
   <data name="Hardware.EditorTitle" xml:space="preserve"><value>Definer et drev</value></data>
-  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle controller</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle controller</value></data>
   <data name="Hardware.GwSelection" xml:space="preserve"><value>Udvælgelsen videregivet til gw</value></data>
   <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fysisk størrelse</value></data>
   <data name="Hardware.SizeShort" xml:space="preserve"><value>Størrelse</value></data>

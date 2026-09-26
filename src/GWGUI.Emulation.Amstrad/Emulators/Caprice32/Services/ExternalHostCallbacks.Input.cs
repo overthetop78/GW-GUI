@@ -13,6 +13,9 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Services;
 
 internal sealed partial class ExternalHostCallbacks
 {
+    internal static IReadOnlySet<EmulationKey> SupportedKeyboardKeys { get; } =
+        KeyboardMap.Values.ToHashSet();
+
     private void HandleInputPoll()
     {
         lock (_inputGate)
@@ -31,6 +34,7 @@ internal sealed partial class ExternalHostCallbacks
     private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
     {
         if (_keyboardEvent is null) return;
+        keys = FilterReservedKeyboardChord(keys);
         var reverseMap = KeyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
         var modifiers = (ushort)((keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift) ? 1 : 0)
             | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? 2 : 0)
@@ -40,6 +44,17 @@ internal sealed partial class ExternalHostCallbacks
         foreach (var key in keys.Except(_previousKeys).OrderBy(key => IsModifier(key) ? 0 : 1))
             if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(true, code, CharacterFor(code, keys), modifiers);
         _previousKeys = new HashSet<EmulationKey>(keys);
+    }
+
+    internal IReadOnlySet<EmulationKey> FilterReservedKeyboardChord(IReadOnlySet<EmulationKey> keys)
+    {
+        var alt = keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt);
+        var enter = keys.Contains(EmulationKey.Return) || keys.Contains(EmulationKey.NumpadEnter);
+        if (alt && enter) _suppressFullscreenChord = true;
+        if (!_suppressFullscreenChord) return keys;
+        if (!alt && !enter) _suppressFullscreenChord = false;
+        return keys.Where(key => key is not (EmulationKey.LeftAlt or EmulationKey.RightAlt
+            or EmulationKey.Return or EmulationKey.NumpadEnter)).ToHashSet();
     }
 
     private static uint CharacterFor(uint code, IReadOnlySet<EmulationKey> keys)
@@ -113,8 +128,9 @@ internal sealed partial class ExternalHostCallbacks
         var controller = input.Controllers[(int)port];
         if (device == JoypadDevice)
         {
-            if (id == JoypadMask) return unchecked((short)(controller.Buttons & ushort.MaxValue));
-            return id < 32 && (controller.Buttons & (1u << (int)id)) != 0 ? (short)1 : (short)0;
+            var buttons = controller.Buttons;
+            if (id == JoypadMask) return unchecked((short)(buttons & ushort.MaxValue));
+            return id < 32 && (buttons & (1u << (int)id)) != 0 ? (short)1 : (short)0;
         }
         if (device == AnalogDevice)
             return (index, id) switch

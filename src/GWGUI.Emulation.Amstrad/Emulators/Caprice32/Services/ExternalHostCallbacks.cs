@@ -29,11 +29,12 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly object _inputGate = new();
     private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
-    private int _pointerX;
-    private int _pointerY;
+    private int _pointerX = ExternalHostCallbacksConstants.PointerCoordinateCenter;
+    private int _pointerY = ExternalHostCallbacksConstants.PointerCoordinateCenter;
     private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
     private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
     private ExternalCoreApi.UpdateCoreOptionsDisplay? _updateOptionsDisplay;
+    private bool _suppressFullscreenChord;
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; } = new();
 
@@ -134,8 +135,33 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     public void Dispose()
     {
         if (_disposed) return;
-        foreach (var pointer in _nativeStrings.Values) Marshal.FreeCoTaskMem(pointer);
-        _nativeStrings.Clear();
-        _disposed = true;
+        try
+        {
+            foreach (var pointer in _nativeStrings.Values)
+            {
+                try { Marshal.FreeCoTaskMem(pointer); }
+                catch (Exception) { }
+            }
+        }
+        finally
+        {
+            _nativeStrings.Clear();
+            _keyboardEvent = null;
+            _updateOptionsDisplay = null;
+            LatestVideoFrame = null;
+            lock (_audioGate)
+            {
+                _audioChunks.Clear();
+                _bufferedAudioFrames = 0;
+                LatestAudioChunk = null;
+            }
+            lock (_inputGate)
+            {
+                _pendingInput = EmulationInputSnapshot.Empty;
+                _polledInput = EmulationInputSnapshot.Empty;
+                _previousKeys = new HashSet<EmulationKey>();
+            }
+            _disposed = true;
+        }
     }
 }

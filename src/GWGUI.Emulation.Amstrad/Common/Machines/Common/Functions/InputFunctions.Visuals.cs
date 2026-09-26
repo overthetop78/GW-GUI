@@ -27,7 +27,6 @@ internal static partial class InputSettingsFunctions
     private static string ControllerResourceKey(ControllerType type) => type switch
     {
         ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
-        ControllerType.Keyboard => InputSettingsFunctionsConstants.ResourceControllerKeyboard,
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         _ => $"Emulation.Controller.{type}"

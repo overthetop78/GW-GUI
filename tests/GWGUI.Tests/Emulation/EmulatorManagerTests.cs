@@ -3,6 +3,7 @@ using System.Net.Http;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Amiga.Modules;
+using GWGUI.Emulation.Amstrad.Modules;
 using GWGUI.Emulation.Atari.Modules;
 
 namespace GWGUI.Tests.Emulation;
@@ -22,7 +23,9 @@ public sealed class EmulatorManagerTests
                 new AtariEmulationModule(Path.Combine(root, "atari-config"), root, http,
                     Path.Combine(root, "atari-cores")),
                 new AmigaEmulationModule(Path.Combine(root, "amiga-config"), root, http,
-                    Path.Combine(root, "amiga-cores"))
+                    Path.Combine(root, "amiga-cores")),
+                new AmstradEmulationModule(Path.Combine(root, "amstrad-config"), root, http,
+                    Path.Combine(root, "amstrad-cores"))
             ];
 
             foreach (var module in modules)

@@ -6,8 +6,8 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Profiles.ByOperation" xml:space="preserve"><value>Profile nach Betrieb</value></data>
   <data name="Profiles.Tab" xml:space="preserve"><value>Tab.</value></data>
-  <data name="Profiles.Name" xml:space="preserve"><value>Name</value></data>
-  <data name="Profiles.System" xml:space="preserve"><value>System</value></data>
+  <data name="Profiles.Name"><value>Name</value></data>
+  <data name="Profiles.System"><value>System</value></data>
   <data name="Profiles.Rename" xml:space="preserve"><value>Umbenennen…</value></data>
   <data name="Profile.SaveTitle"><value>Profil speichern</value></data>
   <data name="Profile.Name"><value>Profilname</value></data>

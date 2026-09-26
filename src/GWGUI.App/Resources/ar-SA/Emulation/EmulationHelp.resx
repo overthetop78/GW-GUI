@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>يحدد GTIA التأخّر في مرحلة اللون يُستخدم لإعادة إنتاج الألوان ويستخدم التقصير القيمة القياسية. خيارات عديدة تُغيّر الأقفال الناتجة</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>تخطي الإطار</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>يحدد عدد أطر العرض التي تم إغفالها المعاقين يرسمون كل إطار فالقيم العليا تقلل من أداء العمل ولكنها تقلل من سلاسة الحركة.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>اختر المعالج المُحتَزَم</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>يُختار نموذج المُعالجة المُنشأ في الآلة المُحتَزَمة، النماذج المتاحة تعتمد على الآلة المُختارة والمُصدر.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>استخدم السرعة الأصلية للمعالجة</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>يدير المعالج في توقيت الآلة الأصلية بدلا من تطبيق تردد معجل أو معتدل.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>حدد حجم الذاكرة الرئيسية</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>يُختار كمية الذاكرة الرئيسية التي تم تركيبها في الآلة المحوسبة، وتقتصر الأحجام المتاحة على التشكيلات التي تدعمها تلك الآلة.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>بيع شركة النظام</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>يُختار النظام ROM كان يُستخدم لبدء الآلة المُحتَزَمة، ويجب أن تُطابق البرمجيات المُختارة النموذج والتشكيل الإقليمي.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>إختارْ BASIC بحزم</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>يُختارُ BASIC ROM متوفر للآلة المُحتَزَمة عندما تكون تلك البرمجيات مدعومة بنموذج مُختار.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>إختارْ XEGS بحزم</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>يبيع البرمجيات التي تستخدمها الـ (آتاري) XEGS ملف الشخصية، استخدام البرمجيات الثابتة بما يتفق مع منطقة الآلة المختارة.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>نشاط تخزين العروض</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>يبين النشاط الذي أبلغ عنه جهاز التخزين المحتوي على مخزون بينما يجري الوصول إلى وسائل الإعلام.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>اختيار الملف الذي يُعدّه القرص الصلب</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>يُختار الملف المضيف الذي يُعرّض له كمخزن للديارات الصلبة عندما يُدعم تخزين الملفات المُدعمة.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>سرعة تخزين العروض</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>يبين سرعة النقل الحالية التي أبلغ عنها جهاز التخزين المحتوي على مخزون.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>:: عرض القطاع الحالي</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>ويبين القطاع الذي يُدخله حاليا جهاز التخزين المُخزَّن.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>اختيار القرار المجسد</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>يُختار القرار الداخلي للفيديو الذي أنتجه المرشد قبل ذلك GW GUI يُقطرُ الصورةَ للنافذهِ.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>حاصروا الحدود المُحتَزَمة</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>إزالة الحدود التي تولدها إنتاج الفيديو المطبعي مع المحافظة على نسبة جانب الصورة التي تستخدمها GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>عدل شريط الفيديو</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>يُشعلُ كوخ الألوانِ المُتَولّدةِ بواسطة أجهزةِ الفيديو المُحتَزَمةِ.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>التشبع باللون</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>يغير كثافة الألوان التي تولدها أجهزة الفيديو المحتوية على كاميرا</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>التناقض في الصورة</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>يغير الفرق بين الألوان المظلمة واللامعة في إنتاج الفيديو المُحتسب</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>مجرد صورة مشرقة</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>يغير من اللمعة العامة لمنتجات الفيديو المحتوية على مطبوعات.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>الصوت المسموع</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>الصُدد المُمكنة أو المُخَلِّصات التي تنتجها الآلة المُحتَزَنة.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>اختيار الناتج الصوتي</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>يُختارُ الجهازَ الصوتيَ المضيفَ إستعملَ لِعْب الصوتِ مِنْ الآلةِ المُحتَزَمةِ.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>أعدّ المجلد الصوتي المُحتسب</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>يُحدّدُ مجلدَ الصوتَ المُعدّلِ مِن قِبل الآلةِ المُحتَزَمةِ.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>صوت محرك متحرك</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>المحركات الميكانيكية تبدو أن تستنسخ النشاط من القرص المُخزّن</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>جَعْل مجلدِ صوتِ مُقَدَّمِ</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>يُحدّدُ مجلدَ العزفِ للأصوات الميكانيكيةِ المُخَزَّرةِ.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>المجموعة CD الصوت</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>يُعدّ مجلد العزف من المسارات الصوتية مُقرأ من القرص المُحتَزَم</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>سرعة حركة الفأر</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>عدل كيف تحولت حركة الفأر إلى حركة نقل تم إبلاغها إلى آلة محاكاة</value></data>
 </root>

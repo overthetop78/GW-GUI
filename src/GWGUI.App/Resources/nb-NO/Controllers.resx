@@ -68,7 +68,7 @@
   <data name="Controllers.Steering" xml:space="preserve"><value>Styring</value></data>
   <data name="Controllers.Throttle" xml:space="preserve"><value>Gass</value></data>
   <data name="Controllers.Brake" xml:space="preserve"><value>Brems</value></data>
-  <data name="Controllers.Clutch" xml:space="preserve"><value>Clutch</value></data>
+  <data name="Controllers.Clutch"><value>Clutch</value></data>
   <data name="Controllers.Handbrake" xml:space="preserve"><value>Håndbrems</value></data>
   <data name="Controllers.Gear" xml:space="preserve"><value>Gir</value></data>
   <data name="Controllers.Roll" xml:space="preserve"><value>Rulling</value></data>
@@ -82,7 +82,7 @@
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Del</value></data>
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineær</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Vinklet</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstant</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampe</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusbølge</value></data>
@@ -94,7 +94,7 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Friksjon</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Demper</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Treghet</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Fleraksekontroller</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-bruk</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>akser</value></data>

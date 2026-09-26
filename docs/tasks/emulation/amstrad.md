@@ -1,31 +1,145 @@
-# Réalisation du module d’émulation Amstrad CPC/GX4000
+# Finalisation du module d’émulation Amstrad CPC/GX4000
 
-Cette feuille exécute [`../../project/amstrad-emulation.md`](../../project/amstrad-emulation.md).
-Elle couvre uniquement les CPC classiques, les CPC Plus et la GX4000 avec Caprice32.
+- [x] 1. Finaliser le raccordement Caprice32
+  - [x] 1.1 Rendre les commandes d’exécution conformes au matériel émulé
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/ExternalHostCallbacks.Input.cs` pour convertir la souris relative capturée en directions et boutons du premier joystick CPC.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/ExternalHostCallbacksConstants.cs` pour déclarer les identifiants Libretro utilisés par cette conversion.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/ProcessCore.cs` afin que le redémarrage à froid décharge puis recrée entièrement le processus hôte et le cœur.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier la conversion souris/joystick et le redémarrage à froid sans laisser de processus, DLL ou ressource graphique chargé.
+  - [x] 1.2 Exposer uniquement les capacités réelles de Caprice32
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs` pour afficher une information de ROM intégrée et seulement les résolutions, le rognage et les options audio réellement fournis par Caprice32.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs` pour raccorder les aides courtes et détaillées aux réglages Amstrad concernés.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsConstants.cs` et `SettingsDescriptionTextConstants.cs` pour déclarer uniquement les identifiants nécessaires aux capacités précédentes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Resources/00-Base/Emulation.resx`, `en-US/Emulation.resx` et toutes les ressources de cultures Amstrad avec le script Argos existant pour ajouter le texte ROM et les aides traduites.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les capacités affichées, leurs aides et les options absentes.
 
-- [x] 1. Fixer le périmètre
-  - [x] Retenir Caprice32 comme seul émulateur de cette étape.
-  - [x] Séparer CPC classiques, CPC Plus et GX4000 dans `Common/Machines`.
-  - [x] Reporter PCW, PcW16, NC, PDA600, PC Amstrad et Mega PC.
+- [x] 2. Finaliser les périphériques configurables
+  - [x] 2.1 Ouvrir une configuration de matériel uniquement lorsque l’émulateur la déclare
+    - [x] Créer `src/GWGUI.Emulation/Enums/EmulationStorageConfigurationKind.cs` avec les types de boîte de configuration génériques disquette et disque dur.
+    - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationMediaDevice.cs` pour transporter le type de configuration déclaré par l’émulateur.
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/StorageFunctions.cs` pour déclarer les boîtes de configuration disquette et disque dur disponibles dans PUAE.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Settings.cs` pour déclarer les boîtes de configuration disquette et disque dur disponibles selon l’émulateur Atari.
+    - [x] Modifier `src/GWGUI.App/Contracts/Emulation/Storage/EmulationStorageDeviceItem.cs`, `Controllers/Emulation/Storage/EmulationStorageSettingsController.cs` et `Views/Controls/Emulation/Storage/EmulationStorageDeviceList.cs` pour afficher « Configurer » uniquement pour une boîte déclarée, jamais pour choisir directement un fichier.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs`, `Atari/AtariEmulatorAdapterTests.cs` et `Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les déclarations de configuration des périphériques.
+  - [x] 2.2 Vérifier les périphériques et quantités des six machines Amstrad
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour couvrir les lecteurs obligatoires, les extensions facultatives, les nombres de lecteurs et les absences imposées pour CPC 464/664/6128, Plus et GX4000.
 
-- [ ] 2. Construire les catalogues matériels
-  - [ ] Créer les catalogues CPC classiques, CPC Plus et GX4000.
-  - [ ] Agréger les six modèles dans le catalogue commun.
-  - [ ] Décrire RAM, clavier, contrôleurs et périphériques sans option native.
+- [x] 3. Compléter les claviers des machines
+  - [x] 3.1 Décrire et assigner toutes les touches Amstrad
+    - [x] Créer `src/GWGUI.Emulation/Constants/EmulationKeyboardKeys.cs` avec l’inventaire générique partagé des touches physiques représentables par `EmulationKey`, sans touche propre à une famille de machines.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour exposer toutes les touches CPC avec leurs affectations hôte par défaut et sans clavier dans les ports de manette.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/ExternalHostCallbacks.Input.cs` pour transmettre toutes les touches CPC exposées au cœur.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier l’inventaire et les affectations par défaut du clavier CPC.
+  - [x] 3.2 Vérifier et compléter les touches Amiga et Atari
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour exposer toutes les touches Amiga prises en charge et leurs affectations hôte par défaut.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour exposer toutes les touches propres à chaque clavier Atari pris en charge et leurs affectations hôte par défaut.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` et `Atari/AtariEmulatorAdapterTests.cs` pour vérifier les inventaires et affectations clavier.
 
-- [ ] 3. Adapter le socle commun
-  - [ ] Retirer chaque donnée Amiga copiée dans le module Amstrad.
-  - [ ] Implémenter configuration, résumé, réglages, entrées, médias et stockage CPC.
-  - [ ] Implémenter persistance, cycle de vie, états et libération des ressources.
+- [x] 4. Corriger l’affichage vidéo et les informations de réglage
+  - [x] 4.1 Respecter le ratio transmis par chaque émulateur
+    - [x] Modifier `src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs` pour utiliser le ratio d’image fourni par la trame et conserver un repli largeur/hauteur valide.
+    - [x] Modifier le test existant du présentateur vidéo dans `tests/GWGUI.Tests` pour vérifier un ratio fourni différent du rapport largeur/hauteur.
+  - [x] 4.2 Vérifier les aides de réglage Amstrad
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier que les aides de RAM, ROM intégrée, résolution, moniteur, intensité, rognage, latence et son de disquette sont présentes et traduisibles.
 
-- [ ] 4. Intégrer Caprice32
-  - [ ] Ajouter l’adaptateur et la traduction `cap32_model`/`cap32_ram`.
-  - [ ] Ajouter téléchargement, installation et résolution de `cap32_libretro.dll`.
-  - [ ] Ajouter l’hôte Libretro hors processus et ses callbacks.
-  - [ ] Ajouter la façade et la factory du module.
+- [x] 5. Vérifier versions, schéma et libération des ressources
+  - [x] 5.1 Conserver le schéma Amstrad non publié sans incrément artificiel
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationStoreConstants.cs` pour conserver `CurrentSchemaVersion` à `1`.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier que création et chargement restent au schéma `1` sans migration inventée.
+  - [x] 5.2 Vérifier la gestion des versions de cœur
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier que Caprice32 expose recherche, installation et choix de version par les mêmes contrats que PUAE et les émulateurs Atari.
+  - [x] 5.3 Garantir la libération complète
+    - [x] Modifier les fichiers de cycle de vie concernés sous `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/` pour placer toute fermeture, attente et libération manquante dans `finally`.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs` pour libérer le cœur, la sortie audio, le jeton d’arrêt et la session même si l’arrêt asynchrone échoue.
+    - [x] Modifier les tests de cycle de vie concernés sous `tests/GWGUI.Tests/Emulation/Amstrad/` pour toujours décharger cœur, processus, flux, DLL et fichiers temporaires dans `finally`.
 
-- [ ] 5. Raccorder le module
-  - [ ] Ajouter les ressources invariantes et traduites.
-  - [ ] Ajouter le projet à la solution et aux tests.
-  - [ ] Vérifier les six machines par tests ciblés.
-  - [ ] Réussir le build Debug complet et produire `build/Debug/GW GUI/gwgui.exe`.
+- [x] 6. Valider le résultat complet
+  - [x] 6.1 Exécuter les validations ciblées
+    - [x] Modifier uniquement les fichiers précédents en fonction des erreurs de compilation ou tests ciblés réellement causées par ces changements, sans élargir le périmètre.
+  - [x] 6.2 Produire le Debug complet demandé
+    - [x] Modifier cette feuille `docs/tasks/emulation/amstrad.md` pour cocher les validations ciblées après leur réussite.
+    - [x] Modifier cette feuille `docs/tasks/emulation/amstrad.md` pour enregistrer la réussite de `scripts\local-building.cmd --building=debug --modules=0`, puis de `--modules=A`, et la présence de `build/Debug/GW GUI/gwgui.exe`.
+
+- [x] 7. Corriger les défauts constatés pendant le test utilisateur
+  - [x] 7.1 Afficher les aides attendues dans tous les réglages Amstrad
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs` et `SettingsFunctions.Builders.cs` pour associer une aide courte et détaillée à chaque champ vidéo, audio, RAM et ROM affiché.
+    - [x] Modifier `src/GWGUI.App/Contracts/Views/Emulation/Settings/EmulationVideoSettingsField.cs`, `Functions/Views/Emulation/Settings/EmulationVideoSettingsLayout.cs` et `Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs` pour conserver et afficher les aides déjà fournies par les modules dans l’onglet Vidéo générique.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Resources/00-Base/Emulation.resx`, `en-US/Emulation.resx` et toutes les cultures Amstrad avec le script Argos existant pour fournir les aides manquantes.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier qu’aucun champ Amstrad affiché sans explication n’est laissé sans bouton d’information.
+  - [x] 7.2 Corriger le clavier CPC et préserver les raccourcis de GW GUI
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour ne présenter que les touches spéciales CPC à assigner, avec des touches hôte PC existantes et des libellés CPC corrects.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Functions/Caprice32OptionFunctions.cs` pour sélectionner automatiquement la disposition CPC française, espagnole ou anglaise depuis la langue de l’application, les autres langues utilisant l’anglais.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/ExternalHostCallbacks.Input.cs` pour ne jamais transmettre à Caprice32 les combinaisons réservées à GW GUI, notamment `Alt+Entrée`.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les touches spéciales, leurs affectations, les dispositions linguistiques et la réservation de `Alt+Entrée`.
+  - [x] 7.3 Corriger la souris Caprice32
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/ExternalHostCallbacks.Input.cs` et ses constantes pour transmettre les mouvements et boutons au périphérique réellement accepté par Caprice32 sans convertir les deltas en frappes ou en impulsions erratiques.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les mouvements positifs, négatifs et nuls ainsi que les boutons sans répétition parasite.
+  - [x] 7.4 Nettoyer le résumé de configuration
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/ConfigurationFunctions.cs` et `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs` pour retirer l’état audio du nom résumé ; vérifier que `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/ConfigurationFunctions.cs` ne l’ajoute déjà pas.
+    - [x] Modifier les trois fichiers `Common/Constants/ConfigurationSummaryFunctionsConstants.cs` d’Amiga, Atari et Amstrad pour retirer ensemble les clés audio devenues inutiles et conserver leur structure commune.
+    - [x] Modifier les tests de résumé dans `tests/GWGUI.Tests/Emulation/Amiga/`, `Amstrad/` et `Atari/` afin d’interdire les mentions audio dans les noms affichés.
+  - [x] 7.5 Uniformiser les dossiers des machines et préserver les profils vidéo actifs
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs` et `AmigaEmulationModuleFactory.cs` pour donner à chaque adaptateur son dossier `Core/<emulator-id>` et garantir le dossier `Firmware` de la famille Amiga lors du chargement réel du module.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` et `AmstradEmulationModuleFactory.cs` pour donner à chaque adaptateur son dossier `Core/<emulator-id>` et garantir le dossier `Firmware` Amstrad même s’il reste vide lors du chargement réel du module.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` et `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les sous-dossiers par émulateur et les dossiers `Firmware`.
+    - [x] Modifier `docs/tasks/emulation/amstrad.md` pour consigner que `616D696761`, `616D7374726164` et `6174617269` sont les identifiants actifs `amiga`, `amstrad` et `atari` encodés par `VideoPresentationProfileStore`, et qu’aucun de ces profils ne doit être supprimé : ces trois dossiers contiennent respectivement les profils actifs des modules `amiga`, `amstrad` et `atari`.
+  - [x] 7.6 Exposer les versions de cœur installables et la version recommandée
+    - [x] Modifier `docs/project/amstrad-emulation.md` pour consigner que `IEmulationEmulatorManager` distingue déjà versions disponibles, version installée et version de référence, et que le serveur Libretro ne publie actuellement qu’une archive individuelle `latest` pour Caprice32.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/CoreReleaseService.cs` et `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour supprimer les faux identifiants fixes inutilisés et vérifier que l’unique version officielle Caprice32 exposée porte le marquage de référence fonctionnelle de GW GUI.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationCoreManagementPanel.cs` et `Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` pour présenter les versions fournies par l’interface générique, marquer la version installée et la référence, puis installer uniquement la version sélectionnée, sans logique propre à Caprice32 dans l’App.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulatorManagerTests.cs`, `Emulation/Amstrad/AmstradEmulatorAdapterTests.cs`, `Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` et `SettingsViewsTests.cs` pour vérifier liste, installation, sélection et marquage de la version recommandée.
+  - [x] 7.7 Généraliser les aides et les claviers propres aux machines
+    - [x] Créer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs`, y déplacer la table statique d’aides, puis modifier `Machines/Common/Functions/SettingsFunctions.cs` pour uniquement consommer ce dictionnaire.
+    - [x] Modifier les fichiers C# actuellement changés sous `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation.Atari/` et `src/GWGUI.Emulation.Amstrad/` afin de déplacer hors des fichiers `Functions` toute constante, liste, table ou catalogue ajouté au mauvais propriétaire, sans déplacer la logique exécutable.
+    - [x] Créer les constantes de légendes clavier propres à `CpcClassic` et `CpcPlus` sous leurs dossiers `Constants`, créer leurs correspondances `EmulationKey` sous leurs dossiers `Dictionaries`, puis modifier `InputFunctions.Visuals.cs` pour supprimer `CpcKeyLabel` et tout texte brut de légende.
+    - [x] Modifier les nouveaux fichiers clavier Amiga et Atari afin que leurs listes immuables restent dans `Constants`, que leurs correspondances clé/affectation ou clé/libellé résident dans `Dictionaries`, et que les fonctions ne contiennent que la sélection et la transformation.
+    - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationStorageConfigurationKind.cs` après audit des dialogues existants afin de représenter explicitement disquette, disque dur, cassette et cartouche ; conserver `ConfigurationKind.None` sur tout périphérique sans réglage matériel ni boîte dédiée afin de ne jamais afficher un faux bouton `Configurer`.
+    - [x] Supprimer `src/GWGUI.Emulation/Constants/EmulationKeyboardKeys.cs` après suppression de ses éventuels consommateurs, puisque l’inventaire générique des touches PC contredit les catalogues de touches spéciales possédés par chaque famille de machines.
+    - [x] Créer `InputSnapshotDictionary.cs` sous les dossiers `Dictionaries` communs d’Amiga, Atari et Amstrad, y déplacer les tables statiques de boutons et d’affectations souris, puis modifier chaque `InputFunctions.Snapshot.cs` pour uniquement les consommer.
+    - [x] Modifier les constructeurs de champs et dispositions génériques sous `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/` et `Functions/Views/Emulation/Settings/` uniquement là où une aide fournie par un module est encore perdue dans un onglet autre que Vidéo.
+    - [x] Modifier les descriptions de réglages sous `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/`, `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/` et `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/` pour que chaque champ affiché de chaque onglet fournisse une aide courte et détaillée localisée.
+    - [x] Créer les constantes de clavier sous `src/GWGUI.Emulation.Amiga/Common/Machines/AmigaComputers/Constants/` et `AmigaCDTV/Constants/`, déclarer explicitement l’absence de clavier du CD32 dans son modèle, puis modifier `Machines/Common/Functions/InputFunctions.Settings.cs`, `InputFunctions.Visuals.cs` et la visibilité des onglets pour n’exposer que les touches propres à la machine sélectionnée et leur affectation PC par défaut.
+    - [x] Déplacer les constantes de clavier Atari depuis `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/InputSettingsConstants.cs` vers `Machines/AtariST/Constants/` et `Machines/Atari8Bit/Constants/`, puis modifier `Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour choisir celles de la famille sélectionnée ; les consoles sans clavier ne déclarent aucune touche.
+    - [x] Créer les constantes de clavier sous `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcClassic/Constants/` et `CpcPlus/Constants/`, puis modifier `Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` afin que les CPC exposent leurs touches spéciales et que GX4000 n’expose aucun clavier.
+    - [x] Modifier les tests sous `tests/GWGUI.Tests/Emulation/Amiga/`, `Amstrad/`, `Atari/` et `Interface/SettingsViews/` pour vérifier toutes les aides affichées et les touches propres à chaque famille sans lettres ni chiffres PC ordinaires.
+    - [x] Modifier `docs/project/amstrad-emulation.md` pour distinguer le pointeur de l’interface virtuelle Caprice32 des souris matérielles CPC et consigner la séparation entre configuration machine et profil vidéo appartenant à GW GUI.
+  - [x] 7.8 Valider et produire le Debug complet
+    - [x] Modifier uniquement les fichiers précédents en fonction des erreurs réellement causées par ces changements, puis faire réussir les tests ciblés sans laisser de cœur, processus, fenêtre ou ressource graphique chargé.
+    - [x] Modifier cette feuille après la réussite de `scripts\local-building.cmd --building=debug --modules=0`, puis de `--modules=A`, et la vérification de `build/Debug/GW GUI/gwgui.exe`.
+
+- [x] 8. Corriger le libellé Gamma brut dans les paramètres vidéo
+  - [x] 8.1 Réutiliser la traduction commune existante
+    - [x] Modifier `src/GWGUI.VideoPresentation/Dictionaries/VideoProcessingCatalog/EmulationVideoProcessingCatalog.Mappings.cs` pour associer le paramètre Gamma à `Emulation.Video.Gamma` au lieu de la clé inexistante `Emulation.Video.Parameter.Gamma`.
+    - [x] Modifier les tests vidéo sous `tests/GWGUI.Tests/Emulation/Video/` pour vérifier la clé Gamma et la résolution française de tous les libellés de paramètres vidéo.
+
+- [x] 9. Corriger la fenêtre vide des paramètres Amiga
+  - [x] 9.1 Reproduire la construction avec le vrai module Amiga
+    - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` pour construire la fenêtre avec `AmigaEmulationModule`, vérifier son arbre visuel après chargement et libérer la fenêtre, la section, le client HTTP et les dossiers temporaires dans `finally`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/SettingsViewsTests.cs` pour exécuter le scénario de régression Amiga.
+  - [x] 9.2 Isoler l'influence des données Amiga actuelles
+    - [x] Créer temporairement `tests/GWGUI.Tests/Interface/SettingsViews/AmigaLiveSettingsDiagnosticTests.cs` pour construire en lecture seule la fenêtre depuis les chemins Amiga actuels et garantir sa fermeture dans `finally`.
+    - [x] Supprimer `tests/GWGUI.Tests/Interface/SettingsViews/AmigaLiveSettingsDiagnosticTests.cs` et vérifier l'absence d'artefact temporaire après le diagnostic.
+  - [x] 9.3 Reproduire le blocage modal du menu principal
+    - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` pour ouvrir la fenêtre Amiga avec un propriétaire et `ShowDialog()`, vérifier son premier rendu, puis fermer et libérer les deux fenêtres dans `finally`.
+  - [x] 9.4 Produire un exécutable propre après destruction du processus bloqué
+    - [x] Modifier `docs/tasks/emulation/amstrad.md` après réussite de `scripts\local-building.cmd --building=debug --modules=A` et vérification de `build/Debug/GW GUI/gwgui.exe`, sans laisser GW GUI chargé.
+
+- [x] 10. Faire détecter les changements de disquette par l'Amiga émulé
+  - [x] 10.1 Séparer l'éjection et la réinsertion dans PUAE
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Constants/MediaConstants.cs` pour définir le délai matériel de changement de disquette observé par la machine émulée.
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Lifecycle.cs` pour éjecter la disquette courante, laisser PUAE exécuter des trames lecteur vide, puis remplacer et réinsérer la nouvelle image.
+  - [x] 10.2 Vérifier l'ordre du changement et la libération du runtime
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs` pour enregistrer éjection, trames intermédiaires et insertion, puis toujours arrêter et libérer la machine dans `finally`.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdaptersTests.cs` pour exécuter le scénario de changement de disquette Amiga.
+
+- [x] 11. Afficher les erreurs d'émulation dans la console intégrée
+  - [x] 11.1 Relayer les erreurs présentées à l'utilisateur vers la console commune
+    - [x] Modifier `src/GWGUI.App/Services/Logging/ErrorLog.cs` pour publier une seule fois l'entrée complète déjà écrite dans le journal d'erreurs.
+    - [x] Modifier `src/GWGUI.App/Presenters/Common/ControlErrorPresenter.cs` pour journaliser l'exception d'émulation complète avec le nom de la machine, sans retirer la boîte de dialogue existante.
+    - [x] Modifier `src/GWGUI.App/Services/Terminal/TerminalPanelController.cs` et `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` pour afficher l'entrée publiée dans la console intégrée et détacher l'abonnement à la fermeture.
+  - [x] 11.2 Vérifier l'affichage unique et la libération de l'abonnement
+    - [x] Modifier les scénarios et entrées de tests existants sous `tests/GWGUI.Tests/Interface/` pour vérifier le détail visible, l'absence de duplication et le détachement, puis supprimer dans `finally` tout journal temporaire créé.
+
+- [x] 12. Produire le Debug complet après les corrections Amiga et console
+  - [x] 12.1 Valider et assembler tous les modules
+    - [x] Modifier `docs/tasks/emulation/amstrad.md` après la réussite des six tests ciblés de changement de disquette, de gestion des échecs et de console, puis la réussite de `scripts\local-building.cmd --building=debug --modules=A` avec `gwgui.exe` et les modules Amiga, Amstrad et Atari présents sous `build/Debug/GW GUI/`.

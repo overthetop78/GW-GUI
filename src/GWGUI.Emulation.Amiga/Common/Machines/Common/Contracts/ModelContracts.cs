@@ -17,7 +17,8 @@ public sealed record Model(
     int MouseButtonCount = 2,
     bool SupportsCd32Controller = false,
     int ControllerPortCount = 2,
-    bool HasBuiltInFloppyDrive = true)
+    bool HasBuiltInFloppyDrive = true,
+    bool HasKeyboard = true)
 {
     public string DefaultCpu => CpuModels[0];
 }

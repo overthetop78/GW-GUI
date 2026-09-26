@@ -267,19 +267,28 @@ internal sealed class ExternalCore : IEmulatorCore
         try { Stop(); }
         finally
         {
-            if (_initialized) _deinitialize?.Invoke();
-            _initialized = false;
-            _deinitialize = null;
-            _unloadGame = null;
-            _run = null;
-            _reset = null;
-            _getSerializedSize = null;
-            _serialize = null;
-            _unserialize = null;
-            _host?.Dispose();
-            _host = null;
-            _library?.Dispose();
-            _library = null;
+            try
+            {
+                if (_initialized) _deinitialize?.Invoke();
+            }
+            finally
+            {
+                _initialized = false;
+                _deinitialize = null;
+                _unloadGame = null;
+                _run = null;
+                _reset = null;
+                _getSerializedSize = null;
+                _serialize = null;
+                _unserialize = null;
+                try { _host?.Dispose(); }
+                finally
+                {
+                    _host = null;
+                    try { _library?.Dispose(); }
+                    finally { _library = null; }
+                }
+            }
         }
     }
 }

@@ -157,8 +157,9 @@ private static IReadOnlyList<string>? CompatibleVisualIds(
         _ => key.ToString()
     };
 
-    private static string DefaultKey(EmulationKey key) =>
-        InputSettingsConstants.DefaultKeys.TryGetValue(key, out var defaultKey)
+    private static string DefaultKey(EmulationKey key,
+        IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) =>
+        defaults.TryGetValue(key, out var defaultKey)
             ? defaultKey.ToString()
             : key.ToString();
 

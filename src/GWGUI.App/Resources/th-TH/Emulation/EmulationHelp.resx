@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>ตั้งค่า GTIA ช่วงของสีที่จะใช้ทําซ้ําสี ค่าปริยาย ใช้ค่ามาตรฐาน ค่าตัวเลือกเปลี่ยนความเข้มสี</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>ตั้งค่าการข้ามเฟรมภาพ</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>ตั้งค่าจํานวนเฟรมการแสดงผลที่ถูกละทิ้ง ปิดการใช้งาน จะวาดทุกเฟรม ค่าที่สูงกว่าลดการทํางานการแสดงผล แต่ทําให้การเคลื่อนไหวราบรื่นน้อยลง</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>เลือกตัวประมวลผลที่คัดลอก</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>เลือกรุ่นของตัวประมวลผลที่ติดตั้งไว้ในเครื่องจําลองเสียง รุ่นที่มีอยู่จะขึ้นอยู่กับเครื่องและเครื่องจําลอง</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>ใช้ความเร็วตัวประมวลผลดั้งเดิม</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>ประมวลผลตัวประมวลผลตามเวลาของเครื่องเดิม แทนที่จะใช้ความถี่ที่เร่งหรือปรับเอง</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>ตั้งค่าขนาดหน่วยความจําหลัก</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>เลือกปริมาณของหน่วยความจําหลักที่ติดตั้งไว้ในเครื่องจําลองขนาด ที่ใช้จํากัดให้เป็นแบบปรับแต่งที่เครื่องนั้นรองรับ</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>เลือกโปรแกรมรักษาความคงตัวของระบบ</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>เลือกระบบ ROM ใช้สําหรับการเริ่มเครื่องจําลองข้อมูล โปรแกรมคอมไพล์จะต้องตรงกับรุ่นและการปรับแต่งภูมิภาคที่เลือก</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>เลือก BASIC ^ติดตั้ง</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>เลือก BASIC ROM สามารถใช้ได้กับเครื่องจําลอง เมื่อเครื่องนั้นถูกรองรับโดยรุ่นที่เลือกไว้</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>เลือก XEGS ^ติดตั้ง</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>เลือกเครื่องคอมไพล์ที่ใช้โดย Atari XEGS โพรไฟล์ ใช้เครื่องคอมไพล์ที่เข้ากันได้กับขอบเขตเครื่องที่เลือกไว้</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>แสดงกิจกรรมจัดเก็บข้อมูล</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>แสดงกิจกรรมต่าง ๆ ที่ถูกรายงานโดยอุปกรณ์จัดเก็บสื่อแบบย่อ ขณะที่สื่อกําลังใช้งานอยู่</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>เลือกโฟลเดอร์ฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>เลือกโฟลเดอร์โฮสต์ที่เปิดรับข้อมูลโปรแกรมจําลองเป็นที่เก็บข้อมูลแบบลินุกซ์ เมื่อรองรับการจัดเก็บโฟลเดอร์แบบสํารองข้อมูล</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>แสดงความเร็วการจัดเก็บ</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>แสดงความเร็วการรับโอนปัจจุบันที่ถูกรายงานโดยอุปกรณ์จัดเก็บข้อมูลแบบย่อ</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>แสดงส่วนปัจจุบัน</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>แสดงส่วนต่าง ๆ ที่ใช้ใช้งานอยู่ในปัจจุบันโดยอุปกรณ์จัดเก็บข้อมูลแบบย่อ</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>เลือกความละเอียดที่คัดลอก</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>เลือกความละเอียดวิดีโอภายในที่ถูกสร้างโดยตัวจําลองก่อน GW GUI ปรับความเข้มสีของภาพให้พอดีกับหน้าต่าง</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>ตัด แต่ง จาก พรม แดน ที่ ถูก ตัด ออก</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>ลบกรอบที่สร้างโดยผลลัพธ์วิดีโอแบบย่อ ขณะรักษาสัดส่วนภาพที่ใช้โดย GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>ปรับความเข้มสีของภาพ</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>เลื่อนสีจากอุปกรณ์วิดีโอแบบย่อ</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>ปรับความอิ่มตัวของสี</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>เปลี่ยนความเข้มสีที่สร้างจากฮาร์ดแวร์วิดีโอแบบเลียนแบบ</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>ปรับความเปรียบต่างของภาพ</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>เปลี่ยนความแตกต่างระหว่างสีมืดกับสว่าง ในการแสดงผลวิดีโอแบบย่อ</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>ปรับความสว่างของภาพ</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>เปลี่ยนความสว่างโดยรวมของการแสดงผลวิดีโอแบบเลียนแบบ</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>เปิดใช้การบันทึกเสียงที่คัดลอก</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>เปิดใช้งานหรือปิดการใช้งานเสียงที่ผลิตจากเครื่องจําลองเสียง</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>เลือกการแสดงผลเสียง</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>เลือกอุปกรณ์เสียงเครื่องโฮสต์ที่ใช้ในการเล่นเสียงจากเครื่องจําลองเสียง</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>ตั้งค่าระดับเสียงเสียงที่เลียนแบบ</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>ตั้งค่าระดับเสียงการเล่นของเสียงที่ผลิตโดยเครื่องเลียนแบบ</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>เปิดใช้การเสียงไดรฟ์ของแผ่นฟลอปปี้</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>เปิด ช่อง ให้ กับ อุปกรณ์ ที่ ทํา ให้ เกิด กิจกรรม ต่าง ๆ จาก ไดรฟ์ ฟลอปปี แบบ จําลอง.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>ตั้งค่าระดับเสียงเสียงฟลอปปี้ไดรฟ์</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>ตั้งค่าระดับเสียงการเล่นของเสียงที่เพิ่มมาของฟลอปปี้ไดรฟ์</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>ตั้งค่า CD ระดับเสียงเสียง</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>ตั้งค่าระดับเสียงการเล่นของร่องเสียงที่อ่านจากไดรฟ์คอมเพล็ตที่ย่อหาย</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>ตั้งค่าความเร็วการเคลื่อนเมาส์</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>ปรับวิธีที่การเคลื่อนไหวของเมาส์ในเครื่องถูกแปลงมาเป็นการเคลื่อนไหวที่รายงานไปยังเครื่องจําลอง</value></data>
 </root>

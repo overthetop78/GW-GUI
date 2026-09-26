@@ -10,6 +10,8 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
     public Task ConfigurationDraftSaveAndRetry(bool failure) => sta.RunAsync(() => MachineConfigurationScenarios.ConfigurationEditing(failure));
     [Theory] [InlineData(false)] [InlineData(true)]
     public Task CommandsRespectPowerStateAndReportErrors(bool failure) => sta.Run(() => EmulationInteractionScenarios.Commands(failure));
+    [Fact] public Task EmulationErrorsAppearOnceInConsoleAndDetachCleanly() =>
+        sta.Run(EmulationInteractionScenarios.ErrorLogAppearsOnceInConsoleAndDetaches);
     [Fact] public void CassetteCommandsReflectCapabilitiesAndTransportState() =>
         CassetteTransportPresentationScenarios.CommandsReflectCapabilitiesAndTransportState();
     [Fact] public Task CassettePanelShowsEveryCommandBelowTheDevice() =>

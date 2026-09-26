@@ -58,7 +58,7 @@
   <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Seçilen makine tarafından desteklenen ek genişleme hafıza miktarını ayarlar. Sadece yapılandırılmış ana hafızayı kullanmak için hiçbir şey seçin.</value></data>
   <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Set Set Set Set Fast RAM Boyut büyüklüğü</value></data>
   <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>Setlerin miktarı Fast RAM Doğrudan mevcut CPU. Ek Fast RAM Uyumlu yazılımlara yardımcı olabilir, ancak emilen donanım yapılandırmasını değiştirebilir.</value></data>
-  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Enable MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Enable MapRAM</value></data>
   <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>Uygun yazılımları haritalanabilir RAM Sisteme gir ROM adres alanı. Bu seçenek yalnızca makine modellerinde destekleniyor MapRAM.</value></data>
   <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Set Set Set Set Zorro III RAM Boyut büyüklüğü</value></data>
   <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>32-bit miktarı ayarlar Fast RAM Bağlanma yoluyla bağlantılı Zorro III Otobüs. Sadece 32-bit makine ve yazılım ile kullanın.</value></data>
@@ -72,7 +72,7 @@
   <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>Orta bilgisayarları seçin ROM Bazı makine modelleri tarafından gerekli. Seçilmiş model genişletilmiş bir kullanımdığında bu alanı boş bırakın ROM.</value></data>
   <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Enable hızlandırılabilir hızlandırılabilir SIO transfer transferleri transfer transfer transferleri transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transferleri transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer transfer</value></data>
   <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>Hızlılar seri giriş / otobüs aracılığıyla uyumlu transferler. Yazılım orijinal transfer zamanlamasına bağlı olduğunda bu seçeneği ayırt edin.</value></data>
-  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Enable cassette startup</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Enable cassette startup</value></data>
   <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Soyulmuş makine, eklenmiş kalibre görüntüden başlamaya çalışır. Başka bir cihazdan başlayarak bu seçeneği ayırt edin.</value></data>
   <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Enable the Enable the R-Time 8 Saat Saat Saat Saat Saat Saat</value></data>
   <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>Emulates an R-Time 8 Gerçek zamanlı saat bu kadar uyumlu yazılım mevcut tarihi ve zamanı okuyabilirsiniz.</value></data>
@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Setleri ayarlar GTIA Renk aşaması gecikme renkleri yeniden üretmek için kullanılır. Varsayılan olarak standart değeri kullanır. Numeric seçimler sonucu hues değiştiriyor.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Set çerçeve atping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Birçok görüntü çerçevelerinin nasıl kurtarıldığını ayarlar. Engelli her çerçeveyi çizer. Daha yüksek değerler işleme çalışmasını azaltır, ancak daha az düzgün hareket eder.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Emated işlemciyi seçin</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Emated makinede kurulan işlemci modelini seçin.Mevcut modeller seçilmiş makine ve emülatöre bağlıdır.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Orijinal işlemci hızını kullanın</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Hızlandırılmış veya özel frekansı uygulamak yerine orijinal makinenin zamanında işlemciyi çalıştırın.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Ana hafıza boyutunu ayarlayın</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Emated makinede yüklenen ana bellek miktarını seçin. Mevcut boyutlardaki boyutlar, bu makine tarafından desteklenen konfigürasyonlarla sınırlıdır.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Sistem Donanımı seçin</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Sistem seçin ROM Emated makineye başlamak için kullanılır.The Hardware, seçilmiş model ve bölgesel konfigürasyonu eşleştirmelidir.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Seçin BASIC Donanım Donanımı</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Seçin BASIC ROM Bu Donanımın seçilen model tarafından desteklenmediği amfili makineye mevcut.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Seçin XEGS Donanım Donanımı</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Atari tarafından kullanılan bilgisayarları seçin XEGS Profil. Seçilmiş makine bölgesi ile uyumlu bir şekilde bilgisayar kullanın.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Show storage activity</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Medyaya erişim olduğunda emilen depolama cihazı tarafından bildirilen aktivite.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Sert-disk klasörü seçin</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Dosya geri yükleme desteklenmekte olduğu zaman, emülatöre maruz kalan ev klasörünü seçin.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Show depolama hızı</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Emated depolama cihazı tarafından bildirilen mevcut transfer hızını gösterir.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Mevcut sektöre göster</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Sektör şu anda emated depolama cihazı tarafından erişilir.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Ölmüş karar seçimi seçin</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Daha önce yapılan tüm ekranları seçin. GW GUI Pencere için görüntü ölçekler.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Eklenen sınırları ekin</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Ölmüş video çıktısı tarafından üretilen sınırları kaldırır, görüntü boyutunu korurken kullanılır GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Videoyu ayarlayın</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Emated video donanımı tarafından üretilen renklerden oluşan geçişler.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Taze renk saturation</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Emated video donanımı tarafından üretilen renklerin yoğunluğunu değiştirir.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>İnirasyon kontrastı</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Anlanmış video çıktısındaki karanlık ve parlak renkler arasındaki farkı değiştirir.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Adapt image Anlamlı Görüntü</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Emated video çıktısının genel parlaklıkunu değiştirir.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Enable emated audio</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Enables veya düğümler, emated makine tarafından üretilen ses.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Ses çıktısını seçin</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Emated makineden ses çıkarmak için kullanılan ev sahibi ses cihazı seçin.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Örtülmüş ses hacmini ayarlayın</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Emated makine tarafından üretilen sesin geri kalanını ayarlar.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Enable floppy-drive sesler</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Enables mekanik, emated floppy sürücüsünden aktiviteyi yeniden üretmiş gibi geliyor.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Set floppy-drive ses hacmi</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Emated floppy-drive mekanik seslerin geri dönüş hacmini ayarlar.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set Set CD Ses hacimleri</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Ses parçalarının geri dönüşü, emated kompakt-disc sürücüsünden okunuyor.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Set fare hareket hızı hız hızı</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ev sahibi fare hareketini taklit makineye bildirilen harekete nasıl dönüştürülür.</value></data>
 </root>

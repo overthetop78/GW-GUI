@@ -101,7 +101,21 @@ public partial class MainWindow : Window
     private void Window_Closing(object? sender, CancelEventArgs e)
     {
         _lifecycle.Closing(e);
-        if (!e.Cancel) _scpInspectorController.Dispose();
+        if (!e.Cancel)
+        {
+            ErrorLog.EntryWritten -= AppendErrorToConsole;
+            _scpInspectorController.Dispose();
+        }
+    }
+
+    private void AppendErrorToConsole(string entry)
+    {
+        if (!Dispatcher.CheckAccess())
+        {
+            _ = Dispatcher.InvokeAsync(() => AppendErrorToConsole(entry));
+            return;
+        }
+        _terminalPanel.AppendError(entry);
     }
 
     private void RefreshReadProfiles(string? selectedId = null)

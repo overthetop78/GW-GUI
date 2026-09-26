@@ -1,15 +1,11 @@
 using System.Globalization;
 using System.Security.Cryptography;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Atari.Modules;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class ConfigurationSummaryFunctions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
-
     internal static EmulationConfigurationSummary Create(MachineConfiguration configuration)
     {
         var model = MachineCatalog.All.First(item => item.Id == configuration.MachineId);
@@ -29,9 +25,6 @@ internal static class ConfigurationSummaryFunctions
             details.Add(string.Join(MachineConfigurationConstants.FirmwareSeparator,
                 configuration.Firmwares.Select(Firmware)));
         details.Add($"Core {configuration.Core}");
-        details.Add(Text(configuration.AudioEnabled
-            ? ConfigurationSummaryFunctionsConstants.AudioEnabledResourceKey
-            : ConfigurationSummaryFunctionsConstants.AudioDisabledResourceKey));
         return new EmulationConfigurationSummary(model.DisplayResourceKey, details);
     }
 
@@ -83,8 +76,4 @@ internal static class ConfigurationSummaryFunctions
         ? $"{bytes / 1024d:0.#} KiB"
         : $"{bytes / 1024d / 1024d:0.##} MiB";
 
-    private static string Text(string resourceKey) =>
-        Localization.TryGetString(resourceKey, CultureInfo.CurrentUICulture, out var value)
-            ? value
-            : resourceKey;
 }

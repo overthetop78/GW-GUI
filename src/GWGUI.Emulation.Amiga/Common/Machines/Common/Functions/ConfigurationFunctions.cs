@@ -1,6 +1,4 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Amiga.Modules;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Text;
 
@@ -8,9 +6,6 @@ namespace GWGUI.Emulation.Amiga.Common.Machines.Common.Functions;
 
 internal static partial class ConfigurationSummaryFunctions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(AmigaEmulationModule).Assembly, "GWGUI.Emulation.Amiga.Resources.Emulation");
-
     internal static EmulationConfigurationSummary Create(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
@@ -54,9 +49,6 @@ internal static partial class ConfigurationSummaryFunctions
         if (devices.Count > 0)
             details.Add(string.Join(MachineConfigurationConstants.DeviceSeparator, devices));
 
-        details.Add(Text(configuration.AudioEnabled
-            ? ConfigurationSummaryFunctionsConstants.AudioEnabledResourceKey
-            : ConfigurationSummaryFunctionsConstants.AudioDisabledResourceKey));
         var displayResourceKey = MachineCatalog.All.First(item => item.Id == configuration.Model)
             .DisplayResourceKey;
         return new EmulationConfigurationSummary(displayResourceKey, details);
@@ -116,11 +108,6 @@ internal static partial class ConfigurationSummaryFunctions
         ? $"{bytes / 1024d:0.#} KiB"
         : $"{bytes / 1024d / 1024d:0.##} MiB";
 
-    private static string Text(string resourceKey) =>
-        Localization.TryGetString(resourceKey, CultureInfo.CurrentUICulture, out var value)
-            ? value
-            : resourceKey;
-
     [GeneratedRegex(FirmwareCatalogConstants.SummaryFirmwareVersionPattern, RegexOptions.IgnoreCase)]
     private static partial Regex FirmwareVersionPattern();
 }
@@ -129,7 +116,7 @@ internal static class ConfigurationValidationFunctions
 {
     internal static void ValidateForSave(MachineConfiguration configuration)
     {
-        ValidateFile(configuration.KickstartPath, true);
+        ValidateFile(configuration.KickstartPath, false);
         ValidateFile(configuration.ExtendedRomPath, false);
 
         var requiresRomKey = IsEncryptedKickstart(configuration.KickstartPath);

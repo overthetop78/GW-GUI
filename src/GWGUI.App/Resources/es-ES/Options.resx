@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Options.Title" xml:space="preserve"><value>Opciones</value></data>
-  <data name="Options.General" xml:space="preserve"><value>General</value></data>
+  <data name="Options.General"><value>General</value></data>
   <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Herramientas</value></data>
   <data name="Options.Hardware" xml:space="preserve"><value>Controladores y unidades</value></data>
   <data name="Options.Profiles" xml:space="preserve"><value>Perfiles</value></data>

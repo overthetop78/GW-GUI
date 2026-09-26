@@ -4,15 +4,6 @@ namespace GWGUI.Emulation.Amiga.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    private static readonly IReadOnlyDictionary<string, int> ButtonIndexes =
-        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
-        {
-            [InputSnapshotFunctionsConstants.B] = 0, [InputSnapshotFunctionsConstants.Y] = 1, [InputSnapshotFunctionsConstants.Select] = 2, [InputSnapshotFunctionsConstants.Start] = 3,
-            [InputSnapshotFunctionsConstants.Up] = 4, [InputSnapshotFunctionsConstants.Down] = 5, [InputSnapshotFunctionsConstants.Left] = 6, [InputSnapshotFunctionsConstants.Right] = 7,
-            [InputSnapshotFunctionsConstants.A] = 8, [InputSnapshotFunctionsConstants.X] = 9, [InputSnapshotFunctionsConstants.L] = 10, [InputSnapshotFunctionsConstants.R] = 11,
-            [InputSnapshotFunctionsConstants.L2] = 12, [InputSnapshotFunctionsConstants.R2] = 13, [InputSnapshotFunctionsConstants.L3] = 14, [InputSnapshotFunctionsConstants.R3] = 15
-        };
-
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
         InputConfiguration? configuration, bool controllerPointerSwitchPressed)
     {
@@ -37,12 +28,7 @@ internal static class InputSnapshotFunctions
         IReadOnlyDictionary<string, bool> physicalMouse,
         IReadOnlyDictionary<string, MouseAction>? mappings)
     {
-        mappings ??= new Dictionary<string, MouseAction>(StringComparer.OrdinalIgnoreCase)
-        {
-            [InputSnapshotFunctionsConstants.MouseLeft] = MouseAction.LeftButton,
-            [InputSnapshotFunctionsConstants.MouseRight] = MouseAction.RightButton,
-            [InputSnapshotFunctionsConstants.MouseMiddle] = MouseAction.MiddleButton
-        };
+        mappings ??= InputSnapshotDictionary.DefaultMouseMappings;
         var fallbackController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;
         return pointer with
         {
@@ -81,8 +67,8 @@ internal static class InputSnapshotFunctions
             uint buttons = 0;
             foreach (var mapping in binding.ButtonMappings)
             {
-                var targetInKey = ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
-                var target = targetInKey ? keyTarget : ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
+                var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
+                var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
                 var sourceName = targetInKey ? mapping.Value : mapping.Key;
                 if (target >= 0 && IsSourcePressed(sourceName, source, keys, physicalMouse))
                     buttons |= 1u << target;
@@ -117,7 +103,7 @@ internal static class InputSnapshotFunctions
             return EmulationInputMappingFunctions.IsControllerSourcePressed(
                 controllerSource, controller, value);
         }
-        if (ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))
+        if (InputSnapshotDictionary.ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))
             return (controller.Buttons & (1u << legacyIndex)) != 0;
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)
             && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key)) return keys.Contains(key);

@@ -1,3 +1,9 @@
+using ClassicKeyboard = GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.KeyboardConstants;
+using ClassicKeyboardDictionary = GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Dictionaries.KeyboardDictionary;
+using ClassicModelConstants = GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants;
+using PlusKeyboard = GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants.KeyboardConstants;
+using PlusKeyboardDictionary = GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Dictionaries.KeyboardDictionary;
+
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
@@ -7,7 +13,7 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(
-            KeyboardDefinitions(), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
+            KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
             EmulationInputSource.Keyboard) : null;
         var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(
             MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
@@ -57,9 +63,15 @@ internal static partial class InputSettingsFunctions
         };
     }
 
-    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions() =>
-        Enumerable.Range(1, 10).Select(index => $"F{index}")
-            .Select(key => Definition(key, key, key)).ToArray();
+    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(Model model)
+    {
+        var classic = model.Id is ClassicModelConstants.Cpc464 or ClassicModelConstants.Cpc664
+            or ClassicModelConstants.Cpc6128;
+        var keys = classic ? ClassicKeyboard.SpecialKeys : PlusKeyboard.SpecialKeys;
+        var labels = classic ? ClassicKeyboardDictionary.Labels : PlusKeyboardDictionary.Labels;
+        return keys.Select(key => Definition(key.ToString(), key.ToString(), key.ToString(),
+            labels[key])).ToArray();
+    }
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
     [
@@ -77,7 +89,7 @@ internal static partial class InputSettingsFunctions
             .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type) =>
-        type is ControllerType.None or ControllerType.Keyboard ? [] :
+        type is ControllerType.None ? [] :
         [
             Definition(InputSettingsFunctionsConstants.Up,
                 InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -94,8 +106,8 @@ internal static partial class InputSettingsFunctions
         ];
 
     private static InputBindingDefinition Definition(string id, string resourceKey,
-        string defaultBinding) => new(id, resourceKey, defaultBinding,
-            resourceKey.Contains('.') ? null : resourceKey);
+        string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding,
+            invariant ?? (resourceKey.Contains('.') ? null : resourceKey));
 
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),

@@ -35,4 +35,3 @@ internal static class InputSnapshotFunctionsConstants
     internal const string Keyboard = "Keyboard:";
     internal const string Mouse = "Mouse:";
 }
-

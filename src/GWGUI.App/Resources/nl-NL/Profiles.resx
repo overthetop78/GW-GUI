@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Profiles.ByOperation" xml:space="preserve"><value>Profielen per bewerking</value></data>
-  <data name="Profiles.Tab" xml:space="preserve"><value>Tab</value></data>
+  <data name="Profiles.Tab"><value>Tab</value></data>
   <data name="Profiles.Name" xml:space="preserve"><value>Naam</value></data>
   <data name="Profiles.System" xml:space="preserve"><value>Systeem</value></data>
   <data name="Profiles.Rename" xml:space="preserve"><value>Naam wijzigen…</value></data>
