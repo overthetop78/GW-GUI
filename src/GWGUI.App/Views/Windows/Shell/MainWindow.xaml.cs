@@ -264,8 +264,8 @@ public partial class MainWindow : Window
             this, ConvertTabBlock, _viewModel, _profileController, _conversionFormatPresenter,
             () => _formatCatalog, () => _formatDetector, () => _settings, _commandBuilder, _runner,
             _mediaEngine.ReadingService, _mediaEngine.ConversionService, _mediaEngine.SequentialConversionService,
-            _fileDialogs, _businessDialogs, _dialogs, _diskDefinitionsController, _operation, _consoleLog,
-            _diskImageWorkspace, ReadFolder, CommandPreview, LogOutput, () => MainTabs?.SelectedIndex ?? -1,
+            _diskImageWorkspace.SelectConversionImage, _businessDialogs, _dialogs, _diskDefinitionsController, _operation, _consoleLog,
+            _diskImageWorkspace, CommandPreview, LogOutput, () => MainTabs?.SelectedIndex ?? -1,
             index => MainTabs.SelectedIndex = index, path => _diskImageWorkspace.LoadAsync(path),
             ConfirmAndRequestStop, AppendAnalysisFailure, UpdateProfileStatus, Dispatcher);
         _explorerRead = new ExplorerReadController(

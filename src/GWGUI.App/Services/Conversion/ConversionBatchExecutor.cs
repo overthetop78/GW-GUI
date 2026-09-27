@@ -50,6 +50,9 @@ public sealed class ConversionBatchExecutor(
     {
         var completed = new List<GwBatchItemResult>(items.Count);
         MediaImageDocument? sourceDocument = null;
+        Action<MediaExplorationProgress>? conversionProgress = progress is null
+            ? null
+            : item => Report(progress, GwOutputStream.Standard, item.Detail);
         foreach (var (output, command) in items)
         {
             if (cancellationToken.IsCancellationRequested) break;
@@ -95,12 +98,17 @@ public sealed class ConversionBatchExecutor(
                         output.OutputPath,
                         output.FormatId,
                         acceptLosses: acceptSequentialLosses,
+                        progress: conversionProgress,
                         cancellationToken: cancellationToken).ConfigureAwait(false);
                 }
                 else
                 {
                     await conversionService.ConvertAsync(
-                        new MediaConversionRequest(sourceDocument, output.OutputPath, output.FormatId),
+                        new MediaConversionRequest(
+                            sourceDocument,
+                            output.OutputPath,
+                            output.FormatId,
+                            progress: conversionProgress),
                         cancellationToken).ConfigureAwait(false);
                 }
                 Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalComplete", item.Label));

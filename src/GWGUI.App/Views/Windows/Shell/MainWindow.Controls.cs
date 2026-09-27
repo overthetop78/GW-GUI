@@ -126,6 +126,5 @@ public partial class MainWindow : Window
     private TextBlock HardwareStatusText => StatusBarBlock.HardwareText;
     private ComboBox HardwareSelector => StatusBarBlock.HardwareChoices;
     private StatusBarItem ProfileStatusItem => StatusBarBlock.ProfileItem;
-    private ProgressBar OperationProgress => StatusBarBlock.ProgressBar;
     private TrackProgressStrip Face0TrackProgress => StatusBarBlock.Face0Progress;
 }

@@ -5,8 +5,10 @@ using System.Text.Json;
 using System.Globalization;
 using GWGUI.Emulation.Amiga.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Amiga.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Amiga.Common.Contracts;
 using GWGUI.Emulation.Amiga.Modules;
 using GWGUI.Emulation.Amiga.Common.Services;
+using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
@@ -54,6 +56,33 @@ public sealed class AmigaEmulatorAdapterTests
         var entries = adapters.Cast<object>().ToArray();
         var entry = Assert.Single(entries);
         Assert.Equal("puae", entry.GetType().GetProperty("Key")!.GetValue(entry));
+    }
+
+    [Fact]
+    public async Task PuaeStartupFailureKeepsTechnicalDetailOutOfTheDialogMessage()
+    {
+        var machine = new PuaeMachineFactory().Create(
+            new MachineConfiguration("A600", "kickstart.rom", Core: Emulator.External),
+            new EmulatorCreationContext(Path.GetTempPath(), "virtual-core", "virtual-host", null, null));
+        try
+        {
+            var field = typeof(Machine).GetField("_startErrorTranslator",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            var translate = Assert.IsType<Func<Exception, Exception>>(field!.GetValue(machine));
+            var technical = new InvalidDataException(
+                "Logical block 247 is missing.\n   at Technical.Stack.Trace()");
+
+            var translated = Assert.IsType<EmulationMessageException>(translate(technical));
+
+            Assert.Equal(EmulationMessageCode.MachineStartFailed,
+                translated.MessageData.MessageCode);
+            Assert.Null(translated.MessageData.OriginalText);
+            Assert.Same(technical, translated.InnerException);
+        }
+        finally
+        {
+            await machine.DisposeAsync();
+        }
     }
 
     [Fact]

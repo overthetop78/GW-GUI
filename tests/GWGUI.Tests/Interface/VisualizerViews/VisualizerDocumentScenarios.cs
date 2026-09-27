@@ -364,9 +364,6 @@ internal static class VisualizerDocumentScenarios
         Assert.Equal("disk.img", workspace.Explorer.LoadingDetail);
         Assert.Equal(58, workspace.Explorer.LoadingValue);
         Assert.Equal(Visibility.Collapsed, workspace.Model.ProgressVisibility);
-        Assert.Equal(Visibility.Collapsed, workspace.Model.GlobalProgressVisibility);
-        Assert.Equal(58, workspace.Model.ProgressValue);
-        Assert.Empty(workspace.Model.ProgressText);
         Assert.Equal("Tab.Read", workspace.Model.OperationText);
         Assert.True(workspace.Visualizer.RecognitionProgressVisible);
         Assert.Equal(58, workspace.Visualizer.RecognitionValue);
@@ -553,11 +550,9 @@ internal static class VisualizerDocumentScenarios
         Assert.Equal(cylinders, workspace.Face0Progress.Total);
         Assert.Equal(heads == 2 ? cylinders : 0, workspace.Face1Progress.Total);
         Assert.True(workspace.Face0Progress.Completed + workspace.Face1Progress.Completed > 0);
-        Assert.Equal(Visibility.Collapsed, workspace.Model.GlobalProgressVisibility);
         Assert.Equal(Visibility.Visible, workspace.Model.Face0ProgressVisibility);
         Assert.Equal(heads == 2 ? Visibility.Visible : Visibility.Collapsed, workspace.Model.Face1ProgressVisibility);
         Assert.Equal("Tab.Read", workspace.Model.OperationText);
-        Assert.Empty(workspace.Model.ProgressText);
 
         workspace.Controller.CancelAll();
         await loading;
@@ -770,7 +765,6 @@ internal static class VisualizerDocumentScenarios
         Assert.Null(workspace.Visualizer.CurrentDocument);
         Assert.True(workspace.Visualizer.RecognitionProgressVisible);
         Assert.Equal("Tab.Read", workspace.Model.OperationText);
-        Assert.Empty(workspace.Model.ProgressText);
 
         var second = ExplorerDocumentScenarios.Document("second");
         var secondScp = new ScpImage(second.ScpImage!.Header,

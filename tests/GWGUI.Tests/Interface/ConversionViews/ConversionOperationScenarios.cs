@@ -34,6 +34,35 @@ using System.Windows.Threading;
 namespace GWGUI.Tests.Interface.ConversionViews;
 internal static class ConversionOperationScenarios
 {
+    public static void InternalProgressUsesExistingTrackPresentation()
+    {
+        var model = new MainWindowViewModel("synthetic", "synthetic");
+        var output = new TextBox();
+        var log = new ConsoleLogSession("virtual-log", () => new OperationLogSettings { Enabled = false });
+        var progress = new OperationProgressController(model, new TrackProgressStrip(), new TrackProgressStrip(), (key, _) => key);
+        var operation = new OperationRuntimeController(
+            Dispatcher.CurrentDispatcher,
+            model,
+            progress,
+            output,
+            log,
+            (key, _) => key);
+        operation.Begin();
+        try
+        {
+            operation.Report(new GwOutputLine(DateTimeOffset.Now, GwOutputStream.Standard, "Converting c=0-1:h=0-1"));
+            operation.Report(new GwOutputLine(DateTimeOffset.Now, GwOutputStream.Standard, "T0.0"));
+            Assert.Equal(4, progress.CurrentReadState?.NombrePistesTotal);
+            Assert.Equal(1, progress.CurrentReadState?.NombrePistesTerminees);
+            Assert.Equal(0, progress.CurrentReadState?.Cylindre);
+            Assert.Equal(0, progress.CurrentReadState?.Face);
+        }
+        finally
+        {
+            operation.End();
+        }
+    }
+
     public static async Task PartialBatch(bool firstFails)
     {
         var context = new Context();
@@ -140,8 +169,8 @@ internal static class ConversionOperationScenarios
                 new SequentialEncoderRegistry([]),
                 writers,
                 mediaWriting);
-            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, mediaReader, mediaConversion, sequentialMediaConversion, files, business, dialogs,
-                definitions, Operation, log, null!, new TextBox { Text = "virtual-folder" }, new TextBox(), Output, () => 0, _ => { }, null!, Operation.RequestCancellation, (_, _) => throw new InvalidOperationException(), () => { }, Dispatcher.CurrentDispatcher,
+            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, mediaReader, mediaConversion, sequentialMediaConversion, () => throw new InvalidOperationException(), business, dialogs,
+                definitions, Operation, log, null!, new TextBox(), Output, () => 0, _ => { }, null!, Operation.RequestCancellation, (_, _) => throw new InvalidOperationException(), () => { }, Dispatcher.CurrentDispatcher,
                 path => path is "virtual-tool" or "virtual-source.scp" || conflicts && path is not null && !path.Contains("(2)"));
         }
         public async Task WaitUntilStarted(Task running)

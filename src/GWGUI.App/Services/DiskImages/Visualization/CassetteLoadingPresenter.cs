@@ -3,7 +3,6 @@ using GWGUI.App.Constants.DiskImages;
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.ViewModels.Explorer;
-using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
@@ -15,7 +14,6 @@ namespace GWGUI.App.Services.DiskImages.Visualization;
 internal sealed class CassetteLoadingPresenter(
     ExplorerSection explorer,
     VisualizerTabSection visualizer,
-    MainWindowViewModel viewModel,
     TrackProgressStrip face0Progress,
     TrackProgressStrip face1Progress,
     MediaVisualizationController mediaVisualization,
@@ -69,8 +67,6 @@ internal sealed class CassetteLoadingPresenter(
                 var recognizedIndex = Math.Min(recognizedFiles.Count - 1, index * recognizedFiles.Count / model.Segments.Count);
                 detail = $"{detail} · {recognizedFiles[recognizedIndex]}";
             }
-            viewModel.ProgressValue = value;
-            viewModel.ProgressText = string.Empty;
             explorer.SetLoadingProgress(stage, detail, value);
             visualizer.SetRecognitionProgress(true, stage, detail, value);
             lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();

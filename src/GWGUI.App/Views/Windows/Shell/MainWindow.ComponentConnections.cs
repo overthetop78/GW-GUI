@@ -83,7 +83,6 @@ public partial class MainWindow : Window
         StatusBarBlock.ToggleConsoleRequested += (_, _) => _terminalPanel.Toggle();
         RegisterName(nameof(HardwareStatusText), HardwareStatusText);
         RegisterName(nameof(HardwareSelector), HardwareSelector);
-        RegisterName(nameof(OperationProgress), OperationProgress);
     }
 
     private void ConnectReadComponents()

@@ -126,7 +126,6 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _cassetteLoading = new CassetteLoadingPresenter(
             explorer,
             visualizer,
-            viewModel,
             face0Progress,
             face1Progress,
             _mediaVisualization,
@@ -247,6 +246,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     public string? SelectVisualizerImage() => _fileSelection.SelectVisualizerImage();
 
     public string? SelectExplorerImage() => _fileSelection.SelectExplorerImage();
+
+    public string? SelectConversionImage() => _fileSelection.SelectConversionImage();
 
     public Task LoadAsync(string path, string? displayFileName = null)
     {

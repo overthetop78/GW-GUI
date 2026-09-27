@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 using GWGUI.MediaEngine.Interfaces.Conversion;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Models.Flux;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion;
 
@@ -49,6 +50,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
         string targetFormatId,
         MediaRepresentationKind targetRepresentationKind,
         IReadOnlyDictionary<string, string> options,
+        Action<MediaExplorationProgress>? progress = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -57,14 +59,40 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
             throw new NotSupportedException(
                 $"SCP flux cannot be reconstructed as sector format '{targetFormatId}'.");
 
+        var flux = (FluxMediaImageRepresentation)source.Representation;
+        progress?.Invoke(new(
+            MediaExplorationProgressStage.ReadingMedia,
+            $"Converting c={string.Join(',', flux.Tracks.Select(track => track.Cylinder).Distinct().Order())}:h={string.Join(',', flux.Tracks.Select(track => track.Head).Distinct().Order())}",
+            0,
+            source.MediaKind));
         var image = await reader.ReadAsync(
             source.Source.PrimaryPath,
             targetFormatId,
+            progress is null ? null : new ConversionProgressRelay(progress, source.MediaKind),
             cancellationToken).ConfigureAwait(false);
         var document = MediaImageDocumentFactory.CreateFloppySector(source.Source, image);
         return new MediaRepresentationConversionResult(
             document,
             [],
             ["Physical flux timing and protection information is not preserved in the sector representation."]);
+    }
+
+    private sealed class ConversionProgressRelay(
+        Action<MediaExplorationProgress> progress,
+        MediaKind mediaKind) : IProgress<ScpExplorationProgress>
+    {
+        public void Report(ScpExplorationProgress item)
+        {
+            if (item.Kind != ScpExplorationProgressKind.TrackDecoded ||
+                item.Cylinder is not int cylinder ||
+                item.Head is not int head)
+                return;
+            var measured = 5d + 85d * item.Completed / Math.Max(1, item.Total);
+            progress(new(
+                MediaExplorationProgressStage.ReadingMedia,
+                $"T{cylinder}.{head}",
+                measured,
+                mediaKind));
+        }
     }
 }

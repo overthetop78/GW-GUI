@@ -143,3 +143,70 @@
 - [x] 12. Produire le Debug complet après les corrections Amiga et console
   - [x] 12.1 Valider et assembler tous les modules
     - [x] Modifier `docs/tasks/emulation/amstrad.md` après la réussite des six tests ciblés de changement de disquette, de gestion des échecs et de console, puis la réussite de `scripts\local-building.cmd --building=debug --modules=A` avec `gwgui.exe` et les modules Amiga, Amstrad et Atari présents sous `build/Debug/GW GUI/`.
+
+- [x] 13. Corriger le parcours de conversion sans déplacer les responsabilités
+  - [x] 13.1 Réutiliser le sélecteur d’images existant
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Selection/DiskImageFileSelectionService.cs` pour que le service existant sélectionne une source de conversion depuis le dernier dossier d’image et le dossier par défaut, et mémorise le dossier d’une sélection acceptée.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs`, `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` et `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` pour injecter au contrôleur une fonction de sélection appartenant au workspace existant, sans calculer ni mémoriser lui-même un dossier.
+  - [x] 13.2 Imposer la destination à côté de la source dans MediaEngine
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/ConversionPlanner.cs` pour construire les sorties depuis le dossier de `sourcePath` et supprimer le paramètre de dossier fourni par l’App, puis retirer ce paramètre des appels dans `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs`, `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` et les scénarios de conversion existants.
+  - [x] 13.3 Exposer les conversions accessibles par changement de représentation
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionService.cs` pour annoncer un writer lorsqu’un `IMediaRepresentationConverter` enregistré peut préparer sa représentation cible.
+  - [x] 13.4 Réutiliser la progression générique existante de MediaEngine
+    - [x] Modifier `src/GWGUI.MediaEngine/Interfaces/Conversion/IMediaRepresentationConverter.cs`, `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionRequest.cs`, `MediaConversionService.cs` et les deux convertisseurs existants sous `Images/Formats/Floppy/Scp/Conversion/` pour relayer `MediaExplorationProgress`, sans créer de nouveau contrat de progression.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageReader.cs` pour utiliser la lecture progressive déjà fournie par ses candidats et adapter localement ses événements au contrat générique dans `ScpFluxToSectorRepresentationConverter.cs`.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs`, `src/GWGUI.App/Services/Operations/OperationProgressController.cs` et `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` pour relayer et afficher uniquement `MediaExplorationProgress` pendant toute conversion interne.
+  - [x] 13.5 Verrouiller les comportements corrigés
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionSelectionScenarios.cs` et `ConversionViewsTests.cs` pour vérifier le dossier initial, sa mémorisation après acceptation, son invariance après annulation et la sortie à côté de la source, en fermant la fenêtre et supprimant les dossiers temporaires dans `finally`.
+    - [x] Créer `tests/GWGUI.Tests/Media/MediaConversionServiceTests.cs` pour vérifier l’annonce et l’exécution d’une destination nécessitant un convertisseur ainsi que le relais de `MediaExplorationProgress`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionOperationScenarios.cs` et `ConversionViewsTests.cs` pour vérifier qu’une progression générique rend la barre déterminée sans dépendance à SCP.
+  - [x] 13.6 Valider et produire le Debug complet
+    - [x] Modifier `docs/tasks/emulation/amstrad.md` après réussite des tests ciblés, de `scripts\local-building.cmd --building=debug --modules=A`, et présence de `build/Debug/GW GUI/gwgui.exe` avec les modules Amiga, Amstrad et Atari.
+
+- [x] 14. Aligner la sélection de source de conversion sur les sélecteurs existants
+  - [x] 14.1 Supprimer le passage spécial du chemin source
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Selection/DiskImageFileSelectionService.cs` pour rendre `SelectConversionImage` sans paramètre, utiliser `LastDiskImageFolder` comme les autres sélecteurs et supprimer le calcul particulier du dossier source.
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs`, `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` et `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` pour relayer le même appel sans paramètre.
+  - [x] 14.2 Réutiliser la progression déjà présentée par l’App
+    - [x] Modifier `src/GWGUI.App/Services/Operations/OperationProgressController.cs`, `OperationRuntimeController.cs` et `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` pour retirer les nouveaux points d’entrée de progression générique et conserver le flux `GwOutputLine` existant.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpExplorationProgress.cs`, les lecteurs Amiga et ISO existants et `ScpFluxToSectorRepresentationConverter.cs` pour publier la géométrie et les pistes réellement décodées sans analyser du texte de présentation.
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs` pour transmettre ces événements au flux `GwOutputLine` existant qui alimente déjà les barres de statut.
+  - [x] 14.3 Valider la sélection, la conversion et les barres existantes
+    - [x] Modifier `tests/GWGUI.Tests/Interface/ConversionViews/ConversionSelectionScenarios.cs`, `ConversionOperationScenarios.cs` et `ConversionViewsTests.cs` pour conserver la vérification du dossier mémorisé, aligner tous les constructeurs sur le contrat sans paramètre et vérifier la progression par piste existante, puis exécuter les tests ciblés de conversion.
+    - [x] Modifier `docs/tasks/emulation/amstrad.md` après réussite de `scripts\local-building.cmd --building=debug --modules=A` avec les modules Amiga, Amstrad et Atari.
+
+- [x] 15. Afficher la progression de toutes les conversions MediaEngine
+  - [x] 15.1 Relayer la progression commune jusqu’à chaque destination
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionService.cs`, `Optical/OpticalImageConversionService.cs`, `Sequential/SequentialMediaConversionService.cs` et `src/GWGUI.MediaEngine/Images/Writing/MediaImageWritingService.cs` pour transmettre `MediaExplorationProgress` à toutes les représentations et destinations empruntées par la conversion, sans contrat propre à SCP.
+  - [x] 15.2 Publier les unités décrites par chaque représentation de média
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaImageWritingService.cs` pour réutiliser les fournisseurs de visualisation existants et parcourir les pistes, plages de blocs, pistes optiques ou segments du document converti ; pour les images sectorielles, lire les secteurs de chaque piste avant de publier sa progression.
+  - [x] 15.3 Réutiliser exclusivement la présentation existante de l’App
+    - [x] Modifier `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs` uniquement pour transmettre la progression au flux `GwOutputLine` déjà compris par les barres de statut existantes, sans ajouter de contrôle ni de nouveau mécanisme de progression dans App.
+  - [x] 15.4 Verrouiller et valider le comportement complet
+    - [x] Modifier `tests/GWGUI.Tests/Media/MediaConversionServiceTests.cs` pour couvrir une conversion sectorielle directe non-SCP piste par piste ; les deux tests MediaEngine ciblés réussissent, puis `scripts\local-building.cmd --building=debug --modules=A` réussit avec `gwgui.exe` et les modules Amiga, Amstrad et Atari présents sous `build/Debug/GW GUI/`. Les scénarios WPF ciblés restent bloqués avant exécution par la stratégie Windows `0x800711C7` sur la DLL de test.
+
+- [x] 16. Afficher les pistes pendant le décodage et non après celui-ci
+  - [x] 16.1 Publier une progression physique commune depuis chaque reconstructeur SCP
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Inspection/ScpExplorationProgress.cs` et les reconstructeurs Amiga, ISO, Atari, Commodore, Apple et DEC sous `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/` pour transmettre la piste terminée pendant la boucle de décodage.
+  - [x] 16.2 Enregistrer toutes les variantes progressives dans la composition existante
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/ScpSectorDecodingComposition.cs` afin que chaque candidat enregistré utilise son overload progressif, sans repli silencieux vers la lecture non progressive.
+  - [x] 16.3 Alimenter immédiatement les barres existantes
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/ScpFluxToSectorRepresentationConverter.cs` pour publier l’en-tête de géométrie avant le décodage et convertir chaque piste terminée en événement déjà compris par `GwProgressTracker`.
+  - [x] 16.4 Valider et reconstruire tous les modules
+    - [x] Modifier `tests/GWGUI.Tests/Media/MediaConversionServiceTests.cs` pour exiger un chemin progressif sur chaque famille de candidat SCP enregistrée ; les trois tests ciblés réussissent, puis `scripts\local-building.cmd --building=debug --modules=A` réussit avec l’exécutable et les modules Amiga, Amstrad et Atari présents.
+
+- [x] 17. Supprimer définitivement la progression globale de la barre d’état
+  - [x] 17.1 Retirer le contrôle de progression globale et son état
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Shell/ApplicationStatusBar.xaml`, `ApplicationStatusBar.xaml.cs`, `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` et `src/GWGUI.App/ViewModels/Main/MainWindowViewModel.cs` pour supprimer la barre globale, son texte et leurs propriétés, en conservant uniquement les barres segmentées des faces.
+  - [x] 17.2 Faire utiliser exclusivement les barres segmentées existantes
+    - [x] Modifier `src/GWGUI.App/Services/Operations/OperationProgressController.cs`, les contrôleurs sous `src/GWGUI.App/Services/DiskImages/Visualization/` et le présentateur cassette concerné pour ne plus lire ni écrire aucun état de progression globale.
+    - [x] Modifier `src/GWGUI.App/Contracts/Services/PhysicalDiskWriting/PhysicalTrackWriteProgress.cs` et `src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs` pour fournir à la progression d’écriture la géométrie déjà connue du plan, puis l’afficher avec les mêmes barres segmentées.
+  - [x] 17.3 Aligner les scénarios existants et produire le Debug complet
+    - [x] Modifier `src/GWGUI.App/Services/DiskImages/Visualization/CassetteLoadingPresenter.cs` et `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour retirer le paramètre de modèle devenu inutile après la suppression de la progression globale.
+    - [x] Modifier les scénarios concernés sous `tests/GWGUI.Tests/Interface/` afin qu’ils vérifient uniquement la progression segmentée, puis faire réussir les tests ciblés et `scripts\local-building.cmd --building=debug --modules=A` avec l’exécutable et tous les modules présents.
+
+- [x] 18. Ne plus afficher la trace technique PUAE dans la boîte d’erreur
+  - [x] 18.1 Séparer le message utilisateur du diagnostic de console
+    - [x] Modifier `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour traduire une erreur de démarrage PUAE avec le code localisé `MachineStartFailed`, tout en conservant l’exception complète comme cause journalisée.
+  - [x] 18.2 Verrouiller le rendu et produire le Debug complet
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` pour vérifier que PUAE conserve l’exception technique comme cause sans la placer dans le texte de dialogue, puis faire réussir ce scénario et le scénario existant de console sous `tests/GWGUI.Tests/Interface/EmulationViews/` avant `scripts\local-building.cmd --building=debug --modules=A`.

@@ -80,14 +80,18 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
                         GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.RevolutionDecoded,
                         $"{track.Cylinder}:{track.Head} · {window.Revolution}/{track.Revolutions.Count}",
                         revolutionCount,
-                        totalRevolutions));
+                        totalRevolutions,
+                        Cylinder: track.Cylinder,
+                        Head: track.Head));
                 });
                 var count = Interlocked.Increment(ref completed);
                 progress?.Report(new(
                     GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
                     $"{scp.Tracks[trackIndex].Cylinder}:{scp.Tracks[trackIndex].Head}",
                     count,
-                    scp.Tracks.Count));
+                    scp.Tracks.Count,
+                    Cylinder: scp.Tracks[trackIndex].Cylinder,
+                    Head: scp.Tracks[trackIndex].Head));
                 return ValueTask.CompletedTask;
             }).ConfigureAwait(false);
 

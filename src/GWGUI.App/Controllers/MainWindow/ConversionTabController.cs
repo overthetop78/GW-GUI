@@ -50,14 +50,13 @@ internal sealed class ConversionTabController(
     MediaImageReadingService mediaReader,
     MediaConversionService mediaConversion,
     SequentialMediaConversionService sequentialMediaConversion,
-    IFileDialogService fileDialogs,
+    Func<string?> selectSource,
     IBusinessDialogService businessDialogs,
     IMessageDialogService dialogs,
     DiskDefinitionsController diskDefinitionsController,
     OperationRuntimeController operation,
     ConsoleLogSession consoleLog,
     DiskImageWorkspaceController diskImageWorkspace,
-    TextBox readFolder,
     TextBox commandPreview,
     TextBox logOutput,
     Func<int> selectedMainTab,
@@ -118,7 +117,7 @@ internal sealed class ConversionTabController(
 
     internal async Task BrowseSourceAsync()
     {
-        var path = fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), readFolder.Text));
+        var path = selectSource();
         if (path is null) return;
         viewModel.Conversion.SourcePath = path; viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(path);
         var detection = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);
@@ -172,7 +171,7 @@ internal sealed class ConversionTabController(
     {
         if (string.IsNullOrWhiteSpace(viewModel.Conversion.SourcePath)) return [];
         var catalog = CurrentFormatCatalog();
-        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath, readFolder.Text,
+        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath,
             viewModel.Conversion.OutputName.Trim(), viewModel.Conversion.BuildSelections(catalog.Formats),
             viewModel.Conversion.AddTags, settings().Conversion.TagPattern);
     }

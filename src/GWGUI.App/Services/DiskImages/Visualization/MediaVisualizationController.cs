@@ -150,11 +150,8 @@ internal sealed class MediaVisualizationController
                 cylindersBySurface.GetValueOrDefault(MediaVisualizationLayoutConstants.FaceTwo) ?? [],
                 _localize(DiskImageResourceKeys.VisualSide, [MediaVisualizationLayoutConstants.FaceTwo]));
             _viewModel.ProgressVisibility = Visibility.Visible;
-            _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
             _viewModel.Face0ProgressVisibility = cylindersBySurface.ContainsKey(MediaVisualizationLayoutConstants.FaceOne) ? Visibility.Visible : Visibility.Collapsed;
             _viewModel.Face1ProgressVisibility = cylindersBySurface.ContainsKey(MediaVisualizationLayoutConstants.FaceTwo) ? Visibility.Visible : Visibility.Collapsed;
-            _viewModel.ProgressIndeterminate = false;
-            _viewModel.ProgressText = string.Empty;
         }
 
         _sectorView.SetDocument(geometry, descriptor);
@@ -209,7 +206,6 @@ internal sealed class MediaVisualizationController
         }
 
         _viewModel.ProgressVisibility = Visibility.Visible;
-        _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
         _viewModel.Face0ProgressVisibility = firstCount > 0 ? Visibility.Visible : Visibility.Collapsed;
         _viewModel.Face1ProgressVisibility = secondCount > 0 ? Visibility.Visible : Visibility.Collapsed;
     }

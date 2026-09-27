@@ -62,12 +62,21 @@ public sealed class PhysicalDiskWriteService(MediaPhysicalWriterRegistry writers
         var unit = plan.DataUnits.FirstOrDefault(item => item.Position == value.Position);
         var cylinder = unit is null ? 0 : ReadPosition(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
         var head = unit is null ? 0 : ReadPosition(unit.Metadata, MediaPhysicalMetadataKeys.Head);
+        var tracks = plan.DataUnits
+            .Select(item => new PhysicalTrackWriteAddress(
+                ReadPosition(item.Metadata, MediaPhysicalMetadataKeys.Cylinder),
+                ReadPosition(item.Metadata, MediaPhysicalMetadataKeys.Head)))
+            .Distinct()
+            .OrderBy(item => item.Cylinder)
+            .ThenBy(item => item.Head)
+            .ToArray();
         progress?.Report(new PhysicalTrackWriteProgress(
             value.CompletedUnits,
             value.TotalUnits,
             cylinder,
             head,
-            value.Verifying));
+            value.Verifying,
+            tracks));
     }
 
     private static int ReadPosition(IReadOnlyDictionary<string, string> metadata, string key) =>

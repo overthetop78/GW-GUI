@@ -18,6 +18,10 @@ internal sealed class DiskImageFileSelectionService(
         settings => settings.LastExplorerImageFolder,
         (settings, folder) => settings.LastExplorerImageFolder = folder);
 
+    internal string? SelectConversionImage() => SelectImage(
+        settings => settings.LastDiskImageFolder,
+        (settings, folder) => settings.LastDiskImageFolder = folder);
+
     private string? SelectImage(
         Func<AppSettings, string?> getLastFolder,
         Action<AppSettings, string?> setLastFolder)

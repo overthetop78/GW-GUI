@@ -4,11 +4,14 @@ using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Settings.Engines;
 using GWGUI.App.Controllers.MainWindow;
+using GWGUI.App.Contracts.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Presenters.Conversion;
+using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Conversion;
 using GWGUI.Tests.Application.TestInfrastructure;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -26,7 +29,7 @@ internal static class ConversionSelectionScenarios
         context.Model.Conversion.Reverse.Enabled = true; context.Model.Conversion.ExpertArguments = "--raw";
         await Dispatcher.Yield(DispatcherPriority.ContextIdle);
         var output = Assert.Single(context.Controller.Plan());
-        var expected = Path.Combine("virtual-folder", (tags ? "[IMA] " : "") + "edited.ima");
+        var expected = (tags ? "[IMA] " : "") + "edited.ima";
         Assert.Equal(expected, output.OutputPath); Assert.Equal("ibm.160", output.FormatId);
         var running = context.Controller.ExecuteAsync(); await context.WaitUntilStarted(running);
         var arguments = Assert.Single(context.Commands).Arguments.ToList();
@@ -37,30 +40,54 @@ internal static class ConversionSelectionScenarios
         context.Pending.SetResult(new(0, false, TimeSpan.Zero, [])); await running;
         Assert.Single(context.Commands); Assert.Equal("Status.Success", context.Model.OperationText);
     }
-    public static async Task SourceChanges()
+    public static async Task SourceChangesUseRememberedFolder()
     {
-        var view = new ConversionTabSection(); var model = new MainWindowViewModel("synthetic", "synthetic"); view.DataContext = model;
-        var catalog = new BuiltInImageFormatCatalog(key => key); var detector = new ImageFormatDetector(catalog, _ => throw new InvalidOperationException());
-        var responses = new Queue<string?>(["virtual.adf", "unknown.synthetic", null]); var analyzed = new List<string>(); var failures = new List<Exception>();
-        var settings = new AppSettings(); settings.Engines.Conversion = OperationEngine.GreaseweazleHostTools;
-        model.Conversion.SetFormat("amiga.amigados", true, new HashSet<string> { ".adf" });
-        model.Conversion.SetFormat("atarist.720", true, new HashSet<string> { ".st" });
-        var controller = new ConversionTabController(new Window(), view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!, null!, null!, null!,
-            ControlledDependencies.Simulate<IFileDialogService>((method, _) => { Assert.Equal("OpenFile", method.Name); return responses.Dequeue(); }),
-            ControlledDependencies.Reject<IBusinessDialogService>(), ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, new TextBox { Text = "virtual-folder" }, new TextBox(), new TextBox(), () => 0, _ => { }, null!, () => { }, (error, _) => failures.Add(error), () => { }, Dispatcher.CurrentDispatcher,
-            _ => throw new InvalidOperationException(), path => detector.Detect(path, 901120), path => { analyzed.Add(path); return Task.CompletedTask; });
-        await controller.BrowseSourceAsync();
-        Assert.Equal("virtual.adf", model.Conversion.SourcePath); Assert.Equal("virtual", model.Conversion.OutputName);
-        Assert.Equal("amiga.amigados", Assert.Single(model.Conversion.SelectedFormats));
-        Assert.DoesNotContain(model.Conversion.BuildSelections(catalog.Formats), choice => choice.FormatId == "atarist.720");
-        Assert.Equal(".st", Assert.Single(model.Conversion.ExplicitExtensions["atarist.720"]));
-        Assert.Equal("Format.amiga.amigados", view.OutputBlock.SourceInformation.Text); Assert.Equal(Visibility.Collapsed, view.SourceBlock.ActionButton.Visibility);
-        model.Conversion.AddTags = false; model.Conversion.OutputName = " edited ";
-        var output = Assert.Single(controller.Plan()); Assert.Equal(Path.Combine("virtual-folder", "edited.adf"), output.OutputPath); Assert.Equal("amiga.amigados", output.FormatId);
-        await controller.BrowseSourceAsync(); Assert.Empty(model.Conversion.SelectedFormats); Assert.Empty(model.Conversion.BuildSelections(catalog.Formats)); Assert.Empty(controller.Plan());
-        var info = view.OutputBlock.SourceInformation.Text;
-        await controller.BrowseSourceAsync(); Assert.Equal("unknown.synthetic", model.Conversion.SourcePath); Assert.Equal(info, view.OutputBlock.SourceInformation.Text);
-        Assert.Equal(new[] { "virtual.adf", "unknown.synthetic" }, analyzed); Assert.Empty(failures);
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-tests", Guid.NewGuid().ToString("N"));
+        Window? owner = null;
+        try
+        {
+            var rememberedDirectory = Directory.CreateDirectory(Path.Combine(root, "remembered")).FullName;
+            var firstDirectory = Directory.CreateDirectory(Path.Combine(root, "first")).FullName;
+            var secondDirectory = Directory.CreateDirectory(Path.Combine(root, "second")).FullName;
+            var firstSource = Path.Combine(firstDirectory, "virtual.adf");
+            var secondSource = Path.Combine(secondDirectory, "unknown.synthetic");
+            var view = new ConversionTabSection(); var model = new MainWindowViewModel("synthetic", "synthetic"); view.DataContext = model;
+            var catalog = new BuiltInImageFormatCatalog(key => key); var detector = new ImageFormatDetector(catalog, _ => throw new InvalidOperationException());
+            var responses = new Queue<string?>([firstSource, secondSource, null]); var initialDirectories = new List<string?>(); var analyzed = new List<string>(); var failures = new List<Exception>();
+            var settings = new AppSettings { LastDiskImageFolder = rememberedDirectory }; settings.Engines.Conversion = OperationEngine.GreaseweazleHostTools;
+            var files = ControlledDependencies.Simulate<IFileDialogService>((method, args) =>
+            {
+                Assert.Equal("OpenFile", method.Name);
+                initialDirectories.Add(Assert.IsType<OpenFileRequest>(args[0]).InitialDirectory);
+                return responses.Dequeue();
+            });
+            var selection = new DiskImageFileSelectionService(() => settings, files, (key, _) => key);
+            model.Conversion.SetFormat("amiga.amigados", true, new HashSet<string> { ".adf" });
+            model.Conversion.SetFormat("atarist.720", true, new HashSet<string> { ".st" });
+            owner = new Window();
+            var controller = new ConversionTabController(owner, view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!, null!, null!, null!,
+                selection.SelectConversionImage,
+                ControlledDependencies.Reject<IBusinessDialogService>(), ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, new TextBox(), new TextBox(), () => 0, _ => { }, null!, () => { }, (error, _) => failures.Add(error), () => { }, Dispatcher.CurrentDispatcher,
+                _ => throw new InvalidOperationException(), path => detector.Detect(path, 901120), path => { analyzed.Add(path); return Task.CompletedTask; });
+            await controller.BrowseSourceAsync();
+            Assert.Equal(firstSource, model.Conversion.SourcePath); Assert.Equal("virtual", model.Conversion.OutputName); Assert.Equal(firstDirectory, settings.LastDiskImageFolder);
+            Assert.Equal("amiga.amigados", Assert.Single(model.Conversion.SelectedFormats));
+            Assert.DoesNotContain(model.Conversion.BuildSelections(catalog.Formats), choice => choice.FormatId == "atarist.720");
+            Assert.Equal(".st", Assert.Single(model.Conversion.ExplicitExtensions["atarist.720"]));
+            Assert.Equal("Format.amiga.amigados", view.OutputBlock.SourceInformation.Text); Assert.Equal(Visibility.Collapsed, view.SourceBlock.ActionButton.Visibility);
+            model.Conversion.AddTags = false; model.Conversion.OutputName = " edited ";
+            var output = Assert.Single(controller.Plan()); Assert.Equal(Path.Combine(firstDirectory, "edited.adf"), output.OutputPath); Assert.Equal("amiga.amigados", output.FormatId);
+            await controller.BrowseSourceAsync(); Assert.Equal(secondDirectory, settings.LastDiskImageFolder); Assert.Empty(model.Conversion.SelectedFormats); Assert.Empty(model.Conversion.BuildSelections(catalog.Formats)); Assert.Empty(controller.Plan());
+            var info = view.OutputBlock.SourceInformation.Text;
+            await controller.BrowseSourceAsync(); Assert.Equal(secondSource, model.Conversion.SourcePath); Assert.Equal(secondDirectory, settings.LastDiskImageFolder); Assert.Equal(info, view.OutputBlock.SourceInformation.Text);
+            Assert.Equal(new[] { rememberedDirectory, firstDirectory, secondDirectory }, initialDirectories);
+            Assert.Equal(new[] { firstSource, secondSource }, analyzed); Assert.Empty(failures);
+        }
+        finally
+        {
+            owner?.Close();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
     }
     public static void Selection()
     {

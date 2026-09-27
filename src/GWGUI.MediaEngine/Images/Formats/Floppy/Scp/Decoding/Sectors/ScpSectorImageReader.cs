@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
@@ -7,15 +8,26 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 internal sealed class ScpSectorImageReader(ScpCandidateRegistry candidates, FileSystemRegistry fileSystems)
 {
     /// <summary>Lit directement le candidat explicite, sinon parcourt les candidats par défaut dans leur ordre.</summary>
-    public async Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken)
+    public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) =>
+        ReadAsync(path, formatId, null, cancellationToken);
+
+    public async Task<SectorImage> ReadAsync(
+        string path,
+        string? formatId,
+        IProgress<ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         var selected = candidates.Selected(formatId);
-        if (selected is not null) return await selected.ReadAsync(path, formatId, cancellationToken).ConfigureAwait(false);
-        return await ReadDefaultAsync(path, formatId, cancellationToken).ConfigureAwait(false);
+        if (selected is not null) return await selected.ReadWithProgressAsync(path, formatId, progress, cancellationToken).ConfigureAwait(false);
+        return await ReadDefaultAsync(path, formatId, progress, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Conserve le premier décodage, retourne la première reconnaissance de système de fichiers et poursuit après les rejets prévus.</summary>
-    private async Task<SectorImage> ReadDefaultAsync(string path, string? formatId, CancellationToken cancellationToken)
+    private async Task<SectorImage> ReadDefaultAsync(
+        string path,
+        string? formatId,
+        IProgress<ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         SectorImage? firstDecoded = null;
         var failures = new List<ScpCandidateFailure>();
@@ -23,7 +35,7 @@ internal sealed class ScpSectorImageReader(ScpCandidateRegistry candidates, File
         {
             try
             {
-                var image = await candidate.ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
+                var image = await candidate.ReadWithProgressAsync(path, null, progress, cancellationToken).ConfigureAwait(false);
                 firstDecoded ??= image;
                 if (HasFileSystem(image)) return image;
             }

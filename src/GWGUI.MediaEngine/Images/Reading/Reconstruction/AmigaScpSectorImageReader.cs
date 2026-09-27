@@ -50,13 +50,17 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
                     GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.RevolutionDecoded,
                     $"Amiga · {track.Cylinder}:{track.Head} · {window.Revolution}/{track.Revolutions.Count}",
                     ++completedRevolutions,
-                    totalRevolutions));
+                    totalRevolutions,
+                    Cylinder: track.Cylinder,
+                    Head: track.Head));
             }
             progress?.Report(new(
                 GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
                 $"Amiga · {track.Cylinder}:{track.Head}",
                 ++completed,
-                scp.Tracks.Count));
+                scp.Tracks.Count,
+                Cylinder: track.Cylinder,
+                Head: track.Head));
         }
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AmigaMfmFormat.StructureDescriptionName);
         var sectorsPerTrack = InferSectorsPerTrack(candidates.Keys);

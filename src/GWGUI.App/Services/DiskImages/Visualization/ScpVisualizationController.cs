@@ -131,13 +131,9 @@ internal sealed class ScpVisualizationController
 
     internal void ReportSharedProgress(string stage, string detail, double value, bool indeterminate)
     {
-        _viewModel.ProgressText = string.Empty;
-        _viewModel.ProgressValue = value;
-        _viewModel.ProgressIndeterminate = indeterminate;
         if (Image is null)
         {
             _viewModel.ProgressVisibility = Visibility.Collapsed;
-            _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
             _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
             _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
         }
@@ -150,7 +146,6 @@ internal sealed class ScpVisualizationController
     {
         if (_operationIsRunning()) return;
         _viewModel.ProgressVisibility = Visibility.Collapsed;
-        _viewModel.ProgressIndeterminate = false;
         _visualizer.SetRecognitionProgress(false, string.Empty, string.Empty, 0);
         _viewModel.OperationText = _localize(DiskImageResourceKeys.StatusReadyShort, []);
         _viewModel.OperationBrush = Brushes.Gray;
@@ -274,13 +269,9 @@ internal sealed class ScpVisualizationController
             cylindersByHead.GetValueOrDefault(DiskHeadConstants.Head1) ?? [],
             _localize(DiskImageResourceKeys.VisualSide, [DiskHeadConstants.Head1]));
         _viewModel.ProgressVisibility = Visibility.Visible;
-        _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
         _viewModel.Face0ProgressVisibility = heads.Contains(DiskHeadConstants.Head0) ? Visibility.Visible : Visibility.Collapsed;
         _viewModel.Face1ProgressVisibility = heads.Contains(DiskHeadConstants.Head1) ? Visibility.Visible : Visibility.Collapsed;
-        var total = Math.Max(1, image.Tracks.Count);
-        _viewModel.ProgressText = _localize(DiskImageResourceKeys.VisualAnalysingTrack, [0, total]);
         _visualizer.Overview.Configure(cylindersByHead);
-        var completedByHead = heads.ToDictionary(head => head, _ => 0);
         var presentationOrder = image.Tracks
             .OrderBy(track => track.Cylinder)
             .ThenBy(track => track.Head)
@@ -351,12 +342,9 @@ internal sealed class ScpVisualizationController
                     var strip = preparation.Head == DiskHeadConstants.Head0 ? _face0Progress : _face1Progress;
                     _trackPreparations[(preparation.Head, preparation.Cylinder)] = preparation;
                     _trackPresentationOrder.Add((preparation.Head, preparation.Cylinder));
-                    completedByHead[preparation.Head]++;
-                    var current = Math.Min(total, completedByHead.Values.Sum());
                     strip.SetState(preparation.Cylinder, TrackSegmentState.Success);
                     strip.ClearActive();
                     _visualizer.Overview.MarkPrepared(preparation);
-                    _viewModel.ProgressText = _localize(DiskImageResourceKeys.VisualAnalysingTrack, [current, total]);
                     view.RevealPreparedTrack(preparation.Cylinder);
                 }, DispatcherPriority.Background, cancellationToken);
             }
@@ -365,11 +353,7 @@ internal sealed class ScpVisualizationController
 
     private void ShowProgress(string text, double value, bool indeterminate)
     {
-        _viewModel.ProgressText = string.Empty;
-        _viewModel.ProgressValue = value;
-        _viewModel.ProgressIndeterminate = indeterminate;
         _viewModel.ProgressVisibility = Visibility.Collapsed;
-        _viewModel.GlobalProgressVisibility = Visibility.Collapsed;
         _viewModel.Face0ProgressVisibility = Visibility.Collapsed;
         _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
         _viewModel.Face0ProgressValue = 0;

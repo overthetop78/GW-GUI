@@ -45,6 +45,7 @@ internal sealed class SectorToFluxRepresentationConverter : IMediaRepresentation
         string targetFormatId,
         MediaRepresentationKind targetRepresentationKind,
         IReadOnlyDictionary<string, string> options,
+        Action<MediaExplorationProgress>? progress = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(source);

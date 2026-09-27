@@ -81,8 +81,9 @@ internal sealed class PuaeMachineFactory : IEmulatorAdapter
                 machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             configuration.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration),
-            startErrorTranslator: error => EmulationErrorService.TranslateLocalized(error,
+            startErrorTranslator: error => EmulationErrorService.Translate(error,
                 EmulationMessageCategory.Machine,
+                EmulationMessageCode.MachineStartFailed,
                 new EmulationMachineMessageContext(configuration.Model)));
     }
 }

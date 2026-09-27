@@ -54,7 +54,8 @@ internal sealed class ScpSectorDecodingComposition
         var isoSelected = new ScpSectorImageCandidate(
             ScpCandidateIds.IsoSelected,
             ScpFormatFamily.Iso,
-            (path, format, token) => isoReader.ReadAsync(path, format, token));
+            (path, format, token) => isoReader.ReadAsync(path, format, token),
+            (path, format, progress, token) => isoReader.ReadAsync(path, format, progress, token));
         var amiga = new ScpSectorImageCandidate(
             ScpCandidateIds.Amiga,
             ScpFormatFamily.Amiga,
@@ -63,27 +64,33 @@ internal sealed class ScpSectorDecodingComposition
         var atari = new ScpSectorImageCandidate(
             ScpCandidateIds.Atari,
             ScpFormatFamily.Iso,
-            (path, format, token) => atariReader.ReadAsync(path, format, token));
+            (path, format, token) => atariReader.ReadAsync(path, format, token),
+            (path, format, progress, token) => atariReader.ReadAsync(path, format, progress, token));
         var atariSt720 = new ScpSectorImageCandidate(
             ScpCandidateIds.AtariSt720,
             ScpFormatFamily.Iso,
-            (path, _, token) => atariReader.ReadAsync(path, DiskImageFormatIds.AtariSt720, token));
+            (path, _, token) => atariReader.ReadAsync(path, DiskImageFormatIds.AtariSt720, token),
+            (path, _, progress, token) => atariReader.ReadAsync(path, DiskImageFormatIds.AtariSt720, progress, token));
         var commodoreAutomatic = new ScpSectorImageCandidate(
             ScpCandidateIds.CommodoreAutomatic,
             ScpFormatFamily.Commodore,
-            (path, _, token) => commodoreReader.ReadAsync(path, null, token));
+            (path, _, token) => commodoreReader.ReadAsync(path, null, token),
+            (path, _, progress, token) => commodoreReader.ReadAsync(path, null, progress, token));
         var commodore1581 = new ScpSectorImageCandidate(
             ScpCandidateIds.Commodore1581,
             ScpFormatFamily.Iso,
-            (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token));
+            (path, _, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, token),
+            (path, _, progress, token) => commodoreReader.ReadAsync(path, DiskImageFormatIds.Commodore1581, progress, token));
         var apple = new ScpSectorImageCandidate(
             ScpCandidateIds.Apple,
             ScpFormatFamily.Apple,
-            (path, format, token) => appleReader.ReadAsync(path, format, token));
+            (path, format, token) => appleReader.ReadAsync(path, format, token),
+            (path, format, progress, token) => appleReader.ReadAsync(path, format, progress, token));
         var dec = new ScpSectorImageCandidate(
             ScpCandidateIds.Dec,
             ScpFormatFamily.Dec,
-            (path, _, token) => decReader.ReadAsync(path, token));
+            (path, _, token) => decReader.ReadAsync(path, token),
+            (path, _, progress, token) => decReader.ReadAsync(path, progress, token));
 
         ScpSectorImageCandidate Iso(string format) => new(
             ScpCandidateIds.IsoFormat(format),
