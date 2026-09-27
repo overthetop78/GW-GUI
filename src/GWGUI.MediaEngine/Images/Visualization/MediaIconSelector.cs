@@ -25,6 +25,7 @@ public static class MediaIconSelector
             MediaKind.Optical => MediaIconIds.Optical,
             MediaKind.Tape when extension is MediaIconExtensions.Cas or MediaIconExtensions.Cdt or MediaIconExtensions.Tzx or MediaIconExtensions.Wav => MediaIconIds.Cassette,
             MediaKind.Tape => MediaIconIds.Tape,
+            MediaKind.Cartridge => MediaIconIds.Cartridge,
             _ when extension is MediaIconExtensions.Crt or MediaIconExtensions.Car or MediaIconExtensions.Rom or MediaIconExtensions.A26 or MediaIconExtensions.A52 or MediaIconExtensions.A78 or MediaIconExtensions.Nes => MediaIconIds.Cartridge,
             _ when extension is MediaIconExtensions.Iso or MediaIconExtensions.Cue or MediaIconExtensions.Ccd or MediaIconExtensions.Mds => MediaIconIds.Optical,
             _ => MediaIconIds.File

@@ -4,6 +4,8 @@ namespace GWGUI.MediaEngine.Constants;
 public static class TapeImageFormatIds
 {
     public const string Wav = "tape.wav";
+    public const string Audio = "tape.audio";
+    public const string Voc = "tape.voc";
     public const string AtariCas = "tape.atari-cas";
     public const string Tzx = "tape.tzx";
     public const string SpectrumTap = "tape.spectrum-tap";

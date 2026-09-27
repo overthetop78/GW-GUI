@@ -19,8 +19,8 @@ public sealed class SkiaSequentialMediaRenderer
     {
         canvas.Clear(SequentialMediaRenderConstants.BackgroundColor);
         if (model is null) return;
-        var duration = TotalDuration(model);
-        if (duration <= TimeSpan.Zero) return;
+        var layout = BuildLayout(model);
+        if (layout.TotalLength <= 0) return;
         var lanes = model.Segments.Select(segment => segment.Lane).Distinct().Order().DefaultIfEmpty(0).ToArray();
         var lineCount = Math.Clamp(wrappedLineCount, 1, SequentialMediaRenderConstants.MaximumWrappedLineCount);
         var scaledMargin = SequentialMediaRenderConstants.OuterMargin * zoom;
@@ -28,7 +28,7 @@ public sealed class SkiaSequentialMediaRenderer
         var contentWidth = Math.Max(1, width - scaledMargin * 2);
         var rowHeight = Math.Max(2, (height - scaledMargin * 2) / (float)(lineCount * lanes.Length));
         var bandHeight = Math.Clamp(rowHeight - scaledGap, 20 * zoom, 42 * zoom);
-        var lineDuration = duration.Ticks / (double)lineCount;
+        var lineDuration = layout.TotalLength / lineCount;
 
         using (var tape = new SKPaint { Color = SequentialMediaRenderConstants.TapeColor, IsAntialias = true })
         {
@@ -50,11 +50,12 @@ public sealed class SkiaSequentialMediaRenderer
             }
         }
 
-        foreach (var segment in model.Segments.Take(Math.Clamp(preparedSegmentCount, 0, model.Segments.Count)))
+        foreach (var item in layout.Segments.Take(Math.Clamp(preparedSegmentCount, 0, model.Segments.Count)))
         {
+            var segment = item.Segment;
             var laneIndex = Array.IndexOf(lanes, segment.Lane);
-            var remainingStart = (double)segment.Start.Ticks;
-            var remainingLength = (double)segment.Duration.Ticks;
+            var remainingStart = item.Start;
+            var remainingLength = item.Length;
             while (remainingLength > 0)
             {
                 var line = Math.Clamp((int)(remainingStart / lineDuration), 0, lineCount - 1);
@@ -92,8 +93,8 @@ public sealed class SkiaSequentialMediaRenderer
         float zoom = 1)
     {
         if (model is null) return null;
-        var duration = TotalDuration(model);
-        if (duration <= TimeSpan.Zero) return null;
+        var layout = BuildLayout(model);
+        if (layout.TotalLength <= 0) return null;
         var lanes = model.Segments.Select(segment => segment.Lane).Distinct().Order().DefaultIfEmpty(0).ToArray();
         var lineCount = Math.Clamp(wrappedLineCount, 1, SequentialMediaRenderConstants.MaximumWrappedLineCount);
         var scaledMargin = SequentialMediaRenderConstants.OuterMargin * zoom;
@@ -101,13 +102,14 @@ public sealed class SkiaSequentialMediaRenderer
         var contentWidth = Math.Max(1, width - scaledMargin * 2);
         var rowHeight = Math.Max(2, (height - scaledMargin * 2) / (float)(lineCount * lanes.Length));
         var bandHeight = Math.Clamp(rowHeight - scaledGap, 20 * zoom, 42 * zoom);
-        var lineDuration = duration.Ticks / (double)lineCount;
+        var lineDuration = layout.TotalLength / lineCount;
 
-        foreach (var segment in model.Segments.Reverse())
+        foreach (var item in layout.Segments.Reverse())
         {
+            var segment = item.Segment;
             var laneIndex = Array.IndexOf(lanes, segment.Lane);
-            var remainingStart = (double)segment.Start.Ticks;
-            var remainingLength = (double)segment.Duration.Ticks;
+            var remainingStart = item.Start;
+            var remainingLength = item.Length;
             while (remainingLength > 0)
             {
                 var line = Math.Clamp((int)(remainingStart / lineDuration), 0, lineCount - 1);
@@ -126,8 +128,32 @@ public sealed class SkiaSequentialMediaRenderer
         return null;
     }
 
-    private static TimeSpan TotalDuration(SequentialMediaRenderModel model) => model.Duration
-        ?? model.Segments.Select(segment => segment.Start + segment.Duration).DefaultIfEmpty().Max();
+    private static Layout BuildLayout(SequentialMediaRenderModel model)
+    {
+        var totalDuration = model.Duration
+            ?? model.Segments.Select(segment => segment.Start + segment.Duration).DefaultIfEmpty().Max();
+        if (totalDuration > TimeSpan.Zero)
+        {
+            var timed = model.Segments.Select(segment => new LayoutSegment(
+                segment,
+                segment.Start.Ticks,
+                Math.Max(1, segment.Duration.Ticks))).ToArray();
+            return new Layout(Math.Max(totalDuration.Ticks, timed.Max(item => item.Start + item.Length)), timed);
+        }
+
+        var position = 0d;
+        var logical = new List<LayoutSegment>(model.Segments.Count);
+        foreach (var segment in model.Segments)
+        {
+            var length = Math.Max(1, segment.StoredLength ?? 1);
+            logical.Add(new LayoutSegment(segment, position, length));
+            position += length;
+        }
+        return new Layout(position, logical);
+    }
+
+    private sealed record Layout(double TotalLength, IReadOnlyList<LayoutSegment> Segments);
+    private sealed record LayoutSegment(SequentialMediaSegment Segment, double Start, double Length);
 
     internal static SKColor ColorFor(SequentialMediaSegment segment)
     {

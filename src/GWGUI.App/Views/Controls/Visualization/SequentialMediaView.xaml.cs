@@ -15,7 +15,6 @@ namespace GWGUI.App.Views.Controls.Visualization;
 public partial class SequentialMediaView : UserControl, IMediaVisualizationView
 {
     private readonly SkiaSequentialMediaRenderer _renderer = new();
-    private CancellationTokenSource? _preparationCancellation;
     private SequentialMediaRenderModel? _model;
     private SequentialMediaSegment? _selectedSegment;
     private int _preparedSegmentCount;
@@ -39,9 +38,6 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
     public void SetDocument(SequentialMediaRenderModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
-        _preparationCancellation?.Cancel();
-        _preparationCancellation?.Dispose();
-        _preparationCancellation = new CancellationTokenSource();
         _model = model;
         _selectedSegment = null;
         _preparedSegmentCount = 0;
@@ -53,7 +49,12 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         SetFilterVisibility(ChannelLabel, ChannelSelector, model.Segments.Any(item => item.ChannelNumber.HasValue));
         UpdateSelectionLabel();
         UpdateCanvasWidth();
-        _ = PrepareProgressivelyAsync(_preparationCancellation.Token);
+    }
+
+    internal void RevealThrough(int segmentCount)
+    {
+        _preparedSegmentCount = Math.Clamp(segmentCount, 0, _model?.Segments.Count ?? 0);
+        Canvas.InvalidateVisual();
     }
 
     public void SelectElement(int surface, long position)
@@ -61,22 +62,6 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         _selectedSegment = _model?.Segments.FirstOrDefault(segment => segment.Lane == surface && segment.Position == position);
         UpdateSelectionLabel();
         Canvas.InvalidateVisual();
-    }
-
-    private async Task PrepareProgressivelyAsync(CancellationToken cancellationToken)
-    {
-        var count = _model?.Segments.Count ?? 0;
-        try
-        {
-            while (_preparedSegmentCount < count)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                _preparedSegmentCount = Math.Min(count, _preparedSegmentCount + 32);
-                Canvas.InvalidateVisual();
-                await Dispatcher.Yield(DispatcherPriority.Background);
-            }
-        }
-        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
     }
 
     private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)

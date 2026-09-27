@@ -12,7 +12,10 @@ using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDes
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Models.Optical;
+using GWGUI.MediaEngine.Images.Models.Blocks;
 using GWGUI.MediaEngine.Images.Models.Sequential;
+using GWGUI.MediaEngine.Images.Visualization.Providers;
+using GWGUI.MediaFileSystems.Contracts;
 using SkiaSharp;
 using RenderSequentialMediaSegment = GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment;
 
@@ -20,6 +23,79 @@ namespace GWGUI.Tests.Interface.VisualizerViews;
 
 public sealed class OtherMediaVisualizationTests
 {
+    [Fact]
+    public void AmstradCartridgeUsesItsThirtyTwoDeclaredBanksAsCartridgeBlocks()
+    {
+        const int bankSize = 16 * 1024;
+        var ranges = Enumerable.Range(0, 32)
+            .Select(bank => ((long)bank * bankSize, (long)bankSize))
+            .ToArray();
+        var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["mediaRole"] = "cartridge",
+            ["bankSize"] = bankSize.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            ["bankCount"] = "32"
+        };
+        foreach (var bank in Enumerable.Range(0, 32)) metadata[$"bank.{bank}.chunkId"] = $"cb{bank:D2}";
+        var representation = new BlockMediaImageRepresentation(32L * bankSize, ranges);
+        var document = new MediaImageDocument(
+            new MediaSourceDescriptor("test.cpr", []),
+            "amstrad.cpr",
+            MediaKind.Cartridge,
+            representation,
+            [new MediaVolumeDescriptor(0, 32L * bankSize, GWGUI.MediaEngine.Constants.MediaVolumeOrigins.DirectVolume)],
+            [],
+            metadata);
+
+        var model = new BlockMediaInspectorPresenter((key, _) => key).BuildRenderModel(document);
+        var descriptor = new BlockMediaVisualizationProvider().CreateDescriptor(document);
+
+        Assert.Equal(BlockMediaShape.Cartridge, model.Shape);
+        Assert.Equal(32, model.Ranges.Count);
+        Assert.Equal("cb00", model.Ranges[0].Label);
+        Assert.Equal("cb31", model.Ranges[^1].Label);
+        Assert.All(model.Ranges, range => Assert.Equal(bankSize, range.Length));
+        Assert.Equal(32, descriptor.Elements.Count);
+        Assert.NotNull(new SkiaBlockMediaRenderer().HitTest(
+            model, 800, 600, new SKPoint(240, 170)));
+
+        var inspector = new BlockMediaInspectorPresenter((key, _) => key)
+            .BuildInspectorModel(model, model.Ranges[21]);
+        var entries = inspector.Sections.SelectMany(section => section.Entries).ToArray();
+        Assert.Equal("cb21", inspector.SelectedElement);
+        Assert.DoesNotContain(entries, entry => entry.Value == "LBA" || entry.Unit == "LBA");
+        Assert.DoesNotContain(entries, entry => entry.Unit == "Visual.BlocksUnit");
+        Assert.Contains(entries, entry => entry.Label == "Visual.CapacityLabel" && entry.Value.Contains("512"));
+        Assert.Contains(entries, entry => entry.Label == "Visual.SizeLabel" && entry.Value.Contains("16"));
+    }
+
+    [Fact]
+    public void RawAmstradRomUsesBankNamesWithoutLbaAddressing()
+    {
+        const int bankSize = 16 * 1024;
+        var document = new MediaImageDocument(
+            new MediaSourceDescriptor("test.rom", []),
+            "amstrad.rom",
+            MediaKind.Cartridge,
+            new BlockMediaImageRepresentation(
+                bankSize,
+                [(0L, (long)bankSize)]),
+            [new MediaVolumeDescriptor(0, bankSize, GWGUI.MediaEngine.Constants.MediaVolumeOrigins.DirectVolume)],
+            [],
+            new Dictionary<string, string>
+            {
+                ["bankSize"] = bankSize.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["bankCount"] = "1"
+            });
+        var presenter = new BlockMediaInspectorPresenter((key, _) => key);
+        var model = presenter.BuildRenderModel(document);
+        var inspector = presenter.BuildInspectorModel(model, Assert.Single(model.Ranges));
+
+        Assert.Equal("bank00", inspector.SelectedElement);
+        Assert.DoesNotContain(inspector.Sections.SelectMany(section => section.Entries),
+            entry => entry.Value == "LBA" || entry.Unit == "LBA");
+    }
+
     [Fact]
     public void BlockSelectionKeepsSixtyFourBitAddresses()
     {
@@ -76,6 +152,29 @@ public sealed class OtherMediaVisualizationTests
             entry => entry.Label == "Visual.ChannelLabel" && entry.Value == "2");
         Assert.DoesNotContain(inspector.Sections.SelectMany(section => section.Entries),
             entry => entry.Label == "Visual.CapacityLabel");
+    }
+
+    [Fact]
+    public void UntimedSequentialBlocksUseTheirStoredLengthsForTheTapeLayout()
+    {
+        var first = new RenderSequentialMediaSegment(
+            0, 0, TimeSpan.Zero, TimeSpan.Zero,
+            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal,
+            StoredLength: 25);
+        var second = new RenderSequentialMediaSegment(
+            1, 0, TimeSpan.Zero, TimeSpan.Zero,
+            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.DecodedBlock,
+            StoredLength: 75);
+        var model = new SequentialMediaRenderModel(100, null, [first, second]);
+        using var bitmap = new SKBitmap(1_000, 200);
+        using var canvas = new SKCanvas(bitmap);
+        var renderer = new SkiaSequentialMediaRenderer();
+
+        renderer.Render(canvas, model, null, 2, 1, bitmap.Width, bitmap.Height);
+
+        Assert.Same(first, renderer.HitTest(model, 1, bitmap.Width, bitmap.Height, new SKPoint(150, 100)));
+        Assert.Same(second, renderer.HitTest(model, 1, bitmap.Width, bitmap.Height, new SKPoint(700, 100)));
+        Assert.NotEqual(bitmap.GetPixel(150, 100), bitmap.GetPixel(700, 100));
     }
 
     [Fact]

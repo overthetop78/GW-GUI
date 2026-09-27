@@ -52,4 +52,10 @@
   <data name="Format.mac.1440"><value>Apple Macintosh MFM — 1.44 MiB</value></data>
   <data name="Format.apple2.rwts18"><value>Apple II Brøderbund RWTS18</value></data>
   <data name="Format.ucsd.ibm.mfm"><value>UCSD p-System — IBM MFM</value></data>
+  <data name="Format.raw.hxcstream"><value>HxC Stream</value></data>
+  <data name="Format.raw.kryoflux"><value>KryoFlux</value></data>
+  <data name="Format.amstrad.cpr"><value>Amstrad CPC Plus / GX4000 — CPR</value></data>
+  <data name="Format.amstrad.rom"><value>Amstrad CPC — ROM</value></data>
+  <data name="Format.tape.voc"><value>VOC</value></data>
+  <data name="Format.tape.audio"><value>Audio</value></data>
 </root>

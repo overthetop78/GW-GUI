@@ -20,7 +20,7 @@ internal sealed class CassetteLoadingPresenter(
     Action<string, string, double, bool> reportSharedProgress,
     Func<string, object[], string> localize)
 {
-    private static readonly TimeSpan MinimumSegmentPresentationInterval = TimeSpan.FromMilliseconds(4);
+    private static readonly TimeSpan MinimumSegmentPresentationInterval = TimeSpan.FromMilliseconds(100);
 
     internal async Task CompleteAsync(
         CancellationToken cancellationToken,
@@ -69,6 +69,8 @@ internal sealed class CassetteLoadingPresenter(
             }
             explorer.SetLoadingProgress(stage, detail, value);
             visualizer.SetRecognitionProgress(true, stage, detail, value);
+            mediaVisualization.RevealSequentialSegment(completed);
+            reportSharedProgress(stage, detail, value, false);
             lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();
         }
     }

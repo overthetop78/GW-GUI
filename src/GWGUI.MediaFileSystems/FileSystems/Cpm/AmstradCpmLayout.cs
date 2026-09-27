@@ -26,14 +26,16 @@ public static class AmstradCpmLayout
     public const int CpcAllocationSize = 1024;
     /// <summary>Nombre de blocs de répertoire CPC.</summary>
     public const int CpcDirectoryBlocks = 2;
+    /// <summary>Nombre de pistes réservées d'un disque CPC système.</summary>
+    public const int CpcSystemReservedTracks = 2;
     /// <summary>Nombre de pistes réservées d'un disque CPC données.</summary>
-    public const int CpcDataReservedTracks = 2;
+    public const int CpcDataReservedTracks = 0;
     /// <summary>Nombre de secteurs par piste CPC.</summary>
     public const int CpcSectorsPerTrack = 9;
     /// <summary>Taille d'un secteur CPC.</summary>
     public const int CpcSectorSize = 512;
     /// <summary>Disposition d'un disque CPC système.</summary>
-    internal static readonly CpmLayout CpcSystem = new(0, 0, CpcDirectoryEntries, CpcAllocationSize, CpcDirectoryBlocks, false);
+    internal static readonly CpmLayout CpcSystem = new(CpcSystemReservedTracks * CpcSectorsPerTrack * CpcSectorSize, CpcSystemReservedTracks * CpcSectorsPerTrack * CpcSectorSize, CpcDirectoryEntries, CpcAllocationSize, CpcDirectoryBlocks, false);
     /// <summary>Disposition d'un disque CPC données.</summary>
     internal static readonly CpmLayout CpcData = new(CpcDataReservedTracks * CpcSectorsPerTrack * CpcSectorSize, CpcDataReservedTracks * CpcSectorsPerTrack * CpcSectorSize, CpcDirectoryEntries, CpcAllocationSize, CpcDirectoryBlocks, false);
 

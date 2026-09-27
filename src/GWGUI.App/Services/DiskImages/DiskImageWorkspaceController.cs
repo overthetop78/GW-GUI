@@ -79,7 +79,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         Func<string, string?, CancellationToken, Task<ExploredDiskImage>>? explore = null,
         MediaImageReadingService? mediaReader = null,
         MediaExplorer? mediaExplorer = null,
-        MediaVisualizationProviderRegistry? visualizationProviders = null)
+        MediaVisualizationProviderRegistry? visualizationProviders = null,
+        IReadOnlySet<string>? supportedExtensions = null)
     {
         _explorer = explorer;
         _visualizer = visualizer;
@@ -93,7 +94,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
                 diskImageExplorer,
                 mediaExplorer);
         }
-        _fileSelection = new DiskImageFileSelectionService(getSettings, fileDialogs, localize);
+        _fileSelection = new DiskImageFileSelectionService(getSettings, fileDialogs, localize, supportedExtensions);
         _mediaVisualization = new MediaVisualizationController(
             visualizer,
             viewModel,

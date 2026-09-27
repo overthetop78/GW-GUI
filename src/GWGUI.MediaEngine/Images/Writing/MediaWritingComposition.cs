@@ -1,4 +1,6 @@
 using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Conversion;
@@ -39,6 +41,7 @@ using GWGUI.MediaEngine.Images.Formats.Tape.Simh;
 using GWGUI.MediaEngine.Images.Formats.Tape.SpectrumTap;
 using GWGUI.MediaEngine.Images.Formats.Tape.Tzx;
 using GWGUI.MediaEngine.Images.Formats.Tape.Uef;
+using GWGUI.MediaEngine.Images.Formats.Tape.Voc;
 using GWGUI.MediaEngine.Images.Formats.Tape.Wav;
 using GWGUI.MediaEngine.Interfaces.Writing;
 using GWGUI.MediaEngine.Images.Models.Flux;
@@ -68,6 +71,8 @@ public sealed class MediaWritingComposition
     public static MediaWritingComposition CreateDefault()
     {
         var acornAdf = new AcornAdfWriter();
+        var amstradCpr = new AmstradCprWriter();
+        var amstradRom = new AmstradRomWriter();
         var amigaAdf = new AmigaAdfWriter();
         var bbcDfs = new BbcDfsImageWriter();
         var ibmRaw = new IbmRawImageWriter();
@@ -101,6 +106,7 @@ public sealed class MediaWritingComposition
         var opticalIso = new IsoWriter();
         var opticalBinCue = new BinCueWriter();
         var tapeWav = new WavTapeWriter();
+        var tapeVoc = new VocWriter();
         var tapeAtariCas = new AtariCasWriter();
         var tapeTzx = new TzxWriter();
         var tapeSpectrumTap = new SpectrumTapWriter();
@@ -111,6 +117,8 @@ public sealed class MediaWritingComposition
 
         IMediaImageWriter[] writers =
         [
+            amstradCpr,
+            amstradRom,
             Sector(MediaImageWriterIds.AcornAdf, [DiskImageFileExtensions.Adf], AcornAdfConversionService.CanCreate,
                 (image, _, path, _, token) => WriteSingleAsync(acornAdf.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.AmigaAdf, [DiskImageFileExtensions.Adf], AmigaAdfConversionService.CanCreate,
@@ -161,6 +169,7 @@ public sealed class MediaWritingComposition
             opticalIso,
             opticalBinCue,
             tapeWav,
+            tapeVoc,
             tapeAtariCas,
             tapeTzx,
             tapeSpectrumTap,

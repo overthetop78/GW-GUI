@@ -40,8 +40,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
         MediaImageDocument source,
         string targetFormatId,
         MediaRepresentationKind targetRepresentationKind)
-        => source.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase) &&
-           source.Representation is FluxMediaImageRepresentation &&
+        => source.Representation is FluxMediaImageRepresentation &&
            targetRepresentationKind == MediaRepresentationKind.Sectors &&
            targetFormatIds.Contains(targetFormatId);
 
@@ -57,7 +56,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
         ArgumentNullException.ThrowIfNull(options);
         if (!CanConvert(source, targetFormatId, targetRepresentationKind))
             throw new NotSupportedException(
-                $"SCP flux cannot be reconstructed as sector format '{targetFormatId}'.");
+                $"Flux cannot be reconstructed as sector format '{targetFormatId}'.");
 
         var flux = (FluxMediaImageRepresentation)source.Representation;
         progress?.Invoke(new(
@@ -66,7 +65,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
             0,
             source.MediaKind));
         var image = await reader.ReadAsync(
-            source.Source.PrimaryPath,
+            flux.Image,
             targetFormatId,
             progress is null ? null : new ConversionProgressRelay(progress, source.MediaKind),
             cancellationToken).ConfigureAwait(false);

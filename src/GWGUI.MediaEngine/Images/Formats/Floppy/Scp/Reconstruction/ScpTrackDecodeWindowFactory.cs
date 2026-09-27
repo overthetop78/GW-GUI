@@ -12,14 +12,26 @@ internal static class ScpTrackDecodeWindowFactory
     public static IReadOnlyList<ScpTrackDecodeWindow> Create(ScpTrack track)
     {
         ArgumentNullException.ThrowIfNull(track);
-        if (track.Revolutions.Count == 0) return [];
-        if (track.Revolutions.Count == 1) return [new(track.Revolutions[0].Flux, 1, false)];
+        return Create(track.Revolutions.Select(revolution => revolution.Flux).ToArray());
+    }
 
-        var windows = new ScpTrackDecodeWindow[track.Revolutions.Count];
-        for (var index = 0; index < track.Revolutions.Count - 1; index++)
+    /// <summary>Construit les mêmes vues depuis une piste de flux commune, indépendamment de son conteneur.</summary>
+    public static IReadOnlyList<ScpTrackDecodeWindow> Create(ProtectedTrack track)
+    {
+        ArgumentNullException.ThrowIfNull(track);
+        return Create(track.Revolutions.Select(revolution => revolution.Flux).ToArray());
+    }
+
+    private static IReadOnlyList<ScpTrackDecodeWindow> Create(IReadOnlyList<FluxRevolution> revolutions)
+    {
+        if (revolutions.Count == 0) return [];
+        if (revolutions.Count == 1) return [new(revolutions[0], 1, false)];
+
+        var windows = new ScpTrackDecodeWindow[revolutions.Count];
+        for (var index = 0; index < revolutions.Count - 1; index++)
         {
-            var current = track.Revolutions[index];
-            var next = track.Revolutions[index + 1];
+            var current = revolutions[index];
+            var next = revolutions[index + 1];
             var intervals = new List<uint>(checked(current.FluxIntervals.Count + next.FluxIntervals.Count));
             intervals.AddRange(current.FluxIntervals);
             intervals.AddRange(next.FluxIntervals);
@@ -27,8 +39,8 @@ internal static class ScpTrackDecodeWindowFactory
             windows[index] = new(new FluxRevolution(indexTime, intervals), index + 1, true);
         }
 
-        var last = track.Revolutions[^1];
-        windows[^1] = new(last.Flux, track.Revolutions.Count, false);
+        var last = revolutions[^1];
+        windows[^1] = new(last, revolutions.Count, false);
         return windows;
     }
 

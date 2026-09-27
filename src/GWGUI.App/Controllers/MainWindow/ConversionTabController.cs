@@ -83,7 +83,12 @@ internal sealed class ConversionTabController(
     internal void BuildFormats(string? extension, DetectedImageFormat? detection = null)
     {
         sourceExtension = extension; sourceDetection = detection;
-        var items = formatPresenter.Build(CurrentFormatCatalog(), extension, detection, viewModel.Conversion.SelectedFormats, viewModel.Conversion.ExplicitExtensions);
+        var items = formatPresenter.Build(
+            CurrentFormatCatalog(),
+            extension,
+            UsesInternal && engineDestinations is not null ? null : detection,
+            viewModel.Conversion.SelectedFormats,
+            viewModel.Conversion.ExplicitExtensions);
         foreach (var item in items)
             if (!item.IsCompatible && viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
                 viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
@@ -185,14 +190,16 @@ internal sealed class ConversionTabController(
             .GroupBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
             .Select(group =>
             {
+                var presentation = curated.Formats.FirstOrDefault(format =>
+                    format.Id.Equals(group.Key, StringComparison.OrdinalIgnoreCase));
                 var destinations = group.ToArray();
                 var extensions = destinations
                     .Select((destination, index) => new ImageExtension(destination.Extension, destination.Extension.TrimStart('.').ToUpperInvariant(), index == 0))
                     .ToArray();
                 return new DiskFormat(
                     group.Key,
-                    LocExtension.Get("Conversion.MediaEngineFamily"),
-                    LocExtension.Get("Format." + group.Key),
+                    presentation?.Family ?? string.Empty,
+                    presentation?.DisplayName ?? LocExtension.Get("Format." + group.Key),
                     extensions,
                     true,
                     string.IsNullOrWhiteSpace(source)

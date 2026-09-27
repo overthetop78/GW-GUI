@@ -221,7 +221,8 @@ public partial class MainWindow : Window
             (key, arguments) => LocExtension.Get(key, arguments),
             mediaReader: _mediaEngine.ReadingService,
             mediaExplorer: _mediaEngine.Explorer,
-            visualizationProviders: _mediaEngine.Visualization.Registry);
+            visualizationProviders: _mediaEngine.Visualization.Registry,
+            supportedExtensions: _mediaEngine.Recognition.SupportedExtensions);
         VisualizerHeader.ClassificationSelector.ValueChanged += (_, _) => _diskImageWorkspace.ApplyClassification();
         VisualizerHeader.ClassificationFormatChanged += async (_, formatId) =>
             await _diskImageWorkspace.SelectVisualizerRepresentationAsync(formatId);
