@@ -68,6 +68,24 @@ Les ordinateurs non compatibles IBM PC x86/x64 peuvent être ajoutés uniquement
 comme machines d'une famille lorsque leur cœur et leurs médias sont réellement
 disponibles. Aucun ordinateur IBM PC générique ne sera ajouté à ces modules.
 
+## Cœurs ouverts retenus pour l'intégration
+
+La première implémentation ciblera les cœurs Libretro réellement publiés, avec
+un adaptateur propre dans le module qui les consomme :
+
+| Module | Machines et cœur prioritaire |
+|---|---|
+| Sega | Gearsystem (SG-1000/SMS/Game Gear), Genesis Plus GX ou PicoDrive (Mega Drive/Mega-CD/32X), Beetle Saturn, Flycast (Dreamcast/GD-ROM) |
+| Nintendo | Nestopia/Mesen (NES/Famicom/FDS), Snes9x ou bsnes (SNES), Gambatte/mGBA (GB/GBC/GBA), Mupen64Plus-Next (N64/N64DD), melonDS (DS), Citra (3DS), Dolphin (GameCube/Wii), Cemu (Wii U) |
+| Sony | Beetle PSX ou SwanStation (PS1), LRPS2/PCEE2 ou Play! (PS2), PPSSPP (PSP) ; Vita/PS3/PS4/PS5 seulement après validation d'un cœur redistribuable et d'un adaptateur local |
+| NEC | Beetle PCE FAST/Beetle PCE (PC Engine, CD et SuperGrafx), Beetle SGX (SuperGrafx), Beetle PC-FX (PC-FX) |
+| Microsoft | aucun cœur Libretro Xbox/Xbox 360 vérifié dans le catalogue actuel ; étudier xemu/Xenia comme bibliothèques autonomes avant de créer l'adaptateur |
+
+Les extensions sont dérivées des capacités déclarées par chaque cœur, et non
+d'une liste générique : FDS, Sega Card/HuCard, CD/GD-ROM et les formats
+multi-disques doivent donc être ajoutés avec leur lecteur MediaEngine et leur
+préparation de contenu correspondants.
+
 ## Supports média
 
 Les formats de disquette, cassette, flux, cartouche, disque optique et disque
