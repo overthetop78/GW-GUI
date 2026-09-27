@@ -17,8 +17,9 @@ internal static class EmulationInteractionScenarios
     {
         var directory = Path.Combine(Path.GetTempPath(), "gwgui-error-console-" + Guid.NewGuid().ToString("N"));
         var terminal = new TerminalSection();
+        var settings = new AppSettings();
         var controller = new TerminalPanelController(terminal, new RowDefinition(), new GridSplitter(),
-            new AppSettings());
+            () => settings);
         Action<string> append = controller.AppendError;
         ErrorLog.EntryWritten += append;
         try
@@ -26,7 +27,7 @@ internal static class EmulationInteractionScenarios
             var error = new InvalidOperationException("synthetic emulation failure");
             Assert.NotNull(ErrorLog.Write(error, "Atari ST - starting emulation", directory));
 
-            var output = terminal.OutputTextBox.Text;
+            var output = terminal.OutputText;
             Assert.Contains("Atari ST - starting emulation", output, StringComparison.Ordinal);
             Assert.Contains(error.ToString(), output, StringComparison.Ordinal);
             Assert.Equal(1, output.Split("synthetic emulation failure", StringSplitOptions.None).Length - 1);
@@ -35,13 +36,43 @@ internal static class EmulationInteractionScenarios
             ErrorLog.EntryWritten -= append;
             Assert.NotNull(ErrorLog.Write(new InvalidOperationException("after detach"),
                 "detached", directory));
-            Assert.DoesNotContain("after detach", terminal.OutputTextBox.Text, StringComparison.Ordinal);
+            Assert.DoesNotContain("after detach", terminal.OutputText, StringComparison.Ordinal);
         }
         finally
         {
             ErrorLog.EntryWritten -= append;
             terminal.Content = null;
             if (Directory.Exists(directory)) Directory.Delete(directory, true);
+        }
+    }
+
+    public static void ConsoleLayoutIsIndependentForEachMainTab()
+    {
+        var terminal = new TerminalSection();
+        var row = new RowDefinition { Height = new GridLength(230) };
+        var settings = new AppSettings();
+        var controller = new TerminalPanelController(terminal, row, new GridSplitter(), () => settings);
+        try
+        {
+            controller.SetVisibility(true);
+            controller.SelectTab(1);
+            Assert.Equal(190, row.Height.Value);
+            controller.SetVisibility(false);
+            controller.SelectTab(0);
+            Assert.True(controller.IsVisible);
+            Assert.Equal(230, row.Height.Value);
+            controller.SelectTab(1);
+            Assert.False(controller.IsVisible);
+            controller.SetVisibility(true);
+            row.Height = new GridLength(310);
+            controller.SelectTab(0);
+            controller.SelectTab(1);
+            Assert.True(controller.IsVisible);
+            Assert.Equal(310, row.Height.Value);
+        }
+        finally
+        {
+            terminal.Content = null;
         }
     }
 

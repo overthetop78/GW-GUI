@@ -47,7 +47,7 @@ internal sealed class WriteTabController(
     DiskImageWorkspaceController diskImageWorkspace,
     TextBox readFolder,
     TextBox commandPreview,
-    TextBox logOutput,
+    RichTextBox logOutput,
     Func<int> selectedMainTab,
     Action<int> selectMainTab,
     Func<string?> selectedDeviceArgument,
@@ -112,7 +112,7 @@ internal sealed class WriteTabController(
         {
             var output = new ConversionOutput(format.Id, ".scp", temporaryPath, false);
             var command = commandBuilder.BuildConversion(settings().GwExecutablePath!, source, output);
-            operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
+            operation.Begin(); await operation.RenderPendingAsync(); logOutput.Document.Blocks.Clear();
             await consoleLog.BeginAsync("convert", command.ToDisplayString());
             var outcome = await operation.RunAsync(token => runner.RunAsync(command, new Progress<GwOutputLine>(operation.Report), token));
             await operation.FlushPendingAsync(); operation.Apply(operation.Present(outcome)); operation.End();
@@ -166,7 +166,7 @@ internal sealed class WriteTabController(
         var warning = LocExtension.Get(viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(view.SourceBlock.Input.Text), selected.DisplayName, selectedHardware()?.Label ?? LocExtension.Get("Hardware.NotConfigured"), warning);
         if (dialogs.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
-        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
+        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync("write", command.ToDisplayString());
         var outcome = await operation.RunAsync(token => runner.RunAsync(command, new Progress<GwOutputLine>(operation.Report), token));
         await operation.FlushPendingAsync(); operation.Apply(operation.Present(outcome)); operation.End();
@@ -182,7 +182,7 @@ internal sealed class WriteTabController(
         var warning = LocExtension.Get(viewModel.Write.DisableVerification ? "Write.VerifyOff" : "Write.VerifyOn");
         var confirmation = LocExtension.Get("Write.Confirm", Path.GetFileName(view.SourceBlock.Input.Text), selected.DisplayName, hardware.Label, warning);
         if (dialogs.Show(confirmation, LocExtension.Get("Write.ConfirmTitle"), UserDialogButtons.OkCancel, UserDialogIcon.Warning) != UserDialogResult.Ok) return;
-        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
+        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync("write-internal", LocExtension.Get("Write.InternalPreview", view.SourceBlock.Input.Text));
         var stopwatch = Stopwatch.StartNew();
         var outcome = await operation.RunAsync(async token =>

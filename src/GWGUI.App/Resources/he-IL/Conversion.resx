@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>המרה פנימית נכשלה {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>אובדן נתונים פוטנציאלי</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>המרה זו אינה יכולה לשמור על כל מידע המקור:&#xA;&#xA;{0}&#xA;&#xA;רוצים להמשיך?</value></data>
+  <data name="Conversion.OutputCollision"><value>מספר המרות ייווצרו את אותו קובץ "{0}"הבחירה הזו אינה אפשרית אלא אם כן"{1}"בדק.</value></data>
+  <data name="Conversion.Failed"><value>ההסכמה נכשלה {0}: {1}</value></data>
 </root>

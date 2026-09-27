@@ -67,7 +67,7 @@ internal static class ConversionSelectionScenarios
             owner = new Window();
             var controller = new ConversionTabController(owner, view, model, null!, new ConversionFormatPresenter(), () => catalog, () => detector, () => settings, null!, null!, null!, null!, null!,
                 selection.SelectConversionImage,
-                ControlledDependencies.Reject<IBusinessDialogService>(), ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, new TextBox(), new TextBox(), () => 0, _ => { }, null!, () => { }, (error, _) => failures.Add(error), () => { }, Dispatcher.CurrentDispatcher,
+                ControlledDependencies.Reject<IBusinessDialogService>(), ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, new TextBox(), new RichTextBox(), () => 0, _ => { }, null!, () => { }, (error, _) => failures.Add(error), () => { }, Dispatcher.CurrentDispatcher,
                 _ => throw new InvalidOperationException(), path => detector.Detect(path, 901120), path => { analyzed.Add(path); return Task.CompletedTask; });
             await controller.BrowseSourceAsync();
             Assert.Equal(firstSource, model.Conversion.SourcePath); Assert.Equal("virtual", model.Conversion.OutputName); Assert.Equal(firstDirectory, settings.LastDiskImageFolder);

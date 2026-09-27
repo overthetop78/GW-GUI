@@ -1,6 +1,7 @@
 using GWGUI.App.Views.Controls.Tools;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Threading;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Services.Maintenance;
@@ -29,14 +30,14 @@ internal static class ToolOperationScenarios
         Assert.Contains("virtual-device", context.Commands[0].Arguments); Assert.Contains("B", context.Commands[0].Arguments);
         Assert.Equal(exit == 0 ? "Status.Success" : "Status.Error", context.Model.OperationText);
         Assert.False(context.Operation.IsRunning); Assert.Equal(Visibility.Collapsed, context.Model.TimerVisibility);
-        Assert.Equal("Common.Execute", context.Button(clean).Content); Assert.Contains("synthetic measurement", context.Output.Text);
+        Assert.Equal("Common.Execute", context.Button(clean).Content); Assert.Contains("synthetic measurement", Text(context.Output));
         Assert.Equal(exit < 0 ? 1 : 0, context.Errors.Count);
     }
     internal sealed class Context
     {
         public ToolsTabSection View { get; } = new();
         public MainWindowViewModel Model { get; } = new("synthetic", "synthetic");
-        public TextBox Output { get; } = new();
+        public RichTextBox Output { get; } = new();
         public MaintenanceToolsController Controller { get; }
         public OperationRuntimeController Operation { get; }
         public TaskCompletionSource Started { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -87,4 +88,7 @@ internal static class ToolOperationScenarios
         section.CleanExecuteButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         Assert.Equal(1, erase); Assert.Equal(1, clean);
     }
+
+    private static string Text(RichTextBox output) =>
+        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

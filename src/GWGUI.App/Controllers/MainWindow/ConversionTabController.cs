@@ -58,7 +58,7 @@ internal sealed class ConversionTabController(
     ConsoleLogSession consoleLog,
     DiskImageWorkspaceController diskImageWorkspace,
     TextBox commandPreview,
-    TextBox logOutput,
+    RichTextBox logOutput,
     Func<int> selectedMainTab,
     Action<int> selectMainTab,
     Func<string, Task> loadImage,
@@ -225,6 +225,10 @@ internal sealed class ConversionTabController(
                 : commandBuilder.BuildConversion(settings().GwExecutablePath ?? "gw.exe", viewModel.Conversion.SourcePath, outputs[0], Options(), viewModel.Conversion.ExpertArguments);
             commandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
+        catch (ConversionOutputCollisionException exception)
+        {
+            commandPreview.Text = $"⚠ {LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags"))}";
+        }
         catch (Exception exception) { ErrorLog.Write(exception, "Building conversion preview"); commandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
@@ -236,6 +240,14 @@ internal sealed class ConversionTabController(
         if (string.IsNullOrWhiteSpace(view.OutputBlock.OutputNameTextBox.Text)) { dialogs.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = Plan(); GwOptionValidator.Validate(Options()); }
+        catch (ConversionOutputCollisionException exception)
+        {
+            dialogs.Show(
+                LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags")),
+                LocExtension.Get("Conversion.Title"),
+                icon: UserDialogIcon.Warning);
+            return;
+        }
         catch { diskDefinitionsController.ShowInvalid(LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         if (UsesInternal && outputs.Any(x => !IsInternalOutput(x)))
@@ -276,7 +288,7 @@ internal sealed class ConversionTabController(
             var decisions = businessDialogs.ResolveConversionConflicts(existing); if (decisions is null) return;
             outputs = ConversionConflictResolutionFunctions.Apply(outputs, existing, decisions, NumberedPath);
         }
-        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
+        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync("convert", commandPreview.Text);
         var progress = new Progress<GwOutputLine>(operation.Report);
         var outcome = await operation.RunAsync(token =>

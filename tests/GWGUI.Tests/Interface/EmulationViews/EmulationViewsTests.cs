@@ -12,6 +12,8 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
     public Task CommandsRespectPowerStateAndReportErrors(bool failure) => sta.Run(() => EmulationInteractionScenarios.Commands(failure));
     [Fact] public Task EmulationErrorsAppearOnceInConsoleAndDetachCleanly() =>
         sta.Run(EmulationInteractionScenarios.ErrorLogAppearsOnceInConsoleAndDetaches);
+    [Fact] public Task ConsoleLayoutIsIndependentForEachMainTab() =>
+        sta.Run(EmulationInteractionScenarios.ConsoleLayoutIsIndependentForEachMainTab);
     [Fact] public void CassetteCommandsReflectCapabilitiesAndTransportState() =>
         CassetteTransportPresentationScenarios.CommandsReflectCapabilitiesAndTransportState();
     [Fact] public Task CassettePanelShowsEveryCommandBelowTheDevice() =>

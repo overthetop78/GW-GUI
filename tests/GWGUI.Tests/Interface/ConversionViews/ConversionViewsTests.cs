@@ -12,6 +12,10 @@ public class ConversionViewsTests(GWGUI.Tests.Application.TestInfrastructure.Sta
         ConversionOperationScenarios.InternalProgressUsesExistingTrackPresentation();
         return Task.CompletedTask;
     });
+    [Fact] public Task ErrorOutputUsesRedTextWithoutTechnicalStack() =>
+        sta.Run(() => ConversionOperationScenarios.ErrorOutputUsesRedTextWithoutTechnicalStack());
+    [Fact] public Task DuplicateOutputShowsTagRequirement() =>
+        sta.RunAsync(ConversionOperationScenarios.DuplicateOutputShowsTagRequirement);
     [Fact] public Task SourceChangesRememberTheirFolderAndRemoveIncompatibleChoices() => sta.RunAsync(ConversionSelectionScenarios.SourceChangesUseRememberedFolder);
     [Theory] [InlineData(0)] [InlineData(5)] [InlineData(-1)] public Task OutcomeRestoresControls(int exit) => sta.RunAsync(() => ConversionOperationScenarios.Outcome(exit));
     [Fact] public Task RepeatedExecutionCancelsCurrentBatch() => sta.RunAsync(ConversionOperationScenarios.Cancel);

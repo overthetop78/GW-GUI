@@ -24,7 +24,7 @@ namespace GWGUI.App.Controllers.MainWindow;
 
 internal sealed class ExplorerReadController(
     ExplorerSection explorer,
-    TextBox output,
+    RichTextBox output,
     AppSettings settings,
     IMessageDialogService dialogs,
     HardwareSelectionController hardwareSelection,
@@ -83,7 +83,7 @@ internal sealed class ExplorerReadController(
             explorer.SetReadDiskRunning(true);
             operation.Begin();
             await operation.RenderPendingAsync();
-            output.Clear();
+            output.Document.Blocks.Clear();
             await consoleLog.BeginAsync(
                 usesInternalRead ? "read-explorer-internal" : "read-explorer",
                 usesInternalRead

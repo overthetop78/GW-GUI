@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>A belső konverzió sikertelen volt {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potenciális adatvesztés</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Ez az átalakítás nem őrizheti meg az összes forrásinformációt:&#xA;&#xA;{0}&#xA;&#xA;Folytatni akarod?</value></data>
+  <data name="Conversion.OutputCollision"><value>Több átalakítás is létrehozná ugyanazt a fájlt "{0}'. Ez a választás nem lehetséges, kivéve, ha'{1}- ellenőrizve.</value></data>
+  <data name="Conversion.Failed"><value>Átalakítás sikertelen: {0}: {1}</value></data>
 </root>

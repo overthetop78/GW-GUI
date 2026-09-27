@@ -126,7 +126,7 @@ internal sealed partial class ReadTabController
         operation.Begin();
         view.CompletionBlock.BeginCapture(target);
         await operation.RenderPendingAsync();
-        logOutput.Clear();
+        logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync(ReadTabConstants.ExternalReadLogId, command.ToDisplayString());
         var output = new Progress<GwOutputLine>(operation.Report);
         var outcome = await operation.RunAsync(token => runner.RunAsync(command, output, token));
@@ -158,7 +158,7 @@ internal sealed partial class ReadTabController
         operation.Begin();
         view.CompletionBlock.BeginCapture(target);
         await operation.RenderPendingAsync();
-        logOutput.Clear();
+        logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync(ReadTabConstants.InternalReadLogId, LocExtension.Get("Read.InternalPreview", target));
         var stopwatch = Stopwatch.StartNew();
         PhysicalDiskReadResult? capture = null;

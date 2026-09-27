@@ -66,6 +66,8 @@ public partial class MainWindow : Window
 
     private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (_terminalPanel is not null)
+            _terminalPanel.SelectTab(MainTabs?.SelectedIndex ?? -1);
         if (MainTabs?.SelectedIndex == MainWindowConstants.WriteTabIndex) UpdateWriteCommand();
         else if (MainTabs?.SelectedIndex == MainWindowConstants.ReadTabIndex) UpdateReadCommand();
         else if (MainTabs?.SelectedIndex == MainWindowConstants.ConvertTabIndex) UpdateConvertCommand();
@@ -284,6 +286,7 @@ public partial class MainWindow : Window
 
     private void CaptureWindowSettings()
     {
+        _terminalPanel.CaptureCurrent();
         _windowPlacement.Capture(
             this,
             _settings,

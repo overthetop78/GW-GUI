@@ -13,6 +13,7 @@ using GWGUI.MediaEngine.Images.Conversion;
 using GWGUI.MediaEngine.Images.Conversion.Sequential;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.App.Functions.Localization;
 
 namespace GWGUI.App.Services.Conversion;
 
@@ -58,16 +59,16 @@ public sealed class ConversionBatchExecutor(
             if (cancellationToken.IsCancellationRequested) break;
             var item = new GwBatchItem(Path.GetFileName(output.OutputPath), command);
             itemStarting?.Invoke(item);
-            if (engine == OperationEngine.GreaseweazleHostTools)
-            {
-                Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineExternal", item.Label));
-                completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
-                continue;
-            }
-
             var stopwatch = Stopwatch.StartNew();
             try
             {
+                if (engine == OperationEngine.GreaseweazleHostTools)
+                {
+                    Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineExternal", item.Label));
+                    completed.Add(new(item, await runner.RunAsync(command, progress, cancellationToken).ConfigureAwait(false)));
+                    continue;
+                }
+
                 sourceDocument ??= await mediaReader.ReadAsync(
                     new MediaSourceDescriptor(sourcePath, []),
                     cancellationToken).ConfigureAwait(false);
@@ -121,27 +122,15 @@ public sealed class ConversionBatchExecutor(
             }
             catch (Exception exception)
             {
-                ErrorLog.Write(exception, $"Converting image to {output.FormatId}");
-                var line = Report(progress, GwOutputStream.Error, LocExtension.Get("Conversion.EngineInternalFailed", item.Label, DescribeFailure(exception)));
+                ErrorLog.WriteWithoutPublishing(exception, $"Converting image to {output.FormatId}");
+                var line = Report(progress, GwOutputStream.Error, LocExtension.Get(
+                    "Conversion.Failed",
+                    item.Label,
+                    ExceptionDescriptionFunctions.Describe(exception)));
                 completed.Add(new(item, new(1, false, stopwatch.Elapsed, [line])));
             }
         }
         return new(completed, cancellationToken.IsCancellationRequested || completed.Any(result => result.Result.WasCancelled));
-    }
-
-    internal static string DescribeFailure(Exception exception)
-    {
-        var messages = new List<string>();
-        for (Exception? current = exception; current is not null; current = current.InnerException)
-        {
-            if (!string.IsNullOrWhiteSpace(current.Message) &&
-                !messages.Contains(current.Message, StringComparer.Ordinal))
-                messages.Add(current.Message.Trim());
-        }
-
-        return messages.Count == 0
-            ? LocExtension.Get("Common.Unknown")
-            : string.Join(" → ", messages);
     }
 
     private static GwOutputLine Report(IProgress<GwOutputLine>? progress, GwOutputStream stream, string text)

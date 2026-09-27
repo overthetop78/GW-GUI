@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Intern omvandling misslyckades för {0}:: :: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potentiell dataförlust</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Denna omvandling kan inte bevara all källinformation:&#xA;&#xA;{0}&#xA;&#xA;Vill du fortsätta?</value></data>
+  <data name="Conversion.OutputCollision"><value>Flera konverteringar skulle skapa samma fil{0}Detta urval är inte möjligt om inte "{1}"Kontrolleras.</value></data>
+  <data name="Conversion.Failed"><value>Konvertering misslyckades för {0}: {1}</value></data>
 </root>

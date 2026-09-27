@@ -23,7 +23,7 @@ internal static class WriteSourceScenarios
         var analyzed = new List<string>(); var failures = new List<Exception>(); var detections = new List<string>();
         var controller = new WriteTabController(view, model, null!, () => catalog, () => detector, () => settings, null!,
             ControlledDependencies.Simulate<IFileDialogService>((method, _) => { Assert.Equal("OpenFile", method.Name); return responses.Dequeue(); }),
-            ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, null!, null!, new TextBox(), new TextBox(), new TextBox(),
+            ControlledDependencies.Reject<IMessageDialogService>(), null!, null!, null!, null!, null!, null!, new TextBox(), new TextBox(), new RichTextBox(),
             () => 0, _ => { }, () => null, () => null, () => true, () => null, () => { }, null!, null!, null!, (error, _) => failures.Add(error), () => { },
             _ => throw new InvalidOperationException("No existence queries"),
             path => { detections.Add(path); return detector.Detect(path, path == "virtual.adf" ? 901120 : 123); },

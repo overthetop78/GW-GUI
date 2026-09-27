@@ -210,3 +210,18 @@
     - [x] Modifier `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour traduire une erreur de démarrage PUAE avec le code localisé `MachineStartFailed`, tout en conservant l’exception complète comme cause journalisée.
   - [x] 18.2 Verrouiller le rendu et produire le Debug complet
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` pour vérifier que PUAE conserve l’exception technique comme cause sans la placer dans le texte de dialogue, puis faire réussir ce scénario et le scénario existant de console sous `tests/GWGUI.Tests/Interface/EmulationViews/` avant `scripts\local-building.cmd --building=debug --modules=A`.
+
+- [x] 19. Clarifier et fiabiliser les conversions multiples et la console par onglet
+  - [x] 19.1 Présenter explicitement les collisions de noms de sortie
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Conversion/ConversionOutputCollisionException.cs` et modifier `ConversionCompatibilityValidator.cs` pour exposer explicitement le chemin de sortie produit plusieurs fois.
+    - [x] Modifier `src/GWGUI.App/Controllers/MainWindow/ConversionTabController.cs` pour distinguer la collision de sorties des réglages avancés invalides et ouvrir la boîte de dialogue existante indiquant que plusieurs formats produisent le même nom sans tags.
+    - [x] Modifier les ressources communes et toutes les traductions sous `src/GWGUI.App/Resources/` pour ajouter le message localisé de collision et l’action consistant à cocher les tags.
+  - [x] 19.2 Mémoriser la console indépendamment pour chaque onglet principal
+    - [x] Créer `src/GWGUI.Infrastructure/Settings/Window/ConsolePanelSettings.cs` et modifier `AppSettings.cs` pour persister l’ouverture et la hauteur propres à chaque onglet sans migration de schéma.
+    - [x] Modifier `src/GWGUI.App/Services/Terminal/TerminalPanelController.cs`, `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs` et leurs fichiers partiels existants pour mémoriser et restaurer l’ouverture ainsi que la hauteur de la console lors de chaque changement d’onglet.
+  - [x] 19.3 Continuer un lot après une conversion défectueuse
+    - [x] Modifier `src/GWGUI.App/Services/Logging/ErrorLog.cs`, `src/GWGUI.App/Services/Conversion/ConversionBatchExecutor.cs` et le contrôleur de conversion existant pour poursuivre les sorties restantes, publier une ligne d’erreur courte et localisée, et réserver la pile technique au journal d’erreurs.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Shell/TerminalSection.xaml`, son code associé, `OperationRuntimeController.cs` et les signatures existantes qui reçoivent la sortie afin d'afficher les lignes du flux d'erreur en rouge dans la console existante.
+    - [x] Modifier les ressources communes et toutes les traductions sous `src/GWGUI.App/Resources/` pour employer un message court commun à chaque moteur de conversion.
+  - [x] 19.4 Verrouiller les trois comportements et produire le Debug complet
+    - [x] Modifier les scénarios existants sous `tests/GWGUI.Tests/Interface/ConversionViews/` et `EmulationViews/` pour couvrir la collision, la poursuite après échec, la ligne rouge sans pile et l’état de console par onglet ; leur projet compile sans avertissement, leur exécution reste bloquée par la stratégie Windows `0x800711C7`, l’audit RESX réussit pour 28 cultures et `scripts\local-building.cmd --building=debug --modules=A` réussit avec Amiga, Amstrad et Atari.

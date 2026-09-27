@@ -33,7 +33,7 @@ internal static class ReadFormatScenarios
         });
         var controller=new ReadTabController(view,model,null!,()=>catalog,()=>settings,builder,dialogs,
             ControlledDependencies.Reject<IBusinessDialogService>(),ControlledDependencies.Reject<IMessageDialogService>(),
-            null!,null!,null!,null!,null!,null!,new TextBox(),new TextBox(),()=>"virtual-device",()=>"B",()=>true,()=>null,()=>{},()=>{},()=>{});
+            null!,null!,null!,null!,null!,null!,new TextBox(),new RichTextBox(),()=>"virtual-device",()=>"B",()=>true,()=>null,()=>{},()=>{},()=>{});
         return new(view,model,controller,requests,formats);
     }
 

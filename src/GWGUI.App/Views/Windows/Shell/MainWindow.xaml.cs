@@ -134,7 +134,7 @@ public partial class MainWindow : Window
         var directory = dataDirectory ?? StoragePaths.DataDirectory;
         _logsDirectory = Path.Combine(directory, MainWindowConstants.LogsDirectoryName);
         _consoleLog = new ConsoleLogSession(_logsDirectory, () => _settings.Logging);
-        _terminalPanel = new TerminalPanelController(TerminalBlock, ConsoleRow, ConsoleSplitter, _settings);
+        _terminalPanel = new TerminalPanelController(TerminalBlock, ConsoleRow, ConsoleSplitter, () => _settings);
         _runner = runner ?? new GreaseweazleRunner();
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
         _pendingModuleInstallations = new PendingModuleInstallationStore();

@@ -33,7 +33,7 @@ public sealed class MaintenanceToolsController(
     Action? confirmStop = null,
     ConsoleLogSession? consoleLog = null,
     IGreaseweazleRunner? runner = null,
-    TextBox? logOutput = null,
+    RichTextBox? logOutput = null,
     Func<string?, bool>? fileExists = null,
     Action<Exception, string>? logError = null)
 {
@@ -108,7 +108,7 @@ public sealed class MaintenanceToolsController(
             dialogs.Show(localize("Advanced.Invalid", [localize("Common.Unknown", [])]), localize("App.Title", []));
             return;
         }
-        button.Content = localize("Common.Stop", []); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
+        button.Content = localize("Common.Stop", []); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync(command.Verb, command.ToDisplayString());
         var outcome = await operation.RunAsync(token => runner.RunAsync(command, new Progress<GwOutputLine>(operation.Report), token));
         await operation.FlushPendingAsync(); operation.Apply(operation.Present(outcome)); operation.End();

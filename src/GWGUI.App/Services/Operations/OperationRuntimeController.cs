@@ -6,6 +6,7 @@ using GWGUI.App.ViewModels.Main;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Threading;
 using GWGUI.Infrastructure.Processes;
@@ -21,7 +22,7 @@ public sealed class OperationRuntimeController
     private readonly Dispatcher _dispatcher;
     private readonly MainWindowViewModel _viewModel;
     private readonly OperationProgressController _progress;
-    private readonly TextBox _output;
+    private readonly RichTextBox _output;
     private readonly ConsoleLogSession _consoleLog;
     private readonly Func<string, object[], string> _localize;
 
@@ -29,7 +30,7 @@ public sealed class OperationRuntimeController
         Dispatcher dispatcher,
         MainWindowViewModel viewModel,
         OperationProgressController progress,
-        TextBox output,
+        RichTextBox output,
         ConsoleLogSession consoleLog,
         Func<string, object[], string> localize,
         Action<Exception, string>? logError = null)
@@ -67,7 +68,8 @@ public sealed class OperationRuntimeController
 
     public void Report(GwOutputLine line)
     {
-        AppendText(line.Text + Environment.NewLine);
+        AppendText(line.Text + Environment.NewLine,
+            line.Stream == GwOutputStream.Error ? Brushes.IndianRed : null);
         _progress.Accept(line.Text);
     }
 
@@ -97,9 +99,14 @@ public sealed class OperationRuntimeController
         }
     }
 
-    public void AppendText(string text)
+    public void AppendText(string text, Brush? foreground = null)
     {
-        _output.AppendText(text);
+        if (_output.Document.Blocks.LastBlock is not Paragraph paragraph)
+        {
+            paragraph = new Paragraph { Margin = new Thickness(0) };
+            _output.Document.Blocks.Add(paragraph);
+        }
+        paragraph.Inlines.Add(new Run(text) { Foreground = foreground ?? _output.Foreground });
         _output.ScrollToEnd();
         _ = _consoleLog.AppendTextAsync(text);
     }

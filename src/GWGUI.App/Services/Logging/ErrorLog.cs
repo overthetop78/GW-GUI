@@ -12,12 +12,15 @@ public static class ErrorLog
     internal static event Action<string>? EntryWritten;
 
     public static string? Write(Exception exception, string context, string? directory = null) =>
-        WriteEntry(exception.ToString(), context, "errors", directory);
+        WriteEntry(exception.ToString(), context, "errors", directory, true);
+
+    internal static string? WriteWithoutPublishing(Exception exception, string context, string? directory = null) =>
+        WriteEntry(exception.ToString(), context, "errors", directory, false);
 
     public static string? WriteInformation(string message, string context, string? directory = null) =>
-        WriteEntry(message, context, "information", directory);
+        WriteEntry(message, context, "information", directory, true);
 
-    private static string? WriteEntry(string detail, string context, string prefix, string? directory)
+    private static string? WriteEntry(string detail, string context, string prefix, string? directory, bool publish)
     {
         var assembly = Assembly.GetEntryAssembly();
         var entry = new StringBuilder()
@@ -41,7 +44,7 @@ public static class ErrorLog
             lock (Gate) File.AppendAllText(path, entry, new UTF8Encoding(false));
         }
         catch { path = null; }
-        Publish(entry);
+        if (publish) Publish(entry);
         return path;
     }
 

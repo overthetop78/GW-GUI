@@ -121,7 +121,7 @@ public partial class MainWindow : Window
     private TextBox ReadExtensionText => ReadFileNameBlock.ExtensionTextBox;
     private CheckBox ReadRevsEnabled => ReadAdvancedBlock.RevsEnabledCheckBox;
     private TextBox CommandPreview => TerminalBlock?.CommandTextBox!;
-    private TextBox LogOutput => TerminalBlock?.OutputTextBox!;
+    private RichTextBox LogOutput => TerminalBlock?.OutputTextBox!;
     private ComboBox ScpDecoderCombo => VisualizerHeader.DecoderCombo;
     private TextBlock HardwareStatusText => StatusBarBlock.HardwareText;
     private ComboBox HardwareSelector => StatusBarBlock.HardwareChoices;

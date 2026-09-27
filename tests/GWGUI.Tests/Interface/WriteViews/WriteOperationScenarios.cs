@@ -20,6 +20,7 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Threading;
 namespace GWGUI.Tests.Interface.WriteViews;
 internal static class WriteOperationScenarios
@@ -41,7 +42,7 @@ internal static class WriteOperationScenarios
         await running;
         Assert.False(context.Operation.IsRunning); Assert.Equal(Visibility.Collapsed, context.Model.TimerVisibility);
         Assert.Equal(exit == 0 ? "Status.Success" : "Status.Error", context.Model.OperationText);
-        Assert.Contains(verification, context.Output.Text);
+        Assert.Contains(verification, Text(context.Output));
         Assert.Equal(LocExtension.Get("Common.Execute"), context.View.ExecuteActionButton.Content);
         Assert.Equal(1, context.Confirmations); Assert.Equal(1, context.Calls);
         Assert.Equal("virtual-source.img", context.Model.Write.SourcePath);
@@ -60,7 +61,7 @@ internal static class WriteOperationScenarios
     {
         public WriteTabSection View { get; } = new();
         public MainWindowViewModel Model { get; } = new("synthetic", "synthetic");
-        public TextBox Output { get; } = new();
+        public RichTextBox Output { get; } = new();
         public WriteTabController Controller { get; private set; } = null!;
         public OperationRuntimeController Operation { get; private set; } = null!;
         public TaskCompletionSource Started { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -105,4 +106,7 @@ internal static class WriteOperationScenarios
                 path => path is "virtual-tool" or "virtual-source.img");
         }
     }
+
+    private static string Text(RichTextBox output) =>
+        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }
