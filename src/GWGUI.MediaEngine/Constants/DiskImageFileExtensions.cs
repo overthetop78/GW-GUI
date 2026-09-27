@@ -160,6 +160,34 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des ROM brutes Amstrad CPC.</summary>
     public const string Rom = ".rom";
 
+    public const string Nes = ".nes";
+    public const string Sfc = ".sfc";
+    public const string Smc = ".smc";
+    public const string N64 = ".n64";
+    public const string Z64 = ".z64";
+    public const string V64 = ".v64";
+    public const string Gb = ".gb";
+    public const string Gbc = ".gbc";
+    public const string Gba = ".gba";
+    public const string Nds = ".nds";
+    public const string ThreeDs = ".3ds";
+    public const string Cia = ".cia";
+    public const string ThreeDsx = ".3dsx";
+    public const string Sms = ".sms";
+    public const string Sg = ".sg";
+    public const string Md = ".md";
+    public const string Gen = ".gen";
+    public const string Gg = ".gg";
+    public const string ThirtyTwoX = ".32x";
+    public const string A26 = ".a26";
+    public const string A52 = ".a52";
+    public const string A78 = ".a78";
+    public const string Pce = ".pce";
+    public const string Vb = ".vb";
+    public const string Ws = ".ws";
+    public const string Wsc = ".wsc";
+    public const string Cgb = ".cgb";
+
     /// <summary>Extension des fichiers Creative Voice.</summary>
     public const string Voc = ".voc";
 

@@ -37,6 +37,7 @@ public static class FileSystemIds
     public const string AmstradCpm = "amstrad.cpm";
     /// <summary>Identifie les banques de cartouche, ROM et sections d'instantané Amstrad.</summary>
     public const string AmstradMediaStructure = "amstrad-media-structure";
+    public const string RawCartridgeStructure = "console-raw-cartridge-structure";
     /// <summary>Identifie Apple DOS.</summary>
     public const string AppleDos = "apple-dos";
     /// <summary>Identifie Atari DOS.</summary>

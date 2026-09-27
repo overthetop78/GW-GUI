@@ -5,6 +5,7 @@ using GWGUI.MediaFileSystems.Interfaces.Exploration;
 using GWGUI.MediaFileSystems.FileSystems.Iso9660;
 using GWGUI.MediaFileSystems.FileSystems.Udf;
 using GWGUI.MediaFileSystems.FileSystems.Amstrad.Cartridge;
+using GWGUI.MediaFileSystems.FileSystems.Console.Cartridge;
 using GWGUI.MediaFileSystems.Exploration.Partitioning;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
 
@@ -55,6 +56,7 @@ public sealed class MediaExplorer
             .Concat(new IMediaFileSystemReader[]
             {
                 new AmstradCartridgeFileSystemReader(),
+                new RawCartridgeFileSystemReader(),
                 new UdfFileSystemReader(),
                 new JolietExtensionReader(),
                 new RockRidgeExtensionReader(),

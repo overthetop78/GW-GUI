@@ -25,6 +25,8 @@ public static partial class DiskImageFormatIds
     public const string AmstradCpr = MediaImageFormatIds.AmstradCpr;
     /// <summary>Identifiant des ROM brutes Amstrad CPC.</summary>
     public const string AmstradRom = MediaImageFormatIds.AmstradRom;
+    /// <summary>Identifiant des cartouches brutes conservées par banques.</summary>
+    public const string RawCartridge = MediaImageFormatIds.RawCartridge;
     /// <summary>Identifiant des conteneurs ApriDisk ACT Apricot PC/Xi de 315 Kio.</summary>
     public const string ApricotPcXi315 = MediaImageFormatIds.ApricotPcXi315;
 }

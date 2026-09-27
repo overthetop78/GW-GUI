@@ -92,9 +92,10 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [ ] Documenter pour chaque adaptateur son identifiant, sa version et ses médias.
   - [ ] Refuser explicitement une machine dont aucun adaptateur n'est installé.
 - [ ] Compléter les formats communs de `MediaEngine`.
-  - [ ] Ajouter les Readers, Writers, représentations visuelles et conversions.
-  - [ ] Ajouter les lecteurs de systèmes de fichiers à `MediaFileSystems`.
-  - [ ] Ajouter les règles de contenu à `MediaAnalysis`.
+  - [x] Ajouter le lecteur/Writer brut de cartouches console et sa représentation par banques de 16 Kio.
+  - [x] Ajouter le lecteur de banques de cartouche à `MediaFileSystems`.
+  - [x] Ajouter les règles de contenu ROM pour les extensions de cartouches et les banques extraites à `MediaAnalysis`.
+  - [ ] Ajouter les Readers, Writers, représentations visuelles et conversions des autres supports listés.
 - [ ] Localiser les nouveaux libellés avec la base commune et Argos.
 - [ ] Ajouter les tests utiles, puis exécuter le build Debug avec tous les modules.
 

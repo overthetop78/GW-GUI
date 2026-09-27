@@ -18,6 +18,8 @@ public static class MediaImageFormatIds
     public const string AmstradCpr = "amstrad.cpr";
     public const string AmstradRom = "amstrad.rom";
     public const string AmstradPcw = "amstrad.pcw";
+    /// <summary>Identifiant neutre des cartouches brutes de consoles.</summary>
+    public const string RawCartridge = "console.raw-cartridge";
     public const string AppleIIAppleDos113 = "apple2.appledos.113";
     public const string AppleIIAppleDos140 = "apple2.appledos.140";
     public const string AppleIIDos32 = "apple2.dos32";

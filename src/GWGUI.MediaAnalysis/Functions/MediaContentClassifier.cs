@@ -38,7 +38,7 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         var standard = DefinitionFor(MediaContentRecognitionPriority.Standard);
         if (standard is not null) return standard;
 
-        var recognized = KnownCategory(comment, dataValid, family);
+        var recognized = KnownCategory(comment, dataValid, nativeTypeId, family);
         if (recognized is not null)
         {
             var encoding = recognized == MediaContentCategory.Text && family == MediaFileSystemFamily.Atari8Bit
@@ -90,9 +90,12 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
     private static MediaContentCategory? KnownCategory(
         string comment,
         bool? dataValid,
+        string? nativeTypeId,
         MediaFileSystemFamily family)
     {
         if (dataValid == false) return MediaContentCategory.Data;
+        if (string.Equals(nativeTypeId, "cartridge-bank", StringComparison.OrdinalIgnoreCase))
+            return MediaContentCategory.Rom;
         var type = comment.Trim();
         if (family == MediaFileSystemFamily.Commodore && type.StartsWith("PRG", StringComparison.OrdinalIgnoreCase)) return MediaContentCategory.Program;
         if (family == MediaFileSystemFamily.AppleDos && type is "Text") return MediaContentCategory.Text;

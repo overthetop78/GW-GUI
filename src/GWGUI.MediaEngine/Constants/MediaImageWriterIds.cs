@@ -8,6 +8,7 @@ public static class MediaImageWriterIds
     public const string AmstradDsk = "amstrad-dsk";
     public const string AmstradCpr = "amstrad-cpr";
     public const string AmstradRom = "amstrad-rom";
+    public const string RawCartridge = "raw-cartridge";
     public const string AppleNibble = "apple-nibble";
     public const string AppleSector = "apple-sector";
     public const string AtariAtr = "atari-atr";
