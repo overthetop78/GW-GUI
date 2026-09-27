@@ -70,21 +70,17 @@ disponibles. Aucun ordinateur IBM PC générique ne sera ajouté à ces modules.
 
 ## Cœurs ouverts retenus pour l'intégration
 
-La première implémentation ciblera les cœurs Libretro réellement publiés, avec
-un adaptateur propre dans le module qui les consomme :
+Les adaptateurs restent propres à chaque module et suivent les contrats déjà
+utilisés par Amiga, Atari et Amstrad. Aucune couche Libretro commune n'est
+ajoutée : un cœur n'est déclaré qu'après l'ajout de son adaptateur concret,
+de son installation et de son protocole avec le module.
 
-Le détail des extensions, médias et prérequis est conservé dans
-[`libretro-core-matrix.md`](libretro-core-matrix.md).
+Les cœurs et leurs versions seront inscrits dans les catalogues propres aux
+modules uniquement avec leur adaptateur concret, leur protocole, leur
+installation et leurs médias vérifiés. Aucun nom de cœur n'est injecté dans
+`GWGUI.Emulation` ou partagé entre les familles.
 
-| Module | Machines et cœur prioritaire |
-|---|---|
-| Sega | Gearsystem (SG-1000/SMS/Game Gear), Genesis Plus GX ou PicoDrive (Mega Drive/Mega-CD/32X), Beetle Saturn, Flycast (Dreamcast/GD-ROM) |
-| Nintendo | Nestopia/Mesen (NES/Famicom/FDS), Snes9x ou bsnes (SNES), Gambatte/mGBA (GB/GBC/GBA), Mupen64Plus-Next (N64/N64DD), melonDS (DS), Citra (3DS), Dolphin (GameCube/Wii), Cemu (Wii U) |
-| Sony | Beetle PSX ou SwanStation (PS1), LRPS2/PCEE2 ou Play! (PS2), PPSSPP (PSP) ; Vita/PS3/PS4/PS5 seulement après validation d'un cœur redistribuable et d'un adaptateur local |
-| NEC | Beetle PCE FAST/Beetle PCE (PC Engine, CD et SuperGrafx), Beetle SGX (SuperGrafx), Beetle PC-FX (PC-FX) |
-| Microsoft | aucun cœur Libretro Xbox/Xbox 360 vérifié dans le catalogue actuel ; étudier xemu/Xenia comme bibliothèques autonomes avant de créer l'adaptateur |
-
-Les extensions sont dérivées des capacités déclarées par chaque cœur, et non
+Les extensions sont dérivées des capacités déclarées par chaque adaptateur, et non
 d'une liste générique : FDS, Sega Card/HuCard, CD/GD-ROM et les formats
 multi-disques doivent donc être ajoutés avec leur lecteur MediaEngine et leur
 préparation de contenu correspondants.
@@ -136,19 +132,20 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 Les feuilles suivantes sont les actions concrètes restantes ; chaque case ne
 sera cochée qu'après écriture du fichier et compilation du comportement associé.
 
-- [ ] Créer `src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj` avec la référence SDK.
-- [ ] Créer `src/GWGUI.Emulation.Sega/module.json` et `Modules/SegaEmulationModuleFactory.cs`.
-- [ ] Créer `src/GWGUI.Emulation.Sega/Common/Machines/MachineCatalog.cs` et les configurations Sega.
-- [ ] Créer les adaptateurs `src/GWGUI.Emulation.Sega/Emulators/Libretro/*` pour Gearsystem, Genesis Plus GX/PicoDrive, Beetle Saturn et Flycast.
+- [x] Créer `src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj` avec la référence SDK.
+- [x] Créer `src/GWGUI.Emulation.Sega/module.json` et `Modules/SegaEmulationModuleFactory.cs`.
+- [x] Créer `src/GWGUI.Emulation.Sega/Common/Machines/MachineCatalog.cs` et les configurations Sega.
+- [x] Créer les contrats, interfaces et services `Common`/`Common/Machines/Common` de Sega en reprenant les frontières des modules existants.
+- [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sega/Emulators/<Cœur>/*` pour les cœurs Sega retenus.
 - [ ] Créer `src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj`, `module.json` et la factory.
 - [ ] Créer `src/GWGUI.Emulation.Nintendo/Common/Machines/MachineCatalog.cs` et les configurations Nintendo.
-- [ ] Créer les adaptateurs `src/GWGUI.Emulation.Nintendo/Emulators/Libretro/*` pour NES/FDS, SNES, GB/GBA, N64, DS, 3DS, GameCube/Wii et Wii U.
+- [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nintendo/Emulators/<Cœur>/*` pour NES/FDS, SNES, GB/GBA, N64, DS, 3DS, GameCube/Wii et Wii U.
 - [ ] Créer `src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj`, `module.json` et la factory.
 - [ ] Créer `src/GWGUI.Emulation.Sony/Common/Machines/MachineCatalog.cs` et les configurations Sony.
-- [ ] Créer les adaptateurs `src/GWGUI.Emulation.Sony/Emulators/Libretro/*` pour PS1, PS2 et PSP.
+- [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sony/Emulators/<Cœur>/*` pour PS1, PS2 et PSP.
 - [ ] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json` et la factory.
 - [ ] Créer `src/GWGUI.Emulation.Nec/Common/Machines/MachineCatalog.cs` et les configurations PC Engine.
-- [ ] Créer les adaptateurs `src/GWGUI.Emulation.Nec/Emulators/Libretro/*` pour PCE, SGX et PC-FX.
+- [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nec/Emulators/<Cœur>/*` pour PCE, SGX et PC-FX.
 - [ ] Créer `src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj`, `module.json` et la factory après validation xemu/Xenia.
 - [ ] Créer les lecteurs MediaEngine pour FDS, Sega Card/HuCard et CDI/GDI/CHD multi-pistes.
 
