@@ -22,6 +22,9 @@ factory publique `IEmulationModuleFactory`, un catalogue de machines et un
 adaptateur par cœur réellement intégré. Aucun projet ne sera ajouté à
 `GWGUI.App` : la découverte existante charge les modules depuis leur manifeste.
 
+Le module supplémentaire `nec` couvrira PC Engine/TurboGrafx-16, CoreGrafx,
+SuperGrafx, PC Engine Duo/TurboDuo et les variantes portables concernées.
+
 ### Sega
 
 - SG-1000, SC-3000 et Mark III/Master System ;
@@ -54,6 +57,13 @@ adaptateur par cœur réellement intégré. Aucun projet ne sera ajouté à
 - Xbox ;
 - Xbox 360.
 
+### NEC
+
+- PC Engine/TurboGrafx-16 et CoreGrafx ;
+- SuperGrafx ;
+- PC Engine Duo/TurboDuo ;
+- PC Engine GT/TurboExpress et PC Engine LT lorsqu'un cœur les prend en charge.
+
 Les ordinateurs non compatibles IBM PC x86/x64 peuvent être ajoutés uniquement
 comme machines d'une famille lorsque leur cœur et leurs médias sont réellement
 disponibles. Aucun ordinateur IBM PC générique ne sera ajouté à ces modules.
@@ -71,10 +81,10 @@ Les formats à traiter sont inventoriés avant leur implémentation :
 
 | Support | Exemples de formats | Propriétaire |
 |---|---|---|
-| Cartouche | ROM, BIN, NES, SNES, N64, GBA, GB, GBC, NDS, 3DS, GBA, CPR | MediaEngine ; MediaFileSystems seulement si un système de fichiers est démontré |
+| Cartouche | ROM, BIN, NES, FDS (Famicom Disk System), SNES/SFC, N64, GBA, GB/GBC, NDS, 3DS/CIA, Sega Card et HuCard/PCE, CPR | MediaEngine ; MediaFileSystems seulement si un système de fichiers est démontré |
 | Disquette | DSK/EDSK, ST, ADF, G64, D64/D71/D81, XDF et variantes propres aux machines | MediaEngine + MediaFileSystems |
 | Cassette/bande | TAP, TZX, CDT, VOC, WAV, FLAC, MP3, AAC, M4A, HXCSTREAM | MediaEngine pour le flux et les blocs ; MediaFileSystems pour les contenus décodés |
-| Optique | ISO, BIN/CUE, CHD, CCD/MDS et images multi-pistes | MediaEngine + systèmes ISO/UDF existants |
+| Optique | ISO, BIN/CUE, CHD, CCD/MDS, CDI, GDI (Dreamcast) et images multi-pistes | MediaEngine + systèmes ISO/UDF existants |
 | Disque dur | IMG, VHD, VDI, VMDK, QCOW2, CHD | MediaEngine + systèmes de fichiers existants |
 
 Une extension n'est déclarée comme lisible, visualisable, explorable ou
@@ -83,11 +93,12 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 
 ## Ordre d'implémentation
 
-- [ ] Créer les quatre projets de modules, leurs manifestes et leurs factories.
+- [ ] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Sony.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Microsoft.
+  - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines NEC.
 - [ ] Brancher les cœurs, un adaptateur à la fois, dans `Emulators/<Cœur>`.
   - [ ] Documenter pour chaque adaptateur son identifiant, sa version et ses médias.
   - [ ] Refuser explicitement une machine dont aucun adaptateur n'est installé.
