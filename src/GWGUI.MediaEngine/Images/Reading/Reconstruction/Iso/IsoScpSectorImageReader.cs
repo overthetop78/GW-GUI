@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
 
@@ -30,6 +31,20 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
     {
         var policy = IsoScpSectorImagePolicyRegistry.Resolve(formatId);
         var candidates = await candidateDecoder.DecodeAsync(path, policy.DecoderIds, progress, cancellationToken).ConfigureAwait(false);
+        if (candidates.Addressed.Count == 0 && candidates.Physical.Count == 0)
+            throw IsoScpReconstructionExceptions.NoCandidates(formatId, candidates.Addressed.Count, candidates.Physical.Count);
+        return policy.Build(formatId, candidates);
+    }
+
+    /// <summary>Décode une représentation de flux commune déjà chargée.</summary>
+    public async Task<SectorImage> ReadAsync(
+        ProtectedTrackImage image,
+        string? formatId,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
+    {
+        var policy = IsoScpSectorImagePolicyRegistry.Resolve(formatId);
+        var candidates = await candidateDecoder.DecodeAsync(image, policy.DecoderIds, progress, cancellationToken).ConfigureAwait(false);
         if (candidates.Addressed.Count == 0 && candidates.Physical.Count == 0)
             throw IsoScpReconstructionExceptions.NoCandidates(formatId, candidates.Addressed.Count, candidates.Physical.Count);
         return policy.Build(formatId, candidates);

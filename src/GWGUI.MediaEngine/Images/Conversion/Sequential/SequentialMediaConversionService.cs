@@ -119,6 +119,25 @@ public sealed class SequentialMediaConversionService
         IReadOnlyDictionary<string, string>? parameters = null,
         bool acceptLosses = false,
         CancellationToken cancellationToken = default)
+        => await ConvertAsync(
+            sourcePath,
+            outputPath,
+            targetFormatId,
+            null,
+            machineId,
+            parameters,
+            acceptLosses,
+            cancellationToken).ConfigureAwait(false);
+
+    public async Task<MediaConversionResult> ConvertAsync(
+        string sourcePath,
+        string outputPath,
+        string targetFormatId,
+        Action<MediaExplorationProgress>? progress,
+        string? machineId = null,
+        IReadOnlyDictionary<string, string>? parameters = null,
+        bool acceptLosses = false,
+        CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -130,7 +149,17 @@ public sealed class SequentialMediaConversionService
         if (writers.Resolve(plan.TargetDocument, targetFormatId, extension) is null)
             throw new NotSupportedException(
                 $"No writer accepts sequential target '{targetFormatId}' with extension '{extension}'.");
-        var produced = await writing.WriteAsync(plan.TargetDocument, outputPath, targetFormatId, cancellationToken).ConfigureAwait(false);
+        var produced = await writing.WriteAsync(
+            plan.TargetDocument,
+            outputPath,
+            targetFormatId,
+            progress,
+            cancellationToken).ConfigureAwait(false);
+        progress?.Invoke(new(
+            MediaExplorationProgressStage.ReadingMedia,
+            targetFormatId,
+            100,
+            plan.TargetDocument.MediaKind));
         return new MediaConversionResult(produced, plan.Diagnostics, plan.Losses);
     }
 

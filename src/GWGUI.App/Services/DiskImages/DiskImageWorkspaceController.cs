@@ -79,7 +79,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         Func<string, string?, CancellationToken, Task<ExploredDiskImage>>? explore = null,
         MediaImageReadingService? mediaReader = null,
         MediaExplorer? mediaExplorer = null,
-        MediaVisualizationProviderRegistry? visualizationProviders = null)
+        MediaVisualizationProviderRegistry? visualizationProviders = null,
+        IReadOnlySet<string>? supportedExtensions = null)
     {
         _explorer = explorer;
         _visualizer = visualizer;
@@ -93,7 +94,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
                 diskImageExplorer,
                 mediaExplorer);
         }
-        _fileSelection = new DiskImageFileSelectionService(getSettings, fileDialogs, localize);
+        _fileSelection = new DiskImageFileSelectionService(getSettings, fileDialogs, localize, supportedExtensions);
         _mediaVisualization = new MediaVisualizationController(
             visualizer,
             viewModel,
@@ -126,7 +127,6 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _cassetteLoading = new CassetteLoadingPresenter(
             explorer,
             visualizer,
-            viewModel,
             face0Progress,
             face1Progress,
             _mediaVisualization,
@@ -247,6 +247,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     public string? SelectVisualizerImage() => _fileSelection.SelectVisualizerImage();
 
     public string? SelectExplorerImage() => _fileSelection.SelectExplorerImage();
+
+    public string? SelectConversionImage() => _fileSelection.SelectConversionImage();
 
     public Task LoadAsync(string path, string? displayFileName = null)
     {

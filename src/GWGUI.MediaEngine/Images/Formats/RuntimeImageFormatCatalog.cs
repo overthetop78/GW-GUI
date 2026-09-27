@@ -8,8 +8,22 @@ public sealed class RuntimeImageFormatCatalog : IImageFormatCatalog
         ArgumentNullException.ThrowIfNull(curated);
         ArgumentNullException.ThrowIfNull(runtimeFormats);
         var formats = curated.Formats.ToList();
-        var known = formats.Select(format => format.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        formats.AddRange(runtimeFormats.Where(format => known.Add(format.Id)));
+        foreach (var runtime in runtimeFormats)
+        {
+            var index = formats.FindIndex(format => format.Id.Equals(runtime.Id, StringComparison.OrdinalIgnoreCase));
+            if (index < 0)
+            {
+                formats.Add(runtime);
+                continue;
+            }
+
+            var presentation = formats[index];
+            formats[index] = presentation with
+            {
+                Extensions = runtime.Extensions,
+                CompatibleSourceExtensions = runtime.CompatibleSourceExtensions
+            };
+        }
         Formats = formats;
     }
 

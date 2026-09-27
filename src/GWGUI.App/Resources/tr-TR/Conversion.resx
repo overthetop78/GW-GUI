@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>İç dönüşüm başarısız oldu {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potansiyel veri kaybı</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Bu dönüşüm tüm kaynak bilgilerini koruyamaz:&#xA;&#xA;{0}&#xA;&#xA;Devam etmek ister misiniz?</value></data>
+  <data name="Conversion.OutputCollision"><value>Birkaç dönüşüm aynı dosyayı yaratırdı ‘{0}“Bu seçim, ‘ olmadığı sürece mümkün değildir.{1}‘ kontrol edilir.</value></data>
+  <data name="Conversion.Failed"><value>Dönüşüm için başarısız oldu {0}: {1}</value></data>
 </root>

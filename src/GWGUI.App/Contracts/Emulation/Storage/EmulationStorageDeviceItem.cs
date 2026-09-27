@@ -8,4 +8,5 @@ public sealed record EmulationStorageDeviceItem(
     EmulationMediaType Type,
     string Model,
     string? SupportPath,
-    bool CanRemove = true);
+    bool CanRemove = true,
+    bool CanConfigure = false);

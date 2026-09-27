@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>È necessario un percorso Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Un percorso firmware richiesto è vuoto.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Il file selezionato non esiste.</value></data>
+  <data name="Emulation.Error.Title"><value>Errore di emulazione</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>L'emulatore richiesto non è installato.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>L'emulatore ha respinto l'operazione richiesta.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>L'emulatore non può essere aggiornato mentre è in uso.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Il firmware richiesto non e' disponibile.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Il firmware selezionato è incompatibile con questa macchina.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Il file multimediale configurato non è stato trovato.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>I supporti selezionati non sono supportati da questo emulatore.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Un'opzione emulatore non è valida.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>La comunicazione con il processo di emulatore è fallita.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>La macchina emulata non poteva essere avviata.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>L'operazione dei media è fallita.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Lo stato salvato è invalido o danneggiato.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Lo stato salvato non è compatibile con questa configurazione della macchina.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>L'operazione salvata-stato è fallita.</value></data>
 </root>

@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using GWGUI.App.Localization.Extensions;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
@@ -87,7 +88,8 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
             "tape.atari-cas",
             new Dictionary<string, string> { ["systemId"] = "atari-8bit" }));
 
-        Assert.Equal("Atari CAS", Find<TextBlock>(section, "FileSystemText").Text);
+        Assert.Equal($"{LocExtension.Get("Explorer.Cassette")} {LocExtension.Get("System.atari-8bit")}",
+            Find<TextBlock>(section, "FileSystemText").Text);
         Assert.Equal("Atari 8-bit", Find<TextBlock>(section, "SystemText").Text);
         Assert.Equal("1", Find<TextBlock>(section, "EntryCountText").Text);
     });

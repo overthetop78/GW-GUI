@@ -82,7 +82,7 @@
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Partage</value></data>
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Linéaire</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Angulaire</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Constante</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampe</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Onde sinusoïdale</value></data>
@@ -91,13 +91,13 @@
   <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Dent de scie montante</value></data>
   <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Dent de scie descendante</value></data>
   <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Ressort</value></data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Friction</value></data>
+  <data name="Controllers.Enum.Effect.Friction"><value>Friction</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Amortisseur</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inertie</value></data>
   <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Rouge-joie</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Contrôleur multiaxe</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Usage HID</value></data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>axes</value></data>
+  <data name="Controllers.Enum.Axes"><value>axes</value></data>
   <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>boutons</value></data>
   <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Agrégé</value></data>
   <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtuel</value></data>

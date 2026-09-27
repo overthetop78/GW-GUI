@@ -13,7 +13,7 @@
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Probar vibración</value></data>
   <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Intensidad de vibración</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Entradas en tiempo real</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Control</value></data>
+  <data name="Controllers.Control"><value>Control</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Valor</value></data>
   <data name="Controllers.Active" xml:space="preserve"><value>Activo</value></data>
   <data name="Controllers.Capabilities" xml:space="preserve"><value>Funciones</value></data>
@@ -40,7 +40,7 @@
   <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Conmutador</value></data>
   <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} ejes · {1} botones · {2} conmutadores</value></data>
   <data name="Controllers.Yes" xml:space="preserve"><value>Sí</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>No</value></data>
+  <data name="Controllers.No"><value>No</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Ninguno</value></data>
   <data name="Controllers.Model.GenericGamepad"><value>Genérico juegopad</value></data>
   <data name="Controllers.Model.RacingWheel"><value>Rueda de carreras</value></data>
@@ -81,8 +81,8 @@
   <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Motor de alta frecuencia</value></data>
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Compartir</value></data>
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineal</value></data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Angular</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Angular"><value>Angular</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Constante</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampa</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Onda sinusoidal</value></data>
@@ -94,13 +94,13 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Fricción</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Amortiguador</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inercia</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Controlador multieje</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Uso HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>ejes</value></data>
   <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>botones</value></data>
   <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Agregado</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtual</value></data>
+  <data name="Controllers.Enum.Virtual"><value>Virtual</value></data>
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Informe de entrada</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Informe de salida</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Zonas muertas analógicas</value></data>

@@ -42,32 +42,42 @@ public sealed class AppleScpSectorImageReader
     /// <returns>L'image sectorielle Apple explicitement demandée ou la reconstruction automatique la plus complète.</returns>
     /// <exception cref="InvalidDataException">Le format demandé ne peut pas être reconstruit, ou les trois reconstructeurs automatiques ont rejeté la capture.</exception>
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
+        => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+
+    public async Task<SectorImage> ReadAsync(
+        string path,
+        string? formatId,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken = default)
     {
         var scp = await _scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) == true)
-            return _rwts18.Decode(scp, cancellationToken);
+            return _rwts18.Decode(scp, cancellationToken, progress);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIAppleDosPrefix, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith(DiskImageFormatIds.AppleIINoFileSystemPrefix, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith(DiskImageFormatIds.AppleIIDosPrefix, StringComparison.OrdinalIgnoreCase) == true)
-            return _appleII.Decode(scp, false, cancellationToken);
+            return _appleII.Decode(scp, false, cancellationToken, progress);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) == true)
-            return ReadSos(scp, cancellationToken);
+            return ReadSos(scp, progress, cancellationToken);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) == true)
-            return _appleII.Decode(scp, true, cancellationToken);
+            return _appleII.Decode(scp, true, cancellationToken, progress);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ||
             formatId?.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) == true)
-            return _macintosh.Decode(scp, formatId, cancellationToken);
+            return _macintosh.Decode(scp, formatId, cancellationToken, progress);
 
-        return DetectAutomatically(scp, cancellationToken);
+        return DetectAutomatically(scp, progress, cancellationToken);
     }
 
     /// <summary>Reconstruit l'ordre ProDOS et n'accepte le profil SOS que si son marqueur d'amorçage est présent.</summary>
-    private SectorImage ReadSos(ScpImage scp, CancellationToken cancellationToken)
+    private SectorImage ReadSos(
+        ScpImage scp,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
-        var image = _appleII.Decode(scp, true, cancellationToken);
+        var image = _appleII.Decode(scp, true, cancellationToken, progress);
         var payload = Enumerable.Range(0, image.BlockCount).SelectMany(logicalBlock => image.GetBlock(logicalBlock).ToArray()).ToArray();
         if (!AppleRawImageProbe.LooksLikeSos(payload)) throw new InvalidDataException("The reconstructed Apple III image does not contain a valid SOS boot marker.");
         return image.WithFormatId(DiskImageFormatIds.AppleIIISos);
@@ -78,13 +88,16 @@ public sealed class AppleScpSectorImageReader
     /// <param name="cancellationToken">Jeton permettant d'annuler les tentatives de reconstruction.</param>
     /// <returns>La reconstruction réussie possédant la meilleure proportion de blocs disponibles.</returns>
     /// <exception cref="InvalidDataException">Les reconstructeurs Macintosh/Lisa, Apple II et RWTS18 ont tous rejeté la capture.</exception>
-    private SectorImage DetectAutomatically(ScpImage scp, CancellationToken cancellationToken)
+    private SectorImage DetectAutomatically(
+        ScpImage scp,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         var candidates = new List<SectorImage>(3);
         var rejections = new List<(string Identity, InvalidDataException Error)>(3);
-        TryAdd(candidates, rejections, AppleScpReconstructionDefinitions.MacintoshReconstructorName, () => _macintosh.Decode(scp, null, cancellationToken));
-        TryAdd(candidates, rejections, AppleScpReconstructionDefinitions.AppleIIReconstructorName, () => _appleII.Decode(scp, false, cancellationToken));
-        TryAdd(candidates, rejections, AppleScpReconstructionDefinitions.Rwts18ReconstructorName, () => _rwts18.Decode(scp, cancellationToken));
+        TryAdd(candidates, rejections, AppleScpReconstructionDefinitions.MacintoshReconstructorName, () => _macintosh.Decode(scp, null, cancellationToken, progress));
+        TryAdd(candidates, rejections, AppleScpReconstructionDefinitions.AppleIIReconstructorName, () => _appleII.Decode(scp, false, cancellationToken, progress));
+        TryAdd(candidates, rejections, AppleScpReconstructionDefinitions.Rwts18ReconstructorName, () => _rwts18.Decode(scp, cancellationToken, progress));
         if (candidates.Count == 0) throw ScpReconstructionExceptions.AppleCandidatesRejected(rejections);
         return candidates.OrderByDescending(image => image.AvailableBlocks.Count / (double)Math.Max(1, image.BlockCount)).ThenByDescending(image => image.AvailableBlocks.Count).First();
     }

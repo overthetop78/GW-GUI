@@ -12,7 +12,7 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>Standard-Disk-Image-Ordner</value></data>
   <data name="Options.Language" xml:space="preserve"><value>Sprache</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Thema</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>System</value></data>
+  <data name="Options.Theme.System"><value>System</value></data>
   <data name="Options.Theme.Light" xml:space="preserve"><value>Licht</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Dunkel</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Pfad zu gw.exe</value></data>
@@ -58,7 +58,7 @@
   <data name="Options.Engines.Description" xml:space="preserve"><value>Wählen Sie die Engine für jeden Vorgang unabhängig aus.</value></data>
   <data name="Options.Engines.Internal" xml:space="preserve"><value>Interne GW GUI Motor</value></data>
   <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Die ausgewählte Engine wird strikt verwendet. Kann sie den Vorgang nicht ausführen, meldet GW GUI dies, ohne unbemerkt die andere Engine zu verwenden.</value></data>
-  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} — {1} : {2}</value></data>
+  <data name="Options.EmulationMachineTitle"><value>{0} — {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Präferenzen</value></data>
   <data name="Options.EmulationTitle"><value>Emulationspräferenzen</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} Emulationseinstellungen</value></data>

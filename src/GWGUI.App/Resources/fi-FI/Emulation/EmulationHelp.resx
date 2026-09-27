@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Asettaa GTIA värivaiheviive, jota käytetään värien jäljentämiseen. Oletus käyttää standardiarvoa. Numeerinen valinta siirtää tuloksena sävyjä.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Aseta kehys hypätä</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Asettaa, kuinka monta näyttöruutua jätetään pois. -Ei. Korkeammat arvot vähentävät renderöintiä, mutta tekevät liikkeestä vähemmän sujuvaa.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Valitse emulgoitu prosessori</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Valitsee emulgoituun koneeseen asennetun prosessorimallin. Saatavilla olevat mallit riippuvat valitusta koneesta ja emulaattorista.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Käytä alkuperäistä prosessorin nopeutta</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Ajaa prosessoria alkuperäisen koneen ajoituksen eikä kiihdytä tai mukauta taajuutta.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Aseta päämuistin koko</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Valitsee emulgoidussa koneessa asennetun päämuistin määrän. Saatavilla olevat koot ovat rajoitettuja koneen tukemiin konfiguraatioihin.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Valitse järjestelmän firmware-ohjelmisto</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Valitsee järjestelmän ROM käytetään aloittamaan emulgoitu kone. Firmware on sama kuin valittu malli ja alueellinen kokoonpano.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Valitse BASIC firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Valitsee BASIC ROM emuloitu kone on käytettävissä, kun kyseinen firmware tukee valittu malli.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Valitse XEGS firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Valitsee Atarin käyttämän firmware-ohjelman XEGS profiili. Käytä ohjelmistoa yhteensopiva valitun konealueen kanssa.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Näytä varastointiaktiivisuus</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Näyttää emuloidun tallennuslaitteen ilmoittamaa toimintaa samalla kun mediaa on saatavilla.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Valitse kovalevykansion</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Valitsee emulaattorille altistuneen pääkansion kovalevytallennukseksi, kun kansiota tuetaan.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Näytä tallennusnopeus</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Näyttää emuloidun tallennuslaitteen ilmoittaman siirtonopeuden.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Näytä nykyinen sektori</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Näyttää alan, johon emulgoitu tallennuslaite on tällä hetkellä käytettävissä.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Valitse emulgoitu resoluutio</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Valitsee emulaattorin tuottaman sisäisen videoresoluution GW GUI Skaalaus kuva ikkuna.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Versoa emulgoidut rajat</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Poistaa emulgoidun videon luomat rajat säilyttäen samalla kuvan kuvasuhteen, jota käytetään GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Säädä videon sävyä</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Vaihdaa värisävyjä syntyy emulgoitu video laitteisto.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Säädä värikylläisyyttä</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Muuttaa intensiteetti värit syntyy emulgoitu video laitteisto.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Säädä kuvan kontrastia</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Muuttaa eroa tumman ja kirkkaan värejä emuloitu videon ulostulo.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Säädä kuvan kirkkautta</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Muuttaa emulgoidun videon kokonaiskirkkausta.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Ota käyttöön emuloitu ääni</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Mahdollistaa tai poistaa emulgoidun koneen tuottaman äänen.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Valitse äänituloste</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Valitsee äänilaitteen, jota käytetään emulgoidun koneen äänen soittamiseen.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Aseta emulgoidun äänenvoimakkuuden</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Asettaa emulgoidun koneen tuottaman äänen soittotilavuuden.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Käytä levyke-ajoääniä</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Mahdollistaa mekaanisia ääniä, jotka lisääntyvät aktiivisuus emuloidulla levykeasemalla.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Aseta levyke-ajoäänimäärä</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Asettaa emuloitujen levyke-drive mekaanisten äänien toiston äänenvoimakkuuden.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Aseta CD äänenvoimakkuus</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Asettaa soittotilavuuden ääniraitoja lukea emulated compact-levyasema.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Aseta hiiren liikenopeus</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Säätää, miten isäntä hiiren liike muunnetaan liike ilmoitetaan emulated kone.</value></data>
 </root>

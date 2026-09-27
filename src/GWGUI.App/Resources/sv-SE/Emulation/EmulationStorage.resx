@@ -74,5 +74,5 @@
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Visa enhetsaktivitet på emulatorns skärm</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassettplats</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montera de fyra första diskarna i DF0-DF3</value></data>
-  <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk {0}</value></data>
+  <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
 </root>

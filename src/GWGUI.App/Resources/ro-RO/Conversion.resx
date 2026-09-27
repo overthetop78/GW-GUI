@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Conversia internă a eșuat pentru {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Pierderea potențială a datelor</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Această conversie nu poate păstra toate informațiile sursă:&#xA;&#xA;{0}&#xA;&#xA;Vrei să continui?</value></data>
+  <data name="Conversion.OutputCollision"><value>Mai multe conversii ar crea același fișier "{0}"Această selecţie nu este posibilă decât dacă"{1}" este verificat.</value></data>
+  <data name="Conversion.Failed"><value>Conversia a eșuat pentru {0}: {1}</value></data>
 </root>

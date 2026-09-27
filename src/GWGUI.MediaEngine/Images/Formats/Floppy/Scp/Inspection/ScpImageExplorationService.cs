@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 
@@ -29,4 +30,12 @@ public sealed class ScpImageExplorationService
         CancellationToken cancellationToken) => automaticExplorer.ExploreAsync(path, image, progress, cancellationToken);
     /// <summary>Délègue la reconstruction du chemin et du format explicitement demandé.</summary>
     public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) => sectorImageReader.ReadAsync(path, formatId, cancellationToken);
+
+    /// <summary>Reconstruit une représentation de flux commune sans dépendre du conteneur source.</summary>
+    public Task<SectorImage> ReadAsync(
+        ProtectedTrackImage image,
+        string? formatId,
+        IProgress<ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken) =>
+        sectorImageReader.ReadAsync(image, formatId, progress, cancellationToken);
 }

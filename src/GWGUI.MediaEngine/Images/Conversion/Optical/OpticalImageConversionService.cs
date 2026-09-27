@@ -50,6 +50,19 @@ public sealed class OpticalImageConversionService
         string outputPath,
         string targetFormatId,
         CancellationToken cancellationToken = default)
+        => await ConvertAsync(
+            sourcePath,
+            outputPath,
+            targetFormatId,
+            null,
+            cancellationToken).ConfigureAwait(false);
+
+    public async Task<IReadOnlyList<string>> ConvertAsync(
+        string sourcePath,
+        string outputPath,
+        string targetFormatId,
+        Action<MediaExplorationProgress>? progress,
+        CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -63,6 +76,17 @@ public sealed class OpticalImageConversionService
         if (writers.Resolve(document, targetFormatId, extension) is null)
             throw new NotSupportedException(
                 "The requested optical destination would lose unsupported track, sector, session, layer, pregap, postgap, or subchannel information.");
-        return await writing.WriteAsync(document, outputPath, targetFormatId, cancellationToken).ConfigureAwait(false);
+        var produced = await writing.WriteAsync(
+            document,
+            outputPath,
+            targetFormatId,
+            progress,
+            cancellationToken).ConfigureAwait(false);
+        progress?.Invoke(new(
+            MediaExplorationProgressStage.ReadingMedia,
+            targetFormatId,
+            100,
+            document.MediaKind));
+        return produced;
     }
 }

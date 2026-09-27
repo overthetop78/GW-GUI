@@ -32,8 +32,9 @@ internal static class ControlErrorPresenter
             ShowUnexpected(owner, error, context, machineName);
             return;
         }
-        ErrorLog.Write(messageError.InnerException ?? messageError, context);
         var message = messageError.MessageData;
+        ErrorLog.Write(messageError,
+            $"{context} - {machineName} - {message.Category}/{message.MessageCode}");
         if (message.Target == EmulationMessageTarget.Silent) return;
         var description = MessageText(message);
         if (message.Target != EmulationMessageTarget.Dialog) return;
@@ -46,9 +47,9 @@ internal static class ControlErrorPresenter
 
     private static string MessageHeading(EmulationMessage message) => message.MessageCode switch
     {
-        EmulationMessageCode.RequiredMediaMissing =>
+        EmulationMessageCode.RequiredMediaMissing or EmulationMessageCode.MachineStartFailed =>
             LocExtension.Get(ControlErrorPresenterConstants.PowerFailureTitleResource),
-        _ => LocExtension.Get(ControlErrorPresenterConstants.UnexpectedResource)
+        _ => LocExtension.Get(ControlErrorPresenterConstants.EmulationErrorTitleResource)
     };
 
     private static string MessageText(EmulationMessage message)

@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>En Kickstart-vei er nødvendig.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>En nødvendig fastvarevei er tom.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Den valgte filen finnes ikke.</value></data>
+  <data name="Emulation.Error.Title"><value>Emuleringsfeil</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Den nødvendige emulatoren er ikke installert.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Emulatoren avviste den etterspurte operasjonen.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Emulatoren kan ikke oppdateres mens den er i bruk.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Det er nødvendig med fastvare.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Den valgte firmware er ikke kompatibel med denne maskinen.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Den konfigurerte mediefilen ble ikke funnet.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>De valgte mediene støttes ikke av denne emulatoren.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Et emulatoralternativ er ugyldig.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Kommunikasjon med emulatorprosessen mislyktes.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Den emulerte maskinen kunne ikke startes.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Media-operasjonen mislyktes.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Den lagrede staten er ugyldig eller skadet.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Den lagrede tilstanden er ikke kompatibel med denne maskinkonfigurasjonen.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Oppdraget i den lagrede staten mislyktes.</value></data>
 </root>

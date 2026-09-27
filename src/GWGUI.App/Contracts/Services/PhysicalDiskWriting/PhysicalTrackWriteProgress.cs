@@ -5,4 +5,7 @@ public sealed record PhysicalTrackWriteProgress(
     int TotalTracks,
     int Cylinder,
     int Head,
-    bool IsVerification);
+    bool IsVerification,
+    IReadOnlyList<PhysicalTrackWriteAddress> Tracks);
+
+public sealed record PhysicalTrackWriteAddress(int Cylinder, int Head);

@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Setează GTIA întârziat faza de culoare folosit pentru a reproduce culori. Implicit folosește valoarea standard. Alegerile numerice schimbă nuanţele rezultate.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>@ info: whatsthis</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Setează câte rame de afișare sunt omise. Dezactivează fiecare cadru. Valorile mai mari reduc munca de redare, dar fac mişcarea mai puţin lină.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Alege procesorul emulat</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Selectează modelul procesorului instalat în maşina emulată. Modelele disponibile depind de maşina selectată şi de emulator.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Utilizați viteza de procesor originală</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Rulează procesorul la momentul de funcționare al mașinii originale în loc să aplice o frecvență accelerată sau personalizată.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Setează dimensiunea principală a memoriei</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Selectează cantitatea de memorie principală instalată în mașina emulată. Dimensiunile disponibile sunt limitate la configurațiile susținute de acea mașină.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Alegeți firmware-ul sistemului</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Selectează sistemul ROM folosit pentru a porni emulat mașină. Firmware-ul trebuie să se potrivească modelului selectat și configurației regionale.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Alegeți BASIC firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Selectează BASIC ROM disponibil pentru aparatul emulat atunci când firmware-ul este susținut de modelul selectat.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Alegeți XEGS firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Selectează firmware-ul folosit de Atari XEGS profil. Utilizați firmware compatibil cu regiunea mașină aleasă.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Arată activitatea de stocare</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Arată activitatea raportată de dispozitivul de stocare emulat în timp ce media este accesată.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Alegeți dosarul hard-disc</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Selectează dosarul gazdă expus la emulator ca stocare hard-disc atunci când este susținută stocarea susținută de foldere.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Afișează viteza de stocare</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Afișează viteza de transfer curentă raportată de dispozitivul de stocare emulat.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Arată sectorul actual</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Arată că sectorul este accesat în prezent de dispozitivul de stocare emulat.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Alegeți rezoluția emulată</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Selectează rezoluția video internă produsă de emulator înainte GW GUI scale imaginea pentru fereastra.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Cultivaţi graniţele emulate</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Elimină granițele generate de ieșirea video emulată, păstrând în același timp raportul de aspect al imaginii utilizat de GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Reglează nuanța video</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Schimbă nuanta culorilor generate de hardware-ul video emulat.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Reglați saturația culorii</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Modifica intensitatea culorilor generate de hardware-ul video emulat.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Reglați contrastul imaginii</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Schimbă diferența dintre culorile întunecate și luminoase în ieșirea video emulată.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Reglați luminozitatea imaginii</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Modifica luminozitatea globala a iesirii video emulate.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Activează audio emulat</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Activează sau dezactivează sunetul produs de mașina emulată.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Alegeți ieșirea audio</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Selectează dispozitivul audio gazdă folosit pentru a reda sunetul de la mașina emulată.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Setează volumul audio emulat</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Setează volumul de redare a sunetului produs de mașina emulată.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Activează sunetele de drive-floppy</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Activa sunete mecanice care reproduc activitatea de pe unitatea emulata de floppy.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Setează volumul sunetului de condus cu floppy</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Setează volumul de redare al sunetelor mecanice emulate de floppy-drive.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Set CD volumul audio</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Setează volumul de redare a pieselor audio citite de pe unitatea compact-disc emulată.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Setează viteza de mișcare a mouse-ului</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ajustează modul în care mișcarea mouse-ului gazdă este convertită în mișcare raportată la mașina emulată.</value></data>
 </root>

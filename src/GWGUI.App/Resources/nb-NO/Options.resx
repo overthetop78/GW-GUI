@@ -12,7 +12,7 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>Standard diskbildemappe</value></data>
   <data name="Options.Language" xml:space="preserve"><value>Språk</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>System</value></data>
+  <data name="Options.Theme.System"><value>System</value></data>
   <data name="Options.Theme.Light" xml:space="preserve"><value>Lys</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Mørk</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Sti til gw.exe</value></data>

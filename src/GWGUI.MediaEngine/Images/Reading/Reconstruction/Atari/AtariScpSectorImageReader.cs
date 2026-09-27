@@ -23,12 +23,19 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     /// <returns>L'image sectorielle Atari 8 bits ou Atari ST reconstruite.</returns>
     /// <exception cref="ArgumentException"><paramref name="formatId"/> n'appartient ni à la famille Atari 8 bits ni à la famille Atari ST.</exception>
     public Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
+        => ReadAsync(path, formatId, null, cancellationToken);
+
+    public Task<SectorImage> ReadAsync(
+        string path,
+        string? formatId,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken = default)
     {
         if (formatId is not null &&
             !formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) &&
             !formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase))
             throw AtariScpReconstructionExceptions.UnsupportedFormat(formatId, nameof(formatId));
 
-        return reader.ReadAsync(path, formatId, cancellationToken);
+        return reader.ReadAsync(path, formatId, progress, cancellationToken);
     }
 }

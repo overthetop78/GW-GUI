@@ -17,4 +17,6 @@ public sealed record ScpExplorationProgress(
     string Detail,
     int Completed,
     int Total,
-    bool? Recognized = null);
+    bool? Recognized = null,
+    int? Cylinder = null,
+    int? Head = null);

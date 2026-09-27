@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Bir Kickstart yolu gereklidir.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Gerekli bir bilgisayar yolu boş.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Seçilen dosya mevcut değildir.</value></data>
+  <data name="Emulation.Error.Title"><value>Emulation hatası</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Gerekli emülatör kurulmamaktadır.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Kılavuz talep edilen işlemi reddetti.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Bu efekt kullanımında güncellenemez.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Gerekli bilgisayar eksik.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Seçilen bilgisayar bu makine ile uyumlu.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>yapılandırılmış medya dosyası bulunamadı.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Seçilen medya bu emülatör tarafından desteklenmez.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Bir emülatör seçeneği geçersizdir.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Simülasyon süreci ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Emated makine başlamadı.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Medya operasyonu başarısız oldu.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Kurtarılan devlet geçersiz veya hasar gördü.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Kurtarılan devlet bu makine yapılandırmasıyla uyumlu değildir.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Kurtarılan devlet operasyonu başarısız oldu.</value></data>
 </root>

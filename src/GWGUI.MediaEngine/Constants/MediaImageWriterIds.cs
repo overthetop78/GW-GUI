@@ -6,6 +6,8 @@ public static class MediaImageWriterIds
     public const string AcornAdf = "acorn-adf";
     public const string AmigaAdf = "amiga-adf";
     public const string AmstradDsk = "amstrad-dsk";
+    public const string AmstradCpr = "amstrad-cpr";
+    public const string AmstradRom = "amstrad-rom";
     public const string AppleNibble = "apple-nibble";
     public const string AppleSector = "apple-sector";
     public const string AtariAtr = "atari-atr";
@@ -27,6 +29,7 @@ public static class MediaImageWriterIds
     public const string OpticalIso = "optical-iso";
     public const string OpticalBinCue = "optical-bin-cue";
     public const string TapeWav = "tape-wav";
+    public const string TapeVoc = "tape-voc";
     public const string TapeAtariCas = "tape-atari-cas";
     public const string TapeTzx = "tape-tzx";
     public const string TapeSpectrumTap = "tape-spectrum-tap";

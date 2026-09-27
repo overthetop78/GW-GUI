@@ -12,4 +12,5 @@ public class ThemesTests(StaExecutionScenarios sta)
     [InlineData(AppTheme.System,true,true)]
     public Task ThemeUsesInjectedSystemChoice(AppTheme theme,bool systemDark,bool expected)=>sta.Run(()=>ThemeResourcesScenarios.Apply(theme,systemDark,expected));
     [Fact] public Task ExistingControlFollowsThemeChanges()=>sta.Run(ThemeResourcesScenarios.Refresh);
+    [Fact] public Task ThemeTextColorsRemainReadable()=>sta.Run(ThemeResourcesScenarios.Contrast);
 }

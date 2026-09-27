@@ -24,13 +24,23 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
     /// <param name="size">Taille attendue de chaque secteur, en octets.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler le parcours des pistes.</param>
     /// <returns>Les candidats de taille valide, regroupÃ©s par adresse avec leur numÃ©ro de rÃ©volution Ã  base un.</returns>
-    public Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> DecodeCandidates(ScpImage scp, string decoderId, int size, CancellationToken cancellationToken)
+    public Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>> DecodeCandidates(
+        ScpImage scp,
+        string decoderId,
+        int size,
+        CancellationToken cancellationToken,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress = null)
     {
         var result = new Dictionary<SectorAddress, List<(DecodedSector, int)>>();
+        var completed = 0;
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if (decoderId == FluxCodecIds.AppleMacGcr && track.Cylinder is < 0 or >= MacintoshGcrGeometry.CylinderCount) continue;
+            if (decoderId == FluxCodecIds.AppleMacGcr && track.Cylinder is < 0 or >= MacintoshGcrGeometry.CylinderCount)
+            {
+                ReportTrack(progress, track, ++completed, scp.Tracks.Count);
+                continue;
+            }
             foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
                 var decoded = decoderId == FluxCodecIds.AppleMacGcr
@@ -44,9 +54,23 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
                     list.Add((sector, window.Revolution));
                 }
             }
+            ReportTrack(progress, track, ++completed, scp.Tracks.Count);
         }
         return result;
     }
+
+    private static void ReportTrack(
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        ScpTrack track,
+        int completed,
+        int total) =>
+        progress?.Report(new(
+            GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
+            $"Apple · {track.Cylinder}:{track.Head}",
+            completed,
+            total,
+            Cylinder: track.Cylinder,
+            Head: track.Head));
 
     /// <summary>SÃ©lectionne le meilleur candidat d'une adresse selon son intÃ©gritÃ©.</summary>
     /// <param name="logical">NumÃ©ro de bloc logique Ã  attribuer au secteur sÃ©lectionnÃ©.</param>

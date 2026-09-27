@@ -4,9 +4,10 @@ namespace GWGUI.MediaEngine.Images.Conversion;
 
 public sealed class ConversionPlanner(IImageFormatCatalog catalog)
 {
-    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string destinationFolder, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags, string tagPattern = "[{FAMILY}-{FORMAT}] ")
+    public IReadOnlyList<ConversionOutput> Plan(string sourcePath, string outputBaseName, IEnumerable<ConversionSelection> selections, bool addTags, string tagPattern = "[{FAMILY}-{FORMAT}] ")
     {
         var sourceExtension = Path.GetExtension(sourcePath);
+        var destinationFolder = Path.GetDirectoryName(sourcePath) ?? string.Empty;
         var validator = new ConversionCompatibilityValidator(catalog);
         var outputs = new List<ConversionOutput>();
 

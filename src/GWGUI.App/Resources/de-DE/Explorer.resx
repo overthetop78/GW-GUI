@@ -152,6 +152,6 @@
   <data name="Explorer.PartialRecords"><value>Teilweise</value></data>
   <data name="Explorer.EndRecord"><value>Ende</value></data>
   <data name="Explorer.ChunkType"><value>Typ</value></data>
-  <data name="Explorer.BaudRate"><value>Rate</value></data>
+  <data name="Explorer.BaudRate"><value>Satz</value></data>
   <data name="Explorer.DelayBeforeBlock"><value>Verzögerung</value></data>
 </root>

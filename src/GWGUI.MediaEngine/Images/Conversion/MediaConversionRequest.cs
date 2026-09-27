@@ -10,7 +10,8 @@ public sealed class MediaConversionRequest
         MediaImageDocument source,
         string outputPath,
         string targetFormatId,
-        IReadOnlyDictionary<string, string>? options = null)
+        IReadOnlyDictionary<string, string>? options = null,
+        Action<MediaExplorationProgress>? progress = null)
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -19,6 +20,7 @@ public sealed class MediaConversionRequest
         Source = source;
         OutputPath = outputPath;
         TargetFormatId = targetFormatId;
+        Progress = progress;
         Options = new ReadOnlyDictionary<string, string>(
             new Dictionary<string, string>(options ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
@@ -28,6 +30,8 @@ public sealed class MediaConversionRequest
     public string OutputPath { get; }
 
     public string TargetFormatId { get; }
+
+    public Action<MediaExplorationProgress>? Progress { get; }
 
     public IReadOnlyDictionary<string, string> Options { get; }
 }

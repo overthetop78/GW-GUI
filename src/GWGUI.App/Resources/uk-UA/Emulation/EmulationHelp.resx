@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Комплекти GTIA Затримка фази кольорової фази, що використовується для відтворення кольорів. За замовчуванням використовується стандартне значення. Чисельні вибірки зміщують отриманий відтінок.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Набори рам</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Налаштовує, як багато кадрів відображення вдається. Вимкнено малювати кожну раму. Більші значення знижують роботу, але роблять рух менш гладким.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Виберіть емульований процесор</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Вибирає модель процесора, встановлену в емульгованої машині. Доступні моделі залежать від обраної машини і емулятора.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Використовуйте початкову швидкість процесора</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Запускає процесор при часі оригінальної машини замість застосування прискореної або користувальницької частоти.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Встановити основні розміри пам'яті</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Вибирає кількість основних пам'яток, встановлених в емульгованої машині. Доступні розміри обмежені на конфігураціях, що підтримуються цією машиною.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Виберіть прошивку системи</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Оберіть систему ROM використовується для запуску емульованої машини. Прошивка повинна відповідати обраній моделі та регіональної конфігурації.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Виберіть BASIC Прошивка</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Виберіть BASIC ROM доступна на емульованій машині, коли прошивка підтримується вибраною моделлю.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Виберіть XEGS Прошивка</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Виберіть прошивку, яку використовується Atari XEGS профіль. Використовуйте мікропрограму, сумісну з вибраним машинним регіоном.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Показати активність зберігання</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Ви можете переглянути інформацію про пристрій, що містить дані про емульгований пристрій, а також доступ до медіа.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Виберіть папку жорсткого диска</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Вибирає папку, що піддається емулятору, як жорсткий диск, коли підтримується зберігання папок.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Швидкість зберігання</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Відобразити швидкість передачі, що повідомляється емульгованим пристроєм зберігання.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Показати поточний сектор</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>В даний час в секторі знаходиться емульований пристрій для зберігання.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Виберіть емульовану роздільну здатність</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Вибираємо внутрішню роздільну здатність відео, виготовлену емулятором до GW GUI масштабує зображення для вікна.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Розгортання емульованих кордонів</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Вилучає кордони, що створюються емулювати відеовихід при збереженні співвідношення сторін зображення, що використовуються за допомогою GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Налаштування відео-події</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Знімає відтінок кольорів, створених за допомогою емульованої відеотехніки.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Регульувати насиченість кольору</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Зміна інтенсивності кольорів, що створюються емульгованими відеоапаратами.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Регульований контраст зображення</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Зміна різниці темних і яскравих кольорів в емуляції відеовиходу.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Регульована яскравість зображення</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Зміна загальної яскравості емуляції відеовиходу.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Увімкнути емульований аудіо</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Увімкнути або вимкнути звук, виготовлений з емульсійної машини.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Виберіть аудіо вихід</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Вибирає аудіопристрій, що використовується для відтворення звуку з емульгованої машини.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Настроювання емульованої аудіо об'єму</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Налаштовує обсяг відтворення звуку, виробленого емульсійною машиною.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Увімкнути петля-драйв</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Увімкнути механічні звуки, які відтворюють активність від емульгованої флопної диски.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Набір гучності звуку флоппіра</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Налаштовує об'єм відтворення емульованих ручних механічних звуків.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Набори CD аудіо об'єм</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Налаштовує гучність відтворення аудіо треків, що прочитаються з емульсійного диска компактного диска.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Налаштування швидкості руху миші</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Налаштування руху мишки перетворюється на рух, що допускається до емульгованої машини.</value></data>
 </root>

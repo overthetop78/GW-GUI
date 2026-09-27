@@ -33,6 +33,7 @@ public sealed class AppSettings
     public DateTimeOffset? LastHostToolsCheckUtc { get; set; }
     public bool ConsoleExpanded { get; set; } = true;
     public double ConsoleHeight { get; set; } = 190;
+    public Dictionary<int, ConsolePanelSettings> ConsolePanels { get; set; } = [];
     public OperationLogSettings Logging { get; set; } = new();
     public WindowPlacementSettings Window { get; set; } = new();
     public List<ControllerSettings> Controllers { get; set; } = [];

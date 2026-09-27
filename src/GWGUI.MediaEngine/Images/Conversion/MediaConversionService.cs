@@ -1,5 +1,6 @@
 using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Images.Conversion;
 
@@ -29,7 +30,10 @@ public sealed class MediaConversionService
         return writers.Writers
             .SelectMany(writer => writer.FormatIds.SelectMany(formatId =>
                 writer.ProducedFileExtensions.Select(extension => (Writer: writer, FormatId: formatId, Extension: extension))))
-            .Where(candidate => candidate.Writer.CanWrite(document, candidate.FormatId, candidate.Extension))
+            .Where(candidate =>
+                candidate.Writer.CanWrite(document, candidate.FormatId, candidate.Extension) ||
+                candidate.Writer.RepresentationKinds.Any(targetKind =>
+                    converters.Resolve(document, candidate.FormatId, targetKind) is not null))
             .Select(candidate => new MediaConversionDestination(
                 candidate.FormatId,
                 candidate.Extension,
@@ -47,6 +51,11 @@ public sealed class MediaConversionService
     {
         ArgumentNullException.ThrowIfNull(request);
         cancellationToken.ThrowIfCancellationRequested();
+        request.Progress?.Invoke(new(
+            MediaExplorationProgressStage.ReadingMedia,
+            Path.GetFileName(request.Source.Source.PrimaryPath),
+            0,
+            request.Source.MediaKind));
 
         var extension = Path.GetExtension(request.OutputPath);
         if (string.IsNullOrWhiteSpace(extension))
@@ -78,6 +87,7 @@ public sealed class MediaConversionService
                     request.TargetFormatId,
                     targetRepresentationKind,
                     request.Options,
+                    request.Progress,
                     cancellationToken).ConfigureAwait(false);
                 if (writers.CanWrite(conversion.Document, request.TargetFormatId, extension)) break;
                 conversion = null;
@@ -97,7 +107,13 @@ public sealed class MediaConversionService
             document,
             request.OutputPath,
             request.TargetFormatId,
+            request.Progress,
             cancellationToken).ConfigureAwait(false);
+        request.Progress?.Invoke(new(
+            MediaExplorationProgressStage.ReadingMedia,
+            request.TargetFormatId,
+            100,
+            document.MediaKind));
 
         return new MediaConversionResult(
             producedFiles,

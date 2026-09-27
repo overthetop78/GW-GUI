@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Conversione interna fallita {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potenziale perdita di dati</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Questa conversione non può conservare tutte le informazioni di origine:&#xA;&#xA;{0}&#xA;&#xA;Vuoi continuare?</value></data>
+  <data name="Conversion.OutputCollision"><value>Diverse conversioni creerebbero lo stesso file '{0}'. Questa selezione non è possibile a meno che '{1}E' controllato.</value></data>
+  <data name="Conversion.Failed"><value>Conversione non riuscita per {0}: {1}</value></data>
 </root>

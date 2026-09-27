@@ -104,7 +104,7 @@
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Bemeneti jelentés</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Kimeneti jelentés</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Az analóg halott zónák</value></data>
-  <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Sticks</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
   <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Rugók</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Külső holtzóna</value></data>
 </root>

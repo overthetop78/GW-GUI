@@ -104,7 +104,7 @@
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Giriş raporu</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Çıkış raporu</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Analog ölü bölgeler</value></data>
-  <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Sticks</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
   <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Tesirli Tesir</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Dış Ölü Bölge</value></data>
 </root>

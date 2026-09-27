@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Kickstart 경로가 필요합니다.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>필수 펌웨어 경로가 빈.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>선택한 파일은 존재하지 않습니다.</value></data>
+  <data name="Emulation.Error.Title"><value>관련 오류</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>필요한 에뮬레이터는 설치되지 않습니다.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>에뮬레이터는 요청된 작업을 거부했다.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>에뮬레이터는 사용할 때 업데이트 할 수 없습니다.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Required 펌웨어가 누락되었습니다.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>선택한 펌웨어는이 기계와 호환됩니다.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>구성 된 미디어 파일이 발견되지 않았습니다.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>선택한 미디어는 이 에뮬레이터에 의해 지원되지 않습니다.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>에뮬레이터 옵션은 유효하지 않습니다.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>에뮬레이터 프로세스와 통신 실패.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>에뮬레이션 머신은 시작되지 않을 수 있습니다.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>미디어 운영이 실패했습니다.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>저장된 상태는 유효하지 않거나 손상됩니다.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>저장된 국가는 이 기계 윤곽과 호환이 되지 않습니다.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>저장된 상태 가동은 실패했습니다.</value></data>
 </root>

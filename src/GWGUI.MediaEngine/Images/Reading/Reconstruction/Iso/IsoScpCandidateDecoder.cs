@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
 
@@ -52,6 +53,17 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         }
     }
 
+    /// <summary>Décode une image de flux déjà reconnue sans relire son conteneur source.</summary>
+    public Task<IsoSectorCandidateSet> DecodeAsync(
+        ProtectedTrackImage image,
+        IReadOnlyList<string> decoderIds,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(image);
+        return DecodeCoreAsync(image, decoderIds, progress, cancellationToken);
+    }
+
     private async Task<IsoSectorCandidateSet> DecodeCoreAsync(
         string path,
         IReadOnlyList<string> decoderIds,
@@ -59,12 +71,21 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
-        var trackCandidates = new TrackCandidateSet[scp.Tracks.Count];
+        return await DecodeCoreAsync(ScpProtectedTrackImageAdapter.Create(scp), decoderIds, progress, cancellationToken).ConfigureAwait(false);
+    }
+
+    private async Task<IsoSectorCandidateSet> DecodeCoreAsync(
+        ProtectedTrackImage image,
+        IReadOnlyList<string> decoderIds,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
+    {
+        var trackCandidates = new TrackCandidateSet[image.Tracks.Count];
         var completed = 0;
         var completedRevolutions = 0;
-        var totalRevolutions = scp.Tracks.Sum(track => track.Revolutions.Count);
+        var totalRevolutions = image.Tracks.Sum(track => track.Revolutions.Count);
         await Parallel.ForEachAsync(
-            Enumerable.Range(0, scp.Tracks.Count),
+            Enumerable.Range(0, image.Tracks.Count),
             new ParallelOptions
             {
                 CancellationToken = cancellationToken,
@@ -72,7 +93,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
             },
             (trackIndex, token) =>
             {
-                var track = scp.Tracks[trackIndex];
+                var track = image.Tracks[trackIndex];
                 trackCandidates[trackIndex] = DecodeTrack(track, decoderIds, token, window =>
                 {
                     var revolutionCount = Interlocked.Increment(ref completedRevolutions);
@@ -80,14 +101,18 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
                         GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.RevolutionDecoded,
                         $"{track.Cylinder}:{track.Head} · {window.Revolution}/{track.Revolutions.Count}",
                         revolutionCount,
-                        totalRevolutions));
+                        totalRevolutions,
+                        Cylinder: track.Cylinder,
+                        Head: track.Head));
                 });
                 var count = Interlocked.Increment(ref completed);
                 progress?.Report(new(
                     GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
-                    $"{scp.Tracks[trackIndex].Cylinder}:{scp.Tracks[trackIndex].Head}",
+                    $"{image.Tracks[trackIndex].Cylinder}:{image.Tracks[trackIndex].Head}",
                     count,
-                    scp.Tracks.Count));
+                    image.Tracks.Count,
+                    Cylinder: image.Tracks[trackIndex].Cylinder,
+                    Head: image.Tracks[trackIndex].Head));
                 return ValueTask.CompletedTask;
             }).ConfigureAwait(false);
 
@@ -103,7 +128,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
     }
 
     private TrackCandidateSet DecodeTrack(
-        ScpTrack track,
+        ProtectedTrack track,
         IReadOnlyList<string> decoderIds,
         CancellationToken cancellationToken,
         Action<ScpTrackDecodeWindow> revolutionDecoded)

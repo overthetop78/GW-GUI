@@ -50,16 +50,15 @@ internal sealed class ConversionTabController(
     MediaImageReadingService mediaReader,
     MediaConversionService mediaConversion,
     SequentialMediaConversionService sequentialMediaConversion,
-    IFileDialogService fileDialogs,
+    Func<string?> selectSource,
     IBusinessDialogService businessDialogs,
     IMessageDialogService dialogs,
     DiskDefinitionsController diskDefinitionsController,
     OperationRuntimeController operation,
     ConsoleLogSession consoleLog,
     DiskImageWorkspaceController diskImageWorkspace,
-    TextBox readFolder,
     TextBox commandPreview,
-    TextBox logOutput,
+    RichTextBox logOutput,
     Func<int> selectedMainTab,
     Action<int> selectMainTab,
     Func<string, Task> loadImage,
@@ -84,7 +83,12 @@ internal sealed class ConversionTabController(
     internal void BuildFormats(string? extension, DetectedImageFormat? detection = null)
     {
         sourceExtension = extension; sourceDetection = detection;
-        var items = formatPresenter.Build(CurrentFormatCatalog(), extension, detection, viewModel.Conversion.SelectedFormats, viewModel.Conversion.ExplicitExtensions);
+        var items = formatPresenter.Build(
+            CurrentFormatCatalog(),
+            extension,
+            UsesInternal && engineDestinations is not null ? null : detection,
+            viewModel.Conversion.SelectedFormats,
+            viewModel.Conversion.ExplicitExtensions);
         foreach (var item in items)
             if (!item.IsCompatible && viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
                 viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
@@ -118,7 +122,7 @@ internal sealed class ConversionTabController(
 
     internal async Task BrowseSourceAsync()
     {
-        var path = fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), readFolder.Text));
+        var path = selectSource();
         if (path is null) return;
         viewModel.Conversion.SourcePath = path; viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(path);
         var detection = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);
@@ -172,7 +176,7 @@ internal sealed class ConversionTabController(
     {
         if (string.IsNullOrWhiteSpace(viewModel.Conversion.SourcePath)) return [];
         var catalog = CurrentFormatCatalog();
-        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath, readFolder.Text,
+        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath,
             viewModel.Conversion.OutputName.Trim(), viewModel.Conversion.BuildSelections(catalog.Formats),
             viewModel.Conversion.AddTags, settings().Conversion.TagPattern);
     }
@@ -186,14 +190,16 @@ internal sealed class ConversionTabController(
             .GroupBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
             .Select(group =>
             {
+                var presentation = curated.Formats.FirstOrDefault(format =>
+                    format.Id.Equals(group.Key, StringComparison.OrdinalIgnoreCase));
                 var destinations = group.ToArray();
                 var extensions = destinations
                     .Select((destination, index) => new ImageExtension(destination.Extension, destination.Extension.TrimStart('.').ToUpperInvariant(), index == 0))
                     .ToArray();
                 return new DiskFormat(
                     group.Key,
-                    LocExtension.Get("Conversion.MediaEngineFamily"),
-                    LocExtension.Get("Format." + group.Key),
+                    presentation?.Family ?? string.Empty,
+                    presentation?.DisplayName ?? LocExtension.Get("Format." + group.Key),
                     extensions,
                     true,
                     string.IsNullOrWhiteSpace(source)
@@ -226,6 +232,10 @@ internal sealed class ConversionTabController(
                 : commandBuilder.BuildConversion(settings().GwExecutablePath ?? "gw.exe", viewModel.Conversion.SourcePath, outputs[0], Options(), viewModel.Conversion.ExpertArguments);
             commandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
+        catch (ConversionOutputCollisionException exception)
+        {
+            commandPreview.Text = $"⚠ {LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags"))}";
+        }
         catch (Exception exception) { ErrorLog.Write(exception, "Building conversion preview"); commandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
@@ -237,6 +247,14 @@ internal sealed class ConversionTabController(
         if (string.IsNullOrWhiteSpace(view.OutputBlock.OutputNameTextBox.Text)) { dialogs.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = Plan(); GwOptionValidator.Validate(Options()); }
+        catch (ConversionOutputCollisionException exception)
+        {
+            dialogs.Show(
+                LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags")),
+                LocExtension.Get("Conversion.Title"),
+                icon: UserDialogIcon.Warning);
+            return;
+        }
         catch { diskDefinitionsController.ShowInvalid(LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         if (UsesInternal && outputs.Any(x => !IsInternalOutput(x)))
@@ -277,7 +295,7 @@ internal sealed class ConversionTabController(
             var decisions = businessDialogs.ResolveConversionConflicts(existing); if (decisions is null) return;
             outputs = ConversionConflictResolutionFunctions.Apply(outputs, existing, decisions, NumberedPath);
         }
-        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
+        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync("convert", commandPreview.Text);
         var progress = new Progress<GwOutputLine>(operation.Report);
         var outcome = await operation.RunAsync(token =>

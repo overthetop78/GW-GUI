@@ -10,8 +10,20 @@ public sealed class SettingsViewsTests(StaExecutionScenarios sta)
         sta.RunAsync(SettingsFailureScenarios.ModuleWindowSaveFailure);
     [Fact] public Task ModuleMachinesUseVerticalNavigationAndPreserveExistingTabs() =>
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.VerticalMachinesPreserveConfigurationStateAndTabs);
-    [Fact] public Task ModuleGeneralTabShowsOnlyTheCurrentEmulator() =>
-        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.CurrentEmulatorIsTheOnlyChoice);
+    [Fact] public Task UnsavedModuleMachineChoosesExactlyOneEmulator() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.UnsavedMachineChoosesExactlyOneEmulator);
+    [Fact] public Task EmulatorControllerDisposalCancelsAndDetaches() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorControllerDisposalCancelsAndDetaches);
+    [Fact] public Task EmulatorDescriptionUsesModuleLocalization() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorDescriptionUsesModuleLocalization);
+    [Fact] public Task EmulatorVersionsAreSelectedAndInstalledExplicitly() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorVersionsAreSelectedAndInstalledExplicitly);
+    [Fact] public Task VideoFieldsKeepTheirHelpContent() =>
+        sta.Run(EmulationModuleSettingsNavigationScenarios.VideoFieldsKeepTheirHelpContent);
+    [Fact] public Task ModuleWindowReopensWithANewVisualTree() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.ModuleWindowReopensWithANewVisualTree);
+    [Fact] public Task AmigaModuleWindowBuildsItsVisualTree() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.AmigaModuleWindowBuildsItsVisualTree);
     [Fact] public Task EachModuleUsesTheGenericSettingsWindow() =>
         sta.Run(EmulationModuleSettingsNavigationScenarios.ModuleWindowUsesTheGenericSectionAndDynamicTitle);
     [Fact] public Task EngineChangesPersistAndApply() => sta.Run(SettingsEditingScenarios.Engines);

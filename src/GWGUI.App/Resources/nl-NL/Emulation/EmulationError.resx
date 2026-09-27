@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Een Kickstart pad is vereist.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Een vereiste firmware pad is leeg.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Het geselecteerde bestand bestaat niet.</value></data>
+  <data name="Emulation.Error.Title"><value>Emulatiefout</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>De vereiste emulator is niet geïnstalleerd.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>De emulator wees de gevraagde operatie af.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>De emulator kan niet worden bijgewerkt zolang hij in gebruik is.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>De benodigde firmware ontbreekt.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>De geselecteerde firmware is niet compatibel met deze machine.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Het geconfigureerde mediabestand is niet gevonden.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>De geselecteerde media worden niet ondersteund door deze emulator.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Een emulator optie is ongeldig.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Communicatie met de emulator is mislukt.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>De geëmulgeerde machine kon niet worden gestart.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>De media-operatie is mislukt.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>De opgeslagen status is ongeldig of beschadigd.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>De opgeslagen status is niet compatibel met deze machineconfiguratie.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>De opgeslagen toestand is mislukt.</value></data>
 </root>

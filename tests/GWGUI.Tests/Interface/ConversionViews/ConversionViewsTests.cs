@@ -7,7 +7,16 @@ public class ConversionViewsTests(GWGUI.Tests.Application.TestInfrastructure.Sta
     public Task DestinationTagsAndOptionsReachConversion(bool tags) => sta.RunAsync(() => ConversionSelectionScenarios.Parameters(tags));
     [Theory] [InlineData(false)] [InlineData(true)]
     public Task PartialBatchReportsEachDestination(bool firstFails) => sta.RunAsync(() => ConversionOperationScenarios.PartialBatch(firstFails));
-    [Fact] public Task SourceChangesRemoveIncompatibleChoices() => sta.RunAsync(ConversionSelectionScenarios.SourceChanges);
+    [Fact] public Task InternalConversionReportsGenericProgress() => sta.RunAsync(() =>
+    {
+        ConversionOperationScenarios.InternalProgressUsesExistingTrackPresentation();
+        return Task.CompletedTask;
+    });
+    [Fact] public Task ErrorOutputUsesRedTextWithoutTechnicalStack() =>
+        sta.Run(() => ConversionOperationScenarios.ErrorOutputUsesRedTextWithoutTechnicalStack());
+    [Fact] public Task DuplicateOutputShowsTagRequirement() =>
+        sta.RunAsync(ConversionOperationScenarios.DuplicateOutputShowsTagRequirement);
+    [Fact] public Task SourceChangesRememberTheirFolderAndRemoveIncompatibleChoices() => sta.RunAsync(ConversionSelectionScenarios.SourceChangesUseRememberedFolder);
     [Theory] [InlineData(0)] [InlineData(5)] [InlineData(-1)] public Task OutcomeRestoresControls(int exit) => sta.RunAsync(() => ConversionOperationScenarios.Outcome(exit));
     [Fact] public Task RepeatedExecutionCancelsCurrentBatch() => sta.RunAsync(ConversionOperationScenarios.Cancel);
     [Theory] [InlineData(-1)] [InlineData(0)] [InlineData(1)] [InlineData(2)] public Task ConflictDecisionControlsOutputs(int choice) => sta.RunAsync(() => ConversionConflictScenarios.Decision(choice));

@@ -8,7 +8,12 @@ namespace GWGUI.MediaFileSystems.FileSystems.Cpm;
 /// <summary>Lit les volumes CP/M des images Amstrad CPC et PCW.</summary>
 public sealed class AmstradCpmFileSystemReader : IFileSystemReader
 {
-    private static readonly IReadOnlySet<string> Formats = new[] { MediaImageFormatIds.AmstradCpc, MediaImageFormatIds.AmstradPcw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> Formats = new[]
+    {
+        MediaImageFormatIds.AmstradCpc,
+        MediaImageFormatIds.AmstradPcw,
+        MediaImageFormatIds.CpcEmuDsk
+    }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>Identifiant technique du lecteur.</summary>
     public string Id => FileSystemIds.AmstradCpm;
@@ -51,16 +56,25 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
     /// <summary>Résout une disposition CPC depuis l'identifiant du premier secteur ou une disposition PCW depuis sa spécification validée.</summary>
     private static CpmLayout? ResolveLayout(IMediaSectorImage image, CpmDirectoryReader.LogicalImage logical)
     {
-        if (image.FormatId.Equals(MediaImageFormatIds.AmstradCpc, StringComparison.OrdinalIgnoreCase))
+        if (image.FormatId.Equals(MediaImageFormatIds.AmstradCpc, StringComparison.OrdinalIgnoreCase)
+            || image.FormatId.Equals(MediaImageFormatIds.CpcEmuDsk, StringComparison.OrdinalIgnoreCase))
         {
             var first = image.AvailableBlocks.OrderBy(block => block.LogicalBlock).FirstOrDefault();
             if (first is null) return null;
-            return first.PhysicalSectorNumber switch
+            var preferred = first.PhysicalSectorNumber switch
             {
                 >= AmstradCpmLayout.SystemFirstSectorId and <= AmstradCpmLayout.SystemLastSectorId => AmstradCpmLayout.CpcSystem,
                 >= AmstradCpmLayout.DataFirstSectorId and <= AmstradCpmLayout.DataLastSectorId => AmstradCpmLayout.CpcData,
-                _ => CpmDirectoryReader.FindDirectory(logical, AmstradCpmLayout.CpcSystem, AmstradCpmLayout.CpcSectorSize, allowEmpty: false, rejectLowercase: false)
+                _ => null
             };
+            if (preferred is not null && CpmDirectoryReader.LooksLikeDirectory(logical, preferred, allowEmpty: false, rejectLowercase: false))
+                return preferred;
+            return CpmDirectoryReader.FindDirectory(
+                logical,
+                AmstradCpmLayout.CpcData,
+                AmstradCpmLayout.CpcSectorSize,
+                allowEmpty: false,
+                rejectLowercase: false);
         }
         return AmstradCpmDiskSpecification.TryParse(logical.Bytes, out var specification) ? AmstradCpmLayout.FromPcw(specification, logical.Bytes.Length) : null;
     }

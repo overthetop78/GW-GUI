@@ -134,7 +134,7 @@ public partial class MainWindow : Window
         var directory = dataDirectory ?? StoragePaths.DataDirectory;
         _logsDirectory = Path.Combine(directory, MainWindowConstants.LogsDirectoryName);
         _consoleLog = new ConsoleLogSession(_logsDirectory, () => _settings.Logging);
-        _terminalPanel = new TerminalPanelController(TerminalBlock, ConsoleRow, ConsoleSplitter, _settings);
+        _terminalPanel = new TerminalPanelController(TerminalBlock, ConsoleRow, ConsoleSplitter, () => _settings);
         _runner = runner ?? new GreaseweazleRunner();
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
         _pendingModuleInstallations = new PendingModuleInstallationStore();
@@ -221,7 +221,8 @@ public partial class MainWindow : Window
             (key, arguments) => LocExtension.Get(key, arguments),
             mediaReader: _mediaEngine.ReadingService,
             mediaExplorer: _mediaEngine.Explorer,
-            visualizationProviders: _mediaEngine.Visualization.Registry);
+            visualizationProviders: _mediaEngine.Visualization.Registry,
+            supportedExtensions: _mediaEngine.Recognition.SupportedExtensions);
         VisualizerHeader.ClassificationSelector.ValueChanged += (_, _) => _diskImageWorkspace.ApplyClassification();
         VisualizerHeader.ClassificationFormatChanged += async (_, formatId) =>
             await _diskImageWorkspace.SelectVisualizerRepresentationAsync(formatId);
@@ -264,8 +265,8 @@ public partial class MainWindow : Window
             this, ConvertTabBlock, _viewModel, _profileController, _conversionFormatPresenter,
             () => _formatCatalog, () => _formatDetector, () => _settings, _commandBuilder, _runner,
             _mediaEngine.ReadingService, _mediaEngine.ConversionService, _mediaEngine.SequentialConversionService,
-            _fileDialogs, _businessDialogs, _dialogs, _diskDefinitionsController, _operation, _consoleLog,
-            _diskImageWorkspace, ReadFolder, CommandPreview, LogOutput, () => MainTabs?.SelectedIndex ?? -1,
+            _diskImageWorkspace.SelectConversionImage, _businessDialogs, _dialogs, _diskDefinitionsController, _operation, _consoleLog,
+            _diskImageWorkspace, CommandPreview, LogOutput, () => MainTabs?.SelectedIndex ?? -1,
             index => MainTabs.SelectedIndex = index, path => _diskImageWorkspace.LoadAsync(path),
             ConfirmAndRequestStop, AppendAnalysisFailure, UpdateProfileStatus, Dispatcher);
         _explorerRead = new ExplorerReadController(
@@ -321,6 +322,7 @@ public partial class MainWindow : Window
             CaptureWindowSettings, CaptureReadSettings, CaptureWriteSettings, CaptureProfiles,
             CaptureConversionSettings, () => ((App)Application.Current).SetTheme(_settings.Theme),
             _pendingModuleInstallations.Clear);
+        ErrorLog.EntryWritten += AppendErrorToConsole;
     }
 
 }

@@ -27,7 +27,7 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettedrevlyd</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polariseret lydfilter</value></data>
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Lav</value></data>
-  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Audio.Quality.Normal"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Høj</value></data>
   <data name="Emulation.Audio" xml:space="preserve"><value>Lyd</value></data>
 </root>

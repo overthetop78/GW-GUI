@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>내부 변환은 실패 {0}:: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>잠재적인 데이터 손실</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>이 변환은 모든 소스 정보를 보존할 수 없습니다:&#xA;&#xA;{0}&#xA;&#xA;계속하시겠습니까?</value></data>
+  <data name="Conversion.OutputCollision"><value>여러 변환은 같은 파일들을 만들 것"{0}'. 이 선택은 '이 불가능하다'{1}'확인됩니다.</value></data>
+  <data name="Conversion.Failed"><value>변환은 실패 {0}: {1}</value></data>
 </root>

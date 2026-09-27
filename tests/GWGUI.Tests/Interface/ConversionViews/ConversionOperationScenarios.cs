@@ -1,6 +1,7 @@
 using GWGUI.App.Controllers.MainWindow;
 using GWGUI.App.Contracts.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
+using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Conversion;
 using GWGUI.App.Services.DiskImages;
@@ -30,10 +31,63 @@ using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 using System.Windows.Threading;
 namespace GWGUI.Tests.Interface.ConversionViews;
 internal static class ConversionOperationScenarios
 {
+    public static void InternalProgressUsesExistingTrackPresentation()
+    {
+        var model = new MainWindowViewModel("synthetic", "synthetic");
+        var output = new RichTextBox();
+        var log = new ConsoleLogSession("virtual-log", () => new OperationLogSettings { Enabled = false });
+        var progress = new OperationProgressController(model, new TrackProgressStrip(), new TrackProgressStrip(), (key, _) => key);
+        var operation = new OperationRuntimeController(
+            Dispatcher.CurrentDispatcher,
+            model,
+            progress,
+            output,
+            log,
+            (key, _) => key);
+        operation.Begin();
+        try
+        {
+            operation.Report(new GwOutputLine(DateTimeOffset.Now, GwOutputStream.Standard, "Converting c=0-1:h=0-1"));
+            operation.Report(new GwOutputLine(DateTimeOffset.Now, GwOutputStream.Standard, "T0.0"));
+            Assert.Equal(4, progress.CurrentReadState?.NombrePistesTotal);
+            Assert.Equal(1, progress.CurrentReadState?.NombrePistesTerminees);
+            Assert.Equal(0, progress.CurrentReadState?.Cylindre);
+            Assert.Equal(0, progress.CurrentReadState?.Face);
+        }
+        finally
+        {
+            operation.End();
+        }
+    }
+
+    public static void ErrorOutputUsesRedTextWithoutTechnicalStack()
+    {
+        var model = new MainWindowViewModel("synthetic", "synthetic");
+        var output = new RichTextBox();
+        output.Document.Blocks.Clear();
+        var operation = new OperationRuntimeController(
+            Dispatcher.CurrentDispatcher,
+            model,
+            new OperationProgressController(model, new TrackProgressStrip(), new TrackProgressStrip(), (key, _) => key),
+            output,
+            new ConsoleLogSession("virtual-log", () => new OperationLogSettings { Enabled = false }),
+            (key, _) => key);
+
+        operation.Report(new GwOutputLine(DateTimeOffset.UnixEpoch, GwOutputStream.Error, "short localized error"));
+
+        var text = new TextRange(output.Document.ContentStart, output.Document.ContentEnd);
+        var errorRun = Assert.Single(((Paragraph)output.Document.Blocks.LastBlock).Inlines.OfType<Run>());
+        Assert.Contains("short localized error", text.Text);
+        Assert.Equal(Brushes.IndianRed, errorRun.Foreground);
+        Assert.DoesNotContain(" at ", text.Text, StringComparison.Ordinal);
+    }
+
     public static async Task PartialBatch(bool firstFails)
     {
         var context = new Context();
@@ -60,6 +114,21 @@ internal static class ConversionOperationScenarios
         Assert.DoesNotContain(Path.GetFileName(successfulPath), Assert.IsType<string>(Assert.Single(failed.Arguments)));
         Assert.Equal("Status.Error", context.Model.OperationText); Assert.False(context.Operation.IsRunning);
     }
+
+    public static async Task DuplicateOutputShowsTagRequirement()
+    {
+        var context = new Context();
+        context.Model.Conversion.SetFormat("ibm.160", false, []);
+        context.Model.Conversion.SetFormat("amiga.amigados", true, []);
+        context.Model.Conversion.SetFormat("amiga.amigados_hd", true, []);
+
+        await Dispatcher.Yield(DispatcherPriority.DataBind);
+        await context.Controller.ExecuteAsync();
+
+        Assert.Equal(LocExtension.Get("Conversion.OutputCollision", "disk.adf", LocExtension.Get("Conversion.AddTags")),
+            Assert.Single(context.DialogMessages));
+        Assert.Empty(context.Commands);
+    }
     public static async Task Outcome(int exit)
     {
         var context = new Context(); await Dispatcher.Yield(DispatcherPriority.ContextIdle);
@@ -68,17 +137,19 @@ internal static class ConversionOperationScenarios
         Assert.Equal(LocExtension.Get("Common.Stop"), context.View.ExecuteActionButton.Content);
         foreach (var line in new[] { "Converting c=0-1:h=0-1", "T0.0: done" })
             context.Operation.Report(new(DateTimeOffset.UnixEpoch, GwOutputStream.Standard, line));
-        Assert.Contains("T0.0: done", context.Output.Text);
+        Assert.Contains("T0.0: done", Text(context.Output));
         if (exit < 0) context.Pending.SetException(new IOException("synthetic conversion failure"));
         else context.Pending.SetResult(new(exit, false, TimeSpan.Zero, []));
         await running;
-        Assert.Equal(exit < 0 ? 1 : 2, context.Commands.Count);
+        Assert.Equal(2, context.Commands.Count);
         Assert.Equal(exit == 0 ? "Status.Success" : "Status.Error", context.Model.OperationText);
         Assert.False(context.Operation.IsRunning); Assert.Equal(Visibility.Collapsed, context.Model.TimerVisibility);
         Assert.Equal(LocExtension.Get("Common.Execute"), context.View.ExecuteActionButton.Content);
-        if (exit >= 0) { Assert.Contains("Conversion.Summary", context.Output.Text); Assert.Contains("disk.ima", context.Output.Text); Assert.Contains("disk.img", context.Output.Text); }
-        if (exit > 0) Assert.Contains("Conversion.Failures", context.Output.Text);
-        Assert.Equal(exit < 0 ? 1 : 0, context.Errors.Count);
+        Assert.Contains("Conversion.Summary", Text(context.Output));
+        Assert.Contains("disk.ima", Text(context.Output));
+        Assert.Contains("disk.img", Text(context.Output));
+        if (exit != 0) Assert.Contains("Conversion.Failures", Text(context.Output));
+        Assert.Empty(context.Errors);
     }
     public static async Task Cancel()
     {
@@ -92,7 +163,7 @@ internal static class ConversionOperationScenarios
     {
         public ConversionTabSection View { get; } = new();
         public MainWindowViewModel Model { get; } = new("synthetic", "synthetic");
-        public TextBox Output { get; } = new();
+        public RichTextBox Output { get; } = new();
         public ConversionTabController Controller { get; }
         public OperationRuntimeController Operation { get; }
         public TaskCompletionSource Started { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -103,6 +174,7 @@ internal static class ConversionOperationScenarios
         public CancellationToken Token { get; private set; }
         public List<GwCommand> Commands { get; } = [];
         public List<Exception> Errors { get; } = [];
+        public List<string> DialogMessages { get; } = [];
         public AppSettings Settings { get; } = new() { GwExecutablePath = "virtual-tool" };
         public int ConflictPrompts { get; private set; }
         public Context(bool conflicts = false, ConversionConflictChoice? choice = null)
@@ -111,7 +183,13 @@ internal static class ConversionOperationScenarios
             View.DataContext = Model; Model.Conversion.SourcePath = "virtual-source.scp"; Model.Conversion.OutputName = "disk"; Model.Conversion.AddTags = false;
             Model.Conversion.SetFormat("ibm.160", true, new HashSet<string> { ".ima", ".img" });
             var catalog = new BuiltInImageFormatCatalog(key => key);
-            var dialogs = ControlledDependencies.Reject<IMessageDialogService>(); var files = ControlledDependencies.Reject<IFileDialogService>();
+            var dialogs = ControlledDependencies.Simulate<IMessageDialogService>((method, args) =>
+            {
+                Assert.Equal("Show", method.Name);
+                DialogMessages.Add((string)args[0]!);
+                return UserDialogResult.Ok;
+            });
+            var files = ControlledDependencies.Reject<IFileDialogService>();
             var business = ControlledDependencies.Simulate<IBusinessDialogService>((method, args) => {
                 Assert.Equal("ResolveConversionConflicts", method.Name); ConflictPrompts++;
                 var outputs = Assert.IsAssignableFrom<IReadOnlyList<ConversionOutput>>(args[0]); Assert.Equal(2, outputs.Count);
@@ -140,8 +218,8 @@ internal static class ConversionOperationScenarios
                 new SequentialEncoderRegistry([]),
                 writers,
                 mediaWriting);
-            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, mediaReader, mediaConversion, sequentialMediaConversion, files, business, dialogs,
-                definitions, Operation, log, null!, new TextBox { Text = "virtual-folder" }, new TextBox(), Output, () => 0, _ => { }, null!, Operation.RequestCancellation, (_, _) => throw new InvalidOperationException(), () => { }, Dispatcher.CurrentDispatcher,
+            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, mediaReader, mediaConversion, sequentialMediaConversion, () => throw new InvalidOperationException(), business, dialogs,
+                definitions, Operation, log, null!, new TextBox(), Output, () => 0, _ => { }, null!, Operation.RequestCancellation, (_, _) => throw new InvalidOperationException(), () => { }, Dispatcher.CurrentDispatcher,
                 path => path is "virtual-tool" or "virtual-source.scp" || conflicts && path is not null && !path.Contains("(2)"));
         }
         public async Task WaitUntilStarted(Task running)
@@ -150,4 +228,7 @@ internal static class ConversionOperationScenarios
             if (!Started.Task.IsCompleted) { await running; Assert.Fail("Conversion returned before calling the runner."); }
         }
     }
+
+    private static string Text(RichTextBox output) =>
+        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

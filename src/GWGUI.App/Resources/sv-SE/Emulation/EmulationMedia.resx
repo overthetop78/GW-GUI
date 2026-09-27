@@ -6,5 +6,5 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Media.Insert" xml:space="preserve"><value>Sätt i media</value></data>
   <data name="Emulation.Media.Eject" xml:space="preserve"><value>Mata ut media</value></data>
-  <data name="Emulation.InitialDisk" xml:space="preserve"><value>Initial disk</value></data>
+  <data name="Emulation.InitialDisk"><value>Initial disk</value></data>
 </root>

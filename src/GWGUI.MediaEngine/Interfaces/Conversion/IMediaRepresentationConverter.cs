@@ -23,5 +23,6 @@ public interface IMediaRepresentationConverter
         string targetFormatId,
         MediaRepresentationKind targetRepresentationKind,
         IReadOnlyDictionary<string, string> options,
+        Action<MediaExplorationProgress>? progress = null,
         CancellationToken cancellationToken = default);
 }

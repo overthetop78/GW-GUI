@@ -14,31 +14,27 @@ internal static class ProtectedTrackScpImageAdapter
         ArgumentNullException.ThrowIfNull(metadata);
         if (image.Tracks.Count == 0) throw new InvalidDataException("SCP requires at least one flux track.");
 
-        var revolutionCounts = image.Tracks.Select(track => track.Revolutions.Count).Distinct().ToArray();
-        if (revolutionCounts.Length != 1 || revolutionCounts[0] == 0 || revolutionCounts[0] > byte.MaxValue)
-            throw new NotSupportedException("SCP requires the same non-zero revolution count on every track.");
+        var revolutionCount = image.Tracks.Min(track => track.Revolutions.Count);
+        if (revolutionCount == 0 || revolutionCount > byte.MaxValue)
+            throw new NotSupportedException("SCP requires at least one revolution on every track.");
         var resolutions = image.Tracks
             .SelectMany(track => track.Revolutions)
             .Select(revolution => revolution.ResolutionNanoseconds)
             .Distinct()
             .ToArray();
-        if (resolutions.Length != 1)
-            throw new NotSupportedException("SCP requires one timing resolution for every revolution.");
-        var resolution = ResolveResolution(metadata, resolutions[0]);
+        int? commonResolution = resolutions.Length == 1 ? resolutions[0] : null;
+        var resolution = ResolveResolution(metadata, commonResolution);
         var resolutionNanoseconds = ScpFormatConstants.ResolutionStepNanoseconds *
                                     (resolution + ScpFormatConstants.ResolutionIndexOffset);
-        if (resolutionNanoseconds != resolutions[0])
-            throw new NotSupportedException(
-                $"Flux timing resolution '{resolutions[0]}' nanoseconds cannot be represented by SCP.");
 
         var tracks = image.Tracks
             .Select(track => new ScpTrack(
                 ScpFormatConstants.ToTrackNumber(track.Cylinder, track.Head),
                 track.Cylinder,
                 track.Head,
-                track.Revolutions.Select(revolution => new ScpRevolution(
-                    revolution.Flux,
-                    checked((uint)revolution.Flux.FluxIntervals.Count))).ToArray()))
+                track.Revolutions.Take(revolutionCount).Select(revolution => ConvertRevolution(
+                    revolution,
+                    resolutionNanoseconds)).ToArray()))
             .OrderBy(track => track.TrackNumber)
             .ToArray();
         var flags = ReadByte(metadata, ScpMetadataKeys.Flags) is { } rawFlags
@@ -49,7 +45,7 @@ internal static class ProtectedTrackScpImageAdapter
         var header = new ScpHeader(
             ReadByte(metadata, ScpMetadataKeys.Version) ?? ScpWriterDefaults.Version,
             ReadByte(metadata, ScpMetadataKeys.DiskType) ?? (byte)ScpDiskType.Other720,
-            checked((byte)revolutionCounts[0]),
+            checked((byte)revolutionCount),
             tracks.Min(track => track.TrackNumber),
             tracks.Max(track => track.TrackNumber),
             flags,
@@ -63,19 +59,42 @@ internal static class ProtectedTrackScpImageAdapter
 
     private static byte ResolveResolution(
         IReadOnlyDictionary<string, string> metadata,
-        int resolutionNanoseconds)
+        int? resolutionNanoseconds)
     {
         var stored = ReadByte(metadata, ScpMetadataKeys.Resolution);
         if (stored.HasValue) return stored.Value;
-        if (resolutionNanoseconds % ScpFormatConstants.ResolutionStepNanoseconds != 0)
-            throw new NotSupportedException(
-                $"Flux timing resolution '{resolutionNanoseconds}' nanoseconds is not an SCP increment.");
-        var index = resolutionNanoseconds / ScpFormatConstants.ResolutionStepNanoseconds -
+        if (resolutionNanoseconds is null ||
+            resolutionNanoseconds.Value % ScpFormatConstants.ResolutionStepNanoseconds != 0)
+            return ScpFormatConstants.InternalCaptureResolution;
+        var index = resolutionNanoseconds.Value / ScpFormatConstants.ResolutionStepNanoseconds -
                     ScpFormatConstants.ResolutionIndexOffset;
-        if (index is < byte.MinValue or > byte.MaxValue)
-            throw new NotSupportedException(
-                $"Flux timing resolution '{resolutionNanoseconds}' nanoseconds exceeds the SCP range.");
-        return checked((byte)index);
+        return index is < byte.MinValue or > byte.MaxValue
+            ? ScpFormatConstants.InternalCaptureResolution
+            : checked((byte)index);
+    }
+
+    private static ScpRevolution ConvertRevolution(
+        TrackFluxRevolution source,
+        int targetResolutionNanoseconds)
+    {
+        var intervals = source.Flux.FluxIntervals
+            .Select(interval => ConvertTicks(interval, source.ResolutionNanoseconds, targetResolutionNanoseconds))
+            .ToArray();
+        var indexTime = ConvertTicks(
+            source.Flux.IndexTimeTicks,
+            source.ResolutionNanoseconds,
+            targetResolutionNanoseconds);
+        return new(new FluxRevolution(indexTime, intervals), checked((uint)intervals.Length));
+    }
+
+    private static uint ConvertTicks(uint ticks, int sourceResolution, int targetResolution)
+    {
+        var converted = ((ulong)ticks * checked((uint)sourceResolution) + (uint)(targetResolution / 2)) /
+                        checked((uint)targetResolution);
+        if (converted == 0) return 1;
+        if (converted > uint.MaxValue)
+            throw new NotSupportedException("Flux timing exceeds the SCP range.");
+        return checked((uint)converted);
     }
 
     private static ScpHeadSelection ResolveHeads(IReadOnlyList<ScpTrack> tracks)

@@ -145,7 +145,7 @@ internal sealed class MachineVideoPresenter : IDisposable
     {
         var frame = _machine.Video.LatestFrame;
         var ratio = aspectRatio ?? (frame is { Width: > 0, Height: > 0 }
-            ? frame.Width / (double)frame.Height
+            ? FrameAspectRatio(frame)
             : MachinePresentationConstants.DefaultAspectRatio);
         var fitted = EmulationVideoLayoutFunctions.Fit(_displayHost.ActualWidth,
             _displayHost.ActualHeight, (float)ratio);
@@ -373,9 +373,14 @@ internal sealed class MachineVideoPresenter : IDisposable
     {
         if (_disposed) return;
         UpdateFrameRate();
-        if (_presentationEnabled) FitScreen(frame.Width / (double)frame.Height);
+        if (_presentationEnabled) FitScreen(FrameAspectRatio(frame));
         FramePresented?.Invoke(this, frame);
     }
+
+    internal static double FrameAspectRatio(VideoFrame frame) =>
+        frame.AspectRatio > 0 && float.IsFinite(frame.AspectRatio)
+            ? frame.AspectRatio
+            : frame.Width / (double)frame.Height;
     private void NotifyFrameCompleted(VideoFrame frame)
     {
         Interlocked.Exchange(ref _latestCompletedFrame, frame);

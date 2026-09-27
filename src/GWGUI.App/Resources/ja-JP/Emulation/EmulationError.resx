@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>キックスタートパスが必要です。</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>必要なファームウェアパスは空です。</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>選択したファイルが存在しない。</value></data>
+  <data name="Emulation.Error.Title"><value>排卵エラー</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>必要なエミュレータはインストールされていません。</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>エミュレータは、要求された操作を拒否しました。</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>使用中のエミュレータは更新できません。</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>ファームウェアが不足している。</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>選択したファームウェアは、このマシンと互換性がありません。</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>設定されたメディアファイルが発見されていない。</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>選択したメディアは、このエミュレータではサポートされていません。</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>エミュレーターオプションは無効です。</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>エミュレータープロセスとの通信が失敗しました。</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>封入機は始まらない。</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>媒体の操作は失敗しました。</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>保存状態が無効な状態または破損しています。</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>保存状態は、この機械構成と互換性がありません。</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>保存状態の動作が失敗しました。</value></data>
 </root>

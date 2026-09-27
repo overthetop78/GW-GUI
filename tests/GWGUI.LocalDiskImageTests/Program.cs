@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
@@ -32,6 +33,11 @@ internal static partial class Program
         WriteIndented = true,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         Converters = { new JsonStringEnumConverter() }
+    };
+
+    private static readonly JsonSerializerOptions LineJsonOptions = new(JsonOptions)
+    {
+        WriteIndented = false
     };
 
     public static async Task<int> Main(string[] args)
@@ -82,6 +88,24 @@ internal static partial class Program
             {
                 Console.WriteLine(JsonSerializer.Serialize(ListMediaImages(engine, Path.GetFullPath(listRoot)), JsonOptions));
                 return 0;
+            }
+
+            var scanRoot = Argument(args, "--scan-corpus");
+            if (!string.IsNullOrWhiteSpace(scanRoot))
+            {
+                var scanOutput = Argument(args, "--output") ?? throw new ArgumentException("--output is required.");
+                var timeoutMilliseconds = Argument(args, "--timeout-ms") is { } timeout
+                    ? int.Parse(timeout, CultureInfo.InvariantCulture)
+                    : 2_000;
+                var samplesPerExtension = Argument(args, "--samples-per-extension") is { } sampleCount
+                    ? int.Parse(sampleCount, CultureInfo.InvariantCulture)
+                    : 20;
+                return await ScanCorpusAsync(
+                    engine,
+                    Path.GetFullPath(scanRoot),
+                    Path.GetFullPath(scanOutput),
+                    timeoutMilliseconds,
+                    samplesPerExtension);
             }
 
             var imagePath = Argument(args, "--image") ?? throw new ArgumentException("--image is required.");
@@ -191,6 +215,181 @@ internal static partial class Program
             CreateRepresentation(document),
             validation);
     }
+
+    private static async Task<int> ScanCorpusAsync(
+        MediaEngineComposition engine,
+        string root,
+        string outputDirectory,
+        int timeoutMilliseconds,
+        int samplesPerExtension)
+    {
+        if (timeoutMilliseconds <= 0) throw new ArgumentOutOfRangeException(nameof(timeoutMilliseconds));
+        if (samplesPerExtension <= 0) throw new ArgumentOutOfRangeException(nameof(samplesPerExtension));
+        Directory.CreateDirectory(outputDirectory);
+        var resultPath = Path.Combine(outputDirectory, "corpus-scan.ndjson");
+        var summaryPath = Path.Combine(outputDirectory, "corpus-scan-summary.json");
+        var mediaPaths = ListMediaImages(engine, root);
+        var allFiles = Directory.EnumerateFiles(root, "*", new EnumerationOptions
+            {
+                RecurseSubdirectories = true,
+                IgnoreInaccessible = false,
+                ReturnSpecialDirectories = false
+            })
+            .ToArray();
+        var supportedExtensions = engine.Recognition.Readers.SelectMany(reader => reader.Extensions)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var sampledPaths = BuildSamplePaths(mediaPaths, samplesPerExtension);
+        var statusCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var formatCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var extensionCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var stopwatch = Stopwatch.StartNew();
+
+        await using var output = new FileStream(resultPath, FileMode.Create, FileAccess.Write, FileShare.Read, 65_536, FileOptions.Asynchronous);
+        await using var writer = new StreamWriter(output, new UTF8Encoding(false)) { AutoFlush = true };
+        for (var index = 0; index < mediaPaths.Count; index++)
+        {
+            var path = mediaPaths[index];
+            var extension = Path.GetExtension(path).ToLowerInvariant();
+            Increment(extensionCounts, extension);
+            var itemStopwatch = Stopwatch.StartNew();
+            if (!sampledPaths.Contains(path))
+            {
+                const string cataloguedStatus = "catalogued";
+                Increment(statusCounts, cataloguedStatus);
+                await writer.WriteLineAsync(JsonSerializer.Serialize(new
+                {
+                    index = index + 1,
+                    path,
+                    extension,
+                    status = cataloguedStatus,
+                    length = new FileInfo(path).Length
+                }, LineJsonOptions)).ConfigureAwait(false);
+                continue;
+            }
+
+            using var timeout = new CancellationTokenSource(timeoutMilliseconds);
+            string status;
+            string? formatId = null;
+            string? mediaKind = null;
+            string? representation = null;
+            int? volumeCount = null;
+            int? fileCount = null;
+            int? visualizationElementCount = null;
+            int? conversionCount = null;
+            string? errorType = null;
+            string? errorMessage = null;
+            try
+            {
+                var source = new MediaSourceDescriptor(path, []);
+                var recognized = await engine.Recognition.Registry.RecognizeAsync(
+                    new MediaRecognitionContext(source), timeout.Token).ConfigureAwait(false);
+                var explored = await engine.Explorer.ExploreAsync(recognized.Document, timeout.Token).ConfigureAwait(false);
+                var visualization = engine.Visualization.Registry.CreateDescriptor(explored.Document);
+                formatId = explored.Document.FormatId;
+                mediaKind = explored.Document.MediaKind.ToString();
+                representation = explored.Document.Representation.RepresentationKind.ToString();
+                volumeCount = explored.Volumes.Count;
+                fileCount = explored.Volumes.Sum(volume => CountEntries(volume.FileSystem?.Entries ?? []));
+                visualizationElementCount = visualization.Elements.Count;
+                conversionCount = engine.ConversionService.GetAvailableDestinations(explored.Document).Count;
+                status = "success";
+                Increment(formatCounts, formatId);
+            }
+            catch (OperationCanceledException) when (timeout.IsCancellationRequested)
+            {
+                status = "timeout";
+            }
+            catch (Exception error)
+            {
+                status = "error";
+                errorType = error.GetType().FullName;
+                errorMessage = error.Message;
+            }
+
+            Increment(statusCounts, status);
+            await writer.WriteLineAsync(JsonSerializer.Serialize(new
+            {
+                index = index + 1,
+                path,
+                extension,
+                status,
+                formatId,
+                mediaKind,
+                representation,
+                volumeCount,
+                fileCount,
+                visualizationElementCount,
+                conversionCount,
+                elapsedMilliseconds = itemStopwatch.ElapsedMilliseconds,
+                errorType,
+                errorMessage
+            }, LineJsonOptions)).ConfigureAwait(false);
+
+            if ((index + 1) % 1_000 == 0 || index + 1 == mediaPaths.Count)
+                Console.WriteLine($"{index + 1}/{mediaPaths.Count} - {statusCounts.GetValueOrDefault("success")} success, {statusCounts.GetValueOrDefault("error")} errors, {statusCounts.GetValueOrDefault("timeout")} timeouts");
+        }
+
+        stopwatch.Stop();
+        var unsupportedExtensions = allFiles
+            .Select(Path.GetExtension)
+            .Where(extension => !string.IsNullOrWhiteSpace(extension) && !supportedExtensions.Contains(extension))
+            .GroupBy(extension => extension!.ToLowerInvariant(), StringComparer.OrdinalIgnoreCase)
+            .OrderByDescending(group => group.Count())
+            .ThenBy(group => group.Key, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => group.Count(), StringComparer.OrdinalIgnoreCase);
+        await WriteJsonAsync(summaryPath, new
+        {
+            root,
+            completedAt = DateTimeOffset.UtcNow,
+            elapsed = stopwatch.Elapsed,
+            timeoutMilliseconds,
+            samplesPerExtension,
+            decodedSampleCount = sampledPaths.Count,
+            allFileCount = allFiles.Length,
+            mediaFileCount = mediaPaths.Count,
+            statusCounts,
+            extensionCounts,
+            formatCounts,
+            unsupportedExtensions
+        }).ConfigureAwait(false);
+        return statusCounts.GetValueOrDefault("error") == 0 && statusCounts.GetValueOrDefault("timeout") == 0 ? 0 : 1;
+    }
+
+    private static HashSet<string> BuildSamplePaths(IReadOnlyList<string> mediaPaths, int samplesPerExtension)
+    {
+        var samples = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var paths in mediaPaths.GroupBy(Path.GetExtension, StringComparer.OrdinalIgnoreCase))
+        {
+            var group = paths.ToArray();
+            var count = Math.Min(samplesPerExtension, group.Length);
+            if (count == 1)
+            {
+                samples.Add(group[0]);
+                continue;
+            }
+
+            for (var index = 0; index < count; index++)
+            {
+                var position = (int)Math.Round(index * (group.Length - 1d) / (count - 1d));
+                samples.Add(group[position]);
+            }
+        }
+        return samples;
+    }
+
+    private static int CountEntries(IEnumerable<FileSystemEntry> entries)
+    {
+        var count = 0;
+        foreach (var entry in entries)
+        {
+            count++;
+            count += CountEntries(entry.Children);
+        }
+        return count;
+    }
+
+    private static void Increment(IDictionary<string, int> counts, string key)
+        => counts[key] = counts.TryGetValue(key, out var count) ? count + 1 : 1;
 
     private static async Task<ExploredMediaImage> ExploreFileSystemsAsync(
         MediaEngineComposition engine,

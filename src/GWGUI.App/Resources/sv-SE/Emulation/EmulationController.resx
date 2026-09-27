@@ -35,5 +35,5 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (vänsterhand)</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (höger)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Utseende</value></data>
-  <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
+  <data name="Emulation.Controller"><value>Controller {0}</value></data>
 </root>

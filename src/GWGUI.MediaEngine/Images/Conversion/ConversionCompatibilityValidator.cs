@@ -29,6 +29,6 @@ internal sealed class ConversionCompatibilityValidator(IImageFormatCatalog catal
             .GroupBy(output => output.OutputPath, StringComparer.OrdinalIgnoreCase)
             .FirstOrDefault(group => group.Count() > 1);
         if (duplicate is not null)
-            throw new InvalidOperationException($"Several conversions would create '{duplicate.Key}'.");
+            throw new ConversionOutputCollisionException(duplicate.Key);
     }
 }

@@ -79,4 +79,21 @@
   <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Атарі XG-1 Світло гармати</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Синій/коричневий 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Синій/коричневий 2</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Емульти Atari ST, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , STE, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , TT і комп'ютери Falcon.</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Налаштовує Atari 8-бітні комп'ютери та консолі Atari 5200.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Вбудовує Atari 2600 консолі.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Вбудовує консолі Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Поєднує портативну ігрову систему Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulates Atari Ягуар і Ягуар CD консолі.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Вибраний емулятор Atari не використовує загальний контролер картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Вибраний Atari машина вимагає засобливості патрона.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Розширення картриджа не підтримується вибраним емулятором Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Для читання не можна відкрити картридж Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Атарі емулятор відхиляється замінний картридж.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Атарі емулятор відхилений як заміну, так і за попередній патрон.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Цей емулятор Atari не може залишатися на зв'язку без картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Вибраний емулятор Atari не підставляє вибір області картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Цей емулятор Atari не може використовувати режим частування картриджа SECAM.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Звуковий відтворення включений</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Відключено відтворення звуку</value></data>
 </root>

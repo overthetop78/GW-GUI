@@ -109,7 +109,9 @@ public static partial class EmulationVideoProcessingCatalog
         = ResourceKeys("EPaper.ColorMode", Enum.GetValues<EmulationEPaperColorMode>());
 
     public static IReadOnlyDictionary<string, string> ParameterResourceKeys { get; } =
-        ParameterIds.ToDictionary(id => id, id => $"Emulation.Video.Parameter.{id}", StringComparer.Ordinal);
+        ParameterIds.ToDictionary(id => id,
+            id => id == Gamma ? "Emulation.Video.Gamma" : $"Emulation.Video.Parameter.{id}",
+            StringComparer.Ordinal);
 
     public static IReadOnlyDictionary<string, object?> NeutralValues { get; } =
         new Dictionary<string, object?>(StringComparer.Ordinal)

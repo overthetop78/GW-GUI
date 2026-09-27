@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Jalur Kickstart diperlukan.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Sebuah jalur firmware yang diperlukan kosong.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Berkas yang dipilih tidak ada.</value></data>
+  <data name="Emulation.Error.Title"><value>Galat emulasi</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Emulator yang diperlukan belum terpasang.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Emulator menolak operasi yang diminta.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Emulator tidak dapat diperbarui saat sedang digunakan.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Firmware yang diperlukan hilang.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>firmware yang dipilih tidak kompatibel dengan mesin ini.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Berkas media yang ditata tak ditemukan.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Media yang dipilih tidak didukung oleh emulator ini.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Sebuah opsi emulator tidak valid.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Komunikasi dengan proses emulator gagal.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Mesin yang diemulasi tidak bisa dimulai.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Operasi media gagal.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Keadaan aman tidak valid atau rusak.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Keadaan tersimpan tidak kompatibel dengan konfigurasi mesin ini.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Operasi saved-state gagal.</value></data>
 </root>

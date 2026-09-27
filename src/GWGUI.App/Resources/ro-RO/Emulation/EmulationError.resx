@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Este necesară o cale Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>O cale firmware necesară este goală.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Fișierul selectat nu există.</value></data>
+  <data name="Emulation.Error.Title"><value>Eroare de emulare</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Emulatorul necesar nu este instalat.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Emulatorul a respins operaţiunea solicitată.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Emulatorul nu poate fi actualizat în timpul utilizării.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Firmware-ul necesar lipseşte.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Firmware-ul selectat este incompatibil cu această mașină.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Fișierul media configurat nu a fost găsit.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Mass-media selectată nu este susținută de acest emulator.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>O opţiune de emulator nu e valabilă.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Comunicarea cu procesul de emulator a eșuat.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Maşina emulată nu a putut fi pornită.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Operaţiunea media a eşuat.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Starea salvată este invalidă sau deteriorată.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Starea salvată nu este compatibilă cu această configurație a mașinii.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Operaţiunea de salvare a eşuat.</value></data>
 </root>

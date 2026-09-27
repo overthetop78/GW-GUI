@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>设置 GTIA 用于复制颜色的相相延迟 。 默认使用标准值 。 数字选择会改变结果的颜色</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>设置框架跳过</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>设定省略多少个显示框 。 已禁用 。 更高的值减少渲染工作,但使运动更不平滑.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>选择模拟处理器</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>选择安装在模拟机器中的处理器模型。可用模型取决于所选的机器和模拟器。</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>使用原始处理器速度</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>在原机的时点运行处理器,而不是应用加速或自定义频率.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>设置主内存大小</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>请选择在模拟机器中安装的主内存的量。可用的大小仅限于该机器支持的配置。</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>选择系统固件</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>选择系统 ROM 用于启动模拟机器。固件必须匹配所选模型和区域配置。</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>选择 BASIC 固件</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>选择 BASIC ROM 当该固件得到所选模型的支持时,可供模拟机器使用。</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>选择 XEGS 固件</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>请选择 Atari 使用的固件 XEGS 配置文件。使用与所选机器区域相容的固件。</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>显示存储活动</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>显示在访问媒体时模拟存储设备所报道的活动 。</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>选择硬盘文件夹</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>选择在支持文件夹备份存储时, 显示显示在模拟器上的主机文件夹为硬盘存储 。</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>显示存储速度</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>显示模拟存储设备所报的当前传输速度 。</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>显示当前扇区</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>显示模拟存储设备当前访问的区域 。</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>选择模拟解析</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>选择模拟器在前方制作的内部视频解析度 GW GUI 缩放窗口的图像。</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>裁剪已模拟的边框</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>删除被模拟视频输出产生的边框,同时保留所使用的图像宽比 GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>调整视频色调</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>移动模拟视频硬件产生的颜色的色调。</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>调整颜色饱和度</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>改变由模拟视频硬件产生的颜色的强度.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>调整图像对比</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>改变模拟视频输出中暗色和亮色的区别.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>调整图像亮度</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>改变模拟视频输出的整体亮度.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>启用模拟音频</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>启用或禁用由模拟机器生成的声音 。</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>选择音频输出</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>选择用于播放模拟机器所发出的声音的主机音频设备。</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>设置模拟音频音量</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>设置模拟机器所生成的声音的回放量 。</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>启用软盘驱动声音</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>启用复制模拟软盘驱动器活动 的机械声音 。</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>设定软盘驱动音量</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>设置模拟软盘驱动机械声音的回放音量。</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>设定 CD 音频音量</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>设置从模拟的压缩盘驱动器读取的音频音轨的回放量。</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>设定鼠标移动速度</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>调整主机鼠标移动转换为向模拟机器报告的移动的方式。</value></data>
 </root>

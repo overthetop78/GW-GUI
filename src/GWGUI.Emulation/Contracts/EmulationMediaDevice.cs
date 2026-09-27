@@ -11,4 +11,5 @@ public sealed record EmulationMediaDevice(
     IReadOnlyList<EmulationSettingsChoice>? InterfaceChoices = null,
     string? ImageDirectory = null,
     bool IsPermanent = false,
-    IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskImageFormat>? HardDiskFormats = null);
+    IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskImageFormat>? HardDiskFormats = null,
+    EmulationStorageConfigurationKind ConfigurationKind = EmulationStorageConfigurationKind.None);

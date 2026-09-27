@@ -37,10 +37,9 @@ public sealed class OperationProgressController(
         _completedPhysicalTracks = 0;
         CurrentReadState = null;
         SetState("Status.Running", Color.FromRgb(45, 125, 210));
-        viewModel.ProgressVisibility = Visibility.Visible;
-        viewModel.ProgressIndeterminate = true;
-        viewModel.ProgressValue = 0;
-        viewModel.ProgressText = "";
+        viewModel.ProgressVisibility = Visibility.Collapsed;
+        viewModel.Face0ProgressVisibility = Visibility.Collapsed;
+        viewModel.Face1ProgressVisibility = Visibility.Collapsed;
     }
 
     public void Accept(string output)
@@ -66,7 +65,7 @@ public sealed class OperationProgressController(
 
         if (progress.TotalOnHead is int totalOnHead)
         {
-            viewModel.GlobalProgressVisibility = Visibility.Collapsed;
+            viewModel.ProgressVisibility = Visibility.Visible;
             viewModel.Face0ProgressVisibility = progress.Head0Expected ? Visibility.Visible : Visibility.Collapsed;
             viewModel.Face1ProgressVisibility = progress.Head1Expected ? Visibility.Visible : Visibility.Collapsed;
             ConfigureFaces(progress);
@@ -95,24 +94,17 @@ public sealed class OperationProgressController(
             return;
         }
 
-        if (progress.TotalTracks is int total)
-        {
-            viewModel.ProgressIndeterminate = false;
-            viewModel.ProgressValue = progress.Fraction.GetValueOrDefault() * 100;
-            viewModel.ProgressText = localize("Status.TrackProgress", [progress.Cylinder, progress.Head, progress.CompletedTracks, total]);
-        }
-        else
-            viewModel.ProgressText = localize("Status.TrackUnknown", [progress.Cylinder, progress.Head, progress.CompletedTracks]);
     }
 
     public void Accept(PhysicalTrackWriteProgress progress)
     {
-        viewModel.ProgressIndeterminate = false;
-        viewModel.ProgressValue = progress.TotalTracks == 0
-            ? 0
-            : progress.CompletedTracks * 100d / progress.TotalTracks;
-        viewModel.ProgressText = localize("Status.TrackProgress",
-            [progress.Cylinder, progress.Head, progress.CompletedTracks, progress.TotalTracks]);
+        ConfigureFaces(progress.Tracks.Select(track => (track.Cylinder, track.Head)));
+        face0.ClearActive();
+        face1.ClearActive();
+        var strip = progress.Head == 0 ? face0 : face1;
+        strip.SetState(progress.Cylinder, TrackSegmentState.Success);
+        _completedPhysicalTracks = Math.Max(_completedPhysicalTracks, progress.CompletedTracks);
+        UpdateFaceProgress(progress.Head, progress.Cylinder);
     }
 
     public void Accept(PhysicalDiskReadOperationProgress progress)
@@ -120,7 +112,7 @@ public sealed class OperationProgressController(
         Publish(progress);
         if (progress.Tracks is { Count: > 0 })
         {
-            ConfigureFaces(progress.Tracks);
+            ConfigureFaces(progress.Tracks.Select(track => (track.Cylinder, track.Head)));
         }
 
         if (progress.Cylinder is int cylinder
@@ -147,28 +139,11 @@ public sealed class OperationProgressController(
             UpdateFaceProgress(head, cylinder);
         }
 
-        viewModel.ProgressIndeterminate = false;
-        viewModel.ProgressValue = progress.TotalTracks == 0
-            ? 0
-            : progress.CompletedTracks * 100d / progress.TotalTracks;
-        if (progress.Cylinder is int progressCylinder && progress.Head is int progressHead)
-        {
-            viewModel.ProgressText = localize(
-                "Status.TrackProgress",
-                [progressCylinder, progressHead, progress.CompletedTracks, progress.TotalTracks]);
-        }
-        else
-        {
-            viewModel.ProgressText = localize("Status.Running", []);
-        }
     }
 
     public void End()
     {
-        viewModel.ProgressIndeterminate = false;
-        viewModel.ProgressValue = 100;
         viewModel.ProgressVisibility = Visibility.Collapsed;
-        viewModel.GlobalProgressVisibility = Visibility.Visible;
         viewModel.Face0ProgressVisibility = Visibility.Collapsed;
         viewModel.Face1ProgressVisibility = Visibility.Collapsed;
     }
@@ -188,7 +163,7 @@ public sealed class OperationProgressController(
         _needsConfiguration = false;
     }
 
-    private void ConfigureFaces(IReadOnlyList<PhysicalDiskTrackAddress> tracks)
+    private void ConfigureFaces(IEnumerable<(int Cylinder, int Head)> tracks)
     {
         if (!_needsConfiguration)
         {
@@ -207,7 +182,7 @@ public sealed class OperationProgressController(
             .Distinct()
             .Order()
             .ToArray();
-        viewModel.GlobalProgressVisibility = Visibility.Collapsed;
+        viewModel.ProgressVisibility = Visibility.Visible;
         viewModel.Face0ProgressVisibility = face0Cylinders.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
         viewModel.Face1ProgressVisibility = face1Cylinders.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
         if (face0Cylinders.Length > 0)

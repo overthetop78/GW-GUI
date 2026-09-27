@@ -12,7 +12,7 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>Domyślny folder obrazu dysku</value></data>
   <data name="Options.Language" xml:space="preserve"><value>Język</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Temat</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>System</value></data>
+  <data name="Options.Theme.System"><value>System</value></data>
   <data name="Options.Theme.Light" xml:space="preserve"><value>Światło</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Ciemny</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Ścieżka do gw.exe</value></data>

@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>É necessário um caminho para o Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Um caminho de firmware necessário está vazio.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>O arquivo selecionado não existe.</value></data>
+  <data name="Emulation.Error.Title"><value>Erro de emulação</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>O emulador necessário não está instalado.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>O emulador rejeitou a operação solicitada.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>O emulador não pode ser atualizado enquanto estiver em uso.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Falta o firmware necessário.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>O firmware seleccionado é incompatível com esta máquina.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>O arquivo de mídia configurado não foi encontrado.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>A mídia selecionada não é suportada por este emulador.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Uma opção emuladora é inválida.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>A comunicação com o processo de emulador falhou.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>A máquina emulado não pôde ser iniciada.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>A operação de mídia falhou.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>O estado salvo é inválido ou danificado.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>O estado salvo não é compatível com esta configuração da máquina.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>A operação de estado salvo falhou.</value></data>
 </root>

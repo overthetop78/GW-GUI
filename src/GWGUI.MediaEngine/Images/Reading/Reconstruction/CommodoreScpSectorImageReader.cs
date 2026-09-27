@@ -32,21 +32,36 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     /// <returns>L'image sectorielle Commodore reconstruite.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur du format Commodore sélectionné ne peut être reconstruit.</exception>
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
+        => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+
+    public async Task<SectorImage> ReadAsync(
+        string path,
+        string? formatId,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
-        if (formatId == DiskImageFormatIds.Commodore1581) return Read1581(scp, cancellationToken);
-        if (formatId == DiskImageFormatIds.Commodore900Coherent) return Read900(scp, cancellationToken);
-        return ReadGcr(scp, formatId, cancellationToken);
+        if (formatId == DiskImageFormatIds.Commodore1581) return Read1581(scp, progress, cancellationToken);
+        if (formatId == DiskImageFormatIds.Commodore900Coherent) return Read900(scp, progress, cancellationToken);
+        return ReadGcr(scp, formatId, progress, cancellationToken);
     }
 
     /// <summary>Reconstruit les secteurs GCR zonés d'une disquette Commodore 900.</summary>
-    private SectorImage Read900(ScpImage scp, CancellationToken cancellationToken)
+    private SectorImage Read900(
+        ScpImage scp,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
+        var completed = 0;
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if (track.Cylinder is < 0 or >= Commodore900Geometry.CylinderCount || track.Head is < 0 or >= Commodore900Geometry.HeadCount) continue;
+            if (track.Cylinder is < 0 or >= Commodore900Geometry.CylinderCount || track.Head is < 0 or >= Commodore900Geometry.HeadCount)
+            {
+                ReportTrack(progress, track, ++completed, scp.Tracks.Count);
+                continue;
+            }
             foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
                 var decoded = decoders.Decode(FluxCodecIds.Commodore900Gcr, window.Flux);
@@ -58,6 +73,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                     list.Add((sector, window.Revolution));
                 }
             }
+            ReportTrack(progress, track, ++completed, scp.Tracks.Count);
         }
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(Commodore900GcrFormat.StructureDescriptionName);
         var blocks = candidates.Select(candidate =>
@@ -75,9 +91,14 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     /// <param name="cancellationToken">Jeton permettant d'annuler le décodage.</param>
     /// <returns>L'image 1541 ou 1571 reconstruite.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur Commodore GCR n'a été décodé.</exception>
-    private SectorImage ReadGcr(ScpImage scp, string? requestedFormat, CancellationToken cancellationToken)
+    private SectorImage ReadGcr(
+        ScpImage scp,
+        string? requestedFormat,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<(int Track, int Sector), List<(DecodedSector Sector, int Revolution)>>();
+        var completed = 0;
         foreach (var physicalTrack in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -92,6 +113,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                     list.Add((sector, window.Revolution));
                 }
             }
+            ReportTrack(progress, physicalTrack, ++completed, scp.Tracks.Count);
         }
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(CommodoreGcrFormat.StructureDescriptionName);
         var maxTrack = candidates.Keys.Max(key => key.Track);
@@ -122,9 +144,13 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     /// <param name="cancellationToken">Jeton permettant d'annuler le décodage.</param>
     /// <returns>L'image 1581 reconstruite en blocs logiques de 256 octets.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur MFM n'a été décodé ou tous les candidats sortent de la géométrie physique 1581.</exception>
-    private SectorImage Read1581(ScpImage scp, CancellationToken cancellationToken)
+    private SectorImage Read1581(
+        ScpImage scp,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
+        var completed = 0;
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -139,6 +165,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                     list.Add((sector, window.Revolution));
                 }
             }
+            ReportTrack(progress, track, ++completed, scp.Tracks.Count);
         }
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(Commodore1581Geometry.StructureDescriptionName);
         var blocks = new List<SectorBlock>();
@@ -157,4 +184,17 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
         if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(Commodore1581Geometry.StructureDescriptionName);
         return new(DiskImageFormatIds.Commodore1581, Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount, Commodore1581Geometry.LogicalBlocksPerTrack, blocks);
     }
+
+    private static void ReportTrack(
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        ScpTrack track,
+        int completed,
+        int total) =>
+        progress?.Report(new(
+            GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
+            $"Commodore · {track.Cylinder}:{track.Head}",
+            completed,
+            total,
+            Cylinder: track.Cylinder,
+            Head: track.Head));
 }

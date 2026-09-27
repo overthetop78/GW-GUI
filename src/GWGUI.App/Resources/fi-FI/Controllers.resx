@@ -93,7 +93,7 @@
   <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Jousi</value></data>
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Kitka</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Vaimennin</value></data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inertia</value></data>
+  <data name="Controllers.Enum.Effect.Inertia"><value>Inertia</value></data>
   <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Ohjainsauva</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Moniakseliohjain</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-käyttö</value></data>

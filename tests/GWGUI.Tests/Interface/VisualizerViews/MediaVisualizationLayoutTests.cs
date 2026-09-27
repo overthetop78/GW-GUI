@@ -9,6 +9,7 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Localization.Sources;
 using GWGUI.App.Rendering.Sectors;
 using GWGUI.App.Rendering.Scp;
+using GWGUI.App.Rendering.Sequential;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.Infrastructure.Settings;
@@ -196,6 +197,30 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         Assert.All(names, name => Assert.Equal(
             fluxPositions[name],
             Assert.IsAssignableFrom<FrameworkElement>(header.FindName(name)).TranslatePoint(new Point(), header).X));
+    });
+
+    [Fact]
+    public Task CartridgeHeaderUsesTheRecognizedMachineAndBlockZoomUsesRoundedGlyphButtons() => sta.Run(() =>
+    {
+        var header = new VisualizerHeaderSection();
+        header.SetFormats(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)).Formats);
+        header.ApplyDetection(DiskImageFormatIds.AmstradRom, null, []);
+        header.DisplayDocument(
+            Document("cartridge.rom", MediaKind.Cartridge, DiskImageFormatIds.AmstradRom),
+            Descriptor(0));
+
+        Assert.Contains("Amstrad CPC", header.DocumentIdentityControl.SummaryText.Text, StringComparison.Ordinal);
+
+        var blockView = new BlockMediaView();
+        var zoomOut = Assert.IsType<Button>(blockView.FindName("ZoomOutButton"));
+        var reset = Assert.IsType<Button>(blockView.FindName("ResetZoomButton"));
+        var zoomIn = Assert.IsType<Button>(blockView.FindName("ZoomInButton"));
+        Assert.Equal("−", zoomOut.Content);
+        Assert.Equal("100 %", reset.Content);
+        Assert.Equal("+", zoomIn.Content);
+        Assert.NotNull(zoomOut.Template);
+        Assert.NotNull(reset.Template);
+        Assert.NotNull(zoomIn.Template);
     });
 
     [Fact]
@@ -514,6 +539,35 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         Assert.Equal(Color.FromRgb(45, 176, 100), Assert.IsType<SolidColorBrush>(sectorStrip.Segments[0].Brush).Color);
         Assert.Equal(Color.FromRgb(207, 67, 67), Assert.IsType<SolidColorBrush>(sectorStrip.Segments[1].Brush).Color);
         Assert.Equal(Color.FromRgb(74, 83, 94), Assert.IsType<SolidColorBrush>(sectorStrip.Segments[2].Brush).Color);
+    });
+
+    [Fact]
+    public Task SequentialOverviewRevealsOneTapeBlockAtATime() => sta.Run(() =>
+    {
+        var first = new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment(
+            0, 0, TimeSpan.Zero, TimeSpan.Zero,
+            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal,
+            StoredLength: 10);
+        var second = new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment(
+            1, 0, TimeSpan.Zero, TimeSpan.Zero,
+            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.DecodedBlock,
+            StoredLength: 20);
+        var overview = new VisualizerTrackOverview();
+        overview.ConfigureSequential(new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaRenderModel(
+            30, null, [first, second]));
+        var rows = Assert.IsType<StackPanel>(overview.FindName("ProgressRows"));
+        var firstStrip = Assert.IsType<TrackProgressStrip>(rows.Children[0]);
+        var secondStrip = Assert.IsType<TrackProgressStrip>(rows.Children[1]);
+        var firstPending = Assert.IsType<SolidColorBrush>(firstStrip.Segments[0].Brush).Color;
+        var secondPending = Assert.IsType<SolidColorBrush>(secondStrip.Segments[0].Brush).Color;
+
+        overview.MarkSequentialSegment(first);
+
+        var firstColor = SkiaSequentialMediaRenderer.ColorFor(first);
+        Assert.Equal(Color.FromRgb(firstColor.Red, firstColor.Green, firstColor.Blue),
+            Assert.IsType<SolidColorBrush>(firstStrip.Segments[0].Brush).Color);
+        Assert.Equal(secondPending, Assert.IsType<SolidColorBrush>(secondStrip.Segments[0].Brush).Color);
+        Assert.NotEqual(firstPending, Assert.IsType<SolidColorBrush>(firstStrip.Segments[0].Brush).Color);
     });
 
     private static SectorMediaSurface Surface(int index) => new(index,

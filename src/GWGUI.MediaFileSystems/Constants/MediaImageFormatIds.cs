@@ -14,6 +14,9 @@ public static class MediaImageFormatIds
     public const string AmigaDos = "amiga.amigados";
     public const string AmigaDosHighDensity = "amiga.amigados_hd";
     public const string AmstradCpc = "amstrad.cpc";
+    public const string CpcEmuDsk = "cpcemu.dsk";
+    public const string AmstradCpr = "amstrad.cpr";
+    public const string AmstradRom = "amstrad.rom";
     public const string AmstradPcw = "amstrad.pcw";
     public const string AppleIIAppleDos113 = "apple2.appledos.113";
     public const string AppleIIAppleDos140 = "apple2.appledos.140";

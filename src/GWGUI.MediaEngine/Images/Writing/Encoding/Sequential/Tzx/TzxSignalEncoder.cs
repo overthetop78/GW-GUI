@@ -16,7 +16,7 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
     private static readonly IReadOnlySet<string> SupportedFormats =
         new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Spectrum, DiskSystemIds.Amstrad, DiskSystemIds.Msx }
+        new[] { DiskSystemIds.Spectrum, DiskSystemIds.Msx }
             .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => TzxConstants.EncoderId;

@@ -109,14 +109,18 @@ public sealed class EmulationStorageDeviceList : UserControl
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center
             };
-            var configure = new Button
+            if (device.CanConfigure)
             {
-                Content = LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure),
-                MinWidth = EmulationStorageDeviceListConstants.ConfigureButtonMinimumWidth,
-                Tag = device
-            };
-            configure.Click += (_, _) => ConfigureRequested?.Invoke(this, new EmulationStorageDeviceEventArgs(device));
-            actions.Children.Add(configure);
+                var configure = new Button
+                {
+                    Content = LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure),
+                    MinWidth = EmulationStorageDeviceListConstants.ConfigureButtonMinimumWidth,
+                    Tag = device
+                };
+                configure.Click += (_, _) => ConfigureRequested?.Invoke(this,
+                    new EmulationStorageDeviceEventArgs(device));
+                actions.Children.Add(configure);
+            }
             var remove = new Button
             {
                 Content = ControlVisualConstants.DeleteGlyph,

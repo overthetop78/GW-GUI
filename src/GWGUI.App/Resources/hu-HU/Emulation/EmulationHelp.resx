@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Beállítja a GTIA színfázis késleltetés használt reprodukálni színek. Az alapértelmezés a standard értéket használja. Numerikus választás eltolja az ebből eredő árnyalatok.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>A képkockaugrás beállítása</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Beállítja, hogy hány kijelzőkeret maradt ki. A letiltott minden képkockát megrajzol. A magasabb értékek csökkentik a renderelés munkáját, de a mozgás kevésbé sima.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Válassza ki az emulált processzort</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Kiválasztja az emulált gépbe beépített processzor modellt. A rendelkezésre álló modellek a kiválasztott géptől és emulátortól függnek.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Az eredeti processzorsebesség használata</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>A processzor az eredeti gép időzítésén fut, nem pedig a gyorsított vagy egyedi frekvencián.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>A fő memória méretének beállítása</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Kiválasztja az emulált gépbe telepített fő memória mennyiségét. A rendelkezésre álló méreteket a gép által támogatott konfigurációkra korlátozzuk.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Válassza ki a rendszer firmware</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>A rendszer kiválasztása ROM az emulált gép indításához használt. A firmware-nek egyeznie kell a kiválasztott modellel és a regionális konfigurációval.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Válassza ki a BASIC firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Kiválasztja a BASIC ROM az emulált gép rendelkezésére áll, ha a kiválasztott modell támogatja a firmware-t.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Válassza ki a XEGS firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Az Atari által használt firmware kiválasztása XEGS profil. használja a firmware kompatibilis a kiválasztott gép régiója.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Tárolási tevékenység megjelenítése</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Az emulált tárolóeszköz által jelentett aktivitást mutatja, miközben a média elérhető.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Válassza ki a merevlemez mappát</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>A tárhely mappáját keménylemezes tárolóként választja ki, amikor a folder- backed tároló támogatott.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Tárolási sebesség megjelenítése</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Az emulált tároló eszköz által jelentett áramátvezető sebesség megjelenítése.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>A jelenlegi szektor megjelenítése</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Megmutatja az ágazatot, amelyhez jelenleg az emulált tároló eszköz hozzáfér.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Válassza ki az emulált felbontást</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Kiválasztja az emulátor által készített belső videó felbontást GW GUI Méri az ablak képét.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Az emulált határok</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Eltávolítja az emulált videó kimenettel létrehozott határokat, miközben megőrzi a képképképi arányt, amelyet a következő képi képi képi megjelenítés használ: GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>A videó árnyalatának beállítása</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>A színárnyalatok áthúzása az emulált videó hardverből.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Színtelítettség beállítása</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Megváltoztatja az emulált videó hardver által generált színek intenzitását.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>A képkontraszt beállítása</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Megváltoztatja a különbséget sötét és világos színek az emulált videó kimeneten.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>A kép fényerősségének beállítása</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Az emulált videó kimenet általános fényerejét változtatja.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>A hangzás lemásolásának engedélyezése</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Az emulált gép által keltett hang engedélyezése vagy kikapcsolása.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Válassza ki a hangkimenetet</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Kiválasztja az emulált gép hangjának lejátszásához használt hangeszközt.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Az emulált hangtérfogat beállítása</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Beállítja az emulált gép által generált hang lejátszási térfogatát.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>A floppy- meghajtó hangjainak engedélyezése</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Mechanikus hangokat ad ki, amelyek az emulált floppy meghajtóból szaporodnak.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Floppy- meghajtó hangtérfogat beállítása</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Beállítja az emulált floppy- meghajtó mechanikus hangok lejátszási hangerejét.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Beállítás CD hangtérfogat</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Beállítja az emulált kompakt-lemez meghajtóból olvasott audió sávok lejátszási mennyiségét.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Az egér mozgási sebességének beállítása</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Beállítja, hogy a gazdatest egér mozgása hogyan alakul át az emulált gép által jelentett mozgásra.</value></data>
 </root>

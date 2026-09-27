@@ -66,6 +66,8 @@ public partial class MainWindow : Window
 
     private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        if (_terminalPanel is not null)
+            _terminalPanel.SelectTab(MainTabs?.SelectedIndex ?? -1);
         if (MainTabs?.SelectedIndex == MainWindowConstants.WriteTabIndex) UpdateWriteCommand();
         else if (MainTabs?.SelectedIndex == MainWindowConstants.ReadTabIndex) UpdateReadCommand();
         else if (MainTabs?.SelectedIndex == MainWindowConstants.ConvertTabIndex) UpdateConvertCommand();
@@ -101,7 +103,21 @@ public partial class MainWindow : Window
     private void Window_Closing(object? sender, CancelEventArgs e)
     {
         _lifecycle.Closing(e);
-        if (!e.Cancel) _scpInspectorController.Dispose();
+        if (!e.Cancel)
+        {
+            ErrorLog.EntryWritten -= AppendErrorToConsole;
+            _scpInspectorController.Dispose();
+        }
+    }
+
+    private void AppendErrorToConsole(string entry)
+    {
+        if (!Dispatcher.CheckAccess())
+        {
+            _ = Dispatcher.InvokeAsync(() => AppendErrorToConsole(entry));
+            return;
+        }
+        _terminalPanel.AppendError(entry);
     }
 
     private void RefreshReadProfiles(string? selectedId = null)
@@ -270,6 +286,7 @@ public partial class MainWindow : Window
 
     private void CaptureWindowSettings()
     {
+        _terminalPanel.CaptureCurrent();
         _windowPlacement.Capture(
             this,
             _settings,

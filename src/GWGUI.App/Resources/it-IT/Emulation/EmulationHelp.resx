@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Imposta il GTIA colore fase di ritardo utilizzato per riprodurre i colori. Default utilizza il valore standard. Le scelte numeriche spostano le sfumature.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Set cornice di salto</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Imposta quanti frame sono omessi. I disabili disegnano ogni cornice. I valori più elevati riducono il lavoro di rendering ma rendono il movimento meno liscio.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Scegliere il processore emulato</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Seleziona il modello del processore installato nella macchina emulata. I modelli disponibili dipendono dalla macchina e dall'emulatore selezionato.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Utilizzare la velocità del processore originale</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Esegue il processore al momento della macchina originale invece di applicare una frequenza accelerata o personalizzata.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Impostare la dimensione principale della memoria</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Seleziona la quantità di memoria principale installata nella macchina emulata. Le dimensioni disponibili sono limitate alle configurazioni supportate da quella macchina.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Selezionare il firmware del sistema</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Seleziona il sistema ROM Il firmware deve corrispondere al modello selezionato e alla configurazione regionale.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Selezionare il BASIC firmware firmware firmware firmware firmware firmware firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Seleziona la BASIC ROM disponibile alla macchina emulata quando il firmware è supportato dal modello selezionato.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Selezionare il XEGS firmware firmware firmware firmware firmware firmware firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Seleziona il firmware utilizzato dall'Atari XEGS profilo. Utilizzare firmware compatibile con la regione selezionata della macchina.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Mostra attività di storage</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Mostra l'attività riportata dal dispositivo di archiviazione emulato mentre i media sono accessibili.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Selezionare la cartella di rischio</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Seleziona la cartella host esposta all'emulatore come archiviazione a disco rigido quando lo storage a cartella è supportato.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Mostra la velocità di archiviazione</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Mostra la velocità di trasferimento corrente riportata dal dispositivo di archiviazione emulato.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Mostra il settore attuale</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Mostra il settore attualmente accessibile dal dispositivo di archiviazione emulato.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Selezionare la risoluzione emulata</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Seleziona la risoluzione video interna prodotta dall'emulatore prima GW GUI scala l'immagine per la finestra.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Ritagliare i confini emulati</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Rimuove i confini generati dall'output video emulato mantenendo il rapporto di aspetto dell'immagine utilizzato da GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Regolare la tonalità video</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Sfugge la tonalità dei colori generati dall'hardware video emulato.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Regolare la saturazione del colore</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Cambia l'intensità dei colori generati dall'hardware video emulato.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Regolare il contrasto dell'immagine</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Cambia la differenza tra colori scuri e luminosi nell'output video emulato.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Regolare la luminosità dell'immagine</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Cambia la luminosità complessiva dell'output video emulato.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Abilitare l'audio emulato</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Consente o disabilita il suono prodotto dalla macchina emulata.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Selezionare l'uscita audio</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Seleziona il dispositivo audio host utilizzato per riprodurre il suono dalla macchina emulata.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Impostare il volume audio emulato</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Imposta il volume di riproduzione del suono prodotto dalla macchina emulata.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Attivare suoni floppy-drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Consente suoni meccanici che riproducono l'attività dal disco floppy emulato.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Impostare il volume del suono floppy-drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Imposta il volume di riproduzione dei suoni meccanici floppy-drive emulati.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Set Set CD volume audio</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Imposta il volume di riproduzione delle tracce audio lette dall'unità compatta emulata.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Impostare la velocità di movimento del mouse</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Regola il modo in cui il movimento del mouse ospite viene convertito in movimento riportato alla macchina emulata.</value></data>
 </root>

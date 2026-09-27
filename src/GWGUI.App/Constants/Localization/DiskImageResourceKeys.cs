@@ -37,6 +37,7 @@ internal static class DiskImageResourceKeys
     internal const string VisualLoading = "Visual.Loading";
     internal const string VisualNoFile = "Visual.NoFile";
     internal const string VisualSide = "Visual.Side";
+    internal const string VisualSurface = "Visual.Surface";
     internal const string VisualSummary = "Visual.Summary";
     internal const string VisualTitle = "Visual.Title";
 }

@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>設定する GTIA 色相遅延で色を再現しました。 デフォルトでは標準値を使用します。 数値的な選択肢は、結果のヒューズをシフトします。</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>セットフレームのスキッピング</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>ディスプレイフレーム数を省略する方法を設定します。 障害者はすべてのフレームを描画します。 より高い値がレンダリング作業を削減するが、動きを少なくする。</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>エミュレータープロセッサーを選択します。</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>エミュレーターに搭載されているプロセッサーモデルを選択します。 利用可能なモデルは、選択したマシンとエミュレータに依存します。</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>元のプロセッサ速度を使用して下さい</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>加速またはカスタム周波数を適用するのではなく、元の機械のタイミングでプロセッサを実行します。</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>メモリサイズをメインに設定</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>エミュレーターにインストールされているメインメモリの量を選択します。利用可能なサイズは、そのマシンでサポートされている構成に制限されます。</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>システムファームウェアを選択</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>システムを選択 ROM 組み込みマシンを起動するために使用される。ファームウェアは、選択したモデルと地域構成に一致する必要があります。</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>選択する BASIC ファームウェア</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>選択する BASIC ROM 選択したモデルでファームウェアがサポートされると、エミュレートされたマシンに使用できます。</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>選択する XEGS ファームウェア</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Atari が使用するファームウェアを選択します。 XEGS プロフィール。選択された機械領域と互換性があるファームウェアを使用して下さい。</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>ストレージアクティビティを表示</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>メディアにアクセスしている間、エミュレートストレージデバイスによって報告されたアクティビティを表示します。</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>ハードディスクフォルダを選択</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>フォルダバックアップストレージがサポートされているときに、エミュレータに公開されているホストフォルダをハードディスクストレージとして選択します。</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>貯蔵の速度を表示して下さい</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>絶縁されたストレージデバイスによって報告された現在の転送速度を表示します。</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>現在のセクターを表示する</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>現在、エミュレートストレージデバイスからアクセスしたセクターを表示します。</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>絶縁された解像度を選択します</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>エミュレータで生成された内部のビデオ解像度を選択する前に GW GUI ウィンドウのイメージをスケールアップします。</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>埋め込まれた境界線をクロップ</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>埋め込みビデオ出力で生成された境界線を取り除き、画像のアスペクト比を保存します。 GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>ビデオの色合いを調整する</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>埋め込みビデオハードウェアによって生成された色の色合いをシフトします。</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>色の飽和を調節して下さい</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>埋め込みビデオハードウェアによって生成された色の強度を変更します。</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>画像のコントラストを調整する</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>暗色と明るい色の差をエミュレートしたビデオ出力で変更します。</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>画像を調節して下さい明るさを</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>埋め込みビデオ出力の全体的な明るさを変更します。</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>埋め込みオーディオを有効にします</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>絶縁された機械によって作り出される音を有効または無効にします。</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>音声出力を選択</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>絶縁された機械から音を再生するのに使用されるホストのオーディオ装置を選択します。</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>埋め込みオーディオボリュームを設定する</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>エムディキュレーションマシンで生成された音の再生量を設定します。</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>フロッピードライブの音を有効にします</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>進化したフロッピードライブから活動を再現する機械的な音を有効にします。</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>フロッピードライブのサウンドボリュームを設定する</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>進化したフロッピードライブのメカニカルサウンドの再生ボリュームを設定します。</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>設定 CD オーディオの音量</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>進化したコンパクトディスクドライブから読み込まれるオーディオトラックの再生量を設定します。</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>マウスの移動速度の設定</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>ホストマウスの動きをエミュレートされたマシンに報告された動きに変換するかを調整します。</value></data>
 </root>

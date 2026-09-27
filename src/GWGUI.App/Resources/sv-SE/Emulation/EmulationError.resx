@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>En Kickstart-bana krävs.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>En nödvändig firmware väg är tom.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Den valda filen finns inte.</value></data>
+  <data name="Emulation.Error.Title"><value>Emuleringsfel</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Den nödvändiga emulatorn är inte installerad.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Emulatorn avvisade den begärda operationen.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Emulatorn kan inte uppdateras medan den används.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Krävs att firmware saknas.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Den valda firmware är oförenlig med denna maskin.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Den konfigurerade mediefilen hittades inte.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>De utvalda medierna stöds inte av denna emulator.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>En emulator alternativ är ogiltig.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Kommunikation med emulatorprocessen misslyckades.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Den emulerade maskinen kunde inte startas.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Media operation misslyckades.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Det sparade tillståndet är ogiltigt eller skadat.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Det sparade tillståndet är inte kompatibelt med denna maskinkonfiguration.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Den sparade statsoperationen misslyckades.</value></data>
 </root>

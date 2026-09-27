@@ -110,8 +110,6 @@ internal sealed partial class EmulationModuleSettingsSection
         RebuildEditor();
     }
 
-    private string CurrentMachineId() => _configuration.MachineId;
-
     private void NotifyEditingContextChanged()
     {
         var machine = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? _configuration.MachineId;

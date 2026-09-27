@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Je třeba Kickstart cestu.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Požadovaná cesta firmware je prázdná.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Vybraný soubor neexistuje.</value></data>
+  <data name="Emulation.Error.Title"><value>Chyba emulace</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Požadovaný emulátor není instalován.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Emulátor žádost zamítl.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Emulátor nelze aktualizovat, když je používán.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Požadovaný firmware chybí.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Zvolený firmware je nekompatibilní s tímto strojem.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Nakonfigurovaný mediální soubor nebyl nalezen.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Vybraná média nejsou podporována tímto emulátorem.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Možnost emulátoru je neplatná.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Komunikace s emulatorem selhala.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Emulovaný stroj nemohl být spuštěn.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Mediální operace selhala.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Uložený stav je neplatný nebo poškozený.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Uložený stav není kompatibilní s touto konfigurací stroje.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Operace Saved-State selhala.</value></data>
 </root>

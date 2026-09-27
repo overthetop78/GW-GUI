@@ -30,7 +30,7 @@
   <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Ratt</value></data>
   <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · koppling={1} · handbroms={2} · växelspak={3}</value></data>
   <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput-namn</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revision</value></data>
+  <data name="Controllers.Revision"><value>Revision</value></data>
   <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Maskinvaruversion</value></data>
   <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Firmwareversion</value></data>
   <data name="Controllers.Family" xml:space="preserve"><value>Familj</value></data>
@@ -82,7 +82,7 @@
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Dela</value></data>
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Linjär</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Vinklad</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstant</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Ramp Ramp</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusvåg</value></data>
@@ -104,7 +104,7 @@
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Indatarapport</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Utdatarapport</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Analoga döda zoner</value></data>
-  <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Sticks</value></data>
-  <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Triggers</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Triggers</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Yttre döda zonen</value></data>
 </root>

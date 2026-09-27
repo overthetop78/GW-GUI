@@ -13,7 +13,7 @@
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Testează vibrația</value></data>
   <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Intensitatea vibrațiilor</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Intrări în timp real</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Control</value></data>
+  <data name="Controllers.Control"><value>Control</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Valoare</value></data>
   <data name="Controllers.Active" xml:space="preserve"><value>Activ</value></data>
   <data name="Controllers.Capabilities" xml:space="preserve"><value>Capabilități</value></data>
@@ -82,7 +82,7 @@
   <data name="Controllers.Enum.Share" xml:space="preserve"><value>Partajare</value></data>
   <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Liniar</value></data>
   <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Unghiular</value></data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Normal"><value>Normal</value></data>
   <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Constantă</value></data>
   <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampă</value></data>
   <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Undă sinusoidală</value></data>
@@ -94,17 +94,17 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Frecare</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Amortizor</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inerție</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Controler multiaxial</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Utilizare HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>axe</value></data>
   <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>butoane</value></data>
   <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Agregat</value></data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtual</value></data>
+  <data name="Controllers.Enum.Virtual"><value>Virtual</value></data>
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Raport de intrare</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Raport de ieșire</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Zone moarte analogice</value></data>
-  <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Sticks</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
   <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Declanșatoare</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Zona de pescuit a Uniunii Europene</value></data>
 </root>

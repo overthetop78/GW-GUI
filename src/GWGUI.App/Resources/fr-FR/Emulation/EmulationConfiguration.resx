@@ -12,7 +12,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Périphériques</value></data>
   <data name="Emulation.Configuration.Actions"><value>Actions</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Supprimer la configuration {0} {1} ?</value></data>
-  <data name="Emulation.Configuration" xml:space="preserve"><value>Configuration</value></data>
-  <data name="Emulation.Configurations" xml:space="preserve"><value>Configurations</value></data>
+  <data name="Emulation.Configuration"><value>Configuration</value></data>
+  <data name="Emulation.Configurations"><value>Configurations</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Supprimer cette configuration Amiga ?</value></data>
 </root>

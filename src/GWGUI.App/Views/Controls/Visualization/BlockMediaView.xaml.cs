@@ -194,7 +194,7 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
 
     private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedRange is null
         ? string.Empty
-        : $"LBA {_selectedRange.Start:N0} · {_selectedRange.Length:N0}";
+        : _selectedRange.Label ?? $"LBA {_selectedRange.Start:N0} · {_selectedRange.Length:N0}";
 
     private void InvalidateCanvases()
     {

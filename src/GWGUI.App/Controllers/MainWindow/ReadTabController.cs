@@ -51,7 +51,7 @@ internal sealed partial class ReadTabController(
     IGreaseweazleRunner runner,
     DiskImageWorkspaceController diskImageWorkspace,
     TextBox commandPreview,
-    TextBox logOutput,
+    RichTextBox logOutput,
     Func<string?> selectedDeviceArgument,
     Func<string?> selectedDriveArgument,
     Func<bool> ensureSelectedHardwareAvailable,

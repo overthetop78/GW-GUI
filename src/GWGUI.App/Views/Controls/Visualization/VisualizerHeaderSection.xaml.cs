@@ -65,7 +65,10 @@ public partial class VisualizerHeaderSection : UserControl
     }
     public void ApplyDetection(string? formatId, string? protectionId, IEnumerable<string> detectedFormatIds, bool includeFlux = true)
     {
-        var ids = detectedFormatIds.Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+        var ids = detectedFormatIds
+            .Concat(string.IsNullOrWhiteSpace(formatId) ? [] : [formatId])
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
         Classification.ApplyDetection(formatId, protectionId, ids);
         selectedClassificationFormatId = Classification.SelectedFormatId;
         detectedFormatsSummary = BuildDetectedFormatsSummary(ids);

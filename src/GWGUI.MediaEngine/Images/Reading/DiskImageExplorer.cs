@@ -89,15 +89,39 @@ public sealed class DiskImageExplorer
 
         if (document.Representation is FluxMediaImageRepresentation flux)
         {
-            if (!document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase)) return documents.CreateUnknown(path);
-            var scpImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
-            scpImageLoaded?.Invoke(scpImage);
-            var explored = await scpExploration.ExploreAutomaticallyAsync(
-                path,
-                scpImage,
-                progress,
-                cancellationToken).ConfigureAwait(false);
-            return formatId is null ? explored : explored.SelectFormat(formatId) ?? documents.CreateUnknown(path);
+            if (document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase))
+            {
+                var scpImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
+                scpImageLoaded?.Invoke(scpImage);
+                var explored = await scpExploration.ExploreAutomaticallyAsync(
+                    path,
+                    scpImage,
+                    progress,
+                    cancellationToken).ConfigureAwait(false);
+                return formatId is null ? explored : explored.SelectFormat(formatId) ?? documents.CreateUnknown(path);
+            }
+
+            var presentationImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
+            scpImageLoaded?.Invoke(presentationImage);
+            try
+            {
+                var decoded = await scpExploration.ReadAsync(
+                    flux.Image,
+                    formatId,
+                    progress,
+                    cancellationToken).ConfigureAwait(false);
+                var decodedResult = formatId is null ? ReadAutomatically(decoded) : ReadExplicitly(decoded, formatId);
+                return documents.Create(
+                    path,
+                    decodedResult.Image,
+                    decodedResult.Detected,
+                    [decodedResult.Image],
+                    presentationImage);
+            }
+            catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
+            {
+                return documents.CreateUnknown(path, presentationImage);
+            }
         }
 
         if (document.Representation is not SectorMediaImageRepresentation sectors) return documents.CreateUnknown(path);

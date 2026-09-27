@@ -58,7 +58,7 @@
   <data name="Options.Engines.Description" xml:space="preserve"><value>Escolha independentemente o motor usado em cada operação.</value></data>
   <data name="Options.Engines.Internal" xml:space="preserve"><value>Motor interno do GW GUI</value></data>
   <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>O motor selecionado é usado estritamente. Se não puder realizar a operação, o GW GUI informa sem usar silenciosamente o outro motor.</value></data>
-  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} — {1} : {2}</value></data>
+  <data name="Options.EmulationMachineTitle"><value>{0} — {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Preferências</value></data>
   <data name="Options.EmulationTitle"><value>Preferências de emulação</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} configurações de emulação</value></data>

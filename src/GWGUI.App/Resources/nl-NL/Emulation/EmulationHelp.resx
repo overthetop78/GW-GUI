@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Stelt de GTIA kleur fase vertraging gebruikt om kleuren te reproduceren. Standaard gebruikt de standaard waarde. Numerieke keuzes verschuiven de resulterende tinten.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Frame overslaan instellen</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Stelt in hoeveel weergaveframes worden weggelaten. Uitgeschakeld trekt elk frame. Hogere waarden verminderen het renderingswerk maar maken beweging minder glad.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Kies de geëmuleerde processor</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Selecteer het processormodel dat in de emuleerde machine is geïnstalleerd. Beschikbare modellen zijn afhankelijk van de gekozen machine en emulator.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Gebruik de originele processorsnelheid</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>De processor draait op het tijdstip van de originele machine in plaats van een versnelde of aangepaste frequentie.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>De hoofdgeheugengrootte instellen</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Selecteer de hoeveelheid hoofdgeheugen die in de emuleerde machine is geïnstalleerd. De beschikbare groottes zijn beperkt tot configuraties die door die machine worden ondersteund.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Selecteer de systeemfirmware</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Selecteer het systeem ROM De firmware moet overeenkomen met het gekozen model en de regionale configuratie.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Selecteer de BASIC firmware</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Selecteer de BASIC ROM beschikbaar voor de emuleerde machine wanneer die firmware wordt ondersteund door het geselecteerde model.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Selecteer de XEGS firmware</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Selecteer de firmware die de Atari gebruikt XEGS profiel. Gebruik firmware compatibel met de geselecteerde machineregio.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Opslagactiviteit tonen</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Toont activiteit die door het emuleerde opslagapparaat wordt gemeld terwijl media worden benaderd.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Selecteer de harde schijfmap</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Selecteer de host map die aan de emulator is blootgesteld als harde schijfopslag wanneer opslag op map ondersteund wordt.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Opslagsnelheid tonen</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Toont de huidige overdrachtssnelheid die door het emuleerde opslagapparaat wordt gerapporteerd.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>De huidige sector tonen</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Toont de sector die momenteel toegankelijk is via het emuleerde opslagapparaat.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Selecteer de geemuleerde resolutie</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Selecteer de interne videoresolutie die de emulator eerder heeft gemaakt GW GUI schuif het beeld voor het venster.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Gewassen van de geemuleerde randen</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Verwijdert grenzen gegenereerd door de geëmuleerde video-uitvoer met behoud van de beeld-aspectverhouding gebruikt door GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>De videokleur aanpassen</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Verschuivt de tint van kleuren gegenereerd door de geëmuleerde video hardware.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>Kleurverzadiging aanpassen</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Verandert de intensiteit van de kleuren gegenereerd door de geëmuleerde video hardware.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Afbeeldingscontrast aanpassen</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Verandert het verschil tussen donkere en heldere kleuren in de geëmuleerde video-uitvoer.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>Afbeeldingshelderheid aanpassen</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Verandert de algehele helderheid van de geëmulgeerde video-uitvoer.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Nagebootste audio inschakelen</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Inschakelt of schakelt geluid geproduceerd door de emuleerde machine.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Selecteer de audio-uitvoer</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Selecteer het host audio apparaat dat wordt gebruikt om geluid af te spelen vanaf de emuleerde machine.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Stel het geëmuleerde audiovolume in</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Stelt het afspeelvolume van het geluid geproduceerd door de geëmuleerde machine.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Flapjes-drive-geluiden inschakelen</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Hiermee kunnen mechanische geluiden worden gebruikt die activiteit reproduceren vanaf de geëmuleerde diskette.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Stel het volume van het geluid van diskette-drive in</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Stelt het afspeelvolume in van de geëmuleerde mechanische floppy-drivegeluiden.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Instellen CD audiovolume</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Stelt het afspeelvolume in van audiotracks die gelezen worden vanaf de emuleerde compactdisc drive.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Stel muisbewegingssnelheid in</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Past aan hoe de muisbeweging van de gastheer wordt omgezet in beweging die aan de emuleerde machine wordt gemeld.</value></data>
 </root>

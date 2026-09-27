@@ -29,5 +29,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Scăzută</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normală</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Ridicată</value></data>
-  <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.Audio"><value>Audio</value></data>
 </root>

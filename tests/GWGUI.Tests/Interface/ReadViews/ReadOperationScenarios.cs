@@ -19,6 +19,7 @@ using GWGUI.Infrastructure.Processes;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Threading;
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
@@ -47,7 +48,7 @@ internal static class ReadOperationScenarios
         await running;
         Assert.False(context.Operation.IsRunning); Assert.Equal(Visibility.Collapsed, context.Model.TimerVisibility);
         Assert.Equal(exit == 0 ? "Status.Success" : "Status.Error", context.Model.OperationText);
-        Assert.Contains("synthetic progress", context.Output.Text);
+        Assert.Contains("synthetic progress", Text(context.Output));
         Assert.Equal(LocExtension.Get("Common.Execute"), context.View.ExecuteActionButton.Content);
         Assert.Equal(exit == 0 ? "2" : "1", context.Model.Read.SequenceValue);
         Assert.Equal(0, context.Deletions);
@@ -84,7 +85,7 @@ internal static class ReadOperationScenarios
             Assert.Empty(context.Errors);
             var checksum = LocExtension.Get("Visual.ChecksumValid");
             Assert.Equal(LocExtension.Get("Read.ScpBannerSummary", 3, 1, 2, 2, info.Header.Revolutions, 1234L, checksum), context.View.CompletionBlock.SummaryTextBlock.Text);
-            Assert.Contains(LocExtension.Get("Read.ScpTracksSummary", 3, 1, 2, 2), context.Output.Text);
+            Assert.Contains(LocExtension.Get("Read.ScpTracksSummary", 3, 1, 2, 2), Text(context.Output));
         }
     }
     internal sealed class Context : IDisposable
@@ -102,7 +103,7 @@ internal static class ReadOperationScenarios
         public Func<string, Task<ScpCaptureInfo>> CaptureInfo { get; set; } = _ => throw new InvalidOperationException("Unexpected capture summary");
         public ReadTabSection View { get; } = new();
         public MainWindowViewModel Model { get; } = new("synthetic", "synthetic");
-        public TextBox Output { get; } = new();
+        public RichTextBox Output { get; } = new();
         public ReadTabController Controller { get; }
         public OperationRuntimeController Operation { get; }
         public TaskCompletionSource Started { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -145,4 +146,7 @@ internal static class ReadOperationScenarios
         }
         public void Dispose() => Workspace.Dispose();
     }
+
+    private static string Text(RichTextBox output) =>
+        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

@@ -35,6 +35,8 @@ public static class FileSystemIds
     public const string AmigaFlatResourceArchive = "amiga-flat-resource-archive";
     /// <summary>Identifie la variante Amstrad de CP/M.</summary>
     public const string AmstradCpm = "amstrad.cpm";
+    /// <summary>Identifie les banques de cartouche, ROM et sections d'instantané Amstrad.</summary>
+    public const string AmstradMediaStructure = "amstrad-media-structure";
     /// <summary>Identifie Apple DOS.</summary>
     public const string AppleDos = "apple-dos";
     /// <summary>Identifie Atari DOS.</summary>

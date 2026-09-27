@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Απαιτείται διαδρομή Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Μια απαιτούμενη διαδρομή firmware είναι κενή.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Το επιλεγμένο αρχείο δεν υπάρχει.</value></data>
+  <data name="Emulation.Error.Title"><value>Σφάλμα εξομοίωσης</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Ο απαιτούμενος εξομοιωτής δεν είναι εγκατεστημένος.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Ο εξομοιωτής απέρριψε την αιτούμενη επιχείρηση.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Ο εξομοιωτής δεν μπορεί να ενημερωθεί όσο είναι σε χρήση.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Λείπει το απαιτούμενο λογισμικό.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Το επιλεγμένο firmware είναι ασύμβατο με αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Το ρυθμισμένο αρχείο πολυμέσων δε βρέθηκε.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Το επιλεγμένο μέσο δεν υποστηρίζεται από αυτόν τον εξομοιωτή.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Μια επιλογή εξομοιωτή είναι άκυρη.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Η επικοινωνία με τη διαδικασία εξομοιωτή απέτυχε.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Η μηχανή που μιμείται δεν μπορούσε να ξεκινήσει.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Η επιχείρηση των ΜΜΕ απέτυχε.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Η αποθηκευμένη κατάσταση είναι άκυρη ή κατεστραμμένη.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Η αποθηκευμένη κατάσταση δεν είναι συμβατή με αυτή τη διαμόρφωση μηχανής.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Η επιχείρηση της Σωμένης Πολιτείας απέτυχε.</value></data>
 </root>

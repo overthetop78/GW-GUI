@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Constants;
+
 namespace GWGUI.MediaEngine.Images.Formats;
 
 public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
@@ -58,6 +60,8 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             new("acorn.dfs.ds80", "Acorn / BBC Micro", "BBC DFS — 400 KiB (DS)", [new(".dsd", "DSD", true)], true, Set(".scp", ".dsd", ".img", ".hfe"), "BBC-DFS-DS80", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("amstrad.cpc", "Amstrad", "Amstrad CPC — 3″", [new(".dsk", "DSK", true), new(".edsk", "Extended DSK")], true, Set(".scp", ".dsk", ".edsk", ".hfe"), "AMSTRAD-CPC", FloppyFormFactor.ThreeInch, true, true),
             new("amstrad.pcw", "Amstrad", "Amstrad PCW — 3″", [new(".dsk", "DSK", true), new(".edsk", "Extended DSK")], true, Set(".scp", ".dsk", ".edsk", ".hfe"), "AMSTRAD-PCW", FloppyFormFactor.ThreeInch, true, true),
+            new(DiskImageFormatIds.AmstradCpr, "Amstrad", T("Format.amstrad.cpr", "CPR"), [new(".cpr", "CPR", true)], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-CPR", FloppyFormFactor.Unknown, false, false),
+            new(DiskImageFormatIds.AmstradRom, "Amstrad", T("Format.amstrad.rom", "Amstrad CPC ROM"), [new(".rom", "ROM", true), new(".bin", "BIN")], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-ROM", FloppyFormFactor.Unknown, false, false),
             new("epson.qx10.320", "Epson QX-10", "Epson QX-10 — 320 KiB", [new(".img", "IMG", true), new(".imd", "IMD")], false, Set(".scp", ".img", ".imd", ".hfe"), "EPSON-QX10-320", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("epson.qx10.396", "Epson QX-10", "Epson QX-10 — 396 KiB", [new(".img", "IMG", true), new(".imd", "IMD")], false, Set(".scp", ".img", ".imd", ".hfe"), "EPSON-QX10-396", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("epson.qx10.399", "Epson QX-10", "Epson QX-10 — 399 KiB", [new(".img", "IMG", true), new(".imd", "IMD")], false, Set(".scp", ".img", ".imd", ".hfe"), "EPSON-QX10-399", FloppyFormFactor.FiveAndQuarterInch, true, true),

@@ -68,6 +68,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des images de pistes HxC Floppy Emulator.</summary>
     public const string Hfe = ".hfe";
 
+    /// <summary>Extension des captures de flux multipistes HxC Stream.</summary>
+    public const string HxcStream = ".hxcstream";
+
     /// <summary>Extension used by raw hard disk images without a container header.</summary>
     public const string Hdd = ".hdd";
 
@@ -150,4 +153,19 @@ public static class DiskImageFileExtensions
     public const string Tsx = ".tsx";
     public const string Tap = ".tap";
     public const string Uef = ".uef";
+
+    /// <summary>Extension des cartouches Amstrad Plus/GX4000.</summary>
+    public const string Cpr = ".cpr";
+
+    /// <summary>Extension des ROM brutes Amstrad CPC.</summary>
+    public const string Rom = ".rom";
+
+    /// <summary>Extension des fichiers Creative Voice.</summary>
+    public const string Voc = ".voc";
+
+    public const string Mp3 = ".mp3";
+    public const string Flac = ".flac";
+    public const string Aac = ".aac";
+    public const string M4a = ".m4a";
+    public const string Wma = ".wma";
 }

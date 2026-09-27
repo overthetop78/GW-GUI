@@ -3,11 +3,17 @@ namespace GWGUI.Tests.Interface.EmulationViews;
 public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionScenarios sta)
 {
     [Fact] public Task DraftReloadDiscardAndSavedConfigurationAreIsolated() => sta.RunAsync(MachineConfigurationScenarios.DraftLifecycle);
+    [Fact] public Task VideoProfileChangesArePublishedAndPersisted() =>
+        sta.RunAsync(MachineConfigurationScenarios.VideoProfileChangesArePublishedAndPersisted);
     [Fact] public Task TabsSelectAndCloseOnlyTargetSession() => sta.RunAsync(MachineTabsScenarios.Tabs);
     [Theory] [InlineData(false)] [InlineData(true)]
     public Task ConfigurationDraftSaveAndRetry(bool failure) => sta.RunAsync(() => MachineConfigurationScenarios.ConfigurationEditing(failure));
     [Theory] [InlineData(false)] [InlineData(true)]
     public Task CommandsRespectPowerStateAndReportErrors(bool failure) => sta.Run(() => EmulationInteractionScenarios.Commands(failure));
+    [Fact] public Task EmulationErrorsAppearOnceInConsoleAndDetachCleanly() =>
+        sta.Run(EmulationInteractionScenarios.ErrorLogAppearsOnceInConsoleAndDetaches);
+    [Fact] public Task ConsoleLayoutIsIndependentForEachMainTab() =>
+        sta.Run(EmulationInteractionScenarios.ConsoleLayoutIsIndependentForEachMainTab);
     [Fact] public void CassetteCommandsReflectCapabilitiesAndTransportState() =>
         CassetteTransportPresentationScenarios.CommandsReflectCapabilitiesAndTransportState();
     [Fact] public Task CassettePanelShowsEveryCommandBelowTheDevice() =>

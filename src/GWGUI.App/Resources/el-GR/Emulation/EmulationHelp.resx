@@ -110,4 +110,50 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Ορίζει το GTIA καθυστέρηση φάσης χρώματος που χρησιμοποιείται για την αναπαραγωγή χρωμάτων. Το προκαθορισμένο χρησιμοποιεί την τυπική τιμή. Οι αριθμητικές επιλογές μετατοπίζουν τις προκύπτουσες αποχρώσεις.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Ορισμός παρακάμψεων καρέ</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Ορίζει πόσα πλαίσια οθόνης παραλείπονται. Αναπηρία τραβά κάθε πλαίσιο. Υψηλότερες τιμές μειώνουν την απόδοση εργασίας αλλά κάνουν την κίνηση λιγότερο ομαλή.</value></data>
+  <data name="Emulation.Help.Cpu.Model.Short"><value>Επιλέξτε τον επεξεργαστή που θα μιμηθεί</value></data>
+  <data name="Emulation.Help.Cpu.Model.Detailed"><value>Επιλέγει το μοντέλο επεξεργαστή εγκατεστημένο στην προσομοιωμένη μηχανή. Τα διαθέσιμα μοντέλα εξαρτώνται από την επιλεγμένη μηχανή και τον εξομοιωτή.</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Χρήση της αρχικής ταχύτητας επεξεργαστή</value></data>
+  <data name="Emulation.Help.Cpu.OriginalSpeed.Detailed"><value>Τρέχει τον επεξεργαστή κατά το χρονισμό της αρχικής μηχανής αντί να εφαρμόζει μια επιταχυνόμενη ή προσαρμοσμένη συχνότητα.</value></data>
+  <data name="Emulation.Help.Memory.Main.Short"><value>Ορισμός του κύριου μεγέθους μνήμης</value></data>
+  <data name="Emulation.Help.Memory.Main.Detailed"><value>Επιλέγει το ποσό της κύριας μνήμης που είναι εγκατεστημένη στην προσομοιωμένη μηχανή. Τα διαθέσιμα μεγέθη περιορίζονται σε διαμορφώσεις που υποστηρίζονται από αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Help.Firmware.System.Short"><value>Επιλέξτε το firmware συστήματος</value></data>
+  <data name="Emulation.Help.Firmware.System.Detailed"><value>Επιλογή του συστήματος ROM χρησιμοποιείται για την εκκίνηση της μηχανής που έχει προσομοιάσει. Το λογισμικό πρέπει να ταιριάζει με το επιλεγμένο μοντέλο και την περιφερειακή διαμόρφωση.</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Short"><value>Επιλογή του BASIC υφασμάτινα είδη</value></data>
+  <data name="Emulation.Help.Firmware.Basic.Detailed"><value>Επιλογή του BASIC ROM διαθέσιμο στην μηχανή που έχει προσομοιάσει όταν το συγκεκριμένο firmware υποστηρίζεται από το επιλεγμένο μοντέλο.</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Short"><value>Επιλογή του XEGS υφασμάτινα είδη</value></data>
+  <data name="Emulation.Help.Firmware.Xegs.Detailed"><value>Επιλογή του λογισμικού που χρησιμοποιείται από το Atari XEGS προφίλ. Χρησιμοποιήστε firmware συμβατό με την επιλεγμένη περιοχή μηχανών.</value></data>
+  <data name="Emulation.Help.Storage.Activity.Short"><value>Εμφάνιση δραστηριότητας αποθήκευσης</value></data>
+  <data name="Emulation.Help.Storage.Activity.Detailed"><value>Εμφανίζει δραστηριότητα που αναφέρεται από τη συσκευή αποθήκευσης που έχει προσπελάσει τα μέσα.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Short"><value>Επιλέξτε το φάκελο σκληρού δίσκου</value></data>
+  <data name="Emulation.Help.Storage.HardDiskFolder.Detailed"><value>Επιλέγει τον φάκελο του υπολογιστή που εκτίθεται στον εξομοιωτή ως αποθήκευση σκληρού δίσκου όταν υποστηρίζεται η αποθήκευση με υποστήριξη από το φάκελο.</value></data>
+  <data name="Emulation.Help.Storage.Speed.Short"><value>Εμφάνιση ταχύτητας αποθήκευσης</value></data>
+  <data name="Emulation.Help.Storage.Speed.Detailed"><value>Εμφανίζει την τρέχουσα ταχύτητα μεταφοράς που αναφέρεται από τη συσκευή αποθήκευσης που έχει προσομοιαστεί.</value></data>
+  <data name="Emulation.Help.Storage.Sector.Short"><value>Εμφάνιση του τρέχοντος τομέα</value></data>
+  <data name="Emulation.Help.Storage.Sector.Detailed"><value>Εμφανίζει τον τομέα που έχει προσπελαστεί αυτή τη στιγμή από την προσομοιωμένη συσκευή αποθήκευσης.</value></data>
+  <data name="Emulation.Help.Video.Resolution.Short"><value>Επιλέξτε την εξομοίωση ανάλυσης</value></data>
+  <data name="Emulation.Help.Video.Resolution.Detailed"><value>Επιλογή της εσωτερικής ανάλυσης βίντεο που παράγεται από τον εξομοιωτή πριν GW GUI ζυγίζει την εικόνα για το παράθυρο.</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Περικοπή των εικονιζόμενων συνόρων</value></data>
+  <data name="Emulation.Help.Video.Crop.Detailed"><value>Αφαίρεση των περιγραμμάτων που δημιουργούνται από την εξερχόμενη εικόνα με προσομοίωση, ενώ παράλληλα διατηρείται η αναλογία διαστάσεων εικόνας που χρησιμοποιείται από GW GUI.</value></data>
+  <data name="Emulation.Help.Video.Hue.Short"><value>Προσαρμογή της απόχρωσης του βίντεο</value></data>
+  <data name="Emulation.Help.Video.Hue.Detailed"><value>Μετατοπίζει την απόχρωση των χρωμάτων που παράγονται από το εικονίδιο που προσομοιάζει.</value></data>
+  <data name="Emulation.Help.Video.Saturation.Short"><value>⁇  κορεσμού χρώματος</value></data>
+  <data name="Emulation.Help.Video.Saturation.Detailed"><value>Αλλάζει την ένταση των χρωμάτων που παράγονται από το μιμούμενο υλικό βίντεο.</value></data>
+  <data name="Emulation.Help.Video.Contrast.Short"><value>Προσαρμογή αντίθεσης εικόνας</value></data>
+  <data name="Emulation.Help.Video.Contrast.Detailed"><value>Αλλάζει τη διαφορά μεταξύ των σκούρα και φωτεινά χρώματα στην εξερχόμενη εικόνα.</value></data>
+  <data name="Emulation.Help.Video.Brightness.Short"><value>⁇  φωτεινότητας εικόνας</value></data>
+  <data name="Emulation.Help.Video.Brightness.Detailed"><value>Αλλάζει τη συνολική φωτεινότητα της εξόδου εικονιδίων που προσομοιάζει.</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Short"><value>Ενεργοποίηση προσομοιωμένου ήχου</value></data>
+  <data name="Emulation.Help.Audio.Enabled.Detailed"><value>Ενεργοποιεί ή απενεργοποιεί τον ήχο που παράγεται από την μηχανή που προσομοιάζει.</value></data>
+  <data name="Emulation.Help.Audio.Output.Short"><value>Επιλέξτε την έξοδο ήχου</value></data>
+  <data name="Emulation.Help.Audio.Output.Detailed"><value>Επιλέγει τη συσκευή ήχου που χρησιμοποιείται για να παίξει ήχο από το μηχάνημα που προσομοιάζει.</value></data>
+  <data name="Emulation.Help.Audio.Volume.Short"><value>Ορισμός της έντασης ήχου που προσομοιάζει</value></data>
+  <data name="Emulation.Help.Audio.Volume.Detailed"><value>Ορίζει την ένταση αναπαραγωγής του ήχου που παράγεται από την μηχανή που μιμείται.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Short"><value>Ενεργοποίηση ήχων drive drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Enabled.Detailed"><value>Ενεργοποιεί μηχανικούς ήχους που αναπαράγουν δραστηριότητα από την εικονιζόμενη δισκέτα κίνησης.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Short"><value>Ορισμός έντασης ήχου dumppy-drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.Volume.Detailed"><value>Ορίζει τον όγκο αναπαραγωγής των μηχανικών ήχων της δισκέτας.</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Short"><value>Ορισμός CD ένταση ήχου</value></data>
+  <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Ορίζει τον όγκο αναπαραγωγής των κομματιών ήχου που διαβάζονται από την προσομοίωση compact-disc drive.</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Short"><value>Ορισμός ταχύτητας κίνησης του ποντικιού</value></data>
+  <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ρυθμίζει πώς η κίνηση του ποντικιού ξενιστή μετατρέπεται σε κίνηση που αναφέρεται στην προσομοίωση μηχανή.</value></data>
 </root>

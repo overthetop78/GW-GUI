@@ -1,11 +1,13 @@
 ﻿using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Atari;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Commodore;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Msx;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Spectrum;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Atari;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Commodore;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Msx;
@@ -32,6 +34,7 @@ public sealed class SequentialMediaComposition
         new SequentialDecoderRegistry(
         [
             new AtariCassetteDecoder(),
+            new AmstradCpcTapeDecoder(),
             new SpectrumTapeDecoder(),
             new CommodoreTapeDecoder(),
             new MsxTapeDecoder(),
@@ -40,6 +43,7 @@ public sealed class SequentialMediaComposition
         new SequentialEncoderRegistry(
         [
             new AtariCassetteEncoder(),
+            new AmstradCpcTapeEncoder(),
             new SpectrumTapeEncoder(),
             new CommodoreTapeEncoder(),
             new MsxTapeEncoder(),

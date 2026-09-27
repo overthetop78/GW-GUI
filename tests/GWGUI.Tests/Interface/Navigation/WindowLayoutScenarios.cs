@@ -35,7 +35,10 @@ internal static class WindowLayoutScenarios
             AssertInside(tabs, root);
             AssertInside(section, root);
             AssertInside((FrameworkElement)window.FindName("ApplicationMenu"), root);
-            AssertInside((FrameworkElement)window.FindName("StatusBarBlock"), root);
+            var statusBar = (ApplicationStatusBar)window.FindName("StatusBarBlock");
+            AssertInside(statusBar, root);
+            Assert.Equal(2, NavigationScenarios.Visuals<TrackProgressStrip>(statusBar).Count());
+            Assert.Empty(NavigationScenarios.Visuals<ProgressBar>(statusBar));
             var command = section switch
             {
                 ReadTabSection read => read.ExecuteActionButton,

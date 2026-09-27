@@ -1,6 +1,8 @@
 using System.Windows;
+using System.ComponentModel;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Views.Controls.Emulation.Options;
 using GWGUI.Emulation;
@@ -13,6 +15,8 @@ public partial class EmulationModuleOptionsWindow : Window
     private readonly EmulationModuleSettingsSection _section;
     private readonly IEmulationConfiguration? _initialConfiguration;
     private bool _initialConfigurationLoaded;
+    private bool _cleanupStarted;
+    private bool _cleanupCompleted;
 
     public EmulationModuleOptionsWindow(IEmulationModule module,
         IEmulationConfiguration? initialConfiguration = null,
@@ -28,7 +32,7 @@ public partial class EmulationModuleOptionsWindow : Window
         EmulationVideoShaderLoadingStatus.Changed += VideoShaderLoadingChanged;
         ModuleContent.Content = _section;
         ContentRendered += LoadInitialConfiguration;
-        Closed += WindowClosed;
+        Closing += WindowClosing;
         RefreshLocalizedContent();
     }
 
@@ -55,11 +59,32 @@ public partial class EmulationModuleOptionsWindow : Window
     private void VideoShaderLoadingChanged(object? sender, EmulationVideoShaderLoadingChangedEventArgs args) =>
         _section.SetVideoShaderLoading(args.ModuleId, args.ConfigurationId, args.IsLoading);
 
-    private void WindowClosed(object? sender, EventArgs e)
+    private async void WindowClosing(object? sender, CancelEventArgs args)
     {
-        EmulationVideoShaderLoadingStatus.Changed -= VideoShaderLoadingChanged;
-        _section.ConfigurationSaved -= ConfigurationSaved;
-        _section.VideoConfigurationChanged -= VideoConfigurationChanged;
+        if (_cleanupCompleted) return;
+        args.Cancel = true;
+        if (_cleanupStarted) return;
+        _cleanupStarted = true;
+        try
+        {
+            await _section.DisposeAsync();
+        }
+        catch (Exception error)
+        {
+            ErrorLog.Write(error, "Closing the emulation module options window");
+        }
+        finally
+        {
+            EmulationVideoShaderLoadingStatus.Changed -= VideoShaderLoadingChanged;
+            _section.ConfigurationSaved -= ConfigurationSaved;
+            _section.VideoConfigurationChanged -= VideoConfigurationChanged;
+            ContentRendered -= LoadInitialConfiguration;
+            ModuleContent.Content = null;
+            Closing -= WindowClosing;
+            _cleanupCompleted = true;
+            _cleanupStarted = false;
+            await Dispatcher.BeginInvoke(Close);
+        }
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => Close();
