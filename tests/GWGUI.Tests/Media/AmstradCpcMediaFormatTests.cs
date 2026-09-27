@@ -5,6 +5,7 @@ using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.Raw;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Images.Reading;
@@ -12,11 +13,13 @@ using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Blocks;
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.Presenters.Conversion;
 using GWGUI.MediaFileSystems.FileSystems.Amstrad.Cartridge;
 using GWGUI.MediaFileSystems.FileSystems.Cpm;
+using GWGUI.MediaFileSystems.FileSystems.Console.Cartridge;
 using GWGUI.MediaFileSystems.Contracts;
 
 namespace GWGUI.Tests.Media;
@@ -106,6 +109,40 @@ public sealed class AmstradCpcMediaFormatTests
 
             Assert.Equal(["cb00", "cb01"], explorer.Read(cpr, Volume(cpr)).Entries.Select(entry => entry.Name));
             Assert.Equal("bank00", Assert.Single(explorer.Read(rom, Volume(rom)).Entries).Name);
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task RawConsoleCartridgeRoundTripsBanksAndExploration()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-raw-cartridge-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var sourcePath = Path.Combine(directory, "game.nes");
+            var outputPath = Path.Combine(directory, "roundtrip.nes");
+            var source = Enumerable.Range(0, 16 * 1024 + 17)
+                .Select(value => (byte)(value % 251)).ToArray();
+            await File.WriteAllBytesAsync(sourcePath, source);
+
+            var document = await ReadAsync(new RawCartridgeReader(), sourcePath,
+                DiskImageFormatIds.RawCartridge);
+            var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
+            Assert.Equal(2, blocks.Ranges.Count);
+            Assert.Equal(source.LongLength, long.Parse(document.Metadata["storedLength"]));
+
+            var explorer = new RawCartridgeFileSystemReader();
+            var entries = explorer.Read(document, Volume(document)).Entries;
+            Assert.Equal(["bank00", "bank01"], entries.Select(entry => entry.Name));
+            Assert.Equal(source.Length - (16 * 1024), entries[1].Size);
+
+            await new RawCartridgeWriter().WriteAsync(document, outputPath,
+                DiskImageFormatIds.RawCartridge);
+            Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
         }
         finally
         {
