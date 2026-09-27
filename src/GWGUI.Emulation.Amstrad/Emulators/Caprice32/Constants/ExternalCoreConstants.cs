@@ -30,4 +30,3 @@ internal static class ExternalCoreConstants
     internal const string RetroGetSystemAvInfo = "retro_get_system_av_info";
     internal const uint JoypadDevice = 1;
 }
-

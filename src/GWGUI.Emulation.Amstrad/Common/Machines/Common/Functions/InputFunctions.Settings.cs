@@ -50,7 +50,12 @@ internal static partial class InputSettingsFunctions
             port.Number - 1,
             Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
                 ? type : ControllerType.None,
-            port.PhysicalDeviceId, port.Bindings.Values, port.VisualId)).ToArray();
+            port.PhysicalDeviceId,
+            port.Bindings.Values
+                .Where(item => !string.IsNullOrWhiteSpace(item.Key)
+                    && !string.IsNullOrWhiteSpace(item.Value))
+                .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
+            port.VisualId)).ToArray();
         return configuration with
         {
             Input = current with

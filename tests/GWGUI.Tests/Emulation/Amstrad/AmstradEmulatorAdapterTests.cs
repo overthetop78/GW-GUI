@@ -8,6 +8,7 @@ using GWGUI.Emulation.Amstrad.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Common.Contracts;
 using GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Amstrad.Common.Machines.Common.Dictionaries;
+using GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Amstrad.Common.Services;
 using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Constants;
@@ -341,6 +342,34 @@ public sealed class AmstradEmulatorAdapterTests
 
         Assert.Contains(EmulationKey.F1, mapped.Keys);
         Assert.DoesNotContain(EmulationKey.A, mapped.Keys);
+    }
+
+    [Fact]
+    public void EmptyControllerMappingsRelayThePhysicalController()
+    {
+        const uint buttons = (1u << 4) | (1u << 0);
+        var configuration = new InputConfiguration(ControllerBindings:
+        [
+            new ControllerBinding(0, ControllerType.Joystick, ButtonMappings:
+                new Dictionary<string, string>
+                {
+                    ["Up"] = string.Empty,
+                    ["Down"] = string.Empty,
+                    ["Left"] = string.Empty,
+                    ["Right"] = string.Empty,
+                    ["B"] = string.Empty,
+                    ["A"] = string.Empty
+                })
+        ]);
+        var controller = new EmulationControllerState(buttons, 123, -456, 0, 0, 0, 0)
+        {
+            DeviceId = "gameinput:test"
+        };
+        var physical = EmulationInputSnapshot.Empty with { Controllers = [controller] };
+
+        var mapped = InputSnapshotFunctions.Apply(physical, configuration, false);
+
+        Assert.Equal(controller, mapped.Controllers[0]);
     }
 
     [Fact]

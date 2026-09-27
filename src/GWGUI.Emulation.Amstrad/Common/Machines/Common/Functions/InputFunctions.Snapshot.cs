@@ -60,7 +60,10 @@ internal static class InputSnapshotFunctions
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
             var source = EmulationInputMappingFunctions.ResolveController(
                 binding?.DeviceId, physical, port);
-            if (binding?.ButtonMappings is not { Count: > 0 })
+            if (binding?.ButtonMappings is not { Count: > 0 }
+                || !binding.ButtonMappings.Any(mapping =>
+                    !string.IsNullOrWhiteSpace(mapping.Key)
+                    && !string.IsNullOrWhiteSpace(mapping.Value)))
             {
                 result[port] = source;
                 continue;
