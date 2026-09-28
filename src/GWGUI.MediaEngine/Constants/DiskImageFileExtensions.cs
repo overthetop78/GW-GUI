@@ -180,6 +180,16 @@ public static class DiskImageFileExtensions
     public const string ThreeDs = ".3ds";
     public const string Cia = ".cia";
     public const string ThreeDsx = ".3dsx";
+    /// <summary>Extension des images CCI Nintendo 3DS.</summary>
+    public const string Cci = ".cci";
+    /// <summary>Extension des images CXI Nintendo 3DS.</summary>
+    public const string Cxi = ".cxi";
+    /// <summary>Extension des exécutables AXF Nintendo 3DS.</summary>
+    public const string Axf = ".axf";
+    /// <summary>Extension des exécutables ELF Nintendo 3DS.</summary>
+    public const string Elf = ".elf";
+    /// <summary>Extension des contenus APP Nintendo 3DS.</summary>
+    public const string App = ".app";
     public const string Sms = ".sms";
     public const string Sg = ".sg";
     public const string Md = ".md";

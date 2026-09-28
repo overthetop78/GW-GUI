@@ -188,6 +188,37 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public async Task Nintendo3DsFormatsRoundTripAndExposeAllCitraExtensions()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-citra-cartridge-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var source = Enumerable.Range(0, 16 * 1024 + 5)
+                .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            foreach (var extension in new[] { ".3ds", ".3dsx", ".elf", ".axf", ".cci", ".cxi", ".app" })
+            {
+                var sourcePath = Path.Combine(directory, $"game{extension}");
+                var outputPath = Path.Combine(directory, $"roundtrip{extension}");
+                await File.WriteAllBytesAsync(sourcePath, source);
+                var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
+                Assert.Equal(DiskImageFormatIds.Nintendo3Ds, document.FormatId);
+                await new ConsoleCartridgeWriter().WriteAsync(document, outputPath,
+                    DiskImageFormatIds.Nintendo3Ds);
+                Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+            }
+
+            var supported = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+            Assert.All(new[] { ".3ds", ".3dsx", ".elf", ".axf", ".cci", ".cxi", ".app" },
+                extension => Assert.Contains(extension, supported));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task FamicomDiskSystemFacesRoundTripAndExposeFiles()
     {
         var directory = Path.Combine(Path.GetTempPath(), $"gwgui-fds-{Guid.NewGuid():N}");

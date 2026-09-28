@@ -219,6 +219,14 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 - [x] Ajouter les URL de catalogue de mise à jour aux cinq manifestes de modules afin que le build avec modules puisse les valider.
 - [ ] Vérifier avec un fichier `.mgw` réel fourni par l’utilisateur.
 
+### Adaptateur Nintendo 3DS (Citra)
+
+- [x] Ajouter l’adaptateur nommé `citra` dans `src/GWGUI.Emulation.Nintendo/Emulators/Citra/`, avec le téléchargement x64 du cœur Citra et une factory limitée au modèle `Nintendo3Ds`.
+- [x] Déclarer les messages d’erreur et la description Citra dans les ressources Nintendo.
+- [x] Ajouter les extensions Citra `.3ds`, `.3dsx`, `.elf`, `.axf`, `.cci`, `.cxi` et `.app` au format nommé `nintendo.3ds` pour lecture, écriture, visualisation et exploration par banques.
+- [x] Ajouter le test de sélection de Citra pour Nintendo 3DS et compiler le module Nintendo.
+- [ ] Vérifier le rendu matériel Citra avec un fichier 3DS réel fourni par l’utilisateur.
+
 ### Adaptateur Nintendo SNES
 
 - [x] Ajouter un adaptateur Nintendo SNES concret avec le protocole propre au cœur Snes9x.

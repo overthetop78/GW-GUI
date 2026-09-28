@@ -56,6 +56,9 @@ internal static class FileTypeExtensions
     public const string ThreeDs = ".3ds";
     public const string Cia = ".cia";
     public const string ThreeDsx = ".3dsx";
+    public const string Cxi = ".cxi";
+    public const string Axf = ".axf";
+    public const string Elf = ".elf";
     public const string Sms = ".sms";
     public const string Sg = ".sg";
     public const string Md = ".md";

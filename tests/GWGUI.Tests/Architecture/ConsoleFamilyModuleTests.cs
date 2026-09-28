@@ -138,6 +138,26 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoCitraSelectsNintendo3Ds()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-citra-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NintendoEmulationModuleFactory().Create(context);
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("Nintendo3Ds"));
+            Assert.Equal("citra", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void NecBeetlePceSelectsPcEngineModels()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-nec-adapter-tests", Guid.NewGuid().ToString("N"));
