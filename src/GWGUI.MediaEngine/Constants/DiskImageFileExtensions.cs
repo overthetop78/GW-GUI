@@ -175,6 +175,8 @@ public static class DiskImageFileExtensions
     public const string Gbc = ".gbc";
     public const string Gba = ".gba";
     public const string Nds = ".nds";
+    /// <summary>Extension des simulations Nintendo Game &amp; Watch.</summary>
+    public const string Mgw = ".mgw";
     public const string ThreeDs = ".3ds";
     public const string Cia = ".cia";
     public const string ThreeDsx = ".3dsx";

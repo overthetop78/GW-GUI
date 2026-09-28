@@ -118,6 +118,26 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoGameWatchSelectsGameWatchCore()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-gamewatch-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NintendoEmulationModuleFactory().Create(context);
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("GameWatch"));
+            Assert.Equal("gw", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void NecBeetlePceSelectsPcEngineModels()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-nec-adapter-tests", Guid.NewGuid().ToString("N"));

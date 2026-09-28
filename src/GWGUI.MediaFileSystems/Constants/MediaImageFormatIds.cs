@@ -26,6 +26,7 @@ public static class MediaImageFormatIds
     public const string NintendoGameBoyColor = "nintendo.gameboy_color";
     public const string NintendoGameBoyAdvance = "nintendo.gameboy_advance";
     public const string NintendoNds = "nintendo.nds";
+    public const string NintendoGameWatch = "nintendo.game_watch";
     public const string Nintendo3Ds = "nintendo.3ds";
     public const string SegaSg1000 = "sega.sg1000";
     public const string SegaMasterSystem = "sega.master_system";

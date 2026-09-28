@@ -25,6 +25,7 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
             [DiskImageFormatIds.NintendoGameBoyColor] = Extensions(DiskImageFileExtensions.Gbc, DiskImageFileExtensions.Cgb),
             [DiskImageFormatIds.NintendoGameBoyAdvance] = Extensions(DiskImageFileExtensions.Gba),
             [DiskImageFormatIds.NintendoNds] = Extensions(DiskImageFileExtensions.Nds),
+            [DiskImageFormatIds.NintendoGameWatch] = Extensions(DiskImageFileExtensions.Mgw),
             [DiskImageFormatIds.Nintendo3Ds] = Extensions(DiskImageFileExtensions.ThreeDs, DiskImageFileExtensions.Cia, DiskImageFileExtensions.ThreeDsx),
             [DiskImageFormatIds.NintendoVirtualBoy] = Extensions(DiskImageFileExtensions.Vb),
             [DiskImageFormatIds.SegaSg1000] = Extensions(DiskImageFileExtensions.Sg),

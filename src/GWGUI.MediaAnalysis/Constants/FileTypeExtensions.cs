@@ -52,6 +52,7 @@ internal static class FileTypeExtensions
     public const string Gbc = ".gbc";
     public const string Gba = ".gba";
     public const string Nds = ".nds";
+    public const string Mgw = ".mgw";
     public const string ThreeDs = ".3ds";
     public const string Cia = ".cia";
     public const string ThreeDsx = ".3dsx";

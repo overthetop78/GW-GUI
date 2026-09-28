@@ -159,6 +159,35 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public async Task NintendoGameWatchCartridgeFormatRoundTripsAndExploresBanks()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-gamewatch-cartridge-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var sourcePath = Path.Combine(directory, "game.mgw");
+            var outputPath = Path.Combine(directory, "roundtrip.mgw");
+            var source = Enumerable.Repeat((byte)0x5a, 16 * 1024 + 3).ToArray();
+            await File.WriteAllBytesAsync(sourcePath, source);
+
+            var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
+            Assert.Equal(DiskImageFormatIds.NintendoGameWatch, document.FormatId);
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var entries = explorer.Read(document, Volume(document)).Entries;
+            Assert.Equal(2, entries.Count);
+            Assert.Equal(source.Length - 16 * 1024, entries[1].Size);
+
+            await new ConsoleCartridgeWriter().WriteAsync(document, outputPath,
+                DiskImageFormatIds.NintendoGameWatch);
+            Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task FamicomDiskSystemFacesRoundTripAndExposeFiles()
     {
         var directory = Path.Combine(Path.GetTempPath(), $"gwgui-fds-{Guid.NewGuid():N}");

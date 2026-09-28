@@ -13,6 +13,7 @@ public static class MediaIconExtensions
     public const string A52 = ".a52";
     public const string A78 = ".a78";
     public const string Nes = ".nes";
+    public const string Mgw = ".mgw";
     public const string Iso = ".iso";
     public const string Cue = ".cue";
     public const string Ccd = ".ccd";

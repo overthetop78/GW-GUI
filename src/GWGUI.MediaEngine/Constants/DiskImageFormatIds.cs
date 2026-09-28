@@ -41,6 +41,8 @@ public static partial class DiskImageFormatIds
     public const string NintendoGameBoyAdvance = MediaImageFormatIds.NintendoGameBoyAdvance;
     /// <summary>Identifiant des images de cartouche Nintendo DS.</summary>
     public const string NintendoNds = MediaImageFormatIds.NintendoNds;
+    /// <summary>Identifiant des jeux Nintendo Game &amp; Watch.</summary>
+    public const string NintendoGameWatch = MediaImageFormatIds.NintendoGameWatch;
     /// <summary>Identifiant des images de cartouche Nintendo 3DS.</summary>
     public const string Nintendo3Ds = MediaImageFormatIds.Nintendo3Ds;
     /// <summary>Identifiant des images de cartouche Nintendo Virtual Boy.</summary>

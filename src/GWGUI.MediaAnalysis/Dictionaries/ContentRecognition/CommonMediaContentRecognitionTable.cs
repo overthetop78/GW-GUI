@@ -41,6 +41,7 @@ internal static class CommonMediaContentRecognitionTable
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Gbc, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Gba, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Nds, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
+        new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Mgw, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.ThreeDs, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Cia, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.ThreeDsx, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),

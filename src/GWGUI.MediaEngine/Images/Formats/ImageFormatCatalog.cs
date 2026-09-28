@@ -80,6 +80,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             Cartridge(DiskImageFormatIds.NintendoGameBoyColor, "Nintendo", "Format.nintendo.gameboy_color", "Nintendo Game Boy Color", [".gbc", ".cgb"], "NINTENDO-GBC"),
             Cartridge(DiskImageFormatIds.NintendoGameBoyAdvance, "Nintendo", "Format.nintendo.gameboy_advance", "Nintendo Game Boy Advance", [".gba"], "NINTENDO-GBA"),
             Cartridge(DiskImageFormatIds.NintendoNds, "Nintendo", "Format.nintendo.nds", "Nintendo DS", [".nds"], "NINTENDO-NDS"),
+            Cartridge(DiskImageFormatIds.NintendoGameWatch, "Nintendo", "Format.nintendo.game_watch", "Nintendo Game & Watch", [".mgw"], "NINTENDO-GAMEWATCH"),
             Cartridge(DiskImageFormatIds.Nintendo3Ds, "Nintendo", "Format.nintendo.3ds", "Nintendo 3DS", [".3ds", ".cia", ".3dsx"], "NINTENDO-3DS"),
             Cartridge(DiskImageFormatIds.NintendoVirtualBoy, "Nintendo", "Format.nintendo.virtual_boy", "Nintendo Virtual Boy", [".vb"], "NINTENDO-VB"),
             Cartridge(DiskImageFormatIds.SegaSg1000, "Sega", "Format.sega.sg1000", "Sega SG-1000", [".sg"], "SEGA-SG1000"),

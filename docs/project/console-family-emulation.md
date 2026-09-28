@@ -209,6 +209,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de configuration.
 - [x] Stage et commit de l’adaptateur Nintendo Virtual Boy seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateur Nintendo Game & Watch
+
+- [x] Ajouter l’adaptateur nommé `gw` et son cœur Windows x64 dans `src/GWGUI.Emulation.Nintendo/Emulators/GameWatch/`, en reprenant le protocole d’un adaptateur Nintendo existant sans créer de couche générique.
+  - [x] Relier la factory exclusivement au modèle `GameWatch` et à la commande hôte Nintendo dédiée.
+  - [x] Déclarer la description et les messages du cœur dans les ressources Nintendo.
+  - [x] Compiler le module Nintendo et vérifier la sélection du cœur par un test d’architecture.
+- [x] Ajouter le format nommé `.mgw` dans `MediaEngine`, `MediaFileSystems` et `MediaAnalysis`, avec lecture, écriture, exploration par banques et icône cartouche.
+- [x] Ajouter les URL de catalogue de mise à jour aux cinq manifestes de modules afin que le build avec modules puisse les valider.
+- [ ] Vérifier avec un fichier `.mgw` réel fourni par l’utilisateur.
+
 ### Adaptateur Nintendo SNES
 
 - [x] Ajouter un adaptateur Nintendo SNES concret avec le protocole propre au cœur Snes9x.
