@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Net.Http;
 using System.IO;
+using System.Text.Json;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation;
@@ -525,6 +526,96 @@ public sealed class ConsoleFamilyModuleTests
             var masterPort = masterPorts[0];
             Assert.Contains(masterPort.ControllerChoices,
                 choice => choice.Id == ControllerType.SegaLightPhaser.ToString());
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SegaInputSettingsExposeAResourceForEveryPublishedPeripheral()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-input-label-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(
+                new EmulationModuleContext(root, root, http));
+            var manager = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(module);
+            foreach (var model in ModelCatalog.All.Where(item => item.ControllerPortCount > 0))
+            {
+                var configuration = Assert.IsType<MachineConfiguration>(
+                    module.CreateConfiguration(model.Id));
+                var settings = manager.DescribeInputSettings(configuration);
+                foreach (var choice in settings.ControllerPorts.SelectMany(
+                    port => port.ControllerChoices))
+                    Assert.False(string.IsNullOrWhiteSpace(choice.DisplayResourceKey));
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public async Task SegaInputSettingsRoundTripPreservesControllerIdentityBindingsAndVisual()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-input-roundtrip-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(
+                new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http)));
+            var emulation = Assert.IsAssignableFrom<IEmulationModule>(module);
+            var original = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MegaDrive")) with
+            {
+                Input = new InputConfiguration(ControllerBindings:
+                [
+                    new ControllerBinding(0, ControllerType.SegaMegaDriveSixButton,
+                        DeviceId: "gameinput:pad-0",
+                        ButtonMappings: new Dictionary<string, string>
+                        {
+                            ["A"] = "Controller:gameinput:pad-0:ButtonA",
+                            ["B"] = "Controller:gameinput:pad-0:ButtonB"
+                        },
+                        VisualId: EmulationControllerVisualIds.MegaDrive6)
+                ])
+            };
+
+            var described = module.DescribeInputSettings(original);
+            var applied = Assert.IsType<MachineConfiguration>(
+                module.ApplyInputSettings(original, described));
+            var appliedBinding = Assert.Single(applied.Input!.ControllerBindings!, binding => binding.Port == 0);
+            Assert.Equal(ControllerType.SegaMegaDriveSixButton, appliedBinding.Type);
+            Assert.Equal("gameinput:pad-0", appliedBinding.DeviceId);
+            Assert.Equal(EmulationControllerVisualIds.MegaDrive6, appliedBinding.VisualId);
+            Assert.Equal(original.Input!.ControllerBindings![0].ButtonMappings,
+                appliedBinding.ButtonMappings);
+
+            await emulation.SaveConfigurationAsync(applied);
+            var loaded = Assert.Single(await emulation.LoadConfigurationsAsync());
+            var loadedConfiguration = Assert.IsType<MachineConfiguration>(loaded);
+            var loadedBinding = Assert.Single(loadedConfiguration.Input!.ControllerBindings!,
+                binding => binding.Port == 0);
+            Assert.Equal(appliedBinding.Type, loadedBinding.Type);
+            Assert.Equal(appliedBinding.DeviceId, loadedBinding.DeviceId);
+            Assert.Equal(appliedBinding.VisualId, loadedBinding.VisualId);
+            Assert.Equal(appliedBinding.ButtonMappings, loadedBinding.ButtonMappings);
+
+            var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+            var restored = JsonSerializer.Deserialize<MachineConfiguration>(
+                JsonSerializer.Serialize(applied, jsonOptions), jsonOptions);
+            var restoredBinding = Assert.Single(restored!.Input!.ControllerBindings!,
+                binding => binding.Port == 0);
+            Assert.Equal(appliedBinding.Type, restoredBinding.Type);
+            Assert.Equal(appliedBinding.DeviceId, restoredBinding.DeviceId);
+            Assert.Equal(appliedBinding.VisualId, restoredBinding.VisualId);
         }
         finally
         {

@@ -112,6 +112,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         finally
         {
+            if (initialized) TryReleaseInput();
             if (initialized)
             {
                 try { _core.Stop(); }
@@ -124,6 +125,16 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
         }
     }
+
+    private void TryReleaseInput()
+    {
+        _lastPhysicalInput = EmulationInputSnapshot.Empty;
+        _controllerPointerSwitchPressed = false;
+        _controllerPointerMode = false;
+        try { _core.SetInput(EmulationInputSnapshot.Empty); }
+        catch (Exception) { }
+    }
+
     private void FailPendingCommands(Exception error)
     {
         while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);

@@ -90,24 +90,24 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Enums/ControllerEnums.cs` avec manettes SMS, Control Stick, Light Phaser, Mega Drive 3/6 boutons, Mega Mouse, Menacer, Saturn et Dreamcast.
   - [x] Relier chaque modèle à ses ports.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` pour retourner tous les modèles officiels, y compris ceux absents d'un cœur.
-- [ ] Afficher correctement le périphérique choisi.
+- [x] Afficher correctement le périphérique choisi.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que chaque périphérique publié par Sega possède une clé de ressource d'affichage non vide et que son dossier temporaire est supprimé dans `finally`.
 - [x] Conserver les choix acceptés par la machine.
   - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` pour normaliser le type et le `VisualId` sans remplacer un périphérique officiel par `Joystick`.
-- [x] Relier les visuels déjà existants.
+- [ ] Relier les visuels déjà existants.
   - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` pour Mega Drive 3/6 boutons avec `EmulationControllerVisualIds.MegaDrive3/MegaDrive6`.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier la normalisation du visuel 3 boutons, les choix 3/6 boutons et le Light Phaser catalogué.
     - [ ] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` uniquement si un visuel générique existant manque réellement; ne pas inventer de fichier d'image.
-  - [ ] Préserver les mappings.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` pour sérialiser le type, le port, le périphérique et le visuel.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` pour restaurer ces valeurs sans supprimer un modèle catalogué.
-- [ ] Relier GameInput au cœur.
-  - [ ] Choisir l'identifiant exposé par le cœur.
+  - [x] Préserver les mappings.
+    - [x] Vérifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` avec `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` : le runtime applique le `DeviceId` et les boutons, tandis que `MachineConfiguration` conserve le type, le port et le visuel lors de la sauvegarde/relecture.
+  - [x] Relier GameInput au cœur.
+  - [x] Choisir l'identifiant exposé par le cœur.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour rechercher le nom/ID du périphérique déclaré par le cœur, mapper souris/pointeur pour Light Phaser/Menacer et ne jamais imposer `JoypadDevice`.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalHostCallbacks.Input.cs` pour publier les coordonnées, le déclenchement et l'état hors écran du périphérique Light Phaser via le pointeur commun.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier qu'un périphérique absent du cœur reste non mappé et que le pointeur alimente le protocole Light Phaser.
-  - [ ] Fermer les ressources empruntées.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Services/Machine.cs` pour fermer l'entrée possédée par la machine dans `finally`.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs` pour détacher le cœur et attendre sa destruction dans `finally`.
+  - [x] Fermer les ressources empruntées.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs` pour envoyer une entrée vide au cœur avant son arrêt, réinitialiser l'état du pointeur et conserver l'arrêt du cœur/audio dans le `finally` existant.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour vérifier qu'un arrêt normal et un arrêt après erreur relâchent l'entrée avant la destruction du cœur et suppriment le dossier de session temporaire.
 
 ## 4. Sega — options matérielles, ports et addons
 
