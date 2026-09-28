@@ -95,8 +95,11 @@ internal static class FileTypeExtensions
     public const string Com = ".com";
     public const string Cpi = ".cpi";
     public const string Cpr = ".cpr";
+    public const string Ccd = ".ccd";
+    public const string Chd = ".chd";
     public const string Crd = ".crd";
     public const string Cpt = ".cpt";
+    public const string Cue = ".cue";
     public const string Ctb = ".ctb";
     public const string Cur = ".cur";
     public const string Cvn = ".cvn";
@@ -226,6 +229,7 @@ internal static class FileTypeExtensions
     public const string Mpe = ".mpe";
     public const string Msc = ".msc";
     public const string Msa = ".msa";
+    public const string Mds = ".mds";
     public const string Mus = ".mus";
     public const string Muz = ".muz";
     public const string Neo = ".neo";

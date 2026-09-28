@@ -207,6 +207,14 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 - [x] Ajouter le test de round-trip et d’exploration des deux extensions.
 - [ ] Vérifier les images My Card et SuperGrafx réelles du corpus utilisateur.
 
+### Descripteurs optiques déjà décodés
+
+- [x] Publier `.cue`, `.ccd`, `.mds` et `.chd` dans les constantes d’analyse et la classification disque.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` avec les extensions optiques manquantes.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour classer ces extensions comme images disque.
+- [x] Ajouter l’icône optique pour `.chd` dans `src/GWGUI.MediaEngine/Constants/MediaIconExtensions.cs` et `src/GWGUI.MediaEngine/Images/Visualization/MediaIconSelector.cs`.
+- [x] Ajouter un test autonome de publication des extensions optiques et nettoyer ses artefacts temporaires.
+
 ### Adaptateur Nintendo Virtual Boy
 
 - [x] Ajouter un adaptateur Nintendo Virtual Boy concret avec le protocole propre au cœur Beetle VB.

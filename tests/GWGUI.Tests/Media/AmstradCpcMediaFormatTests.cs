@@ -403,6 +403,15 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public void DefaultRecognitionPublishesOpticalDescriptorExtensions()
+    {
+        var extensions = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+
+        foreach (var extension in new[] { ".cue", ".ccd", ".mds", ".chd" })
+            Assert.Contains(extension, extensions);
+    }
+
+    [Fact]
     public void CpcDataDskDirectoryIsListedFromTheNeutralContainerFormat()
         => AssertCpcDirectoryIsListed(0x41, 0);
 
