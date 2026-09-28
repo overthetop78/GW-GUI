@@ -143,6 +143,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Modifier les cinq `Resources/00-Base/Emulation.resx` pour supprimer les clés de modèles d’une autre famille et écrire celles correspondant aux `ModelCatalog` Sega, Nintendo, Sony, Microsoft et NEC.
   - [x] Reproduire ces clés dans les cultures existantes de chaque module sans conserver de valeur Amstrad résiduelle.
   - [x] Rechercher les identifiants `464`, `664`, `6128`, `GX4000` et les descriptions Amstrad résiduelles dans ces ressources, puis compiler les cinq modules.
+
+### Identifiants interprocessus des hôtes de cœur
+
+- [x] Supprimer les préfixes `gwgui-amstrad-*` restés dans les hôtes Sega et Nintendo.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-sega-genesisplusgx-*`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Mesen/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-mesen-*`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Snes9x/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-snes9x-*`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/GameWatch/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-gw-*`.
+  - [x] Rechercher les anciennes chaînes dans les cinq modules, compiler les modules concernés et exécuter les tests d’architecture.
+- [x] Stage et commit de cette correction seulement après réussite des vérifications.
 - [ ] Finaliser les cinq modules sans laisser de façade non exécutable.
   - [ ] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json`, `Modules/NecEmulationModuleFactory.cs` et le catalogue PC Engine.
   - [ ] Ajouter dans chaque module un adaptateur concret sous `Emulators/<Cœur>` qui implémente `IEmulatorAdapter`, son installation, son protocole et la création de `Machine`.

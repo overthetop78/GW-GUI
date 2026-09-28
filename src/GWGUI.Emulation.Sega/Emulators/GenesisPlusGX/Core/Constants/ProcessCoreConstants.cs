@@ -9,7 +9,7 @@ namespace GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 internal static class ProcessCoreConstants
 {
     internal const string CoreHost = GenesisPlusGXConstants.CoreHostCommand;
-    internal const string PipePrefix = "gwgui-amstrad-genesisplusgx-";
-    internal const string VideoMapPrefix = "gwgui-amstrad-genesisplusgx-video-";
+    internal const string PipePrefix = "gwgui-sega-genesisplusgx-";
+    internal const string VideoMapPrefix = "gwgui-sega-genesisplusgx-video-";
     internal const int PipeBufferSize = 8 * 1024 * 1024;
 }

@@ -9,9 +9,8 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Snes9x.Constants;
 internal static class ProcessCoreConstants
 {
     internal const string CoreHost = Snes9xConstants.CoreHostCommand;
-    internal const string PipePrefix = "gwgui-amstrad-snes9x-";
-    internal const string VideoMapPrefix = "gwgui-amstrad-snes9x-video-";
+    internal const string PipePrefix = "gwgui-nintendo-snes9x-";
+    internal const string VideoMapPrefix = "gwgui-nintendo-snes9x-video-";
     internal const int PipeBufferSize = 8 * 1024 * 1024;
 }
-
 

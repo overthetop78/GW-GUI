@@ -9,8 +9,8 @@ namespace GWGUI.Emulation.Nintendo.Emulators.GameWatch.Constants;
 internal static class ProcessCoreConstants
 {
     internal const string CoreHost = GameWatchConstants.CoreHostCommand;
-    internal const string PipePrefix = "gwgui-amstrad-gw-";
-    internal const string VideoMapPrefix = "gwgui-amstrad-gw-video-";
+    internal const string PipePrefix = "gwgui-nintendo-gw-";
+    internal const string VideoMapPrefix = "gwgui-nintendo-gw-video-";
     internal const int PipeBufferSize = 8 * 1024 * 1024;
 }
 
