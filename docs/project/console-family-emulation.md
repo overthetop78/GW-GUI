@@ -155,6 +155,15 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [ ] Exécuter la build complète avec tous les modules et vérifier l’exécutable résultant.
 - [ ] Stage et commit uniques de cette tranche seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Alignement des constantes Common
+
+- [x] Supprimer l’écart introduit dans le fichier `MediaConstants` d’Amiga sans modifier les autres familles.
+  - [x] Ajouter `DiskChangeDelayMilliseconds` au contrat commun `src/GWGUI.Emulation/Constants/EmulationMediaSlotConstants.cs`.
+  - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Lifecycle.cs` pour utiliser la constante commune.
+  - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Constants/MediaConstants.cs` pour retrouver exactement la structure des autres familles.
+  - [x] Exécuter le test `FamilyCommonConstantFilesAndMembersAreIdentical`.
+- [x] Stage et commit de cette correction seulement après réussite du test d’architecture.
+
 ### Constantes de l’explorateur de cartouches
 
 - [x] Supprimer les littéraux techniques du lecteur de banques.

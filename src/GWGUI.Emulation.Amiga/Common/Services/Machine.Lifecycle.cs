@@ -1,5 +1,6 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga.Common.Constants;
+using GWGUI.Emulation.Constants;
 using System.Collections.Concurrent;
 
 namespace GWGUI.Emulation.Amiga.Common.Services;
@@ -121,7 +122,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         if (_currentDiskPath is not null)
         {
             await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
-            await Task.Delay(MediaConstants.DiskChangeDelayMilliseconds, cancellationToken)
+            await Task.Delay(EmulationMediaSlotConstants.DiskChangeDelayMilliseconds, cancellationToken)
                 .ConfigureAwait(false);
         }
 
