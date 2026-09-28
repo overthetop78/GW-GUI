@@ -163,6 +163,29 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoGambatteSelectsGameBoyModels()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-gambatte-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NintendoEmulationModuleFactory().Create(context);
+            foreach (var machineId in new[] { "GameBoy", "GameBoyColor" })
+            {
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                    module.CreateConfiguration(machineId));
+                Assert.Equal("gambatte", configuration.EmulatorId);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaAdaptersSelectTheMatchingCoreForSaturnAndSc3000()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-adapter-tests", Guid.NewGuid().ToString("N"));
