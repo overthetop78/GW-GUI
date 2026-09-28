@@ -8,4 +8,5 @@ public static class OpticalImageFormatIds
     public const string CloneCd = "optical-clonecd";
     public const string AlcoholMds = "optical-alcohol-mds";
     public const string Chd = "optical-chd";
+    public const string Gdi = "optical-gdi";
 }

@@ -17,4 +17,5 @@ public static class MediaIconExtensions
     public const string Cue = ".cue";
     public const string Ccd = ".ccd";
     public const string Mds = ".mds";
+    public const string Gdi = ".gdi";
 }

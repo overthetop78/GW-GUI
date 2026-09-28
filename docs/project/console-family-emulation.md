@@ -183,7 +183,22 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Nintendo/FamicomDisk/FamicomDiskFileSystemReader.cs` et l’enregistrer dans `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` pour explorer les fichiers FDS réellement décodables.
   - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour classer `.fds` comme image disque.
   - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` avec un test média autonome et suppression des fichiers temporaires dans `finally`.
-  - [x] Compiler les projets concernés et exécuter le test ciblé avant le commit de cette tranche.
+- [x] Compiler les projets concernés et exécuter le test ciblé avant le commit de cette tranche.
+
+### Support optique Dreamcast GDI
+
+- [x] Ajouter le descripteur GDI nommé et ses constantes sans réintroduire de format générique.
+  - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` et `src/GWGUI.MediaEngine/Constants/OpticalImageFormatIds.cs` pour déclarer `.gdi` et `optical-gdi`.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiConstants.cs` et `GdiDescriptorReader.cs` pour valider les pistes et leurs fichiers associés.
+- [x] Ajouter la lecture et l’écriture des pistes GDI dans MediaEngine.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiReader.cs` avec une représentation `OpticalMediaImageRepresentation` fidèle aux secteurs déclarés.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/GdiWriter.cs` pour écrire le descripteur et les données de piste sans compléter artificiellement les fichiers.
+  - [x] Enregistrer le lecteur et le writer dans `MediaRecognitionComposition` et `MediaWritingComposition`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour afficher « Dreamcast GDI ».
+- [x] Exposer GDI dans les couches d’exploration et d’analyse.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` et `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour l’identifiant et l’extension GDI.
+  - [x] Ajouter le classement `.gdi` dans `CommonMediaContentRecognitionTable`; l’exploration optique existante consomme les pistes GDI décodées.
+- [x] Ajouter le test autonome GDI, compiler les projets concernés et exécuter les tests avant le commit de cette tranche.
 
 ### Adaptateur Nintendo SNES
 

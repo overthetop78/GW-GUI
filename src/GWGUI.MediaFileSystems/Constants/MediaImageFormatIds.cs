@@ -38,6 +38,7 @@ public static class MediaImageFormatIds
     public const string Atari7800 = "atari.7800";
     public const string NintendoVirtualBoy = "nintendo.virtual_boy";
     public const string BandaiWonderSwan = "bandai.wonderswan";
+    public const string OpticalGdi = "optical-gdi";
     public const string AppleIIAppleDos113 = "apple2.appledos.113";
     public const string AppleIIAppleDos140 = "apple2.appledos.140";
     public const string AppleIIDos32 = "apple2.dos32";

@@ -146,6 +146,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension used by Alcohol media data files.</summary>
     public const string Mdf = ".mdf";
 
+    /// <summary>Extension des descripteurs de pistes optiques Dreamcast GDI.</summary>
+    public const string Gdi = ".gdi";
+
     public const string Wav = ".wav";
     public const string Cas = ".cas";
     public const string Tzx = ".tzx";

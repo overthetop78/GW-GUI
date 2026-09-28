@@ -30,6 +30,7 @@ public static class MediaImageWriterIds
     public const string HardDiskChd = "hard-disk-chd";
     public const string OpticalIso = "optical-iso";
     public const string OpticalBinCue = "optical-bin-cue";
+    public const string OpticalGdi = "optical-gdi";
     public const string TapeWav = "tape-wav";
     public const string TapeVoc = "tape-voc";
     public const string TapeAtariCas = "tape-atari-cas";

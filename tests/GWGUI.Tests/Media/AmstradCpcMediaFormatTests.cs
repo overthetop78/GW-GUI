@@ -7,11 +7,13 @@ using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
 using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
+using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
+using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Models.Blocks;
@@ -183,6 +185,46 @@ public sealed class AmstradCpcMediaFormatTests
             Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
             Assert.Contains(DiskImageFileExtensions.Fds,
                 MediaRecognitionComposition.CreateDefault().SupportedExtensions);
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task DreamcastGdiTracksRoundTripWithAssociatedFiles()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-gdi-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var descriptorPath = Path.Combine(directory, "game.gdi");
+            var trackOnePath = Path.Combine(directory, "track01.bin");
+            var trackTwoPath = Path.Combine(directory, "track02.raw");
+            var outputPath = Path.Combine(directory, "roundtrip.gdi");
+            await File.WriteAllBytesAsync(trackOnePath, Enumerable.Repeat((byte)0x11, 100 * 2048).ToArray());
+            await File.WriteAllBytesAsync(trackTwoPath, Enumerable.Repeat((byte)0x22, 2 * 2352).ToArray());
+            await File.WriteAllTextAsync(
+                descriptorPath,
+                "2\n1 0 4 2048 \"track01.bin\" 0\n2 100 0 2352 \"track02.raw\" 0\n");
+
+            var document = await ReadAsync(new GdiReader(), descriptorPath);
+            Assert.Equal(OpticalImageFormatIds.Gdi, document.FormatId);
+            var optical = Assert.IsType<GWGUI.MediaEngine.Images.Models.Optical.OpticalMediaImageRepresentation>(document.Representation);
+            Assert.Equal(2, optical.Tracks!.Count);
+            Assert.Equal(100, optical.Tracks[0].SectorCount);
+            Assert.Equal(OpticalTrackMode.Audio, optical.Tracks[1].Mode);
+            Assert.Equal(2, optical.Tracks[1].SectorCount);
+
+            await new GdiWriter().WriteAsync(document, outputPath, OpticalImageFormatIds.Gdi);
+            var roundtrip = await ReadAsync(new GdiReader(), outputPath);
+            var roundtripOptical = Assert.IsType<GWGUI.MediaEngine.Images.Models.Optical.OpticalMediaImageRepresentation>(roundtrip.Representation);
+            Assert.Equal(optical.Tracks.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)),
+                roundtripOptical.Tracks!.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)));
+            Assert.Contains(DiskImageFileExtensions.Gdi, MediaRecognitionComposition.CreateDefault().SupportedExtensions);
+            Assert.Contains(MediaImageWriterIds.OpticalGdi,
+                MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
         }
         finally
         {
