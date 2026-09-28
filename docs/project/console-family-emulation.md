@@ -190,6 +190,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module NEC et exécuter les tests d’architecture et de création de runtime.
 - [x] Stage et commit de l’adaptateur NEC PC Engine / SuperGrafx seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateur Sony PlayStation
+
+- [x] Ajouter un adaptateur Sony PlayStation concret avec le protocole propre au cœur SwanStation.
+  - [x] Créer les fichiers `src/GWGUI.Emulation.Sony/Emulators/SwanStation/` en reprenant le protocole d’hôte d’un cœur déjà intégré, puis remplacer les identifiants, le téléchargement et les médias par ceux de SwanStation.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Dictionaries/EmulatorCatalog.cs` et `src/GWGUI.Emulation.Sony/Resources/00-Base/Emulation.resx` pour rattacher uniquement `PlayStation` à SwanStation.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` l’assertion de sélection de SwanStation pour PlayStation.
+  - [x] Relier `SonyEmulationModule.CreateRuntimeAsync` et `TryHandleHostCommand` au moteur et à l’adaptateur SwanStation.
+  - [x] Compiler le module Sony et exécuter les tests d’architecture et de création de runtime.
+- [x] Stage et commit de l’adaptateur Sony PlayStation seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [x] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.

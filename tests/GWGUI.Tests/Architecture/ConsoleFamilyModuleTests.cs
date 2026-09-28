@@ -62,7 +62,7 @@ public sealed class ConsoleFamilyModuleTests
             var cases = new (IEmulationModule Module, string MachineId)[]
             {
                 (new NintendoEmulationModuleFactory().Create(context), "VirtualBoy"),
-                (new SonyEmulationModuleFactory().Create(context), "PlayStation"),
+                (new SonyEmulationModuleFactory().Create(context), "PlayStation2"),
                 (new MicrosoftEmulationModuleFactory().Create(context), "Xbox"),
                 (new NecEmulationModuleFactory().Create(context), "PcFx")
             };
@@ -135,6 +135,26 @@ public sealed class ConsoleFamilyModuleTests
             var snes = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
                 module.CreateConfiguration("Snes"));
             Assert.Equal("snes9x", snes.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SonySwanStationSelectsPlayStation()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sony-swanstation-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new SonyEmulationModuleFactory().Create(context);
+            var playStation = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("PlayStation"));
+            Assert.Equal("swanstation", playStation.EmulatorId);
         }
         finally
         {
