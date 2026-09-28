@@ -17,6 +17,7 @@ internal static partial class InputSettingsFunctions
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = ControllerCatalog.Normalize(model, current?.Type ?? ControllerType.Automatic);
+            var visualId = NormalizeVisualId(type, current?.VisualId);
             return new EmulationControllerPort(index + 1,
                 ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
@@ -24,7 +25,7 @@ internal static partial class InputSettingsFunctions
                     current?.ButtonMappings ?? new Dictionary<string, string>(),
                     EmulationInputSource.Keyboard | EmulationInputSource.Mouse
                         | EmulationInputSource.Controller, true),
-                VisualId: current?.VisualId);
+                VisualId: visualId);
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }

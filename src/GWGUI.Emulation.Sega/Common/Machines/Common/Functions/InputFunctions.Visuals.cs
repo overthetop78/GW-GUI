@@ -3,17 +3,28 @@ namespace GWGUI.Emulation.Sega.Common.Machines.Common.Functions;
 internal static partial class InputSettingsFunctions
 {
     private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =>
-        type == ControllerType.Joystick
-            ? [EmulationControllerVisualIds.QuickShot,
+        type switch
+        {
+            ControllerType.Joystick => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
-                EmulationControllerVisualIds.ZipstikSuperPro]
-            : null;
+                EmulationControllerVisualIds.ZipstikSuperPro],
+            ControllerType.SegaMegaDriveThreeButton => [EmulationControllerVisualIds.MegaDrive3],
+            ControllerType.SegaMegaDriveSixButton => [EmulationControllerVisualIds.MegaDrive6],
+            _ => null
+        };
 
     private static string? DefaultVisualId(ControllerType type) =>
-        type == ControllerType.Joystick ? EmulationControllerVisualIds.QuickShot : null;
+        type switch
+        {
+            ControllerType.Joystick => EmulationControllerVisualIds.QuickShot,
+            ControllerType.SegaMegaDriveThreeButton => EmulationControllerVisualIds.MegaDrive3,
+            ControllerType.SegaMegaDriveSixButton => EmulationControllerVisualIds.MegaDrive6,
+            _ => null
+        };
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type) => type == ControllerType.Joystick
+        VisualCommandIds(ControllerType type) => type is ControllerType.Joystick
+            or ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton
         ? new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -23,6 +34,14 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
             [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A
         } : null;
+
+    private static string? NormalizeVisualId(ControllerType type, string? visualId)
+    {
+        var compatible = CompatibleVisualIds(type);
+        return compatible is null ? null
+            : compatible.Contains(visualId ?? string.Empty, StringComparer.Ordinal)
+                ? visualId : DefaultVisualId(type);
+    }
 
     private static string ControllerResourceKey(ControllerType type) => type switch
     {

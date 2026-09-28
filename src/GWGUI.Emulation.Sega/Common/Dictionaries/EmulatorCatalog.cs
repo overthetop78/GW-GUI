@@ -2,8 +2,12 @@ namespace GWGUI.Emulation.Sega.Common.Dictionaries;
 
 public static class EmulatorCatalog
 {
+    private static IReadOnlySet<string> PublishedMachineIds => ModelCatalog.All
+        .Select(model => model.Id).ToHashSet(StringComparer.Ordinal);
+
     internal static IReadOnlyList<EmulationEmulatorDefinition> All =>
         CreateAdapters().Select(adapter => adapter.Definition)
+            .Where(definition => definition.MachineIds.All(PublishedMachineIds.Contains))
             .OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>

@@ -2,11 +2,13 @@ using System.Reflection;
 using System.Net.Http;
 using System.IO;
 using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Constants;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Emulation.Nintendo.Modules;
 using GWGUI.Emulation.Sega.Modules;
+using GWGUI.Emulation.Sega.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
@@ -473,6 +475,57 @@ public sealed class ConsoleFamilyModuleTests
     {
         Assert.DoesNotContain(ModelCatalog.All, model => model.Id is "MegaCd" or "ThirtyTwoX");
         Assert.Contains(ModelCatalog.All, model => model.Id == "MegaDrive");
+    }
+
+    [Fact]
+    public void SegaAdaptersOnlyPublishModelsFromTheMachineCatalog()
+    {
+        var machineIds = ModelCatalog.All.Select(model => model.Id)
+            .ToHashSet(StringComparer.Ordinal);
+        Assert.All(EmulatorCatalog.All, definition =>
+            Assert.All(definition.MachineIds, machineId => Assert.Contains(machineId, machineIds)));
+        Assert.All(ModelCatalog.All, model => Assert.NotEmpty(EmulatorCatalog.GetAll(model.Id)));
+    }
+
+    [Fact]
+    public void SegaInputSettingsNormalizeOfficialControllerVisuals()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-input-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var emulation = new SegaEmulationModuleFactory().Create(
+                new EmulationModuleContext(root, root, http));
+            var module = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(emulation);
+            var megaDrive = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MegaDrive"));
+            var configured = megaDrive with
+            {
+                Input = new InputConfiguration(ControllerBindings:
+                    [new ControllerBinding(0, ControllerType.SegaMegaDriveThreeButton,
+                        VisualId: EmulationControllerVisualIds.MegaDrive6)])
+            };
+            var described = module.DescribeInputSettings(configured);
+            Assert.Equal(2, described.ControllerPorts.Count);
+            var port = described.ControllerPorts[0];
+            Assert.Equal(EmulationControllerVisualIds.MegaDrive3, port.VisualId);
+            Assert.Contains(port.ControllerChoices,
+                choice => choice.Id == ControllerType.SegaMegaDriveThreeButton.ToString());
+            Assert.Contains(port.ControllerChoices,
+                choice => choice.Id == ControllerType.SegaMegaDriveSixButton.ToString());
+
+            var masterSystem = Assert.IsType<MachineConfiguration>(
+                emulation.CreateConfiguration("MasterSystem"));
+            var masterPorts = module.DescribeInputSettings(masterSystem).ControllerPorts;
+            Assert.Equal(2, masterPorts.Count);
+            var masterPort = masterPorts[0];
+            Assert.Contains(masterPort.ControllerChoices,
+                choice => choice.Id == ControllerType.SegaLightPhaser.ToString());
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
     }
 
     [Fact]
