@@ -14,6 +14,7 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.Floppy or MediaCategory.Snapshot => EmulationMediaCategory.FloppyDrive,
                 MediaCategory.Cassette => EmulationMediaCategory.CassetteDrive,
                 MediaCategory.Cartridge => EmulationMediaCategory.CartridgeSlot,
+                MediaCategory.CompactDisc => EmulationMediaCategory.CompactDiscDrive,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
             var index = indexes.GetValueOrDefault(category);
@@ -23,6 +24,7 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.Floppy or MediaCategory.Snapshot => EmulationMediaType.Floppy,
                 MediaCategory.Cassette => EmulationMediaType.Cassette,
                 MediaCategory.Cartridge => EmulationMediaType.Cartridge,
+                MediaCategory.CompactDisc => EmulationMediaType.CompactDisc,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
             return new EmulationMedia(Path.GetFullPath(item.Path),
@@ -38,6 +40,7 @@ internal static class EmulationMediaActivityFunctions
     {
         [EmulationMediaSlot.Floppy0] = leds.GetValueOrDefault(0),
         [EmulationMediaSlot.Cassette0] = leds.GetValueOrDefault(1),
-        [EmulationMediaSlot.Cartridge0] = leds.GetValueOrDefault(2)
+        [EmulationMediaSlot.Cartridge0] = leds.GetValueOrDefault(2),
+        [EmulationMediaSlot.Cd0] = leds.GetValueOrDefault(3)
     };
 }

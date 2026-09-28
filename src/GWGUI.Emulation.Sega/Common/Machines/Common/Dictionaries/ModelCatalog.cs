@@ -9,11 +9,14 @@ public static class ModelCatalog
         new("MarkIII", "Mark III", "mark3", 64, false, 0, 0, false, false, true, true),
         new("MasterSystem", "Master System", "mastersystem", 128, false, 0, 0, false, false, true, true),
         new("MegaDrive", "Mega Drive / Genesis", "megadrive", 64, false, 0, 0, false, false, true, true),
-        new("MegaCd", "Mega-CD / Sega CD", "megacd", 64, false, 0, 0, false, false, true, true),
+        new("MegaCd", "Mega-CD / Sega CD", "megacd", 64, false, 0, 0, false, false, true, true,
+            HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true),
         new("ThirtyTwoX", "32X", "32x", 256, false, 0, 0, false, false, true, true),
         new("GameGear", "Game Gear", "gamegear", 24, false, 0, 0, false, false, true, true),
-        new("Saturn", "Saturn", "saturn", 2048, false, 0, 0, false, false, true, true),
-        new("Dreamcast", "Dreamcast", "dreamcast", 16384, false, 0, 0, false, false, true, true)
+        new("Saturn", "Saturn", "saturn", 2048, false, 0, 0, false, false, true, true,
+            HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true),
+        new("Dreamcast", "Dreamcast", "dreamcast", 16384, false, 0, 0, false, false, true, true,
+            HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true)
     ];
 
     public static Model Get(string id) => All.FirstOrDefault(model =>

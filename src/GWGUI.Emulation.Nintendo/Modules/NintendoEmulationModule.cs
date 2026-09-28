@@ -45,7 +45,8 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
             EmulationMachineTab.Keyboard => model.HasKeyboard,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
-                || model.SupportsCassetteDrive || model.SupportsCartridgeSlot,
+                || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
+                || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
         return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
@@ -271,6 +272,7 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
                 EmulationMediaType.Cassette => MediaCategory.Cassette,
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
             MountOrder: index)).ToArray()
@@ -282,4 +284,3 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
 }
-

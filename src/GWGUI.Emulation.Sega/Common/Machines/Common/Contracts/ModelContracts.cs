@@ -13,4 +13,6 @@ public sealed record Model(
     bool HasBuiltInCartridgeSlot,
     bool SupportsCartridgeSlot,
     int ControllerPortCount = 2,
-    int MouseButtonCount = 2);
+    int MouseButtonCount = 2,
+    bool HasBuiltInCompactDiscDrive = false,
+    bool SupportsCompactDiscDrive = false);

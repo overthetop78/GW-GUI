@@ -35,6 +35,7 @@ internal static class ConfigurationValidationFunctions
         MediaCategory.Floppy => model.MaximumFloppyDriveCount > 0,
         MediaCategory.Cassette => model.SupportsCassetteDrive,
         MediaCategory.Cartridge => model.SupportsCartridgeSlot,
+        MediaCategory.CompactDisc => model.SupportsCompactDiscDrive,
         MediaCategory.Snapshot => true,
         _ => false
     };

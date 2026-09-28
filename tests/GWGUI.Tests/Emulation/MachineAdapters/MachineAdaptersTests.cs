@@ -57,6 +57,8 @@ public sealed class MachineAdaptersTests
     [Fact] public void IncompatibleConfigurationIsRejected() => MachineCapabilitiesScenarios.Invalid();
     [Fact] public void AdapterOptionsAreMappedWithoutCore() => MachineConfigurationMappingScenarios.Options();
     [Fact] public void MediaCategoriesAreMappedWithoutCore() => MachineConfigurationMappingScenarios.Media();
+    [Fact] public void ConsoleOpticalMediaRoundTripsThroughCommonContracts() => ConsoleFamilyMediaScenarios.OpticalMediaRoundTrip();
+    [Fact] public void ConsoleCoreOptionsRemainPersistedUntilRuntimeCreation() => ConsoleFamilyMediaScenarios.CoreOptionsRemainPersistedForConsoleFamilies();
     [Fact] public void HatariDriveIndicatorsFeedTheCommonMediaActivity() => AtariMediaActivityScenarios.HatariOverlay();
     [Fact] public void Atari800DriveIndicatorsFeedTheCommonMediaActivity() => AtariMediaActivityScenarios.Atari800Overlay();
     [Fact] public void Atari800CassettePlaySendsOneReturnPulse() =>

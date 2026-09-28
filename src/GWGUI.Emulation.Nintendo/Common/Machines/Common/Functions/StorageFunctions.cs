@@ -25,6 +25,13 @@ internal static class StorageSettingsFunctions
                 [StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot));
+        if (model.SupportsCompactDiscDrive)
+            devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
+                [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd,
+                 StorageSettingsFunctionsConstants.Iso, StorageSettingsFunctionsConstants.Gdi,
+                 StorageSettingsFunctionsConstants.Cdi], RequiresMachineRecreation: true,
+                DisplayLabel: StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
+                IsPermanent: model.HasBuiltInCompactDiscDrive));
         var configuredFloppies = Math.Clamp(OptionInt(options,
             StorageSettingsFunctionsConstants.FloppyDriveCountOption,
             model.BuiltInFloppyDriveCount), model.BuiltInFloppyDriveCount,
@@ -36,6 +43,8 @@ internal static class StorageSettingsFunctions
                 || OptionBool(options, StorageSettingsFunctionsConstants.CassetteDriveEnabledOption),
             EmulationMediaCategory.CartridgeSlot => model.HasBuiltInCartridgeSlot
                 || OptionBool(options, StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption),
+            EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
+                || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
             _ => false
         }).Select(device => device.Slot).ToArray();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
@@ -51,6 +60,7 @@ internal static class StorageSettingsFunctions
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
                 EmulationMediaType.Cassette => MediaCategory.Cassette,
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
                 _ => throw new ArgumentOutOfRangeException(nameof(settings), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray();
         var model = ModelCatalog.Get(configuration.Model);
@@ -66,7 +76,9 @@ internal static class StorageSettingsFunctions
             [StorageSettingsFunctionsConstants.CassetteDriveEnabledOption] = settings.ConfiguredSlots
                 .Contains(EmulationMediaSlot.Cassette0).ToString(),
             [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots
-                .Contains(EmulationMediaSlot.Cartridge0).ToString()
+                .Contains(EmulationMediaSlot.Cartridge0).ToString(),
+            [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots
+                .Contains(EmulationMediaSlot.Cd0).ToString()
         };
         return configuration with { Media = media, Options = options };
     }

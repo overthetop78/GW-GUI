@@ -515,5 +515,18 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
   - [x] Exécuter les tests ciblés puis la suite `GWGUI.Tests`.
 - [x] Cocher ce groupe et créer un commit unique seulement après réussite de toutes les actions ci-dessus.
 
+### Raccordement des médias console et des options de cœur
+
+- [x] Raccorder les supports optiques déjà représentés par le contrat commun aux familles qui en ont besoin.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Enums/MediaEnums.cs`, `Contracts/ModelContracts.cs`, `Dictionaries/ModelCatalog.cs`, `Functions/MediaFunctions.cs`, `Functions/StorageFunctions.cs`, `Functions/ConfigurationFunctions.cs` et `Modules/NintendoEmulationModule.cs` pour déclarer et convertir le lecteur optique des modèles GameCube, Wii et Wii U.
+  - [x] Modifier les mêmes fichiers correspondants dans `src/GWGUI.Emulation.Sega/` pour Mega-CD, Saturn et Dreamcast.
+  - [x] Modifier les mêmes fichiers correspondants dans `src/GWGUI.Emulation.Sony/` pour les modèles PlayStation à support optique.
+  - [x] Ajouter dans chaque `StorageConstants.cs` concerné les extensions optiques déjà connues du MediaEngine (`.cue`, `.chd`, `.iso`, `.gdi`, `.cdi`) et les libellés de lecteur.
+- [x] Vérifier le traitement des options propres aux cœurs sans introduire de couche générique.
+  - [x] Vérifier les fonctions `*OptionFunctions.cs` des adaptateurs existants : elles conservent les options persistées et le protocole du cœur valide les clés et valeurs exposées par le cœur.
+  - [x] Ajouter `tests/GWGUI.Tests/Emulation/MachineAdapters/ConsoleFamilyMediaScenarios.cs` pour vérifier le mapping optique et la conservation des options.
+- [x] Compiler les modules Nintendo, Sega et Sony et exécuter le test ciblé puis la suite complète.
+- [x] Cocher ce groupe après réussite de toutes les actions ci-dessus.
+
 Ce document ne prétend pas qu'un cœur ou un format est déjà implémenté : chaque
 case sera cochée seulement après le fichier et le comportement correspondants.

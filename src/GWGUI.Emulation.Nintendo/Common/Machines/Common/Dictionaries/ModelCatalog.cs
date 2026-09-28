@@ -15,9 +15,12 @@ public static class ModelCatalog
         new("GameBoyAdvance", "Game Boy Advance", "gba", 256, false, 0, 0, false, false, true, true),
         new("NintendoDs", "Nintendo DS / DSi", "nds", 4096, false, 0, 0, false, false, true, true),
         new("Nintendo3Ds", "Nintendo 3DS", "3ds", 128 * 1024, false, 0, 0, false, false, true, true),
-        new("GameCube", "Nintendo GameCube", "gamecube", 24 * 1024, false, 0, 0, false, false, false, false),
-        new("Wii", "Nintendo Wii", "wii", 88 * 1024, false, 0, 0, false, false, false, false),
-        new("WiiU", "Nintendo Wii U", "wiiu", 2048 * 1024, false, 0, 0, false, false, false, false),
+        new("GameCube", "Nintendo GameCube", "gamecube", 24 * 1024, false, 0, 0, false, false, false, false,
+            HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true),
+        new("Wii", "Nintendo Wii", "wii", 88 * 1024, false, 0, 0, false, false, false, false,
+            HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true),
+        new("WiiU", "Nintendo Wii U", "wiiu", 2048 * 1024, false, 0, 0, false, false, false, false,
+            HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true),
         new("Switch", "Nintendo Switch", "switch", 4096 * 1024, false, 0, 0, false, false, true, true)
     ];
 
