@@ -10,12 +10,11 @@ internal static class EmulationMediaSlotConstants
     internal const int CompactDiscProtocolValue = 5;
     internal const int CartridgeProtocolValue = 6;
     internal const int CassetteProtocolValue = 7;
+    internal const int SecondCartridgeProtocolValue = 8;
     internal const int DiskChangeDelayMilliseconds = 500;
     internal const string FloppyPrefix = "Floppy";
     internal const string HardDiskPrefix = "HardDisk";
     internal const string CompactDiscPrefix = "Cd";
     internal const string CartridgePrefix = "Cartridge";
     internal const string CassettePrefix = "Cassette";
-    internal const string MissingProtocolValueMessage =
-        "This media slot has no numeric host-protocol representation.";
 }

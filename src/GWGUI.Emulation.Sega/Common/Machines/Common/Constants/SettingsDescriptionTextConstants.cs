@@ -5,12 +5,14 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string Enabled = "enabled";
     internal const string Disabled = "disabled";
     internal const string General = "general";
+    internal const string Hardware = "hardware";
     internal const string Cpu = "cpu";
     internal const string Memory = "memory";
     internal const string Firmware = "firmware";
     internal const string Video = "video";
     internal const string Audio = "audio";
     internal const string ResourceGeneral = "Emulation.Tab.General";
+    internal const string ResourceHardware = "Emulation.Sega.Hardware";
     internal const string ResourceMachineModel = "Emulation.Machine.Model";
     internal const string ResourceEmulator = "Emulation.Core.Emulator";
     internal const string ResourceCpuProcessor = "Emulation.Cpu.Processor";
@@ -30,6 +32,11 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string ResourceAudioDevice = "Emulation.Audio.Device";
     internal const string ResourceAudioLatency = "Emulation.Audio.LatencyLabel";
     internal const string ResourceAudioFloppySound = "Emulation.Audio.Floppy.Enabled";
+    internal const string ResourceMasterSystemVariant = "Emulation.Sega.MasterSystem.Variant";
+    internal const string ResourceMasterSystemThreeDGlasses = "Emulation.Sega.MasterSystem.ThreeDGlasses";
+    internal const string ResourceMegaDriveModel = "Emulation.Sega.MegaDrive.Model";
+    internal const string ResourceMegaDriveRegion = "Emulation.Sega.MegaDrive.Region";
+    internal const string ResourceMegaDriveVideoStandard = "Emulation.Sega.MegaDrive.VideoStandard";
     internal const string CpuFrequency = "—";
     internal const string IconGeneral = "\uE713";
     internal const string IconCpu = "\uE950";

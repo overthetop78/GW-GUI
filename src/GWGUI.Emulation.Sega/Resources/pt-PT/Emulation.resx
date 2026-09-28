@@ -88,16 +88,16 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Saída de áudio usada por GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Selecciona a saída de áudio do Windows usada para reproduzir o som desta máquina emulado.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD and 32X systems.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emula SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD e sistemas 32X.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
-  <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
-  <data name="Emulation.Sega.Model.MasterSystem"><value>Master System</value></data>
-  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Genesis</value></data>
-  <data name="Emulation.Sega.Model.MegaCd"><value>Mega-CD / Sega CD</value></data>
+  <data name="Emulation.Sega.Model.MarkIII"><value>Marcar III</value></data>
+  <data name="Emulation.Sega.Model.MasterSystem"><value>Sistema Mestre</value></data>
+  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Gênesis</value></data>
+  <data name="Emulation.Sega.Model.MegaCd"><value>Mega...CD / Sega CD</value></data>
   <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X</value></data>
-  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear</value></data>
-  <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
+  <data name="Emulation.Sega.Model.GameGear"><value>Equipamento de jogo</value></data>
+  <data name="Emulation.Sega.Model.Saturn"><value>Saturno</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifica o modelo Sega cuja configuração de hardware está sendo editada.</value></data>
 </root>

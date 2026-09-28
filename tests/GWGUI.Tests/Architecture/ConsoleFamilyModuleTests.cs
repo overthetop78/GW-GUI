@@ -2,11 +2,14 @@ using System.Reflection;
 using System.Net.Http;
 using System.IO;
 using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Emulation.Nintendo.Modules;
 using GWGUI.Emulation.Sega.Modules;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sony.Modules;
 using GWGUI.Emulation.Microsoft.Modules;
 
@@ -424,6 +427,59 @@ public sealed class ConsoleFamilyModuleTests
         {
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
+    }
+
+    [Fact]
+    public void SegaMasterSystemExposesItsCartridgeAndSegaCardSlots()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-storage-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("MasterSystem"));
+            var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                .DescribeStorageSettings(configuration);
+            var cartridge = Assert.Single(storage.AvailableDevices,
+                device => device.Slot == EmulationMediaSlot.Cartridge0);
+            var segaCard = Assert.Single(storage.AvailableDevices,
+                device => device.Slot == EmulationMediaSlot.Cartridge1);
+            Assert.Contains(".sms", cartridge.AcceptedExtensions);
+            Assert.Contains(".mv", segaCard.AcceptedExtensions);
+            Assert.Contains(EmulationMediaSlot.Cartridge0, storage.ConfiguredSlots);
+            Assert.Contains(EmulationMediaSlot.Cartridge1, storage.ConfiguredSlots);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SegaCatalogListsOfficialPeripheralsIndependentlyOfCoreSupport()
+    {
+        var model = ModelCatalog.Get("MegaDrive");
+        var types = ControllerCatalog.Types(model);
+        Assert.Contains(ControllerType.SegaMegaDriveThreeButton, types);
+        Assert.Contains(ControllerType.SegaMegaDriveSixButton, types);
+        Assert.Contains(ControllerType.SegaMegaMouse, types);
+        Assert.Contains(ControllerType.SegaMenacer, types);
+        Assert.Contains(ControllerType.SegaActivator, types);
+    }
+
+    [Fact]
+    public void SegaCatalogKeepsMegaCdAndThirtyTwoXAsMegaDriveExtensions()
+    {
+        Assert.DoesNotContain(ModelCatalog.All, model => model.Id is "MegaCd" or "ThirtyTwoX");
+        Assert.Contains(ModelCatalog.All, model => model.Id == "MegaDrive");
+    }
+
+    [Fact]
+    public void SecondCartridgeSlotHasAStableHostProtocolValue()
+    {
+        Assert.Equal(8, EmulationMediaSlot.Cartridge1.ProtocolValue);
+        Assert.Equal(EmulationMediaSlot.Cartridge1, EmulationMediaSlot.FromProtocolValue(8));
     }
 
     private static string RepositoryRoot() => Path.GetFullPath(Path.Combine(

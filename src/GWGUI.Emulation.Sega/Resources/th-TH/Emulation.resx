@@ -87,17 +87,17 @@
   <data name="Emulation.Sega.Help.Audio.Enabled.Detailed"><value>ควบคุมหรือไม่ GW GUI เล่นตัวอย่างเสียงที่สร้างโดยเครื่องจําลอง</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>การแสดงผลโดย GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>เลือกการแสดงผลเสียงของวินโดวส์ที่ใช้ในการเล่นเสียงจากเครื่องจําลองนี้</value></data>
-  <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD and 32X systems.</value></data>
+  <data name="Emulation.Family.Sega"><value>เซกา</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>จําลอง SG-1000มาร์ก III, ระบบหลัก, เกมเกียร์ เมก้าไดรฟ์ เมก้าCD และ 32X ระบบ</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
-  <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
-  <data name="Emulation.Sega.Model.MasterSystem"><value>Master System</value></data>
-  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Genesis</value></data>
-  <data name="Emulation.Sega.Model.MegaCd"><value>Mega-CD / Sega CD</value></data>
+  <data name="Emulation.Sega.Model.MarkIII"><value>เครื่องหมาย III</value></data>
+  <data name="Emulation.Sega.Model.MasterSystem"><value>ระบบหลัก</value></data>
+  <data name="Emulation.Sega.Model.MegaDrive"><value>เมกะ ไดรฟ์ / เยเน ซิศ</value></data>
+  <data name="Emulation.Sega.Model.MegaCd"><value>เมกะCD - เซกา CD</value></data>
   <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X</value></data>
-  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear</value></data>
-  <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
-  <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
+  <data name="Emulation.Sega.Model.GameGear"><value>เกมเกม</value></data>
+  <data name="Emulation.Sega.Model.Saturn"><value>ดาวเสาร์Name</value></data>
+  <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcaster</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>จําแนกรุ่นเซก้า ที่ปรับแต่งฮาร์ดแวร์ให้ถูกแก้ไข</value></data>
 </root>

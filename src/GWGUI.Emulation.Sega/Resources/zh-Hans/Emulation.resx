@@ -87,17 +87,17 @@
   <data name="Emulation.Sega.Help.Audio.Enabled.Detailed"><value>是否控制 GW GUI 播放模拟器生成的音频样本。</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>使用的音频输出 GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>选择用于播放此仿真机所发声音的 Windows 音频输出 。</value></data>
-  <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD and 32X systems.</value></data>
+  <data name="Emulation.Family.Sega"><value>世嘉 世嘉 世嘉 世嘉 世嘉 世嘉 世嘉</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>模拟 SG-1000马克 III游戏机 巨型驱动器 巨型CD 和32X系统。</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
-  <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
-  <data name="Emulation.Sega.Model.MasterSystem"><value>Master System</value></data>
-  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Genesis</value></data>
-  <data name="Emulation.Sega.Model.MegaCd"><value>Mega-CD / Sega CD</value></data>
-  <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X</value></data>
-  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear</value></data>
-  <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
-  <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
+  <data name="Emulation.Sega.Model.MarkIII"><value>标记 III</value></data>
+  <data name="Emulation.Sega.Model.MasterSystem"><value>主系统</value></data>
+  <data name="Emulation.Sega.Model.MegaDrive"><value>巨星驱动/ 创世纪</value></data>
+  <data name="Emulation.Sega.Model.MegaCd"><value>超级...CD / 世嘉语Name CD</value></data>
+  <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X 战舰</value></data>
+  <data name="Emulation.Sega.Model.GameGear"><value>游戏工具</value></data>
+  <data name="Emulation.Sega.Model.Saturn"><value>土星( 土星)</value></data>
+  <data name="Emulation.Sega.Model.Dreamcast"><value>梦幻演员</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>确定正在编辑其硬件配置的世嘉模型.</value></data>
 </root>

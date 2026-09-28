@@ -25,13 +25,285 @@ adaptateur par cœur réellement intégré. Aucun projet ne sera ajouté à
 Le module supplémentaire `nec` couvrira PC Engine/TurboGrafx-16, CoreGrafx,
 SuperGrafx, PC Engine Duo/TurboDuo et les variantes portables concernées.
 
+## Consignation complète des exigences utilisateur
+
+Cette section est la note de référence écrite avant toute nouvelle
+modification de code. Les cases à cocher du plan qui suit ne signifient pas
+que ces exigences sont déjà réalisées. Aucune décision technique ne doit
+remplacer une exigence explicitement notée ici.
+
+### Méthode de travail imposée
+
+- Le travail doit commencer par la note complète des exigences, puis par une
+  liste de tâches hiérarchique conforme à `.codex/config.toml`; il ne faut pas
+  modifier un fichier « à l'arrache » au moment où une idée est évoquée.
+- Le formatage doit conserver les lignes existantes lisibles : ne pas casser une
+  déclaration ou une expression sur plusieurs lignes sans nécessité réelle;
+  une coupure n'est permise que si la ligne est vraiment très longue et
+  deviendrait illisible en restant entière.
+- Lire l'architecture et les fichiers Amiga, Atari et Amstrad avant chaque
+  changement; reprendre exactement leurs structures, noms de fichiers,
+  contrats `Common` et liens `Machines/Common`.
+- `Machine/Common` est le lien/adaptateur vers le `Common` racine partagé; le
+  `Common` racine se relie ensuite à `GWGUI.Emulation`. Ne pas recopier une
+  implémentation différente et ne pas renommer les fichiers communs.
+- `GWGUI.App` ne doit pas être modifié pour implémenter une famille ou un
+  support média particulier. L'App ne fait qu'afficher et utiliser les
+  contrats existants. Si une capacité réellement générique, réutilisable par
+  plusieurs machines, ne peut pas être intégrée autrement, il faut d'abord
+  signaler le besoin, expliquer le contrat proposé et attendre sa validation;
+  aucune modification de l'App ne doit être forcée pour contourner un module.
+- Ne pas ajouter Libretro, une façade générique, une couche parallèle ou une
+  extrapolation non demandée. Les adaptateurs doivent suivre le protocole et
+  les fichiers déjà utilisés par les familles existantes; les cœurs sont
+  ajoutés uniquement lorsqu'un adaptateur concret et fonctionnel est défini.
+- Ne pas recréer `Emulators/<émulateur>/Core`: les fichiers de chaque cœur sont
+  directement dans `Emulators/<émulateur>/`, comme dans l'arborescence déjà
+  aplatie.
+- Ne faire un commit qu'après une tranche réellement complète, fonctionnelle,
+  testée et terminée; ne pas committer trois fichiers isolés. Tout changement
+  important ou toute nouvelle fonctionnalité doit avoir son commit cohérent.
+- Ne modifier aucun fichier média de l'utilisateur pour adapter le logiciel.
+  Les archives ZIP peuvent être inspectées en les extrayant dans le dossier du
+  ZIP, sans supprimer l'archive et sans ré-extraire lorsqu'un dossier du même
+  nom existe déjà; l'audit de `F:\Retro` doit couvrir tous les fichiers et
+  rester rapide, sans bloquer des heures sur un seul média.
+
+### Familles et machines demandées
+
+- Créer et rendre fonctionnels les modules `Emulation.Sega`,
+  `Emulation.Nintendo`, `Emulation.Sony`, `Emulation.Microsoft` et
+  `Emulation.Nec`, sans ajouter de famille non demandée.
+- Sega doit couvrir SG-1000, SC-3000, Mark III, Master System, Master System
+  II, Game Gear, Mega Drive, Saturn et Dreamcast.
+- Nintendo doit couvrir Game & Watch, NES/Famicom, Famicom Disk System, SNES,
+  Virtual Boy, Nintendo 64, Game Boy, Game Boy Color, Game Boy Advance,
+  Nintendo DS/DSi, 3DS, GameCube, Wii, Wii U et Switch si un cœur vérifiable
+  est réellement intégrable.
+- Sony doit couvrir PlayStation/PS one, PlayStation 2/PStwo, PSP et ses
+  variantes Slim/Lite/Go, PS Vita, PS3, PS4 et PS5 lorsqu'un cœur local
+  vérifiable existe.
+- Microsoft doit couvrir Xbox et Xbox 360.
+- NEC doit couvrir PC Engine/TurboGrafx-16, CoreGrafx, SuperGrafx, PC Engine
+  Duo/TurboDuo, PC Engine GT/TurboExpress et PC Engine LT lorsqu'ils sont
+  réellement pris en charge.
+- Pour chaque famille, le catalogue doit recenser tous les modèles, révisions,
+  variantes commerciales, supports et périphériques officiels demandés; une
+  capacité absente d'un cœur ne justifie jamais de supprimer l'entrée. Seule
+  l'utilisation effective est refusée par la validation de ce cœur.
+- Ajouter les ordinateurs uniquement s'ils ne sont pas IBM PC compatible
+  x86/x64 et si leur adaptateur et leurs médias sont disponibles.
+
+### Règle matérielle Sega : une seule Mega Drive et des extensions
+
+- Le catalogue ne doit contenir qu'une machine `MegaDrive`. Mega Drive I,
+  Mega Drive II, Genesis US et Mega Drive européen/japonais sont des options de
+  configuration, jamais des machines séparées.
+- Le nom affiché est traduit par culture (par exemple « Mega Drive » en
+  français et « Genesis » en anglais); il ne faut pas dupliquer une machine
+  pour le nom commercial.
+- Le modèle I/II est choisi dans les options matérielles (CPU/ROM ou la
+  section équivalente existante). RAM, puissance ou CPU ne sont différenciés
+  que si les valeurs réelles et le cœur les exposent; aucune valeur inventée
+  ne doit devenir modifiable.
+- La région doit proposer Auto, NTSC-U, NTSC-J, PAL et SECAM. La fréquence
+  50/60 Hz doit être cohérente avec la région mais rester sélectionnable si le
+  cœur le permet; NTSC-U, NTSC-J, PAL et SECAM ne doivent pas être confondus
+  avec le nom du modèle.
+- Mega-CD I et Mega-CD II sont des extensions du lecteur CD ajouté à Mega
+  Drive, pas des machines indépendantes. La configuration doit permettre
+  d'activer/désactiver le lecteur, de choisir I ou II et d'appliquer uniquement
+  la vitesse/latence réellement associée au lecteur choisi. Une image Mega-CD
+  est refusée si le lecteur ajouté est désactivé.
+- Le 32X est une extension du port cartouche de Mega Drive, pas une machine
+  indépendante. Il doit être activable/désactivable; les cartouches `.32x`
+  sont acceptées seulement lorsqu'il est activé.
+- Les profils matériels doivent aussi couvrir le Master System Converter et
+  le Game Gear Converter, ainsi que les ROM/BIOS Mega-CD, Saturn et Dreamcast.
+
+### Règle matérielle Master System et supports Sega Card
+
+- Le catalogue doit contenir une seule machine `MasterSystem`; SMS I et SMS II
+  sont deux variantes choisies par une case de configuration, pas deux machines
+  séparées. La variante SMS II doit reprendre les mêmes réglages de base que le
+  SMS I puis appliquer uniquement les différences matérielles vérifiées.
+- Le modèle SMS I/SMS II doit conserver les vraies valeurs de CPU, ROM, RAM,
+  VDP et puce audio. Une différence n'est exposée que lorsqu'elle est établie
+  par le matériel et par le cœur; aucune différence supposée ne devient une
+  option.
+- Le SMS I doit exposer simultanément deux lecteurs distincts dans le même
+  modèle : un lecteur de cartouche et un lecteur de Sega Card/My Card. Les deux
+  supports peuvent être insérés en même temps. La priorité de lecture réelle
+  entre les deux doit être représentée et vérifiée sur le modèle, sans inventer
+  un ordre arbitraire.
+- La configuration Sega Card doit proposer le mode Sega 3-D Glasses. Lorsque ce
+  mode est activé, le lecteur Sega Card est verrouillé et une Sega Card ne peut
+  plus être insérée. Il faut vérifier si le cœur applique déjà l'affichage 3D
+  des jeux SMS concernés ou si un filtre d'affichage séparé est nécessaire;
+  aucune conversion 3D ne doit être ajoutée sans cette vérification.
+- Le SMS II doit exposer l'absence du lecteur Sega Card si elle est confirmée
+  par le matériel, tout en conservant le lecteur de cartouche.
+
+### Périphériques officiels et entrées Sega
+
+- Ne pas afficher « joystick » comme périphérique universel. Le catalogue doit
+  consigner **tous** les périphériques officiels de chaque machine et de chaque
+  port, même lorsqu'un cœur donné ne sait pas encore les piloter. La
+  compatibilité du cœur est une validation séparée : elle autorise uniquement
+  les modèles effectivement pris en charge, sans supprimer les autres du
+  catalogue.
+- Master System: manette standard, Control Stick et Light Phaser. Le
+  pistolet est piloté par la souris et son pointeur doit être visible dans
+  l'affichage sous forme de gros point ou de petit cercle; cette règle vaut
+  pour tous les pistolets de toutes les machines.
+- Mega Drive: manette 3 boutons, manette 6 boutons, Mega Mouse (notamment Art
+  Alive), Menacer et tous les autres périphériques officiels documentés.
+- Recenser de la même façon tous les périphériques officiels propres à
+  SG-1000, SC-3000, Mark III, Game Gear, Saturn et Dreamcast; ne rien inventer
+  et ne rien retirer parce qu'un cœur est incomplet.
+- La liste de référence des modèles et des visuels officiels Sega est
+  `docs/tasks/interface/controller-artwork-backlog.md`; elle doit être reprise
+  dans le catalogue de la machine, puis filtrée séparément selon les capacités
+  réellement déclarées par chaque cœur.
+- Les options d'entrée doivent relier `GameInput` aux fonctions de la famille,
+  puis au cœur, sans casser clavier, souris ou manette existants. Toute fenêtre,
+  surface, processus ou cœur doit être détaché et libéré dans `finally`.
+
+### ROM, CPU, RAM, vidéo et audio
+
+- Exposer les vrais noms de CPU, GPU/VPU et puces audio dans l'onglet CPU et
+  les vraies valeurs de RAM/ROM. Ces valeurs sont fixes sauf réglage réellement
+  prévu par le matériel et le cœur.
+- Master System doit proposer les profils de ROM système Hang On + Snail Maze,
+  Hang On, Hang On + Safari Hunt, Alex Kidd, Sonic et Master System II.
+- Prévoir les ROM/BIOS Mega Drive II, Mega-CD I/II, 32X, Master System
+  Converter, Game Gear Converter, Saturn et Dreamcast, sans créer de fichier
+  BIOS fictif.
+- Toutes les clés et valeurs traduisibles doivent exister dans la base commune
+  et dans chaque culture existante; « Cartridge » devient « Cartouche » en
+  français, et les libellés Sega Card/My Card/Mark doivent être localisés.
+
+### Supports média, conversion, visualisation et exploration
+
+- Les lecteurs, writers, représentations et conversions vivent dans
+  `GWGUI.MediaEngine`; les systèmes de fichiers dans
+  `GWGUI.MediaFileSystems`; la détection et l'analyse dans
+  `GWGUI.MediaAnalysis`. Les modules d'émulation ne recopient aucun lecteur.
+- Couvrir tous les supports demandés et ceux présents dans `F:\Retro`, sans
+  oublier Famicom Disk, Sega Card/My Card, HuCard/PCE, cartouches console,
+  disquettes, cassettes, flux SCP/HxC/KryoFlux, optiques et multi-pistes.
+  Pour Dreamcast, traiter le disque GD-ROM (environ 1 Go) avec ses pistes et
+  son descripteur, sans le présenter comme un simple LBA de cartouche.
+- Pour les cartouches SMS, déclarer des formats distincts pour la cartouche et
+  la Sega Card, deux slots simultanés dans MediaEngine et MediaFileSystems, et
+  refuser l'insertion d'une Sega Card lorsque le mode 3-D Glasses est actif.
+- Les flux audio/cassette (CDT, TAP, TZX, TSX, VOC, WAV, FLAC, MP3, AAC, M4A,
+  RAW audio et HXCSTREAM lorsqu'il est décodable) doivent pouvoir être lus,
+  visualisés comme bande découpée en blocs, convertis et explorés lorsqu'un
+  décodage réel existe. Les images sectorielles (DSK, EDSK, ADF, ATR, etc.)
+  restent distinctes des flux.
+- Une cartouche doit être représentée comme une cartouche adaptée à sa machine,
+  avec tous ses blocs/banques visibles et lisibles, sans forme de disque, sans
+  LBA générique et sans blocs noirs lorsque des données sont présentes. Le
+  compteur et les segments doivent correspondre au nombre réel de banques.
+- La bande et ses blocs doivent apparaître dans la barre de status et en bas du
+  visualisateur, avec la progression de lecture bloc par bloc déjà utilisée par
+  les autres vues. Ne pas introduire une seconde barre de progression générique.
+- La conversion doit écrire dans le dossier source lorsque ce comportement est
+  demandé, mémoriser correctement les dossiers via MediaEngine et continuer une
+  conversion par lot après une erreur. L'erreur doit rester un message court,
+  traduit et rouge dans la console; la boîte de dialogue ne doit pas afficher la
+  stack trace technique.
+- La console est indépendante par onglet: chaque onglet conserve ouvert/fermé
+  et sa hauteur. Cette persistance ne doit pas modifier la logique de l'App ou
+  les barres de secteurs/blocs communes.
+- Aucun dossier `Images/Formats/Cartridge/Raw`, aucun identifiant
+  `RawCartridge`, aucun « raw cartridge » générique et aucun code inventé ne
+  doit être ajouté. Les formats doivent porter le nom réel de la machine ou du
+  support.
+
+### Cibles de traduction et de non-régression
+
+- Ne jamais laisser apparaître une clé de ressource telle que
+  `[Conversion.MediaEngineFamily]`; chaque nouveau libellé doit être résolu
+  dans toutes les langues avec Argos et la base commune.
+- Conserver les barres de secteurs/blocs partagées par Lecture, Écriture,
+  Visualisation, Explorateur et Conversion; supprimer toute progression
+  concurrente qui n'est pas cette barre commune.
+- Les erreurs détaillées restent disponibles dans la console pour le diagnostic,
+  mais l'interface utilisateur reçoit un message traduit et court. Les images
+  corrompues doivent signaler leur erreur sans être modifiées ou complétées.
+
 ### Sega
 
-- SG-1000, SC-3000 et Mark III/Master System ;
-- Mega Drive/Genesis, Mega-CD, 32X ;
+- SG-1000, SC-3000, Mark III, Master System et Master System II ;
+- une seule machine Mega Drive/Genesis avec extensions Mega-CD I/II et 32X ;
 - Game Gear ;
 - Saturn ;
 - Dreamcast.
+
+### Exigences Sega à reprendre avant toute nouvelle implémentation
+
+- [ ] Corriger le catalogue matériel Sega en conservant exactement les frontières `Common` et `Machines/Common` déjà utilisées par Amiga, Atari et Amstrad.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/ModelContracts.cs` pour porter les caractéristiques matérielles vérifiées (CPU, puce vidéo, puce audio, RAM fixe, ports et supports) sans ajouter de champs propres à une autre famille.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour décrire séparément SG-1000, SC-3000, Mark III, une seule machine Master System configurable SMS I/SMS II, Game Gear, une seule machine Mega Drive, Saturn et Dreamcast, avec les valeurs matérielles vérifiées ; Mega-CD I/II et 32X ne doivent pas être des machines du catalogue.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/ConfigurationFunctions.cs` pour afficher les caractéristiques fixes et refuser les combinaisons de supports ou de ports incompatibles avec le modèle sélectionné.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/SettingsConstants.cs` pour afficher les noms réels des CPU, GPU/VPU et puces audio, et ne proposer une modification de RAM/CPU que lorsque le matériel la permet réellement.
+- [ ] Recenser tous les périphériques officiels Sega, puis valider séparément la compatibilité effective de chaque cœur au moment de la sélection.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Enums/ControllerEnums.cs` pour déclarer les catégories Sega officielles sans renommer ni dupliquer les contrats communs existants.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` pour décrire la topologie des ports et **tous** les périphériques officiels connus de SG-1000, SC-3000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD, 32X, Saturn et Dreamcast, indépendamment de la couverture actuelle des cœurs.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` pour exposer les choix officiels et leurs actions propres, au lieu de présenter `Joystick` pour tout.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` pour utiliser les visuels existants et les contrôles propres aux manettes, souris et pistolets.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs` pour convertir les catégories Sega vers `GWGUI.Emulation.Enums.EmulationPeripheralCategory` sans perte de périphérique.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Services/Machine.cs` et `src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs` pour appliquer réellement le périphérique choisi au port du cœur et libérer toute ressource empruntée dans `finally`.
+  - [ ] Ajouter dans `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` le Master System Controller, le Control Stick et le Light Phaser, avec le pointeur souris demandé pour les pistolets.
+  - [ ] Ajouter dans `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` les manettes Mega Drive 3 boutons et 6 boutons, la Mega Mouse, le Menacer et tous les autres modèles officiels recensés, même lorsqu'un cœur ne les expose pas encore.
+  - [ ] Ajouter dans les mêmes catalogues tous les périphériques officiels recensés de Saturn, Dreamcast, SG-1000, SC-3000, Mark III et Game Gear, sans inventer de périphérique; la sélection effective sera filtrée séparément par les capacités de chaque cœur.
+- [ ] Ajouter les ROM système, BIOS et extensions officielles Sega dans la configuration et les cœurs.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` et les contrats de firmware pour définir les profils vérifiés de Master System (Hang On + Snail Maze, Hang On, Hang On + Safari Hunt, Alex Kidd, Sonic), Master System II, Mega Drive II, Mega-CD I/II, 32X, Master System Converter, Game Gear Converter, Saturn et Dreamcast.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour relier chaque profil à son modèle et à son chemin de fichier sans créer de BIOS fictif.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` pour afficher et persister la sélection de ROM système dans la configuration du modèle.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs`, `src/GWGUI.Emulation.Sega/Emulators/Yabause/Services/ExternalCore.cs` et `src/GWGUI.Emulation.Sega/Emulators/Flycast/Services/ExternalCore.cs` pour transmettre au cœur les profils firmware réellement disponibles et refuser explicitement ceux qu’il ne sait pas charger.
+- [ ] Corriger les cartouches, cartes et disques Sega sans libellé générique ni structure inventée.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/StorageConstants.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/StorageFunctions.cs` pour déclarer les extensions et supports Sega vérifiés (Sega Card/My Card, cartouches SG-1000/Mark III/Master System/Game Gear/Mega Drive/32X, Mega-CD, Saturn et Dreamcast).
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs` pour relier les deux slots SMS (cartouche et Sega Card), conserver leur insertion simultanée et appliquer la priorité matérielle vérifiée, tout en séparant les lecteurs cartouche, carte et optique.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/ConfigurationContracts.cs` pour persister les extensions Mega Drive activées (modèle Mega-CD du lecteur ajouté, vitesse du lecteur correspondante et présence du 32X) sans créer une machine fictive séparée.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/ConfigurationFunctions.cs` pour n’accepter les images Mega-CD que lorsque le lecteur ajouté est activé et pour n’accepter les cartouches 32X que lorsque l’extension 32X est activée.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` pour afficher dans la configuration Mega Drive le choix Mega-CD I/Mega-CD II et l’activation du 32X, avec les valeurs de vitesse propres au lecteur sélectionné.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/SettingsConstants.cs`, `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/ConfigurationFunctions.cs` pour conserver une seule machine `MegaDrive` et proposer ses variantes matérielles (Mega Drive I/II, nom Genesis/Mega Drive selon la langue), sa région Auto/NTSC-U/NTSC-J/PAL/SECAM et sa fréquence 50/60 Hz sans mélanger les choix régionaux avec le nom du modèle, ainsi qu'une seule machine `MasterSystem` avec l'option SMS I/SMS II et l'option Sega 3-D Glasses.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` et `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour transmettre au cœur les extensions Mega-CD/32X choisies sur Mega Drive et refuser les supports incompatibles.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/ar-SA/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/cs-CZ/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/da-DK/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/de-DE/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/el-GR/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/en-US/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/es-ES/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/fi-FI/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/fr-FR/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/he-IL/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/hu-HU/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/id-ID/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/it-IT/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/ja-JP/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/ko-KR/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/nb-NO/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/nl-NL/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/pl-PL/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/pt-BR/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/pt-PT/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/ro-RO/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/ru-RU/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/sv-SE/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/th-TH/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/tr-TR/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/uk-UA/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/vi-VN/Emulation.resx`, `src/GWGUI.Emulation.Sega/Resources/zh-Hans/Emulation.resx` et `src/GWGUI.Emulation.Sega/Resources/zh-Hant/Emulation.resx` pour remplacer « Cartridge » par « Cartouche », ajouter les libellés Sega Card/Mark et traduire chaque nouveau périphérique, profil ROM et support.
+  - [ ] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs`, `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs`, `src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs`, `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/CommonMediaContentRecognitionTable.cs` pour relier uniquement les formats Sega démontrés, sans ajouter de dossier `Raw` ou de type générique.
+- [ ] Implémenter et vérifier l’exécution complète des périphériques et options Sega.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` et ses constantes pour sélectionner le périphérique officiel demandé par port, mapper la souris/pointeur du Light Phaser et ne plus imposer `JoypadDevice` à tous les ports.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/Yabause/Services/ExternalCore.cs` et `src/GWGUI.Emulation.Sega/Emulators/Flycast/Services/ExternalCore.cs` pour appliquer les périphériques et options propres à Saturn et Dreamcast.
+  - [ ] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/ConsoleFamilyMediaScenarios.cs` et `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineCapabilitiesScenarios.cs` pour ajouter les tests autonomes du catalogue matériel, des ports et périphériques officiels, des profils ROM, des extensions Sega, des traductions et du mapping des adaptateurs.
+  - [ ] Compiler le module Sega et exécuter les tests concernés après toutes les sous-tâches, puis seulement créer un commit cohérent de cette tranche terminée.
+  - [ ] Créer `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Constants/PicoDriveConstants.cs`, `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Factories/PicoDriveMachineFactory.cs` et `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Services/ExternalCore.cs` en reprenant les contrats existants, car Genesis Plus GX ne prend pas en charge le 32X ; réserver cet adaptateur aux extensions et options que PicoDrive expose réellement.
+
+### Tranche Sega 1 — catalogue matériel et périphériques officiels
+
+- [ ] Remplacer le catalogue Sega générique par le catalogue matériel demandé,
+  sans créer de machine pour un add-on.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/ModelContracts.cs` pour stocker le nom de ressource, les CPU, les puces vidéo/audio, la RAM fixe, les ports et les supports de chaque modèle.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour supprimer `MegaCd` et `ThirtyTwoX` comme machines, conserver une seule entrée `MasterSystem` configurable en SMS I/SMS II et conserver une seule entrée `MegaDrive`.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/MachineCatalog.cs` pour publier uniquement les modèles du catalogue matériel.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs`, `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Factories/GenesisPlusGXMachineFactory.cs`, `src/GWGUI.Emulation.Sega/Emulators/Yabause/Factories/YabauseMachineFactory.cs` et `src/GWGUI.Emulation.Sega/Emulators/Flycast/Factories/FlycastMachineFactory.cs` pour rattacher les cœurs aux machines réelles et laisser les extensions Mega-CD/32X dans la configuration Mega Drive.
+- [ ] Recenser tous les modèles de périphériques officiels Sega avant tout
+  filtrage par cœur.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Enums/ControllerEnums.cs` pour déclarer les catégories officielles (manettes, Control Stick, Light Phaser, pistolets, Mega Mouse, Menacer et autres modèles recensés) sans garder `Joystick` comme catégorie unique.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` pour rattacher chaque modèle officiel à sa machine et à son port, même s'il n'est pas encore accepté par un cœur.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` pour présenter les noms de périphériques et les visuels adaptés, avec le pointeur Light Phaser souris.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` pour préserver les mappings clavier/souris/manette et appliquer la catégorie sélectionnée sans supprimer les modèles catalogués.
+- [ ] Exposer les premières options matérielles Sega sans modifier App.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationMediaSlotConstants.cs` et `src/GWGUI.Emulation/Contracts/EmulationMediaSlot.cs` pour ajouter un second slot cartouche générique et sa valeur de protocole, en réutilisant le préfixe déjà présent dans `src/GWGUI.Emulation/Dictionaries/EmulationMediaSlotDictionaries.cs`, sans modifier `GWGUI.App`.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationMediaSlotConstants.cs` et `src/GWGUI.Emulation/Contracts/EmulationMediaSlot.cs` pour supprimer le message anglais embarqué dans l'exception de protocole et laisser la couche de présentation fournir les messages traduits.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/SettingsConstants.cs`, `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` et `src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs` pour Mega Drive I/II, Genesis/Mega Drive selon la culture, région Auto/NTSC-U/NTSC-J/PAL/SECAM et fréquence 50/60 Hz.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/ConfigurationFunctions.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/ConfigurationContracts.cs` pour valider ces options et ne pas transformer Mega-CD/32X en machines.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Emulation.resx` et chaque `src/GWGUI.Emulation.Sega/Resources/<culture>/Emulation.resx` pour localiser les modèles, périphériques, régions et extensions sans laisser de clé technique.
+- [ ] Vérifier la tranche Sega 1 avant de la considérer comme terminée.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour tester l'absence de machines `MegaCd`/`ThirtyTwoX`, la présence des deux slots Master System et le catalogue des périphériques.
+  - [ ] Modifier `docs/project/console-family-emulation.md` pour cocher uniquement les sous-tâches effectivement réalisées après compilation et tests du module Sega.
 
 ### Nintendo
 

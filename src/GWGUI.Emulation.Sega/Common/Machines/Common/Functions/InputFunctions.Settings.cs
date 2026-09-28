@@ -16,7 +16,7 @@ internal static partial class InputSettingsFunctions
         var ports = Enumerable.Range(0, model.ControllerPortCount).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = current?.Type ?? ControllerCatalog.Default(model);
+            var type = ControllerCatalog.Normalize(model, current?.Type ?? ControllerType.Automatic);
             return new EmulationControllerPort(index + 1,
                 ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
@@ -40,10 +40,11 @@ internal static partial class InputSettingsFunctions
                 && action != MouseAction.None)
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase) ?? new Dictionary<string, MouseAction>();
+        var model = ModelCatalog.Get(configuration.Model);
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
             port.Number - 1,
-            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
-                ? type : ControllerType.None,
+            ControllerCatalog.Normalize(model, Enum.TryParse<ControllerType>(
+                port.SelectedControllerId, true, out var type) ? type : ControllerType.None),
             port.PhysicalDeviceId,
             port.Bindings.Values
                 .Where(item => !string.IsNullOrWhiteSpace(item.Key)

@@ -8,6 +8,67 @@ internal static partial class SettingsDescriptionFunctions
         var options = configuration.Options ?? new Dictionary<string, string>();
         var ram = options.GetValueOrDefault(SettingsConstants.Ram,
             model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        var processors = string.Join(" / ", model.Processors);
+        var hardwareFields = model.Id switch
+        {
+            ModelConstants.MasterSystem => new EmulationSettingsField[]
+            {
+                Select(SettingsConstants.MasterSystemVariant, EmulationMachineTab.General,
+                    SettingsDescriptionFunctionsConstants.Hardware,
+                    SettingsDescriptionFunctionsConstants.ResourceMasterSystemVariant,
+                    options.GetValueOrDefault(SettingsConstants.MasterSystemVariant,
+                        ModelConstants.MasterSystemSmsI),
+                    [new(ModelConstants.MasterSystemSmsI,
+                        SettingsDescriptionFunctionsConstants.ResourceMasterSystemSmsI),
+                     new(ModelConstants.MasterSystemSmsIi,
+                        SettingsDescriptionFunctionsConstants.ResourceMasterSystemSmsIi)], true),
+                Toggle(SettingsConstants.MasterSystemThreeDGlasses, EmulationMachineTab.General,
+                    SettingsDescriptionFunctionsConstants.Hardware,
+                    SettingsDescriptionFunctionsConstants.ResourceMasterSystemThreeDGlasses,
+                    options.GetValueOrDefault(SettingsConstants.MasterSystemThreeDGlasses,
+                        SettingsDescriptionFunctionsConstants.Disabled)
+                        == SettingsDescriptionFunctionsConstants.Enabled, true)
+            },
+            ModelConstants.MegaDrive => new EmulationSettingsField[]
+            {
+                Select(SettingsConstants.MegaDriveModel, EmulationMachineTab.General,
+                    SettingsDescriptionFunctionsConstants.Hardware,
+                    SettingsDescriptionFunctionsConstants.ResourceMegaDriveModel,
+                    options.GetValueOrDefault(SettingsConstants.MegaDriveModel,
+                        ModelConstants.MegaDriveModelI),
+                    [new(ModelConstants.MegaDriveModelI,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveModelI),
+                     new(ModelConstants.MegaDriveModelII,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveModelII)], true),
+                Select(SettingsConstants.MegaDriveRegion, EmulationMachineTab.General,
+                    SettingsDescriptionFunctionsConstants.Hardware,
+                    SettingsDescriptionFunctionsConstants.ResourceMegaDriveRegion,
+                    options.GetValueOrDefault(SettingsConstants.MegaDriveRegion,
+                        ModelConstants.RegionAutomatic),
+                    [new(ModelConstants.RegionAutomatic,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveRegionAutomatic),
+                     new(ModelConstants.RegionNtscU,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveRegionNtscU),
+                     new(ModelConstants.RegionNtscJ,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveRegionNtscJ),
+                     new(ModelConstants.RegionPal,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveRegionPal),
+                     new(ModelConstants.RegionSecam,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveRegionSecam)], true),
+                Select(SettingsConstants.MegaDriveVideoStandard, EmulationMachineTab.General,
+                    SettingsDescriptionFunctionsConstants.Hardware,
+                    SettingsDescriptionFunctionsConstants.ResourceMegaDriveVideoStandard,
+                    options.GetValueOrDefault(SettingsConstants.MegaDriveVideoStandard,
+                        ModelConstants.VideoStandardAutomatic),
+                    [new(ModelConstants.VideoStandardAutomatic,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveVideoStandardAutomatic),
+                     new(ModelConstants.VideoStandard50Hz,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveVideoStandard50Hz),
+                     new(ModelConstants.VideoStandard60Hz,
+                        SettingsDescriptionFunctionsConstants.ResourceMegaDriveVideoStandard60Hz)], true)
+            },
+            _ => []
+        };
         return
         [
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
@@ -20,13 +81,16 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.General,
                     SettingsDescriptionFunctionsConstants.ResourceEmulator,
                     "Sega")),
+            Block(SettingsDescriptionFunctionsConstants.Hardware, EmulationMachineTab.General,
+                SettingsDescriptionFunctionsConstants.ResourceHardware,
+                SettingsDescriptionFunctionsConstants.IconGeneral, 2, hardwareFields),
             Block(SettingsDescriptionFunctionsConstants.Cpu, EmulationMachineTab.Cpu,
                 SettingsDescriptionFunctionsConstants.ResourceCpuProcessor,
                 SettingsDescriptionFunctionsConstants.IconCpu, 2,
                 Information(SettingsConstants.Model + ".cpu", EmulationMachineTab.Cpu,
                     SettingsDescriptionFunctionsConstants.Cpu,
                     SettingsDescriptionFunctionsConstants.ResourceCpuModel,
-                    "Sega"),
+                    processors),
                 Information(SettingsConstants.Model + ".frequency", EmulationMachineTab.Cpu,
                     SettingsDescriptionFunctionsConstants.Cpu,
                     SettingsDescriptionFunctionsConstants.ResourceCpuSpeed,

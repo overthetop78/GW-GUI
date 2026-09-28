@@ -7,6 +7,11 @@ internal static class SettingsHelpDictionary
         {
             [SettingsConstants.Model] = "Emulation.Sega.Help.General.Model",
             [SettingsConstants.Emulator] = "Emulation.Sega.Help.General.Emulator",
+            [SettingsConstants.MasterSystemVariant] = "Emulation.Sega.Help.MasterSystem.Variant",
+            [SettingsConstants.MasterSystemThreeDGlasses] = "Emulation.Sega.Help.MasterSystem.ThreeDGlasses",
+            [SettingsConstants.MegaDriveModel] = "Emulation.Sega.Help.MegaDrive.Model",
+            [SettingsConstants.MegaDriveRegion] = "Emulation.Sega.Help.MegaDrive.Region",
+            [SettingsConstants.MegaDriveVideoStandard] = "Emulation.Sega.Help.MegaDrive.VideoStandard",
             [SettingsConstants.Model + ".cpu"] = "Emulation.Sega.Help.Cpu.Model",
             [SettingsConstants.Model + ".frequency"] = "Emulation.Sega.Help.Cpu.Frequency",
             [SettingsConstants.Ram] = "Emulation.Sega.Help.Memory.Ram",

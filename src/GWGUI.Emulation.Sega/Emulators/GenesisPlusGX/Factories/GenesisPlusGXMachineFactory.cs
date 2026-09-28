@@ -16,7 +16,7 @@ internal sealed class GenesisPlusGXMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         GenesisPlusGXConstants.Id, GenesisPlusGXConstants.DisplayName,
         GenesisPlusGXConstants.DescriptionResourceKey,
-        new[] { "Sg1000", "Sc3000", "MarkIII", "MasterSystem", "MegaDrive", "MegaCd", "ThirtyTwoX", "GameGear" }.ToHashSet(StringComparer.Ordinal));
+        new[] { "Sg1000", "Sc3000", "MarkIII", "MasterSystem", "MegaDrive", "GameGear" }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {

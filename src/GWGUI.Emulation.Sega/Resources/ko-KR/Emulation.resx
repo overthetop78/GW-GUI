@@ -87,17 +87,17 @@
   <data name="Emulation.Sega.Help.Audio.Enabled.Detailed"><value>제어 여부 GW GUI 에뮬레이터에 의해 생성 된 오디오 샘플을 재생합니다.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>에 의해 사용되는 오디오 출력 GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>이 에뮬레이션 머신에서 사운드를 재생하는 데 사용되는 Windows 오디오 출력을 선택합니다.</value></data>
-  <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD and 32X systems.</value></data>
+  <data name="Emulation.Family.Sega"><value>뚱 베어</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 SG-1000, 표 III, 마스터 시스템, 게임 기어, 메가 드라이브, 메가-CD 그리고 32X 체계.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
-  <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
-  <data name="Emulation.Sega.Model.MasterSystem"><value>Master System</value></data>
-  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Genesis</value></data>
-  <data name="Emulation.Sega.Model.MegaCd"><value>Mega-CD / Sega CD</value></data>
-  <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X</value></data>
-  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear</value></data>
-  <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
-  <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
+  <data name="Emulation.Sega.Model.MarkIII"><value>팟캐스트 III</value></data>
+  <data name="Emulation.Sega.Model.MasterSystem"><value>마스터 시스템</value></data>
+  <data name="Emulation.Sega.Model.MegaDrive"><value>메가 드라이브 / Genesis</value></data>
+  <data name="Emulation.Sega.Model.MegaCd"><value>메가-CD / 세이가 CD</value></data>
+  <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X의</value></data>
+  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear의 특징</value></data>
+  <data name="Emulation.Sega.Model.Saturn"><value>의 의</value></data>
+  <data name="Emulation.Sega.Model.Dreamcast"><value>드림캐스트</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>하드웨어 구성이 편집되는 Sega 모델을 식별합니다.</value></data>
 </root>

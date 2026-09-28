@@ -17,8 +17,8 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.CompactDisc => EmulationMediaCategory.CompactDiscDrive,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
-            var index = indexes.GetValueOrDefault(category);
-            indexes[category] = index + 1;
+            var index = item.Slot.Category == category ? item.Slot.Index : indexes.GetValueOrDefault(category);
+            indexes[category] = Math.Max(indexes.GetValueOrDefault(category), index + 1);
             var type = item.Category switch
             {
                 MediaCategory.Floppy or MediaCategory.Snapshot => EmulationMediaType.Floppy,

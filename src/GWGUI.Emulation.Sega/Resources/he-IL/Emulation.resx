@@ -88,16 +88,16 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>תפוקה אודיו בשימוש GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>בחר את פלט אודיו של Windows המשמש כדי לנגן קול ממכונה זו.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD and 32X systems.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>⁇ SG-1000מארק IIIMaster System, Game Gear, Mega Drive, Mega- Mega---CD 32X מערכות</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
-  <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
-  <data name="Emulation.Sega.Model.MasterSystem"><value>Master System</value></data>
+  <data name="Emulation.Sega.Model.MarkIII"><value>מארק מארק III</value></data>
+  <data name="Emulation.Sega.Model.MasterSystem"><value>מערכת Master</value></data>
   <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Genesis</value></data>
-  <data name="Emulation.Sega.Model.MegaCd"><value>Mega-CD / Sega CD</value></data>
+  <data name="Emulation.Sega.Model.MegaCd"><value>Mega--CD תגית: Sega CD</value></data>
   <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X</value></data>
-  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear</value></data>
-  <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
+  <data name="Emulation.Sega.Model.GameGear"><value>משחק Gear</value></data>
+  <data name="Emulation.Sega.Model.Saturn"><value>שבתאי שבתאי</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifies מודל Sega אשר תצורות החומרה שלו הוא ערוך.</value></data>
 </root>

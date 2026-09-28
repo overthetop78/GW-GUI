@@ -1,6 +1,8 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 
@@ -120,8 +122,7 @@ internal sealed class ExternalCore : IEmulatorCore
             _host.ValidateConfiguredOptions();
             var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
                 ExternalCoreConstants.RetroSetControllerPortDevice);
-            for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, ExternalCoreConstants.JoypadDevice);
+            ConfigureControllerPorts(configuration, setController);
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)
@@ -160,6 +161,42 @@ internal sealed class ExternalCore : IEmulatorCore
             new System.Text.UTF8Encoding(false));
         return playlist;
     }
+
+    private void ConfigureControllerPorts(MachineConfiguration configuration,
+        ExternalCoreApi.SetControllerPortDevice setController)
+    {
+        var model = ModelCatalog.Get(configuration.Model);
+        var configured = configuration.Input?.ControllerBindings ?? [];
+        for (var port = 0; port < model.ControllerPortCount; port++)
+        {
+            var type = configured.FirstOrDefault(item => item.Port == port)?.Type
+                ?? ControllerCatalog.Default(model);
+            setController((uint)port, ResolveControllerDevice(port, type));
+        }
+    }
+
+    private uint ResolveControllerDevice(int port, ControllerType type)
+    {
+        var devices = _host?.ControllerPorts.ElementAtOrDefault(port) ?? [];
+        if (type == ControllerType.None) return 0;
+        var aliases = ControllerAliases(type);
+        return devices.FirstOrDefault(device => aliases.Any(alias =>
+            device.Name.Contains(alias, StringComparison.OrdinalIgnoreCase)))?.Id
+            ?? devices.FirstOrDefault()?.Id ?? 0;
+    }
+
+    private static IReadOnlyList<string> ControllerAliases(ControllerType type) => type switch
+    {
+        ControllerType.SegaLightPhaser => ["light phaser", "lightgun", "light gun"],
+        ControllerType.SegaMegaMouse or ControllerType.SegaSaturnShuttleMouse
+            or ControllerType.SegaDreamcastMouse => ["mouse"],
+        ControllerType.SegaMenacer or ControllerType.SegaSaturnVirtuaGun
+            or ControllerType.SegaDreamcastLightGun => ["menacer", "light gun", "lightgun"],
+        ControllerType.SegaPaddleControl or ControllerType.SegaSportsPad => ["paddle", "sports"],
+        ControllerType.SegaSc3000Keyboard or ControllerType.SegaDreamcastKeyboard => ["keyboard"],
+        ControllerType.SegaActivator => ["activator"],
+        _ => ["joypad", "controller", "gamepad"]
+    };
 
     public void RunFrame() => (_run
         ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))();

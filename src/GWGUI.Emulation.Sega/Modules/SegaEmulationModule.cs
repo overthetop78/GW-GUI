@@ -46,7 +46,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
-                || model.SupportsCompactDiscDrive,
+                || model.SupportsSegaCardSlot || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
         return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
@@ -58,7 +58,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Controllers: Enumerable.Repeat(ControllerType.Joystick,
+            Controllers: Enumerable.Repeat(ControllerCatalog.Default(model),
                 model.ControllerPortCount).ToArray(),
             Input: new InputConfiguration(), Media: []);
     }
@@ -266,7 +266,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
     private static MachineConfiguration WithMedia(MachineConfiguration configuration,
         IEnumerable<EmulationMedia> media) => configuration with
     {
-        Media = media.Select((item, index) => new MediaConfiguration(item.Path,
+        Media = media.Select(item => new MediaConfiguration(item.Path,
             item.Type switch
             {
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
@@ -274,8 +274,8 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
                 EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
-            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
-            MountOrder: index)).ToArray()
+            }, item.Slot, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
+            MountOrder: item.Slot.Index)).ToArray()
     };
 
     private static string DefaultEmulatorId(string machineId) =>

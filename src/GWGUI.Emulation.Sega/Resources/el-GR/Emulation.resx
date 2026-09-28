@@ -87,17 +87,17 @@
   <data name="Emulation.Sega.Help.Audio.Enabled.Detailed"><value>Ελέγχει αν GW GUI παίζει τα δείγματα ήχου που παράγονται από τον εξομοιωτή.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Επιλέγει την έξοδο ήχου των Windows που χρησιμοποιείται για να παίξει ήχο από αυτό το μηχάνημα που προσομοιάζει.</value></data>
-  <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD and 32X systems.</value></data>
+  <data name="Emulation.Family.Sega"><value>Σήμα</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Εξομοίωση SG-1000, Μαρκ III, Master System, Game Gear, Mega Drive, Mega-CD και συστήματα 32Χ.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
-  <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
-  <data name="Emulation.Sega.Model.MasterSystem"><value>Master System</value></data>
-  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Genesis</value></data>
-  <data name="Emulation.Sega.Model.MegaCd"><value>Mega-CD / Sega CD</value></data>
+  <data name="Emulation.Sega.Model.MarkIII"><value>Σημείωμα III</value></data>
+  <data name="Emulation.Sega.Model.MasterSystem"><value>Κύριο σύστημα</value></data>
+  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Γένεση</value></data>
+  <data name="Emulation.Sega.Model.MegaCd"><value>- Μεγα-CD / Σίγκα CD</value></data>
   <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X</value></data>
-  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear</value></data>
-  <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
-  <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
+  <data name="Emulation.Sega.Model.GameGear"><value>Εργαλείο παιχνιδιού</value></data>
+  <data name="Emulation.Sega.Model.Saturn"><value>Κρόνος</value></data>
+  <data name="Emulation.Sega.Model.Dreamcast"><value>Ονειροκάστ</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Προσδιορίζει το μοντέλο Sega του οποίου οι ρυθμίσεις υλικού είναι υπό επεξεργασία.</value></data>
 </root>

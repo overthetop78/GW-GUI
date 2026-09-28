@@ -14,4 +14,9 @@ internal static class SettingsConstants
     internal const string VideoIntensity = "configuration.videoIntensity";
     internal const string VideoCrop = "configuration.videoCrop";
     internal const string FloppySound = "configuration.floppySound";
+    internal const string MasterSystemVariant = "configuration.masterSystemVariant";
+    internal const string MasterSystemThreeDGlasses = "configuration.masterSystemThreeDGlasses";
+    internal const string MegaDriveModel = "configuration.megaDriveModel";
+    internal const string MegaDriveRegion = "configuration.megaDriveRegion";
+    internal const string MegaDriveVideoStandard = "configuration.megaDriveVideoStandard";
 }

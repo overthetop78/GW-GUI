@@ -22,9 +22,20 @@ internal static class StorageSettingsFunctions
                 IsPermanent: model.HasBuiltInCassetteDrive));
         if (model.SupportsCartridgeSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge,
-                [StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
+                [StorageSettingsFunctionsConstants.Sms, StorageSettingsFunctionsConstants.Sg,
+                 StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot));
+        var segaCardLocked = OptionEnabled(options, SettingsConstants.MasterSystemThreeDGlasses)
+            || model.Id == ModelConstants.MasterSystem
+            && options.GetValueOrDefault(SettingsConstants.MasterSystemVariant,
+                ModelConstants.MasterSystemSmsI).Equals(ModelConstants.MasterSystemSmsIi,
+                    StringComparison.Ordinal);
+        if (model.SupportsSegaCardSlot && !segaCardLocked)
+            devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge1, EmulationMediaType.Cartridge,
+                [StorageSettingsFunctionsConstants.Mv], RequiresMachineRecreation: true,
+                DisplayLabel: StorageSettingsFunctionsConstants.SegaCardSlotLabel,
+                IsPermanent: model.HasBuiltInSegaCardSlot));
         if (model.SupportsCompactDiscDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd,
@@ -41,8 +52,11 @@ internal static class StorageSettingsFunctions
             EmulationMediaCategory.FloppyDrive => device.Slot.Index < configuredFloppies,
             EmulationMediaCategory.CassetteDrive => model.HasBuiltInCassetteDrive
                 || OptionBool(options, StorageSettingsFunctionsConstants.CassetteDriveEnabledOption),
-            EmulationMediaCategory.CartridgeSlot => model.HasBuiltInCartridgeSlot
-                || OptionBool(options, StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption),
+            EmulationMediaCategory.CartridgeSlot => device.Slot.Index == 0
+                ? model.HasBuiltInCartridgeSlot
+                    || OptionBool(options, StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption)
+                : !segaCardLocked && (model.HasBuiltInSegaCardSlot
+                    || OptionBool(options, StorageSettingsFunctionsConstants.SegaCardSlotEnabledOption)),
             EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
                 || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
             _ => false
@@ -54,7 +68,7 @@ internal static class StorageSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration,
         EmulationStorageSettings settings)
     {
-        var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
+        var media = settings.MountedMedia.Select(item => new MediaConfiguration(
             item.Path, item.Type switch
             {
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
@@ -62,13 +76,16 @@ internal static class StorageSettingsFunctions
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
                 EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
                 _ => throw new ArgumentOutOfRangeException(nameof(settings), item.Type, null)
-            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray();
+            }, item.Slot, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
+            MountOrder: item.Slot.Index)).ToArray();
         var model = ModelCatalog.Get(configuration.Model);
-        foreach (var item in media)
-            if (!ConfigurationValidationFunctions.Supports(model, item.Category))
-                throw new ArgumentOutOfRangeException(nameof(settings), item.Category, null);
         var options = new Dictionary<string, string>(configuration.Options
-            ?? new Dictionary<string, string>(), StringComparer.Ordinal)
+            ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        foreach (var item in media)
+            if (!ConfigurationValidationFunctions.Supports(model, item.Category, item.Slot)
+                || item.Slot == EmulationMediaSlot.Cartridge1 && IsSegaCardLocked(model, options))
+                throw new ArgumentOutOfRangeException(nameof(settings), item.Category, null);
+        options = new Dictionary<string, string>(options, StringComparer.Ordinal)
         {
             [StorageSettingsFunctionsConstants.FloppyDriveCountOption] = settings.ConfiguredSlots
                 .Count(slot => slot.Category == EmulationMediaCategory.FloppyDrive).ToString(
@@ -77,6 +94,8 @@ internal static class StorageSettingsFunctions
                 .Contains(EmulationMediaSlot.Cassette0).ToString(),
             [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots
                 .Contains(EmulationMediaSlot.Cartridge0).ToString(),
+            [StorageSettingsFunctionsConstants.SegaCardSlotEnabledOption] = settings.ConfiguredSlots
+                .Contains(EmulationMediaSlot.Cartridge1).ToString(),
             [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots
                 .Contains(EmulationMediaSlot.Cd0).ToString()
         };
@@ -90,4 +109,15 @@ internal static class StorageSettingsFunctions
     private static bool OptionBool(IReadOnlyDictionary<string, string> options,
         string key) => options.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed)
         && parsed;
+
+    private static bool OptionEnabled(IReadOnlyDictionary<string, string> options, string key) =>
+        OptionBool(options, key) || options.TryGetValue(key, out var value)
+        && value.Equals(SettingsDescriptionFunctionsConstants.Enabled, StringComparison.OrdinalIgnoreCase);
+
+    private static bool IsSegaCardLocked(Model model, IReadOnlyDictionary<string, string> options) =>
+        OptionEnabled(options, SettingsConstants.MasterSystemThreeDGlasses)
+        || model.Id == ModelConstants.MasterSystem
+        && options.GetValueOrDefault(SettingsConstants.MasterSystemVariant,
+            ModelConstants.MasterSystemSmsI).Equals(ModelConstants.MasterSystemSmsIi,
+                StringComparison.Ordinal);
 }
