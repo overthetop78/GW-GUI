@@ -305,6 +305,26 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void SegaFlycastSelectsDreamcast()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-flycast-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new SegaEmulationModuleFactory().Create(context);
+            var configuration = Assert.IsType<GWGUI.Emulation.Sega.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("Dreamcast"));
+            Assert.Equal("flycast", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaAdaptersSelectTheMatchingCoreForSaturnAndSc3000()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-adapter-tests", Guid.NewGuid().ToString("N"));

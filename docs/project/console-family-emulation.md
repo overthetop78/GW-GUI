@@ -260,6 +260,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module NEC et exécuter les tests d’architecture et de création de runtime.
 - [x] Stage et commit de l’adaptateur NEC PC-FX seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateur Sega Dreamcast
+
+- [x] Ajouter un adaptateur Sega Dreamcast concret avec le protocole propre au cœur Flycast.
+  - [x] Créer les fichiers `src/GWGUI.Emulation.Sega/Emulators/Flycast/` en reprenant le protocole d’hôte Sega déjà intégré, puis remplacer les identifiants, le téléchargement et les médias par ceux de Flycast.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Emulation.resx` pour ajouter les erreurs et la description localisées de Flycast.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` l’assertion de sélection de Flycast pour `Dreamcast`.
+  - [x] Relier le moteur Sega à l’adaptateur Flycast par sa découverte d’adaptateurs.
+  - [x] Compiler le module Sega et exécuter les tests d’architecture et de création de runtime.
+- [x] Stage et commit de l’adaptateur Sega Dreamcast seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [x] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
