@@ -195,6 +195,7 @@ internal static class FileTypeExtensions
     public const string Ipf = ".ipf";
     public const string Ism = ".ism";
     public const string Iso = ".iso";
+    public const string Gcm = ".gcm";
     public const string Gdi = ".gdi";
     public const string Jl = ".jl";
     public const string Jm = ".jm";

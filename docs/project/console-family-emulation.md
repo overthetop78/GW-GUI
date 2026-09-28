@@ -164,6 +164,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Exécuter le test `FamilyCommonConstantFilesAndMembersAreIdentical`.
 - [x] Stage et commit de cette correction seulement après réussite du test d’architecture.
 
+### Image optique Nintendo GameCube/Wii
+
+- [x] Reconnaître les images `.gcm` qui utilisent le profil ISO sectoriel existant.
+  - [x] Ajouter la constante d’extension dans `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs`.
+  - [x] Ajouter `.gcm` aux extensions du profil `IsoFormat` pour la lecture et l’écriture lossless.
+  - [x] Ajouter `.gcm` aux extensions d’analyse et à l’icône optique existante.
+  - [x] Ajouter un test autonome de lecture, conversion et nettoyage dans `tests/GWGUI.Tests/Media/GameCubeIsoMediaFormatTests.cs`.
+  - [x] Compiler les projets concernés et exécuter le test ciblé.
+- [x] Stage et commit de cette tranche seulement après réussite du test média.
+
 ### Constantes de l’explorateur de cartouches
 
 - [x] Supprimer les littéraux techniques du lecteur de banques.

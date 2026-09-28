@@ -131,6 +131,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension used by raw optical data track images.</summary>
     public const string Iso = ".iso";
 
+    /// <summary>Extension des images ISO brutes Nintendo GameCube/Wii.</summary>
+    public const string Gcm = ".gcm";
+
     /// <summary>Extension used by CUE sheet descriptors.</summary>
     public const string Cue = ".cue";
 

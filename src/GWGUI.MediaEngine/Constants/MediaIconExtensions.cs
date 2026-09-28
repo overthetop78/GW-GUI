@@ -25,6 +25,7 @@ public static class MediaIconExtensions
     public const string Mv = ".mv";
     public const string Sgx = ".sgx";
     public const string Iso = ".iso";
+    public const string Gcm = ".gcm";
     public const string Cue = ".cue";
     public const string Ccd = ".ccd";
     public const string Mds = ".mds";
