@@ -11,5 +11,6 @@ public sealed record Firmware(
     bool IsOfficial,
     string? Name,
     string? Version,
-    IReadOnlyList<string> CompatibleModels);
+    IReadOnlyList<string> CompatibleModels,
+    IReadOnlyList<string>? ExpectedFileNames = null);
 

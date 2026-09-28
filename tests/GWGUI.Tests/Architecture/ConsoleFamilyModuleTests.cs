@@ -9,6 +9,7 @@ using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Emulation.Nintendo.Modules;
 using GWGUI.Emulation.Sega.Modules;
 using GWGUI.Emulation.Sega.Common.Dictionaries;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
@@ -579,6 +580,29 @@ public sealed class ConsoleFamilyModuleTests
         {
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
+    }
+
+    [Fact]
+    public void SegaFirmwareCatalogIdentifiesOnlyVerifiedSystemProfiles()
+    {
+        var verified = new[]
+        {
+            (FirmwareConstants.MegaDriveBiosMd5, ModelConstants.MegaDrive),
+            (FirmwareConstants.MegaCdEuropeBiosMd5, ModelConstants.MegaDrive),
+            (FirmwareConstants.MegaCdUnitedStatesBiosMd5, ModelConstants.MegaDrive),
+            (FirmwareConstants.MegaCdJapanBiosMd5, ModelConstants.MegaDrive),
+            (FirmwareConstants.MasterSystemEuropeBiosMd5, ModelConstants.MasterSystem),
+            (FirmwareConstants.MasterSystemJapanBiosMd5, ModelConstants.MasterSystem),
+            (FirmwareConstants.GameGearBiosMd5, ModelConstants.GameGear)
+        };
+        foreach (var (md5, model) in verified)
+        {
+            Assert.True(FirmwareCatalog.TryIdentifyKnown(md5, out var identity));
+            Assert.Contains(model, identity.Models);
+            Assert.NotEmpty(identity.FileNames);
+        }
+        Assert.False(FirmwareCatalog.TryIdentifyKnown("00000000000000000000000000000000",
+            out _));
     }
 
     [Fact]

@@ -7,8 +7,37 @@ public sealed class FirmwareCatalog
 {
     private static readonly HashSet<string> Extensions = new(StringComparer.OrdinalIgnoreCase)
     {
-        FirmwareCatalogConstants.RomExtension,
-        FirmwareCatalogConstants.BinaryExtension
+        FirmwareCatalogConstants.RomExtension, FirmwareCatalogConstants.BinaryExtension,
+        FirmwareCatalogConstants.MasterSystemExtension, FirmwareCatalogConstants.GameGearExtension
+    };
+
+    private static readonly IReadOnlyDictionary<string, (string Name, string Version,
+        string[] Models, string[] FileNames)> Known = new Dictionary<string,
+        (string, string, string[], string[])>(
+        StringComparer.OrdinalIgnoreCase)
+    {
+        [FirmwareConstants.MegaDriveBiosMd5] = (FirmwareConstants.MegaDriveBiosName,
+            FirmwareConstants.MegaDriveBiosFileName, [ModelConstants.MegaDrive],
+            [FirmwareConstants.MegaDriveBiosFileName]),
+        [FirmwareConstants.MegaCdEuropeBiosMd5] = (FirmwareConstants.MegaCdBiosName,
+            FirmwareConstants.RegionEurope, [ModelConstants.MegaDrive],
+            [FirmwareConstants.MegaCdEuropeBiosFileName]),
+        [FirmwareConstants.MegaCdUnitedStatesBiosMd5] = (FirmwareConstants.MegaCdBiosName,
+            FirmwareConstants.RegionUnitedStates, [ModelConstants.MegaDrive],
+            [FirmwareConstants.MegaCdUnitedStatesBiosFileName]),
+        [FirmwareConstants.MegaCdJapanBiosMd5] = (FirmwareConstants.MegaCdBiosName,
+            FirmwareConstants.RegionJapan, [ModelConstants.MegaDrive],
+            [FirmwareConstants.MegaCdJapanBiosFileName]),
+        [FirmwareConstants.MasterSystemEuropeBiosMd5] = (FirmwareConstants.MasterSystemBiosName,
+            FirmwareConstants.RegionEurope, [ModelConstants.MasterSystem, ModelConstants.MarkIII],
+            [FirmwareConstants.MasterSystemEuropeBiosFileName,
+             FirmwareConstants.MasterSystemUnitedStatesBiosFileName]),
+        [FirmwareConstants.MasterSystemJapanBiosMd5] = (FirmwareConstants.MasterSystemBiosName,
+            FirmwareConstants.RegionJapan, [ModelConstants.MasterSystem, ModelConstants.MarkIII],
+            [FirmwareConstants.MasterSystemJapanBiosFileName]),
+        [FirmwareConstants.GameGearBiosMd5] = (FirmwareConstants.GameGearBiosName,
+            FirmwareConstants.GameGearBiosFileName, [ModelConstants.GameGear],
+            [FirmwareConstants.GameGearBiosFileName])
     };
 
     private readonly string _directory;
@@ -33,8 +62,14 @@ public sealed class FirmwareCatalog
         var md5 = Convert.ToHexString(MD5.HashData(stream));
         stream.Position = 0;
         var sha256 = Convert.ToHexString(SHA256.HashData(stream));
+        var known = Known.TryGetValue(md5, out var identity);
         return new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc,
-            FirmwareType.SystemRom, IsKnown: false, IsOfficial: false, Name: null, Version: null,
-            CompatibleModels: []);
+            FirmwareType.SystemRom, known, known, known ? identity.Name : null,
+            known ? identity.Version : null, known ? identity.Models : [],
+            known ? identity.FileNames : []);
     }
+
+    internal static bool TryIdentifyKnown(string md5,
+        out (string Name, string Version, string[] Models, string[] FileNames) identity) =>
+        Known.TryGetValue(md5, out identity);
 }

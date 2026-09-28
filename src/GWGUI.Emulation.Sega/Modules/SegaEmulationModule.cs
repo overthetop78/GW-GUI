@@ -3,13 +3,15 @@ using System.IO;
 namespace GWGUI.Emulation.Sega.Modules;
 
 public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorManager,
-    IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
+    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
+    IEmulationModuleLocalization
 {
     private static readonly EmulationModuleLocalization Localization = new(
         typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
+    private readonly string _firmwareDirectory;
     private readonly Engine _engine = new();
     private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
         new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
@@ -20,6 +22,9 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
+        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
+            EmulationPathConstants.MachinesDirectoryName, FirmwareConstants.DirectoryName,
+            EmulationPathConstants.FirmwareDirectoryName);
     }
 
     public string Id => EmulationModuleConstants.ModuleId;
@@ -233,6 +238,51 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
     {
         var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
         return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
+    }
+
+    public string GetFirmwareDirectory(string machineId)
+    {
+        _ = ModelCatalog.Get(machineId);
+        return _firmwareDirectory;
+    }
+
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId,
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var entries = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
+            .Select(firmware => new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
+                firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
+                FirmwareCompatibility(firmware, machineId), firmware.IsKnown
+                    ? SettingsConstants.FirmwarePath : null)).ToArray();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(entries);
+    }
+
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration,
+        EmulationFirmwareCandidate firmware)
+    {
+        var sega = RequireConfiguration(configuration);
+        if (!string.Equals(firmware.DestinationFieldId, SettingsConstants.FirmwarePath,
+                StringComparison.Ordinal) || firmware.Compatibility
+            == EmulationFirmwareCompatibility.Incompatible)
+            throw new InvalidOperationException(nameof(firmware));
+        var options = new Dictionary<string, string>(sega.Options
+            ?? new Dictionary<string, string>(), StringComparer.Ordinal)
+        {
+            [SettingsConstants.FirmwarePath] = firmware.Path
+        };
+        return sega with { Options = options };
+    }
+
+    private static EmulationFirmwareCompatibility FirmwareCompatibility(Firmware firmware,
+        string machineId)
+    {
+        if (!firmware.CompatibleModels.Contains(machineId, StringComparer.OrdinalIgnoreCase))
+            return EmulationFirmwareCompatibility.Incompatible;
+        return firmware.IsOfficial ? EmulationFirmwareCompatibility.Official
+            : firmware.IsKnown ? EmulationFirmwareCompatibility.Compatible
+            : EmulationFirmwareCompatibility.PartiallyCompatible;
     }
 
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(

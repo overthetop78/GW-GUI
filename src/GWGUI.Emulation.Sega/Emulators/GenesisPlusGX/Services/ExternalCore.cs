@@ -74,6 +74,7 @@ internal sealed class ExternalCore : IEmulatorCore
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
+        PrepareFirmware(configuration, systemDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);
         Directory.CreateDirectory(isolatedCoreDirectory);
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
@@ -161,6 +162,23 @@ internal sealed class ExternalCore : IEmulatorCore
         File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)),
             new System.Text.UTF8Encoding(false));
         return playlist;
+    }
+
+    private static void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
+    {
+        var firmwarePath = configuration.Options?.GetValueOrDefault(SettingsConstants.FirmwarePath);
+        if (string.IsNullOrWhiteSpace(firmwarePath)) return;
+        var sourcePath = Path.GetFullPath(firmwarePath);
+        if (!File.Exists(sourcePath)) throw new FileNotFoundException(null, sourcePath);
+        var firmware = FirmwareCatalog.Inspect(sourcePath);
+        if (!firmware.IsKnown || firmware.ExpectedFileNames is not { Count: > 0 })
+            throw new InvalidDataException(GenesisPlusGXExceptions.ContentRefused());
+        foreach (var expectedName in firmware.ExpectedFileNames)
+        {
+            var targetPath = Path.Combine(systemDirectory, expectedName);
+            if (!string.Equals(sourcePath, targetPath, StringComparison.OrdinalIgnoreCase))
+                File.Copy(sourcePath, targetPath, true);
+        }
     }
 
     private void ConfigureControllerPorts(MachineConfiguration configuration,

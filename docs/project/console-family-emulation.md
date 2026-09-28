@@ -138,15 +138,16 @@ jamais une feuille terminale.
 
 - [ ] Déclarer les profils vérifiés.
   - [ ] Ajouter les identifiants sans texte brut.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec Hang On + Snail Maze, Hang On, Hang On + Safari Hunt, Alex Kidd, Sonic, SMS II, Mega Drive II, Mega-CD I/II, 32X, Master System Converter, Game Gear Converter, Saturn et Dreamcast.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les empreintes vérifiées Genesis Plus GX pour Master System, Game Gear, Mega Drive et Mega-CD; laisser les profils non vérifiés (BIOS 32X, BIOS custom et autres révisions) non sélectionnables.
   - [ ] Relier un fichier réellement fourni.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour modèle, profil et chemin, sans générer de BIOS fictif.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour reconnaître les empreintes connues, conserver les noms système attendus par le cœur et laisser les fichiers inconnus sans profil utilisable.
   - [ ] Exposer le profil sélectionné.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` pour afficher et persister le profil ROM.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs` pour scanner le dossier Firmware, exposer les candidats compatibles et persister le chemin sélectionné dans les options de la configuration.
   - [ ] Appliquer le profil au cœur.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs`, `Yabause/Services/ExternalCore.cs` et `Flycast/Services/ExternalCore.cs` pour transmettre uniquement un firmware accepté.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour identifier l'empreinte sélectionnée et copier le fichier sous les noms système attendus, y compris plusieurs alias régionaux.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/Yabause/Services/ExternalCore.cs` et `Flycast/Services/ExternalCore.cs` pour transmettre uniquement un firmware accepté par chacun de ces cœurs.
   - [ ] Vérifier les profils.
-    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier l'association modèle/profil et l'absence de chemin fictif.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier les empreintes connues, leurs modèles et leurs noms système attendus, ainsi que le refus d'une empreinte fictive.
 
 ## 6. MediaEngine — formats et représentations
 
@@ -257,6 +258,9 @@ jamais une feuille terminale.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner VirtualGens (`gens.dll`) comme candidat natif à API C, avec son thread, ses entrées et son tampon vidéo à vérifier avant tout adaptateur.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner Exodus comme candidat modulaire cycle-accurate (M68000, Z80, VDP) à vérifier avant tout adaptateur.
     - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger qu'un candidat sans binaire/API vérifié reste marqué indisponible au lieu d'être présenté comme fonctionnel.
+  - [ ] Préparer un cœur GW GUI lorsque les candidats existants ne couvrent pas une machine.
+    - [ ] Modifier `docs/project/console-family-emulation.md` pour conserver les sources ouvertes BizHawk, VirtualGens et Exodus comme références d'implémentation future, sans copier leur code ni créer un émulateur incomplet dans cette tranche.
+    - [ ] Créer le futur adaptateur sous `src/GWGUI.Emulation.Sega/Emulators/<cœur>/` avec les contrats Common existants uniquement après définition vérifiée du matériel, des médias, des entrées et des états exposés.
 
 ## 12. BIOS et firmware Sega par machine et par cœur
 
@@ -264,6 +268,7 @@ jamais une feuille terminale.
   - [ ] Déclarer les profils Genesis Plus GX vérifiés.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants BIOS Master System (`bios_E.sms`, `bios_U.sms`, `bios_J.sms`), Game Gear (`bios.gg`), Mega Drive (`bios_MD.bin`) et Mega-CD (`bios_CD_E.bin`, `bios_CD_U.bin`, `bios_CD_J.bin`) et leurs empreintes documentées, sans inventer de BIOS 32X.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer chaque fichier, empreinte, modèle et cœur compatible, en laissant le 32X indisponible pour Genesis Plus GX.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour conserver les révisions régionales et les BIOS custom inconnus comme entrées non sélectionnables tant que leur empreinte, leur modèle et leur nom système attendu ne sont pas vérifiés.
   - [ ] Déclarer les profils PicoDrive vérifiés séparément.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants Mega-CD PicoDrive réellement distincts lorsque leurs empreintes diffèrent, sans mélanger les profils des deux cœurs.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer les BIOS au cœur qui les accepte et refuser silencieusement les fichiers d'un autre profil.
