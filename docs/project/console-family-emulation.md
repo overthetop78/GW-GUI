@@ -102,7 +102,9 @@ jamais une feuille terminale.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` pour restaurer ces valeurs sans supprimer un modèle catalogué.
 - [ ] Relier GameInput au cœur.
   - [ ] Choisir l'identifiant exposé par le cœur.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour rechercher le nom/ID du périphérique déclaré par le cœur, mapper souris/pointeur pour Light Phaser/Menacer et ne jamais imposer `JoypadDevice`.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour rechercher le nom/ID du périphérique déclaré par le cœur, mapper souris/pointeur pour Light Phaser/Menacer et ne jamais imposer `JoypadDevice`.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalHostCallbacks.Input.cs` pour publier les coordonnées, le déclenchement et l'état hors écran du périphérique Light Phaser via le pointeur commun.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier qu'un périphérique absent du cœur reste non mappé et que le pointeur alimente le protocole Light Phaser.
   - [ ] Fermer les ressources empruntées.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Services/Machine.cs` pour fermer l'entrée possédée par la machine dans `finally`.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs` pour détacher le cœur et attendre sa destruction dans `finally`.
@@ -238,6 +240,37 @@ jamais une feuille terminale.
   - [ ] Contrôler le contenu du commit.
     - [ ] Modifier ce document pour cocher les feuilles réellement terminées.
     - [ ] Créer un seul commit contenant code, tests, traductions et plan; ne jamais créer un commit documentaire seul.
+
+## 11. Cœurs Sega à comparer avant toute nouvelle intégration
+
+- [ ] Choisir un cœur par modèle et par extension sur des capacités vérifiées.
+  - [ ] Documenter les capacités confirmées de Genesis Plus GX.
+    - [ ] Modifier `docs/project/console-family-emulation.md` pour conserver Genesis Plus GX comme candidat principal des SG-1000, Mark III, Master System I/II, Game Gear, Mega Drive/Genesis et Mega-CD, sans lui attribuer le 32X qu'il ne supporte pas.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` pour conserver ce rattachement uniquement sur les modèles effectivement publiés par le cœur.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour exposer les options de système, région, BIOS, CD et lock-on réellement renvoyées par le cœur.
+  - [ ] Ajouter le candidat PicoDrive pour les extensions que Genesis Plus GX ne couvre pas.
+    - [ ] Créer `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Constants/`, `Contracts/`, `Factories/`, `Functions/` et `Services/` avec les mêmes fichiers et noms que GenesisPlusGX, directement sous le dossier de l'émulateur.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` pour rattacher PicoDrive au 32X et aux autres modèles seulement après vérification de ses options et extensions.
+    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller la matrice modèle/extension/cœur et refuser une combinaison non supportée.
+  - [ ] Évaluer les alternatives DLL sans inventer de contrat.
+    - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner BizHawk comme candidat C# à DLL de cœur (`IEmulator`, `IVideoProvider`, `ISoundProvider`) à vérifier dans une version récupérable, sans ajouter de DLL fictive au dépôt.
+    - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner VirtualGens (`gens.dll`) comme candidat natif à API C, avec son thread, ses entrées et son tampon vidéo à vérifier avant tout adaptateur.
+    - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner Exodus comme candidat modulaire cycle-accurate (M68000, Z80, VDP) à vérifier avant tout adaptateur.
+    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger qu'un candidat sans binaire/API vérifié reste marqué indisponible au lieu d'être présenté comme fonctionnel.
+
+## 12. BIOS et firmware Sega par machine et par cœur
+
+- [ ] Décrire les BIOS uniquement avec des fichiers et empreintes vérifiés.
+  - [ ] Déclarer les profils Genesis Plus GX vérifiés.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants BIOS Master System (`bios_E.sms`, `bios_U.sms`, `bios_J.sms`), Game Gear (`bios.gg`), Mega Drive (`bios_MD.bin`) et Mega-CD (`bios_CD_E.bin`, `bios_CD_U.bin`, `bios_CD_J.bin`) et leurs empreintes documentées, sans inventer de BIOS 32X.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer chaque fichier, empreinte, modèle et cœur compatible, en laissant le 32X indisponible pour Genesis Plus GX.
+  - [ ] Déclarer les profils PicoDrive vérifiés séparément.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants Mega-CD PicoDrive réellement distincts lorsque leurs empreintes diffèrent, sans mélanger les profils des deux cœurs.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer les BIOS au cœur qui les accepte et refuser silencieusement les fichiers d'un autre profil.
+  - [ ] Transmettre les BIOS sélectionnés aux adaptateurs.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour préparer le répertoire système et les noms attendus par le cœur sans copier de fichier absent.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Services/ExternalCore.cs` pour appliquer la même règle lorsque l'adaptateur PicoDrive existe et expose l'option correspondante.
+    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier l'association BIOS/modèle/cœur et le refus d'un BIOS non vérifié.
 
 ## Historique conservé
 

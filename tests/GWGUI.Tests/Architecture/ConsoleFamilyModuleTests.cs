@@ -12,6 +12,9 @@ using GWGUI.Emulation.Sega.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
 using GWGUI.Emulation.Sony.Modules;
 using GWGUI.Emulation.Microsoft.Modules;
 
@@ -521,6 +524,56 @@ public sealed class ConsoleFamilyModuleTests
             var masterPort = masterPorts[0];
             Assert.Contains(masterPort.ControllerChoices,
                 choice => choice.Id == ControllerType.SegaLightPhaser.ToString());
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void GenesisPlusGxUsesOnlyCorePublishedDevicesAndMapsLightGunPointer()
+    {
+        var devices = new IReadOnlyList<ControllerDevice>[]
+        {
+            [new ControllerDevice("Joypad", 1), new ControllerDevice("Mouse", 2)]
+        };
+        Assert.Equal(1u, ExternalCore.ResolveControllerDevice(devices[0],
+            ControllerType.SegaMegaDriveThreeButton));
+        Assert.Equal(2u, ExternalCore.ResolveControllerDevice(devices[0],
+            ControllerType.SegaMegaMouse));
+        Assert.Equal(0u, ExternalCore.ResolveControllerDevice(devices[0],
+            ControllerType.SegaLightPhaser));
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-lightgun-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var callbacks = new ExternalHostCallbacks(
+                Path.Combine(root, "system"), Path.Combine(root, "content"),
+                Path.Combine(root, "saves"), new Dictionary<string, string>());
+            callbacks.Input = EmulationInputSnapshot.Empty with
+            {
+                Pointer = EmulationInputSnapshot.Empty.Pointer with
+                {
+                    DeltaX = 2,
+                    DeltaY = -1,
+                    Left = true
+                }
+            };
+            callbacks.InputPoll();
+            Assert.Equal((short)(ExternalHostCallbacksConstants.PointerCoordinateCenter
+                + 2 * ExternalHostCallbacksConstants.PointerCoordinateScale),
+                callbacks.ReadInputState(0, ExternalHostCallbacksConstants.LightGunDevice, 0,
+                    ExternalHostCallbacksConstants.LightGunScreenX));
+            Assert.Equal((short)(ExternalHostCallbacksConstants.PointerCoordinateCenter
+                - ExternalHostCallbacksConstants.PointerCoordinateScale),
+                callbacks.ReadInputState(0, ExternalHostCallbacksConstants.LightGunDevice, 0,
+                    ExternalHostCallbacksConstants.LightGunScreenY));
+            Assert.Equal((short)1, callbacks.ReadInputState(0,
+                ExternalHostCallbacksConstants.LightGunDevice, 0,
+                ExternalHostCallbacksConstants.LightGunTrigger));
         }
         finally
         {

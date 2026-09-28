@@ -115,6 +115,16 @@ internal sealed partial class ExternalHostCallbacks
                 _ => 0
             };
 
+        if (device == LightGunDevice && port == 0)
+            return id switch
+            {
+                LightGunScreenX => (short)_pointerX,
+                LightGunScreenY => (short)_pointerY,
+                LightGunTrigger => Bool(input.Pointer.Left),
+                LightGunOffscreen => 0,
+                _ => 0
+            };
+
         if (device == PointerDevice && port == 0)
             return id switch
             {
@@ -143,6 +153,9 @@ internal sealed partial class ExternalHostCallbacks
             };
         return 0;
     }
+
+    internal short ReadInputState(uint port, uint device, uint index, uint id) =>
+        HandleInputState(port, device, index, id);
 
     private static short Bool(bool value) => value ? (short)1 : (short)0;
     private static short ClampToShort(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);

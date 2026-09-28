@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 
@@ -178,11 +179,16 @@ internal sealed class ExternalCore : IEmulatorCore
     private uint ResolveControllerDevice(int port, ControllerType type)
     {
         var devices = _host?.ControllerPorts.ElementAtOrDefault(port) ?? [];
+        return ResolveControllerDevice(devices, type);
+    }
+
+    internal static uint ResolveControllerDevice(IReadOnlyList<ControllerDevice> devices,
+        ControllerType type)
+    {
         if (type == ControllerType.None) return 0;
         var aliases = ControllerAliases(type);
         return devices.FirstOrDefault(device => aliases.Any(alias =>
-            device.Name.Contains(alias, StringComparison.OrdinalIgnoreCase)))?.Id
-            ?? devices.FirstOrDefault()?.Id ?? 0;
+            device.Name.Contains(alias, StringComparison.OrdinalIgnoreCase)))?.Id ?? 0;
     }
 
     private static IReadOnlyList<string> ControllerAliases(ControllerType type) => type switch

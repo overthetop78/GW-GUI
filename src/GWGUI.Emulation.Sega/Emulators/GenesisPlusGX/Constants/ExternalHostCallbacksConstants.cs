@@ -12,12 +12,17 @@ internal static class ExternalHostCallbacksConstants
     internal const uint JoypadDevice = 1;
     internal const uint MouseDevice = 2;
     internal const uint KeyboardDevice = 3;
+    internal const uint LightGunDevice = 4;
     internal const uint AnalogDevice = 5;
     internal const uint PointerDevice = 6;
     internal const uint JoypadMask = 256;
     internal const uint PointerX = 0;
     internal const uint PointerY = 1;
     internal const uint PointerPressed = 2;
+    internal const uint LightGunTrigger = 2;
+    internal const uint LightGunScreenX = 13;
+    internal const uint LightGunScreenY = 14;
+    internal const uint LightGunOffscreen = 15;
     internal const int PointerCoordinateScale = 128;
     internal const int PointerCoordinateCenter = 1;
     internal const int PointerCoordinateMinimum = -32767;
