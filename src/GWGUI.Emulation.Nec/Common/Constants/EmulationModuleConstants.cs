@@ -1,0 +1,7 @@
+namespace GWGUI.Emulation.Nec.Common.Constants;
+
+internal static class EmulationModuleConstants
+{
+    internal const string ModuleId = "nec";
+    internal const string ResourceFamily = "Emulation.Family.Nec";
+}

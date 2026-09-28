@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 2,
+  "id": "microsoft",
+  "entryAssembly": "gwgui.emulation.microsoft.dll",
+  "moduleVersion": "1.0.0",
+  "hostApiMinimum": "1.0",
+  "hostApiMaximum": "1.0"
+}

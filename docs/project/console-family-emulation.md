@@ -170,12 +170,12 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de runtime.
 - [x] Stage et commit de l’adaptateur Nintendo NES/Famicom Disk System seulement après réussite de toutes les sous-tâches ci-dessus.
 
-- [ ] Créer les cinq projets de modules, leurs manifestes et leurs factories.
-  - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
+- [x] Créer les cinq projets de modules, leurs manifestes et leurs factories.
+  - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sony.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Microsoft.
-  - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines NEC.
+- [x] Ajouter la façade `IEmulationModule` et le catalogue de machines NEC.
 - [ ] Brancher les cœurs, un adaptateur à la fois, dans `Emulators/<Cœur>`.
   - [ ] Documenter pour chaque adaptateur son identifiant, sa version et ses médias.
   - [ ] Refuser explicitement une machine dont aucun adaptateur n'est installé.
@@ -203,8 +203,8 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
 - [x] Créer `src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj`, `module.json` et la factory.
 - [x] Créer `src/GWGUI.Emulation.Sony/Common/Machines/MachineCatalog.cs` et les configurations Sony.
 - [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sony/Emulators/<Cœur>/*` pour PS1, PS2 et PSP.
-- [ ] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json` et la factory.
-- [ ] Créer `src/GWGUI.Emulation.Nec/Common/Machines/MachineCatalog.cs` et les configurations PC Engine.
+- [x] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json` et la factory.
+- [x] Créer `src/GWGUI.Emulation.Nec/Common/Machines/MachineCatalog.cs` et les configurations PC Engine.
 - [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nec/Emulators/<Cœur>/*` pour PCE, SGX et PC-FX.
 - [x] Créer `src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj`, `module.json` et la factory.
 - [ ] Créer les lecteurs MediaEngine pour FDS, Sega Card/HuCard et CDI/GDI/CHD multi-pistes.
