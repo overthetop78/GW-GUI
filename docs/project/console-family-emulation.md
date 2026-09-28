@@ -132,6 +132,8 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 - [ ] Finaliser les cinq modules sans laisser de façade non exécutable.
   - [ ] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json`, `Modules/NecEmulationModuleFactory.cs` et le catalogue PC Engine.
   - [ ] Ajouter dans chaque module un adaptateur concret sous `Emulators/<Cœur>` qui implémente `IEmulatorAdapter`, son installation, son protocole et la création de `Machine`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Dictionaries/EmulatorCatalog.cs`, `src/GWGUI.Emulation.Sony/Common/Dictionaries/EmulatorCatalog.cs`, `src/GWGUI.Emulation.Microsoft/Common/Dictionaries/EmulatorCatalog.cs` et `src/GWGUI.Emulation.Nec/Common/Dictionaries/EmulatorCatalog.cs` pour refuser explicitement une machine tant qu’aucun adaptateur concret ne la prend en charge.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` les assertions de refus explicite des machines sans adaptateur.
   - [ ] Relier `CreateRuntimeAsync` de chaque module à l’adaptateur sélectionné et refuser explicitement uniquement les machines sans cœur installé.
   - [ ] Ajouter les lecteurs/writers MediaEngine et les représentations MediaFileSystems/MediaAnalysis réellement nécessaires aux supports déclarés.
   - [ ] Ajouter les ressources de traduction de chaque nouveau libellé dans la base commune existante.
