@@ -227,6 +227,13 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 - [x] Ajouter le test de sélection de Citra pour Nintendo 3DS et compiler le module Nintendo.
 - [ ] Vérifier le rendu matériel Citra avec un fichier 3DS réel fourni par l’utilisateur.
 
+### Adaptateur Nintendo GameCube/Wii (Dolphin)
+
+- [x] Ajouter l’adaptateur nommé `dolphin` dans `src/GWGUI.Emulation.Nintendo/Emulators/Dolphin/`, avec le cœur Windows x64 et une factory limitée aux modèles `GameCube` et `Wii`.
+- [x] Déclarer le rendu logiciel par défaut et les messages d’erreur/description Dolphin dans les ressources Nintendo.
+- [x] Ajouter le test de sélection de Dolphin pour GameCube et Wii et compiler le module Nintendo.
+- [ ] Vérifier un jeu GameCube et un jeu Wii réels avec les fichiers système Dolphin requis.
+
 ### Adaptateur Nintendo SNES
 
 - [x] Ajouter un adaptateur Nintendo SNES concret avec le protocole propre au cœur Snes9x.

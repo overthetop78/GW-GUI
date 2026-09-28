@@ -158,6 +158,29 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoDolphinSelectsGameCubeAndWii()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-dolphin-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NintendoEmulationModuleFactory().Create(context);
+            foreach (var machineId in new[] { "GameCube", "Wii" })
+            {
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                    module.CreateConfiguration(machineId));
+                Assert.Equal("dolphin", configuration.EmulatorId);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void NecBeetlePceSelectsPcEngineModels()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-nec-adapter-tests", Guid.NewGuid().ToString("N"));
