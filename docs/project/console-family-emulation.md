@@ -296,16 +296,16 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
 - [x] Créer `src/GWGUI.Emulation.Sega/module.json` et `Modules/SegaEmulationModuleFactory.cs`.
 - [x] Créer `src/GWGUI.Emulation.Sega/Common/Machines/MachineCatalog.cs` et les configurations Sega.
 - [x] Créer les contrats, interfaces et services `Common`/`Common/Machines/Common` de Sega en reprenant les frontières des modules existants.
-- [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sega/Emulators/<Cœur>/*` pour les cœurs Sega retenus.
+- [x] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sega/Emulators/<Cœur>/*` pour les cœurs Sega retenus.
 - [x] Créer `src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj`, `module.json` et la factory.
 - [x] Créer `src/GWGUI.Emulation.Nintendo/Common/Machines/MachineCatalog.cs` et les configurations Nintendo.
 - [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nintendo/Emulators/<Cœur>/*` pour NES/FDS, SNES, GB/GBA, N64, DS, 3DS, GameCube/Wii et Wii U.
 - [x] Créer `src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj`, `module.json` et la factory.
 - [x] Créer `src/GWGUI.Emulation.Sony/Common/Machines/MachineCatalog.cs` et les configurations Sony.
-- [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sony/Emulators/<Cœur>/*` pour PS1, PS2 et PSP.
+- [x] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sony/Emulators/<Cœur>/*` pour PS1, PS2 et PSP.
 - [x] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json` et la factory.
 - [x] Créer `src/GWGUI.Emulation.Nec/Common/Machines/MachineCatalog.cs` et les configurations PC Engine.
-- [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nec/Emulators/<Cœur>/*` pour PCE, SGX et PC-FX.
+- [x] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nec/Emulators/<Cœur>/*` pour PCE, SGX et PC-FX.
 - [x] Créer `src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj`, `module.json` et la factory.
 - [ ] Créer les lecteurs MediaEngine pour FDS, Sega Card/HuCard et CDI/GDI/CHD multi-pistes.
 
