@@ -196,8 +196,11 @@ jamais une feuille terminale.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier l'ordre du catalogue Nintendo et refuser les identifiants backend Sega copiés.
   - [ ] Terminer un adaptateur à la fois.
     - [ ] Créer/modifier `src/GWGUI.Emulation.Nintendo/Emulators/<cœur>/` avec les fichiers directement dans le dossier du cœur.
+    - [x] Modifier les fabriques `src/GWGUI.Emulation.Nintendo/Emulators/*/Factories/*MachineFactory.cs` pour rattacher chaque cœur Nintendo existant aux constantes du catalogue, sans identifiant machine en dur.
   - [ ] Tester le rattachement.
-    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour modèle, cœur et média de chaque adaptateur.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier la sélection Mesen sur NES et Famicom Disk System.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour refuser qu'un adaptateur Nintendo publie un modèle absent du catalogue.
+    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour modèle, cœur et média de chaque adaptateur restant.
 - [ ] Terminer Sony avant Microsoft.
   - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/ModelContracts.cs` puis `Dictionaries/ModelCatalog.cs` pour Vita, PS3, PS4 et PS5 vérifiables.
     - [ ] Conserver PS1, PS2 et PSP déjà présents sans créer de variantes comme machines indépendantes.

@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.Mgba.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Mgba.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Mgba.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Mgba.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Mgba.Factories;
@@ -16,7 +17,7 @@ internal sealed class MgbaMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         MgbaConstants.Id, MgbaConstants.DisplayName,
         MgbaConstants.DescriptionResourceKey,
-        new[] { "GameBoyAdvance" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.GameBoyAdvance }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -76,4 +77,3 @@ internal sealed class MgbaMachineFactory : IEmulatorAdapter
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-

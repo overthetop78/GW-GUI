@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.GameWatch.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.GameWatch.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.GameWatch.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.GameWatch.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.GameWatch.Factories;
@@ -16,7 +17,7 @@ internal sealed class GameWatchMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         GameWatchConstants.Id, GameWatchConstants.DisplayName,
         GameWatchConstants.DescriptionResourceKey,
-        new[] { "GameWatch" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.GameWatch }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {

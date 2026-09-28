@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.Snes9x.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Snes9x.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Snes9x.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Snes9x.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Snes9x.Factories;
@@ -16,7 +17,7 @@ internal sealed class Snes9xMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         Snes9xConstants.Id, Snes9xConstants.DisplayName,
         Snes9xConstants.DescriptionResourceKey,
-        new[] { "Snes" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.Snes }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -76,4 +77,3 @@ internal sealed class Snes9xMachineFactory : IEmulatorAdapter
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-

@@ -8,6 +8,7 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Emulation.Nintendo.Modules;
+using NintendoEmulatorCatalog = GWGUI.Emulation.Nintendo.Common.Dictionaries.EmulatorCatalog;
 using NintendoModelConstants = GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants.ModelConstants;
 using NintendoModelCatalog = GWGUI.Emulation.Nintendo.Common.Machines.Common.Dictionaries.ModelCatalog;
 using GWGUI.Emulation.Sega.Modules;
@@ -129,6 +130,15 @@ public sealed class ConsoleFamilyModuleTests
         Assert.DoesNotContain(NintendoModelCatalog.All, model => model.BackendModel is
             "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
         Assert.All(NintendoModelCatalog.All, model => Assert.False(string.IsNullOrWhiteSpace(model.BackendModel)));
+    }
+
+    [Fact]
+    public void NintendoAdaptersPublishOnlyCatalogModels()
+    {
+        var modelIds = NintendoModelCatalog.All.Select(model => model.Id)
+            .ToHashSet(StringComparer.Ordinal);
+        Assert.All(NintendoEmulatorCatalog.All, definition =>
+            Assert.All(definition.MachineIds, machineId => Assert.Contains(machineId, modelIds)));
     }
 
     [Fact]

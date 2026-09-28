@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.MelonDs.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.MelonDs.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.MelonDs.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.MelonDs.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.MelonDs.Factories;
@@ -16,7 +17,7 @@ internal sealed class MelonDsMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         MelonDsConstants.Id, MelonDsConstants.DisplayName,
         MelonDsConstants.DescriptionResourceKey,
-        new[] { "NintendoDs" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.NintendoDs }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -76,4 +77,3 @@ internal sealed class MelonDsMachineFactory : IEmulatorAdapter
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-

@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.Mesen.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Mesen.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Mesen.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Mesen.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Mesen.Factories;
@@ -16,7 +17,7 @@ internal sealed class MesenMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         MesenConstants.Id, MesenConstants.DisplayName,
         MesenConstants.DescriptionResourceKey,
-        new[] { "Nes", "FamicomDisk" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.Nes, ModelConstants.FamicomDisk }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -76,5 +77,3 @@ internal sealed class MesenMachineFactory : IEmulatorAdapter
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-
-

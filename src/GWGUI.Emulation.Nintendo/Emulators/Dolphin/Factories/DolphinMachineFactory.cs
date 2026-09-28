@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.Dolphin.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Dolphin.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Dolphin.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Dolphin.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Dolphin.Factories;
@@ -16,7 +17,7 @@ internal sealed class DolphinMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         DolphinConstants.Id, DolphinConstants.DisplayName,
         DolphinConstants.DescriptionResourceKey,
-        new[] { "GameCube", "Wii" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.GameCube, ModelConstants.Wii }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {

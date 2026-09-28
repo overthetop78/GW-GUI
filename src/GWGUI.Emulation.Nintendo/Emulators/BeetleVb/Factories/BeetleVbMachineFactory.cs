@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Factories;
@@ -16,7 +17,7 @@ internal sealed class BeetleVbMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         BeetleVbConstants.Id, BeetleVbConstants.DisplayName,
         BeetleVbConstants.DescriptionResourceKey,
-        new[] { "VirtualBoy" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.VirtualBoy }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {

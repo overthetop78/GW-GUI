@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.Mupen64PlusNext.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Mupen64PlusNext.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Mupen64PlusNext.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Mupen64PlusNext.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Mupen64PlusNext.Factories;
@@ -16,7 +17,7 @@ internal sealed class Mupen64PlusNextMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         Mupen64PlusNextConstants.Id, Mupen64PlusNextConstants.DisplayName,
         Mupen64PlusNextConstants.DescriptionResourceKey,
-        new[] { "Nintendo64" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.Nintendo64 }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -76,4 +77,3 @@ internal sealed class Mupen64PlusNextMachineFactory : IEmulatorAdapter
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-

@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.Gambatte.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Gambatte.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Gambatte.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Gambatte.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Gambatte.Factories;
@@ -16,7 +17,7 @@ internal sealed class GambatteMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         GambatteConstants.Id, GambatteConstants.DisplayName,
         GambatteConstants.DescriptionResourceKey,
-        new[] { "GameBoy", "GameBoyColor" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.GameBoy, ModelConstants.GameBoyColor }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -76,4 +77,3 @@ internal sealed class GambatteMachineFactory : IEmulatorAdapter
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-

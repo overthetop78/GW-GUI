@@ -2,6 +2,7 @@ using GWGUI.Emulation.Nintendo.Emulators.Citra.Functions;
 using GWGUI.Emulation.Nintendo.Emulators.Citra.Contracts;
 using GWGUI.Emulation.Nintendo.Emulators.Citra.Constants;
 using GWGUI.Emulation.Nintendo.Emulators.Citra.Services;
+using GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.Citra.Factories;
@@ -16,7 +17,7 @@ internal sealed class CitraMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         CitraConstants.Id, CitraConstants.DisplayName,
         CitraConstants.DescriptionResourceKey,
-        new[] { "Nintendo3Ds" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.Nintendo3Ds }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -76,4 +77,3 @@ internal sealed class CitraMachineFactory : IEmulatorAdapter
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-
