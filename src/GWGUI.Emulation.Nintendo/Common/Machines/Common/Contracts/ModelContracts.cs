@@ -15,4 +15,11 @@ public sealed record Model(
     int ControllerPortCount = 2,
     int MouseButtonCount = 2,
     bool HasBuiltInCompactDiscDrive = false,
-    bool SupportsCompactDiscDrive = false);
+    bool SupportsCompactDiscDrive = false,
+    IReadOnlyList<string>? CpuModels = null,
+    string? VideoChip = null,
+    string? AudioChip = null,
+    int RomKib = 0)
+{
+    public IReadOnlyList<string> Processors => CpuModels ?? [];
+}

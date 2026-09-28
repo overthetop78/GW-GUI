@@ -8,6 +8,8 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Emulation.Nintendo.Modules;
+using NintendoModelConstants = GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants.ModelConstants;
+using NintendoModelCatalog = GWGUI.Emulation.Nintendo.Common.Machines.Common.Dictionaries.ModelCatalog;
 using GWGUI.Emulation.Sega.Modules;
 using GWGUI.Emulation.Sega.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Dictionaries;
@@ -107,6 +109,26 @@ public sealed class ConsoleFamilyModuleTests
         {
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
+    }
+
+    [Fact]
+    public void NintendoModelCatalogContainsNintendoModelsOnly()
+    {
+        var expected = new[]
+        {
+            NintendoModelConstants.GameWatch, NintendoModelConstants.Nes,
+            NintendoModelConstants.FamicomDisk, NintendoModelConstants.Snes,
+            NintendoModelConstants.VirtualBoy, NintendoModelConstants.Nintendo64,
+            NintendoModelConstants.GameBoy, NintendoModelConstants.GameBoyColor,
+            NintendoModelConstants.GameBoyAdvance, NintendoModelConstants.NintendoDs,
+            NintendoModelConstants.Nintendo3Ds, NintendoModelConstants.GameCube,
+            NintendoModelConstants.Wii, NintendoModelConstants.WiiU,
+            NintendoModelConstants.Switch
+        };
+        Assert.Equal(expected, NintendoModelCatalog.All.Select(model => model.Id));
+        Assert.DoesNotContain(NintendoModelCatalog.All, model => model.BackendModel is
+            "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
+        Assert.All(NintendoModelCatalog.All, model => Assert.False(string.IsNullOrWhiteSpace(model.BackendModel)));
     }
 
     [Fact]
@@ -571,6 +593,29 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void GenesisPlusGxRejectsAnUnsupportedConfiguredExtension()
+    {
+        var supported = new HashSet<string>(["md", "m3u"], StringComparer.OrdinalIgnoreCase);
+
+        Assert.Throws<InvalidDataException>(() => ExternalCore.ValidateConfiguredExtensions(
+            supported, ["game.md", "game.32x"]));
+    }
+
+    [Fact]
+    public void GenesisPlusGxDoesNotBuildAPlaylistForMultipleMedia()
+    {
+        var media = new[]
+        {
+            new MediaConfiguration("game.md", MediaCategory.Cartridge,
+                EmulationMediaSlot.Cartridge0),
+            new MediaConfiguration("game.cue", MediaCategory.CompactDisc,
+                EmulationMediaSlot.Cd0)
+        };
+
+        Assert.Throws<InvalidOperationException>(() => ExternalCore.PrepareContentPath(media));
+    }
+
+    [Fact]
     public void SegaAdaptersOnlyPublishModelsFromTheMachineCatalog()
     {
         var machineIds = ModelCatalog.All.Select(model => model.Id)
@@ -772,7 +817,9 @@ public sealed class ConsoleFamilyModuleTests
             (FirmwareConstants.MegaCdJapanBiosMd5, ModelConstants.MegaDrive),
             (FirmwareConstants.MasterSystemEuropeBiosMd5, ModelConstants.MasterSystem),
             (FirmwareConstants.MasterSystemJapanBiosMd5, ModelConstants.MasterSystem),
-            (FirmwareConstants.GameGearBiosMd5, ModelConstants.GameGear)
+            (FirmwareConstants.GameGearBiosMd5, ModelConstants.GameGear),
+            (FirmwareConstants.SaturnBiosMd5, ModelConstants.Saturn),
+            (FirmwareConstants.DreamcastBiosMd5, ModelConstants.Dreamcast)
         };
         foreach (var (md5, model) in verified)
         {
@@ -780,8 +827,18 @@ public sealed class ConsoleFamilyModuleTests
             Assert.Contains(model, identity.Models);
             Assert.NotEmpty(identity.FileNames);
         }
+        Assert.Equal([FirmwareConstants.SaturnBiosFileName],
+            AssertIdentity(FirmwareConstants.SaturnBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.DreamcastBiosRelativeFileName],
+            AssertIdentity(FirmwareConstants.DreamcastBiosMd5).FileNames);
         Assert.False(FirmwareCatalog.TryIdentifyKnown("00000000000000000000000000000000",
             out _));
+
+        static (string Name, string Version, string[] Models, string[] FileNames) AssertIdentity(string md5)
+        {
+            Assert.True(FirmwareCatalog.TryIdentifyKnown(md5, out var identity));
+            return identity;
+        }
     }
 
     [Fact]

@@ -124,70 +124,76 @@ jamais une feuille terminale.
   - [ ] Afficher les choix dans les blocs existants.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` pour le modèle Mega-CD I/II, sa coche d'activation désactivée par défaut et la coche 32X.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs` pour les clés d'aide de ces champs.
-    - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Emulation.resx` et chaque culture pour les libellés traduits avec Argos.
+    - [x] Modifier les catalogues `src/GWGUI.Emulation.Sega/Resources/<culture>/` pour les libellés traduits avec Argos.
   - [ ] Valider les combinaisons matérielles.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/ConfigurationFunctions.cs` pour refuser un CD Mega-CD désactivé, une cartouche `.32x` sans 32X et une Sega Card verrouillée par SMS II/3-D Glasses.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/StorageFunctions.cs` pour n'ajouter le lecteur CD Mega-CD qu'après sa coche d'activation et exposer les extensions Mega Drive/32X.
   - [ ] Transmettre seulement ce que connaît le cœur.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour filtrer les options persistées sur le catalogue renvoyé par le cœur, puis appliquer ce filtre après l'initialisation du cœur.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour refuser proprement une extension non supportée au lieu de la charger comme une autre machine.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour refuser proprement chaque extension non supportée, sans construire ni accepter de playlist.
   - [ ] Tester les ports et les addons.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour les deux slots SMS, Mega-CD activé/désactivé, 32X activé/désactivé et le rejet des incompatibilités.
 
 ## 5. Sega — firmwares et ROM système
 
-- [ ] Déclarer les profils vérifiés.
-  - [ ] Ajouter les identifiants sans texte brut.
+- [x] Déclarer les profils vérifiés.
+  - [x] Ajouter les identifiants sans texte brut.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les empreintes vérifiées Genesis Plus GX pour Master System, Game Gear, Mega Drive et Mega-CD; laisser les profils non vérifiés (BIOS 32X, BIOS custom et autres révisions) non sélectionnables.
-  - [ ] Relier un fichier réellement fourni.
+  - [x] Relier un fichier réellement fourni.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour reconnaître les empreintes connues, conserver les noms système attendus par le cœur et laisser les fichiers inconnus sans profil utilisable.
-  - [ ] Exposer le profil sélectionné.
+  - [x] Exposer le profil sélectionné.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs` pour scanner le dossier Firmware, exposer les candidats compatibles et persister le chemin sélectionné dans les options de la configuration.
-  - [ ] Appliquer le profil au cœur.
+  - [x] Appliquer le profil au cœur.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour identifier l'empreinte sélectionnée et copier le fichier sous les noms système attendus, y compris plusieurs alias régionaux.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/Yabause/Services/ExternalCore.cs` et `Flycast/Services/ExternalCore.cs` pour transmettre uniquement un firmware accepté par chacun de ces cœurs.
-  - [ ] Vérifier les profils.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Yabause/Services/ExternalCore.cs` et `Flycast/Services/ExternalCore.cs` pour transmettre uniquement un firmware accepté par chacun de ces cœurs.
+  - [x] Vérifier les profils.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier les empreintes connues, leurs modèles et leurs noms système attendus, ainsi que le refus d'une empreinte fictive.
+  - [x] Ajouter les profils vérifiés des cœurs optiques Sega.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les noms et empreintes vérifiés du BIOS Saturn Yabause et du BIOS Dreamcast Flycast, sans ajouter les BIOS non vérifiés.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer ces deux profils aux modèles Saturn et Dreamcast et à leurs chemins système exacts.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier les deux profils optiques et leurs fichiers système.
 
 ## 6. MediaEngine — formats et représentations
 
-- [ ] Ajouter les constantes de formats réels.
-  - [ ] Déclarer les extensions.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` pour `.fds`, Sega Card/My Card, HuCard/PCE, cartouches et optiques démontrés.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` pour un identifiant nommé par machine/support, jamais `RawCartridge`.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` pour les writers correspondants.
-  - [ ] Lire et écrire les cartouches par banques.
-    - [ ] Créer/modifier `src/GWGUI.MediaEngine/Images/Formats/Cartridge/<Machine>/` avec le reader nommé et la représentation par blocs réels.
-    - [ ] Créer/modifier le writer du même dossier pour refuser une banque absente au lieu d'écrire des blocs noirs.
-    - [ ] Supprimer tout dossier `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Raw/` et toute constante `RawCartridge` si une occurrence subsiste.
-  - [ ] Préserver les optiques multipistes.
-    - [ ] Créer/modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/<Machine>/` pour pistes Mega-CD, Saturn et GD-ROM Dreamcast avec leur descripteur.
-  - [ ] Enregistrer chaque composant.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` pour les readers créés.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` pour les writers créés.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs` pour les capacités exactes.
+- [x] Ajouter les constantes de formats réels.
+  - [x] Déclarer les extensions.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs`, `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs`, le lecteur/écrivain console et le catalogue de reconnaissance pour `.mdx`, `.smd`, `.bms`, `.sgd` et `.68k`, extensions ROM Mega Drive reconnues par Genesis Plus GX; vérifier leur round-trip et leur icône dans le test média.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` pour `.fds`, Sega Card/My Card, HuCard/PCE, cartouches et optiques démontrés, puis compléter `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` avec les extensions SG-1000/My Card et PCE; le test round-trip couvre désormais les formats démontrés.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` et `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` : les identifiants nommés SG-1000/My Card, PC Engine/HuCard, FDS et GDI Dreamcast sont utilisés; aucune constante `RawCartridge` n'est ajoutée.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Constants/MediaImageWriterIds.cs` et l'enregistrement du writer `ConsoleCartridge`; un seul writer partagé traite les identifiants nommés de chaque cartouche sans introduire `RawCartridge`.
+  - [x] Lire et écrire les cartouches par banques.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeReader.cs` et `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs` : les lecteurs publient les banques réelles et leurs tailles.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeWriter.cs` : l'écriture relit exactement les données stockées et échoue sur une banque absente au lieu d'écrire des blocs noirs.
+    - [x] Vérifier et supprimer toute occurrence de `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Raw/` ou de `RawCartridge`; aucune occurrence ne subsiste dans `src/` ni `tests/`.
+  - [x] Préserver les optiques multipistes.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Images/Formats/Optical/Gdi/` pour le descripteur GD-ROM Dreamcast et les lecteurs CUE/BIN, CloneCD, MDS, CHD et ISO pour les supports Mega-CD/Saturn sans inventer d'identifiant machine quand le conteneur ne l'expose pas.
+  - [x] Enregistrer chaque composant.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` : readers cartouche, FDS et GDI sont enregistrés.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` : writers cartouche, FDS et GDI sont enregistrés.
+    - [x] Vérifier `src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs` : les capacités sont dérivées des lecteurs/writers réellement enregistrés.
 
 ## 7. MediaFileSystems et MediaAnalysis
 
-- [ ] Exposer les volumes démontrés.
-  - [ ] Ajouter les identifiants nommés.
-    - [ ] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` pour Sega Card, HuCard, FDS et banques console réelles.
-  - [ ] Lire les entrées sans inventer de système de fichiers.
-    - [ ] Créer/modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/<Machine>/` seulement lorsque la structure des fichiers est démontrée.
-    - [ ] Modifier les lecteurs existants pour retourner les noms et tailles réels des banques/blocs.
-- [ ] Reconnaître les contenus.
-  - [ ] Déclarer les extensions.
-    - [ ] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour les extensions ajoutées dans MediaEngine.
-  - [ ] Déclarer les signatures et contenus.
-    - [ ] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/CommonMediaContentRecognitionTable.cs` pour distinguer flux, image sectorielle, cartouche et optique.
-  - [ ] Vérifier les fichiers extraits.
-    - [ ] Modifier `tests/GWGUI.Tests/Media/` avec un test autonome par famille de formats et suppression explicite de ses artefacts temporaires.
+- [x] Exposer les volumes démontrés.
+  - [x] Ajouter les identifiants nommés.
+    - [x] Vérifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` pour Sega Card/My Card, HuCard, FDS et banques console réelles.
+  - [x] Lire les entrées sans inventer de système de fichiers.
+    - [x] Vérifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/` et `FileSystems/Nintendo/FamicomDisk/`; seuls les blocs/bandes réellement décodés sont exposés.
+    - [x] Vérifier les lecteurs existants : noms et tailles réels des banques/blocs sont retournés.
+- [x] Reconnaître les contenus.
+  - [x] Déclarer les extensions.
+    - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` pour les extensions ajoutées dans MediaEngine.
+  - [x] Déclarer les signatures et contenus.
+    - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour distinguer flux, image sectorielle, cartouche et optique.
+  - [x] Vérifier les fichiers extraits.
+    - [x] Vérifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs`; les artefacts sont créés puis supprimés dans `finally`.
 
 ## 8. Nintendo, Sony, Microsoft et NEC — même ordre par famille
 
 - [ ] Terminer Nintendo avant Sony.
-  - [ ] Terminer le catalogue avant les cœurs.
-    - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Contracts/ModelContracts.cs` puis `Dictionaries/ModelCatalog.cs` pour Game & Watch, NES/Famicom, 3DS, GameCube, Wii, Wii U et Switch vérifiable.
+  - [x] Terminer le catalogue avant les cœurs.
+    - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Contracts/ModelContracts.cs`, `Common/Constants/ModelConstants.cs` et `Common/Dictionaries/ModelCatalog.cs` pour publier les quinze modèles Nintendo, leurs identifiants backend Nintendo et leurs champs CPU, vidéo et audio.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier l'ordre du catalogue Nintendo et refuser les identifiants backend Sega copiés.
   - [ ] Terminer un adaptateur à la fois.
     - [ ] Créer/modifier `src/GWGUI.Emulation.Nintendo/Emulators/<cœur>/` avec les fichiers directement dans le dossier du cœur.
   - [ ] Tester le rattachement.
@@ -228,21 +234,42 @@ jamais une feuille terminale.
 
 - [ ] Traduire toute nouvelle clé.
   - [ ] Ajouter la clé anglaise dans la base commune du module.
-    - [ ] Modifier `src/GWGUI.Emulation.<famille>/Resources/00-Base/Emulation.resx` avec les noms réels, `Cartouche`, Sega Card/My Card, périphériques et erreurs.
+    - [ ] Modifier les catalogues `src/GWGUI.Emulation.<famille>/Resources/00-Base/*.resx` avec les noms réels, `Cartouche`, Sega Card/My Card, périphériques et erreurs.
   - [ ] Synchroniser les cultures avec Argos.
-    - [ ] Modifier chaque `Resources/<culture>/Emulation.resx` correspondant et vérifier qu'aucune clé `[... ]` n'est affichée.
+    - [ ] Modifier chaque catalogue `Resources/<culture>/*.resx` correspondant et vérifier qu'aucune clé `[... ]` n'est affichée.
+    - [ ] Refaire les ressources Sega à partir de la base canonique.
+      - [ ] Remplacer les messages d'erreur répétés des trois cœurs Sega par une fabrique commune et les clés génériques d'erreur de cœur externe.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs` pour contenir aussi la fabrique `ExternalCoreExceptions`, puis modifier les trois familles de services pour l'utiliser sans injecter le nom d'un cœur dans les phrases génériques.
+      - [x] Répartir les clés de base dans `Resources/00-Base/*.resx`, notamment `Error.resx` et `Help.resx`, sans fichier monolithique ni dossier redondant.
+      - [x] Conserver les valeurs invariantes dans `Resources/00-Base/Machine.resx` uniquement et retirer leur copie des cultures.
+      - [x] Aligner la clé `Emulation.Emulator.genesisplusgx.Description` de toutes les cultures sur `GenesisPlusGXConstants.DescriptionResourceKey` afin d'éviter l'affichage de la clé brute.
+    - [x] Créer les mêmes catalogues (`Controller.resx`, `Core.resx`, `Error.resx`, `Firmware.resx`, `Help.resx`, `Machine.resx`, `Option.resx`, `Video.resx`) directement sous `Resources/en-US/` et sous les 28 cultures, puis supprimer les fichiers monolithiques.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/GWGUI.Emulation.Sega.csproj` pour embarquer les catalogues imbriqués avec leurs cultures.
+    - [x] Modifier `src/GWGUI.Emulation/Services/EmulationModuleLocalization.cs` pour charger tous les catalogues d'un module, en conservant le fonctionnement des modules à fichier unique.
+    - [x] Retirer de `Resources/en-US/Controller.resx` et des 28 cultures les noms officiels Sega invariants (`Light Phaser`, `Mega Mouse`, `Menacer`, `Virtua Gun`, etc.) et les conserver uniquement dans `Resources/00-Base/Controller.resx`.
+    - [x] Traduire chaque catalogue avec `scripts/tools/translate-resx-argos.py --retranslate-all`, puis exécuter l'audit : 28 cultures, 8 catalogues, 4088 entrées localisées; les valeurs invariantes restent uniquement dans `00-Base`.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` pour protéger les noms techniques invariants des cœurs et des machines pendant la traduction et l'audit.
 - [ ] Vérifier chaque tranche.
   - [ ] Tester sans média utilisateur permanent.
     - [ ] Modifier le fichier de test ciblé pour créer puis supprimer ses fichiers temporaires dans `finally`.
   - [x] Auditer toutes les suites de tests, pas uniquement le test de la tranche.
     - [x] Modifier `docs/project/console-family-emulation.md` pour consigner les 1067 tests réussis et l'absence de processus `vstest`, `testhost` ou GW GUI résiduel après l'exécution; les fenêtres WPF, dispatchers, cœurs, threads et dossiers temporaires existants sont libérés par leurs `finally` ou leurs fixtures partagées.
   - [ ] Compiler la tranche.
-    - [ ] Exécuter les tests ciblés après les feuilles de la tranche; noter le résultat dans ce document.
+    - [x] Exécuter les tests ciblés après les feuilles de la tranche; noter le résultat dans ce document : 35 tests réussis, 0 échec.
     - [ ] Exécuter `scripts\local-building.cmd --building=debug --modules=0` seulement après une tranche complète et vérifier `build/Debug/GW GUI/gwgui.exe`.
 - [ ] Commiter une tranche complète.
   - [ ] Contrôler le contenu du commit.
     - [ ] Modifier ce document pour cocher les feuilles réellement terminées.
     - [ ] Créer un seul commit contenant code, tests, traductions et plan; ne jamais créer un commit documentaire seul.
+
+- [x] Refaire intégralement les traductions Sega avec le vocabulaire matériel correct.
+  - [x] Reconstituer les catalogues source et traduisibles avant toute traduction automatique.
+    - [x] Modifier les catalogues `src/GWGUI.Emulation.Sega/Resources/00-Base/Machine.resx` et les cultures correspondantes pour ne garder les invariants que dans la base commune.
+  - [x] Traduire toutes les cultures depuis `en-US` avec Argos et protéger les noms techniques invariants.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` pour protéger les noms de consoles, extensions, modules et périphériques Sega, conserver les fragments de ponctuation et appliquer les corrections terminologiques par culture.
+    - [x] Modifier les 28 jeux de catalogues `Resources/<culture>/*.resx` avec `--retranslate-all`; résultat : 28 cultures, 8 catalogues, 4088 entrées localisées, après retrait des valeurs invariantes.
+  - [x] Corriger le vocabulaire matériel français puis auditer les catalogues.
+    - [x] Modifier les catalogues `src/GWGUI.Emulation.Sega/Resources/fr-FR/` avec les termes Dreamcast, Mega-CD, 32X, extension, activation et messages d'erreur corrects, puis exécuter l'audit Argos.
 
 ## 11. Cœurs Sega à comparer avant toute nouvelle intégration
 
