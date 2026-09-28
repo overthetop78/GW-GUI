@@ -10,6 +10,7 @@ public static class MediaImageWriterIds
     public const string AmstradRom = "amstrad-rom";
     public const string ConsoleCartridge = "console-cartridge";
     public const string NintendoFamicomDisk = "nintendo-famicom-disk";
+    public const string NintendoWiiU = "nintendo-wii-u";
     public const string AppleNibble = "apple-nibble";
     public const string AppleSector = "apple-sector";
     public const string AtariAtr = "atari-atr";

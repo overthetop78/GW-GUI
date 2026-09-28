@@ -497,5 +497,22 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
 - [x] Créer `src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj`, `module.json` et la factory.
 - [ ] Créer les lecteurs MediaEngine pour FDS, Sega Card/HuCard et CDI/GDI/CHD multi-pistes.
 
+### Support média Nintendo Wii U (WUD/WUX)
+
+- [x] Ajouter la lecture nommée des images Wii U dans `MediaEngine` sans introduire de format générique.
+  - [x] Écrire `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` avec l'identifiant `nintendo.wiiu`.
+  - [x] Écrire `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs`, `DiskImageFormatIds.cs`, `MediaImageWriterIds.cs` et `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` avec les constantes `.wud` et `.wux`.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUFormat.cs`, `WiiUMetadataConstants.cs`, `WiiUWuxRandomAccessData.cs` et `WiiUReader.cs` pour lire les données logiques WUD et l'index WUX.
+  - [x] Enregistrer `WiiUReader` dans `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` et le format dans `ImageFormatCatalog.cs`.
+- [x] Ajouter la conversion Wii U vers WUD dans `MediaEngine`.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs` pour écrire un flux WUD à partir d'une représentation par blocs complète.
+  - [x] Enregistrer le writer dans `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs`.
+- [x] Rendre les extensions WUD/WUX visibles dans `MediaAnalysis`.
+  - [x] Ajouter les deux extensions à `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs`.
+- [x] Vérifier la tranche Wii U.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Media/WiiUMediaFormatTests.cs` la lecture WUD/WUX, la lecture aléatoire WUX, la conversion WUD et le nettoyage des fichiers temporaires.
+  - [x] Exécuter les tests ciblés puis la suite `GWGUI.Tests`.
+- [x] Cocher ce groupe et créer un commit unique seulement après réussite de toutes les actions ci-dessus.
+
 Ce document ne prétend pas qu'un cœur ou un format est déjà implémenté : chaque
 case sera cochée seulement après le fichier et le comportement correspondants.

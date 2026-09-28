@@ -28,6 +28,7 @@ public static class MediaImageFormatIds
     public const string NintendoNds = "nintendo.nds";
     public const string NintendoGameWatch = "nintendo.game_watch";
     public const string Nintendo3Ds = "nintendo.3ds";
+    public const string NintendoWiiU = "nintendo.wiiu";
     public const string SegaSg1000 = "sega.sg1000";
     public const string SegaMasterSystem = "sega.master_system";
     public const string SegaMegaDrive = "sega.mega_drive";

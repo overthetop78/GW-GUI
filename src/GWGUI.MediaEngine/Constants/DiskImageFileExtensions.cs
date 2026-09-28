@@ -134,6 +134,12 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des images ISO brutes Nintendo GameCube/Wii.</summary>
     public const string Gcm = ".gcm";
 
+    /// <summary>Extension des images de disque Nintendo Wii U non compressées.</summary>
+    public const string Wud = ".wud";
+
+    /// <summary>Extension des images de disque Nintendo Wii U indexées.</summary>
+    public const string Wux = ".wux";
+
     /// <summary>Extension used by CUE sheet descriptors.</summary>
     public const string Cue = ".cue";
 

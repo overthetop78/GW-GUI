@@ -197,6 +197,8 @@ internal static class FileTypeExtensions
     public const string Iso = ".iso";
     public const string Gcm = ".gcm";
     public const string Gdi = ".gdi";
+    public const string Wud = ".wud";
+    public const string Wux = ".wux";
     public const string Jl = ".jl";
     public const string Jm = ".jm";
     public const string Jpeg = ".jpeg";

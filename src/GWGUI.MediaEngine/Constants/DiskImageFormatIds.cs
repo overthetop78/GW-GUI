@@ -47,6 +47,8 @@ public static partial class DiskImageFormatIds
     public const string NintendoGameWatch = MediaImageFormatIds.NintendoGameWatch;
     /// <summary>Identifiant des images de cartouche Nintendo 3DS.</summary>
     public const string Nintendo3Ds = MediaImageFormatIds.Nintendo3Ds;
+    /// <summary>Identifiant des images de disque Nintendo Wii U WUD/WUX.</summary>
+    public const string NintendoWiiU = MediaImageFormatIds.NintendoWiiU;
     /// <summary>Identifiant des images de cartouche Nintendo Virtual Boy.</summary>
     public const string NintendoVirtualBoy = MediaImageFormatIds.NintendoVirtualBoy;
     /// <summary>Identifiant des images de cartouche Sega SG-1000.</summary>
