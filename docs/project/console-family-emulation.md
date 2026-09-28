@@ -200,6 +200,15 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Ajouter le classement `.gdi` dans `CommonMediaContentRecognitionTable`; l’exploration optique existante consomme les pistes GDI décodées.
 - [x] Ajouter le test autonome GDI, compiler les projets concernés et exécuter les tests avant le commit de cette tranche.
 
+### Adaptateur Nintendo Virtual Boy
+
+- [x] Ajouter un adaptateur Nintendo Virtual Boy concret avec le protocole propre au cœur Beetle VB.
+  - [x] Créer les fichiers `src/GWGUI.Emulation.Nintendo/Emulators/BeetleVb/` en reprenant les contrats et l’hôte déjà utilisés par les cœurs Nintendo, puis adapter l’installation, les identifiants et le média `.vb`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Dictionaries/EmulatorCatalog.cs` et `src/GWGUI.Emulation.Nintendo/Resources/00-Base/Emulation.resx` pour rattacher uniquement `VirtualBoy` à Beetle VB.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` l’assertion de sélection de Beetle VB pour Virtual Boy.
+  - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de configuration.
+- [x] Stage et commit de l’adaptateur Nintendo Virtual Boy seulement après réussite de toutes les sous-tâches ci-dessus.
+
 ### Adaptateur Nintendo SNES
 
 - [x] Ajouter un adaptateur Nintendo SNES concret avec le protocole propre au cœur Snes9x.

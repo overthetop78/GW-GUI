@@ -105,6 +105,7 @@
   <data name="Emulation.Nintendo.Model.Switch"><value>Nintendo Switch</value></data>
   <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Identifies the Nintendo model whose hardware configuration is being edited.</value></data>
   <data name="Emulation.Emulator.mesen.Description"><value>Emulates Nintendo Entertainment System and Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulates the Nintendo Virtual Boy.</value></data>
   <data name="Emulation.Error.Mupen64PlusNext.HostConfigurationInvalid"><value>The Mupen64Plus-Next host configuration is invalid.</value></data>
   <data name="Emulation.Error.Mupen64PlusNext.HostNotInitialized"><value>The Mupen64Plus-Next host is not initialized.</value></data>
   <data name="Emulation.Error.Mupen64PlusNext.CoreNotInitialized"><value>The Mupen64Plus-Next core is not initialized.</value></data>
