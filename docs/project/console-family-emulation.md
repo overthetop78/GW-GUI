@@ -174,6 +174,15 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler les projets concernés et exécuter le test ciblé.
 - [x] Stage et commit de cette tranche seulement après réussite du test média.
 
+### Analyse des exécutables Xbox 360
+
+- [x] Classer les fichiers Xbox 360 `.xex` à partir de leur signature `XEX2`.
+  - [x] Ajouter la signature `XEX2` dans `src/GWGUI.MediaAnalysis/Constants/MediaContentSignatures.cs`.
+  - [x] Ajouter la règle commune `.xex` signée dans `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` sans supprimer la règle Atari 8-bit.
+  - [x] Ajouter un test de classification signé dans `tests/GWGUI.Tests/Media/MediaContentRecognitionCatalogScenarios.cs`.
+  - [x] Compiler MediaAnalysis et exécuter le test média ciblé.
+- [x] Stage et commit de cette tranche seulement après réussite du test.
+
 ### Constantes de l’explorateur de cartouches
 
 - [x] Supprimer les littéraux techniques du lecteur de banques.

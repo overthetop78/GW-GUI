@@ -81,4 +81,18 @@ public sealed class MediaContentRecognitionCatalogScenarios
         Assert.Equal(MediaContentCategory.Executable, amiga?.Category);
         Assert.Equal(MediaContentCategory.Executable, dos?.Category);
     }
+
+    [Fact]
+    public void Xbox360XexSignatureIsRecognizedWithoutReplacingAtariXexRules()
+    {
+        var classifier = new MediaContentClassifier();
+        var xbox360 = classifier.Classify(".xex", MediaEntryKind.File, null, string.Empty, true,
+            [(byte)'X', (byte)'E', (byte)'X', (byte)'2'], new Dictionary<string, string>(),
+            MediaFileSystemFamily.Unknown);
+
+        Assert.Equal(MediaContentCategory.Executable, xbox360?.Category);
+        Assert.Equal(MediaExecutionKind.NativeExecutable, xbox360?.ExecutionKind);
+        Assert.Equal(MediaFileSystemFamily.Atari8Bit,
+            MediaContentRecognitionCatalog.Find(MediaFileSystemFamily.Atari8Bit, ".xex")?.Family);
+    }
 }

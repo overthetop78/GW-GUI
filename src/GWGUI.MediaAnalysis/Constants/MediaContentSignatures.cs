@@ -9,6 +9,7 @@ internal static class MediaContentSignatures
     public static MediaContentSignature AmigaHunkExecutable { get; } = new(0, MediaContentSearchDirection.Start, [[0x00, 0x00, 0x03, 0xF3]]);
     public static MediaContentSignature DosMzExecutable { get; } = new(0, MediaContentSearchDirection.Start, [[0x4D, 0x5A]]);
     public static MediaContentSignature XboxExecutable { get; } = new(0, MediaContentSearchDirection.Start, [[0x58, 0x42, 0x45, 0x48]]);
+    public static MediaContentSignature Xbox360Executable { get; } = new(0, MediaContentSearchDirection.Start, [[0x58, 0x45, 0x58, 0x32]]);
     public static MediaContentSignature AtariTosExecutable { get; } = new(0, MediaContentSearchDirection.Start, [[0x60, 0x1A]]);
     public static MediaContentSignature IffForm { get; } = new(0, MediaContentSearchDirection.Start, [[0x46, 0x4F, 0x52, 0x4D]]);
     public static MediaContentSignature IffIlbm { get; } = new(8, MediaContentSearchDirection.Start, [[0x49, 0x4C, 0x42, 0x4D]]);
