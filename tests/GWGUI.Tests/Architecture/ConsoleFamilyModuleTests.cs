@@ -63,8 +63,7 @@ public sealed class ConsoleFamilyModuleTests
             {
                 (new NintendoEmulationModuleFactory().Create(context), "VirtualBoy"),
                 (new SonyEmulationModuleFactory().Create(context), "PsVita"),
-                (new MicrosoftEmulationModuleFactory().Create(context), "Xbox"),
-                (new NecEmulationModuleFactory().Create(context), "PcFx")
+                (new MicrosoftEmulationModuleFactory().Create(context), "Xbox")
             };
 
             foreach (var (module, machineId) in cases)
@@ -278,6 +277,26 @@ public sealed class ConsoleFamilyModuleTests
             var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
                 module.CreateConfiguration("Psp"));
             Assert.Equal("ppsspp", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void NecBeetlePcfxSelectsPcFx()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nec-beetle-pcfx-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NecEmulationModuleFactory().Create(context);
+            var configuration = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("PcFx"));
+            Assert.Equal("beetle_pcfx_fast", configuration.EmulatorId);
         }
         finally
         {

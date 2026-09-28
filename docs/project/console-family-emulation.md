@@ -250,6 +250,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module Sony et exécuter les tests d’architecture et de création de runtime.
 - [x] Stage et commit des adaptateurs Sony PlayStation 2 et PSP seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateur NEC PC-FX
+
+- [x] Ajouter un adaptateur NEC PC-FX concret avec le protocole propre au cœur Beetle PC-FX.
+  - [x] Créer les fichiers `src/GWGUI.Emulation.Nec/Emulators/BeetlePcfx/` en reprenant le protocole d’hôte NEC déjà intégré, puis remplacer les identifiants, le téléchargement et les médias par ceux du cœur PC-FX.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Resources/00-Base/Emulation.resx` pour ajouter les erreurs et la description localisées de Beetle PC-FX.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` l’assertion de sélection de Beetle PC-FX pour `PcFx`.
+  - [x] Relier le moteur NEC à l’adaptateur Beetle PC-FX par sa découverte d’adaptateurs.
+  - [x] Compiler le module NEC et exécuter les tests d’architecture et de création de runtime.
+- [x] Stage et commit de l’adaptateur NEC PC-FX seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [x] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
