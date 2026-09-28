@@ -148,7 +148,7 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs` pour consommer uniquement ces constantes et le format de nom de banque défini.
   - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier les entrées et métadonnées produites après cette centralisation.
   - [x] Compiler MediaFileSystems et exécuter le test média ciblé.
-- [ ] Stage et commit de cette correction seulement après réussite de toutes les sous-tâches ci-dessus.
+- [x] Stage et commit de cette correction seulement après réussite de toutes les sous-tâches ci-dessus.
 
 ### Adaptateur Sega Saturn
 
