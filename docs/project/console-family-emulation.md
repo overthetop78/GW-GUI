@@ -230,6 +230,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de runtime.
 - [x] Stage et commit de l’adaptateur Nintendo 64 seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateur Nintendo DS
+
+- [x] Ajouter un adaptateur Nintendo DS / DSi concret avec le protocole propre au cœur melonDS.
+  - [x] Créer les fichiers `src/GWGUI.Emulation.Nintendo/Emulators/MelonDs/` en reprenant le protocole d’hôte d’un cœur déjà intégré, puis remplacer les identifiants, le téléchargement et les médias par ceux de melonDS.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/ModelCatalog.cs` et `src/GWGUI.Emulation.Nintendo/Resources/00-Base/Emulation.resx` pour rattacher uniquement `NintendoDs` à melonDS.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` l’assertion de sélection de melonDS pour Nintendo DS.
+  - [x] Relier le moteur Nintendo à l’adaptateur melonDS par sa découverte d’adaptateurs.
+  - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de runtime.
+- [x] Stage et commit de l’adaptateur Nintendo DS seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [x] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
