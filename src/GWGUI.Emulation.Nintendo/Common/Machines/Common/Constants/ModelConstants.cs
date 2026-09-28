@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 
 internal static class ModelConstants
 {
+    internal const string FamicomDisk = "FamicomDisk";
     internal const string BackendSg1000 = "sg1000";
     internal const string BackendMasterSystem = "mastersystem";
     internal const string BackendMegaDrive = "megadrive";

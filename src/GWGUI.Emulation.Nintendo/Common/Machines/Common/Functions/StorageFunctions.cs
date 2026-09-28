@@ -7,10 +7,15 @@ internal static class StorageSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
+        var floppyExtensions = configuration.Model.Equals(ModelConstants.FamicomDisk,
+            StringComparison.Ordinal)
+            ? new[] { StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u,
+                StorageSettingsFunctionsConstants.Fds }
+            : new[] { StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u };
         for (var index = 0; index < model.MaximumFloppyDriveCount; index++)
             devices.Add(new EmulationMediaDevice(new EmulationMediaSlot(
                     EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
-                [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u],
+                floppyExtensions,
                 DisplayLabel: index == 0 ? StorageSettingsFunctionsConstants.FloppyDriveLabel
                     : StorageSettingsFunctionsConstants.SecondFloppyDriveLabel,
                 IsPermanent: index < model.BuiltInFloppyDriveCount));

@@ -52,6 +52,27 @@ internal static class ConsoleFamilyMediaScenarios
         }
     }
 
+    public static void FamicomDiskExposesFdsMedia()
+    {
+        using var http = new HttpClient();
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-fds-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            var module = new NintendoEmulationModuleFactory().Create(
+                new EmulationModuleContext(root, root, http));
+            var storage = ((IEmulationStorageSettingsManager)module)
+                .DescribeStorageSettings(module.CreateConfiguration("FamicomDisk"));
+            var floppy = Assert.Single(storage.AvailableDevices,
+                item => item.Slot == EmulationMediaSlot.Floppy0);
+            Assert.Contains(".fds", floppy.AcceptedExtensions, StringComparer.OrdinalIgnoreCase);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
     private static void AssertOpticalDevice(IEmulationModule module, string machineId, string path)
     {
         var configuration = module.CreateConfiguration(machineId);

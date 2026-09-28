@@ -4,6 +4,7 @@ internal static class StorageSettingsFunctionsConstants
 {
     internal const string Dsk = ".dsk";
     internal const string M3u = ".m3u";
+    internal const string Fds = ".fds";
     internal const string Cdt = ".cdt";
     internal const string Tap = ".tap";
     internal const string Voc = ".voc";

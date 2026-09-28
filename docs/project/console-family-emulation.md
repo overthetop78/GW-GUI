@@ -528,5 +528,12 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
 - [x] Compiler les modules Nintendo, Sega et Sony et exécuter le test ciblé puis la suite complète.
 - [x] Cocher ce groupe après réussite de toutes les actions ci-dessus.
 
+### Support du format Famicom Disk `.fds`
+
+- [x] Ajouter `Fds` dans `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/StorageConstants.cs` et le modèle `FamicomDisk` dans `ModelConstants.cs`.
+- [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/StorageFunctions.cs` pour proposer `.fds` uniquement au lecteur du Famicom Disk System.
+- [x] Ajouter et exécuter `tests/GWGUI.Tests/Emulation/MachineAdapters/ConsoleFamilyMediaScenarios.cs` pour vérifier que `.fds` est accepté.
+- [x] Cocher ce groupe après compilation et réussite de la suite complète.
+
 Ce document ne prétend pas qu'un cœur ou un format est déjà implémenté : chaque
 case sera cochée seulement après le fichier et le comportement correspondants.
