@@ -295,6 +295,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 - [x] Ajouter l’icône optique pour `.chd` dans `src/GWGUI.MediaEngine/Constants/MediaIconExtensions.cs` et `src/GWGUI.MediaEngine/Images/Visualization/MediaIconSelector.cs`.
 - [x] Ajouter un test autonome de publication des extensions optiques et nettoyer ses artefacts temporaires.
 
+### Pistes audio WAVE dans BIN/CUE
+
+- [x] Lire les feuilles CUE qui référencent des fichiers WAVE PCM Red Book.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Reading/Sources/WavePcmRandomAccessData.cs` pour exposer uniquement le bloc `data` PCM d’un fichier RIFF/WAVE validé.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/WavePcmConstants.cs` avec les signatures, paramètres PCM et tailles de secteurs audio.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueFormat.cs` pour accepter `.wav` comme fichier associé d’une feuille CUE.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Optical/BinCue/BinCueReader.cs` pour lire les pistes WAVE uniquement en mode `AUDIO` et les exposer dans la représentation optique commune.
+  - [x] Ajouter `tests/GWGUI.Tests/Media/BinCueWaveMediaFormatTests.cs` avec une feuille CUE/WAVE synthétique, une conversion BIN/CUE et la suppression des artefacts dans `finally`.
+- [x] Compiler MediaEngine et exécuter le test média ciblé avant le commit de cette tranche.
+
 ### Adaptateur Nintendo Virtual Boy
 
 - [x] Ajouter un adaptateur Nintendo Virtual Boy concret avec le protocole propre au cœur Beetle VB.

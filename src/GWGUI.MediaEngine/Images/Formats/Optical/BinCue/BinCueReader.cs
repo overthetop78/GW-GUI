@@ -8,6 +8,7 @@ using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Images.Reading.Sources;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Models.Optical;
+using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 
@@ -46,9 +47,22 @@ public sealed class BinCueReader : IMediaImageReader
         try
         {
             var sheet = await cueSheets.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
-            return sheet.Files.All(file => file.Kind == CueFileKind.Binary);
+            var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath))
+                ?? Directory.GetCurrentDirectory();
+            foreach (var file in sheet.Files)
+            {
+                var path = ResolveAssociatedPath(cueDirectory, file.DeclaredPath);
+                if (!File.Exists(path)) return false;
+                if (file.Kind == CueFileKind.WavePcm)
+                {
+                    if (file.Tracks.Any(track => track.Mode != OpticalTrackMode.Audio)) return false;
+                    _ = WavePcmRandomAccessData.Open(path);
+                }
+            }
+            return true;
         }
-        catch (Exception exception) when (exception is IOException or InvalidDataException or UnauthorizedAccessException)
+        catch (Exception exception) when (exception is IOException or InvalidDataException
+            or UnauthorizedAccessException or NotSupportedException)
         {
             return false;
         }
@@ -68,14 +82,20 @@ public sealed class BinCueReader : IMediaImageReader
         foreach (var file in sheet.Files)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if (file.Kind != CueFileKind.Binary)
-                throw new NotSupportedException("WAVE CUE tracks require the separate PCM audio adapter, which is not registered yet.");
             var path = ResolveAssociatedPath(cueDirectory, file.DeclaredPath);
             if (!File.Exists(path)) throw new InvalidDataException($"CUE track file '{file.DeclaredPath}' is missing.");
             if (path.Equals(Path.GetFullPath(context.Source.PrimaryPath), StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException("A CUE sheet cannot use itself as track data.");
 
-            var source = new FileRandomAccessData(path);
+            IMediaRandomAccessData source = file.Kind switch
+            {
+                CueFileKind.Binary => new FileRandomAccessData(path),
+                CueFileKind.WavePcm => WavePcmRandomAccessData.Open(path),
+                _ => throw new NotSupportedException($"Unsupported CUE source kind '{file.Kind}'.")
+            };
+            if (file.Kind == CueFileKind.WavePcm
+                && file.Tracks.Any(track => track.Mode != OpticalTrackMode.Audio))
+                throw new InvalidDataException("WAVE CUE files can contain only AUDIO tracks.");
             var sectorSizes = file.Tracks.Select(track => GetStoredSectorSize(track.Mode)).Distinct().ToArray();
             if (sectorSizes.Length != 1)
                 throw new NotSupportedException("Tracks with different stored sector sizes must use separate CUE files in the initial profile.");
