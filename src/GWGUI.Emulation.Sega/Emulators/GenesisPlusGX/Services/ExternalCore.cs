@@ -6,6 +6,7 @@ using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Functions;
 
 namespace GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
 
@@ -121,6 +122,8 @@ internal sealed class ExternalCore : IEmulatorCore
             _unserialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroUnserialize);
             Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();
             _initialized = true;
+            _host.FilterConfiguredOptions(GenesisPlusGXOptionFunctions.FilterToCoreOptions(
+                configuration.Options, _host.OptionCatalog));
             _host.ValidateConfiguredOptions();
             var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
                 ExternalCoreConstants.RetroSetControllerPortDevice);

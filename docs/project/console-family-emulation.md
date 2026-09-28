@@ -129,7 +129,7 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/ConfigurationFunctions.cs` pour refuser un CD Mega-CD désactivé, une cartouche `.32x` sans 32X et une Sega Card verrouillée par SMS II/3-D Glasses.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/StorageFunctions.cs` pour n'ajouter le lecteur CD Mega-CD qu'après sa coche d'activation et exposer les extensions Mega Drive/32X.
   - [ ] Transmettre seulement ce que connaît le cœur.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour filtrer les options persistées sur le catalogue renvoyé par le cœur.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour filtrer les options persistées sur le catalogue renvoyé par le cœur, puis appliquer ce filtre après l'initialisation du cœur.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour refuser proprement une extension non supportée au lieu de la charger comme une autre machine.
   - [ ] Tester les ports et les addons.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour les deux slots SMS, Mega-CD activé/désactivé, 32X activé/désactivé et le rejet des incompatibilités.

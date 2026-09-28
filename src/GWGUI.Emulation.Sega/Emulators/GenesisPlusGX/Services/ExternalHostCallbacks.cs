@@ -132,6 +132,20 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         _updateOptionsDisplay?.Invoke();
     }
 
+    internal void FilterConfiguredOptions(IReadOnlyDictionary<string, string> configuredOptions)
+    {
+        var coreKeys = OptionCatalog.Select(option => option.Key)
+            .ToHashSet(StringComparer.Ordinal);
+        foreach (var key in _options.Keys.Where(key => !coreKeys.Contains(key)).ToArray())
+            _options.Remove(key);
+        _configuredOptionKeys.Clear();
+        foreach (var option in configuredOptions)
+        {
+            _options[option.Key] = option.Value;
+            _configuredOptionKeys.Add(option.Key);
+        }
+    }
+
     public void Dispose()
     {
         if (_disposed) return;

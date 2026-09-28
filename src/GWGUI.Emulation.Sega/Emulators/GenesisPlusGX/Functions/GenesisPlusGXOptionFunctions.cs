@@ -13,4 +13,14 @@ internal static class GenesisPlusGXOptionFunctions
                 configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         };
     }
+
+    internal static IReadOnlyDictionary<string, string> FilterToCoreOptions(
+        IReadOnlyDictionary<string, string>? options, IReadOnlyList<CoreOption> catalog)
+    {
+        var keys = catalog.Select(option => option.Key)
+            .ToHashSet(StringComparer.Ordinal);
+        return (options ?? new Dictionary<string, string>())
+            .Where(option => keys.Contains(option.Key))
+            .ToDictionary(option => option.Key, option => option.Value, StringComparer.Ordinal);
+    }
 }

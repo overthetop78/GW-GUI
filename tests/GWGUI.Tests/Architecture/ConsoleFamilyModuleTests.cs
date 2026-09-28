@@ -9,6 +9,7 @@ using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Emulation.Nintendo.Modules;
 using GWGUI.Emulation.Sega.Modules;
+using GWGUI.Emulation.Sega.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
@@ -17,6 +18,7 @@ using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Functions;
 using GWGUI.Emulation.Sony.Modules;
 using GWGUI.Emulation.Microsoft.Modules;
 
@@ -543,6 +545,29 @@ public sealed class ConsoleFamilyModuleTests
         {
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
+    }
+
+    [Fact]
+    public void GenesisPlusGxFiltersConfigurationOptionsToItsPublishedCatalog()
+    {
+        var options = new Dictionary<string, string>
+        {
+            ["genesis_plus_gx_region"] = "pal",
+            [SettingsConstants.MegaCdEnabled] = SettingsDescriptionFunctionsConstants.Enabled,
+            ["custom"] = "discarded"
+        };
+        var catalog = new[]
+        {
+            new CoreOption("genesis_plus_gx_region", "Region", null, null,
+                "ntsc", "ntsc", [new CoreOptionValue("ntsc", "NTSC"),
+                new CoreOptionValue("pal", "PAL")])
+        };
+
+        var filtered = GenesisPlusGXOptionFunctions.FilterToCoreOptions(options, catalog);
+
+        Assert.Equal("pal", filtered["genesis_plus_gx_region"]);
+        Assert.DoesNotContain(SettingsConstants.MegaCdEnabled, filtered.Keys);
+        Assert.DoesNotContain("custom", filtered.Keys);
     }
 
     [Fact]
