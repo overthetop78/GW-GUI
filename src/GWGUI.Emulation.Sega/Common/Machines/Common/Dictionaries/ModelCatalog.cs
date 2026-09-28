@@ -1,24 +1,24 @@
-using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
-
 namespace GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 
 public static class ModelCatalog
 {
-    public static IReadOnlyList<ModelDefinition> All { get; } =
+    public static IReadOnlyList<Model> All { get; } =
     [
-        new("Sg1000", "Emulation.Sega.Model.Sg1000", ""),
-        new("Sc3000", "Emulation.Sega.Model.Sc3000", ""),
-        new("MarkIII", "Emulation.Sega.Model.MarkIII", ""),
-        new("MasterSystem", "Emulation.Sega.Model.MasterSystem", ""),
-        new("MegaDrive", "Emulation.Sega.Model.MegaDrive", ""),
-        new("MegaCd", "Emulation.Sega.Model.MegaCd", ""),
-        new("ThirtyTwoX", "Emulation.Sega.Model.ThirtyTwoX", ""),
-        new("GameGear", "Emulation.Sega.Model.GameGear", ""),
-        new("Saturn", "Emulation.Sega.Model.Saturn", ""),
-        new("Dreamcast", "Emulation.Sega.Model.Dreamcast", "")
+        new("Sg1000", "SG-1000", "sg1000", 16, false, 0, 0, false, false, true, true),
+        new("Sc3000", "SC-3000", "sc3000", 16, true, 0, 0, false, false, true, true),
+        new("MarkIII", "Mark III", "mark3", 64, false, 0, 0, false, false, true, true),
+        new("MasterSystem", "Master System", "mastersystem", 128, false, 0, 0, false, false, true, true),
+        new("MegaDrive", "Mega Drive / Genesis", "megadrive", 64, false, 0, 0, false, false, true, true),
+        new("MegaCd", "Mega-CD / Sega CD", "megacd", 64, false, 0, 0, false, false, true, true),
+        new("ThirtyTwoX", "32X", "32x", 256, false, 0, 0, false, false, true, true),
+        new("GameGear", "Game Gear", "gamegear", 24, false, 0, 0, false, false, true, true),
+        new("Saturn", "Saturn", "saturn", 2048, false, 0, 0, false, false, true, true),
+        new("Dreamcast", "Dreamcast", "dreamcast", 16384, false, 0, 0, false, false, true, true)
     ];
 
-    public static ModelDefinition Get(string id) => All.FirstOrDefault(model =>
-        string.Equals(model.Id, id, StringComparison.OrdinalIgnoreCase))
-        ?? throw new ArgumentOutOfRangeException(nameof(id), id, "Unknown Sega machine.");
+    public static Model Get(string id) => All.FirstOrDefault(model =>
+            model.Id.Equals(id, StringComparison.Ordinal))
+        ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
+
+    public static string BackendModelFor(string id) => Get(id).BackendModel;
 }

@@ -31,6 +31,11 @@
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Amstrad\GWGUI.Emulation.Amstrad.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Sega\GWGUI.Emulation.Sega.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Nintendo\GWGUI.Emulation.Nintendo.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Sony\GWGUI.Emulation.Sony.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Microsoft\GWGUI.Emulation.Microsoft.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Nec\GWGUI.Emulation.Nec.csproj" />
   </ItemGroup>
 
 </Project>

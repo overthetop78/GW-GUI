@@ -30,6 +30,11 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Nintendo" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Sony" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Microsoft" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Nec" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
     <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />

@@ -148,6 +148,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler MediaFileSystems et exécuter le test média ciblé.
 - [ ] Stage et commit de cette correction seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateur Sega Saturn
+
+- [x] Ajouter un adaptateur Sega Saturn concret avec le protocole déjà utilisé par Sega.
+  - [x] Créer les fichiers `src/GWGUI.Emulation.Sega/Emulators/Yabause/` en reprenant les contrats, services et hôte du cœur Sega existant, puis remplacer les identifiants par ceux de Yabause.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` et `src/GWGUI.Emulation.Sega/Resources/00-Base/Emulation.resx` pour rattacher Saturn au nouvel adaptateur et à sa description.
+  - [x] Ajouter `src/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` les assertions de découverte de l’adaptateur Saturn.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/EmulationGlobalUsings.cs` et les fichiers de `Emulators/GenesisPlusGX` et `Emulators/Yabause` pour importer explicitement leurs namespaces propres sans ambiguïté entre cœurs.
+  - [x] Compiler le module Sega et exécuter les tests d’architecture.
+- [x] Stage et commit de l’adaptateur Sega Saturn seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [ ] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.

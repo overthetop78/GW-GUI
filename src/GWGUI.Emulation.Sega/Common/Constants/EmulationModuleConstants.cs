@@ -1,7 +1,7 @@
 namespace GWGUI.Emulation.Sega.Common.Constants;
 
-public static class EmulationModuleConstants
+internal static class EmulationModuleConstants
 {
-    public const string ModuleId = "sega";
-    public const string ResourceFamily = "Emulation.Sega";
+    internal const string ModuleId = "sega";
+    internal const string ResourceFamily = "Emulation.Family.Sega";
 }

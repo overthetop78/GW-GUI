@@ -1,7 +1,8 @@
 namespace GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 
-public static class MachineConfigurationConstants
+
+internal static class MachineConfigurationConstants
 {
-    public const int CurrentSchemaVersion = 1;
-    public const string ModuleId = "sega";
+    internal const string ModuleId = "sega";
+    internal const string ResourcePrefix = "Emulation.Sega.Model.";
 }

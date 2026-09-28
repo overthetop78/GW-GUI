@@ -12,3 +12,4 @@ internal sealed record EmulatorCreationContext(
 internal sealed record EmulatorManagementContext(
     HttpClient HttpClient,
     string CoreDirectory);
+

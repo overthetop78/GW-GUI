@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sega.Common.Services;
 
 public sealed class Engine
@@ -9,6 +10,17 @@ public sealed class Engine
         var adapters = EmulatorCatalog.CreateAdapters();
         _adapters = adapters.ToDictionary(adapter => adapter.EmulatorId, StringComparer.Ordinal);
     }
+
+    internal IEmulatedMachine CreateMachine(MachineConfiguration configuration,
+        EmulatorCreationContext context)
+    {
+        ArgumentNullException.ThrowIfNull(configuration);
+        ArgumentNullException.ThrowIfNull(context);
+        return Adapter(configuration).Create(configuration, context);
+    }
+
+    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) =>
+        Adapter(configuration.EmulatorId);
 
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter)
         ? adapter

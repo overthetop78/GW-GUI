@@ -13,3 +13,4 @@ public sealed record CoreOption(
     string? CategorizedDescription = null);
 
 public sealed record CoreOptionValue(string Value, string Label);
+

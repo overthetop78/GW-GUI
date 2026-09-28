@@ -16,5 +16,6 @@ internal interface IEmulatorAdapter
     ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
         CancellationToken cancellationToken);
     IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration);
-    IEmulatedMachine Create(MachineConfiguration configuration, EmulatorCreationContext context);
+    Machine Create(MachineConfiguration configuration, EmulatorCreationContext context);
 }
+
