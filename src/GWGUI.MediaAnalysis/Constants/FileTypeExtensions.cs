@@ -137,6 +137,7 @@ internal static class FileTypeExtensions
     public const string Fn = ".fn";
     public const string Fn0 = ".fn0";
     public const string Fnt = ".fnt";
+    public const string Fds = ".fds";
     public const string Fon = ".fon";
     public const string For = ".for";
     public const string Foto = ".foto";

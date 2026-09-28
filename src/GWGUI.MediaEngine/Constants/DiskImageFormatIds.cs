@@ -27,6 +27,8 @@ public static partial class DiskImageFormatIds
     public const string AmstradRom = MediaImageFormatIds.AmstradRom;
     /// <summary>Identifiant des images de cartouche Nintendo Entertainment System.</summary>
     public const string NintendoNes = MediaImageFormatIds.NintendoNes;
+    /// <summary>Identifiant des images de disquette Famicom Disk System.</summary>
+    public const string NintendoFamicomDisk = MediaImageFormatIds.NintendoFamicomDisk;
     /// <summary>Identifiant des images de cartouche Super Nintendo Entertainment System.</summary>
     public const string NintendoSnes = MediaImageFormatIds.NintendoSnes;
     /// <summary>Identifiant des images de cartouche Nintendo 64.</summary>

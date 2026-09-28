@@ -24,6 +24,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Xfd;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
+using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Raw;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Chd;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Qcow2;
@@ -87,6 +88,7 @@ public sealed class MediaRecognitionComposition
                 new AmstradCprReader(),
                 new AmstradRomReader(),
                 new ConsoleCartridgeReader(),
+                new FamicomFdsReader(),
                 new AcornAtomDskReader(),
                 new ApridiskReader(),
                 new BbcDfsReader(),

@@ -168,7 +168,22 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` les assertions de sélection de Mesen pour NES et Famicom Disk System.
   - [x] Relier `NintendoEmulationModule.CreateRuntimeAsync` et `TryHandleHostCommand` au moteur et à l’adaptateur Mesen.
   - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de runtime.
-- [x] Stage et commit de l’adaptateur Nintendo NES/Famicom Disk System seulement après réussite de toutes les sous-tâches ci-dessus.
+- [x] Stage et commit de l'adaptateur Nintendo NES/Famicom Disk System seulement après réussite de toutes les sous-tâches ci-dessus.
+
+### Support MediaEngine du Famicom Disk System
+
+- [x] Ajouter le format nommé Famicom Disk System sans identifiant de cartouche générique.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` et `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` pour ajouter `nintendo.fds`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` pour ajouter l’extension `.fds`.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/FamicomFds/FamicomFdsConstants.cs` avec la signature, la taille d’une face et les clés de métadonnées.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/FamicomFds/FamicomFdsReader.cs` pour lire les images FDS avec ou sans en-tête et exposer les faces comme blocs adressables.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/FamicomFds/FamicomFdsWriter.cs` pour réécrire les faces sans ajouter de remplissage inventé.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` et `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` pour enregistrer ce lecteur et ce writer.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour publier le format `.fds` dans la famille Nintendo.
+  - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Nintendo/FamicomDisk/FamicomDiskFileSystemReader.cs` et l’enregistrer dans `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` pour explorer les fichiers FDS réellement décodables.
+  - [x] Modifier `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` et `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour classer `.fds` comme image disque.
+  - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` avec un test média autonome et suppression des fichiers temporaires dans `finally`.
+  - [x] Compiler les projets concernés et exécuter le test ciblé avant le commit de cette tranche.
 
 ### Adaptateur Nintendo SNES
 

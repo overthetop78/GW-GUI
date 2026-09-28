@@ -99,6 +99,7 @@ internal static class CommonMediaContentRecognitionTable
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Dsd, [], MediaContentCategory.DiskImage, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Dsk, [], MediaContentCategory.DiskImage, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Edsk, [], MediaContentCategory.DiskImage, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None),
+        new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Fds, [], MediaContentCategory.DiskImage, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.G64, [], MediaContentCategory.DiskImage, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Hfe, [], MediaContentCategory.DiskImage, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Ima, [], MediaContentCategory.DiskImage, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.None),

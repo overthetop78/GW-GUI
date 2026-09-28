@@ -6,6 +6,7 @@ using GWGUI.MediaFileSystems.FileSystems.Iso9660;
 using GWGUI.MediaFileSystems.FileSystems.Udf;
 using GWGUI.MediaFileSystems.FileSystems.Amstrad.Cartridge;
 using GWGUI.MediaFileSystems.FileSystems.Console.Cartridge;
+using GWGUI.MediaFileSystems.FileSystems.Nintendo.FamicomDisk;
 using GWGUI.MediaFileSystems.Exploration.Partitioning;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
 
@@ -57,6 +58,7 @@ public sealed class MediaExplorer
             {
                 new AmstradCartridgeFileSystemReader(),
                 new ConsoleCartridgeFileSystemReader(),
+                new FamicomDiskFileSystemReader(),
                 new UdfFileSystemReader(),
                 new JolietExtensionReader(),
                 new RockRidgeExtensionReader(),

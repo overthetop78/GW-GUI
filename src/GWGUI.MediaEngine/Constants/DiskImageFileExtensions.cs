@@ -161,6 +161,8 @@ public static class DiskImageFileExtensions
     public const string Rom = ".rom";
 
     public const string Nes = ".nes";
+    /// <summary>Extension des images de disquette Famicom Disk System.</summary>
+    public const string Fds = ".fds";
     public const string Sfc = ".sfc";
     public const string Smc = ".smc";
     public const string N64 = ".n64";

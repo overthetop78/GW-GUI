@@ -2,6 +2,7 @@ using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
+using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Conversion;
@@ -75,6 +76,7 @@ public sealed class MediaWritingComposition
         var amstradCpr = new AmstradCprWriter();
         var amstradRom = new AmstradRomWriter();
         var consoleCartridge = new ConsoleCartridgeWriter();
+        var nintendoFamicomDisk = new FamicomFdsWriter();
         var amigaAdf = new AmigaAdfWriter();
         var bbcDfs = new BbcDfsImageWriter();
         var ibmRaw = new IbmRawImageWriter();
@@ -122,6 +124,7 @@ public sealed class MediaWritingComposition
             amstradCpr,
             amstradRom,
             consoleCartridge,
+            nintendoFamicomDisk,
             Sector(MediaImageWriterIds.AcornAdf, [DiskImageFileExtensions.Adf], AcornAdfConversionService.CanCreate,
                 (image, _, path, _, token) => WriteSingleAsync(acornAdf.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.AmigaAdf, [DiskImageFileExtensions.Adf], AmigaAdfConversionService.CanCreate,

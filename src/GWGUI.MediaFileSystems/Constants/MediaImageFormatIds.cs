@@ -19,6 +19,7 @@ public static class MediaImageFormatIds
     public const string AmstradRom = "amstrad.rom";
     public const string AmstradPcw = "amstrad.pcw";
     public const string NintendoNes = "nintendo.nes";
+    public const string NintendoFamicomDisk = "nintendo.fds";
     public const string NintendoSnes = "nintendo.snes";
     public const string NintendoN64 = "nintendo.n64";
     public const string NintendoGameBoy = "nintendo.gameboy";

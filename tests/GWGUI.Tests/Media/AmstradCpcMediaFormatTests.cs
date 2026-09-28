@@ -6,6 +6,7 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
+using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Images.Reading;
@@ -19,6 +20,7 @@ using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.Presenters.Conversion;
 using GWGUI.MediaFileSystems.FileSystems.Amstrad.Cartridge;
 using GWGUI.MediaFileSystems.FileSystems.Console.Cartridge;
+using GWGUI.MediaFileSystems.FileSystems.Nintendo.FamicomDisk;
 using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.FileSystems.Cpm;
 using GWGUI.MediaFileSystems.Contracts;
@@ -147,6 +149,40 @@ public sealed class AmstradCpcMediaFormatTests
             await new ConsoleCartridgeWriter().WriteAsync(document, outputPath,
                 DiskImageFormatIds.NintendoNes);
             Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task FamicomDiskSystemFacesRoundTripAndExposeFiles()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-fds-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var sourcePath = Path.Combine(directory, "game.fds");
+            var outputPath = Path.Combine(directory, "roundtrip.fds");
+            var source = CreateFds();
+            await File.WriteAllBytesAsync(sourcePath, source);
+
+            var document = await ReadAsync(new FamicomFdsReader(), sourcePath);
+            Assert.Equal(DiskImageFormatIds.NintendoFamicomDisk, document.FormatId);
+            var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
+            Assert.Equal(1, blocks.LogicalBlockCount);
+            var explorer = new FamicomDiskFileSystemReader();
+            var file = Assert.Single(explorer.Read(document, Volume(document)).Entries);
+            Assert.Equal("HELLO", file.Name);
+            Assert.Equal(5, file.Size);
+            Assert.Equal("0", file.Metadata["side"]);
+
+            await new FamicomFdsWriter().WriteAsync(document, outputPath,
+                DiskImageFormatIds.NintendoFamicomDisk);
+            Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+            Assert.Contains(DiskImageFileExtensions.Fds,
+                MediaRecognitionComposition.CreateDefault().SupportedExtensions);
         }
         finally
         {
@@ -301,6 +337,31 @@ public sealed class AmstradCpcMediaFormatTests
             offset += 8 + bankLength;
         }
         return bytes;
+    }
+
+    private static byte[] CreateFds()
+    {
+        const int headerLength = 16;
+        const int sideLength = 65_500;
+        var source = new byte[headerLength + sideLength];
+        System.Text.Encoding.ASCII.GetBytes("FDS\x1A", source);
+        source[4] = 1;
+        var side = source.AsSpan(headerLength, sideLength);
+        side[0] = 1;
+        System.Text.Encoding.ASCII.GetBytes("NINTENDO-HVC", side[1..13]);
+        side[56] = 2;
+        side[57] = 1;
+        var fileHeader = side[58..76];
+        fileHeader[0] = 3;
+        fileHeader[1] = 0;
+        System.Text.Encoding.ASCII.GetBytes("HVC", fileHeader[2..5]);
+        System.Text.Encoding.ASCII.GetBytes("HELLO", fileHeader[5..10]);
+        BinaryPrimitives.WriteUInt16LittleEndian(fileHeader[13..15], 0x8000);
+        BinaryPrimitives.WriteUInt16LittleEndian(fileHeader[15..17], 5);
+        fileHeader[17] = 2;
+        side[76] = 4;
+        System.Text.Encoding.ASCII.GetBytes("HELLO", side[77..82]);
+        return source;
     }
 
 }

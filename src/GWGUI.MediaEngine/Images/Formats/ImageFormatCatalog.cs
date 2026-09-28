@@ -72,6 +72,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             new(DiskImageFormatIds.AmstradCpr, "Amstrad", T("Format.amstrad.cpr", "CPR"), [new(".cpr", "CPR", true)], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-CPR", FloppyFormFactor.Unknown, false, false),
             new(DiskImageFormatIds.AmstradRom, "Amstrad", T("Format.amstrad.rom", "Amstrad CPC ROM"), [new(".rom", "ROM", true), new(".bin", "BIN")], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-ROM", FloppyFormFactor.Unknown, false, false),
             Cartridge(DiskImageFormatIds.NintendoNes, "Nintendo", "Format.nintendo.nes", "Nintendo NES", [".nes"], "NINTENDO-NES"),
+            F(DiskImageFormatIds.NintendoFamicomDisk, "Nintendo", "Nintendo Famicom Disk System", [new(DiskImageFileExtensions.Fds, "FDS", true)], true, "NINTENDO-FDS", FloppyFormFactor.Unknown, false, false, DiskImageFileExtensions.Fds),
             Cartridge(DiskImageFormatIds.NintendoSnes, "Nintendo", "Format.nintendo.snes", "Nintendo SNES", [".sfc", ".smc"], "NINTENDO-SNES"),
             Cartridge(DiskImageFormatIds.NintendoN64, "Nintendo", "Format.nintendo.n64", "Nintendo 64", [".n64", ".z64", ".v64"], "NINTENDO-N64"),
             Cartridge(DiskImageFormatIds.NintendoGameBoy, "Nintendo", "Format.nintendo.gameboy", "Nintendo Game Boy", [".gb"], "NINTENDO-GB"),
