@@ -61,7 +61,7 @@ public sealed class ConsoleFamilyModuleTests
             var context = new EmulationModuleContext(root, root, http);
             var cases = new (IEmulationModule Module, string MachineId)[]
             {
-                (new NintendoEmulationModuleFactory().Create(context), "Snes"),
+                (new NintendoEmulationModuleFactory().Create(context), "VirtualBoy"),
                 (new SonyEmulationModuleFactory().Create(context), "PlayStation"),
                 (new MicrosoftEmulationModuleFactory().Create(context), "Xbox"),
                 (new NecEmulationModuleFactory().Create(context), "PcFx")
@@ -115,6 +115,26 @@ public sealed class ConsoleFamilyModuleTests
                     module.CreateConfiguration(machineId));
                 Assert.Equal("beetle_pce_fast", configuration.EmulatorId);
             }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void NintendoSnes9xSelectsSuperNintendo()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-snes9x-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NintendoEmulationModuleFactory().Create(context);
+            var snes = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("Snes"));
+            Assert.Equal("snes9x", snes.EmulatorId);
         }
         finally
         {
