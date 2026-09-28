@@ -71,7 +71,7 @@ internal static class WiiUFormat
         return true;
     }
 
-    private static long Align(long value, int alignment)
+    public static long Align(long value, int alignment)
     {
         var remainder = value % alignment;
         return remainder == 0 ? value : checked(value + alignment - remainder);

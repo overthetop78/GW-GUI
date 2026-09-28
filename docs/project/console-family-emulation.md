@@ -502,10 +502,11 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
 - [x] Ajouter la lecture nommée des images Wii U dans `MediaEngine` sans introduire de format générique.
   - [x] Écrire `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` avec l'identifiant `nintendo.wiiu`.
   - [x] Écrire `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs`, `DiskImageFormatIds.cs`, `MediaImageWriterIds.cs` et `src/GWGUI.MediaAnalysis/Constants/FileTypeExtensions.cs` avec les constantes `.wud` et `.wux`.
+  - [x] Ajouter la clé invariante `Format.nintendo.wiiu` dans `src/GWGUI.App/Resources/00-Base/Formats.resx` pour éviter l'affichage de la clé technique.
   - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUFormat.cs`, `WiiUMetadataConstants.cs`, `WiiUWuxRandomAccessData.cs` et `WiiUReader.cs` pour lire les données logiques WUD et l'index WUX.
   - [x] Enregistrer `WiiUReader` dans `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` et le format dans `ImageFormatCatalog.cs`.
-- [x] Ajouter la conversion Wii U vers WUD dans `MediaEngine`.
-  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs` pour écrire un flux WUD à partir d'une représentation par blocs complète.
+- [x] Ajouter la conversion Wii U vers WUD/WUX dans `MediaEngine`.
+  - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Optical/WiiU/WiiUWriter.cs` pour écrire un flux WUD ou WUX à partir d'une représentation par blocs complète.
   - [x] Enregistrer le writer dans `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs`.
 - [x] Rendre les extensions WUD/WUX visibles dans `MediaAnalysis`.
   - [x] Ajouter les deux extensions à `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs`.

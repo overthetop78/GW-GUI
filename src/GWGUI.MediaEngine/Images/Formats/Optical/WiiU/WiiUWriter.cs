@@ -1,5 +1,7 @@
+using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.IO;
+using System.Security.Cryptography;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
@@ -17,7 +19,8 @@ public sealed class WiiUWriter : IMediaImageWriter
     private static readonly IReadOnlySet<string> SupportedFormatIds =
         new[] { DiskImageFormatIds.NintendoWiiU }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Wud }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+        new[] { DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux }
+            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
         new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
@@ -51,8 +54,15 @@ public sealed class WiiUWriter : IMediaImageWriter
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
         if (!CanWrite(document, targetFormatId, Path.GetExtension(outputPath))
             || document.Representation is not BlockMediaImageRepresentation blocks)
-            throw new InvalidDataException("The Nintendo Wii U document cannot be written as a WUD image.");
+            throw new InvalidDataException("The Nintendo Wii U document cannot be written as a WUD or WUX image.");
         var readable = (IMediaBlockRepresentation)blocks;
+
+        if (NormalizeExtension(Path.GetExtension(outputPath))
+            .Equals(DiskImageFileExtensions.Wux, StringComparison.OrdinalIgnoreCase))
+        {
+            await WriteWuxAsync(outputPath, blocks.Capacity, readable, cancellationToken).ConfigureAwait(false);
+            return [outputPath];
+        }
 
         await files.WriteAsync(outputPath, async (output, token) =>
         {
@@ -68,6 +78,122 @@ public sealed class WiiUWriter : IMediaImageWriter
             }
         }, cancellationToken).ConfigureAwait(false);
         return [outputPath];
+    }
+
+    private async Task WriteWuxAsync(
+        string outputPath,
+        long logicalLength,
+        IMediaBlockRepresentation blocks,
+        CancellationToken cancellationToken)
+    {
+        var chunkSize = WiiUFormat.DefaultWuxSectorSize;
+        var chunkCount = checked((logicalLength + chunkSize - 1) / chunkSize);
+        if (chunkCount <= 0 || chunkCount > int.MaxValue)
+            throw new InvalidDataException("The Wii U image has too many WUX sectors for this writer.");
+
+        var indexes = new uint[checked((int)chunkCount)];
+        var knownChunks = new Dictionary<string, uint>(StringComparer.Ordinal);
+        var temporaryPath = Path.GetTempFileName();
+        try
+        {
+            await using (var temporary = new FileStream(
+                temporaryPath,
+                FileMode.Create,
+                FileAccess.Write,
+                FileShare.None,
+                64 * 1024,
+                FileOptions.Asynchronous | FileOptions.SequentialScan))
+            {
+                var buffer = new byte[chunkSize];
+                var uniqueChunk = 0u;
+                for (var chunk = 0; chunk < indexes.Length; chunk++)
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    Array.Clear(buffer);
+                    var offset = checked((long)chunk * chunkSize);
+                    var count = (int)Math.Min(chunkSize, logicalLength - offset);
+                    await blocks.ReadExactlyAsync(offset, buffer.AsMemory(0, count), cancellationToken)
+                        .ConfigureAwait(false);
+                    var hash = Convert.ToHexString(SHA256.HashData(buffer));
+                    if (!knownChunks.TryGetValue(hash, out var storedChunk))
+                    {
+                        storedChunk = uniqueChunk++;
+                        knownChunks.Add(hash, storedChunk);
+                        await temporary.WriteAsync(buffer, cancellationToken).ConfigureAwait(false);
+                    }
+                    indexes[chunk] = storedChunk;
+                }
+            }
+
+            await files.WriteAsync(outputPath, async (output, token) =>
+            {
+                var header = new byte[WiiUFormat.WuxHeaderSize];
+                BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0, 4), WiiUFormat.WuxMagic0);
+                BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(4, 4), WiiUFormat.WuxMagic1);
+                BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(8, 4), WiiUFormat.DefaultWuxSectorSize);
+                BinaryPrimitives.WriteUInt64LittleEndian(header.AsSpan(12, 8), checked((ulong)logicalLength));
+                await output.WriteAsync(header, token).ConfigureAwait(false);
+                await WriteIndexTableAsync(output, indexes, token).ConfigureAwait(false);
+
+                var written = checked((long)WiiUFormat.WuxHeaderSize + (long)indexes.Length * sizeof(uint));
+                var padding = WiiUFormat.Align(written, chunkSize) - written;
+                await WriteZerosAsync(output, padding, token).ConfigureAwait(false);
+
+                await using var temporary = new FileStream(
+                    temporaryPath,
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read,
+                    64 * 1024,
+                    FileOptions.Asynchronous | FileOptions.SequentialScan);
+                await temporary.CopyToAsync(output, 256 * 1024, token).ConfigureAwait(false);
+            }, cancellationToken).ConfigureAwait(false);
+        }
+        finally
+        {
+            try
+            {
+                if (File.Exists(temporaryPath))
+                    File.Delete(temporaryPath);
+            }
+            catch
+            {
+                // The conversion result is already committed; a later cleanup can remove this temporary file.
+            }
+        }
+    }
+
+    private static async Task WriteIndexTableAsync(
+        Stream output,
+        IReadOnlyList<uint> indexes,
+        CancellationToken cancellationToken)
+    {
+        var entriesPerBuffer = 16 * 1024;
+        var bytes = new byte[entriesPerBuffer * sizeof(uint)];
+        for (var offset = 0; offset < indexes.Count; offset += entriesPerBuffer)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var count = Math.Min(entriesPerBuffer, indexes.Count - offset);
+            var span = bytes.AsSpan(0, count * sizeof(uint));
+            for (var index = 0; index < count; index++)
+                BinaryPrimitives.WriteUInt32LittleEndian(span.Slice(index * sizeof(uint), sizeof(uint)), indexes[offset + index]);
+            await output.WriteAsync(bytes.AsMemory(0, span.Length), cancellationToken).ConfigureAwait(false);
+        }
+    }
+
+    private static async Task WriteZerosAsync(
+        Stream output,
+        long length,
+        CancellationToken cancellationToken)
+    {
+        var zeros = new byte[64 * 1024];
+        while (length > 0)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var count = (int)Math.Min(zeros.Length, length);
+            await output.WriteAsync(zeros.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
+            length -= count;
+        }
     }
 
     private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)

@@ -67,6 +67,7 @@ public sealed class WiiUMediaFormatTests
         try
         {
             var sourcePath = Path.Combine(directory, "source.wux");
+            var outputPath = Path.Combine(directory, "roundtrip.wux");
             var source = CreateWux();
             await File.WriteAllBytesAsync(sourcePath, source);
 
@@ -81,6 +82,13 @@ public sealed class WiiUMediaFormatTests
             Assert.Equal(DiskImageFileExtensions.Wux, document.Metadata["nintendo.wiiu.variant"]);
             Assert.Equal("2", document.Metadata["nintendo.wiiu.indexEntryCount"]);
             Assert.Equal("2", document.Metadata["nintendo.wiiu.storedSectorCount"]);
+
+            await new WiiUWriter().WriteAsync(document, outputPath, DiskImageFormatIds.NintendoWiiU);
+            var roundtrip = await ReadAsync(reader, outputPath);
+            var roundtripBlocks = Assert.IsType<BlockMediaImageRepresentation>(roundtrip.Representation);
+            var roundtripBytes = new byte[checked((int)roundtripBlocks.Capacity)];
+            await ((IMediaBlockRepresentation)roundtripBlocks).ReadExactlyAsync(0, roundtripBytes);
+            Assert.Equal(readBack, roundtripBytes);
         }
         finally
         {
