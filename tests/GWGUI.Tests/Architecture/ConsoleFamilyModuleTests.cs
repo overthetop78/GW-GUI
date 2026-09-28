@@ -186,6 +186,26 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoMgbaSelectsGameBoyAdvance()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-mgba-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NintendoEmulationModuleFactory().Create(context);
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("GameBoyAdvance"));
+            Assert.Equal("mgba", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaAdaptersSelectTheMatchingCoreForSaturnAndSc3000()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-adapter-tests", Guid.NewGuid().ToString("N"));
