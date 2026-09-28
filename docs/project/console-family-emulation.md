@@ -170,6 +170,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de runtime.
 - [x] Stage et commit de l’adaptateur Nintendo NES/Famicom Disk System seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateur NEC PC Engine / SuperGrafx
+
+- [x] Ajouter un adaptateur NEC PC Engine concret avec le protocole propre au cœur Beetle PCE FAST.
+  - [x] Créer les fichiers `src/GWGUI.Emulation.Nec/Emulators/BeetlePce/` en reprenant le protocole d’hôte d’un cœur déjà intégré, puis remplacer les identifiants, le téléchargement et les médias par ceux de Beetle PCE FAST.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Dictionaries/EmulatorCatalog.cs` et `src/GWGUI.Emulation.Nec/Resources/00-Base/Emulation.resx` pour rattacher uniquement `PcEngine`, `CoreGrafx`, `SuperGrafx`, `PcEngineDuo` et `TurboExpress` à Beetle PCE FAST.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` les assertions de sélection de Beetle PCE FAST pour les modèles PC Engine.
+  - [x] Relier `NecEmulationModule.CreateRuntimeAsync` et `TryHandleHostCommand` au moteur et à l’adaptateur Beetle PCE FAST.
+  - [x] Compiler le module NEC et exécuter les tests d’architecture et de création de runtime.
+- [x] Stage et commit de l’adaptateur NEC PC Engine / SuperGrafx seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [x] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.

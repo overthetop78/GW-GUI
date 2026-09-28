@@ -64,7 +64,7 @@ public sealed class ConsoleFamilyModuleTests
                 (new NintendoEmulationModuleFactory().Create(context), "Snes"),
                 (new SonyEmulationModuleFactory().Create(context), "PlayStation"),
                 (new MicrosoftEmulationModuleFactory().Create(context), "Xbox"),
-                (new NecEmulationModuleFactory().Create(context), "PcEngine")
+                (new NecEmulationModuleFactory().Create(context), "PcFx")
             };
 
             foreach (var (module, machineId) in cases)
@@ -92,6 +92,29 @@ public sealed class ConsoleFamilyModuleTests
                 module.CreateConfiguration("FamicomDisk"));
             Assert.Equal("mesen", nes.EmulatorId);
             Assert.Equal("mesen", fds.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void NecBeetlePceSelectsPcEngineModels()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nec-adapter-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NecEmulationModuleFactory().Create(context);
+            foreach (var machineId in new[] { "PcEngine", "CoreGrafx", "SuperGrafx", "PcEngineDuo", "TurboExpress" })
+            {
+                var configuration = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>(
+                    module.CreateConfiguration(machineId));
+                Assert.Equal("beetle_pce_fast", configuration.EmulatorId);
+            }
         }
         finally
         {
