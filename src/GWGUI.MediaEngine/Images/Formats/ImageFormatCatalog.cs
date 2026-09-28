@@ -12,6 +12,15 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
         ImageExtension E(string extension, string key, string fallback, bool isDefault = false) => new(extension, T(key, fallback), isDefault);
         DiskFormat F(string id, string family, string fallback, IReadOnlyList<ImageExtension> extensions, bool common, string tag, FloppyFormFactor formFactor, bool physicalRead, bool physicalWrite, params string[] sources) => new(id, family, T("Format." + id, fallback), extensions, common, Set(sources), tag, formFactor, physicalRead, physicalWrite);
         DiskFormat D(DiskFormat format, FloppyDensity density) => format with { Density = density };
+        DiskFormat Cartridge(string id, string family, string key, string fallback,
+            IReadOnlyList<string> extensions, string tag)
+        {
+            var normalized = extensions.Select(Normalize).ToArray();
+            return new(id, family, T(key, fallback),
+                normalized.Select((extension, index) => new ImageExtension(extension,
+                    extension[1..].ToUpperInvariant(), index == 0)).ToArray(),
+                true, Set(normalized), tag, FloppyFormFactor.Unknown, false, false);
+        }
         var ima = new Func<bool, ImageExtension>(isDefault => E(".ima", "Extension.ima", "IMA disk image", isDefault));
         var img = new Func<ImageExtension>(() => E(".img", "Extension.img", "IMG disk image"));
         IReadOnlyList<ImageExtension> Ibm() => [ima(true), img()];
@@ -62,6 +71,25 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             new("amstrad.pcw", "Amstrad", "Amstrad PCW — 3″", [new(".dsk", "DSK", true), new(".edsk", "Extended DSK")], true, Set(".scp", ".dsk", ".edsk", ".hfe"), "AMSTRAD-PCW", FloppyFormFactor.ThreeInch, true, true),
             new(DiskImageFormatIds.AmstradCpr, "Amstrad", T("Format.amstrad.cpr", "CPR"), [new(".cpr", "CPR", true)], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-CPR", FloppyFormFactor.Unknown, false, false),
             new(DiskImageFormatIds.AmstradRom, "Amstrad", T("Format.amstrad.rom", "Amstrad CPC ROM"), [new(".rom", "ROM", true), new(".bin", "BIN")], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-ROM", FloppyFormFactor.Unknown, false, false),
+            Cartridge(DiskImageFormatIds.NintendoNes, "Nintendo", "Format.nintendo.nes", "Nintendo NES", [".nes"], "NINTENDO-NES"),
+            Cartridge(DiskImageFormatIds.NintendoSnes, "Nintendo", "Format.nintendo.snes", "Nintendo SNES", [".sfc", ".smc"], "NINTENDO-SNES"),
+            Cartridge(DiskImageFormatIds.NintendoN64, "Nintendo", "Format.nintendo.n64", "Nintendo 64", [".n64", ".z64", ".v64"], "NINTENDO-N64"),
+            Cartridge(DiskImageFormatIds.NintendoGameBoy, "Nintendo", "Format.nintendo.gameboy", "Nintendo Game Boy", [".gb"], "NINTENDO-GB"),
+            Cartridge(DiskImageFormatIds.NintendoGameBoyColor, "Nintendo", "Format.nintendo.gameboy_color", "Nintendo Game Boy Color", [".gbc", ".cgb"], "NINTENDO-GBC"),
+            Cartridge(DiskImageFormatIds.NintendoGameBoyAdvance, "Nintendo", "Format.nintendo.gameboy_advance", "Nintendo Game Boy Advance", [".gba"], "NINTENDO-GBA"),
+            Cartridge(DiskImageFormatIds.NintendoNds, "Nintendo", "Format.nintendo.nds", "Nintendo DS", [".nds"], "NINTENDO-NDS"),
+            Cartridge(DiskImageFormatIds.Nintendo3Ds, "Nintendo", "Format.nintendo.3ds", "Nintendo 3DS", [".3ds", ".cia", ".3dsx"], "NINTENDO-3DS"),
+            Cartridge(DiskImageFormatIds.NintendoVirtualBoy, "Nintendo", "Format.nintendo.virtual_boy", "Nintendo Virtual Boy", [".vb"], "NINTENDO-VB"),
+            Cartridge(DiskImageFormatIds.SegaSg1000, "Sega", "Format.sega.sg1000", "Sega SG-1000", [".sg"], "SEGA-SG1000"),
+            Cartridge(DiskImageFormatIds.SegaMasterSystem, "Sega", "Format.sega.master_system", "Sega Master System", [".sms"], "SEGA-SMS"),
+            Cartridge(DiskImageFormatIds.SegaMegaDrive, "Sega", "Format.sega.mega_drive", "Sega Mega Drive / Genesis", [".md", ".gen"], "SEGA-MD"),
+            Cartridge(DiskImageFormatIds.SegaGameGear, "Sega", "Format.sega.game_gear", "Sega Game Gear", [".gg"], "SEGA-GG"),
+            Cartridge(DiskImageFormatIds.SegaThirtyTwoX, "Sega", "Format.sega.32x", "Sega 32X", [".32x"], "SEGA-32X"),
+            Cartridge(DiskImageFormatIds.NecPcEngine, "NEC", "Format.nec.pc_engine", "NEC PC Engine / TurboGrafx", [".pce"], "NEC-PCE"),
+            Cartridge(DiskImageFormatIds.Atari2600, "Atari", "Format.atari.2600", "Atari 2600", [".a26"], "ATARI-2600"),
+            Cartridge(DiskImageFormatIds.Atari5200, "Atari", "Format.atari.5200", "Atari 5200", [".a52"], "ATARI-5200"),
+            Cartridge(DiskImageFormatIds.Atari7800, "Atari", "Format.atari.7800", "Atari 7800", [".a78"], "ATARI-7800"),
+            Cartridge(DiskImageFormatIds.BandaiWonderSwan, "Bandai", "Format.bandai.wonderswan", "Bandai WonderSwan", [".ws", ".wsc"], "BANDAI-WS"),
             new("epson.qx10.320", "Epson QX-10", "Epson QX-10 — 320 KiB", [new(".img", "IMG", true), new(".imd", "IMD")], false, Set(".scp", ".img", ".imd", ".hfe"), "EPSON-QX10-320", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("epson.qx10.396", "Epson QX-10", "Epson QX-10 — 396 KiB", [new(".img", "IMG", true), new(".imd", "IMD")], false, Set(".scp", ".img", ".imd", ".hfe"), "EPSON-QX10-396", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("epson.qx10.399", "Epson QX-10", "Epson QX-10 — 399 KiB", [new(".img", "IMG", true), new(".imd", "IMD")], false, Set(".scp", ".img", ".imd", ".hfe"), "EPSON-QX10-399", FloppyFormFactor.FiveAndQuarterInch, true, true),

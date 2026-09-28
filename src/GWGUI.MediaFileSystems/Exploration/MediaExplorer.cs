@@ -56,7 +56,7 @@ public sealed class MediaExplorer
             .Concat(new IMediaFileSystemReader[]
             {
                 new AmstradCartridgeFileSystemReader(),
-                new RawCartridgeFileSystemReader(),
+                new ConsoleCartridgeFileSystemReader(),
                 new UdfFileSystemReader(),
                 new JolietExtensionReader(),
                 new RockRidgeExtensionReader(),

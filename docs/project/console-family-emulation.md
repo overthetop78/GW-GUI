@@ -110,19 +110,48 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 
 ## Ordre d'implémentation
 
+### Formats de cartouche spécifiques (à réaliser avant l'exposition utilisateur)
+
+- [x] Déclarer les formats de cartouche par famille, sans identifiant générique visible.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` pour ajouter les identifiants Nintendo, Sega et NEC correspondant aux extensions réelles.
+  - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` pour exposer les mêmes identifiants au moteur.
+  - [x] Créer les lecteurs et writers de cartouches dans `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/`, avec un identifiant et des extensions propres à chaque famille.
+  - [x] Créer l’explorateur des banques dans `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/`, sans lecteur « Raw » générique.
+  - [x] Supprimer les anciens lecteurs de cartouche génériques et vérifier qu’aucune référence à cette ancienne structure ne reste dans `src`, `tests` ou la documentation.
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour afficher les noms de formats console réels, jamais « Raw console cartridge ».
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Formats.resx` pour localiser les formats spécifiques ajoutés dans la base commune.
+  - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` avec un test autonome et nettoyage des fichiers temporaires dans `finally`.
+  - [x] Compiler MediaEngine, MediaFileSystems et MediaAnalysis puis exécuter les tests ciblés.
+
+### Tranche en cours (à terminer avant tout commit)
+
+- [x] Corriger les ressources de modèles copiées depuis Amstrad.
+  - [x] Modifier les cinq `Resources/00-Base/Emulation.resx` pour supprimer les clés de modèles d’une autre famille et écrire celles correspondant aux `ModelCatalog` Sega, Nintendo, Sony, Microsoft et NEC.
+  - [x] Reproduire ces clés dans les cultures existantes de chaque module sans conserver de valeur Amstrad résiduelle.
+  - [x] Rechercher les identifiants `464`, `664`, `6128`, `GX4000` et les descriptions Amstrad résiduelles dans ces ressources, puis compiler les cinq modules.
+- [ ] Finaliser les cinq modules sans laisser de façade non exécutable.
+  - [ ] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json`, `Modules/NecEmulationModuleFactory.cs` et le catalogue PC Engine.
+  - [ ] Ajouter dans chaque module un adaptateur concret sous `Emulators/<Cœur>` qui implémente `IEmulatorAdapter`, son installation, son protocole et la création de `Machine`.
+  - [ ] Relier `CreateRuntimeAsync` de chaque module à l’adaptateur sélectionné et refuser explicitement uniquement les machines sans cœur installé.
+  - [ ] Ajouter les lecteurs/writers MediaEngine et les représentations MediaFileSystems/MediaAnalysis réellement nécessaires aux supports déclarés.
+  - [ ] Ajouter les ressources de traduction de chaque nouveau libellé dans la base commune existante.
+  - [ ] Ajouter les tests autonomes de découverte, configuration, adaptateur, média et nettoyage des artefacts temporaires.
+  - [ ] Exécuter la build complète avec tous les modules et vérifier l’exécutable résultant.
+- [ ] Stage et commit uniques de cette tranche seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [ ] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
-  - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
-  - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Sony.
-  - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Microsoft.
+- [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
+- [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sony.
+- [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Microsoft.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines NEC.
 - [ ] Brancher les cœurs, un adaptateur à la fois, dans `Emulators/<Cœur>`.
   - [ ] Documenter pour chaque adaptateur son identifiant, sa version et ses médias.
   - [ ] Refuser explicitement une machine dont aucun adaptateur n'est installé.
 - [ ] Compléter les formats communs de `MediaEngine`.
-  - [x] Ajouter le lecteur/Writer brut de cartouches console et sa représentation par banques de 16 Kio.
-  - [x] Ajouter le lecteur de banques de cartouche à `MediaFileSystems`.
-  - [x] Ajouter les règles de contenu ROM pour les extensions de cartouches et les banques extraites à `MediaAnalysis`.
+  - [ ] Ajouter les lecteurs/writers nommés des cartouches console et leurs représentations par banques.
+  - [ ] Ajouter les lecteurs de banques nommés par famille à `MediaFileSystems`.
+  - [ ] Ajouter les règles de contenu ROM pour les extensions de cartouches et les banques extraites à `MediaAnalysis`.
   - [ ] Ajouter les Readers, Writers, représentations visuelles et conversions des autres supports listés.
 - [ ] Localiser les nouveaux libellés avec la base commune et Argos.
 - [ ] Ajouter les tests utiles, puis exécuter le build Debug avec tous les modules.
@@ -137,16 +166,16 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
 - [x] Créer `src/GWGUI.Emulation.Sega/Common/Machines/MachineCatalog.cs` et les configurations Sega.
 - [x] Créer les contrats, interfaces et services `Common`/`Common/Machines/Common` de Sega en reprenant les frontières des modules existants.
 - [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sega/Emulators/<Cœur>/*` pour les cœurs Sega retenus.
-- [ ] Créer `src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj`, `module.json` et la factory.
-- [ ] Créer `src/GWGUI.Emulation.Nintendo/Common/Machines/MachineCatalog.cs` et les configurations Nintendo.
+- [x] Créer `src/GWGUI.Emulation.Nintendo/GWGUI.Emulation.Nintendo.csproj`, `module.json` et la factory.
+- [x] Créer `src/GWGUI.Emulation.Nintendo/Common/Machines/MachineCatalog.cs` et les configurations Nintendo.
 - [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nintendo/Emulators/<Cœur>/*` pour NES/FDS, SNES, GB/GBA, N64, DS, 3DS, GameCube/Wii et Wii U.
-- [ ] Créer `src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj`, `module.json` et la factory.
-- [ ] Créer `src/GWGUI.Emulation.Sony/Common/Machines/MachineCatalog.cs` et les configurations Sony.
+- [x] Créer `src/GWGUI.Emulation.Sony/GWGUI.Emulation.Sony.csproj`, `module.json` et la factory.
+- [x] Créer `src/GWGUI.Emulation.Sony/Common/Machines/MachineCatalog.cs` et les configurations Sony.
 - [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Sony/Emulators/<Cœur>/*` pour PS1, PS2 et PSP.
 - [ ] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json` et la factory.
 - [ ] Créer `src/GWGUI.Emulation.Nec/Common/Machines/MachineCatalog.cs` et les configurations PC Engine.
 - [ ] Créer les adaptateurs concrets `src/GWGUI.Emulation.Nec/Emulators/<Cœur>/*` pour PCE, SGX et PC-FX.
-- [ ] Créer `src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj`, `module.json` et la factory après validation xemu/Xenia.
+- [x] Créer `src/GWGUI.Emulation.Microsoft/GWGUI.Emulation.Microsoft.csproj`, `module.json` et la factory.
 - [ ] Créer les lecteurs MediaEngine pour FDS, Sega Card/HuCard et CDI/GDI/CHD multi-pistes.
 
 Ce document ne prétend pas qu'un cœur ou un format est déjà implémenté : chaque

@@ -25,8 +25,44 @@ public static partial class DiskImageFormatIds
     public const string AmstradCpr = MediaImageFormatIds.AmstradCpr;
     /// <summary>Identifiant des ROM brutes Amstrad CPC.</summary>
     public const string AmstradRom = MediaImageFormatIds.AmstradRom;
-    /// <summary>Identifiant des cartouches brutes conservées par banques.</summary>
-    public const string RawCartridge = MediaImageFormatIds.RawCartridge;
+    /// <summary>Identifiant des images de cartouche Nintendo Entertainment System.</summary>
+    public const string NintendoNes = MediaImageFormatIds.NintendoNes;
+    /// <summary>Identifiant des images de cartouche Super Nintendo Entertainment System.</summary>
+    public const string NintendoSnes = MediaImageFormatIds.NintendoSnes;
+    /// <summary>Identifiant des images de cartouche Nintendo 64.</summary>
+    public const string NintendoN64 = MediaImageFormatIds.NintendoN64;
+    /// <summary>Identifiant des images de cartouche Nintendo Game Boy.</summary>
+    public const string NintendoGameBoy = MediaImageFormatIds.NintendoGameBoy;
+    /// <summary>Identifiant des images de cartouche Nintendo Game Boy Color.</summary>
+    public const string NintendoGameBoyColor = MediaImageFormatIds.NintendoGameBoyColor;
+    /// <summary>Identifiant des images de cartouche Nintendo Game Boy Advance.</summary>
+    public const string NintendoGameBoyAdvance = MediaImageFormatIds.NintendoGameBoyAdvance;
+    /// <summary>Identifiant des images de cartouche Nintendo DS.</summary>
+    public const string NintendoNds = MediaImageFormatIds.NintendoNds;
+    /// <summary>Identifiant des images de cartouche Nintendo 3DS.</summary>
+    public const string Nintendo3Ds = MediaImageFormatIds.Nintendo3Ds;
+    /// <summary>Identifiant des images de cartouche Nintendo Virtual Boy.</summary>
+    public const string NintendoVirtualBoy = MediaImageFormatIds.NintendoVirtualBoy;
+    /// <summary>Identifiant des images de cartouche Sega SG-1000.</summary>
+    public const string SegaSg1000 = MediaImageFormatIds.SegaSg1000;
+    /// <summary>Identifiant des images de cartouche Sega Master System.</summary>
+    public const string SegaMasterSystem = MediaImageFormatIds.SegaMasterSystem;
+    /// <summary>Identifiant des images de cartouche Sega Mega Drive/Genesis.</summary>
+    public const string SegaMegaDrive = MediaImageFormatIds.SegaMegaDrive;
+    /// <summary>Identifiant des images de cartouche Sega Game Gear.</summary>
+    public const string SegaGameGear = MediaImageFormatIds.SegaGameGear;
+    /// <summary>Identifiant des extensions Sega 32X.</summary>
+    public const string SegaThirtyTwoX = MediaImageFormatIds.SegaThirtyTwoX;
+    /// <summary>Identifiant des images de cartouche NEC PC Engine/TurboGrafx.</summary>
+    public const string NecPcEngine = MediaImageFormatIds.NecPcEngine;
+    /// <summary>Identifiant des images de cartouche Atari 2600.</summary>
+    public const string Atari2600 = MediaImageFormatIds.Atari2600;
+    /// <summary>Identifiant des images de cartouche Atari 5200.</summary>
+    public const string Atari5200 = MediaImageFormatIds.Atari5200;
+    /// <summary>Identifiant des images de cartouche Atari 7800.</summary>
+    public const string Atari7800 = MediaImageFormatIds.Atari7800;
+    /// <summary>Identifiant des images de cartouche Bandai WonderSwan.</summary>
+    public const string BandaiWonderSwan = MediaImageFormatIds.BandaiWonderSwan;
     /// <summary>Identifiant des conteneurs ApriDisk ACT Apricot PC/Xi de 315 Kio.</summary>
     public const string ApricotPcXi315 = MediaImageFormatIds.ApricotPcXi315;
 }

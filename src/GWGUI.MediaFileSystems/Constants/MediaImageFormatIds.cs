@@ -18,8 +18,25 @@ public static class MediaImageFormatIds
     public const string AmstradCpr = "amstrad.cpr";
     public const string AmstradRom = "amstrad.rom";
     public const string AmstradPcw = "amstrad.pcw";
-    /// <summary>Identifiant neutre des cartouches brutes de consoles.</summary>
-    public const string RawCartridge = "console.raw-cartridge";
+    public const string NintendoNes = "nintendo.nes";
+    public const string NintendoSnes = "nintendo.snes";
+    public const string NintendoN64 = "nintendo.n64";
+    public const string NintendoGameBoy = "nintendo.gameboy";
+    public const string NintendoGameBoyColor = "nintendo.gameboy_color";
+    public const string NintendoGameBoyAdvance = "nintendo.gameboy_advance";
+    public const string NintendoNds = "nintendo.nds";
+    public const string Nintendo3Ds = "nintendo.3ds";
+    public const string SegaSg1000 = "sega.sg1000";
+    public const string SegaMasterSystem = "sega.master_system";
+    public const string SegaMegaDrive = "sega.mega_drive";
+    public const string SegaGameGear = "sega.game_gear";
+    public const string SegaThirtyTwoX = "sega.32x";
+    public const string NecPcEngine = "nec.pc_engine";
+    public const string Atari2600 = "atari.2600";
+    public const string Atari5200 = "atari.5200";
+    public const string Atari7800 = "atari.7800";
+    public const string NintendoVirtualBoy = "nintendo.virtual_boy";
+    public const string BandaiWonderSwan = "bandai.wonderswan";
     public const string AppleIIAppleDos113 = "apple2.appledos.113";
     public const string AppleIIAppleDos140 = "apple2.appledos.140";
     public const string AppleIIDos32 = "apple2.dos32";

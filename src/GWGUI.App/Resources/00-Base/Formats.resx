@@ -56,6 +56,25 @@
   <data name="Format.raw.kryoflux"><value>KryoFlux</value></data>
   <data name="Format.amstrad.cpr"><value>Amstrad CPC Plus / GX4000 — CPR</value></data>
   <data name="Format.amstrad.rom"><value>Amstrad CPC — ROM</value></data>
+  <data name="Format.nintendo.nes"><value>Nintendo NES</value></data>
+  <data name="Format.nintendo.snes"><value>Nintendo SNES</value></data>
+  <data name="Format.nintendo.n64"><value>Nintendo 64</value></data>
+  <data name="Format.nintendo.gameboy"><value>Nintendo Game Boy</value></data>
+  <data name="Format.nintendo.gameboy_color"><value>Nintendo Game Boy Color</value></data>
+  <data name="Format.nintendo.gameboy_advance"><value>Nintendo Game Boy Advance</value></data>
+  <data name="Format.nintendo.nds"><value>Nintendo DS</value></data>
+  <data name="Format.nintendo.3ds"><value>Nintendo 3DS</value></data>
+  <data name="Format.nintendo.virtual_boy"><value>Nintendo Virtual Boy</value></data>
+  <data name="Format.sega.sg1000"><value>Sega SG-1000</value></data>
+  <data name="Format.sega.master_system"><value>Sega Master System</value></data>
+  <data name="Format.sega.mega_drive"><value>Sega Mega Drive / Genesis</value></data>
+  <data name="Format.sega.game_gear"><value>Sega Game Gear</value></data>
+  <data name="Format.sega.32x"><value>Sega 32X</value></data>
+  <data name="Format.nec.pc_engine"><value>NEC PC Engine / TurboGrafx</value></data>
+  <data name="Format.atari.2600"><value>Atari 2600</value></data>
+  <data name="Format.atari.5200"><value>Atari 5200</value></data>
+  <data name="Format.atari.7800"><value>Atari 7800</value></data>
+  <data name="Format.bandai.wonderswan"><value>Bandai WonderSwan</value></data>
   <data name="Format.tape.voc"><value>VOC</value></data>
   <data name="Format.tape.audio"><value>Audio</value></data>
 </root>
