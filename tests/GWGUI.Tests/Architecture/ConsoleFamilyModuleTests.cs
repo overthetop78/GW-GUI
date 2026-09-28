@@ -61,7 +61,7 @@ public sealed class ConsoleFamilyModuleTests
             var context = new EmulationModuleContext(root, root, http);
             var cases = new (IEmulationModule Module, string MachineId)[]
             {
-                (new NintendoEmulationModuleFactory().Create(context), "Nes"),
+                (new NintendoEmulationModuleFactory().Create(context), "Snes"),
                 (new SonyEmulationModuleFactory().Create(context), "PlayStation"),
                 (new MicrosoftEmulationModuleFactory().Create(context), "Xbox"),
                 (new NecEmulationModuleFactory().Create(context), "PcEngine")
@@ -69,6 +69,29 @@ public sealed class ConsoleFamilyModuleTests
 
             foreach (var (module, machineId) in cases)
                 Assert.Throws<NotSupportedException>(() => module.CreateConfiguration(machineId));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void NintendoMesenSelectsNesAndFamicomDiskSystem()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-adapter-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new NintendoEmulationModuleFactory().Create(context);
+            var nes = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("Nes"));
+            var fds = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("FamicomDisk"));
+            Assert.Equal("mesen", nes.EmulatorId);
+            Assert.Equal("mesen", fds.EmulatorId);
         }
         finally
         {
