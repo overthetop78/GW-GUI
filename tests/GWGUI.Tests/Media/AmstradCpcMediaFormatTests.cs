@@ -19,6 +19,7 @@ using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.Presenters.Conversion;
 using GWGUI.MediaFileSystems.FileSystems.Amstrad.Cartridge;
 using GWGUI.MediaFileSystems.FileSystems.Console.Cartridge;
+using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.FileSystems.Cpm;
 using GWGUI.MediaFileSystems.Contracts;
 
@@ -131,12 +132,16 @@ public sealed class AmstradCpcMediaFormatTests
 
             var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
             Assert.Equal(DiskImageFormatIds.NintendoNes, document.FormatId);
+            Assert.Equal("2", document.Metadata[ConsoleCartridgeMetadataConstants.BankCount]);
+            Assert.Equal("16384", document.Metadata[ConsoleCartridgeMetadataConstants.BankSize]);
             var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
             Assert.Equal(2, blocks.Ranges.Count);
 
             var explorer = new ConsoleCartridgeFileSystemReader();
             var entries = explorer.Read(document, Volume(document)).Entries;
             Assert.Equal(["bank00", "bank01"], entries.Select(entry => entry.Name));
+            Assert.All(entries, entry => Assert.Equal(
+                ConsoleCartridgeMetadataConstants.BankEntryType, entry.NativeTypeId));
             Assert.Equal(source.Length - (16 * 1024), entries[1].Size);
 
             await new ConsoleCartridgeWriter().WriteAsync(document, outputPath,

@@ -139,6 +139,15 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [ ] Exécuter la build complète avec tous les modules et vérifier l’exécutable résultant.
 - [ ] Stage et commit uniques de cette tranche seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Constantes de l’explorateur de cartouches
+
+- [x] Supprimer les littéraux techniques du lecteur de banques.
+  - [x] Créer `src/GWGUI.MediaFileSystems/Constants/ConsoleCartridgeMetadataConstants.cs` avec les clés, attributs, type d’entrée et limites utilisés par l’explorateur.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs` pour consommer uniquement ces constantes et le format de nom de banque défini.
+  - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier les entrées et métadonnées produites après cette centralisation.
+  - [x] Compiler MediaFileSystems et exécuter le test média ciblé.
+- [ ] Stage et commit de cette correction seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [ ] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [ ] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.
