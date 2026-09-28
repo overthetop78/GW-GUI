@@ -153,6 +153,12 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/GameWatch/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-gw-*`.
   - [x] Rechercher les anciennes chaînes dans les cinq modules, compiler les modules concernés et exécuter les tests d’architecture.
 - [x] Stage et commit de cette correction seulement après réussite des vérifications.
+
+### Plan d’intégration Wii U sans couche générique
+
+- [x] Remplacer la référence Cemu non vérifiée par un contrat d’intégration natif.
+  - [x] Modifier `docs/project/console-family-emulation.md` pour retirer l’ancien paquet générique non vérifié de la checklist.
+  - [x] Décrire dans cette section le binaire Cemu natif, son protocole de lancement et la capture vidéo/input nécessaires avant toute création de fichier sous `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/`.
 - [ ] Finaliser les cinq modules sans laisser de façade non exécutable.
   - [ ] Créer `src/GWGUI.Emulation.Nec/GWGUI.Emulation.Nec.csproj`, `module.json`, `Modules/NecEmulationModuleFactory.cs` et le catalogue PC Engine.
   - [ ] Ajouter dans chaque module un adaptateur concret sous `Emulators/<Cœur>` qui implémente `IEmulatorAdapter`, son installation, son protocole et la création de `Machine`.
@@ -325,12 +331,18 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 
 ### Adaptateur Nintendo Wii U (Cemu)
 
+L’adaptation devra utiliser la distribution native de Cemu, sans DLL générique.
+Avant toute création de l’adaptateur, il faut établir le contrat réel de
+lancement de Cemu, le chargement du jeu, le transport des images vidéo,
+les entrées et la libération du processus ; tant que ces points ne sont pas
+vérifiés, aucun fichier Cemu ne doit être ajouté au module.
+
 - [ ] Étendre l’hôte de cœur Nintendo avec un contexte graphique matériel Vulkan/OpenGL partagé, requis par Cemu.
   - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Core/Services/ExternalHostCallbacks.Environment.cs` pour fournir `SetHwRender` et les callbacks de contexte.
   - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Core/Services/ProcessCore.cs` et le protocole d’hôte pour transférer les frames matérielles vers la surface vidéo existante.
   - [ ] Ajouter le test d’initialisation et de libération du contexte matériel dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs`.
 - [ ] Ajouter l’adaptateur Cemu dans `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/` avec le protocole de cœur déjà utilisé par les adaptateurs Nintendo.
-  - [ ] Déclarer le téléchargement Windows x64 `cemu_libretro.dll.zip`, le nom de DLL et la commande hôte Cemu.
+  - [ ] Déclarer la distribution Windows x64 de Cemu natif, son exécutable et sa commande hôte après vérification du protocole.
   - [ ] Relier uniquement le modèle `WiiU` à Cemu et laisser le cœur fournir ses options vidéo et système.
   - [ ] Ajouter les ressources de description et d’erreur Cemu dans les ressources Nintendo.
   - [ ] Ajouter le test d’architecture de sélection Cemu pour `WiiU`.
