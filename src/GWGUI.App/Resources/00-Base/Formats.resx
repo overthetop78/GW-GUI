@@ -74,6 +74,7 @@
   <data name="Format.sega.game_gear"><value>Sega Game Gear</value></data>
   <data name="Format.sega.32x"><value>Sega 32X</value></data>
   <data name="Format.nec.pc_engine"><value>NEC PC Engine / TurboGrafx</value></data>
+  <data name="Format.nec.supergrafx"><value>NEC SuperGrafx</value></data>
   <data name="Format.atari.2600"><value>Atari 2600</value></data>
   <data name="Format.atari.5200"><value>Atari 5200</value></data>
   <data name="Format.atari.7800"><value>Atari 7800</value></data>

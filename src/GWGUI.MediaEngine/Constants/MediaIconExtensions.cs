@@ -22,6 +22,8 @@ public static class MediaIconExtensions
     public const string Axf = ".axf";
     public const string Elf = ".elf";
     public const string App = ".app";
+    public const string Mv = ".mv";
+    public const string Sgx = ".sgx";
     public const string Iso = ".iso";
     public const string Cue = ".cue";
     public const string Ccd = ".ccd";

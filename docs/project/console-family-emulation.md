@@ -200,6 +200,13 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Ajouter le classement `.gdi` dans `CommonMediaContentRecognitionTable`; l’exploration optique existante consomme les pistes GDI décodées.
 - [x] Ajouter le test autonome GDI, compiler les projets concernés et exécuter les tests avant le commit de cette tranche.
 
+### Cartouches Sega My Card et NEC SuperGrafx
+
+- [x] Reconnaître `.mv` comme variante SG-1000 / Sega My Card dans les constantes, l’analyse, l’icône, le catalogue et le lecteur de cartouches existants.
+- [x] Ajouter le format nommé `nec.supergrafx` pour `.sgx`, avec lecture, écriture, visualisation par banques et exploration via les couches déjà utilisées par les autres cartouches.
+- [x] Ajouter le test de round-trip et d’exploration des deux extensions.
+- [ ] Vérifier les images My Card et SuperGrafx réelles du corpus utilisateur.
+
 ### Adaptateur Nintendo Virtual Boy
 
 - [x] Ajouter un adaptateur Nintendo Virtual Boy concret avec le protocole propre au cœur Beetle VB.

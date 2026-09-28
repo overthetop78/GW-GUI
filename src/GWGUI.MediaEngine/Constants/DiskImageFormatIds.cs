@@ -59,6 +59,8 @@ public static partial class DiskImageFormatIds
     public const string SegaThirtyTwoX = MediaImageFormatIds.SegaThirtyTwoX;
     /// <summary>Identifiant des images de cartouche NEC PC Engine/TurboGrafx.</summary>
     public const string NecPcEngine = MediaImageFormatIds.NecPcEngine;
+    /// <summary>Identifiant des images de cartouche NEC SuperGrafx.</summary>
+    public const string NecSuperGrafx = MediaImageFormatIds.NecSuperGrafx;
     /// <summary>Identifiant des images de cartouche Atari 2600.</summary>
     public const string Atari2600 = MediaImageFormatIds.Atari2600;
     /// <summary>Identifiant des images de cartouche Atari 5200.</summary>

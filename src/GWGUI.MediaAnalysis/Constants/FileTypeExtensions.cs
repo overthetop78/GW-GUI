@@ -61,6 +61,7 @@ internal static class FileTypeExtensions
     public const string Elf = ".elf";
     public const string Sms = ".sms";
     public const string Sg = ".sg";
+    public const string Mv = ".mv";
     public const string Md = ".md";
     public const string Gen = ".gen";
     public const string Gg = ".gg";
@@ -69,6 +70,7 @@ internal static class FileTypeExtensions
     public const string A52 = ".a52";
     public const string A78 = ".a78";
     public const string Pce = ".pce";
+    public const string Sgx = ".sgx";
     public const string Vb = ".vb";
     public const string Ws = ".ws";
     public const string Wsc = ".wsc";

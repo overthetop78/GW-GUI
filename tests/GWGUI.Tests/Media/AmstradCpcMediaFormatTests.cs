@@ -219,6 +219,45 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public async Task SegaMyCardAndNecSuperGrafxFormatsRoundTripAndExploreBanks()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-card-formats-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var source = Enumerable.Range(0, 16 * 1024 + 7)
+                .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var cases = new[]
+            {
+                (Extension: DiskImageFileExtensions.Mv, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Sgx, FormatId: DiskImageFormatIds.NecSuperGrafx)
+            };
+            foreach (var item in cases)
+            {
+                var sourcePath = Path.Combine(directory, $"game{item.Extension}");
+                var outputPath = Path.Combine(directory, $"roundtrip{item.Extension}");
+                await File.WriteAllBytesAsync(sourcePath, source);
+
+                var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
+                Assert.Equal(item.FormatId, document.FormatId);
+                var explorer = new ConsoleCartridgeFileSystemReader();
+                Assert.Equal(2, explorer.Read(document, Volume(document)).Entries.Count);
+
+                await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, item.FormatId);
+                Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+            }
+
+            var supported = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+            Assert.Contains(DiskImageFileExtensions.Mv, supported);
+            Assert.Contains(DiskImageFileExtensions.Sgx, supported);
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task FamicomDiskSystemFacesRoundTripAndExposeFiles()
     {
         var directory = Path.Combine(Path.GetTempPath(), $"gwgui-fds-{Guid.NewGuid():N}");

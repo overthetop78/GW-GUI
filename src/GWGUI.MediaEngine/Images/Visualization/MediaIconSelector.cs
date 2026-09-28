@@ -26,7 +26,7 @@ public static class MediaIconSelector
             MediaKind.Tape when extension is MediaIconExtensions.Cas or MediaIconExtensions.Cdt or MediaIconExtensions.Tzx or MediaIconExtensions.Wav => MediaIconIds.Cassette,
             MediaKind.Tape => MediaIconIds.Tape,
             MediaKind.Cartridge => MediaIconIds.Cartridge,
-            _ when extension is MediaIconExtensions.Crt or MediaIconExtensions.Car or MediaIconExtensions.Rom or MediaIconExtensions.A26 or MediaIconExtensions.A52 or MediaIconExtensions.A78 or MediaIconExtensions.Nes or MediaIconExtensions.Mgw or MediaIconExtensions.ThreeDs or MediaIconExtensions.Cia or MediaIconExtensions.ThreeDsx or MediaIconExtensions.Cci or MediaIconExtensions.Cxi or MediaIconExtensions.Axf or MediaIconExtensions.Elf or MediaIconExtensions.App => MediaIconIds.Cartridge,
+            _ when extension is MediaIconExtensions.Crt or MediaIconExtensions.Car or MediaIconExtensions.Rom or MediaIconExtensions.A26 or MediaIconExtensions.A52 or MediaIconExtensions.A78 or MediaIconExtensions.Nes or MediaIconExtensions.Mgw or MediaIconExtensions.ThreeDs or MediaIconExtensions.Cia or MediaIconExtensions.ThreeDsx or MediaIconExtensions.Cci or MediaIconExtensions.Cxi or MediaIconExtensions.Axf or MediaIconExtensions.Elf or MediaIconExtensions.App or MediaIconExtensions.Mv or MediaIconExtensions.Sgx => MediaIconIds.Cartridge,
             _ when extension is MediaIconExtensions.Iso or MediaIconExtensions.Cue or MediaIconExtensions.Ccd or MediaIconExtensions.Mds => MediaIconIds.Optical,
             _ => MediaIconIds.File
         };

@@ -192,6 +192,8 @@ public static class DiskImageFileExtensions
     public const string App = ".app";
     public const string Sms = ".sms";
     public const string Sg = ".sg";
+    /// <summary>Extension des ROM SG-1000 et Sega My Card.</summary>
+    public const string Mv = ".mv";
     public const string Md = ".md";
     public const string Gen = ".gen";
     public const string Gg = ".gg";
@@ -200,6 +202,8 @@ public static class DiskImageFileExtensions
     public const string A52 = ".a52";
     public const string A78 = ".a78";
     public const string Pce = ".pce";
+    /// <summary>Extension des ROM NEC SuperGrafx.</summary>
+    public const string Sgx = ".sgx";
     public const string Vb = ".vb";
     public const string Ws = ".ws";
     public const string Wsc = ".wsc";

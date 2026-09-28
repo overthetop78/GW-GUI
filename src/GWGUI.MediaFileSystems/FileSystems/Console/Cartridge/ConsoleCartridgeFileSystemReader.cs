@@ -20,7 +20,8 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
          MediaImageFormatIds.NintendoVirtualBoy, MediaImageFormatIds.SegaSg1000,
          MediaImageFormatIds.SegaMasterSystem, MediaImageFormatIds.SegaMegaDrive,
          MediaImageFormatIds.SegaGameGear, MediaImageFormatIds.SegaThirtyTwoX,
-         MediaImageFormatIds.NecPcEngine, MediaImageFormatIds.Atari2600,
+         MediaImageFormatIds.NecPcEngine, MediaImageFormatIds.NecSuperGrafx,
+         MediaImageFormatIds.Atari2600,
          MediaImageFormatIds.Atari5200, MediaImageFormatIds.Atari7800,
          MediaImageFormatIds.BandaiWonderSwan], StringComparer.OrdinalIgnoreCase);
 

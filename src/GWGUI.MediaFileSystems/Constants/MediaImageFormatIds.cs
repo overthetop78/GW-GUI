@@ -34,6 +34,7 @@ public static class MediaImageFormatIds
     public const string SegaGameGear = "sega.game_gear";
     public const string SegaThirtyTwoX = "sega.32x";
     public const string NecPcEngine = "nec.pc_engine";
+    public const string NecSuperGrafx = "nec.supergrafx";
     public const string Atari2600 = "atari.2600";
     public const string Atari5200 = "atari.5200";
     public const string Atari7800 = "atari.7800";
