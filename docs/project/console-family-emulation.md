@@ -147,10 +147,10 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 ### Identifiants interprocessus des hôtes de cœur
 
 - [x] Supprimer les préfixes `gwgui-amstrad-*` restés dans les hôtes Sega et Nintendo.
-  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-sega-genesisplusgx-*`.
-  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Mesen/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-mesen-*`.
-  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Snes9x/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-snes9x-*`.
-  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/GameWatch/Core/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-gw-*`.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-sega-genesisplusgx-*`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Mesen/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-mesen-*`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Snes9x/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-snes9x-*`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/GameWatch/Constants/ProcessCoreConstants.cs` pour utiliser les préfixes `gwgui-nintendo-gw-*`.
   - [x] Rechercher les anciennes chaînes dans les cinq modules, compiler les modules concernés et exécuter les tests d’architecture.
 - [x] Stage et commit de cette correction seulement après réussite des vérifications.
 
@@ -348,8 +348,8 @@ les entrées et la libération du processus ; tant que ces points ne sont pas
 vérifiés, aucun fichier Cemu ne doit être ajouté au module.
 
 - [ ] Étendre l’hôte de cœur Nintendo avec un contexte graphique matériel Vulkan/OpenGL partagé, requis par Cemu.
-  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Core/Services/ExternalHostCallbacks.Environment.cs` pour fournir `SetHwRender` et les callbacks de contexte.
-  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Core/Services/ProcessCore.cs` et le protocole d’hôte pour transférer les frames matérielles vers la surface vidéo existante.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Services/ExternalHostCallbacks.Environment.cs` pour fournir `SetHwRender` et les callbacks de contexte.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Services/ProcessCore.cs` et le protocole d’hôte pour transférer les frames matérielles vers la surface vidéo existante.
   - [ ] Ajouter le test d’initialisation et de libération du contexte matériel dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs`.
 - [ ] Ajouter l’adaptateur Cemu dans `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/` avec le protocole de cœur déjà utilisé par les adaptateurs Nintendo.
   - [ ] Déclarer la distribution Windows x64 de Cemu natif, son exécutable et sa commande hôte après vérification du protocole.
@@ -534,6 +534,17 @@ sera cochée qu'après écriture du fichier et compilation du comportement assoc
 - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/StorageFunctions.cs` pour proposer `.fds` uniquement au lecteur du Famicom Disk System.
 - [x] Ajouter et exécuter `tests/GWGUI.Tests/Emulation/MachineAdapters/ConsoleFamilyMediaScenarios.cs` pour vérifier que `.fds` est accepté.
 - [x] Cocher ce groupe après compilation et réussite de la suite complète.
+
+### Structure des adaptateurs console
+
+- [x] Supprimer le niveau intermédiaire `Core` des adaptateurs que cette branche a créés.
+  - [x] Placer directement les fichiers de `src/GWGUI.Emulation.Nec/Emulators/BeetlePce/` et `BeetlePcfx/` dans leurs dossiers d’émulateur respectifs.
+  - [x] Placer directement les fichiers de `src/GWGUI.Emulation.Nintendo/Emulators/BeetleVb/`, `Citra/`, `Dolphin/`, `Gambatte/`, `GameWatch/`, `MelonDs/`, `Mesen/`, `Mgba/`, `Mupen64PlusNext/` et `Snes9x/` dans leurs dossiers d’émulateur respectifs.
+  - [x] Placer directement les fichiers de `src/GWGUI.Emulation.Sega/Emulators/Flycast/`, `GenesisPlusGX/` et `Yabause/` dans leurs dossiers d’émulateur respectifs.
+  - [x] Placer directement les fichiers de `src/GWGUI.Emulation.Sony/Emulators/Pcsx2/`, `Ppsspp/` et `SwanStation/` dans leurs dossiers d’émulateur respectifs.
+- [x] Vérifier que les namespaces, les découvertes de factories, les projets et les tests ne dépendent pas du chemin `Core`.
+- [x] Compiler les cinq modules concernés et exécuter la suite complète avant le commit.
+- [x] Cocher ce groupe uniquement après réalisation effective de tous les déplacements et vérifications.
 
 Ce document ne prétend pas qu'un cœur ou un format est déjà implémenté : chaque
 case sera cochée seulement après le fichier et le comportement correspondants.
