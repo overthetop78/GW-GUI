@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>תפוקה אודיו בשימוש GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>בחר את פלט אודיו של Windows המשמש כדי לנגן קול ממכונה זו.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>⁇ SG-1000מארק IIIMaster System, Game Gear, Mega Drive, Mega- Mega---CD 32X מערכות</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>⁇ SG-1000מארק IIIMaster System, Game Gear, Mega Drive ו- Mega-CD מערכות.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>מארק מארק III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>שבתאי שבתאי</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifies מודל Sega אשר תצורות החומרה שלו הוא ערוך.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega--CD מודל מודל</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Mega--CD תוספת</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega--CD אני</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega--CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>אפשרות 32X להוסיף</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>המונחים</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>מוגבלות</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega--CD מודל חומרה</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>בחר את Mega-CD אני או Mega-CD II בנוסף, יש לאפשר את התוספת לפני שהכונן האופטי שלו זמין.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega--CD תוספת.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>תגית: Mega-CD על Mega Drive.It הוא מוגבל כברירת מחדל.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X תוספת.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>ניתן להרחיב את 32X על Mega Drive.זה מוגבל כברירת מחדל ומקבל 32X מחסניות רק כאשר מופעל.</value></data>
 </root>

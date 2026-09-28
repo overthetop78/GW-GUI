@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Audio-Ausgabe verwendet von GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Wählen Sie die Windows-Audioausgabe aus, mit der der Ton von diesem emulierten Computer abgespielt wird.</value></data>
   <data name="Emulation.Family.Sega"><value>Senf</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulatoren SG-1000Mark III, Master System, Game Gear, Mega Drive, Mega-CD 32X-Systeme.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulatoren SG-1000Mark IIIMaster System, Game Gear, Mega Drive und Mega-CD Systeme.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Kennzeichen III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifiziert das Sega-Modell, dessen Hardware-Konfiguration gerade bearbeitet wird.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD Modell</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Mega- aktivierenCD Add-on</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega-CD I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega-CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>32X Add-on aktivieren</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Aktiviert</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Behinderte</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega-CD Hardware-Modell.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Wählen Sie die Mega-CD I oder Mega-CD II Add-on: Das Add-on muss auch aktiviert sein, bevor sein optisches Laufwerk verfügbar ist.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega-CD Add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Ermöglicht die ausgewählte Mega-CD Add-on auf dem Mega Drive. Es ist standardmäßig deaktiviert.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X Add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Ermöglicht die 32X-Erweiterung auf dem Mega Drive. Es ist standardmäßig deaktiviert und akzeptiert 32X-Patronen nur, wenn es aktiviert ist.</value></data>
 </root>

@@ -9,6 +9,9 @@ internal static class StorageSettingsFunctionsConstants
     internal const string Voc = ".voc";
     internal const string Sms = ".sms";
     internal const string Sg = ".sg";
+    internal const string Md = ".md";
+    internal const string Gen = ".gen";
+    internal const string ThirtyTwoX = ".32x";
     internal const string Mv = ".mv";
     internal const string Cpr = ".cpr";
     internal const string Cue = ".cue";

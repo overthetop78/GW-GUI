@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Kết xuất âm thanh được dùng bởi GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Chọn kết xuất âm thanh Windows dùng để phát ra âm thanh từ máy mô phỏng này.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Tính SG-1000, Đánh dấu IIIHệ thống, thiết bị trò chơi, Ổ dữ dội, Mega...CD và 32X hệ thống.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Tính SG-1000, Đánh dấu IIIHệ thống, thiết bị trò chơi, Ổ lái và Mega...CD Hệ thống.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Dấu III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Sao Thổ</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Xác nhận mô hình Sega mà phần cứng đang được chỉnh sửa.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD Mô hình</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Kích hoạt Mega-CD phụ vào</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega-CD Tôi</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega-CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Bật 32X add-on</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Bật</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Tắt</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega-CD Mô hình phần cứng.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Chọn hình ảnh-CD Tôi hay Mega...CD II Thêm vào. Các phụ thêm phải được bật trước khi có sẵn ổ đĩa quang học của nó.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega-CD Thêm vào.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Kích hoạt Mega đã chọn-CD Thêm vào trên Mega Drive. Nó bị tắt theo mặc định.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Kích hoạt mở rộng 32X trên Ổ Mega. Nó bị tắt theo mặc định và chỉ chấp nhận hộp đạn 32X khi được bật.</value></data>
 </root>

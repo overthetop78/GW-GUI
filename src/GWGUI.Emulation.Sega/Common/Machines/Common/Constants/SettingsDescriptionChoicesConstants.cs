@@ -20,6 +20,10 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string ResourceMasterSystemThreeDGlassesDisabled = "Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled";
     internal const string ResourceMegaDriveModelI = "Emulation.Sega.MegaDrive.Model.ModelI";
     internal const string ResourceMegaDriveModelII = "Emulation.Sega.MegaDrive.Model.ModelII";
+    internal const string ResourceMegaCdI = "Emulation.Sega.MegaDrive.MegaCd.I";
+    internal const string ResourceMegaCdII = "Emulation.Sega.MegaDrive.MegaCd.II";
+    internal const string ResourceMegaDriveThirtyTwoXEnabled = "Emulation.Sega.MegaDrive.32X.Enabled";
+    internal const string ResourceMegaDriveThirtyTwoXDisabled = "Emulation.Sega.MegaDrive.32X.Disabled";
     internal const string ResourceMegaDriveRegionAutomatic = "Emulation.Sega.MegaDrive.Region.Automatic";
     internal const string ResourceMegaDriveRegionNtscU = "Emulation.Sega.MegaDrive.Region.NtscU";
     internal const string ResourceMegaDriveRegionNtscJ = "Emulation.Sega.MegaDrive.Region.NtscJ";

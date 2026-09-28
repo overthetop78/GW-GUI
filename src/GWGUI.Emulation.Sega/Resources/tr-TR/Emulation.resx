@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Ses çıktısı tarafından kullanılan GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Bu emated makineden ses çıkarmak için kullanılan Windows ses çıktısını seçin.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000Mark, IIIMaster System, Game Gear, Mega Drive, Mega-CD 32X sistemleri.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000Mark, IIIMaster System, Game Gear, Mega Drive ve Mega-CD sistemler.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Mark Mark III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Satürn</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Donanım yapılandırması düzenlemenin editör olduğu Sega modelini belirtirim.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model model</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Enable Mega-CD Add-on</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega-CD Ben I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega-CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Enable 32X add-on</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Engelliler</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega-CD Donanım modeli.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Mega- seçinCD Ben veya Mega-CD II Add-on. Add-on da optik sürüşün mevcut olduğundan önce etkinleştirilmelidir.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega-CD Add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Seçilmiş Mega-Enables the selected Mega-CD Mega Drive'da ek-on ekleyin. Varsayılan olarak devre dışı bırakılır.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Mega Drive'da 32X genişlemesi kullanılabilir ve yalnızca 32X kartuşlarını kabul eder ve ancak etkinleştirilirken kabul edilir.</value></data>
 </root>

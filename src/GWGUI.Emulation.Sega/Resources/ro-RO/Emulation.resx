@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Ieșire audio utilizată de GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Selectează ieşirea audio a Windows-ului folosită pentru a reda sunetul din această maşină emulată.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulează SG-1000, Mark III, Master System, Gear de joc, Mega Drive, Mega-CD și 32X sisteme.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulează SG-1000, Mark III, Master System, Game Gear, Mega Drive și Mega-CD sisteme.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>SaturnCity in Germany</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Vise de vis</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifică modelul Sega a cărui configurație hardware este editată.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega...CD model</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Activează Mega...CD addi- on</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega...CD I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega...CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Activează 32X addi-on</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Activat</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Dezactivat</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega...CD modelul hardware.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Alege Mega-CD Eu sau Mega...CD II Addi-on. Addition-on trebuie, de asemenea, să fie activat înainte de a fi disponibil unitatea optică.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega...CD Addi-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Activează Mega selectată...CD Adăugare pe Mega Drive. Este dezactivată implicit.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X ad-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Activă expansiunea 32X pe Mega Drive. Este dezactivată implicit și acceptă cartușe 32X numai atunci când este activat.</value></data>
 </root>

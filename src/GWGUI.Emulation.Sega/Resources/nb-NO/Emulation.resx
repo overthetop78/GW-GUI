@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Lydutgang brukt av GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Velger Windows lydutgang som brukes til å spille lyd fra denne emulerte maskinen.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>emulgerer SG-1000, Merke III, Master System, Game Gear, Mega Drive, Mega-CD 32X-systemer.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>emulgerer SG-1000, Merke III, Master System, Game Gear, Mega Drive og Mega-CD systemer.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Marker III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Drømmecast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifiserer Sega-modellen som har blitt redigert av maskinvarekonfigurasjonen.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD modell</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Slå på Mega-CD tillegg</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega-CD Jeg</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega-CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Aktiver 32X-tillegg</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Aktivert</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Deaktivert</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega-CD maskinvaremodell.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Velg Mega-CD Jeg eller Mega-CD II Tillegg. Tillegget må også være aktivert før den optiske stasjonen er tilgjengelig.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega-CD - Add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Aktiverer den valgte Mega-CD Legg til på Mega-stasjonen. Den er deaktivert som standard.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X-tillegg.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Aktiverer 32X-utvidelsen på Mega-stasjonen. Den er deaktivert som standard og aksepterer kun 32X-patroner når den er aktivert.</value></data>
 </root>

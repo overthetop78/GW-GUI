@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Hangkimenet által használt GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Kiválasztja a Windows hangkimenetét, amit az emulált gép hangjának lejátszásához használnak.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulátok SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD és 32X rendszerek.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulátok SG-1000, Mark III, Master System, Game Gear, Mega Drive és Mega-CD rendszerek.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Jelölje III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Szaturnusz</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Álomcasting</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Azonosítja a Sega modellt, amelynek hardverkonfigurációját szerkesztik.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>- Nem.CD modell</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Engedélyezze a...CD add- on</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>- Nem.CD I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>- Nem.CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>32X add- on engedélyezése</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Engedélyezett</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Letiltva</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>- Nem.CD hardver modell.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Kiválasztja a...CD Én vagy...CD II add- on. Az add- on is be kell kapcsolni, mielőtt az optikai meghajtó elérhető.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>- Nem.CD Add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>A kijelölt mega-CD add- on a Mega Drive. Ez letiltva alapértelmezés szerint.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X-es kiegészítés.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>A 32X kiterjesztés engedélyezése a Mega Drive-on. Alapértelmezés szerint letiltva, csak akkor fogadja el a 32X patronokat, ha be van kapcsolva.</value></data>
 </root>

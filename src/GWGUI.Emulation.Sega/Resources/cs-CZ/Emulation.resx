@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Audio výstup použitý GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Vybere audio výstup Windows použitý k přehrávání zvuku z tohoto emulovaného stroje.</value></data>
   <data name="Emulation.Family.Sega"><value>SegaCity in New York USA</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emuláty SG-1000, Značka III, Master System, Game Gear, Mega Drive, Mega--CD a 32X systémy.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emuláty SG-1000, Značka III, Master System, Game Gear, Mega Drive a Mega-CD systémy.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Marku. III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Snílcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifikuje model Sega, jehož hardwarová konfigurace je editována.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega...CD model</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Povolit Mega...CD add- on</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega...CD I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega...CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Povolit 32X add- on</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Povoleno</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Zakázáno</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega...CD hardwarový model.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Vybere si Mega...CD Já nebo Mega...CD II add- on. Add- on musí být také zapnut před tím, než je k dispozici jeho optický pohon.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega...CD - Tak jo.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Umožňuje vybrané Mega...CD add- on na Mega Drive. Je defaultně vypnutý.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X add- on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Umožňuje rozšíření 32X na Mega Drive. Je standardně vypnutý a přijímá 32X náboje pouze, když je zapnut.</value></data>
 </root>

@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>การแสดงผลโดย GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>เลือกการแสดงผลเสียงของวินโดวส์ที่ใช้ในการเล่นเสียงจากเครื่องจําลองนี้</value></data>
   <data name="Emulation.Family.Sega"><value>เซกา</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>จําลอง SG-1000มาร์ก III, ระบบหลัก, เกมเกียร์ เมก้าไดรฟ์ เมก้าCD และ 32X ระบบ</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>จําลอง SG-1000มาร์ก III, ระบบหลัก, เกมเกียร์ เมก้าไดรฟ์ และ เมก้าCD ระบบ</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>เครื่องหมาย III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>ดาวเสาร์Name</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcaster</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>จําแนกรุ่นเซก้า ที่ปรับแต่งฮาร์ดแวร์ให้ถูกแก้ไข</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>เมกะCD รุ่น</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>เปิดใช้งาน Mega-CD เพิ่มเมื่อ</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>เมกะCD ฉัน</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>เมกะCD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>เปิดการใช้งานเพิ่มเติม 32X</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>เปิดใช้งาน</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>ปิดการใช้งาน</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>เมกะCD โมเดลฮาร์ดแวร์</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>เลือกเมกะCD ฉันหรือเมก้าCD II เพิ่ม-เข้า. เปิดใช้งานเพิ่มเติมจะต้องเปิดใช้งานก่อนจะใช้งานไดรฟ์แบบใช้แสง</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>เมกะCD เพิ่มเข้าไป</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>เปิดใช้งาน เมกะCD เพิ่มบนไดรฟ์เมก้า ปิดการใช้งานโดยปริยาย</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X เพิ่มเมื่อ</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>เปิดใช้การขยายข้อมูล 32X บนไดรฟ์ Mega โดยจะปิดการใช้งานมันโดยปริยาย และยอมรับการขยายตลับหมึก 32X ได้เมื่อเปิดใช้งาน</value></data>
 </root>

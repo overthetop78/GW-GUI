@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>音声出力で使用 GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>このエミュレートされたマシンから音を再生するために使用されるWindowsオーディオ出力を選択します。</value></data>
   <data name="Emulation.Family.Sega"><value>セガ</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>エミュレータ SG-1000, マーク III、マスター システム、ゲーム ギヤ、メガ ドライブ、メガ ドライブCD 32Xシステム</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>エミュレータ SG-1000, マーク III、マスター システム、ゲーム ギヤ、メガ ドライブおよびメガ-CD システム。</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>マーク III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>土星の</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>ドリームキャスト</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>ハードウェア構成を編集しているSegaモデルを識別します。</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>メガメガメガCD 機種</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>メガを有効にする-CD アドオン</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>メガメガメガCD いわいわ</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>メガメガメガCD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>32Xアドオンを有効にする</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>有効化</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>障害者用</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>メガメガメガCD ハードウェアモデル。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>メガを選択-CD メガメガCD II add-on。 光学ドライブが利用可能になる前にアドオンも有効である必要があります。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>メガメガメガCD アドオン</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>選択したメガを有効にします。CD Mega Drive にアドオンを追加。デフォルトでは無効になっています。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32Xアドオン</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>メガドライブの32X拡張を有効にします。 デフォルトでは無効化され、有効にしたときに32Xカートリッジのみを受け入れます。</value></data>
 </root>

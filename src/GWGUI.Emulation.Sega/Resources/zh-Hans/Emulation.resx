@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>使用的音频输出 GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>选择用于播放此仿真机所发声音的 Windows 音频输出 。</value></data>
   <data name="Emulation.Family.Sega"><value>世嘉 世嘉 世嘉 世嘉 世嘉 世嘉 世嘉</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>模拟 SG-1000马克 III游戏机 巨型驱动器 巨型CD 和32X系统。</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>模拟 SG-1000马克 III游戏机 巨型驱动器和巨型CD 系统。</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>标记 III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>土星( 土星)</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>梦幻演员</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>确定正在编辑其硬件配置的世嘉模型.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>超级...CD 模式</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>启用巨型CD 添加( A)</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>超级...CD 计一</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>超级...CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>启用 32X 添加</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>已启用</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>已禁用</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>超级...CD 硬件模型。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>选择巨型...CD 我或大号...CD II 加载。加载在光学驱动器可用之前,还必须启用加载。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>超级...CD 添加到一个字。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>启用选中的巨型 -CD 添加到 Mega 驱动器上。 它默认是禁用 。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X加载.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>启用 Mega Drive 上的 32X 扩展。 它默认被禁用, 只有在启用时才接受 32X 墨盒 。</value></data>
 </root>

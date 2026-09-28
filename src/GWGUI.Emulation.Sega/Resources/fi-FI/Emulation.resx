@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Äänitehoste, jota käyttävät GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Valitsee Windowsin äänilähdön, jota käytetään tämän emulgoidun koneen äänen soittamiseen.</value></data>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulgointi SG-1000, Mark III, Master System, Game Gear, Mega Drive, Mega-CD ja 32X-järjestelmät.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulgointi SG-1000, Mark III, Master System, Game Gear, Mega Drive ja Mega-CD Järjestelmät.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Merkki III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Saturnus</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Tunnistee Sega-mallin, jonka laitteistokonfiguraatiota muokataan.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega...CD malli</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Ota käyttöön Mega-CD lisä</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega...CD I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega...CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Ota 32X lisäosan käyttöön</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Käytössä</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Ei käytössä</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega...CD laitteistomalli.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Valitsee Mega-CD Minä tai Mega...CD II lisäosa. Lisäosa on myös otettava käyttöön ennen kuin sen optinen asema on käytettävissä.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega...CD Lisäosa.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Valitse valittu Mega-CD Mega-ajon lisäosa. Se on oletusarvoisesti pois käytöstä.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X lisäosa.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Mahdollistaa Mega Driven 32X-laajennuksen. Se on oletusarvoisesti pois käytöstä ja hyväksyy 32X-patruunat vain, kun se on käytössä.</value></data>
 </root>

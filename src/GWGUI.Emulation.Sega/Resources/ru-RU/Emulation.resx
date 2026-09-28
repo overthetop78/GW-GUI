@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Аудио-вывод, используемый GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Выбирает аудиовыход Windows, используемый для воспроизведения звука с этой эмулированной машины.</value></data>
   <data name="Emulation.Family.Sega"><value>Сега</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>эмулировать SG-1000Марк IIIMaster System, Game Gear, Mega Drive, Mega-CD 32X систем.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>эмулировать SG-1000Марк IIIMaster System, Game Gear, Mega Drive и Mega-DiveCD систем.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Марк III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Сатурн</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Сонник</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Определяет модель Sega, аппаратная конфигурация которой редактируется.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Мега-CD модель</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Включите Мега-CD надстройка</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Мега-CD Я</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Мега-CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Включить 32X Addon</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>включенный</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>инвалид</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Мега-CD Аппаратная модель.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Выберите Мега-CD Я или МегаCD II Дополнение также должно быть включено до того, как будет доступен его оптический привод.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Мега-CD Добавление.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Включает выбранную Мега-CD На Mega Drive он отключен по умолчанию.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X дополнение.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Включает расширение 32X на Mega Drive. Он отключен по умолчанию и принимает 32X-картриджи только при включении.</value></data>
 </root>

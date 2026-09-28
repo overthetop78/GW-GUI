@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>ناتج الصوت المستخدم GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>يُختارُ المخرج الصوتيَ الريحِ يَستعملُ لِلَعبِ الصوتِ مِنْ هذه الآلةِ المُحتَزَمةِ.</value></data>
   <data name="Emulation.Family.Sega"><value>سيغا</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>المواد SG-1000مارك III(ميا) النظام المُعلّم، (جيم جيير)، (ميجا درايف)، (ميجا)CD و 32 إكس نظام</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>المواد SG-1000مارك IIIالنظام المُعلّم، لعبة الغُر، ميغا درايف وميغاCD أنظمة</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>مارك III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>زحل</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>مادة الديموقراطية</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>(تعرف نموذج (سيغا الذي يتم تحرير تركيبة معداته</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>ميجاCD النموذج</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>(ميجا)CD إضافة</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>ميجاCD أنا</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>ميجاCD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>مضاف إلى المادة 32 من النظام الداخلي</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>التمكين</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>المعوقين</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>ميجاCD نموذج المعدات</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>يُختارُ الميغا...CD أنا أو ميجاCD II إضافة إلى ذلك، يجب أيضاً تمكين الإضافات قبل أن تتوافر محركها البصري.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>ميجاCD إضافة</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>يُمكنُ الميجا المختارَةَCD "إضافات على مقود "ميجا إنه معاق بسبب الفشل</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X إضافات</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>(ب) يمكن أن يُمكن توسيع نطاق الـ 32X على محرك ميغا، وهو معاق بسبب التقصير، ولا يقبل سوى 32 خراطيشاً مُتاحة.</value></data>
 </root>

@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>에 의해 사용되는 오디오 출력 GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>이 에뮬레이션 머신에서 사운드를 재생하는 데 사용되는 Windows 오디오 출력을 선택합니다.</value></data>
   <data name="Emulation.Family.Sega"><value>뚱 베어</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 SG-1000, 표 III, 마스터 시스템, 게임 기어, 메가 드라이브, 메가-CD 그리고 32X 체계.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 SG-1000, 표 III, 마스터 시스템, 게임 기어, 메가 드라이브 및 메가-CD 시스템.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>팟캐스트 III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>의 의</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>드림캐스트</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>하드웨어 구성이 편집되는 Sega 모델을 식별합니다.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>메가-CD 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>지원 Mega-CD 덧글</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>메가-CD ₢ 킹</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>메가-CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>32X 추가 기능</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>지원하다</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>의욕</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>메가-CD 하드웨어 모델.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>메가 선택CD I 또는 메가-CD II add-on. 추가 기능은 광학 드라이브가 사용할 수 있기 전에 활성화해야합니다.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>메가-CD 추가 기능</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>선택한 메가-CD Mega Drive에 추가. 기본적으로 비활성화됩니다.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X 추가.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Mega Drive에서 32X 확장을 가능하게 합니다. 기본적으로 비활성화되며 활성화시 32X 카트리지만 허용됩니다.</value></data>
 </root>

@@ -35,6 +35,9 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string ResourceMasterSystemVariant = "Emulation.Sega.MasterSystem.Variant";
     internal const string ResourceMasterSystemThreeDGlasses = "Emulation.Sega.MasterSystem.ThreeDGlasses";
     internal const string ResourceMegaDriveModel = "Emulation.Sega.MegaDrive.Model";
+    internal const string ResourceMegaCdModel = "Emulation.Sega.MegaDrive.MegaCd";
+    internal const string ResourceMegaCdEnabled = "Emulation.Sega.MegaDrive.MegaCd.Enabled";
+    internal const string ResourceMegaDriveThirtyTwoX = "Emulation.Sega.MegaDrive.32X";
     internal const string ResourceMegaDriveRegion = "Emulation.Sega.MegaDrive.Region";
     internal const string ResourceMegaDriveVideoStandard = "Emulation.Sega.MegaDrive.VideoStandard";
     internal const string CpuFrequency = "—";

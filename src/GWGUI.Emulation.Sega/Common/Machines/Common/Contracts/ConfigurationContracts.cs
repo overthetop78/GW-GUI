@@ -15,5 +15,15 @@ public sealed record MachineConfiguration(
 {
     public string ModuleId => MachineConfigurationConstants.ModuleId;
     string GWGUI.Emulation.Interfaces.IEmulationConfiguration.MachineId => Model;
+    public string MegaCdModel => Options?.GetValueOrDefault(SettingsConstants.MegaCdModel,
+        ModelConstants.MegaCdI) ?? ModelConstants.MegaCdI;
+    public bool MegaCdEnabled => Options?.TryGetValue(SettingsConstants.MegaCdEnabled,
+        out var megaCdEnabled) == true && (bool.TryParse(megaCdEnabled, out var enabled)
+            && enabled || megaCdEnabled.Equals(SettingsDescriptionFunctionsConstants.Enabled,
+                StringComparison.OrdinalIgnoreCase));
+    public bool ThirtyTwoXEnabled => Options?.TryGetValue(SettingsConstants.MegaDriveThirtyTwoX,
+        out var value) == true && (bool.TryParse(value, out var enabled) && enabled
+            || value.Equals(SettingsDescriptionFunctionsConstants.Enabled,
+                StringComparison.OrdinalIgnoreCase));
     public MachineConfiguration EnsureId() => Id == Guid.Empty ? this with { Id = Guid.NewGuid() } : this;
 }

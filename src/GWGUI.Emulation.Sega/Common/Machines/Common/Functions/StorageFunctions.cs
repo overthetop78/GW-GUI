@@ -22,10 +22,16 @@ internal static class StorageSettingsFunctions
                 IsPermanent: model.HasBuiltInCassetteDrive));
         if (model.SupportsCartridgeSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge,
-                [StorageSettingsFunctionsConstants.Sms, StorageSettingsFunctionsConstants.Sg,
-                 StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
+                model.Id == ModelConstants.MegaDrive
+                    ? [StorageSettingsFunctionsConstants.Md, StorageSettingsFunctionsConstants.Gen,
+                       StorageSettingsFunctionsConstants.ThirtyTwoX]
+                    : [StorageSettingsFunctionsConstants.Sms, StorageSettingsFunctionsConstants.Sg,
+                       StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot));
+        var megaCdEnabled = model.Id == ModelConstants.MegaDrive
+            && configuration.MegaCdEnabled
+            && configuration.MegaCdModel is ModelConstants.MegaCdI or ModelConstants.MegaCdII;
         var segaCardLocked = OptionEnabled(options, SettingsConstants.MasterSystemThreeDGlasses)
             || model.Id == ModelConstants.MasterSystem
             && options.GetValueOrDefault(SettingsConstants.MasterSystemVariant,
@@ -36,7 +42,7 @@ internal static class StorageSettingsFunctions
                 [StorageSettingsFunctionsConstants.Mv], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.SegaCardSlotLabel,
                 IsPermanent: model.HasBuiltInSegaCardSlot));
-        if (model.SupportsCompactDiscDrive)
+        if (model.SupportsCompactDiscDrive || megaCdEnabled)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd,
                  StorageSettingsFunctionsConstants.Iso, StorageSettingsFunctionsConstants.Gdi,
@@ -58,6 +64,7 @@ internal static class StorageSettingsFunctions
                 : !segaCardLocked && (model.HasBuiltInSegaCardSlot
                     || OptionBool(options, StorageSettingsFunctionsConstants.SegaCardSlotEnabledOption)),
             EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
+                || megaCdEnabled
                 || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
             _ => false
         }).Select(device => device.Slot).ToArray();
@@ -82,7 +89,8 @@ internal static class StorageSettingsFunctions
         var options = new Dictionary<string, string>(configuration.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in media)
-            if (!ConfigurationValidationFunctions.Supports(model, item.Category, item.Slot)
+            if (!ConfigurationValidationFunctions.Supports(model, item.Category, item.Slot, options)
+                || ConfigurationValidationFunctions.IsIncompatibleMedia(model, item, options)
                 || item.Slot == EmulationMediaSlot.Cartridge1 && IsSegaCardLocked(model, options))
                 throw new ArgumentOutOfRangeException(nameof(settings), item.Category, null);
         options = new Dictionary<string, string>(options, StringComparer.Ordinal)

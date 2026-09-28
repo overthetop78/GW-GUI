@@ -483,6 +483,69 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public async Task SegaMegaDriveAddonsAreDisabledUntilEnabledAndValidateMedia()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-addon-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var thirtyTwoXPath = Path.Combine(root, "game.32x");
+        var compactDiscPath = Path.Combine(root, "game.cue");
+        File.WriteAllText(thirtyTwoXPath, "placeholder");
+        File.WriteAllText(compactDiscPath, "placeholder");
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(
+                new EmulationModuleContext(root, root, http));
+            var megaDrive = Assert.IsType<MachineConfiguration>(
+                module.CreateConfiguration(ModelConstants.MegaDrive));
+            var disabledStorage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                .DescribeStorageSettings(megaDrive);
+            Assert.DoesNotContain(disabledStorage.ConfiguredSlots, slot =>
+                slot == EmulationMediaSlot.Cd0);
+            var settings = module.Describe(ModelConstants.MegaDrive, megaDrive);
+            var fields = settings.Blocks.SelectMany(block => block.Fields)
+                .ToDictionary(field => field.Id, StringComparer.Ordinal);
+            Assert.Equal("disabled", fields[SettingsConstants.MegaCdEnabled].Value);
+            Assert.Equal("disabled", fields[SettingsConstants.MegaDriveThirtyTwoX].Value);
+
+            var invalid = megaDrive with
+            {
+                Media = [new MediaConfiguration(thirtyTwoXPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0)]
+            };
+            await Assert.ThrowsAsync<InvalidDataException>(() =>
+                module.SaveConfigurationAsync(invalid).AsTask());
+
+            var enabled = megaDrive with
+            {
+                Options = new Dictionary<string, string>
+                {
+                    [SettingsConstants.MegaCdEnabled] = SettingsDescriptionFunctionsConstants.Enabled,
+                    [SettingsConstants.MegaCdModel] = ModelConstants.MegaCdII,
+                    [SettingsConstants.MegaDriveThirtyTwoX] = SettingsDescriptionFunctionsConstants.Enabled
+                },
+                Media =
+                [
+                    new MediaConfiguration(thirtyTwoXPath, MediaCategory.Cartridge,
+                        EmulationMediaSlot.Cartridge0),
+                    new MediaConfiguration(compactDiscPath, MediaCategory.CompactDisc,
+                        EmulationMediaSlot.Cd0)
+                ]
+            };
+            var enabledStorage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                .DescribeStorageSettings(enabled);
+            Assert.Contains(enabledStorage.AvailableDevices,
+                device => device.Slot == EmulationMediaSlot.Cd0);
+            await module.SaveConfigurationAsync(enabled).AsTask();
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaAdaptersOnlyPublishModelsFromTheMachineCatalog()
     {
         var machineIds = ModelCatalog.All.Select(model => model.Id)

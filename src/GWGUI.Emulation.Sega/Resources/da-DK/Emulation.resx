@@ -88,7 +88,7 @@
   <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Lydoutput brugt af GW GUI.</value></data>
   <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Vælger Windows lydudgang, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
   <data name="Emulation.Family.Sega"><value>SegaCity in New York USA</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulater SG-1000, Markér IIIMaster System, Game Gear, Mega Drive, Mega -CD og 32X-systemer.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulater SG-1000, Markér IIIMaster System, Game Gear, Mega Drive og Mega -CD systemer.</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
   <data name="Emulation.Sega.Model.MarkIII"><value>Markér III</value></data>
@@ -100,4 +100,17 @@
   <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identificerer Sega-modellen, hvis hardware-konfiguration redigeres.</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD model</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Aktivér Mega-CD add-on</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega-CD I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega-CD II</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Aktivér 32X add-on</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Aktiveret</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Deaktiveret</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega-CD hardware model.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Vælger Mega-CD Jeg eller Mega-CD II add-on. Add-on skal også være aktiveret, før dens optiske drev er tilgængelig.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega-CD - Tak.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Aktiverer den valgte Mega-CD add-on på Mega Drive. Det er deaktiveret som standard.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X add-on.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Aktiverer 32X udvidelsen på Mega Drive. Den er deaktiveret som standard og accepterer 32X patroner kun når den er aktiveret.</value></data>
 </root>

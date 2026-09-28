@@ -36,6 +36,8 @@ internal static class ModelConstants
     internal const string MasterSystemSmsIi = "sms-ii";
     internal const string MegaDriveModelI = "model-i";
     internal const string MegaDriveModelII = "model-ii";
+    internal const string MegaCdI = "mega-cd-i";
+    internal const string MegaCdII = "mega-cd-ii";
     internal const string RegionAutomatic = "automatic";
     internal const string RegionNtscU = "ntsc-u";
     internal const string RegionNtscJ = "ntsc-j";
