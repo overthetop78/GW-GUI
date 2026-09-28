@@ -9,6 +9,8 @@ public static class FileSystemIds
     public const string Udf = "udf";
     /// <summary>Identifie le système de fichiers Xbox XDVDFS.</summary>
     public const string Xdvdfs = "microsoft-xdvdfs";
+    /// <summary>Identifie la table de fichiers FST des disques optiques Nintendo GameCube/Wii.</summary>
+    public const string NintendoGameCubeFst = "nintendo-gamecube-fst";
     /// <summary>Identifies decoded sequential media content exposed for exploration.</summary>
     public const string SequentialContent = "sequential-content";
     /// <summary>Identifie Acorn ADFS/FileCore.</summary>

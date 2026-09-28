@@ -1,4 +1,5 @@
 using System.Collections.Frozen;
+using System.IO;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -79,7 +80,8 @@ public sealed class IsoReader : IMediaImageReader
             new Dictionary<string, string>(StringComparer.Ordinal)
             {
                 ["sectorSize"] = IsoFormat.SectorSize.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                ["trackCount"] = "1"
+                ["trackCount"] = "1",
+                ["sourceExtension"] = Path.GetExtension(context.Source.PrimaryPath)
             }));
     }
 }

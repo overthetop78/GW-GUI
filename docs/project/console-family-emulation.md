@@ -174,6 +174,19 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler les projets concernés et exécuter le test ciblé.
 - [x] Stage et commit de cette tranche seulement après réussite du test média.
 
+### Exploration FST Nintendo GameCube/Wii
+
+- [x] Exposer l'arbre FST des images `.gcm` sans les traiter comme un ISO9660 générique.
+  - [x] Ajouter `src/GWGUI.MediaFileSystems/Definitions/FileSystemIds.cs` avec l'identifiant technique FST Nintendo.
+  - [x] Ajouter `src/GWGUI.MediaEngine/Images/Formats/Optical/Iso/IsoReader.cs` avec l'extension source reconnue dans les métadonnées du document.
+  - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Nintendo/GameCube/GameCubeFstFileSystemConstants.cs` avec les offsets, limites et attributs FST.
+  - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Nintendo/GameCube/GameCubeFstFileSystemReader.cs` pour lire la table FST big-endian, reconstruire les dossiers, lire les fichiers et refuser les bornes invalides.
+  - [x] Enregistrer le lecteur dans `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` avant les lecteurs ISO/UDF génériques.
+  - [x] Ajouter `tests/GWGUI.Tests/Media/GameCubeFstFileSystemReaderTests.cs` avec une image synthétique, l'exploration et le nettoyage des artefacts temporaires dans `finally`.
+  - [x] Exécuter le test ciblé.
+  - [x] Exécuter la suite complète.
+- [x] Stage et commit de cette tranche seulement après réussite de toutes les sous-tâches ci-dessus.
+
 ### Analyse des exécutables Xbox 360
 
 - [x] Classer les fichiers Xbox 360 `.xex` à partir de leur signature `XEX2`.

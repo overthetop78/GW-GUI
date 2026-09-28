@@ -41,6 +41,7 @@ public static class MediaImageFormatIds
     public const string NintendoVirtualBoy = "nintendo.virtual_boy";
     public const string BandaiWonderSwan = "bandai.wonderswan";
     public const string OpticalGdi = "optical-gdi";
+    public const string OpticalIso = "optical-iso";
     public const string MicrosoftXboxXdvdfs = "microsoft.xbox.xdvdfs";
     public const string AppleIIAppleDos113 = "apple2.appledos.113";
     public const string AppleIIAppleDos140 = "apple2.appledos.140";

@@ -8,6 +8,7 @@ using GWGUI.MediaFileSystems.FileSystems.Amstrad.Cartridge;
 using GWGUI.MediaFileSystems.FileSystems.Console.Cartridge;
 using GWGUI.MediaFileSystems.FileSystems.Xbox.Xdvdfs;
 using GWGUI.MediaFileSystems.FileSystems.Nintendo.FamicomDisk;
+using GWGUI.MediaFileSystems.FileSystems.Nintendo.GameCube;
 using GWGUI.MediaFileSystems.Exploration.Partitioning;
 using GWGUI.MediaFileSystems.Exploration.Sequential;
 
@@ -60,6 +61,7 @@ public sealed class MediaExplorer
                 new AmstradCartridgeFileSystemReader(),
                 new ConsoleCartridgeFileSystemReader(),
                 new FamicomDiskFileSystemReader(),
+                new GameCubeFstFileSystemReader(),
                 new XdvdfsFileSystemReader(),
                 new UdfFileSystemReader(),
                 new JolietExtensionReader(),
