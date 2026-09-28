@@ -240,6 +240,16 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Compiler le module Nintendo et exécuter les tests d’architecture et de création de runtime.
 - [x] Stage et commit de l’adaptateur Nintendo DS seulement après réussite de toutes les sous-tâches ci-dessus.
 
+### Adaptateurs Sony PlayStation 2 et PSP
+
+- [x] Ajouter des adaptateurs Sony PlayStation 2 et PSP concrets avec les protocoles propres aux cœurs PCSX2 et PPSSPP.
+  - [x] Créer `src/GWGUI.Emulation.Sony/Emulators/Pcsx2/` et `src/GWGUI.Emulation.Sony/Emulators/Ppsspp/` en reprenant les contrats, services et hôtes Sony déjà intégrés, puis remplacer les identifiants, téléchargements et médias.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Resources/00-Base/Emulation.resx` pour ajouter les erreurs et descriptions localisées des deux cœurs.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` les assertions de sélection PCSX2 pour `PlayStation2` et PPSSPP pour `Psp`.
+  - [x] Relier le moteur Sony aux deux adaptateurs par sa découverte d’adaptateurs.
+  - [x] Compiler le module Sony et exécuter les tests d’architecture et de création de runtime.
+- [x] Stage et commit des adaptateurs Sony PlayStation 2 et PSP seulement après réussite de toutes les sous-tâches ci-dessus.
+
 - [x] Créer les cinq projets de modules, leurs manifestes et leurs factories.
   - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Sega.
 - [x] Ajouter la façade `IEmulationModule` et le catalogue de machines Nintendo.

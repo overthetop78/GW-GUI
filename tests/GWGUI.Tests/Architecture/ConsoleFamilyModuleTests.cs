@@ -62,7 +62,7 @@ public sealed class ConsoleFamilyModuleTests
             var cases = new (IEmulationModule Module, string MachineId)[]
             {
                 (new NintendoEmulationModuleFactory().Create(context), "VirtualBoy"),
-                (new SonyEmulationModuleFactory().Create(context), "PlayStation2"),
+                (new SonyEmulationModuleFactory().Create(context), "PsVita"),
                 (new MicrosoftEmulationModuleFactory().Create(context), "Xbox"),
                 (new NecEmulationModuleFactory().Create(context), "PcFx")
             };
@@ -238,6 +238,46 @@ public sealed class ConsoleFamilyModuleTests
             var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
                 module.CreateConfiguration("NintendoDs"));
             Assert.Equal("melonds", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SonyPcsx2SelectsPlayStation2()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sony-pcsx2-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new SonyEmulationModuleFactory().Create(context);
+            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("PlayStation2"));
+            Assert.Equal("pcsx2", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SonyPpssppSelectsPortable()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sony-ppsspp-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var context = new EmulationModuleContext(root, root, http);
+            var module = new SonyEmulationModuleFactory().Create(context);
+            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
+                module.CreateConfiguration("Psp"));
+            Assert.Equal("ppsspp", configuration.EmulatorId);
         }
         finally
         {
