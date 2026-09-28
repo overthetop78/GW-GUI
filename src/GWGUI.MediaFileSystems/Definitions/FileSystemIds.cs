@@ -7,6 +7,8 @@ public static class FileSystemIds
     public const string Joliet = "iso9660-joliet";
     public const string RockRidge = "iso9660-rock-ridge";
     public const string Udf = "udf";
+    /// <summary>Identifie le système de fichiers Xbox XDVDFS.</summary>
+    public const string Xdvdfs = "microsoft-xdvdfs";
     /// <summary>Identifies decoded sequential media content exposed for exploration.</summary>
     public const string SequentialContent = "sequential-content";
     /// <summary>Identifie Acorn ADFS/FileCore.</summary>

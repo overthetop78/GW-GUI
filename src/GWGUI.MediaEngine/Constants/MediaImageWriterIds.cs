@@ -29,6 +29,7 @@ public static class MediaImageWriterIds
     public const string HardDiskQcow2 = "hard-disk-qcow2";
     public const string HardDiskChd = "hard-disk-chd";
     public const string OpticalIso = "optical-iso";
+    public const string OpticalXboxXdvdfs = "optical-xbox-xdvdfs";
     public const string OpticalBinCue = "optical-bin-cue";
     public const string OpticalGdi = "optical-gdi";
     public const string TapeWav = "tape-wav";

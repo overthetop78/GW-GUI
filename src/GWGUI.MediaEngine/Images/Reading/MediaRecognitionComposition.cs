@@ -38,6 +38,7 @@ using GWGUI.MediaEngine.Images.Formats.Optical.Chd;
 using GWGUI.MediaEngine.Images.Formats.Optical.Iso;
 using GWGUI.MediaEngine.Images.Formats.Optical.Alcohol;
 using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
+using GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
 using GWGUI.MediaEngine.Images.Formats.Tape.AtariCas;
 using GWGUI.MediaEngine.Images.Formats.Tape.Audio;
 using GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
@@ -123,6 +124,7 @@ public sealed class MediaRecognitionComposition
                 new AlcoholMdsReader(),
                 new ChdOpticalReader(),
                 new GdiReader(),
+                new XdvdfsReader(),
                 new IsoReader(),
                 new WavTapeReader(),
                 new AudioTapeReader(),

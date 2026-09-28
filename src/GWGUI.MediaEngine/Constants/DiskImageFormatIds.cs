@@ -21,6 +21,8 @@ public static partial class DiskImageFormatIds
     public const string RawHxcStream = "raw.hxcstream";
     /// <summary>Identifiant des captures de flux multipistes KryoFlux.</summary>
     public const string RawKryoFlux = "raw.kryoflux";
+    /// <summary>Identifiant des images de disque Xbox XDVDFS/XISO.</summary>
+    public const string MicrosoftXboxXdvdfs = OpticalImageFormatIds.XboxXdvdfs;
     /// <summary>Identifiant des cartouches Amstrad Plus/GX4000.</summary>
     public const string AmstradCpr = MediaImageFormatIds.AmstradCpr;
     /// <summary>Identifiant des ROM brutes Amstrad CPC.</summary>

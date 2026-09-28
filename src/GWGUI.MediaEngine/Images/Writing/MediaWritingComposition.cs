@@ -37,6 +37,7 @@ using GWGUI.MediaEngine.Images.Formats.HardDisk.Vmdk;
 using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
 using GWGUI.MediaEngine.Images.Formats.Optical.Iso;
+using GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
 using GWGUI.MediaEngine.Images.Formats.Tape.AtariCas;
 using GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 using GWGUI.MediaEngine.Images.Formats.Tape.MsxCas;
@@ -111,6 +112,7 @@ public sealed class MediaWritingComposition
         var opticalIso = new IsoWriter();
         var opticalBinCue = new BinCueWriter();
         var opticalGdi = new GdiWriter();
+        var opticalXboxXdvdfs = new XdvdfsWriter();
         var tapeWav = new WavTapeWriter();
         var tapeVoc = new VocWriter();
         var tapeAtariCas = new AtariCasWriter();
@@ -177,6 +179,7 @@ public sealed class MediaWritingComposition
             opticalIso,
             opticalBinCue,
             opticalGdi,
+            opticalXboxXdvdfs,
             tapeWav,
             tapeVoc,
             tapeAtariCas,

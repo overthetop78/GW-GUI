@@ -58,6 +58,7 @@
   <data name="Format.amstrad.rom"><value>Amstrad CPC — ROM</value></data>
   <data name="Format.nintendo.nes"><value>Nintendo NES</value></data>
   <data name="Format.optical-gdi"><value>Dreamcast GDI</value></data>
+  <data name="Format.microsoft.xbox.xdvdfs"><value>Xbox XDVDFS</value></data>
   <data name="Format.nintendo.fds"><value>Nintendo Famicom Disk System</value></data>
   <data name="Format.nintendo.snes"><value>Nintendo SNES</value></data>
   <data name="Format.nintendo.n64"><value>Nintendo 64</value></data>

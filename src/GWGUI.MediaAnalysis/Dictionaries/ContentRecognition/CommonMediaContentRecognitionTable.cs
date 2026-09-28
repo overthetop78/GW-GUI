@@ -30,6 +30,7 @@ internal static class CommonMediaContentRecognitionTable
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Obj, [], MediaContentCategory.ObjectCode, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.O, [], MediaContentCategory.ObjectCode, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Sys, [], MediaContentCategory.System, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
+        new(null, MediaContentRecognitionPriority.Primary, FileTypeExtensions.Xbe, [MediaContentSignatures.XboxExecutable], MediaContentCategory.Executable, MediaTextEncoding.NotApplicable, MediaExecutionKind.NativeExecutable, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Rom, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Nes, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),
         new(null, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Sfc, [], MediaContentCategory.Rom, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Hexadecimal),

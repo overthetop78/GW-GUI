@@ -28,6 +28,7 @@ internal static class FileTypeExtensions
     public const string Apa = ".apa";
     public const string Apc = ".apc";
     public const string App = ".app";
+    public const string Xbe = ".xbe";
     public const string Arc = ".arc";
     public const string Arj = ".arj";
     public const string Art = ".art";

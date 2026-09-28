@@ -108,6 +108,19 @@ Une extension n'est déclarée comme lisible, visualisable, explorable ou
 convertible qu'après l'ajout d'un Reader/Writer et d'une représentation réelle.
 Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 
+### Support Microsoft Xbox XDVDFS/XISO
+
+- [x] Ajouter le format nommé `microsoft.xbox.xdvdfs` sans masquer les ISO 9660 existantes.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` et `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` pour déclarer l'identifiant XDVDFS.
+  - [x] Conserver `.iso` comme extension optique existante et ajouter uniquement la constante `.xbe` nécessaire à l'analyse des exécutables Xbox.
+  - [x] Créer le Reader/Writer XDVDFS dans `src/GWGUI.MediaEngine/Images/Formats/Optical/Xdvdfs/` avec validation de la signature du secteur 32, des bornes et des entrées.
+  - [x] Enregistrer le Reader/Writer dans les compositions MediaEngine avant le lecteur ISO générique, sans modifier le comportement ISO 9660.
+  - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Xbox/Xdvdfs/` pour parcourir l'arbre binaire des répertoires et lire les fichiers.
+  - [x] Ajouter la règle de contenu des exécutables Xbox `.xbe` dans `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` avec la signature `XBEH`.
+  - [x] Ajouter les tests de lecture, exploration, conversion et nettoyage dans `tests/GWGUI.Tests/Media/XdvdfsMediaFormatTests.cs`.
+  - [x] Compiler MediaEngine, MediaFileSystems et MediaAnalysis puis exécuter les tests ciblés.
+- [x] Stage et commit de la tranche XDVDFS seulement après réussite de toutes les sous-tâches ci-dessus.
+
 ## Ordre d'implémentation
 
 ### Formats de cartouche spécifiques (à réaliser avant l'exposition utilisateur)
@@ -116,12 +129,13 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` pour ajouter les identifiants Nintendo, Sega et NEC correspondant aux extensions réelles.
   - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` pour exposer les mêmes identifiants au moteur.
   - [x] Créer les lecteurs et writers de cartouches dans `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/`, avec un identifiant et des extensions propres à chaque famille.
-  - [x] Créer l’explorateur des banques dans `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/`, sans lecteur « Raw » générique.
+  - [x] Créer l’explorateur des banques dans `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/`, avec des formats console identifiés explicitement.
   - [x] Supprimer les anciens lecteurs de cartouche génériques et vérifier qu’aucune référence à cette ancienne structure ne reste dans `src`, `tests` ou la documentation.
-  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour afficher les noms de formats console réels, jamais « Raw console cartridge ».
+  - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour afficher le nom du format console réel.
   - [x] Modifier `src/GWGUI.App/Resources/00-Base/Formats.resx` pour localiser les formats spécifiques ajoutés dans la base commune.
   - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` avec un test autonome et nettoyage des fichiers temporaires dans `finally`.
   - [x] Compiler MediaEngine, MediaFileSystems et MediaAnalysis puis exécuter les tests ciblés.
+  - [x] Retirer le libellé historique de cartouche générique de la documentation.
 
 ### Tranche en cours (à terminer avant tout commit)
 
@@ -248,6 +262,19 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
 - [x] Déclarer le rendu logiciel par défaut et les messages d’erreur/description Dolphin dans les ressources Nintendo.
 - [x] Ajouter le test de sélection de Dolphin pour GameCube et Wii et compiler le module Nintendo.
 - [ ] Vérifier un jeu GameCube et un jeu Wii réels avec les fichiers système Dolphin requis.
+
+### Adaptateur Nintendo Wii U (Cemu)
+
+- [ ] Étendre l’hôte de cœur Nintendo avec un contexte graphique matériel Vulkan/OpenGL partagé, requis par Cemu.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Core/Services/ExternalHostCallbacks.Environment.cs` pour fournir `SetHwRender` et les callbacks de contexte.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/Core/Services/ProcessCore.cs` et le protocole d’hôte pour transférer les frames matérielles vers la surface vidéo existante.
+  - [ ] Ajouter le test d’initialisation et de libération du contexte matériel dans `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs`.
+- [ ] Ajouter l’adaptateur Cemu dans `src/GWGUI.Emulation.Nintendo/Emulators/Cemu/` avec le protocole de cœur déjà utilisé par les adaptateurs Nintendo.
+  - [ ] Déclarer le téléchargement Windows x64 `cemu_libretro.dll.zip`, le nom de DLL et la commande hôte Cemu.
+  - [ ] Relier uniquement le modèle `WiiU` à Cemu et laisser le cœur fournir ses options vidéo et système.
+  - [ ] Ajouter les ressources de description et d’erreur Cemu dans les ressources Nintendo.
+  - [ ] Ajouter le test d’architecture de sélection Cemu pour `WiiU`.
+- [ ] Compiler le module Nintendo et exécuter le test d’architecture avant le commit.
 
 ### Adaptateur Nintendo SNES
 
