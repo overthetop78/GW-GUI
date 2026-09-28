@@ -152,7 +152,7 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [ ] Ajouter les lecteurs/writers MediaEngine et les représentations MediaFileSystems/MediaAnalysis réellement nécessaires aux supports déclarés.
   - [ ] Ajouter les ressources de traduction de chaque nouveau libellé dans la base commune existante.
   - [ ] Ajouter les tests autonomes de découverte, configuration, adaptateur, média et nettoyage des artefacts temporaires.
-  - [ ] Exécuter la build complète avec tous les modules et vérifier l’exécutable résultant.
+  - [x] Exécuter la build complète avec tous les modules et vérifier l’exécutable résultant (`F:\GW GUI\build\Debug\GW GUI\gwgui.exe`).
 - [ ] Stage et commit uniques de cette tranche seulement après réussite de toutes les sous-tâches ci-dessus.
 
 ### Alignement des constantes Common
@@ -185,6 +185,15 @@ Une simple ligne d'extension dans un catalogue ne constitue pas un support.
   - [x] Ajouter `tests/GWGUI.Tests/Media/GameCubeFstFileSystemReaderTests.cs` avec une image synthétique, l'exploration et le nettoyage des artefacts temporaires dans `finally`.
   - [x] Exécuter le test ciblé.
   - [x] Exécuter la suite complète.
+- [x] Stage et commit de cette tranche seulement après réussite de toutes les sous-tâches ci-dessus.
+
+### Détection des ISO GameCube par en-tête
+
+- [x] Reconnaître les dumps GameCube `.iso` par leur en-tête réel, sans détourner les ISO 9660 ordinaires.
+  - [x] Ajouter dans `src/GWGUI.MediaFileSystems/FileSystems/Nintendo/GameCube/GameCubeFstFileSystemConstants.cs` les constantes du mot magique et de son offset.
+  - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Nintendo/GameCube/GameCubeFstFileSystemReader.cs` pour autoriser `.iso` uniquement après validation du mot magique GameCube.
+  - [x] Ajouter dans `tests/GWGUI.Tests/Media/GameCubeFstFileSystemReaderTests.cs` un cas `.iso` et conserver le cas `.gcm`.
+  - [x] Exécuter le test ciblé puis la suite complète.
 - [x] Stage et commit de cette tranche seulement après réussite de toutes les sous-tâches ci-dessus.
 
 ### Analyse des exécutables Xbox 360

@@ -54,7 +54,8 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
         if (!string.Equals(document.FormatId, MediaImageFormatIds.OpticalIso, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("The document is not an optical ISO image.");
         if (!document.Metadata.TryGetValue("sourceExtension", out var extension)
-            || !string.Equals(extension, GameCubeFstFileSystemConstants.SourceExtension, StringComparison.OrdinalIgnoreCase))
+            || (!string.Equals(extension, GameCubeFstFileSystemConstants.SourceExtension, StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(extension, GameCubeFstFileSystemConstants.IsoExtension, StringComparison.OrdinalIgnoreCase)))
             throw new InvalidDataException("The document is not a GameCube image.");
         if (document.Representation is not IMediaOpticalRepresentation optical || optical.Tracks is null)
             throw new NotSupportedException("GameCube FST requires optical track data.");
@@ -67,6 +68,9 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
             throw new NotSupportedException("GameCube FST requires 2048-byte optical sectors.");
 
         var header = ReadBytes(track, 0, GameCubeFstFileSystemConstants.DiscHeaderLength);
+        if (ReadUInt32(header, GameCubeFstFileSystemConstants.DiscMagicOffset)
+            != GameCubeFstFileSystemConstants.DiscMagic)
+            throw new InvalidDataException("The GameCube disc header is invalid.");
         var fstOffset = ReadUInt32(header, GameCubeFstFileSystemConstants.FstOffsetField);
         var fstSize = ReadUInt32(header, GameCubeFstFileSystemConstants.FstSizeField);
         if (fstOffset < GameCubeFstFileSystemConstants.SectorSize

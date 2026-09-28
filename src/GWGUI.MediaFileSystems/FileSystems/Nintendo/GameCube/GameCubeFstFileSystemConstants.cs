@@ -4,6 +4,7 @@ internal static class GameCubeFstFileSystemConstants
 {
     public const string FileSystemId = Definitions.FileSystemIds.NintendoGameCubeFst;
     public const string SourceExtension = ".gcm";
+    public const string IsoExtension = ".iso";
     public const string FileSystemDisplayName = "Nintendo GameCube FST";
     public const string FileAttribute = "FST";
     public const string FileEntryType = "nintendo-gamecube-file";
@@ -11,6 +12,8 @@ internal static class GameCubeFstFileSystemConstants
     public const string OffsetMetadata = "offset";
     public const string LengthMetadata = "length";
     public const int DiscHeaderLength = 0x430;
+    public const int DiscMagicOffset = 0x1C;
+    public const uint DiscMagic = 0xC233_9F3Du;
     public const int FstOffsetField = 0x424;
     public const int FstSizeField = 0x428;
     public const int FstEntrySize = 12;
