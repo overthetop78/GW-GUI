@@ -562,3 +562,7 @@ les tests et le comportement complet correspondant.
 - [x] Valider les cartouches Nintendo dans les parcours média communs.
   - [x] Vérifier chaque extension publiée par le lecteur console.
     - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir NES, SNES, N64, Game Boy, Game Boy Color, Game Boy Advance, DS, Game & Watch, 3DS et Virtual Boy, puis vérifier visualisation, exploration et conversion/export.
+
+- [x] Conserver une seule source des extensions Nintendo.
+  - [x] Éliminer les littéraux d'extension du catalogue de formats.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour référencer `DiskImageFileExtensions` dans toutes les entrées Nintendo sans changer les extensions publiées.
