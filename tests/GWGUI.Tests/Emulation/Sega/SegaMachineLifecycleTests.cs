@@ -9,6 +9,7 @@ using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Common.Services;
 using GenesisPlusGxExternalCore = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services.ExternalCore;
 using FlycastExternalCore = GWGUI.Emulation.Sega.Emulators.Flycast.Services.ExternalCore;
+using YabauseExternalCore = GWGUI.Emulation.Sega.Emulators.Yabause.Services.ExternalCore;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Constants;
 using FlycastHostConstants = GWGUI.Emulation.Sega.Emulators.Flycast.Constants.ExternalHostCallbacksConstants;
@@ -268,6 +269,14 @@ public sealed class SegaMachineLifecycleTests
         RunGenesisPlusGxMediaSmoke(ModelConstants.Sc3000, "GWGUI_SEGA_SC3000_MEDIA", "sc3000");
 
     [Fact]
+    public void GenesisPlusGxLoadsConfiguredGameGearMediaWhenSmokePathsAreProvided() =>
+        RunGenesisPlusGxMediaSmoke(ModelConstants.GameGear, "GWGUI_SEGA_GAME_GEAR_MEDIA", "game-gear");
+
+    [Fact]
+    public void GenesisPlusGxLoadsConfiguredMarkThreeMediaWhenSmokePathsAreProvided() =>
+        RunGenesisPlusGxMediaSmoke(ModelConstants.MarkIII, "GWGUI_SEGA_MARK_THREE_MEDIA", "mark-three");
+
+    [Fact]
     public void GenesisPlusGxLoadsConfiguredPicoMediaWhenSmokePathsAreProvided()
     {
         var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
@@ -421,6 +430,49 @@ public sealed class SegaMachineLifecycleTests
             ]
         };
         var core = new FlycastExternalCore(corePath);
+        try
+        {
+            core.Initialize(configuration, session);
+            for (var frame = 0; frame < 120 && core.LatestVideoFrame is null; frame++)
+                core.RunFrame();
+            Assert.True(core.LatestVideoFrame is not null, string.Join(Environment.NewLine, core.Diagnostics));
+            Assert.True(core.LatestVideoFrame!.Width > 0);
+            Assert.True(core.LatestVideoFrame.Height > 0);
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void YabauseLoadsConfiguredSaturnMediaWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_YABAUSE_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SATURN_MEDIA");
+        var firmwarePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SATURN_BIOS");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
+            || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-yabause-smoke-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.Saturn, "yabause")
+        {
+            Options = new Dictionary<string, string>
+            {
+                [SettingsConstants.FirmwarePath] = firmwarePath
+            },
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
+                    EmulationMediaSlot.Cd0, IsInserted: true)
+            ]
+        };
+        var core = new YabauseExternalCore(corePath);
         try
         {
             core.Initialize(configuration, session);

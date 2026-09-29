@@ -239,6 +239,8 @@ jamais une feuille terminale.
        - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour sélectionner un exemplaire réel de chaque extension Sega publiée sous `F:\Retro\Sega\Roms` lorsque `GWGUI_SEGA_MEDIA_ROOT` est fourni, vérifier les quatre parcours et supprimer chaque sortie temporaire dans `finally`; le corpus réel passe pour six extensions.
       - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour appeler `MediaEngineComposition.CreateDefault().ConversionService` sur chaque extension Sega cartouche publiée, puis vérifier le fichier exporté avant suppression du dossier temporaire; la classe média passe avec 16 tests réussis.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour couvrir les mêmes ROM Sega avec le cœur correspondant, vérifier une image décodée et libérer le cœur, les ressources graphiques et le dossier de session dans `finally`.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM Game Gear `.gg` et une ROM Mark III `.sms` avec Genesis Plus GX, vérifier une image décodée et supprimer chaque session dans `finally`.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger le disque de démarrage Saturn `.ccd` avec Yabause et `saturn_bios.bin`, vérifier une image décodée et supprimer la session dans `finally`.
 
 ## 9. Nintendo, Sony, Microsoft et NEC — même ordre par famille
 
