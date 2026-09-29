@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using GWGUI.Emulation;
+using GWGUI.App.Views.Dialogs.Emulation;
 using Microsoft.Win32;
 
 namespace GWGUI.App.Views.Controls.Emulation.Machine;
@@ -151,7 +152,30 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         ToggleFullscreenAsync,
         ToggleAudioAsync,
         _options.SwitchControllerPointer ?? (_session.Machine.Input.SupportsControllerPointerSwitch
-            ? SwitchControllerPointerAsync : null));
+            ? SwitchControllerPointerAsync : null),
+        _session.Machine.Runtime.AvailableOptions.Count > 0 ? OpenCoreOptionsAsync : null);
+
+    private async Task OpenCoreOptionsAsync()
+    {
+        var runtime = _session.Machine.Runtime;
+        if (runtime.AvailableOptions.Count == 0) return;
+        var dialog = new CoreOptionsDialog(runtime.EmulatorName, runtime.EmulatorVersion,
+            runtime.AvailableOptions);
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            var values = dialog.Values;
+            foreach (var option in runtime.AvailableOptions)
+            {
+                if (!values.TryGetValue(option.Key, out var value)
+                    || value == option.CurrentValue || option.RequiresRestart) continue;
+                await runtime.SetOptionAsync(option.Key, value);
+            }
+            if (_options.PersistRuntimeOptions is not null)
+                await _options.PersistRuntimeOptions(values);
+        }
+        finally { dialog.Close(); }
+    }
 
     private async Task SwitchControllerPointerAsync()
     {

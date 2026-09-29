@@ -8,4 +8,5 @@
   <data name="Emulation.Sega.Language.English"><value>שפה אנגלית</value></data>
   <data name="Emulation.Sega.Language.French"><value>צרפתית צרפתית צרפתית</value></data>
   <data name="Emulation.Sega.Language.Spanish"><value>ספרדית</value></data>
+  <data name="Emulation.Sega.Audio.Chip"><value>שבב שמע</value></data>
 </root>

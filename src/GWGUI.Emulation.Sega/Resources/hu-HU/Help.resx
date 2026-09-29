@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>A RAM az emulált gép számára hozzáférhető.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Kiválasztja a RAM a magmagnak kitett expanzió. A gépet újra kell indítani, mielőtt az új mennyiséget felhasználják.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>A rendszer ROM az emulációs magba épült.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Az emulációs mag biztosítja a rendszert ROM belső és nem tárja fel a ROM fájlválasztó.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>A belső felbontás az emulációs mag által.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Kiválaszt egy belső felbontást, amit az emulációs mag mutat be. Ez nem határozza meg az alkalmazás ablakméretét.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Az emulációs mag által szimulált monitor típusa.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Szín, zöld monokróm vagy fehér monokróm Sega monitort választ.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Az emulált monitor fényereje.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>A monitor intenzitását 5-ről 15-re állítja be, ahogy azt az emulációs mag kiteszi.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Eltávolítja a külső képernyőhatárt.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Megkéri az emulációs magot, hogy vetse le a külső határt. GW GUI az emulátor által jelentett képarány megtartása.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>A floppy meghajtó mechanikus hangja.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>A floppy meghajtó hangot az emulációs mag adja meg vagy letiltja.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>A Sega gépmodell be van állítva.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Az emulációs mag biztosítja a rendszert ROM belső és nem tárja fel a ROM fájlválasztó.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>A Sega gépmodell be van állítva.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulátor kiválasztva ehhez a géphez.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Azonosítja a gép konfigurációjának futtatásához használt emulátor-implementációt.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System hardver modell.</value></data>

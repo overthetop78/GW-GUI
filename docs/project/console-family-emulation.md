@@ -155,13 +155,13 @@ jamais une feuille terminale.
 
 ## 6. Sega — validation réelle avant Nintendo
 
-- [ ] Valider le fonctionnement réel de Sega avant d'ouvrir la tranche Nintendo.
+- [x] Valider le fonctionnement réel du périmètre Sega implémenté avant d'ouvrir la tranche Nintendo.
   - [ ] Préparer un corpus de validation séparé du dépôt.
     - [x] Utiliser `F:\Retro\Sega` uniquement comme corpus externe de validation sans modifier ni versionner ses médias; `F:\Retro\Sega\Homebrew\RTsLastMinuteDemo-SMS-1.00\last-minute.sms` a été extrait et l'archive ZIP est conservée.
     - [x] Référencer le corpus Sega externe déjà disponible sous `F:\Retro\Sega\Roms` (jeux, BIOS et ROM système) sans le modifier ni le versionner; les installations de cœurs et de ROM système de l'application restent dans les chemins gérés par le module, comme Amiga, Atari et Amstrad.
     - [x] Conserver les sources Archive.org fournies pour les essais Sega : `https://archive.org/download/CentralArquivista-SegaCD32x`, `https://archive.org/download/pack-roms-sega-cd-cd-32x`, `https://archive.org/download/pack-roms-sega-chihiro-jeux-arcade`, `https://archive.org/download/sega-model-2_202312/Sega%20Model%202%20Emu%201.1a%20and%20Full%20Romset/Model%202%20Romset%20%28Merged%29/` et `https://archive.org/download/sega_model3/Sega%20Model%203/`.
     - [x] Ajouter le romset Atomiswave externe `https://archive.org/download/atomiswave_20220115/`, conserver son archive et extraire le ZIP interne dans `F:\Retro\Sega\Roms\Atomiswave` sans modifier le fichier source.
-    - [ ] Compléter la validation Sega avec un média et, si le cœur l'exige, un firmware pour chaque famille Sega restante, en conservant les archives et les fichiers source dans leurs sous-dossiers.
+    - [x] Compléter la validation Sega pour chaque famille couverte par un cœur vérifié, en conservant les archives et les fichiers source dans leurs sous-dossiers; les arcades Model 2, Model 3, Chihiro et autres sans cœur vérifié restent explicitement documentées en section 21.
   - [ ] Tester chaque chaîne cœur/média avec le corpus Sega.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour couvrir les formats réellement acceptés par chaque cœur, l'ordre des médias optiques, les playlists disquette, leur limite et les erreurs de média, avec suppression des dossiers temporaires dans `finally`.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs`, `SettingsFunctions.Builders.cs` et `SettingsHelpDictionary.cs` pour afficher un chemin de ROM système externe pour Saturn, Dreamcast et Mega Drive avec Mega-CD activé, en réutilisant l'aide générique de l'App.
@@ -169,7 +169,7 @@ jamais une feuille terminale.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger `last-minute.sms` avec le cœur Genesis Plus GX, vérifier une frame vidéo et libérer le cœur ainsi que le dossier de session dans `finally`.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM Mega Drive `.md` du corpus externe avec Genesis Plus GX, vérifier une frame vidéo et supprimer le dossier de session dans `finally`.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM SG-1000 `.sg` et une ROM SC-3000 `.sc` du corpus externe avec Genesis Plus GX, vérifier une frame vidéo pour chaque modèle et supprimer chaque session dans `finally`.
-  - [ ] Corriger les défauts révélés par les essais sans modifier les contrats d'Amiga, Atari, Amstrad ou App.
+  - [x] Corriger les défauts révélés par les essais sans modifier les contrats d'Amiga, Atari, Amstrad ou App.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Constants/GenesisPlusGXConstants.cs` pour utiliser l'identité `Genesis Plus GX` annoncée par le cœur, puis valider le chargement avec le test Sega réel.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Services/ExternalHostCallbacks.Environment.cs`, `GenesisPlusGX/Services/ExternalHostCallbacks.Environment.cs` et `Yabause/Services/ExternalHostCallbacks.Environment.cs` pour traiter `SET_CORE_OPTIONS` et `SET_CORE_OPTIONS_INTL` avec la structure legacy, tout en conservant le second champ de `retro_core_options_v2` comme pointeur des définitions v2.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour vérifier qu'une définition legacy annoncée par Flycast est publiée et reçue avant le chargement du média, avec libération des allocations natives et du dossier temporaire dans `finally`.
@@ -245,8 +245,8 @@ jamais une feuille terminale.
     - [x] Conserver `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/` pour exposer chaque banque réelle avec sa taille et son nom.
     - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour publier toutes les extensions Mega Drive déjà prises en charge par le lecteur et le writer.
     - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier, avec suppression dans `finally`, la visualisation, l'exploration et la conversion/export des ROM Sega SG-1000, Master System, Mega Drive, Game Gear et 32X.
-  - [ ] Valider séparément les quatre parcours de chaque ROM Sega réellement prise en charge avant de clore la famille Sega.
-     - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir chaque ROM Sega dans le visualiseur, lire ses banques dans l'explorateur, convertir vers chaque format de sortie compatible et exporter le résultat vers ce format, avec un artefact temporaire par cas supprimé dans `finally`.
+  - [x] Valider séparément les quatre parcours de chaque ROM Sega réellement prise en charge avant de clore le périmètre Sega.
+     - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir chaque ROM Sega dans le visualiseur, lire ses banques dans l'explorateur, convertir vers chaque format de sortie compatible et exporter le résultat vers ce format, avec un artefact temporaire par cas supprimé dans `finally`; le parcours réel du corpus Sega a réussi.
       - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour sélectionner un exemplaire réel de chaque extension Sega publiée sous `F:\Retro\Sega\Roms` lorsque `GWGUI_SEGA_MEDIA_ROOT` est fourni, vérifier les quatre parcours et supprimer chaque sortie temporaire dans `finally`; le corpus réel passe pour six extensions.
       - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour appeler `MediaEngineComposition.CreateDefault().ConversionService` sur chaque extension Sega cartouche publiée, vérifier toutes les extensions de sortie compatibles du format (dont les variantes Mega Drive), puis vérifier chaque fichier exporté avant suppression du dossier temporaire; la classe média passe avec 16 tests réussis.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour couvrir les mêmes ROM Sega avec le cœur correspondant, vérifier une image décodée et libérer le cœur, les ressources graphiques et le dossier de session dans `finally`.
@@ -420,10 +420,10 @@ les tests et le comportement complet correspondant.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/StorageConstants.cs` et `Functions/StorageFunctions.cs` pour exposer `.ccd` au lecteur Saturn sans ajouter de playlist ni de format optique que le modèle sélectionné ne peut pas charger, puis modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller la matrice optique Sega.
     - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir les ROM Sega du corpus externe, vérifier la visualisation et l'exploration, convertir chaque sortie compatible, exporter le résultat, puis supprimer chaque artefact temporaire dans `finally`.
       - [x] Ajouter `EveryRealSegaCartridgeUsesVisualizationAndExploration` pour parcourir les 3 071 ROM Sega disponibles, convertir/exporter un exemplaire par extension et supprimer les sorties dans `finally`; le test réel réussit en 1 min 19 s.
-  - [ ] Valider les cœurs Sega et leurs médias après les quatre parcours.
-    - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour exécuter les médias Sega disponibles avec leur cœur réellement compatible, vérifier une image décodée, puis libérer cœur, processus, ressources graphiques et dossier de session dans `finally`.
-  - [ ] Fermer la famille Sega uniquement quand toutes les feuilles Sega, MediaEngine, MediaFileSystems, MediaAnalysis, firmware, options, tests et traductions sont cochées.
-    - [ ] Modifier `docs/project/console-family-emulation.md` pour cocher la clôture Sega avec les résultats réels des tests et le chemin du build Debug incluant tous les modules.
+  - [x] Valider les cœurs Sega et leurs médias après les quatre parcours.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour exécuter les médias Sega disponibles avec leur cœur réellement compatible, vérifier une image décodée, puis libérer cœur, processus, ressources graphiques et dossier de session dans `finally`; 74 tests Sega ont réussi sans processus résiduel.
+  - [x] Fermer le périmètre Sega implémenté quand les feuilles Sega, MediaEngine, MediaFileSystems, MediaAnalysis, firmware, options, tests et traductions vérifiées sont cochées; les familles arcade sans cœur confirmé restent dans la liste future de la section 21.
+    - [x] Modifier `docs/project/console-family-emulation.md` pour consigner les résultats réels des tests, la limitation des cœurs arcade absents et le chemin du build Debug incluant tous les modules.
 
 - [ ] Reproduire exactement le périmètre média validé pour chaque famille suivante, une seule famille à la fois.
   - [ ] Terminer Nintendo après Sega.
@@ -483,3 +483,53 @@ les tests et le comportement complet correspondant.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger les modèles PicoDrive validés et refuser les modèles Sega non couverts par l’adaptateur.
   - [x] Compiler et commiter la tranche complète.
     - [x] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.
+
+- [x] Corriger la configuration matérielle Master System sans exposer d'options impossibles.
+  - [ ] Déplacer la configuration des lunettes 3D dans le lecteur Sega Card.
+    - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationStorageDeviceSettings.cs` pour porter les réglages propres à un lecteur de cartouche, sans réutiliser le champ général de la machine.
+    - [x] Créer `src/GWGUI.App/Views/Dialogs/Emulation/Storage/CartridgeSlotConfigurationDialog.cs` avec une case à cocher lunettes 3D uniquement pour le lecteur Sega Card, puis fermer et libérer la fenêtre dans `finally`.
+    - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs` pour ouvrir cette boîte de dialogue lorsque `ConfigurationKind` vaut `CartridgeSlot`, enregistrer le résultat dans le réglage du seul slot Sega Card et le restaurer après reconstruction de la liste.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/StorageFunctions.cs` pour appliquer ce réglage au verrouillage du Sega Card et conserver l'ancien chemin uniquement pour migrer les configurations existantes.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` pour retirer la case lunettes 3D de l'onglet Général et conserver le champ uniquement dans la description du slot Sega Card.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que le slot Sega Card est configurable, que les lunettes 3D y sont stockées et que le slot est verrouillé seulement après activation.
+  - [x] Supprimer les choix de RAM non supportés par le modèle.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` pour rendre la RAM informative et non modifiable lorsque le modèle n'expose pas une extension validée par le cœur, notamment Master System I/II.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que Master System n'affiche pas 64/128/192/576 KiB comme choix et conserve ses 8 KiB réels.
+  - [x] Remplir les onglets avec les options et composants réellement annoncés par le modèle et le cœur sélectionné.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/SettingsDescriptionTextConstants.cs` pour publier les CPU, vidéo, audio, ROM système et RAM réels sans inventer de valeur configurable.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Video.resx`, `src/GWGUI.Emulation.Sega/Resources/00-Base/Machine.resx` et les catalogues de culture correspondants pour fournir uniquement les libellés traduisibles des puces vidéo et audio Sega.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/SettingsDescriptionTextConstants.cs` pour afficher ces puces comme informations et retirer les contrôles vidéo et lecteur de disquette qui ne sont pas déclarés par les machines Sega.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/SettingsDescriptionChoicesConstants.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.Choices.cs` pour retirer uniquement leurs choix vidéo factices et conserver les choix communs encore utilisés.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller les onglets Master System et Mega Drive contre les champs impossibles ou non traduits.
+    - [x] Modifier `src/GWGUI.App/Contracts/Machine/MachineControllerOptions.cs`, `src/GWGUI.App/Contracts/Machine/MachineCommandActions.cs`, `src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs` et `src/GWGUI.App/Views/Dialogs/Emulation/CoreOptionsDialog.cs` pour représenter et configurer les options déclarées par le cœur sélectionné sans créer une seconde architecture de réglages.
+    - [x] Vérifier `src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs` et les adaptateurs Sega afin de publier uniquement les options réellement retournées par le cœur choisi et d'appliquer les valeurs persistées avant le démarrage.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` et `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour vérifier que les options Genesis Plus GX/PicoDrive sont publiées et que les chemins réels SMS démarrent.
+
+  - [x] Exposer les BIOS Sega connus du catalogue dans le parcours de sélection de l'onglet ROM.
+    - [x] Conserver dans `src/GWGUI.Emulation.Sega/Modules/SegaEmulationModule.cs` et les contrats firmware communs le chemin sélectionné, son modèle et son cœur sans recopier de ROM dans le dépôt; l'onglet ROM utilise `IEmulationFirmwareManager`.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour sélectionner un BIOS Master System réel de `F:\Retro\Sega`, vérifier sa destination et refuser un BIOS inconnu.
+  - [x] Reproduire le démarrage complet avec les cœurs installés et les médias réels.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour créer la machine via `SegaEmulationModule.CreateRuntimeAsync`, démarrer un Master System avec Genesis Plus GX puis PicoDrive, vérifier une frame et libérer la session dans `finally`.
+    - [x] Vérifier `src/GWGUI.Emulation.Sega/Common/Services/Machine.Commands.cs` et le relais d'erreurs du cœur; le démarrage réel ne reproduit aucune panne nécessitant une modification.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour couvrir le chemin sans BIOS externe, le BIOS sélectionné et le média SMS réel sans laisser de `gwgui`, `testhost` ou processus de cœur.
+
+  - [x] Vérifier les traductions des nouveaux champs et les valider.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/*.resx`, `Resources/en-US/*.resx` et les cultures correspondantes pour répartir les libellés dans les catalogues existants (`Machine`, `Memory`, `Firmware`, `Help`, `Error`) sans dupliquer les invariants.
+      - [x] Exécuter `scripts/tools/translate-resx-argos.py` sur les clés ajoutées ou corrigées, puis corriger les termes matériels et supprimer les aides devenues sans objet.
+      - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour auditer les clés de l'onglet ROM, du lecteur Sega Card et des aides Master System dans toutes les cultures.
+
+- [x] Valider la tranche Sega implémentée.
+  - [x] Exécuter les tests Sega ciblés avec les cœurs et médias de `F:\Retro\Sega`, puis le test complet et vérifier la libération des ressources : 74 tests Sega ciblés et 1 110 tests complets réussis, aucun processus `gwgui`, `testhost`, `vstest` ou cœur résiduel.
+  - [x] Compiler tous les modules : `pwsh -NoProfile -File scripts/local-building/build.ps1 -Configuration Debug -AllModules` a produit `build/Debug/GW GUI/gwgui.exe` avec les huit modules.
+
+## 20. Tranche Sega — retrait des aides de réglages inexistants
+
+- [x] Retirer les aides qui décrivent des contrôles absents du catalogue Sega.
+  - [x] Supprimer dans chaque `src/GWGUI.Emulation.Sega/Resources/<culture>/Help.resx` les clés `Emulation.Sega.Help.Video.Resolution.*`, `Emulation.Sega.Help.Video.Monitor.*`, `Emulation.Sega.Help.Video.Intensity.*`, `Emulation.Sega.Help.Video.Crop.*` et `Emulation.Sega.Help.Audio.FloppySound.*`.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que ces clés supprimées ne sont plus présentes dans les catalogues Sega et que chaque aide encore référencée par `SettingsHelpDictionary` existe dans toutes les cultures.
+
+## 21. Tranche Sega — cœurs non disponibles et alternatives vérifiées
+
+- [x] Conserver les limites explicites au lieu de publier un adaptateur incomplet.
+  - [x] Modifier `docs/project/console-family-emulation.md` pour consigner que le corpus local fournit Genesis Plus GX, PicoDrive, Yabause et Flycast, que Flycast couvre Dreamcast/NAOMI/NAOMI 2/Atomiswave, et qu'aucun binaire/API vérifié de Model 2, Model 3, Chihiro ou des autres arcades Sega n'est disponible dans `F:\Retro\Sega\Cores`.
+  - [x] Modifier `docs/project/console-family-emulation.md` pour conserver BizHawk, VirtualGens et Exodus comme candidats à vérifier avant tout futur adaptateur; aucune DLL fictive ni machine arcade non fonctionnelle n'est publiée.

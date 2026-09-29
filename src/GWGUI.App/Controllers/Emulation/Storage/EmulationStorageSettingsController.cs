@@ -99,7 +99,39 @@ internal sealed class EmulationStorageSettingsController
             case EmulationStorageConfigurationKind.HardDiskDrive:
                 ConfigureHardDisk(device);
                 break;
+            case EmulationStorageConfigurationKind.CartridgeSlot:
+                ConfigureCartridgeSlot(device);
+                break;
         }
+    }
+
+    private void ConfigureCartridgeSlot(EmulationMediaDevice device)
+    {
+        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)
+            ?.Cartridge ?? new CartridgeSlotSettings();
+        var label = string.IsNullOrWhiteSpace(device.ConfigurationOptionResourceKey)
+            ? string.Empty
+            : LocExtension.GetForModule(_moduleId, device.ConfigurationOptionResourceKey);
+        var hint = string.IsNullOrWhiteSpace(device.ConfigurationOptionDetailedResourceKey)
+            ? null
+            : LocExtension.GetForModule(_moduleId, device.ConfigurationOptionDetailedResourceKey);
+        var dialog = new CartridgeSlotConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
+            _configuration?.MachineId ?? string.Empty, current, label, hint);
+        CartridgeSlotSettings selected;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            selected = dialog.Settings;
+        }
+        finally
+        {
+            dialog.Close();
+        }
+        var settings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
+            .Append(new EmulationStorageDeviceSettings(device.Slot, Cartridge: selected)).ToArray();
+        _settings = _settings with { DeviceSettings = settings };
+        Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void ConfigureHardDisk(EmulationMediaDevice device)

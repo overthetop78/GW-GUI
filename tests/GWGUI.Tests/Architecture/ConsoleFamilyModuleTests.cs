@@ -531,8 +531,100 @@ public sealed class ConsoleFamilyModuleTests
                 device => device.Slot == EmulationMediaSlot.Cartridge1);
             Assert.Contains(".sms", cartridge.AcceptedExtensions);
             Assert.Contains(".mv", segaCard.AcceptedExtensions);
+            Assert.Equal(EmulationStorageConfigurationKind.CartridgeSlot, segaCard.ConfigurationKind);
+            Assert.Equal("Emulation.Sega.MasterSystem.ThreeDGlasses",
+                segaCard.ConfigurationOptionResourceKey);
             Assert.Contains(EmulationMediaSlot.Cartridge0, storage.ConfiguredSlots);
             Assert.Contains(EmulationMediaSlot.Cartridge1, storage.ConfiguredSlots);
+            Assert.False(Assert.Single(storage.DeviceSettings!,
+                item => item.Slot == EmulationMediaSlot.Cartridge1).Cartridge!.OptionEnabled);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SegaMasterSystemKeepsRamInformativeAndMovesThreeDGlassesToSegaCard()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-settings-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MasterSystem));
+            var fields = module.Describe(ModelConstants.MasterSystem, configuration).Blocks
+                .SelectMany(block => block.Fields).ToDictionary(field => field.Id, StringComparer.Ordinal);
+            Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.Ram].Editor);
+            Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.VideoChip].Editor);
+            Assert.Equal(ModelConstants.VideoSega3155246, fields[SettingsConstants.VideoChip].Value);
+            Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.AudioChip].Editor);
+            Assert.Equal(ModelConstants.AudioSn76489, fields[SettingsConstants.AudioChip].Value);
+            Assert.DoesNotContain(fields, field => field.Key is "configuration.videoResolution"
+                or "configuration.videoMonitor" or "configuration.videoIntensity"
+                or "configuration.videoCrop" or "configuration.floppySound");
+            Assert.DoesNotContain(fields, field => field.Key == SettingsConstants.MasterSystemThreeDGlasses);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SegaMarkThreeSegaCardDoesNotExposeMasterSystemOnlyOptions()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-mark-three-storage-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MarkIII));
+            var segaCard = Assert.Single(Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                .DescribeStorageSettings(configuration).AvailableDevices,
+                device => device.Slot == EmulationMediaSlot.Cartridge1);
+            Assert.Equal(EmulationStorageConfigurationKind.None, segaCard.ConfigurationKind);
+            Assert.Null(segaCard.ConfigurationOptionResourceKey);
+            Assert.Null(segaCard.ConfigurationOptionDetailedResourceKey);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SegaCardConfigurationPersistsItsGenericOptionAndRemovesCardMediaWhenEnabled()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-card-settings-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var cardPath = Path.Combine(root, "game.mv");
+        File.WriteAllBytes(cardPath, new byte[0x4000]);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MasterSystem)) with
+            {
+                Media = [new MediaConfiguration(cardPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge1, IsInserted: true)]
+            };
+            var manager = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
+            var described = manager.DescribeStorageSettings(configuration);
+            var enabled = described with
+            {
+                DeviceSettings = [new EmulationStorageDeviceSettings(
+                    EmulationMediaSlot.Cartridge1, Cartridge: new CartridgeSlotSettings(true))]
+            };
+            var applied = Assert.IsType<MachineConfiguration>(manager.ApplyStorageSettings(configuration, enabled));
+            Assert.Equal("True", applied.Options![SettingsConstants.MasterSystemThreeDGlasses]);
+            Assert.DoesNotContain(applied.Media!, media => media.Slot == EmulationMediaSlot.Cartridge1);
         }
         finally
         {
@@ -654,6 +746,9 @@ public sealed class ConsoleFamilyModuleTests
             var naomi = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Naomi));
             var naomi2 = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Naomi2));
             var atomiswave = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Atomiswave));
+            var markIii = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MarkIII));
+            var masterSystem = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MasterSystem));
+            var gameGear = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.GameGear));
             var megaDrive = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive)) with
             {
                 Options = new Dictionary<string, string>
@@ -667,6 +762,9 @@ public sealed class ConsoleFamilyModuleTests
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, naomi).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, naomi2).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, atomiswave).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, markIii).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, masterSystem).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, gameGear).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, megaDrive).Editor);
         }
         finally
@@ -1161,6 +1259,86 @@ public sealed class ConsoleFamilyModuleTests
             Assert.True(File.Exists(fallbackFile), fallbackFile);
             var duplicateKeys = ResxKeys(baseFile).Intersect(ResxKeys(fallbackFile)).ToArray();
             Assert.Empty(duplicateKeys);
+        }
+
+        static IReadOnlySet<string> ResxKeys(string path)
+        {
+            var document = new XmlDocument();
+            document.Load(path);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
+                .Select(element => element.GetAttribute("name"))
+                .ToHashSet(StringComparer.Ordinal);
+        }
+    }
+
+    [Fact]
+    public void SegaChipLabelsArePresentInEveryTranslatedCulture()
+    {
+        var root = RepositoryRoot();
+        var resources = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources");
+        Assert.Contains("Emulation.Sega.Video.Chipset", ResxKeys(
+            Path.Combine(resources, "00-Base", "Video.resx")));
+        Assert.Contains("Emulation.Sega.Audio.Chip", ResxKeys(
+            Path.Combine(resources, "00-Base", "Machine.resx")));
+        Assert.Empty(ResxKeys(Path.Combine(resources, "en-US", "Video.resx"))
+            .Intersect(["Emulation.Sega.Video.Chipset"]));
+        Assert.Empty(ResxKeys(Path.Combine(resources, "en-US", "Machine.resx"))
+            .Intersect(["Emulation.Sega.Audio.Chip"]));
+        foreach (var culture in Directory.EnumerateDirectories(resources)
+                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
+                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        {
+            Assert.Contains("Emulation.Sega.Video.Chipset", ResxKeys(Path.Combine(culture, "Video.resx")));
+            Assert.Contains("Emulation.Sega.Audio.Chip", ResxKeys(Path.Combine(culture, "Machine.resx")));
+        }
+
+        static IReadOnlySet<string> ResxKeys(string path)
+        {
+            var document = new XmlDocument();
+            document.Load(path);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
+                .Select(element => element.GetAttribute("name"))
+                .ToHashSet(StringComparer.Ordinal);
+        }
+    }
+
+    [Fact]
+    public void SegaHelpCataloguesContainOnlyReferencedSettings()
+    {
+        var root = RepositoryRoot();
+        var resources = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources");
+        var referenced = new[]
+        {
+            "General.Model", "General.Emulator", "MasterSystem.Variant",
+            "MasterSystem.ThreeDGlasses", "MegaDrive.Model", "MegaDrive.MegaCd",
+            "MegaDrive.MegaCd.Enabled", "MegaDrive.32X", "MegaDrive.Region",
+            "MegaDrive.VideoStandard", "Cpu.Model", "Cpu.Frequency", "Memory.Ram",
+            "Firmware.Integrated", "Audio.Enabled", "Audio.Output"
+        }.SelectMany(name => new[]
+        {
+            "Emulation.Sega.Help." + name + ".Short",
+            "Emulation.Sega.Help." + name + ".Detailed"
+        }).ToHashSet(StringComparer.Ordinal);
+        var obsolete = new[]
+        {
+            "Emulation.Sega.Help.Video.Resolution.Short",
+            "Emulation.Sega.Help.Video.Resolution.Detailed",
+            "Emulation.Sega.Help.Video.Monitor.Short",
+            "Emulation.Sega.Help.Video.Monitor.Detailed",
+            "Emulation.Sega.Help.Video.Intensity.Short",
+            "Emulation.Sega.Help.Video.Intensity.Detailed",
+            "Emulation.Sega.Help.Video.Crop.Short",
+            "Emulation.Sega.Help.Video.Crop.Detailed",
+            "Emulation.Sega.Help.Audio.FloppySound.Short",
+            "Emulation.Sega.Help.Audio.FloppySound.Detailed"
+        };
+        foreach (var directory in Directory.EnumerateDirectories(resources)
+                     .Where(path => !Path.GetFileName(path).Equals("00-Base",
+                         StringComparison.Ordinal)))
+        {
+            var keys = ResxKeys(Path.Combine(directory, "Help.resx"));
+            Assert.All(referenced, key => Assert.Contains(key, keys));
+            Assert.DoesNotContain(keys, key => obsolete.Contains(key, StringComparer.Ordinal));
         }
 
         static IReadOnlySet<string> ResxKeys(string path)

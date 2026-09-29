@@ -20,13 +20,8 @@ internal static class SettingsHelpDictionary
             [SettingsConstants.Ram] = "Emulation.Sega.Help.Memory.Ram",
             [SettingsConstants.FirmwareIntegrated] = "Emulation.Sega.Help.Firmware.Integrated",
             [SettingsConstants.FirmwarePath] = "Emulation.Help.Firmware.System",
-            [SettingsConstants.VideoResolution] = "Emulation.Sega.Help.Video.Resolution",
-            [SettingsConstants.VideoMonitor] = "Emulation.Sega.Help.Video.Monitor",
-            [SettingsConstants.VideoIntensity] = "Emulation.Sega.Help.Video.Intensity",
-            [SettingsConstants.VideoCrop] = "Emulation.Sega.Help.Video.Crop",
             [SettingsConstants.AudioEnabled] = "Emulation.Sega.Help.Audio.Enabled",
             [SettingsConstants.AudioOutput] = "Emulation.Sega.Help.Audio.Output",
-            [SettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency",
-            [SettingsConstants.FloppySound] = "Emulation.Sega.Help.Audio.FloppySound"
+            [SettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency"
         };
 }

@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Kwota RAM dostępne dla maszyny emulowanej.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Wybór RAM ekspansja wystawiona przez rdzeń emulacji. Maszyna musi ponownie uruchomić przed użyciem nowej ilości.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>System ROM jest wbudowany w jądro emulacji.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Rdzeń emulacyjny zapewnia system ROM wewnętrznie i nie ujawnia ROM wybieranie plików.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Wewnętrzna rozdzielczość, wykonywana przez rdzeń emulacji.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Wybiera jedną z wewnętrznych rozdzielczości, narażoną na działanie rdzenia emulacyjnego. Nie ustawia rozmiaru okna aplikacji.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Typ monitora emulowany przez rdzeń emulacji.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Wybór kolorowego, zielonego monochromu lub białego monochromatycznego monitora Sega.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Jasność monitora emulowanego.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Dostosuje intensywność monitora z 5 do 15, jak naświetla rdzeń emulacji.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Usuwa zewnętrzną granicę ekranu.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Prosi o uprawa zewnętrznej granicy. GW GUI utrzymuje proporcję podawaną przez emulator.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Mechaniczny dźwięk dyskietki.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Włącza lub wyłącza dźwięk dyskietki generowany przez rdzeń emulacyjny.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Konfigurowany model maszyny Sega.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Rdzeń emulacyjny zapewnia system ROM wewnętrznie i nie ujawnia ROM wybieranie plików.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Konfigurowany model maszyny Sega.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator wybrany do tej maszyny.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Określa implementację emulatora używaną do uruchomienia tej konfiguracji maszyny.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System model sprzętu.</value></data>

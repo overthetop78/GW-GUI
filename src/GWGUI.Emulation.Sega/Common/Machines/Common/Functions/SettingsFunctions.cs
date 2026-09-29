@@ -22,12 +22,6 @@ internal static partial class SettingsDescriptionFunctions
                         SettingsDescriptionFunctionsConstants.ResourceMasterSystemSmsI),
                      new(ModelConstants.MasterSystemSmsIi,
                         SettingsDescriptionFunctionsConstants.ResourceMasterSystemSmsIi)], true),
-                Toggle(SettingsConstants.MasterSystemThreeDGlasses, EmulationMachineTab.General,
-                    SettingsDescriptionFunctionsConstants.Hardware,
-                    SettingsDescriptionFunctionsConstants.ResourceMasterSystemThreeDGlasses,
-                    options.GetValueOrDefault(SettingsConstants.MasterSystemThreeDGlasses,
-                        SettingsDescriptionFunctionsConstants.Disabled)
-                        == SettingsDescriptionFunctionsConstants.Enabled, true)
             },
             ModelConstants.MegaDrive => new EmulationSettingsField[]
             {
@@ -115,14 +109,18 @@ internal static partial class SettingsDescriptionFunctions
                 Information(SettingsConstants.Model + ".frequency", EmulationMachineTab.Cpu,
                     SettingsDescriptionFunctionsConstants.Cpu,
                     SettingsDescriptionFunctionsConstants.ResourceCpuSpeed,
-                    SettingsDescriptionFunctionsConstants.CpuFrequency)),
+                    model.CpuFrequency ?? SettingsDescriptionFunctionsConstants.CpuFrequency)),
             Block(SettingsDescriptionFunctionsConstants.Memory, EmulationMachineTab.Ram,
                 SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
                 SettingsDescriptionFunctionsConstants.IconMemory, 1,
-                Select(SettingsConstants.Ram, EmulationMachineTab.Ram,
-                    SettingsDescriptionFunctionsConstants.Memory,
-                    SettingsDescriptionFunctionsConstants.ResourceMemoryMain, ram,
-                    MemoryChoices(model), true)),
+                model.SupportsRamConfiguration
+                    ? Select(SettingsConstants.Ram, EmulationMachineTab.Ram,
+                        SettingsDescriptionFunctionsConstants.Memory,
+                        SettingsDescriptionFunctionsConstants.ResourceMemoryMain, ram,
+                        MemoryChoices(model), true)
+                    : Information(SettingsConstants.Ram, EmulationMachineTab.Ram,
+                        SettingsDescriptionFunctionsConstants.Memory,
+                        SettingsDescriptionFunctionsConstants.ResourceMemoryMain, ram)),
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                 SettingsDescriptionFunctionsConstants.ResourceRom,
                 SettingsDescriptionFunctionsConstants.IconFirmware, 2,
@@ -130,35 +128,10 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
-                Select(SettingsConstants.VideoResolution, EmulationMachineTab.Video,
+                Information(SettingsConstants.VideoChip, EmulationMachineTab.Video,
                     SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoResolution,
-                    options.GetValueOrDefault(SettingsConstants.VideoResolution,
-                        SettingsDescriptionFunctionsConstants.Resolution384),
-                    InvariantChoices(SettingsDescriptionFunctionsConstants.Resolution384,
-                        SettingsDescriptionFunctionsConstants.Resolution400)),
-                Select(SettingsConstants.VideoMonitor, EmulationMachineTab.Video,
-                    SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoMonitor,
-                    options.GetValueOrDefault(SettingsConstants.VideoMonitor,
-                        SettingsDescriptionFunctionsConstants.Color),
-                    [new(SettingsDescriptionFunctionsConstants.Color,
-                        SettingsDescriptionFunctionsConstants.ResourceColor),
-                     new(SettingsDescriptionFunctionsConstants.Green,
-                        SettingsDescriptionFunctionsConstants.ResourceGreen),
-                     new(SettingsDescriptionFunctionsConstants.White,
-                        SettingsDescriptionFunctionsConstants.ResourceWhite)]),
-                Select(SettingsConstants.VideoIntensity, EmulationMachineTab.Video,
-                    SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoIntensity,
-                    options.GetValueOrDefault(SettingsConstants.VideoIntensity, "8"),
-                    Enumerable.Range(5, 11).Select(value => Invariant(value.ToString(), value.ToString()))),
-                Toggle(SettingsConstants.VideoCrop, EmulationMachineTab.Video,
-                    SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoCrop,
-                    options.GetValueOrDefault(SettingsConstants.VideoCrop,
-                        SettingsDescriptionFunctionsConstants.Disabled)
-                        == SettingsDescriptionFunctionsConstants.Enabled)),
+                    SettingsDescriptionFunctionsConstants.ResourceVideoChip,
+                    model.VideoChip ?? SettingsDescriptionFunctionsConstants.Unknown)),
             Block(SettingsDescriptionFunctionsConstants.Audio, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.ResourceAudio,
                 SettingsDescriptionFunctionsConstants.IconAudio, 2,
@@ -173,19 +146,18 @@ internal static partial class SettingsDescriptionFunctions
                     (configuration.Audio?.LatencyMilliseconds ?? 50).ToString(),
                     new[] { 20, 35, 50, 75, 100, 150, 250 }
                         .Select(value => Invariant(value.ToString(), $"{value} ms", value))),
-                Toggle(SettingsConstants.FloppySound, EmulationMachineTab.Audio,
+                Information(SettingsConstants.AudioChip, EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
-                    SettingsDescriptionFunctionsConstants.ResourceAudioFloppySound,
-                    options.GetValueOrDefault(SettingsConstants.FloppySound,
-                        SettingsDescriptionFunctionsConstants.Enabled)
-                        == SettingsDescriptionFunctionsConstants.Enabled))
+                    SettingsDescriptionFunctionsConstants.ResourceAudioChip,
+                    model.AudioChip ?? SettingsDescriptionFunctionsConstants.Unknown))
         ];
     }
 
     private static EmulationSettingsField Firmware(MachineConfiguration configuration, Model model)
     {
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var requiresExternalRom = model.Id is ModelConstants.Saturn or ModelConstants.Dreamcast
+        var requiresExternalRom = model.Id is ModelConstants.MarkIII or ModelConstants.MasterSystem
+            or ModelConstants.GameGear or ModelConstants.Saturn or ModelConstants.Dreamcast
             or ModelConstants.Naomi or ModelConstants.Naomi2 or ModelConstants.Atomiswave
             || model.Id == ModelConstants.MegaDrive
             && options.GetValueOrDefault(SettingsConstants.MegaCdEnabled,

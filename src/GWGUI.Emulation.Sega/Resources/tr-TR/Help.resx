@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>$ 1 RAM Emated makineye mevcut.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Seçin RAM Emulation çekirdeği tarafından ortaya çıkan genişleme, makine yeni miktar kullanılmadan önce yeniden başlatılmalıdır.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Sistem sistemi ROM Emulation çekirdeğine inşa edilmiştir.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulation çekirdeği sistem sağlar ROM İçsel olarak ve bir açığa çıkma ROM Dosya seçici veya.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Emulation çekirdeği tarafından verilen iç karar.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Emulation çekirdeği tarafından açığa çıkan içsel kararlardan birini seçin. Bu uygulama pencere boyutunu belirlemez.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Emülasyon çekirdeği tarafından emilen monitör türü.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Bir renk, yeşil monokrom veya beyaz monokro Sega monitör seçin.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Örtülmüş monitörün sentezi.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>İzleme yoğunluğu 5 ila 15 arasında, emulation çekirdeği tarafından ortaya çıkar.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Dış ekran sınırı kaldır.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Dış sınırı eklemek için emulation çekirdeği sorun. GW GUI Uygulamanın bildirdiği yönü tutar.The behavior.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Vida sürücünün mekanik sesi.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Enables veya, emulation çekirdeği tarafından üretilen diskpy sürücüsü seslerini devre dışı bırakır.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega makinesi modeli yapılandırılıyor.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulation çekirdeği sistem sağlar ROM İçsel olarak ve bir açığa çıkma ROM Dosya seçici veya.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega makinesi modeli yapılandırılıyor.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Bu makine için seçilen fotoğrafçılar.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Bu makine yapılandırmasını yürütmek için kullanılan emülatör uygulamaları belirtir.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System Donanım modeli.</value></data>

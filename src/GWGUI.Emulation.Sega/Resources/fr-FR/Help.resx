@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Quantité de RAM disponible pour la machine émulée.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Sélectionne l'extension de RAM exposée par le cœur sélectionné. La machine doit redémarrer avant que la nouvelle quantité soit utilisée.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>ROM système intégrée au cœur sélectionné.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Le cœur sélectionné fournit la ROM système et ne propose aucun fichier de ROM à sélectionner.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Résolution interne du cœur d'émulation.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Sélectionne une résolution interne proposée par le cœur d'émulation. Ce réglage ne modifie pas la taille de la fenêtre.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Type de moniteur émulé.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Sélectionne un moniteur Sega couleur, monochrome vert ou monochrome blanc.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Intensité du moniteur émulé.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Règle l'intensité du moniteur de 5 à 15, telle qu'elle est exposée par le cœur sélectionné.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Supprimer la bordure externe.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Demande au cœur sélectionné de recadrer la bordure externe. GW GUI conserve le rapport d'aspect signalé par l'émulateur.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Son mécanique du lecteur de disquettes.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Active ou désactive le son mécanique produit par le lecteur de disquettes.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Modèle de machine Sega en cours de configuration.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Le cœur sélectionné fournit la ROM système et ne propose aucun fichier de ROM à sélectionner.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Modèle de machine Sega en cours de configuration.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Émulateur sélectionné pour cette machine.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifie l'implémentation d'émulateur utilisée pour exécuter cette configuration de machine.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Modèle de Master System.</value></data>

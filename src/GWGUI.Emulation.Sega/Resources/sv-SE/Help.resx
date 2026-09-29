@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Mängden av RAM tillgänglig för den emulerade maskinen.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Väljer RAM expansion som exponeras av emuleringskärnan. Maskinen måste starta om innan det nya beloppet används.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Systemet ROM är inbyggd i emuleringskärnan.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emuleringskärnan ger systemet ROM internt och exponerar inte en ROM Filväljare.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Intern resolution som renderas av emuleringskärnan.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Väljer en av de interna resolutionerna som utsätts för emuleringskärnan. Detta ställer inte in applikationsfönstrets storlek.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Typ av bildskärm som emuleras av emuleringskärnan.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Väljer en färg, grön monokrom eller vit monokrom Sega-monitor.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Ljushet av den emulerade monitorn.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Justerar bildskärmens intensitet från 5 till 15, vilket utsätts av emuleringskärnan.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Ta bort den externa skärmgränsen.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Be emuleringskärnan att beskära den yttre gränsen. GW GUI håller det aspektförhållande som rapporterats av emulatorn.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Mekaniskt ljud av floppy drive.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Möjliggör eller inaktiverar det floppiga drivljudet som genereras av emuleringskärnan.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega maskin modell konfigureras.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emuleringskärnan ger systemet ROM internt och exponerar inte en ROM Filväljare.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega maskin modell konfigureras.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator vald för denna maskin.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifierar emulatorgenomförandet som används för att köra denna maskinkonfiguration.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System hårdvarumodell.</value></data>

@@ -6,14 +6,6 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string ResourceAudioDefaultOutput = "Emulation.Audio.DefaultOutput";
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceControllerNone = "Emulation.Controller.None";
-    internal const string Resolution384 = "384x272";
-    internal const string Resolution400 = "400x300";
-    internal const string Color = "color";
-    internal const string Green = "green";
-    internal const string White = "white";
-    internal const string ResourceColor = "Emulation.Sega.Video.Monitor.Color";
-    internal const string ResourceGreen = "Emulation.Sega.Video.Monitor.Green";
-    internal const string ResourceWhite = "Emulation.Sega.Video.Monitor.White";
     internal const string ResourceMasterSystemSmsI = "Emulation.Sega.MasterSystem.Variant.SmsI";
     internal const string ResourceMasterSystemSmsIi = "Emulation.Sega.MasterSystem.Variant.SmsII";
     internal const string ResourceMasterSystemThreeDGlassesEnabled = "Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled";

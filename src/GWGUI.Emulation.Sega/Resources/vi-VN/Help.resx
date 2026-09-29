@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Số lượng RAM sẵn sàng cho máy mô phỏng.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Chọn RAM Mở rộng bị phơi bày bởi lõi mô. Máy phải khởi động lại trước khi dùng số lượng mới.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Hệ thống ROM được xây dựng thành lõi mô.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>lõi hình nón cung cấp cho hệ thống ROM Trong nội bộ và không vạch trần ROM Trình chọn tập tin.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Giải pháp nội bộ được tạo ra bởi lõi mô phỏng.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Chọn một trong những độ phân giải nội bộ bị lõi mô phỏng phơi bày. Điều này không đặt kích cỡ cửa sổ ứng dụng.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Kiểu giám sát được mô phỏng bởi lõi mô phỏng.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Chọn một màu, đơn sắc xanh lá cây, hoặc màn hình Sepa trắng.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Độ sáng của màn hình mô phỏng.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Điều chỉnh cường độ từ 5 đến 15, do lõi mô phỏng phơi bày.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Loại bỏ biên giới màn hình bên ngoài.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Yêu cầu lõi tạo màu sắc để trồng biên giới bên ngoài. GW GUI giữ tỷ lệ hình thể được báo cáo bởi bộ mô phỏng.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Tiếng động cơ trong ổ đĩa mềm.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Kích hoạt hoặc tắt âm thanh ổ đĩa mềm được tạo ra bởi lõi mô phỏng.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Mô hình máy Sega đã được cấu hình.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>lõi hình nón cung cấp cho hệ thống ROM Trong nội bộ và không vạch trần ROM Trình chọn tập tin.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Mô hình máy Sega đã được cấu hình.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Mô phỏng máy này đã được chọn.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Xác định khả năng thực hiện giả lập được dùng để chạy cấu hình máy tính này.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System Mô hình phần cứng.</value></data>

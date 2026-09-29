@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>количество RAM Доступен для эмулируемой машины.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Выберите The RAM Расширение, выставляемое эмуляционным ядром. Машина должна перезапуститься до того, как будет использовано новое количество.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Система ROM Он встроен в ядро эмуляции.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Эмуляционное ядро обеспечивает систему ROM внутренне и не выявляет ROM Селектор файлов.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Внутреннее разрешение, предоставляемое эмуляционным ядром.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Выберите одно из внутренних разрешений, которое выставляется эмуляционным ядром. Это не устанавливает размер окна приложения.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Тип монитора, эмулируемого эмуляционным ядром.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Выберите цветной, зеленый монохромный или белый монохромный монитор Sega.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Яркость эмулированного монитора.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Настройка интенсивности монитора от 5 до 15, как показано эмуляционным ядром.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Удалить внешнюю границу экрана.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Попросите эмуляционное ядро обрезать внешнюю границу. GW GUI Соотношение сторон, о котором сообщает эмулятор.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Механический звук дискеты.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Включает или отключает звук дискеты, генерируемый эмуляционным ядром.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Модель Sega Machine настраивается.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Эмуляционное ядро обеспечивает систему ROM внутренне и не выявляет ROM Селектор файлов.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Модель Sega Machine настраивается.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Эмулятор, выбранный для этой машины.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Идентифицирует реализацию эмулятора, используемую для запуска этой конфигурации машины.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System Аппаратная модель.</value></data>

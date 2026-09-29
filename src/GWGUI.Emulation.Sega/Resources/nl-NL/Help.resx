@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Bedrag van RAM beschikbaar voor de emuleerde machine.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selecteer de RAM uitbreiding blootgesteld door de emulatiekern. De machine moet opnieuw starten voordat de nieuwe hoeveelheid wordt gebruikt.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Het systeem ROM is ingebouwd in de emulatiekern.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>De emulatiekern levert het systeem ROM intern en niet bloot een ROM bestandsselectie.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Interne resolutie van de emulatiekern.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Selecteer een van de interne resoluties die door de emulatiekern worden blootgesteld. Hiermee wordt de grootte van het toepassingsvenster niet ingesteld.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Type monitor dat wordt geëmuleerd door de emulatiekern.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Kies een kleur, groen monochrome of witte monochrome Sega monitor.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Helderheid van de geëmulgeerde monitor.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Past de monitorintensiteit aan van 5 tot 15, zoals blootgesteld door de emulatiekern.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Verwijdert de buitenrand van het scherm.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Vraagt de emulatiekern om de buitengrens te bijsnijden. GW GUI houdt de verhouding tussen het aspect en de emulator.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Mechanische geluid van de floppy drive.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Schakel het diskette-drivegeluid in of schakelt het uit dat door de emulatiekern wordt gegenereerd.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model wordt geconfigureerd.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>De emulatiekern levert het systeem ROM intern en niet bloot een ROM bestandsselectie.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model wordt geconfigureerd.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator geselecteerd voor deze machine.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identificeert de emulator implementatie die gebruikt wordt om deze machine configuratie uit te voeren.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System hardwaremodel.</value></data>

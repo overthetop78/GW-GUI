@@ -4,9 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sega.Video.Monitor"><value>Τύπος παρακολούθησης</value></data>
-  <data name="Emulation.Sega.Video.Intensity"><value>Ένταση παρακολούθησης</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Color"><value>Χρώμα</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Green"><value>Πράσινο μονόχρωμο</value></data>
-  <data name="Emulation.Sega.Video.Monitor.White"><value>Λευκό μονόχρωμο</value></data>
+  <data name="Emulation.Sega.Video.Chipset"><value>Chipset βίντεο</value></data>
 </root>

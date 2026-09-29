@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Beløb RAM til rådighed for den emulerede maskine.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Vælger RAM udvidelse udsat af emuleringskernen. Maskinen skal genstarte før den nye mængde anvendes.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Systemet ROM er indbygget i emuleringskernen.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emuleringskernen giver systemet ROM Indvendigt og ikke afsløre en ROM filvælger.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Intern opløsning fra emuleringskernen.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Vælger en af de interne opløsninger som er eksponeret af emuleringskernen. Dette sætter ikke programmets vinduesstørrelse.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Type overvågning efterlignet af emuleringskernen.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Vælger en farve, grøn monokrom, eller hvid monokrom Sega skærm.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Lysstyrke af den emulerede skærm.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Justerer monitorintensiteten fra 5 til 15, som udsat af emuleringskernen.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Fjerner den ydre skærmkant.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Spørger emuleringskernen til at beskære den ydre grænse. GW GUI holder det forhold, som emulatoren har rapporteret, konstant.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Mekanisk lyd af disketten drev.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Aktiverer eller deaktiverer diskette-drevet lyd genereret af emuleringskernen.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega maskine model er konfigureret.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emuleringskernen giver systemet ROM Indvendigt og ikke afsløre en ROM filvælger.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega maskine model er konfigureret.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator valgt til denne maskine.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identificerer den emulator implementering, der bruges til at køre denne maskine konfiguration.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System hardware model.</value></data>

@@ -8,4 +8,5 @@
   <data name="Emulation.Sega.Language.English"><value>İngilizce dil dili İngilizce</value></data>
   <data name="Emulation.Sega.Language.French"><value>Fransız Fransız Fransız Fransız Fransız Fransız Fransız Fransız</value></data>
   <data name="Emulation.Sega.Language.Spanish"><value>İspanyolca İspanyolca İspanyolca İspanyolca</value></data>
+  <data name="Emulation.Sega.Audio.Chip"><value>Ses yongası</value></data>
 </root>

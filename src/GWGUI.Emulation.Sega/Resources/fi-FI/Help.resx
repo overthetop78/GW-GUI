@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Määrä RAM Emulgoituun koneeseen.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Valitsee RAM Emulsioytimen paljastama laajennus. Koneen on aloitettava uudelleen ennen uuden määrän käyttöä.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Järjestelmä ROM Se on rakennettu emulointiytimeen.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulsio ydin tarjoaa järjestelmän ROM sisäisesti eikä paljasta a ROM tiedostonvalitsin.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Emulointiytimen antama sisäinen resoluutio.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Valitsee yhden emulointiytimen paljastamista sisäisistä resoluutioista. Tämä ei aseta sovellusikkunan kokoa.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Emulointiytimen jäljittelemä monitorityyppi.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Valitsee värin, vihreän yksivärisen tai valkoisen yksivärisen Sega-monitorin.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Emuloitujen näyttöjen kirkkaus.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Säätää näytön voimakkuutta 5-15, kuten emulgointiytimen altistumista.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Poistaa ulkonäytön rajan.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Pyytää emulgointiytimen valaisemaan ulkorajan. GW GUI pitää emulaattorin ilmoittaman kuvasuhteen.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Mekaaninen ääni levykeasemalta.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Mahdollistaa tai poistaa emulgointiytimen tuottaman levykkeen äänen.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega-koneen malli on konfiguroitu.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulsio ydin tarjoaa järjestelmän ROM sisäisesti eikä paljasta a ROM tiedostonvalitsin.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega-koneen malli on konfiguroitu.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulaattori valittu tähän koneeseen.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Tunnistaa emulaattorin käyttöönoton, jota käytetään tämän koneen konfiguroinnin käyttämiseen.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System laitteistomalli.</value></data>

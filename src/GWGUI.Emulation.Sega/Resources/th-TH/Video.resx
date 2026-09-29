@@ -4,9 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sega.Video.Monitor"><value>ชนิดของจอภาพ</value></data>
-  <data name="Emulation.Sega.Video.Intensity"><value>ความเข้มสีของจอภาพ</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Color"><value>สี</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Green"><value>สีเดียวสีเขียว</value></data>
-  <data name="Emulation.Sega.Video.Monitor.White"><value>พิมพ์สีเดียวสีขาว</value></data>
+  <data name="Emulation.Sega.Video.Chipset"><value>ชิปเซ็ตวิดีโอ</value></data>
 </root>

@@ -22,7 +22,9 @@ public sealed record Model(
     int RomKib = 0,
     bool HasBuiltInSegaCardSlot = false,
     bool SupportsSegaCardSlot = false,
-    bool SupportsThreeDGlasses = false)
+    bool SupportsThreeDGlasses = false,
+    string? CpuFrequency = null,
+    bool SupportsRamConfiguration = false)
 {
     public IReadOnlyList<string> Processors => CpuModels ?? [];
 }

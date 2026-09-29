@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>المبلغ RAM متوفر للآلة المُحتَزَنة</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>يُختارُ RAM التوسع الذي تعرضه لب العزلة يجب أن تستأنف الآلة قبل استخدام المبلغ الجديد</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>النظام ROM يتم بناؤه في جوهر العزلة</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>الجوهر الذي يُنشئ النظام ROM داخليّاً ولا يكشف ROM مختار ملف</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>قرار داخلي صادر عن جوهر العزلة</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>يُختار أحد القرارات الداخلية التي كشفها جوهر العزلة، وهذا لا يحدد حجم نافذة التطبيق.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>نوع الشاشة التي يُحتذى بها من قبل الجوهر</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>يُختار لون أو أحادي اللون أو مُراقبة (أوكروم سيغا) بيضاء</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>هدوء الشاشة</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>يعدل كثافة الشاشة من 5 إلى 15 كما كشفها نواة العزلة.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>يزيل الحدود الخارجية للشاشة</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>يطلب من الزرع الأساسي لزرع الحدود الخارجية GW GUI يبقي نسبة الجانب التي أبلغ عنها المرشد</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>صوت ميكانيكي من القرص المُقزز</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>يمكن أو يزيل الصوت المُنبّط من خلال اللبّي</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>نموذج آلة سيغا يتم تشكيله</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>الجوهر الذي يُنشئ النظام ROM داخليّاً ولا يكشف ROM مختار ملف</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>نموذج آلة سيغا يتم تشكيله</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>مرشدة اختيرت لهذه الآلة</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>يحدد تنفيذ المرشد المستخدم لإدارة هذه التشكيلة الآلية.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System نموذج المعدات</value></data>

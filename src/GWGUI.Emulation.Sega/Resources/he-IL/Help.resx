@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>כמות RAM זמין למכונה החיקויית.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>בחר את RAM התרחבות החשוף על ידי הליבה של החיקוי.המכונה חייבת להתחיל מחדש לפני השימוש בכמות חדשה.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>המערכת ROM הוא בנוי אל הליבה של החיקוי.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>הליבה של החיקוי מספקת את המערכת ROM מבפנים ולא חושף ROM קובץ</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>פתרון פנימי שניתן על ידי הליבה של החיקוי.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>בחר אחת ההחלטות הפנימיות שנחשפו על ידי הליבה של החיקוי.זה לא מגדיר את גודל חלון היישום.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>סוג של מעקב שנמחק על ידי הליבה של החיקוי.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>בחר צבע, מונוכרום ירוק, או מוניכרום לבן צ'או.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>בהירות של הצג הגנוב.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>מכוונן את עוצמת המוניטור מ-5 עד 15, כפי שחשוף על ידי הליבה של החיקוי.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>להסיר את גבול המסך החיצוני.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>שאל את הליבה של החיקוי להובלת הגבול החיצוני. GW GUI לשמור על יחס ההיבט המדווח על ידי החיקוי.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>צליל מכני של כונן ה-Foppy.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Enables או disables את הצליל כונן הכונן ה floppy שנוצר על ידי הליבה של החיקוי.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>מודל מכונה Sega מוגדר.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>הליבה של החיקוי מספקת את המערכת ROM מבפנים ולא חושף ROM קובץ</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>מודל מכונה Sega מוגדר.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>אדמירטור נבחר למכונה זו.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifing the מחקה יישום המשמש להפעיל את תצורת המכונה הזו.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System מודל חומרה</value></data>

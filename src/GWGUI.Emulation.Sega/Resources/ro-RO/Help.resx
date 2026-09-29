@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Cantitatea de RAM disponibil pentru aparatul emulat.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selectează RAM expansiunea expusă de miezul de emulare. Mașina trebuie să repornească înainte de utilizarea noii cantități.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Sistemul ROM este construit în miezul de emulare.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Miezul de emulare oferă sistemul ROM intern și nu expune ROM selector de fișiere.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Rezoluţia internă făcută de nucleul de emulare.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Selectează una dintre rezoluțiile interne expuse de miezul de emulație. Aceasta nu stabilește dimensiunea ferestrei de aplicare.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Tipul de monitor emulat de miezul de emulare.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Selectează un monitor de culoare verde monocrom sau alb monocrom Sega.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Luminozitatea monitorului emulat.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Reglează intensitatea monitorului de la 5 la 15, astfel cum este expusă de miezul de emulare.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Elimină frontiera ecranului extern.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Cere nucleului de emulație să culeagă frontiera externă. GW GUI păstrează raportul de aspect raportat de emulator.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Sunetul mecanic al drive-ului.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Activă sau dezactivează sunetul de unitate floppy generat de miezul de emulație.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Modelul Sega este configurat.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Miezul de emulare oferă sistemul ROM intern și nu expune ROM selector de fișiere.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Modelul Sega este configurat.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator selectat pentru această mașină.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifică implementarea emulatorului folosit pentru a rula această configurație mașină.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System modelul hardware.</value></data>

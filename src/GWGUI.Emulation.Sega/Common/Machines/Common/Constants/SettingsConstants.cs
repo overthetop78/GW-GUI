@@ -10,11 +10,8 @@ internal static class SettingsConstants
     internal const string Ram = "configuration.ramKib";
     internal const string FirmwareIntegrated = "configuration.firmwareIntegrated";
     internal const string FirmwarePath = "configuration.firmwarePath";
-    internal const string VideoResolution = "configuration.videoResolution";
-    internal const string VideoMonitor = "configuration.videoMonitor";
-    internal const string VideoIntensity = "configuration.videoIntensity";
-    internal const string VideoCrop = "configuration.videoCrop";
-    internal const string FloppySound = "configuration.floppySound";
+    internal const string VideoChip = "configuration.videoChip";
+    internal const string AudioChip = "configuration.audioChip";
     internal const string MasterSystemVariant = "configuration.masterSystemVariant";
     internal const string MasterSystemThreeDGlasses = "configuration.masterSystemThreeDGlasses";
     internal const string MegaDriveModel = "configuration.megaDriveModel";

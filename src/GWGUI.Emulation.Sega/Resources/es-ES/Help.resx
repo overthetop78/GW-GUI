@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Cuantía RAM disponible para la máquina emulada.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selecciona las RAM ampliación expuesta por el núcleo de emulación. La máquina debe reiniciar antes de que se utilice la nueva cantidad.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>El sistema ROM está integrado en el núcleo de emulación.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>El núcleo de emulación proporciona el sistema ROM internamente y no expone a ROM selector de archivos.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Resolución interna emitida por el núcleo de emulación.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Selecciona una de las resoluciones internas expuestas por el núcleo de emulación. Esto no establece el tamaño de la ventana de aplicación.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Tipo de monitor emulado por el núcleo de emulación.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Selecciona un color, monocromo verde o monocromo blanco monitor Sega.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Brillo del monitor emulado.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Ajusta la intensidad del monitor de 5 a 15, como se expone en el núcleo de emulación.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Elimina la frontera de pantalla externa.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Pide al núcleo de emulación que reduzca la frontera externa. GW GUI mantiene la relación de aspecto reportada por el emulador.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Sonido mecánico del disco floppy.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Permite o desactiva el sonido de la unidad floppy generado por el núcleo de emulación.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model está siendo configurado.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>El núcleo de emulación proporciona el sistema ROM internamente y no expone a ROM selector de archivos.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model está siendo configurado.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulador seleccionado para esta máquina.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifica la implementación del emulador utilizada para ejecutar esta configuración de la máquina.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System Modelo de hardware.</value></data>

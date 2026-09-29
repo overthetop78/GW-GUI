@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Ποσό RAM διαθέσιμο στην μηχανή που μιμείται.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Επιλογή του RAM επέκταση που εκτίθεται από τον πυρήνα εξομοίωσης. Η μηχανή πρέπει να επανεκκινήσει πριν χρησιμοποιηθεί το νέο ποσό.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Το σύστημα ROM είναι ενσωματωμένο στον πυρήνα εξομοίωσης.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Ο πυρήνας εξομοίωσης παρέχει το σύστημα ROM εσωτερικά και δεν εκθέτει ROM Επιλογέας αρχείων.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Εσωτερική ανάλυση που αποδίδεται από τον πυρήνα της εξομοίωσης.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Επιλογή ενός από τα εσωτερικά ψηφίσματα που εκτίθενται από τον πυρήνα εξομοίωσης. Αυτό δεν ορίζει το μέγεθος του παραθύρου της εφαρμογής.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Τύπος οθόνης που μιμείται ο πυρήνας προσομοίωσης.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Επιλέγει ένα χρώμα, πράσινο μονόχρωμο, ή λευκό μονόχρωμο οθόνη Sega.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Φωτεινότητα της εικονιζόμενης οθόνης.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Ρυθμίζει την ένταση της οθόνης από 5 σε 15, όπως εκτίθεται από τον πυρήνα εξομοίωσης.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Αφαιρεί το εξωτερικό περίγραμμα της οθόνης.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Ζητάει από τον πυρήνα της εξομοίωσης να κόψει τα εξωτερικά σύνορα. GW GUI διατηρεί την αναλογία διαστάσεων που αναφέρεται από τον εξομοιωτή.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Μηχανικός ήχος της δισκέτας.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Ενεργοποιεί ή απενεργοποιεί τον ήχο της δισκέτας που δημιουργείται από τον πυρήνα εξομοίωσης.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Το μοντέλο μηχανής Sega διαμορφώνεται.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Ο πυρήνας εξομοίωσης παρέχει το σύστημα ROM εσωτερικά και δεν εκθέτει ROM Επιλογέας αρχείων.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Το μοντέλο μηχανής Sega διαμορφώνεται.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Ο εξομοιωτής επιλέχθηκε για αυτό το μηχάνημα.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Προσδιορίζει την εφαρμογή εξομοιωτή που χρησιμοποιείται για τη λειτουργία αυτής της διάταξης μηχανών.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System μοντέλο υλικού.</value></data>

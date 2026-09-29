@@ -8,4 +8,5 @@
   <data name="Emulation.Sega.Language.English"><value>Tiếng Anh</value></data>
   <data name="Emulation.Sega.Language.French"><value>PhápName</value></data>
   <data name="Emulation.Sega.Language.Spanish"><value>Tây Ban Nha</value></data>
+  <data name="Emulation.Sega.Audio.Chip"><value>Chip âm thanh</value></data>
 </root>

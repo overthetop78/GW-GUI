@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>数量 RAM 封入された機械に利用できます。</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>選択する RAM エミュレーションコアによる拡張。新しい量が使用される前に機械が再起動しなければなりません。</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>システム ROM エミュレータコアに組み込まれています。</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>エミュレーションコアはシステムを提供します ROM 社内で、露出しない ROM ファイルのセレクター。</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>エミュレータコアによってレンダリングされる内部の解像度。</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>エミュレータコアによって露出されている内部解像度の1つを選択します。これはアプリケーションウィンドウのサイズを設定しません。</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>エミュレーションコアによってエミュレーションされたモニターの種類。</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>色のカラー、緑色のモノクロ、または白のモノクロセガモニターを選択します。</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>埋め込みモニターの明るさ。</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>エミュレータコアで露出したように、モニターの強度を5〜15に調整します。</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>外部画面境界を削除します。</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>外部の境界線をクロップするためにエミュレーションコアを依頼します。 GW GUI エミュレーターによって報告されたアスペクト比を保持します。</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>フロッピードライブの機械的音。</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>エミュレータコアによって生成されたフロッピードライブの音を有効または無効にします。</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>セガマシンモデルを構成。</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>エミュレーションコアはシステムを提供します ROM 社内で、露出しない ROM ファイルのセレクター。</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>セガマシンモデルを構成。</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>エミュレータは、このマシンで選択しました。</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>このマシン構成を実行するために使用されるエミュレータの実装を特定します。</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System ハードウェアモデル。</value></data>

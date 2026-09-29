@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>จํานวนครั้งที่เล่น RAM สามารถใช้ได้กับเครื่องเลียนแบบ</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>เลือก RAM การขยายการสัมผัสโดยแกนการจําลอง เครื่องจะต้องเริ่มการทํางานใหม่ก่อนปริมาณที่ใช้งานใหม่</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>ระบบ ROM สร้างขึ้นในแกนการจําลอง</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>แกนการจําลองให้ระบบ ROM ภายในและจะไม่เปิดเผย ROM ตัวกรองแฟ้ม</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>มติภายในที่แสดงโดยแกนการจําลอง</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>เลือกความละเอียดภายในที่แสดงโดยแกนการจําลอง ซึ่งจะไม่ตั้งค่าขนาดหน้าต่างของโปรแกรม</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>ชนิดของจอภาพเลียนแบบจากแกนการจําลอง</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>เลือกสี, สีเขียว-เดียว, หรือใช้จอสีเดียว</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>ความสว่างของจอภาพเลียนแบบ</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>ปรับความเข้มของจอภาพจาก 5 ถึง 15 ที่ถูกสัมผัสจากแกนการปั๊ม</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>เอาขอบจอภายนอกออก</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>ถามแกนการจําลองเพื่อปลูกพรมแดนภายนอก GW GUI รักษาสัดส่วนสัดส่วนภาพที่รายงานโดยเครื่องจําลอง</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>เสียงรถรางของฟลอปปี้ไดร์ฟ</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>เปิดหรือปิดเสียงของไดรฟ์ฟลอปปี้ที่ถูกสร้างจากแกนการจําลอง</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>โมเดลเครื่องเซกาถูกปรับแต่ง</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>แกนการจําลองให้ระบบ ROM ภายในและจะไม่เปิดเผย ROM ตัวกรองแฟ้ม</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>โมเดลเครื่องเซกาถูกปรับแต่ง</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>ตัวจําลองที่เลือกสําหรับเครื่องนี้</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>ปรับค่าโปรแกรมจําลองที่จะใช้ในการใช้งานปรับแต่งเครื่องจักรนี้</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System โมเดลฮาร์ดแวร์</value></data>

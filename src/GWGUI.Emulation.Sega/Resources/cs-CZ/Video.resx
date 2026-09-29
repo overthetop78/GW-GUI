@@ -4,9 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sega.Video.Monitor"><value>Typ monitoru</value></data>
-  <data name="Emulation.Sega.Video.Intensity"><value>Intenzita monitorování</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Color"><value>Barva</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Green"><value>Zelený monochrom</value></data>
-  <data name="Emulation.Sega.Video.Monitor.White"><value>Bílý monochrom</value></data>
+  <data name="Emulation.Sega.Video.Chipset"><value>Video čipová sada</value></data>
 </root>

@@ -75,6 +75,10 @@ internal sealed class MachineCommandBar
             (EmulationShortcutDefaults.ToggleFullscreen, EmulationResourceKeys.Fullscreen),
             (EmulationShortcutDefaults.ReleaseMouse, EmulationResourceKeys.ReleaseMouse));
         right.Children.Add(displayShortcuts);
+        if (actions.OpenCoreOptions is not null)
+            right.Children.Add(MachineView.CreateToolbarGroup(
+                Command(MachineCommandGlyphConstants.CoreOptions,
+                    "Emulation.Core.NameOptions", actions.OpenCoreOptions, showError)));
         _audio = Command(MachineCommandGlyphConstants.Audio, EmulationResourceKeys.Audio,
             actions.ToggleAudio, showError);
         var statusItems = new List<UIElement> { _audio };

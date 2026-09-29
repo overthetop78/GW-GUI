@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Částka RAM dostupné pro emulovaný stroj.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Vybere RAM Rozšíření vystavené emulačním jádrem. Stroj musí před použitím nového množství restartovat.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Systém ROM je zabudován do emulačního jádra.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulační jádro poskytuje systém ROM vnitřní a neodhaluje ROM Volič souborů.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Vnitřní řešení vydávané emulačním jádrem.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Vybere jedno z vnitřních rozlišení vystavených emulačním jádrem. Tím se nenastaví velikost okna aplikace.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Typ monitoru emulovaný emulačním jádrem.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Vybere si barevný, zelený monochromatický nebo bílý monochromatický monitor Sega.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Jasnost emulovaného monitoru.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Nastaví intenzitu monitoru od 5 do 15, jak je vystaveno emulačnímu jádru.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Odstraní vnější obrazovku.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Žádá emulační jádro, aby oplodnilo vnější hranice. GW GUI udržuje poměr stran hlášený emulátorem.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Mechanický zvuk disketové mechaniky.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Umožňuje nebo zakazuje zvuk disketového pohonu generovaný emulačním jádrem.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Sega model stroje je nastaven.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>Emulační jádro poskytuje systém ROM vnitřní a neodhaluje ROM Volič souborů.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega model stroje je nastaven.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulátor vybrán pro tento stroj.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifikuje implementaci emulátoru používanou pro spuštění této konfigurace stroje.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System hardwarový model.</value></data>

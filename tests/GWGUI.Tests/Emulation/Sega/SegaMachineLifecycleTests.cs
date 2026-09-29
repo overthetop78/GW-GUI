@@ -8,10 +8,16 @@ using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Common.Services;
+using GWGUI.Emulation.Sega.Modules;
+using GWGUI.Emulation.Interfaces;
 using GenesisPlusGxExternalCore = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services.ExternalCore;
 using FlycastExternalCore = GWGUI.Emulation.Sega.Emulators.Flycast.Services.ExternalCore;
 using YabauseExternalCore = GWGUI.Emulation.Sega.Emulators.Yabause.Services.ExternalCore;
+using GenesisPlusGxProcessCore = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services.ProcessCore;
+using GenesisPlusGxConstants = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants.GenesisPlusGXConstants;
+using PicoDriveConstants = GWGUI.Emulation.Sega.Emulators.PicoDrive.Constants.PicoDriveConstants;
 using System.Runtime.InteropServices;
+using System.Net.Http;
 using GWGUI.Emulation.Constants;
 using FlycastHostConstants = GWGUI.Emulation.Sega.Emulators.Flycast.Constants.ExternalHostCallbacksConstants;
 
@@ -122,6 +128,179 @@ public sealed class SegaMachineLifecycleTests
         finally
         {
             core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public async Task SegaMachineStartsMasterSystemThroughHostWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
+        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST")
+            ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath) || !File.Exists(hostPath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-host-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.MasterSystem,
+            GenesisPlusGxConstants.Id)
+        {
+            AudioEnabled = false,
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxProcessCore(hostPath, corePath,
+            GenesisPlusGxConstants.CoreHostCommand);
+        var machine = new Machine(Guid.NewGuid(), configuration, core, configuration.Media!, session);
+        var frame = new TaskCompletionSource<VideoFrame>(TaskCreationOptions.RunContinuationsAsynchronously);
+        machine.VideoFrameReady += OnVideoFrame;
+        try
+        {
+            await machine.StartAsync().AsTask().WaitAsync(TimeSpan.FromSeconds(20));
+            var received = await frame.Task.WaitAsync(TimeSpan.FromSeconds(20));
+            Assert.True(received.Width > 0);
+            Assert.True(received.Height > 0);
+            Assert.Equal(EmulationMachineState.Running, machine.State);
+        }
+        finally
+        {
+            machine.VideoFrameReady -= OnVideoFrame;
+            await machine.DisposeAsync();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+
+        void OnVideoFrame(object? sender, VideoFrame value) => frame.TrySetResult(value);
+    }
+
+    [Fact]
+    public async Task SegaMachineStartsMasterSystemThroughPicoDriveHostWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_SMS_MEDIA")
+            ?? Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
+        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST")
+            ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath) || !File.Exists(hostPath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-picodrive-host-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.MasterSystem, PicoDriveConstants.Id)
+        {
+            AudioEnabled = false,
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxProcessCore(hostPath, corePath, PicoDriveConstants.CoreHostCommand);
+        var machine = new Machine(Guid.NewGuid(), configuration, core, configuration.Media!, session);
+        var frame = new TaskCompletionSource<VideoFrame>(TaskCreationOptions.RunContinuationsAsynchronously);
+        machine.VideoFrameReady += OnVideoFrame;
+        try
+        {
+            await machine.StartAsync().AsTask().WaitAsync(TimeSpan.FromSeconds(20));
+            var received = await frame.Task.WaitAsync(TimeSpan.FromSeconds(20));
+            Assert.True(received.Width > 0);
+            Assert.True(received.Height > 0);
+            Assert.Equal(EmulationMachineState.Running, machine.State);
+        }
+        finally
+        {
+            machine.VideoFrameReady -= OnVideoFrame;
+            await machine.DisposeAsync();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+
+        void OnVideoFrame(object? sender, VideoFrame value) => frame.TrySetResult(value);
+    }
+
+    [Theory]
+    [InlineData(GenesisPlusGxConstants.Id, "GWGUI_SEGA_GENESIS_CORE")]
+    [InlineData(PicoDriveConstants.Id, "GWGUI_SEGA_PICODRIVE_CORE")]
+    public async Task SegaModuleCreatesAndStartsMasterSystemRuntime(string emulatorId,
+        string coreVariable)
+    {
+        var corePath = Environment.GetEnvironmentVariable(coreVariable);
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
+        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST")
+            ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath) || !File.Exists(hostPath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-module-runtime-tests",
+            Guid.NewGuid().ToString("N"));
+        var moduleDirectory = Path.Combine(root, "module");
+        var dataDirectory = Path.Combine(root, "data");
+        var coreDirectory = Path.Combine(moduleDirectory, "Core", emulatorId);
+        Directory.CreateDirectory(coreDirectory);
+        Directory.CreateDirectory(dataDirectory);
+        File.Copy(corePath, Path.Combine(coreDirectory, Path.GetFileName(corePath)));
+        var firmwarePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_BIOS");
+        try
+        {
+            using var http = new HttpClient();
+            var module = Assert.IsType<SegaEmulationModule>(new SegaEmulationModuleFactory().Create(
+                new EmulationModuleContext(dataDirectory, moduleDirectory, http)));
+            var configuration = Assert.IsType<MachineConfiguration>(
+                module.CreateConfiguration(ModelConstants.MasterSystem)) with
+            {
+                EmulatorId = emulatorId,
+                AudioEnabled = false,
+                Media =
+                [
+                    new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                        EmulationMediaSlot.Cartridge0, IsInserted: true)
+                ]
+            };
+            if (!string.IsNullOrWhiteSpace(firmwarePath) && File.Exists(firmwarePath))
+            {
+                var firmwareDirectory = module.GetFirmwareDirectory(ModelConstants.MasterSystem);
+                Directory.CreateDirectory(firmwareDirectory);
+                var copiedFirmware = Path.Combine(firmwareDirectory, Path.GetFileName(firmwarePath));
+                File.Copy(firmwarePath, copiedFirmware);
+                var candidate = Assert.Single(await ((IEmulationFirmwareManager)module)
+                    .ScanFirmwareAsync(ModelConstants.MasterSystem, configuration));
+                configuration = Assert.IsType<MachineConfiguration>(((IEmulationFirmwareManager)module)
+                    .UseFirmware(configuration, candidate));
+            }
+
+            var runtime = await module.CreateRuntimeAsync(configuration,
+                new EmulationRuntimeServices(
+                    Path.Combine(root, "sessions"), Path.Combine(root, "states"),
+                    Path.Combine(root, "converted"), hostPath,
+                    (_, _) => new SilentAudioOutput()));
+            await using var machine = runtime.CreateMachine(runtime.MountedMedia);
+            var frame = new TaskCompletionSource<VideoFrame>(
+                TaskCreationOptions.RunContinuationsAsynchronously);
+            machine.Video.FrameReady += OnFrame;
+            try
+            {
+                await machine.Lifecycle.StartAsync().AsTask().WaitAsync(TimeSpan.FromSeconds(20));
+                var received = await frame.Task.WaitAsync(TimeSpan.FromSeconds(20));
+                Assert.True(received.Width > 0);
+                Assert.True(received.Height > 0);
+                Assert.Equal(EmulationMachineState.Running, machine.State);
+            }
+            finally
+            {
+                machine.Video.FrameReady -= OnFrame;
+            }
+
+            void OnFrame(object? sender, VideoFrame value) => frame.TrySetResult(value);
+        }
+        finally
+        {
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
     }
@@ -383,6 +562,47 @@ public sealed class SegaMachineLifecycleTests
                 FirmwareConstants.MegaCdEuropeBiosFileName);
             Assert.True(File.Exists(stagedFirmware));
             Assert.Equal(FirmwareConstants.MegaCdEuropeBiosMd5,
+                Convert.ToHexString(System.Security.Cryptography.MD5.HashData(File.ReadAllBytes(stagedFirmware)))
+                    .ToLowerInvariant());
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void GenesisPlusGxStagesVerifiedMasterSystemFirmwareWhenConfigured()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
+        var firmwarePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_BIOS");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
+            || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-master-system-firmware-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.MasterSystem, "genesisplusgx")
+        {
+            Options = new Dictionary<string, string> { [SettingsConstants.FirmwarePath] = firmwarePath },
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxExternalCore(corePath);
+        try
+        {
+            core.Initialize(configuration, session);
+            var stagedFirmware = Path.Combine(session, CoreDirectoryConstants.SystemDirectoryName,
+                FirmwareConstants.MasterSystemEuropeBiosFileName);
+            Assert.True(File.Exists(stagedFirmware));
+            Assert.Equal(FirmwareConstants.MasterSystemEuropeBiosAlternateMd5,
                 Convert.ToHexString(System.Security.Cryptography.MD5.HashData(File.ReadAllBytes(stagedFirmware)))
                     .ToLowerInvariant());
         }
@@ -736,6 +956,15 @@ public sealed class SegaMachineLifecycleTests
             Assert.Empty(controller.DeviceId);
         });
         Assert.Equal(EmulationInputSnapshot.Empty.Pointer, input.Pointer);
+    }
+
+    private sealed class SilentAudioOutput : GWGUI.Emulation.Interfaces.IAudioOutput
+    {
+        public void Start(int sampleRate) { }
+        public void Write(ReadOnlySpan<short> interleavedStereo) { }
+        public void Flush() { }
+        public void Stop() { }
+        public void Dispose() { }
     }
 
     private sealed class Core : IEmulatorCore

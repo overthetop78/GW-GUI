@@ -38,7 +38,19 @@ public sealed partial class EmulationSection
             device => InitialMediaDirectory(selected, device),
             (device, directory) => RememberMediaDirectory(selected, device, directory),
             () => ReferenceEquals(_machines.SelectedContent, view),
-            runtime.PrepareMediaAsync));
+            runtime.PrepareMediaAsync,
+            null,
+            PersistRuntimeOptionsAsync));
+        async Task PersistRuntimeOptionsAsync(IReadOnlyDictionary<string, string> values)
+        {
+            var configuration = (await selected.Module.LoadConfigurationsAsync())
+                .FirstOrDefault(item => item.Id == selected.Configuration.Id)
+                ?? selected.Configuration;
+            var nullableValues = values.ToDictionary(item => item.Key,
+                item => (string?)item.Value, StringComparer.Ordinal);
+            await selected.Module.SaveConfigurationAsync(
+                selected.Module.ApplySettings(configuration, nullableValues));
+        }
         await AddMachineAsync(selected, runtime, view, view.StopAsync);
     }
 

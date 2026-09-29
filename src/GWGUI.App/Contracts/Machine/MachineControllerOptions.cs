@@ -24,4 +24,5 @@ internal sealed record MachineControllerOptions(
     Action<EmulationMediaDevice, string> RememberMediaDirectory,
     Func<bool> IsActive,
     Func<EmulationMedia, CancellationToken, ValueTask<EmulationMedia>>? PrepareMediaAsync = null,
-    Func<Task>? SwitchControllerPointer = null);
+    Func<Task>? SwitchControllerPointer = null,
+    Func<IReadOnlyDictionary<string, string>, Task>? PersistRuntimeOptions = null);

@@ -31,6 +31,10 @@ internal static class ModelConstants
     internal const string CpuMotorola68000 = "Motorola 68000";
     internal const string CpuHitachiSh2 = "Hitachi SH-2";
     internal const string CpuHitachiSh4 = "Hitachi SH-4";
+    internal const string FrequencyZ80 = "3.58 MHz";
+    internal const string FrequencyMotorola68000 = "7.67 MHz / 3.58 MHz";
+    internal const string FrequencyHitachiSh2 = "28.6 MHz";
+    internal const string FrequencyHitachiSh4 = "200 MHz";
     internal const string VideoTms9918A = "Texas Instruments TMS9918A";
     internal const string VideoSega3155124 = "Sega 315-5124";
     internal const string VideoSega3155246 = "Sega 315-5246";

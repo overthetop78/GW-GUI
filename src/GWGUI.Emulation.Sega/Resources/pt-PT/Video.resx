@@ -4,9 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sega.Video.Monitor"><value>Tipo de monitor</value></data>
-  <data name="Emulation.Sega.Video.Intensity"><value>Monitorar intensidade</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Color"><value>Cor</value></data>
-  <data name="Emulation.Sega.Video.Monitor.Green"><value>Monocromático verde</value></data>
-  <data name="Emulation.Sega.Video.Monitor.White"><value>Monocromático branco</value></data>
+  <data name="Emulation.Sega.Video.Chipset"><value>Chipset de vídeo</value></data>
 </root>

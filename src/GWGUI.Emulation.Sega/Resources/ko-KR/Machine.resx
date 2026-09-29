@@ -8,4 +8,5 @@
   <data name="Emulation.Sega.Language.English"><value>한국어</value></data>
   <data name="Emulation.Sega.Language.French"><value>담당자: Mr. wang</value></data>
   <data name="Emulation.Sega.Language.Spanish"><value>담당자: Mr. s.</value></data>
+  <data name="Emulation.Sega.Audio.Chip"><value>오디오 칩</value></data>
 </root>

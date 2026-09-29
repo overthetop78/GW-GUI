@@ -7,18 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Montante de RAM disponível para a máquina emuladora.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selecciona o RAM expansão exposta pelo núcleo de emulação. A máquina deve reiniciar antes da nova quantidade ser usada.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>O sistema ROM é construído no núcleo de emulação.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>O núcleo de emulação fornece o sistema ROM internamente e não expõe uma ROM Selector de ficheiros.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Short"><value>Resolução interna renderizada pelo núcleo de emulação.</value></data>
-  <data name="Emulation.Sega.Help.Video.Resolution.Detailed"><value>Selecciona uma das resoluções internas expostas pelo núcleo de emulação. Isto não define o tamanho da janela da aplicação.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Short"><value>Tipo de monitor emulado pelo núcleo de emulação.</value></data>
-  <data name="Emulation.Sega.Help.Video.Monitor.Detailed"><value>Seleciona um monitor de cor, monocromático verde ou monocromático branco Sega.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Short"><value>Brilho do monitor emulado.</value></data>
-  <data name="Emulation.Sega.Help.Video.Intensity.Detailed"><value>Ajusta a intensidade do monitor de 5 a 15, como exposto pelo núcleo de emulação.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Short"><value>Remove o contorno externo do ecrã.</value></data>
-  <data name="Emulation.Sega.Help.Video.Crop.Detailed"><value>Pede ao núcleo de emulação para cortar a fronteira externa. GW GUI mantém a relação de aspecto relatada pelo emulador.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Short"><value>Som mecânico da unidade flexível.</value></data>
-  <data name="Emulation.Sega.Help.Audio.FloppySound.Detailed"><value>Activa ou desactiva o som da unidade de disquetes gerado pelo núcleo de emulação.</value></data>
-  <data name="Emulation.Sega.Help.General.Model.Short"><value>Modelo de máquina Sega sendo configurado.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>O núcleo de emulação fornece o sistema ROM internamente e não expõe uma ROM Selector de ficheiros.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Modelo de máquina Sega sendo configurado.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulador selecionado para esta máquina.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifica a implementação do emulador usada para executar esta configuração da máquina.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System Modelo de hardware.</value></data>

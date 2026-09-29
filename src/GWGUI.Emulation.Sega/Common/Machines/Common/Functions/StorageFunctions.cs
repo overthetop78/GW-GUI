@@ -39,16 +39,20 @@ internal static class StorageSettingsFunctions
         var megaCdEnabled = model.Id == ModelConstants.MegaDrive
             && configuration.MegaCdEnabled
             && configuration.MegaCdModel is ModelConstants.MegaCdI or ModelConstants.MegaCdII;
-        var segaCardLocked = OptionEnabled(options, SettingsConstants.MasterSystemThreeDGlasses)
-            || model.Id == ModelConstants.MasterSystem
-            && options.GetValueOrDefault(SettingsConstants.MasterSystemVariant,
-                ModelConstants.MasterSystemSmsI).Equals(ModelConstants.MasterSystemSmsIi,
-                    StringComparison.Ordinal);
-        if (model.SupportsSegaCardSlot && !segaCardLocked)
+        var threeDGlassesEnabled = model.SupportsThreeDGlasses
+            && OptionEnabled(options, SettingsConstants.MasterSystemThreeDGlasses);
+        if (model.SupportsSegaCardSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge1, EmulationMediaType.Cartridge,
                 [StorageSettingsFunctionsConstants.Mv], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.SegaCardSlotLabel,
-                IsPermanent: model.HasBuiltInSegaCardSlot));
+                IsPermanent: model.HasBuiltInSegaCardSlot,
+                ConfigurationKind: model.SupportsThreeDGlasses
+                    ? EmulationStorageConfigurationKind.CartridgeSlot
+                    : EmulationStorageConfigurationKind.None,
+                ConfigurationOptionResourceKey: model.SupportsThreeDGlasses
+                    ? SettingsDescriptionFunctionsConstants.ResourceMasterSystemThreeDGlasses : null,
+                ConfigurationOptionDetailedResourceKey: model.SupportsThreeDGlasses
+                    ? SettingsDescriptionFunctionsConstants.ResourceMasterSystemThreeDGlassesHelp : null));
         IReadOnlyList<string> opticalExtensions = model.Id == ModelConstants.Saturn
             ? [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Ccd,
                StorageSettingsFunctionsConstants.Chd, StorageSettingsFunctionsConstants.Iso]
@@ -72,21 +76,31 @@ internal static class StorageSettingsFunctions
             EmulationMediaCategory.CartridgeSlot => device.Slot.Index == 0
                 ? model.HasBuiltInCartridgeSlot
                     || OptionBool(options, StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption)
-                : !segaCardLocked && (model.HasBuiltInSegaCardSlot
-                    || OptionBool(options, StorageSettingsFunctionsConstants.SegaCardSlotEnabledOption)),
+                : model.HasBuiltInSegaCardSlot
+                    || OptionBool(options, StorageSettingsFunctionsConstants.SegaCardSlotEnabledOption),
             EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
                 || megaCdEnabled
                 || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
             _ => false
         }).Select(device => device.Slot).ToArray();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
-        return new EmulationStorageSettings(devices, configured, mounted);
+        IReadOnlyList<EmulationStorageDeviceSettings> deviceSettings = model.SupportsSegaCardSlot
+            ? [new EmulationStorageDeviceSettings(EmulationMediaSlot.Cartridge1,
+                Cartridge: new CartridgeSlotSettings(threeDGlassesEnabled))]
+            : [];
+        return new EmulationStorageSettings(devices, configured, mounted, deviceSettings);
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration,
         EmulationStorageSettings settings)
     {
-        var media = settings.MountedMedia.Select(item => new MediaConfiguration(
+        var model = ModelCatalog.Get(configuration.Model);
+        var threeDGlassesEnabled = model.SupportsThreeDGlasses && (settings.DeviceSettings ?? [])
+            .FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cartridge1)?.Cartridge
+            ?.OptionEnabled == true;
+        var media = settings.MountedMedia
+            .Where(item => !threeDGlassesEnabled || item.Slot != EmulationMediaSlot.Cartridge1)
+            .Select(item => new MediaConfiguration(
             item.Path, item.Type switch
             {
                 EmulationMediaType.Floppy => MediaCategory.Floppy,
@@ -96,7 +110,6 @@ internal static class StorageSettingsFunctions
                 _ => throw new ArgumentOutOfRangeException(nameof(settings), item.Type, null)
             }, item.Slot, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
             MountOrder: item.Slot.Index)).ToArray();
-        var model = ModelCatalog.Get(configuration.Model);
         var options = new Dictionary<string, string>(configuration.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in media)
@@ -115,6 +128,7 @@ internal static class StorageSettingsFunctions
                 .Contains(EmulationMediaSlot.Cartridge0).ToString(),
             [StorageSettingsFunctionsConstants.SegaCardSlotEnabledOption] = settings.ConfiguredSlots
                 .Contains(EmulationMediaSlot.Cartridge1).ToString(),
+            [SettingsConstants.MasterSystemThreeDGlasses] = threeDGlassesEnabled.ToString(),
             [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots
                 .Contains(EmulationMediaSlot.Cd0).ToString()
         };
@@ -134,7 +148,7 @@ internal static class StorageSettingsFunctions
         && value.Equals(SettingsDescriptionFunctionsConstants.Enabled, StringComparison.OrdinalIgnoreCase);
 
     private static bool IsSegaCardLocked(Model model, IReadOnlyDictionary<string, string> options) =>
-        OptionEnabled(options, SettingsConstants.MasterSystemThreeDGlasses)
+        model.SupportsThreeDGlasses && OptionEnabled(options, SettingsConstants.MasterSystemThreeDGlasses)
         || model.Id == ModelConstants.MasterSystem
         && options.GetValueOrDefault(SettingsConstants.MasterSystemVariant,
             ModelConstants.MasterSystemSmsI).Equals(ModelConstants.MasterSystemSmsIi,
