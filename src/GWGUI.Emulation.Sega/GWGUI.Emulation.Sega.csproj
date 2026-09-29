@@ -18,5 +18,9 @@
       <WithCulture>false</WithCulture>
       <LogicalName>GWGUI.Emulation.Sega.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\00-Base\*.resx">
+      <WithCulture>false</WithCulture>
+      <LogicalName>GWGUI.Emulation.Sega.Resources.%(Filename).resources</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

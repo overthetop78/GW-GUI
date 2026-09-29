@@ -218,17 +218,20 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour distinguer flux, image sectorielle, cartouche et optique.
   - [x] Vérifier les fichiers extraits.
     - [x] Vérifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs`; les artefacts sont créés puis supprimés dans `finally`.
-  - [x] Rendre chaque ROM Sega cartouche utilisable dans les trois parcours de l'application.
+  - [x] Rendre chaque ROM Sega cartouche utilisable dans les quatre parcours de l'application.
     - [x] Conserver `src/GWGUI.MediaEngine/Images/Visualization/` comme représentation par blocs des banques réellement décodées, sans bloc noir fabriqué.
     - [x] Conserver `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/` pour exposer chaque banque réelle avec sa taille et son nom.
     - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour publier toutes les extensions Mega Drive déjà prises en charge par le lecteur et le writer.
     - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier, avec suppression dans `finally`, la visualisation, l'exploration et la conversion/export des ROM Sega SG-1000, Master System, Mega Drive, Game Gear et 32X.
+  - [ ] Valider séparément les quatre parcours de chaque ROM Sega réellement prise en charge avant de clore la famille Sega.
+    - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir chaque ROM Sega dans le visualiseur, lire ses banques dans l'explorateur, convertir vers chaque format de sortie compatible et exporter le résultat vers ce format, avec un artefact temporaire par cas supprimé dans `finally`.
+    - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour couvrir les mêmes ROM Sega avec le cœur correspondant, vérifier une image décodée et libérer le cœur, les ressources graphiques et le dossier de session dans `finally`.
 
 ## 9. Nintendo, Sony, Microsoft et NEC — même ordre par famille
 
 - [ ] Ne commencer aucune autre famille avant la clôture complète de la section Sega.
-  - [ ] Modifier ce document pour cocher la clôture Sega uniquement après validation des cœurs, médias, firmware, options, visualisation, exploration, conversion et tests réels.
-  - [ ] Modifier ce document pour exécuter ensuite une seule famille à la fois dans l'ordre Nintendo, NEC, Sony, Microsoft, en reproduisant la structure et les contrôles validés pour Sega.
+  - [ ] Modifier ce document pour cocher la clôture Sega uniquement après validation des cœurs, médias, firmware, options, visualisation, exploration, conversion, export et tests réels dans MediaEngine, MediaFileSystems et MediaAnalysis.
+  - [ ] Modifier ce document pour exécuter ensuite une seule famille à la fois dans l'ordre Nintendo, NEC, Sony, Microsoft, en reproduisant la structure et les contrôles validés pour Sega, y compris la visualisation, l'exploration, la conversion et l'export de leurs ROM.
 
 - [ ] Terminer Nintendo avant Sony.
   - [x] Terminer le catalogue avant les cœurs.

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Controller.Joypad"><value>Sega 遊戲手把</value></data>
+  <data name="Emulation.Sega.Controller.Keyboard"><value>世嘉键盘</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000Joystick"><value>SG-1000 乐器</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000IiJoypad"><value>SG-1000 II 欢乐片</value></data>
+  <data name="Emulation.Sega.Controller.SegaSc3000Keyboard"><value>SC-3000 键盘</value></data>
+  <data name="Emulation.Sega.Controller.SegaMasterSystemController"><value>Master System 控制器</value></data>
+  <data name="Emulation.Sega.Controller.SegaGameGearController"><value>Game Gear 控制器</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveThreeButton"><value>Mega Drive 三键控制器</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveSixButton"><value>Mega Drive 六键控制器</value></data>
+  <data name="Emulation.Sega.Controller.SegaArcadePowerStickSixButton"><value>Arcade Power Stick 六键</value></data>
+  <data name="Emulation.Sega.Controller.SegaSaturnController"><value>Saturn 控制器</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastController"><value>Dreamcast 控制器</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMouse"><value>Dreamcast 鼠标</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastKeyboard"><value>Dreamcast 键盘</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastLightGun"><value>Dreamcast 轻型枪</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastFishingController"><value>渔业控制员</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastArcadeStick"><value>Dreamcast 街机棍子 手杖 手杖 手杖</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastTwinStick"><value>Dreamcast 双相相相接</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMaracas"><value>Maracas 控制器</value></data>
+</root>

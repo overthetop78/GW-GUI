@@ -5,7 +5,7 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =>
         type switch
         {
-            ControllerType.Joystick => [EmulationControllerVisualIds.QuickShot,
+            ControllerType.Joypad => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro],
             ControllerType.SegaMegaDriveThreeButton => [EmulationControllerVisualIds.MegaDrive3],
@@ -16,14 +16,14 @@ internal static partial class InputSettingsFunctions
     private static string? DefaultVisualId(ControllerType type) =>
         type switch
         {
-            ControllerType.Joystick => EmulationControllerVisualIds.QuickShot,
+            ControllerType.Joypad => EmulationControllerVisualIds.QuickShot,
             ControllerType.SegaMegaDriveThreeButton => EmulationControllerVisualIds.MegaDrive3,
             ControllerType.SegaMegaDriveSixButton => EmulationControllerVisualIds.MegaDrive6,
             _ => null
         };
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type) => type is ControllerType.Joystick
+        VisualCommandIds(ControllerType type) => type is ControllerType.Joypad
             or ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton
         ? new Dictionary<EmulationControllerVisualControl, string>
         {
@@ -45,7 +45,7 @@ internal static partial class InputSettingsFunctions
 
     private static string ControllerResourceKey(ControllerType type) => type switch
     {
-        ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
+        ControllerType.Joypad => InputSettingsFunctionsConstants.ResourceControllerJoypad,
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         _ => $"Emulation.Controller.{type}"

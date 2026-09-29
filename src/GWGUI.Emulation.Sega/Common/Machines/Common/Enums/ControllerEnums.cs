@@ -3,7 +3,7 @@ namespace GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 public enum ControllerType
 {
     Automatic,
-    Joystick,
+    Joypad,
     SegaSg1000Joystick,
     SegaSg1000IiJoypad,
     SegaSc3000Keyboard,

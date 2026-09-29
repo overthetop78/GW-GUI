@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Factories;
@@ -57,7 +56,7 @@ public sealed class ExternalCoreInstaller
             {
                 var entry = archive.Entries.FirstOrDefault(item =>
                     Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(GenesisPlusGXExceptions.ArchiveMissingLibrary());
+                    ?? throw new InvalidDataException(ExternalCoreExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             CoreReleaseService.VerifyWindowsX64Library(extracted);

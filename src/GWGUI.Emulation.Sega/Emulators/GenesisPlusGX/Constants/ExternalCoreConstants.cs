@@ -4,8 +4,6 @@ internal static class ExternalCoreConstants
 {
     internal const string CoreDirectory = "Core";
     internal const string LibraryName = "genesisplusgx_libretro.dll";
-    internal const string PlaylistName = "GW GUI media.m3u";
-    internal const int MaximumPlaylistEntries = 64;
     internal const string RetroApiVersion = "retro_api_version";
     internal const string RetroGetSystemInfo = "retro_get_system_info";
     internal const string RetroSetEnvironment = "retro_set_environment";

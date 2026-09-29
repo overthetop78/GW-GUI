@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sega.Emulators.Yabause.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Constants;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Factories;
@@ -122,11 +121,11 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, YabauseExceptions.UnknownCoreOption());
+            throw new ArgumentOutOfRangeException(nameof(key), key, ExternalCoreExceptions.UnknownCoreOption());
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
             throw new ArgumentOutOfRangeException(nameof(value), value,
-                YabauseExceptions.InvalidOptionValue(value, key));
+                ExternalCoreExceptions.InvalidOptionValue(value, key));
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, 1);
         _updateOptionsDisplay?.Invoke();

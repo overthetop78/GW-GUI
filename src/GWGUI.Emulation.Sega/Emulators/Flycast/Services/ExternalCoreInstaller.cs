@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sega.Emulators.Flycast.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Flycast.Constants;
 using GWGUI.Emulation.Sega.Emulators.Flycast.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Flycast.Factories;
@@ -57,7 +56,7 @@ public sealed class ExternalCoreInstaller
             {
                 var entry = archive.Entries.FirstOrDefault(item =>
                     Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(FlycastExceptions.ArchiveMissingLibrary());
+                    ?? throw new InvalidDataException(ExternalCoreExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             CoreReleaseService.VerifyWindowsX64Library(extracted);

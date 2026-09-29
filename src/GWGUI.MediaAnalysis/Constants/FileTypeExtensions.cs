@@ -64,6 +64,11 @@ internal static class FileTypeExtensions
     public const string Sg = ".sg";
     public const string Mv = ".mv";
     public const string Md = ".md";
+    public const string Mdx = ".mdx";
+    public const string Sgd = ".sgd";
+    public const string Smd = ".smd";
+    public const string Bms = ".bms";
+    public const string SixtyEightK = ".68k";
     public const string Gen = ".gen";
     public const string Gg = ".gg";
     public const string X32 = ".32x";

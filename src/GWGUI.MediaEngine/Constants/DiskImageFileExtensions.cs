@@ -204,6 +204,16 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des ROM SG-1000 et Sega My Card.</summary>
     public const string Mv = ".mv";
     public const string Md = ".md";
+    /// <summary>Extension des ROM Mega Drive au format MDX.</summary>
+    public const string Mdx = ".mdx";
+    /// <summary>Extension des ROM Mega Drive issues des distributions Sega Classics.</summary>
+    public const string Sgd = ".sgd";
+    /// <summary>Extension des ROM Mega Drive au format SMD.</summary>
+    public const string Smd = ".smd";
+    /// <summary>Extension des ROM Mega Drive au format BMS.</summary>
+    public const string Bms = ".bms";
+    /// <summary>Extension des ROM Mega Drive au format 68K.</summary>
+    public const string SixtyEightK = ".68k";
     public const string Gen = ".gen";
     public const string Gg = ".gg";
     public const string ThirtyTwoX = ".32x";

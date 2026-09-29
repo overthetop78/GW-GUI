@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sega.Emulators.Yabause.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Constants;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Factories;
@@ -105,7 +104,7 @@ public sealed class CoreReleaseService
                 using var archive = ZipFile.OpenRead(download);
                 var entry = archive.Entries.FirstOrDefault(item =>
                     Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(YabauseExceptions.ArchiveMissingLibrary());
+                    ?? throw new InvalidDataException(ExternalCoreExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             else File.Copy(download, extracted, true);
@@ -130,14 +129,14 @@ public sealed class CoreReleaseService
         using var stream = File.OpenRead(path);
         using var reader = new BinaryReader(stream);
         if (stream.Length < 0x40 || reader.ReadUInt16() != 0x5A4D)
-            throw new InvalidDataException(YabauseExceptions.DownloadedCoreNotPe());
+            throw new InvalidDataException(ExternalCoreExceptions.DownloadedCoreNotPe());
         stream.Position = 0x3c;
         var peOffset = reader.ReadInt32();
         if (peOffset < 0x40 || peOffset > stream.Length - 6)
-            throw new InvalidDataException(YabauseExceptions.DownloadedCoreInvalidPe());
+            throw new InvalidDataException(ExternalCoreExceptions.DownloadedCoreInvalidPe());
         stream.Position = peOffset;
         if (reader.ReadUInt32() != 0x00004550 || reader.ReadUInt16() != 0x8664)
-            throw new InvalidDataException(YabauseExceptions.DownloadedCoreWrongArchitecture());
+            throw new InvalidDataException(ExternalCoreExceptions.DownloadedCoreWrongArchitecture());
     }
 
     private static string Hash(string path)

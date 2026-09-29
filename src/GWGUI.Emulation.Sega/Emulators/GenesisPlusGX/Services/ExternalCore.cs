@@ -4,7 +4,6 @@ using System.Security.Cryptography;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
-using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Functions;
 
@@ -62,7 +61,7 @@ internal sealed class ExternalCore : IEmulatorCore
         var media = ResolveConfiguredMedia(configuration);
         foreach (var item in media)
             if (!File.Exists(item.Path))
-                throw new FileNotFoundException(GenesisPlusGXExceptions.MediaNotFound(), item.Path);
+                throw new FileNotFoundException(ExternalCoreExceptions.MediaNotFound(), item.Path);
 
         var sourceCorePath = ResolveCorePath(_corePath);
         using (var stream = File.OpenRead(sourceCorePath))
@@ -80,7 +79,7 @@ internal sealed class ExternalCore : IEmulatorCore
         Directory.CreateDirectory(isolatedCoreDirectory);
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
-        var contentPath = PrepareContentPath(media, contentDirectory);
+        var contentPath = PrepareContentPath(media);
         _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
             configuration.Options ?? new Dictionary<string, string>());
 
@@ -90,14 +89,14 @@ internal sealed class ExternalCore : IEmulatorCore
             var apiVersion = Export<ExternalCoreApi.GetApiVersion>(
                 ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
-                throw new NotSupportedException(GenesisPlusGXExceptions.UnsupportedApiVersion(apiVersion));
+                throw new NotSupportedException(ExternalCoreExceptions.UnsupportedApiVersion(apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
             if (!string.Equals(libraryName, GenesisPlusGXConstants.LibraryName,
                     StringComparison.OrdinalIgnoreCase))
-                throw new InvalidDataException(GenesisPlusGXExceptions.LibraryIdentityMismatch(libraryName));
+                throw new InvalidDataException(ExternalCoreExceptions.LibraryIdentityMismatch(libraryName));
             if (!info.NeedFullPath)
-                throw new InvalidDataException(GenesisPlusGXExceptions.FullContentPathsRequired());
+                throw new InvalidDataException(ExternalCoreExceptions.FullContentPathsRequired());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
             SupportedContentExtensions = (Marshal.PtrToStringUTF8(info.ValidExtensions) ?? string.Empty)
@@ -105,6 +104,7 @@ internal sealed class ExternalCore : IEmulatorCore
                     StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            ValidateConfiguredExtensions(SupportedContentExtensions, media.Select(item => item.Path));
             ValidateExtension(contentPath);
 
             Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);
@@ -133,11 +133,11 @@ internal sealed class ExternalCore : IEmulatorCore
             if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
-                    throw new InvalidOperationException(GenesisPlusGXExceptions.StartWithoutMediaUnsupported());
+                    throw new InvalidOperationException(ExternalCoreExceptions.StartWithoutMediaUnsupported());
                 _gameLoaded = loadGame(0);
             }
             else _gameLoaded = LoadGame(loadGame, contentPath);
-            if (!_gameLoaded) throw new InvalidOperationException(GenesisPlusGXExceptions.ContentRefused());
+            if (!_gameLoaded) throw new InvalidOperationException(ExternalCoreExceptions.ContentRefused());
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
         }
@@ -152,19 +152,24 @@ internal sealed class ExternalCore : IEmulatorCore
         MachineConfiguration configuration) => (configuration.Media ?? [])
         .Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 
-    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
-        string contentDirectory)
+    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media)
     {
         if (media.Count == 0) return null;
-        if (media.Count == 1 || media.Any(item => item.Category != MediaCategory.Floppy))
-            return Path.GetFullPath(media[0].Path);
-        if (media.Count > ExternalCoreConstants.MaximumPlaylistEntries)
-            throw new ArgumentOutOfRangeException(nameof(media),
-                GenesisPlusGXExceptions.PlaylistLimitExceeded());
-        var playlist = Path.Combine(contentDirectory, ExternalCoreConstants.PlaylistName);
-        File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)),
-            new System.Text.UTF8Encoding(false));
-        return playlist;
+        if (media.Count > 1)
+            throw new InvalidOperationException(ExternalCoreExceptions.ContentRefused());
+        return Path.GetFullPath(media[0].Path);
+    }
+
+    internal static void ValidateConfiguredExtensions(IReadOnlySet<string> supportedExtensions,
+        IEnumerable<string?> paths)
+    {
+        foreach (var path in paths)
+        {
+            if (path is null) continue;
+            var extension = Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);
+            if (extension.Length == 0 || !supportedExtensions.Contains(extension))
+                throw new InvalidDataException(ExternalCoreExceptions.UnsupportedContentExtension(extension));
+        }
     }
 
     private static void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
@@ -175,7 +180,7 @@ internal sealed class ExternalCore : IEmulatorCore
         if (!File.Exists(sourcePath)) throw new FileNotFoundException(null, sourcePath);
         var firmware = FirmwareCatalog.Inspect(sourcePath);
         if (!firmware.IsKnown || firmware.ExpectedFileNames is not { Count: > 0 })
-            throw new InvalidDataException(GenesisPlusGXExceptions.ContentRefused());
+            throw new InvalidDataException(ExternalCoreExceptions.ContentRefused());
         foreach (var expectedName in firmware.ExpectedFileNames)
         {
             var targetPath = Path.Combine(systemDirectory, expectedName);
@@ -226,45 +231,45 @@ internal sealed class ExternalCore : IEmulatorCore
     };
 
     public void RunFrame() => (_run
-        ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))();
+        ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized()))();
     public void HardReset()
     {
         var configuration = _configuration
-            ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized());
+            ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized());
         var sessionDirectory = _sessionDirectory
-            ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized());
+            ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized());
         var saveDirectory = _saveDirectory;
         Dispose();
         Initialize(configuration, sessionDirectory, saveDirectory);
     }
     public void SoftReset() => (_reset
-        ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))();
+        ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized()))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
     }
     public void InsertMedia(string path) => (_host
-        ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))
+        ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized()))
         .DiskControl.Insert(path);
     public void EjectMedia() => (_host
-        ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))
+        ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized()))
         .DiskControl.Eject();
     public void SelectDisk(int index) => (_host
-        ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))
+        ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized()))
         .DiskControl.Select(index);
 
     public byte[] SaveState()
     {
         var size = (_getSerializedSize
-            ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))();
+            ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized()))();
         if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)
-            throw new InvalidOperationException(GenesisPlusGXExceptions.InvalidStateSize(size));
+            throw new InvalidOperationException(ExternalCoreExceptions.InvalidStateSize(size));
         var state = new byte[(int)size];
         var buffer = Marshal.AllocHGlobal(state.Length);
         try
         {
             if (!_serialize!(buffer, size))
-                throw new InvalidOperationException(GenesisPlusGXExceptions.StateSaveFailed());
+                throw new InvalidOperationException(ExternalCoreExceptions.StateSaveFailed());
             Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);
         }
         finally { Marshal.FreeHGlobal(buffer); }
@@ -273,20 +278,20 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void LoadState(ReadOnlySpan<byte> state)
     {
-        if (state.IsEmpty) throw new ArgumentException(GenesisPlusGXExceptions.StateEmpty(), nameof(state));
+        if (state.IsEmpty) throw new ArgumentException(ExternalCoreExceptions.StateEmpty(), nameof(state));
         var bytes = state.ToArray();
         var buffer = Marshal.AllocHGlobal(bytes.Length);
         try
         {
             Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);
             if (!_unserialize!(buffer, (nuint)bytes.Length))
-                throw new InvalidOperationException(GenesisPlusGXExceptions.StateRestoreFailed());
+                throw new InvalidOperationException(ExternalCoreExceptions.StateRestoreFailed());
         }
         finally { Marshal.FreeHGlobal(buffer); }
     }
 
     public void SetOption(string key, string value) => (_host
-        ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotInitialized()))
+        ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotInitialized()))
         .SetOption(key, value);
 
     public void Stop()
@@ -300,7 +305,7 @@ internal sealed class ExternalCore : IEmulatorCore
         if (path is null) return;
         var extension = Path.GetExtension(path).TrimStart(MediaConstants.ExtensionPrefix);
         if (!SupportedContentExtensions.Contains(extension))
-            throw new InvalidDataException(GenesisPlusGXExceptions.UnsupportedContentExtension(extension));
+            throw new InvalidDataException(ExternalCoreExceptions.UnsupportedContentExtension(extension));
     }
 
     private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)
@@ -317,13 +322,13 @@ internal sealed class ExternalCore : IEmulatorCore
     }
 
     private T Export<T>(string name) where T : Delegate => (_library
-        ?? throw new InvalidOperationException(GenesisPlusGXExceptions.CoreNotLoaded())).Resolve<T>(name);
+        ?? throw new InvalidOperationException(ExternalCoreExceptions.CoreNotLoaded())).Resolve<T>(name);
 
     private static string ResolveCorePath(string path)
     {
         if (!Path.IsPathFullyQualified(path))
-            throw new ArgumentException(GenesisPlusGXExceptions.CorePathNotAbsolute(), nameof(path));
-        if (!File.Exists(path)) throw new FileNotFoundException(GenesisPlusGXExceptions.CoreNotFound(), path);
+            throw new ArgumentException(ExternalCoreExceptions.CorePathNotAbsolute(), nameof(path));
+        if (!File.Exists(path)) throw new FileNotFoundException(ExternalCoreExceptions.CoreNotFound(), path);
         return path;
     }
 

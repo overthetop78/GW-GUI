@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Controller.Joypad"><value>Геймпад Sega</value></data>
+  <data name="Emulation.Sega.Controller.Keyboard"><value>Клавиатура Sega</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000Joystick"><value>SG-1000 джойстик</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000IiJoypad"><value>SG-1000 II джойстик</value></data>
+  <data name="Emulation.Sega.Controller.SegaSc3000Keyboard"><value>SC-3000 клавиатура</value></data>
+  <data name="Emulation.Sega.Controller.SegaMasterSystemController"><value>Master System контроллер</value></data>
+  <data name="Emulation.Sega.Controller.SegaGameGearController"><value>Game Gear контроллер</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveThreeButton"><value>Mega Drive трехкнопочный контроллер</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveSixButton"><value>Mega Drive шестикнопочный контроллер</value></data>
+  <data name="Emulation.Sega.Controller.SegaArcadePowerStickSixButton"><value>Arcade Power Stick шестикнопка</value></data>
+  <data name="Emulation.Sega.Controller.SegaSaturnController"><value>Saturn контроллер</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastController"><value>Dreamcast контроллер</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMouse"><value>Dreamcast мышь</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastKeyboard"><value>Dreamcast клавиатура</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastLightGun"><value>Dreamcast легкий пистолет</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastFishingController"><value>Контроллер рыболовства</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastArcadeStick"><value>Dreamcast аркадная палка</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastTwinStick"><value>Dreamcast двойная палка</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMaracas"><value>Maracas контроллер</value></data>
+</root>

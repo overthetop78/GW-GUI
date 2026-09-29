@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Controller.Joypad"><value>Sega-Gamepad</value></data>
+  <data name="Emulation.Sega.Controller.SegaSc3000Keyboard"><value>SC-3000 Tastatur</value></data>
+  <data name="Emulation.Sega.Controller.SegaMasterSystemController"><value>Master System Regler</value></data>
+  <data name="Emulation.Sega.Controller.SegaGameGearController"><value>Game Gear Regler</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveThreeButton"><value>Mega Drive Drei-Tasten-Steuerung</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveSixButton"><value>Mega Drive Sechs-Tasten-Steuerung</value></data>
+  <data name="Emulation.Sega.Controller.SegaArcadePowerStickSixButton"><value>Arcade Power Stick Sechs-Knopf</value></data>
+  <data name="Emulation.Sega.Controller.SegaSaturnController"><value>Saturn Regler</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastController"><value>Dreamcast Regler</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMouse"><value>Dreamcast Maus</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastKeyboard"><value>Dreamcast Tastatur</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastLightGun"><value>Dreamcast Leichte Pistole</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastFishingController"><value>Fischereikontrolleur</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastTwinStick"><value>Dreamcast Doppelstock</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMaracas"><value>Maracas Regler</value></data>
+  <data name="Emulation.Sega.Controller.Keyboard"><value>Sega keyboard</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000Joystick"><value>SG-1000 joystick</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000IiJoypad"><value>SG-1000 II joypad</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastArcadeStick"><value>Dreamcast arcade stick</value></data>
+</root>

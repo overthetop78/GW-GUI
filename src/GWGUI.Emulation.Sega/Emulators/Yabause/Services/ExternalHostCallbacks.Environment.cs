@@ -3,7 +3,6 @@ using GWGUI.Emulation.Sega.Emulators.Yabause.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Factories;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Functions;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Services;
-using GWGUI.Emulation.Sega.Emulators.Yabause.Exceptions;
 
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
@@ -40,7 +39,7 @@ internal sealed partial class ExternalHostCallbacks
                     {
                         ExternalCoreInteropConstants.PixelFormatXrgb8888 => EmulationPixelFormat.Xrgb8888,
                         ExternalCoreInteropConstants.PixelFormatRgb565 => EmulationPixelFormat.Rgb565,
-                    var value => throw new NotSupportedException(YabauseExceptions.UnsupportedPixelFormat(value))
+                    var value => throw new NotSupportedException(ExternalCoreExceptions.UnsupportedPixelFormat(value))
                     };
                     return true;
                 case ExternalCoreApiConstants.GetCoreOptionsVersion:
@@ -251,7 +250,7 @@ internal sealed partial class ExternalHostCallbacks
             var option = OptionCatalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
             if (option is null || option.Values.Count == 0) continue;
             if (!option.Values.Any(value => value.Value.Equals(configuredValue, StringComparison.Ordinal)))
-                throw new InvalidDataException(YabauseExceptions.InvalidOptionValue(configuredValue, key));
+                throw new InvalidDataException(ExternalCoreExceptions.InvalidOptionValue(configuredValue, key));
         }
     }
 

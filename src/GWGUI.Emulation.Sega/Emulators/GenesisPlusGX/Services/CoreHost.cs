@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Factories;
@@ -47,7 +46,7 @@ public static class CoreHost
                             var session = reader.ReadString();
                             var saves = CoreHostProtocol.ReadString(reader);
                             var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions)
-                                ?? throw new InvalidDataException(GenesisPlusGXExceptions.HostConfigurationInvalid());
+                                ?? throw new InvalidDataException(ExternalCoreExceptions.HostConfigurationInvalid());
                             core = new ExternalCore(corePath);
                             core.Initialize(configuration, session, saves);
                             writer.Write(true);
@@ -95,7 +94,7 @@ public static class CoreHost
                         case HostCommand.SetOption: EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString()); WriteSuccess(writer); break;
                         case HostCommand.SelectDisk: EnsureCore(core).SelectDisk(reader.ReadInt32()); WriteSuccess(writer); break;
                         case HostCommand.Dispose: core?.Dispose(); core = null; WriteSuccess(writer); break;
-                        default: throw new InvalidDataException(GenesisPlusGXExceptions.UnknownHostCommand((byte)command));
+                        default: throw new InvalidDataException(ExternalCoreExceptions.UnknownHostCommand((byte)command));
                     }
                 }
                 catch (Exception error)
@@ -115,6 +114,6 @@ public static class CoreHost
         finally { core?.Dispose(); }
     }
 
-    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(GenesisPlusGXExceptions.HostNotInitialized());
+    private static ExternalCore EnsureCore(ExternalCore? core) => core ?? throw new InvalidOperationException(ExternalCoreExceptions.HostNotInitialized());
     private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);
 }

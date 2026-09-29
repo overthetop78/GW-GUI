@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Controller.Joypad"><value>Χειριστήριο Sega</value></data>
+  <data name="Emulation.Sega.Controller.Keyboard"><value>Πληκτρολόγιο Sega</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000Joystick"><value>SG-1000 χειριστήριο</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000IiJoypad"><value>SG-1000 II joypad (πλάκα)</value></data>
+  <data name="Emulation.Sega.Controller.SegaSc3000Keyboard"><value>SC-3000 πληκτρολόγιο</value></data>
+  <data name="Emulation.Sega.Controller.SegaMasterSystemController"><value>Master System ελεγκτής</value></data>
+  <data name="Emulation.Sega.Controller.SegaGameGearController"><value>Game Gear ελεγκτής</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveThreeButton"><value>Mega Drive ελεγκτής τριών κουμπιών</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveSixButton"><value>Mega Drive ελεγκτής έξι κουμπιών</value></data>
+  <data name="Emulation.Sega.Controller.SegaArcadePowerStickSixButton"><value>Arcade Power Stick έξι κουμπιά</value></data>
+  <data name="Emulation.Sega.Controller.SegaSaturnController"><value>Saturn ελεγκτής</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastController"><value>Dreamcast ελεγκτής</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMouse"><value>Dreamcast ποντίκι</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastKeyboard"><value>Dreamcast πληκτρολόγιο</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastLightGun"><value>Dreamcast ελαφρύ όπλο</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastFishingController"><value>Ελεγκτής αλιείας</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastArcadeStick"><value>Dreamcast arcade stick (σταθερό arcade stick)</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastTwinStick"><value>Dreamcast δίδυμη ράβδος</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMaracas"><value>Maracas ελεγκτής</value></data>
+</root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Modèle de Mega-CD</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Activer le Mega-CD</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Activer le 32X</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Activé</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Désactivé</value></data>
+  <data name="Emulation.Sega.MasterSystem.Variant"><value>Modèle de Master System</value></data>
+  <data name="Emulation.Sega.MasterSystem.Variant.SmsI"><value>Master System I</value></data>
+  <data name="Emulation.Sega.MasterSystem.Variant.SmsII"><value>Master System II</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>Lunettes 3D</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Activé</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Désactivé</value></data>
+  <data name="Emulation.Sega.MegaDrive.Model"><value>Modèle de Mega Drive</value></data>
+  <data name="Emulation.Sega.MegaDrive.Model.ModelI"><value>Mega Drive I</value></data>
+  <data name="Emulation.Sega.MegaDrive.Model.ModelII"><value>Mega Drive II</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region"><value>Région</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Automatique</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.NtscU"><value>NTSC-U</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.NtscJ"><value>NTSC-J</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Pal"><value>PAL</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Secam"><value>SECAM</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>Norme vidéo</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Automatique</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.50Hz"><value>50 Hz</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.60Hz"><value>60 Hz</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.I"><value>Mega-CD I</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.II"><value>Mega-CD II</value></data>
+</root>

@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sega.Emulators.Yabause.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Constants;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Factories;
@@ -74,13 +73,13 @@ internal sealed class ExternalDiskControl
         var previousIndex = _getImageIndex!();
         var wasEjected = _getEjectState!();
         if (!wasEjected && !_setEjectState!(true))
-            throw new InvalidOperationException(YabauseExceptions.MediaEjectFailed());
+            throw new InvalidOperationException(ExternalCoreExceptions.MediaEjectFailed());
         try
         {
             if (!_setImageIndex!((uint)index))
-                throw new InvalidOperationException(YabauseExceptions.RequestedDiskSelectionFailed());
+                throw new InvalidOperationException(ExternalCoreExceptions.RequestedDiskSelectionFailed());
             if (!_setEjectState!(false))
-                throw new InvalidOperationException(YabauseExceptions.RequestedMediaInsertFailed());
+                throw new InvalidOperationException(ExternalCoreExceptions.RequestedMediaInsertFailed());
         }
         catch
         {
@@ -112,13 +111,13 @@ internal sealed class ExternalDiskControl
 
     internal void Insert(string path)
     {
-        if (!File.Exists(path) && !Directory.Exists(path)) throw new FileNotFoundException(YabauseExceptions.MediaNotFound(), path);
+        if (!File.Exists(path) && !Directory.Exists(path)) throw new FileNotFoundException(ExternalCoreExceptions.MediaNotFound(), path);
         EnsureAvailable();
         var wasEjected = _getEjectState!();
-        if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(YabauseExceptions.MediaEjectFailed());
+        if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(ExternalCoreExceptions.MediaEjectFailed());
         var count = _getImageCount!();
         var index = count == 0 ? 0u : Math.Min(_getImageIndex!(), count - 1);
-        if (count == 0 && !_addImage!()) throw new InvalidOperationException(YabauseExceptions.MediaSlotCreationFailed());
+        if (count == 0 && !_addImage!()) throw new InvalidOperationException(ExternalCoreExceptions.MediaSlotCreationFailed());
 
         var nativePath = Marshal.StringToCoTaskMemUTF8(Path.GetFullPath(path));
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
@@ -126,9 +125,9 @@ internal sealed class ExternalDiskControl
         try
         {
             Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath }, game, false);
-            if (!_replaceImage!(index, game)) throw new InvalidOperationException(YabauseExceptions.MediaRefused());
-            if (!_setImageIndex!(index)) throw new InvalidOperationException(YabauseExceptions.MediaSelectionFailed());
-            if (!_setEjectState!(false)) throw new InvalidOperationException(YabauseExceptions.MediaInsertFailed());
+            if (!_replaceImage!(index, game)) throw new InvalidOperationException(ExternalCoreExceptions.MediaRefused());
+            if (!_setImageIndex!(index)) throw new InvalidOperationException(ExternalCoreExceptions.MediaSelectionFailed());
+            if (!_setEjectState!(false)) throw new InvalidOperationException(ExternalCoreExceptions.MediaInsertFailed());
             inserted = true;
         }
         finally
@@ -142,17 +141,17 @@ internal sealed class ExternalDiskControl
     internal void Eject()
     {
         EnsureAvailable();
-        if (!_setEjectState!(true)) throw new InvalidOperationException(YabauseExceptions.MediaEjectFailed());
+        if (!_setEjectState!(true)) throw new InvalidOperationException(ExternalCoreExceptions.MediaEjectFailed());
     }
 
     private void EnsureAvailable()
     {
-        if (!IsAvailable) throw new InvalidOperationException(YabauseExceptions.DiskControlUnavailable());
+        if (!IsAvailable) throw new InvalidOperationException(ExternalCoreExceptions.DiskControlUnavailable());
     }
 
     private static T Delegate<T>(nint pointer) where T : Delegate
     {
-        if (pointer == 0) throw new InvalidOperationException(YabauseExceptions.DiskControlIncomplete());
+        if (pointer == 0) throw new InvalidOperationException(ExternalCoreExceptions.DiskControlIncomplete());
         return Marshal.GetDelegateForFunctionPointer<T>(pointer);
     }
 

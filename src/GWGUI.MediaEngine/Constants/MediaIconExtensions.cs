@@ -23,6 +23,11 @@ public static class MediaIconExtensions
     public const string Elf = ".elf";
     public const string App = ".app";
     public const string Mv = ".mv";
+    public const string Mdx = ".mdx";
+    public const string Sgd = ".sgd";
+    public const string Smd = ".smd";
+    public const string Bms = ".bms";
+    public const string SixtyEightK = ".68k";
     public const string Sgx = ".sgx";
     public const string Iso = ".iso";
     public const string Gcm = ".gcm";

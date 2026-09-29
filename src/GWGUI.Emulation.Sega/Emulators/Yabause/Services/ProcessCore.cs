@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Sega.Emulators.Yabause.Exceptions;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Enums;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Constants;
 using GWGUI.Emulation.Sega.Emulators.Yabause.Contracts;
@@ -72,9 +71,9 @@ internal sealed class ProcessCore : IEmulatorCore
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_initialized) throw new InvalidOperationException(YabauseExceptions.ProcessAlreadyInitialized());
+        if (_initialized) throw new InvalidOperationException(ExternalCoreExceptions.ProcessAlreadyInitialized());
         if (!File.Exists(_hostExecutablePath))
-            throw new FileNotFoundException(YabauseExceptions.HostExecutableNotFound(), _hostExecutablePath);
+            throw new FileNotFoundException(ExternalCoreExceptions.HostExecutableNotFound(), _hostExecutablePath);
 
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
@@ -100,7 +99,7 @@ internal sealed class ProcessCore : IEmulatorCore
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
             _process = Process.Start(startInfo)
-                ?? throw new InvalidOperationException(YabauseExceptions.ProcessStartFailed());
+                ?? throw new InvalidOperationException(ExternalCoreExceptions.ProcessStartFailed());
             EmulationChildProcessLifetime.Attach(_process);
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
@@ -138,7 +137,7 @@ internal sealed class ProcessCore : IEmulatorCore
         CoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
         LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response,
-            _videoMap ?? throw new InvalidOperationException(YabauseExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
+            _videoMap ?? throw new InvalidOperationException(ExternalCoreExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
         foreach (var chunk in CoreHostProtocol.ReadAudio(Response))
         {
             LatestAudioChunk = chunk;
@@ -156,9 +155,9 @@ internal sealed class ProcessCore : IEmulatorCore
     public void HardReset()
     {
         var configuration = _configuration
-            ?? throw new InvalidOperationException(YabauseExceptions.ProcessNotInitialized());
+            ?? throw new InvalidOperationException(ExternalCoreExceptions.ProcessNotInitialized());
         var sessionDirectory = _sessionDirectory
-            ?? throw new InvalidOperationException(YabauseExceptions.ProcessNotInitialized());
+            ?? throw new InvalidOperationException(ExternalCoreExceptions.ProcessNotInitialized());
         var saveDirectory = _saveDirectory;
         ReleaseHost();
         Initialize(configuration, sessionDirectory, saveDirectory);
@@ -269,9 +268,9 @@ internal sealed class ProcessCore : IEmulatorCore
     private void Begin(HostCommand command)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_connectionFailed) throw new InvalidOperationException(YabauseExceptions.ProcessUnavailable());
+        if (_connectionFailed) throw new InvalidOperationException(ExternalCoreExceptions.ProcessUnavailable());
         if (command != HostCommand.Initialize && !_initialized)
-            throw new InvalidOperationException(YabauseExceptions.ProcessNotInitialized());
+            throw new InvalidOperationException(ExternalCoreExceptions.ProcessNotInitialized());
         _writer!.Write((byte)command);
     }
 
@@ -291,8 +290,8 @@ internal sealed class ProcessCore : IEmulatorCore
             _connectionFailed = true;
             TerminateProcess();
             throw new InvalidOperationException(timedOut
-                ? YabauseExceptions.ProcessTimeout()
-                : YabauseExceptions.ProcessCommunicationFailed(exit), error);
+                ? ExternalCoreExceptions.ProcessTimeout()
+                : ExternalCoreExceptions.ProcessCommunicationFailed(exit), error);
         }
     }
 
@@ -303,7 +302,7 @@ internal sealed class ProcessCore : IEmulatorCore
         await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
         var length = BinaryPrimitives.ReadInt32LittleEndian(header);
         if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException(YabauseExceptions.InvalidResponseLength(length));
+            throw new InvalidDataException(ExternalCoreExceptions.InvalidResponseLength(length));
         var response = GC.AllocateUninitializedArray<byte>(length);
         await _pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);
         return response;
@@ -331,6 +330,6 @@ internal sealed class ProcessCore : IEmulatorCore
         catch (Exception) { }
     }
 
-    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(YabauseExceptions.HostResponseUnavailable());
+    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(ExternalCoreExceptions.HostResponseUnavailable());
 
 }
