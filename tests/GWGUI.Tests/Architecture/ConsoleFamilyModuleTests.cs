@@ -23,6 +23,10 @@ using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Functions;
+using FlycastExternalCore = GWGUI.Emulation.Sega.Emulators.Flycast.Services.ExternalCore;
+using FlycastExternalCoreConstants = GWGUI.Emulation.Sega.Emulators.Flycast.Constants.ExternalCoreConstants;
+using YabauseExternalCore = GWGUI.Emulation.Sega.Emulators.Yabause.Services.ExternalCore;
+using YabauseExternalCoreConstants = GWGUI.Emulation.Sega.Emulators.Yabause.Constants.ExternalCoreConstants;
 using GWGUI.Emulation.Sony.Modules;
 using GWGUI.Emulation.Microsoft.Modules;
 
@@ -737,6 +741,58 @@ public sealed class ConsoleFamilyModuleTests
         };
 
         Assert.Throws<InvalidOperationException>(() => ExternalCore.PrepareContentPath(media));
+    }
+
+    [Fact]
+    public void SegaOpticalAdaptersOrderMediaAndValidateFloppyPlaylists()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-media-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            var media = new[]
+            {
+                new MediaConfiguration(Path.Combine(root, "disc-b.cue"), MediaCategory.CompactDisc,
+                    EmulationMediaSlot.Cd0, MountOrder: 2),
+                new MediaConfiguration(Path.Combine(root, "disc-a.cue"), MediaCategory.CompactDisc,
+                    EmulationMediaSlot.Cd0, MountOrder: 1),
+                new MediaConfiguration(Path.Combine(root, "ejected.cue"), MediaCategory.CompactDisc,
+                    EmulationMediaSlot.Cd0, IsInserted: false, MountOrder: 0)
+            };
+            var configuration = new MachineConfiguration(ModelConstants.Dreamcast, "flycast", Media: media);
+            var flycastOrdered = FlycastExternalCore.ResolveConfiguredMedia(configuration);
+            var yabauseOrdered = YabauseExternalCore.ResolveConfiguredMedia(configuration);
+            Assert.Equal([media[1], media[0]], flycastOrdered);
+            Assert.Equal([media[1], media[0]], yabauseOrdered);
+            Assert.Equal(Path.GetFullPath(media[1].Path),
+                FlycastExternalCore.PrepareContentPath(flycastOrdered, root));
+            Assert.Equal(Path.GetFullPath(media[1].Path),
+                YabauseExternalCore.PrepareContentPath(yabauseOrdered, root));
+
+            var flycastFloppies = Enumerable.Range(0, FlycastExternalCoreConstants.MaximumPlaylistEntries)
+                .Select(index => new MediaConfiguration(Path.Combine(root, $"flycast-{index}.dsk"),
+                    MediaCategory.Floppy, EmulationMediaSlot.Floppy0, MountOrder: index)).ToArray();
+            var flycastPlaylist = FlycastExternalCore.PrepareContentPath(flycastFloppies, root);
+            Assert.Equal(Path.Combine(root, FlycastExternalCoreConstants.PlaylistName), flycastPlaylist);
+            Assert.Equal(flycastFloppies.Select(item => Path.GetFullPath(item.Path)),
+                File.ReadAllLines(flycastPlaylist!));
+            Assert.Throws<ArgumentOutOfRangeException>(() => FlycastExternalCore.PrepareContentPath(
+                flycastFloppies.Append(flycastFloppies[0]).ToArray(), root));
+
+            var yabauseFloppies = Enumerable.Range(0, YabauseExternalCoreConstants.MaximumPlaylistEntries)
+                .Select(index => new MediaConfiguration(Path.Combine(root, $"yabause-{index}.dsk"),
+                    MediaCategory.Floppy, EmulationMediaSlot.Floppy0, MountOrder: index)).ToArray();
+            var yabausePlaylist = YabauseExternalCore.PrepareContentPath(yabauseFloppies, root);
+            Assert.Equal(Path.Combine(root, YabauseExternalCoreConstants.PlaylistName), yabausePlaylist);
+            Assert.Equal(yabauseFloppies.Select(item => Path.GetFullPath(item.Path)),
+                File.ReadAllLines(yabausePlaylist!));
+            Assert.Throws<ArgumentOutOfRangeException>(() => YabauseExternalCore.PrepareContentPath(
+                yabauseFloppies.Append(yabauseFloppies[0]).ToArray(), root));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
     }
 
     [Fact]

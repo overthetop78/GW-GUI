@@ -163,7 +163,7 @@ jamais une feuille terminale.
     - [x] Ajouter le romset Atomiswave externe `https://archive.org/download/atomiswave_20220115/`, conserver son archive et extraire le ZIP interne dans `F:\Retro\Sega\Roms\Atomiswave` sans modifier le fichier source.
     - [ ] Compléter la validation Sega avec un média et, si le cœur l'exige, un firmware pour chaque famille Sega restante, en conservant les archives et les fichiers source dans leurs sous-dossiers.
   - [ ] Tester chaque chaîne cœur/média avec le corpus Sega.
-    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour couvrir les formats réellement acceptés par chaque cœur, la sélection de firmware et les erreurs de média, avec suppression des dossiers temporaires dans `finally`.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour couvrir les formats réellement acceptés par chaque cœur, l'ordre des médias optiques, les playlists disquette, leur limite et les erreurs de média, avec suppression des dossiers temporaires dans `finally`.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs`, `SettingsFunctions.Builders.cs` et `SettingsHelpDictionary.cs` pour afficher un chemin de ROM système externe pour Saturn, Dreamcast et Mega Drive avec Mega-CD activé, en réutilisant l'aide générique de l'App.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier ces trois champs de firmware et supprimer le dossier temporaire dans `finally`.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger `last-minute.sms` avec le cœur Genesis Plus GX, vérifier une frame vidéo et libérer le cœur ainsi que le dossier de session dans `finally`.
