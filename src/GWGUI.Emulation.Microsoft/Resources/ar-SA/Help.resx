@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>الضوابط على ما إذا كان GW GUI يعزف العينات الصوتية التي تولدها الآلة المُحتَزَنة</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>صوت مُمكن أو مُنع</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>يصور المعالج الصوتي الذي قدمته آلة مايكروسوفت المختارة</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>معالج الصوت الذي تستخدمه آلة مايكروسوفت المختارة</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>يُختارُ المخرج الصوتيَ ويندوزَ يَستعملُ لِعْب الصوتِ مِنْ هذه الآلةِ المُحتَزَمةِ.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>ناتج الصوت المستخدم GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>يصور التردد الأصلي للمعالجة من آلة ميكروسوفت المختارة</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>تواتر المعالج الأصلي</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>يصور نموذج المعالج الذي استخدمه جهاز ميكروسوفت المختار</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>معالج يستخدمه جهاز ميكروسوفت المختار</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>النظام ROM هو جزء من تعريف الميكروسوفت المختار</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>النظام ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>يصور المرشد الذي تم اختياره للآلة لا يوجد أيّ نواة متوافقة مع مايكروسوفت</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>مرشدة اختيرت لهذه الآلة</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>يحدد آلة مايكروسوفت التي تظهر معداتها وأجهزة الإعلام</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>نموذج آلة مايكروسوفت يتم تشكيله</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>يصور RAM (تقدّم بواسطة آلة (مايكروسوفت</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>المبلغ RAM (تقدّم بواسطة آلة (مايكروسوفت</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>يصور مجهز الفيديو الذي قدمته آلة مايكروسوفت المختارة</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>معالج فيديو يستخدمه جهاز ميكروسوفت المختار</value></data>
+</root>

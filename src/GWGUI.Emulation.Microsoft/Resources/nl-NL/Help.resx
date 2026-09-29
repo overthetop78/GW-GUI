@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Controleert of GW GUI speelt de audio samples gegenereerd door de emuleerde machine.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Geëmuleerde geluiden inschakelen of uitschakelen.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Toont de audioprocessor die door de geselecteerde Microsoft machine wordt geleverd.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Audioprocessor gebruikt door de geselecteerde Microsoft machine.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Selecteer de Windows audio-uitvoer gebruikt om geluid af te spelen vanaf deze geëmuleerde machine.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Audio-uitvoer gebruikt door GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Toont de originele processorfrequentie van de geselecteerde Microsoft-machine.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Originele processorfrequentie.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Toont het processormodel dat door de geselecteerde Microsoft-machine wordt gebruikt.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Processor gebruikt door de geselecteerde Microsoft machine.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Het systeem ROM maakt deel uit van de geselecteerde Microsoft machine definitie.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Systeem ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Toont de emulator die voor de machine is geselecteerd. Er is nog geen compatibele Microsoft-kern geïnstalleerd.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Emulator geselecteerd voor deze machine.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Identificeert de Microsoft machine waarvan de hardware en media instellingen worden weergegeven.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Microsoft machine model wordt geconfigureerd.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Toont de RAM geleverd door de geselecteerde Microsoft machine.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Bedrag van RAM geleverd door de geselecteerde Microsoft machine.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Toont de videoprocessor die door de geselecteerde Microsoft machine wordt geleverd.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Videoprocessor gebruikt door de geselecteerde Microsoft machine.</value></data>
+</root>

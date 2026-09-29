@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>是否控制 GW GUI 播放由模拟机器生成的音频样本。</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>启用或禁用模拟声音 。</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>显示由所选微软机提供的音频处理器。</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>被选中的微软机器使用的音频处理器.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>选择用于播放此仿真机所发声音的 Windows 音频输出 。</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>使用的音频输出 GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>显示所选微软机的原始处理器频率。</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>原始处理器频率.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>显示所选微软机使用的处理器模型。</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>被选中的微软机器使用的处理器.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>系统 ROM 是所选微软机器定义的一部分。</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>系统 ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>显示为机器所选择的模拟器。 尚未安装兼容的微软核心 。</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>为此机器选择了模拟器 。</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>识别显示硬件和媒体设置的微软机.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>正在配置微软机器模型 。</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>显示 RAM 由所选微软机提供.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>数额 RAM 由所选微软机提供.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>显示由所选微软机提供的视频处理器。</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>被选中的微软机器使用的视频处理器.</value></data>
+</root>

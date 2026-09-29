@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Ελέγχει αν GW GUI παίζει τα δείγματα ήχου που παράγονται από το μηχάνημα που προσομοιάζει.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Ενεργοποίηση ή απενεργοποίηση μιμούμενου ήχου.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Εμφανίζει τον επεξεργαστή ήχου που παρέχεται από την επιλεγμένη μηχανή της Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>επεξεργαστή ήχου που χρησιμοποιείται από το επιλεγμένο μηχάνημα της Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Επιλέγει την έξοδο ήχου των Windows που χρησιμοποιείται για να παίξει ήχο από αυτό το μηχάνημα που προσομοιάζει.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Εμφανίζει την αρχική συχνότητα επεξεργαστή του επιλεγμένου μηχανήματος Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Αρχική συχνότητα επεξεργαστή.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Εμφανίζει το μοντέλο επεξεργαστή που χρησιμοποιείται από την επιλεγμένη μηχανή Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Επεξεργαστής που χρησιμοποιείται από την επιλεγμένη μηχανή Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Το σύστημα ROM είναι μέρος του επιλεγμένου ορισμού μηχανών της Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Σύστημα ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Εμφανίζει τον εξομοιωτή που επιλέχθηκε για το μηχάνημα. Δεν έχει εγκατασταθεί ακόμα συμβατός πυρήνας Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Ο εξομοιωτής επιλέχθηκε για αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Προσδιορίζει τη μηχανή Microsoft της οποίας εμφανίζονται οι ρυθμίσεις υλικού και μέσων.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Το μοντέλο μηχανής της Microsoft διαμορφώνεται.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Εμφανίζει το RAM παρέχεται από την επιλεγμένη μηχανή Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Ποσό RAM παρέχεται από την επιλεγμένη μηχανή Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Εμφανίζει τον επεξεργαστή βίντεο που παρέχεται από την επιλεγμένη μηχανή Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Επεξεργασία βίντεο που χρησιμοποιείται από το επιλεγμένο μηχάνημα της Microsoft.</value></data>
+</root>

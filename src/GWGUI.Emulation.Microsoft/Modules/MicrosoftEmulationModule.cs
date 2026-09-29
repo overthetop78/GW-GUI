@@ -45,7 +45,8 @@ public sealed class MicrosoftEmulationModule : IEmulationModule,
             EmulationMachineTab.Keyboard => model.HasKeyboard,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
-                || model.SupportsCassetteDrive || model.SupportsCartridgeSlot,
+                || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
+                || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
         return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs),

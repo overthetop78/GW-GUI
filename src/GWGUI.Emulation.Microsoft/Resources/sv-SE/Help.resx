@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Kontroller om GW GUI spelar ljudprover som genereras av den emulerade maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Aktivera eller inaktivera emulerat ljud.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Visar ljudprocessorn som tillhandahålls av den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Audioprocessor som används av den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Väljer Windows ljudutgång som används för att spela ljud från denna emulerade maskin.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Audio-utgång som används av GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Visar den ursprungliga processorfrekvensen för den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Ursprunglig processorfrekvens.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Visar processormodellen som används av den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Processor som används av den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Systemet ROM är en del av den valda Microsoft-maskindefinitionen.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Systemsystem ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Visar emulatorn som valts för maskinen. Ingen kompatibel Microsoft kärna är installerad ännu.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Emulator vald för denna maskin.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Identifierar Microsoft-maskinen vars hårdvara och medieinställningar visas.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Microsoft maskin modell konfigureras.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Visar upp RAM som tillhandahålls av den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Mängden av RAM som tillhandahålls av den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Visar videoprocessorn som tillhandahålls av den valda Microsoft-maskinen.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Videoprocessor som används av den valda Microsoft-maskinen.</value></data>
+</root>

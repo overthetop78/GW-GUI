@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>제어 여부 GW GUI 에뮬레이션 기계에 의해 생성 된 오디오 샘플을 재생합니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>, 또는 분리된 소리를 낼 수 있습니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>선택한 Microsoft 기계에 의해 제공되는 오디오 프로세서를 표시합니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>선택한 Microsoft 기계에 의해 사용되는 오디오 프로세서.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>이 에뮬레이션 머신에서 사운드를 재생하는 데 사용되는 Windows 오디오 출력을 선택합니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>에 의해 사용되는 오디오 출력 GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>선택된 Microsoft 기계의 원래 프로세서 주파수를 표시합니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>본래 가공업자 빈도.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>선택한 Microsoft 기계에 의해 사용되는 프로세서 모델을 표시합니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>선택한 Microsoft 기계에 의해 사용되는 프로세서.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>시스템 ROM 선택된 Microsoft 기계 정의의 일부입니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>시스템 ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>기계를 선택된 에뮬레이터를 표시합니다. 호환 가능한 Microsoft 코어는 아직 설치되지 않습니다.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>이 기계를 위해 선택된 유화제.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>하드웨어 및 미디어 설정이 표시된 Microsoft Machine을 식별합니다.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Microsoft 기계 모델 구성.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>전시 RAM 선택된 Microsoft 기계에 의해 제공.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>의 금액 RAM 선택된 Microsoft 기계에 의해 제공.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>선택한 Microsoft 기계에 의해 제공된 비디오 프로세서를 표시합니다.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>선택된 Microsoft 기계에 의해 사용되는 비디오 프로세서.</value></data>
+</root>

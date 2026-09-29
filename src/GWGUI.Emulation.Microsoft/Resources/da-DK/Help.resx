@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Kontrollerer om GW GUI spiller lydprøverne genereret af den emulerede maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Aktivér eller deaktivér emuleret lyd.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Viser lydprocessoren som leveres af den valgte Microsoft-maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Audio processor, der bruges af den valgte Microsoft maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Vælger Windows lydudgang, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Lydoutput brugt af GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Viser den oprindelige processorfrekvens for den valgte Microsoft-maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Original processorfrekvens.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Viser processormodellen som bruges af den valgte Microsoft-maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Processor brugt af den valgte Microsoft-maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Systemet ROM er en del af den valgte Microsoft maskine definition.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>System ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Viser emulatoren valgt til maskinen. Ingen kompatibel Microsoft-kerne er installeret endnu.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Emulator valgt til denne maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Identificerer Microsoft-maskinen, hvis hardware og medieindstillinger vises.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Microsoft maskine model er konfigureret.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Viser RAM leveres af den valgte Microsoft-maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Beløb RAM leveres af den valgte Microsoft-maskine.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Viser den videoprocessor, som den valgte Microsoft-maskine leverer.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Videoprocessor, der anvendes af den valgte Microsoft-maskine.</value></data>
+</root>

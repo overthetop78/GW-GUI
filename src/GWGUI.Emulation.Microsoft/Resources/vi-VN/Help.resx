@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Điều khiển GW GUI chơi các mẫu âm thanh được tạo ra bởi máy mô phỏng.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Kích hoạt hoặc tắt âm thanh đã mô phỏng.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Hiển thị bộ xử lý âm thanh được cung cấp bởi máy Microsoft đã chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Bộ xử lý âm thanh được dùng bởi máy Microsoft đã chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Chọn kết xuất âm thanh Windows dùng để phát ra âm thanh từ máy mô phỏng này.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Kết xuất âm thanh được dùng bởi GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Hiển thị tần số xử lý gốc của máy Microsoft đã chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Tần số xử lý gốc.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Hiển thị mô hình xử lý được sử dụng bởi máy Microsoft đã chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Bộ xử lý được dùng bởi máy Microsoft đã chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Hệ thống ROM là một phần của định nghĩa của Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Hệ thống ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Hiển thị trình giả lập đã chọn cho máy tính. Chưa cài đặt lõi Microsoft tương thích.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Mô phỏng máy này đã được chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Nhận diện được máy Microsoft có phần cứng và thiết lập phương tiện truyền thông được hiển thị.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Mô hình máy Microsoft đang được cấu hình.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Hiển thị RAM được cung cấp bởi máy Microsoft đã được chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Số lượng RAM được cung cấp bởi máy Microsoft đã được chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Hiển thị bộ xử lý video được cung cấp bởi máy Microsoft đã chọn.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Bộ xử lý phim được sử dụng bởi máy Microsoft đã chọn.</value></data>
+</root>

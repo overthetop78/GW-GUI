@@ -11,13 +11,10 @@ internal static class SettingsHelpDictionary
             [SettingsConstants.Model + ".frequency"] = "Emulation.Microsoft.Help.Cpu.Frequency",
             [SettingsConstants.Ram] = "Emulation.Microsoft.Help.Memory.Ram",
             [SettingsConstants.FirmwareIntegrated] = "Emulation.Microsoft.Help.Firmware.Integrated",
-            [SettingsConstants.VideoResolution] = "Emulation.Microsoft.Help.Video.Resolution",
-            [SettingsConstants.VideoMonitor] = "Emulation.Microsoft.Help.Video.Monitor",
-            [SettingsConstants.VideoIntensity] = "Emulation.Microsoft.Help.Video.Intensity",
-            [SettingsConstants.VideoCrop] = "Emulation.Microsoft.Help.Video.Crop",
             [SettingsConstants.AudioEnabled] = "Emulation.Microsoft.Help.Audio.Enabled",
             [SettingsConstants.AudioOutput] = "Emulation.Microsoft.Help.Audio.Output",
             [SettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency",
-            [SettingsConstants.FloppySound] = "Emulation.Microsoft.Help.Audio.FloppySound"
+            [SettingsConstants.Model + ".video"] = "Emulation.Microsoft.Help.Video.Model",
+            [SettingsConstants.Model + ".audio"] = "Emulation.Microsoft.Help.Audio.Model"
         };
 }

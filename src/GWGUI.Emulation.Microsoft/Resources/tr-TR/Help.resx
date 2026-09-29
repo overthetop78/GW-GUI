@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Kontroller, kontroller, GW GUI Emated makine tarafından üretilen ses örneklerini oynar.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Enable veya devre dışı bırakılan ses.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Seçilen Microsoft makinesi tarafından sağlanan ses işlemcisini görüntüler.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Seçilen Microsoft makinesi tarafından kullanılan Audio işlemci.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Bu emated makineden ses çıkarmak için kullanılan Windows ses çıktısını seçin.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Ses çıktısı tarafından kullanılan GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Seçilen Microsoft makinesinin orijinal işlemci frekansına görüntüleyin.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Orijinal işlemci frekansı.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Seçilen Microsoft makinesi tarafından kullanılan işlemci modelini gösterir.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Seçilen Microsoft makinesi tarafından kullanılan işlemler.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Sistem sistemi ROM Seçilen Microsoft makine tanımının bir parçasıdır.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Sistem Sistem Sistemi ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Makine için seçilen emülatörü görüntüler. henüz uyumlu olmayan Microsoft çekirdeği kuruldu.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Bu makine için seçilen fotoğrafçılar.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Donanım ve medya ayarları görüntülenen Microsoft makinesini belirtir.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Microsoft makine modeli yapılandırılıyor.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Ekranlar The Displays the Displays the Displays the Displays the RAM Seçilen Microsoft makinesi tarafından sağlanan.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>$ 1 RAM Seçilen Microsoft makinesi tarafından sağlanan.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Seçilen Microsoft makinesi tarafından sağlanan video işlemcisini görüntüler.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Seçilen Microsoft makinesi tarafından kullanılan video işlemci.</value></data>
+</root>

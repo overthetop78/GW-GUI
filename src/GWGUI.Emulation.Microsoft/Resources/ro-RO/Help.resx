@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Controlează dacă GW GUI Redă probele audio generate de maşina emulată.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Activați sau dezactivați sunetul emulat.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Afișează procesorul audio furnizat de mașina Microsoft selectată.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Procesor audio folosit de mașina Microsoft selectată.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Selectează ieşirea audio a Windows-ului folosită pentru a reda sunetul din această maşină emulată.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Ieșire audio utilizată de GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Afișează frecvența originală a procesorului Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Frecvenţa procesorului original.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Afișează modelul procesorului utilizat de mașina Microsoft selectată.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Procesor utilizat de către Microsoft ales.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Sistemul ROM face parte din definiția Microsoft a mașinii selectate.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Sistem ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Afișează emulatorul selectat pentru mașină. Nu este instalat încă niciun miez compatibil Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Emulator selectat pentru această mașină.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Identifică aparatul Microsoft ale cărui setări hardware și media sunt afișate.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Se configurează modelul Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Afișează RAM furnizate de mașina Microsoft selectată.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Cantitatea de RAM furnizate de mașina Microsoft selectată.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Afișează procesorul video furnizat de mașina Microsoft selectată.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Procesor video folosit de către mașina Microsoft selectată.</value></data>
+</root>

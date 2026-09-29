@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Mengendalikan apakah GW GUI memainkan sampel audio yang dihasilkan oleh mesin yang terukur.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Aktifkan atau matikan suara yang tertimulasi.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Tampilkan prosesor audio yang disediakan oleh mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Prosesor audio yang digunakan oleh mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Memilih keluaran audio Windows yang digunakan untuk memainkan suara dari mesin yang teremulasi ini.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Keluaran audio yang dipakai oleh GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Tampilkan frekuensi prosesor asli dari mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Frekuensi prosesor asli.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Tampilkan model prosesor yang digunakan oleh mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Prosesor yang digunakan oleh mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Sistem ROM adalah bagian dari definisi mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Sistem ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Tampilkan emulator yang dipilih untuk mesin. Belum ada kecocokan dengan Microsoft core.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Emulator dipilih untuk mesin ini.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Mengidentifikasi mesin Microsoft yang pengaturan perangkat keras dan media ditampilkan.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Model mesin Microsoft sedang dikonfigurasi.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Tampilkan RAM disediakan oleh mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Jumlah RAM disediakan oleh mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Tampilkan prosesor video yang disediakan oleh mesin Microsoft yang dipilih.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Video prosesor yang digunakan oleh mesin Microsoft yang dipilih.</value></data>
+</root>

@@ -616,3 +616,20 @@ les tests et le comportement complet correspondant.
 - [x] Régénérer toutes les cultures à partir de `en-US`.
   - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Sony/Resources --clean-only` après le déplacement afin de supprimer les anciennes clés monolithiques et garder les traductions synchronisées.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier la séparation des clés, l'absence des invariants dans les cultures et l'absence de références Sega, Nintendo, Amstrad ou Caprice32.
+
+## 30. Tranche Microsoft — catalogue Xbox et supports vérifiés
+
+- [x] Publier les deux machines Microsoft sans reprendre des caractéristiques d'une autre famille.
+  - [x] Modifier `src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Constants/ModelConstants.cs`, `ModelContracts.cs` et `ModelCatalog.cs` pour décrire Xbox et Xbox 360 avec leurs CPU, fréquence, GPU, audio, RAM, ROM système et ports réels.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier les modèles, leurs composants invariants et l'absence de constantes Sega, Amstrad ou Nintendo.
+- [x] Exposer seulement les médias Microsoft effectivement pris en charge par MediaEngine et MediaFileSystems.
+  - [x] Modifier `src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Constants/StorageConstants.cs`, `StorageFunctions.cs`, `MediaFunctions.cs`, `ConfigurationFunctions.cs` et `MediaEnums.cs` pour publier le lecteur optique XDVDFS Xbox avec les extensions MediaEngine existantes et aucun lecteur disquette, cassette ou cartouche.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` et `tests/GWGUI.Tests/Media/XdvdfsMediaFormatTests.cs` pour vérifier le lecteur, la conversion, la visualisation et l'exploration XDVDFS avec nettoyage dans `finally`.
+- [x] Retirer les réglages copiés qui ne correspondent pas au matériel Xbox.
+  - [x] Modifier `src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Constants/SettingsConstants.cs`, `SettingsDescriptionTextConstants.cs`, `SettingsDescriptionChoicesConstants.cs`, `SettingsHelpDictionary.cs` et `SettingsFunctions.cs` pour rendre CPU, GPU, audio, RAM et ROM informatifs et supprimer les choix de RAM, moniteur, intensité, recadrage et son de disquette inventés.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller les onglets contre les champs absents et conserver uniquement les options audio communes.
+- [x] Régénérer les ressources Microsoft sans nom de cœur fictif.
+  - [x] Modifier `src/GWGUI.Emulation.Microsoft/Resources/00-Base/*.resx`, `Resources/en-US/*.resx` et les cultures pour supprimer les erreurs et aides `MicrosoftCore`, puis répartir les clés dans les catégories existantes avant traduction.
+  - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Microsoft/Resources --retranslate-all` et modifier les tests pour vérifier les 28 cultures, les invariants en base et l'absence de textes Sega, Nintendo, Amstrad, Caprice32 ou MicrosoftCore.
+- [x] Conserver la limite de cœur tant qu'aucun cœur Microsoft vérifié n'est installé.
+  - [x] Modifier `docs/project/console-family-emulation.md` pour consigner l'absence de cœur Xbox/xemu ou Xbox 360/Xenia vérifié dans `F:\Retro` et laisser `CreateRuntimeAsync` refuser explicitement le démarrage au lieu de publier un adaptateur fictif.

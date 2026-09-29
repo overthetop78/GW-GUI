@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Contrôles GW GUI joue les échantillons audio générés par la machine émulée.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Activer ou désactiver le son émulé.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Affiche le processeur audio fourni par la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Processeur audio utilisé par la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Sélectionne la sortie audio de Windows utilisée pour jouer du son de cette machine émulée.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Sortie audio utilisée par GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Affiche la fréquence du processeur d'origine de la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Fréquence du processeur original.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Affiche le modèle de processeur utilisé par la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Processeur utilisé par la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Le système ROM fait partie de la définition de machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Système ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Affiche l'émulateur sélectionné pour la machine. Aucun noyau Microsoft compatible n'est encore installé.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Émulateur sélectionné pour cette machine.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Indique la machine Microsoft dont les paramètres matériels et multimédias sont affichés.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Modèle de machine Microsoft en cours de configuration.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Affiche la RAM fourni par la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Montant RAM fourni par la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Affiche le processeur vidéo fourni par la machine Microsoft sélectionnée.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Processeur vidéo utilisé par la machine Microsoft sélectionnée.</value></data>
+</root>

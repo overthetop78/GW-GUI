@@ -355,6 +355,120 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void MicrosoftCatalogContainsOnlyXboxHardwareWithFixedComponents()
+    {
+        var models = GWGUI.Emulation.Microsoft.Common.Machines.Common.Dictionaries.ModelCatalog.All;
+        Assert.Equal(["Xbox", "Xbox360"], models.Select(model => model.Id));
+        var xbox = Assert.Single(models, model => model.Id == "Xbox");
+        Assert.Equal(64 * 1024, xbox.RamKib);
+        Assert.Equal(["Intel Pentium III Coppermine"], xbox.Processors);
+        Assert.Equal("NVIDIA NV2A", xbox.VideoChip);
+        Assert.Equal("NVIDIA MCPX / AC'97", xbox.AudioChip);
+        Assert.True(xbox.HasBuiltInCompactDiscDrive);
+        Assert.True(xbox.SupportsCompactDiscDrive);
+        var xbox360 = Assert.Single(models, model => model.Id == "Xbox360");
+        Assert.Equal(512 * 1024, xbox360.RamKib);
+        Assert.False(xbox360.SupportsCompactDiscDrive);
+        Assert.DoesNotContain(models, model => model.BackendModel is
+            "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
+    }
+
+    [Fact]
+    public void MicrosoftStorageAndSettingsExposeOnlySupportedHardware()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-microsoft-settings-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new MicrosoftEmulationModuleFactory().Create(
+                new EmulationModuleContext(root, root, http));
+            foreach (var model in GWGUI.Emulation.Microsoft.Common.Machines.Common.Dictionaries.ModelCatalog.All)
+            {
+                var configuration = new GWGUI.Emulation.Microsoft.Common.Machines.Common.Contracts.MachineConfiguration(
+                    model.Id, "unavailable", Media: []);
+                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                    .DescribeStorageSettings(configuration);
+                if (model.Id == "Xbox")
+                {
+                    var optical = Assert.Single(storage.AvailableDevices,
+                        device => device.Slot == EmulationMediaSlot.Cd0);
+                    Assert.Equal([".iso"], optical.AcceptedExtensions);
+                }
+                else
+                    Assert.Empty(storage.AvailableDevices);
+                var fields = module.Describe(model.Id, configuration).Blocks
+                    .SelectMany(block => block.Fields).ToArray();
+                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution"
+                    or "configuration.videoMonitor" or "configuration.videoIntensity"
+                    or "configuration.videoCrop" or "configuration.floppySound");
+                Assert.Equal(EmulationSettingsEditor.Information,
+                    fields.Single(field => field.Id == "configuration.ramKib").Editor);
+                Assert.Equal($"{model.RamKib} KiB",
+                    fields.Single(field => field.Id == "configuration.ramKib").Value);
+                Assert.Equal(string.Join(" / ", model.Processors),
+                    fields.Single(field => field.Id == "configuration.model.cpu").Value);
+                Assert.Equal(model.VideoChip,
+                    fields.Single(field => field.Id == "configuration.model.video").Value);
+                Assert.Equal(model.AudioChip,
+                    fields.Single(field => field.Id == "configuration.model.audio").Value);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void MicrosoftResourceCatalogUsesCommonCategoriesAndNoUninstalledCoreText()
+    {
+        var root = RepositoryRoot();
+        var resources = Path.Combine(root, "src", "GWGUI.Emulation.Microsoft", "Resources");
+        var baseEntries = ReadEntries(Path.Combine(resources, "00-Base"));
+        var englishEntries = ReadEntries(Path.Combine(resources, "en-US"));
+        Assert.Contains("Emulation.Family.Microsoft", baseEntries.Keys);
+        Assert.Contains("Emulation.Microsoft.Model.Xbox", baseEntries.Keys);
+        Assert.Contains("Emulation.Microsoft.Model.Xbox360", baseEntries.Keys);
+        Assert.DoesNotContain(englishEntries.Keys, key => key == "Emulation.Family.Microsoft"
+            || key.StartsWith("Emulation.Microsoft.Model.", StringComparison.Ordinal));
+        Assert.DoesNotContain(englishEntries.Keys, key => key.Contains("MicrosoftCore",
+            StringComparison.OrdinalIgnoreCase));
+        Assert.DoesNotContain(englishEntries.Values, value => value.Contains("MicrosoftCore",
+            StringComparison.OrdinalIgnoreCase));
+        var files = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx")
+            .Select(Path.GetFileName).Order(StringComparer.Ordinal).ToArray();
+        foreach (var culture in Directory.EnumerateDirectories(resources)
+                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
+                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        {
+            Assert.False(File.Exists(Path.Combine(culture, "Emulation.resx")));
+            Assert.Equal(files, Directory.EnumerateFiles(culture, "*.resx")
+                .Select(Path.GetFileName).Order(StringComparer.Ordinal));
+            var entries = ReadEntries(culture);
+            Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal),
+                entries.Keys.Order(StringComparer.Ordinal));
+            Assert.DoesNotContain(entries.Values, value => value.Contains("MicrosoftCore",
+                StringComparison.OrdinalIgnoreCase));
+        }
+
+        static IReadOnlyDictionary<string, string> ReadEntries(string directory)
+        {
+            var result = new Dictionary<string, string>(StringComparer.Ordinal);
+            foreach (var path in Directory.EnumerateFiles(directory, "*.resx"))
+            {
+                var document = new XmlDocument();
+                document.Load(path);
+                foreach (var element in document.SelectNodes("/root/data")!.Cast<XmlElement>())
+                    result.Add(element.GetAttribute("name"),
+                        element.SelectSingleNode("value")?.InnerText ?? string.Empty);
+            }
+            return result;
+        }
+    }
+
+    [Fact]
     public void NintendoCoreOptionAdaptersForwardOnlyPersistedValues()
     {
         var input = new GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration(

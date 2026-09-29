@@ -13,4 +13,14 @@ public sealed record Model(
     bool HasBuiltInCartridgeSlot,
     bool SupportsCartridgeSlot,
     int ControllerPortCount = 2,
-    int MouseButtonCount = 2);
+    int MouseButtonCount = 0,
+    bool HasBuiltInCompactDiscDrive = false,
+    bool SupportsCompactDiscDrive = false,
+    IReadOnlyList<string>? CpuModels = null,
+    string? VideoChip = null,
+    string? AudioChip = null,
+    int RomKib = 0,
+    string? CpuFrequency = null)
+{
+    public IReadOnlyList<string> Processors => CpuModels ?? [];
+}
