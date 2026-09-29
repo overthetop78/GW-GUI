@@ -550,3 +550,9 @@ les tests et le comportement complet correspondant.
     - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.cs` pour afficher CPU, vidéo, audio et RAM comme informations invariantes, conserver seulement les réglages audio communs et laisser les options du cœur dans le dialogue générique.
   - [x] Vérifier les champs exposés dans chaque onglet.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour refuser les champs vidéo/RAM/son fictifs et vérifier les puces réelles du catalogue Nintendo.
+
+## 23. Tranche Nintendo — limites de cœurs vérifiées
+
+- [x] Refuser explicitement les modèles Nintendo sans adaptateur installé.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger `NotSupportedException` lors de la création Wii U ou Switch, au lieu de publier une configuration inexécutable.
+  - [x] Conserver ces modèles dans le catalogue matériel, sans inventer de cœur Cemu ou Ryujinx tant qu'un adaptateur vérifié n'est pas intégré.

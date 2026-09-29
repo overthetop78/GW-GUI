@@ -83,6 +83,8 @@ public sealed class ConsoleFamilyModuleTests
             var context = new EmulationModuleContext(root, root, http);
             var cases = new (IEmulationModule Module, string MachineId)[]
             {
+                (new NintendoEmulationModuleFactory().Create(context), NintendoModelConstants.WiiU),
+                (new NintendoEmulationModuleFactory().Create(context), NintendoModelConstants.Switch),
                 (new SonyEmulationModuleFactory().Create(context), "PsVita"),
                 (new MicrosoftEmulationModuleFactory().Create(context), "Xbox")
             };
