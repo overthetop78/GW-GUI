@@ -17,6 +17,7 @@ using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Models.Blocks;
+using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.Presenters.Conversion;
@@ -229,7 +230,19 @@ public sealed class AmstradCpcMediaFormatTests
                 .Select(value => (byte)(value % byte.MaxValue)).ToArray();
             var cases = new[]
             {
+                (Extension: DiskImageFileExtensions.Sms, FormatId: DiskImageFormatIds.SegaMasterSystem),
+                (Extension: DiskImageFileExtensions.Sg, FormatId: DiskImageFormatIds.SegaSg1000),
                 (Extension: DiskImageFileExtensions.Mv, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Md, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Mdx, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Sgd, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Smd, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Bms, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.SixtyEightK, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Gen, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Gg, FormatId: DiskImageFormatIds.SegaGameGear),
+                (Extension: DiskImageFileExtensions.ThirtyTwoX, FormatId: DiskImageFormatIds.SegaThirtyTwoX),
+                (Extension: DiskImageFileExtensions.Pce, FormatId: DiskImageFormatIds.NecPcEngine),
                 (Extension: DiskImageFileExtensions.Sgx, FormatId: DiskImageFormatIds.NecSuperGrafx)
             };
             foreach (var item in cases)
@@ -240,6 +253,14 @@ public sealed class AmstradCpcMediaFormatTests
 
                 var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
                 Assert.Equal(item.FormatId, document.FormatId);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry
+                    .CreateDescriptor(document);
+                Assert.Equal(MediaRepresentationKind.Blocks, visualization.RepresentationKind);
+                Assert.Equal(MediaVisualizationProgressUnit.BlockRange, visualization.ProgressUnit);
+                Assert.True(visualization.Elements.Count >= 2);
+                var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
+                Assert.Equal(blocks.Capacity,
+                    visualization.Elements.Sum(element => element.Length));
                 var explorer = new ConsoleCartridgeFileSystemReader();
                 Assert.Equal(2, explorer.Read(document, Volume(document)).Entries.Count);
 
@@ -248,8 +269,30 @@ public sealed class AmstradCpcMediaFormatTests
             }
 
             var supported = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+            Assert.Contains(DiskImageFileExtensions.Sms, supported);
+            Assert.Contains(DiskImageFileExtensions.Sg, supported);
             Assert.Contains(DiskImageFileExtensions.Mv, supported);
+            Assert.Contains(DiskImageFileExtensions.Md, supported);
+            Assert.Contains(DiskImageFileExtensions.Mdx, supported);
+            Assert.Contains(DiskImageFileExtensions.Sgd, supported);
+            Assert.Contains(DiskImageFileExtensions.Smd, supported);
+            Assert.Contains(DiskImageFileExtensions.Bms, supported);
+            Assert.Contains(DiskImageFileExtensions.SixtyEightK, supported);
+            Assert.Contains(DiskImageFileExtensions.Gen, supported);
+            Assert.Contains(DiskImageFileExtensions.Gg, supported);
+            Assert.Contains(DiskImageFileExtensions.ThirtyTwoX, supported);
+            Assert.Contains(DiskImageFileExtensions.Pce, supported);
             Assert.Contains(DiskImageFileExtensions.Sgx, supported);
+            var megaDrive = new BuiltInImageFormatCatalog().Formats.Single(format =>
+                format.Id == DiskImageFormatIds.SegaMegaDrive);
+            Assert.Equal(
+                [DiskImageFileExtensions.Md, DiskImageFileExtensions.Mdx,
+                 DiskImageFileExtensions.Sgd, DiskImageFileExtensions.Smd,
+                 DiskImageFileExtensions.Bms, DiskImageFileExtensions.SixtyEightK,
+                 DiskImageFileExtensions.Gen],
+                megaDrive.Extensions.Select(extension => extension.Extension));
+            Assert.Contains(MediaImageWriterIds.ConsoleCartridge,
+                MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
         }
         finally
         {

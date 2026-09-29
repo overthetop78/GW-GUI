@@ -218,11 +218,11 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour distinguer flux, image sectorielle, cartouche et optique.
   - [x] Vérifier les fichiers extraits.
     - [x] Vérifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs`; les artefacts sont créés puis supprimés dans `finally`.
-  - [ ] Rendre chaque média Sega utilisable dans les trois parcours de l'application.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Visualization/` pour produire une représentation visuelle des banques, blocs et pistes Sega réellement décodés, sans bloc noir fabriqué.
-    - [ ] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/` et les lecteurs optiques Sega pour exposer les entrées réelles dans l'Explorateur, avec leurs tailles et leurs noms.
-    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Conversion/` et les writers enregistrés pour permettre la conversion et l'export d'une ROM, d'une cartouche, d'une image CD ou d'un média arcade Sega uniquement vers les formats compatibles.
-    - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` ou créer le test média Sega autonome correspondant pour vérifier visualisation, exploration, conversion et suppression des artefacts dans `finally`.
+  - [x] Rendre chaque ROM Sega cartouche utilisable dans les trois parcours de l'application.
+    - [x] Conserver `src/GWGUI.MediaEngine/Images/Visualization/` comme représentation par blocs des banques réellement décodées, sans bloc noir fabriqué.
+    - [x] Conserver `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/` pour exposer chaque banque réelle avec sa taille et son nom.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour publier toutes les extensions Mega Drive déjà prises en charge par le lecteur et le writer.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier, avec suppression dans `finally`, la visualisation, l'exploration et la conversion/export des ROM Sega SG-1000, Master System, Mega Drive, Game Gear et 32X.
 
 ## 9. Nintendo, Sony, Microsoft et NEC — même ordre par famille
 
