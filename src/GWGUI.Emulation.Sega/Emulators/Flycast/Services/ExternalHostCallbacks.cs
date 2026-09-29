@@ -33,6 +33,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
     private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
     private ExternalCoreApi.UpdateCoreOptionsDisplay? _updateOptionsDisplay;
+    private OpenGlHardwareRenderContext? _hardwareRenderContext;
+    private ExternalCoreApi.HardwareContextReset? _coreContextReset;
+    private ExternalCoreApi.HardwareContextReset? _coreContextDestroy;
     private bool _suppressFullscreenChord;
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; } = new();
@@ -136,14 +139,25 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (_disposed) return;
         try
         {
+            if (_coreContextDestroy is not null && _hardwareRenderContext?.MakeCurrentForCore() == true)
+                _coreContextDestroy();
+        }
+        catch (Exception error)
+        {
+            AddDiagnostic(error.Message);
+        }
+        finally
+        {
+            try { _hardwareRenderContext?.Dispose(); }
+            catch (Exception error) { AddDiagnostic(error.Message); }
+            _hardwareRenderContext = null;
+            _coreContextReset = null;
+            _coreContextDestroy = null;
             foreach (var pointer in _nativeStrings.Values)
             {
                 try { Marshal.FreeCoTaskMem(pointer); }
                 catch (Exception) { }
             }
-        }
-        finally
-        {
             _nativeStrings.Clear();
             _keyboardEvent = null;
             _updateOptionsDisplay = null;

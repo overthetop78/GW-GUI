@@ -32,6 +32,12 @@ internal sealed partial class ExternalHostCallbacks
                     if (data != nint.Zero)
                         Marshal.WriteByte(data, ExternalCoreInteropConstants.NativeBooleanTrue);
                     return true;
+                case ExternalCoreApiConstants.GetPreferredHardwareRender:
+                    if (data == nint.Zero) return false;
+                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlContextType);
+                    return true;
+                case ExternalCoreApiConstants.SetHardwareRender:
+                    return ConfigureHardwareRender(data);
                 case ExternalCoreApiConstants.SetMessage:
                     return CaptureMessage(data, extended: false);
                 case ExternalCoreApiConstants.SetPixelFormat:
@@ -134,6 +140,43 @@ internal sealed partial class ExternalHostCallbacks
         catch
         {
             return false;
+        }
+    }
+
+    private bool ConfigureHardwareRender(nint data)
+    {
+        if (data == nint.Zero) return false;
+        var callback = Marshal.PtrToStructure<ExternalCoreApi.HardwareRenderCallback>(data);
+        if (callback.ContextType != OpenGlHardwareRenderContext.OpenGlContextType)
+            return false;
+
+        var context = new OpenGlHardwareRenderContext();
+        try
+        {
+            _coreContextReset = callback.ContextReset == nint.Zero
+                ? null
+                : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextReset);
+            _coreContextDestroy = callback.ContextDestroy == nint.Zero
+                ? null
+                : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy);
+            callback.GetCurrentFramebuffer = context.CurrentFramebufferCallback;
+            callback.GetProcAddress = context.ProcAddressCallback;
+            Marshal.StructureToPtr(callback, data, false);
+            _hardwareRenderContext = context;
+            if (_coreContextReset is not null)
+            {
+                if (!context.MakeCurrentForCore()) return false;
+                _coreContextReset();
+            }
+            return true;
+        }
+        catch
+        {
+            context.Dispose();
+            _hardwareRenderContext = null;
+            _coreContextReset = null;
+            _coreContextDestroy = null;
+            throw;
         }
     }
 

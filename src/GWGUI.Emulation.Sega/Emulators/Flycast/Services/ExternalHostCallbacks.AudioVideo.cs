@@ -13,8 +13,19 @@ internal sealed partial class ExternalHostCallbacks
 {
     private void HandleVideo(nint data, uint width, uint height, nuint pitch)
     {
-        if (data == nint.Zero || width == ExternalCoreInteropConstants.EmptyFrameDimension
+        if (width == ExternalCoreInteropConstants.EmptyFrameDimension
             || height == ExternalCoreInteropConstants.EmptyFrameDimension) return;
+        if (data == HardwareFrameBufferValid)
+        {
+            if (_hardwareRenderContext?.TryReadFramebuffer(checked((int)width), checked((int)height),
+                    out var hardwarePixels) != true) return;
+            LatestVideoFrame = new VideoFrame(hardwarePixels, checked((int)width), checked((int)height),
+                checked((int)width * HardwarePixelSize), EmulationPixelFormat.Xrgb8888,
+                _aspectRatio > 0 ? _aspectRatio : width / (float)height,
+                ++_videoSequence, _clock.Elapsed);
+            return;
+        }
+        if (data == nint.Zero) return;
         var byteCount = checked((int)(pitch * height));
         var pixels = new byte[byteCount];
         Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
@@ -22,6 +33,9 @@ internal sealed partial class ExternalHostCallbacks
             checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height,
             ++_videoSequence, _clock.Elapsed);
     }
+
+    private static readonly nint HardwareFrameBufferValid = new(-1);
+    private const int HardwarePixelSize = 4;
 
     internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)
     {

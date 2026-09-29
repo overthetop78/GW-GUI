@@ -51,6 +51,7 @@ internal static class ExternalCoreApiConstants
     internal const uint SetInputDescriptors = 11;
     internal const uint SetKeyboardCallback = 12;
     internal const uint SetDiskControl = 13;
+    internal const uint SetHardwareRender = 14;
     internal const uint GetVariable = 15;
     internal const uint SetVariables = 16;
     internal const uint GetVariableUpdate = 17;
@@ -78,6 +79,7 @@ internal static class ExternalCoreApiConstants
     internal const uint SetCoreOptions = 53;
     internal const uint SetCoreOptionsInternational = 54;
     internal const uint SetCoreOptionsDisplay = 55;
+    internal const uint GetPreferredHardwareRender = 56;
     internal const uint GetDiskControlVersion = 57;
     internal const uint SetDiskControlExtended = 58;
     internal const uint GetMessageInterfaceVersion = 59;

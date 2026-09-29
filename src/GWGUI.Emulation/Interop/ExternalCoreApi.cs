@@ -64,6 +64,9 @@ internal static class ExternalCoreApi
     internal delegate bool UpdateCoreOptionsDisplay();
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetEnvironment(EnvironmentCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void HardwareContextReset();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint HardwareGetCurrentFramebuffer();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint HardwareGetProcAddress(nint symbol);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetVideo(VideoCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetAudioSample(AudioSampleCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetAudioBatch(AudioBatchCallback callback);
@@ -125,6 +128,23 @@ internal static class ExternalCoreApi
     {
         internal Geometry Geometry;
         internal Timing Timing;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct HardwareRenderCallback
+    {
+        internal int ContextType;
+        internal nint ContextReset;
+        internal nint GetCurrentFramebuffer;
+        internal nint GetProcAddress;
+        [MarshalAs(UnmanagedType.I1)] internal bool Depth;
+        [MarshalAs(UnmanagedType.I1)] internal bool Stencil;
+        [MarshalAs(UnmanagedType.I1)] internal bool BottomLeftOrigin;
+        internal uint VersionMajor;
+        internal uint VersionMinor;
+        [MarshalAs(UnmanagedType.I1)] internal bool CacheContext;
+        internal nint ContextDestroy;
+        [MarshalAs(UnmanagedType.I1)] internal bool DebugContext;
     }
 
     [StructLayout(LayoutKind.Sequential)]
