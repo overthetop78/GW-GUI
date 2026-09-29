@@ -252,6 +252,7 @@ jamais une feuille terminale.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour couvrir les mêmes ROM Sega avec le cœur correspondant, vérifier une image décodée et libérer le cœur, les ressources graphiques et le dossier de session dans `finally`.
       - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM Game Gear `.gg` et une ROM Mark III `.sms` avec Genesis Plus GX, vérifier une image décodée et supprimer chaque session dans `finally`.
       - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger le disque de démarrage Saturn `.ccd` avec Yabause et `saturn_bios.bin`, vérifier une image décodée et supprimer la session dans `finally`.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour vérifier l'identité `Yabause` et l'extension `.ccd` publiée par le cœur lors du chargement Saturn réel.
 
 ## 9. Nintendo, Sony, Microsoft et NEC — même ordre par famille
 
