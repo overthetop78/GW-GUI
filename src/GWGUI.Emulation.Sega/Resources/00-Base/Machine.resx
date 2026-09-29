@@ -5,10 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Family.Sega"><value>Sega</value></data>
-  <data name="Emulation.Sega.Language"><value>Sega system language</value></data>
-  <data name="Emulation.Sega.Language.English"><value>English language</value></data>
-  <data name="Emulation.Sega.Language.French"><value>French</value></data>
-  <data name="Emulation.Sega.Language.Spanish"><value>Spanish</value></data>
   <data name="Emulation.Sega.Hardware"><value>Hardware</value></data>
   <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
   <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>

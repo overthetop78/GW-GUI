@@ -310,7 +310,7 @@ jamais une feuille terminale.
     - [ ] Modifier les catalogues `src/GWGUI.Emulation.<famille>/Resources/00-Base/*.resx` avec les noms réels, `Cartouche`, Sega Card/My Card, périphériques et erreurs.
   - [ ] Synchroniser les cultures avec Argos.
     - [ ] Modifier chaque catalogue `Resources/<culture>/*.resx` correspondant et vérifier qu'aucune clé `[... ]` n'est affichée.
-    - [ ] Refaire les ressources Sega à partir de la base canonique.
+    - [x] Refaire `src/GWGUI.Emulation.Sega/Resources/00-Base/*.resx` à partir de la base canonique en supprimant les clés traduisibles déjà présentes dans `en-US` et en conservant uniquement les valeurs invariantes.
       - [ ] Remplacer les messages d'erreur répétés des trois cœurs Sega par une fabrique commune et les clés génériques d'erreur de cœur externe.
       - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Exceptions/MachineExceptions.cs` pour contenir aussi la fabrique `ExternalCoreExceptions`, puis modifier les trois familles de services pour l'utiliser sans injecter le nom d'un cœur dans les phrases génériques.
       - [x] Répartir les clés de base dans `Resources/00-Base/*.resx`, notamment `Error.resx` et `Help.resx`, sans fichier monolithique ni dossier redondant.

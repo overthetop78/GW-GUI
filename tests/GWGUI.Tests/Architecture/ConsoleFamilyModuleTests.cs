@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Net.Http;
 using System.IO;
 using System.Text.Json;
+using System.Xml;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation;
@@ -1046,6 +1047,30 @@ public sealed class ConsoleFamilyModuleTests
         {
             Assert.True(FirmwareCatalog.TryIdentifyKnown(md5, out var identity));
             return identity;
+        }
+    }
+
+    [Fact]
+    public void SegaNeutralResourcesContainOnlyInvariantEntries()
+    {
+        var root = RepositoryRoot();
+        var baseDirectory = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources", "00-Base");
+        var fallbackDirectory = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources", "en-US");
+        foreach (var baseFile in Directory.EnumerateFiles(baseDirectory, "*.resx"))
+        {
+            var fallbackFile = Path.Combine(fallbackDirectory, Path.GetFileName(baseFile));
+            Assert.True(File.Exists(fallbackFile), fallbackFile);
+            var duplicateKeys = ResxKeys(baseFile).Intersect(ResxKeys(fallbackFile)).ToArray();
+            Assert.Empty(duplicateKeys);
+        }
+
+        static IReadOnlySet<string> ResxKeys(string path)
+        {
+            var document = new XmlDocument();
+            document.Load(path);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
+                .Select(element => element.GetAttribute("name"))
+                .ToHashSet(StringComparer.Ordinal);
         }
     }
 
