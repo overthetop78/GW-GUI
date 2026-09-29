@@ -367,11 +367,12 @@ jamais une feuille terminale.
       - [x] Modifier les catalogues `src/GWGUI.Emulation.Sega/Resources/00-Base/Core.resx`, `Resources/en-US/Core.resx` et les 28 cultures avec le script Argos pour ajouter la description PicoDrive sans recopier les noms invariants.
     - [x] Vérifier PicoDrive avec le DLL récupérable et un média 32X réel avant de publier le rattachement.
       - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger un `.32x` du corpus `F:\Retro\Sega\Roms`, vérifier l'extension et les options réellement annoncées par PicoDrive, vérifier une frame et libérer le cœur ainsi que le dossier temporaire dans `finally`.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour préparer un BIOS Mega-CD vérifié avec PicoDrive et contrôler son nom et son empreinte dans le répertoire système isolé, puis supprimer la session dans `finally`.
       - [x] Vérifier dans `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` que l'auto-découverte rattache PicoDrive au seul modèle publié et conserve Mega-CD/32X comme extensions de Mega Drive.
       - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller la matrice modèle/extension/cœur et refuser une combinaison non annoncée par le DLL.
-    - [ ] Valider la tranche PicoDrive dans les quatre parcours média avant de la déclarer terminée.
+    - [x] Valider la tranche PicoDrive dans les quatre parcours média avant de la déclarer terminée.
       - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir un exemplaire réel de chaque extension Sega publiée dans le visualiseur, lire leurs banques dans l'explorateur, convertir chaque sortie compatible et exporter le résultat, avec suppression de chaque artefact dans `finally`.
-      - [ ] Exécuter les tests ciblés Sega, commit la tranche fonctionnelle avec son test et son document mis à jour, puis lancer `scripts\\local-building.cmd --building=debug --modules=A` et vérifier `build\\Debug\\GW GUI\\gwgui.exe`.
+      - [x] Exécuter les tests ciblés Sega, commiter la tranche fonctionnelle avec son test et son document mis à jour, puis lancer `pwsh -NoProfile -File scripts/local-building/build.ps1 -Configuration Debug -AllModules` et vérifier `build\\Debug\\GW GUI\\gwgui.exe` avec les huit modules présents.
   - [ ] Évaluer les alternatives DLL sans inventer de contrat.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner BizHawk comme candidat C# à DLL de cœur (`IEmulator`, `IVideoProvider`, `ISoundProvider`) à vérifier dans une version récupérable, sans ajouter de DLL fictive au dépôt.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner VirtualGens (`gens.dll`) comme candidat natif à API C, avec son thread, ses entrées et son tampon vidéo à vérifier avant tout adaptateur.
@@ -389,6 +390,7 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer chaque empreinte connue au fichier système attendu, au modèle et au cœur compatible, en laissant le 32X indisponible pour Genesis Plus GX; modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller les profils standards et alternatifs.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour conserver les révisions régionales et les BIOS custom inconnus comme entrées non sélectionnables tant que leur empreinte, leur modèle et leur nom système attendu ne sont pas vérifiés.
   - [ ] Déclarer les profils PicoDrive vérifiés séparément.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour confirmer que PicoDrive utilise les mêmes noms de BIOS Mega-CD vérifiés que le catalogue Sega commun; aucune empreinte PicoDrive distincte n'est déclarée sans preuve dans le cœur ou le corpus local.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants Mega-CD PicoDrive réellement distincts lorsque leurs empreintes diffèrent, sans mélanger les profils des deux cœurs.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer les BIOS au cœur qui les accepte et refuser silencieusement les fichiers d'un autre profil.
   - [ ] Transmettre les BIOS sélectionnés aux adaptateurs.

@@ -2,6 +2,7 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Sega.Common.Contracts;
+using GWGUI.Emulation.Sega.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Interfaces;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
@@ -253,6 +254,50 @@ public sealed class SegaMachineLifecycleTests
             Assert.NotNull(core.LatestVideoFrame);
             Assert.True(core.LatestVideoFrame!.Width > 0);
             Assert.True(core.LatestVideoFrame.Height > 0);
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void PicoDriveStagesVerifiedMegaCdFirmwareWhenConfigured()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_32X_MEDIA");
+        var firmwarePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_MEGA_CD_BIOS");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
+            || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-firmware-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.MegaDrive, "picodrive")
+        {
+            Options = new Dictionary<string, string>
+            {
+                [SettingsConstants.FirmwarePath] = firmwarePath
+            },
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxExternalCore(corePath, "PicoDrive", false);
+        try
+        {
+            core.Initialize(configuration, session);
+            var stagedFirmware = Path.Combine(session, CoreDirectoryConstants.SystemDirectoryName,
+                FirmwareConstants.MegaCdEuropeBiosFileName);
+            Assert.True(File.Exists(stagedFirmware));
+            Assert.Equal(FirmwareConstants.MegaCdEuropeBiosMd5,
+                Convert.ToHexString(System.Security.Cryptography.MD5.HashData(File.ReadAllBytes(stagedFirmware)))
+                    .ToLowerInvariant());
         }
         finally
         {
