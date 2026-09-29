@@ -306,6 +306,59 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public async Task RealSegaCorpusCartridgesUseAllMediaPathsWhenCorpusIsProvided()
+    {
+        var corpus = Environment.GetEnvironmentVariable("GWGUI_SEGA_MEDIA_ROOT");
+        if (string.IsNullOrWhiteSpace(corpus) || !Directory.Exists(corpus)) return;
+
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-sega-real-media-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var cases = new[]
+            {
+                (Extension: DiskImageFileExtensions.Sms, FormatId: DiskImageFormatIds.SegaMasterSystem),
+                (Extension: DiskImageFileExtensions.Sg, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Mv, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Md, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Gg, FormatId: DiskImageFormatIds.SegaGameGear),
+                (Extension: DiskImageFileExtensions.ThirtyTwoX, FormatId: DiskImageFormatIds.SegaThirtyTwoX)
+            };
+            var engine = MediaEngineComposition.CreateDefault();
+            var reader = new ConsoleCartridgeReader();
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var found = 0;
+            foreach (var item in cases)
+            {
+                var sourcePath = Directory.EnumerateFiles(corpus, $"*{item.Extension}",
+                        SearchOption.AllDirectories).FirstOrDefault();
+                if (sourcePath is null) continue;
+                found++;
+
+                var document = await ReadAsync(reader, sourcePath);
+                Assert.Equal(item.FormatId, document.FormatId);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry
+                    .CreateDescriptor(document);
+                Assert.NotEmpty(visualization.Elements);
+                Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
+
+                var outputPath = Path.Combine(directory, $"export-{found}{item.Extension}");
+                var conversion = await engine.ConversionService.ConvertAsync(
+                    new MediaConversionRequest(document, outputPath, item.FormatId));
+                Assert.Equal([outputPath], conversion.ProducedFiles);
+                Assert.True(File.Exists(outputPath));
+                Assert.True(new FileInfo(outputPath).Length > 0);
+            }
+
+            Assert.Equal(cases.Length, found);
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task FamicomDiskSystemFacesRoundTripAndExposeFiles()
     {
         var directory = Path.Combine(Path.GetTempPath(), $"gwgui-fds-{Guid.NewGuid():N}");
