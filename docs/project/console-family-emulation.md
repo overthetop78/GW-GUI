@@ -459,3 +459,15 @@ les tests et le comportement complet correspondant.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que PicoDrive est proposé sur chaque modèle confirmé et reste absent des modèles non vérifiés.
   - [ ] Compiler et commiter la tranche complète.
     - [ ] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.
+
+## 17. Tranche Sega — variantes BIOS Saturn du corpus local
+
+- [x] Rendre sélectionnables uniquement les variantes Saturn validées par Yabause.
+  - [x] Ajouter les empreintes des variantes réellement présentes dans `F:\Retro\Sega\Roms`.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` et `Dictionaries/FirmwareCatalog.cs` pour déclarer les profils `3240872c70984b6cbfda1586cab68dbe` et `85ec9ca47d8f6807718151cbcca8b964`, avec le nom système `saturn_bios.bin` attendu par Yabause.
+  - [x] Vérifier leur chargement par le cœur Saturn.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour contrôler le staging et une frame Yabause avec chaque profil, puis libérer le cœur et le dossier temporaire dans `finally`.
+  - [x] Verrouiller l’identité des profils dans le test d’architecture.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger les deux empreintes et refuser toute autre empreinte Saturn.
+  - [ ] Compiler et commiter la tranche complète.
+    - [ ] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.

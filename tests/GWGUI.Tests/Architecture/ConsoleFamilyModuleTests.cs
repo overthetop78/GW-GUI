@@ -1078,6 +1078,8 @@ public sealed class ConsoleFamilyModuleTests
             (FirmwareConstants.MasterSystemJapanBiosMd5, ModelConstants.MasterSystem),
             (FirmwareConstants.GameGearBiosMd5, ModelConstants.GameGear),
             (FirmwareConstants.SaturnBiosMd5, ModelConstants.Saturn),
+            (FirmwareConstants.SaturnBiosEuropeUnitedStatesMd5, ModelConstants.Saturn),
+            (FirmwareConstants.SaturnBiosJapanV101Md5, ModelConstants.Saturn),
             (FirmwareConstants.DreamcastBiosMd5, ModelConstants.Dreamcast),
             (FirmwareConstants.NaomiBiosMd5, ModelConstants.Naomi),
             (FirmwareConstants.Naomi2BiosMd5, ModelConstants.Naomi2),

@@ -25,6 +25,10 @@ internal static class FirmwareConstants
     internal const string GameGearBiosMd5 = "672e104c3be3a238301aceffc3b23fd6";
     internal const string SaturnBiosFileName = "saturn_bios.bin";
     internal const string SaturnBiosMd5 = "af5828fdff51384f99b3c4926be27762";
+    internal const string SaturnBiosEuropeUnitedStatesMd5 = "3240872c70984b6cbfda1586cab68dbe";
+    internal const string SaturnBiosJapanV101Md5 = "85ec9ca47d8f6807718151cbcca8b964";
+    internal const string SaturnBiosEuropeUnitedStatesVersion = "Europe / United States";
+    internal const string SaturnBiosJapanV101Version = "Japan v1.01";
     internal const string DreamcastBiosDirectoryName = "dc";
     internal const string DreamcastBiosFileName = "dc_boot.bin";
     internal const string DreamcastBiosRelativeFileName = DreamcastBiosDirectoryName + "/" + DreamcastBiosFileName;

@@ -624,6 +624,56 @@ public sealed class SegaMachineLifecycleTests
         }
     }
 
+    [Fact]
+    public void YabauseLoadsVerifiedSaturnBiosVariantsWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_YABAUSE_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SATURN_MEDIA");
+        var firmwarePaths = new[]
+        {
+            Environment.GetEnvironmentVariable("GWGUI_SEGA_SATURN_BIOS_EUROPE"),
+            Environment.GetEnvironmentVariable("GWGUI_SEGA_SATURN_BIOS_JAPAN_V101")
+        };
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath)
+            || firmwarePaths.Any(path => string.IsNullOrWhiteSpace(path) || !File.Exists(path))) return;
+
+        foreach (var firmwarePath in firmwarePaths)
+        {
+            var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-yabause-bios-variants-tests",
+                Guid.NewGuid().ToString("N"));
+            var session = Path.Combine(root, "session");
+            Directory.CreateDirectory(session);
+            var configuration = new MachineConfiguration(ModelConstants.Saturn, "yabause")
+            {
+                Options = new Dictionary<string, string>
+                {
+                    [SettingsConstants.FirmwarePath] = firmwarePath!
+                },
+                Media =
+                [
+                    new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
+                        EmulationMediaSlot.Cd0, IsInserted: true)
+                ]
+            };
+            var core = new YabauseExternalCore(corePath);
+            try
+            {
+                core.Initialize(configuration, session);
+                for (var frame = 0; frame < 120 && core.LatestVideoFrame is null; frame++)
+                    core.RunFrame();
+                Assert.NotNull(core.LatestVideoFrame);
+                Assert.True(core.LatestVideoFrame!.Width > 0);
+                Assert.True(core.LatestVideoFrame.Height > 0);
+            }
+            finally
+            {
+                core.Dispose();
+                if (Directory.Exists(root)) Directory.Delete(root, true);
+            }
+        }
+    }
+
     private static Machine CreateMachine(Core core, string session) => new(
         Guid.NewGuid(),
         new MachineConfiguration(ModelConstants.MegaDrive, "genesis-plus-gx"),
