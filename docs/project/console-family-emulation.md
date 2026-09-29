@@ -584,3 +584,11 @@ les tests et le comportement complet correspondant.
   - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Dolphin/Functions/DolphinOptionFunctions.cs` pour transmettre uniquement les valeurs persistées et ne plus imposer un rendu logiciel absent du catalogue runtime.
 - [x] Verrouiller le passage des options au cœur.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que chaque adaptateur conserve exactement les options persistées, sans clé vidéo, moniteur, RAM ou lecteur de disquette ajoutée par le module; les 54 tests d'architecture passent.
+
+## 27. Tranche Nintendo — traductions régénérées depuis en-US
+
+- [x] Repartir du catalogue anglais réel du module.
+  - [x] Vérifier `src/GWGUI.Emulation.Nintendo/Resources/00-Base/Emulation.resx` et `Resources/en-US/Emulation.resx` pour conserver les messages des cœurs réellement présents et supprimer toute valeur copiée d'une autre famille.
+  - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Nintendo/Resources --retranslate-all` afin de régénérer chaque culture depuis `en-US` avec Argos.
+- [x] Empêcher les traductions provenant d'une autre famille.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que les catalogues Nintendo ne contiennent aucun texte Caprice32, Amstrad, Sega ou GenesisPlusGX et que chaque culture conserve les clés et paramètres de `en-US`.

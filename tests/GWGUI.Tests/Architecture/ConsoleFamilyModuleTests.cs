@@ -272,6 +272,11 @@ public sealed class ConsoleFamilyModuleTests
             StringComparison.Ordinal);
         Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Detailed"],
             StringComparison.Ordinal);
+        var forbiddenFamilyNames = new[] { "Caprice32", "Caprice 32", "Amstrad", "GenesisPlusGX", "Sega" };
+        Assert.DoesNotContain(baseEntries.Values, value => forbiddenFamilyNames.Any(name =>
+            value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+        Assert.DoesNotContain(englishEntries.Values, value => forbiddenFamilyNames.Any(name =>
+            value.Contains(name, StringComparison.OrdinalIgnoreCase)));
         foreach (var culture in Directory.EnumerateDirectories(resources)
                      .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
                          && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
@@ -280,6 +285,9 @@ public sealed class ConsoleFamilyModuleTests
             Assert.DoesNotContain(entries.Keys, key => obsolete.Contains(key));
             Assert.DoesNotContain("Mesen", entries["Emulation.Nintendo.Firmware.Integrated"],
                 StringComparison.Ordinal);
+            Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal), entries.Keys.Order(StringComparer.Ordinal));
+            Assert.DoesNotContain(entries.Values, value => forbiddenFamilyNames.Any(name =>
+                value.Contains(name, StringComparison.OrdinalIgnoreCase)));
         }
 
         static IReadOnlyDictionary<string, string> ResxEntries(string path)
