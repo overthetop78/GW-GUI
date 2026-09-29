@@ -605,6 +605,39 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void SegaOpticalStorageMatchesTheSelectedMachine()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-optical-storage-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var saturn = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Saturn));
+            var storageManager = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
+            var saturnDisc = Assert.Single(storageManager.DescribeStorageSettings(saturn).AvailableDevices,
+                device => device.Slot == EmulationMediaSlot.Cd0);
+            Assert.Equal([".cue", ".ccd", ".chd", ".iso"], saturnDisc.AcceptedExtensions);
+
+            var megaDrive = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive)) with
+            {
+                Options = new Dictionary<string, string>
+                {
+                    [SettingsConstants.MegaCdEnabled] = SettingsDescriptionFunctionsConstants.Enabled,
+                    [SettingsConstants.MegaCdModel] = ModelConstants.MegaCdI
+                }
+            };
+            var megaCd = Assert.Single(storageManager.DescribeStorageSettings(megaDrive).AvailableDevices,
+                device => device.Slot == EmulationMediaSlot.Cd0);
+            Assert.Equal([".cue", ".chd", ".iso", ".gdi", ".cdi"], megaCd.AcceptedExtensions);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaFirmwareSettingsExposeExternalRomPathsForDiscMachines()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-settings-tests",

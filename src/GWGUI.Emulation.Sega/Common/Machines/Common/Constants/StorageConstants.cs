@@ -22,6 +22,7 @@ internal static class StorageSettingsFunctionsConstants
     internal const string Mv = ".mv";
     internal const string Cpr = ".cpr";
     internal const string Cue = ".cue";
+    internal const string Ccd = DiskImageFileExtensions.Ccd;
     internal const string Chd = ".chd";
     internal const string Iso = ".iso";
     internal const string Gdi = ".gdi";

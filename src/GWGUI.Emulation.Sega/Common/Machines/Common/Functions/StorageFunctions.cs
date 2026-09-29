@@ -49,11 +49,15 @@ internal static class StorageSettingsFunctions
                 [StorageSettingsFunctionsConstants.Mv], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.SegaCardSlotLabel,
                 IsPermanent: model.HasBuiltInSegaCardSlot));
+        IReadOnlyList<string> opticalExtensions = model.Id == ModelConstants.Saturn
+            ? [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Ccd,
+               StorageSettingsFunctionsConstants.Chd, StorageSettingsFunctionsConstants.Iso]
+            : [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd,
+               StorageSettingsFunctionsConstants.Iso, StorageSettingsFunctionsConstants.Gdi,
+               StorageSettingsFunctionsConstants.Cdi];
         if (model.SupportsCompactDiscDrive || megaCdEnabled)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd,
-                 StorageSettingsFunctionsConstants.Iso, StorageSettingsFunctionsConstants.Gdi,
-                 StorageSettingsFunctionsConstants.Cdi], RequiresMachineRecreation: true,
+                opticalExtensions, RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
                 IsPermanent: model.HasBuiltInCompactDiscDrive));
         var configuredFloppies = Math.Clamp(OptionInt(options,
