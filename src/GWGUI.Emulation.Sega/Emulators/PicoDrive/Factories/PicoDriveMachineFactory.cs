@@ -20,8 +20,11 @@ internal sealed class PicoDriveMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         PicoDriveConstants.Id, PicoDriveConstants.DisplayName,
         PicoDriveConstants.DescriptionResourceKey,
-        new[] { ModelConstants.MasterSystem, ModelConstants.MegaDrive }
-            .ToHashSet(StringComparer.Ordinal));
+        new[]
+        {
+            ModelConstants.Sg1000, ModelConstants.Sc3000, ModelConstants.MasterSystem,
+            ModelConstants.MegaDrive, ModelConstants.GameGear
+        }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {

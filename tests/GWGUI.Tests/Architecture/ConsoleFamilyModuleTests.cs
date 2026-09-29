@@ -502,11 +502,12 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void SegaPicoDrivePublishesMegaDriveWithoutInventingAnAddonMachine()
+    public void SegaPicoDrivePublishesVerifiedModelsWithoutInventingAddonMachines()
     {
         var definition = Assert.Single(EmulatorCatalog.All,
             item => item.Id.Equals("picodrive", StringComparison.Ordinal));
-        Assert.Equal([ModelConstants.MasterSystem, ModelConstants.MegaDrive],
+        Assert.Equal([ModelConstants.GameGear, ModelConstants.MasterSystem, ModelConstants.MegaDrive,
+                ModelConstants.Sc3000, ModelConstants.Sg1000],
             definition.MachineIds.Order(StringComparer.Ordinal));
         Assert.DoesNotContain(ModelCatalog.All,
             model => model.Id is "MegaCd" or "ThirtyTwoX");

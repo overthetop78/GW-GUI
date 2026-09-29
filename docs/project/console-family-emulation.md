@@ -457,8 +457,8 @@ les tests et le comportement complet correspondant.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Factories/PicoDriveMachineFactory.cs` pour publier uniquement les modèles confirmés par le test, sans créer de nouvelle machine ni de dossier `Core`.
   - [x] Verrouiller la matrice d'adaptateurs.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que PicoDrive est proposé sur chaque modèle confirmé et reste absent des modèles non vérifiés.
-  - [ ] Compiler et commiter la tranche complète.
-    - [ ] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.
+  - [x] Compiler et commiter la tranche complète.
+    - [x] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.
 
 ## 17. Tranche Sega — variantes BIOS Saturn du corpus local
 
@@ -469,5 +469,17 @@ les tests et le comportement complet correspondant.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour contrôler le staging et une frame Yabause avec chaque profil, puis libérer le cœur et le dossier temporaire dans `finally`.
   - [x] Verrouiller l’identité des profils dans le test d’architecture.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger les deux empreintes et refuser toute autre empreinte Saturn.
-  - [ ] Compiler et commiter la tranche complète.
-    - [ ] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.
+  - [x] Compiler et commiter la tranche complète.
+    - [x] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.
+
+## 18. Tranche Sega — modèles 8 bits PicoDrive supplémentaires
+
+- [x] Publier PicoDrive pour chaque modèle 8 bits dont le chargement réel est confirmé.
+  - [x] Vérifier SG-1000, SC-3000 et Game Gear avec des médias du corpus local.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM `.sg`, une ROM `.sc` et une ROM Game Gear avec PicoDrive, contrôler le modèle, l'extension et une frame, puis libérer chaque cœur et dossier temporaire dans `finally`.
+  - [x] Rattacher uniquement les modèles qui passent ces chargements.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Factories/PicoDriveMachineFactory.cs` pour compléter `Definition.MachineIds` avec les modèles effectivement validés.
+  - [x] Verrouiller la matrice publiée.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger les modèles PicoDrive validés et refuser les modèles Sega non couverts par l’adaptateur.
+  - [x] Compiler et commiter la tranche complète.
+    - [x] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.

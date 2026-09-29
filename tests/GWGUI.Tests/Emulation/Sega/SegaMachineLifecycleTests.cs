@@ -302,6 +302,54 @@ public sealed class SegaMachineLifecycleTests
     }
 
     [Fact]
+    public void PicoDriveLoadsVerifiedEightBitMediaWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_CORE");
+        var cases = new[]
+        {
+            (ModelConstants.Sg1000, "GWGUI_SEGA_PICODRIVE_SG1000_MEDIA", "sg"),
+            (ModelConstants.Sc3000, "GWGUI_SEGA_PICODRIVE_SC3000_MEDIA", "sc"),
+            (ModelConstants.GameGear, "GWGUI_SEGA_PICODRIVE_GAME_GEAR_MEDIA", "gg")
+        };
+        if (string.IsNullOrWhiteSpace(corePath) || !File.Exists(corePath)
+            || cases.Any(item => !File.Exists(Environment.GetEnvironmentVariable(item.Item2) ?? string.Empty))) return;
+
+        foreach (var (model, variable, extension) in cases)
+        {
+            var mediaPath = Environment.GetEnvironmentVariable(variable)!;
+            var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-eight-bit-tests",
+                Guid.NewGuid().ToString("N"));
+            var session = Path.Combine(root, "session");
+            Directory.CreateDirectory(session);
+            var configuration = new MachineConfiguration(model, "picodrive")
+            {
+                Media =
+                [
+                    new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                        EmulationMediaSlot.Cartridge0, IsInserted: true)
+                ]
+            };
+            var core = new GenesisPlusGxExternalCore(corePath, "PicoDrive", false);
+            try
+            {
+                core.Initialize(configuration, session);
+                Assert.Equal("PicoDrive", core.CoreName);
+                Assert.Contains(extension, core.SupportedContentExtensions,
+                    StringComparer.OrdinalIgnoreCase);
+                core.RunFrame();
+                Assert.NotNull(core.LatestVideoFrame);
+                Assert.True(core.LatestVideoFrame!.Width > 0);
+                Assert.True(core.LatestVideoFrame.Height > 0);
+            }
+            finally
+            {
+                core.Dispose();
+                if (Directory.Exists(root)) Directory.Delete(root, true);
+            }
+        }
+    }
+
+    [Fact]
     public void PicoDriveStagesVerifiedMegaCdFirmwareWhenConfigured()
     {
         var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_CORE");
