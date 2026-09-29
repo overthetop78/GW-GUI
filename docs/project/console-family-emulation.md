@@ -115,23 +115,23 @@ jamais une feuille terminale.
   - [x] Ajouter le protocole stable.
     - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationMediaSlotConstants.cs` avec la valeur du second slot.
     - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationMediaSlot.cs` avec `Cartridge1` et son aller-retour protocolaire.
-- [ ] Persister les options de la machine Mega Drive.
-  - [ ] Ajouter les clés techniques dans les contrats existants.
+- [x] Persister les options de la machine Mega Drive.
+  - [x] Ajouter les clés techniques dans les contrats existants.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/ConfigurationContracts.cs` pour conserver le modèle Mega-CD, son activation désactivée par défaut et la présence du 32X sans ajouter de machine.
-  - [ ] Déclarer les valeurs constantes.
+  - [x] Déclarer les valeurs constantes.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/SettingsConstants.cs` avec les clés d'activation et de modèle Mega-CD, activation 32X, région et fréquence.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` avec les identifiants techniques des deux addons, sans texte utilisateur.
-  - [ ] Afficher les choix dans les blocs existants.
+  - [x] Afficher les choix dans les blocs existants.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs` pour le modèle Mega-CD I/II, sa coche d'activation désactivée par défaut et la coche 32X.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs` pour les clés d'aide de ces champs.
     - [x] Modifier les catalogues `src/GWGUI.Emulation.Sega/Resources/<culture>/` pour les libellés traduits avec Argos.
-  - [ ] Valider les combinaisons matérielles.
+  - [x] Valider les combinaisons matérielles.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/ConfigurationFunctions.cs` pour refuser un CD Mega-CD désactivé, une cartouche `.32x` sans 32X et une Sega Card verrouillée par SMS II/3-D Glasses.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/StorageFunctions.cs` pour n'ajouter le lecteur CD Mega-CD qu'après sa coche d'activation et exposer les extensions Mega Drive/32X.
-  - [ ] Transmettre seulement ce que connaît le cœur.
+  - [x] Transmettre seulement ce que connaît le cœur.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour filtrer les options persistées sur le catalogue renvoyé par le cœur, puis appliquer ce filtre après l'initialisation du cœur.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour refuser proprement chaque extension non supportée, sans construire ni accepter de playlist.
-  - [ ] Tester les ports et les addons.
+  - [x] Tester les ports et les addons.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour les deux slots SMS, Mega-CD activé/désactivé, 32X activé/désactivé et le rejet des incompatibilités.
 
 ## 5. Sega — firmwares et ROM système

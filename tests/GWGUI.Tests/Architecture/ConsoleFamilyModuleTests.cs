@@ -674,6 +674,18 @@ public sealed class ConsoleFamilyModuleTests
             Assert.Contains(enabledStorage.AvailableDevices,
                 device => device.Slot == EmulationMediaSlot.Cd0);
             await module.SaveConfigurationAsync(enabled).AsTask();
+
+            var loaded = Assert.Single(await module.LoadConfigurationsAsync());
+            var loadedConfiguration = Assert.IsType<MachineConfiguration>(loaded);
+            Assert.True(loadedConfiguration.MegaCdEnabled);
+            Assert.Equal(ModelConstants.MegaCdII, loadedConfiguration.MegaCdModel);
+            Assert.True(loadedConfiguration.ThirtyTwoXEnabled);
+            Assert.Contains(loadedConfiguration.Media!, media =>
+                media.Slot == EmulationMediaSlot.Cartridge0
+                && Path.GetExtension(media.Path).Equals(".32x", StringComparison.OrdinalIgnoreCase));
+            Assert.Contains(loadedConfiguration.Media!, media =>
+                media.Slot == EmulationMediaSlot.Cd0
+                && Path.GetExtension(media.Path).Equals(".cue", StringComparison.OrdinalIgnoreCase));
         }
         finally
         {
