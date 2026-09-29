@@ -157,8 +157,8 @@ jamais une feuille terminale.
 
 - [ ] Valider le fonctionnement réel de Sega avant d'ouvrir la tranche Nintendo.
   - [ ] Préparer un corpus de validation séparé du dépôt.
-    - [x] Créer `F:\Retro\Sega` et y déposer le premier média légal de test sans modifier ni versionner le corpus; `F:\Retro\Sega\Homebrew\RTsLastMinuteDemo-SMS-1.00\last-minute.sms` a été extrait et l'archive ZIP est conservée.
-    - [x] Référencer le corpus Sega externe déjà disponible sous `F:\Retro\Sega\Roms` (ROMs, BIOS Saturn, BIOS Dreamcast, BIOS Mega-CD et 32X) sans le modifier ni le versionner.
+    - [x] Utiliser `F:\Retro\Sega` uniquement comme corpus externe de validation sans modifier ni versionner ses médias; `F:\Retro\Sega\Homebrew\RTsLastMinuteDemo-SMS-1.00\last-minute.sms` a été extrait et l'archive ZIP est conservée.
+    - [x] Référencer le corpus Sega externe déjà disponible sous `F:\Retro\Sega\Roms` (jeux, BIOS et ROM système) sans le modifier ni le versionner; les installations de cœurs et de ROM système de l'application restent dans les chemins gérés par le module, comme Amiga, Atari et Amstrad.
     - [x] Conserver les sources Archive.org fournies pour les essais Sega : `https://archive.org/download/CentralArquivista-SegaCD32x`, `https://archive.org/download/pack-roms-sega-cd-cd-32x`, `https://archive.org/download/pack-roms-sega-chihiro-jeux-arcade`, `https://archive.org/download/sega-model-2_202312/Sega%20Model%202%20Emu%201.1a%20and%20Full%20Romset/Model%202%20Romset%20%28Merged%29/` et `https://archive.org/download/sega_model3/Sega%20Model%203/`.
     - [ ] Compléter la validation Sega avec un média et, si le cœur l'exige, un firmware pour chaque famille Sega restante, en conservant les archives et les fichiers source dans leurs sous-dossiers.
   - [ ] Tester chaque chaîne cœur/média avec le corpus Sega.
@@ -171,8 +171,13 @@ jamais une feuille terminale.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Services/ExternalCore.cs` après reproduction avec le BIOS Dreamcast connu et le média Dreamcast local, afin que le cœur accepte un support réellement compatible et libère toujours sa session après refus.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour conserver un scénario Flycast uniquement lorsqu'un média Dreamcast réellement accepté est disponible dans le corpus externe, avec nettoyage dans `finally`.
   - [ ] Ajouter les cœurs Sega manquants explicitement demandés.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter uniquement les identifiants techniques des familles Sega arcade, Pico et Naomi après vérification de leurs variantes réelles.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier les modèles arcade, Pico et Naomi avec leurs CPU, vidéo, audio, RAM/ROM et supports vérifiés.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter l'identifiant technique vérifié de Sega Pico.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier Sega Pico avec ses caractéristiques matérielles vérifiées et sans port manette manuel.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Machine.resx` pour ajouter le nom invariant Sega Pico dans la base commune.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Factories/GenesisPlusGXMachineFactory.cs` pour rattacher Sega Pico au cœur Genesis Plus GX qui l'annonce comme système pris en charge.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM Pico du corpus externe avec Genesis Plus GX et vérifier une frame vidéo avec nettoyage dans `finally`.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter uniquement les identifiants techniques vérifiés des familles Sega arcade et Naomi.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier les modèles arcade et Naomi avec leurs CPU, vidéo, audio, RAM/ROM et supports vérifiés.
     - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-arcade>/` pour l'adaptateur du cœur Sega arcade réellement retenu, avec les fichiers directement dans le dossier du cœur et sans dossier `Core`.
     - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-pico>/` pour l'adaptateur Sega Pico réellement retenu, avec les formats et périphériques vérifiés.
     - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-naomi>/` pour l'adaptateur Sega Naomi réellement retenu, avec ses BIOS, supports et périphériques vérifiés.
@@ -213,8 +218,17 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.MediaAnalysis/Dictionaries/ContentRecognition/CommonMediaContentRecognitionTable.cs` pour distinguer flux, image sectorielle, cartouche et optique.
   - [x] Vérifier les fichiers extraits.
     - [x] Vérifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs`; les artefacts sont créés puis supprimés dans `finally`.
+  - [ ] Rendre chaque média Sega utilisable dans les trois parcours de l'application.
+    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Visualization/` pour produire une représentation visuelle des banques, blocs et pistes Sega réellement décodés, sans bloc noir fabriqué.
+    - [ ] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/` et les lecteurs optiques Sega pour exposer les entrées réelles dans l'Explorateur, avec leurs tailles et leurs noms.
+    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Conversion/` et les writers enregistrés pour permettre la conversion et l'export d'une ROM, d'une cartouche, d'une image CD ou d'un média arcade Sega uniquement vers les formats compatibles.
+    - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` ou créer le test média Sega autonome correspondant pour vérifier visualisation, exploration, conversion et suppression des artefacts dans `finally`.
 
 ## 9. Nintendo, Sony, Microsoft et NEC — même ordre par famille
+
+- [ ] Ne commencer aucune autre famille avant la clôture complète de la section Sega.
+  - [ ] Modifier ce document pour cocher la clôture Sega uniquement après validation des cœurs, médias, firmware, options, visualisation, exploration, conversion et tests réels.
+  - [ ] Modifier ce document pour exécuter ensuite une seule famille à la fois dans l'ordre Nintendo, NEC, Sony, Microsoft, en reproduisant la structure et les contrôles validés pour Sega.
 
 - [ ] Terminer Nintendo avant Sony.
   - [x] Terminer le catalogue avant les cœurs.

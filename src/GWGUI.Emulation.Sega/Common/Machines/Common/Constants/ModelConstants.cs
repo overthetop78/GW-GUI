@@ -7,12 +7,14 @@ internal static class ModelConstants
     internal const string MarkIII = "MarkIII";
     internal const string MasterSystem = "MasterSystem";
     internal const string MegaDrive = "MegaDrive";
+    internal const string Pico = "Pico";
     internal const string GameGear = "GameGear";
     internal const string Saturn = "Saturn";
     internal const string Dreamcast = "Dreamcast";
     internal const string BackendSg1000 = "sg1000";
     internal const string BackendMasterSystem = "mastersystem";
     internal const string BackendMegaDrive = "megadrive";
+    internal const string BackendPico = "pico";
     internal const string BackendSaturn = "saturn";
     internal const string BackendDreamcast = "dreamcast";
     internal const int Ram64Kib = 64;

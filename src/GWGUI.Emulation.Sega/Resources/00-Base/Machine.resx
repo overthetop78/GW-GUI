@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Family.Sega"><value>Sega</value></data>
+  <data name="Emulation.Sega.Language"><value>Sega system language</value></data>
+  <data name="Emulation.Sega.Language.English"><value>English language</value></data>
+  <data name="Emulation.Sega.Language.French"><value>French</value></data>
+  <data name="Emulation.Sega.Language.Spanish"><value>Spanish</value></data>
+  <data name="Emulation.Sega.Hardware"><value>Hardware</value></data>
+  <data name="Emulation.Sega.Model.Sg1000"><value>SG-1000</value></data>
+  <data name="Emulation.Sega.Model.Sc3000"><value>SC-3000</value></data>
+  <data name="Emulation.Sega.Model.MarkIII"><value>Mark III</value></data>
+  <data name="Emulation.Sega.Model.MasterSystem"><value>Master System</value></data>
+  <data name="Emulation.Sega.Model.MegaDrive"><value>Mega Drive / Genesis</value></data>
+  <data name="Emulation.Sega.Model.Pico"><value>Pico</value></data>
+  <data name="Emulation.Sega.Model.MegaCd"><value>Mega-CD / Sega CD</value></data>
+  <data name="Emulation.Sega.Model.ThirtyTwoX"><value>32X</value></data>
+  <data name="Emulation.Sega.Model.GameGear"><value>Game Gear</value></data>
+  <data name="Emulation.Sega.Model.Saturn"><value>Saturn</value></data>
+  <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
+</root>
