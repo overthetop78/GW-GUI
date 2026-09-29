@@ -271,6 +271,7 @@ jamais une feuille terminale.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier la sélection Mesen sur NES et Famicom Disk System.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour refuser qu'un adaptateur Nintendo publie un modèle absent du catalogue.
     - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour modèle, cœur et média de chaque adaptateur restant.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour instancier chaque modèle publié par chaque adaptateur Nintendo et supprimer le dossier temporaire dans `finally`; les 52 tests d'architecture passent.
 - [ ] Terminer Sony avant Microsoft.
   - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/ModelContracts.cs` puis `Dictionaries/ModelCatalog.cs` pour Vita, PS3, PS4 et PS5 vérifiables.
     - [ ] Conserver PS1, PS2 et PSP déjà présents sans créer de variantes comme machines indépendantes.

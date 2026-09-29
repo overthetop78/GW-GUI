@@ -151,6 +151,29 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoAdaptersCreateEveryPublishedModelConfiguration()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-adapter-matrix-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new NintendoEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            foreach (var definition in NintendoEmulatorCatalog.All)
+            foreach (var machineId in definition.MachineIds)
+            {
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                    module.CreateConfiguration(machineId));
+                Assert.Equal(definition.Id, configuration.EmulatorId);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void NintendoStorageAndHardwareSettingsMatchEachPublishedModel()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-settings-tests", Guid.NewGuid().ToString("N"));
