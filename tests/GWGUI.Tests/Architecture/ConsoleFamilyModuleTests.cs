@@ -6,6 +6,7 @@ using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Interfaces;
+using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Emulation.Nintendo.Modules;
 using NintendoEmulatorCatalog = GWGUI.Emulation.Nintendo.Common.Dictionaries.EmulatorCatalog;
@@ -515,6 +516,41 @@ public sealed class ConsoleFamilyModuleTests
         Assert.DoesNotContain(ModelCatalog.All, model => model.Id is "MegaCd" or "ThirtyTwoX");
         Assert.Contains(ModelCatalog.All, model => model.Id == "MegaDrive");
     }
+
+    [Fact]
+    public void SegaFirmwareSettingsExposeExternalRomPathsForDiscMachines()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-settings-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModule(root, root, http, Path.Combine(root, "Core"));
+            var saturn = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Saturn));
+            var dreamcast = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Dreamcast));
+            var megaDrive = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive)) with
+            {
+                Options = new Dictionary<string, string>
+                {
+                    [SettingsConstants.MegaCdEnabled] = SettingsDescriptionFunctionsConstants.Enabled
+                }
+            };
+
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, saturn).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, dreamcast).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, megaDrive).Editor);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    private static EmulationSettingsField FirmwareField(SegaEmulationModule module,
+        MachineConfiguration configuration) => module.Describe(configuration.Model, configuration).Blocks
+            .Single(block => block.Fields.Any(field => field.Id == SettingsConstants.FirmwarePath
+                || field.Id == SettingsConstants.FirmwareIntegrated)).Fields.Single();
 
     [Fact]
     public async Task SegaMegaDriveAddonsAreDisabledUntilEnabledAndValidateMedia()

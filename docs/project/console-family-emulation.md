@@ -158,12 +158,26 @@ jamais une feuille terminale.
 - [ ] Valider le fonctionnement réel de Sega avant d'ouvrir la tranche Nintendo.
   - [ ] Préparer un corpus de validation séparé du dépôt.
     - [x] Créer `F:\Retro\Sega` et y déposer le premier média légal de test sans modifier ni versionner le corpus; `F:\Retro\Sega\Homebrew\RTsLastMinuteDemo-SMS-1.00\last-minute.sms` a été extrait et l'archive ZIP est conservée.
-    - [ ] Compléter `F:\Retro\Sega` avec un média et, si le cœur l'exige, un firmware pour chaque famille Sega restante, en conservant les archives et les fichiers source dans leurs sous-dossiers.
+    - [x] Référencer le corpus Sega externe déjà disponible sous `F:\Retro\Sega\Roms` (ROMs, BIOS Saturn, BIOS Dreamcast, BIOS Mega-CD et 32X) sans le modifier ni le versionner.
+    - [x] Conserver les sources Archive.org fournies pour les essais Sega : `https://archive.org/download/CentralArquivista-SegaCD32x`, `https://archive.org/download/pack-roms-sega-cd-cd-32x`, `https://archive.org/download/pack-roms-sega-chihiro-jeux-arcade`, `https://archive.org/download/sega-model-2_202312/Sega%20Model%202%20Emu%201.1a%20and%20Full%20Romset/Model%202%20Romset%20%28Merged%29/` et `https://archive.org/download/sega_model3/Sega%20Model%203/`.
+    - [ ] Compléter la validation Sega avec un média et, si le cœur l'exige, un firmware pour chaque famille Sega restante, en conservant les archives et les fichiers source dans leurs sous-dossiers.
   - [ ] Tester chaque chaîne cœur/média avec le corpus Sega.
     - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour couvrir les formats réellement acceptés par chaque cœur, la sélection de firmware et les erreurs de média, avec suppression des dossiers temporaires dans `finally`.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/SettingsFunctions.cs`, `SettingsFunctions.Builders.cs` et `SettingsHelpDictionary.cs` pour afficher un chemin de ROM système externe pour Saturn, Dreamcast et Mega Drive avec Mega-CD activé, en réutilisant l'aide générique de l'App.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier ces trois champs de firmware et supprimer le dossier temporaire dans `finally`.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger `last-minute.sms` avec le cœur Genesis Plus GX, vérifier une frame vidéo et libérer le cœur ainsi que le dossier de session dans `finally`.
   - [ ] Corriger les défauts révélés par les essais sans modifier les contrats d'Amiga, Atari, Amstrad ou App.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Constants/GenesisPlusGXConstants.cs` pour utiliser l'identité `Genesis Plus GX` annoncée par le cœur, puis valider le chargement avec le test Sega réel.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Services/ExternalCore.cs` après reproduction avec le BIOS Dreamcast connu et le média Dreamcast local, afin que le cœur accepte un support réellement compatible et libère toujours sa session après refus.
+    - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour conserver un scénario Flycast uniquement lorsqu'un média Dreamcast réellement accepté est disponible dans le corpus externe, avec nettoyage dans `finally`.
+  - [ ] Ajouter les cœurs Sega manquants explicitement demandés.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter uniquement les identifiants techniques des familles Sega arcade, Pico et Naomi après vérification de leurs variantes réelles.
+    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier les modèles arcade, Pico et Naomi avec leurs CPU, vidéo, audio, RAM/ROM et supports vérifiés.
+    - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-arcade>/` pour l'adaptateur du cœur Sega arcade réellement retenu, avec les fichiers directement dans le dossier du cœur et sans dossier `Core`.
+    - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-pico>/` pour l'adaptateur Sega Pico réellement retenu, avec les formats et périphériques vérifiés.
+    - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-naomi>/` pour l'adaptateur Sega Naomi réellement retenu, avec ses BIOS, supports et périphériques vérifiés.
+    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger le rattachement de chaque nouveau modèle à un cœur qui expose réellement son identifiant.
+    - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger un média du corpus local par nouveau cœur et libérer cœur, processus, ressources graphiques et dossier temporaire dans `finally`.
 
 ## 7. MediaEngine — formats et représentations
 

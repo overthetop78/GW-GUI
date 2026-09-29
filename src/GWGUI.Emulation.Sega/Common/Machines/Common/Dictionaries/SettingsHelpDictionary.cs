@@ -19,6 +19,7 @@ internal static class SettingsHelpDictionary
             [SettingsConstants.Model + ".frequency"] = "Emulation.Sega.Help.Cpu.Frequency",
             [SettingsConstants.Ram] = "Emulation.Sega.Help.Memory.Ram",
             [SettingsConstants.FirmwareIntegrated] = "Emulation.Sega.Help.Firmware.Integrated",
+            [SettingsConstants.FirmwarePath] = "Emulation.Help.Firmware.System",
             [SettingsConstants.VideoResolution] = "Emulation.Sega.Help.Video.Resolution",
             [SettingsConstants.VideoMonitor] = "Emulation.Sega.Help.Video.Monitor",
             [SettingsConstants.VideoIntensity] = "Emulation.Sega.Help.Video.Intensity",

@@ -127,10 +127,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                 SettingsDescriptionFunctionsConstants.ResourceRom,
                 SettingsDescriptionFunctionsConstants.IconFirmware, 2,
-                Information(SettingsConstants.FirmwareIntegrated, EmulationMachineTab.Rom,
-                    SettingsDescriptionFunctionsConstants.Firmware,
-                    SettingsDescriptionFunctionsConstants.ResourceFirmwareIntegrated,
-                    "Sega")),
+                Firmware(configuration, model)),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
@@ -185,4 +182,24 @@ internal static partial class SettingsDescriptionFunctions
                         == SettingsDescriptionFunctionsConstants.Enabled))
         ];
     }
+
+    private static EmulationSettingsField Firmware(MachineConfiguration configuration, Model model)
+    {
+        var options = configuration.Options ?? new Dictionary<string, string>();
+        var requiresExternalRom = model.Id is ModelConstants.Saturn or ModelConstants.Dreamcast
+            || model.Id == ModelConstants.MegaDrive
+            && options.GetValueOrDefault(SettingsConstants.MegaCdEnabled,
+                SettingsDescriptionFunctionsConstants.Disabled)
+                == SettingsDescriptionFunctionsConstants.Enabled;
+        return requiresExternalRom
+            ? Path(SettingsConstants.FirmwarePath,
+                SettingsDescriptionFunctionsConstants.Firmware,
+                SettingsDescriptionFunctionsConstants.ResourceFirmwareSystemRom,
+                options.GetValueOrDefault(SettingsConstants.FirmwarePath))
+            : Information(SettingsConstants.FirmwareIntegrated, EmulationMachineTab.Rom,
+                SettingsDescriptionFunctionsConstants.Firmware,
+                SettingsDescriptionFunctionsConstants.ResourceFirmwareIntegrated,
+                "Sega");
+    }
+
 }

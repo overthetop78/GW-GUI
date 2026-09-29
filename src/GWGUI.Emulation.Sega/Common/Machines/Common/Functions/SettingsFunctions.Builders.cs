@@ -27,6 +27,12 @@ internal static partial class SettingsDescriptionFunctions
             ExplanationResourceKey: ShortHelp(id),
             DetailedExplanationResourceKey: DetailedHelp(id));
 
+    private static EmulationSettingsField Path(string id, string block, string label,
+        string? value) => new(id, EmulationMachineTab.Rom, block, label,
+            EmulationSettingsEditor.Path, value,
+            ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
+            DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware);
+
     private static EmulationSettingsField Select(string id, EmulationMachineTab tab,
         string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices,
         bool requiresRestart = false) => new(id, tab, block, label,
