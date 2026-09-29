@@ -5,7 +5,9 @@ using GWGUI.Emulation.Sega.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Interfaces;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Common.Services;
+using GenesisPlusGxExternalCore = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services.ExternalCore;
 
 namespace GWGUI.Tests.Emulation.Sega;
 
@@ -79,6 +81,43 @@ public sealed class SegaMachineLifecycleTests
 
         Assert.True(core.Disposed);
         Assert.False(Directory.Exists(session));
+    }
+
+    [Fact]
+    public void GenesisPlusGxLoadsConfiguredMasterSystemMediaWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-smoke-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.MasterSystem,
+            "genesisplusgx")
+        {
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxExternalCore(corePath);
+        try
+        {
+            core.Initialize(configuration, session);
+            core.RunFrame();
+            Assert.NotNull(core.LatestVideoFrame);
+            Assert.True(core.LatestVideoFrame!.Width > 0);
+            Assert.True(core.LatestVideoFrame.Height > 0);
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
     }
 
     private static Machine CreateMachine(Core core, string session) => new(

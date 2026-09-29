@@ -153,7 +153,19 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer ces deux profils aux modèles Saturn et Dreamcast et à leurs chemins système exacts.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier les deux profils optiques et leurs fichiers système.
 
-## 6. MediaEngine — formats et représentations
+## 6. Sega — validation réelle avant Nintendo
+
+- [ ] Valider le fonctionnement réel de Sega avant d'ouvrir la tranche Nintendo.
+  - [ ] Préparer un corpus de validation séparé du dépôt.
+    - [x] Créer `F:\Retro\Sega` et y déposer le premier média légal de test sans modifier ni versionner le corpus; `F:\Retro\Sega\Homebrew\RTsLastMinuteDemo-SMS-1.00\last-minute.sms` a été extrait et l'archive ZIP est conservée.
+    - [ ] Compléter `F:\Retro\Sega` avec un média et, si le cœur l'exige, un firmware pour chaque famille Sega restante, en conservant les archives et les fichiers source dans leurs sous-dossiers.
+  - [ ] Tester chaque chaîne cœur/média avec le corpus Sega.
+    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour couvrir les formats réellement acceptés par chaque cœur, la sélection de firmware et les erreurs de média, avec suppression des dossiers temporaires dans `finally`.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger `last-minute.sms` avec le cœur Genesis Plus GX, vérifier une frame vidéo et libérer le cœur ainsi que le dossier de session dans `finally`.
+  - [ ] Corriger les défauts révélés par les essais sans modifier les contrats d'Amiga, Atari, Amstrad ou App.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Constants/GenesisPlusGXConstants.cs` pour utiliser l'identité `Genesis Plus GX` annoncée par le cœur, puis valider le chargement avec le test Sega réel.
+
+## 7. MediaEngine — formats et représentations
 
 - [x] Ajouter les constantes de formats réels.
   - [x] Déclarer les extensions.
@@ -172,7 +184,7 @@ jamais une feuille terminale.
     - [x] Vérifier `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` : writers cartouche, FDS et GDI sont enregistrés.
     - [x] Vérifier `src/GWGUI.MediaEngine/Images/Formats/CapabilityAwareImageFormatCatalog.cs` : les capacités sont dérivées des lecteurs/writers réellement enregistrés.
 
-## 7. MediaFileSystems et MediaAnalysis
+## 8. MediaFileSystems et MediaAnalysis
 
 - [x] Exposer les volumes démontrés.
   - [x] Ajouter les identifiants nommés.
@@ -188,7 +200,7 @@ jamais une feuille terminale.
   - [x] Vérifier les fichiers extraits.
     - [x] Vérifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs`; les artefacts sont créés puis supprimés dans `finally`.
 
-## 8. Nintendo, Sony, Microsoft et NEC — même ordre par famille
+## 9. Nintendo, Sony, Microsoft et NEC — même ordre par famille
 
 - [ ] Terminer Nintendo avant Sony.
   - [x] Terminer le catalogue avant les cœurs.
@@ -215,7 +227,7 @@ jamais une feuille terminale.
     - [ ] Créer/modifier `src/GWGUI.Emulation.Nec/Emulators/<cœur>/` directement sans `Core`.
   - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour les machines et leurs médias.
 
-## 9. Cassette, flux et progressions communes
+## 10. Cassette, flux et progressions communes
 
 - [ ] Ajouter les flux audio/cassette dans MediaEngine.
   - [ ] Décoder seulement les formats disponibles.
@@ -233,7 +245,7 @@ jamais une feuille terminale.
   - [ ] Persister l'état et la hauteur dans le modèle déjà propriétaire des onglets.
     - [ ] Modifier uniquement les fichiers existants de l'état des onglets après identification de leur propriétaire; ne pas déplacer cette logique dans MediaEngine.
 
-## 10. Traductions, tests et commits
+## 11. Traductions, tests et commits
 
 - [ ] Traduire toute nouvelle clé.
   - [ ] Ajouter la clé anglaise dans la base commune du module.
@@ -274,7 +286,7 @@ jamais une feuille terminale.
   - [x] Corriger le vocabulaire matériel français puis auditer les catalogues.
     - [x] Modifier les catalogues `src/GWGUI.Emulation.Sega/Resources/fr-FR/` avec les termes Dreamcast, Mega-CD, 32X, extension, activation et messages d'erreur corrects, puis exécuter l'audit Argos.
 
-## 11. Cœurs Sega à comparer avant toute nouvelle intégration
+## 12. Cœurs Sega à comparer avant toute nouvelle intégration
 
 - [ ] Choisir un cœur par modèle et par extension sur des capacités vérifiées.
   - [ ] Documenter les capacités confirmées de Genesis Plus GX.
@@ -294,7 +306,7 @@ jamais une feuille terminale.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour conserver les sources ouvertes BizHawk, VirtualGens et Exodus comme références d'implémentation future, sans copier leur code ni créer un émulateur incomplet dans cette tranche.
     - [ ] Créer le futur adaptateur sous `src/GWGUI.Emulation.Sega/Emulators/<cœur>/` avec les contrats Common existants uniquement après définition vérifiée du matériel, des médias, des entrées et des états exposés.
 
-## 12. BIOS et firmware Sega par machine et par cœur
+## 13. BIOS et firmware Sega par machine et par cœur
 
 - [ ] Décrire les BIOS uniquement avec des fichiers et empreintes vérifiés.
   - [ ] Déclarer les profils Genesis Plus GX vérifiés.
