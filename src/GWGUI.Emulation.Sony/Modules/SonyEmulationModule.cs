@@ -80,8 +80,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
         IReadOnlyDictionary<string, string?> values)
     {
-        var nintendo = RequireConfiguration(configuration);
-        var options = new Dictionary<string, string>(nintendo.Options
+        var sony = RequireConfiguration(configuration);
+        var options = new Dictionary<string, string>(sony.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in values)
         {
@@ -92,12 +92,12 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             if (item.Value is null) options.Remove(item.Key);
             else options[item.Key] = item.Value;
         }
-        var audio = nintendo.Audio ?? new AudioConfiguration();
-        return nintendo with
+        var audio = sony.Audio ?? new AudioConfiguration();
+        return sony with
         {
             Options = options,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
-                ? enabled == SettingsDescriptionFunctionsConstants.Enabled : nintendo.AudioEnabled,
+                ? enabled == SettingsDescriptionFunctionsConstants.Enabled : sony.AudioEnabled,
             Audio = audio with
             {
                 OutputDeviceId = values.TryGetValue(SettingsConstants.AudioOutput, out var output)
@@ -110,8 +110,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        configuration is MachineConfiguration nintendo
-            ? nintendo.Options ?? new Dictionary<string, string>()
+        configuration is MachineConfiguration sony
+            ? sony.Options ?? new Dictionary<string, string>()
             : throw new ArgumentException(nameof(configuration));
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
@@ -137,8 +137,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         settings);
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration nintendo
-        ? new ValueTask(_store.SaveAsync(nintendo, cancellationToken))
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration sony
+        ? new ValueTask(_store.SaveAsync(sony, cancellationToken))
         : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
@@ -149,10 +149,10 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
     {
-        if (configuration is not MachineConfiguration nintendo)
+        if (configuration is not MachineConfiguration sony)
             return ValueTask.FromException(new ArgumentException(nameof(configuration)));
-        ConfigurationValidationFunctions.ValidateForSave(nintendo);
-        return new ValueTask(_store.SaveAsync(nintendo, cancellationToken));
+        ConfigurationValidationFunctions.ValidateForSave(sony);
+        return new ValueTask(_store.SaveAsync(sony, cancellationToken));
     }
 
     public ValueTask DeleteConfigurationAsync(Guid configurationId,
@@ -181,9 +181,9 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        var nintendo = RequireConfiguration(configuration);
+        var sony = RequireConfiguration(configuration);
         var installations = new List<EmulationEmulatorInstallation>();
-        foreach (var emulator in EmulatorCatalog.GetAll(nintendo.Model))
+        foreach (var emulator in EmulatorCatalog.GetAll(sony.Model))
         {
             var adapter = _engine.Adapter(emulator.Id);
             installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
@@ -196,11 +196,11 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var nintendo = RequireConfiguration(configuration);
-        if (!EmulatorCatalog.GetAll(nintendo.Model).Any(item => item.Id == emulatorId))
+        var sony = RequireConfiguration(configuration);
+        if (!EmulatorCatalog.GetAll(sony.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(
                 new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
-        return ValueTask.FromResult<IEmulationConfiguration>(nintendo with { EmulatorId = emulatorId });
+        return ValueTask.FromResult<IEmulationConfiguration>(sony with { EmulatorId = emulatorId });
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
@@ -239,28 +239,28 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         IEmulationConfiguration configuration, EmulationRuntimeServices services,
         CancellationToken cancellationToken = default)
     {
-        if (configuration is not MachineConfiguration nintendo)
+        if (configuration is not MachineConfiguration sony)
             throw new ArgumentException(nameof(configuration));
-        var adapter = _engine.Adapter(nintendo);
+        var adapter = _engine.Adapter(sony);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken)
             .ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
                 new EmulationEmulatorMessageContext(adapter.EmulatorId)));
-        var audio = nintendo.Audio ?? new AudioConfiguration();
+        var audio = sony.Audio ?? new AudioConfiguration();
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory,
                 value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
                 CoreDirectoryConstants.SavesDirectoryName));
-        var storage = StorageSettingsFunctions.Describe(nintendo);
-        var mounted = adapter.ResolveConfiguredMedia(nintendo);
-        return new EmulationMachineRuntime(nintendo,
-            media => _engine.CreateMachine(WithMedia(nintendo, media), context),
+        var storage = StorageSettingsFunctions.Describe(sony);
+        var mounted = adapter.ResolveConfiguredMedia(sony);
+        return new EmulationMachineRuntime(sony,
+            media => _engine.CreateMachine(WithMedia(sony, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
-            MachineConfigurationConstants.ResourcePrefix + nintendo.Model,
-            SupportsPointerCapture: ModelCatalog.Get(nintendo.Model).MouseButtonCount > 0);
+            MachineConfigurationConstants.ResourcePrefix + sony.Model,
+            SupportsPointerCapture: ModelCatalog.Get(sony.Model).MouseButtonCount > 0);
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration,

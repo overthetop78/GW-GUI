@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
+    <value>Загруженный архив не содержит PCSX2 Библиотека.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused">
+    <value>PCSX2 Отказ в загрузке выбранного контента.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound">
+    <value>The PCSX2 Библиотека не была найдена.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
+    <value>The PCSX2 Ядро не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
+    <value>The PCSX2 Библиотека не загружена.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
+    <value>The PCSX2 Библиотечный путь должен быть абсолютным.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
+    <value>The PCSX2 Управление дисками неполное.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
+    <value>PCSX2 Не обеспечивает управление диском.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
+    <value>PCSX2 Вернул недействительный ярлык диска.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
+    <value>Загруженный PCSX2 Библиотека имеет недействительный заголовок Windows.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
+    <value>Загруженный PCSX2 Библиотека не является библиотекой Windows.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
+    <value>Загруженный PCSX2 Библиотека не является библиотекой x64.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
+    <value>PCSX2 Не принимает требуемые полные пути контента.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
+    <value>The PCSX2 Конфигурация хоста недействительна.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
+    <value>The GW GUI Исполнительный файл, используемый для хостинга PCSX2 Не было найдено.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
+    <value>The PCSX2 Хозяин не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
+    <value>The PCSX2 Хозяин не ответил.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
+    <value>ценность {0} Недействительным для PCSX2 вариант {1}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
+    <value>The PCSX2 Хозяин возвращает недействительный ответ: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
+    <value>PCSX2 Возвращается недействительный размер сохраненного состояния: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
+    <value>Выбранная библиотека идентифицирует себя как {0} вместо того, чтобы PCSX2.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
+    <value>PCSX2 Не могли выбросить СМИ.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
+    <value>PCSX2 Не могли вставить средства массовой информации.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound">
+    <value>Выбранный медиафайл не найден.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused">
+    <value>PCSX2 От избранных СМИ отказались.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
+    <value>PCSX2 Не удалось выбрать СМИ.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
+    <value>PCSX2 Не удалось создать медиаслот.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
+    <value>Слишком много дисков было выбрано для PCSX2 плейлист.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
+    <value>The PCSX2 Процесс уже инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
+    <value>Связь с ними PCSX2 Процесс провалился: {0}</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
+    <value>The PCSX2 Процесс не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
+    <value>The PCSX2 Процесс не мог быть начат.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
+    <value>The PCSX2 Процесс не реагировал вовремя.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
+    <value>The PCSX2 Процесс недоступен.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
+    <value>PCSX2 Не удалось выбрать запрашиваемый диск.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
+    <value>PCSX2 не могли вставить запрашиваемые средства массовой информации.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
+    <value>Это PCSX2 Ядро не может начаться без СМИ.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty">
+    <value>Спасенное государство пусто.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
+    <value>PCSX2 Спасенное государство восстановить не удалось.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
+    <value>PCSX2 Не удалось спасти нынешнее состояние.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
+    <value>PCSX2 Вернули неизвестный основной вариант.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
+    <value>The PCSX2 Хозяин получил неизвестную команду {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
+    <value>The PCSX2 основной API версия {0} не поддерживается.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
+    <value>PCSX2 Не поддерживает расширение контента {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
+    <value>PCSX2 Вернулся неподдерживаемый формат пикселей {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
+    <value>The PCSX2 Видеобуфер недоступен.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
+    <value>Загруженный архив не содержит PPSSPP Библиотека.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused">
+    <value>PPSSPP Отказ в загрузке выбранного контента.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound">
+    <value>The PPSSPP Библиотека не была найдена.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
+    <value>The PPSSPP Ядро не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
+    <value>The PPSSPP Библиотека не загружена.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
+    <value>The PPSSPP Библиотечный путь должен быть абсолютным.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
+    <value>The PPSSPP Управление дисками неполное.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
+    <value>PPSSPP Не обеспечивает управление диском.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
+    <value>PPSSPP Вернул недействительный ярлык диска.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
+    <value>Загруженный PPSSPP Библиотека имеет недействительный заголовок Windows.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
+    <value>Загруженный PPSSPP Библиотека не является библиотекой Windows.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
+    <value>Загруженный PPSSPP Библиотека не является библиотекой x64.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
+    <value>PPSSPP Не принимает требуемые полные пути контента.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
+    <value>The PPSSPP Конфигурация хоста недействительна.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
+    <value>The GW GUI Исполнительный файл, используемый для хостинга PPSSPP Не было найдено.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
+    <value>The PPSSPP Хозяин не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
+    <value>The PPSSPP Хозяин не ответил.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
+    <value>ценность {0} Недействительным для PPSSPP вариант {1}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
+    <value>The PPSSPP Хозяин возвращает недействительный ответ: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
+    <value>PPSSPP Возвращается недействительный размер сохраненного состояния: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
+    <value>Выбранная библиотека идентифицирует себя как {0} вместо того, чтобы PPSSPP.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
+    <value>PPSSPP Не могли выбросить СМИ.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
+    <value>PPSSPP Не могли вставить средства массовой информации.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound">
+    <value>Выбранный медиафайл не найден.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused">
+    <value>PPSSPP От избранных СМИ отказались.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
+    <value>PPSSPP Не удалось выбрать СМИ.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
+    <value>PPSSPP Не удалось создать медиаслот.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
+    <value>Слишком много дисков было выбрано для PPSSPP плейлист.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
+    <value>The PPSSPP Процесс уже инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
+    <value>Связь с ними PPSSPP Процесс провалился: {0}</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
+    <value>The PPSSPP Процесс не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
+    <value>The PPSSPP Процесс не мог быть начат.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
+    <value>The PPSSPP Процесс не реагировал вовремя.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
+    <value>The PPSSPP Процесс недоступен.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
+    <value>PPSSPP Не удалось выбрать запрашиваемый диск.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
+    <value>PPSSPP не могли вставить запрашиваемые средства массовой информации.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
+    <value>Это PPSSPP Ядро не может начаться без СМИ.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty">
+    <value>Спасенное государство пусто.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
+    <value>PPSSPP Спасенное государство восстановить не удалось.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
+    <value>PPSSPP Не удалось спасти нынешнее состояние.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
+    <value>PPSSPP Вернули неизвестный основной вариант.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
+    <value>The PPSSPP Хозяин получил неизвестную команду {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
+    <value>The PPSSPP основной API версия {0} не поддерживается.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
+    <value>PPSSPP Не поддерживает расширение контента {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
+    <value>PPSSPP Вернулся неподдерживаемый формат пикселей {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
+    <value>The PPSSPP Видеобуфер недоступен.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
+    <value>Загруженный архив не содержит SwanStation Библиотека.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ContentRefused">
+    <value>SwanStation Отказ в загрузке выбранного контента.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound">
+    <value>The SwanStation Библиотека не была найдена.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
+    <value>The SwanStation Ядро не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
+    <value>The SwanStation Библиотека не загружена.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
+    <value>The SwanStation Библиотечный путь должен быть абсолютным.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
+    <value>The SwanStation Управление дисками неполное.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
+    <value>SwanStation Не обеспечивает управление диском.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
+    <value>SwanStation Вернул недействительный ярлык диска.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
+    <value>Загруженный SwanStation Библиотека имеет недействительный заголовок Windows.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
+    <value>Загруженный SwanStation Библиотека не является библиотекой Windows.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
+    <value>Загруженный SwanStation Библиотека не является библиотекой x64.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
+    <value>SwanStation Не принимает требуемые полные пути контента.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
+    <value>The SwanStation Конфигурация хоста недействительна.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
+    <value>The GW GUI Исполнительный файл, используемый для хостинга SwanStation Не было найдено.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized">
+    <value>The SwanStation Хозяин не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
+    <value>The SwanStation Хозяин не ответил.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
+    <value>ценность {0} Недействительным для SwanStation вариант {1}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
+    <value>The SwanStation Хозяин возвращает недействительный ответ: {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize">
+    <value>SwanStation Возвращается недействительный размер сохраненного состояния: {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
+    <value>Выбранная библиотека идентифицирует себя как {0} Вместо SwanStation.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
+    <value>SwanStation Не могли выбросить СМИ.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
+    <value>SwanStation Не могли вставить средства массовой информации.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound">
+    <value>Выбранный медиафайл не найден.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaRefused">
+    <value>SwanStation От избранных СМИ отказались.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
+    <value>SwanStation Не удалось выбрать СМИ.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
+    <value>SwanStation Не удалось создать медиаслот.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
+    <value>Слишком много дисков было выбрано для SwanStation плейлист.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
+    <value>The SwanStation Процесс уже инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
+    <value>Связь с ними SwanStation Процесс провалился: {0}</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
+    <value>The SwanStation Процесс не инициализируется.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
+    <value>The SwanStation Процесс не мог быть начат.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout">
+    <value>The SwanStation Процесс не реагировал вовремя.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
+    <value>The SwanStation Процесс недоступен.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
+    <value>SwanStation Не удалось выбрать запрашиваемый диск.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
+    <value>SwanStation не могли вставить запрашиваемые средства массовой информации.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
+    <value>Это SwanStation Ядро не может начаться без СМИ.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateEmpty">
+    <value>Спасенное государство пусто.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
+    <value>SwanStation Спасенное государство восстановить не удалось.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed">
+    <value>SwanStation Не удалось спасти нынешнее состояние.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
+    <value>SwanStation Вернули неизвестный основной вариант.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
+    <value>The SwanStation Хозяин получил неизвестную команду {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
+    <value>The SwanStation основной API версия {0} не поддерживается.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
+    <value>SwanStation Не поддерживает расширение контента {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
+    <value>SwanStation Вернулся неподдерживаемый формат пикселей {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
+    <value>The SwanStation Видеобуфер недоступен.</value>
+  </data>
+</root>

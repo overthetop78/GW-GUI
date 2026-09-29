@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
+    <value>A letöltött archívum nem tartalmazza a PCSX2 Könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused">
+    <value>PCSX2 nem volt hajlandó betölteni a kijelölt tartalmat.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound">
+    <value>A PCSX2 A könyvtárat nem találták meg.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
+    <value>A PCSX2 A mag nincs inicializálva.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
+    <value>A PCSX2 A könyvtár nincs megtöltve.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
+    <value>A PCSX2 A könyvtár útvonalának teljesnek kell lennie.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
+    <value>A PCSX2 A lemez vezérlése nem teljes.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
+    <value>PCSX2 nem biztosít lemezvezérlést.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
+    <value>PCSX2 visszaadott egy érvénytelen lemezcímkét.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
+    <value>A letöltött PCSX2 A könyvtárnak van egy érvénytelen Windows fejléce.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
+    <value>A letöltött PCSX2 A könyvtár nem Windows könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
+    <value>A letöltött PCSX2 A könyvtár nem X64-es könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
+    <value>PCSX2 nem fogadja el a szükséges teljes tartalommeneteket.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
+    <value>A PCSX2 a host konfiguráció érvénytelen.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
+    <value>A GW GUI A vezérlés végrehajtható PCSX2 Nem találták meg.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
+    <value>A PCSX2 A gazdatest nem inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
+    <value>A PCSX2 A gazdatest nem válaszolt.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
+    <value>Az érték {0} érvénytelen PCSX2 lehetőség {1}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
+    <value>A PCSX2 a fogadó érvénytelen válaszhosszúságot adott vissza: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
+    <value>PCSX2 érvénytelen, mentesített államméretet adott vissza: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
+    <value>A kijelölt könyvtár azonosítja magát {0} ahelyett, hogy PCSX2.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
+    <value>PCSX2 Nem tudta kitenni a médiát.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
+    <value>PCSX2 nem tudta beszúrni a médiát.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound">
+    <value>A kiválasztott médiafájl nem található.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused">
+    <value>PCSX2 nem volt hajlandó a kiválasztott médiát használni.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
+    <value>PCSX2 nem sikerült kiválasztani a médiát.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
+    <value>PCSX2 nem tudott médialejátszót létrehozni.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
+    <value>Túl sok lemezt választottak ki a PCSX2 Lejátszólista.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
+    <value>A PCSX2 A folyamat már inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
+    <value>A Bizottság közleménye a PCSX2 a folyamat nem sikerült: {0}</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
+    <value>A PCSX2 a folyamat nem inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
+    <value>A PCSX2 a folyamat nem indult el.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
+    <value>A PCSX2 a folyamat nem reagált időben.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
+    <value>A PCSX2 a folyamat nem elérhető.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
+    <value>PCSX2 nem sikerült kiválasztani a kért lemezt.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
+    <value>PCSX2 nem tudta a kért médiát beilleszteni.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
+    <value>Ez PCSX2 A mag nem kezdheti el média nélkül.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty">
+    <value>A megmentett állam üres.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
+    <value>PCSX2 Nem tudta visszaállítani a megmentett államot.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
+    <value>PCSX2 nem tudta megmenteni a jelenlegi állapotot.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
+    <value>PCSX2 Egy ismeretlen alapopció.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
+    <value>A PCSX2 a fogadó megkapta az ismeretlen parancsot {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
+    <value>A PCSX2 mag API változat {0} nem támogatott.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
+    <value>PCSX2 nem támogatja a tartalom kiterjesztését {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
+    <value>PCSX2 visszaadta a nem támogatott pixel formátumot {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
+    <value>A PCSX2 A videó buffer nem elérhető.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
+    <value>A letöltött archívum nem tartalmazza a PPSSPP Könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused">
+    <value>PPSSPP nem volt hajlandó betölteni a kijelölt tartalmat.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound">
+    <value>A PPSSPP A könyvtárat nem találták meg.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
+    <value>A PPSSPP A mag nincs inicializálva.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
+    <value>A PPSSPP A könyvtár nincs megtöltve.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
+    <value>A PPSSPP A könyvtár útvonalának teljesnek kell lennie.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
+    <value>A PPSSPP A lemez vezérlése nem teljes.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
+    <value>PPSSPP nem biztosít lemezvezérlést.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
+    <value>PPSSPP visszaadott egy érvénytelen lemezcímkét.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
+    <value>A letöltött PPSSPP A könyvtárnak van egy érvénytelen Windows fejléce.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
+    <value>A letöltött PPSSPP A könyvtár nem Windows könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
+    <value>A letöltött PPSSPP A könyvtár nem X64-es könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
+    <value>PPSSPP nem fogadja el a szükséges teljes tartalommeneteket.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
+    <value>A PPSSPP a host konfiguráció érvénytelen.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
+    <value>A GW GUI A vezérlés végrehajtható PPSSPP Nem találták meg.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
+    <value>A PPSSPP A gazdatest nem inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
+    <value>A PPSSPP A gazdatest nem válaszolt.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
+    <value>Az érték {0} érvénytelen PPSSPP lehetőség {1}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
+    <value>A PPSSPP a fogadó érvénytelen válaszhosszúságot adott vissza: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
+    <value>PPSSPP érvénytelen, mentesített államméretet adott vissza: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
+    <value>A kijelölt könyvtár azonosítja magát {0} ahelyett, hogy PPSSPP.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
+    <value>PPSSPP Nem tudta kitenni a médiát.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
+    <value>PPSSPP nem tudta beszúrni a médiát.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound">
+    <value>A kiválasztott médiafájl nem található.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused">
+    <value>PPSSPP nem volt hajlandó a kiválasztott médiát használni.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
+    <value>PPSSPP nem sikerült kiválasztani a médiát.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
+    <value>PPSSPP nem tudott médialejátszót létrehozni.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
+    <value>Túl sok lemezt választottak ki a PPSSPP Lejátszólista.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
+    <value>A PPSSPP A folyamat már inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
+    <value>A Bizottság közleménye a PPSSPP a folyamat nem sikerült: {0}</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
+    <value>A PPSSPP a folyamat nem inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
+    <value>A PPSSPP a folyamat nem indult el.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
+    <value>A PPSSPP a folyamat nem reagált időben.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
+    <value>A PPSSPP a folyamat nem elérhető.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
+    <value>PPSSPP nem sikerült kiválasztani a kért lemezt.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
+    <value>PPSSPP nem tudta a kért médiát beilleszteni.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
+    <value>Ez PPSSPP A mag nem kezdheti el média nélkül.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty">
+    <value>A megmentett állam üres.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
+    <value>PPSSPP Nem tudta visszaállítani a megmentett államot.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
+    <value>PPSSPP nem tudta megmenteni a jelenlegi állapotot.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
+    <value>PPSSPP Egy ismeretlen alapopció.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
+    <value>A PPSSPP a fogadó megkapta az ismeretlen parancsot {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
+    <value>A PPSSPP mag API változat {0} nem támogatott.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
+    <value>PPSSPP nem támogatja a tartalom kiterjesztését {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
+    <value>PPSSPP visszaadta a nem támogatott pixel formátumot {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
+    <value>A PPSSPP A videó buffer nem elérhető.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
+    <value>A letöltött archívum nem tartalmazza a SwanStation Könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ContentRefused">
+    <value>SwanStation nem volt hajlandó betölteni a kijelölt tartalmat.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound">
+    <value>A SwanStation A könyvtárat nem találták meg.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
+    <value>A SwanStation A mag nincs inicializálva.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
+    <value>A SwanStation A könyvtár nincs megtöltve.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
+    <value>A SwanStation A könyvtár útvonalának teljesnek kell lennie.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
+    <value>A SwanStation A lemez vezérlése nem teljes.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
+    <value>SwanStation nem biztosít lemezvezérlést.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
+    <value>SwanStation visszaadott egy érvénytelen lemezcímkét.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
+    <value>A letöltött SwanStation A könyvtárnak van egy érvénytelen Windows fejléce.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
+    <value>A letöltött SwanStation A könyvtár nem Windows könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
+    <value>A letöltött SwanStation A könyvtár nem X64-es könyvtár.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
+    <value>SwanStation nem fogadja el a szükséges teljes tartalommeneteket.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
+    <value>A SwanStation a host konfiguráció érvénytelen.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
+    <value>A GW GUI A vezérlés végrehajtható SwanStation Nem találták meg.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized">
+    <value>A SwanStation A gazdatest nem inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
+    <value>A SwanStation A gazdatest nem válaszolt.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
+    <value>Az érték {0} érvénytelen SwanStation lehetőség {1}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
+    <value>A SwanStation a fogadó érvénytelen válaszhosszúságot adott vissza: {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize">
+    <value>SwanStation érvénytelen, mentesített államméretet adott vissza: {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
+    <value>A kijelölt könyvtár azonosítja magát {0} SwanStation helyett.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
+    <value>SwanStation Nem tudta kitenni a médiát.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
+    <value>SwanStation nem tudta beszúrni a médiát.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound">
+    <value>A kiválasztott médiafájl nem található.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaRefused">
+    <value>SwanStation nem volt hajlandó a kiválasztott médiát használni.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
+    <value>SwanStation nem sikerült kiválasztani a médiát.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
+    <value>SwanStation nem tudott médialejátszót létrehozni.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
+    <value>Túl sok lemezt választottak ki a SwanStation Lejátszólista.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
+    <value>A SwanStation A folyamat már inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
+    <value>A Bizottság közleménye a SwanStation a folyamat nem sikerült: {0}</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
+    <value>A SwanStation a folyamat nem inicializálódott.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
+    <value>A SwanStation a folyamat nem indult el.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout">
+    <value>A SwanStation a folyamat nem reagált időben.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
+    <value>A SwanStation a folyamat nem elérhető.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
+    <value>SwanStation nem sikerült kiválasztani a kért lemezt.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
+    <value>SwanStation nem tudta a kért médiát beilleszteni.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
+    <value>Ez SwanStation A mag nem kezdheti el média nélkül.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateEmpty">
+    <value>A megmentett állam üres.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
+    <value>SwanStation Nem tudta visszaállítani a megmentett államot.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed">
+    <value>SwanStation nem tudta megmenteni a jelenlegi állapotot.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
+    <value>SwanStation Egy ismeretlen alapopció.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
+    <value>A SwanStation a fogadó megkapta az ismeretlen parancsot {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
+    <value>A SwanStation mag API változat {0} nem támogatott.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
+    <value>SwanStation nem támogatja a tartalom kiterjesztését {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
+    <value>SwanStation visszaadta a nem támogatott pixel formátumot {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
+    <value>A SwanStation A videó buffer nem elérhető.</value>
+  </data>
+</root>

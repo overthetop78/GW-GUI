@@ -10,7 +10,6 @@ internal static class SwanStationOptionConstants
     internal const string Monitor = "swanstation_scr_tube";
     internal const string Intensity = "swanstation_scr_intensity";
     internal const string Crop = "swanstation_scr_crop";
-    internal const string FloppySound = "swanstation_floppy_sound";
     internal const string Enabled = "enabled";
     internal const string English = "english";
     internal const string French = "french";
@@ -18,5 +17,4 @@ internal static class SwanStationOptionConstants
     internal const string FrenchLanguageCode = "fr";
     internal const string SpanishLanguageCode = "es";
 }
-
 

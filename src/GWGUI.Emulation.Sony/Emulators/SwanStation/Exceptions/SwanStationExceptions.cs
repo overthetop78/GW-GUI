@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Sony.Emulators.SwanStation.Exceptions;
 internal static class SwanStationExceptions
 {
     private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
+        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Error");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.SwanStation.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.SwanStation.HostNotInitialized");
@@ -62,4 +62,3 @@ internal static class SwanStationExceptions
         return arguments.Length == 0 ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
     }
 }
-

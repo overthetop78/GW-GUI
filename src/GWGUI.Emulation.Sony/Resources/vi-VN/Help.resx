@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Điều khiển GW GUI phát âm các mẫu âm thanh được tạo ra bởi giả lập.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Kích hoạt hoặc tắt âm thanh đã mô phỏng.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Chọn kết xuất âm thanh Windows dùng để phát ra âm thanh từ máy mô phỏng này.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Kết xuất âm thanh được dùng bởi GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Hiện tần số đồng hồ trên danh nghĩa của bộ xử lý trong máy Sony đã chọn.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Tần số đồng hồ xử lý gốc.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Hiện mô hình xử lý được cung cấp bởi máy Sony đã chọn.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Bộ xử lý đã mô phỏng cho chiếc máy này.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Hiện hệ thống ROM Trạng thái máy đã chọn và giả lập.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Hệ thống ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Xác định khả năng thực hiện giả lập được dùng để chạy cấu hình máy tính này.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Mô phỏng máy này đã được chọn.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Xác định mô hình Sony mà phần cứng đang được chỉnh sửa.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Mô hình máy tính máy tính được cấu hình.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Hiển thị RAM do máy Sony chọn.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Số lượng RAM sẵn sàng cho máy mô phỏng.</value></data>
+</root>

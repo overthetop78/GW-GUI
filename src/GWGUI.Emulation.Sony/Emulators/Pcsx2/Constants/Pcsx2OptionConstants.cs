@@ -10,7 +10,6 @@ internal static class Pcsx2OptionConstants
     internal const string Monitor = "pcsx2_scr_tube";
     internal const string Intensity = "pcsx2_scr_intensity";
     internal const string Crop = "pcsx2_scr_crop";
-    internal const string FloppySound = "pcsx2_floppy_sound";
     internal const string Enabled = "enabled";
     internal const string English = "english";
     internal const string French = "french";
@@ -18,5 +17,4 @@ internal static class Pcsx2OptionConstants
     internal const string FrenchLanguageCode = "fr";
     internal const string SpanishLanguageCode = "es";
 }
-
 

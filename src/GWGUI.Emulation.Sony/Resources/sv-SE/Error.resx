@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
+    <value>Det nedladdade arkivet innehåller inte PCSX2 Biblioteket.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused">
+    <value>PCSX2 vägrade att ladda det valda innehållet.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound">
+    <value>Den som PCSX2 Biblioteket hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
+    <value>Den som PCSX2 Kärnan är inte initierad.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
+    <value>Den som PCSX2 Biblioteket är inte laddat.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
+    <value>Den som PCSX2 Biblioteksvägen måste vara absolut.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
+    <value>Den som PCSX2 Diskkontroller är ofullständiga.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
+    <value>PCSX2 inte ger diskkontroller.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
+    <value>PCSX2 returnerade en ogiltig diskett.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
+    <value>Den nedladdade PCSX2 Biblioteket har en ogiltig Windows-rubrik.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
+    <value>Den nedladdade PCSX2 Biblioteket är inte ett Windows-bibliotek.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
+    <value>Den nedladdade PCSX2 Biblioteket är inte ett x64-bibliotek.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
+    <value>PCSX2 accepterar inte de nödvändiga fullständiga innehållsvägarna.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
+    <value>Den som PCSX2 Värdkonfiguration är ogiltig.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
+    <value>Den som GW GUI exekutabel som används för att vara värd PCSX2 hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
+    <value>Den som PCSX2 Värd är inte initierat.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
+    <value>Den som PCSX2 värd återvände inget svar.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
+    <value>Värdet {0} är ogiltig för PCSX2 alternativ {1}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
+    <value>Den som PCSX2 värd returnerade en ogiltig responslängd: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
+    <value>PCSX2 returnerade en ogiltig sparad statsstorlek: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
+    <value>Det valda biblioteket identifierar sig som {0} istället för PCSX2.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
+    <value>PCSX2 kunde inte skjuta ut media.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
+    <value>PCSX2 inte kunde sätta in media.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound">
+    <value>Den valda mediefilen hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused">
+    <value>PCSX2 vägrade de utvalda medierna.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
+    <value>PCSX2 Kunde inte välja media.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
+    <value>PCSX2 Kan inte skapa en media slot.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
+    <value>För många diskar valdes för PCSX2 Spellista.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
+    <value>Den som PCSX2 Processen är redan initierad.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
+    <value>Kommunikation med PCSX2 Processen misslyckades: {0}</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
+    <value>Den som PCSX2 Processen är inte initierad.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
+    <value>Den som PCSX2 Processen kunde inte startas.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
+    <value>Den som PCSX2 Processen svarade inte i tid.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
+    <value>Den som PCSX2 Processen är inte tillgänglig.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
+    <value>PCSX2 inte kan välja den begärda disken.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
+    <value>PCSX2 inte kunna infoga de begärda medierna.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
+    <value>Detta detta PCSX2 Kärnan kan inte starta utan media.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty">
+    <value>Det räddade tillståndet är tomt.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
+    <value>PCSX2 kunde inte återställa det sparade tillståndet.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
+    <value>PCSX2 kunde inte rädda det nuvarande tillståndet.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
+    <value>PCSX2 returnerade ett okänt kärnalternativ.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
+    <value>Den som PCSX2 värd fick det okända kommandot {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
+    <value>Den som PCSX2 Kärna API version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version {0} är ostödd.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
+    <value>PCSX2 Stödjer inte innehållstillägget {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
+    <value>PCSX2 returnerade det ostödda pixelformatet {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
+    <value>Den som PCSX2 Videobuffert är inte tillgängligt.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
+    <value>Det nedladdade arkivet innehåller inte PPSSPP Biblioteket.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused">
+    <value>PPSSPP vägrade att ladda det valda innehållet.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound">
+    <value>Den som PPSSPP Biblioteket hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
+    <value>Den som PPSSPP Kärnan är inte initierad.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
+    <value>Den som PPSSPP Biblioteket är inte laddat.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
+    <value>Den som PPSSPP Biblioteksvägen måste vara absolut.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
+    <value>Den som PPSSPP Diskkontroller är ofullständiga.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
+    <value>PPSSPP inte ger diskkontroller.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
+    <value>PPSSPP returnerade en ogiltig diskett.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
+    <value>Den nedladdade PPSSPP Biblioteket har en ogiltig Windows-rubrik.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
+    <value>Den nedladdade PPSSPP Biblioteket är inte ett Windows-bibliotek.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
+    <value>Den nedladdade PPSSPP Biblioteket är inte ett x64-bibliotek.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
+    <value>PPSSPP accepterar inte de nödvändiga fullständiga innehållsvägarna.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
+    <value>Den som PPSSPP Värdkonfiguration är ogiltig.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
+    <value>Den som GW GUI exekutabel som används för att vara värd PPSSPP hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
+    <value>Den som PPSSPP Värd är inte initierat.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
+    <value>Den som PPSSPP värd återvände inget svar.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
+    <value>Värdet {0} är ogiltig för PPSSPP alternativ {1}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
+    <value>Den som PPSSPP värd returnerade en ogiltig responslängd: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
+    <value>PPSSPP returnerade en ogiltig sparad statsstorlek: {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
+    <value>Det valda biblioteket identifierar sig som {0} istället för PPSSPP.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
+    <value>PPSSPP kunde inte skjuta ut media.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
+    <value>PPSSPP inte kunde sätta in media.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound">
+    <value>Den valda mediefilen hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused">
+    <value>PPSSPP vägrade de utvalda medierna.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
+    <value>PPSSPP Kunde inte välja media.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
+    <value>PPSSPP Kan inte skapa en media slot.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
+    <value>För många diskar valdes för PPSSPP Spellista.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
+    <value>Den som PPSSPP Processen är redan initierad.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
+    <value>Kommunikation med PPSSPP Processen misslyckades: {0}</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
+    <value>Den som PPSSPP Processen är inte initierad.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
+    <value>Den som PPSSPP Processen kunde inte startas.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
+    <value>Den som PPSSPP Processen svarade inte i tid.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
+    <value>Den som PPSSPP Processen är inte tillgänglig.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
+    <value>PPSSPP inte kan välja den begärda disken.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
+    <value>PPSSPP inte kunna infoga de begärda medierna.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
+    <value>Detta detta PPSSPP Kärnan kan inte starta utan media.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty">
+    <value>Det räddade tillståndet är tomt.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
+    <value>PPSSPP kunde inte återställa det sparade tillståndet.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
+    <value>PPSSPP kunde inte rädda det nuvarande tillståndet.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
+    <value>PPSSPP returnerade ett okänt kärnalternativ.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
+    <value>Den som PPSSPP värd fick det okända kommandot {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
+    <value>Den som PPSSPP Kärna API version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version {0} är ostödd.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
+    <value>PPSSPP Stödjer inte innehållstillägget {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
+    <value>PPSSPP returnerade det ostödda pixelformatet {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
+    <value>Den som PPSSPP Videobuffert är inte tillgängligt.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
+    <value>Det nedladdade arkivet innehåller inte SwanStation Biblioteket.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ContentRefused">
+    <value>SwanStation vägrade att ladda det valda innehållet.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound">
+    <value>Den som SwanStation Biblioteket hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
+    <value>Den som SwanStation Kärnan är inte initierad.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
+    <value>Den som SwanStation Biblioteket är inte laddat.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
+    <value>Den som SwanStation Biblioteksvägen måste vara absolut.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
+    <value>Den som SwanStation Diskkontroller är ofullständiga.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
+    <value>SwanStation inte ger diskkontroller.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
+    <value>SwanStation returnerade en ogiltig diskett.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
+    <value>Den nedladdade SwanStation Biblioteket har en ogiltig Windows-rubrik.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
+    <value>Den nedladdade SwanStation Biblioteket är inte ett Windows-bibliotek.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
+    <value>Den nedladdade SwanStation Biblioteket är inte ett x64-bibliotek.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
+    <value>SwanStation accepterar inte de nödvändiga fullständiga innehållsvägarna.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
+    <value>Den som SwanStation Värdkonfiguration är ogiltig.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
+    <value>Den som GW GUI exekutabel som används för att vara värd SwanStation hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized">
+    <value>Den som SwanStation Värd är inte initierat.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
+    <value>Den som SwanStation värd återvände inget svar.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
+    <value>Värdet {0} är ogiltig för SwanStation alternativ {1}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
+    <value>Den som SwanStation värd returnerade en ogiltig responslängd: {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize">
+    <value>SwanStation returnerade en ogiltig sparad statsstorlek: {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
+    <value>Det valda biblioteket identifierar sig som {0} I stället för SwanStation.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
+    <value>SwanStation kunde inte skjuta ut media.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
+    <value>SwanStation inte kunde sätta in media.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound">
+    <value>Den valda mediefilen hittades inte.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaRefused">
+    <value>SwanStation vägrade de utvalda medierna.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
+    <value>SwanStation Kunde inte välja media.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
+    <value>SwanStation Kan inte skapa en media slot.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
+    <value>För många diskar valdes för SwanStation Spellista.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
+    <value>Den som SwanStation Processen är redan initierad.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
+    <value>Kommunikation med SwanStation Processen misslyckades: {0}</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
+    <value>Den som SwanStation Processen är inte initierad.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
+    <value>Den som SwanStation Processen kunde inte startas.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout">
+    <value>Den som SwanStation Processen svarade inte i tid.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
+    <value>Den som SwanStation Processen är inte tillgänglig.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
+    <value>SwanStation inte kan välja den begärda disken.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
+    <value>SwanStation inte kunna infoga de begärda medierna.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
+    <value>Detta detta SwanStation Kärnan kan inte starta utan media.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateEmpty">
+    <value>Det räddade tillståndet är tomt.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
+    <value>SwanStation kunde inte återställa det sparade tillståndet.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed">
+    <value>SwanStation kunde inte rädda det nuvarande tillståndet.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
+    <value>SwanStation returnerade ett okänt kärnalternativ.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
+    <value>Den som SwanStation värd fick det okända kommandot {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
+    <value>Den som SwanStation Kärna API version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version version {0} är ostödd.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
+    <value>SwanStation Stödjer inte innehållstillägget {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
+    <value>SwanStation returnerade det ostödda pixelformatet {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
+    <value>Den som SwanStation Videobuffert är inte tillgängligt.</value>
+  </data>
+</root>

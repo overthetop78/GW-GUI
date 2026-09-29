@@ -592,3 +592,27 @@ les tests et le comportement complet correspondant.
   - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Nintendo/Resources --retranslate-all` afin de régénérer chaque culture depuis `en-US` avec Argos.
 - [x] Empêcher les traductions provenant d'une autre famille.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que les catalogues Nintendo ne contiennent aucun texte Caprice32, Amstrad, Sega ou GenesisPlusGX et que chaque culture conserve les clés et paramètres de `en-US`.
+
+## 28. Tranche Sony — catalogue matériel et supports réels
+
+- [x] Publier les modèles Sony demandés sans créer de variantes artificielles.
+  - [x] Remplacer les constantes Sega résiduelles dans `src/GWGUI.Emulation.Sony/Common/Machines/Common/Constants/ModelConstants.cs` par les identifiants et caractéristiques CPU, fréquence, vidéo et audio des PlayStation, PSP, Vita, PS3, PS4 et PS5.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/ModelContracts.cs` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier ces modèles avec leur RAM réelle, leurs périphériques intégrés et leurs composants invariants.
+- [x] Exposer uniquement les supports Sony déjà décodables par MediaEngine.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Constants/StorageConstants.cs` pour déclarer les extensions optiques PS1/PS2 et les images UMD PSP à partir des constantes MediaEngine, sans DSK, cassette, cartouche CPR, GDI ou CDI Sega.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs` pour publier uniquement le lecteur optique permanent des machines prises en charge et refuser les lecteurs absents du modèle.
+- [x] Afficher les composants Sony sans réglages inventés.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Constants/SettingsConstants.cs`, `SettingsDescriptionTextConstants.cs`, `SettingsHelpDictionary.cs` et `SettingsFunctions.cs` pour rendre CPU, fréquence, vidéo, audio, RAM et ROM système informatifs, conserver seulement les réglages audio communs et supprimer vidéo personnalisée, son de disquette et extensions RAM génériques.
+- [x] Vérifier la matrice Sony avant traduction.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier les modèles, cœurs, composants, lecteurs et extensions Sony, avec création et suppression des dossiers temporaires dans `finally`.
+  - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier les parcours visualisation, exploration et conversion/export des extensions optiques Sony déjà prises en charge, puis supprimer tous les fichiers temporaires dans `finally`.
+
+## 29. Tranche Sony — ressources réparties par catégorie
+
+- [x] Aligner le catalogue de ressources Sony sur la structure commune des modules existants.
+  - [x] Déplacer les messages d'erreur de `src/GWGUI.Emulation.Sony/Resources/<culture>/Emulation.resx` vers `Error.resx` et les messages de cœur vers `Core.resx`, sans conserver de clé translatable dans `00-Base`.
+  - [x] Déplacer les clés Sony de contrôleur, firmware, aide, option et vidéo vers leurs fichiers `Controller.resx`, `Firmware.resx`, `Help.resx`, `Option.resx` et `Video.resx`; conserver la famille et les noms de modèles invariants dans `Machine.resx`.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/*/Exceptions/*.cs` pour charger `GWGUI.Emulation.Sony.Resources.Error` comme les autres modules.
+- [x] Régénérer toutes les cultures à partir de `en-US`.
+  - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Sony/Resources --clean-only` après le déplacement afin de supprimer les anciennes clés monolithiques et garder les traductions synchronisées.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier la séparation des clés, l'absence des invariants dans les cultures et l'absence de références Sega, Nintendo, Amstrad ou Caprice32.

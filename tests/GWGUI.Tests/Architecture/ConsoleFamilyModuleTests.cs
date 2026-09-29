@@ -30,6 +30,8 @@ using FlycastExternalCoreConstants = GWGUI.Emulation.Sega.Emulators.Flycast.Cons
 using YabauseExternalCore = GWGUI.Emulation.Sega.Emulators.Yabause.Services.ExternalCore;
 using YabauseExternalCoreConstants = GWGUI.Emulation.Sega.Emulators.Yabause.Constants.ExternalCoreConstants;
 using GWGUI.Emulation.Sony.Modules;
+using SonyEmulatorCatalog = GWGUI.Emulation.Sony.Common.Dictionaries.EmulatorCatalog;
+using SonyModelCatalog = GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries.ModelCatalog;
 using GWGUI.Emulation.Microsoft.Modules;
 
 namespace GWGUI.Tests.Architecture;
@@ -86,6 +88,9 @@ public sealed class ConsoleFamilyModuleTests
                 (new NintendoEmulationModuleFactory().Create(context), NintendoModelConstants.WiiU),
                 (new NintendoEmulationModuleFactory().Create(context), NintendoModelConstants.Switch),
                 (new SonyEmulationModuleFactory().Create(context), "PsVita"),
+                (new SonyEmulationModuleFactory().Create(context), "PlayStation3"),
+                (new SonyEmulationModuleFactory().Create(context), "PlayStation4"),
+                (new SonyEmulationModuleFactory().Create(context), "PlayStation5"),
                 (new MicrosoftEmulationModuleFactory().Create(context), "Xbox")
             };
 
@@ -298,6 +303,54 @@ public sealed class ConsoleFamilyModuleTests
                 .ToDictionary(element => element.GetAttribute("name"),
                     element => element.SelectSingleNode("value")?.InnerText ?? string.Empty,
                     StringComparer.Ordinal);
+        }
+    }
+
+    [Fact]
+    public void SonyResourceCatalogsUseCommonCategoriesAndOnlySonyText()
+    {
+        var root = RepositoryRoot();
+        var resources = Path.Combine(root, "src", "GWGUI.Emulation.Sony", "Resources");
+        var baseEntries = ReadEntries(Path.Combine(resources, "00-Base"));
+        var englishEntries = ReadEntries(Path.Combine(resources, "en-US"));
+        var expectedModels = new[] { "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
+        Assert.Contains("Emulation.Family.Sony", baseEntries.Keys);
+        Assert.All(expectedModels, model => Assert.Contains("Emulation.Sony.Model." + model, baseEntries.Keys));
+        Assert.DoesNotContain(englishEntries.Keys, key => key == "Emulation.Family.Sony"
+            || key.StartsWith("Emulation.Sony.Model.", StringComparison.Ordinal));
+        Assert.Contains("Emulation.Error.Pcsx2.HostConfigurationInvalid", englishEntries.Keys);
+        Assert.Contains("Emulation.Emulator.pcsx2.Description", englishEntries.Keys);
+        Assert.DoesNotContain(baseEntries.Keys, key => key.StartsWith("Emulation.Error.", StringComparison.Ordinal)
+            || key.StartsWith("Emulation.Emulator.", StringComparison.Ordinal));
+        var forbidden = new[] { "Caprice32", "Amstrad", "GenesisPlusGX", "Sega", "Nintendo", "SonyCore" };
+        Assert.DoesNotContain(englishEntries.Values, value => forbidden.Any(name =>
+            value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+        var files = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx")
+            .Select(Path.GetFileName).Order(StringComparer.Ordinal).ToArray();
+        foreach (var culture in Directory.EnumerateDirectories(resources)
+                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
+                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        {
+            Assert.False(File.Exists(Path.Combine(culture, "Emulation.resx")));
+            Assert.Equal(files, Directory.EnumerateFiles(culture, "*.resx")
+                .Select(Path.GetFileName).Order(StringComparer.Ordinal));
+            var entries = ReadEntries(culture);
+            Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal), entries.Keys.Order(StringComparer.Ordinal));
+            Assert.DoesNotContain(entries.Values, value => forbidden.Any(name =>
+                value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        static IReadOnlyDictionary<string, string> ReadEntries(string directory)
+        {
+            var result = new Dictionary<string, string>(StringComparer.Ordinal);
+            foreach (var path in Directory.EnumerateFiles(directory, "*.resx"))
+            {
+                var document = new XmlDocument();
+                document.Load(path);
+                foreach (var element in document.SelectNodes("/root/data")!.Cast<XmlElement>())
+                    result.Add(element.GetAttribute("name"), element.SelectSingleNode("value")?.InnerText ?? string.Empty);
+            }
+            return result;
         }
     }
 
@@ -593,6 +646,63 @@ public sealed class ConsoleFamilyModuleTests
             var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
                 module.CreateConfiguration("Psp"));
             Assert.Equal("ppsspp", configuration.EmulatorId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SonyModelsAndStorageMatchPublishedHardware()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sony-settings-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SonyEmulationModuleFactory().Create(
+                new EmulationModuleContext(root, root, http));
+            var expected = new[] { "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
+            Assert.Equal(expected, SonyModelCatalog.All.Select(model => model.Id));
+            Assert.DoesNotContain(SonyModelCatalog.All, model => model.BackendModel is
+                "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
+            var supported = SonyModelCatalog.All.Where(model => SonyEmulatorCatalog.All
+                .Any(definition => definition.MachineIds.Contains(model.Id, StringComparer.Ordinal)));
+            foreach (var model in supported)
+            {
+                var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
+                    module.CreateConfiguration(model.Id));
+                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                    .DescribeStorageSettings(configuration);
+                var optical = Assert.Single(storage.AvailableDevices,
+                    device => device.Slot == EmulationMediaSlot.Cd0);
+                Assert.Contains(EmulationMediaSlot.Cd0, storage.ConfiguredSlots);
+                Assert.DoesNotContain(storage.AvailableDevices,
+                    device => device.Slot == EmulationMediaSlot.Cartridge0);
+                if (model.Id == "Psp")
+                    Assert.Equal([".iso", ".chd"], optical.AcceptedExtensions);
+                else
+                    Assert.Equal([".cue", ".bin", ".chd", ".iso", ".ccd", ".mds"],
+                        optical.AcceptedExtensions);
+
+                var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
+                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution"
+                    or "configuration.videoMonitor" or "configuration.videoIntensity"
+                    or "configuration.videoCrop" or "configuration.floppySound");
+                Assert.Equal(EmulationSettingsEditor.Information,
+                    fields.Single(field => field.Id == "configuration.ramKib").Editor);
+                Assert.Equal($"{model.RamKib} KiB",
+                    fields.Single(field => field.Id == "configuration.ramKib").Value);
+                Assert.Equal(string.Join(" / ", model.Processors),
+                    fields.Single(field => field.Id == "configuration.model.cpu").Value);
+                Assert.Equal(model.VideoChip,
+                    fields.Single(field => field.Id == "configuration.model.video").Value);
+                Assert.Equal(model.AudioChip,
+                    fields.Single(field => field.Id == "configuration.model.audio").Value);
+                Assert.Equal(model.CpuFrequency,
+                    fields.Single(field => field.Id == "configuration.model.frequency").Value);
+            }
         }
         finally
         {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Emulálja a PlayStation 2 rendszereket.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Emulates PlayStation hordozható rendszerek.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emulates Sony PlayStation és PS egy rendszer.</value></data>
+</root>

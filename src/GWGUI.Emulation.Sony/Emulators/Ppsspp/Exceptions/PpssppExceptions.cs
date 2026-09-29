@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 internal static class PpssppExceptions
 {
     private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
+        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Error");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.Ppsspp.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.Ppsspp.HostNotInitialized");
@@ -62,4 +62,3 @@ internal static class PpssppExceptions
         return arguments.Length == 0 ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
     }
 }
-

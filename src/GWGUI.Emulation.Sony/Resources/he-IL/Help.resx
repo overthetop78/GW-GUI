@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>בקרה אם GW GUI משחק את דגימות אודיו שנוצרו על ידי החיקוי.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>צליל אמין או מלוטש.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>בחר את פלט אודיו של Windows המשמש כדי לנגן קול ממכונה זו.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>תפוקה אודיו בשימוש GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>מציג את תדירות השעון הדומינלי של המעבד במכונת Sony שנבחרה.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>תדירות השעון של המעבד המקורי</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>מציג את מודל המעבד המסופק על ידי מכונת Sony שנבחרה.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>מעבדים חיקוי למכונה זו.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>מציג את המערכת ROM סטטוס למכונה הנבחרת ולחיקוי.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>מערכת מערכת ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifing the מחקה יישום המשמש להפעיל את תצורת המכונה הזו.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>אדמירטור נבחר למכונה זו.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifies מודל אשר תצורות החומרה שלו הוא ערוך.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>מודל ה-Sony Machine מוגדר.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>מציג את RAM מוצג על ידי Sony Machine.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>כמות RAM זמין למכונה החיקויית.</value></data>
+</root>

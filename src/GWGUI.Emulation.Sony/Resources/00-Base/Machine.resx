@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Family.Sony"><value>Sony</value></data>
+  <data name="Emulation.Sony.Model.PlayStation"><value>PlayStation / PS one</value></data>
+  <data name="Emulation.Sony.Model.PlayStation2"><value>PlayStation 2 / PStwo</value></data>
+  <data name="Emulation.Sony.Model.PlayStation3"><value>PlayStation 3</value></data>
+  <data name="Emulation.Sony.Model.PlayStation4"><value>PlayStation 4</value></data>
+  <data name="Emulation.Sony.Model.PlayStation5"><value>PlayStation 5</value></data>
+  <data name="Emulation.Sony.Model.Psp"><value>PlayStation Portable</value></data>
+  <data name="Emulation.Sony.Model.PsVita"><value>PlayStation Vita</value></data>
+</root>

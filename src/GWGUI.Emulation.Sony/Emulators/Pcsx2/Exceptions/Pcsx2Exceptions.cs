@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 internal static class Pcsx2Exceptions
 {
     private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
+        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Error");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.Pcsx2.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.Pcsx2.HostNotInitialized");
@@ -62,4 +62,3 @@ internal static class Pcsx2Exceptions
         return arguments.Length == 0 ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
     }
 }
-

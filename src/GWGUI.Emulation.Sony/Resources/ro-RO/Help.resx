@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Controlează dacă GW GUI cântă probele audio generate de emulator.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Activați sau dezactivați sunetul emulat.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Selectează ieşirea audio a Windows-ului folosită pentru a reda sunetul din această maşină emulată.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Ieșire audio utilizată de GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Afișează frecvența nominală a ceasului procesorului în mașina Sony selectată.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frecvenţa originală a ceasului procesorului.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Arată modelul procesorului furnizat de maşina Sony selectată.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Procesorul a fost emulat pentru această maşină.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Arată sistemul ROM starea pentru masina selectata si emulator.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Sistem ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifică implementarea emulatorului folosit pentru a rula această configurație mașină.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator selectat pentru această mașină.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifică modelul Sony a cărui configurare hardware este editată.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony model de mașină fiind configurat.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Afișează RAM furnizate de maşina Sony selectată.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Cantitatea de RAM disponibil pentru aparatul emulat.</value></data>
+</root>

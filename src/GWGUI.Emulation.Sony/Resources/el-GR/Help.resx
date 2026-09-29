@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Ελέγχει αν GW GUI παίζει τα δείγματα ήχου που παράγονται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Ενεργοποίηση ή απενεργοποίηση μιμούμενου ήχου.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Επιλέγει την έξοδο ήχου των Windows που χρησιμοποιείται για να παίξει ήχο από αυτό το μηχάνημα που προσομοιάζει.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Εμφανίζει την ονομαστική συχνότητα ⁇ ολογιού του επεξεργαστή στην επιλεγμένη μηχανή Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Αρχική συχνότητα ⁇ ολογιού επεξεργαστή.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Εμφανίζει το μοντέλο επεξεργαστή που παρέχεται από την επιλεγμένη μηχανή Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Ο επεξεργαστής προσομοιάζει γι' αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Εμφάνιση του συστήματος ROM κατάσταση για την επιλεγμένη μηχανή και εξομοιωτή.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Σύστημα ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Προσδιορίζει την εφαρμογή εξομοιωτή που χρησιμοποιείται για τη λειτουργία αυτής της διάταξης μηχανών.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Ο εξομοιωτής επιλέχθηκε για αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Προσδιορίζει το μοντέλο Sony του οποίου οι ρυθμίσεις υλικού είναι υπό επεξεργασία.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Το μοντέλο της Sony διαμορφώνεται.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Εμφανίζει το RAM παρέχεται από την επιλεγμένη μηχανή Sony.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Ποσό RAM διαθέσιμο στην μηχανή που μιμείται.</value></data>
+</root>

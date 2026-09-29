@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>الضوابط على ما إذا كان GW GUI يعزف العينات الصوتية التي تولدها المرشدة</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>صوت مُمكن أو مُنع</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>يُختارُ المخرج الصوتيَ الريحِ يَستعملُ لِلَعبِ الصوتِ مِنْ هذه الآلةِ المُحتَزَمةِ.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>ناتج الصوت المستخدم GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>يظهر التردد الاسمي لساعة المعالج في آلة سوني المختارة</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>تواتر الساعة الأصلي</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>يُظهر نموذج المُعالجة الذي قدمته آلة (سوني) المختارة</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>المُعالجة صاغت لهذه الآلة</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>يظهر النظام ROM وضعية الآلة المختاره و المرشد</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>النظام ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>يحدد تنفيذ المرشد المستخدم لإدارة هذه التشكيلة الآلية.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>مرشدة اختيرت لهذه الآلة</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>يحدد نموذج سوني الذي يجري تحرير تركيبة معداته.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>عارضات الآلات الصوفية يتم تشكيلها</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>يصور RAM (تقدّم بواسطة آلة (سوني</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>المبلغ RAM متوفر للآلة المُحتَزَنة</value></data>
+</root>

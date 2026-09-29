@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
+    <value>ダウンロードしたアーカイブは含まれていません PCSX2 ライブラリ。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused">
+    <value>PCSX2 選択したコンテンツをロードすることを拒否しました。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound">
+    <value>とりあえず PCSX2 ライブラリが見つかりませんでした。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
+    <value>とりあえず PCSX2 コアは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
+    <value>とりあえず PCSX2 ライブラリは読み込まれません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
+    <value>とりあえず PCSX2 ライブラリパスは絶対必要です。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
+    <value>とりあえず PCSX2 ディスク制御は不完全です。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
+    <value>PCSX2 ディスク制御は提供しません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
+    <value>PCSX2 ディスクの無効ラベルを返しました。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
+    <value>ダウンロード PCSX2 ライブラリには、Windows のヘッダーが無効になっています。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
+    <value>ダウンロード PCSX2 ライブラリはWindowsライブラリではありません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
+    <value>ダウンロード PCSX2 ライブラリは x64 ライブラリではありません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
+    <value>PCSX2 必須のフルコンテンツパスは受け付けません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
+    <value>とりあえず PCSX2 ホスト構成が無効です。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
+    <value>とりあえず GW GUI ホストに使われる実行可能 PCSX2 見つかりませんでした。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
+    <value>とりあえず PCSX2 ホストは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
+    <value>とりあえず PCSX2 ホストは応答を返さない。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
+    <value>値の {0} 無効な状態です。 PCSX2 選択オプション {1}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
+    <value>とりあえず PCSX2 ホストは、無効な応答の長さを返します。 {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
+    <value>PCSX2 保存状態の未指定サイズを返しました。 {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
+    <value>選択したライブラリは、そのライブラリをそのまま識別します。 {0} 代わりに PCSX2.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
+    <value>PCSX2 メディアを排出できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
+    <value>PCSX2 媒体を差し込むことができません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound">
+    <value>選択したメディアファイルが発見されていない。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused">
+    <value>PCSX2 選択したメディアを拒否しました。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
+    <value>PCSX2 メディアを選択できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
+    <value>PCSX2 メディアスロットを作成できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
+    <value>ディスクが多すぎると、 PCSX2 プレイリスト。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
+    <value>とりあえず PCSX2 既に初期化されます。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
+    <value>コミュニケーションとコミュニケーション PCSX2 プロセス失敗: {0}</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
+    <value>とりあえず PCSX2 プロセスは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
+    <value>とりあえず PCSX2 プロセスは開始できませんでした。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
+    <value>とりあえず PCSX2 処理は時間内に応答しなかった。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
+    <value>とりあえず PCSX2 プロセスは利用できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
+    <value>PCSX2 要求されたディスクを選択できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
+    <value>PCSX2 要求されたメディアを差し込むことはできません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
+    <value>とりあえず PCSX2 メディアなしではコアが起動できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty">
+    <value>保存状態が空です。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
+    <value>PCSX2 保存状態を復元できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
+    <value>PCSX2 現在の状態を保存できません。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
+    <value>PCSX2 未知のコアオプションを返します。</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
+    <value>とりあえず PCSX2 ホストは未知のコマンドを受信しました {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
+    <value>とりあえず PCSX2 コアコア API コンテンツ {0} 未サポート</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
+    <value>PCSX2 コンテンツ拡張をサポートしていません {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
+    <value>PCSX2 未サポートピクセルフォーマットを返す {0}.</value>
+  </data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
+    <value>とりあえず PCSX2 ビデオバッファは利用できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
+    <value>ダウンロードしたアーカイブは含まれていません PPSSPP ライブラリ。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused">
+    <value>PPSSPP 選択したコンテンツをロードすることを拒否しました。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound">
+    <value>とりあえず PPSSPP ライブラリが見つかりませんでした。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
+    <value>とりあえず PPSSPP コアは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
+    <value>とりあえず PPSSPP ライブラリは読み込まれません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
+    <value>とりあえず PPSSPP ライブラリパスは絶対必要です。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
+    <value>とりあえず PPSSPP ディスク制御は不完全です。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
+    <value>PPSSPP ディスク制御は提供しません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
+    <value>PPSSPP ディスクの無効ラベルを返しました。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
+    <value>ダウンロード PPSSPP ライブラリには、Windows のヘッダーが無効になっています。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
+    <value>ダウンロード PPSSPP ライブラリはWindowsライブラリではありません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
+    <value>ダウンロード PPSSPP ライブラリは x64 ライブラリではありません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
+    <value>PPSSPP 必須のフルコンテンツパスは受け付けません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
+    <value>とりあえず PPSSPP ホスト構成が無効です。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
+    <value>とりあえず GW GUI ホストに使われる実行可能 PPSSPP 見つかりませんでした。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
+    <value>とりあえず PPSSPP ホストは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
+    <value>とりあえず PPSSPP ホストは応答を返さない。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
+    <value>値の {0} 無効な状態です。 PPSSPP 選択オプション {1}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
+    <value>とりあえず PPSSPP ホストは、無効な応答の長さを返します。 {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
+    <value>PPSSPP 保存状態の未指定サイズを返しました。 {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
+    <value>選択したライブラリは、そのライブラリをそのまま識別します。 {0} 代わりに PPSSPP.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
+    <value>PPSSPP メディアを排出できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
+    <value>PPSSPP 媒体を差し込むことができません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound">
+    <value>選択したメディアファイルが発見されていない。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused">
+    <value>PPSSPP 選択したメディアを拒否しました。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
+    <value>PPSSPP メディアを選択できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
+    <value>PPSSPP メディアスロットを作成できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
+    <value>ディスクが多すぎると、 PPSSPP プレイリスト。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
+    <value>とりあえず PPSSPP 既に初期化されます。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
+    <value>コミュニケーションとコミュニケーション PPSSPP プロセス失敗: {0}</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
+    <value>とりあえず PPSSPP プロセスは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
+    <value>とりあえず PPSSPP プロセスは開始できませんでした。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
+    <value>とりあえず PPSSPP 処理は時間内に応答しなかった。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
+    <value>とりあえず PPSSPP プロセスは利用できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
+    <value>PPSSPP 要求されたディスクを選択できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
+    <value>PPSSPP 要求されたメディアを差し込むことはできません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
+    <value>とりあえず PPSSPP メディアなしではコアが起動できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty">
+    <value>保存状態が空です。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
+    <value>PPSSPP 保存状態を復元できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
+    <value>PPSSPP 現在の状態を保存できません。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
+    <value>PPSSPP 未知のコアオプションを返します。</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
+    <value>とりあえず PPSSPP ホストは未知のコマンドを受信しました {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
+    <value>とりあえず PPSSPP コアコア API コンテンツ {0} 未サポート</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
+    <value>PPSSPP コンテンツ拡張をサポートしていません {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
+    <value>PPSSPP 未サポートピクセルフォーマットを返す {0}.</value>
+  </data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
+    <value>とりあえず PPSSPP ビデオバッファは利用できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
+    <value>ダウンロードしたアーカイブは含まれていません SwanStation ライブラリ。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ContentRefused">
+    <value>SwanStation 選択したコンテンツをロードすることを拒否しました。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound">
+    <value>とりあえず SwanStation ライブラリが見つかりませんでした。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
+    <value>とりあえず SwanStation コアは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
+    <value>とりあえず SwanStation ライブラリは読み込まれません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
+    <value>とりあえず SwanStation ライブラリパスは絶対必要です。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
+    <value>とりあえず SwanStation ディスク制御は不完全です。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
+    <value>SwanStation ディスク制御は提供しません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
+    <value>SwanStation ディスクの無効ラベルを返しました。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
+    <value>ダウンロード SwanStation ライブラリには、Windows のヘッダーが無効になっています。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
+    <value>ダウンロード SwanStation ライブラリはWindowsライブラリではありません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
+    <value>ダウンロード SwanStation ライブラリは x64 ライブラリではありません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
+    <value>SwanStation 必須のフルコンテンツパスは受け付けません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
+    <value>とりあえず SwanStation ホスト構成が無効です。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
+    <value>とりあえず GW GUI ホストに使われる実行可能 SwanStation 見つかりませんでした。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized">
+    <value>とりあえず SwanStation ホストは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
+    <value>とりあえず SwanStation ホストは応答を返さない。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
+    <value>値の {0} 無効な状態です。 SwanStation 選択オプション {1}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
+    <value>とりあえず SwanStation ホストは、無効な応答の長さを返します。 {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize">
+    <value>SwanStation 保存状態の未指定サイズを返しました。 {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
+    <value>選択したライブラリは、そのライブラリをそのまま識別します。 {0} 代わりに SwanStation の.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
+    <value>SwanStation メディアを排出できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
+    <value>SwanStation 媒体を差し込むことができません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound">
+    <value>選択したメディアファイルが発見されていない。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaRefused">
+    <value>SwanStation 選択したメディアを拒否しました。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
+    <value>SwanStation メディアを選択できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
+    <value>SwanStation メディアスロットを作成できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
+    <value>ディスクが多すぎると、 SwanStation プレイリスト。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
+    <value>とりあえず SwanStation 既に初期化されます。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
+    <value>コミュニケーションとコミュニケーション SwanStation プロセス失敗: {0}</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
+    <value>とりあえず SwanStation プロセスは初期化されません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
+    <value>とりあえず SwanStation プロセスは開始できませんでした。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout">
+    <value>とりあえず SwanStation 処理は時間内に応答しなかった。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
+    <value>とりあえず SwanStation プロセスは利用できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
+    <value>SwanStation 要求されたディスクを選択できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
+    <value>SwanStation 要求されたメディアを差し込むことはできません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
+    <value>とりあえず SwanStation メディアなしではコアが起動できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateEmpty">
+    <value>保存状態が空です。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
+    <value>SwanStation 保存状態を復元できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed">
+    <value>SwanStation 現在の状態を保存できません。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
+    <value>SwanStation 未知のコアオプションを返します。</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
+    <value>とりあえず SwanStation ホストは未知のコマンドを受信しました {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
+    <value>とりあえず SwanStation コアコア API コンテンツ {0} 未サポート</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
+    <value>SwanStation コンテンツ拡張をサポートしていません {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
+    <value>SwanStation 未サポートピクセルフォーマットを返す {0}.</value>
+  </data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
+    <value>とりあえず SwanStation ビデオバッファは利用できません。</value>
+  </data>
+</root>

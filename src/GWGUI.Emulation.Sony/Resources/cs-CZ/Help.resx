@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontroluje, zda GW GUI přehrává audio vzorky generované emulátorem.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Povolit nebo zakázat emulovaný zvuk.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Vybere audio výstup Windows použitý k přehrávání zvuku z tohoto emulovaného stroje.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Audio výstup použitý GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Zobrazuje nominální hodinovou frekvenci procesoru ve zvoleném zařízení Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Původní frekvence procesorů.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Zobrazuje model procesoru, který poskytuje vybraný stroj Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Procesor se pro tento stroj vytvaroval.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Zobrazuje systém ROM stav vybraného stroje a emulátoru.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Systém ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifikuje implementaci emulátoru používanou pro spuštění této konfigurace stroje.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulátor vybrán pro tento stroj.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifikuje model Sony, jehož hardwarová konfigurace je editována.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Model Sony stroje je nastaven.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Zobrazuje RAM poskytnuté zvoleným zařízením Sony.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Částka RAM dostupné pro emulovaný stroj.</value></data>
+</root>
