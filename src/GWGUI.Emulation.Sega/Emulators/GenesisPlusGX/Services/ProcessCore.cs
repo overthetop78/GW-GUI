@@ -21,6 +21,7 @@ internal sealed class ProcessCore : IEmulatorCore
 {
     private readonly string _hostExecutablePath;
     private readonly string? _corePath;
+    private readonly string _hostCommand;
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     private NamedPipeServerStream? _pipe;
     private BinaryReader? _responseReader;
@@ -36,11 +37,14 @@ internal sealed class ProcessCore : IEmulatorCore
     private string? _sessionDirectory;
     private string? _saveDirectory;
 
-    internal ProcessCore(string hostExecutablePath, string? corePath = null)
+    internal ProcessCore(string hostExecutablePath, string? corePath = null, string? hostCommand = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(hostExecutablePath);
         _hostExecutablePath = Path.GetFullPath(hostExecutablePath);
         _corePath = corePath;
+        _hostCommand = string.IsNullOrWhiteSpace(hostCommand)
+            ? ProcessCoreConstants.CoreHost
+            : hostCommand;
     }
 
     public VideoFrame? LatestVideoFrame { get; private set; }
@@ -95,7 +99,7 @@ internal sealed class ProcessCore : IEmulatorCore
                 CreateNoWindow = true,
                 WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
             };
-            startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
+            startInfo.ArgumentList.Add(_hostCommand);
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
             _process = Process.Start(startInfo)

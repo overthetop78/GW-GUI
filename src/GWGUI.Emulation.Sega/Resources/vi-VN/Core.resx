@@ -7,4 +7,5 @@
   <data name="Emulation.Emulator.flycast.Description"><value>Emetes Sega Dreamcast Hệ thống.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Mô phỏng các hệ thống SG-1000, Mark III, Master System, Game Gear, Mega Drive và Mega-CD.</value></data>
   <data name="Emulation.Emulator.yabause.Description"><value>Emetes Sega Saturn Hệ thống.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Mô phỏng các hệ thống Sega được PicoDrive hỗ trợ.</value></data>
 </root>

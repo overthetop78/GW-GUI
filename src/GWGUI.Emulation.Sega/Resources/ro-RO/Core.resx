@@ -7,4 +7,5 @@
   <data name="Emulation.Emulator.flycast.Description"><value>Emulează Sega Dreamcast sisteme.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulează sistemele SG-1000, Mark III, Master System, Game Gear, Mega Drive și Mega-CD.</value></data>
   <data name="Emulation.Emulator.yabause.Description"><value>Emulează Sega Saturn sisteme.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Emulează sistemele Sega acceptate de PicoDrive.</value></data>
 </root>

@@ -7,4 +7,5 @@
   <data name="Emulation.Emulator.flycast.Description"><value>Имитирует Sega Dreamcast систем.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Эмулирует системы SG-1000, Mark III, Master System, Game Gear, Mega Drive и Mega-CD.</value></data>
   <data name="Emulation.Emulator.yabause.Description"><value>Имитирует Sega Saturn систем.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Эмулирует системы Sega, поддерживаемые PicoDrive.</value></data>
 </root>

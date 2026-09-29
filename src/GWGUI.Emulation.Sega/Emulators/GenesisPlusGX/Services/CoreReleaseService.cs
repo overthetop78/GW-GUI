@@ -19,14 +19,25 @@ public sealed class CoreReleaseService
 
     private readonly HttpClient _httpClient;
     private readonly string _directory;
+    private readonly Uri _latestOfficialUri;
+    private readonly string _libraryFileName;
+    private readonly string _displayName;
 
-    public CoreReleaseService(HttpClient httpClient, string directory)
+    public CoreReleaseService(HttpClient httpClient, string directory, Uri? latestOfficialUri = null,
+        string? libraryFileName = null, string? displayName = null)
     {
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
+        _latestOfficialUri = latestOfficialUri ?? LatestOfficialUri;
+        _libraryFileName = string.IsNullOrWhiteSpace(libraryFileName)
+            ? CoreReleaseConstants.OptionLibretroDll
+            : libraryFileName;
+        _displayName = string.IsNullOrWhiteSpace(displayName)
+            ? GenesisPlusGXConstants.DisplayName
+            : displayName;
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, CoreReleaseConstants.OptionLibretroDll);
+    public string RequiredLibraryPath => Path.Combine(_directory, _libraryFileName);
 
     public string? GetInstalledVersion()
     {
@@ -47,16 +58,16 @@ public sealed class CoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(
         CancellationToken cancellationToken = default)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Head, LatestOfficialUri);
+        using var request = new HttpRequestMessage(HttpMethod.Head, _latestOfficialUri);
         using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
             cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
         return [new CoreRelease($"official-{suffix}",
-            published is null ? CoreReleaseConstants.LibretroLatest
-                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · Libretro",
-            LatestOfficialUri, published, true, true)];
+            published is null ? $"{_displayName} · latest"
+                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {_displayName}",
+            _latestOfficialUri, published, true, true)];
     }
 
     public bool IsInstalled(CoreRelease release)
@@ -103,7 +114,7 @@ public sealed class CoreReleaseService
             {
                 using var archive = ZipFile.OpenRead(download);
                 var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
+                    Path.GetFileName(item.FullName).Equals(_libraryFileName, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidDataException(ExternalCoreExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }

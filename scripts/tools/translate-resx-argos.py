@@ -241,6 +241,39 @@ _TECHNICAL_OVERRIDES = {
         "Emulation.Sega.MegaDrive.32X": "啟用 32X 擴充",
     },
 }
+_PICODRIVE_DESCRIPTION_OVERRIDES = {
+    "ar-SA": "يحاكي أنظمة Sega التي يدعمها PicoDrive.",
+    "cs-CZ": "Emuluje systémy Sega podporované jádrem PicoDrive.",
+    "da-DK": "Emulerer de Sega-systemer, som PicoDrive understøtter.",
+    "de-DE": "Emuliert die von PicoDrive unterstützten Sega-Systeme.",
+    "el-GR": "Εξομοιώνει τα συστήματα Sega που υποστηρίζει το PicoDrive.",
+    "es-ES": "Emula los sistemas Sega compatibles con PicoDrive.",
+    "fi-FI": "Emuloi PicoDriven tukemia Sega-järjestelmiä.",
+    "fr-FR": "Émule les systèmes Sega pris en charge par PicoDrive.",
+    "he-IL": "מחקה את מערכות Sega הנתמכות על ידי PicoDrive.",
+    "hu-HU": "Emulálja a PicoDrive által támogatott Sega rendszereket.",
+    "id-ID": "Mengemulasikan sistem Sega yang didukung PicoDrive.",
+    "it-IT": "Emula i sistemi Sega supportati da PicoDrive.",
+    "ja-JP": "PicoDrive が対応する Sega システムをエミュレートします。",
+    "ko-KR": "PicoDrive가 지원하는 Sega 시스템을 에뮬레이트합니다.",
+    "nb-NO": "Emulerer Sega-systemene som PicoDrive støtter.",
+    "nl-NL": "Emuleert de Sega-systemen die door PicoDrive worden ondersteund.",
+    "pl-PL": "Emuluje systemy Sega obsługiwane przez PicoDrive.",
+    "pt-BR": "Emula os sistemas Sega compatíveis com o PicoDrive.",
+    "pt-PT": "Emula os sistemas Sega suportados pelo PicoDrive.",
+    "ro-RO": "Emulează sistemele Sega acceptate de PicoDrive.",
+    "ru-RU": "Эмулирует системы Sega, поддерживаемые PicoDrive.",
+    "sv-SE": "Emulerar de Sega-system som stöds av PicoDrive.",
+    "th-TH": "จำลองระบบ Sega ที่ PicoDrive รองรับ",
+    "tr-TR": "PicoDrive tarafından desteklenen Sega sistemlerini emüle eder.",
+    "uk-UA": "Емулює системи Sega, які підтримує PicoDrive.",
+    "vi-VN": "Mô phỏng các hệ thống Sega được PicoDrive hỗ trợ.",
+    "zh-Hans": "模拟 PicoDrive 支持的 Sega 系统。",
+    "zh-Hant": "模擬 PicoDrive 支援的 Sega 系統。",
+}
+for _culture, _value in _PICODRIVE_DESCRIPTION_OVERRIDES.items():
+    TRANSLATION_OVERRIDES.setdefault(_culture, {})[
+        "Emulation.Emulator.picodrive.Description"] = _value
 for _culture, _values in _TECHNICAL_OVERRIDES.items():
     TRANSLATION_OVERRIDES.setdefault(_culture, {}).update(_values)
 

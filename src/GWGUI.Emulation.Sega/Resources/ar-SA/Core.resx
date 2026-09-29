@@ -7,4 +7,5 @@
   <data name="Emulation.Emulator.flycast.Description"><value>إمبايز سيغا Dreamcast أنظمة</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>يحاكي أنظمة SG-1000 وMark III وMaster System وGame Gear وMega Drive وMega-CD.</value></data>
   <data name="Emulation.Emulator.yabause.Description"><value>إمبايز سيغا Saturn أنظمة</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>يحاكي أنظمة Sega التي يدعمها PicoDrive.</value></data>
 </root>

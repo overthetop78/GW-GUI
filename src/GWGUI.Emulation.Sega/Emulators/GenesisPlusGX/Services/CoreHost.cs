@@ -15,7 +15,8 @@ namespace GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
 public static class CoreHost
 {
     [SupportedOSPlatform(CoreHostConstants.Windows)]
-    public static void Run(string pipeName, string videoMapName)
+    public static void Run(string pipeName, string videoMapName, string expectedLibraryName,
+        bool stageSc3000)
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
         using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
@@ -47,7 +48,7 @@ public static class CoreHost
                             var saves = CoreHostProtocol.ReadString(reader);
                             var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions)
                                 ?? throw new InvalidDataException(ExternalCoreExceptions.HostConfigurationInvalid());
-                            core = new ExternalCore(corePath);
+                            core = new ExternalCore(corePath, expectedLibraryName, stageSc3000);
                             core.Initialize(configuration, session, saves);
                             writer.Write(true);
                             writer.Write(core.CoreSha256); writer.Write(core.FramesPerSecond); writer.Write(core.SampleRate);

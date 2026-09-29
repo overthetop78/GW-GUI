@@ -327,15 +327,30 @@ jamais une feuille terminale.
 
 - [ ] Choisir un cœur par modèle et par extension sur des capacités vérifiées.
   - [ ] Documenter les capacités confirmées de Genesis Plus GX.
-    - [ ] Modifier `docs/project/console-family-emulation.md` pour conserver Genesis Plus GX comme candidat principal des SG-1000, Mark III, Master System I/II, Game Gear, Mega Drive/Genesis et Mega-CD, sans lui attribuer le 32X qu'il ne supporte pas.
+    - [x] Modifier `docs/project/console-family-emulation.md` pour conserver Genesis Plus GX comme candidat principal des SG-1000, Mark III, Master System I/II, Game Gear, Mega Drive/Genesis et Mega-CD, sans lui attribuer le 32X qu'il ne supporte pas; le DLL et le média SMS réels confirment cette matrice.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` pour conserver ce rattachement uniquement sur les modèles effectivement publiés par le cœur.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour exposer les options de système, région, BIOS, CD et lock-on réellement renvoyées par le cœur.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour filtrer les options persistées sur le catalogue réellement renvoyé par le cœur, puis vérifier les options système, région, BIOS, CD et lock-on avec un média SMS réel.
     - [ ] Vérifier le catalogue du DLL local avec un média Sega réel.
       - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour vérifier les clés d'options système/BIOS/région/add-on/lock-on et les extensions publiées après initialisation, avec libération du cœur et du dossier temporaire dans `finally`; le DLL local passe le test avec le média SMS réel.
   - [ ] Ajouter le candidat PicoDrive pour les extensions que Genesis Plus GX ne couvre pas.
-    - [ ] Créer `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Constants/`, `Contracts/`, `Factories/`, `Functions/` et `Services/` avec les mêmes fichiers et noms que GenesisPlusGX, directement sous le dossier de l'émulateur.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` pour rattacher PicoDrive au 32X et aux autres modèles seulement après vérification de ses options et extensions.
-    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller la matrice modèle/extension/cœur et refuser une combinaison non supportée.
+    - [x] Paramétrer les services libretro communs déjà utilisés par Genesis Plus GX sans créer une couche Libretro parallèle.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/CoreHost.cs` pour recevoir le nom de bibliothèque attendu et le profil de préparation du média, puis transmettre ces valeurs à `ExternalCore`.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` pour vérifier le nom de bibliothèque fourni par l'adaptateur et ne préparer `.sc` vers `.sg` que pour le profil Genesis Plus GX.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ProcessCore.cs` pour recevoir la commande d'hôte de l'adaptateur au lieu d'imposer celle de Genesis Plus GX.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Factories/GenesisPlusGXMachineFactory.cs` pour transmettre explicitement son profil existant et conserver son comportement actuel.
+    - [x] Créer l'adaptateur PicoDrive directement sous `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/`.
+      - [x] Créer `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Constants/PicoDriveConstants.cs` avec l'identifiant `picodrive`, le nom de bibliothèque `PicoDrive`, la commande d'hôte dédiée et l'URL officielle Windows x64 du DLL, sans texte utilisateur en constante technique.
+      - [x] Créer `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Factories/PicoDriveMachineFactory.cs` avec les mêmes contrats `IEmulatorAdapter`, installation, sélection de média, création de machine et gestion de commande que Genesis Plus GX, en ne publiant d'abord que le modèle Mega Drive vérifié.
+      - [x] Créer `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Services/PicoDriveCoreProvider.cs` pour trouver uniquement `picodrive_libretro.dll` dans le dossier du cœur et ne pas copier de DLL dans les sources.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/CoreReleaseService.cs` pour accepter l'URL et le nom de DLL du profil demandé, tout en conservant les valeurs Genesis Plus GX par défaut.
+      - [x] Modifier les catalogues `src/GWGUI.Emulation.Sega/Resources/00-Base/Core.resx`, `Resources/en-US/Core.resx` et les 28 cultures avec le script Argos pour ajouter la description PicoDrive sans recopier les noms invariants.
+    - [x] Vérifier PicoDrive avec le DLL récupérable et un média 32X réel avant de publier le rattachement.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger un `.32x` du corpus `F:\Retro\Sega\Roms`, vérifier l'extension et les options réellement annoncées par PicoDrive, vérifier une frame et libérer le cœur ainsi que le dossier temporaire dans `finally`.
+      - [x] Vérifier dans `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` que l'auto-découverte rattache PicoDrive au seul modèle publié et conserve Mega-CD/32X comme extensions de Mega Drive.
+      - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller la matrice modèle/extension/cœur et refuser une combinaison non annoncée par le DLL.
+    - [ ] Valider la tranche PicoDrive dans les quatre parcours média avant de la déclarer terminée.
+      - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir les ROM Sega réellement publiées dans le visualiseur, lire leurs banques dans l'explorateur, convertir chaque sortie compatible et exporter le résultat, avec suppression de chaque artefact dans `finally`.
+      - [ ] Exécuter les tests ciblés Sega, commit la tranche fonctionnelle avec son test et son document mis à jour, puis lancer `scripts\\local-building.cmd --building=debug --modules=A` et vérifier `build\\Debug\\GW GUI\\gwgui.exe`.
   - [ ] Évaluer les alternatives DLL sans inventer de contrat.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner BizHawk comme candidat C# à DLL de cœur (`IEmulator`, `IVideoProvider`, `ISoundProvider`) à vérifier dans une version récupérable, sans ajouter de DLL fictive au dépôt.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour consigner VirtualGens (`gens.dll`) comme candidat natif à API C, avec son thread, ses entrées et son tampon vidéo à vérifier avant tout adaptateur.

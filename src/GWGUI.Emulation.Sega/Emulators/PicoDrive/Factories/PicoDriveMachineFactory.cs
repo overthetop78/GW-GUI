@@ -1,30 +1,34 @@
-using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Functions;
-using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
-using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants;
-using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
 using System.IO;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Sega.Common.Contracts;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Functions;
+using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
+using GWGUI.Emulation.Sega.Emulators.PicoDrive.Constants;
+using GWGUI.Emulation.Sega.Emulators.PicoDrive.Services;
 
-namespace GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Factories;
+namespace GWGUI.Emulation.Sega.Emulators.PicoDrive.Factories;
 
-internal sealed class GenesisPlusGXMachineFactory : IEmulatorAdapter
+internal sealed class PicoDriveMachineFactory : IEmulatorAdapter
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
-    public string EmulatorId => GenesisPlusGXConstants.Id;
-    public string EmulatorKey => GenesisPlusGXConstants.Id;
+    public string EmulatorId => PicoDriveConstants.Id;
+    public string EmulatorKey => PicoDriveConstants.Id;
     public EmulationEmulatorDefinition Definition { get; } = new(
-        GenesisPlusGXConstants.Id, GenesisPlusGXConstants.DisplayName,
-        GenesisPlusGXConstants.DescriptionResourceKey,
-        new[] { "Sg1000", "Sc3000", "MarkIII", "MasterSystem", "MegaDrive", "Pico", "GameGear" }.ToHashSet(StringComparer.Ordinal));
+        PicoDriveConstants.Id, PicoDriveConstants.DisplayName,
+        PicoDriveConstants.DescriptionResourceKey,
+        new[] { ModelConstants.MegaDrive }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
         exitCode = 0;
-        if (arguments is not [GenesisPlusGXConstants.CoreHostCommand, var pipeName, var videoMapName])
+        if (arguments is not [PicoDriveConstants.CoreHostCommand, var pipeName, var videoMapName])
             return false;
         if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
-        CoreHost.Run(pipeName, videoMapName, GenesisPlusGXConstants.LibraryName, true);
+        CoreHost.Run(pipeName, videoMapName, PicoDriveConstants.LibraryName, false);
         return true;
     }
 
@@ -32,16 +36,16 @@ internal sealed class GenesisPlusGXMachineFactory : IEmulatorAdapter
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var service = new CoreReleaseService(context.HttpClient, context.CoreDirectory);
-        var version = service.GetInstalledVersion();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
+        var service = CreateReleaseService(context);
+        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition,
+            service.GetInstalledVersion()));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetAvailableAsync(cancellationToken).ConfigureAwait(false);
+        var releases = await CreateReleaseService(context).GetAvailableAsync(cancellationToken)
+            .ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName,
             item.Id, item.IsRequired)).ToArray();
@@ -53,13 +57,13 @@ internal sealed class GenesisPlusGXMachineFactory : IEmulatorAdapter
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        return await CreateReleaseService(context).InstallAsync(selected, progress, cancellationToken)
+            .ConfigureAwait(false);
     }
 
     public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient,
-            context.CoreDirectory).FindInstalledPathAsync(cancellationToken));
+        CancellationToken cancellationToken) => new(
+        new PicoDriveCoreProvider(context.CoreDirectory).FindInstalledPathAsync(cancellationToken));
 
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
         EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
@@ -70,10 +74,15 @@ internal sealed class GenesisPlusGXMachineFactory : IEmulatorAdapter
         var native = GenesisPlusGXOptionFunctions.ToNative(configuration.EnsureId());
         return new Machine(machineId, native,
             new ProcessCore(context.HostExecutablePath, context.CorePath,
-                GenesisPlusGXConstants.CoreHostCommand),
+                PicoDriveConstants.CoreHostCommand),
             native.Media ?? [], Path.Combine(context.SessionsDirectory,
                 machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
+
+    private static CoreReleaseService CreateReleaseService(EmulatorManagementContext context) =>
+        new(context.HttpClient, context.CoreDirectory,
+            new Uri(PicoDriveConstants.LatestOfficialUri), PicoDriveConstants.LibraryFileName,
+            PicoDriveConstants.DisplayName);
 }

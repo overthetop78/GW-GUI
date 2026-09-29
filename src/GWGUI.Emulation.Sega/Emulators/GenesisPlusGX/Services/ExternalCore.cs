@@ -13,6 +13,8 @@ namespace GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services;
 internal sealed class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
+    private readonly string _expectedLibraryName;
+    private readonly bool _stageSc3000;
     private ExternalCoreLibrary? _library;
     private ExternalHostCallbacks? _host;
     private ExternalCoreApi.VoidCall? _deinitialize;
@@ -28,7 +30,14 @@ internal sealed class ExternalCore : IEmulatorCore
     private bool _gameLoaded;
     private bool _initialized;
 
-    internal ExternalCore(string corePath) => _corePath = corePath;
+    internal ExternalCore(string corePath, string? expectedLibraryName = null, bool stageSc3000 = true)
+    {
+        _corePath = corePath;
+        _expectedLibraryName = string.IsNullOrWhiteSpace(expectedLibraryName)
+            ? GenesisPlusGXConstants.LibraryName
+            : expectedLibraryName;
+        _stageSc3000 = stageSc3000;
+    }
 
     public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;
@@ -80,7 +89,9 @@ internal sealed class ExternalCore : IEmulatorCore
         Directory.CreateDirectory(isolatedCoreDirectory);
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
-        var contentPath = PrepareContentPath(media, contentDirectory, configuration.Model);
+        var contentPath = _stageSc3000
+            ? PrepareContentPath(media, contentDirectory, configuration.Model)
+            : PrepareContentPath(media);
         _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
             configuration.Options ?? new Dictionary<string, string>());
 
@@ -93,7 +104,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new NotSupportedException(ExternalCoreExceptions.UnsupportedApiVersion(apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
-            if (!string.Equals(libraryName, GenesisPlusGXConstants.LibraryName,
+            if (!string.Equals(libraryName, _expectedLibraryName,
                     StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException(ExternalCoreExceptions.LibraryIdentityMismatch(libraryName));
             if (!info.NeedFullPath)

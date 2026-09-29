@@ -7,4 +7,5 @@
   <data name="Emulation.Emulator.flycast.Description"><value>תגית: Sega Dreamcast מערכות.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>מדמה את מערכות SG-1000, Mark III, Master System, Game Gear, Mega Drive ו-Mega-CD.</value></data>
   <data name="Emulation.Emulator.yabause.Description"><value>תגית: Sega Saturn מערכות.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>מחקה את מערכות Sega הנתמכות על ידי PicoDrive.</value></data>
 </root>

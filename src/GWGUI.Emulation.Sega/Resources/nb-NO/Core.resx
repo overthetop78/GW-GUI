@@ -7,4 +7,5 @@
   <data name="Emulation.Emulator.flycast.Description"><value>Emulgerer Sega Dreamcast systemer.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulerer SG-1000-, Mark III-, Master System-, Game Gear-, Mega Drive- og Mega-CD-systemer.</value></data>
   <data name="Emulation.Emulator.yabause.Description"><value>Emulgerer Sega Saturn systemer.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Emulerer Sega-systemene som PicoDrive støtter.</value></data>
 </root>

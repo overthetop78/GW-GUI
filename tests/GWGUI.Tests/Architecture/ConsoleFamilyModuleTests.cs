@@ -495,6 +495,16 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void SegaPicoDrivePublishesMegaDriveWithoutInventingAnAddonMachine()
+    {
+        var definition = Assert.Single(EmulatorCatalog.All,
+            item => item.Id.Equals("picodrive", StringComparison.Ordinal));
+        Assert.Equal([ModelConstants.MegaDrive], definition.MachineIds);
+        Assert.DoesNotContain(ModelCatalog.All,
+            model => model.Id is "MegaCd" or "ThirtyTwoX");
+    }
+
+    [Fact]
     public void SegaMasterSystemExposesItsCartridgeAndSegaCardSlots()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-storage-tests", Guid.NewGuid().ToString("N"));
