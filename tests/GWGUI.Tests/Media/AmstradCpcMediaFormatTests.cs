@@ -262,8 +262,10 @@ public sealed class AmstradCpcMediaFormatTests
                 Assert.Equal(MediaVisualizationProgressUnit.BlockRange, visualization.ProgressUnit);
                 Assert.True(visualization.Elements.Count >= 2);
                 var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
-                Assert.Equal(blocks.Capacity,
+                Assert.Equal(source.LongLength,
                     visualization.Elements.Sum(element => element.Length));
+                Assert.Equal(source.LongLength,
+                    visualization.Elements[^1].Position + visualization.Elements[^1].Length);
                 var explorer = new ConsoleCartridgeFileSystemReader();
                 Assert.Equal(2, explorer.Read(document, Volume(document)).Entries.Count);
 

@@ -406,3 +406,34 @@ jamais une feuille terminale.
 Le commit `6b78f82e3` a été supprimé. Ses changements sont conservés comme
 modifications de travail afin d'être réintégrés dans une vraie tranche, avec
 les tests et le comportement complet correspondant.
+
+## 14. Exigence ajoutée — parcours média complet et ordre des familles
+
+- [ ] Clore Sega avec tous les parcours de ses médias avant toute autre famille.
+  - [ ] Rendre chaque ROM et support Sega réellement pris en charge dans le visualiseur, l'explorateur, la conversion et l'export.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Providers/BlockMediaVisualizationProvider.cs` pour utiliser la longueur réellement stockée publiée par `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeReader.cs` et ne jamais visualiser le remplissage d'une banque finale comme un bloc de données; modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour verrouiller cette absence de bloc noir; le test ciblé réussit.
+    - [ ] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs` pour exposer chaque banque réelle avec son nom et sa taille dans l'explorateur.
+    - [ ] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour enregistrer chaque extension Sega déjà décodable par les lecteurs et les writers existants.
+    - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir les ROM Sega du corpus externe, vérifier la visualisation et l'exploration, convertir chaque sortie compatible, exporter le résultat, puis supprimer chaque artefact temporaire dans `finally`.
+  - [ ] Valider les cœurs Sega et leurs médias après les quatre parcours.
+    - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour exécuter les médias Sega disponibles avec leur cœur réellement compatible, vérifier une image décodée, puis libérer cœur, processus, ressources graphiques et dossier de session dans `finally`.
+  - [ ] Fermer la famille Sega uniquement quand toutes les feuilles Sega, MediaEngine, MediaFileSystems, MediaAnalysis, firmware, options, tests et traductions sont cochées.
+    - [ ] Modifier `docs/project/console-family-emulation.md` pour cocher la clôture Sega avec les résultats réels des tests et le chemin du build Debug incluant tous les modules.
+
+- [ ] Reproduire exactement le périmètre média validé pour chaque famille suivante, une seule famille à la fois.
+  - [ ] Terminer Nintendo après Sega.
+    - [ ] Modifier les lecteurs, writers, représentations et catalogues existants dans `src/GWGUI.MediaEngine/`, `src/GWGUI.MediaFileSystems/` et `src/GWGUI.MediaAnalysis/` pour les formats Nintendo réellement décodés, puis modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier visualisation, exploration, conversion et export avec nettoyage dans `finally`.
+    - [ ] Modifier `src/GWGUI.Emulation.Nintendo/` et `tests/GWGUI.Tests/Emulation/Nintendo/` pour rattacher et tester un cœur Nintendo à la fois, puis libérer chaque cœur, processus et ressource dans `finally`.
+  - [ ] Terminer NEC après Nintendo.
+    - [ ] Modifier les lecteurs, writers, représentations et catalogues existants dans `src/GWGUI.MediaEngine/`, `src/GWGUI.MediaFileSystems/` et `src/GWGUI.MediaAnalysis/` pour les formats NEC réellement décodés, puis modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier les quatre parcours avec nettoyage dans `finally`.
+    - [ ] Modifier `src/GWGUI.Emulation.Nec/` et `tests/GWGUI.Tests/Emulation/Nec/` pour rattacher et tester un cœur NEC à la fois, puis libérer chaque cœur, processus et ressource dans `finally`.
+  - [ ] Terminer Sony après NEC.
+    - [ ] Modifier les lecteurs, writers, représentations et catalogues existants dans `src/GWGUI.MediaEngine/`, `src/GWGUI.MediaFileSystems/` et `src/GWGUI.MediaAnalysis/` pour les formats Sony réellement décodés, puis modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier les quatre parcours avec nettoyage dans `finally`.
+    - [ ] Modifier `src/GWGUI.Emulation.Sony/` et `tests/GWGUI.Tests/Emulation/Sony/` pour rattacher et tester un cœur Sony à la fois, puis libérer chaque cœur, processus et ressource dans `finally`.
+  - [ ] Terminer Microsoft après Sony.
+    - [ ] Modifier les lecteurs, writers, représentations et catalogues existants dans `src/GWGUI.MediaEngine/`, `src/GWGUI.MediaFileSystems/` et `src/GWGUI.MediaAnalysis/` pour les formats Microsoft réellement décodés, puis modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier les quatre parcours avec nettoyage dans `finally`.
+    - [ ] Modifier `src/GWGUI.Emulation.Microsoft/` et `tests/GWGUI.Tests/Emulation/Microsoft/` pour rattacher et tester un cœur Microsoft à la fois, puis libérer chaque cœur, processus et ressource dans `finally`.
+
+- [ ] Conserver la règle d'exécution par tranche complète.
+  - [ ] Construire, tester et commiter chaque famille seulement après ses fonctionnalités et traductions terminées.
+    - [ ] Modifier `docs/project/console-family-emulation.md` dans le même commit que la fonctionnalité ou le correctif correspondant, puis lancer le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe` pour le test utilisateur.
