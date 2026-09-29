@@ -401,7 +401,8 @@ public sealed class AmstradCpcMediaFormatTests
             var reader = new ConsoleCartridgeReader();
             var explorer = new ConsoleCartridgeFileSystemReader();
             var engine = MediaEngineComposition.CreateDefault();
-            var convertedExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var catalog = new BuiltInImageFormatCatalog();
+            var convertedFormats = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             var converted = 0;
             foreach (var path in paths)
@@ -415,12 +416,20 @@ public sealed class AmstradCpcMediaFormatTests
                 Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
                 counts[extension] = counts.TryGetValue(extension, out var count) ? count + 1 : 1;
 
-                if (!convertedExtensions.Add(extension)) continue;
-                var outputPath = Path.Combine(directory, $"export-{++converted}{extension}");
-                var result = await engine.ConversionService.ConvertAsync(
-                    new MediaConversionRequest(document, outputPath, document.FormatId));
-                Assert.Equal([outputPath], result.ProducedFiles);
-                Assert.Equal(new FileInfo(path).Length, new FileInfo(outputPath).Length);
+                if (!convertedFormats.Add(document.FormatId)) continue;
+                var format = catalog.Formats.Single(candidate => candidate.Id == document.FormatId);
+                var destinations = engine.ConversionService.GetAvailableDestinations(document);
+                foreach (var destinationExtension in format.Extensions.Select(item => item.Extension))
+                {
+                    Assert.Contains(destinations,
+                        destination => destination.FormatId == document.FormatId
+                            && destination.Extension.Equals(destinationExtension, StringComparison.OrdinalIgnoreCase));
+                    var outputPath = Path.Combine(directory, $"export-{++converted}{destinationExtension}");
+                    var result = await engine.ConversionService.ConvertAsync(
+                        new MediaConversionRequest(document, outputPath, document.FormatId));
+                    Assert.Equal([outputPath], result.ProducedFiles);
+                    Assert.Equal(new FileInfo(path).Length, new FileInfo(outputPath).Length);
+                }
             }
 
             Assert.Equal(formats.Keys.OrderBy(key => key), counts.Keys.OrderBy(key => key));
