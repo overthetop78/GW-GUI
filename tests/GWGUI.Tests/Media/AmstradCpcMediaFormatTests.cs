@@ -306,6 +306,12 @@ public sealed class AmstradCpcMediaFormatTests
                  DiskImageFileExtensions.Bms, DiskImageFileExtensions.SixtyEightK,
                  DiskImageFileExtensions.Gen],
                 megaDrive.Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.Sms], new BuiltInImageFormatCatalog().Formats.Single(format =>
+                format.Id == DiskImageFormatIds.SegaMasterSystem).Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.Gg], new BuiltInImageFormatCatalog().Formats.Single(format =>
+                format.Id == DiskImageFormatIds.SegaGameGear).Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.ThirtyTwoX], new BuiltInImageFormatCatalog().Formats.Single(format =>
+                format.Id == DiskImageFormatIds.SegaThirtyTwoX).Extensions.Select(extension => extension.Extension));
             Assert.Contains(MediaImageWriterIds.ConsoleCartridge,
                 MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
         }
