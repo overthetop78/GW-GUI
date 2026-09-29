@@ -294,6 +294,36 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoCoreOptionAdaptersForwardOnlyPersistedValues()
+    {
+        var input = new GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration(
+            "Nes", "mesen", new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["core_option"] = "selected"
+            });
+        var adapters = new Func<
+            GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration,
+            GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>[]
+        {
+            GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Functions.BeetleVbOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.Citra.Functions.CitraOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.Dolphin.Functions.DolphinOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.Gambatte.Functions.GambatteOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.GameWatch.Functions.GameWatchOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.MelonDs.Functions.MelonDsOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.Mesen.Functions.MesenOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.Mgba.Functions.MgbaOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.Mupen64PlusNext.Functions.Mupen64PlusNextOptionFunctions.ToNative,
+            GWGUI.Emulation.Nintendo.Emulators.Snes9x.Functions.Snes9xOptionFunctions.ToNative
+        };
+        foreach (var adapter in adapters)
+        {
+            var native = adapter(input);
+            Assert.Equal(input.Options, native.Options);
+        }
+    }
+
+    [Fact]
     public void NintendoBeetleVbSelectsVirtualBoy()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-beetlevb-tests", Guid.NewGuid().ToString("N"));

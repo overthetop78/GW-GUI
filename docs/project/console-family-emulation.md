@@ -576,3 +576,11 @@ les tests et le comportement complet correspondant.
   - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Nintendo/Resources --clean-only` pour supprimer ces clés obsolètes de toutes les cultures sans toucher aux invariants.
 - [x] Vérifier la cohérence de la ressource avec le code Nintendo.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier l'absence des clés de réglages supprimées, la présence des aides réellement référencées et les textes génériques de firmware/RAM dans la base anglaise; les 53 tests d'architecture passent.
+
+## 26. Tranche Nintendo — options réellement déclarées par chaque cœur
+
+- [x] Ne conserver aucune option Nintendo inventée dans les adaptateurs.
+  - [x] Supprimer `src/GWGUI.Emulation.Nintendo/Emulators/BeetleVb/Constants/BeetleVbOptionConstants.cs`, `Citra/Constants/CitraOptionConstants.cs`, `Dolphin/Constants/DolphinOptionConstants.cs`, `Gambatte/Constants/GambatteOptionConstants.cs`, `GameWatch/Constants/GameWatchOptionConstants.cs`, `MelonDs/Constants/MelonDsOptionConstants.cs`, `Mesen/Constants/MesenOptionConstants.cs`, `Mgba/Constants/MgbaOptionConstants.cs`, `Mupen64PlusNext/Constants/Mupen64PlusNextOptionConstants.cs` et `Snes9x/Constants/Snes9xOptionConstants.cs`, car les options y sont déclarées mais jamais fournies par les catalogues runtime des cœurs.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Emulators/Dolphin/Functions/DolphinOptionFunctions.cs` pour transmettre uniquement les valeurs persistées et ne plus imposer un rendu logiciel absent du catalogue runtime.
+- [x] Verrouiller le passage des options au cœur.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que chaque adaptateur conserve exactement les options persistées, sans clé vidéo, moniteur, RAM ou lecteur de disquette ajoutée par le module; les 54 tests d'architecture passent.
