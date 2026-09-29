@@ -263,6 +263,45 @@ public sealed class SegaMachineLifecycleTests
     }
 
     [Fact]
+    public void PicoDriveLoadsConfiguredMasterSystemMediaWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_SMS_MEDIA");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-sms-smoke-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.MasterSystem, "picodrive")
+        {
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxExternalCore(corePath, "PicoDrive", false);
+        try
+        {
+            core.Initialize(configuration, session);
+            Assert.Equal("PicoDrive", core.CoreName);
+            Assert.Contains("sms", core.SupportedContentExtensions,
+                StringComparer.OrdinalIgnoreCase);
+            core.RunFrame();
+            Assert.NotNull(core.LatestVideoFrame);
+            Assert.True(core.LatestVideoFrame!.Width > 0);
+            Assert.True(core.LatestVideoFrame.Height > 0);
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void PicoDriveStagesVerifiedMegaCdFirmwareWhenConfigured()
     {
         var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_CORE");

@@ -447,3 +447,15 @@ les tests et le comportement complet correspondant.
 
 - [x] Conserver les BIOS custom et révisions non identifiés sans les présenter comme utilisables.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour créer un fichier BIOS Sega inconnu dans le répertoire firmware temporaire, vérifier son affichage par nom, son état incompatible et l'absence de destination sélectionnable, puis supprimer le répertoire dans `finally`.
+
+## 16. Tranche Sega — systèmes 8 bits PicoDrive vérifiés
+
+- [x] Publier PicoDrive seulement pour les modèles 8 bits que son DLL local charge réellement.
+  - [x] Vérifier le chargement PicoDrive avec un média SMS réel et une image vidéo non vide.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger `SMS BIOS V3.4 + Hang On.sms` avec `picodrive_libretro.dll`, contrôler le modèle, les extensions et une frame, puis libérer le cœur et le dossier temporaire dans `finally`.
+  - [x] Rattacher les modèles confirmés au catalogue PicoDrive.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Factories/PicoDriveMachineFactory.cs` pour publier uniquement les modèles confirmés par le test, sans créer de nouvelle machine ni de dossier `Core`.
+  - [x] Verrouiller la matrice d'adaptateurs.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que PicoDrive est proposé sur chaque modèle confirmé et reste absent des modèles non vérifiés.
+  - [ ] Compiler et commiter la tranche complète.
+    - [ ] Modifier ce document pour cocher uniquement les feuilles réellement réussies, créer un commit code/tests/plan, puis exécuter le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe`.

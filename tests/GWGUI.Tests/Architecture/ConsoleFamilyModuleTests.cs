@@ -506,7 +506,8 @@ public sealed class ConsoleFamilyModuleTests
     {
         var definition = Assert.Single(EmulatorCatalog.All,
             item => item.Id.Equals("picodrive", StringComparison.Ordinal));
-        Assert.Equal([ModelConstants.MegaDrive], definition.MachineIds);
+        Assert.Equal([ModelConstants.MasterSystem, ModelConstants.MegaDrive],
+            definition.MachineIds.Order(StringComparer.Ordinal));
         Assert.DoesNotContain(ModelCatalog.All,
             model => model.Id is "MegaCd" or "ThirtyTwoX");
     }
