@@ -591,6 +591,7 @@ public sealed class ConsoleFamilyModuleTests
             var dreamcast = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Dreamcast));
             var naomi = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Naomi));
             var naomi2 = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Naomi2));
+            var atomiswave = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Atomiswave));
             var megaDrive = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive)) with
             {
                 Options = new Dictionary<string, string>
@@ -603,6 +604,7 @@ public sealed class ConsoleFamilyModuleTests
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, dreamcast).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, naomi).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, naomi2).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, atomiswave).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, megaDrive).Editor);
         }
         finally
