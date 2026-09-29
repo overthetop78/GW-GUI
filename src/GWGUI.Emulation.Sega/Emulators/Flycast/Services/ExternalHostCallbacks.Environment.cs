@@ -51,6 +51,12 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.SetCoreOptionsV2International:
                     RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));
                     return true;
+                case ExternalCoreApiConstants.SetCoreOptions:
+                    RegisterLegacyCoreOptions(data);
+                    return true;
+                case ExternalCoreApiConstants.SetCoreOptionsInternational:
+                    RegisterLegacyCoreOptions(Marshal.ReadIntPtr(data));
+                    return true;
                 case ExternalCoreApiConstants.SetVariables:
                     RegisterLegacyOptions(data);
                     return true;
@@ -188,6 +194,43 @@ internal sealed partial class ExternalHostCallbacks
             }
             catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values,
                 !_optionVisibility.TryGetValue(key, out var visible) || visible));
+            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
+        }
+        OptionCatalog = catalog;
+    }
+
+    private void RegisterLegacyCoreOptions(nint definitions)
+    {
+        if (definitions == 0) return;
+        var definitionSize = (LegacyCoreOptionPointerFieldsBeforeValues
+            + MaximumCoreOptionValues * CoreOptionValueFieldCount
+            + CoreOptionTerminatorFieldCount) * IntPtr.Size;
+        var valuesOffset = LegacyCoreOptionPointerFieldsBeforeValues * IntPtr.Size;
+        var defaultOffset = valuesOffset
+            + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;
+        var catalog = new List<CoreOption>();
+
+        for (var optionIndex = 0; optionIndex < MaximumCoreOptionDefinitions; optionIndex++)
+        {
+            var definition = definitions + optionIndex * definitionSize;
+            var keyPointer = Marshal.ReadIntPtr(definition);
+            if (keyPointer == 0) break;
+            var key = Marshal.PtrToStringUTF8(keyPointer)!;
+            var name = StringAt(definition, IntPtr.Size) ?? key;
+            var description = StringAt(definition, IntPtr.Size * 2);
+            var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;
+            var values = new List<CoreOptionValue>();
+            for (var valueIndex = 0; valueIndex < MaximumCoreOptionValues; valueIndex++)
+            {
+                var valueOffset = valuesOffset
+                    + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;
+                var value = StringAt(definition, valueOffset);
+                if (value is null) break;
+                values.Add(new CoreOptionValue(value, StringAt(definition,
+                    valueOffset + IntPtr.Size) ?? value));
+            }
+            catalog.Add(new CoreOption(key, name, description, null, defaultValue, defaultValue,
+                values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
         }
         OptionCatalog = catalog;

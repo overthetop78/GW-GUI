@@ -23,6 +23,7 @@ internal static class ExternalHostCallbacksConstants
     internal const int PointerCoordinateMinimum = -32767;
     internal const int PointerCoordinateMaximum = 32767;
     internal const int CoreOptionPointerFieldsBeforeValues = 6;
+    internal const int LegacyCoreOptionPointerFieldsBeforeValues = 3;
     internal const int CoreOptionValueFieldCount = 2;
     internal const int CoreOptionTerminatorFieldCount = 1;
     internal const int CoreOptionDescriptionPointerIndex = 3;

@@ -8,6 +8,9 @@ using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Common.Services;
 using GenesisPlusGxExternalCore = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services.ExternalCore;
+using System.Runtime.InteropServices;
+using GWGUI.Emulation.Constants;
+using FlycastHostConstants = GWGUI.Emulation.Sega.Emulators.Flycast.Constants.ExternalHostCallbacksConstants;
 
 namespace GWGUI.Tests.Emulation.Sega;
 
@@ -153,6 +156,61 @@ public sealed class SegaMachineLifecycleTests
         finally
         {
             core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void FlycastPublishesLegacyCoreOptions()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-options-tests",
+            Guid.NewGuid().ToString("N"));
+        var system = Path.Combine(root, "system");
+        var content = Path.Combine(root, "content");
+        var save = Path.Combine(root, "save");
+        Directory.CreateDirectory(root);
+        using var callbacks = new GWGUI.Emulation.Sega.Emulators.Flycast.Services.ExternalHostCallbacks(
+            system, content, save, null);
+        var pointers = new List<nint>();
+        var definitionSize = (FlycastHostConstants.LegacyCoreOptionPointerFieldsBeforeValues
+            + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount
+            + FlycastHostConstants.CoreOptionTerminatorFieldCount) * IntPtr.Size;
+        var definitions = Marshal.AllocHGlobal(definitionSize * 2);
+        try
+        {
+            Marshal.Copy(new byte[definitionSize * 2], 0, definitions, definitionSize * 2);
+            nint Native(string value)
+            {
+                var pointer = Marshal.StringToCoTaskMemUTF8(value);
+                pointers.Add(pointer);
+                return pointer;
+            }
+
+            Marshal.WriteIntPtr(definitions, 0, Native("flycast_test_option"));
+            Marshal.WriteIntPtr(definitions, IntPtr.Size, Native("Test option"));
+            Marshal.WriteIntPtr(definitions, IntPtr.Size * 2, Native("Test option description"));
+            var valuesOffset = FlycastHostConstants.LegacyCoreOptionPointerFieldsBeforeValues * IntPtr.Size;
+            Marshal.WriteIntPtr(definitions, valuesOffset, Native("true"));
+            Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size, Native("Enabled"));
+            Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size * FlycastHostConstants.CoreOptionValueFieldCount,
+                Native("false"));
+            Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size * (FlycastHostConstants.CoreOptionValueFieldCount + 1),
+                Native("Disabled"));
+            var defaultOffset = valuesOffset
+                + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount * IntPtr.Size;
+            Marshal.WriteIntPtr(definitions, defaultOffset, Native("true"));
+
+            Assert.True(callbacks.Environment(ExternalCoreApiConstants.SetCoreOptions, definitions));
+            var option = Assert.Single(callbacks.OptionCatalog);
+            Assert.Equal("flycast_test_option", option.Key);
+            Assert.Equal("true", option.DefaultValue);
+            Assert.Equal(2, option.Values.Count);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(definitions);
+            foreach (var pointer in pointers) Marshal.FreeCoTaskMem(pointer);
+            callbacks.Dispose();
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
     }
