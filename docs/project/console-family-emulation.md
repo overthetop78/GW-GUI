@@ -533,3 +533,20 @@ les tests et le comportement complet correspondant.
 - [x] Conserver les limites explicites au lieu de publier un adaptateur incomplet.
   - [x] Modifier `docs/project/console-family-emulation.md` pour consigner que le corpus local fournit Genesis Plus GX, PicoDrive, Yabause et Flycast, que Flycast couvre Dreamcast/NAOMI/NAOMI 2/Atomiswave, et qu'aucun binaire/API vérifié de Model 2, Model 3, Chihiro ou des autres arcades Sega n'est disponible dans `F:\Retro\Sega\Cores`.
   - [x] Modifier `docs/project/console-family-emulation.md` pour conserver BizHawk, VirtualGens et Exodus comme candidats à vérifier avant tout futur adaptateur; aucune DLL fictive ni machine arcade non fonctionnelle n'est publiée.
+
+## 22. Tranche Nintendo — stockage et réglages matériels réels
+
+- [x] Corriger les supports de stockage Nintendo exposés par la configuration.
+  - [x] Déclarer les extensions par modèle sans réutiliser les extensions Amstrad ou Sega.
+    - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/StorageConstants.cs` pour définir les groupes d'extensions NES/Famicom, Famicom Disk, SNES, Virtual Boy, N64, Game Boy, Game Boy Color, Game Boy Advance, DS, 3DS, GameCube/Wii et Wii U à partir des constantes MediaEngine.
+  - [x] Publier les lecteurs correspondant au matériel réel.
+    - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/StorageFunctions.cs` pour ne publier un lecteur disquette que pour Famicom Disk, un lecteur cartouche avec les extensions du modèle, et un lecteur optique avec les extensions GameCube/Wii ou Wii U réellement enregistrées.
+  - [x] Verrouiller la matrice de stockage.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier les extensions de chaque modèle Nintendo et supprimer le dossier temporaire dans `finally`.
+
+- [x] Afficher uniquement les réglages matériels et audio déclarés.
+  - [x] Remplacer les choix vidéo, RAM et son de disquette fictifs par des informations du modèle.
+    - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/SettingsConstants.cs`, `SettingsDescriptionTextConstants.cs`, `SettingsDescriptionChoicesConstants.cs` et `SettingsHelpDictionary.cs` pour retirer les identifiants de moniteur, intensité, recadrage et son de disquette absents des modèles Nintendo.
+    - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/SettingsFunctions.cs` pour afficher CPU, vidéo, audio et RAM comme informations invariantes, conserver seulement les réglages audio communs et laisser les options du cœur dans le dialogue générique.
+  - [x] Vérifier les champs exposés dans chaque onglet.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour refuser les champs vidéo/RAM/son fictifs et vérifier les puces réelles du catalogue Nintendo.

@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Constants;
+
 namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static class StorageSettingsFunctions
@@ -7,11 +9,11 @@ internal static class StorageSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
-        var floppyExtensions = configuration.Model.Equals(ModelConstants.FamicomDisk,
+        IReadOnlyList<string> floppyExtensions = configuration.Model.Equals(ModelConstants.FamicomDisk,
             StringComparison.Ordinal)
-            ? new[] { StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u,
-                StorageSettingsFunctionsConstants.Fds }
-            : new[] { StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u };
+            ? [.. StorageSettingsFunctionsConstants.FamicomDiskExtensions,
+                StorageSettingsFunctionsConstants.M3u]
+            : [];
         for (var index = 0; index < model.MaximumFloppyDriveCount; index++)
             devices.Add(new EmulationMediaDevice(new EmulationMediaSlot(
                     EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
@@ -21,20 +23,21 @@ internal static class StorageSettingsFunctions
                 IsPermanent: index < model.BuiltInFloppyDriveCount));
         if (model.SupportsCassetteDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette,
-                [StorageSettingsFunctionsConstants.Cdt, StorageSettingsFunctionsConstants.Tap, StorageSettingsFunctionsConstants.Voc],
+                [DiskImageFileExtensions.Cdt, DiskImageFileExtensions.Tap, DiskImageFileExtensions.Voc],
                 RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CassetteDriveLabel,
                 IsPermanent: model.HasBuiltInCassetteDrive));
         if (model.SupportsCartridgeSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge,
-                [StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
+                CartridgeExtensions(model.Id), RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot));
         if (model.SupportsCompactDiscDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd,
-                 StorageSettingsFunctionsConstants.Iso, StorageSettingsFunctionsConstants.Gdi,
-                 StorageSettingsFunctionsConstants.Cdi], RequiresMachineRecreation: true,
+                model.Id == ModelConstants.WiiU
+                    ? StorageSettingsFunctionsConstants.WiiUExtensions
+                    : StorageSettingsFunctionsConstants.OpticalExtensions,
+                RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
                 IsPermanent: model.HasBuiltInCompactDiscDrive));
         var configuredFloppies = Math.Clamp(OptionInt(options,
@@ -95,4 +98,19 @@ internal static class StorageSettingsFunctions
     private static bool OptionBool(IReadOnlyDictionary<string, string> options,
         string key) => options.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed)
         && parsed;
+
+    private static IReadOnlyList<string> CartridgeExtensions(string modelId) => modelId switch
+    {
+        ModelConstants.Nes => StorageSettingsFunctionsConstants.NesExtensions,
+        ModelConstants.Snes => StorageSettingsFunctionsConstants.SnesExtensions,
+        ModelConstants.VirtualBoy => StorageSettingsFunctionsConstants.VirtualBoyExtensions,
+        ModelConstants.Nintendo64 => StorageSettingsFunctionsConstants.Nintendo64Extensions,
+        ModelConstants.GameBoy => StorageSettingsFunctionsConstants.GameBoyExtensions,
+        ModelConstants.GameBoyColor => StorageSettingsFunctionsConstants.GameBoyColorExtensions,
+        ModelConstants.GameBoyAdvance => StorageSettingsFunctionsConstants.GameBoyAdvanceExtensions,
+        ModelConstants.NintendoDs => StorageSettingsFunctionsConstants.NintendoDsExtensions,
+        ModelConstants.GameWatch => StorageSettingsFunctionsConstants.GameWatchExtensions,
+        ModelConstants.Nintendo3Ds => StorageSettingsFunctionsConstants.Nintendo3DsExtensions,
+        _ => []
+    };
 }

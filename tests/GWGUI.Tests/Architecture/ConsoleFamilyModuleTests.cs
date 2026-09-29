@@ -13,6 +13,7 @@ using GWGUI.Emulation.Nintendo.Modules;
 using NintendoEmulatorCatalog = GWGUI.Emulation.Nintendo.Common.Dictionaries.EmulatorCatalog;
 using NintendoModelConstants = GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants.ModelConstants;
 using NintendoModelCatalog = GWGUI.Emulation.Nintendo.Common.Machines.Common.Dictionaries.ModelCatalog;
+using NintendoSettingsConstants = GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants.SettingsConstants;
 using GWGUI.Emulation.Sega.Modules;
 using GWGUI.Emulation.Sega.Common.Contracts;
 using GWGUI.Emulation.Sega.Common.Dictionaries;
@@ -145,6 +146,66 @@ public sealed class ConsoleFamilyModuleTests
             .ToHashSet(StringComparer.Ordinal);
         Assert.All(NintendoEmulatorCatalog.All, definition =>
             Assert.All(definition.MachineIds, machineId => Assert.Contains(machineId, modelIds)));
+    }
+
+    [Fact]
+    public void NintendoStorageAndHardwareSettingsMatchEachPublishedModel()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-settings-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new NintendoEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var supported = NintendoModelCatalog.All.Where(model => NintendoEmulatorCatalog.All
+                .Any(definition => definition.MachineIds.Contains(model.Id, StringComparer.Ordinal)));
+            foreach (var model in supported)
+            {
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
+                    module.CreateConfiguration(model.Id));
+                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                    .DescribeStorageSettings(configuration);
+                var cartridge = storage.AvailableDevices.Where(device => device.Slot == EmulationMediaSlot.Cartridge0)
+                    .Select(device => device.AcceptedExtensions).SingleOrDefault();
+                var optical = storage.AvailableDevices.Where(device => device.Slot == EmulationMediaSlot.Cd0)
+                    .Select(device => device.AcceptedExtensions).SingleOrDefault();
+                if (model.Id == NintendoModelConstants.FamicomDisk)
+                {
+                    var floppy = Assert.Single(storage.AvailableDevices,
+                        device => device.Slot == EmulationMediaSlot.Floppy0);
+                    Assert.Equal([".fds", ".m3u"], floppy.AcceptedExtensions);
+                    Assert.DoesNotContain(storage.AvailableDevices,
+                        device => device.AcceptedExtensions.Contains(".dsk"));
+                }
+                else if (model.Id is NintendoModelConstants.GameCube or NintendoModelConstants.Wii)
+                    Assert.Equal([".cue", ".chd", ".iso", ".gcm"], optical);
+                else
+                    Assert.Null(optical);
+                if (model.SupportsCartridgeSlot)
+                    Assert.NotNull(cartridge);
+                else
+                    Assert.Null(cartridge);
+
+                var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
+                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution"
+                    or "configuration.videoMonitor" or "configuration.videoIntensity"
+                    or "configuration.videoCrop" or "configuration.floppySound");
+                Assert.Equal(EmulationSettingsEditor.Information,
+                    fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Editor);
+                Assert.Equal($"{model.RamKib} KiB",
+                    fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Value);
+                Assert.Equal(string.Join(" / ", model.Processors),
+                    fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".cpu").Value);
+                Assert.Equal(model.VideoChip,
+                    fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".video").Value);
+                Assert.Equal(model.AudioChip,
+                    fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".audio").Value);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
     }
 
     [Fact]

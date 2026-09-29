@@ -21,15 +21,10 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string ResourceFirmwareSystemRom = "Emulation.Firmware.Rom.System";
     internal const string ResourceFirmwareIntegrated = "Emulation.Nintendo.Firmware.Integrated";
     internal const string ResourceVideo = "Emulation.Video.Settings.Display";
-    internal const string ResourceVideoResolution = "Emulation.Video.Resolution";
-    internal const string ResourceVideoMonitor = "Emulation.Nintendo.Video.Monitor";
-    internal const string ResourceVideoIntensity = "Emulation.Nintendo.Video.Intensity";
-    internal const string ResourceVideoCrop = "Emulation.Video.Crop";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
     internal const string ResourceAudioDevice = "Emulation.Audio.Device";
     internal const string ResourceAudioLatency = "Emulation.Audio.LatencyLabel";
-    internal const string ResourceAudioFloppySound = "Emulation.Audio.Floppy.Enabled";
     internal const string CpuFrequency = "—";
     internal const string IconGeneral = "\uE713";
     internal const string IconCpu = "\uE950";
