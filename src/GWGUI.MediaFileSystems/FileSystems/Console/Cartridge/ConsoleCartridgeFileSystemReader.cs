@@ -33,7 +33,8 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
         ArgumentNullException.ThrowIfNull(volume);
         return SupportedFormats.Contains(document.FormatId)
             && document.Representation is IMediaBlockRepresentation blocks
-            && volume.Start == 0 && volume.Length == blocks.Capacity;
+            && volume.Start == 0 && volume.Length == blocks.Capacity
+            && HasValidBankMetadata(document.Metadata);
     }
 
     public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume)
@@ -93,5 +94,26 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
         value = ConsoleCartridgeMetadataConstants.EmptyLength;
         return metadata.TryGetValue(key, out var text)
             && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
+    }
+
+    private static bool HasValidBankMetadata(IReadOnlyDictionary<string, string> metadata)
+    {
+        if (!TryReadInt(metadata, ConsoleCartridgeMetadataConstants.BankCount, out var bankCount)
+            || bankCount <= ConsoleCartridgeMetadataConstants.FirstBank
+            || bankCount > ConsoleCartridgeMetadataConstants.MaximumBankCount
+            || !TryReadInt(metadata, ConsoleCartridgeMetadataConstants.BankSize, out var bankSize)
+            || bankSize <= ConsoleCartridgeMetadataConstants.FirstBank)
+            return false;
+
+        for (var bank = ConsoleCartridgeMetadataConstants.FirstBank; bank < bankCount; bank++)
+        {
+            if (!TryReadInt(metadata,
+                    $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.LengthSuffix}",
+                    out var length)
+                || length <= ConsoleCartridgeMetadataConstants.EmptyLength || length > bankSize)
+                return false;
+        }
+
+        return true;
     }
 }

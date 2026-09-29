@@ -328,8 +328,8 @@ jamais une feuille terminale.
   - [x] Auditer toutes les suites de tests, pas uniquement le test de la tranche.
     - [x] Modifier `docs/project/console-family-emulation.md` pour consigner les 1067 tests réussis et l'absence de processus `vstest`, `testhost` ou GW GUI résiduel après l'exécution; les fenêtres WPF, dispatchers, cœurs, threads et dossiers temporaires existants sont libérés par leurs `finally` ou leurs fixtures partagées.
   - [ ] Compiler la tranche.
-    - [x] Exécuter les tests ciblés après les feuilles de la tranche; noter le résultat dans ce document : 35 tests réussis, 0 échec.
-    - [ ] Exécuter `scripts\local-building.cmd --building=debug --modules=0` seulement après une tranche complète et vérifier `build/Debug/GW GUI/gwgui.exe`.
+    - [x] Exécuter les tests ciblés après les feuilles de la tranche; noter le résultat dans ce document : 17 tests média cartouche, 15 tests de cycle de vie Sega et 1 test du corpus réel réussis, 0 échec.
+    - [x] Exécuter `scripts\local-building.cmd --building=debug --modules=0`, puis utiliser `pwsh -NoProfile -File scripts/local-building/build.ps1 -Configuration Debug -AllModules` lorsque le wrapper ne charge pas les modules, et vérifier `build/Debug/GW GUI/gwgui.exe` avec les huit modules présents.
 - [ ] Commiter une tranche complète.
   - [ ] Contrôler le contenu du commit.
     - [ ] Modifier ce document pour cocher les feuilles réellement terminées.
@@ -412,7 +412,7 @@ les tests et le comportement complet correspondant.
 - [ ] Clore Sega avec tous les parcours de ses médias avant toute autre famille.
   - [ ] Rendre chaque ROM et support Sega réellement pris en charge dans le visualiseur, l'explorateur, la conversion et l'export.
     - [x] Modifier `src/GWGUI.MediaEngine/Images/Visualization/Providers/BlockMediaVisualizationProvider.cs` pour utiliser la longueur réellement stockée publiée par `src/GWGUI.MediaEngine/Images/Formats/Cartridge/Console/ConsoleCartridgeReader.cs` et ne jamais visualiser le remplissage d'une banque finale comme un bloc de données; modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour verrouiller cette absence de bloc noir; le test ciblé réussit.
-    - [ ] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs` pour exposer chaque banque réelle avec son nom et sa taille dans l'explorateur.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Console/Cartridge/ConsoleCartridgeFileSystemReader.cs` pour exposer chaque banque réelle avec son nom et sa taille dans l'explorateur et refuser les métadonnées de banque invalides; le test média couvre ce refus.
     - [ ] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour enregistrer chaque extension Sega déjà décodable par les lecteurs et les writers existants.
     - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir les ROM Sega du corpus externe, vérifier la visualisation et l'exploration, convertir chaque sortie compatible, exporter le résultat, puis supprimer chaque artefact temporaire dans `finally`.
   - [ ] Valider les cœurs Sega et leurs médias après les quatre parcours.

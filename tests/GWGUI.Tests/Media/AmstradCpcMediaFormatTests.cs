@@ -268,6 +268,14 @@ public sealed class AmstradCpcMediaFormatTests
                     visualization.Elements[^1].Position + visualization.Elements[^1].Length);
                 var explorer = new ConsoleCartridgeFileSystemReader();
                 Assert.Equal(2, explorer.Read(document, Volume(document)).Entries.Count);
+                var invalidMetadata = new Dictionary<string, string>(document.Metadata, StringComparer.Ordinal)
+                {
+                    [$"{ConsoleCartridgeMetadataConstants.BankPrefix}0{ConsoleCartridgeMetadataConstants.LengthSuffix}"] = "0"
+                };
+                var invalidDocument = new MediaImageDocument(
+                    document.Source, document.FormatId, document.MediaKind, document.Representation,
+                    document.FileSystemVolumes, document.Diagnostics, invalidMetadata);
+                Assert.False(explorer.CanRead(invalidDocument, Volume(invalidDocument)));
 
                 var conversion = await engine.ConversionService.ConvertAsync(
                     new MediaConversionRequest(document, outputPath, item.FormatId));
