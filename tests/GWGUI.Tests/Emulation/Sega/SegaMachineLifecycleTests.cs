@@ -434,6 +434,8 @@ public sealed class SegaMachineLifecycleTests
         try
         {
             core.Initialize(configuration, session);
+            Assert.Equal("Flycast", core.CoreName);
+            Assert.Contains("zip", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
             for (var frame = 0; frame < 120 && core.LatestVideoFrame is null; frame++)
                 core.RunFrame();
             Assert.True(core.LatestVideoFrame is not null, string.Join(Environment.NewLine, core.Diagnostics));
@@ -477,6 +479,8 @@ public sealed class SegaMachineLifecycleTests
         try
         {
             core.Initialize(configuration, session);
+            Assert.Equal("Flycast", core.CoreName);
+            Assert.Contains("zip", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
             for (var frame = 0; frame < 120 && core.LatestVideoFrame is null; frame++)
                 core.RunFrame();
             Assert.True(core.LatestVideoFrame is not null, string.Join(Environment.NewLine, core.Diagnostics));
