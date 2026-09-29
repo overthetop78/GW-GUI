@@ -1034,10 +1034,13 @@ public sealed class ConsoleFamilyModuleTests
         var verified = new[]
         {
             (FirmwareConstants.MegaDriveBiosMd5, ModelConstants.MegaDrive),
+            (FirmwareConstants.MegaDriveBiosAlternateMd5, ModelConstants.MegaDrive),
             (FirmwareConstants.MegaCdEuropeBiosMd5, ModelConstants.MegaDrive),
             (FirmwareConstants.MegaCdUnitedStatesBiosMd5, ModelConstants.MegaDrive),
             (FirmwareConstants.MegaCdJapanBiosMd5, ModelConstants.MegaDrive),
             (FirmwareConstants.MasterSystemEuropeBiosMd5, ModelConstants.MasterSystem),
+            (FirmwareConstants.MasterSystemEuropeBiosAlternateMd5, ModelConstants.MasterSystem),
+            (FirmwareConstants.MasterSystemUnitedStatesBiosAlternateMd5, ModelConstants.MasterSystem),
             (FirmwareConstants.MasterSystemJapanBiosMd5, ModelConstants.MasterSystem),
             (FirmwareConstants.GameGearBiosMd5, ModelConstants.GameGear),
             (FirmwareConstants.SaturnBiosMd5, ModelConstants.Saturn),
@@ -1062,6 +1065,12 @@ public sealed class ConsoleFamilyModuleTests
             AssertIdentity(FirmwareConstants.Naomi2BiosMd5).FileNames);
         Assert.Equal([FirmwareConstants.AtomiswaveBiosRelativeFileName],
             AssertIdentity(FirmwareConstants.AtomiswaveBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.MegaDriveBiosFileName],
+            AssertIdentity(FirmwareConstants.MegaDriveBiosAlternateMd5).FileNames);
+        Assert.Equal([FirmwareConstants.MasterSystemEuropeBiosFileName],
+            AssertIdentity(FirmwareConstants.MasterSystemEuropeBiosAlternateMd5).FileNames);
+        Assert.Equal([FirmwareConstants.MasterSystemUnitedStatesBiosFileName],
+            AssertIdentity(FirmwareConstants.MasterSystemUnitedStatesBiosAlternateMd5).FileNames);
         Assert.False(FirmwareCatalog.TryIdentifyKnown("00000000000000000000000000000000",
             out _));
 

@@ -6,6 +6,7 @@ internal static class FirmwareConstants
     internal const string DirectoryName = "Sega";
     internal const string MegaDriveBiosFileName = "bios_MD.bin";
     internal const string MegaDriveBiosMd5 = "45e298905a08f9cfb38fd504cd6dbc84";
+    internal const string MegaDriveBiosAlternateMd5 = "d3293ebaaa7f4eb2a6766b68a0fb4609";
     internal const string MegaCdEuropeBiosFileName = "bios_CD_E.bin";
     internal const string MegaCdEuropeBiosMd5 = "e66fa1dc5820d254611fdcdba0662372";
     internal const string MegaCdUnitedStatesBiosFileName = "bios_CD_U.bin";
@@ -14,8 +15,10 @@ internal static class FirmwareConstants
     internal const string MegaCdJapanBiosMd5 = "278a9397d192149e84e820ac621a8edd";
     internal const string MasterSystemEuropeBiosFileName = "bios_E.sms";
     internal const string MasterSystemEuropeBiosMd5 = "840481177270d5642a14ca71ee72844c";
+    internal const string MasterSystemEuropeBiosAlternateMd5 = "4187d96beaf36385e681a3cf3bd1663d";
     internal const string MasterSystemUnitedStatesBiosFileName = "bios_U.sms";
     internal const string MasterSystemUnitedStatesBiosMd5 = MasterSystemEuropeBiosMd5;
+    internal const string MasterSystemUnitedStatesBiosAlternateMd5 = "b264bef9bda264ffe83afcebac21b81f";
     internal const string MasterSystemJapanBiosFileName = "bios_J.sms";
     internal const string MasterSystemJapanBiosMd5 = "24a519c53f67b00640d0048ef7089105";
     internal const string GameGearBiosFileName = "bios.gg";

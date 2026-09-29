@@ -385,8 +385,8 @@ jamais une feuille terminale.
 
 - [ ] Décrire les BIOS uniquement avec des fichiers et empreintes vérifiés.
   - [ ] Déclarer les profils Genesis Plus GX vérifiés.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants BIOS Master System (`bios_E.sms`, `bios_U.sms`, `bios_J.sms`), Game Gear (`bios.gg`), Mega Drive (`bios_MD.bin`) et Mega-CD (`bios_CD_E.bin`, `bios_CD_U.bin`, `bios_CD_J.bin`) et leurs empreintes documentées, sans inventer de BIOS 32X.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer chaque fichier, empreinte, modèle et cœur compatible, en laissant le 32X indisponible pour Genesis Plus GX.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants BIOS Master System (`bios_E.sms`, `bios_U.sms`, `bios_J.sms`), Game Gear (`bios.gg`), Mega Drive (`bios_MD.bin`) et Mega-CD (`bios_CD_E.bin`, `bios_CD_U.bin`, `bios_CD_J.bin`) et leurs empreintes documentées, y compris les variantes vérifiées du corpus local, sans inventer de BIOS 32X.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour associer chaque empreinte connue au fichier système attendu, au modèle et au cœur compatible, en laissant le 32X indisponible pour Genesis Plus GX; modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour verrouiller les profils standards et alternatifs.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` pour conserver les révisions régionales et les BIOS custom inconnus comme entrées non sélectionnables tant que leur empreinte, leur modèle et leur nom système attendu ne sont pas vérifiés.
   - [ ] Déclarer les profils PicoDrive vérifiés séparément.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` avec les identifiants Mega-CD PicoDrive réellement distincts lorsque leurs empreintes diffèrent, sans mélanger les profils des deux cœurs.
