@@ -375,6 +375,64 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public async Task EveryRealSegaCartridgeUsesVisualizationAndExploration()
+    {
+        var corpus = Environment.GetEnvironmentVariable("GWGUI_SEGA_MEDIA_ROOT");
+        if (string.IsNullOrWhiteSpace(corpus) || !Directory.Exists(corpus)) return;
+
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-sega-all-media-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var formats = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                [DiskImageFileExtensions.Sms] = DiskImageFormatIds.SegaMasterSystem,
+                [DiskImageFileExtensions.Sg] = DiskImageFormatIds.SegaSg1000,
+                [DiskImageFileExtensions.Mv] = DiskImageFormatIds.SegaSg1000,
+                [DiskImageFileExtensions.Md] = DiskImageFormatIds.SegaMegaDrive,
+                [DiskImageFileExtensions.Gg] = DiskImageFormatIds.SegaGameGear,
+                [DiskImageFileExtensions.ThirtyTwoX] = DiskImageFormatIds.SegaThirtyTwoX
+            };
+            var paths = Directory.EnumerateFiles(corpus, "*", SearchOption.AllDirectories)
+                .Where(path => formats.ContainsKey(Path.GetExtension(path)))
+                .ToArray();
+            Assert.NotEmpty(paths);
+
+            var reader = new ConsoleCartridgeReader();
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var engine = MediaEngineComposition.CreateDefault();
+            var convertedExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var converted = 0;
+            foreach (var path in paths)
+            {
+                var extension = Path.GetExtension(path);
+                var document = await ReadAsync(reader, path);
+                Assert.Equal(formats[extension], document.FormatId);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry
+                    .CreateDescriptor(document);
+                Assert.NotEmpty(visualization.Elements);
+                Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
+                counts[extension] = counts.TryGetValue(extension, out var count) ? count + 1 : 1;
+
+                if (!convertedExtensions.Add(extension)) continue;
+                var outputPath = Path.Combine(directory, $"export-{++converted}{extension}");
+                var result = await engine.ConversionService.ConvertAsync(
+                    new MediaConversionRequest(document, outputPath, document.FormatId));
+                Assert.Equal([outputPath], result.ProducedFiles);
+                Assert.Equal(new FileInfo(path).Length, new FileInfo(outputPath).Length);
+            }
+
+            Assert.Equal(formats.Keys.OrderBy(key => key), counts.Keys.OrderBy(key => key));
+            Assert.All(counts.Values, count => Assert.True(count > 0));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task FamicomDiskSystemFacesRoundTripAndExposeFiles()
     {
         var directory = Path.Combine(Path.GetTempPath(), $"gwgui-fds-{Guid.NewGuid():N}");
