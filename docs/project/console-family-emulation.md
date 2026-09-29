@@ -556,3 +556,9 @@ les tests et le comportement complet correspondant.
 - [x] Refuser explicitement les modèles Nintendo sans adaptateur installé.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger `NotSupportedException` lors de la création Wii U ou Switch, au lieu de publier une configuration inexécutable.
   - [x] Conserver ces modèles dans le catalogue matériel, sans inventer de cœur Cemu ou Ryujinx tant qu'un adaptateur vérifié n'est pas intégré.
+
+## 24. Tranche Nintendo — parcours média cartouche
+
+- [x] Valider les cartouches Nintendo dans les parcours média communs.
+  - [x] Vérifier chaque extension publiée par le lecteur console.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir NES, SNES, N64, Game Boy, Game Boy Color, Game Boy Advance, DS, Game & Watch, 3DS et Virtual Boy, puis vérifier visualisation, exploration et conversion/export.

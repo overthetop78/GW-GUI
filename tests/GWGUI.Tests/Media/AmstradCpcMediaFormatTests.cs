@@ -162,6 +162,71 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public async Task NintendoCartridgeFormatsRoundTripVisualizeExploreAndConvert()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-nintendo-cartridges-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var source = Enumerable.Range(0, 16 * 1024 + 7)
+                .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var cases = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                [".nes"] = DiskImageFormatIds.NintendoNes,
+                [".sfc"] = DiskImageFormatIds.NintendoSnes,
+                [".smc"] = DiskImageFormatIds.NintendoSnes,
+                [".n64"] = DiskImageFormatIds.NintendoN64,
+                [".z64"] = DiskImageFormatIds.NintendoN64,
+                [".v64"] = DiskImageFormatIds.NintendoN64,
+                [".gb"] = DiskImageFormatIds.NintendoGameBoy,
+                [".gbc"] = DiskImageFormatIds.NintendoGameBoyColor,
+                [".cgb"] = DiskImageFormatIds.NintendoGameBoyColor,
+                [".gba"] = DiskImageFormatIds.NintendoGameBoyAdvance,
+                [".nds"] = DiskImageFormatIds.NintendoNds,
+                [".mgw"] = DiskImageFormatIds.NintendoGameWatch,
+                [".3ds"] = DiskImageFormatIds.Nintendo3Ds,
+                [".cia"] = DiskImageFormatIds.Nintendo3Ds,
+                [".3dsx"] = DiskImageFormatIds.Nintendo3Ds,
+                [".cci"] = DiskImageFormatIds.Nintendo3Ds,
+                [".cxi"] = DiskImageFormatIds.Nintendo3Ds,
+                [".axf"] = DiskImageFormatIds.Nintendo3Ds,
+                [".elf"] = DiskImageFormatIds.Nintendo3Ds,
+                [".app"] = DiskImageFormatIds.Nintendo3Ds,
+                [".vb"] = DiskImageFormatIds.NintendoVirtualBoy
+            };
+            var reader = new ConsoleCartridgeReader();
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var engine = MediaEngineComposition.CreateDefault();
+            var visualization = MediaVisualizationComposition.CreateDefault();
+            var catalog = new BuiltInImageFormatCatalog();
+            var conversionIndex = 0;
+            foreach (var (extension, formatId) in cases)
+            {
+                var sourcePath = Path.Combine(directory, $"source{extension}");
+                await File.WriteAllBytesAsync(sourcePath, source);
+                var document = await ReadAsync(reader, sourcePath);
+                Assert.Equal(formatId, document.FormatId);
+                Assert.NotEmpty(visualization.Registry.CreateDescriptor(document).Elements);
+                Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
+
+                var format = catalog.Formats.Single(candidate => candidate.Id == formatId);
+                foreach (var outputExtension in format.Extensions.Select(item => item.Extension))
+                {
+                    var outputPath = Path.Combine(directory, $"converted-{conversionIndex++}{outputExtension}");
+                    var result = await engine.ConversionService.ConvertAsync(
+                        new MediaConversionRequest(document, outputPath, formatId));
+                    Assert.Equal([outputPath], result.ProducedFiles);
+                    Assert.Equal(source.Length, new FileInfo(outputPath).Length);
+                }
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task NintendoGameWatchCartridgeFormatRoundTripsAndExploresBanks()
     {
         var directory = Path.Combine(Path.GetTempPath(), $"gwgui-gamewatch-cartridge-{Guid.NewGuid():N}");
