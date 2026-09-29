@@ -771,6 +771,25 @@ public sealed class ConsoleFamilyModuleTests
             var masterPort = masterPorts[0];
             Assert.Contains(masterPort.ControllerChoices,
                 choice => choice.Id == ControllerType.SegaLightPhaser.ToString());
+            Assert.Equal(EmulationControllerVisualIds.MasterSystem,
+                masterPort.ControllerChoices.Single(choice => choice.Id ==
+                    ControllerType.SegaMasterSystemController.ToString()).DefaultVisualId);
+
+            var saturn = Assert.IsType<MachineConfiguration>(
+                emulation.CreateConfiguration(ModelConstants.Saturn));
+            var saturnPort = module.DescribeInputSettings(saturn).ControllerPorts[0];
+            Assert.Equal(EmulationControllerVisualIds.Saturn, saturnPort.VisualId);
+            Assert.Equal(EmulationControllerVisualIds.Saturn,
+                saturnPort.ControllerChoices.Single(choice => choice.Id ==
+                    ControllerType.SegaSaturnController.ToString()).DefaultVisualId);
+
+            var dreamcast = Assert.IsType<MachineConfiguration>(
+                emulation.CreateConfiguration(ModelConstants.Dreamcast));
+            var dreamcastPort = module.DescribeInputSettings(dreamcast).ControllerPorts[0];
+            Assert.Equal(EmulationControllerVisualIds.Dreamcast, dreamcastPort.VisualId);
+            Assert.Equal(EmulationControllerVisualIds.Dreamcast,
+                dreamcastPort.ControllerChoices.Single(choice => choice.Id ==
+                    ControllerType.SegaDreamcastController.ToString()).DefaultVisualId);
         }
         finally
         {

@@ -29,6 +29,12 @@ public static class EmulationControllerVisualIds
     public const string AtariLynxIi = "atari-lynx-ii";
     public const string AtariJaguarController = "atari-jaguar-controller";
     public const string AtariJaguarProController = "atari-jaguar-pro-controller";
+    public const string MasterSystem = "master-system";
     public const string MegaDrive3 = "mega-drive-3";
     public const string MegaDrive6 = "mega-drive-6";
+    public const string Saturn = "saturn";
+    public const string Dreamcast = "dreamcast";
+    public const string ArcadeStick = "arcade-stick";
+    public const string FlightStick = "flight-stick";
+    public const string RacingWheel = "racing-wheel";
 }

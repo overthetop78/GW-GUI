@@ -266,6 +266,78 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.KeyStar, ControllerVisualZoneShape.RoundedRectangle, 36.6d, 74.4d, 5.8d, 2.5d),
                 new(EmulationControllerVisualControl.Key0, ControllerVisualZoneShape.RoundedRectangle, 46.5d, 74.4d, 5.6d, 2.5d),
                 new(EmulationControllerVisualControl.KeyHash, ControllerVisualZoneShape.RoundedRectangle, 56.1d, 74.4d, 5.8d, 2.5d)
+            ]),
+            [EmulationControllerVisualIds.MasterSystem] = new("master-system.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 12d, 28d, 28d, 48d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 12d, 28d, 28d, 48d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 12d, 28d, 28d, 48d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 12d, 28d, 28d, 48d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 59d, 38d, 18d, 34d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 80d, 38d, 18d, 34d)
+            ]),
+            [EmulationControllerVisualIds.MegaDrive3] = new("mega-drive-3.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 11d, 27d, 28d, 51d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 11d, 27d, 28d, 51d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 11d, 27d, 28d, 51d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 11d, 27d, 28d, 51d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 69d, 35d, 16d, 28d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 55d, 41d, 16d, 27d)
+            ]),
+            [EmulationControllerVisualIds.MegaDrive6] = new("mega-drive-6.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 15d, 28d, 28d, 50d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 15d, 28d, 28d, 50d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 15d, 28d, 28d, 50d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 15d, 28d, 28d, 50d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 73d, 36d, 14d, 24d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 62d, 45d, 14d, 24d)
+            ]),
+            [EmulationControllerVisualIds.Saturn] = new("saturn.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 12d, 29d, 28d, 48d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 12d, 29d, 28d, 48d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 12d, 29d, 28d, 48d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 12d, 29d, 28d, 48d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 77d, 41d, 12d, 18d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 67d, 49d, 12d, 18d)
+            ]),
+            [EmulationControllerVisualIds.Dreamcast] = new("dreamcast.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 10d, 51d, 27d, 30d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 10d, 51d, 27d, 30d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 10d, 51d, 27d, 30d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 10d, 51d, 27d, 30d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 78d, 50d, 12d, 14d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 66d, 58d, 12d, 14d)
+            ]),
+            [EmulationControllerVisualIds.ArcadeStick] = new("arcade-stick.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 8d, 26d, 35d, 53d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 8d, 26d, 35d, 53d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 8d, 26d, 35d, 53d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 8d, 26d, 35d, 53d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 48d, 25d, 16d, 22d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 65d, 25d, 16d, 22d)
+            ]),
+            [EmulationControllerVisualIds.FlightStick] = new("flight-stick.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 55d, 16d, 30d, 43d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 55d, 16d, 30d, 43d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 55d, 16d, 30d, 43d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 55d, 16d, 30d, 43d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 69d, 14d, 12d, 13d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 79d, 15d, 10d, 12d)
+            ]),
+            [EmulationControllerVisualIds.RacingWheel] = new("racing-wheel.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 27d, 25d, 18d, 16d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 27d, 25d, 18d, 16d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 27d, 25d, 18d, 16d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 27d, 25d, 18d, 16d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 68d, 29d, 10d, 10d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 62d, 37d, 10d, 10d)
             ])
         };
 

@@ -8,8 +8,18 @@ internal static partial class InputSettingsFunctions
             ControllerType.Joypad => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro],
+            ControllerType.SegaMasterSystemController => [EmulationControllerVisualIds.MasterSystem],
             ControllerType.SegaMegaDriveThreeButton => [EmulationControllerVisualIds.MegaDrive3],
             ControllerType.SegaMegaDriveSixButton => [EmulationControllerVisualIds.MegaDrive6],
+            ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad =>
+                [EmulationControllerVisualIds.Saturn],
+            ControllerType.SegaDreamcastController => [EmulationControllerVisualIds.Dreamcast],
+            ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
+                or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
+                [EmulationControllerVisualIds.ArcadeStick],
+            ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick =>
+                [EmulationControllerVisualIds.FlightStick],
+            ControllerType.SegaSaturnArcadeRacer => [EmulationControllerVisualIds.RacingWheel],
             _ => null
         };
 
@@ -17,14 +27,31 @@ internal static partial class InputSettingsFunctions
         type switch
         {
             ControllerType.Joypad => EmulationControllerVisualIds.QuickShot,
+            ControllerType.SegaMasterSystemController => EmulationControllerVisualIds.MasterSystem,
             ControllerType.SegaMegaDriveThreeButton => EmulationControllerVisualIds.MegaDrive3,
             ControllerType.SegaMegaDriveSixButton => EmulationControllerVisualIds.MegaDrive6,
+            ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad =>
+                EmulationControllerVisualIds.Saturn,
+            ControllerType.SegaDreamcastController => EmulationControllerVisualIds.Dreamcast,
+            ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
+                or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
+                EmulationControllerVisualIds.ArcadeStick,
+            ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick =>
+                EmulationControllerVisualIds.FlightStick,
+            ControllerType.SegaSaturnArcadeRacer => EmulationControllerVisualIds.RacingWheel,
             _ => null
         };
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type) => type is ControllerType.Joypad
+            or ControllerType.SegaMasterSystemController
             or ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton
+            or ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad
+            or ControllerType.SegaDreamcastController
+            or ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
+            or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick
+            or ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick
+            or ControllerType.SegaSaturnArcadeRacer
         ? new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,

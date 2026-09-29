@@ -94,10 +94,10 @@ jamais une feuille terminale.
   - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier que chaque périphérique publié par Sega possède une clé de ressource d'affichage non vide et que son dossier temporaire est supprimé dans `finally`.
 - [x] Conserver les choix acceptés par la machine.
   - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` pour normaliser le type et le `VisualId` sans remplacer un périphérique officiel par `Joystick`.
-- [ ] Relier les visuels déjà existants.
-  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` pour Mega Drive 3/6 boutons avec `EmulationControllerVisualIds.MegaDrive3/MegaDrive6`.
-  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier la normalisation du visuel 3 boutons, les choix 3/6 boutons et le Light Phaser catalogué.
-    - [ ] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` uniquement si un visuel générique existant manque réellement; ne pas inventer de fichier d'image.
+- [x] Relier les visuels déjà existants.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` pour Mega Drive 3/6 boutons et les périphériques Sega possédant déjà un visuel App.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier la normalisation du visuel 3 boutons, les choix 3/6 boutons, Master System, Saturn, Dreamcast et le Light Phaser catalogué.
+    - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` pour publier les identifiants des visuels Sega déjà présents, puis modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` pour relier leurs fichiers et zones de commande existants; ne pas inventer de fichier d'image.
   - [x] Préserver les mappings.
     - [x] Vérifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` et `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` avec `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` : le runtime applique le `DeviceId` et les boutons, tandis que `MachineConfiguration` conserve le type, le port et le visuel lors de la sauvegarde/relecture.
   - [x] Relier GameInput au cœur.

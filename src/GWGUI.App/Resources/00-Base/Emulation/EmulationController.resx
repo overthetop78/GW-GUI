@@ -51,6 +51,14 @@
   <data name="Emulation.Controller.Visual.Model.atari-7800-control-pad-europe" xml:space="preserve"><value>Atari 7800 Control Pad (Europe)</value></data>
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve"><value>Atari Jaguar Pro Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.master-system" xml:space="preserve"><value>Master System Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.mega-drive-3" xml:space="preserve"><value>Mega Drive 3-button Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.mega-drive-6" xml:space="preserve"><value>Mega Drive 6-button Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.saturn" xml:space="preserve"><value>Saturn Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.dreamcast" xml:space="preserve"><value>Dreamcast Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.arcade-stick" xml:space="preserve"><value>Arcade Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.flight-stick" xml:space="preserve"><value>Flight Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.racing-wheel" xml:space="preserve"><value>Racing Wheel</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
 </root>
