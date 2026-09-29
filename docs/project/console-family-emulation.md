@@ -230,6 +230,7 @@ jamais une feuille terminale.
     - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour vérifier, avec suppression dans `finally`, la visualisation, l'exploration et la conversion/export des ROM Sega SG-1000, Master System, Mega Drive, Game Gear et 32X.
   - [ ] Valider séparément les quatre parcours de chaque ROM Sega réellement prise en charge avant de clore la famille Sega.
     - [ ] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour ouvrir chaque ROM Sega dans le visualiseur, lire ses banques dans l'explorateur, convertir vers chaque format de sortie compatible et exporter le résultat vers ce format, avec un artefact temporaire par cas supprimé dans `finally`.
+      - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour appeler `MediaEngineComposition.CreateDefault().ConversionService` sur chaque extension Sega cartouche publiée, puis vérifier le fichier exporté avant suppression du dossier temporaire; la classe média passe avec 16 tests réussis.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour couvrir les mêmes ROM Sega avec le cœur correspondant, vérifier une image décodée et libérer le cœur, les ressources graphiques et le dossier de session dans `finally`.
 
 ## 9. Nintendo, Sony, Microsoft et NEC — même ordre par famille

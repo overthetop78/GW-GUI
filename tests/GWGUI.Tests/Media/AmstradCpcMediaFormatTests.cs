@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
@@ -10,6 +11,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Tape;
+using GWGUI.MediaEngine.Images.Conversion;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
@@ -228,6 +230,7 @@ public sealed class AmstradCpcMediaFormatTests
         {
             var source = Enumerable.Range(0, 16 * 1024 + 7)
                 .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var engine = MediaEngineComposition.CreateDefault();
             var cases = new[]
             {
                 (Extension: DiskImageFileExtensions.Sms, FormatId: DiskImageFormatIds.SegaMasterSystem),
@@ -264,7 +267,9 @@ public sealed class AmstradCpcMediaFormatTests
                 var explorer = new ConsoleCartridgeFileSystemReader();
                 Assert.Equal(2, explorer.Read(document, Volume(document)).Entries.Count);
 
-                await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, item.FormatId);
+                var conversion = await engine.ConversionService.ConvertAsync(
+                    new MediaConversionRequest(document, outputPath, item.FormatId));
+                Assert.Equal([outputPath], conversion.ProducedFiles);
                 Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
             }
 
