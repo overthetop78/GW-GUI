@@ -234,6 +234,66 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void NintendoResourceCatalogsMatchPublishedSettings()
+    {
+        var root = RepositoryRoot();
+        var resources = Path.Combine(root, "src", "GWGUI.Emulation.Nintendo", "Resources");
+        var obsolete = new HashSet<string>(StringComparer.Ordinal)
+        {
+            "Emulation.Nintendo.Video.Monitor",
+            "Emulation.Nintendo.Video.Intensity",
+            "Emulation.Nintendo.Video.Monitor.Color",
+            "Emulation.Nintendo.Video.Monitor.Green",
+            "Emulation.Nintendo.Video.Monitor.White",
+            "Emulation.Nintendo.Help.Video.Resolution.Short",
+            "Emulation.Nintendo.Help.Video.Resolution.Detailed",
+            "Emulation.Nintendo.Help.Video.Monitor.Short",
+            "Emulation.Nintendo.Help.Video.Monitor.Detailed",
+            "Emulation.Nintendo.Help.Video.Intensity.Short",
+            "Emulation.Nintendo.Help.Video.Intensity.Detailed",
+            "Emulation.Nintendo.Help.Video.Crop.Short",
+            "Emulation.Nintendo.Help.Video.Crop.Detailed",
+            "Emulation.Nintendo.Help.Audio.FloppySound.Short",
+            "Emulation.Nintendo.Help.Audio.FloppySound.Detailed"
+        };
+        var baseEntries = ResxEntries(Path.Combine(resources, "00-Base", "Emulation.resx"));
+        var englishEntries = ResxEntries(Path.Combine(resources, "en-US", "Emulation.resx"));
+        Assert.DoesNotContain(baseEntries.Keys, key => obsolete.Contains(key));
+        Assert.DoesNotContain(englishEntries.Keys, key => obsolete.Contains(key));
+        Assert.Equal("System ROM", baseEntries["Emulation.Nintendo.Firmware.Integrated"]);
+        Assert.Equal("System ROM", englishEntries["Emulation.Nintendo.Firmware.Integrated"]);
+        Assert.Equal("Displays the RAM provided by the selected Nintendo machine.",
+            englishEntries["Emulation.Nintendo.Help.Memory.Ram.Detailed"]);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Firmware.Integrated"],
+            StringComparison.Ordinal);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Memory.Ram.Detailed"],
+            StringComparison.Ordinal);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Short"],
+            StringComparison.Ordinal);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Detailed"],
+            StringComparison.Ordinal);
+        foreach (var culture in Directory.EnumerateDirectories(resources)
+                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
+                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        {
+            var entries = ResxEntries(Path.Combine(culture, "Emulation.resx"));
+            Assert.DoesNotContain(entries.Keys, key => obsolete.Contains(key));
+            Assert.DoesNotContain("Mesen", entries["Emulation.Nintendo.Firmware.Integrated"],
+                StringComparison.Ordinal);
+        }
+
+        static IReadOnlyDictionary<string, string> ResxEntries(string path)
+        {
+            var document = new XmlDocument();
+            document.Load(path);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
+                .ToDictionary(element => element.GetAttribute("name"),
+                    element => element.SelectSingleNode("value")?.InnerText ?? string.Empty,
+                    StringComparer.Ordinal);
+        }
+    }
+
+    [Fact]
     public void NintendoBeetleVbSelectsVirtualBoy()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-nintendo-beetlevb-tests", Guid.NewGuid().ToString("N"));

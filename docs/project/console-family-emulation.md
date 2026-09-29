@@ -567,3 +567,12 @@ les tests et le comportement complet correspondant.
 - [x] Conserver une seule source des extensions Nintendo.
   - [x] Éliminer les littéraux d'extension du catalogue de formats.
     - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/ImageFormatCatalog.cs` pour référencer `DiskImageFileExtensions` dans toutes les entrées Nintendo sans changer les extensions publiées.
+
+## 25. Tranche Nintendo — ressources cohérentes avec les réglages réels
+
+- [x] Retirer les ressources de réglages Nintendo qui ne sont plus publiées.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Resources/00-Base/Emulation.resx` pour supprimer les clés de moniteur, intensité, résolution, recadrage et son de disquette retirées du contrat de réglages.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Resources/en-US/Emulation.resx` pour conserver exactement les mêmes clés que la base et remplacer les textes Mesen de la ROM système et de l'aide RAM par des textes génériques au cœur sélectionné.
+  - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Nintendo/Resources --clean-only` pour supprimer ces clés obsolètes de toutes les cultures sans toucher aux invariants.
+- [x] Vérifier la cohérence de la ressource avec le code Nintendo.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier l'absence des clés de réglages supprimées, la présence des aides réellement référencées et les textes génériques de firmware/RAM dans la base anglaise; les 53 tests d'architecture passent.
