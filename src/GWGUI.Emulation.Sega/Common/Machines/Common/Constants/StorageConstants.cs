@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Constants;
+
 namespace GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 
 internal static class StorageSettingsFunctionsConstants
@@ -9,8 +11,13 @@ internal static class StorageSettingsFunctionsConstants
     internal const string Voc = ".voc";
     internal const string Sms = ".sms";
     internal const string Sg = ".sg";
-    internal const string Md = ".md";
-    internal const string Gen = ".gen";
+    internal const string Md = DiskImageFileExtensions.Md;
+    internal const string Mdx = DiskImageFileExtensions.Mdx;
+    internal const string Sgd = DiskImageFileExtensions.Sgd;
+    internal const string Smd = DiskImageFileExtensions.Smd;
+    internal const string Bms = DiskImageFileExtensions.Bms;
+    internal const string SixtyEightK = DiskImageFileExtensions.SixtyEightK;
+    internal const string Gen = DiskImageFileExtensions.Gen;
     internal const string ThirtyTwoX = ".32x";
     internal const string Mv = ".mv";
     internal const string Cpr = ".cpr";

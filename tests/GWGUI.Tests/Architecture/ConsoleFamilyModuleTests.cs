@@ -583,6 +583,28 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void SegaMegaDriveStorageExposesEveryPublishedCartridgeExtension()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-megadrive-storage-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive));
+            var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration);
+            var cartridge = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge0);
+            Assert.Equal(
+                [".md", ".mdx", ".sgd", ".smd", ".bms", ".68k", ".gen", ".32x"],
+                cartridge.AcceptedExtensions);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaFirmwareSettingsExposeExternalRomPathsForDiscMachines()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-settings-tests",

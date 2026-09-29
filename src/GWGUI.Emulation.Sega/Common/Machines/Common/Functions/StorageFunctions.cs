@@ -23,8 +23,10 @@ internal static class StorageSettingsFunctions
         if (model.SupportsCartridgeSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge,
                 model.Id == ModelConstants.MegaDrive
-                    ? [StorageSettingsFunctionsConstants.Md, StorageSettingsFunctionsConstants.Gen,
-                       StorageSettingsFunctionsConstants.ThirtyTwoX]
+                    ? [StorageSettingsFunctionsConstants.Md, StorageSettingsFunctionsConstants.Mdx,
+                       StorageSettingsFunctionsConstants.Sgd, StorageSettingsFunctionsConstants.Smd,
+                       StorageSettingsFunctionsConstants.Bms, StorageSettingsFunctionsConstants.SixtyEightK,
+                       StorageSettingsFunctionsConstants.Gen, StorageSettingsFunctionsConstants.ThirtyTwoX]
                     : model.Id is ModelConstants.Naomi or ModelConstants.Naomi2
                         ? [StorageSettingsFunctionsConstants.Zip, StorageSettingsFunctionsConstants.Bin,
                            StorageSettingsFunctionsConstants.Dat, StorageSettingsFunctionsConstants.Lst]
