@@ -330,6 +330,8 @@ jamais une feuille terminale.
     - [ ] Modifier `docs/project/console-family-emulation.md` pour conserver Genesis Plus GX comme candidat principal des SG-1000, Mark III, Master System I/II, Game Gear, Mega Drive/Genesis et Mega-CD, sans lui attribuer le 32X qu'il ne supporte pas.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` pour conserver ce rattachement uniquement sur les modèles effectivement publiés par le cœur.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Functions/GenesisPlusGXOptionFunctions.cs` pour exposer les options de système, région, BIOS, CD et lock-on réellement renvoyées par le cœur.
+    - [ ] Vérifier le catalogue du DLL local avec un média Sega réel.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour vérifier les clés d'options système/BIOS/région/add-on/lock-on et les extensions publiées après initialisation, avec libération du cœur et du dossier temporaire dans `finally`; le DLL local passe le test avec le média SMS réel.
   - [ ] Ajouter le candidat PicoDrive pour les extensions que Genesis Plus GX ne couvre pas.
     - [ ] Créer `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/Constants/`, `Contracts/`, `Factories/`, `Functions/` et `Services/` avec les mêmes fichiers et noms que GenesisPlusGX, directement sous le dossier de l'émulateur.
     - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Dictionaries/EmulatorCatalog.cs` pour rattacher PicoDrive au 32X et aux autres modèles seulement après vérification de ses options et extensions.

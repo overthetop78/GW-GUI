@@ -161,6 +161,64 @@ public sealed class SegaMachineLifecycleTests
     }
 
     [Fact]
+    public void GenesisPlusGxPublishesVerifiedSystemOptionsWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-options-smoke-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.MasterSystem,
+            "genesisplusgx")
+        {
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxExternalCore(corePath);
+        try
+        {
+            core.Initialize(configuration, session);
+
+            Assert.Contains("sms", core.SupportedContentExtensions,
+                StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("sg", core.SupportedContentExtensions,
+                StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("md", core.SupportedContentExtensions,
+                StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("gg", core.SupportedContentExtensions,
+                StringComparer.OrdinalIgnoreCase);
+
+            var requiredOptions = new[]
+            {
+                "genesis_plus_gx_bios",
+                "genesis_plus_gx_region_detect",
+                "genesis_plus_gx_add_on",
+                "genesis_plus_gx_lock_on"
+            };
+            foreach (var key in requiredOptions)
+            {
+                var option = Assert.Single(core.Options,
+                    item => item.Key.Equals(key, StringComparison.Ordinal));
+                Assert.NotEmpty(option.Values);
+                Assert.Contains(option.Values, value =>
+                    value.Value.Equals(option.DefaultValue, StringComparison.Ordinal));
+            }
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void GenesisPlusGxLoadsConfiguredSg1000MediaWhenSmokePathsAreProvided() =>
         RunGenesisPlusGxMediaSmoke(ModelConstants.Sg1000, "GWGUI_SEGA_SG1000_MEDIA", "sg1000");
 
