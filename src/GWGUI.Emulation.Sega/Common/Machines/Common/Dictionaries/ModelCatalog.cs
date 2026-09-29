@@ -34,6 +34,14 @@ public static class ModelCatalog
         new("Dreamcast", "Dreamcast", "dreamcast", 16384, false, 0, 0, false, false, true, true,
             HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true,
             CpuModels: [ModelConstants.CpuHitachiSh4], VideoChip: ModelConstants.VideoPowerVr2,
+            AudioChip: ModelConstants.AudioDreamcastAica),
+        new(ModelConstants.Naomi, "NAOMI", ModelConstants.BackendNaomi, ModelConstants.Ram32768Kib,
+            false, 0, 0, false, false, true, true, SupportsCompactDiscDrive: true,
+            CpuModels: [ModelConstants.CpuHitachiSh4], VideoChip: ModelConstants.VideoPowerVr2,
+            AudioChip: ModelConstants.AudioDreamcastAica),
+        new(ModelConstants.Naomi2, "NAOMI 2", ModelConstants.BackendNaomi2, ModelConstants.Ram32768Kib,
+            false, 0, 0, false, false, true, true, SupportsCompactDiscDrive: true,
+            CpuModels: [ModelConstants.CpuHitachiSh4], VideoChip: ModelConstants.VideoPowerVr2DualWithElan,
             AudioChip: ModelConstants.AudioDreamcastAica)
     ];
 

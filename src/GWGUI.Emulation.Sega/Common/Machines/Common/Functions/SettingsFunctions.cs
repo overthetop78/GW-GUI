@@ -122,8 +122,7 @@ internal static partial class SettingsDescriptionFunctions
                 Select(SettingsConstants.Ram, EmulationMachineTab.Ram,
                     SettingsDescriptionFunctionsConstants.Memory,
                     SettingsDescriptionFunctionsConstants.ResourceMemoryMain, ram,
-                    new[] { 64, 128, 192, 576 }.Where(value => value >= model.RamKib)
-                        .Select(value => Invariant(value.ToString(), $"{value} KiB", value)), true)),
+                    MemoryChoices(model), true)),
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                 SettingsDescriptionFunctionsConstants.ResourceRom,
                 SettingsDescriptionFunctionsConstants.IconFirmware, 2,
@@ -187,6 +186,7 @@ internal static partial class SettingsDescriptionFunctions
     {
         var options = configuration.Options ?? new Dictionary<string, string>();
         var requiresExternalRom = model.Id is ModelConstants.Saturn or ModelConstants.Dreamcast
+            or ModelConstants.Naomi or ModelConstants.Naomi2
             || model.Id == ModelConstants.MegaDrive
             && options.GetValueOrDefault(SettingsConstants.MegaCdEnabled,
                 SettingsDescriptionFunctionsConstants.Disabled)
@@ -200,6 +200,13 @@ internal static partial class SettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.Firmware,
                 SettingsDescriptionFunctionsConstants.ResourceFirmwareIntegrated,
                 "Sega");
+    }
+
+    private static IEnumerable<EmulationSettingsChoice> MemoryChoices(Model model)
+    {
+        var values = new[] { model.RamKib, 64, 128, 192, 576 }
+            .Where(value => value >= model.RamKib).Distinct().Order();
+        return values.Select(value => Invariant(value.ToString(), $"{value} KiB", value));
     }
 
 }

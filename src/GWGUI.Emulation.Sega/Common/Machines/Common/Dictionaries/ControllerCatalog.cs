@@ -46,6 +46,11 @@ public static class ControllerCatalog
                 ControllerType.SegaDreamcastArcadeStick, ControllerType.SegaDreamcastTwinStick,
                 ControllerType.SegaDreamcastMaracas
             },
+            ModelConstants.Naomi or ModelConstants.Naomi2 => new[]
+            {
+                ControllerType.SegaDreamcastController, ControllerType.SegaDreamcastLightGun,
+                ControllerType.SegaDreamcastArcadeStick
+            },
             _ => Array.Empty<ControllerType>()
         };
         var result = new List<ControllerType>(types);
@@ -64,5 +69,5 @@ public static class ControllerCatalog
         type != ControllerType.Automatic && Types(model).Contains(type) ? type : Default(model);
 
     public static IReadOnlyList<ControllerType> ParallelPortTypes { get; } =
-        [ControllerType.Joystick, ControllerType.None];
+        [ControllerType.Joypad, ControllerType.None];
 }

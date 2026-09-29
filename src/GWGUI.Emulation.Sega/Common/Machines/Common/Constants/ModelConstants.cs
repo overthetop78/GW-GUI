@@ -11,14 +11,19 @@ internal static class ModelConstants
     internal const string GameGear = "GameGear";
     internal const string Saturn = "Saturn";
     internal const string Dreamcast = "Dreamcast";
+    internal const string Naomi = "Naomi";
+    internal const string Naomi2 = "Naomi2";
     internal const string BackendSg1000 = "sg1000";
     internal const string BackendMasterSystem = "mastersystem";
     internal const string BackendMegaDrive = "megadrive";
     internal const string BackendPico = "pico";
     internal const string BackendSaturn = "saturn";
     internal const string BackendDreamcast = "dreamcast";
+    internal const string BackendNaomi = "naomi";
+    internal const string BackendNaomi2 = "naomi2";
     internal const int Ram64Kib = 64;
     internal const int Ram128Kib = 128;
+    internal const int Ram32768Kib = 32768;
     internal const string CpuZ80A = "Zilog Z80A";
     internal const string CpuMotorola68000 = "Motorola 68000";
     internal const string CpuHitachiSh2 = "Hitachi SH-2";
@@ -29,6 +34,7 @@ internal static class ModelConstants
     internal const string VideoSega3155313 = "Sega 315-5313";
     internal const string VideoSaturnVdp = "Sega VDP1 / VDP2";
     internal const string VideoPowerVr2 = "PowerVR2";
+    internal const string VideoPowerVr2DualWithElan = "2 × PowerVR2 + VideoLogic ELAN";
     internal const string AudioSn76489 = "Texas Instruments SN76489";
     internal const string AudioYm2413 = "Yamaha YM2413";
     internal const string AudioYm2612 = "Yamaha YM2612 / SN76489";

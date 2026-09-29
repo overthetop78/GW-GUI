@@ -176,12 +176,12 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Machine.resx` pour ajouter le nom invariant Sega Pico dans la base commune.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Factories/GenesisPlusGXMachineFactory.cs` pour rattacher Sega Pico au cœur Genesis Plus GX qui l'annonce comme système pris en charge.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM Pico du corpus externe avec Genesis Plus GX et vérifier une frame vidéo avec nettoyage dans `finally`.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter uniquement les identifiants techniques vérifiés des familles Sega arcade et Naomi.
-    - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier les modèles arcade et Naomi avec leurs CPU, vidéo, audio, RAM/ROM et supports vérifiés.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter les identifiants techniques vérifiés NAOMI et NAOMI 2; les autres familles arcade restent en attente d'un cœur confirmé.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier NAOMI et NAOMI 2 avec leur SH-4, PowerVR2, AICA, RAM et supports cartouche/GD-ROM vérifiés.
     - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-arcade>/` pour l'adaptateur du cœur Sega arcade réellement retenu, avec les fichiers directement dans le dossier du cœur et sans dossier `Core`.
     - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-pico>/` pour l'adaptateur Sega Pico réellement retenu, avec les formats et périphériques vérifiés.
-    - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-naomi>/` pour l'adaptateur Sega Naomi réellement retenu, avec ses BIOS, supports et périphériques vérifiés.
-    - [ ] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger le rattachement de chaque nouveau modèle à un cœur qui expose réellement son identifiant.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Factories/FlycastMachineFactory.cs` et `Services/ExternalCore.cs` pour rattacher NAOMI/NAOMI 2 à Flycast et installer les BIOS `dc/naomi.zip` et `dc/naomi2.zip` sous leurs noms attendus; aucun adaptateur parallèle n'est créé.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger le rattachement de NAOMI et NAOMI 2 à Flycast, vérifier leurs chemins BIOS et libérer le dossier temporaire dans `finally`.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger un média du corpus local par nouveau cœur et libérer cœur, processus, ressources graphiques et dossier temporaire dans `finally`.
 
 ## 7. MediaEngine — formats et représentations

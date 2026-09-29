@@ -452,6 +452,29 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public void SegaFlycastSelectsNaomiModels()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-flycast-naomi-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            foreach (var model in new[] { ModelConstants.Naomi, ModelConstants.Naomi2 })
+            {
+                var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(model));
+                Assert.Equal("flycast", configuration.EmulatorId);
+                Assert.Equal(ModelConstants.Ram32768Kib, ModelCatalog.Get(model).RamKib);
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaAdaptersSelectTheMatchingCoreForSaturnAndSc3000()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-adapter-tests", Guid.NewGuid().ToString("N"));
@@ -529,6 +552,8 @@ public sealed class ConsoleFamilyModuleTests
             var module = new SegaEmulationModule(root, root, http, Path.Combine(root, "Core"));
             var saturn = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Saturn));
             var dreamcast = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Dreamcast));
+            var naomi = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Naomi));
+            var naomi2 = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Naomi2));
             var megaDrive = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive)) with
             {
                 Options = new Dictionary<string, string>
@@ -539,6 +564,8 @@ public sealed class ConsoleFamilyModuleTests
 
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, saturn).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, dreamcast).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, naomi).Editor);
+            Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, naomi2).Editor);
             Assert.Equal(EmulationSettingsEditor.Path, FirmwareField(module, megaDrive).Editor);
         }
         finally
@@ -865,7 +892,9 @@ public sealed class ConsoleFamilyModuleTests
             (FirmwareConstants.MasterSystemJapanBiosMd5, ModelConstants.MasterSystem),
             (FirmwareConstants.GameGearBiosMd5, ModelConstants.GameGear),
             (FirmwareConstants.SaturnBiosMd5, ModelConstants.Saturn),
-            (FirmwareConstants.DreamcastBiosMd5, ModelConstants.Dreamcast)
+            (FirmwareConstants.DreamcastBiosMd5, ModelConstants.Dreamcast),
+            (FirmwareConstants.NaomiBiosMd5, ModelConstants.Naomi),
+            (FirmwareConstants.Naomi2BiosMd5, ModelConstants.Naomi2)
         };
         foreach (var (md5, model) in verified)
         {
@@ -877,6 +906,10 @@ public sealed class ConsoleFamilyModuleTests
             AssertIdentity(FirmwareConstants.SaturnBiosMd5).FileNames);
         Assert.Equal([FirmwareConstants.DreamcastBiosRelativeFileName],
             AssertIdentity(FirmwareConstants.DreamcastBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.NaomiBiosRelativeFileName],
+            AssertIdentity(FirmwareConstants.NaomiBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.Naomi2BiosRelativeFileName],
+            AssertIdentity(FirmwareConstants.Naomi2BiosMd5).FileNames);
         Assert.False(FirmwareCatalog.TryIdentifyKnown("00000000000000000000000000000000",
             out _));
 

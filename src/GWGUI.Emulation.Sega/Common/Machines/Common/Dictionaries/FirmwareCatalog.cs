@@ -8,7 +8,8 @@ public sealed class FirmwareCatalog
     private static readonly HashSet<string> Extensions = new(StringComparer.OrdinalIgnoreCase)
     {
         FirmwareCatalogConstants.RomExtension, FirmwareCatalogConstants.BinaryExtension,
-        FirmwareCatalogConstants.MasterSystemExtension, FirmwareCatalogConstants.GameGearExtension
+        FirmwareCatalogConstants.MasterSystemExtension, FirmwareCatalogConstants.GameGearExtension,
+        FirmwareCatalogConstants.ZipExtension
     };
 
     private static readonly IReadOnlyDictionary<string, (string Name, string Version,
@@ -37,7 +38,19 @@ public sealed class FirmwareCatalog
             [FirmwareConstants.MasterSystemJapanBiosFileName]),
         [FirmwareConstants.GameGearBiosMd5] = (FirmwareConstants.GameGearBiosName,
             FirmwareConstants.GameGearBiosFileName, [ModelConstants.GameGear],
-            [FirmwareConstants.GameGearBiosFileName])
+            [FirmwareConstants.GameGearBiosFileName]),
+        [FirmwareConstants.SaturnBiosMd5] = (FirmwareConstants.SaturnBiosName,
+            FirmwareConstants.SaturnBiosFileName, [ModelConstants.Saturn],
+            [FirmwareConstants.SaturnBiosFileName]),
+        [FirmwareConstants.DreamcastBiosMd5] = (FirmwareConstants.DreamcastBiosName,
+            FirmwareConstants.DreamcastBiosFileName, [ModelConstants.Dreamcast],
+            [FirmwareConstants.DreamcastBiosRelativeFileName]),
+        [FirmwareConstants.NaomiBiosMd5] = (FirmwareConstants.NaomiBiosName,
+            FirmwareConstants.NaomiBiosFileName, [ModelConstants.Naomi],
+            [FirmwareConstants.NaomiBiosRelativeFileName]),
+        [FirmwareConstants.Naomi2BiosMd5] = (FirmwareConstants.Naomi2BiosName,
+            FirmwareConstants.Naomi2BiosFileName, [ModelConstants.Naomi2],
+            [FirmwareConstants.Naomi2BiosRelativeFileName])
     };
 
     private readonly string _directory;

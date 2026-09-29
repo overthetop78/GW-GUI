@@ -19,6 +19,10 @@ internal static class StorageSettingsFunctionsConstants
     internal const string Iso = ".iso";
     internal const string Gdi = ".gdi";
     internal const string Cdi = ".cdi";
+    internal const string Zip = ".zip";
+    internal const string Bin = ".bin";
+    internal const string Dat = ".dat";
+    internal const string Lst = ".lst";
     internal const string FloppyDriveCountOption = "storage.floppyDriveCount";
     internal const string CassetteDriveEnabledOption = "storage.cassetteDriveEnabled";
     internal const string CartridgeSlotEnabledOption = "storage.cartridgeSlotEnabled";

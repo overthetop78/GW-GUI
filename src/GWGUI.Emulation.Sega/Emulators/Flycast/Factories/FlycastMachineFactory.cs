@@ -2,6 +2,7 @@ using GWGUI.Emulation.Sega.Emulators.Flycast.Functions;
 using GWGUI.Emulation.Sega.Emulators.Flycast.Contracts;
 using GWGUI.Emulation.Sega.Emulators.Flycast.Constants;
 using GWGUI.Emulation.Sega.Emulators.Flycast.Services;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Sega.Emulators.Flycast.Factories;
@@ -16,7 +17,8 @@ internal sealed class FlycastMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         FlycastConstants.Id, FlycastConstants.DisplayName,
         FlycastConstants.DescriptionResourceKey,
-        new[] { "Dreamcast" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.Dreamcast, ModelConstants.Naomi, ModelConstants.Naomi2 }
+            .ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {

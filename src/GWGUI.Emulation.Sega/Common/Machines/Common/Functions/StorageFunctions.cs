@@ -25,6 +25,9 @@ internal static class StorageSettingsFunctions
                 model.Id == ModelConstants.MegaDrive
                     ? [StorageSettingsFunctionsConstants.Md, StorageSettingsFunctionsConstants.Gen,
                        StorageSettingsFunctionsConstants.ThirtyTwoX]
+                    : model.Id is ModelConstants.Naomi or ModelConstants.Naomi2
+                        ? [StorageSettingsFunctionsConstants.Zip, StorageSettingsFunctionsConstants.Bin,
+                           StorageSettingsFunctionsConstants.Dat, StorageSettingsFunctionsConstants.Lst]
                     : [StorageSettingsFunctionsConstants.Sms, StorageSettingsFunctionsConstants.Sg,
                        StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
