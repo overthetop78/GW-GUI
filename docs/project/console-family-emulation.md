@@ -442,3 +442,8 @@ les tests et le comportement complet correspondant.
 - [ ] Conserver la règle d'exécution par tranche complète.
   - [ ] Construire, tester et commiter chaque famille seulement après ses fonctionnalités et traductions terminées.
     - [ ] Modifier `docs/project/console-family-emulation.md` dans le même commit que la fonctionnalité ou le correctif correspondant, puis lancer le build Debug avec tous les modules et conserver `build/Debug/GW GUI/gwgui.exe` pour le test utilisateur.
+
+## 15. Tranche Sega — BIOS inconnus non sélectionnables
+
+- [x] Conserver les BIOS custom et révisions non identifiés sans les présenter comme utilisables.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour créer un fichier BIOS Sega inconnu dans le répertoire firmware temporaire, vérifier son affichage par nom, son état incompatible et l'absence de destination sélectionnable, puis supprimer le répertoire dans `finally`.

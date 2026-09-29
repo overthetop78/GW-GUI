@@ -1115,6 +1115,37 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
+    public async Task SegaFirmwareScanLeavesUnknownCustomFirmwareNonSelectable()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-scan-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var sega = Assert.IsType<SegaEmulationModule>(new SegaEmulationModuleFactory().Create(
+                new EmulationModuleContext(root, root, http)));
+            var manager = Assert.IsAssignableFrom<IEmulationFirmwareManager>(sega);
+            var configuration = Assert.IsType<MachineConfiguration>(
+                sega.CreateConfiguration(ModelConstants.MegaDrive));
+            var firmwarePath = Path.Combine(sega.GetFirmwareDirectory(ModelConstants.MegaDrive),
+                "custom-sega-firmware.bin");
+            Directory.CreateDirectory(Path.GetDirectoryName(firmwarePath)!);
+            await File.WriteAllBytesAsync(firmwarePath, Enumerable.Repeat((byte)0x5a, 4096).ToArray());
+
+            var candidate = Assert.Single(await manager.ScanFirmwareAsync(
+                ModelConstants.MegaDrive, configuration));
+            Assert.Equal("custom-sega-firmware.bin", candidate.DisplayName);
+            Assert.Equal(EmulationFirmwareCompatibility.Incompatible, candidate.Compatibility);
+            Assert.Null(candidate.DestinationFieldId);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void SegaNeutralResourcesContainOnlyInvariantEntries()
     {
         var root = RepositoryRoot();
