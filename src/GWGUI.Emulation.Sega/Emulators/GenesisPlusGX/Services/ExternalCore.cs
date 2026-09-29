@@ -1,6 +1,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Contracts;
@@ -79,7 +80,7 @@ internal sealed class ExternalCore : IEmulatorCore
         Directory.CreateDirectory(isolatedCoreDirectory);
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
-        var contentPath = PrepareContentPath(media);
+        var contentPath = PrepareContentPath(media, contentDirectory, configuration.Model);
         _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
             configuration.Options ?? new Dictionary<string, string>());
 
@@ -104,7 +105,8 @@ internal sealed class ExternalCore : IEmulatorCore
                     StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
-            ValidateConfiguredExtensions(SupportedContentExtensions, media.Select(item => item.Path));
+            ValidateConfiguredExtensions(SupportedContentExtensions,
+                contentPath is null ? [] : [contentPath]);
             ValidateExtension(contentPath);
 
             Export<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(_host.Environment);
@@ -158,6 +160,19 @@ internal sealed class ExternalCore : IEmulatorCore
         if (media.Count > 1)
             throw new InvalidOperationException(ExternalCoreExceptions.ContentRefused());
         return Path.GetFullPath(media[0].Path);
+    }
+
+    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
+        string contentDirectory, string model)
+    {
+        var path = PrepareContentPath(media);
+        if (path is null || !model.Equals(ModelConstants.Sc3000, StringComparison.OrdinalIgnoreCase)
+            || !Path.GetExtension(path).Equals(GenesisPlusGXConstants.Sc3000SourceExtension,
+                StringComparison.OrdinalIgnoreCase)) return path;
+        var stagedPath = Path.Combine(contentDirectory,
+            Path.GetFileNameWithoutExtension(path) + GenesisPlusGXConstants.Sc3000CoreExtension);
+        File.Copy(path, stagedPath, true);
+        return stagedPath;
     }
 
     internal static void ValidateConfiguredExtensions(IReadOnlySet<string> supportedExtensions,

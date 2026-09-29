@@ -161,6 +161,14 @@ public sealed class SegaMachineLifecycleTests
     }
 
     [Fact]
+    public void GenesisPlusGxLoadsConfiguredSg1000MediaWhenSmokePathsAreProvided() =>
+        RunGenesisPlusGxMediaSmoke(ModelConstants.Sg1000, "GWGUI_SEGA_SG1000_MEDIA", "sg1000");
+
+    [Fact]
+    public void GenesisPlusGxLoadsConfiguredSc3000MediaWhenSmokePathsAreProvided() =>
+        RunGenesisPlusGxMediaSmoke(ModelConstants.Sc3000, "GWGUI_SEGA_SC3000_MEDIA", "sc3000");
+
+    [Fact]
     public void GenesisPlusGxLoadsConfiguredPicoMediaWhenSmokePathsAreProvided()
     {
         var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
@@ -174,6 +182,41 @@ public sealed class SegaMachineLifecycleTests
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Pico,
             "genesisplusgx")
+        {
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new GenesisPlusGxExternalCore(corePath);
+        try
+        {
+            core.Initialize(configuration, session);
+            core.RunFrame();
+            Assert.NotNull(core.LatestVideoFrame);
+            Assert.True(core.LatestVideoFrame!.Width > 0);
+            Assert.True(core.LatestVideoFrame.Height > 0);
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    private static void RunGenesisPlusGxMediaSmoke(string model, string mediaVariable, string name)
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable(mediaVariable);
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), $"gwgui-sega-genesis-{name}-smoke-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(model, "genesisplusgx")
         {
             Media =
             [
