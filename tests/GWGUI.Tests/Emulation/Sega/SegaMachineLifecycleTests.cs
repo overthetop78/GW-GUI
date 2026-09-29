@@ -244,6 +244,7 @@ public sealed class SegaMachineLifecycleTests
         try
         {
             core.Initialize(configuration, session);
+            Assert.Equal("PicoDrive", core.CoreName);
             Assert.Contains("32x", core.SupportedContentExtensions,
                 StringComparer.OrdinalIgnoreCase);
             Assert.NotEmpty(core.Options);

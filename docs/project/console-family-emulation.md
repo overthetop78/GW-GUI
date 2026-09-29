@@ -190,10 +190,11 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter les identifiants techniques vérifiés NAOMI et NAOMI 2; les autres familles arcade restent en attente d'un cœur confirmé.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier NAOMI et NAOMI 2 avec leur SH-4, PowerVR2, AICA, RAM et supports cartouche/GD-ROM vérifiés.
     - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-arcade>/` pour l'adaptateur du cœur Sega arcade réellement retenu, avec les fichiers directement dans le dossier du cœur et sans dossier `Core`.
-    - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-pico>/` pour l'adaptateur Sega Pico réellement retenu, avec les formats et périphériques vérifiés.
+    - [x] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/` pour l'adaptateur Sega Pico réellement retenu, avec les formats et périphériques vérifiés.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Factories/FlycastMachineFactory.cs` et `Services/ExternalCore.cs` pour rattacher NAOMI/NAOMI 2 à Flycast et installer les BIOS `dc/naomi.zip` et `dc/naomi2.zip` sous leurs noms attendus; aucun adaptateur parallèle n'est créé.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger le rattachement de NAOMI et NAOMI 2 à Flycast, vérifier leurs chemins BIOS et libérer le dossier temporaire dans `finally`.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger un média du corpus local par nouveau cœur et libérer cœur, processus, ressources graphiques et dossier temporaire dans `finally`.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une cartouche `.32x` avec PicoDrive, vérifier son identité et une image vidéo, puis libérer le cœur et le dossier dans `finally`.
 
 ## 7. MediaEngine — formats et représentations
 
