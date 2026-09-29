@@ -32,6 +32,9 @@ internal static class FirmwareConstants
     internal const string Naomi2BiosFileName = "naomi2.zip";
     internal const string Naomi2BiosMd5 = "d73280a3b90c2c206ea9abc9d73f44db";
     internal const string Naomi2BiosRelativeFileName = DreamcastBiosDirectoryName + "/" + Naomi2BiosFileName;
+    internal const string AtomiswaveBiosFileName = "awbios.zip";
+    internal const string AtomiswaveBiosMd5 = "85254fbe320ca82a768ec2c26bb08def";
+    internal const string AtomiswaveBiosRelativeFileName = DreamcastBiosDirectoryName + "/" + AtomiswaveBiosFileName;
     internal const string MegaDriveBiosName = "Mega Drive system BIOS";
     internal const string MegaCdBiosName = "Mega-CD system BIOS";
     internal const string MasterSystemBiosName = "Master System system BIOS";
@@ -40,6 +43,7 @@ internal static class FirmwareConstants
     internal const string DreamcastBiosName = "Dreamcast system BIOS";
     internal const string NaomiBiosName = "NAOMI system BIOS";
     internal const string Naomi2BiosName = "NAOMI 2 system BIOS";
+    internal const string AtomiswaveBiosName = "Atomiswave system BIOS";
     internal const string RegionEurope = "Europe";
     internal const string RegionUnitedStates = "United States";
     internal const string RegionJapan = "Japan";

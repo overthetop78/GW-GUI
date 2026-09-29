@@ -50,7 +50,10 @@ public sealed class FirmwareCatalog
             [FirmwareConstants.NaomiBiosRelativeFileName]),
         [FirmwareConstants.Naomi2BiosMd5] = (FirmwareConstants.Naomi2BiosName,
             FirmwareConstants.Naomi2BiosFileName, [ModelConstants.Naomi2],
-            [FirmwareConstants.Naomi2BiosRelativeFileName])
+            [FirmwareConstants.Naomi2BiosRelativeFileName]),
+        [FirmwareConstants.AtomiswaveBiosMd5] = (FirmwareConstants.AtomiswaveBiosName,
+            FirmwareConstants.AtomiswaveBiosFileName, [ModelConstants.Atomiswave],
+            [FirmwareConstants.AtomiswaveBiosRelativeFileName])
     };
 
     private readonly string _directory;

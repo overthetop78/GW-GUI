@@ -187,14 +187,23 @@ jamais une feuille terminale.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Machine.resx` pour ajouter le nom invariant Sega Pico dans la base commune.
     - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Factories/GenesisPlusGXMachineFactory.cs` pour rattacher Sega Pico au cœur Genesis Plus GX qui l'annonce comme système pris en charge.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une ROM Pico du corpus externe avec Genesis Plus GX et vérifier une frame vidéo avec nettoyage dans `finally`.
-    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter les identifiants techniques vérifiés NAOMI et NAOMI 2; les autres familles arcade restent en attente d'un cœur confirmé.
-    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier NAOMI et NAOMI 2 avec leur SH-4, PowerVR2, AICA, RAM et supports cartouche/GD-ROM vérifiés.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter les identifiants techniques vérifiés NAOMI, NAOMI 2 et Atomiswave; les autres familles arcade restent en attente d'un cœur confirmé.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier NAOMI, NAOMI 2 et Atomiswave avec leur SH-4, PowerVR2, AICA, RAM et supports cartouche/GD-ROM vérifiés.
     - [ ] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/<cœur-arcade>/` pour l'adaptateur du cœur Sega arcade réellement retenu, avec les fichiers directement dans le dossier du cœur et sans dossier `Core`.
     - [x] Créer ou modifier `src/GWGUI.Emulation.Sega/Emulators/PicoDrive/` pour l'adaptateur Sega Pico réellement retenu, avec les formats et périphériques vérifiés.
-    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Factories/FlycastMachineFactory.cs` et `Services/ExternalCore.cs` pour rattacher NAOMI/NAOMI 2 à Flycast et installer les BIOS `dc/naomi.zip` et `dc/naomi2.zip` sous leurs noms attendus; aucun adaptateur parallèle n'est créé.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Factories/FlycastMachineFactory.cs` et `Services/ExternalCore.cs` pour rattacher NAOMI, NAOMI 2 et Atomiswave à Flycast et installer leurs BIOS sous les noms attendus; aucun adaptateur parallèle n'est créé.
     - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour exiger le rattachement de NAOMI et NAOMI 2 à Flycast, vérifier leurs chemins BIOS et libérer le dossier temporaire dans `finally`.
     - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger un média du corpus local par nouveau cœur et libérer cœur, processus, ressources graphiques et dossier temporaire dans `finally`.
       - [x] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger une cartouche `.32x` avec PicoDrive, vérifier son identité et une image vidéo, puis libérer le cœur et le dossier dans `finally`.
+    - [ ] Ajouter Atomiswave au rattachement Flycast après vérification du BIOS et du support matériel du cœur.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` pour ajouter l'identifiant technique `Atomiswave` et son backend Flycast.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` pour publier Atomiswave avec son SH-4, PowerVR2, AICA, RAM et support cartouche vérifiés.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/FirmwareConstants.cs` et `Dictionaries/FirmwareCatalog.cs` pour reconnaître uniquement l'empreinte vérifiée `awbios.zip` et son chemin système `dc/awbios.zip`.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/StorageFunctions.cs` et `Functions/SettingsFunctions.cs` pour exposer le support cartouche Atomiswave en `.zip` et son BIOS externe.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Flycast/Factories/FlycastMachineFactory.cs` pour rattacher Atomiswave à Flycast sans créer de sous-dossier `Core`.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Resources/00-Base/Machine.resx` pour ajouter le nom invariant Atomiswave dans la base commune.
+      - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` pour vérifier le modèle, le rattachement Flycast, le support cartouche et le profil BIOS Atomiswave avec suppression du dossier temporaire dans `finally`.
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/Sega/SegaMachineLifecycleTests.cs` pour charger un média Atomiswave fourni par `GWGUI_SEGA_ATOMISWAVE_MEDIA` avec le cœur et le BIOS fournis par `GWGUI_SEGA_ATOMISWAVE_CORE` et `GWGUI_SEGA_ATOMISWAVE_BIOS`, vérifier une frame puis libérer cœur, processus, ressources graphiques et session dans `finally`.
 
 ## 7. MediaEngine — formats et représentations
 

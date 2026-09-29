@@ -17,7 +17,8 @@ internal sealed class FlycastMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         FlycastConstants.Id, FlycastConstants.DisplayName,
         FlycastConstants.DescriptionResourceKey,
-        new[] { ModelConstants.Dreamcast, ModelConstants.Naomi, ModelConstants.Naomi2 }
+        new[] { ModelConstants.Dreamcast, ModelConstants.Naomi, ModelConstants.Naomi2,
+            ModelConstants.Atomiswave }
             .ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)

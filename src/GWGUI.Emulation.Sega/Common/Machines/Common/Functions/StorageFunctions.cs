@@ -28,6 +28,8 @@ internal static class StorageSettingsFunctions
                     : model.Id is ModelConstants.Naomi or ModelConstants.Naomi2
                         ? [StorageSettingsFunctionsConstants.Zip, StorageSettingsFunctionsConstants.Bin,
                            StorageSettingsFunctionsConstants.Dat, StorageSettingsFunctionsConstants.Lst]
+                    : model.Id == ModelConstants.Atomiswave
+                        ? [StorageSettingsFunctionsConstants.Zip]
                     : [StorageSettingsFunctionsConstants.Sms, StorageSettingsFunctionsConstants.Sg,
                        StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,

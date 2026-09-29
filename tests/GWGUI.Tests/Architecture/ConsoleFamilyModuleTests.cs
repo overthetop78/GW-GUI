@@ -461,11 +461,13 @@ public sealed class ConsoleFamilyModuleTests
         {
             using var http = new HttpClient();
             var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
-            foreach (var model in new[] { ModelConstants.Naomi, ModelConstants.Naomi2 })
+            foreach (var model in new[] { ModelConstants.Naomi, ModelConstants.Naomi2,
+                ModelConstants.Atomiswave })
             {
                 var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(model));
                 Assert.Equal("flycast", configuration.EmulatorId);
-                Assert.Equal(ModelConstants.Ram32768Kib, ModelCatalog.Get(model).RamKib);
+                Assert.Equal(model == ModelConstants.Atomiswave ? ModelConstants.Ram16384Kib : ModelConstants.Ram32768Kib,
+                    ModelCatalog.Get(model).RamKib);
             }
         }
         finally
@@ -524,6 +526,31 @@ public sealed class ConsoleFamilyModuleTests
             Assert.Contains(".mv", segaCard.AcceptedExtensions);
             Assert.Contains(EmulationMediaSlot.Cartridge0, storage.ConfiguredSlots);
             Assert.Contains(EmulationMediaSlot.Cartridge1, storage.ConfiguredSlots);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void SegaAtomiswaveExposesFlycastCartridgeStorage()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-atomiswave-storage-tests",
+            Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            using var http = new HttpClient();
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var configuration = Assert.IsType<MachineConfiguration>(
+                module.CreateConfiguration(ModelConstants.Atomiswave));
+            var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
+                .DescribeStorageSettings(configuration);
+            var cartridge = Assert.Single(storage.AvailableDevices,
+                device => device.Slot == EmulationMediaSlot.Cartridge0);
+            Assert.Equal([".zip"], cartridge.AcceptedExtensions);
+            Assert.Contains(EmulationMediaSlot.Cartridge0, storage.ConfiguredSlots);
         }
         finally
         {
@@ -904,7 +931,8 @@ public sealed class ConsoleFamilyModuleTests
             (FirmwareConstants.SaturnBiosMd5, ModelConstants.Saturn),
             (FirmwareConstants.DreamcastBiosMd5, ModelConstants.Dreamcast),
             (FirmwareConstants.NaomiBiosMd5, ModelConstants.Naomi),
-            (FirmwareConstants.Naomi2BiosMd5, ModelConstants.Naomi2)
+            (FirmwareConstants.Naomi2BiosMd5, ModelConstants.Naomi2),
+            (FirmwareConstants.AtomiswaveBiosMd5, ModelConstants.Atomiswave)
         };
         foreach (var (md5, model) in verified)
         {
@@ -920,6 +948,8 @@ public sealed class ConsoleFamilyModuleTests
             AssertIdentity(FirmwareConstants.NaomiBiosMd5).FileNames);
         Assert.Equal([FirmwareConstants.Naomi2BiosRelativeFileName],
             AssertIdentity(FirmwareConstants.Naomi2BiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.AtomiswaveBiosRelativeFileName],
+            AssertIdentity(FirmwareConstants.AtomiswaveBiosMd5).FileNames);
         Assert.False(FirmwareCatalog.TryIdentifyKnown("00000000000000000000000000000000",
             out _));
 

@@ -448,6 +448,49 @@ public sealed class SegaMachineLifecycleTests
     }
 
     [Fact]
+    public void FlycastLoadsConfiguredAtomiswaveMediaWhenSmokePathsAreProvided()
+    {
+        var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_ATOMISWAVE_CORE");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_ATOMISWAVE_MEDIA");
+        var firmwarePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_ATOMISWAVE_BIOS");
+        if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
+            || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
+            || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
+
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-atomiswave-smoke-tests",
+            Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "session");
+        Directory.CreateDirectory(session);
+        var configuration = new MachineConfiguration(ModelConstants.Atomiswave, "flycast")
+        {
+            Options = new Dictionary<string, string>
+            {
+                [SettingsConstants.FirmwarePath] = firmwarePath
+            },
+            Media =
+            [
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
+                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+            ]
+        };
+        var core = new FlycastExternalCore(corePath);
+        try
+        {
+            core.Initialize(configuration, session);
+            for (var frame = 0; frame < 120 && core.LatestVideoFrame is null; frame++)
+                core.RunFrame();
+            Assert.True(core.LatestVideoFrame is not null, string.Join(Environment.NewLine, core.Diagnostics));
+            Assert.True(core.LatestVideoFrame!.Width > 0);
+            Assert.True(core.LatestVideoFrame.Height > 0);
+        }
+        finally
+        {
+            core.Dispose();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void YabauseLoadsConfiguredSaturnMediaWhenSmokePathsAreProvided()
     {
         var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_YABAUSE_CORE");

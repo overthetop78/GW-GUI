@@ -42,6 +42,10 @@ public static class ModelCatalog
         new(ModelConstants.Naomi2, "NAOMI 2", ModelConstants.BackendNaomi2, ModelConstants.Ram32768Kib,
             false, 0, 0, false, false, true, true, SupportsCompactDiscDrive: true,
             CpuModels: [ModelConstants.CpuHitachiSh4], VideoChip: ModelConstants.VideoPowerVr2DualWithElan,
+            AudioChip: ModelConstants.AudioDreamcastAica),
+        new(ModelConstants.Atomiswave, "Atomiswave", ModelConstants.BackendAtomiswave, ModelConstants.Ram16384Kib,
+            false, 0, 0, false, false, true, true,
+            CpuModels: [ModelConstants.CpuHitachiSh4], VideoChip: ModelConstants.VideoPowerVr2,
             AudioChip: ModelConstants.AudioDreamcastAica)
     ];
 

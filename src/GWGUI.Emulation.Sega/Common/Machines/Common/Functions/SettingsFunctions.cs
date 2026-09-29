@@ -186,7 +186,7 @@ internal static partial class SettingsDescriptionFunctions
     {
         var options = configuration.Options ?? new Dictionary<string, string>();
         var requiresExternalRom = model.Id is ModelConstants.Saturn or ModelConstants.Dreamcast
-            or ModelConstants.Naomi or ModelConstants.Naomi2
+            or ModelConstants.Naomi or ModelConstants.Naomi2 or ModelConstants.Atomiswave
             || model.Id == ModelConstants.MegaDrive
             && options.GetValueOrDefault(SettingsConstants.MegaCdEnabled,
                 SettingsDescriptionFunctionsConstants.Disabled)

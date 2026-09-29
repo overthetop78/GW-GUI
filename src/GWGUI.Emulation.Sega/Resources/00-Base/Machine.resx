@@ -23,4 +23,5 @@
   <data name="Emulation.Sega.Model.Dreamcast"><value>Dreamcast</value></data>
   <data name="Emulation.Sega.Model.Naomi"><value>NAOMI</value></data>
   <data name="Emulation.Sega.Model.Naomi2"><value>NAOMI 2</value></data>
+  <data name="Emulation.Sega.Model.Atomiswave"><value>Atomiswave</value></data>
 </root>

@@ -13,6 +13,7 @@ internal static class ModelConstants
     internal const string Dreamcast = "Dreamcast";
     internal const string Naomi = "Naomi";
     internal const string Naomi2 = "Naomi2";
+    internal const string Atomiswave = "Atomiswave";
     internal const string BackendSg1000 = "sg1000";
     internal const string BackendMasterSystem = "mastersystem";
     internal const string BackendMegaDrive = "megadrive";
@@ -21,8 +22,10 @@ internal static class ModelConstants
     internal const string BackendDreamcast = "dreamcast";
     internal const string BackendNaomi = "naomi";
     internal const string BackendNaomi2 = "naomi2";
+    internal const string BackendAtomiswave = "atomiswave";
     internal const int Ram64Kib = 64;
     internal const int Ram128Kib = 128;
+    internal const int Ram16384Kib = 16384;
     internal const int Ram32768Kib = 32768;
     internal const string CpuZ80A = "Zilog Z80A";
     internal const string CpuMotorola68000 = "Motorola 68000";
