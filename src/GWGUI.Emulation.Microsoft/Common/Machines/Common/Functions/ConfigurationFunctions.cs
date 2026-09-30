@@ -20,6 +20,8 @@ internal static class ConfigurationValidationFunctions
     internal static void ValidateForSave(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
+        if (string.IsNullOrWhiteSpace(configuration.EmulatorId))
+            throw new InvalidDataException(nameof(configuration.EmulatorId));
         if (configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
             throw new InvalidDataException(nameof(configuration.SchemaVersion));
         foreach (var media in configuration.Media ?? [])

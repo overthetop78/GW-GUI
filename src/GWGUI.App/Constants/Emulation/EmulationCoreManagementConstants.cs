@@ -13,6 +13,7 @@ internal static class EmulationCoreManagementConstants
     internal const string SearchingResource = "Emulation.Core.NameSearching";
     internal const string VersionsFoundResource = "Emulation.Core.NameVersionsFound";
     internal const string NoneFoundResource = "Emulation.Core.NameNoneFound";
+    internal const string NoEmulatorAvailableResource = "Emulation.Core.NameNoEmulatorAvailable";
     internal const string DownloadingResource = "Emulation.Core.NameDownloading";
     internal const string InstalledPathResource = "Emulation.Core.NameInstalledPath";
     internal const string NotInstalledResource = "Emulation.Core.NameNotInstalled";

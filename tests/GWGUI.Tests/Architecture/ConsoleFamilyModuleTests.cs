@@ -75,7 +75,7 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void ConsoleFamiliesRejectMachinesWithoutAnInstalledAdapter()
+    public void ConsoleFamiliesExposeOptionsWithoutAnInstalledAdapter()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-console-unsupported-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -95,7 +95,12 @@ public sealed class ConsoleFamilyModuleTests
             };
 
             foreach (var (module, machineId) in cases)
-                Assert.Throws<NotSupportedException>(() => module.CreateConfiguration(machineId));
+            {
+                var configuration = module.CreateConfiguration(machineId);
+                Assert.Equal(machineId, configuration.MachineId);
+                Assert.Equal(string.Empty, configuration.GetType()
+                    .GetProperty("EmulatorId")?.GetValue(configuration));
+            }
         }
         finally
         {

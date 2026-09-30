@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>ติดตั้ง</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>ติดตั้ง</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>ตัวเลือกของแกนหลัก</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>เลือกตัวจําลองก่อนจะสร้างเครื่องนี้</value></data>
 </root>

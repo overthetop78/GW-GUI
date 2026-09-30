@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>安装</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>已安装</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>核心备选方案</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>创建此机器前选择一个模拟器 。</value></data>
 </root>

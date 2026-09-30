@@ -281,7 +281,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     };
 
     private static string DefaultEmulatorId(string machineId) =>
-        EmulatorCatalog.DefaultFor(machineId);
+        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));

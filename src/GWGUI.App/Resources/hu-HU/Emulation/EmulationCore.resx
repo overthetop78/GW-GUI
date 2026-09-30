@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Telepítés</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Telepítve</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Alapopciók</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Válassza ki az emulátort, mielőtt létrehozza ezt a gépet.</value></data>
 </root>

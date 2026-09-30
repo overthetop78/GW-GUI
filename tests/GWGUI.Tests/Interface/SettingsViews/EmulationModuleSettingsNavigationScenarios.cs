@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Net.Http;
+using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Contracts.Views.Emulation.Settings;
 using GWGUI.App.Controllers.Emulation.Options;
@@ -106,6 +107,39 @@ internal static class EmulationModuleSettingsNavigationScenarios
         ValueTask<IEmulationConfiguration> UseEmulator(string selected) =>
             ValueTask.FromResult<IEmulationConfiguration>(
                 ((MachineConfigurationScenarios.Configuration)configuration) with { Value = selected });
+    }
+
+    internal static async Task EmptyEmulatorCatalogKeepsOptionsOpenAndBlocksCreation()
+    {
+        IEmulationConfiguration configuration = new MachineConfigurationScenarios.Configuration(
+            "synthetic", Guid.NewGuid(), "machine-a", string.Empty);
+        var manager = ControlledDependencies.Simulate<IEmulationEmulatorManager>((method, arguments) =>
+            method.Name switch
+            {
+                "GetEmulatorInstallationsAsync" =>
+                    ValueTask.FromResult<IReadOnlyList<EmulationEmulatorInstallation>>([]),
+                _ => throw new InvalidOperationException(method.Name)
+            });
+        var controller = new EmulationEmulatorManagementController(manager,
+            () => configuration, value => configuration = value, () => false);
+        try
+        {
+            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+            await controller.RefreshAsync();
+
+            Assert.Empty(panel.Emulators.Items);
+            Assert.False(panel.Emulators.IsEnabled);
+            Assert.False(panel.Search.IsEnabled);
+            Assert.Equal(GWGUI.App.Localization.Extensions.LocExtension.Get(
+                EmulationCoreManagementConstants.NoEmulatorAvailableResource), panel.Status.Text);
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(
+                () => controller.EnsureEmulatorSelectedAsync());
+            Assert.Equal(panel.Status.Text, error.Message);
+        }
+        finally
+        {
+            await controller.DisposeAsync();
+        }
     }
 
     internal static async Task EmulatorVersionsAreSelectedAndInstalledExplicitly()

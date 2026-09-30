@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Встановити</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Встановити</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Параметри ядра</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Виберіть емулятор перед створенням цієї машини.</value></data>
 </root>

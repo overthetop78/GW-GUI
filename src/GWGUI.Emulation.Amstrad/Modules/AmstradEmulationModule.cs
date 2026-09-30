@@ -279,8 +279,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
     };
 
     private static string DefaultEmulatorId(string machineId) =>
-        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id
-        ?? throw new ArgumentOutOfRangeException(nameof(machineId), machineId, null);
+        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));

@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Instalează</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Instalat</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Opțiuni principale</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Selectaţi un emulator înainte de a crea această maşină.</value></data>
 </root>

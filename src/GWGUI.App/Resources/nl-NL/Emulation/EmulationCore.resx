@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Installeren</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Geïnstalleerd</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Kernopties</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Selecteer een emulator voordat u deze machine aanmaakt.</value></data>
 </root>

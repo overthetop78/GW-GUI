@@ -64,6 +64,8 @@ internal sealed partial class EmulationModuleSettingsSection
         _configuration = _module.ApplySettings(_configuration, values);
         if (_inputSettings is not null) _configuration = _inputSettings.Apply(_configuration);
         if (_storageSettings is not null) _configuration = _storageSettings.Apply(_configuration);
+        if (_emulatorManagement is not null)
+            await _emulatorManagement.EnsureEmulatorSelectedAsync();
         var configuration = _configuration;
         await _profiles.SaveAsync(_module.Id, configuration.Id);
         await _module.SaveConfigurationAsync(configuration);

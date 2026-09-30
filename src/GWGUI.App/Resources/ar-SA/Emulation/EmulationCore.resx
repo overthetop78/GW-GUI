@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>إنستال</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>مثبتة</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>الخيارات الأساسية</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>إختاروا مرشد قبل إنشاء هذه الآلة</value></data>
 </root>
