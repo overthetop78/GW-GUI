@@ -29,6 +29,8 @@ internal static class ControlVisualConstants
     internal const string TextBrushResource = "TextBrush";
     internal const string SyntheticNameBrushResource = "SyntheticNameBrush";
     internal const string ConfigurationResource = "Emulation.Configuration";
+    internal const string ConfigurationBrandResource = "Emulation.Configuration.Brand";
+    internal const string ConfigurationMachineResource = "Emulation.Configuration.Machine";
     internal const string OpenMachineResource = "Emulation.Machine.Open";
     internal const string MachinesResource = "Emulation.Tab.Machines";
     internal const string WelcomeResource = "Emulation.Welcome.Text";

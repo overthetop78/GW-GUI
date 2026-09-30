@@ -33,6 +33,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
+    public string BrandImageResourceName =>
+        $"{EmulationModuleConstants.AssetResourcePrefix}.atari.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));

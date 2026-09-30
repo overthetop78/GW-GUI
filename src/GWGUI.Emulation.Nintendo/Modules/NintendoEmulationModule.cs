@@ -24,6 +24,8 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
+    public string BrandImageResourceName =>
+        $"{EmulationModuleConstants.AssetResourcePrefix}.nintendo.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));

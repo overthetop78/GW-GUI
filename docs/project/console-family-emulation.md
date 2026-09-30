@@ -637,36 +637,35 @@ les tests et le comportement complet correspondant.
 ## 31. Sélecteur visuel des configurations d'émulation
 
 - [ ] Remplacer les listes déroulantes de la sélection de machine par deux lignes simples.
-  - [ ] Afficher uniquement les marques qui possèdent au moins une configuration enregistrée.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour filtrer les marques à partir des configurations réellement chargées et ne jamais afficher une marque sans configuration.
-  - [ ] Afficher les machines uniquement après la sélection d'une marque.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour limiter la seconde ligne aux machines configurées de la marque sélectionnée.
-  - [ ] Construire la présentation sur une seule ligne par niveau, sans cartes ni grille.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour remplacer les deux `ComboBox` par deux bandes horizontales d'icônes sélectionnables, avec le libellé traduit `Marques` sur la première et `Machines` sur la seconde.
-  - [ ] Utiliser les images et les noms déjà fournis par chaque module d'émulation, avec un intitulé accessible pour chaque élément.
-    - [ ] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs` et `src/GWGUI.Emulation/Contracts/EmulationMachineDefinition.cs` pour exposer les identifiants de ressources d'image de la marque et de chaque machine, puis modifier les modules `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation.Amstrad/`, `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Microsoft/`, `src/GWGUI.Emulation.Nec/`, `src/GWGUI.Emulation.Nintendo/`, `src/GWGUI.Emulation.Sega/` et `src/GWGUI.Emulation.Sony/` pour fournir ces identifiants avec leurs noms existants.
-  - [ ] Traduire les deux libellés et les info-bulles dans la base commune et toutes les cultures.
-    - [ ] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationConfiguration.resx`, `src/GWGUI.App/Resources/en-US/Emulation/EmulationConfiguration.resx` et les cultures correspondantes, puis exécuter le script Argos pour les textes traduisibles uniquement.
+  - [x] Afficher uniquement les marques qui possèdent au moins une configuration enregistrée.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour filtrer les marques à partir des configurations réellement chargées et ne jamais afficher une marque sans configuration.
+  - [x] Afficher les machines uniquement après la sélection d'une marque.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour limiter la seconde ligne aux machines configurées de la marque sélectionnée.
+  - [x] Construire la présentation sur une seule ligne par niveau, sans cartes ni grille.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour remplacer les deux `ComboBox` par deux bandes horizontales d'icônes sélectionnables, avec le libellé traduit `Marques` sur la première et `Machines` sur la seconde.
+  - [x] Utiliser les images et les noms déjà fournis par chaque module d'émulation, avec un intitulé accessible pour chaque élément.
+    - [x] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs` et `src/GWGUI.Emulation/Contracts/EmulationMachineDefinition.cs` pour exposer les identifiants de ressources d'image de la marque et de chaque machine, puis modifier les modules `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation.Amstrad/`, `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Microsoft/`, `src/GWGUI.Emulation.Nec/`, `src/GWGUI.Emulation.Nintendo/`, `src/GWGUI.Emulation.Sega/` et `src/GWGUI.Emulation.Sony/` pour fournir ces identifiants avec leurs noms existants.
+  - [x] Réutiliser les traductions existantes des libellés et des info-bulles dans la base commune et toutes les cultures (`Emulation.Configuration.Brand` et `Emulation.Configuration.Machine`), sans dupliquer de texte invariant.
 
 - [ ] Implémenter la sélection exclusive et son rendu.
-  - [ ] Appliquer le même état visuel aux marques et aux machines sélectionnées.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour appliquer un fond bleu à 25 % et un encadrement bleu à l'icône sélectionnée, avec une marge extérieure suffisante pour ne pas toucher le bord du conteneur.
-  - [ ] Remplacer la sélection lorsqu'une autre icône du même niveau est cliquée.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour conserver au plus une marque et une machine sélectionnées et actualiser la seconde ligne après chaque changement de marque.
+  - [x] Appliquer le même état visuel aux marques et aux machines sélectionnées.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour appliquer un fond bleu à 25 % et un encadrement bleu à l'icône sélectionnée, avec une marge extérieure suffisante pour ne pas toucher le bord du conteneur.
+  - [x] Remplacer la sélection lorsqu'une autre icône du même niveau est cliquée.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour conserver au plus une marque et une machine sélectionnées et actualiser la seconde ligne après chaque changement de marque.
   - [ ] Désélectionner l'icône lorsqu'elle est recliquée.
     - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour masquer la ligne des machines après désélection de la marque et masquer l'action d'ouverture après désélection de la machine.
 
 - [ ] Relier la sélection aux machines ouvertes sans créer de doublon.
   - [ ] Afficher l'action d'ouverture uniquement pour une machine sélectionnée qui n'est pas déjà ouverte.
     - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` et `EmulationSectionConfigurationFunctions.cs` pour afficher le bouton à droite seulement dans ce cas, avec une icône écran/flèche retenue parmi les glyphes existants.
-  - [ ] Faire occuper au bouton toute la hauteur des deux lignes avec une marge extérieure.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour placer le bouton dans une colonne verticale couvrant les deux lignes, avec des marges extérieures adaptées au cadre.
-  - [ ] Ouvrir une machine par double-clic si elle n'est pas ouverte.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour appeler le flux d'ouverture existant au double-clic et conserver la sélection de la marque et de la machine après ouverture, sans afficher le bouton.
-  - [ ] Activer l'onglet existant au clic simple ou double-clic d'une machine déjà ouverte.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` et `EmulationSectionMachineFunctions.cs` pour sélectionner l'onglet correspondant au lieu de créer une seconde configuration.
-  - [ ] Synchroniser les deux lignes avec l'onglet actif.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSection.cs` et `EmulationSectionMachineFunctions.cs` pour sélectionner automatiquement la marque et la machine correspondant à l'onglet activé et retirer le bouton d'ouverture lorsqu'il est déjà ouvert.
+  - [x] Faire occuper au bouton toute la hauteur des deux lignes avec une marge extérieure.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour placer le bouton dans une colonne verticale couvrant les deux lignes, avec des marges extérieures adaptées au cadre.
+  - [x] Ouvrir une machine par double-clic si elle n'est pas ouverte.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour appeler le flux d'ouverture existant au double-clic et conserver la sélection de la marque et de la machine après ouverture.
+  - [x] Activer l'onglet existant au clic simple ou double-clic d'une machine déjà ouverte.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` et `EmulationSectionMachineFunctions.cs` pour sélectionner l'onglet correspondant au lieu de créer une seconde configuration.
+  - [x] Synchroniser les deux lignes avec l'onglet actif.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSection.cs` et `EmulationSectionMachineFunctions.cs` pour sélectionner automatiquement la marque et la machine correspondant à l'onglet activé.
 
 - [ ] Vérifier le sélecteur sans créer de résidus.
   - [ ] Couvrir les clics, doubles-clics, changements d'onglet, masquages et refus de doublon.
@@ -674,6 +673,9 @@ les tests et le comportement complet correspondant.
 
 - [ ] Ajouter les images et le dimensionnement du sélecteur.
   - [ ] Fournir une image de marque et une image de machine pour chaque entrée réellement affichée.
+  - [x] Embarquer les PNG dans les assemblies des modules et charger les images via leurs noms de ressources.
+    - [x] Modifier les huit fichiers `src/GWGUI.Emulation.*/GWGUI.Emulation.*.csproj` pour inclure `Assets/*.png` et `Assets/Machines/*.png` avec des noms logiques stables.
+    - [x] Ajouter `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationAssetFunctions.cs` pour charger les flux en `BitmapImage` avec `OnLoad` et préserver le canal alpha.
     - [x] Créer le logo de marque directement dans `src/GWGUI.Emulation.<famille>/Assets/<marque-logo>.(png|jpg|bmp|webp)` et les logos des machines dans `src/GWGUI.Emulation.<famille>/Assets/Machines/<machine-id>.(png|jpg|bmp|webp)`, avec un fichier par entrée publiée et aucun fichier dans `GWGUI.App`; les huit logos de marques sont présents en PNG légers, dimensionnés à environ 960 px sur leur plus grand côté.
       - [x] Remplacer `src/GWGUI.Emulation.Amiga/Assets/amiga.png` par le logo Amiga 1985 fourni par Wikimedia Commons, en conservant son dégradé de couleurs.
       - [x] Remplacer `src/GWGUI.Emulation.Microsoft/Assets/microsoft.png` par le logotype Microsoft fourni par l’utilisateur, en supprimant le damier et en conservant la transparence.

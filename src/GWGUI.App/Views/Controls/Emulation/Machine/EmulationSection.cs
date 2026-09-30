@@ -15,18 +15,21 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection : UserControl
 {
-    private readonly ComboBox _module = new()
-        { DisplayMemberPath = nameof(EmulationModuleListItem.DisplayName) };
-    private readonly ComboBox _configuration = new()
-        { DisplayMemberPath = nameof(EmulationConfigurationListItem.DisplayName) };
+    private readonly TextBlock _brandLabel = new();
+    private readonly TextBlock _machineLabel = new();
+    private readonly WrapPanel _brandPanel = new();
+    private readonly WrapPanel _machinePanel = new();
     private readonly Button _open = new() { MinWidth = 130 };
     private readonly TabControl _machines = new();
-    private readonly TextBlock _configurationLabel = new();
     private readonly MainTabHeader _welcomeHeader = new();
     private readonly TextBlock _welcomeText = new();
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
     private IReadOnlyList<EmulationConfigurationListItem> _configurations = [];
     private readonly Dictionary<(string ModuleId, Guid Id), TabItem> _openMachines = [];
+    private IEmulationModule? _selectedModule;
+    private string? _selectedMachineId;
+    private Guid? _selectedConfigurationId;
+    private bool _selectorRendering;
     private AppSettings _settings = new();
     private Point _tabDragStart;
     private TabItem? _draggedMachineTab;
@@ -35,17 +38,13 @@ public sealed partial class EmulationSection : UserControl
 
     public EmulationSection()
     {
-        AutomationProperties.SetName(_module,
-            LocExtension.Get(ControlVisualConstants.MachinesResource));
-        AutomationProperties.SetName(_configuration,
-            LocExtension.Get(ControlVisualConstants.ConfigurationResource));
         AutomationProperties.SetName(_open,
             LocExtension.Get(ControlVisualConstants.OpenMachineResource));
         AutomationProperties.SetName(_machines,
             LocExtension.Get(ControlVisualConstants.MachinesResource));
         _open.Content = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Click += OpenSelectedMachine;
-        _module.SelectionChanged += ModuleSelectionChanged;
+        _machines.SelectionChanged += ActiveMachineTabChanged;
         _machines.AllowDrop = true;
         _machines.PreviewMouseLeftButtonDown += MachineTabMouseDown;
         _machines.PreviewMouseMove += MachineTabMouseMove;
@@ -61,11 +60,10 @@ public sealed partial class EmulationSection : UserControl
 
     internal void RefreshLocalizedContent()
     {
-        var configurationText = LocExtension.Get(ControlVisualConstants.ConfigurationResource);
-        _configurationLabel.Text = configurationText;
-        AutomationProperties.SetName(_module,
-            LocExtension.Get(ControlVisualConstants.MachinesResource));
-        AutomationProperties.SetName(_configuration, configurationText);
+        _brandLabel.Text = LocExtension.Get(ControlVisualConstants.ConfigurationBrandResource);
+        _machineLabel.Text = LocExtension.Get(ControlVisualConstants.ConfigurationMachineResource);
+        AutomationProperties.SetName(_brandPanel, _brandLabel.Text);
+        AutomationProperties.SetName(_machinePanel, _machineLabel.Text);
         var openText = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Content = openText;
         AutomationProperties.SetName(_open, openText);
@@ -79,6 +77,7 @@ public sealed partial class EmulationSection : UserControl
             var machine = item.Value.Tag as EmulationMachineRuntime;
             if (title is not null && machine is not null) title.Text = RuntimeDisplayName(machine);
         }
+        RefreshSelector();
         _ = ReloadConfigurationsAsync();
     }
 }

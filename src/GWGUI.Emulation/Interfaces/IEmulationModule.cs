@@ -4,6 +4,7 @@ public interface IEmulationModule
 {
     string Id { get; }
     string DisplayResourceKey { get; }
+    string BrandImageResourceName { get; }
     IReadOnlyList<EmulationMachineDefinition> Machines { get; }
     EmulationSettingsVisibility DefaultVisibility { get; }
     bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);

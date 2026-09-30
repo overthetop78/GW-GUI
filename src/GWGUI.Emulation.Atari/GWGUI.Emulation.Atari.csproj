@@ -16,6 +16,10 @@
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Assets\*.png"
+                      LogicalName="GWGUI.Emulation.Atari.Assets.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="Assets\Machines\*.png"
+                      LogicalName="GWGUI.Emulation.Atari.Assets.Machines.%(Filename)%(Extension)" />
     <EmbeddedResource Update="Resources\*\*.resx">
       <WithCulture>false</WithCulture>
       <LogicalName>GWGUI.Emulation.Atari.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>

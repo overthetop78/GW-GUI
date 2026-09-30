@@ -24,6 +24,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
+    public string BrandImageResourceName =>
+        $"{EmulationModuleConstants.AssetResourcePrefix}.sony.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));

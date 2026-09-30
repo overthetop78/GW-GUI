@@ -90,6 +90,7 @@ public sealed partial class EmulationSection
         await stop();
         _openMachines.Remove(key);
         _machines.Items.Remove(tab);
+        RefreshSelector();
     }
 
     public async Task StopAllAsync()
@@ -99,5 +100,6 @@ public sealed partial class EmulationSection
             if (tab.Content is MachineController machine) await machine.StopAsync();
         }
         _openMachines.Clear();
+        RefreshSelector();
     }
 }

@@ -24,6 +24,8 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
+    public string BrandImageResourceName =>
+        $"{EmulationModuleConstants.AssetResourcePrefix}.amstrad.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
