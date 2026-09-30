@@ -633,3 +633,175 @@ les tests et le comportement complet correspondant.
   - [x] Exécuter `python scripts/tools/translate-resx-argos.py --root src/GWGUI.Emulation.Microsoft/Resources --retranslate-all` et modifier les tests pour vérifier les 28 cultures, les invariants en base et l'absence de textes Sega, Nintendo, Amstrad, Caprice32 ou MicrosoftCore.
 - [x] Conserver la limite de cœur tant qu'aucun cœur Microsoft vérifié n'est installé.
   - [x] Modifier `docs/project/console-family-emulation.md` pour consigner l'absence de cœur Xbox/xemu ou Xbox 360/Xenia vérifié dans `F:\Retro` et laisser `CreateRuntimeAsync` refuser explicitement le démarrage au lieu de publier un adaptateur fictif.
+
+## 31. Sélecteur visuel des configurations d'émulation
+
+- [ ] Remplacer les listes déroulantes de la sélection de machine par deux lignes simples.
+  - [ ] Afficher uniquement les marques qui possèdent au moins une configuration enregistrée.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour filtrer les marques à partir des configurations réellement chargées et ne jamais afficher une marque sans configuration.
+  - [ ] Afficher les machines uniquement après la sélection d'une marque.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour limiter la seconde ligne aux machines configurées de la marque sélectionnée.
+  - [ ] Construire la présentation sur une seule ligne par niveau, sans cartes ni grille.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour remplacer les deux `ComboBox` par deux bandes horizontales d'icônes sélectionnables, avec le libellé traduit `Marques` sur la première et `Machines` sur la seconde.
+  - [ ] Utiliser les images et les noms déjà fournis par chaque module d'émulation, avec un intitulé accessible pour chaque élément.
+    - [ ] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs` et `src/GWGUI.Emulation/Contracts/EmulationMachineDefinition.cs` pour exposer les identifiants de ressources d'image de la marque et de chaque machine, puis modifier les modules `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation.Amstrad/`, `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Microsoft/`, `src/GWGUI.Emulation.Nec/`, `src/GWGUI.Emulation.Nintendo/`, `src/GWGUI.Emulation.Sega/` et `src/GWGUI.Emulation.Sony/` pour fournir ces identifiants avec leurs noms existants.
+  - [ ] Traduire les deux libellés et les info-bulles dans la base commune et toutes les cultures.
+    - [ ] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationConfiguration.resx`, `src/GWGUI.App/Resources/en-US/Emulation/EmulationConfiguration.resx` et les cultures correspondantes, puis exécuter le script Argos pour les textes traduisibles uniquement.
+
+- [ ] Implémenter la sélection exclusive et son rendu.
+  - [ ] Appliquer le même état visuel aux marques et aux machines sélectionnées.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour appliquer un fond bleu à 25 % et un encadrement bleu à l'icône sélectionnée, avec une marge extérieure suffisante pour ne pas toucher le bord du conteneur.
+  - [ ] Remplacer la sélection lorsqu'une autre icône du même niveau est cliquée.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour conserver au plus une marque et une machine sélectionnées et actualiser la seconde ligne après chaque changement de marque.
+  - [ ] Désélectionner l'icône lorsqu'elle est recliquée.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour masquer la ligne des machines après désélection de la marque et masquer l'action d'ouverture après désélection de la machine.
+
+- [ ] Relier la sélection aux machines ouvertes sans créer de doublon.
+  - [ ] Afficher l'action d'ouverture uniquement pour une machine sélectionnée qui n'est pas déjà ouverte.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` et `EmulationSectionConfigurationFunctions.cs` pour afficher le bouton à droite seulement dans ce cas, avec une icône écran/flèche retenue parmi les glyphes existants.
+  - [ ] Faire occuper au bouton toute la hauteur des deux lignes avec une marge extérieure.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour placer le bouton dans une colonne verticale couvrant les deux lignes, avec des marges extérieures adaptées au cadre.
+  - [ ] Ouvrir une machine par double-clic si elle n'est pas ouverte.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour appeler le flux d'ouverture existant au double-clic et conserver la sélection de la marque et de la machine après ouverture, sans afficher le bouton.
+  - [ ] Activer l'onglet existant au clic simple ou double-clic d'une machine déjà ouverte.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` et `EmulationSectionMachineFunctions.cs` pour sélectionner l'onglet correspondant au lieu de créer une seconde configuration.
+  - [ ] Synchroniser les deux lignes avec l'onglet actif.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSection.cs` et `EmulationSectionMachineFunctions.cs` pour sélectionner automatiquement la marque et la machine correspondant à l'onglet activé et retirer le bouton d'ouverture lorsqu'il est déjà ouvert.
+
+- [ ] Vérifier le sélecteur sans créer de résidus.
+  - [ ] Couvrir les clics, doubles-clics, changements d'onglet, masquages et refus de doublon.
+    - [ ] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/ConfigurationSelectorScenarios.cs` pour exercer ces transitions sans créer de fenêtre ou de processus persistant et libérer toute ressource dans `finally`.
+
+- [ ] Ajouter les images et le dimensionnement du sélecteur.
+  - [ ] Fournir une image de marque et une image de machine pour chaque entrée réellement affichée.
+    - [x] Créer le logo de marque directement dans `src/GWGUI.Emulation.<famille>/Assets/<marque-logo>.(png|jpg|bmp|webp)` et les logos des machines dans `src/GWGUI.Emulation.<famille>/Assets/Machines/<machine-id>.(png|jpg|bmp|webp)`, avec un fichier par entrée publiée et aucun fichier dans `GWGUI.App`; les huit logos de marques sont présents en PNG légers, dimensionnés à environ 960 px sur leur plus grand côté.
+      - [x] Remplacer `src/GWGUI.Emulation.Amiga/Assets/amiga.png` par le logo Amiga 1985 fourni par Wikimedia Commons, en conservant son dégradé de couleurs.
+      - [x] Remplacer `src/GWGUI.Emulation.Microsoft/Assets/microsoft.png` par le logotype Microsoft fourni par l’utilisateur, en supprimant le damier et en conservant la transparence.
+      - [x] Modifier `src/GWGUI.Emulation.Nintendo/Assets/nintendo.png` pour rendre transparent le fond rouge extérieur et conserver uniquement l’ovale blanc, son fond rouge et le mot-symbole Nintendo.
+      - [x] Remplacer `src/GWGUI.Emulation.Amstrad/Assets/amstrad.png` par le logo Amstrad des années 1980 fourni par Wikimedia Commons.
+    - [x] Ajouter les images de machines Amiga acceptées dans `src/GWGUI.Emulation.Amiga/Assets/Machines/` : `A500.png`, `A500PLUS.png`, `A600.png` et `CD32.png`, avec fond transparent et un côté maximal de 960 px.
+    - [x] Supprimer les anciennes images textuelles ou les candidats rejetés (`CDTV.png`, `A1000`, `A1200`, `A2000`, `A3000` et `A4000`) de `src/GWGUI.Emulation.Amiga/Assets/Machines/` avant l’ajout des images acceptées.
+    - [ ] Remplacer les modèles Amiga sans image acceptée par une image de machine nette, sans écran ni périphériques inutiles, ou utiliser une image de référence avec le libellé du modèle fourni séparément par le module.
+      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A1000.png` à partir des vues fournies, en ne conservant que le boîtier de bureau Amiga, avec fond transparent et sans écran, clavier, table ni câble.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A1000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A1200.png` à partir de la vue fournie, en ne conservant que l’ordinateur et en retirant la manette et son câble.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A1200.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A3000.png` à partir de la vue Wikimedia fournie, en supprimant le fond blanc et l’ombre.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A3000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A4000.png` à partir des vues fournies, en conservant le lecteur CD et en retirant les marques visibles du boîtier et du lecteur.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A4000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/CDTV.png` à partir des vues fournies, en ne conservant que l’unité CDTV et en supprimant l’écran, le clavier, la télécommande, le disque et le décor.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/CDTV.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [x] Ajouter l’image du premier modèle Amstrad dans `src/GWGUI.Emulation.Amstrad/Assets/Machines/`.
+      - [x] Créer `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC464.png` à partir de la vue fournie, en conservant le boîtier CPC 464 et son lecteur de cassette, avec fond transparent.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC464.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [x] Ajouter l’image du CPC664 dans `src/GWGUI.Emulation.Amstrad/Assets/Machines/`.
+      - [x] Créer `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC664.png` à partir de la vue nette fournie, en conservant le boîtier, le clavier et le lecteur de disquette intégrés, avec fond transparent.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC664.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [x] Ajouter l’image du CPC6128 dans `src/GWGUI.Emulation.Amstrad/Assets/Machines/`.
+      - [x] Créer `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC6128.png` à partir de la vue nette fournie, en conservant le clavier AZERTY et les inscriptions lisibles du lecteur de disquette, avec fond transparent.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC6128.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [x] Ajouter l’image du CPC464 Plus dans `src/GWGUI.Emulation.Amstrad/Assets/Machines/`.
+      - [x] Créer `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC464PLUS.png` à partir de la vue fournie, en conservant le clavier, le lecteur de cassette et les marquages 464 Plus, avec fond transparent.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC464PLUS.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [x] Ajouter l’image du CPC6128 Plus dans `src/GWGUI.Emulation.Amstrad/Assets/Machines/`.
+      - [x] Créer `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC6128PLUS.png` en tournant la vue fournie de 90 degrés vers la gauche, en supprimant le décor et le filigrane, et en conservant le clavier et les marquages 6128 Plus sur fond transparent.
+      - [x] Redimensionner `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC6128PLUS.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Remplacer `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC6128PLUS.png` par le détourage de la vue plus nette fournie, sans modifier les touches, puis redimensionner le PNG à 960 px maximum.
+    - [ ] Remplacer l’image CPC464 si une source plus nette est fournie, car la première source produit un rendu insuffisamment précis.
+      - [ ] Modifier `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC464.png` avec une nouvelle vue haute définition, conserver le fond transparent et vérifier les détails avant de remplacer le fichier.
+    - [x] Ajouter l’image Atari Falcon dans `src/GWGUI.Emulation.Atari/Assets/Machines/`.
+      - [x] Copier la vue Wikimedia transparente dans `src/GWGUI.Emulation.Atari/Assets/Machines/Falcon.png` sans modifier le boîtier ni les marquages.
+      - [x] Redimensionner `src/GWGUI.Emulation.Atari/Assets/Machines/Falcon.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [ ] Ajouter les images des Atari ST dans `src/GWGUI.Emulation.Atari/Assets/Machines/` à partir des vues fournies, sans recadrer le boîtier.
+      - [ ] Créer `src/GWGUI.Emulation.Atari/Assets/Machines/520ST.png` depuis la vue complète et non inclinée du 520 ST fournie en première référence, avec fond transparent et clavier inchangé.
+      - [ ] Redimensionner `src/GWGUI.Emulation.Atari/Assets/Machines/520ST.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [ ] Créer `src/GWGUI.Emulation.Atari/Assets/Machines/1040ST.png` depuis la vue complète du 1040 ST, avec fond transparent et clavier inchangé.
+      - [ ] Redimensionner `src/GWGUI.Emulation.Atari/Assets/Machines/1040ST.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Atari/Assets/Machines/ST.png`, `STf.png`, `STe.png` et `STfm.png` depuis la vue droite fournie, en ne modifiant que le marquage de modèle à l’emplacement indiqué par la vue de référence.
+      - [x] Redimensionner chaque variante Atari ST à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [ ] Ajouter les variantes Atari Mega ST dans `src/GWGUI.Emulation.Atari/Assets/Machines/` à partir de la vue fournie.
+      - [x] Créer `src/GWGUI.Emulation.Atari/Assets/Machines/MegaSTE.png` en supprimant uniquement le décor pour obtenir un fond transparent, sans modifier le boîtier, le clavier ni le marquage « MEGA STE ».
+      - [x] Créer `src/GWGUI.Emulation.Atari/Assets/Machines/MegaST.png` depuis la même vue en retirant uniquement le « E » du marquage « MEGA STE », avec le reste de la machine inchangé et le fond transparent.
+      - [x] Redimensionner `src/GWGUI.Emulation.Atari/Assets/Machines/MegaSTE.png` et `src/GWGUI.Emulation.Atari/Assets/Machines/MegaST.png` à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+    - [ ] Ajouter l’image Atari TT dans `src/GWGUI.Emulation.Atari/Assets/Machines/`.
+      - [x] Créer `src/GWGUI.Emulation.Atari/Assets/Machines/TT.png` depuis la vue fournie, en retirant le fond blanc et le filigrane sans modifier le boîtier ni le marquage TT030.
+      - [x] Redimensionner `src/GWGUI.Emulation.Atari/Assets/Machines/TT.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+    - [x] Ajouter les images Atari 8-bit dans `src/GWGUI.Emulation.Atari/Assets/Machines/`.
+      - [x] Créer `Atari400.png` depuis la référence Wikimedia Atari 400, avec fond transparent.
+      - [x] Créer `Atari800.png` depuis la référence Wikimedia Atari 800, avec fond transparent.
+      - [x] Créer `Atari800XL.png` depuis la référence fournie Atari 800 XL, avec fond transparent.
+      - [x] Créer `Atari130XE.png` depuis la référence Wikimedia Atari 130 XE, avec fond transparent.
+      - [x] Créer `AtariXLXE.png` depuis la vue XL/XE fournie, en retirant le câble et le fond sans modifier la machine.
+      - [x] Redimensionner ces cinq images à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+    - [x] Ajouter les consoles Atari dans `src/GWGUI.Emulation.Atari/Assets/Machines/`.
+      - [x] Créer `AtariVCS2600.png` depuis la référence VCS 2600, avec son ensemble console/manettes et fond transparent.
+      - [x] Créer `Atari5200.png` depuis la référence Atari 5200, avec son ensemble console/manettes et fond transparent.
+      - [x] Créer `Atari7800.png` depuis la référence Atari 7800, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `AtariLynxII.png` depuis la référence Atari Lynx II, avec fond transparent.
+      - [x] Créer `AtariJaguar.png` depuis la référence Atari Jaguar, avec fond transparent.
+      - [x] Créer `AtariJaguarCD.png` depuis la référence Atari Jaguar CD, avec fond transparent.
+      - [x] Redimensionner ces six images à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+    - [x] Ajouter les consoles Microsoft dans `src/GWGUI.Emulation.Microsoft/Assets/Machines/`.
+      - [x] Créer `Xbox.png` depuis la référence Xbox, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `Xbox360.png` depuis la référence Xbox 360, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `XboxOne.png` depuis la référence Xbox One, avec son ensemble console/manette et fond transparent.
+      - [x] Redimensionner ces trois images à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+    - [x] Ajouter les consoles NEC dans `src/GWGUI.Emulation.Nec/Assets/Machines/`.
+      - [x] Créer `PcEngine.png` depuis la référence PC Engine/TurboGrafx-16, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `CoreGrafx.png` depuis la référence PC Engine CoreGrafx, avec fond transparent.
+      - [x] Créer `SuperGrafx.png` depuis la référence PC Engine SuperGrafx, avec fond transparent.
+      - [x] Créer `PcEngineDuo.png` depuis la référence PC Engine Duo/TurboDuo, avec fond transparent.
+      - [x] Créer `PcFx.png` depuis la référence PC-FX, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `TurboExpress.png` depuis la référence PC Engine GT/TurboExpress, avec fond transparent.
+      - [x] Redimensionner ces six images à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+    - [x] Ajouter les consoles Nintendo dans `src/GWGUI.Emulation.Nintendo/Assets/Machines/`.
+      - [x] Créer `GameWatch.png` depuis la référence Game & Watch, avec fond transparent.
+      - [x] Créer `Nes.png` depuis la référence NES, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `FamicomDisk.png` depuis la référence Famicom Disk System, avec fond transparent.
+      - [x] Créer `Snes.png` depuis la référence Super Nintendo, avec fond transparent.
+      - [x] Créer `VirtualBoy.png` depuis la référence Virtual Boy, avec son ensemble et fond transparent.
+      - [x] Créer `Nintendo64.png` depuis la référence Nintendo 64, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `GameBoy.png` depuis la référence Game Boy, avec fond transparent.
+      - [x] Créer `GameBoyColor.png` depuis la référence Game Boy Color, avec fond transparent.
+      - [x] Créer `GameBoyAdvance.png` depuis la référence Game Boy Advance/SP, avec fond transparent.
+      - [x] Créer `NintendoDs.png` depuis la référence Nintendo DS/DSi, avec fond transparent.
+      - [x] Créer `Nintendo3Ds.png` depuis la référence Nintendo 3DS, avec fond transparent.
+      - [x] Créer `GameCube.png` depuis la référence GameCube, avec son ensemble console/manette et fond transparent.
+      - [x] Créer `Wii.png` depuis la référence Wii, avec fond transparent.
+      - [x] Créer `WiiU.png` depuis la référence Wii U, avec console et GamePad sur fond transparent.
+      - [x] Créer `Switch.png` depuis la référence Nintendo Switch, avec fond transparent.
+      - [x] Redimensionner ces quinze images à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+    - [x] Ajouter les consoles Sega dans `src/GWGUI.Emulation.Sega/Assets/Machines/`.
+      - [x] Créer `Sg1000.png` depuis la référence Sega SG-1000, en conservant l'image et son canal alpha.
+      - [x] Créer `Sc3000.png` depuis la référence Sega SC-3000, en conservant l'image et son canal alpha.
+      - [x] Créer `MarkIII.png` depuis la référence Sega Mark III, en conservant l'image et son canal alpha.
+      - [x] Créer `MasterSystem.png` depuis la référence Sega Master System, en conservant l'image et son canal alpha.
+      - [x] Créer `MegaDrive.png` depuis la référence Sega Mega Drive, en conservant l'image et son canal alpha.
+      - [x] Créer `Pico.png` depuis la référence Sega Pico, en conservant l'image et son canal alpha.
+      - [x] Créer `GameGear.png` depuis la référence Sega Game Gear, en conservant l'image et son canal alpha.
+      - [x] Créer `Saturn.png` depuis la référence Sega Saturn, en conservant l'image et son canal alpha.
+      - [x] Créer `Dreamcast.png` depuis la référence Sega Dreamcast, en conservant l'image et son canal alpha.
+      - [x] Créer `Naomi.png` depuis la référence Sega Naomi, en conservant l'image et son canal alpha.
+      - [x] Créer `Naomi2.png` depuis la référence Sega Naomi 2, en conservant l'image et son canal alpha.
+      - [x] Créer `Atomiswave.png` depuis la référence Sega Atomiswave, en conservant l'image et son canal alpha.
+      - [x] Redimensionner ces douze images à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+      - [x] Rendre transparents les fonds blancs externes et supprimer les textes ou artefacts hors machine, sans modifier les marquages intégrés aux consoles.
+    - [x] Ajouter les consoles Sony dans `src/GWGUI.Emulation.Sony/Assets/Machines/`.
+      - [x] Créer `PlayStation.png` depuis la référence PlayStation/PSX, en conservant l'image et son canal alpha.
+      - [x] Créer `PlayStation2.png` depuis la référence PlayStation 2, en conservant l'image et son canal alpha.
+      - [x] Créer `PlayStation3.png` depuis la référence PlayStation 3, en conservant l'image et son canal alpha.
+      - [x] Créer `PlayStation4.png` depuis la référence PlayStation 4, en conservant l'image et son canal alpha.
+      - [x] Créer `Psp.png` depuis la référence PSP, en conservant l'image et son canal alpha.
+      - [x] Créer `PsVita.png` depuis la référence PlayStation Vita, en conservant l'image et son canal alpha.
+      - [x] Redimensionner ces six images à 960 px maximum sur leur plus grand côté, sans déformer leur ratio.
+  - [ ] Publier les images du module comme ressources chargeables par l'App.
+    - [ ] Modifier chaque `src/GWGUI.Emulation.<famille>/GWGUI.Emulation.<famille>.csproj` pour embarquer le logo de `Assets/` et les images de `Assets/Machines/`, puis modifier le module correspondant pour retourner les ressources de son propre assembly.
+  - [ ] Charger les images sans déformer leur ratio.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour charger les images fournies par le module, imposer une hauteur d'image uniforme de 36 px et laisser la largeur s'adapter au ratio, avec un texte accessible pour chaque bouton.
+  - [ ] Empêcher les éléments trop longs de dépasser la fenêtre.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour utiliser un panneau horizontal avec retour automatique à la ligne, conserver une largeur naturelle limitée par l'espace disponible et ne jamais couper une icône ou son libellé.
+  - [ ] Agrandir automatiquement le cadre selon le nombre de lignes.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour laisser le conteneur calculer sa hauteur en fonction des lignes de marques et de machines, tout en conservant les marges extérieures prévues.
+  - [ ] Faire suivre au bouton d'ouverture la hauteur réelle du cadre.
+    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour placer le bouton dans une colonne étirée sur toute la hauteur calculée des deux panneaux, avec les mêmes marges extérieures et sans hauteur fixe.
