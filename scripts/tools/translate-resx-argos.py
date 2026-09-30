@@ -71,6 +71,41 @@ TRANSLATION_OVERRIDES = {
     },
 }
 
+_SELECTOR_LABEL_OVERRIDES = {
+    "ar-SA": "العلامات التجارية والآلات",
+    "cs-CZ": "Značky a stroje",
+    "da-DK": "Mærker og maskiner",
+    "de-DE": "Marken und Maschinen",
+    "el-GR": "Μάρκες και μηχανήματα",
+    "es-ES": "Marcas y máquinas",
+    "fi-FI": "Merkit ja koneet",
+    "fr-FR": "Marques et machines",
+    "he-IL": "מותגים ומכונות",
+    "hu-HU": "Márkák és gépek",
+    "id-ID": "Merek dan mesin",
+    "it-IT": "Marche e macchine",
+    "ja-JP": "ブランドとマシン",
+    "ko-KR": "브랜드 및 기계",
+    "nb-NO": "Merker og maskiner",
+    "nl-NL": "Merken en machines",
+    "pl-PL": "Marki i maszyny",
+    "pt-BR": "Marcas e máquinas",
+    "pt-PT": "Marcas e máquinas",
+    "ro-RO": "Mărci și mașini",
+    "ru-RU": "Бренды и машины",
+    "sv-SE": "Varumärken och maskiner",
+    "th-TH": "แบรนด์และเครื่องจักร",
+    "tr-TR": "Markalar ve makineler",
+    "uk-UA": "Бренди та машини",
+    "vi-VN": "Thương hiệu và máy",
+    "zh-Hans": "品牌和机器",
+    "zh-Hant": "品牌和機器",
+}
+for _culture, _value in _SELECTOR_LABEL_OVERRIDES.items():
+    TRANSLATION_OVERRIDES.setdefault(_culture, {})[
+        "Emulation.Configuration.Selector"
+    ] = _value
+
 # Argos is still useful for the ordinary sentences, but a few installed
 # language models mistranslate short status labels or repeat the conjunction
 # around a list of protected hardware names.  Keep those values explicit so

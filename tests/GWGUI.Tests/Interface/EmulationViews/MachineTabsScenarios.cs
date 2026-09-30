@@ -1,11 +1,28 @@
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Views.Controls.Emulation.Machine;
 using GWGUI.Emulation.Contracts;
+using GWGUI.App.Localization.Extensions;
 using System.Windows;
 using System.Windows.Controls;
 namespace GWGUI.Tests.Interface.EmulationViews;
 internal static class MachineTabsScenarios
 {
+    public static void CollapsedSelectorShowsLocalizedLabel()
+    {
+        var section = new EmulationSection();
+        var toggle = MachineConfigurationScenarios.Controls<Button>(section).Single(button =>
+            Equals(button.ToolTip, LocExtension.Get("Emulation.Configuration")));
+        var label = MachineConfigurationScenarios.Controls<TextBlock>(section).Single(text =>
+            Equals(text.Text, LocExtension.Get("Emulation.Configuration.Selector")));
+
+        Assert.Equal(Visibility.Collapsed, label.Visibility);
+        toggle.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, toggle));
+        Assert.Equal(Visibility.Visible, label.Visibility);
+        Assert.Equal(LocExtension.Get("Emulation.Configuration.Selector"), label.Text);
+        toggle.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, toggle));
+        Assert.Equal(Visibility.Collapsed, label.Visibility);
+    }
+
     public static async Task Tabs()
     {
         var module = new MachineConfigurationScenarios.Module(); var section = new EmulationSection();

@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Configurare</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Configurații</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Ștergeți această configurație Amiga?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Mărci și mașini</value></data>
 </root>

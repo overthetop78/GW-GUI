@@ -101,14 +101,26 @@ public sealed partial class EmulationSection
     {
         var selected = FindConfiguration(module.Id, definition.Id);
         if (selected is null) return;
-        var sameSelection = ReferenceEquals(_selectedModule, module)
-            && _selectedMachineId == definition.Id;
-        if (sameSelection && _openMachines.TryGetValue((module.Id, selected.Configuration.Id),
-            out var existing))
+
+        var open = _openMachines.FirstOrDefault(item =>
         {
-            _machines.SelectedItem = existing;
+            if (item.Key.ModuleId != module.Id
+                || item.Value.Tag is not EmulationMachineRuntime runtime)
+                return false;
+            return runtime.Configuration.MachineId == definition.Id;
+        });
+        if (open.Value is not null)
+        {
+            _selectedModule = module;
+            _selectedMachineId = definition.Id;
+            _selectedConfigurationId = open.Key.Id;
+            _machines.SelectedItem = open.Value;
+            RefreshSelector();
             return;
         }
+
+        var sameSelection = ReferenceEquals(_selectedModule, module)
+            && _selectedMachineId == definition.Id;
         if (sameSelection)
         {
             _selectedMachineId = null;
@@ -148,8 +160,9 @@ public sealed partial class EmulationSection
                 item.Module.Id == module.Id)).ToArray();
             foreach (var module in configuredModules)
             {
-                _brandPanel.Children.Add(CreateBrandButton(module,
-                    LocExtension.GetForModule(module, module.DisplayResourceKey)));
+                if (CreateBrandButton(module,
+                    LocExtension.GetForModule(module, module.DisplayResourceKey)) is { } button)
+                    _brandPanel.Children.Add(button);
             }
             _machinePanel.Visibility = _selectedModule is null
                 ? Visibility.Collapsed : Visibility.Visible;
@@ -163,20 +176,28 @@ public sealed partial class EmulationSection
                 foreach (var definition in _selectedModule.Machines.Where(item =>
                     machineIds.Contains(item.Id)))
                 {
-                    _machinePanel.Children.Add(CreateMachineButton(_selectedModule, definition,
-                        LocExtension.GetForModule(_selectedModule, definition.DisplayResourceKey)));
+                    if (CreateMachineButton(_selectedModule, definition,
+                        LocExtension.GetForModule(_selectedModule, definition.DisplayResourceKey))
+                        is { } button)
+                        _machinePanel.Children.Add(button);
                 }
             }
-            var selected = FindSelectedConfiguration();
-            var isOpen = selected is not null && _openMachines.ContainsKey(
-                (selected.Module.Id, selected.Configuration.Id));
-            _open.Visibility = Visibility.Visible;
-            _open.IsEnabled = selected is not null && !isOpen;
+            RefreshOpenButtonVisibility();
         }
         finally
         {
             _selectorRendering = false;
         }
+    }
+
+    private void RefreshOpenButtonVisibility()
+    {
+        var selected = FindSelectedConfiguration();
+        var isOpen = selected is not null && _openMachines.ContainsKey(
+            (selected.Module.Id, selected.Configuration.Id));
+        _open.Visibility = _selectorExpanded && selected is not null && !isOpen
+            ? Visibility.Visible : Visibility.Collapsed;
+        _open.IsEnabled = selected is not null && !isOpen;
     }
 
     private void ActiveMachineTabChanged(object? sender, SelectionChangedEventArgs args)

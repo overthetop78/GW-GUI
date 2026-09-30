@@ -6,6 +6,8 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
     [Fact] public Task VideoProfileChangesArePublishedAndPersisted() =>
         sta.RunAsync(MachineConfigurationScenarios.VideoProfileChangesArePublishedAndPersisted);
     [Fact] public Task TabsSelectAndCloseOnlyTargetSession() => sta.RunAsync(MachineTabsScenarios.Tabs);
+    [Fact] public Task CollapsedSelectorShowsLocalizedLabel() =>
+        sta.Run(MachineTabsScenarios.CollapsedSelectorShowsLocalizedLabel);
     [Theory] [InlineData(false)] [InlineData(true)]
     public Task ConfigurationDraftSaveAndRetry(bool failure) => sta.RunAsync(() => MachineConfigurationScenarios.ConfigurationEditing(failure));
     [Theory] [InlineData(false)] [InlineData(true)]

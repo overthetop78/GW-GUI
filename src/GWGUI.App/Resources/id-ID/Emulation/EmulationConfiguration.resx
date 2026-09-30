@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Konfigurasi</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Konfigurasi</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Hapus konfigurasi Amiga ini?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Merek dan mesin</value></data>
 </root>

@@ -646,18 +646,23 @@ les tests et le comportement complet correspondant.
   - [x] Utiliser les images et les noms déjà fournis par chaque module d'émulation, avec un intitulé accessible pour chaque élément.
     - [x] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs` et `src/GWGUI.Emulation/Contracts/EmulationMachineDefinition.cs` pour exposer les identifiants de ressources d'image de la marque et de chaque machine, puis modifier les modules `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation.Amstrad/`, `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Microsoft/`, `src/GWGUI.Emulation.Nec/`, `src/GWGUI.Emulation.Nintendo/`, `src/GWGUI.Emulation.Sega/` et `src/GWGUI.Emulation.Sony/` pour fournir ces identifiants avec leurs noms existants.
   - [x] Réutiliser les traductions existantes des libellés et des info-bulles dans la base commune et toutes les cultures (`Emulation.Configuration.Brand` et `Emulation.Configuration.Machine`), sans dupliquer de texte invariant.
+  - [x] Afficher uniquement les images dans les vignettes, avec le nom conservé dans l'info-bulle et l'intitulé d'accessibilité.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour retirer les noms visibles, cadrer chaque image dans une vignette fixe de `60 × 40` et réduire l'image à `42 × 26`.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour entourer les lignes Marques/Machines et le bouton d'ouverture dans un cadre global, en conservant les cadres individuels des vignettes.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour conserver une hauteur fixe du cadre en mode développé et ajouter un bouton permettant de replier ou déplier les deux lignes.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour ne pas créer de vignette lorsque la ressource image n'est pas disponible.
 
 - [ ] Implémenter la sélection exclusive et son rendu.
   - [x] Appliquer le même état visuel aux marques et aux machines sélectionnées.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour appliquer un fond bleu à 25 % et un encadrement bleu à l'icône sélectionnée, avec une marge extérieure suffisante pour ne pas toucher le bord du conteneur.
   - [x] Remplacer la sélection lorsqu'une autre icône du même niveau est cliquée.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour conserver au plus une marque et une machine sélectionnées et actualiser la seconde ligne après chaque changement de marque.
-  - [ ] Désélectionner l'icône lorsqu'elle est recliquée.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour masquer la ligne des machines après désélection de la marque et masquer l'action d'ouverture après désélection de la machine.
+  - [x] Désélectionner l'icône lorsqu'elle est recliquée.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour masquer la ligne des machines après désélection de la marque et masquer l'action d'ouverture après désélection de la machine.
 
 - [ ] Relier la sélection aux machines ouvertes sans créer de doublon.
-  - [ ] Afficher l'action d'ouverture uniquement pour une machine sélectionnée qui n'est pas déjà ouverte.
-    - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` et `EmulationSectionConfigurationFunctions.cs` pour afficher le bouton à droite seulement dans ce cas, avec une icône écran/flèche retenue parmi les glyphes existants.
+  - [x] Afficher l'action d'ouverture uniquement pour une machine sélectionnée qui n'est pas déjà ouverte.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` et `EmulationSectionConfigurationFunctions.cs` pour afficher le bouton à droite seulement dans ce cas, avec une icône écran/flèche retenue parmi les glyphes existants.
   - [x] Faire occuper au bouton toute la hauteur des deux lignes avec une marge extérieure.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour placer le bouton dans une colonne verticale couvrant les deux lignes, avec des marges extérieures adaptées au cadre.
   - [x] Ouvrir une machine par double-clic si elle n'est pas ouverte.

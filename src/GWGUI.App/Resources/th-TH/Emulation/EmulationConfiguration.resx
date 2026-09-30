@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>การกำหนดค่า</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>การปรับแต่ง</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>ลบการปรับแต่ง Amiga นี้หรือไม่?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>แบรนด์และเครื่องจักร</value></data>
 </root>

@@ -19,6 +19,10 @@ public sealed partial class EmulationSection : UserControl
     private readonly TextBlock _machineLabel = new();
     private readonly WrapPanel _brandPanel = new();
     private readonly WrapPanel _machinePanel = new();
+    private readonly StackPanel _selectorRows = new();
+    private readonly TextBlock _selectorCollapsedText = new();
+    private readonly Border _selectorFrame = new();
+    private readonly Button _selectorToggle = new();
     private readonly Button _open = new() { MinWidth = 130 };
     private readonly TabControl _machines = new();
     private readonly MainTabHeader _welcomeHeader = new();
@@ -29,6 +33,7 @@ public sealed partial class EmulationSection : UserControl
     private IEmulationModule? _selectedModule;
     private string? _selectedMachineId;
     private Guid? _selectedConfigurationId;
+    private bool _selectorExpanded = true;
     private bool _selectorRendering;
     private AppSettings _settings = new();
     private Point _tabDragStart;
@@ -44,6 +49,7 @@ public sealed partial class EmulationSection : UserControl
             LocExtension.Get(ControlVisualConstants.MachinesResource));
         _open.Content = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Click += OpenSelectedMachine;
+        _selectorToggle.Click += ToggleSelector;
         _machines.SelectionChanged += ActiveMachineTabChanged;
         _machines.AllowDrop = true;
         _machines.PreviewMouseLeftButtonDown += MachineTabMouseDown;
@@ -62,11 +68,13 @@ public sealed partial class EmulationSection : UserControl
     {
         _brandLabel.Text = LocExtension.Get(ControlVisualConstants.ConfigurationBrandResource);
         _machineLabel.Text = LocExtension.Get(ControlVisualConstants.ConfigurationMachineResource);
+        _selectorCollapsedText.Text = LocExtension.Get(ControlVisualConstants.ConfigurationSelectorResource);
         AutomationProperties.SetName(_brandPanel, _brandLabel.Text);
         AutomationProperties.SetName(_machinePanel, _machineLabel.Text);
         var openText = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Content = openText;
         AutomationProperties.SetName(_open, openText);
+        UpdateSelectorToggle();
         _welcomeHeader.Text = LocExtension.Get(ControlVisualConstants.WelcomeTabResource);
         _welcomeText.Text = LocExtension.Get(ControlVisualConstants.WelcomeResource);
         foreach (var item in _openMachines)

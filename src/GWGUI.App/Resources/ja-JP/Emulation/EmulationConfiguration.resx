@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>構成</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>構成</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>このAmiga設定を削除しますか?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>ブランドとマシン</value></data>
 </root>

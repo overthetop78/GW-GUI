@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration"><value>Configuration</value></data>
   <data name="Emulation.Configurations"><value>Configurations</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Supprimer cette configuration Amiga ?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Marques et machines</value></data>
 </root>

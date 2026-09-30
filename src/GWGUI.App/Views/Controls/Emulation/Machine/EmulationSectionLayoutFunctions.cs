@@ -14,33 +14,54 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection
 {
+    private const double SelectorRowHeight = 56;
+    private const double ExpandedSelectorFrameHeight = 124;
+
     private UIElement BuildContent()
     {
         var root = new Grid { Margin = new Thickness(16) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
-        var selector = new DockPanel { Margin = new Thickness(0, 0, 0, 12) };
+        var selector = new DockPanel();
         ConfigureSelectorLabel(_brandLabel, ControlVisualConstants.ConfigurationBrandResource);
         ConfigureSelectorLabel(_machineLabel, ControlVisualConstants.ConfigurationMachineResource);
         ConfigureSelectorPanel(_brandPanel);
         ConfigureSelectorPanel(_machinePanel);
         _open.Margin = new Thickness(12, 4, 0, 4);
         _open.VerticalAlignment = VerticalAlignment.Stretch;
+        _open.Visibility = Visibility.Collapsed;
         DockPanel.SetDock(_open, Dock.Right);
+        ConfigureSelectorToggle();
+        DockPanel.SetDock(_selectorToggle, Dock.Right);
+        selector.Children.Add(_selectorToggle);
         selector.Children.Add(_open);
-        var rows = new StackPanel { Orientation = Orientation.Vertical };
-        var brandRow = new DockPanel();
+        ConfigureSelectorCollapsedText();
+        DockPanel.SetDock(_selectorCollapsedText, Dock.Left);
+        selector.Children.Add(_selectorCollapsedText);
+        _selectorRows.Orientation = Orientation.Vertical;
+        _selectorRows.Height = SelectorRowHeight * 2;
+        var brandRow = new DockPanel { Height = SelectorRowHeight };
         DockPanel.SetDock(_brandLabel, Dock.Left);
         brandRow.Children.Add(_brandLabel);
         brandRow.Children.Add(_brandPanel);
-        rows.Children.Add(brandRow);
-        var machineRow = new DockPanel();
+        _selectorRows.Children.Add(brandRow);
+        var machineRow = new DockPanel { Height = SelectorRowHeight };
         DockPanel.SetDock(_machineLabel, Dock.Left);
         machineRow.Children.Add(_machineLabel);
         machineRow.Children.Add(_machinePanel);
-        rows.Children.Add(machineRow);
-        selector.Children.Add(rows);
-        root.Children.Add(selector);
+        _selectorRows.Children.Add(machineRow);
+        selector.Children.Add(_selectorRows);
+        _selectorFrame.Child = selector;
+        _selectorFrame.BorderThickness = new Thickness(1);
+        _selectorFrame.CornerRadius = new CornerRadius(8);
+        _selectorFrame.Padding = new Thickness(8, 4, 8, 4);
+        _selectorFrame.Margin = new Thickness(0, 0, 0, 12);
+        _selectorFrame.Height = ExpandedSelectorFrameHeight;
+        _selectorFrame.SetResourceReference(BackgroundProperty,
+            ControlVisualConstants.CardBrushResource);
+        _selectorFrame.SetResourceReference(BorderBrushProperty,
+            ControlVisualConstants.BorderBrushResource);
+        root.Children.Add(_selectorFrame);
         var welcome = new TabItem
         {
             Header = _welcomeHeader,
@@ -64,6 +85,60 @@ public sealed partial class EmulationSection
         return root;
     }
 
+    private void ConfigureSelectorToggle()
+    {
+        _selectorToggle.Width = 28;
+        _selectorToggle.Height = 28;
+        _selectorToggle.MinWidth = 0;
+        _selectorToggle.MinHeight = 0;
+        _selectorToggle.Padding = new Thickness(0);
+        _selectorToggle.Margin = new Thickness(4, 4, 0, 4);
+        _selectorToggle.VerticalAlignment = VerticalAlignment.Top;
+        _selectorToggle.SetResourceReference(StyleProperty,
+            ControlVisualConstants.StatusIconButtonStyleResource);
+        UpdateSelectorToggle();
+    }
+
+    private void ConfigureSelectorCollapsedText()
+    {
+        _selectorCollapsedText.Text = LocExtension.Get(
+            ControlVisualConstants.ConfigurationSelectorResource);
+        _selectorCollapsedText.FontWeight = FontWeights.SemiBold;
+        _selectorCollapsedText.VerticalAlignment = VerticalAlignment.Center;
+        _selectorCollapsedText.Margin = new Thickness(0, 4, 8, 4);
+        _selectorCollapsedText.Visibility = Visibility.Collapsed;
+    }
+
+    private void ToggleSelector(object sender, RoutedEventArgs args)
+    {
+        args.Handled = true;
+        SetSelectorExpanded(!_selectorExpanded);
+    }
+
+    private void SetSelectorExpanded(bool expanded)
+    {
+        _selectorExpanded = expanded;
+        _selectorRows.Visibility = expanded ? Visibility.Visible : Visibility.Collapsed;
+        _selectorCollapsedText.Visibility = expanded ? Visibility.Collapsed : Visibility.Visible;
+        _selectorFrame.Height = expanded ? ExpandedSelectorFrameHeight : double.NaN;
+        UpdateSelectorToggle();
+        RefreshOpenButtonVisibility();
+    }
+
+    private void UpdateSelectorToggle()
+    {
+        _selectorToggle.Content = new TextBlock
+        {
+            Text = _selectorExpanded ? "▲" : "▼",
+            FontSize = 12,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        var name = LocExtension.Get(ControlVisualConstants.ConfigurationResource);
+        _selectorToggle.ToolTip = name;
+        AutomationProperties.SetName(_selectorToggle, name);
+    }
+
     private static void ConfigureSelectorLabel(TextBlock label, string resourceKey)
     {
         label.Text = LocExtension.Get(resourceKey);
@@ -78,20 +153,22 @@ public sealed partial class EmulationSection
         panel.Margin = new Thickness(0, 2, 0, 2);
     }
 
-    private Button CreateBrandButton(IEmulationModule module, string displayName)
+    private Button? CreateBrandButton(IEmulationModule module, string displayName)
     {
-        var button = CreateSelectorButton(displayName,
-            EmulationAssetFunctions.Load(module, module.BrandImageResourceName),
+        var image = EmulationAssetFunctions.Load(module, module.BrandImageResourceName);
+        if (image is null) return null;
+        var button = CreateSelectorButton(displayName, image,
             ReferenceEquals(_selectedModule, module));
         button.Click += (_, _) => SelectModule(module);
         return button;
     }
 
-    private Button CreateMachineButton(IEmulationModule module,
+    private Button? CreateMachineButton(IEmulationModule module,
         EmulationMachineDefinition definition, string displayName)
     {
-        var button = CreateSelectorButton(displayName,
-            EmulationAssetFunctions.Load(module, definition.ImageResourceName),
+        var image = EmulationAssetFunctions.Load(module, definition.ImageResourceName);
+        if (image is null) return null;
+        var button = CreateSelectorButton(displayName, image,
             ReferenceEquals(_selectedModule, module) && _selectedMachineId == definition.Id);
         button.Click += (_, _) => SelectMachine(module, definition);
         button.MouseDoubleClick += (_, args) =>
@@ -108,40 +185,38 @@ public sealed partial class EmulationSection
         return button;
     }
 
-    private static Button CreateSelectorButton(string displayName, ImageSource? image,
+    private static Button CreateSelectorButton(string displayName, ImageSource image,
         bool selected)
     {
-        var content = new StackPanel { Orientation = Orientation.Horizontal };
-        if (image is not null)
-            content.Children.Add(new Image
-            {
-                Source = image,
-                Width = 46,
-                Height = 36,
-                Stretch = Stretch.Uniform,
-                Margin = new Thickness(0, 0, 7, 0)
-            });
-        content.Children.Add(new TextBlock
-        {
-            Text = displayName,
-            VerticalAlignment = VerticalAlignment.Center,
-            TextWrapping = TextWrapping.NoWrap
-        });
         var button = new Button
         {
-            Content = content,
-            Padding = new Thickness(8, 5, 8, 5),
-            Margin = new Thickness(0, 2, 8, 2),
-            MinHeight = 48,
+            Content = new Image
+            {
+                Source = image,
+                Width = 42,
+                Height = 26,
+                Stretch = Stretch.Uniform
+            },
+            Padding = new Thickness(4),
+            Margin = new Thickness(0, 2, 6, 2),
+            Width = 60,
+            Height = 40,
+            MinWidth = 60,
+            MaxWidth = 60,
+            MinHeight = 40,
+            MaxHeight = 40,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
+            VerticalContentAlignment = VerticalAlignment.Center,
             ToolTip = displayName,
-            BorderThickness = new Thickness(selected ? 1 : 0)
+            BorderThickness = new Thickness(1)
         };
         button.Background = selected
             ? new SolidColorBrush(Color.FromArgb(64, 77, 118, 232))
             : Brushes.Transparent;
-        button.BorderBrush = selected
-            ? new SolidColorBrush(Color.FromRgb(77, 118, 232))
-            : Brushes.Transparent;
+        if (selected)
+            button.BorderBrush = new SolidColorBrush(Color.FromRgb(77, 118, 232));
+        else
+            button.BorderBrush = new SolidColorBrush(Color.FromRgb(155, 165, 180));
         button.SetResourceReference(ForegroundProperty, ControlVisualConstants.TextBrushResource);
         AutomationProperties.SetName(button, displayName);
         return button;
