@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.pcsx2.Description"><value>I tillegg til PlayStation 2 systemer.</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>Implementerer PlayStation Portable-systemer.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Etterlikner Sony PlayStation og PS Ett system.</value></data>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Emulgerer PlayStation 2 systemer.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Emulerer PlayStation Portable systemer.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emulgerer Sony PlayStation og PS one systemer.</value></data>
 </root>

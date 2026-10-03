@@ -6,18 +6,18 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Mengendalikan apakah GW GUI memainkan sampel audio yang dihasilkan oleh emulator.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Aktifkan atau matikan suara yang tertimulasi.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Memilih keluaran audio Windows yang digunakan untuk memainkan suara dari mesin yang teremulasi ini.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Keluaran audio yang dipakai oleh GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Memilih keluaran audio Windows yang digunakan untuk memutar suara dari mesin terukur ini.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Keluaran audio yang digunakan oleh GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Menunjukkan frekuensi jam nominal dari prosesor dalam mesin Sony terpilih.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frekuensi jam prosesor asli.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Menampilkan model prosesor yang disediakan oleh mesin Sony yang dipilih.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Prosesor diemulasi untuk mesin ini.</value></data>
-  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Menampilkan sistem ROM status bagi mesin dan emulator terpilih.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Menampilkan model prosesor yang disediakan oleh mesin Sony terpilih.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Prosesor meniru mesin ini.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Menampilkan status ROM sistem bagi mesin dan emulator terpilih.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Sistem ROM.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifikasi implementasi emulator yang dipakai untuk menjalankan konfigurasi mesin ini.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator dipilih untuk mesin ini.</value></data>
   <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Mengidentifikasi model Sony yang konfigurasi perangkat keras sedang diedit.</value></data>
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Model mesin Sony sedang dikonfigurasi.</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Tampilkan RAM disediakan oleh mesin Sony terpilih.</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Jumlah RAM tersedia untuk mesin yang diemulasi.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Tampilkan RAM yang disediakan oleh mesin Sony terpilih.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Jumlah RAM yang tersedia untuk mesin yang diemulasi.</value></data>
 </root>

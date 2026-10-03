@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>количество RAM Доступен для эмулируемой машины.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Выберите The RAM Расширение, которое было обнаружено Caprice32, машина должна перезапустить до того, как будет использовано новое количество.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Система ROM Встроен в Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 обеспечивает систему ROM внутренне и не выявляет ROM Селектор файлов.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Внутреннее разрешение, предоставленное Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>Выберите одно из внутренних разрешений, которое выдает Caprice32. Это не устанавливает размер окна приложения.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>Тип монитора, эмулируемого Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>Выберите цвет, зеленый монохром или белый монохром CPC монитор.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Яркость эмулированного монитора.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>Настройка интенсивности монитора от 5 до 15, как показано на Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Удалить внешнюю границу экрана.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Спросить Caprice32 Вырезать внешнюю границу. GW GUI Соотношение сторон, о котором сообщает эмулятор.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>Механический звук дискеты.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>Включает или отключает звук дискеты, генерируемый Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad Машинная модель настраивается.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>Определяет Amstrad CPCПлюс, или GX4000 модель, аппаратная конфигурация которой редактируется.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>Эмулятор, выбранный для этой машины.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>Идентифицирует реализацию эмулятора, используемую для запуска этой конфигурации машины.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>Процессор эмулировал для этой машины.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>Показывает модель процессора, предоставленную выбранным Amstrad Машина.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>Оригинальная тактовая частота процессора.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>Показывает номинальную тактовую частоту процессора в выбранном Amstrad Машина.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>Включите или отключите эмулированный звук.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>Контролирует ли GW GUI воспроизводит аудиообразцы, генерируемые эмулятором.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>Аудио-вывод, используемый GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>Выбирает аудиовыход Windows, используемый для воспроизведения звука с этой эмулированной машины.</value></data>
+</root>

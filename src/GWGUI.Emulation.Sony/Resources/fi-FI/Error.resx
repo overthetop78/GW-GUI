@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>Ladattu arkisto ei sisällä PCSX2 Kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 kieltäytyi lataamasta valittua sisältöä.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>• PCSX2 Kirjastoa ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>• PCSX2 Ydintä ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>• PCSX2 Kirjasto ei ole ladattu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>• PCSX2 Kirjaston polun on oltava ehdoton.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>• PCSX2 Levynhallinta on kesken.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 ei tarjoa levynhallintaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 Palautti virheellisen levynetiketin.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>Ladattu PCSX2 Kirjastossa on virheellinen Windows-otsikko.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>Ladattu PCSX2 kirjasto ei ole Windowsin kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>Ladattu PCSX2 kirjasto ei ole x64-kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 ei hyväksy vaadittuja koko sisältöpolkuja.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>• PCSX2 isäntäasetukset ovat virheellisiä.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>• GW GUI Suoritettava tiedosto, jota käytetään isännöimään PCSX2 ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>• PCSX2 Isäntä ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>• PCSX2 Isäntä ei vastannut.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>Arvo {0} on virheellinen PCSX2 vaihtoehto {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>• PCSX2 isäntä palautti virheellisen vastausajan: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 palautti virheellisen tallenne-tilan koon: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>Valittu kirjasto ilmoittaa itsensä {0} sen sijaan, että PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 Mediaa ei voitu poistaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 Mediaa ei voitu lisätä.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>Valittua mediatiedostoa ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 kieltäytyi valitusta mediasta.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 Mediaa ei voitu valita.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 ei voitu luoda mediapaikkaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>Liian monta levyä valittiin PCSX2 - Soittolista.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>• PCSX2 Prosessi on jo aloitettu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Viestintä PCSX2 Prosessi epäonnistui: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>• PCSX2 Prosessia ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>• PCSX2 Prosessia ei voitu aloittaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>• PCSX2 Prosessi ei vastannut ajoissa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>• PCSX2 Prosessia ei ole saatavilla.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 Levyä ei voitu valita.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 ei voitu lisätä pyydettyä mediaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>Tämä PCSX2 ydin ei voi aloittaa ilman mediaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>Pelastamamme tila on tyhjä.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 Ei voinut palauttaa tallennettua tilaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 Ei voinut pelastaa nykyistä tilaa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 Palautti tuntemattoman ydinvaihtoehdon.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>• PCSX2 isäntä sai tuntemattoman komennon {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>• PCSX2 ydin API versio {0} ei ole tuettu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 ei tue sisällön laajentamista {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 palautti tukemattoman pikselimuodon {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>• PCSX2 videopuskuria ei ole saatavilla.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>Ladattu arkisto ei sisällä PPSSPP Kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP kieltäytyi lataamasta valittua sisältöä.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>• PPSSPP Kirjastoa ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>• PPSSPP Ydintä ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>• PPSSPP Kirjasto ei ole ladattu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>• PPSSPP Kirjaston polun on oltava ehdoton.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>• PPSSPP Levynhallinta on kesken.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP ei tarjoa levynhallintaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP Palautti virheellisen levynetiketin.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>Ladattu PPSSPP Kirjastossa on virheellinen Windows-otsikko.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>Ladattu PPSSPP kirjasto ei ole Windowsin kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>Ladattu PPSSPP kirjasto ei ole x64-kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP ei hyväksy vaadittuja koko sisältöpolkuja.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>• PPSSPP isäntäasetukset ovat virheellisiä.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>• GW GUI Suoritettava tiedosto, jota käytetään isännöimään PPSSPP ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>• PPSSPP Isäntä ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>• PPSSPP Isäntä ei vastannut.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>Arvo {0} on virheellinen PPSSPP vaihtoehto {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>• PPSSPP isäntä palautti virheellisen vastausajan: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP palautti virheellisen tallenne-tilan koon: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>Valittu kirjasto ilmoittaa itsensä {0} sen sijaan, että PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP Mediaa ei voitu poistaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP Mediaa ei voitu lisätä.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>Valittua mediatiedostoa ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP kieltäytyi valitusta mediasta.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP Mediaa ei voitu valita.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP ei voitu luoda mediapaikkaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>Liian monta levyä valittiin PPSSPP - Soittolista.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>• PPSSPP Prosessi on jo aloitettu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Viestintä PPSSPP Prosessi epäonnistui: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>• PPSSPP Prosessia ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>• PPSSPP Prosessia ei voitu aloittaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>• PPSSPP Prosessi ei vastannut ajoissa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>• PPSSPP Prosessia ei ole saatavilla.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP Levyä ei voitu valita.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP ei voitu lisätä pyydettyä mediaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>Tämä PPSSPP ydin ei voi aloittaa ilman mediaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>Pelastamamme tila on tyhjä.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP Ei voinut palauttaa tallennettua tilaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP Ei voinut pelastaa nykyistä tilaa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP Palautti tuntemattoman ydinvaihtoehdon.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>• PPSSPP isäntä sai tuntemattoman komennon {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>• PPSSPP ydin API versio {0} ei ole tuettu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP ei tue sisällön laajentamista {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP palautti tukemattoman pikselimuodon {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>• PPSSPP videopuskuria ei ole saatavilla.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>Ladattu arkisto ei sisällä SwanStation Kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation kieltäytyi lataamasta valittua sisältöä.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>• SwanStation Kirjastoa ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>• SwanStation Ydintä ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>• SwanStation Kirjasto ei ole ladattu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>• SwanStation Kirjaston polun on oltava ehdoton.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>• SwanStation Levynhallinta on kesken.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation ei tarjoa levynhallintaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation Palautti virheellisen levynetiketin.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>Ladattu SwanStation Kirjastossa on virheellinen Windows-otsikko.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>Ladattu SwanStation kirjasto ei ole Windowsin kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>Ladattu SwanStation kirjasto ei ole x64-kirjasto.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation ei hyväksy vaadittuja koko sisältöpolkuja.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>• SwanStation isäntäasetukset ovat virheellisiä.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>• GW GUI Suoritettava tiedosto, jota käytetään isännöimään SwanStation ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>• SwanStation Isäntä ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>• SwanStation Isäntä ei vastannut.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>Arvo {0} on virheellinen SwanStation vaihtoehto {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>• SwanStation isäntä palautti virheellisen vastausajan: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation palautti virheellisen tallenne-tilan koon: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>Valittu kirjasto ilmoittaa itsensä {0} -Enkä SwanStationista.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation Mediaa ei voitu poistaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation Mediaa ei voitu lisätä.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>Valittua mediatiedostoa ei löytynyt.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation kieltäytyi valitusta mediasta.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation Mediaa ei voitu valita.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation ei voitu luoda mediapaikkaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>Liian monta levyä valittiin SwanStation - Soittolista.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>• SwanStation Prosessi on jo aloitettu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Viestintä SwanStation Prosessi epäonnistui: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>• SwanStation Prosessia ei ole alustettu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>• SwanStation Prosessia ei voitu aloittaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>• SwanStation Prosessi ei vastannut ajoissa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>• SwanStation Prosessia ei ole saatavilla.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation Levyä ei voitu valita.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation ei voitu lisätä pyydettyä mediaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>Tämä SwanStation ydin ei voi aloittaa ilman mediaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>Pelastamamme tila on tyhjä.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation Ei voinut palauttaa tallennettua tilaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation Ei voinut pelastaa nykyistä tilaa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation Palautti tuntemattoman ydinvaihtoehdon.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>• SwanStation isäntä sai tuntemattoman komennon {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>• SwanStation ydin API versio {0} ei ole tuettu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation ei tue sisällön laajentamista {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation palautti tukemattoman pikselimuodon {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>• SwanStation videopuskuria ei ole saatavilla.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>Ladattu arkisto ei sisällä PCSX2-kirjastoa.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 kieltäytyi lataamasta valittua sisältöä.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>PCSX2-kirjastoa ei löytynyt.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>PCSX2-ydintä ei ole alustettu.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>PCSX2-kirjasto ei ole ladattu.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>PCSX2-kirjastopolun on oltava absoluuttinen.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>PCSX2-levyohjaimet ovat epätäydelliset.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 ei tarjoa levyohjaimia.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 palautti virheellisen levynetiketin.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>Ladatussa PCSX2-kirjastossa on virheellinen Windows-otsikko.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>Ladattu PCSX2-kirjasto ei ole Windows-kirjasto.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>Ladattu PCSX2-kirjasto ei ole x64-kirjasto.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 ei hyväksy vaadittuja koko sisältöpolkuja.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>PCSX2:n palvelinasetus on virheellinen.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>GW GUI:aa, jota käytettiin PCSX2-koneen isännöimiseen, ei löydetty.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>PCSX2- isäntää ei ole alustettu.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>PCSX2:n isäntä ei vastannut.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>Arvo {0} on virheellinen PCSX2-valinnoissa {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>PCSX2:n isäntä palautti virheellisen vastauspituuden: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 palautti virheellisen tallennetun tilan koon: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>Valittu kirjasto tunnistaa itsensä PCSX2:n sijasta {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 ei voinut poistaa mediaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 ei pystynyt asentamaan mediaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>Valittua mediatiedostoa ei löytynyt.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 kieltäytyi valitusta mediasta.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 ei voinut valita mediaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 ei voinut luoda mediapaikkaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>PCSX2-soittolistalle valittiin liian monta levyä.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>PCSX2-prosessi on jo alustettu.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Viestintä PCSX2-prosessin kanssa epäonnistui: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>PCSX2-prosessia ei alusteta.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>PCSX2-prosessia ei voitu käynnistää.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>PCSX2-prosessi ei vastannut ajoissa.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>PCSX2-prosessi ei ole käytettävissä.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 ei voinut valita pyydettyä levyä.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 ei voinut lisätä pyydettyä mediaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>Tämä PCSX2-ydin ei voi käynnistyä ilman mediaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>Pelastunut tila on tyhjä.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 ei voinut palauttaa tallennettua tilaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 ei voinut tallentaa nykyistä tilaa.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 palautti tuntemattoman ydinvalitsin.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>PCSX2- isäntä sai tuntemattoman komennon {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>PCSX2-ydin API-versiota {0} ei tueta.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 ei tue sisällön laajentamista {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 palautti tukemattoman pikselimuodon {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>PCSX2-videopuskuria ei ole saatavilla.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>Ladattu arkisto ei sisällä PPSSPP-kirjastoa.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP kieltäytyi lataamasta valittua sisältöä.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>PPSSPP-kirjastoa ei löytynyt.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>PPSSPP-ydintä ei alusteta.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>PPSSPP-kirjasto ei ole ladattu.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>PPSSPP-kirjastopolun on oltava absoluuttinen.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>PPSSPP-levynohjaimet ovat epätäydelliset.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP ei tarjoa levynhallintaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP palautti virheellisen levyetiketin.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>Ladatussa PPSSPP-kirjastossa on virheellinen Windows-otsikko.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>Ladattu PPSSPP-kirjasto ei ole Windowsin kirjasto.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>Ladattu PPSSPP-kirjasto ei ole x64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP ei hyväksy vaadittuja koko sisältöpolkuja.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>PPSSPP:n isäntäasetus on virheellinen.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>GW GUI:aa, jota käytettiin PPSSPP-koneen isännöimiseen, ei löydetty.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>PPSSPP-isäntää ei alusteta.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>PPSSPP:n isäntä ei vastannut.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>Arvo {0} on virheellinen PPSSPP-valinnossa {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>PPSSPP- isäntä palautti virheellisen vastauspituuden: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP palautti virheellisen tallenne-tilan koon: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>Valittu kirjasto tunnistaa itsensä {0} PPSSPP:n sijaan.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP ei voinut poistaa mediaa käytöstä.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP ei voinut lisätä mediaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>Valittua mediatiedostoa ei löytynyt.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP kieltäytyi valitusta mediasta.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP ei voinut valita mediaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP ei voinut luoda mediapaikkaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>PPSSPP-soittolistalle valittiin liian monta levyä.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>PPSSPP-prosessi on jo aloitettu.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Viestintä PPSSPP-prosessin kanssa epäonnistui: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>PPSSPP-prosessia ei alusteta.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>PPSSPP-prosessia ei voitu käynnistää.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>PPSSPP-prosessi ei vastannut ajoissa.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>PPSSPP-prosessi ei ole käytettävissä.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP ei voinut valita pyydettyä levyä.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP ei voinut lisätä pyydettyä mediaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>Tämä PPSSPP-ydin ei voi käynnistyä ilman mediaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>Pelastunut tila on tyhjä.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP ei voinut palauttaa tallennettua tilaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP ei voinut pelastaa nykyistä tilaa.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP palautti tuntemattoman ydinvaihtoehdon.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>PPSSPP- isäntä sai tuntemattoman komennon {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>PPSSPP-ytimen API-versiota ({0} ei tueta.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP ei tue sisällön laajentamista {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP palautti tukemattoman pikselimuodon {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>PPSSPP-videopuskuria ei ole saatavilla.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>Ladattu arkisto ei sisällä SwanStation-kirjastoa.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation kieltäytyi lataamasta valittua sisältöä.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>SwanStation-kirjastoa ei löydetty.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>SwanStationin ydintä ei ole alustettu.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>SwanStationin kirjasto ei ole ladattu.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>SwanStation-kirjaston polun on oltava ehdoton.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>SwanStation-levynohjaimet ovat epätäydelliset.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation ei tarjoa levyohjaimia.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation palautti virheellisen levymerkin.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>Ladatussa SwanStation-kirjastossa on virheellinen Windows-otsikko.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>Ladattu SwanStation-kirjasto ei ole Windowsin kirjasto.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>Ladattu SwanStation-kirjasto ei ole x64 kirjasto.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation ei hyväksy vaadittuja koko sisältöpolkuja.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>SwanStationin isäntäasetukset ovat virheellisiä.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>GW GUI:aa, jota käytettiin SwanStation-koneen isännöimiseen, ei löydetty.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>SwanStationin isäntää ei ole alustettu.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>SwanStationin isäntä ei vastannut.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>Arvo {0} on virheellinen SwanStation-valinnassa {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>SwanStation-isäntä palautti virheellisen vastauspituuden: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation palautti virheellisen tallennetun tilan koon: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>Valittu kirjasto tunnistaa itsensä {0} SwanStationin sijaan.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation ei voinut poistaa mediaa.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation ei voinut lisätä mediaa.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>Valittua mediatiedostoa ei löytynyt.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation kieltäytyi valitusta mediasta.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation ei voinut valita mediaa.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation ei voinut luoda mediapaikkaa.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>SwanStation-soittolistalle valittiin liian monta levyä.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>SwanStation-prosessi on jo aloitettu.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Yhteydenpito SwanStation-prosessin kanssa epäonnistui: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>SwanStation-prosessia ei alusteta.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>SwanStation-prosessia ei voitu aloittaa.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>SwanStation-prosessi ei vastannut ajoissa.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>SwanStation-prosessi ei ole käytettävissä.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation ei voinut valita pyydettyä levyä.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation ei voinut lisätä pyydettyä mediaa.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>Tämä SwanStation ydin ei voi käynnistyä ilman mediaa.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>Pelastunut tila on tyhjä.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation ei voinut palauttaa tallennettua tilaa.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation ei voinut pelastaa nykyistä tilaa.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation palautti tuntemattoman ydinvaihtoehdon.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>SwanStationin isäntä sai tuntemattoman komennon {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>SwanStation core API versio {0} ei tue.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation ei tue sisällön laajentamista {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation palautti tukemattoman pikselimuodon {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>SwanStation-videopuskuria ei ole saatavilla.</value></data>
 </root>

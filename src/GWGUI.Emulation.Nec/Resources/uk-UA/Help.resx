@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Сума RAM доступна до встановленої машини.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Виберіть доступний RAM розширення. Емулятор: BeetlePce. Машина повинна перезавантажити до нової кількості.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Система ROM побудована в. Емулятор: BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Система ROM забезпечується внутрішньо. Емулятор: BeetlePce. Не доступний ROM-підбирач файлів.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Внутрішня роздільна здатність забезпечується BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Виберіть один з внутрішніх дозволів, що піддаються BeetlePce. Це не встановлює розмір вікна програми.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Тип монітора, що використовується BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Виберіть колір, зелений монохромний або білий однотонний монітор NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Яскравість емульсійного монітора.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Регулює інтенсивність монітора від 5 до 15, що піддається BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Видаліть зовнішній екран кордон.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>За допомогою BeetlePce, щоб обрізати зовнішній кордон. GW GUI зберігає співвідношення сторін, що повідомляються емулятором.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Механічний звук привіду на флопію.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Увімкнення або вимкнення звуку диска, створеного BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Налаштовано модель Nec.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Емулятор, обраний для цієї машини.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Визначає імплементацію емулятора, що використовується для запуску цієї конфігурації машини.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Процесор, який використовується для цієї машини.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Показати модель процесора, надана вибраною машиною Nec.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Оригінальний процесор годинникової частоти.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Показує номінальну частоту годинника процесора в обраній машині Nec.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Увімкнути або вимкнути емульований звук.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Контролює, чи грає GW GUI аудіо зразки, що створюються емулятором.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Аудіовихід, що використовується GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Вибирає аудіовихід Windows, який використовується для відтворення звуку з цієї ізольованої машини.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Визначає модель NEC, яку редаговано конфігурацію апаратного забезпечення.</value></data>
+</root>

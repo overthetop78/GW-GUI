@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>The downloaded archive does not contain the PCSX2 library.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 refused to load the selected content.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>The PCSX2 library was not found.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>The PCSX2 core is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>The PCSX2 library is not loaded.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>The PCSX2 library path must be absolute.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>The PCSX2 disk controls are incomplete.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 does not provide disk controls.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 returned an invalid disk label.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>The downloaded PCSX2 library has an invalid Windows header.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>The downloaded PCSX2 library is not a Windows library.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>The downloaded PCSX2 library is not an x64 library.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 does not accept the required full content paths.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>The PCSX2 host configuration is invalid.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>The GW GUI executable used to host PCSX2 was not found.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>The PCSX2 host is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>The PCSX2 host returned no response.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>The value {0} is invalid for the PCSX2 option {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>The PCSX2 host returned an invalid response length: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 returned an invalid saved-state size: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>The selected library identifies itself as {0} instead of PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 could not eject the media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 could not insert the media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>The selected media file was not found.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 refused the selected media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 could not select the media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 could not create a media slot.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>Too many disks were selected for the PCSX2 playlist.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>The PCSX2 process is already initialized.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Communication with the PCSX2 process failed: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>The PCSX2 process is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>The PCSX2 process could not be started.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>The PCSX2 process did not respond in time.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>The PCSX2 process is unavailable.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 could not select the requested disk.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 could not insert the requested media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>This PCSX2 core cannot start without media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>The saved state is empty.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 could not restore the saved state.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 could not save the current state.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 returned an unknown core option.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>The PCSX2 host received the unknown command {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>The PCSX2 core API version {0} is unsupported.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 does not support the content extension {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 returned the unsupported pixel format {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>The PCSX2 video buffer is unavailable.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>The downloaded archive does not contain the PPSSPP library.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP refused to load the selected content.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>The PPSSPP library was not found.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>The PPSSPP core is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>The PPSSPP library is not loaded.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>The PPSSPP library path must be absolute.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>The PPSSPP disk controls are incomplete.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP does not provide disk controls.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP returned an invalid disk label.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>The downloaded PPSSPP library has an invalid Windows header.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>The downloaded PPSSPP library is not a Windows library.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>The downloaded PPSSPP library is not an x64 library.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP does not accept the required full content paths.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>The PPSSPP host configuration is invalid.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>The GW GUI executable used to host PPSSPP was not found.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>The PPSSPP host is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>The PPSSPP host returned no response.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>The value {0} is invalid for the PPSSPP option {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>The PPSSPP host returned an invalid response length: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP returned an invalid saved-state size: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>The selected library identifies itself as {0} instead of PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP could not eject the media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP could not insert the media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>The selected media file was not found.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP refused the selected media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP could not select the media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP could not create a media slot.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>Too many disks were selected for the PPSSPP playlist.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>The PPSSPP process is already initialized.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Communication with the PPSSPP process failed: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>The PPSSPP process is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>The PPSSPP process could not be started.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>The PPSSPP process did not respond in time.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>The PPSSPP process is unavailable.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP could not select the requested disk.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP could not insert the requested media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>This PPSSPP core cannot start without media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>The saved state is empty.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP could not restore the saved state.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP could not save the current state.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP returned an unknown core option.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>The PPSSPP host received the unknown command {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>The PPSSPP core API version {0} is unsupported.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP does not support the content extension {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP returned the unsupported pixel format {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>The PPSSPP video buffer is unavailable.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>The downloaded archive does not contain the SwanStation library.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation refused to load the selected content.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>The SwanStation library was not found.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>The SwanStation core is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>The SwanStation library is not loaded.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>The SwanStation library path must be absolute.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>The SwanStation disk controls are incomplete.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation does not provide disk controls.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation returned an invalid disk label.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>The downloaded SwanStation library has an invalid Windows header.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>The downloaded SwanStation library is not a Windows library.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>The downloaded SwanStation library is not an x64 library.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation does not accept the required full content paths.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>The SwanStation host configuration is invalid.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>The GW GUI executable used to host SwanStation was not found.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>The SwanStation host is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>The SwanStation host returned no response.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>The value {0} is invalid for the SwanStation option {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>The SwanStation host returned an invalid response length: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation returned an invalid saved-state size: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>The selected library identifies itself as {0} instead of SwanStation.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation could not eject the media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation could not insert the media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>The selected media file was not found.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation refused the selected media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation could not select the media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation could not create a media slot.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>Too many disks were selected for the SwanStation playlist.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>The SwanStation process is already initialized.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Communication with the SwanStation process failed: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>The SwanStation process is not initialized.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>The SwanStation process could not be started.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>The SwanStation process did not respond in time.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>The SwanStation process is unavailable.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation could not select the requested disk.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation could not insert the requested media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>This SwanStation core cannot start without media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>The saved state is empty.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation could not restore the saved state.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation could not save the current state.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation returned an unknown core option.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>The SwanStation host received the unknown command {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>The SwanStation core API version {0} is unsupported.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation does not support the content extension {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation returned the unsupported pixel format {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>The SwanStation video buffer is unavailable.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>The downloaded archive does not contain the PCSX2 library.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 refused to load the selected content.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>The PCSX2 library was not found.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>The PCSX2 core is not initialized.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>The PCSX2 library is not loaded.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>The PCSX2 library path must be absolute.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>The PCSX2 disk controls are incomplete.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 does not provide disk controls.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 returned an invalid disk label.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>The downloaded PCSX2 library has an invalid Windows header.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>The downloaded PCSX2 library is not a Windows library.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>The downloaded PCSX2 library is not an x64 library.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 does not accept the required full content paths.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>The PCSX2 host configuration is invalid.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>The GW GUI executable used to host PCSX2 was not found.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>The PCSX2 host is not initialized.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>The PCSX2 host returned no response.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>The value {0} is invalid for the PCSX2 option {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>The PCSX2 host returned an invalid response length: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 returned an invalid saved-state size: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>The selected library identifies itself as {0} instead of PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 could not eject the media.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 could not insert the media.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>The selected media file was not found.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 refused the selected media.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 could not select the media.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 could not create a media slot.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>Too many disks were selected for the PCSX2 playlist.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>The PCSX2 process is already initialized.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Communication with the PCSX2 process failed: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>The PCSX2 process is not initialized.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>The PCSX2 process could not be started.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>The PCSX2 process did not respond in time.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>The PCSX2 process is unavailable.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 could not select the requested disk.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 could not insert the requested media.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>This PCSX2 core cannot start without media.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>The saved state is empty.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 could not restore the saved state.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 could not save the current state.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 returned an unknown core option.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>The PCSX2 host received the unknown command {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>The PCSX2 core API version {0} is unsupported.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 does not support the content extension {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 returned the unsupported pixel format {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>The PCSX2 video buffer is unavailable.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>The downloaded archive does not contain the PPSSPP library.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP refused to load the selected content.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>The PPSSPP library was not found.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>The PPSSPP core is not initialized.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>The PPSSPP library is not loaded.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>The PPSSPP library path must be absolute.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>The PPSSPP disk controls are incomplete.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP does not provide disk controls.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP returned an invalid disk label.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>The downloaded PPSSPP library has an invalid Windows header.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>The downloaded PPSSPP library is not a Windows library.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>The downloaded PPSSPP library is not an x64 library.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP does not accept the required full content paths.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>The PPSSPP host configuration is invalid.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>The GW GUI executable used to host PPSSPP was not found.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>The PPSSPP host is not initialized.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>The PPSSPP host returned no response.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>The value {0} is invalid for the PPSSPP option {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>The PPSSPP host returned an invalid response length: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP returned an invalid saved-state size: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>The selected library identifies itself as {0} instead of PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP could not eject the media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP could not insert the media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>The selected media file was not found.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP refused the selected media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP could not select the media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP could not create a media slot.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>Too many disks were selected for the PPSSPP playlist.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>The PPSSPP process is already initialized.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Communication with the PPSSPP process failed: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>The PPSSPP process is not initialized.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>The PPSSPP process could not be started.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>The PPSSPP process did not respond in time.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>The PPSSPP process is unavailable.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP could not select the requested disk.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP could not insert the requested media.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>This PPSSPP core cannot start without media.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>The saved state is empty.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP could not restore the saved state.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP could not save the current state.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP returned an unknown core option.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>The PPSSPP host received the unknown command {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>The PPSSPP core API version {0} is unsupported.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP does not support the content extension {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP returned the unsupported pixel format {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>The PPSSPP video buffer is unavailable.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>The downloaded archive does not contain the SwanStation library.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation refused to load the selected content.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>The SwanStation library was not found.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>The SwanStation core is not initialized.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>The SwanStation library is not loaded.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>The SwanStation library path must be absolute.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>The SwanStation disk controls are incomplete.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation does not provide disk controls.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation returned an invalid disk label.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>The downloaded SwanStation library has an invalid Windows header.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>The downloaded SwanStation library is not a Windows library.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>The downloaded SwanStation library is not an x64 library.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation does not accept the required full content paths.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>The SwanStation host configuration is invalid.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>The GW GUI executable used to host SwanStation was not found.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>The SwanStation host is not initialized.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>The SwanStation host returned no response.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>The value {0} is invalid for the SwanStation option {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>The SwanStation host returned an invalid response length: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation returned an invalid saved-state size: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>The selected library identifies itself as {0} instead of SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation could not eject the media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation could not insert the media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>The selected media file was not found.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation refused the selected media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation could not select the media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation could not create a media slot.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>Too many disks were selected for the SwanStation playlist.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>The SwanStation process is already initialized.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Communication with the SwanStation process failed: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>The SwanStation process is not initialized.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>The SwanStation process could not be started.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>The SwanStation process did not respond in time.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>The SwanStation process is unavailable.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation could not select the requested disk.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation could not insert the requested media.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>This SwanStation core cannot start without media.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>The saved state is empty.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation could not restore the saved state.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation could not save the current state.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation returned an unknown core option.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>The SwanStation host received the unknown command {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>The SwanStation core API version {0} is unsupported.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation does not support the content extension {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation returned the unsupported pixel format {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>The SwanStation video buffer is unavailable.</value></data>
 </root>

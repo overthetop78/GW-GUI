@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Määrä RAM Emulgoituun koneeseen.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Valitsee RAM Caprice32 altistuu laajennukselle. Koneen on aloitettava uudelleen ennen uuden määrän käyttöä.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Järjestelmä ROM on rakennettu Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 tarjoaa järjestelmän ROM sisäisesti eikä paljasta a ROM tiedostonvalitsin.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Caprice32:n sisäinen ratkaisu.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>Valitsee yhden Caprice32:n altistamista sisäisistä resoluutioista. Tämä ei aseta sovellusikkunan kokoa.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>Näyttötyyppi, jonka Caprice32 emultoi.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>Valitsee värin, vihreän yksivärisen tai valkoisen yksivärisen CPC -Ei.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Emuloitujen näyttöjen kirkkaus.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>Säätää näytön voimakkuutta 5-15, kuten Caprice32 altistuu.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Poistaa ulkonäytön rajan.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Kysyi Caprice32 rajataan ulkoraja. GW GUI pitää emulaattorin ilmoittaman kuvasuhteen.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>Mekaaninen ääni levykeasemalta.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>Mahdollistaa tai poistaa Caprice32:n tuottaman levykeaseman äänen käytöstä.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad konemalli konfiguroidaan.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>) Amstrad CPC- Plus, tai GX4000 malli, jonka laitteistokokoonpanoa muokataan.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>Emulaattori valittu tähän koneeseen.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>Tunnistaa emulaattorin käyttöönoton, jota käytetään tämän koneen konfiguroinnin käyttämiseen.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>Prosessori emuloituna tälle koneelle.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>Näyttää valitun prosessorimallin Amstrad Kone.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>Alkuperäinen prosessorin kellotaajuus.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>Näyttää valitun prosessorin nimellisen kellotaajuuden Amstrad Kone.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>Ota käyttöön tai poista emulgoitu ääni.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>Valvoo, GW GUI Soittaa ääninäytteitä, jotka emulaattori on luonut.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>Äänitehoste, jota käyttävät GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>Valitsee Windowsin äänilähdön, jota käytetään tämän emulgoidun koneen äänen soittamiseen.</value></data>
+</root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Ilość pamięci RAM dostępnej dla maszyny emulowanej.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Wybór dostępnej ekspansji RAM. Emulator: BeetlePce. Maszyna musi ponownie uruchomić przed użyciem nowej ilości.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>System ROM jest wbudowany. Emulator: BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>System ROM jest dostarczany wewnętrznie. Emulator: BeetlePce. Nie jest dostępny żaden wybielacz plików ROM.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Wewnętrzna rozdzielczość wykonana przez BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Wybiera jedną z wewnętrznych uchwał wystawionych przez BeetlePce. Nie ustawia rozmiaru okna aplikacji.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Typ monitora emulowanego przez BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Wybiera kolorowy, zielony monitor monochromatyczny lub biały monitor NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Jasność monitora emulowanego.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Reguluje natężenie monitora od 5 do 15, w postaci narażonej przez BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Usuwa zewnętrzną granicę ekranu.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Prosi BeetlePce o uprawa zewnętrznej granicy. GW GUI zachowuje proporcje zgłaszane przez emulator.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Mechaniczny dźwięk dyskietki.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Włącza lub wyłącza dźwięk dyskietki generowany przez BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Konfigurowany model maszyny Nec.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulator wybrany dla tej maszyny.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Identyfikuje implementację emulatora używaną do uruchomienia tej konfiguracji maszyny.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Procesor emulował do tej maszyny.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Pokazuje model procesora dostarczany przez wybraną maszynę Nec.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Oryginalna częstotliwość zegara procesora.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Pokazuje nominalną częstotliwość zegara procesora w wybranej maszynie Nec.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Włącza lub wyłącza dźwięk emulowany.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Kontroluje, czy GW GUI odtwarza próbki audio generowane przez emulator.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Wyjście audio używane przez GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Wybiera wyjście audio systemu Windows używane do odtwarzania dźwięku z tej emulowanej maszyny.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identyfikuje model NEC, którego konfiguracja sprzętowa jest edytowana.</value></data>
+</root>

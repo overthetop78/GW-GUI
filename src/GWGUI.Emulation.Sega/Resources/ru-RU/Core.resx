@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>Имитирует Sega Dreamcast систем.</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Эмулирует системы SG-1000, Mark III, Master System, Game Gear, Mega Drive и Mega-CD.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Имитирует Sega Saturn систем.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Эмулирует системы Sega, поддерживаемые PicoDrive.</value></data>
+  <data name="Emulation.Emulator.flycast.Description"><value>Имитирует системы Sega Dreamcast.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Имитирует системы SG-1000, Mark III, Master System, Game Gear, Mega Drive и Mega-CD.</value></data>
+  <data name="Emulation.Emulator.yabause.Description"><value>Эмулирует системы Sega Saturn.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Имитирует системы PicoDrive Sega.</value></data>
 </root>

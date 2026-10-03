@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Mängden av RAM tillgänglig för den emulerade maskinen.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Väljer RAM expansion som exponeras av Caprice32. Maskinen måste starta om innan det nya beloppet används.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Systemet ROM är byggd i Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 ger systemet ROM internt och exponerar inte en ROM Filväljare.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Intern resolution som kapris32 har gjort.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>Väljer en av de interna resolutionerna som kapris32 har utsatts för. Detta sätter inte applikationsfönstrets storlek.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>Typ av bildskärm som emulerats av Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>Väljer en färg, grön monokrom eller vit monokrom CPC Övervaka.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Ljushet av den emulerade monitorn.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>Justerar bildskärmens intensitet från 5 till 15, vilket framgår av Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Ta bort den externa skärmgränsen.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Frågar Caprice32 att beskära den yttre gränsen. GW GUI håller det aspektförhållande som rapporterats av emulatorn.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>Mekaniskt ljud av floppy drive.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>Möjliggör eller inaktiverar floppy drive ljudet genereras av Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad maskinmodellen konfigureras.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>Identifierar Amstrad CPCPlus, eller GX4000 modell vars hårdvarukonfiguration redigeras.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>Emulator vald för denna maskin.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>Identifierar emulatorgenomförandet som används för att köra denna maskinkonfiguration.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>Processorn emulerade för denna maskin.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>Visar processormodellen som tillhandahålls av den valda Amstrad maskin.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>Ursprungliga processorklockfrekvens.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>Visar den nominella klockfrekvensen av processorn i den valda Amstrad maskin.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>Aktivera eller inaktivera emulerat ljud.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>Kontroller om GW GUI spelar ljudprover som genereras av emulatorn.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>Audio-utgång som används av GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>Väljer Windows ljudutgång som används för att spela ljud från denna emulerade maskin.</value></data>
+</root>

@@ -4,9 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sega.Language"><value>Sega sistemi dili</value></data>
-  <data name="Emulation.Sega.Language.English"><value>İngilizce dil dili İngilizce</value></data>
-  <data name="Emulation.Sega.Language.French"><value>Fransız Fransız Fransız Fransız Fransız Fransız Fransız Fransız</value></data>
-  <data name="Emulation.Sega.Language.Spanish"><value>İspanyolca İspanyolca İspanyolca İspanyolca</value></data>
-  <data name="Emulation.Sega.Audio.Chip"><value>Ses yongası</value></data>
+  <data name="Emulation.Sega.Language"><value>Sega sistem dili</value></data>
+  <data name="Emulation.Sega.Language.English"><value>İngilizce dil dili</value></data>
+  <data name="Emulation.Sega.Language.French"><value>Fransız Fransızca</value></data>
+  <data name="Emulation.Sega.Language.Spanish"><value>İspanyol İspanyolca</value></data>
 </root>

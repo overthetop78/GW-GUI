@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Jumlah RAM yang tersedia untuk mesin yang diemulasi.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Memilih ekspansi RAM yang tersedia. BeetlePce. Mesin harus restart sebelum jumlah baru dipakai.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Sistem ROM dibangun di dalamnya. BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Sistem ROM disediakan secara internal. BeetlePce. Tak ada pemilih berkas ROM yang tersedia.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Resolusi internal yang diberikan oleh BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Memilih salah satu resolusi internal yang terkena BeetlePce. Ini tidak mengatur ukuran jendela aplikasi.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Tipe monitor yang diemulasi oleh BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Memilih warna, monokrom hijau, atau monitor putih monokrom NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Kecerahan monitor yang digandakan.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Atur intensitas monitor dari 5 sampai 15, seperti yang terkena oleh BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Hapus batas layar eksternal.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Asks BeetlePce untuk tanaman perbatasan eksternal. GW GUI menyimpan rasio aspek yang dilaporkan oleh emulator.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Suara mekanis dari floppy drive.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Mengaktifkan atau mematikan floppy drive suara yang dihasilkan oleh BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec model mesin sedang dikonfigurasi.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulator dipilih untuk mesin ini.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Identifikasi implementasi emulator yang dipakai untuk menjalankan konfigurasi mesin ini.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Prosesor meniru mesin ini.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Menampilkan model prosesor yang disediakan oleh mesin Nec terpilih.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Frekuensi jam prosesor asli.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Menampilkan frekuensi jam nominal dari prosesor dalam mesin Nec terpilih.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Aktifkan atau matikan suara yang tertimulasi.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Mengendalikan apakah GW GUI memainkan sampel audio yang dihasilkan oleh emulator.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Keluaran audio yang digunakan oleh GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Memilih keluaran audio Windows yang digunakan untuk memutar suara dari mesin terukur ini.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Mengidentifikasi model NEC yang konfigurasi perangkat keras sedang disunting.</value></data>
+</root>

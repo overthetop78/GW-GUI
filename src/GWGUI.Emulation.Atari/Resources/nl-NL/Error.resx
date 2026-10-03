@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>De vereiste Atari kern werd niet gevonden.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>De geselecteerde Atari-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Een vereiste Atari firmware ontbreekt.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Een Atari firmware is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>De geconfigureerde Atari media werd niet gevonden.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>De geconfigureerde media worden niet ondersteund door deze Atari machine.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Een Atari-optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Communicatie met de Atari-gastvrouw is mislukt.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>De opgeslagen Atari staat is ongeldig.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>De opgeslagen Atari staat is onverenigbaar met de huidige machine.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Er is een onverwachte Atari emulatiefout opgetreden.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Details: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>De actieve Atari configuratie kan niet worden gewijzigd of verwijderd.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Vereist Atari firmware is niet geconfigureerd. Firmware: {0}. Machine: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Het geconfigureerde Atari firmware bestand is niet gevonden. Firmware: {0}. Bestand: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Geconfigureerde Atari media is niet gevonden: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Het uitvoerbare pad van de Atari-host is niet beschikbaar.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>De Atari emulatiekern is niet geïnstalleerd. Kern: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>De geselecteerde Atari emulator gebruikt de gedeelde cartridge controller niet.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>De geselecteerde Atari machine heeft cartridge media nodig.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>De patroonextensie wordt niet ondersteund door de geselecteerde Atari emulator.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>De Atari patroon kan niet worden geopend om te lezen.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>De Atari emulator wees de vervangende patroon af.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>De Atari emulator wees zowel de vervanging als de vorige cartridge af.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Deze Atari emulator kan niet ingeschakeld blijven zonder patroon.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>De geselecteerde Atari-emulator laat de selectie van het cartridgegebied niet zien.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Deze Atari emulator kan de cartridge timing mode genaamd SECAM. niet gebruiken</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Deze waarde wordt bepaald door het geselecteerde model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Er is geen compatibele FPU beschikbaar voor dit model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Er is geen alternatief geheugen beschikbaar voor dit model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Dit model heeft geen configureerbare firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Dit model heeft geen toetsenbord.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Dit model heeft geen muis.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Dit model heeft geen opslagmedia.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Om compacte schijfmedia te gebruiken, selecteert u dit model: Jaguar CD.</value></data>
+</root>

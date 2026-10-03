@@ -6,5 +6,5 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emuloi PlayStation 2 -järjestelmiä.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emultaa PlayStation Portable -järjestelmiä.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emulgoi Sony PlayStation ja PS yksi järjestelmä.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emuloi Sony PlayStation- ja PS one -järjestelmiä.</value></data>
 </root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Một núi RAM sẵn sàng cho máy mô phỏng.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Chọn cách mở rộng RAM sẵn sàng. Giả lập: BeetlePce. Máy phải khởi chạy lại trước khi dùng số lượng mới.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Hệ thống ROM đã được xây dựng. Giả lập: BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Hệ thống ROM được cung cấp bên trong. Giả lập: BeetlePce. Không có sẵn bộ chọn tập tin ROM.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Nghị quyết nội bộ được thực hiện bởi BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Chọn một trong những giải pháp nội bộ được phơi bày bởi BeetlePce. Tùy chọn này không đặt kích cỡ cửa sổ ứng dụng.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Loại giám sát được mô phỏng bởi BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Chọn một bộ màu, đơn sắc xanh lá cây, hay đơn sắc trắng NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Độ sáng của màn hình mô phỏng.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Điều chỉnh cường độ của màn hình từ 5 đến 15, do BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Loại bỏ biên giới màn hình bên ngoài.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Yêu cầu BeetlePce để thu hoạch biên giới bên ngoài. GW GUI giữ tỷ lệ hình thể được báo cáo bởi giả lập.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Tiếng động cơ trong ổ đĩa mềm.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Kích hoạt hoặc tắt âm thanh ổ đĩa mềm được tạo ra bởi BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Mô hình máy Nec đang được cấu hình.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Mô phỏng được chọn cho chiếc máy này.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Nhận diện trình giả lập sử dụng để chạy cấu hình máy này.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Bộ xử lý đã mô phỏng cho chiếc máy này.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Hiện mô hình xử lý được cung cấp bởi máy Nec đã chọn.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Tần số đồng hồ xử lý gốc.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Hiển thị tần số đồng hồ trên danh nghĩa của bộ xử lý trong máy Nec đã chọn.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Kích hoạt hay tắt âm thanh đã mô phỏng.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Điều khiển cho dù GW GUI chơi các mẫu âm thanh được tạo ra bởi giả lập.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Kết xuất âm thanh được dùng bởi GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Chọn kết xuất âm thanh Windows được dùng để phát ra âm thanh từ máy mô phỏng này.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Xác nhận mô hình NEC mà phần cứng đang được chỉnh sửa.</value></data>
+</root>

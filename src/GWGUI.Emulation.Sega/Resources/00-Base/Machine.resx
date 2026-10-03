@@ -21,4 +21,8 @@
   <data name="Emulation.Sega.Model.Naomi"><value>NAOMI</value></data>
   <data name="Emulation.Sega.Model.Naomi2"><value>NAOMI 2</value></data>
   <data name="Emulation.Sega.Model.Atomiswave"><value>Atomiswave</value></data>
+  <data name="Emulation.Sega.Language"><value>Sega system language</value></data>
+  <data name="Emulation.Sega.Language.English"><value>English language</value></data>
+  <data name="Emulation.Sega.Language.French"><value>French</value></data>
+  <data name="Emulation.Sega.Language.Spanish"><value>Spanish</value></data>
 </root>

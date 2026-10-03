@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Количество RAM, доступное для эмулируемой машины.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Дисплеи RAM, предоставленные выбранной машиной Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Система ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Отображает состояние системы ROM для выбранной машины и эмулятора.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Настраиваемая модель машины Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Для этой машины выбран эмулятор.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Идентифицирует реализацию эмулятора, используемую для запуска этой конфигурации машины.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Процессор эмулировал для этой машины.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Показывает модель процессора, предоставленную выбранной машиной Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Оригинальная тактовая частота процессора.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Показывает номинальную тактовую частоту процессора в выбранной машине Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Включить или отключить эмулированный звук.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Контролирует, воспроизводит ли GW GUI аудиообразцы, генерируемые эмулятором.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Аудио выход, используемый GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Выбирает аудиовыход Windows, используемый для воспроизведения звука с этой эмулированной машины.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Идентифицирует модель Nintendo, аппаратная конфигурация которой редактируется.</value></data>
+</root>

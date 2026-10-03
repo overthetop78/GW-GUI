@@ -6,5 +6,5 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>PlayStation 2 시스템을 격리합니다.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>PlayStation Portable 시스템을 격리합니다.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation 및 PS 1개의 체계.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation 및 PS one 시스템을 격리합니다.</value></data>
 </root>

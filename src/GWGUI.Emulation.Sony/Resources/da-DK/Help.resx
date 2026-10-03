@@ -6,18 +6,18 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontrollerer om GW GUI spiller lydprøverne genereret af emulatoren.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Aktivér eller deaktivér emuleret lyd.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Vælger Windows lydudgang, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Lydoutput brugt af GW GUI.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Viser den nominelle urfrekvens af processoren i den valgte Sony maskine.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Original processorur frekvens.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Vælger Windows audio output, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Lydudgang brugt af GW GUI.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Viser processorens nominelle urfrekvens i den valgte Sony-maskine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Original processor clockfrekvens.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Viser processormodellen som leveres af den valgte Sony maskine.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Processor emulerede til denne maskine.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Viser systemet ROM status for den valgte maskine og emulator.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>System ROM.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identificerer den emulator implementering, der bruges til at køre denne maskine konfiguration.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator valgt til denne maskine.</value></data>
-  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identificerer Sony-modellen, hvis hardware-konfiguration redigeres.</value></data>
-  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony maskine model er konfigureret.</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Viser RAM leveres af den valgte Sony maskine.</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Beløb RAM til rådighed for den emulerede maskine.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identificerer Sony model, hvis hardware konfiguration bliver redigeret.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony maskine model bliver konfigureret.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Viser RAM som leveres af den valgte Sony maskine.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
 </root>

@@ -5,6 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Tính toán hệ thống PlayStation 2.</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>Hệ thống định vị PlayStation Portable.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Tính toán cách chơi trò chơi điện tử và PS Một hệ thống.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Hệ thống PlayStation Portable.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Kết hợp Sony PlayStation và PS one hệ thống.</value></data>
 </root>

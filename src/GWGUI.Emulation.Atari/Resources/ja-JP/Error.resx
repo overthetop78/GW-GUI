@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>必須のAtariコアが見つかりませんでした。</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>選択されたAtari中心は荷を積むことができませんでした。</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>必須のAtariファームウェアが欠落しています。</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Atariファームウェアは無効または互換性がありません。</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>設定された Atari メディアが見つかりませんでした。</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>設定されたメディアは、このAtariマシンではサポートされていません。</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Atari オプションには無効な値があります。</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Atari ホストとの通信が失敗しました。</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atari保存状態が無効です。</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>保存状態Atariは現在の機械と互換性がありません。</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>予期しないAtariエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>アクティブなAtari構成は変更または削除できません。</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>必要なAtariファームウェアは構成されていません。 ファームウェア: {0}. マシン: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>設定済みのAtariファームウェアファイルが見つかりませんでした。 ファームウェア: {0}. ファイル: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>構成されたAtari媒体は見つけられませんでした: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Atari ホスト実行可能なパスは利用できません。</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Atariのエミュレーションの中心は取付けられません。 コア: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>選択したAtariエミュレータは、共有カートリッジコントローラを使用しません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>選択されたAtari機械はカートリッジ媒体を要求します。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>カートリッジエクステンションは、選択したAtariエミュレータではサポートされていません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atariのカートリッジは読書のために開けません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atariのエミュレータは取り替えのカートリッジを拒否しました。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atariのエミュレータは取り替えおよび前のカートリッジを両方拒絶しました。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>このAtariのエミュレータはカートリッジなしで動力を与えられることができません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>選択されたAtariのエミュレータはカートリッジ区域の選択を露出しません。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>このAtariエミュレータはSECAM.という名前のカートリッジタイミングモードを使用できません</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>この値は、選択したモデルで決定されます。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>このモデルでは、対応するFPUは使用できません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>このモデルでは、代替メモリは使用できません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>このモデルには、コンフィギュレーション可能なファームウェアはありません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>このモデルはキーボードを持っていません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>このモデルはマウスがありません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>記憶媒体がない。</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>コンパクトなディスクメディアを使用するには、このモデルを選択します。 Jaguar CD.</value></data>
+</root>

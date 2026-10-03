@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari 乐棍</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>数字键盘</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>划板移动速度</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>当火按钮被扣住时</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>永远</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>控制器兼容性</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>数字敏感性</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>类似敏感性</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>一起用两把乐棍</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>交换端口</value></data>
+</root>

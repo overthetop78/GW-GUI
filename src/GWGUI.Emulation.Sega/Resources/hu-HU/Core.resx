@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.flycast.Description"><value>Emulates Sega Dreamcast rendszerek.</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Az SG-1000, Mark III, Master System, Game Gear, Mega Drive és Mega-CD rendszereket emulálja.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Emulates Sega Saturn rendszerek.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Emulálja a PicoDrive által támogatott Sega rendszereket.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulátok SG-1000, Mark III, Master System, (Game Gear,] Mega Drive és Mega-CD rendszerek.</value></data>
+  <data name="Emulation.Emulator.yabause.Description"><value>Sega Saturn rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Emulates PicoDrive Sega rendszerek.</value></data>
 </root>

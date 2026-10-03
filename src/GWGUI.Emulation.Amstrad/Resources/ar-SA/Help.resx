@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>المبلغ RAM متوفر للآلة المُحتَزَنة</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>يُختارُ RAM (الآلة يجب أن تُعيد تشغيلها قبل أن يُستخدم المبلغ الجديد</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>النظام ROM (تم بناؤه في (كابريس 32</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 :: توفير النظام ROM داخليّاً ولا يكشف ROM مختار ملف</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>قرار داخلي صادر عن كابريكي 32</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>(و) يُختار أحد القرارات الداخلية التي كشفها كابريك 32، وهذا لا يحدد حجم نافذة التطبيق.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>نوع الشاشة التي قام بها كابريك 32</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>يُختار لون أو لون أخضر أو لون أبيض CPC شاشات</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>هدوء الشاشة</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>يعدل كثافة الشاشة من 5 إلى 15 كما كشفها كابريك 32</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>يزيل الحدود الخارجية للشاشة</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>الأسئلة Caprice32 لزرع الحدود الخارجية GW GUI يبقي نسبة الجانب التي أبلغ عنها المرشد</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>صوت ميكانيكي من القرص المُقزز</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>يمكن أو يزيل صوت القرص الصلب المُنبّط من قبل كابريك 32</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad تم تشكيل نموذج الآلة</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>تحديد Amstrad CPCزائداً، أو GX4000 نموذج الذي يجري تحرير تركيبة معداته</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>مرشدة اختيرت لهذه الآلة</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>يحدد تنفيذ المرشد المستخدم لإدارة هذه التشكيلة الآلية.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>المُعالجة صاغت لهذه الآلة</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>يُظهر نموذج المُعالجة الذي قدمه المُختار Amstrad آلة</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>تواتر الساعة الأصلي</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>يظهر التردد الاسمي لساعة المعالج في الموقع المختار Amstrad آلة</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>صوت مُمكن أو مُنع</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>الضوابط على ما إذا كان GW GUI يعزف العينات الصوتية التي تولدها المرشدة</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>ناتج الصوت المستخدم GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>يُختارُ المخرج الصوتيَ ويندوزَ يَستعملُ لِعْب الصوتِ مِنْ هذه الآلةِ المُحتَزَمةِ.</value></data>
+</root>

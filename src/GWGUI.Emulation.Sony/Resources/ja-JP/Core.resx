@@ -5,6 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>PlayStation 2システムをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>PlayStationポータブルシステムをエミュレートします。</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>ソニー・プレイステーションをエミュレートし、 PS 1つのシステム。</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>PlayStation Portableシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation および PS one システムを模倣して下さい。</value></data>
 </root>

@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>Завантажувальний архів не містить PCSX2 Бібліотека.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 відмовлено навантажувати вибраний контент.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>Мистецтво PCSX2 не знайдено бібліотеки.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>Мистецтво PCSX2 не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>Мистецтво PCSX2 Бібліотека не завантажується.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>Мистецтво PCSX2 Бібліотека повинна бути абсолютною.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>Мистецтво PCSX2 Неповторні елементи керування дисками.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 не забезпечує керування диском.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 Повернути недійсну дискову етикетку.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>Завантаження PCSX2 Бібліотека має недійсний заголовок Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>Завантаження PCSX2 Бібліотека не є бібліотекою Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>Завантаження PCSX2 Бібліотека не є бібліотекою x64.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 не приймає необхідних для повного вмісту.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>Мистецтво PCSX2 недійсна конфігурація ведучих.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>Мистецтво GW GUI Виконаний, який використовується для розміщення PCSX2 не знайдено.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>Мистецтво PCSX2 не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>Мистецтво PCSX2 не відповідав.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>Вартість {0} недійсний для PCSX2 Можливість {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>Мистецтво PCSX2 ведучий повернув недійсну відповідність: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 Повернути недійсний збережений розмір: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>Вибрана бібліотека визначає себе як {0} замість PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 не може вводити медіа.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 не вставляючи медіа.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>Не знайдено вибраний файл медіа.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 відмовлено у вибраних медіа.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 не можна вибрати медіа.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 не вдалося створити медіа слот.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>Для того щоб багато дисків були обрані PCSX2 список відтворення.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>Мистецтво PCSX2 процес вже ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Зв'язок з PCSX2 не вдалося: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>Мистецтво PCSX2 процес не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>Мистецтво PCSX2 не можна розпочати процес.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>Мистецтво PCSX2 процес не відповідає часу.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>Мистецтво PCSX2 процес недоступний.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 не можна вибрати за запитом диска.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 не вставляючи запитаних ЗМІ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>Це PCSX2 не може початися без посередників.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>За збережений стан порожній.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 не вдалося відновити збережений стан.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 не вдалося зберегти поточний стан.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 повернув невідомого варіанту ядра.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>Мистецтво PCSX2 Ведучий отримав невідомий командний зал {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>Мистецтво PCSX2 головки API верстка {0} непідтримувані.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 не підтримує розширення вмісту {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 Повернути непідтримуваний формат пікселя {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>Мистецтво PCSX2 відео буфера є недоступним.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>Завантажувальний архів не містить PPSSPP Бібліотека.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP відмовлено навантажувати вибраний контент.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>Мистецтво PPSSPP не знайдено бібліотеки.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>Мистецтво PPSSPP не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>Мистецтво PPSSPP Бібліотека не завантажується.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>Мистецтво PPSSPP Бібліотека повинна бути абсолютною.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>Мистецтво PPSSPP Неповторні елементи керування дисками.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP не забезпечує керування диском.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP Повернути недійсну дискову етикетку.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>Завантаження PPSSPP Бібліотека має недійсний заголовок Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>Завантаження PPSSPP Бібліотека не є бібліотекою Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>Завантаження PPSSPP Бібліотека не є бібліотекою x64.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP не приймає необхідних для повного вмісту.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>Мистецтво PPSSPP недійсна конфігурація ведучих.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>Мистецтво GW GUI Виконаний, який використовується для розміщення PPSSPP не знайдено.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>Мистецтво PPSSPP не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>Мистецтво PPSSPP не відповідав.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>Вартість {0} недійсний для PPSSPP Можливість {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>Мистецтво PPSSPP ведучий повернув недійсну відповідність: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP Повернути недійсний збережений розмір: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>Вибрана бібліотека визначає себе як {0} замість PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP не може вводити медіа.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP не вставляючи медіа.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>Не знайдено вибраний файл медіа.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP відмовлено у вибраних медіа.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP не можна вибрати медіа.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP не вдалося створити медіа слот.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>Для того щоб багато дисків були обрані PPSSPP список відтворення.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>Мистецтво PPSSPP процес вже ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Зв'язок з PPSSPP не вдалося: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>Мистецтво PPSSPP процес не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>Мистецтво PPSSPP не можна розпочати процес.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>Мистецтво PPSSPP процес не відповідає часу.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>Мистецтво PPSSPP процес недоступний.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP не можна вибрати за запитом диска.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP не вставляючи запитаних ЗМІ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>Це PPSSPP не може початися без посередників.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>За збережений стан порожній.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP не вдалося відновити збережений стан.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP не вдалося зберегти поточний стан.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP повернув невідомого варіанту ядра.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>Мистецтво PPSSPP Ведучий отримав невідомий командний зал {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>Мистецтво PPSSPP головки API верстка {0} непідтримувані.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP не підтримує розширення вмісту {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP Повернути непідтримуваний формат пікселя {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>Мистецтво PPSSPP відео буфера є недоступним.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>Завантажувальний архів не містить SwanStation Бібліотека.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation відмовлено навантажувати вибраний контент.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>Мистецтво SwanStation не знайдено бібліотеки.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>Мистецтво SwanStation не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>Мистецтво SwanStation Бібліотека не завантажується.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>Мистецтво SwanStation Бібліотека повинна бути абсолютною.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>Мистецтво SwanStation Неповторні елементи керування дисками.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation не забезпечує керування диском.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation Повернути недійсну дискову етикетку.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>Завантаження SwanStation Бібліотека має недійсний заголовок Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>Завантаження SwanStation Бібліотека не є бібліотекою Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>Завантаження SwanStation Бібліотека не є бібліотекою x64.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation не приймає необхідних для повного вмісту.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>Мистецтво SwanStation недійсна конфігурація ведучих.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>Мистецтво GW GUI Виконаний, який використовується для розміщення SwanStation не знайдено.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>Мистецтво SwanStation не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>Мистецтво SwanStation не відповідав.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>Вартість {0} недійсний для SwanStation Можливість {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>Мистецтво SwanStation ведучий повернув недійсну відповідність: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation Повернути недійсний збережений розмір: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>Вибрана бібліотека визначає себе як {0} замість SwanStation.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation не може вводити медіа.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation не вставляючи медіа.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>Не знайдено вибраний файл медіа.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation відмовлено у вибраних медіа.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation не можна вибрати медіа.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation не вдалося створити медіа слот.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>Для того щоб багато дисків були обрані SwanStation список відтворення.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>Мистецтво SwanStation процес вже ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Зв'язок з SwanStation не вдалося: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>Мистецтво SwanStation процес не ініціюється.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>Мистецтво SwanStation не можна розпочати процес.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>Мистецтво SwanStation процес не відповідає часу.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>Мистецтво SwanStation процес недоступний.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation не можна вибрати за запитом диска.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation не вставляючи запитаних ЗМІ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>Це SwanStation не може початися без посередників.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>За збережений стан порожній.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation не вдалося відновити збережений стан.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation не вдалося зберегти поточний стан.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation повернув невідомого варіанту ядра.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>Мистецтво SwanStation Ведучий отримав невідомий командний зал {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>Мистецтво SwanStation головки API верстка {0} непідтримувані.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation не підтримує розширення вмісту {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation Повернути непідтримуваний формат пікселя {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>Мистецтво SwanStation відео буфера є недоступним.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>Завантажувальний архів не містить бібліотеки PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 відмовлено в завантаженні вибраного вмісту.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>Бібліотека PCSX2 не знайдено.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>PCSX2 ядро не ініціюється.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>Бібліотека PCSX2 не завантажується.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>Курс бібліотеки PCSX2 повинен бути абсолютним.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>PCSX2 дискові елементи неповні.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 не забезпечує управління диском.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 повернув недійсну дискову етикетку.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>Завантажено PCSX2 Русский EnglishРусскийУкраїнськаPolskiItalianoEspañol汉语Bahasa Indonesiaहिन्दीPortuguês日本語DeutschFrançaisภาษาไทยελληνικά اللغة عربية</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>Завантажено PCSX2 Бібліотека не є бібліотекою Windows.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>Завантажено PCSX2 Бібліотека не є бібліотекою x64.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 не приймає необхідних заходів повного вмісту.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>конфігурація PCSX2 недійсна.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>GW GUI виконуваний, який використовується для проведення PCSX2 не знайдено.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>PCSX2 хост не ініціюється.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>PCSX2 не повернув відповідь.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>Вартість {0} недійсна для параметру PCSX2 {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>PCSX2 хост повернув недійсну тривалість відгуку: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 повернув невірний збережений розмір: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>У вибраній бібліотеці визначаються як {0} замість PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 не може вводити медіа.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 не міг вставляти медіа.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>Вибраний файл медіа не знайдено.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 відмовлено у вибраних носіях.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 не може вибрати медіа.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 не може створювати медіа слот.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>Занадто багато дисків були вибрані для плейлиста PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>Процес PCSX2 вже ініціалізований.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Зв'язок з PCSX2 процес не вдалося: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>PCSX2 процес не ініціюється.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>PCSX2 процес не може бути розпочатий.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>Процес PCSX2 вчасно не відповідав.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>PCSX2 процес недоступний.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 не може вибрати запитаний диск.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 не може вставляти запитані ЗМІ.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>Це PCSX2 ядро не може почати без носіїв.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>Збережений стан порожній.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 не вдалося відновити збережений стан.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 не вдалося зберегти поточний стан.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 повернув невідомий варіант ядра.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>PCSX2 Ведучий отримав невідому команду {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>Версія API PCSX2 {0} не підтримується.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 не підтримує розширення вмісту {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 повернув непідтримуваний форматпікселів {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>Відео буфер PCSX2 недоступний.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>Завантажувальний архів не містить бібліотеки PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP відмовлено в навантаженні вибраного вмісту.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>Не знайдено бібліотеки PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>Сердечник PPSSPP не ініціюється.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>Бібліотека PPSSPP не завантажується.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>Шлях бібліотеки PPSSPP повинен бути абсолютним.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>Диски PPSSPP неповні.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP не забезпечує керування диском.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP повернув недійсну дискову етикетку.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>Завантажено PPSSPP Русский EnglishРусскийУкраїнськаPolskiItalianoEspañol汉语Bahasa Indonesiaहिन्दीPortuguês日本語DeutschFrançaisภาษาไทยελληνικά اللغة عربية</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>Завантажено PPSSPP Бібліотека не є бібліотекою Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>Завантажено PPSSPP Бібліотека не є бібліотекою x64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP не приймає необхідних заходів повного вмісту.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>Конфігурація PPSSPP недійсна.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>Не знайдено GW GUI для проведення PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>Ведучий PPSSPP не ініціюється.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>Відповідність від PPSSPP немає.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>Вартість {0} недійсна для опції PPSSPP {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>PPSSPP повернув недійсну довжину відповіді: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP повернув невірний збережений розмір: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>У вибраній бібліотеці визначаються як {0} замість PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP не може вводити медіа.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP не може вставляти медіа.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>Вибраний файл медіа не знайдено.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP відмовив у вибраних медіа.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP не може вибрати медіа.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP не може створювати медіа слоти.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>Для плейлиста PPSSPP обрано багато дисків.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>Процес PPSSPP вже ініціюється.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Зв'язок з процесом PPSSPP не вдалося: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>Процес PPSSPP не ініціюється.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>Процес PPSSPP не може бути запущений.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>Процес PPSSPP не відповідав вчасно.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>Процес PPSSPP недоступний.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP не може вибрати запитаний диск.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP не може вставляти запитаний медіа.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>Це ядро PPSSPP не може починатися без медіа.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>Збережений стан порожній.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP не може відновити збережений стан.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP не вдалося зберегти поточний стан.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP повернув невідомий базовий варіант.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>Ведучий PPSSPP отримав невідому команду {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>Версія API PPSSPP {0} не підтримується.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP не підтримує розширення вмісту {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP повернув непідтримуваний формат пікселів {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>Відео буфер PPSSPP недоступний.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>Завантажувальний архів не містить бібліотеки SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation відмовилася від завантаження вибраного вмісту.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>Бібліотека SwanStation не знайдено.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>Серце SwanStation не ініціюється.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>Бібліотека SwanStation не завантажується.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>Бібліотечний шлях SwanStation повинен бути абсолютним.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>Контроль дисків SwanStation неповний.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation не забезпечує керування диском.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation повернула недійсну дискову етикетку.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>Завантажено SwanStation Русский EnglishРусскийУкраїнськаPolskiItalianoEspañol汉语Bahasa Indonesiaहिन्दीPortuguês日本語DeutschFrançaisภาษาไทยελληνικά اللغة عربية</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>Завантажено SwanStation Бібліотека не є бібліотекою Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>Завантажено SwanStation Бібліотека не є бібліотекою x64.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation не приймає необхідних докладів повного вмісту.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>Конфігурація SwanStation недійсна.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>Не знайдено GW GUI для проведення SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>Ведучий SwanStation не ініціюється.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>Ведучий SwanStation повернув не відповідь.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>Вартість {0} недійсна для параметру SwanStation {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>Ведучий SwanStation повернув недійсну тривалість відгуку: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation повернула недійсний збережений розмір: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>У вибраній бібліотеці визначаються як {0} замість SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation не може вводити медіа.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation не може вставляти медіа.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>Вибраний файл медіа не знайдено.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation відмовилася від вибраних медіа.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation не може вибрати медіа.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation не може створювати медіа слоти.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>Для ігрового списку SwanStation обрано багато дисків.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>Процес SwanStation вже ініціалізований.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Зв'язок з процесом SwanStation не вдалося: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>Процес SwanStation не ініціюється.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>Процес SwanStation не може бути запущений.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>Процес SwanStation не відповідав вчасно.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>Процес SwanStation недоступний.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation не може вибрати запитаний диск.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation не може вставляти запитаний медіа.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>Цей сердечник SwanStation не може починатися без носіїв.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>Збережений стан порожній.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation не вдалося відновити збережений стан.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation не вдалося зберегти поточний стан.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation повернулася до невідомого варіанту ядра.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>Ведучий SwanStation отримав невідому команду {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>SwanStation ядро API версія {0} не підтримується.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation не підтримує розширення вмісту {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation повернув непідтримуваний формат пікселів {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>Відео буфер SwanStation 0.</value></data>
 </root>

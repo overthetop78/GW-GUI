@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>הליבה Atari הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>לא ניתן לטעון את הליבה של Atari.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>קושחה של Atari נעדרת.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>קושחה Atari הוא לא חוקי או לא עקבי.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>התקשורת של Atari לא נמצאה.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>אמצעי התקשורת המוגדרים אינם נתמכים על ידי מכונת Atari זו.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>לאופציה של Atari יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>התקשורת עם מארח Atari נכשלה.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>המדינה Atari הצילה היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>מדינת Atari שנשמרה אינה עולה בקנה אחד עם המכונה הנוכחית.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Atari התרחשה.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>תגית: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>לא ניתן לשנות את התצורה של Atari פעיל או למחוק.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>נדרש קושחה Atari אינו מוגדר. המונחים: {0} מכונה: {1}</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>קובץ הקושחה של Atari לא נמצא. המונחים: {0} תגית: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>לא נמצאו אמצעי תקשורת Atari: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>הנתיב המתואם של Atari אינו זמין.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>הליבה של חיקוי Atari אינה מותקנת. מקור: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>חיקוי Atari שנבחר אינו משתמש בקר המחסנית המשותף.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>מכונת Atari שנבחרה דורשת אמצעי מחסנית.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>הרחבה של מחסנית אינה נתמך על ידי ה- Atariחיקויor שנבחר.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>מחסנית Atari לא ניתן לפתוח לקריאה.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>חיקוי Atari דחה את המחסנית החלופית.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>חיקוי Atari דחה גם את ההחלפה ואת הרכס הקודם.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>חיקוי Atari זה לא יכול להישאר מופעל ללא מחסנית.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>חיקוי Atari שנבחר אינו חושף את בחירת אזור המחסנית.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>חיקוי זה Atari אינו יכול להשתמש במצב התזמון של מחסנית בשם SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>ערך זה נקבע על ידי המודל שנבחר.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>אין FPU מתאים זמין עבור מודל זה.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>אין זיכרון חלופי לדגם זה.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>לדגם הזה אין קושחה מוגדרת.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>לדגם הזה אין מקלדת.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>למודל הזה אין עכבר.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>לדגם הזה אין אמצעי אחסון.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>כדי להשתמש בתקשורת דיסק קומפקטי, בחר מודל זה: Jaguar CD.</value></data>
+</root>

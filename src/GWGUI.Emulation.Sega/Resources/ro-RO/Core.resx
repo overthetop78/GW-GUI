@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>Emulează Sega Dreamcast sisteme.</value></data>
+  <data name="Emulation.Emulator.flycast.Description"><value>Emulează sistemele Sega Dreamcast.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulează sistemele SG-1000, Mark III, Master System, Game Gear, Mega Drive și Mega-CD.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Emulează Sega Saturn sisteme.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Emulează sistemele Sega acceptate de PicoDrive.</value></data>
+  <data name="Emulation.Emulator.yabause.Description"><value>Emulează sistemele Sega Saturn.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Emulează sistemele PicoDrive Sega.</value></data>
 </root>

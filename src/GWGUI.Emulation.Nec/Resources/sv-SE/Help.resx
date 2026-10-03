@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Mängden RAM tillgänglig för den emulerade maskinen.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Välj den tillgängliga RAM-expansionen. Emulator: BeetlePce. Maskinen måste starta om innan det nya beloppet används.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Systemet ROM är byggt in. Emulator: BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Systemet ROM tillhandahålls internt. Emulator: BeetlePce. Ingen ROM-filväljare är tillgänglig.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Intern resolution som BeetlePce har gjort.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Väljer en av de interna resolutionerna som utsätts för BeetlePce. Detta sätter inte applikationsfönsterstorleken.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Typ av bildskärm emulerad av BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Väljer en färg, grön monokrom eller vit Monochrome NEC-skärm.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Ljushet av den emulerade bildskärmen.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Justerar bildskärmens intensitet från 5 till 15, enligt BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Ta bort den externa skärmgränsen.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Frågar BeetlePce att beskära den yttre gränsen. GW GUI håller det aspektförhållande som rapporterats av emulatorn.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Mekaniskt ljud från floppy drive.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Möjliggör eller inaktiverar floppy drive-ljudet som genereras av BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec machine model är konfigurerad.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulator vald för denna maskin.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Identifierar emulatorgenomförandet som används för att köra denna maskinkonfiguration.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Processorn emulerade för denna maskin.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Visar processormodellen som tillhandahålls av den valda Nec-maskinen.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Ursprunglig processorklockfrekvens.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Visar processorns nominella klockfrekvens i den valda Nec-maskinen.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Aktivera eller inaktivera emulerat ljud.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Kontrollerar om GW GUI spelar ljudprover som genereras av emulatorn.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Ljudproduktion som används av GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Väljer den Windows-ljudutgång som används för att spela ljud från denna emulerade maskin.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identifierar NEC-modellen vars hårdvarukonfiguration redigeras.</value></data>
+</root>

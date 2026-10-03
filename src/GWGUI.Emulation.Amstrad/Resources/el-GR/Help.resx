@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Ποσό RAM διαθέσιμο στην μηχανή που μιμείται.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Επιλογή του RAM επέκταση που εκτίθεται από Caprice32. Η μηχανή πρέπει να επανεκκινήσει πριν από τη χρήση του νέου ποσού.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Το σύστημα ROM είναι χτισμένο στο Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 παρέχει το σύστημα ROM εσωτερικά και δεν εκθέτει ROM Επιλογέας αρχείων.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Εσωτερική ανάλυση που δόθηκε από Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>Επιλογή μιας από τις εσωτερικές αναλύσεις που εκτίθενται από το Caprice32. Αυτό δεν ορίζει το μέγεθος του παραθύρου της εφαρμογής.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>Τύπος οθόνης που μιμείται το Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>Επιλογή χρώματος, πράσινου μονόχρωμου ή λευκού μονόχρωμου CPC Παρακολούθηση.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Φωτεινότητα της εικονιζόμενης οθόνης.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>Ρυθμίζει την ένταση της οθόνης από 5 σε 15, όπως εκτίθεται από Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Αφαιρεί το εξωτερικό περίγραμμα της οθόνης.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Ζητήματα Caprice32 να περικόψει τα εξωτερικά σύνορα. GW GUI διατηρεί την αναλογία διαστάσεων που αναφέρεται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>Μηχανικός ήχος της δισκέτας.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>Ενεργοποιεί ή απενεργοποιεί τον ήχο της δισκέτας που δημιουργείται από το Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad Το μοντέλο μηχανής διαμορφώνεται.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>Προσδιορίζει το Amstrad CPC, Συν, ή GX4000 μοντέλο του οποίου η διαμόρφωση υλικού είναι υπό επεξεργασία.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>Ο εξομοιωτής επιλέχθηκε για αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>Προσδιορίζει την εφαρμογή εξομοιωτή που χρησιμοποιείται για τη λειτουργία αυτής της διάταξης μηχανών.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>Ο επεξεργαστής προσομοιάζει γι' αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>Εμφάνιση του μοντέλου επεξεργαστή που παρέχεται από το επιλεγμένο Amstrad Μηχάνημα.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>Αρχική συχνότητα ⁇ ολογιού επεξεργαστή.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>Εμφάνιση της ονομαστικής συχνότητας ⁇ ολογιού του επεξεργαστή στον επιλεγμένο Amstrad Μηχάνημα.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>Ενεργοποίηση ή απενεργοποίηση μιμούμενου ήχου.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>Ελέγχει αν GW GUI παίζει τα δείγματα ήχου που παράγονται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>Επιλέγει την έξοδο ήχου των Windows που χρησιμοποιείται για να παίξει ήχο από αυτό το μηχάνημα που προσομοιάζει.</value></data>
+</root>

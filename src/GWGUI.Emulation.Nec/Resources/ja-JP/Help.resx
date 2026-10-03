@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>エミュレートされた機械に利用できるRAMの量。</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>利用可能なRAM拡張を選択します。 エミュレータ: BeetlePce. 機械は新しい量が使用される前に再始動しなければなりません。</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>システム ROM は作り出されます。 エミュレータ: BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>システム ROM は内部で提供されます。 エミュレータ: BeetlePce. ROMファイルセレクターは使用できません。</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePce によってレンダリングされる内部決断。</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>BeetlePce による内部解像度の 1 つを選択します。 アプリケーションウィンドウのサイズは設定されません。</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>BeetlePceによってエミュレートされたモニターの種類。</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>色、緑色のモノクロまたは白いモノクロームNECモニターを選択します。</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>エミュレートモニターの明るさ。</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>BeetlePceによって露出されるように5から15までのモニターの強度を調節して下さい。</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>外部画面境界を削除します。</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>BeetlePce に外部の境界線をクロップするように依頼します。 GW GUIは、エミュレータが報告したアスペクト比を保持します。</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>フロッピードライブのメカニカルサウンド。</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>BeetlePce によって生成されたフロッピードライブのサウンドを有効または無効にします。</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec マシンモデルを構成。</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>この機械のために選ばれるエミュレータ。</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>このマシン構成を実行するために使用されるエミュレータの実装を特定します。</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>この機械のためにエミュレートされるプロセッサ。</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>選択したNecマシンによって提供されるプロセッサモデルを表示します。</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>元のプロセッサのクロック頻度。</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>選択したNecマシンでプロセッサのわずかなクロック周波数を表示します。</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>エミュレートされた音を有効または無効にします。</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>GW GUIがエミュレータによって生成されたオーディオサンプルを再生するかどうかを制御します。</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>GW GUI.によって使用される可聴周波出力</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>このエミュレートされたマシンから音を再生するために使用されるWindowsオーディオ出力を選択します。</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>ハードウェア構成を編集しているNECモデルを特定します。</value></data>
+</root>

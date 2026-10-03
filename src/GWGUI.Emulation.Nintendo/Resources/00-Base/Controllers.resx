@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <!-- Game & Watch: each unit includes its own controls. -->
+  <!-- Silver -->
+  <data name="Emulation.Nintendo.Controller.GameWatchBall"><value>Nintendo Game &amp; Watch Ball (AC-01)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchFlagman"><value>Nintendo Game &amp; Watch Flagman (FL-02)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchVermin"><value>Nintendo Game &amp; Watch Vermin (MT-03)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchFireSilver"><value>Nintendo Game &amp; Watch Fire (RC-04)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchJudge"><value>Nintendo Game &amp; Watch Judge (IP-05)</value></data>
+  <!-- Gold -->
+  <data name="Emulation.Nintendo.Controller.GameWatchManholeGold"><value>Nintendo Game &amp; Watch Manhole (MH-06)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchHelmet"><value>Nintendo Game &amp; Watch Helmet (CN-07)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchLion"><value>Nintendo Game &amp; Watch Lion (LN-08)</value></data>
+  <!-- Wide Screen -->
+  <data name="Emulation.Nintendo.Controller.GameWatchParachute"><value>Nintendo Game &amp; Watch Parachute (PR-21)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchOctopus"><value>Nintendo Game &amp; Watch Octopus (OC-22)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchPopeyeWide"><value>Nintendo Game &amp; Watch Popeye (PP-23)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchChef"><value>Nintendo Game &amp; Watch Chef (FP-24)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMickeyMouseWide"><value>Nintendo Game &amp; Watch Mickey Mouse (MC-25)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchEgg"><value>Nintendo Game &amp; Watch Egg (EG-26)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchFireWide"><value>Nintendo Game &amp; Watch Fire (FR-27)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchTurtleBridge"><value>Nintendo Game &amp; Watch Turtle Bridge (TL-28)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchFireAttack"><value>Nintendo Game &amp; Watch Fire Attack (ID-29)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchSnoopyTennis"><value>Nintendo Game &amp; Watch Snoopy Tennis (SP-30)</value></data>
+  <!-- Multi Screen -->
+  <data name="Emulation.Nintendo.Controller.GameWatchOilPanic"><value>Nintendo Game &amp; Watch Oil Panic (OP-51)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKong"><value>Nintendo Game &amp; Watch Donkey Kong (DK-52)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMickeyDonald"><value>Nintendo Game &amp; Watch Mickey &amp; Donald (DM-53)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchGreenHouse"><value>Nintendo Game &amp; Watch Green House (GH-54)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKongII"><value>Nintendo Game &amp; Watch Donkey Kong II (JR-55)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMarioBros"><value>Nintendo Game &amp; Watch Mario Bros. (MW-56)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchRainShower"><value>Nintendo Game &amp; Watch Rain Shower (LP-57)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchLifeBoat"><value>Nintendo Game &amp; Watch Life Boat (TC-58)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchPinball"><value>Nintendo Game &amp; Watch Pinball (PB-59)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchBlackJack"><value>Nintendo Game &amp; Watch Black Jack (BJ-60)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchSquish"><value>Nintendo Game &amp; Watch Squish (MG-61)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchBombSweeper"><value>Nintendo Game &amp; Watch Bomb Sweeper (BD-62)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchSafebuster"><value>Nintendo Game &amp; Watch Safebuster (JB-63)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchGoldCliff"><value>Nintendo Game &amp; Watch Gold Cliff (MV-64)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchZelda"><value>Nintendo Game &amp; Watch Zelda (ZL-65)</value></data>
+  <!-- New Wide Screen -->
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKongJrWide"><value>Nintendo Game &amp; Watch Donkey Kong Jr. (DJ-101)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMarioCementFactoryWide"><value>Nintendo Game &amp; Watch Mario's Cement Factory (ML-102)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchManholeNewWide"><value>Nintendo Game &amp; Watch Manhole (NH-103)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchTropicalFish"><value>Nintendo Game &amp; Watch Tropical Fish (TF-104)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchSuperMarioBrosWide"><value>Nintendo Game &amp; Watch Super Mario Bros. (YM-105)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchClimberWide"><value>Nintendo Game &amp; Watch Climber (DR-106)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchBalloonFightWide"><value>Nintendo Game &amp; Watch Balloon Fight (BF-107)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMarioJuggler"><value>Nintendo Game &amp; Watch Mario the Juggler (MB-108)</value></data>
+  <!-- Table Top -->
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKongJrTabletop"><value>Nintendo Game &amp; Watch Donkey Kong Jr. (CJ-71)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMarioCementFactoryTabletop"><value>Nintendo Game &amp; Watch Mario's Cement Factory (CM-72)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchSnoopyTabletop"><value>Nintendo Game &amp; Watch Snoopy (SM-73)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchPopeyeTabletop"><value>Nintendo Game &amp; Watch Popeye (PG-74)</value></data>
+  <!-- Panorama Screen -->
+  <data name="Emulation.Nintendo.Controller.GameWatchSnoopyPanorama"><value>Nintendo Game &amp; Watch Snoopy (SM-91)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchPopeyePanorama"><value>Nintendo Game &amp; Watch Popeye (PG-92)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKongJrPanorama"><value>Nintendo Game &amp; Watch Donkey Kong Jr. (CJ-93)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMarioBombsAway"><value>Nintendo Game &amp; Watch Mario's Bombs Away (TB-94)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMickeyMousePanorama"><value>Nintendo Game &amp; Watch Mickey Mouse (DC-95)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKongCircus"><value>Nintendo Game &amp; Watch Donkey Kong Circus (MK-96)</value></data>
+  <!-- Super Color -->
+  <data name="Emulation.Nintendo.Controller.GameWatchSpitballSparky"><value>Nintendo Game &amp; Watch Spitball Sparky (BU-201)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchCrabGrab"><value>Nintendo Game &amp; Watch Crab Grab (UD-202)</value></data>
+  <!-- Micro VS. System -->
+  <data name="Emulation.Nintendo.Controller.GameWatchBoxing"><value>Nintendo Game &amp; Watch Boxing / Punch-Out!! (BX-301)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKong3"><value>Nintendo Game &amp; Watch Donkey Kong 3 (AK-302)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchDonkeyKongHockey"><value>Nintendo Game &amp; Watch Donkey Kong Hockey (HK-303)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMicroVsPad1"><value>Nintendo Game &amp; Watch Micro VS. System Controller 1</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchMicroVsPad2"><value>Nintendo Game &amp; Watch Micro VS. System Controller 2</value></data>
+  <!-- Crystal Screen and special editions -->
+  <data name="Emulation.Nintendo.Controller.GameWatchSuperMarioBrosCrystal"><value>Nintendo Game &amp; Watch Super Mario Bros. (YM-801)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchClimberCrystal"><value>Nintendo Game &amp; Watch Climber (DR-802)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchBalloonFightCrystal"><value>Nintendo Game &amp; Watch Balloon Fight (BF-803)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchSuperMarioBrosDiskun"><value>Nintendo Game &amp; Watch Super Mario Bros. (YM-901-S)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchBallClubNintendo"><value>Nintendo Game &amp; Watch Ball (Club Nintendo)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchSuperMarioBros2020"><value>Nintendo Game &amp; Watch: Super Mario Bros.</value></data>
+  <data name="Emulation.Nintendo.Controller.GameWatchZelda2021"><value>Nintendo Game &amp; Watch: The Legend of Zelda</value></data>
+
+  <!-- Nintendo Entertainment System / Famicom -->
+  <data name="Emulation.Nintendo.Controller.NesPad"><value>Nintendo NES Controller (NES-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesDogbonePad"><value>Nintendo NES Controller (NES-039)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamicomPad1"><value>Nintendo Famicom Controller I</value></data>
+  <data name="Emulation.Nintendo.Controller.FamicomPad2"><value>Nintendo Famicom Controller II</value></data>
+  <data name="Emulation.Nintendo.Controller.AvFamicomPad"><value>Nintendo AV Famicom Controller (HVC-102)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesAdvantage"><value>Nintendo NES Advantage (NES-026)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesMax"><value>Nintendo NES Max (NES-027)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesZapper"><value>Nintendo NES Zapper (NES-005)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamicomLightGun"><value>Nintendo Famicom Light Gun (HVC-005)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesPowerPad"><value>Nintendo Power Pad / Family Fun Fitness Mat (NES-028)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesRob"><value>Nintendo R.O.B. (NES-012)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamicomRobot"><value>Nintendo Famicom Robot (HVC-012)</value></data>
+  <data name="Emulation.Nintendo.Controller.RobGyroSet"><value>Nintendo R.O.B. Gyro Set</value></data>
+  <data name="Emulation.Nintendo.Controller.RobBlockSet"><value>Nintendo R.O.B. Block Set</value></data>
+  <data name="Emulation.Nintendo.Controller.NesFourScore"><value>Nintendo NES Four Score (NES-034)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesSatellite"><value>Nintendo NES Satellite (NES-032)</value></data>
+  <data name="Emulation.Nintendo.Controller.NesSatelliteReceiver"><value>Nintendo NES Satellite Receiver (NES-033)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamilyBasicKeyboard"><value>Nintendo Family BASIC Keyboard (HVC-007)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamilyBasicDataRecorder"><value>Nintendo Family BASIC Data Recorder (HVC-008)</value></data>
+  <data name="Emulation.Nintendo.Controller.Famicom3dScope"><value>Nintendo Famicom 3D System Scope (HVC-031)</value></data>
+  <data name="Emulation.Nintendo.Controller.Famicom3dAdapter"><value>Nintendo Famicom 3D System Adapter (HVC-032)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamicomNetworkSystem"><value>Nintendo Famicom Network System (HVC-050)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamicomNetworkPad"><value>Nintendo Famicom Network Controller (HVC-051)</value></data>
+  <!-- Famicom Disk System uses the Famicom controllers listed above. -->
+  <data name="Emulation.Nintendo.Controller.FamicomDiskDrive"><value>Nintendo Famicom Disk System Disk Drive (HVC-022)</value></data>
+  <data name="Emulation.Nintendo.Controller.FamicomDiskRamAdapter"><value>Nintendo Famicom Disk System RAM Adapter (HVC-023)</value></data>
+
+  <!-- Super Nintendo / Super Famicom -->
+  <data name="Emulation.Nintendo.Controller.SuperNesPad"><value>Nintendo Super NES Controller (SNS-005)</value></data>
+  <data name="Emulation.Nintendo.Controller.SuperFamicomPad"><value>Nintendo Super Famicom Controller (SHVC-005)</value></data>
+  <data name="Emulation.Nintendo.Controller.SuperNesRedesignedPad"><value>Nintendo Super NES Controller (SNS-102)</value></data>
+  <data name="Emulation.Nintendo.Controller.SuperNesMouse"><value>Nintendo Super NES Mouse</value></data>
+  <data name="Emulation.Nintendo.Controller.SuperScope"><value>Nintendo Super Scope / Nintendo Scope</value></data>
+  <data name="Emulation.Nintendo.Controller.SuperScopeReceiver"><value>Nintendo Super Scope Receiver</value></data>
+  <data name="Emulation.Nintendo.Controller.SuperGameBoy"><value>Nintendo Super Game Boy</value></data>
+  <data name="Emulation.Nintendo.Controller.SuperGameBoy2"><value>Nintendo Super Game Boy 2</value></data>
+  <data name="Emulation.Nintendo.Controller.Satellaview"><value>Nintendo Satellaview</value></data>
+  <data name="Emulation.Nintendo.Controller.SatellaviewMemoryPack"><value>Nintendo Satellaview 8M Memory Pack</value></data>
+
+  <!-- Virtual Boy -->
+  <data name="Emulation.Nintendo.Controller.VirtualBoyPad"><value>Nintendo Virtual Boy Controller</value></data>
+  <data name="Emulation.Nintendo.Controller.VirtualBoyBatteryBox"><value>Nintendo Virtual Boy Battery Box</value></data>
+  <data name="Emulation.Nintendo.Controller.VirtualBoyAcAdapterTap"><value>Nintendo Virtual Boy AC Adapter Tap</value></data>
+
+  <!-- Nintendo 64 -->
+  <data name="Emulation.Nintendo.Controller.Nintendo64Pad"><value>Nintendo 64 Controller (NUS-005)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64ControllerPak"><value>Nintendo 64 Controller Pak (NUS-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64RumblePak"><value>Nintendo 64 Rumble Pak (NUS-013)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64TransferPak"><value>Nintendo 64 Transfer Pak (NUS-019)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64ExpansionPak"><value>Nintendo 64 Expansion Pak (NUS-007)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64JumperPak"><value>Nintendo 64 Jumper Pak (NUS-008)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64VoiceRecognitionUnit"><value>Nintendo 64 Voice Recognition Unit (NUS-020)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64Microphone"><value>Nintendo 64 Microphone (NUS-021)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64Mouse"><value>Nintendo 64 Mouse (NUS-017)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64DiskDrive"><value>Nintendo 64DD (NUS-010)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64CaptureCassette"><value>Nintendo 64 Capture Cassette (NUS-028)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo64Modem"><value>Nintendo 64 Modem (NUS-029)</value></data>
+
+  <!-- Game Boy and Game Boy Color: handheld units include their own controls. -->
+  <data name="Emulation.Nintendo.Controller.GameBoy"><value>Nintendo Game Boy (DMG-01)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyPocket"><value>Nintendo Game Boy pocket (MGB-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyLight"><value>Nintendo Game Boy Light (MGB-101)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyColor"><value>Nintendo Game Boy Color (CGB-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyGameLinkCable"><value>Nintendo Game Boy Game Link Cable (DMG-04)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyFourPlayerAdapter"><value>Nintendo Game Boy Four Player Adapter (DMG-07)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyUniversalLinkAdapter"><value>Nintendo Universal Game Link Adapter (DMG-14)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyPocketLinkAdapter"><value>Nintendo Game Boy pocket Game Link Adapter (MGB-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyPocketLinkCable"><value>Nintendo Game Boy pocket Game Link Cable (MGB-008)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyUniversalLinkCable"><value>Nintendo Universal Game Link Cable (MGB-010)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyColorLinkCable"><value>Nintendo Game Boy Color Game Link Cable (CGB-003)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyCamera"><value>Nintendo Game Boy Camera / Pocket Camera (MGB-006)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyPrinter"><value>Nintendo Game Boy Printer / Pocket Printer (MGB-007)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyMobileAdapter"><value>Nintendo Mobile Adapter GB</value></data>
+
+  <!-- Game Boy Advance: handheld units include their own controls. -->
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvance"><value>Nintendo Game Boy Advance (AGB-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvanceSp"><value>Nintendo Game Boy Advance SP (AGS-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvanceSpBacklit"><value>Nintendo Game Boy Advance SP (AGS-101)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyMicro"><value>Nintendo Game Boy micro (OXY-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvanceLinkCable"><value>Nintendo Game Boy Advance Game Link Cable (AGB-005)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvanceWirelessAdapter"><value>Nintendo Game Boy Advance Wireless Adapter (AGB-015)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyMicroLinkCable"><value>Nintendo Game Boy micro Game Link Cable (OXY-008)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyMicroLinkAdapter"><value>Nintendo Game Boy micro Game Link Adapter (OXY-009)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyMicroWirelessAdapter"><value>Nintendo Game Boy micro Wireless Adapter (OXY-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvanceEReader"><value>Nintendo Card e-Reader (AGB-010)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvanceEReaderPlus"><value>Nintendo e-Reader / Card e-Reader+ (AGB-014)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameBoyAdvanceSpHeadphoneAdapter"><value>Nintendo Game Boy Advance SP Headphone Adapter (AGS-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.PlayYan"><value>Nintendo PLAY-YAN</value></data>
+  <data name="Emulation.Nintendo.Controller.PlayYanMicro"><value>Nintendo PLAY-YAN micro</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoMp3Player"><value>Nintendo MP3 Player</value></data>
+
+  <!-- Nintendo DS / DSi: handheld units include their own controls. -->
+  <data name="Emulation.Nintendo.Controller.NintendoDs"><value>Nintendo DS (NTR-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsLite"><value>Nintendo DS Lite (USG-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsi"><value>Nintendo DSi (TWL-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsiXl"><value>Nintendo DSi XL / DSi LL (UTL-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsStylus"><value>Nintendo DS Stylus (NTR-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsLiteStylus"><value>Nintendo DS Lite Stylus (USG-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsiStylus"><value>Nintendo DSi Stylus (TWL-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsiXlStylus"><value>Nintendo DSi XL Stylus (UTL-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsTouchStrap"><value>Nintendo DS Touch Strap (NTR-009)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsRumblePak"><value>Nintendo DS Rumble Pak (NTR-008)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsLiteRumblePak"><value>Nintendo DS Lite Rumble Pak (USG-006)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsMemoryExpansion"><value>Nintendo DS Memory Expansion Pak (NTR-011)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsLiteMemoryExpansion"><value>Nintendo DS Lite Memory Expansion Pak (USG-007)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsSlideController"><value>Nintendo DS Slide Controller (NTR-012)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsFaceningScan"><value>Nintendo DS Facening Scan (NTR-014)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsTv"><value>Nintendo DS TV (NTR-016)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsTvAntenna"><value>Nintendo DS TV External Antenna (NTR-025)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsHeadset"><value>Nintendo DS Headset (NTR-019)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsBimojiFude"><value>Nintendo DS Bimoji Fude (NTR-023)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsStylusWithStrap"><value>Nintendo DS Stylus with Strap (NTR-024)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoWifiUsbConnector"><value>Nintendo Wi-Fi USB Connector (NTR-010)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoWifiNetworkAdapter"><value>Nintendo Wi-Fi Network Adapter (WAP-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoWirelessKeyboard"><value>Nintendo Wireless Keyboard (NTR-034)</value></data>
+  <data name="Emulation.Nintendo.Controller.NintendoDsActivityMeter"><value>Nintendo DS Activity Meter</value></data>
+  <data name="Emulation.Nintendo.Controller.Pokewalker"><value>Nintendo Pokéwalker (NTR-032)</value></data>
+
+  <!-- Nintendo 3DS: handheld units include their own controls. -->
+  <data name="Emulation.Nintendo.Controller.Nintendo3ds"><value>Nintendo 3DS (CTR-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo3dsXl"><value>Nintendo 3DS XL / 3DS LL (SPR-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo2ds"><value>Nintendo 2DS (FTR-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NewNintendo3ds"><value>New Nintendo 3DS (KTR-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NewNintendo3dsXl"><value>New Nintendo 3DS XL / New 3DS LL (RED-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.NewNintendo2dsXl"><value>New Nintendo 2DS XL / New 2DS LL (JAN-001)</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo3dsCirclePadPro"><value>Nintendo 3DS Circle Pad Pro</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo3dsCirclePadProXl"><value>Nintendo 3DS Circle Pad Pro XL</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo3dsNfcReaderWriter"><value>Nintendo NFC Reader/Writer</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo3dsStylus"><value>Nintendo 3DS Stylus</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo3dsXlStylus"><value>Nintendo 3DS XL Stylus</value></data>
+  <data name="Emulation.Nintendo.Controller.Nintendo2dsStylus"><value>Nintendo 2DS Stylus</value></data>
+  <data name="Emulation.Nintendo.Controller.NewNintendo3dsStylus"><value>New Nintendo 3DS Stylus</value></data>
+  <data name="Emulation.Nintendo.Controller.NewNintendo3dsXlStylus"><value>New Nintendo 3DS XL Stylus</value></data>
+  <data name="Emulation.Nintendo.Controller.NewNintendo2dsXlStylus"><value>New Nintendo 2DS XL Stylus</value></data>
+
+  <!-- Nintendo GameCube; the GBA cable also lets a handheld act as a controller. -->
+  <data name="Emulation.Nintendo.Controller.GameCubePad"><value>Nintendo GameCube Controller (DOL-003)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeWaveBird"><value>Nintendo GameCube WaveBird Wireless Controller (DOL-004)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeWaveBirdReceiver"><value>Nintendo GameCube WaveBird Receiver (DOL-005)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeDkBongos"><value>Nintendo GameCube DK Bongos (DOL-021)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeMicrophone"><value>Nintendo GameCube Microphone (DOL-022)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeMicrophoneHolder"><value>Nintendo GameCube Microphone Holder (DOL-025)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeGbaCable"><value>Nintendo GameCube Game Boy Advance Cable (DOL-011)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeGameBoyPlayer"><value>Nintendo GameCube Game Boy Player (DOL-017)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeMemoryCard59"><value>Nintendo GameCube Memory Card 59 (DOL-008)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeMemoryCard251"><value>Nintendo GameCube Memory Card 251 (DOL-014)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeMemoryCard1019"><value>Nintendo GameCube Memory Card 1019 (DOL-020)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeSdCardAdapter"><value>Nintendo GameCube SD Card Adapter (DOL-019)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeModemAdapter"><value>Nintendo GameCube Modem Adapter (DOL-012)</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeBroadbandAdapter"><value>Nintendo GameCube Broadband Adapter (DOL-015)</value></data>
+
+  <!-- Wii; compatible Nintendo input accessories can also be used on Wii U. -->
+  <data name="Emulation.Nintendo.Controller.WiiRemote"><value>Nintendo Wii Remote</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiRemotePlus"><value>Nintendo Wii Remote Plus</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiNunchuk"><value>Nintendo Wii Nunchuk</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiClassicController"><value>Nintendo Wii Classic Controller</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiClassicControllerPro"><value>Nintendo Wii Classic Controller Pro</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiSuperFamicomClassicController"><value>Nintendo Wii Super Famicom Classic Controller (Club Nintendo)</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiMotionPlus"><value>Nintendo Wii MotionPlus</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiBalanceBoard"><value>Nintendo Wii Balance Board</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiZapper"><value>Nintendo Wii Zapper</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiWheel"><value>Nintendo Wii Wheel</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiSpeak"><value>Nintendo Wii Speak</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiSensorBar"><value>Nintendo Wii Sensor Bar</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiLanAdapter"><value>Nintendo Wii LAN Adapter</value></data>
+
+  <!-- Wii U; Wii controllers and GameCube controllers are listed in their own sections. -->
+  <data name="Emulation.Nintendo.Controller.WiiUGamePad"><value>Nintendo Wii U GamePad</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiUProController"><value>Nintendo Wii U Pro Controller</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiUMicrophone"><value>Nintendo Wii U Microphone</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiUGameCubeAdapter"><value>Nintendo GameCube Controller Adapter for Wii U</value></data>
+  <data name="Emulation.Nintendo.Controller.GameCubeSmashBrosPad"><value>Nintendo GameCube Controller Super Smash Bros. Edition</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiUFitMeter"><value>Nintendo Wii U Fit Meter</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiUGamePadStylus"><value>Nintendo Wii U GamePad Stylus</value></data>
+  <data name="Emulation.Nintendo.Controller.WiiUGamePadLargeStylus"><value>Nintendo Wii U GamePad Stylus (Large)</value></data>
+
+  <!-- Nintendo Switch: handheld units and integrated controls are included. -->
+  <data name="Emulation.Nintendo.Controller.Switch"><value>Nintendo Switch</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchLite"><value>Nintendo Switch Lite</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchOled"><value>Nintendo Switch - OLED Model</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConLeft"><value>Nintendo Switch Joy-Con (L)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConRight"><value>Nintendo Switch Joy-Con (R)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConPair"><value>Nintendo Switch Joy-Con (L/R)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchProController"><value>Nintendo Switch Pro Controller</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConGrip"><value>Nintendo Switch Joy-Con Grip</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConChargingGrip"><value>Nintendo Switch Joy-Con Charging Grip</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConStrap"><value>Nintendo Switch Joy-Con Strap</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConWheel"><value>Nintendo Switch Joy-Con Wheel</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConAaBatteryPack"><value>Nintendo Switch Joy-Con AA Battery Pack</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchGameCubeAdapter"><value>Nintendo GameCube Controller Adapter for Nintendo Switch</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchPokeBallPlus"><value>Nintendo Poké Ball Plus</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchNesPad"><value>Nintendo NES Controller (Nintendo Switch Online)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchFamicomPad1"><value>Nintendo Famicom Controller I (Nintendo Switch Online)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchFamicomPad2"><value>Nintendo Famicom Controller II (Nintendo Switch Online)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchSuperNesPad"><value>Nintendo Super NES Controller (Nintendo Switch Online)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchSuperFamicomPad"><value>Nintendo Super Famicom Controller (Nintendo Switch Online)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchNintendo64Pad"><value>Nintendo 64 Controller (Nintendo Switch Online)</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchUsbMicrophone"><value>Nintendo USB Microphone</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchRingCon"><value>Nintendo Ring-Con</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchLegStrap"><value>Nintendo Leg Strap</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchJoyConChargingStand"><value>Nintendo Switch Joy-Con Charging Stand (two-way)</value></data>
+  <!-- Nintendo Labo: the physical Toy-Con peripherals, rather than software bundles. -->
+  <data name="Emulation.Nintendo.Controller.LaboRcCar"><value>Nintendo Labo Toy-Con RC Car</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboFishingRod"><value>Nintendo Labo Toy-Con Fishing Rod</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboHouse"><value>Nintendo Labo Toy-Con House</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboMotorbike"><value>Nintendo Labo Toy-Con Motorbike</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboPiano"><value>Nintendo Labo Toy-Con Piano</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboRobot"><value>Nintendo Labo Toy-Con Robot</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboCar"><value>Nintendo Labo Toy-Con Car</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboPedal"><value>Nintendo Labo Toy-Con Pedal</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboPlane"><value>Nintendo Labo Toy-Con Plane</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboSubmarine"><value>Nintendo Labo Toy-Con Submarine</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboKey"><value>Nintendo Labo Toy-Con Key</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboVrGoggles"><value>Nintendo Labo Toy-Con VR Goggles</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboBlaster"><value>Nintendo Labo Toy-Con Blaster</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboCamera"><value>Nintendo Labo Toy-Con Camera</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboBird"><value>Nintendo Labo Toy-Con Bird</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboWindPedal"><value>Nintendo Labo Toy-Con Wind Pedal</value></data>
+  <data name="Emulation.Nintendo.Controller.LaboElephant"><value>Nintendo Labo Toy-Con Elephant</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchVirtualBoy"><value>Nintendo Virtual Boy for Nintendo Switch 2 / Nintendo Switch</value></data>
+  <data name="Emulation.Nintendo.Controller.SwitchVirtualBoyCardboard"><value>Nintendo Virtual Boy (Cardboard Model)</value></data>
+
+  <!-- Nintendo NFC peripherals shared by Nintendo 3DS, Wii U and Nintendo Switch. -->
+  <data name="Emulation.Nintendo.Controller.AmiiboFigure"><value>Nintendo amiibo Figure</value></data>
+  <data name="Emulation.Nintendo.Controller.AmiiboCard"><value>Nintendo amiibo Card</value></data>
+  <data name="Emulation.Nintendo.Controller.AmiiboYarnYoshi"><value>Nintendo Yarn Yoshi amiibo</value></data>
+</root>

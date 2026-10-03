@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>$ 1 RAM Emated makineye mevcut.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Seçin RAM Caprice32 tarafından ortaya çıkan genişleme, yeni miktar kullanılmayan önce makine yeniden başlamalıdır.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>Sistem sistemi ROM Oce32'ye inşa edilmiştir.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 Sistem sağlar ROM İçsel olarak ve bir açığa çıkma ROM Dosya seçici veya.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Caprice32 tarafından verilen iç karar.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>Caprice32 tarafından açığa çıkan içsel kararlardan birini seçin. Bu uygulama pencere boyutunu belirlemez.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>Caprice32 tarafından taklit edilen monitörün türü.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>Bir renk, yeşil monokrom veya beyaz monokrom seçin CPC monitörü.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Örtülmüş monitörün sentezi.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>Olex tarafından maruz kaldığı gibi 5 ila 15 arasında monitör yoğunluğu ayarlayın.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Dış ekran sınırı kaldır.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Soranlar Caprice32 Dış sınırı ekleyebilmek için. GW GUI Uygulamanın bildirdiği yönü tutar.The behavior.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>Vida sürücünün mekanik sesi.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>Enables veya Caprice32 tarafından üretilen diskpy sürücüsü seslerini devre dışı bırakır.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad Makine modeli yapılandırılıyor.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>Identifies the the Amstrad CPCArtı, ya da GX4000 Donanım yapılandırması düzenlemenin editör olduğu model.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>Bu makine için seçilen fotoğrafçılar.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>Bu makine yapılandırmasını yürütmek için kullanılan emülatör uygulamaları belirtir.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>Bu makine için süreçor emated.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>Seçilmiş seçilen tarafından sağlanan işlemci modelini gösterir Amstrad makine.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>Orijinal işlemci saati frekansı.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>Seçilendeki işlemcinin nominal saat frekansı gösterir Amstrad makine.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>Enable veya devre dışı bırakılan ses.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>Kontroller, kontroller, GW GUI Prodüksiyon tarafından üretilen ses örneklerini oynar.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>Ses çıktısı tarafından kullanılan GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>Bu emated makineden ses çıkarmak için kullanılan Windows ses çıktısını seçin.</value></data>
+</root>

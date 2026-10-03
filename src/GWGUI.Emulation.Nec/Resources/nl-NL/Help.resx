@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Hoeveelheid RAM beschikbaar voor de emuleerde machine.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selecteer de beschikbare RAM-uitbreiding. BeetlePce. De machine moet opnieuw starten voordat de nieuwe hoeveelheid wordt gebruikt.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Het systeem ROM is ingebouwd. BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Het systeem ROM wordt intern geleverd. BeetlePce. Er is geen ROM-bestandselectie beschikbaar.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Interne resolutie van BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Selecteer een van de interne resoluties die door BeetlePce worden ontmaskerd. Hiermee wordt de grootte van het toepassingsvenster niet ingesteld.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Type monitor geëmuleerd door BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Selecteer een kleur, groen monochroom of wit monochrome NEC monitor.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Helderheid van de emuleerde monitor.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Past de monitor intensiteit van 5 tot 15, zoals blootgesteld door BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Verwijdert de buitenrand van het scherm.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Vraagt BeetlePce om de buitengrens te bijsnijden. GW GUI houdt de beeldverhouding gerapporteerd door de emulator.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Mechanische geluid van de floppy drive.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Schakel het diskette-drivegeluid van BeetlePce in of schakelt dit uit.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec machine model wordt geconfigureerd.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulator geselecteerd voor deze machine.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Identificeert de emulator implementatie die wordt gebruikt om deze machineconfiguratie uit te voeren.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Processor emuleerd voor deze machine.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Toont het processormodel dat door de geselecteerde Nec machine wordt geleverd.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Originele processor klokfrequentie.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Toont de nominale klokfrequentie van de processor in de geselecteerde Nec-machine.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Inschakelen of uitschakelen van emuleerd geluid.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Bepaalt of GW GUI de audio samples afspeelt die door de emulator worden gegenereerd.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Audio-uitvoer gebruikt door GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Selecteer de Windows audio-uitvoer gebruikt om geluid af te spelen vanaf deze emuleerde machine.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identificeert het NEC-model waarvan de hardwareconfiguratie wordt bewerkt.</value></data>
+</root>

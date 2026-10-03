@@ -21,415 +21,68 @@ LANGUAGE_CODES = {
     "ru-RU": "ru", "sv-SE": "sv", "th-TH": "th", "tr-TR": "tr", "uk-UA": "uk",
     "vi-VN": "vi", "zh-Hans": "zh", "zh-Hant": "zh",
 }
-CONTEXTUAL_LABEL_SOURCES = {
-    "Visual.StartLabel": "Beginning",
-    "Explorer.Session": "Disc session",
-    "Explorer.Track": "Media track",
-    "Explorer.Layers": "Disc layers",
-    "Explorer.Faces": "Media recording sides",
-}
-CONTEXTUAL_LABEL_OVERRIDES = {
-    "fr-FR": {
-        "Visual.StartLabel": "Début",
-        "Explorer.Session": "Session",
-        "Explorer.Track": "Piste",
-        "Explorer.Layers": "Couches",
-        "Explorer.Faces": "Faces",
-    },
-}
-TRANSLATION_OVERRIDES = {
-    "fr-FR": {
-        "Emulation.Sega.Firmware.Integrated": "ROM système",
-        "Emulation.Emulator.genesisplusgx.Description": "Émule les systèmes SG-1000, Mark III, Master System, Game Gear, Mega Drive et Mega-CD.",
-        "Emulation.Sega.Help.Memory.Ram.Short": "Quantité de RAM disponible pour la machine émulée.",
-        "Emulation.Sega.Help.Memory.Ram.Detailed": "Sélectionne l'extension de RAM exposée par le cœur sélectionné. La machine doit redémarrer avant que la nouvelle quantité soit utilisée.",
-        "Emulation.Sega.Help.Firmware.Integrated.Short": "La ROM système est intégrée au cœur sélectionné.",
-        "Emulation.Sega.Help.Firmware.Integrated.Detailed": "Le cœur sélectionné fournit la ROM système en interne et n'expose aucun sélecteur de fichier ROM.",
-        "Emulation.Sega.Help.Video.Intensity.Detailed": "Règle l'intensité du moniteur de 5 à 15, telle qu'elle est exposée par le cœur sélectionné.",
-        "Emulation.Sega.Help.Video.Crop.Detailed": "Demande au cœur sélectionné de recadrer la bordure externe. GW GUI conserve le rapport d'aspect signalé par l'émulateur.",
-        "Emulation.Sega.Help.Audio.Enabled.Detailed": "Contrôle la lecture par GW GUI des échantillons audio générés par l'émulateur.",
-        "Emulation.Sega.MegaDrive.MegaCd": "Modèle de Mega-CD",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Activer le Mega-CD additionnel",
-        "Emulation.Sega.MegaDrive.32X": "Activer le 32X additionnel",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Désactivé",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Short": "Modèle matériel du Mega-CD.",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Detailed": "Sélectionne le Mega-CD I ou le Mega-CD II. L'extension doit également être activée avant que son lecteur optique soit disponible.",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short": "Mega-CD additionnel",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed": "Active le Mega-CD additionnel sélectionné sur la Mega Drive. Il est désactivé par défaut.",
-        "Emulation.Sega.Help.MegaDrive.32X.Short": "32X additionnel",
-        "Emulation.Sega.Help.MegaDrive.32X.Detailed": "Active l'extension 32X sur la Mega Drive. Elle est désactivée par défaut et n'accepte les cartouches 32X que lorsque cette option est activée.",
-        "Emulation.Error.ExternalCore.StateSaveFailed": "L'état actuel n'a pas pu être enregistré.",
-        "Emulation.Error.ExternalCore.StateRestoreFailed": "L'état enregistré n'a pas pu être restauré.",
-        "Emulation.Error.ExternalCore.MediaEjectFailed": "Le média n'a pas pu être éjecté.",
-        "Emulation.Error.ExternalCore.RequestedMediaInsertFailed": "Le média demandé n'a pas pu être inséré.",
-        "Emulation.Error.ExternalCore.MediaSlotCreationFailed": "L'emplacement média n'a pas pu être créé.",
-        "Emulation.Error.ExternalCore.MediaSelectionFailed": "Le média n'a pas pu être sélectionné.",
-        "Emulation.Error.ExternalCore.MediaInsertFailed": "Le média n'a pas pu être inséré.",
-        "Emulation.Error.ExternalCore.UnsupportedApiVersion": "La version d'API du cœur d'émulation {0} n'est pas prise en charge.",
-        "Emulation.Error.ExternalCore.ProcessCommunicationFailed": "La communication avec le processus hôte d'émulation a échoué : {0}",
-        "Emulation.Sega.Controller.Joypad": "Manette Sega",
-    },
-}
-
-_SELECTOR_LABEL_OVERRIDES = {
-    "ar-SA": "العلامات التجارية والآلات",
-    "cs-CZ": "Značky a stroje",
-    "da-DK": "Mærker og maskiner",
-    "de-DE": "Marken und Maschinen",
-    "el-GR": "Μάρκες και μηχανήματα",
-    "es-ES": "Marcas y máquinas",
-    "fi-FI": "Merkit ja koneet",
-    "fr-FR": "Marques et machines",
-    "he-IL": "מותגים ומכונות",
-    "hu-HU": "Márkák és gépek",
-    "id-ID": "Merek dan mesin",
-    "it-IT": "Marche e macchine",
-    "ja-JP": "ブランドとマシン",
-    "ko-KR": "브랜드 및 기계",
-    "nb-NO": "Merker og maskiner",
-    "nl-NL": "Merken en machines",
-    "pl-PL": "Marki i maszyny",
-    "pt-BR": "Marcas e máquinas",
-    "pt-PT": "Marcas e máquinas",
-    "ro-RO": "Mărci și mașini",
-    "ru-RU": "Бренды и машины",
-    "sv-SE": "Varumärken och maskiner",
-    "th-TH": "แบรนด์และเครื่องจักร",
-    "tr-TR": "Markalar ve makineler",
-    "uk-UA": "Бренди та машини",
-    "vi-VN": "Thương hiệu và máy",
-    "zh-Hans": "品牌和机器",
-    "zh-Hant": "品牌和機器",
-}
-for _culture, _value in _SELECTOR_LABEL_OVERRIDES.items():
-    TRANSLATION_OVERRIDES.setdefault(_culture, {})[
-        "Emulation.Configuration.Selector"
-    ] = _value
-
-# Argos is still useful for the ordinary sentences, but a few installed
-# language models mistranslate short status labels or repeat the conjunction
-# around a list of protected hardware names.  Keep those values explicit so
-# every catalog remains readable; proper machine and core names stay unchanged.
-_TECHNICAL_OVERRIDES = {
-    "ar-SA": {
-        "Emulation.Emulator.genesisplusgx.Description": "يحاكي أنظمة SG-1000 وMark III وMaster System وGame Gear وMega Drive وMega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "تفعيل إضافة Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "تفعيل إضافة 32X",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "معطّل",
-        "Emulation.Error.ExternalCore.InvalidStateSize": "أعاد نواة المحاكاة حجماً غير صالح لحالة الحفظ: {0}.",
-    },
-    "cs-CZ": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emuluje systémy SG-1000, Mark III, Master System, Game Gear, Mega Drive a Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Povolit rozšíření Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Povolit rozšíření 32X",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Detailed": "Vybere rozšíření Mega-CD I nebo Mega-CD II. Rozšíření musí být před zpřístupněním optické jednotky také povoleno.",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed": "Povolí vybrané rozšíření Mega-CD na konzoli Mega Drive. Ve výchozím nastavení je vypnuté.",
-        "Emulation.Sega.Controller.SegaArcadePowerStickSixButton": "Arcade Power Stick se šesti tlačítky",
-    },
-    "da-DK": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emulerer SG-1000-, Mark III-, Master System-, Game Gear-, Mega Drive- og Mega-CD-systemer.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Aktivér Mega-CD-udvidelse",
-        "Emulation.Sega.MegaDrive.32X": "Aktivér 32X-udvidelse",
-    },
-    "de-DE": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emuliert SG-1000-, Mark-III-, Master-System-, Game-Gear-, Mega-Drive- und Mega-CD-Systeme.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Mega-CD-Erweiterung aktivieren",
-        "Emulation.Sega.MegaDrive.32X": "32X-Erweiterung aktivieren",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Deaktiviert",
-    },
-    "el-GR": {
-        "Emulation.Emulator.genesisplusgx.Description": "Εξομοιώνει τα συστήματα SG-1000, Mark III, Master System, Game Gear, Mega Drive και Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Ενεργοποίηση πρόσθετου Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Ενεργοποίηση πρόσθετου 32X",
-    },
-    "es-ES": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emula los sistemas SG-1000, Mark III, Master System, Game Gear, Mega Drive y Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Activar la expansión Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Activar la expansión 32X",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Desactivado",
-    },
-    "fi-FI": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emuloi SG-1000-, Mark III-, Master System-, Game Gear-, Mega Drive- ja Mega-CD-järjestelmiä.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Ota Mega-CD-laajennus käyttöön",
-        "Emulation.Sega.MegaDrive.32X": "Ota 32X-laajennus käyttöön",
-    },
-    "he-IL": {
-        "Emulation.Emulator.genesisplusgx.Description": "מדמה את מערכות SG-1000, Mark III, Master System, Game Gear, Mega Drive ו-Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "הפעלת הרחבת Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "הפעלת הרחבת 32X",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "מושבת",
-    },
-    "hu-HU": {
-        "Emulation.Emulator.genesisplusgx.Description": "Az SG-1000, Mark III, Master System, Game Gear, Mega Drive és Mega-CD rendszereket emulálja.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Mega-CD-kiegészítő engedélyezése",
-        "Emulation.Sega.MegaDrive.32X": "32X-kiegészítő engedélyezése",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Detailed": "A Mega-CD I vagy Mega-CD II kiegészítőt választja ki. Az optikai meghajtó eléréséhez a kiegészítőt is engedélyezni kell.",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed": "Engedélyezi a kiválasztott Mega-CD-kiegészítőt a Mega Drive-on. Alapértelmezés szerint le van tiltva.",
-    },
-    "id-ID": {
-        "Emulation.Emulator.genesisplusgx.Description": "Mengemulasikan sistem SG-1000, Mark III, Master System, Game Gear, Mega Drive, dan Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Aktifkan ekspansi Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Aktifkan ekspansi 32X",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short": "Ekspansi Mega-CD.",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed": "Mengaktifkan ekspansi Mega-CD yang dipilih pada Mega Drive.",
-        "Emulation.Sega.Help.MegaDrive.32X.Short": "Ekspansi 32X.",
-    },
-    "it-IT": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emula i sistemi SG-1000, Mark III, Master System, Game Gear, Mega Drive e Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Abilita l'espansione Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Abilita l'espansione 32X",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Disattivato",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed": "Abilita l'espansione Mega-CD selezionata sulla Mega Drive.",
-        "Emulation.Sega.Help.MegaDrive.32X.Detailed": "Abilita l'espansione 32X sulla Mega Drive. È disabilitata per impostazione predefinita e accetta cartucce 32X solo quando è attiva.",
-    },
-    "ja-JP": {
-        "Emulation.Emulator.genesisplusgx.Description": "SG-1000、Mark III、Master System、Game Gear、Mega Drive、Mega-CD の各システムをエミュレートします。",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Mega-CD 拡張を有効化",
-        "Emulation.Sega.MegaDrive.32X": "32X 拡張を有効化",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "無効",
-    },
-    "ko-KR": {
-        "Emulation.Emulator.genesisplusgx.Description": "SG-1000, Mark III, Master System, Game Gear, Mega Drive 및 Mega-CD 시스템을 에뮬레이션합니다.",
-        "Emulation.Sega.MegaDrive.MegaCd": "Mega-CD 모델",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Mega-CD 확장 활성화",
-        "Emulation.Sega.MegaDrive.32X": "32X 확장 활성화",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "사용 안 함",
-        "Emulation.Error.ExternalCore.HostConfigurationInvalid": "에뮬레이션 코어 호스트 구성이 잘못되었습니다.",
-    },
-    "nb-NO": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emulerer SG-1000-, Mark III-, Master System-, Game Gear-, Mega Drive- og Mega-CD-systemer.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Aktiver Mega-CD-utvidelse",
-        "Emulation.Sega.MegaDrive.32X": "Aktiver 32X-utvidelse",
-    },
-    "nl-NL": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emuleert SG-1000-, Mark III-, Master System-, Game Gear-, Mega Drive- en Mega-CD-systemen.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Mega-CD-uitbreiding inschakelen",
-        "Emulation.Sega.MegaDrive.32X": "32X-uitbreiding inschakelen",
-    },
-    "pl-PL": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emuluje systemy SG-1000, Mark III, Master System, Game Gear, Mega Drive i Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Włącz rozszerzenie Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Włącz rozszerzenie 32X",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Detailed": "Wybiera rozszerzenie Mega-CD I lub Mega-CD II. Przed udostępnieniem napędu optycznego rozszerzenie musi być również włączone.",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short": "Rozszerzenie Mega-CD.",
-        "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed": "Włącza wybrane rozszerzenie Mega-CD w konsoli Mega Drive.",
-        "Emulation.Sega.Help.MegaDrive.32X.Short": "Rozszerzenie 32X.",
-    },
-    "pt-BR": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emula os sistemas SG-1000, Mark III, Master System, Game Gear, Mega Drive e Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Ativar a expansão Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Ativar a expansão 32X",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Desativado",
-    },
-    "pt-PT": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emula os sistemas SG-1000, Mark III, Master System, Game Gear, Mega Drive e Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Ativar a expansão Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Ativar a expansão 32X",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Desativado",
-    },
-    "ro-RO": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emulează sistemele SG-1000, Mark III, Master System, Game Gear, Mega Drive și Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Activează extensia Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Activează extensia 32X",
-    },
-    "ru-RU": {
-        "Emulation.Emulator.genesisplusgx.Description": "Эмулирует системы SG-1000, Mark III, Master System, Game Gear, Mega Drive и Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Включить расширение Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Включить расширение 32X",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Отключено",
-    },
-    "sv-SE": {
-        "Emulation.Emulator.genesisplusgx.Description": "Emulerar systemen SG-1000, Mark III, Master System, Game Gear, Mega Drive och Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd": "Mega-CD-modell",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Aktivera Mega-CD-tillägget",
-        "Emulation.Sega.MegaDrive.32X": "Aktivera 32X-tillägget",
-    },
-    "th-TH": {
-        "Emulation.Emulator.genesisplusgx.Description": "จำลองระบบ SG-1000, Mark III, Master System, Game Gear, Mega Drive และ Mega-CD",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "เปิดใช้ส่วนเสริม Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "เปิดใช้ส่วนเสริม 32X",
-    },
-    "tr-TR": {
-        "Emulation.Emulator.genesisplusgx.Description": "SG-1000, Mark III, Master System, Game Gear, Mega Drive ve Mega-CD sistemlerini öykünür.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Mega-CD eklentisini etkinleştir",
-        "Emulation.Sega.MegaDrive.32X": "32X eklentisini etkinleştir",
-        "Emulation.Sega.MegaDrive.32X.Disabled": "Devre dışı",
-    },
-    "uk-UA": {
-        "Emulation.Emulator.genesisplusgx.Description": "Емулює системи SG-1000, Mark III, Master System, Game Gear, Mega Drive і Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Увімкнути розширення Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Увімкнути розширення 32X",
-    },
-    "vi-VN": {
-        "Emulation.Emulator.genesisplusgx.Description": "Mô phỏng các hệ thống SG-1000, Mark III, Master System, Game Gear, Mega Drive và Mega-CD.",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Bật phần mở rộng Mega-CD",
-        "Emulation.Sega.MegaDrive.32X": "Bật phần mở rộng 32X",
-    },
-    "zh-Hans": {
-        "Emulation.Emulator.genesisplusgx.Description": "模拟 SG-1000、Mark III、Master System、Game Gear、Mega Drive 和 Mega-CD 系统。",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "启用 Mega-CD 扩展",
-        "Emulation.Sega.MegaDrive.32X": "启用 32X 扩展",
-    },
-    "zh-Hant": {
-        "Emulation.Emulator.genesisplusgx.Description": "模擬 SG-1000、Mark III、Master System、Game Gear、Mega Drive 和 Mega-CD 系統。",
-        "Emulation.Sega.MegaDrive.MegaCd.Enabled": "啟用 Mega-CD 擴充",
-        "Emulation.Sega.MegaDrive.32X": "啟用 32X 擴充",
-    },
-}
-_PICODRIVE_DESCRIPTION_OVERRIDES = {
-    "ar-SA": "يحاكي أنظمة Sega التي يدعمها PicoDrive.",
-    "cs-CZ": "Emuluje systémy Sega podporované jádrem PicoDrive.",
-    "da-DK": "Emulerer de Sega-systemer, som PicoDrive understøtter.",
-    "de-DE": "Emuliert die von PicoDrive unterstützten Sega-Systeme.",
-    "el-GR": "Εξομοιώνει τα συστήματα Sega που υποστηρίζει το PicoDrive.",
-    "es-ES": "Emula los sistemas Sega compatibles con PicoDrive.",
-    "fi-FI": "Emuloi PicoDriven tukemia Sega-järjestelmiä.",
-    "fr-FR": "Émule les systèmes Sega pris en charge par PicoDrive.",
-    "he-IL": "מחקה את מערכות Sega הנתמכות על ידי PicoDrive.",
-    "hu-HU": "Emulálja a PicoDrive által támogatott Sega rendszereket.",
-    "id-ID": "Mengemulasikan sistem Sega yang didukung PicoDrive.",
-    "it-IT": "Emula i sistemi Sega supportati da PicoDrive.",
-    "ja-JP": "PicoDrive が対応する Sega システムをエミュレートします。",
-    "ko-KR": "PicoDrive가 지원하는 Sega 시스템을 에뮬레이트합니다.",
-    "nb-NO": "Emulerer Sega-systemene som PicoDrive støtter.",
-    "nl-NL": "Emuleert de Sega-systemen die door PicoDrive worden ondersteund.",
-    "pl-PL": "Emuluje systemy Sega obsługiwane przez PicoDrive.",
-    "pt-BR": "Emula os sistemas Sega compatíveis com o PicoDrive.",
-    "pt-PT": "Emula os sistemas Sega suportados pelo PicoDrive.",
-    "ro-RO": "Emulează sistemele Sega acceptate de PicoDrive.",
-    "ru-RU": "Эмулирует системы Sega, поддерживаемые PicoDrive.",
-    "sv-SE": "Emulerar de Sega-system som stöds av PicoDrive.",
-    "th-TH": "จำลองระบบ Sega ที่ PicoDrive รองรับ",
-    "tr-TR": "PicoDrive tarafından desteklenen Sega sistemlerini emüle eder.",
-    "uk-UA": "Емулює системи Sega, які підтримує PicoDrive.",
-    "vi-VN": "Mô phỏng các hệ thống Sega được PicoDrive hỗ trợ.",
-    "zh-Hans": "模拟 PicoDrive 支持的 Sega 系统。",
-    "zh-Hant": "模擬 PicoDrive 支援的 Sega 系統。",
-}
-for _culture, _value in _PICODRIVE_DESCRIPTION_OVERRIDES.items():
-    TRANSLATION_OVERRIDES.setdefault(_culture, {})[
-        "Emulation.Emulator.picodrive.Description"] = _value
-for _culture, _values in _TECHNICAL_OVERRIDES.items():
-    TRANSLATION_OVERRIDES.setdefault(_culture, {}).update(_values)
-
-for _culture, _values in list(TRANSLATION_OVERRIDES.items()):
-    if "Emulation.Emulator.genesisplusgx.Description" in _values:
-        _values["Emulation.Emulator.GenesisPlusGX.Description"] = _values[
-            "Emulation.Emulator.genesisplusgx.Description"]
-
-_JOYPAD_OVERRIDES = {
-    "ar-SA": "وحدة تحكم Sega", "cs-CZ": "Gamepad Sega", "da-DK": "Sega-gamepad",
-    "de-DE": "Sega-Gamepad", "el-GR": "Χειριστήριο Sega", "es-ES": "Mando Sega",
-    "fi-FI": "Sega-peliohjain", "he-IL": "בקר Sega", "hu-HU": "Sega játékvezérlő",
-    "id-ID": "Gamepad Sega", "it-IT": "Gamepad Sega", "ja-JP": "Segaゲームパッド",
-    "ko-KR": "Sega 게임패드", "nb-NO": "Sega-spillkontroller", "nl-NL": "Sega-gamepad",
-    "pl-PL": "Gamepad Sega", "pt-BR": "Gamepad Sega", "pt-PT": "Gamepad Sega",
-    "ro-RO": "Gamepad Sega", "ru-RU": "Геймпад Sega", "sv-SE": "Sega-handkontroll",
-    "th-TH": "จอยแพด Sega", "tr-TR": "Sega gamepad", "uk-UA": "Геймпад Sega",
-    "vi-VN": "Tay cầm Sega", "zh-Hans": "Sega 游戏手柄", "zh-Hant": "Sega 遊戲手把",
-}
-for _culture, _value in _JOYPAD_OVERRIDES.items():
-    TRANSLATION_OVERRIDES.setdefault(_culture, {})[
-        "Emulation.Sega.Controller.Joypad"] = _value
-
-_MEGA_WORDING_KEYS = {
-    "Emulation.Sega.MegaDrive.MegaCd.Enabled",
-    "Emulation.Sega.MegaDrive.32X",
-    "Emulation.Sega.Help.MegaDrive.MegaCd.Detailed",
-    "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short",
-    "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed",
-    "Emulation.Sega.Help.MegaDrive.32X.Short",
-    "Emulation.Sega.Help.MegaDrive.32X.Detailed",
-}
-for _values in TRANSLATION_OVERRIDES.values():
-    for _key in _MEGA_WORDING_KEYS:
-        _values.pop(_key, None)
-TRANSLATION_OVERRIDES["fr-FR"].update({
-    "Emulation.Sega.MegaDrive.MegaCd.Enabled": "Activer le Mega-CD",
-    "Emulation.Sega.MegaDrive.32X": "Activer le 32X",
-    "Emulation.Sega.Help.MegaDrive.MegaCd.Detailed": "Sélectionne le modèle de Mega-CD I ou Mega-CD II.",
-    "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short": "Mega-CD",
-    "Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed": "Active le Mega-CD. Son lecteur optique est ajouté automatiquement.",
-    "Emulation.Sega.Help.MegaDrive.32X.Short": "32X",
-    "Emulation.Sega.Help.MegaDrive.32X.Detailed": "Active le 32X sur la Mega Drive. Il est désactivé par défaut et les cartouches 32X sont disponibles lorsqu'il est activé.",
-    "Emulation.Emulator.flycast.Description": "Émule les systèmes Sega Dreamcast.",
-    "Emulation.Emulator.yabause.Description": "Émule les systèmes Sega Saturn.",
-    "Emulation.Sega.Controller.Keyboard": "Clavier Sega",
-    "Emulation.Sega.Controller.SegaSg1000Joystick": "Joystick SG-1000",
-    "Emulation.Sega.Controller.SegaSg1000IiJoypad": "Manette SG-1000 II",
-    "Emulation.Sega.Controller.SegaSc3000Keyboard": "Clavier SC-3000",
-    "Emulation.Sega.Controller.SegaMasterSystemController": "Manette Master System",
-    "Emulation.Sega.Controller.SegaGameGearController": "Manette Game Gear",
-    "Emulation.Sega.Controller.SegaMegaDriveThreeButton": "Manette Mega Drive à trois boutons",
-    "Emulation.Sega.Controller.SegaMegaDriveSixButton": "Manette Mega Drive à six boutons",
-    "Emulation.Sega.Controller.SegaArcadePowerStickSixButton": "Arcade Power Stick à six boutons",
-    "Emulation.Sega.Controller.SegaSaturnController": "Manette Saturn",
-    "Emulation.Sega.Controller.SegaDreamcastController": "Manette Dreamcast",
-    "Emulation.Sega.Controller.SegaDreamcastMouse": "Souris Dreamcast",
-    "Emulation.Sega.Controller.SegaDreamcastKeyboard": "Clavier Dreamcast",
-    "Emulation.Sega.Controller.SegaDreamcastLightGun": "Pistolet Dreamcast",
-    "Emulation.Sega.Controller.SegaDreamcastFishingController": "Manette de pêche Dreamcast",
-    "Emulation.Sega.Controller.SegaDreamcastArcadeStick": "Stick arcade Dreamcast",
-    "Emulation.Sega.Controller.SegaDreamcastTwinStick": "Twin Stick Dreamcast",
-    "Emulation.Sega.Controller.SegaDreamcastMaracas": "Maracas Dreamcast",
-    "Emulation.Sega.MasterSystem.Variant": "Modèle de Master System",
-    "Emulation.Sega.MasterSystem.ThreeDGlasses": "Lunettes 3D",
-    "Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled": "Activé",
-    "Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled": "Désactivé",
-    "Emulation.Sega.MegaDrive.Model": "Modèle de Mega Drive",
-    "Emulation.Sega.MegaDrive.Region": "Région",
-    "Emulation.Sega.MegaDrive.VideoStandard": "Norme vidéo",
-    "Emulation.Sega.Help.Firmware.Integrated.Short": "ROM système intégrée au cœur sélectionné.",
-    "Emulation.Sega.Help.Firmware.Integrated.Detailed": "Le cœur sélectionné fournit la ROM système et ne propose aucun fichier de ROM à sélectionner.",
-    "Emulation.Sega.Help.Video.Resolution.Short": "Résolution interne du cœur d'émulation.",
-    "Emulation.Sega.Help.Video.Resolution.Detailed": "Sélectionne une résolution interne proposée par le cœur d'émulation. Ce réglage ne modifie pas la taille de la fenêtre.",
-    "Emulation.Sega.Help.Video.Monitor.Short": "Type de moniteur émulé.",
-    "Emulation.Sega.Help.Video.Monitor.Detailed": "Sélectionne un moniteur Sega couleur, monochrome vert ou monochrome blanc.",
-    "Emulation.Sega.Help.Video.Intensity.Short": "Intensité du moniteur émulé.",
-    "Emulation.Sega.Help.Video.Crop.Short": "Supprimer la bordure externe.",
-    "Emulation.Sega.Help.Audio.FloppySound.Detailed": "Active ou désactive le son mécanique produit par le lecteur de disquettes.",
-    "Emulation.Sega.Help.MasterSystem.Variant.Short": "Modèle de Master System.",
-    "Emulation.Sega.Help.MasterSystem.Variant.Detailed": "Sélectionne le modèle Master System I ou Master System II.",
-    "Emulation.Sega.Help.MasterSystem.ThreeDGlasses.Short": "Lunettes 3D Master System.",
-    "Emulation.Sega.Help.MasterSystem.ThreeDGlasses.Detailed": "Active l'interface des lunettes 3D et réserve le lecteur Sega Card.",
-    "Emulation.Sega.Help.MegaDrive.Model.Short": "Modèle de Mega Drive.",
-    "Emulation.Sega.Help.MegaDrive.Model.Detailed": "Sélectionne le modèle Mega Drive I ou Mega Drive II.",
-    "Emulation.Sega.Help.MegaDrive.Region.Short": "Région de la Mega Drive.",
-    "Emulation.Sega.Help.MegaDrive.Region.Detailed": "Sélectionne le mode automatique, NTSC-U, NTSC-J, PAL ou SECAM.",
-    "Emulation.Sega.Help.MegaDrive.VideoStandard.Short": "Norme vidéo de la Mega Drive.",
-    "Emulation.Sega.Help.MegaDrive.VideoStandard.Detailed": "Sélectionne le mode automatique, 50 Hz ou 60 Hz.",
-    "Emulation.Sega.Help.Cpu.Model.Short": "Processeur de la machine.",
-    "Emulation.Sega.Help.Cpu.Model.Detailed": "Affiche le modèle de processeur fourni par la machine Sega sélectionnée.",
-    "Emulation.Sega.Help.Cpu.Frequency.Short": "Fréquence du processeur.",
-    "Emulation.Sega.Help.Audio.Enabled.Short": "Activer le son émulé.",
-    "Emulation.Sega.Help.Audio.Output.Short": "Sortie audio.",
-    "Emulation.Error.ExternalCore.HostConfigurationInvalid": "La configuration de l'hôte du cœur d'émulation est invalide.",
-})
-
 PLACEHOLDER_PATTERN = re.compile(r"\{[^{}\r\n]+\}")
 STRUCTURAL_TOKEN_PATTERN = re.compile(
-    r"\{[^{}\r\n]+\}(?:\.{1,3}|[,;:!?…])?|\r\n|\r|\n|\*[^|\s]*|\|"
+    r"\{[^{}\r\n]+\}|\r\n|\r|\n|\*[^|\s]*|\|"
 )
-# TODO: Keep the term "Scanline" unchanged in every language while still allowing
-# Argos to translate and grammatically reorder the complete surrounding label.
-# TODO: Review Classification.Machine, Classification.Format and
-# Classification.Protection in every language; a valid translation may be
-# spelled exactly like the English source and must not be replaced arbitrarily.
-# TODO: Review every Common.Representation.* translation in its technical media
-# context, especially Flux, Sectors, Blocks, OpticalTracks and Sequential.
-PROTECTED_TOKEN_PATTERN = re.compile(
+PROTECTED_TOKEN_SOURCE = (
     STRUCTURAL_TOKEN_PATTERN.pattern + r"|"
+    r"(?<![\w-])GW GUI(?![\w-])|"
+    r"\$[0-9A-Fa-f]+|"
+    r"\d+(?:[.,]\d+)?\s*(?:Hz|kHz|MHz|GHz|KB|MB|GB)|"
+    r"(?<![\w-])(?:[A-Z][A-Za-z0-9-]*\s+)+[IVX]+(?![\w-])|"
     r"(?<![\w.-])[\w-]+\.[A-Za-z0-9]+(?![\w.-])|"
-    r"(?<![\w.-])(?:GenesisPlusGX|Flycast|Yabause|Caprice32|PUAE|Libretro|"
-    r"Dolphin|Snes9x|Citra|Mesen|MelonDS|Mupen64Plus-Next|Gambatte|mGBA|"
-    r"PPSSPP|PCSX2|SwanStation|BeetlePCE|BeetlePC-FX|GameWatch|GW GUI|"
-    r"SG-1000|SC-3000|Mark III|Master System|Game Gear|Mega Drive|Genesis|"
-    r"Mega-CD|Sega CD|32X|Saturn|Dreamcast|Light Phaser|Mega Mouse|Menacer|"
-    r"Sports Pad|Paddle Control|Handle Controller|Arcade Power Stick|XE-1 AP|"
-    r"Activator|Virtua Gun|Shuttle Mouse|Mission Stick|Arcade Racer|Twin Stick|"
-    r"Virtua Stick|Maracas)(?![\w.-])|"
     r"(?<![A-Za-z])[A-Z][A-Z0-9+.-]{1,}(?![A-Za-z])"
 )
+
+
+def protected_token_pattern(root: Path) -> re.Pattern[str]:
+    base = root / "00-Base"
+    names: set[str] = set()
+    family_names: set[str] = set()
+    emulator_ids: set[str] = set()
+    values: list[str] = []
+    manufacturer = (
+        root.parent.name.rsplit(".", 1)[-1]
+        if root.parent.name.startswith("GWGUI.Emulation.") else None
+    )
+    if manufacturer:
+        names.add(manufacturer)
+    for path in base.rglob("*.resx"):
+        for key, value in read_entries(path).items():
+            values.append(value)
+            if key.startswith("Emulation.Family.") and value:
+                family_names.add(value)
+            if key.startswith("Emulation.Emulator."):
+                emulator_ids.add(key.split(".")[2])
+            if path.stem in {"Model", "Machine"} or (
+                ".Model." in key and ".Help." not in key
+            ):
+                for part in value.split(" / "):
+                    name = part.strip()
+                    if name:
+                        names.add(name)
+    for emulator_id in emulator_ids:
+        pattern = re.compile(r"(?<![\w-])" + re.escape(emulator_id) + r"(?![\w-])", re.IGNORECASE)
+        names.update(match.group(0) for value in values for match in pattern.finditer(value))
+    if manufacturer:
+        names.update(name[len(manufacturer) + 1:] for name in tuple(names)
+                     if name.startswith(manufacturer + " "))
+    for name in tuple(names):
+        for family in family_names:
+            if name.startswith(family + " "):
+                names.add(name[len(family) + 1:])
+    names.update(family_names)
+    if not names:
+        return re.compile(PROTECTED_TOKEN_SOURCE)
+
+    invariant_pattern = r"(?<![\w-])(?:" + "|".join(
+        re.escape(name) for name in sorted(names, key=len, reverse=True)
+    ) + r")(?![\w-])"
+    return re.compile(invariant_pattern + r"|" + PROTECTED_TOKEN_SOURCE)
+
+
+PROTECTED_TOKEN_PATTERN = re.compile(PROTECTED_TOKEN_SOURCE)
 RESOURCE_ENTRY_BLOCK_PATTERN = re.compile(
     r"(?P<indent>[ \t]*)<(?P<tag>data|resheader)\b[^>]*>.*?</(?P=tag)>[ \t]*(?P<newline>\r?\n)?",
     re.MULTILINE | re.DOTALL,
@@ -442,11 +95,76 @@ def read_entries(path: Path) -> dict[str, str]:
     }
 
 
+def create_empty_catalog(path: Path, source: Path) -> None:
+    if path.exists():
+        return
+    template = RESOURCE_ENTRY_BLOCK_PATTERN.sub(
+        lambda match: "" if match.group("tag") == "data" else match.group(0),
+        source.read_text(encoding="utf-8"),
+    )
+    ET.fromstring(template)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(template, encoding="utf-8", newline="")
+
+
 def read_catalogs(root: Path, pattern: str = "*.resx") -> dict[str, dict[str, str]]:
-    return {
+    catalogs = {
         path.relative_to(root).as_posix(): read_entries(path)
         for path in sorted(root.rglob(pattern))
     }
+    if root.name == "en-US":
+        for catalog, entries in catalogs.items():
+            base_path = root.parent / "00-Base" / catalog
+            base_entries = read_entries(base_path) if base_path.exists() else {}
+            catalogs[catalog] = {
+                key: value for key, value in entries.items()
+                if base_entries.get(key) != value
+                or PROTECTED_TOKEN_PATTERN.fullmatch(value) is None
+            }
+    return catalogs
+
+
+def protected_tokens_preserved(source: str, candidate: str) -> bool:
+    # CJK particles may immediately follow a Latin name: regex word boundaries
+    # on the translated text would incorrectly treat that name as missing.
+    literals = set(PROTECTED_TOKEN_PATTERN.findall(source))
+    return all(candidate.count(token) == source.count(token) for token in literals)
+
+
+def translate_around_protected_tokens(
+    source: str, tokenizer, translator: ctranslate2.Translator,
+) -> str:
+    parts: list[str] = []
+    fragments: list[str] = []
+    positions: list[int] = []
+
+    def add_fragment(fragment: str) -> None:
+        if not any(character.isalnum() for character in fragment):
+            parts.append(fragment)
+            return
+        leading = fragment[:len(fragment) - len(fragment.lstrip())]
+        trailing = fragment[len(fragment.rstrip()):]
+        parts.append(leading)
+        positions.append(len(parts))
+        parts.append("")
+        parts.append(trailing)
+        fragments.append(fragment.strip())
+
+    position = 0
+    for match in PROTECTED_TOKEN_PATTERN.finditer(source):
+        add_fragment(source[position:match.start()])
+        parts.append(match.group(0))
+        position = match.end()
+    add_fragment(source[position:])
+
+    if fragments:
+        results = translator.translate_batch(
+            [tokenizer.encode(fragment) for fragment in fragments],
+            beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3,
+        )
+        for index, result in zip(positions, results):
+            parts[index] = tokenizer.decode(result.hypotheses[0]).strip()
+    return "".join(parts)
 
 
 def translate_preserving_placeholders(
@@ -458,10 +176,13 @@ def translate_preserving_placeholders(
     whitespace: list[tuple[str, str]] = []
     for text in texts:
         encoded_text: list[tuple[str, int | str]] = []
-        for part in re.split(f"({PROTECTED_TOKEN_PATTERN.pattern})", text):
+        # A technical name must not split a sentence into unrelated fragments.
+        # File-filter separators, line breaks and complete sentences delimit labels.
+        for part in re.split(r"(\r\n|\r|\n|\||(?<=\.)\s+(?=[A-Z]))", text):
             if not part:
                 continue
-            if PROTECTED_TOKEN_PATTERN.fullmatch(part):
+            remaining = PROTECTED_TOKEN_PATTERN.sub("", part)
+            if not any(character.isalnum() for character in remaining):
                 encoded_text.append(("literal", part))
                 continue
             leading = part[:len(part) - len(part.lstrip())]
@@ -485,7 +206,9 @@ def translate_preserving_placeholders(
         encoded_segments.append(encoded_text)
 
     source_tokens = [tokenizer.encode(text) for text in source_segments]
-    results = translator.translate_batch(source_tokens, beam_size=1) if source_tokens else []
+    results = translator.translate_batch(
+        source_tokens, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3
+    ) if source_tokens else []
     translated_segments = [tokenizer.decode(result.hypotheses[0]).strip() for result in results]
     contextual_indexes = [
         index for index, (source, translated) in enumerate(zip(source_segments, translated_segments))
@@ -496,7 +219,9 @@ def translate_preserving_placeholders(
             tokenizer.encode(f"Interface label: {source_segments[index]}")
             for index in contextual_indexes
         ]
-        contextual_results = translator.translate_batch(contextual_tokens, beam_size=1)
+        contextual_results = translator.translate_batch(
+            contextual_tokens, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3
+        )
         for index, result in zip(contextual_indexes, contextual_results):
             contextual = tokenizer.decode(result.hypotheses[0]).strip()
             if ":" not in contextual:
@@ -504,6 +229,74 @@ def translate_preserving_placeholders(
             candidate = contextual.split(":", 1)[1].strip()
             if candidate:
                 translated_segments[index] = candidate
+    for index, (source, translated) in enumerate(zip(source_segments, translated_segments)):
+        if source != translated or not PROTECTED_TOKEN_PATTERN.search(source):
+            continue
+        candidate = translate_around_protected_tokens(source, tokenizer, translator)
+        if candidate != source and protected_tokens_preserved(source, candidate):
+            translated_segments[index] = candidate
+    # Translate the whole sentence again with reversible markers if a model
+    # changed a proper name, a hexadecimal value or a formatting parameter.
+    masked_indexes: list[int] = []
+    masked_sources: list[str] = []
+    marker_maps: list[dict[str, str]] = []
+    for index, (source, translated) in enumerate(zip(source_segments, translated_segments)):
+        if protected_tokens_preserved(source, translated):
+            continue
+        markers: dict[str, str] = {}
+
+        def mask(match: re.Match[str]) -> str:
+            marker = f"987650{len(markers)}09876"
+            markers[marker] = match.group(0)
+            return marker
+
+        masked_indexes.append(index)
+        masked_sources.append(PROTECTED_TOKEN_PATTERN.sub(mask, source))
+        marker_maps.append(markers)
+    if masked_sources:
+        masked_results = translator.translate_batch(
+            [tokenizer.encode(source) for source in masked_sources],
+            beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3,
+        )
+        for index, result, markers in zip(masked_indexes, masked_results, marker_maps):
+            candidate = tokenizer.decode(result.hypotheses[0]).strip()
+            restored = False
+            for attempt in range(3):
+                restored_candidate = candidate
+                counts = []
+                for marker, literal in markers.items():
+                    marker_pattern = r"\s*".join(re.escape(character) for character in marker)
+                    if marker.startswith("["):
+                        digits = r"\s*".join(marker[1:-1])
+                        marker_pattern = r"[\[(]?\s*" + digits + r"\s*[\])]?"
+                    restored_candidate, count = re.subn(marker_pattern, lambda _: literal, restored_candidate, flags=re.IGNORECASE)
+                    counts.append(count)
+                if all(count == 1 for count in counts) and protected_tokens_preserved(source_segments[index], restored_candidate):
+                    candidate = restored_candidate
+                    restored = True
+                    break
+                if attempt == 2:
+                    break
+                markers = {}
+                def retry_mask(match: re.Match[str]) -> str:
+                    marker = f"ZXQ{len(markers)}QXZ" if attempt == 0 else f"[{1000 + len(markers)}]"
+                    markers[marker] = match.group(0)
+                    return marker
+                retry_source = PROTECTED_TOKEN_PATTERN.sub(retry_mask, source_segments[index])
+                retry_result = translator.translate_batch(
+                    [tokenizer.encode(retry_source)], beam_size=4,
+                    repetition_penalty=1.2, no_repeat_ngram_size=3,
+                )[0]
+                candidate = tokenizer.decode(retry_result.hypotheses[0]).strip()
+            if not restored:
+                candidate = translate_around_protected_tokens(
+                    source_segments[index], tokenizer, translator,
+                )
+                if not protected_tokens_preserved(source_segments[index], candidate):
+                    raise RuntimeError(
+                        f"Argos changed protected tokens in {source_segments[index]!r}: {candidate!r}"
+                    )
+            translated_segments[index] = candidate
     translated_texts: list[str] = []
     for encoded_text in encoded_segments:
         parts: list[str] = []
@@ -520,43 +313,12 @@ def translate_preserving_placeholders(
 
 def translate_entries(
     entries: list[tuple[str, str]], tokenizer, translator: ctranslate2.Translator,
-    culture: str | None = None,
     force_context: bool = False,
 ) -> list[str]:
-    sources = [CONTEXTUAL_LABEL_SOURCES.get(key, english) for key, english in entries]
-    translated = translate_preserving_placeholders(
-        sources,
-        tokenizer,
-        translator,
+    return translate_preserving_placeholders(
+        [english for _, english in entries], tokenizer, translator,
         force_context=force_context,
     )
-    overrides = dict(CONTEXTUAL_LABEL_OVERRIDES.get(culture or "", {}))
-    overrides.update(TRANSLATION_OVERRIDES.get(culture or "", {}))
-    values = [overrides.get(key, value) for (key, _), value in zip(entries, translated)]
-    if culture == "fr-FR":
-        normalized: list[str] = []
-        for (key, _), value in zip(entries, values):
-            if key.startswith("Emulation.Error.ExternalCore."):
-                for source, target in (
-                    ("noyau d'émulation", "cœur d'émulation"),
-                    ("noyau de l'émulation", "cœur d'émulation"),
-                    ("noyau d'hôte d'émulation", "hôte du cœur d'émulation"),
-                    ("base d'émulation", "cœur d'émulation"),
-                    ("base de l'émulation", "cœur d'émulation"),
-                    ("hôte central de l'émulation", "hôte du cœur d'émulation"),
-                    ("hôte central d'émulation", "hôte du cœur d'émulation"),
-                    ("disque central d'émulation", "disque du cœur d'émulation"),
-                    ("processus de noyau d'émulation", "processus du cœur d'émulation"),
-                    ("ne pouvait pas sélectionner", "n'a pas pu sélectionner"),
-                    ("les médias sélectionnés", "le média sélectionné"),
-                    ("Les GW GUI exécutable", "L'exécutable GW GUI"),
-                    ("ne supporte pas", "ne prend pas en charge"),
-                    ("la commande inconnue", "une commande inconnue"),
-                ):
-                    value = value.replace(source, target)
-            normalized.append(value)
-        values = normalized
-    return values
 
 
 def remove_entries_not_in_source(path: Path, source_entries: dict[str, str]) -> int:
@@ -604,11 +366,11 @@ def remove_duplicate_keys(path: Path) -> int:
 
 
 def placeholder_signature(value: str) -> tuple[str, ...]:
-    return tuple(sorted(set(PLACEHOLDER_PATTERN.findall(value))))
+    return tuple(sorted(PLACEHOLDER_PATTERN.findall(value)))
 
 
 def protected_signature(value: str) -> tuple[str, ...]:
-    return tuple(STRUCTURAL_TOKEN_PATTERN.findall(value))
+    return tuple(sorted(STRUCTURAL_TOKEN_PATTERN.findall(value)))
 
 
 def contains_untranslated_english_run(english: str, translated: str) -> bool:
@@ -793,6 +555,8 @@ def main() -> None:
         help="RESX root containing 00-Base and culture directories (application or module)")
     args = parser.parse_args()
     root = args.root
+    global PROTECTED_TOKEN_PATTERN
+    PROTECTED_TOKEN_PATTERN = protected_token_pattern(root)
 
     if args.audit:
         audit_resources(root)
@@ -851,7 +615,6 @@ def main() -> None:
                 [(key, english) for _, key, english in pending],
                 installed_package.tokenizer,
                 translator,
-                culture=culture,
                 force_context=True,
             )
             for (target_path, key, _), value in zip(pending, translated_values):
@@ -900,6 +663,7 @@ def main() -> None:
             pending: list[tuple[Path, str, str]] = []
             for catalog, english_entries in english_catalogs.items():
                 target_path = root / culture / Path(catalog)
+                create_empty_catalog(target_path, root / "en-US" / Path(catalog))
                 target_entries = read_entries(target_path)
                 for key, english in english_entries.items():
                     current = target_entries.get(key)
@@ -907,7 +671,7 @@ def main() -> None:
                         pending.append((target_path, key, english))
 
             translated_values = translate_entries(
-                [(key, english) for _, key, english in pending], tokenizer, translator, culture=culture
+                [(key, english) for _, key, english in pending], tokenizer, translator
             )
             updates_by_path: dict[Path, list[tuple[str, str]]] = {}
             for (target_path, key, _), value in zip(pending, translated_values):
@@ -943,7 +707,7 @@ def main() -> None:
         translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
         tokenizer = installed_package.tokenizer
         translated_values = translate_entries(
-            translatable_entries, tokenizer, translator, culture=culture
+            translatable_entries, tokenizer, translator
         )
         for (key, _), value in zip(translatable_entries, translated_values):
             insert(root / culture / args.resource, key, value, args.replace)

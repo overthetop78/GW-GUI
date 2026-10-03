@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>可供模拟机器使用的金额为RAM美元。</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>显示选中的Nintendo机器提供的RAM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>系统ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>显示所选机器和模拟器的系统ROM状态。</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Nintendo机型正在配置中.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>为此机器所选择的模拟器 。</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>识别用于运行此机器配置的模拟器执行 。</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>处理器仿制了此机器 。</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>显示所选的Nintendo机提供的处理器模型.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>原始处理器时钟频率.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>在所选的Nintendo相机中显示处理器的标称时钟频率.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>启用或禁用模拟声音 。</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>控制 GW GUI 是否播放模拟器生成的音频样本 。</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>GW GUI 使用的音频输出.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>选择用于播放此仿真机声音的 Windows 音频输出 。</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>确定正在编辑其硬件配置的Nintendo型号.</value></data>
+</root>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari joystick</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>מפתח Numeric keypad</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>מהירות התנועה</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>בעוד כפתור האש מוחזק למטה</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>תמיד</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>תאימות בקר</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>רגישות דיגיטלית</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>רגישות Analog</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>שני סוגי שמחה שהשתמשו יחד</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>נמלים Swap</value></data>
+</root>

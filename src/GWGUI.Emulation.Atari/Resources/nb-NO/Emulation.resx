@@ -4,96 +4,38 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Denne verdien bestemmes av den valgte modellen.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Ingen kompatibel FPU er tilgjengelig for denne modellen.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Ingen alternativ minne er tilgjengelig for denne modellen.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Denne modellen har ingen konfigurerbare firmware.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Denne modellen har ikke noe tastatur.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Denne modellen har ingen mus.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Denne modellen har ingen lagringsmedier.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>Velg Jaguar CD-modellen for å bruke CD-medier.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Region</value></data>
   <data name="Emulation.Atari.Firmware.Multilingual"><value>Flerspråklig</value></data>
   <data name="Emulation.Atari.Video.RegionFree"><value>Regionsfri</value></data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Den nødvendige Atari kjernen ble ikke funnet.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Den valgte Atari kjernen kunne ikke lastes.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>En nødvendig Atari firmware mangler.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>En Atari fastvare er ugyldig eller uforenlig.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Det konfigurerte Atari-mediet ble ikke funnet.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Konfigurerte medier støttes ikke av denne Atari-maskinen.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Et Atari-alternativ har en ugyldig verdi.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikasjon med Atari-værten mislyktes.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atari lagret tilstand er ugyldig.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atari lagret tilstand er ikke kompatibel med gjeldende maskin.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>En uventet Atari emuleringsfeil oppstod.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Den aktive Atari-konfigurasjonen kan ikke endres eller slettes.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Nødvendig Atari-firmware \"{0}\" er ikke konfigurert for {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Konfigurert Atari firmware '{0}' ble ikke funnet: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Konfigurert Atari medie ble ikke funnet: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atari vert kjørbar bane er ikke tilgjengelig.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Atarikjernen '{0}' er ikke installert.</value></data>
   <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle filer|*.*</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numerisk tastatur</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Hurtig oppstart</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM utvidelse</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM utvidelse</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankskygge</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Høyoppløste artefakter</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-akselerasjon</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Start fra kassett</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Operativsystemrevisjon</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Intern BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC-revisjon</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Bevegelseshastighet for paddles</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automatisk ild</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Mens ildknappen holdes inne</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Alltid</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Fargetone</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Metning</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontrast</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Lysstyrke</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA-fargeforsinkelse</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Ekstern palett</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Kontrollerkompatibilitet</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digital følsomhet</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analog følsomhet</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Dobbel styrespak</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Bytt porter</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Vis emuleringshastighet</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Vis sektor-/blokkteller</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8-sanntidsklokke</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P:-skriverenhet</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R:-seriell enhet</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle kontroller</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 lett pistol</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari kjørekontrollør</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar-kontrolleren</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ kontroller</value></data>
+  <data name="Emulation.Atari.FastBoot"><value>Rask oppstart</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Minneutvidelse (Mosaic RAM)</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Minneutvidelse (Axlon RAM)</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow"><value>Minne bankspeil (Axlon $0F)</value></data>
+  <data name="Emulation.Atari.Memory.MapRam"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Video.Artifacting"><value>Hi-res artefacting</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration"><value>SIO akselerasjon</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot"><value>Støvle fra kassett</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision"><value>Revidering av operativsystemet</value></data>
+  <data name="Emulation.Atari.Video.Hue"><value>Hue</value></data>
+  <data name="Emulation.Atari.Video.Saturation"><value>Metning</value></data>
+  <data name="Emulation.Atari.Video.Contrast"><value>Kontrast</value></data>
+  <data name="Emulation.Atari.Video.Brightness"><value>Lysstyrke</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay"><value>GTIA fargeforsinkelse</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette"><value>Ekstern palett</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd"><value>Vis emuleringshastighet på skjermen</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd"><value>Vis antall sektorer og blokker</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock"><value>R-Time 8 i sanntid klokke</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice"><value>P: skriverenhet</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice"><value>R: serieenhet</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blå/brun 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blå/brun 2</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>Atari joystick</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>Region</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo"><value>Stereo POKEY</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>emulgerer Atari ST, STE, TT Falcon datamaskiner.</value></data>
-  <data name="Emulation.Emulator.atari800.Description"><value>Emulgerer Atari 8-bits datamaskiner og Atari 5200 konsollen.</value></data>
-  <data name="Emulation.Emulator.stella2023.Description"><value>I tillegg til Atari 2600-konsollen.</value></data>
-  <data name="Emulation.Emulator.prosystem.Description"><value>Emulerer Atari 7800 konsollen.</value></data>
-  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulerer det bærbare Atari Lynx spillsystemet.</value></data>
-  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>I tillegg til Atari Jaguar og Jaguar CD konsoller.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Den valgte Atari emulatoren bruker ikke den delte patronkontrollen.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Den valgte Atari-maskinen krever patronmedier.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Patronutvidelsen støttes ikke av den valgte Atari emulatoren.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari-patronen kan ikke åpnes for lesing.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atariemulatoren avviste erstatningspatronen.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atariemulatoren avviste både erstatningen og den forrige patronen.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Denne Atari emulatoren kan ikke forbli påført uten en cylinderampull.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Den valgte Atari emulatoren utsettes ikke for markering av patronområde.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Denne Atari emulatoren kan ikke bruke patronens tidsmodus som heter SECAM.</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emulerer datamaskin (Atari ST/STE/TT/Falcon).</value></data>
+  <data name="Emulation.Emulator.atari800.Description"><value>Emulgerer Atari 8-bits datamaskin og Atari 5200 konsollen.</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Emulerer Atari 2600-konsollen.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Emulerer Atari 7800-konsollen.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emulerer det bærbare Atari Lynx-spillsystemet.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulerer spillkonsoller (Atari Jaguar/Jaguar CD6).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Lydavspilling er aktivert</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Lydavspilling er deaktivert</value></data>
 </root>

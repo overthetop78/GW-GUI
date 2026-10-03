@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>Kho lưu đã tải về không chứa các PCSX2 thư viện.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 Từ chối tải nội dung đã chọn.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>Hạt PCSX2 Không tìm thấy thư viện.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>Hạt PCSX2 Bản chất chưa được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>Hạt PCSX2 thư viện chưa tải.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>Hạt PCSX2 Đường dẫn thư viện phải tuyệt đối.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>Hạt PCSX2 Điều khiển ổ đĩa không đầy đủ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 không cung cấp điều khiển đĩa.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 trả lại một nhãn đĩa không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>Tải về PCSX2 Thư viện có một đầu đề Windows không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>Tải về PCSX2 Thư viện không phải là thư viện Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>Tải về PCSX2 Thư viện không phải là thư viện x64.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 không chấp nhận đầy đủ các đường nội dung cần thiết.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>Hạt PCSX2 cấu hình máy không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>Hạt GW GUI Thực hiện được dùng để máy PCSX2 không tìm thấy.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>Hạt PCSX2 máy không phải là khởi động.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>Hạt PCSX2 chủ nhà không trả lời.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>Giá trị {0} không hợp lệ cho PCSX2 tùy chọn {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>Hạt PCSX2 Máy trả lời không hợp lệ: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 trả về một kích cỡ tiểu bang không hợp lệ: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>Thư viện đã chọn tự nhận dạng {0} thay vì PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 không thể đẩy ra được các phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 không thể chèn các phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>Không tìm thấy tập tin phương tiện đã chọn.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 Từ chối phương tiện truyền thông được chọn.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 không thể chọn phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 không thể tạo một khe phương tiện.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>Quá nhiều đĩa đã được chọn cho PCSX2 danh sách nhạc.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>Hạt PCSX2 tiến trình đã được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Liên lạc với PCSX2 Quá trình bị lỗi: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>Hạt PCSX2 tiến trình không được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>Hạt PCSX2 Không thể khởi chạy tiến trình.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>Hạt PCSX2 Quá trình không đáp ứng kịp thời.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>Hạt PCSX2 tiến trình không sẵn sàng.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 không thể chọn đĩa đã yêu cầu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 không thể chèn các phương tiện đã yêu cầu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>Cái này PCSX2 Trung tâm không thể bắt đầu nếu không có phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>Tình trạng đã lưu trống.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 không thể phục hồi tình trạng đã lưu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 không thể lưu tình trạng hiện thời.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 đã trả lại một lựa chọn lõi chưa rõ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>Hạt PCSX2 máy nhận lệnh lạ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>Hạt PCSX2 lõi API phiên bản {0} không được hỗ trợ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 không hỗ trợ phần mở rộng nội dung {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 trả lại định dạng điểm ảnh không được hỗ trợ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>Hạt PCSX2 Bộ đệm phim không sẵn sàng.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>Kho lưu đã tải về không chứa các PPSSPP thư viện.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP Từ chối tải nội dung đã chọn.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>Hạt PPSSPP Không tìm thấy thư viện.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>Hạt PPSSPP Bản chất chưa được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>Hạt PPSSPP thư viện chưa tải.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>Hạt PPSSPP Đường dẫn thư viện phải tuyệt đối.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>Hạt PPSSPP Điều khiển ổ đĩa không đầy đủ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP không cung cấp điều khiển đĩa.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP trả lại một nhãn đĩa không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>Tải về PPSSPP Thư viện có một đầu đề Windows không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>Tải về PPSSPP Thư viện không phải là thư viện Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>Tải về PPSSPP Thư viện không phải là thư viện x64.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP không chấp nhận đầy đủ các đường nội dung cần thiết.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>Hạt PPSSPP cấu hình máy không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>Hạt GW GUI Thực hiện được dùng để máy PPSSPP không tìm thấy.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>Hạt PPSSPP máy không phải là khởi động.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>Hạt PPSSPP chủ nhà không trả lời.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>Giá trị {0} không hợp lệ cho PPSSPP tùy chọn {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>Hạt PPSSPP Máy trả lời không hợp lệ: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP trả về một kích cỡ tiểu bang không hợp lệ: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>Thư viện đã chọn tự nhận dạng {0} thay vì PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP không thể đẩy ra được các phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP không thể chèn các phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>Không tìm thấy tập tin phương tiện đã chọn.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP Từ chối phương tiện truyền thông được chọn.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP không thể chọn phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP không thể tạo một khe phương tiện.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>Quá nhiều đĩa đã được chọn cho PPSSPP danh sách nhạc.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>Hạt PPSSPP tiến trình đã được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Liên lạc với PPSSPP Quá trình bị lỗi: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>Hạt PPSSPP tiến trình không được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>Hạt PPSSPP Không thể khởi chạy tiến trình.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>Hạt PPSSPP Quá trình không đáp ứng kịp thời.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>Hạt PPSSPP tiến trình không sẵn sàng.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP không thể chọn đĩa đã yêu cầu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP không thể chèn các phương tiện đã yêu cầu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>Cái này PPSSPP Trung tâm không thể bắt đầu nếu không có phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>Tình trạng đã lưu trống.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP không thể phục hồi tình trạng đã lưu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP không thể lưu tình trạng hiện thời.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP đã trả lại một lựa chọn lõi chưa rõ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>Hạt PPSSPP máy nhận lệnh lạ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>Hạt PPSSPP lõi API phiên bản {0} không được hỗ trợ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP không hỗ trợ phần mở rộng nội dung {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP trả lại định dạng điểm ảnh không được hỗ trợ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>Hạt PPSSPP Bộ đệm phim không sẵn sàng.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>Kho lưu đã tải về không chứa các SwanStation thư viện.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation Từ chối tải nội dung đã chọn.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>Hạt SwanStation Không tìm thấy thư viện.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>Hạt SwanStation Bản chất chưa được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>Hạt SwanStation thư viện chưa tải.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>Hạt SwanStation Đường dẫn thư viện phải tuyệt đối.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>Hạt SwanStation Điều khiển ổ đĩa không đầy đủ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation không cung cấp điều khiển đĩa.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation trả lại một nhãn đĩa không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>Tải về SwanStation Thư viện có một đầu đề Windows không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>Tải về SwanStation Thư viện không phải là thư viện Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>Tải về SwanStation Thư viện không phải là thư viện x64.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation không chấp nhận đầy đủ các đường nội dung cần thiết.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>Hạt SwanStation cấu hình máy không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>Hạt GW GUI Thực hiện được dùng để máy SwanStation không tìm thấy.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>Hạt SwanStation máy không phải là khởi động.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>Hạt SwanStation chủ nhà không trả lời.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>Giá trị {0} không hợp lệ cho SwanStation tùy chọn {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>Hạt SwanStation Máy trả lời không hợp lệ: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation trả về một kích cỡ tiểu bang không hợp lệ: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>Thư viện đã chọn tự nhận dạng {0} Thay vì là SwanStation.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation không thể đẩy ra được các phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation không thể chèn các phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>Không tìm thấy tập tin phương tiện đã chọn.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation Từ chối phương tiện truyền thông được chọn.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation không thể chọn phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation không thể tạo một khe phương tiện.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>Quá nhiều đĩa đã được chọn cho SwanStation danh sách nhạc.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>Hạt SwanStation tiến trình đã được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Liên lạc với SwanStation Quá trình bị lỗi: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>Hạt SwanStation tiến trình không được khởi tạo.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>Hạt SwanStation Không thể khởi chạy tiến trình.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>Hạt SwanStation Quá trình không đáp ứng kịp thời.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>Hạt SwanStation tiến trình không sẵn sàng.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation không thể chọn đĩa đã yêu cầu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation không thể chèn các phương tiện đã yêu cầu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>Cái này SwanStation Trung tâm không thể bắt đầu nếu không có phương tiện truyền thông.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>Tình trạng đã lưu trống.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation không thể phục hồi tình trạng đã lưu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation không thể lưu tình trạng hiện thời.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation đã trả lại một lựa chọn lõi chưa rõ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>Hạt SwanStation máy nhận lệnh lạ {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>Hạt SwanStation lõi API phiên bản {0} không được hỗ trợ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation không hỗ trợ phần mở rộng nội dung {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation trả lại định dạng điểm ảnh không được hỗ trợ {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>Hạt SwanStation Bộ đệm phim không sẵn sàng.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>Kho lưu đã tải về không chứa thư viện PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 từ chối tải nội dung đã chọn.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>Không tìm thấy thư viện PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>Trung tâm PCSX2 chưa được khởi tạo.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>Chưa tải thư viện PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>Đường dẫn thư viện PCSX2 phải tuyệt đối.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>Điều khiển đĩa PCSX2 không đầy đủ.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 không cung cấp điều khiển đĩa.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 trả về một nhãn đĩa không hợp lệ.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>Thư viện PCSX2 đã tải về có một tiêu đề Windows không hợp lệ.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>Thư viện PCSX2 đã tải về không phải là thư viện Windows.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>Thư viện PCSX2 đã tải về không phải là thư viện x64.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 không chấp nhận các đường nội dung cần thiết.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>Cấu hình máy PCSX2 không hợp lệ.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>Không tìm thấy tập tin thực hiện GW GUI dùng để chứa PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>Máy PCSX2 chưa được khởi tạo.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>Máy PCSX2 không trả lời.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>Giá trị {0} không hợp lệ cho PCSX2 tùy chọn {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>Máy PCSX2 trả lại độ dài phản hồi không hợp lệ:{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 đã trả lại một kích cỡ tiểu liên không hợp lệ:{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>Thư viện đã chọn tự nhận diện mình là{0} thay vì là PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 không thể đẩy ra phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 không thể chèn các phương tiện.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>Không tìm thấy tập tin phương tiện đã chọn.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 từ chối phương tiện truyền thông được chọn.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 không thể chọn phương tiện.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 không thể tạo một khe cắm phương tiện.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>Quá nhiều đĩa đã được chọn cho danh sách nhạc PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>Quá trình PCSX2 đã được khởi tạo.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Liên lạc với tiến trình PCSX2 thất bại: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>Tiến trình PCSX2 không được khởi tạo.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>Không thể khởi chạy tiến trình PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>Quá trình PCSX2 đã không phản ứng kịp thời.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>Quá trình PCSX2 không sẵn sàng.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 không thể chọn đĩa đã yêu cầu.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 không thể chèn phương tiện đã yêu cầu.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>Cái lõi PCSX2 này không thể khởi động nếu thiếu phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>Tình trạng đã được lưu trống.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 không thể phục hồi tình trạng đã lưu.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 không thể lưu tình trạng hiện thời.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 đã trả lại một tùy chọn lõi chưa biết.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>Số PCSX2 người đã nhận được lệnh chưa được biết là {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>Hạt PCSX2 lõi API phiên bản {0} không được hỗ trợ.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 không hỗ trợ phần mở rộng nội dung{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 đã trả lại định dạng điểm ảnh không được hỗ trợ{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>Bộ đệm phim PCSX2 không sẵn sàng.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>Kho lưu trữ đã tải về không chứa thư viện PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP từ chối tải nội dung đã chọn.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>Không tìm thấy thư viện PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>Cái lõi PPSSPP không được khởi tạo.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>Thư viện PPSSPP chưa có đạn.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>Con đường PPSSPP của thư viện phải tuyệt đối.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>Hệ thống điều khiển PPSSPP ổ đĩa không đầy đủ.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP không cung cấp điều khiển đĩa.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP trả lại một nhãn đĩa không hợp lệ.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>Thư viện PPSSPP đã tải về có một tiêu đề Windows không hợp lệ.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>Thư viện PPSSPP đã tải về không phải là thư viện Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>Thư viện PPSSPP đã tải về không phải là thư viện x64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP không chấp nhận đường dẫn đầy đủ cần thiết.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>Cấu hình máy PPSSPP không hợp lệ.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>Không tìm thấy tập tin thực hiện GW GUI dùng để chứa PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>Máy PPSSPP chưa được khởi chạy.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>Máy PPSSPP không trả lời.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>Giá trị {0} không hợp lệ cho PPSSPP tùy chọn {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>Vật chủ PPSSPP trả lại một độ dài phản hồi không hợp lệ: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP trả lại một kích thước không hợp lệ: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>Thư viện đã chọn tự nhận diện là{0} thay vì PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP không thể đẩy ra phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP không thể chèn các phương tiện.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>Không tìm thấy tập tin phương tiện đã chọn.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP từ chối phương tiện truyền thông được chọn.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP không thể chọn phương tiện.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP không thể tạo một khe đa phương tiện.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>Quá nhiều đĩa đã được chọn cho danh sách nhạc PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>Quá trình PPSSPP đã được khởi động.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Liên lạc với tiến trình PPSSPP thất bại:{0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>Quá trình PPSSPP không được khởi tạo.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>Không thể khởi chạy tiến trình PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>Quá trình PPSSPP đã không đáp ứng kịp thời.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>Quá trình PPSSPP không có sẵn.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP không thể chọn đĩa đã yêu cầu.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP không thể chèn phương tiện đã yêu cầu.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>Cái lõi PPSSPP này không thể bắt đầu nếu không có phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>Tình trạng đã được lưu trống.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP không thể phục hồi trạng thái đã lưu.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP không thể lưu tình trạng hiện thời.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP trả lại một lựa chọn cốt lõi chưa biết.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>Số PPSSPP người đã nhận được lệnh chưa được biết là {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>Hạt PPSSPP lõi API phiên bản {0} không được hỗ trợ.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP không ủng hộ việc mở rộng nội dung {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP trả lại định dạng điểm ảnh không được hỗ trợ {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>Bộ đệm video PPSSPP không có sẵn.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>Kho lưu đã tải về không chứa thư viện SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation từ chối tải nội dung đã chọn.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>Không tìm thấy thư viện SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>Cái lõi SwanStation không được khởi tạo.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>Thư viện SwanStation chưa có đạn.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>Đường dẫn thư viện SwanStation phải là tuyệt đối.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>Hệ thống điều khiển SwanStation ổ đĩa không đầy đủ.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation không cung cấp điều khiển đĩa.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation trả lại một nhãn đĩa không hợp lệ.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>Thư viện SwanStation có một tiêu đề Windows không hợp lệ.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>Thư viện SwanStation không phải là thư viện Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>Thư viện SwanStation không phải là thư viện x64.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation không chấp nhận con đường nội dung cần thiết.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>Cấu hình máy SwanStation không hợp lệ.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>Không tìm thấy tập tin thực hiện GW GUI dùng để chứa SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>Vật chủ SwanStation không được khởi tạo.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>Máy SwanStation không trả lời.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>Giá trị {0} không hợp lệ cho SwanStation tùy chọn {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>Vật chủ SwanStation trả lại một độ dài phản hồi không hợp lệ: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation trả lại một kích thước không hợp lệ: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>Thư viện đã chọn tự nhận diện là {0} thay vì SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation không thể loại bỏ các phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation không thể thêm vào phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>Không tìm thấy tập tin phương tiện đã chọn.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation từ chối phương tiện truyền thông được chọn.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation không thể chọn phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation không thể tạo một khe cắm phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>Quá nhiều đĩa đã được chọn cho danh sách nhạc SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>Quá trình SwanStation đã được khởi động.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Liên lạc với tiến trình SwanStation thất bại:{0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>Quá trình SwanStation không được khởi tạo.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>Quá trình SwanStation không thể bắt đầu.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>Quá trình SwanStation không phản ứng kịp thời.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>Quá trình SwanStation không còn nữa.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation không thể chọn đĩa đã yêu cầu.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation không thể thêm vào phương tiện truyền thông đã yêu cầu.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>Cái lõi SwanStation này không thể bắt đầu nếu không có phương tiện truyền thông.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>Tình trạng đã được lưu trống.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation không thể khôi phục lại trạng thái đã được lưu.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation không thể cứu tình trạng hiện tại.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation trả lại một lựa chọn cốt lõi chưa biết.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>Số SwanStation người đã nhận được lệnh chưa được biết là {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>Hạt SwanStation lõi API phiên bản {0} không được hỗ trợ.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation không ủng hộ việc mở rộng nội dung {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation trả lại định dạng điểm ảnh không được hỗ trợ {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>Bộ đệm ghi hình SwanStation không sẵn sàng.</value></data>
 </root>

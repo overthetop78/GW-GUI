@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>Kwota RAM dostępne dla maszyny emulowanej.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Wybór RAM ekspansja wystawiona przez Caprice32. Maszyna musi ponownie uruchomić przed użyciem nowej ilości.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>System ROM jest zbudowany w Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 zapewnia system ROM wewnętrznie i nie ujawnia ROM wybieranie plików.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>Wewnętrzna rozdzielczość wydana przez Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>Wybiera jedną z wewnętrznych rozdzielczości odsłoniętych przez Caprice32. Nie ustawia rozmiaru okna aplikacji.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>Typ monitora emulowany przez Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>Wybór koloru, zielonego monochromu lub białego monochromu CPC monitor.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Jasność monitora emulowanego.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>Dostosuje intensywność monitora z 5 do 15, jak pokazano w Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Usuwa zewnętrzną granicę ekranu.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Pytania Caprice32 uprawa granic zewnętrznych. GW GUI utrzymuje proporcję podawaną przez emulator.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>Mechaniczny dźwięk dyskietki.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>Włącza lub wyłącza dźwięk dyskietki generowany przez Caprice32.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad konfigurowany model maszyny.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>Identyfikuje Amstrad CPC, Plus, lub GX4000 model, którego konfiguracja sprzętowa jest edytowana.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>Emulator wybrany do tej maszyny.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>Określa implementację emulatora używaną do uruchomienia tej konfiguracji maszyny.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>Procesor emulował do tej maszyny.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>Pokazuje model procesora dostarczany przez wybrany Amstrad Maszyna.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>Oryginalna częstotliwość zegara procesora.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>Pokazuje nominalną częstotliwość zegara procesora w wybranym Amstrad Maszyna.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>Włącz lub wyłącz dźwięk emulowany.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>Kontrole, czy GW GUI odtwarza próbki audio generowane przez emulator.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>Wyjście audio używane przez GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>Wybiera wyjście audio systemu Windows używane do odtwarzania dźwięku z tej emulowanej maszyny.</value></data>
+</root>

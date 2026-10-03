@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Emuloidulle koneelle käytettävissä olevan RAM-muistin määrä.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Valitsee BeetlePcen altistaman RAM-laajennuksen. Koneen on aloitettava uudelleen ennen uuden määrän käyttöä.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Järjestelmä ROM on rakennettu BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>BeetlePce tarjoaa järjestelmän ROM sisäisesti eikä paljasta ROM-tiedostonvalitsinta.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePcen antama sisäinen ratkaisu.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Valitsee yhden BeetlePcen sisäisistä resoluutioista. Tämä ei aseta sovellusikkunan kokoa.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>BeetlePce emulgoi sen.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Valitsee värin, vihreän yksivärisen tai valkoisen NEC-monitorin.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Emuloidun monitorin kirkkaus.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Säätää monitorin voimakkuutta 5:stä 15:een BeetlePce altistuneena.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Poistaa ulkonäytön rajan.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Pyytää BeetlePceä leikkaamaan ulkorajan. GW GUI pitää emulaattorin ilmoittaman kuvasuhteen.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Mekaaninen ääni levykeasemalta.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Ottaa käyttöön tai poistaa BeetlePce:n tuottaman levykkeen äänen.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec-konemallia konfiguroidaan.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulaattori valittu tähän koneeseen.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Tunnistaa tämän koneen konfigurointiin käytetyn emulaattorin toteutuksen.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Prosessori emulgoi tämän koneen.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Näyttää valitun Nec-koneen tarjoaman prosessorimallin.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Alkuperäinen prosessorin kellotaajuus.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Näyttää valitun Nec-laitteen prosessorin nimellisen kellotaajuuden.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Ota käyttöön tai poista emulgoitu ääni.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Kontrolloi onko GW GUI soittaa ääninäytteitä luotu emulaattori.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Audiotuotanto GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Valitsee Windowsin äänilähdön, jota käytetään tämän emulgoidun koneen äänen soittamiseen.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Tunnistetaan NEC-malli, jonka laitteistokonfiguraatiota muokataan.</value></data>
+</root>

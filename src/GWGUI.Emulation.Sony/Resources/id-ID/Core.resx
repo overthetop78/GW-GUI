@@ -5,6 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulasi sistem PlayStation 2.</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>Emulasi sistem Portabel PlayStation.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emulasi PlayStation Sony dan PS satu sistem.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Emulat PlayStation Portable sistem.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emulasi sistem Sony PlayStation dan PS one.</value></data>
 </root>

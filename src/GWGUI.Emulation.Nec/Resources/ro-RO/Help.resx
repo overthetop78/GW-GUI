@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Cantitatea de RAM disponibilă pentru aparatul emulat.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selectează expansiunea RAM disponibilă. Emulator: BeetlePce. Aparatul trebuie să repornească înainte de utilizarea noii cantități.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Sistemul ROM este construit în. Emulator: BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Sistemul ROM este furnizat intern. Emulator: BeetlePce. Nu este disponibil nici un selector de fișiere ROM.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Rezoluţia internă a lui BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Selectează una dintre rezoluțiile interne expuse de BeetlePce. Acest lucru nu setează dimensiunea ferestrei aplicației.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Tipul monitorului emulat de BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Selectează un monitor de culoare verde monocrom sau alb monocrom NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Luminozitatea monitorului emulat.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Reglează intensitatea monitorului de la 5 la 15, așa cum este expus de BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Elimină frontiera ecranului extern.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Îi cere lui BeetlePce să cureţe graniţa externă. GW GUI păstrează raportul de aspect raportat de emulator.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Sunetul mecanic al drive-ului.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Activează sau dezactivează sunetul de unitate floppy generat de BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Modelul Nec este configurat.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulator selectat pentru această mașină.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Identifică implementarea emulator folosit pentru a rula această configurație mașină.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Procesor emulat pentru această mașină.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Afișează modelul procesorului furnizat de mașina Nec selectată.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Frecvenţa originală a ceasului procesorului.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Afișează frecvența nominală a ceasului procesorului în mașina Nec selectată.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Activează sau dezactivează sunetul emulat.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Controlează dacă GW GUI rulează probele audio generate de emulator.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Putere audio utilizată de GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Selectează ieșire audio Windows folosit pentru a reda sunet de la această mașină emulată.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identifică modelul NEC a cărui configurație hardware este în curs de editare.</value></data>
+</root>

@@ -19,8 +19,8 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceControllerActionFire2 = "Emulation.Controller.Action.Fire2";
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceControllerNone = "Emulation.Controller.None";
-    internal const string ResourceControllerJoypad = "Emulation.Sega.Controller.Joypad";
-    internal const string ResourceControllerKeyboard = "Emulation.Sega.Controller.Keyboard";
+    internal const string ResourceControllerJoypad = "Controllers.Enum.Gamepad";
+    internal const string ResourceControllerKeyboard = "Emulation.Tab.Keyboard";
     internal const string ResourceMouseButtonLeft = "Emulation.Mouse.Button.Left";
     internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";
     internal const string MouseLeft = "Mouse:Left";

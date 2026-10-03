@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Cần điều khiển Atari</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Name</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>Tốc độ chuyển động chèo</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>Trong khi nút chữa cháy được giữ lại</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>Luôn luôn</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>Điều khiển tương thích</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>Độ nhạy số</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>Độ nhạy phân giải</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>Hai cần điều khiển dùng chung.</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Chuyển đổi cổng</value></data>
+</root>

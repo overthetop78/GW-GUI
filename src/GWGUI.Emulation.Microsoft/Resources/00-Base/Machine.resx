@@ -4,7 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Family.Microsoft"><value>Microsoft</value></data>
-  <data name="Emulation.Microsoft.Model.Xbox"><value>Xbox</value></data>
-  <data name="Emulation.Microsoft.Model.Xbox360"><value>Xbox 360</value></data>
+  <data name="Emulation.Microsoft.Machine.Xbox"><value>Xbox</value></data>
+  <data name="Emulation.Microsoft.Machine.Xbox360"><value>Xbox 360</value></data>
 </root>

@@ -4,5 +4,48 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Controller.Joystick"><value>Xbox controller</value></data>
+  <data name="Emulation.Microsoft.Controller.Keyboard"><value>Xbox keyboard</value></data>
+  <!-- Xbox -->
+  <data name="Emulation.Microsoft.Controller.XboxDuke"><value>Xbox Controller (Duke)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxControllerS"><value>Xbox Controller S</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxDvdMoviePlaybackKit"><value>Xbox DVD Movie Playback Kit</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxCommunicator"><value>Xbox Communicator</value></data>
+  <!-- Xbox 360 -->
+  <data name="Emulation.Microsoft.Controller.Xbox360Controller"><value>Xbox 360 Controller</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360WirelessController"><value>Xbox 360 Wireless Controller</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360WirelessControllerTransformingDPad"><value>Xbox 360 Wireless Controller with Transforming D-Pad</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360WirelessRacingWheel"><value>Xbox 360 Wireless Racing Wheel</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360WirelessSpeedWheel"><value>Xbox 360 Wireless Speed Wheel</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360BigButtonPad"><value>Xbox 360 Big Button Pad</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360Chatpad"><value>Xbox 360 Chatpad</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360MediaRemote2005"><value>Xbox 360 Media Remote (2005)</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360UniversalMediaRemote"><value>Xbox 360 Universal Media Remote</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360MediaRemote2011"><value>Xbox 360 Media Remote (2011)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxLiveVision"><value>Xbox Live Vision</value></data>
+  <data name="Emulation.Microsoft.Controller.KinectXbox360"><value>Kinect for Xbox 360</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360Headset"><value>Xbox 360 Headset</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360WirelessHeadset"><value>Xbox 360 Wireless Headset</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360WirelessHeadsetBluetooth"><value>Xbox 360 Wireless Headset with Bluetooth</value></data>
+  <data name="Emulation.Microsoft.Controller.Xbox360WirelessMicrophone"><value>Xbox 360 Wireless Microphone</value></data>
+  <!-- Xbox One; Elite and Adaptive models also support Xbox Series X/S -->
+  <data name="Emulation.Microsoft.Controller.XboxOneWirelessController2013"><value>Xbox One Wireless Controller (2013)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxOneWirelessController2015"><value>Xbox One Wireless Controller (2015)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxOneWirelessController2016"><value>Xbox Wireless Controller (2016)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxEliteWirelessController"><value>Xbox Elite Wireless Controller</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxEliteWirelessControllerSeries2"><value>Xbox Elite Wireless Controller Series 2</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxEliteWirelessControllerSeries2Core"><value>Xbox Elite Wireless Controller Series 2 - Core</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxAdaptiveController"><value>Xbox Adaptive Controller</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxChatpad"><value>Xbox Chatpad</value></data>
+  <data name="Emulation.Microsoft.Controller.KinectXboxOne"><value>Kinect for Xbox One</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxOneMediaRemote"><value>Xbox One Media Remote</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxOneChatHeadset"><value>Xbox One Chat Headset</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxOneStereoHeadset"><value>Xbox One Stereo Headset</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxOneStereoHeadsetAdapter"><value>Xbox One Stereo Headset Adapter</value></data>
+  <!-- Xbox Series X/S -->
+  <data name="Emulation.Microsoft.Controller.XboxSeriesWirelessController"><value>Xbox Wireless Controller (2020)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxAdaptiveJoystick"><value>Xbox Adaptive Joystick</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxStereoHeadset2021"><value>Xbox Stereo Headset (2021)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxWirelessHeadset2021"><value>Xbox Wireless Headset (2021)</value></data>
+  <data name="Emulation.Microsoft.Controller.XboxWirelessHeadset2024"><value>Xbox Wireless Headset (2024)</value></data>
 </root>
-

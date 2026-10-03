@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Не знайдено обов'язкове ядро Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Вибране ядро Atari не може бути завантажено.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Необхідна прошивка Atari відсутні.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Прошивка Atari недійсна або несумісна.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Не знайдено налаштовуваний Atari media.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Налаштовані медіа не підтримуються цією машиною Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Опція Atari має недійсне значення.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Комунікація з готелем Atari не вдалося.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atari збережений стан недійсним.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Atari збережений стан несумісний з поточною машиною.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Несподівана помилка емуляції Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Детальніше: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Активна конфігурація Atari не може бути змінена або видалено.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Необхідна прошивка Atari не налаштовується. Прошивка: {0}. Верстат: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Не знайдено файл прошивки Atari. Прошивка: {0}. Файл: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Конфігурація Atari media не знайдено: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>The Atari хост виконуваний шлях є недоступним.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Основа емульсії Atari не встановлена. Ядро: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Вибраний емулятор Atari не використовує загальний контролер картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Вибраний Atari машина вимагає картриджів медіа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Розширення картриджа не підтримується вибраним емулятором Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari картридж не може бути відкритий для читання.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari емулятор відхилив замінний патрон.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari емулятор відхилений як заміну, так і попередній патрон.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Цей емулятор Atari не може зберігатися без картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Вибраний емулятор Atari не передбачає вибору області картриджа.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Цей емулятор Atari не може використовувати режим часу картриджа, який називається SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Це значення визначається вибраною моделлю.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Не сумісний FPU доступний для цієї моделі.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Немає альтернативної пам'яті для цієї моделі.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Ця модель не має вбудованих прошивок.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Ця модель не має клавіатури.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Ця модель не має мишки.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Ця модель не має носіїв.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Щоб використовувати компактні дискові засоби, виберіть цю модель: Jaguar CD.</value></data>
+</root>

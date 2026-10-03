@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Množství RAM dostupné pro emulovaný stroj.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Zobrazí RAM, které poskytuje vybraný stroj Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Systém ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Zobrazí stav systému ROM pro vybraný stroj a emulátor.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Model Nintendo stroje je nastaven.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulátor vybrán pro tento stroj.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Identifikuje implementaci emulátoru používanou pro spuštění této konfigurace stroje.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Procesor emuloval pro tento stroj.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Zobrazuje model procesoru poskytnutý vybraným zařízením Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Původní procesorová hodinová frekvence.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Zobrazuje nominální hodinovou frekvenci procesoru ve zvoleném zařízení Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Povolit nebo zakázat emulovaný zvuk.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Kontroluje, zda GW GUI přehrává audio vzorky generované emulátorem.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Audio výstup použitý GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Vybere zvukový výstup Windows použitý pro přehrávání zvuku z tohoto emulovaného stroje.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Identifikuje model Nintendo, jehož hardwarová konfigurace je editována.</value></data>
+</root>

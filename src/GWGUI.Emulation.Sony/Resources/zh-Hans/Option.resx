@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Language"><value>索尼语系统语言</value></data>
+  <data name="Emulation.Sony.Language"><value>Sony 系统语言</value></data>
   <data name="Emulation.Sony.Language.English"><value>英语</value></data>
   <data name="Emulation.Sony.Language.French"><value>法语</value></data>
   <data name="Emulation.Sony.Language.Spanish"><value>西班牙语</value></data>

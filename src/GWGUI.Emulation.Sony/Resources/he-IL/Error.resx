@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>הארכיון ההורדה אינו מכיל PCSX2 הספרייה</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 סירב לטעון את התוכן שנבחר.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>The The The PCSX2 הספרייה לא נמצאה.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>The The The PCSX2 הליבה אינה ראשונית.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>The The The PCSX2 הספרייה לא טעון.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>The The The PCSX2 נתיב הספרייה חייב להיות מוחלט.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>The The The PCSX2 בקרת הדיסק אינה שלמה.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 לא מספק בקרת דיסק.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 החזרת תווית דיסק לא חוקית.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>ההורדה PCSX2 הספרייה יש ראש Windows לא חוקי.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>ההורדה PCSX2 הספרייה אינה ספריית חלונות.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>ההורדה PCSX2 הספרייה אינה ספריית x64.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 לא מקבל את נתיבי התוכן המלאים הנדרשים.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>The The The PCSX2 תצורה מארחת היא בלתי חוקית.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>The The The GW GUI המונחים: PCSX2 לא נמצאו.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>The The The PCSX2 המארח אינו ראשוני.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>The The The PCSX2 המארח לא חזר בתשובה.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>הערך {0} הוא לא חוקי עבור PCSX2 אפשרות אפשרות {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>The The The PCSX2 המארח חזר לאורכו של תגובה לא חוקית: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 החזרת גודל של מדינה בלתי חוקי: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>הספרייה שנבחרה מזהה את עצמה {0} במקום PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 לא יכול היה להזריק את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 לא יכול היה להכניס את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>קובץ המדיה שנבחר לא נמצא.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 סירבתי לתקשורת שנבחרה.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 לא יכול לבחור את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 לא יכול ליצור מזל תקשורתי.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>יותר מדי דיסקים נבחרו עבור PCSX2 משחק.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>The The The PCSX2 התהליך כבר מוקרן.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>תקשורת עם PCSX2 התהליך נכשל: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>The The The PCSX2 התהליך אינו ראשוני.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>The The The PCSX2 לא ניתן להתחיל תהליך.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>The The The PCSX2 התהליך לא הגיב בזמן.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>The The The PCSX2 התהליך אינו זמין.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 לא יכול לבחור את הדיסק המבוקש.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 לא יכול היה להכניס את התקשורת המבוקשת.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>זה PCSX2 הליבה לא יכולה להתחיל ללא תקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>המדינה המחוספסת ריקה.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 לא יכול היה להחזיר את המדינה המחוסנת.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 לא יכול היה להציל את המדינה הנוכחית.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 החזרת אפשרות לא ידועה.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>The The The PCSX2 המארח קיבל את הפקודה הלא ידועה {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>The The The PCSX2 הליבה API גירסה גירסה {0} הוא לא נתמך.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 לא תומך בהרחבה של התוכן {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 החזרת פורמט פיקסל לא נתמך {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>The The The PCSX2 וידאו buffer הוא לא זמין.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>הארכיון ההורדה אינו מכיל PPSSPP הספרייה</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP סירב לטעון את התוכן שנבחר.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>The The The PPSSPP הספרייה לא נמצאה.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>The The The PPSSPP הליבה אינה ראשונית.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>The The The PPSSPP הספרייה לא טעון.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>The The The PPSSPP נתיב הספרייה חייב להיות מוחלט.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>The The The PPSSPP בקרת הדיסק אינה שלמה.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP לא מספק בקרת דיסק.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP החזרת תווית דיסק לא חוקית.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>ההורדה PPSSPP הספרייה יש ראש Windows לא חוקי.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>ההורדה PPSSPP הספרייה אינה ספריית חלונות.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>ההורדה PPSSPP הספרייה אינה ספריית x64.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP לא מקבל את נתיבי התוכן המלאים הנדרשים.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>The The The PPSSPP תצורה מארחת היא בלתי חוקית.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>The The The GW GUI המונחים: PPSSPP לא נמצאו.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>The The The PPSSPP המארח אינו ראשוני.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>The The The PPSSPP המארח לא חזר בתשובה.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>הערך {0} הוא לא חוקי עבור PPSSPP אפשרות אפשרות {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>The The The PPSSPP המארח חזר לאורכו של תגובה לא חוקית: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP החזרת גודל של מדינה בלתי חוקי: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>הספרייה שנבחרה מזהה את עצמה {0} במקום PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP לא יכול היה להזריק את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP לא יכול היה להכניס את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>קובץ המדיה שנבחר לא נמצא.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP סירבתי לתקשורת שנבחרה.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP לא יכול לבחור את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP לא יכול ליצור מזל תקשורתי.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>יותר מדי דיסקים נבחרו עבור PPSSPP משחק.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>The The The PPSSPP התהליך כבר מוקרן.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>תקשורת עם PPSSPP התהליך נכשל: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>The The The PPSSPP התהליך אינו ראשוני.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>The The The PPSSPP לא ניתן להתחיל תהליך.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>The The The PPSSPP התהליך לא הגיב בזמן.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>The The The PPSSPP התהליך אינו זמין.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP לא יכול לבחור את הדיסק המבוקש.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP לא יכול היה להכניס את התקשורת המבוקשת.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>זה PPSSPP הליבה לא יכולה להתחיל ללא תקשורת.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>המדינה המחוספסת ריקה.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP לא יכול היה להחזיר את המדינה המחוסנת.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP לא יכול היה להציל את המדינה הנוכחית.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP החזרת אפשרות לא ידועה.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>The The The PPSSPP המארח קיבל את הפקודה הלא ידועה {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>The The The PPSSPP הליבה API גירסה גירסה {0} הוא לא נתמך.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP לא תומך בהרחבה של התוכן {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP החזרת פורמט פיקסל לא נתמך {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>The The The PPSSPP וידאו buffer הוא לא זמין.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>הארכיון ההורדה אינו מכיל SwanStation הספרייה</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation סירב לטעון את התוכן שנבחר.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>The The The SwanStation הספרייה לא נמצאה.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>The The The SwanStation הליבה אינה ראשונית.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>The The The SwanStation הספרייה לא טעון.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>The The The SwanStation נתיב הספרייה חייב להיות מוחלט.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>The The The SwanStation בקרת הדיסק אינה שלמה.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation לא מספק בקרת דיסק.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation החזרת תווית דיסק לא חוקית.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>ההורדה SwanStation הספרייה יש ראש Windows לא חוקי.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>ההורדה SwanStation הספרייה אינה ספריית חלונות.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>ההורדה SwanStation הספרייה אינה ספריית x64.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation לא מקבל את נתיבי התוכן המלאים הנדרשים.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>The The The SwanStation תצורה מארחת היא בלתי חוקית.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>The The The GW GUI המונחים: SwanStation לא נמצאו.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>The The The SwanStation המארח אינו ראשוני.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>The The The SwanStation המארח לא חזר בתשובה.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>הערך {0} הוא לא חוקי עבור SwanStation אפשרות אפשרות {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>The The The SwanStation המארח חזר לאורכו של תגובה לא חוקית: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation החזרת גודל של מדינה בלתי חוקי: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>הספרייה שנבחרה מזהה את עצמה {0} במקום סוואנס.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation לא יכול היה להזריק את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation לא יכול היה להכניס את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>קובץ המדיה שנבחר לא נמצא.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation סירבתי לתקשורת שנבחרה.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation לא יכול לבחור את התקשורת.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation לא יכול ליצור מזל תקשורתי.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>יותר מדי דיסקים נבחרו עבור SwanStation משחק.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>The The The SwanStation התהליך כבר מוקרן.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>תקשורת עם SwanStation התהליך נכשל: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>The The The SwanStation התהליך אינו ראשוני.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>The The The SwanStation לא ניתן להתחיל תהליך.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>The The The SwanStation התהליך לא הגיב בזמן.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>The The The SwanStation התהליך אינו זמין.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation לא יכול לבחור את הדיסק המבוקש.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation לא יכול היה להכניס את התקשורת המבוקשת.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>זה SwanStation הליבה לא יכולה להתחיל ללא תקשורת.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>המדינה המחוספסת ריקה.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation לא יכול היה להחזיר את המדינה המחוסנת.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation לא יכול היה להציל את המדינה הנוכחית.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation החזרת אפשרות לא ידועה.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>The The The SwanStation המארח קיבל את הפקודה הלא ידועה {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>The The The SwanStation הליבה API גירסה גירסה {0} הוא לא נתמך.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation לא תומך בהרחבה של התוכן {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation החזרת פורמט פיקסל לא נתמך {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>The The The SwanStation וידאו buffer הוא לא זמין.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>ארכיון ההורדה אינו מכיל את ספריית PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 סירב לטעון את התוכן שנבחר.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>ספריית ה-PCSX2 לא נמצאה.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>הליבה של PCSX2 אינה ראשונית.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>ספריית PCSX2 אינה עמוסה.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>מסלול הספרייה של PCSX2 חייב להיות מוחלט.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>בקרת ה-PCSX2 אינה שלמה.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 אינו מספק בקרת דיסק.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 החזיר תווית דיסק לא חוקית.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>בספריית PCSX2 הורדת יש ראש Windows לא חוקי.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>ספריית ה-PCSX2 שהורידה היא לא ספריית חלונות.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>ספריית ה-PCSX2 שהורידה היא לא ספריית x64.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 אינו מקבל את נתיבי התוכן המלאים הדרושים.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>התצורה המארחת של PCSX2 אינה בתוקף.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>ה-GW GUI executable המשמש לאירוח PCSX2 לא נמצא.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>המארח PCSX2 אינו ראשוני.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>המארח PCSX2 לא השיב.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>הערך {0} הוא לא חוקי עבור PCSX2 אפשרות {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>המארח PCSX2 חזר באורך תגובה לא חוקי: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 חזר לגודל של המדינה: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>הספרייה שנבחרה מזהה את עצמה {0} במקום PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 לא יכול להזריק את התקשורת.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 לא יכול להוסיף את התקשורת.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>קובץ המדיה שנבחר לא נמצא.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 סירב לתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 לא יכול לבחור את התקשורת.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 לא יכול ליצור חריץ מדיה.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>יותר מדי דיסקים נבחרו עבור PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>תהליך ה-PCSX2 כבר מוקרן.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>תקשורת עם תהליך PCSX2 נכשלה: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>תהליך ה-PCSX2 אינו ראשוני.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>לא ניתן להתחיל את תהליך ה-PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>תהליך ה-PCSX2 לא הגיב בזמן.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>תהליך PCSX2 אינו זמין.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 לא יכול לבחור את הדיסק המבוקש.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 לא יכול להוסיף את התקשורת המבוקשת.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>הליבה של PCSX2 אינה יכולה להתחיל ללא אמצעי תקשורת.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>המדינה המחוספסת ריקה.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>ה-PCSX2 לא יכול היה לשחזר את המדינה שהצילה.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 לא יכול להציל את המדינה הנוכחית.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 חזר לאופציה לא ידועה.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>The the PCSX2 המארח קיבל את הפקודה הלא ידועה {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>גרסת ה- PCSX2 הליבה של API {0} היא ללא תמיכה.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 אינו תומך בהרחבה של התוכן {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 החזיר את פורמט פיקסל שאינו נתמך {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>buffer וידאו PCSX2 אינו זמין.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>ארכיון ההורדה אינו מכיל את ספריית PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP סירבה לטעון את התוכן שנבחר.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>ספריית PPSSPP לא נמצאה.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>הליבה של PPSSPP אינה ראשונית.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>ספריית PPSSPP אינה עמוסה.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>נתיב ספריית PPSSPP חייב להיות מוחלט.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>בקרת הדיסק PPSSPP אינה שלמה.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP אינה מספקת בקרת דיסק.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP החזירה תווית דיסק לא חוקית.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>בספריית PPSSPP הורדת יש ראש Windows לא חוקי.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>ספריית PPSSPP התחתונה אינה ספריה של Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>ספריית ה-PPSSPP התחתונה אינה ספריה X64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP אינה מקבלת את נתיבי התוכן המלאים הנדרשים.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>התצורה המארחת של PPSSPP אינה בתוקף.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>ה-GW GUI משמש למארח PPSSPP לא נמצא.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>המארח PPSSPP אינו ראשוני.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>המארח PPSSPP לא חזר בתשובה.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>הערך {0} הוא לא חוקי עבור PPSSPP אפשרות {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>מנחה PPSSPP החזירה אורך תגובה לא חוקי: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP החזירה את גודל המדינה הבלתי חוקי: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>הספרייה שנבחרה מזהה את עצמה {0} במקום PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP לא יכול להזריק את התקשורת.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP לא יכול היה להכניס את התקשורת.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>קובץ המדיה שנבחר לא נמצא.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP סירבה לתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP לא יכול היה לבחור את התקשורת.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP לא יכול ליצור חריץ תקשורתי.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>יותר מדי דיסקים נבחרו ל-PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>תהליך ה-PPSSPP כבר מקודם.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>תקשורת עם תהליך PPSSPP נכשלה: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>תהליך ה-PPSSPP אינו ראשוני.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>לא ניתן להתחיל את תהליך ה-PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>תהליך ה-PPSSPP לא הגיב בזמן.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>תהליך PPSSPP אינו זמין.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP לא יכול לבחור את הדיסק המבוקש.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP לא יכול היה להכניס את התקשורת המבוקשת.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>הליבה של PPSSPP אינה יכולה להתחיל ללא אמצעי תקשורת.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>המדינה המחוספסת ריקה.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP לא יכול היה להחזיר את המדינה שהצילה.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP לא יכול היה להציל את המדינה הנוכחית.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP חזרה לאופציה לא ידועה.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>The the PPSSPP המארח קיבל את הפקודה הלא ידועה {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>The the PPSSPP הליבה API גירסה {0} הוא לא נתמך.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP אינו תומך בהרחבה של התוכן {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP החזיר את פורמט פיקסל שאינו נתמך {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>buffer וידאו PPSSPP אינו זמין.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>ארכיון ההורדה אינו מכיל את ספריית SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation סירב לטעון את התוכן שנבחר.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>ספריית SwanStation לא נמצאה.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>הליבה SwanStation אינה ראשונית.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>ספריית SwanStation אינה עמוסה.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>נתיב ספריית SwanStation חייב להיות מוחלט.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>בקרת הדיסק SwanStation אינם שלמים.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation אינו מספק בקרת דיסק.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation החזיר תווית דיסק לא חוקית.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>בספריית SwanStation הורדת יש ראש Windows לא חוקי.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>ספריית SwanStation שהורידה היא לא ספריית Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>ספריית SwanStation הורדת אינה ספריה x64.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation אינו מקבל את נתיבי התוכן המלאים הדרושים.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>התצורה המארחת SwanStation אינה בתוקף.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>GW GUI executable שימש כדי לארח SwanStation לא נמצאו.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>המארח SwanStation אינו ראשוני.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>המארח SwanStation לא השיב.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>הערך {0} הוא לא חוקי עבור SwanStation אפשרות {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>המארח SwanStation חזר לאורכו של תגובה לא מבוטלת: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation החזירו את גודל המדינה הבלתי חוקי: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>הספרייה שנבחרה מזהה את עצמה {0} במקום SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation לא יכול להזריק את התקשורת.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation לא יכול להוסיף את התקשורת.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>קובץ המדיה שנבחר לא נמצא.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation סירב לתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation לא יכול לבחור את התקשורת.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation לא יכול ליצור חריץ מדיה.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>יותר מדי דיסקים נבחרו ל- SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>תהליך SwanStation כבר ראשוני.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>תקשורת עם תהליך SwanStation נכשלה: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>תהליך SwanStation אינו ראשוני.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>תהליך SwanStation לא ניתן להתחיל.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>תהליך SwanStation לא הגיב בזמן.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>תהליך SwanStation אינו זמין.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation לא יכול לבחור את הדיסק המבוקש.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation לא יכול להוסיף את התקשורת המבוקשת.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>הליבה SwanStation לא יכולה להתחיל ללא אמצעי תקשורת.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>המדינה המחוספסת ריקה.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation לא יכול לשחזר את המדינה שהצילה.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation לא יכול להציל את המדינה הנוכחית.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation החזירה אופציה לא ידועה.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>The the SwanStation המארח קיבל את הפקודה הלא ידועה {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>The the SwanStation הליבה API גירסה {0} הוא לא נתמך.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation אינו תומך בהרחבה של התוכן {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation החזיר את פורמט פיקסל שאינו נתמך {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>The SwanStation video buffer הוא לא זמין.</value></data>
 </root>

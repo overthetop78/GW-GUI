@@ -5,8 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.Language"><value>Sega systemspråk</value></data>
-  <data name="Emulation.Sega.Language.English"><value>Engelsk språk</value></data>
+  <data name="Emulation.Sega.Language.English"><value>Engelsk</value></data>
   <data name="Emulation.Sega.Language.French"><value>fransk</value></data>
   <data name="Emulation.Sega.Language.Spanish"><value>Spansk</value></data>
-  <data name="Emulation.Sega.Audio.Chip"><value>Lydbrikke</value></data>
 </root>

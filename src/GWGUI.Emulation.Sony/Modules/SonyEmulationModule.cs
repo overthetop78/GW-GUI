@@ -261,7 +261,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         return new EmulationMachineRuntime(sony,
             media => _engine.CreateMachine(WithMedia(sony, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
-            MachineConfigurationConstants.ResourcePrefix + sony.Model,
+            MachineConfigurationConstants.ResourceKey(sony.Model),
             SupportsPointerCapture: ModelCatalog.Get(sony.Model).MouseButtonCount > 0);
     }
 

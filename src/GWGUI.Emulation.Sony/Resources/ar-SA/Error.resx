@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>لا تحتوي المحفوظات المحملة على PCSX2 المكتبة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 رفض تحميل المحتوى المختار</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>The PCSX2 لم يتم العثور على المكتبة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>The PCSX2 لا يتم البدء في الجوهر.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>The PCSX2 المكتبة ليست محشوة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>The PCSX2 طريق المكتبة يجب أن يكون مُطلقاً</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>The PCSX2 التحكم بالقرص غير كامل</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 لا يوفر التحكم في الأقراص.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 لقد أعدت بطاقة قرص غير صحيحة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>تم تحميلها PCSX2 المكتبة لديها رأس (ويندوز) غير صحيح</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>تم تحميلها PCSX2 المكتبة ليست مكتبة (ويندوز)</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>تم تحميلها PCSX2 المكتبة ليست مكتبة اكس64</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 لا تقبل مسارات المحتوى الكامل المطلوبة.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>The PCSX2 تشكيلة المستضيفين غير صحيحة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>The GW GUI المنفقة المستخدمة في استضافة PCSX2 لم يعثر عليه</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>The PCSX2 المضيف غير مبدئي</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>The PCSX2 لم يرد المضيف أي رد.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>القيمة {0} غير صحيح بالنسبة للـ PCSX2 الخيار {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>The PCSX2 وعاد البلد المضيف فترة رد غير صحيحة: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 أرجعت إلى منطقة غير صالحة للإنقاذ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>المكتبة المختارة تُعرّف نفسها بأنها {0} بدلاً من PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 لا يمكن أن يطرد وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 لا يمكن أن تُدخل وسائل الإعلام.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>ولم يعثر على ملف وسائط الإعلام المختار.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 رفضت وسائل الإعلام المختارة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 لم يكن بمقدوره اختيار وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 لا يمكن أن يخلق فتحة إعلامية.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>تم اختيار الكثير من الأقراص من أجل PCSX2 قائمة اللعب</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>The PCSX2 وقد تم بالفعل البدء في العملية.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>البلاغ مع PCSX2 فشلت العملية: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>The PCSX2 ولم تُبد عملية من هذا القبيل.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>The PCSX2 ولا يمكن البدء في العملية.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>The PCSX2 ولم ترد العملية في الوقت المناسب.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>The PCSX2 العملية غير متاحة.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 لم يكن بمقدوره اختيار القرص المطلوب</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 لم يكن بوسعها إدخال وسائل الإعلام المطلوبة.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>هذا PCSX2 لا يمكن أن يبدأ النواة بدون وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>الولاية المنقذة فارغة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 لم يكن بمقدوره إعادة الولاية المنقذة</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 لا يمكن إنقاذ الولاية الحالية</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 وعاد خياراً أساسياً غير معروف.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>The PCSX2 تلقى المضيف أمر غير معروف {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>The PCSX2 الأساسية API الصيغة {0} غير مدعوم</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 لا يؤيد تمديد المحتوى {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 أرجعت استمارة "بيكسل" الغير مدعومة {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>The PCSX2 لا يوجد مانع للفيديو</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>لا تحتوي المحفوظات المحملة على PPSSPP المكتبة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP رفض تحميل المحتوى المختار</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>The PPSSPP لم يتم العثور على المكتبة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>The PPSSPP لا يتم البدء في الجوهر.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>The PPSSPP المكتبة ليست محشوة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>The PPSSPP طريق المكتبة يجب أن يكون مُطلقاً</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>The PPSSPP التحكم بالقرص غير كامل</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP لا يوفر التحكم في الأقراص.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP لقد أعدت بطاقة قرص غير صحيحة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>تم تحميلها PPSSPP المكتبة لديها رأس (ويندوز) غير صحيح</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>تم تحميلها PPSSPP المكتبة ليست مكتبة (ويندوز)</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>تم تحميلها PPSSPP المكتبة ليست مكتبة اكس64</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP لا تقبل مسارات المحتوى الكامل المطلوبة.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>The PPSSPP تشكيلة المستضيفين غير صحيحة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>The GW GUI المنفقة المستخدمة في استضافة PPSSPP لم يعثر عليه</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>The PPSSPP المضيف غير مبدئي</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>The PPSSPP لم يرد المضيف أي رد.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>القيمة {0} غير صحيح بالنسبة للـ PPSSPP الخيار {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>The PPSSPP وعاد البلد المضيف فترة رد غير صحيحة: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP أرجعت إلى منطقة غير صالحة للإنقاذ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>المكتبة المختارة تُعرّف نفسها بأنها {0} بدلاً من PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP لا يمكن أن يطرد وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP لا يمكن أن تُدخل وسائل الإعلام.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>ولم يعثر على ملف وسائط الإعلام المختار.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP رفضت وسائل الإعلام المختارة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP لم يكن بمقدوره اختيار وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP لا يمكن أن يخلق فتحة إعلامية.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>تم اختيار الكثير من الأقراص من أجل PPSSPP قائمة اللعب</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>The PPSSPP وقد تم بالفعل البدء في العملية.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>البلاغ مع PPSSPP فشلت العملية: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>The PPSSPP ولم تُبد عملية من هذا القبيل.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>The PPSSPP ولا يمكن البدء في العملية.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>The PPSSPP ولم ترد العملية في الوقت المناسب.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>The PPSSPP العملية غير متاحة.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP لم يكن بمقدوره اختيار القرص المطلوب</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP لم يكن بوسعها إدخال وسائل الإعلام المطلوبة.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>هذا PPSSPP لا يمكن أن يبدأ النواة بدون وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>الولاية المنقذة فارغة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP لم يكن بمقدوره إعادة الولاية المنقذة</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP لا يمكن إنقاذ الولاية الحالية</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP وعاد خياراً أساسياً غير معروف.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>The PPSSPP تلقى المضيف أمر غير معروف {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>The PPSSPP الأساسية API الصيغة {0} غير مدعوم</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP لا يؤيد تمديد المحتوى {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP أرجعت استمارة "بيكسل" الغير مدعومة {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>The PPSSPP لا يوجد مانع للفيديو</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>لا تحتوي المحفوظات المحملة على SwanStation المكتبة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation رفض تحميل المحتوى المختار</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>The SwanStation لم يتم العثور على المكتبة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>The SwanStation لا يتم البدء في الجوهر.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>The SwanStation المكتبة ليست محشوة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>The SwanStation طريق المكتبة يجب أن يكون مُطلقاً</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>The SwanStation التحكم بالقرص غير كامل</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation لا يوفر التحكم في الأقراص.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation لقد أعدت بطاقة قرص غير صحيحة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>تم تحميلها SwanStation المكتبة لديها رأس (ويندوز) غير صحيح</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>تم تحميلها SwanStation المكتبة ليست مكتبة (ويندوز)</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>تم تحميلها SwanStation المكتبة ليست مكتبة اكس64</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation لا تقبل مسارات المحتوى الكامل المطلوبة.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>The SwanStation تشكيلة المستضيفين غير صحيحة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>The GW GUI المنفقة المستخدمة في استضافة SwanStation لم يعثر عليه</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>The SwanStation المضيف غير مبدئي</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>The SwanStation لم يرد المضيف أي رد.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>القيمة {0} غير صحيح بالنسبة للـ SwanStation الخيار {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>The SwanStation وعاد البلد المضيف فترة رد غير صحيحة: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation أرجعت إلى منطقة غير صالحة للإنقاذ {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>المكتبة المختارة تُعرّف نفسها بأنها {0} بدلاً من سوان ستاشن</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation لا يمكن أن يطرد وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation لا يمكن أن تُدخل وسائل الإعلام.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>ولم يعثر على ملف وسائط الإعلام المختار.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation رفضت وسائل الإعلام المختارة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation لم يكن بمقدوره اختيار وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation لا يمكن أن يخلق فتحة إعلامية.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>تم اختيار الكثير من الأقراص من أجل SwanStation قائمة اللعب</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>The SwanStation وقد تم بالفعل البدء في العملية.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>البلاغ مع SwanStation فشلت العملية: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>The SwanStation ولم تُبد عملية من هذا القبيل.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>The SwanStation ولا يمكن البدء في العملية.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>The SwanStation ولم ترد العملية في الوقت المناسب.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>The SwanStation العملية غير متاحة.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation لم يكن بمقدوره اختيار القرص المطلوب</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation لم يكن بوسعها إدخال وسائل الإعلام المطلوبة.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>هذا SwanStation لا يمكن أن يبدأ النواة بدون وسائل الإعلام</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>الولاية المنقذة فارغة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation لم يكن بمقدوره إعادة الولاية المنقذة</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation لا يمكن إنقاذ الولاية الحالية</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation وعاد خياراً أساسياً غير معروف.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>The SwanStation تلقى المضيف أمر غير معروف {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>The SwanStation الأساسية API الصيغة {0} غير مدعوم</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation لا يؤيد تمديد المحتوى {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation أرجعت استمارة "بيكسل" الغير مدعومة {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>The SwanStation لا يوجد مانع للفيديو</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>ولا تحتوي المحفوظات المحملة على مكتبة PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>ورفضت شركة PCSX2 تحميل المحتوى المختار.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>لم يتم العثور على مكتبة PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>لا يُستهل الركيزة الأساسية من نوع PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>مكتبة PCSX2 ليست محشوة.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>يجب أن يكون مسار مكتبة PCSX2 مطلقا.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>التحكم في أقراص PCSX2 غير كامل.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 لا يوفر ضوابط قرصية.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 أعادت بطاقة قرص غير صالحة.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>لدى مكتبة PCSX2 المُحمّلة رأس (ويندوز) غير صحيح.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>المكتبة التي تم تحميلها PCSX2 ليست مكتبة (ويندوز)</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>مكتبة PCSX2 المحملة ليست مكتبة X64.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 لا تقبل مسارات المحتوى الكامل المطلوبة.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>The PCSX2 host formation is invalid.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>The GW GUI منفذة تستخدم لاستضافة PCSX2 لم يعثر عليه.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>لم يُستهل مضيف PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>لم يرد مضيف PCSX2 أي رد.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>القيمة {0} باطلة بالنسبة لخيار PCSX2 {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>The PCSX2 وعاد البلد المضيف فترة استجابة غير صحيحة: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 returned an invalid Save-state size: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>تحدد المكتبة المختارة نفسها بأنها {0} بدلاً من PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 لا يمكن قذف وسائل الإعلام.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 لا يمكن أن تدرج وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>لم يعثر على ملف إعلامي مختار.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>ورفض PCSX2 وسائط الإعلام المختارة.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 لم يتمكن من اختيار وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 لا يمكن أن يخلق فتحة إعلامية.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>وتم اختيار الكثير من الأقراص لقائمة مسرحية PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>عملية PCSX2 مبدئية بالفعل.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>الاتصالات مع عملية PCSX2 فشلت: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>عملية PCSX2 غير مبدئية.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>لا يمكن البدء في عملية PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>لم ترد عملية PCSX2 في الوقت المناسب.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>عملية PCSX2 غير متاحة.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 لم يتمكن من اختيار القرص المطلوب.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>لا يمكن لمحطة PCSX2 أن تدرج وسائل الإعلام المطلوبة.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>ولا يمكن أن يبدأ هذا النواة من PCSX2 بدون وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>الولاية المنقذة فارغة</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 لا يمكن إعادة الحالة الموفرة.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 لا يمكن أن ينقذ الحالة الراهنة.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>أعاد PCSX2 خياراً أساسياً غير معروف.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>تلقى مضيف PCSX2 القيادة المجهولة {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>The PCSX2 الموارد الأساسية API نسخة {0} غير مدعوم</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 لا يؤيد تمديد المحتوى {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 أُعيدت استمارة "بيكسل" الغير مدعومة {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>لا يوجد مانع للفيديو PCSX2.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>ولا تحتوي المحفوظات المحملة على مكتبة PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>ورفض PPSSPP تحميل المحتوى المختار.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>لم يتم العثور على مكتبة PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>لم تتم تهيئة نواة PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>مكتبة PPSSPP ليست محمّلة.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>يجب أن يكون مسار مكتبة PPSSPP مطلقا.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>مراقبة أقراص PPSSPP غير كاملة.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP لا يوفر مراقبة الأقراص.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP أعاد بطاقة قرص غير صالحة.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>لدى مكتبة PPSSPP المُحمّلة رأس (ويندوز) غير صحيح.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>المكتبة التي تم تحميلها PPSSPP ليست مكتبة (ويندوز)</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>مكتبة PPSSPP المحملة ليست مكتبة X64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>لا تقبل PPSSPP مسارات المحتوى الكامل المطلوبة.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>The PPSSPP host formation is invalid.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>The GW GUI منفذة تستخدم لاستضافة PPSSPP لم يعثر عليه.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>لم يُستهل مضيف PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>لم يرد مضيف PPSSPP أي رد.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>القيمة {0} باطلة بالنسبة لخيار PPSSPP {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>The PPSSPP وعاد البلد المضيف فترة استجابة غير صحيحة: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP returned an invalid Save-state size: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>تحدد المكتبة المختارة نفسها بأنها {0} بدلاً من PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP لا يمكن طرد وسائل الإعلام.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP لا يمكن إدخال وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>لم يعثر على ملف إعلامي مختار.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>ورفض PPSSPP وسائط الإعلام المختارة.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP لم يتمكنوا من اختيار وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP لا يمكن أن يخلق فتحة إعلامية.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>وتم اختيار الكثير من الأقراص لقائمة اللعب البالغ عددها PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>عملية PPSSPP مبدئية بالفعل.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>فشل الاتصالات مع عملية PPSSPP: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>عملية PPSSPP غير مبدئية.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>لم يكن من الممكن البدء في عملية PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>لم ترد عملية PPSSPP في الوقت المناسب.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>عملية PPSSPP غير متاحة.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP لم يتمكن من اختيار القرص المطلوب.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP لا يمكن إدراج وسائط الإعلام المطلوبة.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>ولا يمكن أن يبدأ هذا الجوهري البالغ PPSSPP دون وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>الولاية المنقذة فارغة</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP لا يمكن إعادة الحالة الموفرة.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP لا يمكن أن ينقذ الحالة الراهنة.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>أعادت PPSSPP خياراً أساسياً غير معروف.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>The PPSSPP المضيف تلقى القيادة المجهولة {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>The PPSSPP الموارد الأساسية API نسخة {0} غير مدعوم</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP لا يؤيد تمديد المحتوى {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP أُعيدت استمارة "بيكسل" الغير مدعومة {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>لا يوجد شريط فيديو PPSSPP.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>لا يحتوي الأرشيف الذي تم تنزيله على مكتبة SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>ورفض SwanStation تحميل المحتوى المختار.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>لم يتم العثور على مكتبة SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>لم تتم تهيئة نواة SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>لم يتم تحميل مكتبة SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>يجب أن يكون مسار مكتبة SwanStation مسارًا مطلقًا.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>عناصر التحكم في أقراص SwanStation غير مكتملة.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation لا يوفر مراقبة الأقراص.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation أعادت بطاقة قرص غير صالحة</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>تحتوي مكتبة SwanStation التي تم تنزيلها على ترويسة Windows غير صالحة.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>المكتبة التي تم تحميلها SwanStation ليست مكتبة (ويندوز)</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>مكتبة SwanStation التي تم تنزيلها ليست مكتبة x64.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation لا يقبل مسارات المحتوى الكامل المطلوبة.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>The SwanStation host formation is invalid.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>تعذّر العثور على ملف GW GUI التنفيذي المستخدم لاستضافة SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>لم تتم تهيئة مضيف SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>لم يُرجع مضيف SwanStation أي استجابة.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>القيمة {0} غير صحيح بالنسبة لـ SwanStation الخيار {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>The SwanStation وعاد البلد المضيف فترة استجابة غير صحيحة: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>أعاد SwanStation حجمًا غير صالح لحالة الحفظ: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>تعرّف المكتبة المحددة نفسها بأنها {0} بدلاً من SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation لا يمكن طرد وسائل الإعلام.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation لا يمكن إدخال وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>لم يعثر على ملف إعلامي مختار.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>ورفض SwanStation وسائط الإعلام المختارة.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation لم يتمكنوا من اختيار وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation لا يمكن أن يخلق فتحة إعلامية.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>وتم اختيار الكثير من الأقراص لقائمة اللعب البالغ عددها SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>تمت تهيئة عملية SwanStation بالفعل.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>الاتصالات مع عملية SwanStation فشلت: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>لم تتم تهيئة عملية SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>تعذّر بدء عملية SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>لم تستجب عملية SwanStation في الوقت المحدد.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>عملية SwanStation غير متاحة.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation لم يتمكن من اختيار القرص المطلوب.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation لا يمكن إدراج وسائط الإعلام المطلوبة.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>ولا يمكن أن يبدأ هذا الجوهري البالغ SwanStation دون وسائط الإعلام.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>الولاية المنقذة فارغة</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation لم يتمكنوا من استعادة الولاية المنقذة</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation لا يمكن أن ينقذ الحالة الراهنة.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation أعادت خيارا أساسيا غير معروف.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>تلقى مضيف SwanStation الأمر غير المعروف {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>The SwanStation الموارد الأساسية API نسخة {0} غير مدعوم</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation لا يؤيد تمديد المحتوى {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation أُعيدت استمارة "بيكسل" الغير مدعومة {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>مخزن الفيديو المؤقت لـ SwanStation غير متاح.</value></data>
 </root>

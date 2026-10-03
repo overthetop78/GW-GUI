@@ -75,7 +75,7 @@ internal static partial class InputSettingsFunctions
         ControllerType.Joypad => InputSettingsFunctionsConstants.ResourceControllerJoypad,
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
-        _ => $"Emulation.Controller.{type}"
+        _ => $"Emulation.Sega.Controller.{type}"
     };
 
     private static IReadOnlyDictionary<string, string> ToStrings(

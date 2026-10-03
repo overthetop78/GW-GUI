@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>A szükséges Atari magot nem találták meg.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>A kiválasztott Atari magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Egy szükséges Atari firmware hiányzik.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Az Atari firmware érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>A konfigurált Atari médiát nem találták meg.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>A konfigurált médiát nem támogatja ez az Atari gép.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Az Atari opció érvénytelen.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Az Atarival való kommunikáció nem sikerült.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Az Atari mentett állam érvénytelen.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Az Atari mentett állam összeegyeztethetetlen az aktuális gép.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Váratlan Atari emulációs hiba történt.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Az aktív Atari konfiguráció nem módosítható vagy törölhető.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>A szükséges Atari firmware nincs beállítva. Firmware: {0}. Gép: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>A konfigurált Atari firmware fájl nem található. Firmware: {0}. Fájl: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Beállított Atari média nem található: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Az Atari host programozó elérési útja nem elérhető.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Az Atari emulációs mag nincs telepítve. Törzshálózat: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>A kiválasztott Atari emulátor nem használja a megosztott patront.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>A kiválasztott Atari géphez patronos adathordozóra van szükség.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>A patron kiterjesztését nem támasztja alá a kiválasztott Atari emulátor.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Az Atari patront nem lehet felnyitni olvasásra.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Az Atari emulátor kilökte a tartalék patront.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Az Atari emulátor mind a pótlást, mind az előző patront elutasította.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Ez az Atari emulátor nem maradhat bekapcsolva patron nélkül.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>A kiválasztott Atari emulátor nem tárja fel a patron területének kiválasztását.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Ez a Atari emulátor nem használhatja a SECAM.- nek nevezett patron időzítő üzemmódot.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Ezt az értéket a kiválasztott modell határozza meg.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>A modellhez nem áll rendelkezésre kompatibilis FPU.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Ehhez a modellhez nem áll rendelkezésre alternatív memória.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Ez a modell nincs konfigurálható firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Ennek a modellnek nincs billentyűzete.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Ennek a modellnek nincs egere.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Ennek a modellnek nincs adathordozója.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>A kompakt lemez média használatához válassza ezt a modellt: Jaguar CD.</value></data>
+</root>

@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>Stáhnutý archiv neobsahuje PCSX2 Knihovna.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 odmítl načíst vybraný obsah.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>V PCSX2 Knihovna nebyla nalezena.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>V PCSX2 Jádro není inicializováno.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>V PCSX2 Knihovna není nabitá.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>V PCSX2 Cesta do knihovny musí být absolutní.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>V PCSX2 Ovládání disku je neúplné.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 neposkytuje ovládání disku.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 vrátil neplatný štítek disku.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>Stáhnuto PCSX2 knihovna má neplatnou hlavičku Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>Stáhnuto PCSX2 Knihovna není knihovna Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>Stáhnuto PCSX2 Knihovna není knihovna x64.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 nepřijímá požadované cestičky plného obsahu.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>V PCSX2 konfigurace hostitele je neplatná.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>V GW GUI spustitelný používaný k hostitelskému PCSX2 Nenašli jsme ho.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>V PCSX2 hostitel není inicializován.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>V PCSX2 hostitel neodpověděl.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>Hodnota {0} je neplatný pro PCSX2 možnost {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>V PCSX2 hostitel vrátil neplatnou délku odezvy: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 vrácen neplatný saved- state size: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>Vybraná knihovna se identifikuje jako {0} místo PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 nemohl vypustit média.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 nemohl vložit média.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>Vybraný soubor médií nebyl nalezen.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 odmítli vybraná média.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 nemohl vybrat média.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 nemohl vytvořit mediální slot.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>Pro PCSX2 seznam skladeb.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>V PCSX2 Proces je již inicializován.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Komunikace s PCSX2 proces selhal: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>V PCSX2 proces není inicializován.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>V PCSX2 proces nemohl být zahájen.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>V PCSX2 proces nereagoval včas.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>V PCSX2 Proces není k dispozici.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 nemohl vybrat požadovaný disk.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 nemohla vložit požadovaná média.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>Tohle. PCSX2 jádro nemůže začít bez médií.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>Záchrana je prázdná.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 nemohl obnovit zachráněný stát.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 nemohl zachránit současný stav.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 vrátil neznámou možnost jádra.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>V PCSX2 hostitel obdržel neznámého příkazu {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>V PCSX2 jádro API verze {0} je nepodporovaný.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 nepodporuje rozšíření obsahu {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 vrácený nepodporovaný formát pixelů {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>V PCSX2 Video buffer není k dispozici.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>Stáhnutý archiv neobsahuje PPSSPP Knihovna.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP odmítl načíst vybraný obsah.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>V PPSSPP Knihovna nebyla nalezena.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>V PPSSPP Jádro není inicializováno.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>V PPSSPP Knihovna není nabitá.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>V PPSSPP Cesta do knihovny musí být absolutní.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>V PPSSPP Ovládání disku je neúplné.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP neposkytuje ovládání disku.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP vrátil neplatný štítek disku.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>Stáhnuto PPSSPP knihovna má neplatnou hlavičku Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>Stáhnuto PPSSPP Knihovna není knihovna Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>Stáhnuto PPSSPP Knihovna není knihovna x64.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP nepřijímá požadované cestičky plného obsahu.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>V PPSSPP konfigurace hostitele je neplatná.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>V GW GUI spustitelný používaný k hostitelskému PPSSPP Nenašli jsme ho.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>V PPSSPP hostitel není inicializován.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>V PPSSPP hostitel neodpověděl.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>Hodnota {0} je neplatný pro PPSSPP možnost {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>V PPSSPP hostitel vrátil neplatnou délku odezvy: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP vrácen neplatný saved- state size: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>Vybraná knihovna se identifikuje jako {0} místo PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP nemohl vypustit média.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP nemohl vložit média.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>Vybraný soubor médií nebyl nalezen.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP odmítli vybraná média.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP nemohl vybrat média.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP nemohl vytvořit mediální slot.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>Pro PPSSPP seznam skladeb.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>V PPSSPP Proces je již inicializován.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Komunikace s PPSSPP proces selhal: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>V PPSSPP proces není inicializován.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>V PPSSPP proces nemohl být zahájen.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>V PPSSPP proces nereagoval včas.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>V PPSSPP Proces není k dispozici.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP nemohl vybrat požadovaný disk.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP nemohla vložit požadovaná média.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>Tohle. PPSSPP jádro nemůže začít bez médií.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>Záchrana je prázdná.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP nemohl obnovit zachráněný stát.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP nemohl zachránit současný stav.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP vrátil neznámou možnost jádra.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>V PPSSPP hostitel obdržel neznámého příkazu {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>V PPSSPP jádro API verze {0} je nepodporovaný.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP nepodporuje rozšíření obsahu {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP vrácený nepodporovaný formát pixelů {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>V PPSSPP Video buffer není k dispozici.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>Stáhnutý archiv neobsahuje SwanStation Knihovna.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation odmítl načíst vybraný obsah.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>V SwanStation Knihovna nebyla nalezena.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>V SwanStation Jádro není inicializováno.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>V SwanStation Knihovna není nabitá.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>V SwanStation Cesta do knihovny musí být absolutní.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>V SwanStation Ovládání disku je neúplné.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation neposkytuje ovládání disku.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation vrátil neplatný štítek disku.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>Stáhnuto SwanStation knihovna má neplatnou hlavičku Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>Stáhnuto SwanStation Knihovna není knihovna Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>Stáhnuto SwanStation Knihovna není knihovna x64.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation nepřijímá požadované cestičky plného obsahu.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>V SwanStation konfigurace hostitele je neplatná.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>V GW GUI spustitelný používaný k hostitelskému SwanStation Nenašli jsme ho.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>V SwanStation hostitel není inicializován.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>V SwanStation hostitel neodpověděl.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>Hodnota {0} je neplatný pro SwanStation možnost {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>V SwanStation hostitel vrátil neplatnou délku odezvy: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation vrácen neplatný saved- state size: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>Vybraná knihovna se identifikuje jako {0} místo SwanStation.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation nemohl vypustit média.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation nemohl vložit média.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>Vybraný soubor médií nebyl nalezen.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation odmítli vybraná média.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation nemohl vybrat média.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation nemohl vytvořit mediální slot.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>Pro SwanStation seznam skladeb.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>V SwanStation Proces je již inicializován.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Komunikace s SwanStation proces selhal: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>V SwanStation proces není inicializován.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>V SwanStation proces nemohl být zahájen.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>V SwanStation proces nereagoval včas.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>V SwanStation Proces není k dispozici.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation nemohl vybrat požadovaný disk.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation nemohla vložit požadovaná média.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>Tohle. SwanStation jádro nemůže začít bez médií.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>Záchrana je prázdná.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation nemohl obnovit zachráněný stát.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation nemohl zachránit současný stav.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation vrátil neznámou možnost jádra.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>V SwanStation hostitel obdržel neznámého příkazu {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>V SwanStation jádro API verze {0} je nepodporovaný.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation nepodporuje rozšíření obsahu {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation vrácený nepodporovaný formát pixelů {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>V SwanStation Video buffer není k dispozici.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>Stáhnutý archiv neobsahuje knihovnu PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 odmítl načíst vybraný obsah.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>Knihovna PCSX2 nebyla nalezena.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>Jádro PCSX2 není inicializováno.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>Knihovna PCSX2 není nabitá.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>Cesta knihovny PCSX2 musí být absolutní.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>Ovládání disků PCSX2 je neúplné.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 neposkytuje ovládání disku.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 vrátil neplatný štítek na disku.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>Stáhnutá knihovna PCSX2 má neplatnou hlavičku Windows.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>Stáhnutá knihovna PCSX2 není knihovnou Windows.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>Stáhnutá knihovna PCSX2 není knihovnou x64.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 nepřijímá požadované cestičky plného obsahu.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>Konfigurace hostů PCSX2 je neplatná.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>GW GUI spustitelný použit pro hosting PCSX2 nebyl nalezen.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>Hostitel PCSX2 není inicializován.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>Hostitel PCSX2 neodpověděl.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>Hodnota {0} je neplatná pro volbu PCSX2 {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>Hostitel PCSX2 vrátil neplatnou délku odpovědi: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 vrátil neplatnou velikost zachovaného stavu: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>Vybraná knihovna se označuje jako {0} místo PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 nemohl vysunout média.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 nemohla vložit média.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>Vybraný mediální soubor nebyl nalezen.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 odmítla vybraná média.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 nemohla vybrat média.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 nemohl vytvořit mediální slot.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>Pro seznam skladeb PCSX2 bylo vybráno příliš mnoho disků.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>Proces PCSX2 je již inicializován.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Komunikace s procesem PCSX2 selhala: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>Proces PCSX2 není inicializován.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>Proces PCSX2 nemohl být zahájen.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>Proces PCSX2 nereagoval včas.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>Proces PCSX2 není k dispozici.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 nemohl vybrat požadovaný disk.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 nemohla vložit požadovaná média.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>Toto PCSX2 jádro nemůže začít bez médií.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>Zachráněný stát je prázdný.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 nemohl obnovit uložený stav.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 nemohl uložit současný stav.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 vrátil neznámou volbu jádra.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>Hostitel PCSX2 obdržel neznámý příkaz {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>Jádro PCSX2 API verze {0} není podporováno.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 nepodporuje rozšíření obsahu {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 vrátil nepodporovaný formát pixelů {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>Video buffer PCSX2 není k dispozici.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>Stáhnutý archiv neobsahuje knihovnu PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP odmítl načíst vybraný obsah.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>Knihovna PPSSPP nebyla nalezena.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>Jádro PPSSPP není inicializováno.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>Knihovna PPSSPP není nabitá.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>Cesta knihovny PPSSPP musí být absolutní.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>Ovládání disku PPSSPP je neúplné.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP neposkytuje ovládání disku.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP vrátil neplatný štítek na disku.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>Stáhnutá knihovna PPSSPP má neplatnou hlavičku Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>Stáhnutá knihovna PPSSPP není knihovnou Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>Stáhnutá knihovna PPSSPP není knihovnou x64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP nepřijímá požadované cestičky plného obsahu.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>Konfigurace hostitele PPSSPP je neplatná.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>GW GUI spustitelný použitý k hostingu PPSSPP nebyl nalezen.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>Hostitel PPSSPP není inicializován.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>Hostitel PPSSPP neodpověděl.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>Hodnota {0} je neplatná pro volbu PPSSPP {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>Hostitel PPSSPP vrátil neplatnou délku odezvy: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP vrátil neplatnou velikost saved- state: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>Vybraná knihovna se označuje jako {0} místo PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP nemohl vysunout média.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP nemohla vložit média.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>Vybraný mediální soubor nebyl nalezen.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP odmítla vybraná média.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP nemohla vybrat média.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP nemohl vytvořit mediální slot.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>Pro seznam skladeb PPSSPP bylo vybráno příliš mnoho disků.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>Proces PPSSPP je již inicializován.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Komunikace s procesem PPSSPP selhala: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>Proces PPSSPP není inicializován.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>Proces PPSSPP nemohl být zahájen.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>Proces PPSSPP nereagoval včas.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>Proces PPSSPP není k dispozici.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP nemohl vybrat požadovaný disk.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP nemohla vložit požadovaná média.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>Toto PPSSPP jádro nemůže začít bez médií.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>Zachráněný stát je prázdný.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP nemohl obnovit uložený stav.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP nemohl zachránit současný stav.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP vrátil neznámou volbu jádra.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>Hostitel PPSSPP obdržel neznámý příkaz {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>Jádro PPSSPP API verze {0} není podporováno.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP nepodporuje rozšíření obsahu {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP vrátil nepodporovaný formát pixelů {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>Video buffer PPSSPP není k dispozici.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>Stáhnutý archiv neobsahuje knihovnu SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation odmítl načíst vybraný obsah.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>Knihovna SwanStation nebyla nalezena.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>Jádro SwanStation není inicializováno.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>Knihovna SwanStation není nabitá.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>Cesta do knihovny SwanStation musí být absolutní.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>Ovládání disku SwanStation je neúplné.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation neposkytuje ovládání disku.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation vrátil neplatný štítek na disku.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>Stáhnutá knihovna SwanStation má neplatnou hlavičku Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>Stáhnutá knihovna SwanStation není knihovnou Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>Stáhnutá knihovna SwanStation není knihovnou x64.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation nepřijímá požadované plné obsahové cesty.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>Konfigurace hostitele SwanStation je neplatná.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>GW GUI spustitelný použitý k hostování SwanStation nebyl nalezen.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>Hostitel SwanStation není inicializován.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>Hostitel SwanStation neodpověděl.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>Hodnota {0} je neplatná pro volbu SwanStation {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>Hostitel SwanStation vrátil neplatnou délku odezvy: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation vrátil neplatný saved- state size: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>Vybraná knihovna se označuje jako {0} místo SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation nemohl vypustit média.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation nemohl vložit média.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>Vybraný mediální soubor nebyl nalezen.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation odmítla vybraná média.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation nemohl vybrat média.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation nemohl vytvořit mediální slot.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>Do seznamu skladeb SwanStation bylo vybráno příliš mnoho disků.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>Proces SwanStation je již inicializován.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Komunikace s procesem SwanStation selhala: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>Proces SwanStation není inicializován.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>Proces SwanStation nemohl být zahájen.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>Proces SwanStation nereagoval včas.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>Proces SwanStation není k dispozici.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation nemohl vybrat požadovaný disk.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation nemohl vložit požadovaná média.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>Toto jádro SwanStation nemůže začít bez médií.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>Zachráněný stát je prázdný.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation nemohl obnovit zachráněný stát.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation nemohl zachránit současný stav.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation vrátil neznámou volbu jádra.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>Hostitel SwanStation obdržel neznámý příkaz {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>Jádro SwanStation API verze {0} není podporováno.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation nepodporuje rozšíření obsahu {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation vrátil nepodporovaný formát pixelů {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>Videobuffer SwanStation je nedostupný.</value></data>
 </root>

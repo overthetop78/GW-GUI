@@ -4,96 +4,38 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Deze waarde wordt bepaald door het geselecteerde model.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Er is geen compatibele FPU beschikbaar voor dit model.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Er is geen alternatief geheugen beschikbaar voor dit model.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Dit model heeft geen configureerbare firmware.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Dit model heeft geen toetsenbord.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Dit model heeft geen muis.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Dit model heeft geen opslagmedia.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Selecteer de Jaguar CD te gebruiken model CD media.</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>Regio</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Gebieden</value></data>
   <data name="Emulation.Atari.Firmware.Multilingual"><value>Meertalig</value></data>
   <data name="Emulation.Atari.Video.RegionFree"><value>Regiovrij</value></data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>De vereiste Atari kern werd niet gevonden.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde Atari-kern kon niet geladen worden.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Een vereiste Atari firmware ontbreekt.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Een Atari firmware is ongeldig of onverenigbaar.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>De geconfigureerde Atari media werd niet gevonden.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>De geconfigureerde media worden niet ondersteund door deze Atari machine.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Een Atari-optie heeft een ongeldige waarde.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de gastheer van Atari is mislukt.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>De opgeslagen Atari staat is ongeldig.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>De opgeslagen Atari staat is onverenigbaar met de huidige machine.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Er is een onverwachte Atari emulatiefout opgetreden.</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>De actieve Atari configuratie kan niet worden gewijzigd of verwijderd.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Vereiste Atari-firmware '{0}' is niet geconfigureerd voor {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Geconfigureerde Atari-firmware '{0}' is niet gevonden: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Geconfigureerde Atari media is niet gevonden: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Het uitvoerbare pad van de Atari-host is niet beschikbaar.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>De Atari kern '{0}' is niet geïnstalleerd.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numeriek toetsenbord</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Snel opstarten</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mozaïek RAM uitbreiding</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM uitbreiding</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankschaduw</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo-POKEY</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacten met hoge resolutie</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-versnelling</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Opstarten vanaf cassette</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Besturingssysteemrevisie</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Interne BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC-revisie</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Bewegingssnelheid van paddles</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automatisch vuren</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Terwijl vuur ingedrukt wordt</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Altijd</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Tint</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Verzadiging</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Helderheid</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA-kleurvertraging</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Extern palet</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Controllercompatibiliteit</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digitale gevoeligheid</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analoge gevoeligheid</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Dubbele joystick</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Poorten omwisselen</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Emulatiesnelheid weergeven</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Sector-/blokteller weergeven</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8-realtimeklok</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P:-printerapparaat</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R:-serieel apparaat</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 lichtpistool</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari-media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
+  <data name="Emulation.Atari.FastBoot"><value>Snel opstarten</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Geheugenuitbreiding (Mosaic RAM)</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Geheugenuitbreiding (Axlon RAM)</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow"><value>Geheugenbankspiegel (Axlon $0F)</value></data>
+  <data name="Emulation.Atari.Memory.MapRam"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Video.Artifacting"><value>Hi-res artifacting</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration"><value>SIO-versnelling</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot"><value>Opstarten van cassette</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision"><value>Herziening van het besturingssysteem</value></data>
+  <data name="Emulation.Atari.Video.Hue"><value>Tint</value></data>
+  <data name="Emulation.Atari.Video.Saturation"><value>Verzadiging</value></data>
+  <data name="Emulation.Atari.Video.Contrast"><value>Contrast</value></data>
+  <data name="Emulation.Atari.Video.Brightness"><value>Helderheid</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay"><value>GTIA-kleurvertraging</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette"><value>Extern palet</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd"><value>emulatiesnelheid op het scherm tonen</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd"><value>Aantal sectoren en blokken tonen</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock"><value>R-Time 8 real time klok</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice"><value>P: printerapparaat</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice"><value>R: serieel apparaat</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blauw/bruin 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blauw/bruin 2</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>Atari joystick</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
-  <data name="Emulation.Atari.Error.Details"><value>Details: {0}</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
-  <data name="Emulation.Atari.Video.Contrast"><value>Contrast</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Emuleert Atari ST, STE, TT en Falcon computers.</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Emuleert computers (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Emuleert Atari 8-bit computers en de Atari 5200 console.</value></data>
   <data name="Emulation.Emulator.stella2023.Description"><value>Emuleert de Atari 2600 console.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuleert de Atari 7800 console.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuleert het draagbare Atari Lynx spelsysteem.</value></data>
-  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuleert Atari Jaguar en Jaguar CD consoles.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>De geselecteerde Atari emulator gebruikt de gedeelde cartridge controller niet.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.Required"><value>De geselecteerde Atari machine heeft cartridge media nodig.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>De patroonextensie wordt niet ondersteund door de geselecteerde Atari emulator.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>De Atari patroon kan niet worden geopend om te lezen.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>De Atari emulator wees de vervangende patroon af.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>De Atari emulator wees zowel de vervanging als de vorige cartridge af.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Deze Atari emulator kan niet aan staan zonder een patroon.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>De geselecteerde Atari-emulator geeft geen selectie uit de cartridgeregio.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Deze Atari-emulator kan de cartridge-timingmodus niet gebruiken SECAM.</value></data>
-  <data name="Emulation.Summary.AudioEnabled"><value>Geluidsweergave is ingeschakeld</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuleert spelconsoles (Atari Jaguar/Jaguar CD).</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Geluid afspelen is ingeschakeld</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Geluidsweergave is uitgeschakeld</value></data>
 </root>

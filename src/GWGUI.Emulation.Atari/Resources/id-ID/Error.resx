@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Inti yang diperlukan Atari tidak ditemukan.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Inti Atari yang dipilih tidak dapat dimuat.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Sebuah firmware Atari yang diperlukan hilang.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Firmware Atari tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Media Atari yang dikonfigurasi tidak ditemukan.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Media yang dikonfigurasi tidak didukung oleh mesin Atari ini.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Sebuah opsi Atari memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Komunikasi dengan pemilik Atari gagal.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Negara bagian tabungan Atari tidak valid.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Negara bagian tabungan Atari tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Kesalahan emulasi Atari yang tak terduga terjadi.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Rincian: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Konfigurasi Atari yang aktif tak dapat diubah atau dihapus.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Firmware Atari yang diperlukan tidak dikonfigurasi. Firmware: {0}. Mesin: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Berkas firmware Atari yang dikonfigurasi tak ditemukan. Firmware: {0}. Berkas: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Media Atari yang dikonfigurasi tak ditemukan: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Jalur eksekusi Atari host tidak tersedia.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Inti emulasi Atari belum terpasang. Inti: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Emulator Atari yang dipilih tidak menggunakan pengontrol kartrid bersama.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Mesin Atari yang dipilih membutuhkan media cartridge.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Ekstensi cartridge tidak didukung oleh emulator Atari terpilih.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Peluru Atari tak bisa dibuka untuk dibaca.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Emulator Atari menolak peluru pengganti.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Emulator Atari menolak pengganti dan kartrid sebelumnya.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Emulator Atari ini tak bisa terus menyala tanpa cartridge.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Emulator Atari yang dipilih tidak mengekspos seleksi daerah cartridge.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Emulator Atari ini tidak dapat menggunakan mode waktu cartridge bernama SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Nilai ini ditentukan oleh model yang dipilih.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>FPU yang kompatibel tidak tersedia untuk model ini.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Tidak ada memori alternatif yang tersedia untuk model ini.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Model ini tidak memiliki firmware yang dapat diatur.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Model ini tidak memiliki keyboard.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Model ini tidak memiliki mouse.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Model ini tidak memiliki media penyimpanan.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Untuk menggunakan media diska kompak, pilih model ini: Jaguar CD.</value></data>
+</root>

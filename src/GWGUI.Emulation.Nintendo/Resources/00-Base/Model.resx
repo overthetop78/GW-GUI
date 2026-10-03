@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Model.GameWatch"><value>Game &amp; Watch</value></data>
+  <data name="Emulation.Nintendo.Model.Nes"><value>Nintendo Entertainment System / Famicom</value></data>
+  <data name="Emulation.Nintendo.Model.FamicomDisk"><value>Famicom Disk System</value></data>
+  <data name="Emulation.Nintendo.Model.Snes"><value>Super Nintendo / Super Famicom</value></data>
+  <data name="Emulation.Nintendo.Model.VirtualBoy"><value>Virtual Boy</value></data>
+  <data name="Emulation.Nintendo.Model.Nintendo64"><value>Nintendo 64</value></data>
+  <data name="Emulation.Nintendo.Model.GameBoy"><value>Game Boy</value></data>
+  <data name="Emulation.Nintendo.Model.GameBoyColor"><value>Game Boy Color</value></data>
+  <data name="Emulation.Nintendo.Model.GameBoyAdvance"><value>Game Boy Advance</value></data>
+  <data name="Emulation.Nintendo.Model.NintendoDs"><value>Nintendo DS / DSi</value></data>
+  <data name="Emulation.Nintendo.Model.Nintendo3Ds"><value>Nintendo 3DS</value></data>
+  <data name="Emulation.Nintendo.Model.GameCube"><value>Nintendo GameCube</value></data>
+  <data name="Emulation.Nintendo.Model.Wii"><value>Nintendo Wii</value></data>
+  <data name="Emulation.Nintendo.Model.WiiU"><value>Nintendo Wii U</value></data>
+  <data name="Emulation.Nintendo.Model.Switch"><value>Nintendo Switch</value></data>
+</root>

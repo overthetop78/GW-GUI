@@ -6,5 +6,5 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>模拟PlayStation 2系统.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>模拟PlayStation Portable系统.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>模拟索尼 PlayStation 和 PS 一种系统。</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>模拟了Sony PlayStation和PS one系统.</value></data>
 </root>

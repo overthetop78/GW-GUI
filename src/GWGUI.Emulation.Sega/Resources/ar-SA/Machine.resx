@@ -4,9 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sega.Language"><value>لغة نظام سيغا</value></data>
+  <data name="Emulation.Sega.Language"><value>Sega</value></data>
   <data name="Emulation.Sega.Language.English"><value>اللغة الإنكليزية</value></data>
   <data name="Emulation.Sega.Language.French"><value>الفرنسية</value></data>
   <data name="Emulation.Sega.Language.Spanish"><value>الإسبانية</value></data>
-  <data name="Emulation.Sega.Audio.Chip"><value>شريحة الصوت</value></data>
 </root>

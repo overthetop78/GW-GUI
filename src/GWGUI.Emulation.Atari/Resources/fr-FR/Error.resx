@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Le cœur d'émulation Atari requis est introuvable.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Le cœur d'émulation Atari sélectionné n'a pas pu être chargé.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Un firmware Atari requis est manquant.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Un firmware Atari est invalide ou incompatible.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Le média Atari configuré est introuvable.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Le média configuré n'est pas pris en charge par cette machine Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Une option Atari possède une valeur invalide.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>La communication avec le processus hôte Atari a échoué.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>L'état sauvegardé Atari est invalide.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>L'état sauvegardé Atari est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Une erreur inattendue s'est produite pendant l'émulation Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Détails : {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>La configuration Atari active ne peut pas être modifiée ou supprimée.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Le firmware Atari requis '{0}' n'est pas configuré pour {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Le firmware Atari configuré '{0}' est introuvable : {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Le média Atari configuré est introuvable : {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Le chemin de l'exécutable hôte Atari n'est pas disponible.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Le cœur d'émulation Atari '{0}' n'est pas installé.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>L'émulateur Atari sélectionné n'utilise pas le contrôleur de cartouche commun.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>La machine Atari sélectionnée nécessite une cartouche.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>L'extension du fichier de cartouche n'est pas prise en charge par l'émulateur Atari sélectionné.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>La cartouche Atari ne peut pas être ouverte en lecture.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>L'émulateur Atari a refusé la cartouche de remplacement.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>L'émulateur Atari a refusé la cartouche de remplacement ainsi que la cartouche précédente.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Cet émulateur Atari ne peut pas rester allumé sans cartouche.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>L'émulateur Atari sélectionné ne permet pas de choisir la région de la cartouche.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Cet émulateur Atari ne peut pas utiliser le mode de synchronisation de cartouche SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Cette valeur est déterminée par le modèle sélectionné.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Aucun FPU compatible n'est disponible pour ce modèle.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Aucune mémoire alternative n'est disponible pour ce modèle.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Ce modèle ne possède aucun firmware configurable.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Ce modèle ne possède pas de clavier.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Ce modèle ne possède pas de souris.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Ce modèle ne possède aucun média de stockage.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Sélectionnez le modèle Jaguar CD pour utiliser des médias CD.</value></data>
+</root>

@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>Det nedlastede arkivet inneholder ikke PCSX2 Bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 nektet å laste det valgte innholdet.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>Den PCSX2 Biblioteket ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>Den PCSX2 Kjernen er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>Den PCSX2 Biblioteket er ikke lastet.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>Den PCSX2 Biblioteksstien må være absolutt.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>Den PCSX2 Diskkontroll er ufullstendig.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 gir ikke diskkontroll.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 returnerte et ugyldig diskmerke.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>Den nedlastede PCSX2 bibliotek har en ugyldig Windows-hode.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>Den nedlastede PCSX2 Bibliotek er ikke et Windows-bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>Den nedlastede PCSX2 Bibliotek er ikke et x64 bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 aksepterer ikke de nødvendige hele innholdsstiene.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>Den PCSX2 vertskonfigurasjon er ugyldig.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>Den GW GUI kjørbar brukt til vert PCSX2 ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>Den PCSX2 verten er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>Den PCSX2 Verten svarte ikke.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>Verdien {0} er ugyldig for PCSX2 tilvalg {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>Den PCSX2 verten returnerte ugyldig responslengde: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 returnerte en ugyldig lagret tilstandsstørrelse: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>Det valgte biblioteket identifiserer seg som {0} i stedet for PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 Jeg kunne ikke utvist media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 kunne ikke sette inn mediet.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>Den valgte mediefilen ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 nektet de valgte mediene.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 Jeg kan ikke velge media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 klarte ikke å opprette en mediespor.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>For mange disker ble valgt for PCSX2 spilleliste.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>Den PCSX2 Prosessen er allerede initiert.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Kommunikasjon med PCSX2 prosessen mislyktes: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>Den PCSX2 Prosessen er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>Den PCSX2 Prosessen kan ikke startes.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>Den PCSX2 Prosessen responderte ikke i tid.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>Den PCSX2 Prosessen er ikke tilgjengelig.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 kunne ikke velge den ønskede disken.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 kunne ikke sette inn de etterspurte media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>Dette PCSX2 Kjernen kan ikke starte uten medier.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>Den redde staten er tom.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 kunne ikke gjenopprette den lagrede staten.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 Kunne ikke lagre den nåværende staten.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 En ukjent kjernealternativ.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>Den PCSX2 verten mottok den ukjente kommandoen {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>Den PCSX2 kjernen API versjon {0} er ikke støttet.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 Støtter ikke innholdsforlengelsen {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 returnerte det ikke-støttede pikselformatet {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>Den PCSX2 Videobuffer er utilgjengelig.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>Det nedlastede arkivet inneholder ikke PPSSPP Bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP nektet å laste det valgte innholdet.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>Den PPSSPP Biblioteket ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>Den PPSSPP Kjernen er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>Den PPSSPP Biblioteket er ikke lastet.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>Den PPSSPP Biblioteksstien må være absolutt.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>Den PPSSPP Diskkontroll er ufullstendig.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP gir ikke diskkontroll.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP returnerte et ugyldig diskmerke.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>Den nedlastede PPSSPP bibliotek har en ugyldig Windows-hode.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>Den nedlastede PPSSPP Bibliotek er ikke et Windows-bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>Den nedlastede PPSSPP Bibliotek er ikke et x64 bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP aksepterer ikke de nødvendige hele innholdsstiene.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>Den PPSSPP vertskonfigurasjon er ugyldig.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>Den GW GUI kjørbar brukt til vert PPSSPP ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>Den PPSSPP verten er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>Den PPSSPP Verten svarte ikke.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>Verdien {0} er ugyldig for PPSSPP tilvalg {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>Den PPSSPP verten returnerte ugyldig responslengde: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP returnerte en ugyldig lagret tilstandsstørrelse: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>Det valgte biblioteket identifiserer seg som {0} i stedet for PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP Jeg kunne ikke utvist media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP kunne ikke sette inn mediet.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>Den valgte mediefilen ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP nektet de valgte mediene.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP Jeg kan ikke velge media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP klarte ikke å opprette en mediespor.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>For mange disker ble valgt for PPSSPP spilleliste.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>Den PPSSPP Prosessen er allerede initiert.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Kommunikasjon med PPSSPP prosessen mislyktes: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>Den PPSSPP Prosessen er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>Den PPSSPP Prosessen kan ikke startes.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>Den PPSSPP Prosessen responderte ikke i tid.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>Den PPSSPP Prosessen er ikke tilgjengelig.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP kunne ikke velge den ønskede disken.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP kunne ikke sette inn de etterspurte media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>Dette PPSSPP Kjernen kan ikke starte uten medier.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>Den redde staten er tom.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP kunne ikke gjenopprette den lagrede staten.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP Kunne ikke lagre den nåværende staten.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP En ukjent kjernealternativ.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>Den PPSSPP verten mottok den ukjente kommandoen {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>Den PPSSPP kjernen API versjon {0} er ikke støttet.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP Støtter ikke innholdsforlengelsen {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP returnerte det ikke-støttede pikselformatet {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>Den PPSSPP Videobuffer er utilgjengelig.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>Det nedlastede arkivet inneholder ikke SwanStation Bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation nektet å laste det valgte innholdet.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>Den SwanStation Biblioteket ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>Den SwanStation Kjernen er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>Den SwanStation Biblioteket er ikke lastet.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>Den SwanStation Biblioteksstien må være absolutt.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>Den SwanStation Diskkontroll er ufullstendig.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation gir ikke diskkontroll.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation returnerte et ugyldig diskmerke.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>Den nedlastede SwanStation bibliotek har en ugyldig Windows-hode.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>Den nedlastede SwanStation Bibliotek er ikke et Windows-bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>Den nedlastede SwanStation Bibliotek er ikke et x64 bibliotek.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation aksepterer ikke de nødvendige hele innholdsstiene.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>Den SwanStation vertskonfigurasjon er ugyldig.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>Den GW GUI kjørbar brukt til vert SwanStation ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>Den SwanStation verten er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>Den SwanStation Verten svarte ikke.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>Verdien {0} er ugyldig for SwanStation tilvalg {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>Den SwanStation verten returnerte ugyldig responslengde: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation returnerte en ugyldig lagret tilstandsstørrelse: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>Det valgte biblioteket identifiserer seg som {0} I stedet for SwanStation.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation Jeg kunne ikke utvist media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation kunne ikke sette inn mediet.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>Den valgte mediefilen ble ikke funnet.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation nektet de valgte mediene.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation Jeg kan ikke velge media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation klarte ikke å opprette en mediespor.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>For mange disker ble valgt for SwanStation spilleliste.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>Den SwanStation Prosessen er allerede initiert.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Kommunikasjon med SwanStation prosessen mislyktes: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>Den SwanStation Prosessen er ikke initiert.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>Den SwanStation Prosessen kan ikke startes.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>Den SwanStation Prosessen responderte ikke i tid.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>Den SwanStation Prosessen er ikke tilgjengelig.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation kunne ikke velge den ønskede disken.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation kunne ikke sette inn de etterspurte media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>Dette SwanStation Kjernen kan ikke starte uten medier.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>Den redde staten er tom.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation kunne ikke gjenopprette den lagrede staten.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation Kunne ikke lagre den nåværende staten.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation En ukjent kjernealternativ.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>Den SwanStation verten mottok den ukjente kommandoen {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>Den SwanStation kjernen API versjon {0} er ikke støttet.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation Støtter ikke innholdsforlengelsen {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation returnerte det ikke-støttede pikselformatet {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>Den SwanStation Videobuffer er utilgjengelig.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>Det nedlastede arkivet inneholder ikke PCSX2-biblioteket.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 nektet å laste det valgte innholdet.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>PCSX2-biblioteket ble ikke funnet.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>PCSX2-kjernen er ikke initiert.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>PCSX2-biblioteket er ikke lastet.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>PCSX2-biblioteksstien må være absolutt.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>PCSX2-diskkontrollene er ufullstendige.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 gir ikke diskkontroller.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 returnerte et ugyldig diskmerke.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>Det nedlastede PCSX2-biblioteket har et ugyldig Windows-hode.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>Det nedlastede PCSX2 biblioteket er ikke et Windows-bibliotek.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>Det nedlastede PCSX2-biblioteket er ikke et x64- bibliotek.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 godtar ikke de nødvendige fullstendige innholdsstiene.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>PCSX2 vertskonfigurasjonen er ugyldig.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>GW GUI kjøringen som ble brukt til å hoste PCSX2 var ikke funnet.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>PCSX2-verten er ikke initiert.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>PCSX2-verten returnerte ingen respons.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>Verdien {0} er ugyldig for PCSX2-alternativet {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>PCSX2-verten returnerte en ugyldig respons lengde: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 returnerte en ugyldig lagret tilstandsstørrelse: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>Det valgte biblioteket identifiserer seg som {0} i stedet for PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 kan ikke utløse mediet.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 kan ikke sette inn mediet.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>Den valgte mediefilen ble ikke funnet.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 avviste det valgte mediet.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 kunne ikke velge mediet.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 kan ikke opprette en medieautomat.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>For mange disker ble valgt for PCSX2-spillelisten.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>PCSX2-prosessen er allerede initiert.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Kommunikasjon med PCSX2-prosessen mislyktes: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>PCSX2-prosessen er ikke initiert.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>PCSX2-prosessen kunne ikke startes.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>PCSX2-prosessen reagerte ikke i tide.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>PCSX2-prosessen er utilgjengelig.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 kunne ikke velge den valgte disken.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 kunne ikke sette inn ønsket media.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>Denne PCSX2-kjernen kan ikke starte uten media.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>Den redde staten er tom.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 kunne ikke gjenopprette den lagrede tilstanden.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 kan ikke lagre gjeldende tilstand.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 returnerte et ukjent kjernealternativ.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>PCSX2-verten fikk den ukjente kommandoen {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>PCSX2 kjerne API versjon {0} er ikke støttet.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 støtter ikke innholdsforlengelsen {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 returnerte det ustøtte pixelformatet {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>PCSX2-videobufferen er ikke tilgjengelig.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>Det nedlastede arkivet inneholder ikke PPSSPP-biblioteket.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP nektet å laste det valgte innholdet.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>PPSSPP-biblioteket ble ikke funnet.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>PPSSPP kjernen er ikke initiert.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>PPSSPP-biblioteket er ikke lastet inn.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>PPSSPP-biblioteksstien må være absolutt.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>PPSSPP-diskkontrollene er ufullstendige.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP gir ikke diskkontroller.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP returnerte et ugyldig platemerke.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>Det nedlastede PPSSPP-biblioteket har en ugyldig Windows header.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>Det nedlastede PPSSPP-biblioteket er ikke et Windows bibliotek.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>Det nedlastede PPSSPP-biblioteket er ikke et x64 bibliotek.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP godtar ikke de nødvendige fullstendige innholdsstiene.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>PPSSPP-vertskonfigurasjonen er ugyldig.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>GW GUI kjøringen som ble brukt til å hoste PPSSPP var ikke funnet.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>PPSSPP-verten er ikke initiert.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>PPSSPP-verten svarte ikke.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>Verdien {0} er ugyldig for PPSSPP-alternativet {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>PPSSPP-verten ga ugyldig responslengde: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP returnerte en ugyldig lagret tilstandsstørrelse: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>Det valgte biblioteket identifiserer seg som {0} i stedet for PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP kan ikke kaste ut mediet.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP klarte ikke å sette inn media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>Den valgte mediefilen ble ikke funnet.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP avviste de valgte media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP kan ikke velge mediet.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP kunne ikke opprette en mediespor.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>For mange disker ble valgt for PPSSPP-spillelisten.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>PPSSPP-prosessen er allerede initiert.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Kommunikasjon med PPSSPP-prosessen mislyktes: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>PPSSPP-prosessen er ikke initiert.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>PPSSPP-prosessen kan ikke startes.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>PPSSPP-prosessen responderte ikke i tide.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>PPSSPP-prosessen er ikke tilgjengelig.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP kunne ikke velge den ønskede disken.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP kunne ikke sette inn ønsket media.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>Denne PPSSPP kjernen kan ikke starte uten medier.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>Den redde staten er tom.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP klarte ikke å gjenopprette den lagrede tilstanden.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP kan ikke lagre den gjeldende tilstanden.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP returnerte et ukjent kjernealternativ.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>PPSSPP-verten mottok den ukjente kommandoen {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>PPSSPP core API versjon {0} er ikke støttet.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP støtter ikke innholdsforlengelsen {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP returnerte det ikke-støttede pikselformatet {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>PPSSPP-videobufferen er ikke tilgjengelig.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>Det nedlastede arkivet inneholder ikke SwanStation-biblioteket.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation nektet å laste det valgte innholdet.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>SwanStation bibliotek ble ikke funnet.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>SwanStation kjernen er ikke initiert.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>SwanStation-biblioteket er ikke lastet.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>SwanStation Library banen må være absolutt.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>SwanStation diskkontrollene er ufullstendige.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation gir ikke diskkontroll.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation returnerte et ugyldig platemerke.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>Det nedlastede SwanStation biblioteket har et ugyldig Windows-hode.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>Det nedlastede SwanStation-biblioteket er ikke et Windows bibliotek.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>Det nedlastede SwanStation-biblioteket er ikke et x64 bibliotek.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation godtar ikke de nødvendige fullstendige innholdsstiene.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>SwanStation vertskonfigurasjonen er ugyldig.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>GW GUI kjøringen som ble brukt til å hoste SwanStation var ikke funnet.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>SwanStation-verten er ikke initiert.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>SwanStation-verten svarte ikke.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>Verdien {0} er ugyldig for SwanStation-alternativet {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>SwanStation-verten ga ugyldig responslengde: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation returnerte en ugyldig lagret-statstørrelse: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>Det valgte biblioteket identifiserer seg som {0} i stedet for SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation kan ikke kaste ut media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation kan ikke sette inn medier.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>Den valgte mediefilen ble ikke funnet.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation nektet de utvalgte mediene.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation kan ikke velge media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation kunne ikke opprette en medieautomat.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>For mange disker ble valgt til SwanStation spillelisten.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>SwanStation prosessen er allerede initiert.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Kommunikasjon med SwanStation-prosessen mislyktes: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>SwanStation prosessen er ikke initiert.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>SwanStation prosessen kunne ikke startes.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>SwanStation-prosessen reagerte ikke i tide.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>SwanStation-prosessen er ikke tilgjengelig.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation kunne ikke velge den forespurte disken.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation kunne ikke sette inn det ønskede mediet.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>Denne SwanStation-kjernen kan ikke starte uten medier.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>Den redde staten er tom.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation kan ikke gjenopprette den lagrede staten.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation kan ikke redde den nåværende staten.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation returnerte et ukjent kjernealternativ.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>SwanStation-verten fikk den ukjente kommandoen {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>The SwanStation core API versjon {0} er ikke støttet.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation støtter ikke innholdsforlengelsen {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation returnerte det ustøtte pikselformatet {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>SwanStation-videobufferen er ikke tilgjengelig.</value></data>
 </root>

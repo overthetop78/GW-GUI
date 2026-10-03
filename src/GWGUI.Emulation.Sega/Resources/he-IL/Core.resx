@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>תגית: Sega Dreamcast מערכות.</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>מדמה את מערכות SG-1000, Mark III, Master System, Game Gear, Mega Drive ו-Mega-CD.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>תגית: Sega Saturn מערכות.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>מחקה את מערכות Sega הנתמכות על ידי PicoDrive.</value></data>
+  <data name="Emulation.Emulator.flycast.Description"><value>מערכות Sega Dreamcast</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulates SG-1000, Mark III, Master System, Game Gear, Mega Drive ו- Mega-CD Systems.</value></data>
+  <data name="Emulation.Emulator.yabause.Description"><value>מדמה מערכות Sega Saturn.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>מערכות PicoDrive Sega</value></data>
 </root>

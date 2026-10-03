@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Không tìm thấy lõi cầu Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Không thể tải lõi Atari đã chọn.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Một phần cứng Atari bị thiếu.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Một phần cứng Atari không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Không tìm thấy phương tiện truyền thông Atari được cấu hình.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Phương tiện được cấu hình không được hỗ trợ bởi máy Atari này.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Một tùy chọn Atari có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Liên lạc với tổ chức Atari thất bại.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Nhà nước Atari đã được cứu không hợp lệ.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Bang Atari tiết kiệm không tương thích với cỗ máy hiện tại.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Một lỗi không ngờ xảy ra ở Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Chi tiết:{0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Cấu hình Atari hoạt động không thể được sửa đổi hay xoá bỏ.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Phần cứng yêu cầu Atari chưa được cấu hình. Chắc chắn:{0}. Máy:{1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Không tìm thấy tập tin phần mềm Atari đã cấu hình. Chắc chắn:{0}. Tập tin:{1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Cấu hình Atari phương tiện không được tìm thấy: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Không có đường dẫn đến máy Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Trung tâm điều khiển Atari chưa được cài đặt. Cái lõi: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Trình giả lập Atari đã chọn không dùng bộ điều khiển hộp chung.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Máy Atari được chọn đòi hỏi phương tiện truyền thông đạn dược.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Trình giả lập Atari đã chọn không hỗ trợ việc mở rộng hộp mực.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Hộp Atari không thể mở để đọc.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Trình giả lập Atari đã từ chối đạn thay thế.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Bộ giả lập Atari đã từ chối cả người thay thế lẫn đạn trước.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Trình giả lập Atari này không thể tiếp tục chạy nếu không có đạn.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Trình giả lập Atari đã chọn không để lộ vùng chọn.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Bộ giả lập Atari này không thể sử dụng chế độ đúng giờ đạn tên là SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Giá trị này được xác định bởi mô hình đã chọn.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Không có tương thích với FPU cho mô hình này.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Không có bộ nhớ khác sẵn sàng cho mô hình này.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Mô hình này không có phần mềm cấu hình được.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Mô hình này không có bàn phím.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Mô hình này không có chuột.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Mô hình này không có phương tiện lưu trữ.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Để sử dụng phương tiện truyền thông nhỏ gọn, hãy chọn mô hình này: Jaguar CD.</value></data>
+</root>

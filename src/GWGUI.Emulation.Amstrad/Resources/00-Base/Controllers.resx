@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Controller.Joystick"><value>Amstrad joystick controller</value></data>
+  <data name="Emulation.Amstrad.Controller.Keyboard"><value>Amstrad keyboard</value></data>
+  <data name="Emulation.Amstrad.Controller.AmstradJy1"><value>Amstrad JY-1</value></data>
+  <data name="Emulation.Amstrad.Controller.AmstradJy2"><value>Amstrad JY-2</value></data>
+  <data name="Emulation.Amstrad.Controller.AmstradJy3"><value>Amstrad JY-3</value></data>
+  <data name="Emulation.Amstrad.Controller.AmstradPd1"><value>Amstrad PD-1</value></data>
+  <data name="Emulation.Amstrad.Controller.AmstradAj5"><value>Amstrad AJ-5</value></data>
+  <data name="Emulation.Amstrad.Controller.AmstradMegaPcControlPad"><value>Amstrad Mega PC Control Pad</value></data>
+</root>

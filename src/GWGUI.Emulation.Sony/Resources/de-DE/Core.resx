@@ -6,5 +6,5 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emuliert PlayStation 2-Systeme.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emuliert PlayStation Portable Systeme.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emuliert Sony PlayStation und PS ein System.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emuliert Sony PlayStation und PS one Systeme.</value></data>
 </root>

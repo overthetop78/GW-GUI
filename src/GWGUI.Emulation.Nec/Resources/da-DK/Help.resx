@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Vælger RAM udvidelse udsat af BeetlePce. Maskinen skal genstartes, før den nye mængde anvendes.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>System ROM er indbygget i BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>BeetlePce leverer systemet ROM internt og afslører ikke en ROM-filvælger.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Intern beslutning fra BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Vælger en af BeetlePce 's interne beslutninger. Dette sætter ikke programmets vinduesstørrelse.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Type monitor emuleret af BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Vælger en farve, grøn monokrom eller hvid monokromt NEC-skærm.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Lysstyrke af den emulerede skærm.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Justerer monitorintensiteten fra 5 til 15, som udsat af BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Fjerner den ydre skærmkant.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>beder BeetlePce om at beskære den ydre grænse. GW GUI holder det aspektforhold rapporteret af emulatoren.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Mekanisk lyd af disketten drev.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Aktiverer eller deaktiverer diskettedrevet lyd genereret af BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec maskine model er konfigureret.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulator valgt til denne maskine.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Identificerer den emulator implementering, der bruges til at køre denne maskine konfiguration.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Processor emulerede til denne maskine.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Viser processormodellen som leveres af den valgte Nec maskine.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Original processor clockfrekvens.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Viser processorens nominelle urfrekvens i den valgte Nec-maskine.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Aktivér eller deaktivér emuleret lyd.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Kontrollerer om GW GUI spiller lydprøverne genereret af emulatoren.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Lydudgang brugt af GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Vælger Windows audio output, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identificerer den NEC-model, hvis hardwarekonfiguration redigeres.</value></data>
+</root>

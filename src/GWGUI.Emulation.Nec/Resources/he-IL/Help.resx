@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>כמות ה- RAM זמינה למכונה הנחשקת.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>בחר את הרחבת ה- RAM הזמינה. תגית: BeetlePce המכונה חייבת להתחיל מחדש לפני השימוש בכמות חדשה.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>המערכת ROM בנויה. תגית: BeetlePce</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>המערכת ROM מסופקת פנימית. תגית: BeetlePce אין בחירת קובץ ROM זמינה.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>פתרון פנימי הניתן על ידי BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>בחר את אחת ההחלטות הפנימיות שנחשפו על ידי BeetlePce. זה לא מגדיר את גודל חלון היישום.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>סוג של צג חיקוי על ידי BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>בחר צבע, מונוכרום ירוק או מסך לבן NEC לפקח.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>בהירותו של המוניטור.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>מכוונן את עוצמת המוניטור בין 5 ל-15, כפי שנחשף על ידי BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>להסיר את גבול המסך החיצוני.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>שאל את BeetlePce לחתוך את הגבול החיצוני. GW GUI שומרת על יחס האספקט שדווח על ידי החיקוי.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>הצליל המכני של כונן התקליטונים.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>מפעיל או משבית את צליל כונן התקליטונים שנוצר על ידי BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>מודל מכונה Nec מוגדר.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>אדמירטור נבחר למכונה זו.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>מציין את מימוש האמולטור המשמש להפעלת תצורת המכונה הזאת.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>מעבד חיקוי למכונה זו.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>מציג את מודל המעבד המסופק על ידי מכונת Nec שנבחרה.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>תדירות שעון המעבד המקורי</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>מציג את תדירות השעון הדומינלי של המעבד במכונת Nec שנבחרה.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>צליל אמין או מפוחד.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>שליטה אם GW GUI משחק את הדגימות אודיו שנוצרו על ידי החיקוי.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>צילום אודיו בשימוש על ידי GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>בחר את הפלט אודיו של Windows המשמש כדי לנגן קול ממכונה זו.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>מציין את דגם NEC שתצורת החומרה שלו נערכת.</value></data>
+</root>

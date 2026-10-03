@@ -6,5 +6,5 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Προσομοιάζει τα συστήματα PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Προσομοιάζει τα συστήματα του PlayStation Portable.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Προσομοιάζει το Sony PlayStation και PS Ένα σύστημα.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Προσομοιάζει τα συστήματα Sony PlayStation και PS one.</value></data>
 </root>

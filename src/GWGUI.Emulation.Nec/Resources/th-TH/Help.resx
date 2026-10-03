@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>ยอดของ RAM ที่ใช้ได้กับเครื่องเลียนแบบ</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>เลือกการขยาย RAM ที่มีอยู่ 2561 : BeetlePce. สืบค้นเมื่อ พ.ศ. เครื่องต้องเริ่มการทํางานใหม่ก่อนใช้ปริมาณที่มากขึ้น</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>ระบบ ROM สร้างขึ้นใน ค.ศ. 2561 : BeetlePce. สืบค้นเมื่อ พ.ศ.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>ระบบ ROM ถูกจัดทําภายใน 2561 : BeetlePce. สืบค้นเมื่อ พ.ศ. ไม่มีการเลือกแฟ้ม ROM</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>มติภายในโดย BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>เลือกความละเอียดภายในที่แสดงโดย BeetlePce นี่ไม่ได้ตั้งค่าขนาดหน้าต่างของโปรแกรม</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>จอภาพประเภท BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>เลือกสี, สีสีเขียวเดียว, หรือหน้าจอสีขาวสีเดียวNEC</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>ความสว่างของจอภาพเลียนแบบ</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>ปรับความเข้มของจอภาพจาก 5 ถึง 15 ตามที่ถูกเปิดเผยโดย BeetlePce</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>เอาขอบจอภายนอกออก</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>ถาม BeetlePce เพื่อปลูกฝังพรมแดนภายนอก GW GUI รักษาสัดส่วนเชิงสัดส่วนที่รายงานโดยเครื่องจําลอง (พ.ศ.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>เสียงจักรกลของฟลอปปี้ไดร์ฟ</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>เปิดหรือปิดเสียงไดรฟ์ฟลอปปี้ที่สร้างโดย BeetlePce</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec เครื่องจําลองได้ถูกปรับแต่ง</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>ตัวจําลองที่เลือกใช้เครื่องจักรนี้</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>ปรับค่าโปรแกรมจําลองที่จะใช้ในการใช้งานปรับแต่งเครื่องนี้</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>ตัวประมวลผลเลียนแบบเครื่องจักรนี้</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>แสดงรุ่นของตัวประมวลผลที่ตั้งไว้โดยเครื่อง Nec ที่เลือกไว้</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>ความถี่ของตัวประมวลผลดั้งเดิม</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>แสดงความถี่ของตัวประมวลผลนาฬิกาในเครื่อง Nec</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>เปิดหรือปิดเสียงที่คัดลอกมา</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>ควบคุมว่า GW GUI บรรเลงตัวอย่างเสียงที่สร้างโดยเครื่องจําลองเสียงหรือไม่</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>การแสดงผลเสียงที่ใช้โดย GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>เลือกการแสดงผลเสียง Windows ที่ใช้ในการเล่นเพลงจากเครื่องจําลองนี้</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>ระบุรุ่น NEC ที่ปรับแต่งฮาร์ดแวร์ให้ถูกแก้ไข</value></data>
+</root>

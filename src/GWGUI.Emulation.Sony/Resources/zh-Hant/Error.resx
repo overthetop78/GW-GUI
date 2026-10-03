@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>下载的归档中不包含 PCSX2 图书馆。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 拒绝加载所选内容 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>电话 PCSX2 找不到库。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>电话 PCSX2 核心未初始化。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>电话 PCSX2 库未装入。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>电话 PCSX2 库路径必须是绝对的。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>电话 PCSX2 磁盘控件不完整 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 不提供磁盘控制。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 返回无效的磁盘标签。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>下载的 PCSX2 库有一个无效的 Windows 页眉。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>下载的 PCSX2 库不是 Windows 库。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>下载的 PCSX2 库不是 x64 图书馆。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 不接受所需的全部内容路径。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>电话 PCSX2 主机配置无效 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>电话 GW GUI 用于主机的可执行文件 PCSX2 找不到 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>电话 PCSX2 主机没有初始化 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>电话 PCSX2 主机返回了未回复 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>值 {0} 无效,用于 PCSX2 选项 {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>电话 PCSX2 主机返回无效的响应长度 : {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 返回无效的保存状态大小 : {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>所选库自认为 {0} 改为 PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 无法弹出媒体 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 无法插入媒体。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>未找到所选的媒体文件 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 拒绝选择的媒体。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 无法选择媒体 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 无法创建媒体槽 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>选择过多的磁盘用于 PCSX2 播放列表 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>电话 PCSX2 进程已经初始化。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>与《公约》缔约方会议 PCSX2 进程失败 : {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>电话 PCSX2 进程没有初始化。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>电话 PCSX2 进程无法启动 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>电话 PCSX2 进程没有及时响应。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>电话 PCSX2 进程无法使用。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 无法选择请求的磁盘 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 无法插入请求的媒体 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>这个 PCSX2 没有媒体,核心就无法启动。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>所救之州为空.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 无法恢复保存状态 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 无法保存当前状态 。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 返回未知的核心选项。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>电话 PCSX2 主机收到未知的命令 {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>电话 PCSX2 核心项目 API 版本 {0} 。不支持该选项。</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 不支持内容扩展 {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 返回不支持的像素格式 {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>电话 PCSX2 视频缓冲器没有可用。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>下载的归档中不包含 PPSSPP 图书馆。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP 拒绝加载所选内容 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>电话 PPSSPP 找不到库。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>电话 PPSSPP 核心未初始化。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>电话 PPSSPP 库未装入。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>电话 PPSSPP 库路径必须是绝对的。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>电话 PPSSPP 磁盘控件不完整 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP 不提供磁盘控制。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP 返回无效的磁盘标签。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>下载的 PPSSPP 库有一个无效的 Windows 页眉。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>下载的 PPSSPP 库不是 Windows 库。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>下载的 PPSSPP 库不是 x64 图书馆。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP 不接受所需的全部内容路径。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>电话 PPSSPP 主机配置无效 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>电话 GW GUI 用于主机的可执行文件 PPSSPP 找不到 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>电话 PPSSPP 主机没有初始化 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>电话 PPSSPP 主机返回了未回复 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>值 {0} 无效,用于 PPSSPP 选项 {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>电话 PPSSPP 主机返回无效的响应长度 : {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP 返回无效的保存状态大小 : {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>所选库自认为 {0} 改为 PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP 无法弹出媒体 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP 无法插入媒体。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>未找到所选的媒体文件 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP 拒绝选择的媒体。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP 无法选择媒体 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP 无法创建媒体槽 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>选择过多的磁盘用于 PPSSPP 播放列表 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>电话 PPSSPP 进程已经初始化。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>与《公约》缔约方会议 PPSSPP 进程失败 : {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>电话 PPSSPP 进程没有初始化。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>电话 PPSSPP 进程无法启动 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>电话 PPSSPP 进程没有及时响应。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>电话 PPSSPP 进程无法使用。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP 无法选择请求的磁盘 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP 无法插入请求的媒体 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>这个 PPSSPP 没有媒体,核心就无法启动。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>所救之州为空.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP 无法恢复保存状态 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP 无法保存当前状态 。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP 返回未知的核心选项。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>电话 PPSSPP 主机收到未知的命令 {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>电话 PPSSPP 核心项目 API 版本 {0} 。不支持该选项。</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP 不支持内容扩展 {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP 返回不支持的像素格式 {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>电话 PPSSPP 视频缓冲器没有可用。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>下载的归档中不包含 SwanStation 图书馆。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation 拒绝加载所选内容 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>电话 SwanStation 找不到库。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>电话 SwanStation 核心未初始化。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>电话 SwanStation 库未装入。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>电话 SwanStation 库路径必须是绝对的。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>电话 SwanStation 磁盘控件不完整 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation 不提供磁盘控制。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation 返回无效的磁盘标签。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>下载的 SwanStation 库有一个无效的 Windows 页眉。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>下载的 SwanStation 库不是 Windows 库。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>下载的 SwanStation 库不是 x64 图书馆。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation 不接受所需的全部内容路径。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>电话 SwanStation 主机配置无效 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>电话 GW GUI 用于主机的可执行文件 SwanStation 找不到 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>电话 SwanStation 主机没有初始化 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>电话 SwanStation 主机返回了未回复 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>值 {0} 无效,用于 SwanStation 选项 {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>电话 SwanStation 主机返回无效的响应长度 : {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation 返回无效的保存状态大小 : {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>所选库自认为 {0} 而不是SwanStation, 而不是"天鹅"。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation 无法弹出媒体 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation 无法插入媒体。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>未找到所选的媒体文件 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation 拒绝选择的媒体。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation 无法选择媒体 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation 无法创建媒体槽 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>选择过多的磁盘用于 SwanStation 播放列表 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>电话 SwanStation 进程已经初始化。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>与《公约》缔约方会议 SwanStation 进程失败 : {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>电话 SwanStation 进程没有初始化。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>电话 SwanStation 进程无法启动 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>电话 SwanStation 进程没有及时响应。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>电话 SwanStation 进程无法使用。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation 无法选择请求的磁盘 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation 无法插入请求的媒体 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>这个 SwanStation 没有媒体,核心就无法启动。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>所救之州为空.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation 无法恢复保存状态 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation 无法保存当前状态 。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation 返回未知的核心选项。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>电话 SwanStation 主机收到未知的命令 {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>电话 SwanStation 核心项目 API 版本 {0} 。不支持该选项。</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation 不支持内容扩展 {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation 返回不支持的像素格式 {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>电话 SwanStation 视频缓冲器没有可用。</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>已下载的归档不包含PCSX2库.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2拒绝加载所选内容.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>未找到 PCSX2 库 。</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>PCSX2核心未初始化.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>未装入 PCSX2 库 。</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>PCSX2库路径必须是绝对的.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>PCSX2磁盘控件不全.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2不提供磁盘控制.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 返回无效的磁盘标签 。</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>已下载的PCSX2库有一个无效的Windows头.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>已下载的PCSX2库不是Windows库.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>已下载的PCSX2库不是x64库.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2不接受所需的完整内容路径.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>PCSX2主机配置无效.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>找不到用于主机PCSX2的 GW GUI 可执行文件 。</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>PCSX2主机未初始化.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>PCSX2主机未回复.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>PCSX2 选项{1} 的值{0} 无效 。</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>PCSX2主机返回无效响应长度:{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 返回无效的保存状态大小 :{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>所选库自认为{0}而不是PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 无法弹出媒体 。</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 无法插入媒体 。</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>未找到选中的媒体文件 。</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2拒绝选择的媒体.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 无法选择媒体 。</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 无法创建媒体槽 。</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>为PCSX2播放列表选择了太多的磁盘.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>PCSX2进程已经初始化.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>与 PCSX2 进程通信失败 :{0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>PCSX2进程没有初始化.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>PCSX2进程无法启动 。</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>PCSX2进程没有及时响应.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>PCSX2 进程无法使用.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 无法选择请求的磁盘 。</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 无法插入请求的媒体 。</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>此 PCSX2 核心不能没有媒体启动 。</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>所救之州为空.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 无法恢复保存状态 。</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 无法保存当前状态 。</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2返回了未知的核心选项.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>PCSX2主机收到未知命令{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>PCSX2核心API版本{0}是不支持的.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2不支持内容扩展{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2返回了不支持的像素格式{0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>PCSX2视频缓冲器无法使用.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>已下载的归档不包含 PPSSPP 库.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP拒绝加载所选内容.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>PPSSPP 库未找到 。</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>PPSSPP核心未初始化.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>PPSSPP 库未加载 。</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>PPSSPP 库路径必须是绝对的.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>PPSSPP磁盘控件不全.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP不提供磁盘控制.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP 返回无效的磁盘标签 。</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>已下载的PPSSPP库有一个无效的Windows头.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>已下载的 PPSSPP 库不是一个 Windows 库.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>已下载的 PPSSPP 库不是 x64 库.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP不接受所需的完整内容路径.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>PPSSPP主机配置无效.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>未找到用于主机 PPSSPP 的 GW GUI 可执行文件 。</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>PPSSPP主机未初始化.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>PPSSPP主机未回复.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>对于 PPSSPP 选项{1} , 值{0} 无效 。</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>PPSSPP主机返回无效的响应长度 :{0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP 返回无效的保存状态大小 : {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>所选库自认为{0}而不是PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP无法弹出媒体 。</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPPP 无法插入媒体 。</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>未找到选中的媒体文件 。</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP拒绝选择的媒体.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP 无法选择媒体 。</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP 无法创建媒体槽 。</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>PPSSPPP播放列表中选择了过多个磁盘.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>PPSSPP进程已经启动。</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>与 PPSSPP 进程通信失败 :{0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>PPSSPP进程没有初始化.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>PPSSPP进程无法启动 。</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>PPSSPP进程没有及时响应.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>PPSSPP进程无法使用.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP 无法选择请求的磁盘 。</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPPP 无法插入请求的介质 。</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>此 PPSSPP 核心无法没有媒体启动 。</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>所救之州为空.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPPP 无法恢复保存状态 。</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP 无法保存当前状态 。</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP返回未知的核心选项 。</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>PPSSPP主机收到未知命令{0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>PPSSPP核心API版本{0}是不支持的.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP不支持内容扩展{0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP 返回了不支持的像素格式{0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>PPSSPP视频缓冲器无法使用.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>已下载的归档不包含 SwanStation 库.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation 拒绝加载所选内容 。</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>没有找到 SwanStation 库 。</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>SwanStation核心未初始化.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>SwanStation 库未装入 。</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>SwanStation 库路径必须是绝对的.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>SwanStation 磁盘控制器不完整.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation 不提供磁盘控制 。</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation 返回无效的磁盘标签 。</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>已下载的 SwanStation 库有一个无效的 Windows 标题.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>已下载的 SwanStation 库不是 Windows 库.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>已下载的 SwanStation 库不是x64 库.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation 不接受所需的完整内容路径.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>SwanStation 主机配置无效 。</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>找不到用于主机SwanStation的 GW GUI 可执行文件 。</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>SwanStation 主机没有初始化.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>SwanStation主机未回复.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>对 SwanStation 选项{1} , 值{0} 无效 。</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>SwanStation 主机返回无效的响应长度 :{0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation 返回无效的保存状态大小 : {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>所选库自认为{0}而不是 SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation 无法弹出媒体 。</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation 无法插入媒体 。</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>未找到选中的媒体文件 。</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation拒绝选择的媒体.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation 无法选择媒体 。</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation 无法创建媒体槽 。</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>为 SwanStation 播放列表选择了太多的磁盘 。</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>SwanStation进程已经初始化.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>与 SwanStation 进程通信失败 :{0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>SwanStation进程没有初始化.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>SwanStation 进程无法启动 。</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>SwanStation进程没有及时响应.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>SwanStation 进程无法使用 。</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation 无法选择请求的磁盘 。</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation 无法插入请求的介质 。</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>此 SwanStation 核心无法没有媒体启动 。</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>所救之州为空.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation 无法恢复保存状态 。</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation 无法保存当前状态 。</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation 返回未知的核心选项 。</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>SwanStation 主机收到未知命令{0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>SwanStation核心API版本{0}是不支持的.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation 不支持内容扩展{0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation 返回了不支持的像素格式{0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>SwanStation 视频缓冲器无法使用.</value></data>
 </root>

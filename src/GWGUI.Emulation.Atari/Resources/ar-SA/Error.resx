@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>لم يتم العثور على نواة محاكاة Atari المطلوبة.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>تعذر تحميل نواة محاكاة Atari المحددة.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>أحد البرامج الثابتة المطلوبة لنظام Atari مفقود.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>أحد البرامج الثابتة لنظام Atari غير صالح أو غير متوافق.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>لم يتم العثور على وسيط Atari المحدد في الإعدادات.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>الوسيط المحدد في الإعدادات غير مدعوم على جهاز Atari هذا.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>قيمة أحد خيارات Atari غير صالحة.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>فشل الاتصال بعملية استضافة Atari.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>حالة Atari المحفوظة غير صالحة.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>حالة Atari المحفوظة غير متوافقة مع الجهاز الحالي.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>حدث خطأ غير متوقع أثناء محاكاة Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>لا يمكن تعديل إعدادات Atari النشطة أو حذفها.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>البرنامج الثابت المطلوب لنظام Atari '{0}' غير محدد في إعدادات {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>لم يتم العثور على البرنامج الثابت المحدد لنظام Atari '{0}': {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>لم يتم العثور على وسيط Atari المحدد في الإعدادات: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>مسار الملف التنفيذي لاستضافة Atari غير متاح.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>نواة محاكاة Atari '{0}' غير مثبتة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>محاكي Atari المحدد لا يستخدم وحدة التحكم المشتركة في الخراطيش.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>جهاز Atari المحدد يتطلب خرطوشة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>امتداد ملف الخرطوشة غير مدعوم في محاكي Atari المحدد.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>تعذر فتح خرطوشة Atari للقراءة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>رفض محاكي Atari الخرطوشة البديلة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>رفض محاكي Atari الخرطوشة البديلة والخرطوشة السابقة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>لا يمكن لمحاكي Atari هذا أن يظل قيد التشغيل دون خرطوشة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>محاكي Atari المحدد لا يتيح اختيار منطقة الخرطوشة.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>لا يمكن لمحاكي Atari هذا استخدام وضع توقيت الخرطوشة SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>هذه القيمة يحددها الطراز المختار.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>لا توجد وحدة FPU متوافقة مع هذا الطراز.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>لا توجد ذاكرة بديلة لهذا الطراز.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>هذا الطراز لا يحتوي على برنامج ثابت قابل للتهيئة.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>هذا الطراز لا يحتوي على لوحة مفاتيح.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>هذا الطراز لا يحتوي على فأرة.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>هذا الطراز لا يحتوي على وسيط تخزين.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>اختر طراز Jaguar CD لاستخدام وسائط CD.</value></data>
+</root>

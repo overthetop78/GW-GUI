@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Cantitatea de RAM disponibilă pentru aparatul emulat.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Afișează RAM furnizat de mașina Nintendo selectată.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Sistemul ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Afișează starea sistemului ROM pentru mașina selectată și emulator.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Modelul Nintendo este configurat.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulator selectat pentru această mașină.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Identifică implementarea emulator folosit pentru a rula această configurație mașină.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Procesor emulat pentru această mașină.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Afișează modelul procesorului furnizat de mașina Nintendo selectată.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Frecvenţa originală a ceasului procesorului.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Afișează frecvența nominală a ceasului procesorului în mașina Nintendo selectată.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Activează sau dezactivează sunetul emulat.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Controlează dacă GW GUI rulează probele audio generate de emulator.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Putere audio utilizată de GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Selectează ieșire audio Windows folosit pentru a reda sunet de la această mașină emulată.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Identifică modelul Nintendo a cărui configurație hardware este în curs de editare.</value></data>
+</root>

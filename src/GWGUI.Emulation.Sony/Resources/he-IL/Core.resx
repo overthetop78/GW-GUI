@@ -5,6 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>מערכות PlayStation 2</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>מערכות VR</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>עקבו אחרי Sony PlayStation and PS מערכות אחת.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>מערכות PlayStation Portable</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>מערכות Sony PlayStation ו-PS one.</value></data>
 </root>

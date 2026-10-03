@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>Η αρχειοθήκη που έχει κατεβάσει δεν περιέχει το PCSX2 βιβλιοθήκη.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 αρνήθηκε να φορτώσει το επιλεγμένο περιεχόμενο.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>Η PCSX2 Η βιβλιοθήκη δεν βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>Η PCSX2 Ο πυρήνας δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>Η PCSX2 Η βιβλιοθήκη δεν είναι φορτωμένη.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>Η PCSX2 Η διαδρομή της βιβλιοθήκης πρέπει να είναι απόλυτη.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>Η PCSX2 τα χειριστήρια του δίσκου είναι ελλιπή.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 δεν παρέχει ελέγχους δίσκων.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 επέστρεψε μια μη έγκυρη ετικέτα δίσκου.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>Τα download PCSX2 Η βιβλιοθήκη έχει μια μη έγκυρη κεφαλίδα των Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>Τα download PCSX2 Η βιβλιοθήκη δεν είναι βιβλιοθήκη των Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>Τα download PCSX2 Η βιβλιοθήκη δεν είναι βιβλιοθήκη x64.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 δεν δέχεται τις απαιτούμενες διαδρομές πλήρους περιεχομένου.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>Η PCSX2 Οι ρυθμίσεις του υπολογιστή δεν είναι έγκυρες.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>Η GW GUI εκτελέσιμο που χρησιμοποιήθηκε για τον υπολογιστή PCSX2 Δεν βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>Η PCSX2 Ο ξενιστής δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>Η PCSX2 Ο ξενιστής δεν απάντησε.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>Η τιμή {0} είναι άκυρο για το PCSX2 επιλογή {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>Η PCSX2 ο υπολογιστής επέστρεψε ένα μη έγκυρο μήκος απάντησης: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 επέστρεψε ένα μη έγκυρο αποθηκευμένο μέγεθος κατάστασης: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>Η επιλεγμένη βιβλιοθήκη αυτοπροσδιορίζεται ως {0} αντί για PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 Δεν μπόρεσε να εκτινάξει τα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 Δεν ήταν δυνατή η εισαγωγή των μέσων ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>Το επιλεγμένο αρχείο πολυμέσων δε βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 αρνήθηκε τα επιλεγμένα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 δεν ήταν δυνατή η επιλογή των μέσων ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 δεν ήταν δυνατή η δημιουργία μιας υποδοχής πολυμέσων.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>Πολλοί δίσκοι επιλέχθηκαν για το PCSX2 Λίστα αναπαραγωγής.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>Η PCSX2 η διαδικασία έχει ήδη αρχίσει.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Επικοινωνία με το PCSX2 Αποτυχία διεργασίας: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>Η PCSX2 η διαδικασία δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>Η PCSX2 η διαδικασία δεν ήταν δυνατή η έναρξη.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>Η PCSX2 η διαδικασία δεν ανταποκρίθηκε εγκαίρως.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>Η PCSX2 η διαδικασία δεν είναι διαθέσιμη.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 δεν ήταν δυνατή η επιλογή του ζητηθέντος δίσκου.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 δεν ήταν δυνατή η εισαγωγή των απαιτούμενων μέσων.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>Αυτό PCSX2 Ο πυρήνας δεν μπορεί να ξεκινήσει χωρίς τα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>Η σωθείσα κατάσταση είναι άδεια.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 δεν μπόρεσε να αποκαταστήσει το σωζόμενο κράτος.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 δεν μπόρεσε να σώσει την τρέχουσα κατάσταση.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 Επέστρεψε μια άγνωστη επιλογή πυρήνα.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>Η PCSX2 ο υπολογιστής έλαβε την άγνωστη εντολή {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>Η PCSX2 πυρήνας API έκδοση {0} δεν υποστηρίζεται.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 δεν υποστηρίζει την επέκταση περιεχομένου {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 επέστρεψε το μη υποστηριζόμενο μορφότυπο εικονοστοιχείων {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>Η PCSX2 Η ενδιάμεση μνήμη βίντεο δεν είναι διαθέσιμη.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>Η αρχειοθήκη που έχει κατεβάσει δεν περιέχει το PPSSPP βιβλιοθήκη.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP αρνήθηκε να φορτώσει το επιλεγμένο περιεχόμενο.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>Η PPSSPP Η βιβλιοθήκη δεν βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>Η PPSSPP Ο πυρήνας δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>Η PPSSPP Η βιβλιοθήκη δεν είναι φορτωμένη.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>Η PPSSPP Η διαδρομή της βιβλιοθήκης πρέπει να είναι απόλυτη.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>Η PPSSPP τα χειριστήρια του δίσκου είναι ελλιπή.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP δεν παρέχει ελέγχους δίσκων.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP επέστρεψε μια μη έγκυρη ετικέτα δίσκου.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>Τα download PPSSPP Η βιβλιοθήκη έχει μια μη έγκυρη κεφαλίδα των Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>Τα download PPSSPP Η βιβλιοθήκη δεν είναι βιβλιοθήκη των Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>Τα download PPSSPP Η βιβλιοθήκη δεν είναι βιβλιοθήκη x64.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP δεν δέχεται τις απαιτούμενες διαδρομές πλήρους περιεχομένου.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>Η PPSSPP Οι ρυθμίσεις του υπολογιστή δεν είναι έγκυρες.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>Η GW GUI εκτελέσιμο που χρησιμοποιήθηκε για τον υπολογιστή PPSSPP Δεν βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>Η PPSSPP Ο ξενιστής δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>Η PPSSPP Ο ξενιστής δεν απάντησε.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>Η τιμή {0} είναι άκυρο για το PPSSPP επιλογή {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>Η PPSSPP ο υπολογιστής επέστρεψε ένα μη έγκυρο μήκος απάντησης: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP επέστρεψε ένα μη έγκυρο αποθηκευμένο μέγεθος κατάστασης: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>Η επιλεγμένη βιβλιοθήκη αυτοπροσδιορίζεται ως {0} αντί για PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP Δεν μπόρεσε να εκτινάξει τα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP Δεν ήταν δυνατή η εισαγωγή των μέσων ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>Το επιλεγμένο αρχείο πολυμέσων δε βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP αρνήθηκε τα επιλεγμένα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP δεν ήταν δυνατή η επιλογή των μέσων ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP δεν ήταν δυνατή η δημιουργία μιας υποδοχής πολυμέσων.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>Πολλοί δίσκοι επιλέχθηκαν για το PPSSPP Λίστα αναπαραγωγής.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>Η PPSSPP η διαδικασία έχει ήδη αρχίσει.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Επικοινωνία με το PPSSPP Αποτυχία διεργασίας: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>Η PPSSPP η διαδικασία δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>Η PPSSPP η διαδικασία δεν ήταν δυνατή η έναρξη.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>Η PPSSPP η διαδικασία δεν ανταποκρίθηκε εγκαίρως.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>Η PPSSPP η διαδικασία δεν είναι διαθέσιμη.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP δεν ήταν δυνατή η επιλογή του ζητηθέντος δίσκου.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP δεν ήταν δυνατή η εισαγωγή των απαιτούμενων μέσων.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>Αυτό PPSSPP Ο πυρήνας δεν μπορεί να ξεκινήσει χωρίς τα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>Η σωθείσα κατάσταση είναι άδεια.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP δεν μπόρεσε να αποκαταστήσει το σωζόμενο κράτος.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP δεν μπόρεσε να σώσει την τρέχουσα κατάσταση.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP Επέστρεψε μια άγνωστη επιλογή πυρήνα.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>Η PPSSPP ο υπολογιστής έλαβε την άγνωστη εντολή {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>Η PPSSPP πυρήνας API έκδοση {0} δεν υποστηρίζεται.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP δεν υποστηρίζει την επέκταση περιεχομένου {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP επέστρεψε το μη υποστηριζόμενο μορφότυπο εικονοστοιχείων {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>Η PPSSPP Η ενδιάμεση μνήμη βίντεο δεν είναι διαθέσιμη.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>Η αρχειοθήκη που έχει κατεβάσει δεν περιέχει το SwanStation βιβλιοθήκη.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation αρνήθηκε να φορτώσει το επιλεγμένο περιεχόμενο.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>Η SwanStation Η βιβλιοθήκη δεν βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>Η SwanStation Ο πυρήνας δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>Η SwanStation Η βιβλιοθήκη δεν είναι φορτωμένη.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>Η SwanStation Η διαδρομή της βιβλιοθήκης πρέπει να είναι απόλυτη.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>Η SwanStation τα χειριστήρια του δίσκου είναι ελλιπή.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation δεν παρέχει ελέγχους δίσκων.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation επέστρεψε μια μη έγκυρη ετικέτα δίσκου.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>Τα download SwanStation Η βιβλιοθήκη έχει μια μη έγκυρη κεφαλίδα των Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>Τα download SwanStation Η βιβλιοθήκη δεν είναι βιβλιοθήκη των Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>Τα download SwanStation Η βιβλιοθήκη δεν είναι βιβλιοθήκη x64.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation δεν δέχεται τις απαιτούμενες διαδρομές πλήρους περιεχομένου.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>Η SwanStation Οι ρυθμίσεις του υπολογιστή δεν είναι έγκυρες.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>Η GW GUI εκτελέσιμο που χρησιμοποιήθηκε για τον υπολογιστή SwanStation Δεν βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>Η SwanStation Ο ξενιστής δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>Η SwanStation Ο ξενιστής δεν απάντησε.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>Η τιμή {0} είναι άκυρο για το SwanStation επιλογή {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>Η SwanStation ο υπολογιστής επέστρεψε ένα μη έγκυρο μήκος απάντησης: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation επέστρεψε ένα μη έγκυρο αποθηκευμένο μέγεθος κατάστασης: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>Η επιλεγμένη βιβλιοθήκη αυτοπροσδιορίζεται ως {0} αντί του SwanStation.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation Δεν μπόρεσε να εκτινάξει τα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation Δεν ήταν δυνατή η εισαγωγή των μέσων ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>Το επιλεγμένο αρχείο πολυμέσων δε βρέθηκε.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation αρνήθηκε τα επιλεγμένα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation δεν ήταν δυνατή η επιλογή των μέσων ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation δεν ήταν δυνατή η δημιουργία μιας υποδοχής πολυμέσων.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>Πολλοί δίσκοι επιλέχθηκαν για το SwanStation Λίστα αναπαραγωγής.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>Η SwanStation η διαδικασία έχει ήδη αρχίσει.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Επικοινωνία με το SwanStation Αποτυχία διεργασίας: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>Η SwanStation η διαδικασία δεν έχει αρχικοποιηθεί.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>Η SwanStation η διαδικασία δεν ήταν δυνατή η έναρξη.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>Η SwanStation η διαδικασία δεν ανταποκρίθηκε εγκαίρως.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>Η SwanStation η διαδικασία δεν είναι διαθέσιμη.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation δεν ήταν δυνατή η επιλογή του ζητηθέντος δίσκου.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation δεν ήταν δυνατή η εισαγωγή των απαιτούμενων μέσων.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>Αυτό SwanStation Ο πυρήνας δεν μπορεί να ξεκινήσει χωρίς τα μέσα ενημέρωσης.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>Η σωθείσα κατάσταση είναι άδεια.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation δεν μπόρεσε να αποκαταστήσει το σωζόμενο κράτος.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation δεν μπόρεσε να σώσει την τρέχουσα κατάσταση.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation Επέστρεψε μια άγνωστη επιλογή πυρήνα.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>Η SwanStation ο υπολογιστής έλαβε την άγνωστη εντολή {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>Η SwanStation πυρήνας API έκδοση {0} δεν υποστηρίζεται.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation δεν υποστηρίζει την επέκταση περιεχομένου {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation επέστρεψε το μη υποστηριζόμενο μορφότυπο εικονοστοιχείων {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>Η SwanStation Η ενδιάμεση μνήμη βίντεο δεν είναι διαθέσιμη.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>Η κατεβασμένη αρχειοθήκη δεν περιέχει τη βιβλιοθήκη PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>Το PCSX2 αρνήθηκε να φορτώσει το επιλεγμένο περιεχόμενο.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>Η βιβλιοθήκη PCSX2 δεν βρέθηκε.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>Ο πυρήνας PCSX2 δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>Η βιβλιοθήκη PCSX2 δεν είναι φορτωμένη.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>Η διαδρομή βιβλιοθήκης PCSX2 πρέπει να είναι απόλυτη.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>Οι έλεγχοι δίσκων PCSX2 είναι ελλιπείς.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>Το PCSX2 δεν παρέχει ελέγχους δίσκων.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>Το PCSX2 επέστρεψε μια μη έγκυρη ετικέτα δίσκου.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>Η κατεβασμένη βιβλιοθήκη PCSX2 έχει μια μη έγκυρη κεφαλίδα των Windows.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>Η μεταφορτωμένη βιβλιοθήκη PCSX2 δεν είναι βιβλιοθήκη των Windows.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>Η βιβλιοθήκη PCSX2 που κατεβάστηκε δεν είναι μια βιβλιοθήκη x64.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>Το PCSX2 δεν δέχεται τις απαιτούμενες διαδρομές πλήρους περιεχομένου.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>Οι ρυθμίσεις του υπολογιστή PCSX2 είναι άκυρες.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>Το εκτελέσιμο GW GUI που χρησιμοποιήθηκε για τον υπολογιστή PCSX2 δε βρέθηκε.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>Ο υπολογιστής PCSX2 δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>Ο υπολογιστής PCSX2 δεν απάντησε.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>Η τιμή {0} δεν είναι έγκυρη για την επιλογή PCSX2 {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>Ο υπολογιστής PCSX2 επέστρεψε ένα μη έγκυρο μήκος απάντησης: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>Το PCSX2 επέστρεψε ένα μη έγκυρο αποθηκευμένο μέγεθος κατάστασης: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>Η επιλεγμένη βιβλιοθήκη αυτοπροσδιορίζεται ως {0} αντί του PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>Το PCSX2 δεν μπόρεσε να εκτινάξει τα μέσα.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>Το PCSX2 δεν μπόρεσε να εισάγει τα μέσα.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>Το επιλεγμένο αρχείο πολυμέσων δε βρέθηκε.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>Το PCSX2 αρνήθηκε τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>Το PCSX2 δεν μπόρεσε να επιλέξει τα μέσα.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>Το PCSX2 δεν μπόρεσε να δημιουργήσει μια υποδοχή πολυμέσων.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>Επιλέχθηκαν πάρα πολλοί δίσκοι για τη λίστα αναπαραγωγής PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>Η διαδικασία PCSX2 έχει ήδη αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Η επικοινωνία με τη διεργασία PCSX2 απέτυχε: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>Η διεργασία PCSX2 δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>Η διεργασία PCSX2 δεν μπόρεσε να ξεκινήσει.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>Η διαδικασία PCSX2 δεν ανταποκρίθηκε εγκαίρως.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>Η διεργασία PCSX2 δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>Το PCSX2 δεν μπόρεσε να επιλέξει το ζητούμενο δίσκο.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>Το PCSX2 δεν μπόρεσε να εισάγει το ζητούμενο μέσο.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>Αυτός ο πυρήνας PCSX2 δεν μπορεί να ξεκινήσει χωρίς μέσα.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>Η σωθείσα κατάσταση είναι άδεια.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>Το PCSX2 δεν μπόρεσε να αποκαταστήσει την αποθηκευμένη κατάσταση.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>Το PCSX2 δεν μπόρεσε να αποθηκεύσει την τρέχουσα κατάσταση.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>Το PCSX2 επέστρεψε μια άγνωστη βασική επιλογή.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>Ο υπολογιστής PCSX2 έλαβε την άγνωστη εντολή {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>Ο πυρήνας PCSX2 API έκδοση {0} είναι μη υποστηριζόμενος.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>Το PCSX2 δεν υποστηρίζει την επέκταση περιεχομένου {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>Το PCSX2 επέστρεψε τη μη υποστηριζόμενη μορφή εικονοστοιχείου {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>Ο ρυθμιστής βίντεο PCSX2 δεν είναι διαθέσιμος.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>Η κατεβασμένη αρχειοθήκη δεν περιέχει τη βιβλιοθήκη PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>Το PPSSPP αρνήθηκε να φορτώσει το επιλεγμένο περιεχόμενο.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>Η βιβλιοθήκη PPSSPP δεν βρέθηκε.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>Ο πυρήνας PPSSPP δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>Η βιβλιοθήκη PPSSPP δεν είναι φορτωμένη.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>Το μονοπάτι της βιβλιοθήκης του PPSSPP πρέπει να είναι απόλυτο.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>Οι έλεγχοι δίσκων PPSSPP είναι ελλιπείς.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>Το PPSSPP δεν παρέχει ελέγχους δίσκων.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>Το PPSSPP επέστρεψε μια μη έγκυρη ετικέτα δίσκου.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>Η κατεβασμένη βιβλιοθήκη PPSSPP έχει μια μη έγκυρη κεφαλίδα των Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>Η βιβλιοθήκη PPSSPP που έχει κατεβάσει δεν είναι μια βιβλιοθήκη των Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>Η μεταφορτωμένη βιβλιοθήκη PPSSPP δεν είναι μια βιβλιοθήκη x64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>Το PPSSPP δεν δέχεται τις απαιτούμενες διαδρομές πλήρους περιεχομένου.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>Οι ρυθμίσεις του υπολογιστή PPSSPP είναι άκυρες.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>Το εκτελέσιμο GW GUI που χρησιμοποιήθηκε για τον υπολογιστή PPSSPP δε βρέθηκε.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>Ο υπολογιστής PPSSPP δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>Ο υπολογιστής PPSSPP δεν απάντησε.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>Η τιμή {0} είναι άκυρη για την επιλογή PPSSPP {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>Ο υπολογιστής PPSSPP επέστρεψε ένα μη έγκυρο μήκος απάντησης: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>Το PPSSPP επέστρεψε ένα μη έγκυρο αποθηκευμένο μέγεθος κατάστασης: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>Η επιλεγμένη βιβλιοθήκη αυτοπροσδιορίζεται ως {0} αντί για PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP δεν θα μπορούσε να εκτινάξει τα μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>Το PPSSPP δεν μπόρεσε να εισάγει τα μέσα.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>Το επιλεγμένο αρχείο πολυμέσων δε βρέθηκε.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>Το PPSSPP αρνήθηκε τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP δεν μπόρεσε να επιλέξει τα μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>Το PPSSPP δεν μπόρεσε να δημιουργήσει μια υποδοχή πολυμέσων.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>Επιλέχθηκαν πάρα πολλοί δίσκοι για τη λίστα αναπαραγωγής PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>Η διαδικασία PPSSPP έχει ήδη αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Η επικοινωνία με τη διαδικασία PPSSPP απέτυχε: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>Η διαδικασία PPSSPP δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>Η διαδικασία PPSSPP δεν ήταν δυνατή η εκκίνηση.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>Η διαδικασία PPSSPP δεν ανταποκρίθηκε εγκαίρως.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>Η διαδικασία PPSSPP δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>Το PPSSPP δεν μπόρεσε να επιλέξει το ζητούμενο δίσκο.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>Το PPSSPP δεν μπόρεσε να εισάγει το ζητούμενο μέσο.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>Αυτός ο πυρήνας PPSSPP δεν μπορεί να ξεκινήσει χωρίς μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>Η σωθείσα κατάσταση είναι άδεια.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>Το PPSSPP δεν μπόρεσε να αποκαταστήσει την αποθηκευμένη κατάσταση.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>Το PPSSPP δεν μπόρεσε να σώσει την τρέχουσα κατάσταση.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>Το PPSSPP επέστρεψε μια άγνωστη βασική επιλογή.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>Ο υπολογιστής PPSSPP έλαβε την άγνωστη εντολή {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>Ο πυρήνας PPSSPP API έκδοση {0} είναι μη υποστηριζόμενος.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>Το PPSSPP δεν υποστηρίζει την επέκταση περιεχομένου {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>Το PPSSPP επέστρεψε τη μη υποστηριζόμενη μορφή εικονοστοιχείων {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>Η ενδιάμεση μνήμη βίντεο PPSSPP δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>Η κατεβασμένη αρχειοθήκη δεν περιέχει τη βιβλιοθήκη SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>Το SwanStation αρνήθηκε να φορτώσει το επιλεγμένο περιεχόμενο.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>Η βιβλιοθήκη SwanStation δεν βρέθηκε.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>Ο πυρήνας SwanStation δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>Η βιβλιοθήκη SwanStation δεν είναι φορτωμένη.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>Το μονοπάτι της βιβλιοθήκης SwanStation πρέπει να είναι απόλυτο.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>Οι έλεγχοι του δίσκου SwanStation είναι ελλιπείς.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>Το SwanStation δεν παρέχει ελέγχους δίσκων.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>Το SwanStation επέστρεψε μια άκυρη ετικέτα δίσκου.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>Η κατεβασμένη βιβλιοθήκη SwanStation έχει μια άκυρη κεφαλίδα των Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>Η βιβλιοθήκη SwanStation που κατεβάστηκε δεν είναι βιβλιοθήκη των Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>Η βιβλιοθήκη SwanStation που κατεβάστηκε δεν είναι μια βιβλιοθήκη x64.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>Το SwanStation δεν δέχεται τις απαιτούμενες διαδρομές πλήρους περιεχομένου.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>Η ρύθμιση του υπολογιστή SwanStation είναι άκυρη.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>Το εκτελέσιμο GW GUI που χρησιμοποιήθηκε για την φιλοξενία του SwanStation δεν βρέθηκε.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>Ο ξενιστής SwanStation δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>Ο ξενιστής του SwanStation δεν απάντησε.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>Η τιμή {0} δεν είναι έγκυρη για την επιλογή SwanStation {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>Ο ξενιστής SwanStation επέστρεψε ένα μη έγκυρο μήκος απόκρισης: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>Το SwanStation επέστρεψε ένα μη έγκυρο αποθηκευμένο μέγεθος κατάστασης: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>Η επιλεγμένη βιβλιοθήκη αυτοπροσδιορίζεται ως {0} αντί του SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>Το SwanStation δεν μπόρεσε να εκτοξεύσει τα μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>Το SwanStation δεν μπόρεσε να εισάγει τα μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>Το επιλεγμένο αρχείο πολυμέσων δε βρέθηκε.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>Το SwanStation αρνήθηκε τα επιλεγμένα μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>Το SwanStation δεν μπόρεσε να επιλέξει τα μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>Το SwanStation δεν μπόρεσε να δημιουργήσει μια υποδοχή πολυμέσων.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>Επιλέχθηκαν πάρα πολλοί δίσκοι για τη λίστα αναπαραγωγής SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>Η διαδικασία SwanStation έχει ήδη αρχίσει.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Η επικοινωνία με τη διαδικασία SwanStation απέτυχε: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>Η διαδικασία SwanStation δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>Η διαδικασία SwanStation δεν μπορούσε να ξεκινήσει.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>Η διαδικασία SwanStation δεν ανταποκρίθηκε εγκαίρως.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>Η διαδικασία SwanStation δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>Το SwanStation δεν μπόρεσε να επιλέξει το ζητούμενο δίσκο.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>Το SwanStation δεν μπόρεσε να εισάγει τα ζητούμενα μέσα.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>Αυτός ο πυρήνας SwanStation δεν μπορεί να ξεκινήσει χωρίς μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>Η σωθείσα κατάσταση είναι άδεια.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>Το SwanStation δεν μπόρεσε να αποκαταστήσει το σωζόμενο κράτος.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>Το SwanStation δεν μπόρεσε να σώσει την τρέχουσα κατάσταση.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>Το SwanStation επέστρεψε μια άγνωστη βασική επιλογή.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>Ο ξενιστής SwanStation έλαβε την άγνωστη εντολή {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>Η βασική έκδοση API του SwanStation {0} δεν υποστηρίζεται.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>Το SwanStation δεν υποστηρίζει την επέκταση περιεχομένου {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>Το SwanStation επέστρεψε την μη υποστηριζόμενη μορφή εικονοστοιχείου {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>Το βίντεο του SwanStation δεν είναι διαθέσιμο.</value></data>
 </root>

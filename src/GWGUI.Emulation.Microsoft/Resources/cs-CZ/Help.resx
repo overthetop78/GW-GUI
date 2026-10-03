@@ -8,20 +8,20 @@
   <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Povolit nebo zakázat emulovaný zvuk.</value></data>
   <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Zobrazí audio procesor, který poskytuje vybraný Microsoft stroj.</value></data>
   <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Audio procesor použitý zvoleným zařízením Microsoft.</value></data>
-  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Vybere audio výstup Windows použitý k přehrávání zvuku z tohoto emulovaného stroje.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Vybere zvukový výstup Windows použitý pro přehrávání zvuku z tohoto emulovaného stroje.</value></data>
   <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Audio výstup použitý GW GUI.</value></data>
   <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Zobrazí původní frekvenci procesoru vybraného zařízení Microsoft.</value></data>
   <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Původní frekvence procesoru.</value></data>
-  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Zobrazí model procesoru, který používá vybraný Microsoft stroj.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Zobrazí model procesoru, který používá vybraný stroj Microsoft.</value></data>
   <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Procesor použitý zvoleným zařízením Microsoft.</value></data>
   <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Systém ROM je součástí vybrané definice zařízení Microsoft.</value></data>
   <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Systém ROM.</value></data>
   <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Zobrazí emulátor vybraný pro stroj. Zatím není nainstalováno žádné kompatibilní jádro Microsoft.</value></data>
   <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Emulátor vybrán pro tento stroj.</value></data>
   <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Identifikuje stroj Microsoft, jehož hardware a nastavení médií jsou zobrazeny.</value></data>
-  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Microsoft machine model je nastaven.</value></data>
-  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Zobrazuje RAM poskytnut zvoleným zařízením Microsoft.</value></data>
-  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Částka RAM poskytnut zvoleným zařízením Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Microsoft machine model je nakonfigurován.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Zobrazí RAM poskytnutý vybraným zařízením Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Množství RAM dodané vybraným zařízením Microsoft.</value></data>
   <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Zobrazí video procesor, který poskytuje vybraný Microsoft stroj.</value></data>
   <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Video procesor použitý zvoleným zařízením Microsoft.</value></data>
 </root>

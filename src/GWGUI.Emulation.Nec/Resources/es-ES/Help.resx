@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Cantidad de RAM disponible para la máquina emulada.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selecciona la expansión RAM expuesta por BeetlePce. La máquina debe reiniciar antes de utilizar la nueva cantidad.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>El sistema ROM está construido en BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>BeetlePce proporciona el sistema ROM internamente y no expone un selector de archivos ROM.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Resolución interna emitida por BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Selecciona una de las resoluciones internas expuestas por BeetlePce. Esto no establece el tamaño de la ventana de aplicación.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Tipo de monitor emulado por BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Selecciona un color, monocromo verde o monitor blanco de monocroma NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Brillo del monitor emulado.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Ajusta la intensidad del monitor de 5 a 15, expuesta por BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Elimina el borde de la pantalla externa.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Pide a BeetlePce que reduzca la frontera externa. GW GUI mantiene la relación de aspecto reportada por el emulador.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Sonido mecánico de la unidad floppy.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Permite o desactiva el sonido del disco floppy generado por BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Se está configurando el modelo de máquina Nec.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulador seleccionado para esta máquina.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Identifica la implementación del emulador utilizada para ejecutar esta configuración de máquina.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Procesador emulado para esta máquina.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Muestra el modelo de procesador proporcionado por la máquina Nec seleccionada.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Frecuencia del reloj de procesador original.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Muestra la frecuencia de reloj nominal del procesador en la máquina Nec seleccionada.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Activar o desactivar el sonido emulado.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Controla si GW GUI reproduce las muestras de audio generadas por el emulador.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Salida de audio utilizada por GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Selecciona la salida de audio de Windows utilizada para reproducir el sonido de esta máquina emulada.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identifica el modelo NEC cuya configuración de hardware está siendo editada.</value></data>
+</root>

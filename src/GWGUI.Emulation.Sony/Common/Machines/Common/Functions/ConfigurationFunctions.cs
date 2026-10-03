@@ -11,7 +11,7 @@ internal static class ConfigurationSummaryFunctions
         details.AddRange((configuration.Media ?? []).OrderBy(media => media.MountOrder)
             .Select(media => Path.GetFileName(media.Path)));
         return new EmulationConfigurationSummary(
-            MachineConfigurationConstants.ResourcePrefix + model.Id, details);
+            MachineConfigurationConstants.ResourceKey(model.Id), details);
     }
 }
 

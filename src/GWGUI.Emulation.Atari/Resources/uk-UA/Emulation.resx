@@ -4,96 +4,38 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Це значення визначається вибраною моделлю.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Не сумісний FPU доступний для цієї моделі.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Немає альтернативної пам'яті для цієї моделі.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Ця модель не має вбудованої прошивки.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Ця модель не має клавіатури.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Ця модель не має мишки.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Ця модель не має носіїв.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Виберіть Jaguar CD модель для використання CD медіа.</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>Регіон</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Офіціант</value></data>
   <data name="Emulation.Atari.Firmware.Multilingual"><value>Багатомовний</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>Без регіону</value></data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Не знайдено обов'язкове ядро Atari.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Вибране ядро Atari не можна завантажити.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Прошивка Atari відсутні.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Прошивка Atari недійсна або несумісна.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Не знайдено налаштований Atari media.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Налаштовані медіа не підтримуються цією машиною Atari.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Опція Atari має недійсне значення.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Зв'язок з Атарі не вдалося.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Атарі врятував стан недійсним.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>При збереженому стані Атарі не сумісний з поточною машиною.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Несподівана помилка емульсії Atari.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Опис: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Активна конфігурація Atari не може бути змінена або видалена.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Необхідна прошивка Atari '{0}' не налаштована для {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Конфігурація прошивки Atari '{0}' не знайдено: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Конфігурація Atari media не знайдено: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>The Atari хост виконуваний шлях не доступний.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Ядро Atari '{0}' не встановлено.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Атарі медіа|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Всі файли|*.*</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Нумерична клавіатура</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Швидке завантаження</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>КСНУМКС RAM розширення</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Акслон RAM розширення</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Тінь банку Axlon $0F</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Стерео POKEY</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Артефакти високої роздільності</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Прискорення SIO</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Завантаження з касети</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Ревізія операційної системи</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Вбудований BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Ревізія BASIC</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Швидкість руху paddle-контролерів</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Автовогонь</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Поки утримується кнопка вогню</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Завжди</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Відтінок</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Насиченість</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Контраст</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Яскравість</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Затримка кольору GTIA</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Зовнішня палітра</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Сумісність контролера</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Цифрова чутливість</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Аналогова чутливість</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Подвійний джойстик</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Поміняти порти</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Показувати швидкість емуляції</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Показувати лічильник секторів/блоків</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Годинник реального часу R-Time 8</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Пристрій принтера P:</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Послідовний пристрій R:</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>Атарі джойстик</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle контролери</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 контролер</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari контролер водіння</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Джойстик</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Атарі Линькс</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar контролер</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Гріп</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Контролер генезу Sega</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ контролер</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Атарі XG-1 Світло гармати</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Без категорії</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari медіа|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Всі файли|*.*</value></data>
+  <data name="Emulation.Atari.FastBoot"><value>Швидкий стартап</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Розширення пам'яті (Mosaic RAM)</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Розширення пам'яті (Axlon RAM)</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow"><value>Дзеркало банку пам'яті (Axlon $0F)</value></data>
+  <data name="Emulation.Atari.Memory.MapRam"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Video.Artifacting"><value>Хірургічне позначення</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration"><value>SIO прискорення</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot"><value>Черевики з касету</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision"><value>Редакція операційної системи</value></data>
+  <data name="Emulation.Atari.Video.Hue"><value>Хати</value></data>
+  <data name="Emulation.Atari.Video.Saturation"><value>Заробіток</value></data>
+  <data name="Emulation.Atari.Video.Contrast"><value>Контраст</value></data>
+  <data name="Emulation.Atari.Video.Brightness"><value>Яскравість</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay"><value>Затримка кольорів GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette"><value>Зовнішня палітра</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd"><value>Показувати швидкість емульсії на екрані</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd"><value>Відобразити кількість секторів і блоків</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock"><value>R-Time 8 в режимі реального часу</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice"><value>P: пристрій принтера</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice"><value>R: серійний пристрій</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Синій/коричневий 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Синій/коричневий 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Емульти Atari ST, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , STE, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , TT і комп'ютери Falcon.</value></data>
+  <data name="Emulation.Emulator.hatari.Description"><value>Використовуються комп'ютери (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Налаштовує Atari 8-бітні комп'ютери та консолі Atari 5200.</value></data>
-  <data name="Emulation.Emulator.stella2023.Description"><value>Вбудовує Atari 2600 консолі.</value></data>
-  <data name="Emulation.Emulator.prosystem.Description"><value>Вбудовує консолі Atari 7800.</value></data>
-  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Поєднує портативну ігрову систему Atari Lynx.</value></data>
-  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulates Atari Ягуар і Ягуар CD консолі.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Вибраний емулятор Atari не використовує загальний контролер картриджа.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Вибраний Atari машина вимагає засобливості патрона.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Розширення картриджа не підтримується вибраним емулятором Atari.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Для читання не можна відкрити картридж Atari.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Атарі емулятор відхиляється замінний картридж.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Атарі емулятор відхилений як заміну, так і за попередній патрон.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Цей емулятор Atari не може залишатися на зв'язку без картриджа.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Вибраний емулятор Atari не підставляє вибір області картриджа.</value></data>
-  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Цей емулятор Atari не може використовувати режим частування картриджа SECAM.</value></data>
-  <data name="Emulation.Summary.AudioEnabled"><value>Звуковий відтворення включений</value></data>
-  <data name="Emulation.Summary.AudioDisabled"><value>Відключено відтворення звуку</value></data>
+  <data name="Emulation.Emulator.stella2023.Description"><value>Налаштовує консолі Atari 2600.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description"><value>Налаштовує консолі Atari 7800.</value></data>
+  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Вбудовує переносну ігрову систему Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Емулює ігрові консолі (Atari Jaguar/Jaguar CD).</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Увімкнути відтворення звуку</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Звуковий відтворення вимкнено</value></data>
 </root>

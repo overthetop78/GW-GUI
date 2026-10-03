@@ -4,20 +4,20 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontrole, czy GW GUI odtwarza próbki audio generowane przez emulator.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Włącz lub wyłącz dźwięk emulowany.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontroluje, czy GW GUI odtwarza próbki audio generowane przez emulator.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Włącza lub wyłącza dźwięk emulowany.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Wybiera wyjście audio systemu Windows używane do odtwarzania dźwięku z tej emulowanej maszyny.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Wyjście audio używane przez GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Pokazuje nominalną częstotliwość zegara procesora w wybranej maszynie Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Oryginalna częstotliwość zegara procesora.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Pokazuje model procesora dostarczany przez wybraną maszynę Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Procesor emulował do tej maszyny.</value></data>
-  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Pokazuje system ROM status dla wybranej maszyny i emulatora.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Pokazuje status ROM systemu dla wybranej maszyny i emulatora.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>System ROM.</value></data>
-  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Określa implementację emulatora używaną do uruchomienia tej konfiguracji maszyny.</value></data>
-  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator wybrany do tej maszyny.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identyfikuje implementację emulatora używaną do uruchomienia tej konfiguracji maszyny.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator wybrany dla tej maszyny.</value></data>
   <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identyfikuje model Sony, którego konfiguracja sprzętowa jest edytowana.</value></data>
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Konfigurowany model maszyny Sony.</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Wyświetla RAM dostarczone przez wybraną maszynę Sony.</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Kwota RAM dostępne dla maszyny emulowanej.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Wyświetla RAM dostarczany przez wybraną maszynę Sony.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Ilość pamięci RAM dostępnej dla maszyny emulowanej.</value></data>
 </root>

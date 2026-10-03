@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Short"><value>A RAM az emulált gép számára hozzáférhető.</value></data>
+  <data name="Emulation.Amstrad.Help.Memory.Ram.Detailed"><value>Kiválasztja a RAM a Caprice32 által kitárulkozó terjeszkedés. A gépet az új összeg használata előtt újra kell indítani.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Short"><value>A rendszer ROM Caprice32-be épült.</value></data>
+  <data name="Emulation.Amstrad.Help.Firmware.Integrated.Detailed"><value>Caprice32 biztosítja a rendszert ROM belső és nem tárja fel a ROM fájlválasztó.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Short"><value>A belső felbontás Caprice32-től származik.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Resolution.Detailed"><value>Kiválasztja a Caprice32 által felfedezett belső megoldásokat32. Ez nem határozza meg az alkalmazás ablakméretét.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Short"><value>A Caprice32 által szimulált monitor típusa.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Monitor.Detailed"><value>Színes, zöld vagy fehér monokróm CPC Monitor.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Az emulált monitor fényereje.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>A monitorok intenzitását 5-ről 15-re állítja be, amint azt a Caprice32 kiteszi.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Eltávolítja a külső képernyőhatárt.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Kérdések Caprice32 a külső határ vetése. GW GUI az emulátor által jelentett képarány megtartása.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>A floppy meghajtó mechanikus hangja.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>A Caprice32 által generált floppy meghajtó hang lehetővé vagy letiltható.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad A gépmodell konfigurálása folyamatban van.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Model.Detailed"><value>Azonosítja a következőket: Amstrad CPC, Plusz, vagy GX4000 olyan modell, amelynek hardverkonfigurációját szerkesztik.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Short"><value>Emulátor kiválasztva ehhez a géphez.</value></data>
+  <data name="Emulation.Amstrad.Help.General.Emulator.Detailed"><value>Azonosítja a gép konfigurációjának futtatásához használt emulátor-implementációt.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Short"><value>A processzor emodálta ezt a gépet.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Model.Detailed"><value>Megjeleníti a kiválasztott processzor által megadott processzormodellt Amstrad gép.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Short"><value>Eredeti processzor óra frekvencia.</value></data>
+  <data name="Emulation.Amstrad.Help.Cpu.Frequency.Detailed"><value>A processzor névleges óráfrekvenciájának megjelenítése a kiválasztott fájlban Amstrad gép.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Short"><value>Emulált hang engedélyezése vagy kikapcsolása.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Enabled.Detailed"><value>Ellenőrzi, hogy GW GUI lejátszja az emulátor által létrehozott hangmintákat.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Short"><value>Hangkimenet által használt GW GUI.</value></data>
+  <data name="Emulation.Amstrad.Help.Audio.Output.Detailed"><value>Kiválasztja a Windows hangkimenetét, amit az emulált gép hangjának lejátszásához használnak.</value></data>
+</root>

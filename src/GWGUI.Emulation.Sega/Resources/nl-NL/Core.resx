@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.flycast.Description"><value>Emuleert Sega Dreamcast systemen.</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emuleert SG-1000-, Mark III-, Master System-, Game Gear-, Mega Drive- en Mega-CD-systemen.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Emuleert Sega Saturn systemen.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Emuleert de Sega-systemen die door PicoDrive worden ondersteund.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emuleert SG-1000, Mark III, Master System, Game Gear, Mega Drive en Mega-CD systemen.</value></data>
+  <data name="Emulation.Emulator.yabause.Description"><value>Emuleert Sega Saturn-systemen.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Emuleert PicoDrive Sega systemen.</value></data>
 </root>

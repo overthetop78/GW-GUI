@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>ويختار التوسع المتاح البالغ RAM. Emulator: BeetlePce. يجب على الآلة أن تعود قبل استخدام المبلغ الجديد</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>ذاكرة ROM للنظام مدمجة في BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>يوفر BeetlePce ذاكرة ROM للنظام داخليا ولا يتيح اختيار ملف ROM.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>دقة العرض الداخلية التي ينتجها BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>يُختار أحد القرارات الداخلية التي كشفت عنها بمبلغ BeetlePce. وهذا لا يحدد حجم نافذة التطبيق.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>نوع الشاشة التي يحاكيها BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>يُختارُ a لون، احتكار أخضرِ، أَو مرصّد أبيضِ NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>براعة الشاشة</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>يعدل كثافة الشاشة من 5 إلى 15، على النحو الذي كشفه BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>يزيل الحدود الخارجية للشاشة</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>يطلب من BeetlePce اقتصاص الحدود الخارجية. يحافظ GW GUI على نسبة العرض إلى الارتفاع التي يحددها المحاكي.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>الصوت الميكانيكي للقيادة الرائعة</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>يمكّن أو يزيل صوت القرص الصلب الذي تولده BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec آلة تم تشكيلها</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>تم اختيار المرشد لهذه الآلة</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>يُحدّد تنفيذ المرشد المستخدم لإدارة هذه التشكيلة الآلية.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>المُعالجة محاكاة لهذه الآلة.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>يُظهر نموذج المعالج الذي توفره آلة Nec المختارة.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>تواتر الساعة الأصلي.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>يُظهر تواتر الساعة الاسمية للمعالج في آلة مختارة من طراز Nec.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>صوت محاكاة أو غير قابل للتحلل.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>يتحكم في ما إذا كان GW GUI يلعب العينات الصوتية المتولدة عن المرشد.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>الناتج الصوتي الذي تستخدمه شركة GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>يَختارُ المخرج الصوتي Windows المستخدم للعب الصوتِ مِنْ هذه الآلةِ المحاكاةِ.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>يحدد طراز NEC الذي يجري تعديل إعدادات عتاده.</value></data>
+</root>

@@ -21,4 +21,21 @@
   <data name="Emulation.Sega.Controller.SegaSaturnArcadeRacer"><value>Arcade Racer</value></data>
   <data name="Emulation.Sega.Controller.SegaSaturnTwinStick"><value>Twin Stick</value></data>
   <data name="Emulation.Sega.Controller.SegaSaturnVirtuaStick"><value>Virtua Stick</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000Joystick"><value>SG-1000 joystick</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000IiJoypad"><value>SG-1000 II gamepad</value></data>
+  <data name="Emulation.Sega.Controller.SegaSc3000Keyboard"><value>SC-3000 keyboard</value></data>
+  <data name="Emulation.Sega.Controller.SegaMasterSystemController"><value>Master System controller</value></data>
+  <data name="Emulation.Sega.Controller.SegaGameGearController"><value>Game Gear built-in controls</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveThreeButton"><value>Mega Drive 3-button controller</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveSixButton"><value>Mega Drive 6-button controller</value></data>
+  <data name="Emulation.Sega.Controller.SegaArcadePowerStickSixButton"><value>Arcade Power Stick 6-button controller</value></data>
+  <data name="Emulation.Sega.Controller.SegaSaturnController"><value>Saturn controller</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastController"><value>Dreamcast controller</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMouse"><value>Dreamcast mouse</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastKeyboard"><value>Dreamcast keyboard</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastLightGun"><value>Dreamcast light gun</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastFishingController"><value>Dreamcast fishing controller</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastArcadeStick"><value>Dreamcast arcade stick</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastTwinStick"><value>Dreamcast twin stick</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMaracas"><value>Dreamcast maracas</value></data>
 </root>

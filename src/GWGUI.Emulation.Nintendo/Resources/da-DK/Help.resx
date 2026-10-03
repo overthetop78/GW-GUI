@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Viser RAM 'en som leveres af den valgte Nintendo maskine.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>System ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Viser systemets ROM-status for den valgte maskine og emulator.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Nintendo maskine model er konfigureret.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulator valgt til denne maskine.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Identificerer den emulator implementering, der bruges til at køre denne maskine konfiguration.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Processor emulerede til denne maskine.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Viser processormodellen som leveres af den valgte Nintendo maskine.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Original processor clockfrekvens.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Viser processorens nominelle urfrekvens i den valgte Nintendo-maskine.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Aktivér eller deaktivér emuleret lyd.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Kontrollerer om GW GUI spiller lydprøverne genereret af emulatoren.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Lydudgang brugt af GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Vælger Windows audio output, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Identificerer Nintendo-modellen, hvis hardwarekonfiguration redigeres.</value></data>
+</root>

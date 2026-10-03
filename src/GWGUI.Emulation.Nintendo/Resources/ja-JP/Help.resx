@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>エミュレートされた機械に利用できるRAMの量。</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>選択されたNintendo機械によって提供されるRAMを表示します。</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>システム ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>選択された機械およびエミュレーターのためのシステムROMの状態を表示します。</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>構成されるNintendo機械モデル。</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>この機械のために選ばれるエミュレータ。</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>このマシン構成を実行するために使用されるエミュレータの実装を特定します。</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>この機械のためにエミュレートされるプロセッサ。</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>選択されたNintendo機械によって提供されるプロセッサ モデルを示します。</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>元のプロセッサのクロック頻度。</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>選択されたNintendo機械のプロセッサのわずかなクロック周波数を示します。</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>エミュレートされた音を有効または無効にします。</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>GW GUIがエミュレータによって生成されたオーディオサンプルを再生するかどうかを制御します。</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>GW GUIの音声出力。</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>このエミュレートされたマシンから音を再生するために使用されるWindowsオーディオ出力を選択します。</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>ハードウェア構成を編集しているNintendoモデルを特定します。</value></data>
+</root>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amstrad.Model.cpc-464"><value>Amstrad CPC 464</value></data>
+  <data name="Emulation.Amstrad.Model.cpc-664"><value>Amstrad CPC 664</value></data>
+  <data name="Emulation.Amstrad.Model.cpc-6128"><value>Amstrad CPC 6128</value></data>
+  <data name="Emulation.Amstrad.Model.cpc-464-plus"><value>Amstrad CPC 464 Plus</value></data>
+  <data name="Emulation.Amstrad.Model.cpc-6128-plus"><value>Amstrad CPC 6128 Plus</value></data>
+  <data name="Emulation.Amstrad.Model.gx4000"><value>Amstrad GX4000</value></data>
+</root>

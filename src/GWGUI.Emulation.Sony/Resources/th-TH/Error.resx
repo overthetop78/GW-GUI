@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>แฟ้มจัดเก็บที่ถูกดาวน์โหลดมาไม่มีรายการ PCSX2 ห้องสมุด</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 ไม่ให้โหลดเนื้อหาที่เลือกไว้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>เดอะ PCSX2 ไม่พบไลบรารี</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>เดอะ PCSX2 แกนไม่เริ่มต้น</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>เดอะ PCSX2 ไลบรารีไม่ได้ถูกโหลด</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>เดอะ PCSX2 พาธของไลบรารีต้องสมบูรณ์</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>เดอะ PCSX2 การควบคุมดิสก์ยังไม่สมบูรณ์</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 ไม่มีส่วนควบคุมดิสก์</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 คืนค่าเป็นป้ายของดิสก์ที่ไม่ถูกต้อง</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>ดาวน์โหลดแล้ว PCSX2 ไลบรารีมีส่วนหัวหน้าต่างที่ใช้ไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>ดาวน์โหลดแล้ว PCSX2 ไลบรารีไม่ใช่ไลบรารีของวินโดวส์</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>ดาวน์โหลดแล้ว PCSX2 ห้องสมุดไม่ใช่ห้องสมุด x64</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 ไม่ยอมรับพาธเต็มของเนื้อหาที่ต้องการ</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>เดอะ PCSX2 การปรับแต่งเครื่องไม่ถูกต้อง</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>เดอะ GW GUI ใช้ประมวลผลโดยใช้โฮสต์ PCSX2 ไม่พบ</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>เดอะ PCSX2 โฮสต์ยังไม่ถูกเปิดใช้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>เดอะ PCSX2 เจ้าภาพไม่ตอบกลับ</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>ค่า {0} ไม่ถูกต้องสําหรับ PCSX2 ตัวเลือก {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>เดอะ PCSX2 ค่าช่วงการตอบกลับของโฮสต์ไม่ถูกต้อง: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 คืนค่าเป็นขนาดรัฐที่บันทึกไว้ไม่ถูกต้อง: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>ไลบรารีที่เลือกไว้นี้ ระบุตัวเองว่า {0} แทนที่จะ PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 ไม่สามารถดันสื่อออก</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 ไม่สามารถแทรกสื่อได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>ไม่พบแฟ้มสื่อที่เลือกไว้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 ถูกปฏิเสธสื่อที่เลือก</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 เลือกสื่อไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 ไม่สามารถสร้างสื่อได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>มีแผ่นบางแผ่นถูกเลือกไว้ใช้เป็นแผ่น PCSX2 รายการเล่น</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>เดอะ PCSX2 โพรเซสถูกเริ่มใช้งานแล้ว</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>สื่อสารกับ PCSX2 โพรเซสล้มเหลว: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>เดอะ PCSX2 โพรเซสยังไม่ถูกตั้งต้น</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>เดอะ PCSX2 ไม่สามารถเริ่มโพรเซสได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>เดอะ PCSX2 กระบวนการไม่ตอบสนองในเวลา</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>เดอะ PCSX2 ไม่มีข้อมูลโพรเซส</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 เลือกแผ่นที่ร้องขอมาไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 ไม่สามารถแทรกสื่อที่ต้องการได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>นี่ PCSX2 ไม่สามารถเริ่มแกนหลักได้โดยไม่มีสื่อ</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>รัฐที่บันทึกไว้ว่างเปล่า</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 ไม่สามารถเรียกคืนสถานะได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 ไม่สามารถบันทึกสถานะปัจจุบันได้</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 ผลตอบแทนเป็นตัวเลือกหลักที่ไม่รู้จัก</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>เดอะ PCSX2 เครื่องรับคําสั่งที่ไม่รู้จัก {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>เดอะ PCSX2 แกนกลาง API รุ่น {0} ไม่สนับสนุน</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 ไม่สนับสนุนส่วนขยายเนื้อหา {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 คืนรูปแบบพิกเซลที่ไม่รองรับ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>เดอะ PCSX2 ไม่สามารถทําการบัฟเฟอร์ของวิดีโอได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>แฟ้มจัดเก็บที่ถูกดาวน์โหลดมาไม่มีรายการ PPSSPP ห้องสมุด</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP ไม่ให้โหลดเนื้อหาที่เลือกไว้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>เดอะ PPSSPP ไม่พบไลบรารี</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>เดอะ PPSSPP แกนไม่เริ่มต้น</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>เดอะ PPSSPP ไลบรารีไม่ได้ถูกโหลด</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>เดอะ PPSSPP พาธของไลบรารีต้องสมบูรณ์</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>เดอะ PPSSPP การควบคุมดิสก์ยังไม่สมบูรณ์</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP ไม่มีส่วนควบคุมดิสก์</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP คืนค่าเป็นป้ายของดิสก์ที่ไม่ถูกต้อง</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>ดาวน์โหลดแล้ว PPSSPP ไลบรารีมีส่วนหัวหน้าต่างที่ใช้ไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>ดาวน์โหลดแล้ว PPSSPP ไลบรารีไม่ใช่ไลบรารีของวินโดวส์</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>ดาวน์โหลดแล้ว PPSSPP ห้องสมุดไม่ใช่ห้องสมุด x64</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP ไม่ยอมรับพาธเต็มของเนื้อหาที่ต้องการ</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>เดอะ PPSSPP การปรับแต่งเครื่องไม่ถูกต้อง</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>เดอะ GW GUI ใช้ประมวลผลโดยใช้โฮสต์ PPSSPP ไม่พบ</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>เดอะ PPSSPP โฮสต์ยังไม่ถูกเปิดใช้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>เดอะ PPSSPP เจ้าภาพไม่ตอบกลับ</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>ค่า {0} ไม่ถูกต้องสําหรับ PPSSPP ตัวเลือก {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>เดอะ PPSSPP ค่าช่วงการตอบกลับของโฮสต์ไม่ถูกต้อง: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP คืนค่าเป็นขนาดรัฐที่บันทึกไว้ไม่ถูกต้อง: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>ไลบรารีที่เลือกไว้นี้ ระบุตัวเองว่า {0} แทนที่จะ PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP ไม่สามารถดันสื่อออก</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP ไม่สามารถแทรกสื่อได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>ไม่พบแฟ้มสื่อที่เลือกไว้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP ถูกปฏิเสธสื่อที่เลือก</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP เลือกสื่อไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP ไม่สามารถสร้างสื่อได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>มีแผ่นบางแผ่นถูกเลือกไว้ใช้เป็นแผ่น PPSSPP รายการเล่น</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>เดอะ PPSSPP โพรเซสถูกเริ่มใช้งานแล้ว</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>สื่อสารกับ PPSSPP โพรเซสล้มเหลว: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>เดอะ PPSSPP โพรเซสยังไม่ถูกตั้งต้น</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>เดอะ PPSSPP ไม่สามารถเริ่มโพรเซสได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>เดอะ PPSSPP กระบวนการไม่ตอบสนองในเวลา</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>เดอะ PPSSPP ไม่มีข้อมูลโพรเซส</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP เลือกแผ่นที่ร้องขอมาไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP ไม่สามารถแทรกสื่อที่ต้องการได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>นี่ PPSSPP ไม่สามารถเริ่มแกนหลักได้โดยไม่มีสื่อ</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>รัฐที่บันทึกไว้ว่างเปล่า</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP ไม่สามารถเรียกคืนสถานะได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP ไม่สามารถบันทึกสถานะปัจจุบันได้</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP ผลตอบแทนเป็นตัวเลือกหลักที่ไม่รู้จัก</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>เดอะ PPSSPP เครื่องรับคําสั่งที่ไม่รู้จัก {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>เดอะ PPSSPP แกนกลาง API รุ่น {0} ไม่สนับสนุน</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP ไม่สนับสนุนส่วนขยายเนื้อหา {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP คืนรูปแบบพิกเซลที่ไม่รองรับ {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>เดอะ PPSSPP ไม่สามารถทําการบัฟเฟอร์ของวิดีโอได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>แฟ้มจัดเก็บที่ถูกดาวน์โหลดมาไม่มีรายการ SwanStation ห้องสมุด</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation ไม่ให้โหลดเนื้อหาที่เลือกไว้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>เดอะ SwanStation ไม่พบไลบรารี</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>เดอะ SwanStation แกนไม่เริ่มต้น</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>เดอะ SwanStation ไลบรารีไม่ได้ถูกโหลด</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>เดอะ SwanStation พาธของไลบรารีต้องสมบูรณ์</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>เดอะ SwanStation การควบคุมดิสก์ยังไม่สมบูรณ์</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation ไม่มีส่วนควบคุมดิสก์</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation คืนค่าเป็นป้ายของดิสก์ที่ไม่ถูกต้อง</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>ดาวน์โหลดแล้ว SwanStation ไลบรารีมีส่วนหัวหน้าต่างที่ใช้ไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>ดาวน์โหลดแล้ว SwanStation ไลบรารีไม่ใช่ไลบรารีของวินโดวส์</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>ดาวน์โหลดแล้ว SwanStation ห้องสมุดไม่ใช่ห้องสมุด x64</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation ไม่ยอมรับพาธเต็มของเนื้อหาที่ต้องการ</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>เดอะ SwanStation การปรับแต่งเครื่องไม่ถูกต้อง</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>เดอะ GW GUI ใช้ประมวลผลโดยใช้โฮสต์ SwanStation ไม่พบ</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>เดอะ SwanStation โฮสต์ยังไม่ถูกเปิดใช้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>เดอะ SwanStation เจ้าภาพไม่ตอบกลับ</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>ค่า {0} ไม่ถูกต้องสําหรับ SwanStation ตัวเลือก {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>เดอะ SwanStation ค่าช่วงการตอบกลับของโฮสต์ไม่ถูกต้อง: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation คืนค่าเป็นขนาดรัฐที่บันทึกไว้ไม่ถูกต้อง: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>ไลบรารีที่เลือกไว้นี้ ระบุตัวเองว่า {0} แทนการปล่อยหงส์</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation ไม่สามารถดันสื่อออก</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation ไม่สามารถแทรกสื่อได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>ไม่พบแฟ้มสื่อที่เลือกไว้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation ถูกปฏิเสธสื่อที่เลือก</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation เลือกสื่อไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation ไม่สามารถสร้างสื่อได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>มีแผ่นบางแผ่นถูกเลือกไว้ใช้เป็นแผ่น SwanStation รายการเล่น</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>เดอะ SwanStation โพรเซสถูกเริ่มใช้งานแล้ว</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>สื่อสารกับ SwanStation โพรเซสล้มเหลว: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>เดอะ SwanStation โพรเซสยังไม่ถูกตั้งต้น</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>เดอะ SwanStation ไม่สามารถเริ่มโพรเซสได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>เดอะ SwanStation กระบวนการไม่ตอบสนองในเวลา</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>เดอะ SwanStation ไม่มีข้อมูลโพรเซส</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation เลือกแผ่นที่ร้องขอมาไม่ได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation ไม่สามารถแทรกสื่อที่ต้องการได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>นี่ SwanStation ไม่สามารถเริ่มแกนหลักได้โดยไม่มีสื่อ</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>รัฐที่บันทึกไว้ว่างเปล่า</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation ไม่สามารถเรียกคืนสถานะได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation ไม่สามารถบันทึกสถานะปัจจุบันได้</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation ผลตอบแทนเป็นตัวเลือกหลักที่ไม่รู้จัก</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>เดอะ SwanStation เครื่องรับคําสั่งที่ไม่รู้จัก {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>เดอะ SwanStation แกนกลาง API รุ่น {0} ไม่สนับสนุน</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation ไม่สนับสนุนส่วนขยายเนื้อหา {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation คืนรูปแบบพิกเซลที่ไม่รองรับ {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>เดอะ SwanStation ไม่สามารถทําการบัฟเฟอร์ของวิดีโอได้</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>แฟ้มจัดเก็บที่ถูกดาวน์โหลดมา ไม่มีไลบรารี PCSX2 อยู่</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 ปฏิเสธที่จะโหลดเนื้อหาที่เลือกไว้</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>ไม่พบไลบรารี PCSX2</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>แกน PCSX2 ยังไม่ได้เริ่มการทํางาน</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>ไม่พบไลบรารี PCSX2</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>เส้นทางไปยังไลบรารี PCSX2 จะต้องสมบูรณ์</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>ระบบควบคุมดิสก์ PCSX2 ไม่สมบูรณ์</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 ไม่มีส่วนควบคุมดิสก์</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 จะคืนค่ากลับมาเป็นป้ายของดิสก์ที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>ไลบรารี PCSX2 ที่ถูกดาวน์โหลดแล้ว มีส่วนหัวของวินโดวส์ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>ไลบรารี PCSX2 ที่ดาวน์โหลดมา ไม่ใช่ไลบรารีของวินโดวส์</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>ไลบรารี PCSX2 ที่ดาวน์โหลดมา ไม่ใช่ไลบรารี x64</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 ไม่ยอมรับพาธของเนื้อหาเต็มรูปแบบที่ต้องการ</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>การปรับแต่งเครื่อง PCSX2 ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>พบ GW GUI ตัวประมวลผลที่ใช้เป็นพิธีกร PCSX2. ไม่พบ</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>โฮสต์ PCSX2 ยังไม่ได้เริ่มการทํางาน</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>PCSX2 โฮสต์ไม่ตอบกลับ</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>ค่า {0} ไม่ถูกต้องสําหรับ PCSX2 ตัวเลือก {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>PCSX2 จะส่งกลับเป็นความยาวของการตอบกลับไม่ถูกต้อง: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 จะคืนค่ากลับมาเป็นขนาดรัฐที่บันทึกไว้ไม่ถูกต้อง: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>ไลบรารีที่เลือกไว้นี้ ระบุตัวเองเป็น {0} แทนที่จะเป็น PCSX2</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 ไม่สามารถเด้งสื่อออกได้</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 ไม่สามารถแทรกสื่อได้</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>ไม่พบเอกสารสื่อที่เลือกไว้</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 ปฏิเสธสื่อที่เลือก</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 เลือกสื่อไม่ได้</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 ไม่สามารถสร้างช่องสื่อได้</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>มีดิสก์มากเกินไปที่ถูกเลือกสําหรับรายการเล่น PCSX2</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>โพรเซส PCSX2 ได้ถูกตั้งต้นแล้ว</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>การสื่อสารกับโพรเซส PCSX2 ล้มเหลว: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>โพรเซส PCSX2 ยังไม่ได้เริ่มการทํางาน</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>ไม่สามารถเริ่มโพรเซสของ PCSX2 ได้</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>โพรเซส PCSX2 ไม่ตอบสนองทันเวลา</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>ไม่พบโพรเซส PCSX2</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 เลือกแผ่นที่ร้องขอมาไม่ได้</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 ไม่สามารถแทรกสื่อที่ต้องการได้</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>แกน PCSX2 นี้ ไม่สามารถเริ่มได้โดยไม่มีสื่อ</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>รัฐที่บันทึกไว้ว่างเปล่า</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 ไม่สามารถเรียกคืนสถานะที่บันทึกไว้ได้</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 ไม่สามารถบันทึกสถานะปัจจุบันได้</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 จะคืนค่ากลับมาเป็นตัวเลือกหลักที่ไม่รู้จัก</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>PCSX2 เจ้าภาพได้รับคําสั่งที่ไม่รู้จัก {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>โปรแกรม PCSX2 รุ่น API {0} ไม่รองรับ</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 ไม่สนับสนุนนามสกุลเนื้อหา {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 จะคืนค่ากลับมาเป็นรูปแบบพิกเซลที่ไม่รองรับ {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>ไม่สามารถใช้บัฟเฟอร์วิดีโอ PCSX2 ได้</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>แฟ้มจัดเก็บที่ดาวน์โหลดมา ไม่มีไลบรารี PPSSPP แห่ง</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP ปฏิเสธที่จะโหลดเนื้อหาที่เลือก</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>ไม่พบห้องสมุด PPSSPP แห่ง</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>PPSSPP แกนกลางยังไม่ถูกจัดตั้งขึ้น</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>ห้องสมุด PPSSPP ไม่ถูกโหลด</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>PPSSPP เส้นทางห้องสมุดต้องสมบูรณ์</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>PPSSPP เครื่องควบคุมดิสก์ไม่สมบูรณ์</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP ไม่ให้การควบคุมดิสก์</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP คืนชื่อแผ่นดิสก์ที่ใช้ไม่ได้</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>ไลบรารีที่ดาวน์โหลดมาแล้ว PPSSPP มีหัวกระดาษวินโดวส์ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>ห้องสมุดที่ดาวน์โหลดมาแล้ว PPSSPP ไม่ใช่ห้องสมุดของวินโดวส์</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>ห้องสมุดที่ดาวน์โหลดมาแล้ว PPSSPP ไม่ใช่ห้องสมุด x64</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP ไม่ยอมรับเส้นทางข้อมูลเต็มรูปแบบที่ต้องการ</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>การปรับแต่งโฮสต์ PPSSPP ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>พบ GW GUI ตัวประมวลผลที่ใช้เป็นพิธีกร PPSSPP. ไม่พบ</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>PPSSPP เจ้าภาพยังไม่ถูกจัดตั้งขึ้น</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>PPSSPP เจ้าภาพกลับไม่มีการตอบสนอง</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>ค่า {0} ไม่ถูกต้องสําหรับ PPSSPP ตัวเลือก {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>PPSSPP เจ้าภาพได้คืนความยาวของการตอบรับที่ไม่ถูกต้อง: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP ผลตอบแทนจากขนาดรัฐประหยัดที่ใช้ไม่ได้: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>ห้อง สมุด ที่ เลือก ไว้ นี้ ระบุ ตัว เอง ว่า เป็น 11,000 {0} แทนPPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP ไม่สามารถขับไล่สื่อได้</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP ไม่สามารถแทรกสื่อได้</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>ไม่พบเอกสารสื่อที่เลือกไว้</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP ปฏิเสธสื่อที่เลือก</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP ไม่สามารถเลือกสื่อได้</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP ไม่สามารถสร้างช่องสื่อได้</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>มีดิสก์มากเกินไปที่ถูกเลือกในรายการเล่น PPSSPP</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>กระบวนการ PPSSPP ได้มีการจัดตั้งขึ้นแล้ว</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>การ ติด ต่อ กับ กระบวนการ PPSSPP ล้ม เหลว: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>กระบวนการ PPSSPP ไม่ได้ถูกจัดตั้งขึ้น</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>ไม่ สามารถ เริ่ม กระบวนการ PPSSPP ได้.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>กระบวนการ PPSSPP ไม่ตอบสนองในเวลา</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>ไม่ มี กระบวนการ PPSSPP โครงการ</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP เลือกแผ่นที่ร้องขอมาไม่ได้</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP ไม่สามารถแทรกสื่อที่ต้องการได้</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>PPSSPP แกนหลักนี้ไม่สามารถเริ่มต้นได้โดยไม่มีสื่อ</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>รัฐที่บันทึกไว้ว่างเปล่า</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP ไม่สามารถฟื้นฟูรัฐได้</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP ไม่สามารถรักษาสถานะปัจจุบันไว้ได้</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP ได้คืนกลับมาเป็นตัวเลือกหลักที่ไม่ทราบชื่อ</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>PPSSPP เจ้าภาพได้รับคําสั่งไม่ทราบชื่อ {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>เดอะ PPSSPP แกนกลาง API รุ่น {0} ไม่สนับสนุน</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP ไม่สนับสนุนการขยายเนื้อหา {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP คืนรูปแบบของพิกเซลที่ไม่รองรับ{0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>2551. ดีวีดีบัฟเฟอร์ PPSSPP ไม่ว่าง.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>แฟ้มจัดเก็บที่ถูกดาวน์โหลดมา ไม่มีไลบรารี SwanStation อยู่</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation ปฏิเสธที่จะโหลดเนื้อหาที่เลือก</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>ไม่พบห้องสมุด SwanStation แห่ง</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>SwanStation แกนกลางยังไม่ถูกจัดตั้งขึ้น</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>ห้องสมุด SwanStation ไม่ถูกโหลด</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>SwanStation เส้นทางห้องสมุดต้องสมบูรณ์</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>SwanStation เครื่องควบคุมดิสก์ไม่สมบูรณ์</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation ไม่ให้การควบคุมดิสก์</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation คืนชื่อแผ่นดิสก์ที่ใช้ไม่ได้</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>ไลบรารี SwanStation ที่ถูกดาวน์โหลดมาแล้ว มีส่วนหัวของวินโดวส์ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>ห้องสมุดที่ดาวน์โหลดมาแล้ว SwanStation ไม่ใช่ห้องสมุดของวินโดวส์</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>ห้องสมุด SwanStation ที่ดาวน์โหลดมา ไม่ใช่ห้องสมุด x64</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation ไม่ยอมรับเส้นทางข้อมูลเต็มรูปแบบที่ต้องการ</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>การปรับแต่งโฮสต์ SwanStation ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>พบ GW GUI ตัวประมวลผลที่ใช้เป็นพิธีกร SwanStation. ไม่พบ</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>SwanStation เจ้าภาพยังไม่ถูกจัดตั้งขึ้น</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>SwanStation เจ้าภาพกลับไม่มีการตอบสนอง</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>ค่า {0} ไม่ถูกต้องสําหรับ SwanStation ตัวเลือก {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>The SwanStation Maner จะส่งค่ากลับมาเป็นความยาวของการตอบกลับไม่ถูกต้อง: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation ผลตอบแทนจากขนาดรัฐประหยัดที่ใช้ไม่ได้: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>ห้อง สมุด ที่ เลือก ไว้ นี้ ระบุ ตัว เอง ว่า เป็น 11,000 {0} แทนSwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation ไม่สามารถขับไล่สื่อได้</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation ไม่สามารถแทรกสื่อได้</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>ไม่พบเอกสารสื่อที่เลือกไว้</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation ปฏิเสธสื่อที่เลือก</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation ไม่สามารถเลือกสื่อได้</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation ไม่สามารถสร้างช่องสื่อได้</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>มีดิสก์มากเกินไปที่ถูกเลือกในรายการเล่น SwanStation</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>กระบวนการ SwanStation ได้มีการจัดตั้งขึ้นแล้ว</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>การ ติด ต่อ กับ กระบวนการ SwanStation ล้ม เหลว: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>กระบวนการ SwanStation ไม่ได้ถูกจัดตั้งขึ้น</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>ไม่ สามารถ เริ่ม กระบวนการ SwanStation ได้.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>กระบวนการ SwanStation ไม่ตอบสนองในเวลา</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>ไม่ มี กระบวนการ SwanStation โครงการ</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation เลือกแผ่นที่ร้องขอมาไม่ได้</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation ไม่สามารถแทรกสื่อที่ต้องการได้</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>SwanStation แกนหลักนี้ไม่สามารถเริ่มต้นได้โดยไม่มีสื่อ</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>รัฐที่บันทึกไว้ว่างเปล่า</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation ไม่สามารถฟื้นฟูรัฐได้</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation ไม่สามารถรักษาสถานะปัจจุบันไว้ได้</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation ได้คืนกลับมาเป็นตัวเลือกหลักที่ไม่ทราบชื่อ</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>SwanStation เจ้าภาพได้รับคําสั่งไม่ทราบชื่อ {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>เดอะ SwanStation แกนกลาง API รุ่น {0} ไม่สนับสนุน</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation ไม่สนับสนุนการขยายเนื้อหา {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation จะส่งค่ากลับมาเป็นรูปแบบพิกเซลที่ไม่สนับสนุน {0}</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>2551. ดีวีดีบัฟเฟอร์ SwanStation ไม่ว่าง.</value></data>
 </root>

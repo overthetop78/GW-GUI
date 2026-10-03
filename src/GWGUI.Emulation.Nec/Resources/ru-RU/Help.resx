@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Количество RAM, доступное для эмулируемой машины.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Выберите доступное расширение RAM. Эмулятор: BeetlePce. Машина должна перезагрузиться до того, как будет использовано новое количество.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Встроена система ROM. Эмулятор: BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Система ROM обеспечивается внутри. Эмулятор: BeetlePce. Селектор ROM-файлов недоступен.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Внутреннее разрешение, предоставленное BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Выберите одно из внутренних разрешений, представленных BeetlePce. При этом не устанавливается размер окна приложения.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Тип монитора, эмулируемого BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Выберите цветной, зеленый монохромный или белый монитор NEC.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Яркость эмулированного монитора.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Настройка интенсивности монитора от 5 до 15, как показано BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Удалить внешнюю границу экрана.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Просит BeetlePce обрезать внешнюю границу. GW GUI сохраняет соотношение сторон, сообщенное эмулятором.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Механический звук дискеты.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Включает или отключает звук дискеты, генерируемый BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Настраивается модель машины Nec.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Для этой машины выбран эмулятор.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Идентифицирует реализацию эмулятора, используемую для запуска этой конфигурации машины.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>Процессор эмулировал для этой машины.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Показывает модель процессора, предоставленную выбранной машиной Nec.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Оригинальная тактовая частота процессора.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Показывает номинальную тактовую частоту процессора в выбранной машине Nec.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Включить или отключить эмулированный звук.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Контролирует, воспроизводит ли GW GUI аудиообразцы, генерируемые эмулятором.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Аудио выход, используемый GW GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Выбирает аудиовыход Windows, используемый для воспроизведения звука с этой эмулированной машины.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Идентифицирует модель NEC, аппаратная конфигурация которой редактируется.</value></data>
+</root>

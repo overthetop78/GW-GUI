@@ -5,6 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emule les systèmes PlayStation 2.</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>Emule les systèmes portables PlayStation.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emule Sony PlayStation et PS un seul système.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Émule les systèmes PlayStation Portable.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emule les systèmes Sony PlayStation et PS one.</value></data>
 </root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Az emulált gép rendelkezésére álló RAM-mennyiség.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Kiválasztja a rendelkezésre álló RAM bővítést. BeetlePce. A gépet az új mennyiség használata előtt újra kell indítani.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>A ROM rendszer be van építve. BeetlePce.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>A rendszer ROM biztosított belül. BeetlePce. Nincs ROM fájlbeállító.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>BeetlePce belső felbontása.</value></data>
+  <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Kiválasztja BeetlePce egyik belső állásfoglalását. Ez nem adja meg az alkalmazás ablakának méretét.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>A BeetlePce által szimulált monitor típusa.</value></data>
+  <data name="Emulation.Nec.Help.Video.Monitor.Detailed"><value>Színes, zöld monokróm vagy fehér monokromatikus NEC monitorot választ.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Az emulált monitor fényereje.</value></data>
+  <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>A monitorok intenzitását 5-ről 15-re állítja be, ahogy azt BeetlePce észleli.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Eltávolítja a külső képernyős határt.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Megkéri BeetlePce-t, hogy terítse le a külső határt. A GW GUI megtartja az emulátor által jelentett képarányt.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Mechanikus hang a floppy meghajtón.</value></data>
+  <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Engedélyezi vagy letiltja a BeetlePce által generált floppy meghajtó hangot.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Short"><value>Nec machine modell konfigurálva.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Short"><value>Emulátor kiválasztva ehhez a géphez.</value></data>
+  <data name="Emulation.Nec.Help.General.Emulator.Detailed"><value>Azonosítja a gép konfigurációjának futtatásához használt emulátor-implementációt.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Short"><value>A processzor erre a gépre telepített.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Model.Detailed"><value>Megjeleníti a kiválasztott Nec gép által biztosított processzormodellt.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Short"><value>Eredeti processzor óra frekvencia.</value></data>
+  <data name="Emulation.Nec.Help.Cpu.Frequency.Detailed"><value>Megjeleníti a processzor névleges óráfrekvenciáját a kiválasztott Nec gépben.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Short"><value>Emulált hang engedélyezése vagy letiltása.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Enabled.Detailed"><value>Ellenőrzi, hogy a GW GUI lejátszja-e az emulátor által létrehozott hangmintákat.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Short"><value>A GW által használt hangteljesítmény GUI.</value></data>
+  <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Kiválasztja a Windows audio kimenetet használt játszani hang ebből az emulált gép.</value></data>
+  <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Azonosítja a NEC modellt, amelynek hardverkonfigurációját szerkesztik.</value></data>
+</root>

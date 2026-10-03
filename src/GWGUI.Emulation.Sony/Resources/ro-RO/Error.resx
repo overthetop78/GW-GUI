@@ -1,429 +1,145 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
-  </resheader>
-  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary">
-    <value>Arhiva descărcată nu conține PCSX2 Biblioteca.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ContentRefused">
-    <value>PCSX2 a refuzat să încarce conținutul selectat.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotFound">
-    <value>, PCSX2 Biblioteca nu a fost găsită.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotInitialized">
-    <value>, PCSX2 Miezul nu este iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CoreNotLoaded">
-    <value>, PCSX2 Biblioteca nu este încărcată.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute">
-    <value>, PCSX2 Calea bibliotecii trebuie să fie absolută.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete">
-    <value>, PCSX2 Comenzile discurilor sunt incomplete.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable">
-    <value>PCSX2 nu furnizează comenzi pe disc.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid">
-    <value>PCSX2 a returnat o etichetă de disc invalidă.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe">
-    <value>Descărcarea PCSX2 biblioteca are un antet invalid pentru Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe">
-    <value>Descărcarea PCSX2 biblioteca nu este o bibliotecă Windows.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture">
-    <value>Descărcarea PCSX2 Biblioteca nu este o bibliotecă x64.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired">
-    <value>PCSX2 nu acceptă căile de conținut complete necesare.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid">
-    <value>, PCSX2 configurarea gazdei este invalidă.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound">
-    <value>, GW GUI executabil folosit pentru a găzdui PCSX2 nu a fost găsit.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostNotInitialized">
-    <value>, PCSX2 gazda nu este iniţializată.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable">
-    <value>, PCSX2 gazda nu a răspuns.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidOptionValue">
-    <value>Valoarea {0} nu este valabilă pentru PCSX2 opțiune {1}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidResponseLength">
-    <value>, PCSX2 gazda a returnat o lungime de răspuns invalidă: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.InvalidStateSize">
-    <value>PCSX2 a returnat o dimensiune invalidă a stării salvate: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch">
-    <value>Biblioteca selectată se identifică ca {0} în loc de PCSX2.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaEjectFailed">
-    <value>PCSX2 nu a putut scoate mass-media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaInsertFailed">
-    <value>PCSX2 nu a putut introduce media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaNotFound">
-    <value>Fișierul media selectat nu a fost găsit.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaRefused">
-    <value>PCSX2 a refuzat mijloacele de informare selectate.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed">
-    <value>PCSX2 nu a putut selecta mass-media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed">
-    <value>PCSX2 nu a putut crea un slot media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded">
-    <value>Prea multe discuri au fost selectate pentru PCSX2 Lista de redare.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized">
-    <value>, PCSX2 Procesul este deja iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed">
-    <value>Comunicarea cu PCSX2 procesul a eșuat: {0}</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized">
-    <value>, PCSX2 Procesul nu este iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessStartFailed">
-    <value>, PCSX2 Procesul nu a putut fi început.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessTimeout">
-    <value>, PCSX2 Procesul nu a răspuns la timp.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.ProcessUnavailable">
-    <value>, PCSX2 Procesul nu este disponibil.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed">
-    <value>PCSX2 nu a putut selecta discul solicitat.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed">
-    <value>PCSX2 nu a putut introduce media solicitată.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported">
-    <value>Asta PCSX2 nucleul nu poate începe fără media.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateEmpty">
-    <value>Starea salvată e goală.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateRestoreFailed">
-    <value>PCSX2 nu a putut restabili starea salvată.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.StateSaveFailed">
-    <value>PCSX2 nu a putut salva starea actuală.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownCoreOption">
-    <value>PCSX2 a returnat o opțiune de bază necunoscută.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnknownHostCommand">
-    <value>, PCSX2 gazda a primit comanda necunoscută {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion">
-    <value>, PCSX2 nucleu API versiune {0} nu este susţinut.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension">
-    <value>PCSX2 nu susține extinderea conținutului {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat">
-    <value>PCSX2 returnat formatul pixel nesusţinut {0}.</value>
-  </data>
-  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable">
-    <value>, PCSX2 - Nu e disponibil.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary">
-    <value>Arhiva descărcată nu conține PPSSPP Biblioteca.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ContentRefused">
-    <value>PPSSPP a refuzat să încarce conținutul selectat.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotFound">
-    <value>, PPSSPP Biblioteca nu a fost găsită.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotInitialized">
-    <value>, PPSSPP Miezul nu este iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CoreNotLoaded">
-    <value>, PPSSPP Biblioteca nu este încărcată.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute">
-    <value>, PPSSPP Calea bibliotecii trebuie să fie absolută.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete">
-    <value>, PPSSPP Comenzile discurilor sunt incomplete.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable">
-    <value>PPSSPP nu furnizează comenzi pe disc.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid">
-    <value>PPSSPP a returnat o etichetă de disc invalidă.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe">
-    <value>Descărcarea PPSSPP biblioteca are un antet invalid pentru Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe">
-    <value>Descărcarea PPSSPP biblioteca nu este o bibliotecă Windows.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture">
-    <value>Descărcarea PPSSPP Biblioteca nu este o bibliotecă x64.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired">
-    <value>PPSSPP nu acceptă căile de conținut complete necesare.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid">
-    <value>, PPSSPP configurarea gazdei este invalidă.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound">
-    <value>, GW GUI executabil folosit pentru a găzdui PPSSPP nu a fost găsit.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostNotInitialized">
-    <value>, PPSSPP gazda nu este iniţializată.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable">
-    <value>, PPSSPP gazda nu a răspuns.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidOptionValue">
-    <value>Valoarea {0} nu este valabilă pentru PPSSPP opțiune {1}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidResponseLength">
-    <value>, PPSSPP gazda a returnat o lungime de răspuns invalidă: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.InvalidStateSize">
-    <value>PPSSPP a returnat o dimensiune invalidă a stării salvate: {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch">
-    <value>Biblioteca selectată se identifică ca {0} în loc de PPSSPP.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaEjectFailed">
-    <value>PPSSPP nu a putut scoate mass-media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaInsertFailed">
-    <value>PPSSPP nu a putut introduce media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaNotFound">
-    <value>Fișierul media selectat nu a fost găsit.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaRefused">
-    <value>PPSSPP a refuzat mijloacele de informare selectate.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed">
-    <value>PPSSPP nu a putut selecta mass-media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed">
-    <value>PPSSPP nu a putut crea un slot media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded">
-    <value>Prea multe discuri au fost selectate pentru PPSSPP Lista de redare.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized">
-    <value>, PPSSPP Procesul este deja iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed">
-    <value>Comunicarea cu PPSSPP procesul a eșuat: {0}</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized">
-    <value>, PPSSPP Procesul nu este iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessStartFailed">
-    <value>, PPSSPP Procesul nu a putut fi început.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessTimeout">
-    <value>, PPSSPP Procesul nu a răspuns la timp.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.ProcessUnavailable">
-    <value>, PPSSPP Procesul nu este disponibil.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed">
-    <value>PPSSPP nu a putut selecta discul solicitat.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed">
-    <value>PPSSPP nu a putut introduce media solicitată.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported">
-    <value>Asta PPSSPP nucleul nu poate începe fără media.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateEmpty">
-    <value>Starea salvată e goală.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateRestoreFailed">
-    <value>PPSSPP nu a putut restabili starea salvată.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.StateSaveFailed">
-    <value>PPSSPP nu a putut salva starea actuală.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownCoreOption">
-    <value>PPSSPP a returnat o opțiune de bază necunoscută.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnknownHostCommand">
-    <value>, PPSSPP gazda a primit comanda necunoscută {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion">
-    <value>, PPSSPP nucleu API versiune {0} nu este susţinut.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension">
-    <value>PPSSPP nu susține extinderea conținutului {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat">
-    <value>PPSSPP returnat formatul pixel nesusţinut {0}.</value>
-  </data>
-  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable">
-    <value>, PPSSPP - Nu e disponibil.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary">
-    <value>Arhiva descărcată nu conține SwanStation Biblioteca.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ContentRefused">
-    <value>SwanStation a refuzat să încarce conținutul selectat.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotFound">
-    <value>, SwanStation Biblioteca nu a fost găsită.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotInitialized">
-    <value>, SwanStation Miezul nu este iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CoreNotLoaded">
-    <value>, SwanStation Biblioteca nu este încărcată.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute">
-    <value>, SwanStation Calea bibliotecii trebuie să fie absolută.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlIncomplete">
-    <value>, SwanStation Comenzile discurilor sunt incomplete.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskControlUnavailable">
-    <value>SwanStation nu furnizează comenzi pe disc.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DiskLabelInvalid">
-    <value>SwanStation a returnat o etichetă de disc invalidă.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe">
-    <value>Descărcarea SwanStation biblioteca are un antet invalid pentru Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe">
-    <value>Descărcarea SwanStation biblioteca nu este o bibliotecă Windows.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture">
-    <value>Descărcarea SwanStation Biblioteca nu este o bibliotecă x64.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.FullContentPathsRequired">
-    <value>SwanStation nu acceptă căile de conținut complete necesare.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid">
-    <value>, SwanStation configurarea gazdei este invalidă.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostExecutableNotFound">
-    <value>, GW GUI executabil folosit pentru a găzdui SwanStation nu a fost găsit.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostNotInitialized">
-    <value>, SwanStation gazda nu este iniţializată.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.HostResponseUnavailable">
-    <value>, SwanStation gazda nu a răspuns.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidOptionValue">
-    <value>Valoarea {0} nu este valabilă pentru SwanStation opțiune {1}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidResponseLength">
-    <value>, SwanStation gazda a returnat o lungime de răspuns invalidă: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.InvalidStateSize">
-    <value>SwanStation a returnat o dimensiune invalidă a stării salvate: {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch">
-    <value>Biblioteca selectată se identifică ca {0} în loc de SwanStation.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaEjectFailed">
-    <value>SwanStation nu a putut scoate mass-media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaInsertFailed">
-    <value>SwanStation nu a putut introduce media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaNotFound">
-    <value>Fișierul media selectat nu a fost găsit.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaRefused">
-    <value>SwanStation a refuzat mijloacele de informare selectate.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSelectionFailed">
-    <value>SwanStation nu a putut selecta mass-media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed">
-    <value>SwanStation nu a putut crea un slot media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded">
-    <value>Prea multe discuri au fost selectate pentru SwanStation Lista de redare.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized">
-    <value>, SwanStation Procesul este deja iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed">
-    <value>Comunicarea cu SwanStation procesul a eșuat: {0}</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessNotInitialized">
-    <value>, SwanStation Procesul nu este iniţializat.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessStartFailed">
-    <value>, SwanStation Procesul nu a putut fi început.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessTimeout">
-    <value>, SwanStation Procesul nu a răspuns la timp.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.ProcessUnavailable">
-    <value>, SwanStation Procesul nu este disponibil.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed">
-    <value>SwanStation nu a putut selecta discul solicitat.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed">
-    <value>SwanStation nu a putut introduce media solicitată.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported">
-    <value>Asta SwanStation nucleul nu poate începe fără media.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateEmpty">
-    <value>Starea salvată e goală.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateRestoreFailed">
-    <value>SwanStation nu a putut restabili starea salvată.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.StateSaveFailed">
-    <value>SwanStation nu a putut salva starea actuală.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownCoreOption">
-    <value>SwanStation a returnat o opțiune de bază necunoscută.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnknownHostCommand">
-    <value>, SwanStation gazda a primit comanda necunoscută {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion">
-    <value>, SwanStation nucleu API versiune {0} nu este susţinut.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension">
-    <value>SwanStation nu susține extinderea conținutului {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat">
-    <value>SwanStation returnat formatul pixel nesusţinut {0}.</value>
-  </data>
-  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable">
-    <value>, SwanStation - Nu e disponibil.</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Error.Pcsx2.ArchiveMissingLibrary"><value>Arhiva descărcată nu conține biblioteca PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ContentRefused"><value>PCSX2 a refuzat să încarce conţinutul selectat.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotFound"><value>Biblioteca PCSX2 nu a fost găsită.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotInitialized"><value>Miezul PCSX2 nu este inițializat.</value></data>
+  <data name="Emulation.Error.Pcsx2.CoreNotLoaded"><value>Biblioteca PCSX2 nu este încărcată.</value></data>
+  <data name="Emulation.Error.Pcsx2.CorePathNotAbsolute"><value>Calea bibliotecii PCSX2 trebuie să fie absolută.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlIncomplete"><value>Comenzile discului PCSX2 sunt incomplete.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskControlUnavailable"><value>PCSX2 nu furnizează comenzi pe disc.</value></data>
+  <data name="Emulation.Error.Pcsx2.DiskLabelInvalid"><value>PCSX2 a returnat o etichetă de disc invalidă.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreInvalidPe"><value>Biblioteca PCSX2 descărcată are un antet de Windows invalid.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreNotPe"><value>Biblioteca PCSX2 descărcată nu este o bibliotecă Windows.</value></data>
+  <data name="Emulation.Error.Pcsx2.DownloadedCoreWrongArchitecture"><value>Biblioteca PCSX2 descărcată nu este o bibliotecă x64.</value></data>
+  <data name="Emulation.Error.Pcsx2.FullContentPathsRequired"><value>PCSX2 nu acceptă căile de conținut complete necesare.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostConfigurationInvalid"><value>Configuraţia gazdei PCSX2 nu este validă.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostExecutableNotFound"><value>Executabilul GW GUI folosit pentru a găzdui PCSX2 nu a fost găsit.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostNotInitialized"><value>Gazda PCSX2 nu este inițializată.</value></data>
+  <data name="Emulation.Error.Pcsx2.HostResponseUnavailable"><value>Gazda PCSX2 nu a răspuns.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidOptionValue"><value>Valoarea {0} nu este valabilă pentru opțiunea PCSX2 {1}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidResponseLength"><value>Gazda PCSX2 a returnat o lungime de răspuns invalidă: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.InvalidStateSize"><value>PCSX2 a returnat o dimensiune invalidă a stării salvate: {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.LibraryIdentityMismatch"><value>Biblioteca selectată se identifică ca fiind {0} în loc de PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaEjectFailed"><value>PCSX2 nu a putut ejecta media.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaInsertFailed"><value>PCSX2 nu a putut introduce media.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaNotFound"><value>Fișierul media selectat nu a fost găsit.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaRefused"><value>PCSX2 a refuzat mass-media selectată.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSelectionFailed"><value>PCSX2 nu a putut selecta media.</value></data>
+  <data name="Emulation.Error.Pcsx2.MediaSlotCreationFailed"><value>PCSX2 nu a putut crea un slot media.</value></data>
+  <data name="Emulation.Error.Pcsx2.PlaylistLimitExceeded"><value>Prea multe discuri au fost selectate pentru lista de redare PCSX2.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessAlreadyInitialized"><value>Procesul PCSX2 este deja inițializat.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessCommunicationFailed"><value>Comunicarea cu procesul PCSX2 a eșuat: {0}</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessNotInitialized"><value>Procesul PCSX2 nu este inițializat.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessStartFailed"><value>Procesul PCSX2 nu a putut fi început.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessTimeout"><value>Procesul PCSX2 nu a răspuns la timp.</value></data>
+  <data name="Emulation.Error.Pcsx2.ProcessUnavailable"><value>Procesul PCSX2 nu este disponibil.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedDiskSelectionFailed"><value>PCSX2 nu a putut selecta discul solicitat.</value></data>
+  <data name="Emulation.Error.Pcsx2.RequestedMediaInsertFailed"><value>PCSX2 nu a putut introduce media solicitată.</value></data>
+  <data name="Emulation.Error.Pcsx2.StartWithoutMediaUnsupported"><value>Acest nucleu PCSX2 nu poate începe fără mass-media.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateEmpty"><value>Starea salvată e goală.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateRestoreFailed"><value>PCSX2 nu a putut restabili starea salvată.</value></data>
+  <data name="Emulation.Error.Pcsx2.StateSaveFailed"><value>PCSX2 nu a putut salva starea actuală.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownCoreOption"><value>PCSX2 a returnat o opțiune de bază necunoscută.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnknownHostCommand"><value>Gazda PCSX2 a primit comanda necunoscută {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedApiVersion"><value>Nucleul PCSX2 API versiunea {0} este nesusţinut.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedContentExtension"><value>PCSX2 nu susţine extinderea conţinutului {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.UnsupportedPixelFormat"><value>PCSX2 a returnat formatul pixel nesusţinut {0}.</value></data>
+  <data name="Emulation.Error.Pcsx2.VideoBufferUnavailable"><value>Tamponul video PCSX2 este indisponibil.</value></data>
+  <data name="Emulation.Error.Ppsspp.ArchiveMissingLibrary"><value>Arhiva descărcată nu conține biblioteca PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ContentRefused"><value>PPSSPP a refuzat să încarce conținutul selectat.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotFound"><value>Biblioteca PPSSPP nu a fost găsită.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotInitialized"><value>Nucleul PPSSPP nu este inițializat.</value></data>
+  <data name="Emulation.Error.Ppsspp.CoreNotLoaded"><value>Biblioteca PPSSPP nu este încărcată.</value></data>
+  <data name="Emulation.Error.Ppsspp.CorePathNotAbsolute"><value>Calea bibliotecii PPSSPP trebuie să fie absolută.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlIncomplete"><value>Comenzile discului PPSSPP sunt incomplete.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskControlUnavailable"><value>PPSSPP nu furnizează comenzi pe disc.</value></data>
+  <data name="Emulation.Error.Ppsspp.DiskLabelInvalid"><value>PPSSPP returnat o etichetă de disc invalid.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreInvalidPe"><value>Biblioteca PPSSPP descărcată are un antet invalid pentru Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreNotPe"><value>Biblioteca PPSSPP descărcată nu este o bibliotecă Windows.</value></data>
+  <data name="Emulation.Error.Ppsspp.DownloadedCoreWrongArchitecture"><value>Biblioteca PPSSPP descărcată nu este o bibliotecă x64.</value></data>
+  <data name="Emulation.Error.Ppsspp.FullContentPathsRequired"><value>PPSSPP nu acceptă căile de conținut complete necesare.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostConfigurationInvalid"><value>Configurarea gazdei PPSSPP nu este validă.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostExecutableNotFound"><value>Nu s-a găsit executabilul GW GUI folosit pentru a găzdui PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostNotInitialized"><value>Gazda PPSSPP nu este inițializată.</value></data>
+  <data name="Emulation.Error.Ppsspp.HostResponseUnavailable"><value>Gazda PPSSPP nu a răspuns.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidOptionValue"><value>Valoarea {0} nu este valabilă pentru opțiunea PPSSPP {1}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidResponseLength"><value>Gazda PPSSPP a returnat o lungime de răspuns invalidă: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.InvalidStateSize"><value>PPSSPP a returnat o dimensiune nevalidă de stare salvată: {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.LibraryIdentityMismatch"><value>Biblioteca selectată se identifică ca fiind {0} în loc de PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaEjectFailed"><value>PPSSPP nu a putut scoate mass-media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaInsertFailed"><value>PPSSPP nu a putut introduce media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaNotFound"><value>Fișierul media selectat nu a fost găsit.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaRefused"><value>PPSSPP a refuzat mass-media selectată.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSelectionFailed"><value>PPSSPP nu a putut selecta mass-media.</value></data>
+  <data name="Emulation.Error.Ppsspp.MediaSlotCreationFailed"><value>PPSSPP nu a putut crea un slot media.</value></data>
+  <data name="Emulation.Error.Ppsspp.PlaylistLimitExceeded"><value>Prea multe discuri au fost selectate pentru playlist-ul PPSSPP.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessAlreadyInitialized"><value>Procesul PPSSPP este deja inițializat.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessCommunicationFailed"><value>Comunicarea cu procesul PPSSPP a eşuat: {0}</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessNotInitialized"><value>Procesul PPSSPP nu este inițializat.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessStartFailed"><value>Procesul PPSSPP nu a putut fi inițiat.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessTimeout"><value>Procesul PPSSPP nu a răspuns la timp.</value></data>
+  <data name="Emulation.Error.Ppsspp.ProcessUnavailable"><value>Procesul PPSSPP nu este disponibil.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedDiskSelectionFailed"><value>PPSSPP nu a putut selecta discul solicitat.</value></data>
+  <data name="Emulation.Error.Ppsspp.RequestedMediaInsertFailed"><value>PPSSPP nu a putut introduce mass-media solicitată.</value></data>
+  <data name="Emulation.Error.Ppsspp.StartWithoutMediaUnsupported"><value>Acest nucleu PPSSPP nu poate începe fără mass-media.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateEmpty"><value>Starea salvată e goală.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateRestoreFailed"><value>PPSSPP nu a putut restabili starea salvată.</value></data>
+  <data name="Emulation.Error.Ppsspp.StateSaveFailed"><value>PPSSPP nu a putut salva starea actuală.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownCoreOption"><value>PPSSPP a returnat o opțiune de bază necunoscută.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnknownHostCommand"><value>Gazda PPSSPP a primit comanda necunoscută {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedApiVersion"><value>Nucleul PPSSPP API versiunea {0} este nesusţinut.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedContentExtension"><value>PPSSPP nu sprijină extinderea conţinutului {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.UnsupportedPixelFormat"><value>PPSSPP returnat format pixel nesusţinut {0}.</value></data>
+  <data name="Emulation.Error.Ppsspp.VideoBufferUnavailable"><value>Tamponul video PPSSPP nu este disponibil.</value></data>
+  <data name="Emulation.Error.SwanStation.ArchiveMissingLibrary"><value>Arhiva descărcată nu conţine biblioteca SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ContentRefused"><value>SwanStation a refuzat să încarce conţinutul selectat.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotFound"><value>Biblioteca SwanStation nu a fost găsită.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotInitialized"><value>Miezul SwanStation nu este inițializat.</value></data>
+  <data name="Emulation.Error.SwanStation.CoreNotLoaded"><value>Biblioteca SwanStation nu este încărcată.</value></data>
+  <data name="Emulation.Error.SwanStation.CorePathNotAbsolute"><value>Calea bibliotecii SwanStation trebuie să fie absolută.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlIncomplete"><value>Comenzile discului SwanStation sunt incomplete.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskControlUnavailable"><value>SwanStation nu furnizează comenzi pe disc.</value></data>
+  <data name="Emulation.Error.SwanStation.DiskLabelInvalid"><value>SwanStation a returnat o etichetă de disc invalidă.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreInvalidPe"><value>Biblioteca SwanStation descărcată are un antet invalid pentru Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreNotPe"><value>Biblioteca SwanStation descărcată nu este o bibliotecă Windows.</value></data>
+  <data name="Emulation.Error.SwanStation.DownloadedCoreWrongArchitecture"><value>Biblioteca SwanStation descărcată nu este o bibliotecă x64.</value></data>
+  <data name="Emulation.Error.SwanStation.FullContentPathsRequired"><value>SwanStation nu acceptă căile complete de conținut necesare.</value></data>
+  <data name="Emulation.Error.SwanStation.HostConfigurationInvalid"><value>Configuraţia gazdei SwanStation este invalidă.</value></data>
+  <data name="Emulation.Error.SwanStation.HostExecutableNotFound"><value>Executabilul GW GUI folosit pentru a găzdui SwanStation nu a fost găsit.</value></data>
+  <data name="Emulation.Error.SwanStation.HostNotInitialized"><value>Gazda SwanStation nu este inițializată.</value></data>
+  <data name="Emulation.Error.SwanStation.HostResponseUnavailable"><value>Gazda SwanStation nu a răspuns.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidOptionValue"><value>Valoarea {0} nu este valabilă pentru opțiunea SwanStation {1}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidResponseLength"><value>Gazda SwanStation a returnat o lungime de răspuns invalidă: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.InvalidStateSize"><value>SwanStation a returnat o dimensiune invalidă de stare salvată: {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.LibraryIdentityMismatch"><value>Biblioteca selectată se identifică ca fiind {0} în loc de SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaEjectFailed"><value>SwanStation nu a putut scoate mass-media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaInsertFailed"><value>SwanStation nu a putut introduce media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaNotFound"><value>Fișierul media selectat nu a fost găsit.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaRefused"><value>SwanStation a refuzat mass-media selectată.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSelectionFailed"><value>SwanStation nu a putut selecta media.</value></data>
+  <data name="Emulation.Error.SwanStation.MediaSlotCreationFailed"><value>SwanStation nu a putut crea un slot media.</value></data>
+  <data name="Emulation.Error.SwanStation.PlaylistLimitExceeded"><value>Prea multe discuri au fost selectate pentru lista de redare SwanStation.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessAlreadyInitialized"><value>Procesul SwanStation este deja inițializat.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessCommunicationFailed"><value>Comunicarea cu procesul SwanStation a eşuat: {0}</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessNotInitialized"><value>Procesul SwanStation nu este iniţializat.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessStartFailed"><value>Procesul SwanStation nu a putut fi început.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessTimeout"><value>Procesul SwanStation nu a răspuns la timp.</value></data>
+  <data name="Emulation.Error.SwanStation.ProcessUnavailable"><value>Procesul SwanStation nu este disponibil.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedDiskSelectionFailed"><value>SwanStation nu a putut selecta discul solicitat.</value></data>
+  <data name="Emulation.Error.SwanStation.RequestedMediaInsertFailed"><value>SwanStation nu a putut introduce media solicitată.</value></data>
+  <data name="Emulation.Error.SwanStation.StartWithoutMediaUnsupported"><value>Acest nucleu SwanStation nu poate începe fără mass-media.</value></data>
+  <data name="Emulation.Error.SwanStation.StateEmpty"><value>Starea salvată e goală.</value></data>
+  <data name="Emulation.Error.SwanStation.StateRestoreFailed"><value>SwanStation nu a putut restabili starea salvată.</value></data>
+  <data name="Emulation.Error.SwanStation.StateSaveFailed"><value>SwanStation nu a putut salva starea actuală.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownCoreOption"><value>SwanStation a returnat o opțiune de bază necunoscută.</value></data>
+  <data name="Emulation.Error.SwanStation.UnknownHostCommand"><value>Gazda SwanStation a primit comanda necunoscută {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedApiVersion"><value>Nucleul SwanStation API versiunea {0} este nesusţinut.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedContentExtension"><value>SwanStation nu susţine extinderea conţinutului {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.UnsupportedPixelFormat"><value>SwanStation returnat format pixel nesusţinut {0}.</value></data>
+  <data name="Emulation.Error.SwanStation.VideoBufferUnavailable"><value>Tamponul video SwanStation nu este disponibil.</value></data>
 </root>

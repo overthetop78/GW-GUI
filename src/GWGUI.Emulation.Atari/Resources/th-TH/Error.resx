@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>ไม่ พบ แกน กลาง Atari ที่ ต้องการ.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>ไม่สามารถโหลดแกน Atari ได้</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>มาตรา Atari ยูนิแวร์หายไป</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Atari ยูนิเซฟแวร์เป็นโมฆะหรือไม่เข้ากัน</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>ไม่พบสื่อที่ปรับแต่งให้ Atari</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>สื่อมวลชนที่ปรับแต่งแล้วยังไม่ได้รับการสนับสนุนจากเครื่อง Atari ตัวนี้</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>ตัวเลือก Atari มีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>การสื่อสารกับโฮสต์ Atari ล้มเหลว</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atari รัฐที่บันทึกไว้เป็นโมฆะ</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Atari รัฐที่บันทึกไว้ไม่เข้ากับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>เกิดความผิดพลาดที่ไม่คาดคิด Atari ที่เกิดขึ้น</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>การปรับแต่งที่ทํางานอยู่ Atari ไม่สามารถแก้ไขหรือลบได้</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>ไม่ มี การ กําหนด เครื่อง ปั๊ม น้ํา Atari ที่ ต้องการ. ยูนิเซฟแวร์: {0}. เครื่อง: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>ไม่พบแฟ้ม Counder ของ Atari ที่ปรับแต่งแล้ว ยูนิเซฟแวร์: {0}. แฟ้ม: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>ไม่พบสื่อที่ปรับแต่ง Atari: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>ไม่สามารถประมวลผลพาธของโฮสต์ Atari ได้</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Atari แกนการจําลองยังไม่ได้ถูกติดตั้ง แกน: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>ตัวจําลองที่ถูกเลือก Atari ไม่ได้ใช้ตัวควบคุมการใช้ตลับหมึกร่วมกัน</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>เครื่องที่เลือก Atari ต้องการสื่อตลับหมึก</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>ส่วนขยายตลับหมึกไม่ถูกรองรับจากตัวจําลอง Atari ที่เลือกไว้</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>ไม่สามารถเปิดตลับหมึก Atari เพื่ออ่านได้</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>เครื่องจําลอง Atari ปฏิเสธตลับหมึกที่มาแทน</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari เครื่องจําลองปฏิเสธทั้งการแทนที่และตลับหมึกก่อนหน้านี้</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Atari เครื่องจําลองนี้ไม่สามารถทํางานได้โดยไม่มีตลับหมึก</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>ตัวจําลองที่ถูกเลือก Atari ไม่ได้เปิดเผยส่วนคัดเลือกของตลับหมึก</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>เครื่องจําลอง Atari นี้ไม่สามารถใช้โหมดจับเวลาตลับหมึกที่มีชื่อว่า SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>ค่านี้จะถูกกําหนดโดยโมเดลที่เลือกไว้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>ไม่มี FPU ที่เข้ากันได้กับรุ่นนี้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>ไม่มีหน่วยความจําอื่นสําหรับรุ่นนี้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>รุ่นนี้ไม่มีบริษัทที่ปรับแต่งได้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>รุ่นนี้ไม่มีคีย์บอร์ด</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>รุ่นนี้ไม่มีเมาส์</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>รุ่นนี้ไม่มีสื่อจัดเก็บข้อมูล</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>เพื่อใช้สื่อคอมเพล็กซ์ กรุณาเลือกโมเดลนี้: Jaguar CD.</value></data>
+</root>

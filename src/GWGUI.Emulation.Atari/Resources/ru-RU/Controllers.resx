@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari джойстик</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Численность клавиатуры</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>Скорость движения лямки</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>В то время как кнопка огня удерживается</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>Всегда</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>Совместимость с контроллером</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>Цифровая чувствительность</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>Аналоговая чувствительность</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>Два джойстика, используемые вместе</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Порты Swap</value></data>
+</root>

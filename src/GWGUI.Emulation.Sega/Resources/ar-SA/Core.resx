@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>إمبايز سيغا Dreamcast أنظمة</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>يحاكي أنظمة SG-1000 وMark III وMaster System وGame Gear وMega Drive وMega-CD.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>إمبايز سيغا Saturn أنظمة</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>يحاكي أنظمة Sega التي يدعمها PicoDrive.</value></data>
+  <data name="Emulation.Emulator.flycast.Description"><value>يحاكي أنظمة Sega Dreamcast.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>المواد SG-1000, Mark III, Master System, Game Gear, Mega Drive و Mega-CD أنظمة.</value></data>
+  <data name="Emulation.Emulator.yabause.Description"><value>يحاكي أنظمة Sega Saturn.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>يحاكي أنظمة Sega باستخدام PicoDrive.</value></data>
 </root>

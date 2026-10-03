@@ -4,8 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>Emuláty Sega Dreamcast systémy.</value></data>
-  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emuluje systémy SG-1000, Mark III, Master System, Game Gear, Mega Drive a Mega-CD.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Emuláty Sega Saturn systémy.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Emuluje systémy Sega podporované jádrem PicoDrive.</value></data>
+  <data name="Emulation.Emulator.flycast.Description"><value>Emuluje systémy Sega Dreamcast.</value></data>
+  <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emuláty SG-1000, Mark III,] Master System, "Game Gear", "Mega Drive a"Mega-CD"systémů.</value></data>
+  <data name="Emulation.Emulator.yabause.Description"><value>Emuluje systémy Sega Saturn.</value></data>
+  <data name="Emulation.Emulator.picodrive.Description"><value>Emuluje systémy PicoDrive Sega.</value></data>
 </root>

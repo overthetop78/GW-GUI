@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>يعرض مقدار RAM الذي توفره آلة Nintendo المحددة.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>النظام ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>يعرض حالة ROM النظام للآلة والمحاكي المحددين.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Nintendo آلة تم تشكيلها</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>تم اختيار المرشد لهذه الآلة</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>يُحدّد تنفيذ المرشد المستخدم لإدارة هذه التشكيلة الآلية.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>المُعالجة محاكاة لهذه الآلة.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>يبين نموذج المعالج الذي قدمته آلة Nintendo المختارة.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>تواتر الساعة الأصلي.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>يُظهر تواتر الساعة الاسمية للمعالجة في الآلة المختارة Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>صوت محاكاة أو غير قابل للتحلل.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>يتحكم في ما إذا كان GW GUI يلعب العينات الصوتية المتولدة عن المرشد.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>الناتج الصوتي الذي تستخدمه شركة GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>يَختارُ المخرج الصوتي Windows المستخدم للعب الصوتِ مِنْ هذه الآلةِ المحاكاةِ.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>يحدد طراز Nintendo الذي يجري تعديل إعدادات عتاده.</value></data>
+</root>

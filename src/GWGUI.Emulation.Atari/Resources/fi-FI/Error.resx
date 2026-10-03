@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Tarvittavaa Atarin ydintä ei löytynyt.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Valittua Atarin ydintä ei voitu ladata.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Tarvittava Atari-ohjelmisto puuttuu.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Atari-ohjelmisto on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Määriteltyä Atarin mediaa ei löytynyt.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Tämä Atari-kone ei tue konfiguroitua mediaa.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Atari-valinnalla on virheellinen arvo.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Yhteydenpito Atarin isäntään epäonnistui.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atarin pelastama osavaltio on kelvoton.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Atarin pelastama tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Tapahtui odottamaton Atari emulointivirhe.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Yksityiskohdat: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Aktiivista Atari-konfiguraatiota ei voi muuttaa tai poistaa.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Vaadittua Atari-ohjelmistoa ei konfiguroida. Firmware: {0}. Kone: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Määriteltyä Atarin firmware-tiedostoa ei löytynyt. Firmware: {0}. Tiedosto: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Muokkaa Atarin mediaa ei löytynyt: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Atarin isännän suoritettava polku ei ole käytettävissä.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Atari-emulointiydintä ei ole asennettu. Ydin: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Valittu Atari-emulaattori ei käytä jaettua patruunan ohjainta.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Valittu Atari-kone vaatii patruunamediaa.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Valittu Atari-emulaattori ei tue sylinteriampullin jatketta.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atarin sylinteriampullia ei voi avata lukemista varten.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari-emulaattori hylkäsi korvaavan sylinteriampullin.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari-emulaattori hylkäsi sekä korvaavan että edellisen sylinteriampullin.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Tämä Atari-emulaattori ei voi pysyä päällä ilman sylinteriampullia.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Valittu Atari-emulaattori ei paljasta patruunaalueen valintaa.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Tämä Atari-emulaattori ei voi käyttää patruunan ajoitustilaa nimeltä SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Tämä arvo määräytyy valitun mallin mukaan.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Tähän malliin ei ole saatavilla yhteensopivaa FPU:ta.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Tähän malliin ei ole käytettävissä vaihtoehtoista muistia.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Tässä mallissa ei ole konfiguroitavaa firmwarea.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Tässä mallissa ei ole koskettimia.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Tässä mallissa ei ole hiiriä.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Tässä mallissa ei ole tallennusvälineitä.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Jos haluat käyttää CD-levyjä, valitse tämä malli: Jaguar CD.</value></data>
+</root>

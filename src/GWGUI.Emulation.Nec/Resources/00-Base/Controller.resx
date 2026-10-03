@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <!-- PC Engine / CoreGrafx / SuperGrafx / Duo -->
+  <data name="Emulation.Nec.Controller.PcEnginePad"><value>NEC PC Engine Pad (PI-PD001)</value></data>
+  <data name="Emulation.Nec.Controller.PcEngineTurboPad"><value>NEC Turbo Pad (PI-PD002)</value></data>
+  <data name="Emulation.Nec.Controller.CoreGrafxTurboPad"><value>NEC Turbo Pad (PI-PD6)</value></data>
+  <data name="Emulation.Nec.Controller.CoreGrafxIITurboPad"><value>NEC Turbo Pad (PI-PD8)</value></data>
+  <data name="Emulation.Nec.Controller.DuoRTurboPad"><value>NEC Turbo Pad (PCE-TP2)</value></data>
+  <data name="Emulation.Nec.Controller.PcEngineTurboPadII"><value>NEC Turbo Pad II (PI-PD5)</value></data>
+  <data name="Emulation.Nec.Controller.PcEngineTurboStick"><value>NEC Turbo Stick (PI-PD4)</value></data>
+  <data name="Emulation.Nec.Controller.AvenuePad3"><value>NEC Avenue Pad 3 (NAPD-1001)</value></data>
+  <data name="Emulation.Nec.Controller.AvenuePad6"><value>NEC Avenue Pad 6 (NAPD-1002)</value></data>
+  <data name="Emulation.Nec.Controller.ArcadePad6"><value>NEC Arcade Pad 6 (PCE-TP1)</value></data>
+  <data name="Emulation.Nec.Controller.PcEngineMouse"><value>NEC PC Engine Mouse (PI-PD10)</value></data>
+  <data name="Emulation.Nec.Controller.CordlessPad"><value>NEC Cordless Pad (PI-PD12)</value></data>
+  <data name="Emulation.Nec.Controller.CordlessMultiTapSet"><value>NEC Cordless Multi Tap Set (PI-PD11)</value></data>
+  <data name="Emulation.Nec.Controller.PcEngineMultiTap"><value>NEC Multi Tap (PI-PD003)</value></data>
+  <data name="Emulation.Nec.Controller.VirtualCushion"><value>NEC Virtual Cushion (PI-AD20)</value></data>
+  <!-- TurboGrafx-16 / TurboDuo -->
+  <data name="Emulation.Nec.Controller.TurboGrafxTurboPad"><value>NEC TurboPad (HES-PAD-01)</value></data>
+  <data name="Emulation.Nec.Controller.TurboGrafxTurboStick"><value>NEC TurboStick (HES-STK-01)</value></data>
+  <data name="Emulation.Nec.Controller.TurboGrafxTurboTap"><value>NEC TurboTap (HES-TAP-01)</value></data>
+  <data name="Emulation.Nec.Controller.DuoPad"><value>DuoPad</value></data>
+  <data name="Emulation.Nec.Controller.DuoTap"><value>DuoTap</value></data>
+  <data name="Emulation.Nec.Controller.TurboGrafxDuoAdapter"><value>TurboGrafx-16/Duo Adapter</value></data>
+  <!-- PC Engine GT / TurboExpress -->
+  <data name="Emulation.Nec.Controller.PcEngineGtTvTuner"><value>NEC PC Engine GT TV Tuner (PI-AD11)</value></data>
+  <data name="Emulation.Nec.Controller.PcEngineGtLinkCable"><value>NEC PC Engine GT Link Cable</value></data>
+  <data name="Emulation.Nec.Controller.TurboVision"><value>NEC TurboVision</value></data>
+  <data name="Emulation.Nec.Controller.TurboLink"><value>NEC TurboLink</value></data>
+  <!-- CD, memory and audiovisual extensions -->
+  <data name="Emulation.Nec.Controller.CdRom2"><value>NEC CD-ROM² (CDR-30)</value></data>
+  <data name="Emulation.Nec.Controller.CdRom2InterfaceUnit"><value>NEC CD-ROM² Interface Unit (IFU-30)</value></data>
+  <data name="Emulation.Nec.Controller.SuperCdRom2"><value>NEC Super CD-ROM²</value></data>
+  <data name="Emulation.Nec.Controller.SuperGrafxRomRomAdapter"><value>NEC SuperGrafx ROM² Adapter (RAU-30)</value></data>
+  <data name="Emulation.Nec.Controller.TurboGrafxCd"><value>NEC TurboGrafx-CD</value></data>
+  <data name="Emulation.Nec.Controller.BackupBooster"><value>NEC Backup Booster (PI-AD7)</value></data>
+  <data name="Emulation.Nec.Controller.BackupBoosterII"><value>NEC Backup Booster II (PI-AD8)</value></data>
+  <data name="Emulation.Nec.Controller.TurboBooster"><value>NEC TurboBooster</value></data>
+  <data name="Emulation.Nec.Controller.TurboBoosterPlus"><value>NEC TurboBooster-Plus</value></data>
+  <data name="Emulation.Nec.Controller.SuperSystemCard"><value>NEC Super System Card</value></data>
+  <data name="Emulation.Nec.Controller.ArcadeCardDuo"><value>NEC Arcade Card Duo (PCE-AC1)</value></data>
+  <data name="Emulation.Nec.Controller.ArcadeCardPro"><value>NEC Arcade Card Pro (PCE-AC2)</value></data>
+  <!-- PC-FX -->
+  <data name="Emulation.Nec.Controller.PcFxPad"><value>NEC PC-FX FX-PAD</value></data>
+  <data name="Emulation.Nec.Controller.PcFxMouse"><value>NEC PC-FX FX-MOU</value></data>
+  <data name="Emulation.Nec.Controller.PcFxBackupMemory"><value>NEC PC-FX FX-BMP</value></data>
+  <data name="Emulation.Nec.Controller.PcFxScsiAdapter"><value>NEC PC-FX FX-SCSI</value></data>
+</root>

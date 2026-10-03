@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.pcsx2.Description"><value>Эмулирует системы PlayStation 2.</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>Имитирует портативные системы PlayStation.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Соответствует Sony PlayStation и PS одной системы.</value></data>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Подражает системам PlayStation 2.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Имитирует системы PlayStation Portable.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Имитирует системы Sony PlayStation и PS one.</value></data>
 </root>
