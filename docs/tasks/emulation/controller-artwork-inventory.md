@@ -10,29 +10,45 @@ Référence du TurboPad HES-PAD-01 : photo « [NEC-TurboGrafx-16-Controller-FL.j
 
 Les visuels PI-PD6 et PI-PD8 sont des recréations faites à partir de la forme du PI-PD001 ci-dessus et de descriptions photographiques des variantes CoreGrafx. Les couleurs, les deux interrupteurs Turbo et le marquage du modèle ont été adaptés ; la photo PI-PD001 de SACHEN reste créditée. Les images ont été inspectées de face, leurs coins sont transparents, et leurs profils utilisent huit zones correspondant aux commandes déjà exposées. L'essai interactif des halos et la compilation du deuxième lot restent à faire.
 
+Les visuels PCE-TP2 et PI-PD5 sont des recréations de face dérivées de la forme du PI-PD001 de SACHEN ci-dessus ; leurs couleurs et marquages ont été adaptés. Le visuel PI-PD4 part de la photo « [NEC PC Engine Turbo Stick Controller.jpg](https://commons.wikimedia.org/wiki/File:NEC-PC-Engine-Turbo-Stick-Controller.jpg) » de Evan-Amos, domaine public ; copie de travail `docs/tasks/emulation/pc-engine-turbostick-reference.jpg`. Le détourage du PI-PD4 garde quelques pixels blancs hors de la coque : finition nécessaire avant validation du visuel. Les trois profils sont branchés avec croix/levier, II, I, Select et Run ; les deux boutons rouges du PI-PD4 partagent les halos des grands boutons correspondants. L'essai interactif reste à faire.
+
+Le visuel PI-PD002 est recréé à partir du PI-PD001 de SACHEN et du [descriptif du Turbo Pad NEC PI-PD002](https://www2s.biglobe.ne.jp/tetuya/FXHP/pcengine/hard/turpad.html), qui confirme ses deux interrupteurs de tir rapide. Le PNG présente de face la croix, II, I, Select et Run sur fond transparent. Les interrupteurs physiques restent visibles mais n'ont pas de commande indépendante dans la liste de configuration.
+
+Compilation du 4 octobre 2026 après raccordement de ces huit profils NEC : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules sont présents. L'affichage interactif des visuels et des halos reste à vérifier.
+
+Les trois visuels Avenue Pad 3, Avenue Pad 6 et Arcade Pad 6 sont des recréations à partir des PNG NEC transparents précédents. Apparence et disposition vérifiées contre les descriptions et photos de l'[Avenue Pad 3 NAPD-1001](https://www2s.biglobe.ne.jp/tetuya/FXHP/pcengine/hard/avepad3.html), de l'[Avenue Pad 6 NAPD-1002](https://www.genkivideogames.com/pc-engine-hardware/pc-engine-avenue-pad-6-unboxed/) et de l'[Arcade Pad 6 PCE-TP1](https://76retrogames.com/products/nec-pc-engine-controller-pce-tp1-pc-arcade-pad-6-jpn-ver). Le bouton III de l'Avenue Pad 3 est relié à Run, comme dans le mode physique correspondant, faute de commande III distincte dans la liste actuelle. Les six boutons des deux autres modèles ont chacun une commande distincte ; les interrupteurs physiques restent seulement visibles. Les trois PNG ont un canal alpha avec coin transparent ; le PCE-TP1 garde quelques bavures extérieures à nettoyer. Build de ce lot et essai interactif encore à faire.
+
+La compilation Debug du 4 octobre 2026 après ce lot (`scripts\local-building.cmd --building=debug --modules=A`) a réussi avec code 0. `build/Debug/GW GUI/gwgui.exe` et les huit DLL de modules sont présents. Les essais interactifs dans la fenêtre de configuration et sur les halos ne sont pas encore réalisés.
+
+TurboGrafx TurboStick HES-STK-01 : variante noire/orange créée à partir du visuel Turbo Stick NEC précédent ; l'[apparence de l'exemplaire nord-américain](https://consolevariations.com/collectibles/nec-turbografx-turbostick) sert de référence. DuoPad : variante TurboDuo créée à partir du TurboPad noir, comparée à [deux manettes TurboGrafx/TurboDuo](https://videogamecritic.com/t16info.htm). Cordless Pad PI-PD12 : recréation sans câble avec émetteur infrarouge et boutons violets, fondée sur l'[identification du modèle PI-PD12](https://www2s.biglobe.ne.jp/tetuya/FXHP/pcengine/hard/cordles.html) ; la forme et les inscriptions exactes du boîtier doivent encore être comparées à une photo nette. Les trois PNG sont de face, avec fond transparent et huit zones mappables chacun ; essai interactif et nouvelle compilation encore à faire.
+
+Les cinq derniers profils de commandes NEC sont des illustrations recréées à partir des vues de la [PC Engine GT](https://www.ebay.com/itm/127201001762), de la [PC Engine LT](https://www.ebay.com/itm/303597622566), de la [FX-PAD](https://commons.wikimedia.org/wiki/File:NEC-PC-FX-Controller-Flat.jpg), de la [souris PI-PD10](https://okini.land/fr/5546-pc-engine-mouse-pi-pd10-loose-nec-home-electronics-4904323919338.html) et de la [souris FX-MOU](https://www.vgdb.com.br/pc-fx/jogos/pc-fx-mouse/). Ce ne sont pas des photographies des exemplaires cités. Les cinq coins PNG sont transparents. La GT/LT et la FX-PAD ont les boutons du module raccordés aux zones ; les souris sont prévues pour l'onglet Souris et ses actions gauche/droite. Les contours et inscriptions devront être comparés aux objets réels avant validation finale ; la FX-PAD présente encore quelques pixels de frange. L'essai interactif reste à faire.
+
+Compilation du 4 octobre 2026 après les cinq profils NEC : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `build/Debug/GW GUI/Modules/<module>/` sont présents. L'essai interactif des images, du placement des halos et de l'onglet Souris reste à faire.
+
 ## Nec (53 clés)
 
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Nec.Controller.PcEnginePad | NEC PC Engine Pad (PI-PD001) | `nec-pc-engine-pad.png` : RGBA vérifié, profil branché, huit zones (croix ×4, II, I, Select, Run). Build Debug app + huit modules réussi le 4 octobre 2026 ; essai interactif des halos encore à faire. |
-| Emulation.Nec.Controller.PcEngineTurboPad | NEC Turbo Pad (PI-PD002) | À créer / vérifier |
+| Emulation.Nec.Controller.PcEngineTurboPad | NEC Turbo Pad (PI-PD002) | `nec-pc-engine-turbopad.png` : PNG RGBA, profil et huit zones branchés ; essai interactif des halos restant. |
 | Emulation.Nec.Controller.CoreGrafxTurboPad | NEC Turbo Pad (PI-PD6) | `nec-coregrafx-turbopad.png` : RGBA vérifié, profil et huit zones branchés ; essai interactif restant. |
 | Emulation.Nec.Controller.CoreGrafxIITurboPad | NEC Turbo Pad (PI-PD8) | `nec-coregrafx-ii-turbopad.png` : RGBA vérifié, profil et huit zones branchés ; essai interactif restant. |
-| Emulation.Nec.Controller.DuoRTurboPad | NEC Turbo Pad (PCE-TP2) | À créer / vérifier |
-| Emulation.Nec.Controller.PcEngineTurboPadII | NEC Turbo Pad II (PI-PD5) | À créer / vérifier |
-| Emulation.Nec.Controller.PcEngineTurboStick | NEC Turbo Stick (PI-PD4) | À créer / vérifier |
-| Emulation.Nec.Controller.AvenuePad3 | NEC Avenue Pad 3 (NAPD-1001) | À créer / vérifier |
-| Emulation.Nec.Controller.AvenuePad6 | NEC Avenue Pad 6 (NAPD-1002) | À créer / vérifier |
-| Emulation.Nec.Controller.ArcadePad6 | NEC Arcade Pad 6 (PCE-TP1) | À créer / vérifier |
-| Emulation.Nec.Controller.PcEngineMouse | NEC PC Engine Mouse (PI-PD10) | À créer / vérifier |
-| Emulation.Nec.Controller.CordlessPad | NEC Cordless Pad (PI-PD12) | À créer / vérifier |
+| Emulation.Nec.Controller.DuoRTurboPad | NEC Turbo Pad (PCE-TP2) | `nec-duor-turbopad.png` : profil et huit zones branchés ; halos à essayer. |
+| Emulation.Nec.Controller.PcEngineTurboPadII | NEC Turbo Pad II (PI-PD5) | `nec-pc-engine-turbopad-ii.png` : profil et huit zones branchés ; halos à essayer. |
+| Emulation.Nec.Controller.PcEngineTurboStick | NEC Turbo Stick (PI-PD4) | `nec-pc-engine-turbostick.png` : profil branché, boutons principaux et rouges couplés ; alpha présent mais bavures à nettoyer, halos à essayer. |
+| Emulation.Nec.Controller.AvenuePad3 | NEC Avenue Pad 3 (NAPD-1001) | `nec-avenue-pad-3.png` : transparent, profil neuf zones, III couplé à Run ; halos à essayer. |
+| Emulation.Nec.Controller.AvenuePad6 | NEC Avenue Pad 6 (NAPD-1002) | `nec-avenue-pad-6.png` : transparent, profil douze zones ; halos à essayer. |
+| Emulation.Nec.Controller.ArcadePad6 | NEC Arcade Pad 6 (PCE-TP1) | `nec-arcade-pad-6.png` : transparent, profil douze zones ; petites bavures à nettoyer, halos à essayer. |
+| Emulation.Nec.Controller.PcEngineMouse | NEC PC Engine Mouse (PI-PD10) | `nec-pc-engine-mouse.png` : RGBA, profil de l'onglet Souris et deux zones ; essai interactif à faire. |
+| Emulation.Nec.Controller.CordlessPad | NEC Cordless Pad (PI-PD12) | `nec-cordless-pad.png` : transparent, profil huit zones branché ; apparence exacte et halos à vérifier. |
 | Emulation.Nec.Controller.CordlessMultiTapSet | NEC Cordless Multi Tap Set (PI-PD11) | À créer / vérifier |
 | Emulation.Nec.Controller.PcEngineMultiTap | NEC Multi Tap (PI-PD003) | À créer / vérifier |
 | Emulation.Nec.Controller.VirtualCushion | NEC Virtual Cushion (PI-AD20) | À créer / vérifier |
 | Emulation.Nec.Controller.TurboGrafxTurboPad | NEC TurboPad (HES-PAD-01) | `nec-turbografx-turbopad.png` : RGBA vérifié, profil branché, huit zones (croix ×4, II, I, Select, Run). Interrupteurs Turbo visibles, sans commande distincte dans la liste actuelle. Build et essai interactif après ce lot encore à faire. |
-| Emulation.Nec.Controller.TurboGrafxTurboStick | NEC TurboStick (HES-STK-01) | À créer / vérifier |
+| Emulation.Nec.Controller.TurboGrafxTurboStick | NEC TurboStick (HES-STK-01) | `nec-turbografx-turbostick.png` : transparent, profil huit zones branché ; halos à essayer. |
 | Emulation.Nec.Controller.TurboGrafxTurboTap | NEC TurboTap (HES-TAP-01) | À créer / vérifier |
-| Emulation.Nec.Controller.DuoPad | DuoPad | À créer / vérifier |
+| Emulation.Nec.Controller.DuoPad | DuoPad | `nec-duopad.png` : transparent, profil huit zones branché ; halos à essayer. |
 | Emulation.Nec.Controller.DuoTap | DuoTap | À créer / vérifier |
 | Emulation.Nec.Controller.TurboGrafxDuoAdapter | TurboGrafx-16/Duo Adapter | À créer / vérifier |
 | Emulation.Nec.Controller.PcEngineGtTvTuner | NEC PC Engine GT TV Tuner (PI-AD11) | À créer / vérifier |
@@ -51,13 +67,13 @@ Les visuels PI-PD6 et PI-PD8 sont des recréations faites à partir de la forme 
 | Emulation.Nec.Controller.SuperSystemCard | NEC Super System Card | À créer / vérifier |
 | Emulation.Nec.Controller.ArcadeCardDuo | NEC Arcade Card Duo (PCE-AC1) | À créer / vérifier |
 | Emulation.Nec.Controller.ArcadeCardPro | NEC Arcade Card Pro (PCE-AC2) | À créer / vérifier |
-| Emulation.Nec.Controller.PcFxPad | NEC PC-FX FX-PAD | À créer / vérifier |
-| Emulation.Nec.Controller.PcFxMouse | NEC PC-FX FX-MOU | À créer / vérifier |
+| Emulation.Nec.Controller.PcFxPad | NEC PC-FX FX-PAD | `nec-pc-fx-pad.png` : RGBA, profil et treize zones mappables ; frange et halos à vérifier. |
+| Emulation.Nec.Controller.PcFxMouse | NEC PC-FX FX-MOU | `nec-pc-fx-mouse.png` : RGBA, profil de l'onglet Souris et deux zones ; essai interactif à faire. |
 | Emulation.Nec.Controller.PcFxBackupMemory | NEC PC-FX FX-BMP | À créer / vérifier |
 | Emulation.Nec.Controller.PcFxScsiAdapter | NEC PC-FX FX-SCSI | À créer / vérifier |
 | Emulation.Nec.Controller.Mouse | Mouse | À créer / vérifier |
-| Emulation.Nec.Controller.TurboExpressControls | TurboExpress / PC Engine GT built-in controls | À créer / vérifier |
-| Emulation.Nec.Controller.PcEngineLtControls | PC Engine LT built-in controls | À créer / vérifier |
+| Emulation.Nec.Controller.TurboExpressControls | TurboExpress / PC Engine GT built-in controls | `nec-turboexpress-controls.png` : RGBA, profil et huit zones ; essai interactif à faire. |
+| Emulation.Nec.Controller.PcEngineLtControls | PC Engine LT built-in controls | `nec-pc-engine-lt-controls.png` : RGBA, profil et huit zones ; essai interactif à faire. |
 | Emulation.Nec.Controller.Action.I | I | À créer / vérifier |
 | Emulation.Nec.Controller.Action.II | II | À créer / vérifier |
 | Emulation.Nec.Controller.Action.III | III | À créer / vérifier |
@@ -70,21 +86,31 @@ Les visuels PI-PD6 et PI-PD8 sont des recréations faites à partir de la forme 
 
 ## Microsoft (40 clés)
 
+Le module Microsoft décrit actuellement deux machines (`Xbox` et `Xbox 360`) et leurs ports ne proposent que `Joystick` ou `None` dans `ControllerCatalog`. Les 38 autres clés ci-dessous sont des noms de périphériques conservés dans les ressources, mais elles ne correspondent pas encore à des choix de contrôleur dans l'interface d'émulation. Quatre PNG Xbox déjà fournis par l'application ont été inspectés : `xbox-360-black.png`, `xbox-360-white.png`, `xbox-one.png` et `xbox-series.png` ; leurs coins sont transparents. Ils ne forment pas encore des profils sélectionnables et ne couvrent pas toutes les révisions. Les manettes, volants et télécommandes ont des commandes à identifier avant de placer des halos ; Kinect, caméras, casques, microphone et adaptateurs doivent être identifiables, sans inventer des boutons de jeu. Hypothèse provisoire en attendant la réponse de l'utilisateur : préparer également les images des périphériques non sélectionnables, sans simuler une prise en charge de leur entrée.
+
+Les illustrations du Duke et du Controller S se fondent respectivement sur la [vue de face du Duke](https://www.copetti.org/writings/consoles/xbox/) et la [photographie du Controller S](https://www.bruktelektronikk.no/hjem/981-original-xbox-controller-s-kablet-brukt-testet-ok.html). Elles ne réutilisent pas ces photos. Les deux PNG ont un coin alpha 0 et chacun quatorze zones de commandes physiques (sticks ×2, croix ×4, six boutons, Back, Start). Aucune correspondance de commande du module n'a été inventée : leurs halos restent inactifs jusqu'à la définition d'un profil d'entrée Xbox complet ; le placement reste à vérifier visuellement.
+
+Les quatre illustrations Xbox 360 suivantes s'appuient sur la [manette à croix transformable](https://www.powerupgaming.ca/products/copy-of-xbox-360-official-wireless-controller-w-upgraded-d-pad), le [volant sans fil classique](https://www.xboxgazette.com/test360_ac_volant.php), le [Speed Wheel](https://www.gamestop.com/gaming-accessories/controllers/xbox-360/products/microsoft-xbox-360-wireless-speed-wheel/10101911.html) et la [Big Button Pad](https://j2games.com/products/replacement-scene-it-lights-camera-action-big-button-controller-xbox-360). Les PNG ont leurs coins alpha 0 et les commandes de face ont des zones dans `ControllerArtworkCatalog`. Le volant classique conserve des bavures autour du socle et de l'intérieur de la jante ; tous les placements de zones demandent encore une inspection dans l'application. Ces visuels ne sont pas encore sélectionnables dans le module Microsoft.
+
+Le kit DVD Xbox est représenté par une télécommande et son récepteur IR d'après [une photographie du kit](https://www.ebay.com/itm/355739493311). Les deux Chatpad sont des illustrations distinctes ; le [Chatpad Xbox One annoncé par Microsoft](https://news.xbox.com/en-us/2015/08/05/xbox-chatpad-pre-order/amp/) dispose notamment de touches programmables et de commandes audio. Les trois PNG ont un coin alpha 0. La télécommande a des zones de navigation et de lecture, les Chatpad une zone de clavier regroupée et le bouton Xbox. Ils ne sont pas proposés par le module Microsoft et les halos ne peuvent pas être actifs tant que celui-ci ne fournit pas de commandes correspondantes. Le visuel DVD présente un voile autour des objets à nettoyer avant validation.
+
+Build Debug du 4 octobre 2026 après ces profils : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les huit DLL de `Modules/<id>/gwgui.emulation.<id>.dll` ont été vérifiés présents. L'essai visuel interactif et les halos restent à valider.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Microsoft.Controller.Joystick | Xbox controller | À créer / vérifier |
 | Emulation.Microsoft.Controller.Keyboard | Xbox keyboard | À créer / vérifier |
-| Emulation.Microsoft.Controller.XboxDuke | Xbox Controller (Duke) | À créer / vérifier |
-| Emulation.Microsoft.Controller.XboxControllerS | Xbox Controller S | À créer / vérifier |
-| Emulation.Microsoft.Controller.XboxDvdMoviePlaybackKit | Xbox DVD Movie Playback Kit | À créer / vérifier |
+| Emulation.Microsoft.Controller.XboxDuke | Xbox Controller (Duke) | `xbox-duke.png` : RGBA, quatorze zones physiques, profil non sélectionnable ; vérification de l'apparence et des zones à faire. |
+| Emulation.Microsoft.Controller.XboxControllerS | Xbox Controller S | `xbox-controller-s.png` : RGBA, quatorze zones physiques, profil non sélectionnable ; vérification de l'apparence et des zones à faire. |
+| Emulation.Microsoft.Controller.XboxDvdMoviePlaybackKit | Xbox DVD Movie Playback Kit | `xbox-dvd-movie-playback-kit.png` : RGBA, navigation et lecture zonées ; voile de fond à nettoyer, profil non sélectionnable. |
 | Emulation.Microsoft.Controller.XboxCommunicator | Xbox Communicator | À créer / vérifier |
-| Emulation.Microsoft.Controller.Xbox360Controller | Xbox 360 Controller | À créer / vérifier |
+| Emulation.Microsoft.Controller.Xbox360Controller | Xbox 360 Controller | `xbox-360-black.png` et `xbox-360-white.png` existent, RGBA ; profil du module à définir avant de placer les halos. |
 | Emulation.Microsoft.Controller.Xbox360WirelessController | Xbox 360 Wireless Controller | À créer / vérifier |
-| Emulation.Microsoft.Controller.Xbox360WirelessControllerTransformingDPad | Xbox 360 Wireless Controller with Transforming D-Pad | À créer / vérifier |
-| Emulation.Microsoft.Controller.Xbox360WirelessRacingWheel | Xbox 360 Wireless Racing Wheel | À créer / vérifier |
-| Emulation.Microsoft.Controller.Xbox360WirelessSpeedWheel | Xbox 360 Wireless Speed Wheel | À créer / vérifier |
-| Emulation.Microsoft.Controller.Xbox360BigButtonPad | Xbox 360 Big Button Pad | À créer / vérifier |
-| Emulation.Microsoft.Controller.Xbox360Chatpad | Xbox 360 Chatpad | À créer / vérifier |
+| Emulation.Microsoft.Controller.Xbox360WirelessControllerTransformingDPad | Xbox 360 Wireless Controller with Transforming D-Pad | `xbox-360-transforming-dpad.png` : RGBA, treize zones de commandes ; profil non sélectionnable. |
+| Emulation.Microsoft.Controller.Xbox360WirelessRacingWheel | Xbox 360 Wireless Racing Wheel | `xbox-360-wireless-racing-wheel.png` : RGBA, direction, croix et boutons zonés ; franges à nettoyer, profil non sélectionnable. |
+| Emulation.Microsoft.Controller.Xbox360WirelessSpeedWheel | Xbox 360 Wireless Speed Wheel | `xbox-360-wireless-speed-wheel.png` : RGBA, direction, croix et boutons zonés ; profil non sélectionnable. |
+| Emulation.Microsoft.Controller.Xbox360BigButtonPad | Xbox 360 Big Button Pad | `xbox-360-big-button-pad.png` : RGBA, buzzer, quatre réponses, Back, Start, Guide zonés ; profil non sélectionnable. |
+| Emulation.Microsoft.Controller.Xbox360Chatpad | Xbox 360 Chatpad | `xbox-360-chatpad.png` : RGBA, clavier regroupé et bouton Xbox zonés ; profil non sélectionnable. |
 | Emulation.Microsoft.Controller.Xbox360MediaRemote2005 | Xbox 360 Media Remote (2005) | À créer / vérifier |
 | Emulation.Microsoft.Controller.Xbox360UniversalMediaRemote | Xbox 360 Universal Media Remote | À créer / vérifier |
 | Emulation.Microsoft.Controller.Xbox360MediaRemote2011 | Xbox 360 Media Remote (2011) | À créer / vérifier |
@@ -94,20 +120,20 @@ Les visuels PI-PD6 et PI-PD8 sont des recréations faites à partir de la forme 
 | Emulation.Microsoft.Controller.Xbox360WirelessHeadset | Xbox 360 Wireless Headset | À créer / vérifier |
 | Emulation.Microsoft.Controller.Xbox360WirelessHeadsetBluetooth | Xbox 360 Wireless Headset with Bluetooth | À créer / vérifier |
 | Emulation.Microsoft.Controller.Xbox360WirelessMicrophone | Xbox 360 Wireless Microphone | À créer / vérifier |
-| Emulation.Microsoft.Controller.XboxOneWirelessController2013 | Xbox One Wireless Controller (2013) | À créer / vérifier |
+| Emulation.Microsoft.Controller.XboxOneWirelessController2013 | Xbox One Wireless Controller (2013) | `xbox-one.png` existe, RGBA ; révision exacte et profil du module à vérifier. |
 | Emulation.Microsoft.Controller.XboxOneWirelessController2015 | Xbox One Wireless Controller (2015) | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxOneWirelessController2016 | Xbox Wireless Controller (2016) | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxEliteWirelessController | Xbox Elite Wireless Controller | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxEliteWirelessControllerSeries2 | Xbox Elite Wireless Controller Series 2 | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxEliteWirelessControllerSeries2Core | Xbox Elite Wireless Controller Series 2 - Core | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxAdaptiveController | Xbox Adaptive Controller | À créer / vérifier |
-| Emulation.Microsoft.Controller.XboxChatpad | Xbox Chatpad | À créer / vérifier |
+| Emulation.Microsoft.Controller.XboxChatpad | Xbox Chatpad | `xbox-chatpad.png` : RGBA, clavier regroupé et bouton Xbox zonés ; profil non sélectionnable. |
 | Emulation.Microsoft.Controller.KinectXboxOne | Kinect for Xbox One | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxOneMediaRemote | Xbox One Media Remote | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxOneChatHeadset | Xbox One Chat Headset | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxOneStereoHeadset | Xbox One Stereo Headset | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxOneStereoHeadsetAdapter | Xbox One Stereo Headset Adapter | À créer / vérifier |
-| Emulation.Microsoft.Controller.XboxSeriesWirelessController | Xbox Wireless Controller (2020) | À créer / vérifier |
+| Emulation.Microsoft.Controller.XboxSeriesWirelessController | Xbox Wireless Controller (2020) | `xbox-series.png` existe, RGBA ; profil du module à définir avant de placer les halos. |
 | Emulation.Microsoft.Controller.XboxAdaptiveJoystick | Xbox Adaptive Joystick | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxStereoHeadset2021 | Xbox Stereo Headset (2021) | À créer / vérifier |
 | Emulation.Microsoft.Controller.XboxWirelessHeadset2021 | Xbox Wireless Headset (2021) | À créer / vérifier |
@@ -115,18 +141,22 @@ Les visuels PI-PD6 et PI-PD8 sont des recréations faites à partir de la forme 
 
 ## Sony (52 clés)
 
+Les visuels déjà livrés avec l'application `playstation-1.png`, `playstation-2.png`, `playstation-4.png` et `playstation-5.png` servent désormais de profils séparés pour la manette PlayStation standard, la DUALSHOCK 2, la DUALSHOCK 4 et la DualSense. Leurs zones physiques principales ont été placées dans `ControllerArtworkCatalog`. Le PNG DualSense existant garde des résidus blancs autour de la coque, à corriger avant validation graphique. Le module Sony n'expose pour le moment que `Joystick` et `None` : ces quatre visuels ne sont donc pas sélectionnables dans la configuration de ses machines et leurs halos ne sont pas reliés à des commandes Sony complètes. Le placement des zones et l'affichage interactif restent à vérifier.
+
+Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `Modules/<id>/` sont présents.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Sony.Controller.MSXJS55 | Sony JS-55 joystick | À créer / vérifier |
 | Emulation.Sony.Controller.MSXJS75 | Sony JS-75 wireless joystick | À créer / vérifier |
 | Emulation.Sony.Controller.MSXJS303T | Sony JS-303T joypad | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStationController | PlayStation controller | À créer / vérifier |
+| Emulation.Sony.Controller.PlayStationController | PlayStation controller | `playstation-1.png` réutilisé, zones physiques principales ; profil non sélectionnable. |
 | Emulation.Sony.Controller.PlayStationAnalogJoystick | PlayStation Analog Joystick | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationDualAnalog | PlayStation Dual Analog controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationDualShock | PlayStation DUALSHOCK controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMouse | PlayStation Mouse | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMultitap | PlayStation Multitap | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStation2DualShock2 | PlayStation 2 DUALSHOCK 2 controller | À créer / vérifier |
+| Emulation.Sony.Controller.PlayStation2DualShock2 | PlayStation 2 DUALSHOCK 2 controller | `playstation-2.png` réutilisé, zones physiques principales ; profil non sélectionnable. |
 | Emulation.Sony.Controller.PlayStation2Multitap | PlayStation 2 Multitap | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation2EyeToy | PlayStation 2 EyeToy camera | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation2SingStarMicrophones | PlayStation 2 SingStar microphones | À créer / vérifier |
@@ -136,11 +166,11 @@ Les visuels PI-PD6 et PI-PD8 sont des recréations faites à partir de la forme 
 | Emulation.Sony.Controller.PlayStation3Eye | PlayStation Eye camera | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMoveMotion | PlayStation Move motion controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMoveNavigation | PlayStation Move navigation controller | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStation4DualShock4 | PlayStation 4 DUALSHOCK 4 controller | À créer / vérifier |
+| Emulation.Sony.Controller.PlayStation4DualShock4 | PlayStation 4 DUALSHOCK 4 controller | `playstation-4.png` réutilisé, zones physiques principales ; profil non sélectionnable. |
 | Emulation.Sony.Controller.PlayStation4Camera | PlayStation Camera | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationVRAim | PlayStation VR Aim controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationVR | PlayStation VR headset | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStation5DualSense | PlayStation 5 DualSense wireless controller | À créer / vérifier |
+| Emulation.Sony.Controller.PlayStation5DualSense | PlayStation 5 DualSense wireless controller | `playstation-5.png` réutilisé, zones physiques principales ; profil non sélectionnable, résidus blancs à nettoyer. |
 | Emulation.Sony.Controller.PlayStation5DualSenseEdge | PlayStation 5 DualSense Edge wireless controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation5Access | PlayStation 5 Access controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationVR2Sense | PlayStation VR2 Sense controller | À créer / vérifier |

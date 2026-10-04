@@ -8,6 +8,7 @@ using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Emulation.Input;
 using GWGUI.App.Views.Controls.Emulation.Options;
+using GWGUI.App.Views.Controls.Options;
 using GWGUI.App.Views.Controls.Options.ControllerVisualization;
 using System.Windows;
 using System.Windows.Controls;
@@ -83,7 +84,31 @@ internal sealed class EmulationInputSettingsController
     private UIElement CreateMouseView(IReadOnlyList<EmulationSettingsControlField> fields)
     {
         _mouse = CreateEditor(_settings.Mouse);
-        return EmulationSettingsLayout.MouseSettingsPage(fields, null, _mouse);
+        ControllerVisualizer? visualizer = null;
+        var mouseSettings = _settings.Mouse;
+        var visualId = mouseSettings?.DefaultVisualId;
+        if (mouseSettings is not null && visualId is not null
+            && mouseSettings.CompatibleVisualIds?.Contains(visualId) == true
+            && ControllerArtworkCatalog.TryGetProfile(visualId, out var profile))
+        {
+            var editor = _mouse;
+            var commandIds = mouseSettings.VisualCommandIds;
+            visualizer = new ControllerVisualizer
+            {
+                ArtworkProfile = profile,
+                VisualCommandIds = commandIds
+            };
+            visualizer.VisualZoneClicked += control =>
+            {
+                if (commandIds?.TryGetValue(control, out var commandId) == true)
+                    editor.SelectAndStartCapture(commandId);
+            };
+            var visualization = new EmulationBindingVisualizationController(editor, visualizer);
+            visualizer.Loaded += (_, _) => visualization.Start();
+            visualizer.Unloaded += (_, _) => visualization.Stop();
+        }
+        return EmulationSettingsLayout.MouseSettingsPage(fields, null, _mouse,
+            visualizer: visualizer);
     }
 
     private UIElement CreateControllersView(IReadOnlyList<EmulationSettingsControlField> fields)

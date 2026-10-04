@@ -26,19 +26,91 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-duor-turbopad.png` : vue de face transparente du PCE-TP2 et de toutes ses commandes visibles. PNG RGBA 1485 × 1059, alpha 0 au coin.
   - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbopad-ii.png` : vue de face transparente du PI-PD5 et de toutes ses commandes visibles. PNG RGBA 1625 × 968, alpha 0 au coin.
   - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : vue de face transparente du PI-PD4 et de toutes ses commandes visibles. PNG RGBA 1420 × 1108, alpha 0 au coin ; petites bavures résiduelles en bord supérieur à nettoyer avant validation finale.
-  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons.
-  - [ ] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les identifiants PCE-TP2, PI-PD5 et PI-PD4.
-  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : associer ces trois images à leurs zones de commandes exactes.
-  - [ ] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier DuoRTurboPad, PcEngineTurboPadII et PcEngineTurboStick à leurs profils.
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner sources, retouches, état des profils et vérifications des trois nouveaux visuels NEC.
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins et actions du lot NEC suivant avant son exécution.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les identifiants PCE-TP2, PI-PD5 et PI-PD4.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : associer ces trois images à leurs zones de commandes exactes.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier DuoRTurboPad, PcEngineTurboPadII et PcEngineTurboStick à leurs profils.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner sources, retouches, état des profils et vérifications des trois nouveaux visuels NEC.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins et actions du lot NEC suivant avant son exécution ; commencer par PI-PD002.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbopad.png` : représenter de face le PI-PD002 crème, ses interrupteurs Turbo II/I, sa croix et ses boutons sur fond transparent ; PNG 1484 × 1060, coin alpha 0.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant PI-PD002.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les huit zones mappables sur le PI-PD002.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : associer PcEngineTurboPad au profil PI-PD002 et à ses commandes.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter la source d'apparence du PI-PD002, le profil, la transparence et les vérifications restantes.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat de la compilation Debug de l'application et des huit modules après le raccordement de ces visuels NEC.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les actions du prochain lot NEC (Avenue Pad 3/6 et Arcade Pad 6) avant les images et les zones correspondantes.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-avenue-pad-3.png` : vue de face à fond transparent du NAPD-1001, avec croix, I, II, III, Select, Run et interrupteurs visibles ; PNG 1484 × 1060, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-avenue-pad-6.png` : vue de face à fond transparent du NAPD-1002, avec croix, six boutons et commandes centrales visibles ; PNG 1484 × 1060, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : vue de face à fond transparent du PCE-TP1, avec croix, six boutons, Select, Run et commutateur 6/2 visibles ; PNG 1654 × 951, coin alpha 0, bavures externes à nettoyer.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter trois identifiants Avenue Pad 3/6 et Arcade Pad 6.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur les commandes visibles des trois manettes, y compris III du Pad 3 selon la commande qu'il transmet.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier les trois types à leurs profils et aux commandes exposées, y compris III du Pad 3.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner provenance, transparence, profils et limites restantes des trois images.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la compilation Debug de l'application et des huit modules après les trois profils Avenue/Arcade.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le lot TurboGrafx TurboStick, DuoPad et Cordless Pad avec les fichiers à produire et raccorder.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-turbografx-turbostick.png` : représenter de face le HES-STK-01 noir, joystick orange et boutons visibles sur fond transparent ; PNG 1420 × 1108, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-duopad.png` : représenter de face la manette TurboDuo à deux boutons, Select, Run et interrupteurs Turbo, sur fond transparent ; PNG 1678 × 937, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-cordless-pad.png` : représenter de face la manette sans fil PI-PD12 avec ses commandes sur fond transparent ; PNG 1486 × 1059, coin alpha 0 ; détail du boîtier à confronter à une photo nette.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les identifiants des trois modèles.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones des commandes sur les trois nouveaux PNG.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier TurboGrafxTurboStick, DuoPad et CordlessPad aux images et aux commandes existantes.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : renseigner sources, zones, transparence et limites de vérification pour les trois modèles.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les cinq derniers types de commande NEC (souris PC Engine, commandes intégrées GT/LT, manette et souris PC-FX) et leurs fichiers de profils.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-turboexpress-controls.png` : vue de face de la PC Engine GT/TurboExpress à fond transparent, avec croix, I, II, Select et Run lisibles ; PNG RGBA 1024 × 1536, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-lt-controls.png` : vue de face de la PC Engine LT ouverte à fond transparent, avec les commandes intégrées lisibles ; PNG RGBA 1223 × 1286, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-fx-pad.png` : vue de face transparente de la FX-PAD, ses six boutons, Select, Run et Mode ; PNG RGBA 1774 × 887, coin alpha 0, quelques franges à nettoyer.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-mouse.png` : vue de face transparente de la souris PI-PD10 avec ses deux boutons ; PNG RGBA 1024 × 1536, coin et extérieur alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-fx-mouse.png` : vue de face transparente de la souris FX-MOU avec ses deux boutons ; PNG RGBA 1024 × 1536, coin alpha 0.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer les cinq identifiants invariants des commandes intégrées GT/LT, de la FX-PAD et des souris NEC.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : ajouter les deux boutons de souris au vocabulaire des halos.
+  - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationInputBindingSet.cs` : transmettre facultativement les profils visuels et les correspondances de commandes pour l'onglet Souris.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : associer les cinq images et les zones des commandes réellement accessibles ; alignement visuel à confirmer lors de la vérification finale.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier les cinq types aux images et aux commandes décrites dans les onglets Manettes et Souris.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : fournir au contrat Souris le profil PI-PD10 ou FX-MOU du modèle sélectionné.
+  - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationInputSettingsLayout.cs` : afficher dans l'onglet Souris le profil transmis par le module, à côté de la liste de ses boutons.
+  - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` : connecter le profil Souris aux commandes et aux halos de l'onglet Souris.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer les références visuelles, documenter la transparence et l'état des zones des cinq derniers profils NEC.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug de l'application et des huit modules après le raccordement des cinq profils NEC et le contrôle des artefacts.
 - [ ] Réaliser les profils Microsoft
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Xbox et les fichiers de profils précis avant leur réalisation.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Xbox et les fichiers de profils précis avant leur réalisation. Les images transparentes `src/GWGUI.App/Assets/Controllers/xbox-360-black.png`, `xbox-360-white.png`, `xbox-one.png` et `xbox-series.png` existent déjà. Le module Microsoft expose seulement `Joystick` et `None` pour ses machines actuelles : les noms des autres accessoires dans les ressources ne sont pas des choix de manettes. L'étendue de création des visuels non sélectionnables est soumise à la réponse de l'utilisateur.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : distinguer les quatre visuels Xbox déjà présents, les modèles de manettes à illustrer et les accessoires sans boutons mappables, en indiquant quels choix sont réellement exposés par le module.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire le premier lot Microsoft et ses fichiers. Hypothèse provisoire en l'absence de réponse : créer les visuels de tous les périphériques listés, mais ne brancher au module que les commandes qu'il expose réellement.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-duke.png` : vue de face détourée de la manette Microsoft Xbox Duke avec sticks, croix, A/B/X/Y, Black/White, Back/Start et logo central lisibles ; PNG RGBA 1427 × 1102, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-controller-s.png` : vue de face détourée de la manette Microsoft Xbox Controller S, avec les mêmes commandes et sa forme plus compacte ; PNG RGBA 1536 × 1024, coin alpha 0.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les deux identifiants invariants Duke et Controller S.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : ajouter deux zones de sticks analogiques distinctes pour les manettes Xbox.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : inscrire les deux PNG avec les zones physiques visibles, sans attribuer de commande inventée ; positions à vérifier dans l'interface avant validation finale.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer les références photographiques Duke et Controller S, noter leurs zones, la transparence et leur statut non sélectionnable.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le lot Xbox 360 suivant. Les PNG `xbox-360-black.png` et `xbox-360-white.png` peuvent servir de base aux variantes filaire et sans fil ; créer seulement des images distinctes quand les commandes ou la silhouette changent.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-360-transforming-dpad.png` : manette sans fil Xbox 360 officielle avec croix directionnelle transformable et commandes lisibles sur fond transparent ; PNG RGBA 1537 × 1023, coin alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-360-wireless-racing-wheel.png` : volant sans fil officiel Xbox 360 vu de face, avec commandes et palettes visibles sur fond transparent ; PNG RGBA 1344 × 1170, coin alpha 0, franges à nettoyer.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-360-wireless-speed-wheel.png` : volant sans fil Speed Wheel officiel Xbox 360 vu de face, avec boutons et deux poignées visibles sur fond transparent ; PNG RGBA 1536 × 1024, coin et creux central alpha 0.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-360-big-button-pad.png` : manette Big Button Pad officielle Xbox 360, vue de face transparente avec boutons identifiables ; PNG RGBA 1024 × 1536, coin alpha 0.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer les quatre identifiants visuels Xbox 360 spécifiques.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : distinguer la commande de direction des volants et le grand buzzer de la Big Button Pad.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : ajouter la zone du bouton Xbox Guide pour les profils Microsoft.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones physiques de ces quatre périphériques sans inventer de liaison de commande côté module ; positions à contrôler dans l'interface.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : ajouter les sources de référence, l'état de transparence et les zones des quatre images Xbox 360.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les télécommandes et claviers Xbox du lot suivant, avec leurs PNG et zones de boutons utiles. Le kit DVD Xbox inclut une télécommande et un récepteur ; l'image montrera les deux, mais les halos ne concernent que les boutons de la télécommande.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-dvd-movie-playback-kit.png` : télécommande DVD officielle Xbox d'origine et son récepteur IR, sur fond transparent, touches de lecture et navigation lisibles.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-360-chatpad.png` : clavier Microsoft Xbox 360 Chatpad détaché, vu de face avec les touches visibles sur fond transparent.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/xbox-chatpad.png` : clavier Microsoft Xbox Chatpad pour Xbox One, vu de face sur fond transparent.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : ajouter les commandes visuelles de transport DVD et de clavier miniature nécessaires aux zones des trois nouveaux visuels.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les trois identifiants du kit DVD et des deux Chatpad.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : associer les trois images à leurs commandes principales ou à des zones de touches identifiables sans simuler un clavier complet.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter les références, la transparence, le niveau de détail des zones et l'absence de prise en charge des trois profils par le module Microsoft.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug de l'application et des huit modules après l'ajout des profils Microsoft.
 - [ ] Réaliser les profils Sony
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sony et les fichiers de profils précis avant leur réalisation.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sony et les fichiers de profils précis avant leur réalisation. Les quatre PNG `playstation-1.png`, `playstation-2.png`, `playstation-4.png` et `playstation-5.png` existent et peuvent représenter leurs manettes standard, sans créer de doublon. Le module Sony expose actuellement seulement `Joystick` et `None` ; ne pas attribuer aux accessoires des commandes de cœur inexistantes.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter quatre identifiants Sony pour la manette PlayStation standard, la DUALSHOCK 2, la DUALSHOCK 4 et la DualSense.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : distinguer le pavé tactile des manettes PlayStation 4 et 5 et leurs gâchettes L2/R2 dans les zones visuelles.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : réutiliser les quatre PNG existants et définir les zones physiques visibles de leurs croix, boutons, joysticks et commandes centrales.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner les quatre images réutilisées, leurs zones et le fait que le module Sony ne peut actuellement relier que son joystick générique.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug de l'application et des huit modules après l'ajout des quatre profils Sony.
 - [ ] Réaliser les profils Nintendo
   - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Nintendo et les fichiers de profils précis avant leur réalisation.
 - [ ] Réaliser les profils Sega
   - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sega et les fichiers de profils précis avant leur réalisation.
 - [ ] Vérifier la couverture et le fonctionnement
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.
   - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la couverture réelle des cinq modules, les contrôles image/transparence/zones, le résultat du build Debug de l'application et des modules et les essais fonctionnels de sélection et de halos.

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Nec.Common.Machines.PcFx.Constants;
+
 namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
@@ -6,13 +8,17 @@ internal static partial class InputSettingsFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
+        var mouseType = model.Id == PcFxMachineConstants.Id
+            ? ControllerType.PcFxMouse : ControllerType.PcEngineMouse;
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(
             KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
             EmulationInputSource.Keyboard) : null;
         var mouse = model.MouseButtonCount > InputSettingsFunctionsConstants.FirstPortIndex
             ? new EmulationInputBindingSet(
             MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
-                | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
+                | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true,
+            CompatibleVisualIds(mouseType), DefaultVisualId(mouseType),
+            VisualCommandIds(mouseType)) : null;
         var configured = input.ControllerBindings ?? [];
         var ports = Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex,
             model.ControllerPortCount).Select(index =>

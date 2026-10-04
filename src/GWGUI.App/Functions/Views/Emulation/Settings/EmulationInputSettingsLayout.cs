@@ -3,6 +3,7 @@ using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Contracts.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Emulation.Input;
+using GWGUI.App.Views.Controls.Options;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -53,7 +54,8 @@ internal static partial class EmulationSettingsLayout
         IReadOnlyList<EmulationSettingsControlField> mouseFields,
         IReadOnlyList<EmulationSettingsControlField>? analogFields,
         InputBindingEditor editor,
-        Border? unavailable = null)
+        Border? unavailable = null,
+        ControllerVisualizer? visualizer = null)
     {
         var settings = new Grid { Margin = new Thickness(12) };
         settings.ColumnDefinitions.Add(new ColumnDefinition());
@@ -80,10 +82,23 @@ internal static partial class EmulationSettingsLayout
 
         var bindings = InputBindings(editor, LocExtension.Get("Emulation.Mouse.Actions"),
             LocExtension.Get("Emulation.Input.Capture.Hint"));
-        bindings.Margin = new Thickness(0, 10, 0, 0);
-        Grid.SetRow(bindings, 1);
-        Grid.SetColumnSpan(bindings, 2);
-        settings.Children.Add(bindings);
+        var mapping = new Grid { Margin = new Thickness(0, 10, 0, 0) };
+        mapping.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
+        mapping.Children.Add(bindings);
+        if (visualizer is not null)
+        {
+            mapping.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            visualizer.MinWidth = 0;
+            visualizer.HorizontalAlignment = HorizontalAlignment.Stretch;
+            visualizer.VerticalAlignment = VerticalAlignment.Stretch;
+            visualizer.Margin = new Thickness(8, 4, 10, 8);
+            visualizer.ClipToBounds = true;
+            Grid.SetColumn(visualizer, 1);
+            mapping.Children.Add(visualizer);
+        }
+        Grid.SetRow(mapping, 1);
+        Grid.SetColumnSpan(mapping, 2);
+        settings.Children.Add(mapping);
 
         if (unavailable is null)
             return ScrollPage(settings);
