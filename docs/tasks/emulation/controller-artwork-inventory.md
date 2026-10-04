@@ -488,13 +488,25 @@ Quatre tests Sega existants de `ConsoleFamilyModuleTests` ciblant la description
 
 Troisième lot : l'image de face `saturn.png` (599 × 399, coin alpha 0) représente la manette Saturn standard. Ses six boutons, Start, L/R et la croix ont des zones distinctes reliées aux [descripteurs d'entrée du cœur Yabause](https://github.com/libretro/yabause/blob/master/yabause/src/libretro/libretro.c). Les zones de face Sega utilisent désormais des identifiants A/B/C/X/Y/Z explicites ; la manette Saturn 3D n'emprunte plus l'image du modèle standard, car son stick analogique et sa forme exigent un profil propre. Il reste 29 clés Sega sans profil dédié et tous les halos doivent encore être vérifiés dans l'interface.
 
+Quatrième lot : le profil Saturn 3D utilise `saturn-3d-control-pad.png` (1172 × 1342, coin alpha 0), créé à partir de la [photographie CC0 d'Evan-Amos](https://commons.wikimedia.org/wiki/File:Sega-Saturn-3D-Controller.jpg) conservée dans `docs/tasks/emulation/saturn-3d-controller-reference.jpg`. La croix, les six boutons et Start ont des zones distinctes raccordées aux commandes numériques lues par [Yabause](https://github.com/libretro/yabause/blob/master/yabause/src/libretro/libretro.c). Le cœur reçoit maintenant `RETRO_DEVICE_ANALOG` pour ce modèle, selon ses descripteurs de périphériques et la [définition Libretro](https://github.com/libretro/libretro-common/blob/master/include/libretro.h) ; les axes du stick viennent du contrôleur physique. La liste ne permet pas encore l'affectation individuelle des axes ni un halo directionnel du stick ; les gâchettes ne sont pas localisables sur cette vue de face. Il reste 28 clés Sega sans profil dédié ; le placement et les halos attendent un essai interactif.
+
+Cinquième lot : `game-gear-controls.png` (1532 × 1026, coin alpha 0) représente la portable de face, d'après la [photographie CC0 d'Evan-Amos](https://commons.wikimedia.org/wiki/File:Game-Gear-Handheld.jpg) conservée dans `docs/tasks/emulation/game-gear-reference.jpg`. La croix, les boutons 1/2 et Start disposent de zones et commandes distinctes. Le modèle présente un seul port de commandes intégrées. [Genesis Plus GX](https://github.com/ekeeke/Genesis-Plus-GX/blob/master/libretro/libretro.c) reçoit explicitement son périphérique deux boutons ; ses entrées RetroPad B, A et Start alimentent les commandes Game Gear. Il reste 27 clés Sega sans profil dédié ; les halos attendent un essai interactif.
+
+Sixième lot : `sega-control-stick.png` (1476 × 1065, coin alpha 0) est une vue de dessus du Control Stick Master System fondée sur la [photographie de référence](https://www.videogameobsession.com/videogame/sms/hardware/). Son levier et ses deux boutons physiques disposent de zones distinctes ; les boutons 1 et 2 sont reliés aux entrées RetroPad B et A. Genesis Plus GX reçoit le périphérique `MS Joypad 2 Button` pour ce modèle. Le bouton « 1 START » du boîtier est le bouton 1, pas une troisième commande. La photo externe utilisée comme guide a été retirée du dépôt. Il reste 26 clés Sega sans profil dédié ; le placement des halos attend un essai interactif.
+
+Build Debug du 4 octobre 2026 après le Control Stick : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de `build/Debug/GW GUI/Modules/` vérifiés présents. Les halos restent à essayer dans l'interface.
+
+Build Debug du 4 octobre 2026 après le profil Game Gear : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `gwgui.exe` et les huit DLL sous `build/Debug/GW GUI/Modules/<module>/` sont présents. Le PNG est inclus dans les ressources WPF via `Assets\Controllers\*.png`. Aucun essai interactif des halos n'a encore été effectué.
+
+Build Debug du 4 octobre 2026 après le profil Saturn 3D : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `build/Debug/GW GUI/Modules/<module>/` sont présents. Les halos n'ont pas encore été essayés dans l'interface.
+
 Build Debug du 4 octobre 2026 après le profil Saturn : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; l'exécutable `gwgui.exe` et les DLL des huit modules sont présents sous `build/Debug/GW GUI`. Aucun essai interactif des zones et halos n'a encore été réalisé.
 
 Compilation Debug du 4 octobre 2026 après ce lot : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules ont été vérifiés présents. Aucun essai interactif des halos n'a encore été effectué.
 
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
-| Emulation.Sega.Controller.SegaControlStick | Control Stick | À créer / vérifier |
+| Emulation.Sega.Controller.SegaControlStick | Control Stick | `sega-control-stick.png` : levier et boutons 1/2 raccordés au périphérique deux boutons ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaLightPhaser | Light Phaser | À créer / vérifier |
 | Emulation.Sega.Controller.SegaMegaMouse | Mega Mouse | À créer / vérifier |
 | Emulation.Sega.Controller.SegaMenacer | Menacer | À créer / vérifier |
@@ -504,7 +516,7 @@ Compilation Debug du 4 octobre 2026 après ce lot : `scripts\local-building.cmd 
 | Emulation.Sega.Controller.SegaArcadePowerStick | Arcade Power Stick | À créer / vérifier |
 | Emulation.Sega.Controller.SegaXe1Ap | XE-1 AP | À créer / vérifier |
 | Emulation.Sega.Controller.SegaActivator | Activator | À créer / vérifier |
-| Emulation.Sega.Controller.SegaSaturnThreeDControlPad | Saturn 3D Control Pad | Profil distinct à créer ; le visuel standard ne lui est plus attribué. |
+| Emulation.Sega.Controller.SegaSaturnThreeDControlPad | Saturn 3D Control Pad | `saturn-3d-control-pad.png` : croix, A/B/C, X/Y/Z et Start raccordés ; stick analogique visible mais axes sans liaison de halo ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaSaturnVirtuaGun | Virtua Gun | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSaturnShuttleMouse | Shuttle Mouse | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSaturnMissionStick | Mission Stick | À créer / vérifier |
@@ -515,7 +527,7 @@ Compilation Debug du 4 octobre 2026 après ce lot : `scripts\local-building.cmd 
 | Emulation.Sega.Controller.SegaSg1000IiJoypad | SG-1000 II gamepad | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSc3000Keyboard | SC-3000 keyboard | À créer / vérifier |
 | Emulation.Sega.Controller.SegaMasterSystemController | Master System controller | `master-system.png` : croix, 1 et 2 raccordés au profil sélectionnable ; placement interactif à vérifier. |
-| Emulation.Sega.Controller.SegaGameGearController | Game Gear built-in controls | À créer / vérifier |
+| Emulation.Sega.Controller.SegaGameGearController | Game Gear built-in controls | `game-gear-controls.png` : croix, 1/2 et Start raccordés sur le port unique ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaMegaDriveThreeButton | Mega Drive 3-button controller | `mega-drive-3.png` : croix, A/B/C et Start raccordés ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaMegaDriveSixButton | Mega Drive 6-button controller | `mega-drive-6.png` : croix, A/B/C, X/Y/Z, Start et Mode raccordés ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaArcadePowerStickSixButton | Arcade Power Stick 6-button controller | À créer / vérifier |

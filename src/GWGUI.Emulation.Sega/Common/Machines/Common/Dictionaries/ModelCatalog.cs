@@ -29,6 +29,7 @@ public static class ModelCatalog
             VideoChip: ModelConstants.VideoSega3155313, AudioChip: ModelConstants.AudioYm2612,
             CpuFrequency: ModelConstants.FrequencyMotorola68000),
         new("GameGear", "Game Gear", "gamegear", 8, false, 0, 0, false, false, true, true,
+            ControllerPortCount: ModelConstants.GameGearControllerPortCount,
             CpuModels: [ModelConstants.CpuZ80A], VideoChip: ModelConstants.VideoSega3155246,
             AudioChip: ModelConstants.AudioSn76489, CpuFrequency: ModelConstants.FrequencyZ80),
         new("Saturn", "Saturn", "saturn", 2048, false, 0, 0, false, false, true, true,

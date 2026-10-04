@@ -9,6 +9,7 @@ internal static class ModelConstants
     internal const string MegaDrive = "MegaDrive";
     internal const string Pico = "Pico";
     internal const string GameGear = "GameGear";
+    internal const int GameGearControllerPortCount = 1;
     internal const string Saturn = "Saturn";
     internal const string Dreamcast = "Dreamcast";
     internal const string Naomi = "Naomi";

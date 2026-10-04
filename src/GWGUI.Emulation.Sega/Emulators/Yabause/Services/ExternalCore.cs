@@ -123,7 +123,13 @@ internal sealed class ExternalCore : IEmulatorCore
             var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
                 ExternalCoreConstants.RetroSetControllerPortDevice);
             for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, ExternalCoreConstants.JoypadDevice);
+            {
+                var selectedType = configuration.Input?.ControllerBindings?
+                    .FirstOrDefault(binding => binding.Port == port)?.Type;
+                var device = selectedType == ControllerType.SegaSaturnThreeDControlPad
+                    ? ExternalCoreConstants.AnalogDevice : ExternalCoreConstants.JoypadDevice;
+                setController((uint)port, device);
+            }
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)

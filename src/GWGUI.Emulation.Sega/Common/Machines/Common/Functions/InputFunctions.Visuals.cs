@@ -9,9 +9,12 @@ internal static partial class InputSettingsFunctions
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro],
             ControllerType.SegaMasterSystemController => [EmulationControllerVisualIds.MasterSystem],
+            ControllerType.SegaControlStick => [EmulationControllerVisualIds.SegaControlStick],
+            ControllerType.SegaGameGearController => [EmulationControllerVisualIds.GameGearControls],
             ControllerType.SegaMegaDriveThreeButton => [EmulationControllerVisualIds.MegaDrive3],
             ControllerType.SegaMegaDriveSixButton => [EmulationControllerVisualIds.MegaDrive6],
             ControllerType.SegaSaturnController => [EmulationControllerVisualIds.Saturn],
+            ControllerType.SegaSaturnThreeDControlPad => [EmulationControllerVisualIds.Saturn3D],
             ControllerType.SegaDreamcastController => [EmulationControllerVisualIds.Dreamcast],
             ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
                 or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
@@ -27,9 +30,12 @@ internal static partial class InputSettingsFunctions
         {
             ControllerType.Joypad => EmulationControllerVisualIds.QuickShot,
             ControllerType.SegaMasterSystemController => EmulationControllerVisualIds.MasterSystem,
+            ControllerType.SegaControlStick => EmulationControllerVisualIds.SegaControlStick,
+            ControllerType.SegaGameGearController => EmulationControllerVisualIds.GameGearControls,
             ControllerType.SegaMegaDriveThreeButton => EmulationControllerVisualIds.MegaDrive3,
             ControllerType.SegaMegaDriveSixButton => EmulationControllerVisualIds.MegaDrive6,
             ControllerType.SegaSaturnController => EmulationControllerVisualIds.Saturn,
+            ControllerType.SegaSaturnThreeDControlPad => EmulationControllerVisualIds.Saturn3D,
             ControllerType.SegaDreamcastController => EmulationControllerVisualIds.Dreamcast,
             ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
                 or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
@@ -43,6 +49,8 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type) => type is ControllerType.Joypad
             or ControllerType.SegaMasterSystemController
+            or ControllerType.SegaControlStick
+            or ControllerType.SegaGameGearController
             or ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton
             or ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad
             or ControllerType.SegaDreamcastController
@@ -62,7 +70,13 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
             [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right
         };
-        if (type == ControllerType.SegaDreamcastController)
+        if (type == ControllerType.SegaGameGearController)
+        {
+            commands[EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B;
+            commands[EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A;
+            commands[EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start;
+        }
+        else if (type == ControllerType.SegaDreamcastController)
         {
             commands[EmulationControllerVisualControl.FaceA] = EmulationControllerCommandIds.B;
             commands[EmulationControllerVisualControl.FaceB] = EmulationControllerCommandIds.A;
@@ -72,7 +86,8 @@ internal static partial class InputSettingsFunctions
             commands[EmulationControllerVisualControl.LeftTrigger] = EmulationControllerCommandIds.L2;
             commands[EmulationControllerVisualControl.RightTrigger] = EmulationControllerCommandIds.R2;
         }
-        else if (type == ControllerType.SegaSaturnController)
+        else if (type is ControllerType.SegaSaturnController
+            or ControllerType.SegaSaturnThreeDControlPad)
         {
             commands[EmulationControllerVisualControl.FaceA] = EmulationControllerCommandIds.B;
             commands[EmulationControllerVisualControl.FaceB] = EmulationControllerCommandIds.A;

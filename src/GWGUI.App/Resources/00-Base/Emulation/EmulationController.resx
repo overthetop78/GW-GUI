@@ -52,9 +52,14 @@
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve"><value>Atari Jaguar Pro Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.master-system" xml:space="preserve"><value>Master System Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-control-stick" xml:space="preserve"><value>Sega Control Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.game-gear-controls" xml:space="preserve"><value>Game Gear</value></data>
   <data name="Emulation.Controller.Visual.Model.mega-drive-3" xml:space="preserve"><value>Mega Drive 3-button Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.mega-drive-6" xml:space="preserve"><value>Mega Drive 6-button Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-arcade-power-stick-3" xml:space="preserve"><value>Sega Arcade Power Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-arcade-power-stick-6" xml:space="preserve"><value>Sega Arcade Power Stick 6B</value></data>
   <data name="Emulation.Controller.Visual.Model.saturn" xml:space="preserve"><value>Saturn Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.saturn-3d" xml:space="preserve"><value>Saturn 3D Control Pad</value></data>
   <data name="Emulation.Controller.Visual.Model.dreamcast" xml:space="preserve"><value>Dreamcast Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.arcade-stick" xml:space="preserve"><value>Arcade Stick</value></data>
   <data name="Emulation.Controller.Visual.Model.flight-stick" xml:space="preserve"><value>Flight Stick</value></data>

@@ -153,6 +153,59 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer la liste complète des boutons de la manette Saturn standard effectivement lus par Yabause.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la couverture de la manette Saturn standard et les limites des périphériques Saturn distincts.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug complet et les artefacts après ce lot Saturn.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le lot Saturn 3D, sa référence photographique, son périphérique analogique Yabause, son visuel et les vérifications avant toute modification correspondante.
+  - [x] Créer `docs/tasks/emulation/saturn-3d-controller-reference.jpg` : conserver la photographie libre de droits du Saturn 3D Control Pad d'Evan-Amos pour guider le visuel exact.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/saturn-3d-control-pad.png` : détourer fidèlement la manette de face en PNG transparent avec ses commandes visibles.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant invariant du Saturn 3D Control Pad.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : ajouter le nom invariant du profil Saturn 3D.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : définir le visuel Saturn 3D et les zones de boutons réellement visibles.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les commandes numériques du Saturn 3D Control Pad selon les boutons effectivement lus par Yabause.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : associer le profil Saturn 3D à ses commandes et à son image distincte.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Yabause/Constants/ExternalCoreConstants.cs` : déclarer le type de périphérique analogique publié par Yabause.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Yabause/Services/ExternalCore.cs` : transmettre ce type au port configuré avec la manette Saturn 3D.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer le visuel Saturn 3D, les commandes couvertes et les limites analogiques.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug complet et la présence de l'application et des huit modules après ce lot.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le profil des commandes intégrées Game Gear et la correction de son unique port, d'après le modèle et les entrées de Genesis Plus GX.
+  - [x] Créer `docs/tasks/emulation/game-gear-reference.jpg` : conserver la photographie libre de droits d'Evan-Amos utilisée comme référence de face.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/game-gear-controls.png` : détourer la Game Gear de face avec sa croix, ses boutons 1 et 2 et Start lisibles sur fond transparent.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/ModelConstants.cs` : déclarer le nombre invariant de ports de commandes de la Game Gear.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : déclarer l'unique ensemble de commandes intégré de la portable comme un seul port.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant invariant du visuel Game Gear.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : ajouter le nom invariant du visuel Game Gear.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones de la croix, des boutons 1/2 et Start sur la portable.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer la croix, les deux boutons et Start réellement lus par Genesis Plus GX pour la Game Gear.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : attribuer l'image Game Gear et ses commandes à son seul type de contrôleur.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` : choisir explicitement le périphérique deux boutons publié pour la Game Gear par Genesis Plus GX.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la référence, l'image, les zones et le port unique de la Game Gear.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug complet et la présence des huit modules après ce lot.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : limiter le nom visuel Game Gear à la valeur invariante du modèle, puisque les mots « commandes intégrées » possèdent déjà leurs traductions dans les ressources Sega.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le lot Control Stick Master System, sa référence temporaire, ses deux boutons, son périphérique Genesis Plus GX et la vérification.
+  - [x] Créer `docs/tasks/emulation/sega-control-stick-reference.jpg` : télécharger temporairement la photographie du Control Stick pour guider sa forme et l'emplacement des boutons.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-control-stick.png` : produire une vue de dessus fidèle, transparent, du joystick Sega Master System Control Stick et de ses boutons 1/2.
+  - [x] Supprimer `docs/tasks/emulation/sega-control-stick-reference.jpg` : retirer la photographie de référence externe après création du visuel.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant invariant du Control Stick.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : ajouter le nom invariant du Control Stick.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer le levier et les deux boutons visibles sur l'image.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : nommer les deux boutons 1 et 2 conformément aux entrées du cœur.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : associer le visuel Control Stick et ses zones aux commandes effectivement exposées.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` : sélectionner le périphérique deux boutons pour le Control Stick.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la référence et décrire la couverture du Control Stick.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug et les artefacts après ce lot.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le lot Arcade Power Stick trois/six boutons avec références temporaires, visuels distincts, affectations et contrôle du build.
+  - [x] Créer `docs/tasks/emulation/sega-arcade-power-stick-3-reference.jpg` : télécharger temporairement une photographie du modèle à trois boutons pour guider son visuel.
+  - [x] Créer `docs/tasks/emulation/sega-arcade-power-stick-6-reference.jpg` : télécharger temporairement une photographie du modèle à six boutons pour guider son visuel.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-arcade-power-stick-3.png` : produire une vue de dessus transparente de l'Arcade Power Stick à trois boutons.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-arcade-power-stick-6.png` : produire une vue de dessus transparente de l'Arcade Power Stick à six boutons.
+  - [x] Supprimer `docs/tasks/emulation/sega-arcade-power-stick-3-reference.jpg` : retirer la photographie externe après génération.
+  - [x] Supprimer `docs/tasks/emulation/sega-arcade-power-stick-6-reference.jpg` : retirer la photographie externe après génération.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les deux identifiants visuels invariants Arcade Power Stick.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : ajouter les deux noms de modèle invariants Arcade Power Stick.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer le levier, les boutons A/B/C et les commandes distinctes X/Y/Z, Start et Mode lorsque présentes.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les entrées trois et six boutons propres aux deux modèles.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : affecter les deux images et leurs zones aux commandes RetroPad exactes.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` : sélectionner le périphérique trois ou six boutons selon le modèle Arcade Power Stick.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer les références et décrire précisément les zones et les limites des deux images.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug complet et ses artefacts après ces deux profils.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

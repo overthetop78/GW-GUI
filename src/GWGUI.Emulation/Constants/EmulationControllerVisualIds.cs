@@ -66,9 +66,14 @@ public static class EmulationControllerVisualIds
     public const string AtariJaguarController = "atari-jaguar-controller";
     public const string AtariJaguarProController = "atari-jaguar-pro-controller";
     public const string MasterSystem = "master-system";
+    public const string SegaControlStick = "sega-control-stick";
+    public const string GameGearControls = "game-gear-controls";
     public const string MegaDrive3 = "mega-drive-3";
     public const string MegaDrive6 = "mega-drive-6";
+    public const string SegaArcadePowerStick3 = "sega-arcade-power-stick-3";
+    public const string SegaArcadePowerStick6 = "sega-arcade-power-stick-6";
     public const string Saturn = "saturn";
+    public const string Saturn3D = "saturn-3d";
     public const string Dreamcast = "dreamcast";
     public const string ArcadeStick = "arcade-stick";
     public const string FlightStick = "flight-stick";

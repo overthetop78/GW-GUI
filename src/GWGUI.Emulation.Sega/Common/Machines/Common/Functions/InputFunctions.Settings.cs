@@ -86,7 +86,7 @@ internal static partial class InputSettingsFunctions
         type switch
         {
             ControllerType.None => [],
-            ControllerType.SegaMasterSystemController =>
+            ControllerType.SegaMasterSystemController or ControllerType.SegaControlStick =>
             [
                 Definition(InputSettingsFunctionsConstants.Up,
                     InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -101,9 +101,26 @@ internal static partial class InputSettingsFunctions
                 Definition(InputSettingsFunctionsConstants.A,
                     InputSettingsFunctionsConstants.ButtonTwo, string.Empty)
             ],
+            ControllerType.SegaGameGearController =>
+            [
+                Definition(InputSettingsFunctionsConstants.Up,
+                    InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Down,
+                    InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Left,
+                    InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Right,
+                    InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+                Definition(InputSettingsFunctionsConstants.B,
+                    InputSettingsFunctionsConstants.ButtonOne, string.Empty),
+                Definition(InputSettingsFunctionsConstants.A,
+                    InputSettingsFunctionsConstants.ButtonTwo, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Start,
+                    InputSettingsFunctionsConstants.ButtonStart, string.Empty)
+            ],
             ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton =>
                 MegaDriveDefinitions(type == ControllerType.SegaMegaDriveSixButton),
-            ControllerType.SegaSaturnController =>
+            ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad =>
             [
                 Definition(InputSettingsFunctionsConstants.Up,
                     InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),

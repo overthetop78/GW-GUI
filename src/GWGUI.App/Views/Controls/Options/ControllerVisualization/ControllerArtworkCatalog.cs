@@ -711,6 +711,25 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 61d, 55d, 12d, 19d),
                 new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 78d, 55d, 12d, 19d)
             ]),
+            [EmulationControllerVisualIds.SegaControlStick] = new("sega-control-stick.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 56d, 29d, 30d, 39d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 56d, 29d, 30d, 39d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 56d, 29d, 30d, 39d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 56d, 29d, 30d, 39d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 13d, 29d, 9d, 11d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 28d, 33d, 9d, 11d)
+            ]),
+            [EmulationControllerVisualIds.GameGearControls] = new("game-gear-controls.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 6d, 34d, 13d, 17d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 6d, 34d, 13d, 17d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 6d, 34d, 13d, 17d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 6d, 34d, 13d, 17d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 79d, 45d, 8d, 10d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 86d, 35d, 8d, 10d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 81d, 25d, 6d, 9d)
+            ]),
             [EmulationControllerVisualIds.MegaDrive3] = new("mega-drive-3.png",
             [
                 new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 15d, 37d, 18d, 28d),
@@ -737,6 +756,32 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 46d, 45d, 9d, 7d),
                 new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 46d, 57d, 9d, 7d)
             ]),
+            [EmulationControllerVisualIds.SegaArcadePowerStick3] = new("sega-arcade-power-stick-3.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 27d, 31d, 26d, 41d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 27d, 31d, 26d, 41d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 27d, 31d, 26d, 41d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 27d, 31d, 26d, 41d),
+                new(EmulationControllerVisualControl.FaceA, ControllerVisualZoneShape.Ellipse, 63d, 53d, 12d, 15d),
+                new(EmulationControllerVisualControl.FaceB, ControllerVisualZoneShape.Ellipse, 73d, 46d, 12d, 15d),
+                new(EmulationControllerVisualControl.FaceC, ControllerVisualZoneShape.Ellipse, 84d, 42d, 12d, 15d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 47d, 16d, 10d, 7d)
+            ]),
+            [EmulationControllerVisualIds.SegaArcadePowerStick6] = new("sega-arcade-power-stick-6.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 22d, 28d, 24d, 34d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 22d, 28d, 24d, 34d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 22d, 28d, 24d, 34d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 22d, 28d, 24d, 34d),
+                new(EmulationControllerVisualControl.FaceA, ControllerVisualZoneShape.Ellipse, 58d, 56d, 10d, 15d),
+                new(EmulationControllerVisualControl.FaceB, ControllerVisualZoneShape.Ellipse, 69d, 51d, 10d, 15d),
+                new(EmulationControllerVisualControl.FaceC, ControllerVisualZoneShape.Ellipse, 80d, 51d, 10d, 15d),
+                new(EmulationControllerVisualControl.FaceX, ControllerVisualZoneShape.Ellipse, 58d, 39d, 10d, 15d),
+                new(EmulationControllerVisualControl.FaceY, ControllerVisualZoneShape.Ellipse, 69d, 34d, 10d, 15d),
+                new(EmulationControllerVisualControl.FaceZ, ControllerVisualZoneShape.Ellipse, 80d, 34d, 10d, 15d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 49d, 17d, 9d, 7d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 59d, 17d, 9d, 7d)
+            ]),
             [EmulationControllerVisualIds.Saturn] = new("saturn.png",
             [
                 new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 15d, 39d, 19d, 28d),
@@ -752,6 +797,21 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 45d, 56d, 10d, 8d),
                 new(EmulationControllerVisualControl.LeftTrigger, ControllerVisualZoneShape.RoundedRectangle, 15d, 12d, 16d, 12d),
                 new(EmulationControllerVisualControl.RightTrigger, ControllerVisualZoneShape.RoundedRectangle, 68d, 12d, 17d, 12d)
+            ]),
+            [EmulationControllerVisualIds.Saturn3D] = new("saturn-3d-control-pad.png",
+            [
+                new(EmulationControllerVisualControl.LeftStick, ControllerVisualZoneShape.Ellipse, 12d, 25d, 25d, 23d),
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 18d, 51d, 19d, 18d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 18d, 51d, 19d, 18d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 18d, 51d, 19d, 18d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 18d, 51d, 19d, 18d),
+                new(EmulationControllerVisualControl.FaceA, ControllerVisualZoneShape.Ellipse, 54d, 55d, 9d, 9d),
+                new(EmulationControllerVisualControl.FaceB, ControllerVisualZoneShape.Ellipse, 65d, 52d, 9d, 9d),
+                new(EmulationControllerVisualControl.FaceC, ControllerVisualZoneShape.Ellipse, 77d, 50d, 9d, 9d),
+                new(EmulationControllerVisualControl.FaceX, ControllerVisualZoneShape.Ellipse, 53d, 44d, 9d, 9d),
+                new(EmulationControllerVisualControl.FaceY, ControllerVisualZoneShape.Ellipse, 64d, 41d, 9d, 9d),
+                new(EmulationControllerVisualControl.FaceZ, ControllerVisualZoneShape.Ellipse, 75d, 39d, 9d, 9d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 43d, 65d, 9d, 9d)
             ]),
             [EmulationControllerVisualIds.Dreamcast] = new("dreamcast.png",
             [

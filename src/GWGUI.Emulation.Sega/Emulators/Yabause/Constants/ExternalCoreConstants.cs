@@ -29,4 +29,5 @@ internal static class ExternalCoreConstants
     internal const string RetroLoadGame = "retro_load_game";
     internal const string RetroGetSystemAvInfo = "retro_get_system_av_info";
     internal const uint JoypadDevice = 1;
+    internal const uint AnalogDevice = 5;
 }
