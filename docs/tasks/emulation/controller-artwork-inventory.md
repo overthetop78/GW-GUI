@@ -248,6 +248,12 @@ La NES Max est proposée parmi les visuels NES, sans être proposée sur Famicom
 
 Build Debug final après le filtrage Famicom : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL des modules ont été vérifiés présents. `git diff --check` ne relève aucune erreur. Le rendu interactif des zones NES Max n'est pas encore vérifié.
 
+Image NES Advantage (NES-026) : `nintendo-nes-advantage.png` (1536 × 1024, coins alpha 0) est une vue de dessus générée d'après la [photographie libre d'Evan-Amos](https://commons.wikimedia.org/wiki/File:Nintendo-NES-Advantage-Controller.jpg). Le joystick, les boutons B/A, les deux interrupteurs Turbo, leurs réglages de vitesse, le sélecteur Player 1/2, Select, Start et Slow sont visibles. La [notice Nintendo](https://www.nintendo.com/de-at/Support/NES/Zubeh-ouml-r/Advantage/Advantage-247218.html) décrit ces commandes. L'image est préparée ; le raccordement des zones aux affectations et le traitement de Slow restent ouverts.
+
+La NES Advantage est proposée pour la NES, sans l'ajouter au Famicom Disk System. Ses halos couvrent joystick, B/A, interrupteurs Turbo B/A, Select et Start et reprennent les lignes d'affectation Mesen du profil NES. Les deux molettes Turbo règlent une vitesse et le sélecteur Player choisit une prise matérielle ; ils ne sont pas des commandes de jeu à affecter sur les ports virtuels. Slow reste visible mais son comportement et une éventuelle affectation sont à définir ; les halos restent à tester dans la fenêtre.
+
+Validation du profil NES Advantage : neuf tests ciblés NES Max/Advantage, Nintendo 64 et GameCube réussissent (0 échec) ; après suppression de deux avertissements de nullabilité, les deux tests NES ciblés réussissent à nouveau. Le build Debug `scripts\local-building.cmd --building=debug --modules=A` se termine avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL des modules sont présents. `git diff --check` ne relève aucune erreur. La touche Slow et le rendu interactif des halos restent ouverts.
+
 Validation NES Max du 4 octobre 2026 : neuf tests ciblés `NesMaxControllerTests`, `Nintendo64ControllerTests` et `GameCubeControllerTests` réussissent (0 échec). Ils couvrent les boutons normaux et turbo transmis à Mesen, la conservation des bits SNES et les profils Nintendo 64/GameCube précédents. Le build `scripts\local-building.cmd --building=debug --modules=A` se termine avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de modules sont présents. `git diff --check` ne signale aucune erreur. Les halos restent à vérifier dans la fenêtre de l'application.
 
 | Clé | Nom invariant / libellé | Image de face et zones |
@@ -322,7 +328,7 @@ Validation NES Max du 4 octobre 2026 : neuf tests ciblés `NesMaxControllerTests
 | Emulation.Nintendo.Controller.FamicomPad1 | Nintendo Famicom Controller I | `famicom-controller-i.png` réutilisé, huit zones reliées aux commandes NES/Famicom. |
 | Emulation.Nintendo.Controller.FamicomPad2 | Nintendo Famicom Controller II | À créer / vérifier |
 | Emulation.Nintendo.Controller.AvFamicomPad | Nintendo AV Famicom Controller (HVC-102) | À créer / vérifier |
-| Emulation.Nintendo.Controller.NesAdvantage | Nintendo NES Advantage (NES-026) | À créer / vérifier |
+| Emulation.Nintendo.Controller.NesAdvantage | Nintendo NES Advantage (NES-026) | `nintendo-nes-advantage.png` : joystick, B/A, Turbo B/A, Select et Start zonés ; Slow en attente de décision, essais des halos en fenêtre restants. |
 | Emulation.Nintendo.Controller.NesMax | Nintendo NES Max (NES-027) | `nintendo-nes-max.png` : disque directionnel, B/A, Turbo B/A, Select et Start zonés ; essai des halos en fenêtre restant. |
 | Emulation.Nintendo.Controller.NesZapper | Nintendo NES Zapper (NES-005) | À créer / vérifier |
 | Emulation.Nintendo.Controller.FamicomLightGun | Nintendo Famicom Light Gun (HVC-005) | À créer / vérifier |

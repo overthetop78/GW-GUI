@@ -8,6 +8,7 @@ internal static partial class InputSettingsFunctions
             ModelConstants.Nes =>
                 [EmulationControllerVisualIds.NintendoNesPad,
                     EmulationControllerVisualIds.NintendoNesMax,
+                    EmulationControllerVisualIds.NintendoNesAdvantage,
                     EmulationControllerVisualIds.NintendoNesDogbonePad,
                     EmulationControllerVisualIds.NintendoFamicomPad1],
             ModelConstants.FamicomDisk =>

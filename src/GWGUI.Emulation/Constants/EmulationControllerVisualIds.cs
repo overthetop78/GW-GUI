@@ -38,6 +38,7 @@ public static class EmulationControllerVisualIds
     public const string SonyPsp1000 = "sony-psp-1000";
     public const string NintendoNesPad = "nintendo-nes-pad";
     public const string NintendoNesMax = "nintendo-nes-max";
+    public const string NintendoNesAdvantage = "nintendo-nes-advantage";
     public const string NintendoNesDogbonePad = "nintendo-nes-dogbone-pad";
     public const string NintendoFamicomPad1 = "nintendo-famicom-pad-1";
     public const string NintendoSuperNesPad = "nintendo-super-nes-pad";

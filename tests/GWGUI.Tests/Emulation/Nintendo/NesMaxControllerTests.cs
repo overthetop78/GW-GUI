@@ -30,6 +30,8 @@ public sealed class NesMaxControllerTests
 
         Assert.Contains(EmulationControllerVisualIds.NintendoNesMax,
             choice.CompatibleVisualIds!);
+        Assert.Contains(EmulationControllerVisualIds.NintendoNesAdvantage,
+            choice.CompatibleVisualIds!);
         var bindingIds = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
         Assert.Contains(InputSettingsFunctionsConstants.NesTurboA, bindingIds);
         Assert.Contains(InputSettingsFunctionsConstants.NesTurboB, bindingIds);
@@ -44,6 +46,8 @@ public sealed class NesMaxControllerTests
         var famicomChoice = Assert.Single(famicomSettings.ControllerPorts[FirstPortIndex]
             .ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
         Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesMax,
+            famicomChoice.CompatibleVisualIds!);
+        Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesAdvantage,
             famicomChoice.CompatibleVisualIds!);
     }
 

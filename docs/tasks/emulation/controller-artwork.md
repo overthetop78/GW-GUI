@@ -330,6 +330,20 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner cette limite de compatibilité matérielle et le résultat du test ciblé.
 - [x] Valider le paquet NES Max final
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug de l'application et des huit modules après le filtrage Famicom, et le contrôle final des fichiers livrés.
+- [x] Préparer l'image Nintendo NES Advantage (NES-026)
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-nes-advantage-reference.jpg` : télécharger provisoirement la photographie frontale libre d'Evan-Amos comme référence des commandes.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-nes-advantage.png` : produire une vue directement de face avec fond alpha transparent, joystick, A/B, Start/Select, Turbo et Slow visibles.
+  - [x] Supprimer `src/GWGUI.App/Assets/Controllers/nintendo-nes-advantage-reference.jpg` : retirer la photographie temporaire après contrôle de l'image créée.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la source de l'image et noter les commandes réellement visibles avant leur raccordement.
+- [x] Raccorder les commandes NES Advantage prises en charge
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant visuel invariant NES Advantage.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : déclarer le nom invariant du profil NES Advantage.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer la NES Advantage uniquement sur NES et utiliser les commandes direction, B/A, Turbo B/A, Select et Start du coeur Mesen.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer des zones sur joystick, B/A, leurs interrupteurs Turbo, Select et Start de la vue NES Advantage.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner les commandes mappées et distinguer les réglages physiques de vitesse et de port des lignes d'affectation.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/NesMaxControllerTests.cs` : vérifier la présence du visuel NES Advantage sur NES, son absence sur Famicom Disk System et la couverture de ses commandes par les lignes d'affectation.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/NesMaxControllerTests.cs` : supprimer les deux avertissements de nullabilité des collections de visuels dans le test.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat des tests ciblés et du build Debug de l'application avec les huit modules.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

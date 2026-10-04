@@ -100,6 +100,7 @@
   <data name="Emulation.Controller.Visual.Model.sony-dualsense"><value>DualSense</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-nes-pad"><value>Nintendo NES Controller (NES-004)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-nes-max"><value>Nintendo NES Max (NES-027)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-nes-advantage"><value>Nintendo NES Advantage (NES-026)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-nes-dogbone-pad"><value>Nintendo NES Controller (NES-039)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-famicom-pad-1"><value>Nintendo Famicom Controller I</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-super-nes-pad"><value>Nintendo Super NES Controller (SNS-005)</value></data>
