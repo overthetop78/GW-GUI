@@ -309,15 +309,16 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         _view.SetDevices(_mediaDevices.Select(device =>
         {
+            var canOpenMedia = device.IsRemovable && device.MediaType != EmulationMediaType.MemoryCard;
             var mounted = _session.MountedMedia.FirstOrDefault(media => media.Slot == device.Slot);
             var cassette = device.MediaType == EmulationMediaType.Cassette
                 ? _session.Machine.CassetteTransport : null;
             var state = cassette?.State ?? EmulationCassetteState.Empty;
             var activeOperation = cassette?.ActiveOperation;
             return new MachineViewDevice(device.Slot.ToString(), device.DisplayLabel ?? device.Slot.ToString(),
-                DeviceGlyph(device.MediaType), device.IsRemovable, mounted is not null,
-                device.IsRemovable ? () => InsertMediaAsync(device) : null,
-                device.IsRemovable && mounted is not null ? () => EjectMediaAsync(device) : null,
+                DeviceGlyph(device.MediaType), canOpenMedia, mounted is not null,
+                canOpenMedia ? () => InsertMediaAsync(device) : null,
+                canOpenMedia && mounted is not null ? () => EjectMediaAsync(device) : null,
                 device.MediaType == EmulationMediaType.Cassette ? CassetteStateText(state) : null,
                 device.MediaType == EmulationMediaType.Cassette
                     ? CassetteCommandOrder.Select(command => CassetteCommand(

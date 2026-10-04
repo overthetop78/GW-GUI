@@ -4,8 +4,8 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static partial class ControllerArtworkCatalog
 {
-    private static readonly IReadOnlyDictionary<string, ProfileDefinition> ProfileDefinitions =
-        new Dictionary<string, ProfileDefinition>(StringComparer.Ordinal)
+    private static readonly Lazy<IReadOnlyDictionary<string, ProfileDefinition>> ProfileDefinitions =
+        new(() => new Dictionary<string, ProfileDefinition>(StringComparer.Ordinal)
         {
             [EmulationControllerVisualIds.NecPcEnginePad] = CreateNecPcEnginePad(),
             [EmulationControllerVisualIds.NecPcEngineTurboPad] = CreateNecPcEngineTurboPad(),
@@ -89,5 +89,5 @@ internal static partial class ControllerArtworkCatalog
             [EmulationControllerVisualIds.Dreamcast] = CreateDreamcast(),
             [EmulationControllerVisualIds.FlightStick] = CreateFlightStick(),
             [EmulationControllerVisualIds.RacingWheel] = CreateRacingWheel()
-        };
+        });
 }

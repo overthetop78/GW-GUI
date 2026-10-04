@@ -55,7 +55,7 @@ internal static partial class ControllerArtworkCatalog
     internal static bool TryGetProfile(string visualId, out ControllerArtworkProfile profile)
     {
         if (ProfileCache.TryGetValue(visualId, out profile!)) return true;
-        if (!ProfileDefinitions.TryGetValue(visualId, out var definition))
+        if (!ProfileDefinitions.Value.TryGetValue(visualId, out var definition))
         {
             profile = null!;
             return false;
