@@ -87,6 +87,7 @@ internal static partial class InputSettingsFunctions
             ? NintendoControllerDefinitions(false)
         : model.Id == ModelConstants.Snes ? NintendoControllerDefinitions(true)
         : model.Id == ModelConstants.Nintendo64 ? Nintendo64ControllerDefinitions()
+        : model.Id == ModelConstants.GameCube ? GameCubeControllerDefinitions()
         : model.Id is ModelConstants.GameBoy or ModelConstants.GameBoyColor
             or ModelConstants.GameBoyAdvance
             ? NintendoControllerDefinitions(false,
@@ -183,6 +184,54 @@ internal static partial class InputSettingsFunctions
             InputSettingsFunctionsConstants.Nintendo64ButtonZ, string.Empty),
         Definition(EmulationControllerCommandIds.Start,
             InputSettingsFunctionsConstants.ButtonStart, string.Empty)
+    ];
+
+    private static IReadOnlyList<InputBindingDefinition> GameCubeControllerDefinitions() =>
+    [
+        Definition(InputSettingsFunctionsConstants.Up,
+            InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Down,
+            InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Left,
+            InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Right,
+            InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+        Definition(EmulationControllerCommandIds.B,
+            InputSettingsFunctionsConstants.ButtonB, string.Empty),
+        Definition(EmulationControllerCommandIds.Y,
+            InputSettingsFunctionsConstants.ButtonY, string.Empty),
+        Definition(EmulationControllerCommandIds.A,
+            InputSettingsFunctionsConstants.ButtonA, string.Empty),
+        Definition(EmulationControllerCommandIds.X,
+            InputSettingsFunctionsConstants.ButtonX, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeZ,
+            InputSettingsFunctionsConstants.GameCubeButtonZ, string.Empty),
+        Definition(EmulationControllerCommandIds.Start,
+            InputSettingsFunctionsConstants.ButtonStart, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeL,
+            InputSettingsFunctionsConstants.ButtonL, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeR,
+            InputSettingsFunctionsConstants.ButtonR, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeLHalf,
+            InputSettingsFunctionsConstants.GameCubeButtonLHalf, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeRHalf,
+            InputSettingsFunctionsConstants.GameCubeButtonRHalf, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeStickUp,
+            InputSettingsFunctionsConstants.GameCubeStickUpLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeStickDown,
+            InputSettingsFunctionsConstants.GameCubeStickDownLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeStickLeft,
+            InputSettingsFunctionsConstants.GameCubeStickLeftLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeStickRight,
+            InputSettingsFunctionsConstants.GameCubeStickRightLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeCUp,
+            InputSettingsFunctionsConstants.GameCubeCUpLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeCDown,
+            InputSettingsFunctionsConstants.GameCubeCDownLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeCLeft,
+            InputSettingsFunctionsConstants.GameCubeCLeftLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.GameCubeCRight,
+            InputSettingsFunctionsConstants.GameCubeCRightLabel, string.Empty)
     ];
 
     private static InputBindingDefinition Definition(string id, string resourceKey,

@@ -34,6 +34,7 @@ public static class ModelCatalog
         new(ModelConstants.Nintendo3Ds, "Nintendo 3DS", ModelConstants.BackendNintendo3Ds, 128 * 1024, false, 0, 0, false, false, true, true,
             CpuModels: [ModelConstants.CpuArm11], VideoChip: ModelConstants.VideoArm11, AudioChip: ModelConstants.AudioArm11),
         new(ModelConstants.GameCube, "Nintendo GameCube", ModelConstants.BackendGameCube, 24 * 1024, false, 0, 0, false, false, false, false,
+            ControllerPortCount: ModelConstants.GameCubeControllerPortCount,
             HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true,
             CpuModels: [ModelConstants.CpuIbmGekko], VideoChip: ModelConstants.VideoFlipper, AudioChip: ModelConstants.AudioDsp),
         new(ModelConstants.Wii, "Nintendo Wii", ModelConstants.BackendWii, 88 * 1024, false, 0, 0, false, false, false, false,

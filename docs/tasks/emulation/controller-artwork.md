@@ -275,6 +275,26 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos PSP sur les boutons et le stick visibles de l'image finale.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer l'image et décrire commandes, zones, transparence et limites des boutons hors jeu.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la compilation Debug de l'application et des huit modules ainsi que les contrôles des artefacts.
+- [x] Vérifier les commandes PSP-1000 jusqu'aux entrées RetroPad
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire le test ciblé du port intégré, des boutons et du stick avant sa création.
+  - [x] Créer `tests/GWGUI.Tests/Emulation/Sony/PspControllerTests.cs` : vérifier le profil visuel, les commandes mappables, les boutons transmis à PPSSPP et les axes analogiques sans périphérique externe.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/PspControllerTests.cs` : utiliser l'assertion de port unique recommandée par xUnit sans réduire la vérification du profil.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du test PSP et la limite de vérification des halos en fenêtre.
+- [ ] Raccorder la manette Nintendo GameCube officielle au cœur Dolphin
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire dans l'ordre l'image transparente, les quatre ports, les commandes Dolphin, les zones et la vérification du profil GameCube.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-gamecube.png` : intégrer la vue officielle de face en coque transparente publiée par Monathephantom sur Wikimedia Commons sous CC BY-SA 4.0 ; écarter les deux détourages Commons qui gardent un fond parasite.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/ModelConstants.cs` : définir les quatre ports physiques de la GameCube.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : exposer quatre ports pour GameCube.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant visuel invariant GameCube.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : nommer le profil GameCube dans la base commune.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : définir les identifiants, labels invariants et clé de ressource de la manette GameCube.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer croix, A/B/X/Y/Z, Start, L/R, pressions partielles et directions des deux sticks.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` : relier les identifiants GameCube aux bits RetroPad que Dolphin lit pour A/B/X/Y/Z, L/R et pressions partielles.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : transmettre les affectations des sticks GameCube aux axes gauche et droit RetroPad de Dolphin.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : sélectionner la manette GameCube et relier ses zones aux lignes d'affectation.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur les boutons et sticks réellement visibles de la photographie.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer le PNG, sa licence et documenter le mappage et les limites visuelles du profil GameCube.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug de l'application et des huit modules après le raccordement.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

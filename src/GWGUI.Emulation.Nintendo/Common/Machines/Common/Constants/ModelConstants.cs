@@ -20,6 +20,7 @@ internal static class ModelConstants
 
     internal const int IntegratedControllerPortCount = 1;
     internal const int Nintendo64ControllerPortCount = 4;
+    internal const int GameCubeControllerPortCount = 4;
     internal const int NoMouseButtonCount = 0;
 
     internal const string BackendGameWatch = "gamewatch";

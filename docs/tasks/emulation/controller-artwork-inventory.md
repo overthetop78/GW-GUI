@@ -149,6 +149,8 @@ Les commandes intégrées PSP disposent de `sony-psp-1000.png` (3980 × 2240, fo
 
 Build Debug du 4 octobre 2026 après le profil PSP-1000 : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules vérifiés présents. La compilation ne valide pas encore le placement des halos en fenêtre.
 
+Trois tests `PspControllerTests` réussissent (0 échec) : un seul port de commandes intégrées avec les lignes reliées au visuel, boutons PSP vers les bits RetroPad attendus, directions du stick vers les axes gauches avec annulation des directions opposées et conservation d'un axe physique non remappé. Le test ne vérifie pas la position des halos dans la fenêtre WPF. Seul l'avertissement NU1900 sur l'accès aux avis NuGet apparaît pendant cette exécution.
+
 Build Debug du 4 octobre 2026 après le profil DUALSHOCK original : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL `Modules/<marque>/gwgui.emulation.<marque>.dll` vérifiés présents. Aucun essai interactif des halos n'a encore été effectué.
 
 Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `Modules/<id>/` sont présents.
