@@ -241,6 +241,40 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la photographie du domaine public, décrire la transparence, les zones et l'état des halos.
   - [x] Supprimer `docs/tasks/emulation/nes-dogbone-reference.jpg` : retirer la photographie de travail après la création du PNG final.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la compilation Debug de l'application et des huit modules après le raccordement NES-039.
+- [x] Raccorder la manette Nintendo 64 officielle au profil de commandes
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire les actions concrètes du raccordement Nintendo 64 avant de les réaliser.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/ModelConstants.cs` : définir le nombre de ports physiques de la Nintendo 64.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : exposer ses quatre ports dans la configuration.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : déclarer les identifiants et libellés invariants des commandes Nintendo 64.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : présenter les commandes de la manette Nintendo 64 dans la liste d'affectation.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer le profil Nintendo 64 et relier chaque commande visuelle à sa ligne.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` : relier les identifiants A/B aux bits RetroPad réellement lus par Mupen64Plus-Next, L/R/Z conservant les bits communs existants.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : transformer les affectations du stick et des boutons C en axes lus par le cœur.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : distinguer les quatre directions du stick et les quatre boutons C dans les zones.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant du profil Nintendo 64.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : référencer le nom invariant de la manette Nintendo 64.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur les commandes visibles de l'image existante `nintendo-64.png`.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le mappage, la provenance de l'image existante et la limite du bouton Z caché derrière la manette.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter le résultat du build Debug de l'application et des modules après le raccordement.
+- [x] Vérifier les affectations Nintendo 64 de bout en bout dans le module
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire le test ciblé des quatre ports, des commandes et des axes avant sa création.
+  - [x] Créer `tests/GWGUI.Tests/Emulation/Nintendo/Nintendo64ControllerTests.cs` : vérifier que le profil publie quatre ports et que les affectations A/B/L/R/Z, stick et C atteignent les bits et axes RetroPad attendus sans dépendance externe.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/Nintendo64ControllerTests.cs` : supprimer l'avertissement xUnit2031 et conserver l'assertion sur l'unique choix joystick.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat de l'exécution ciblée du test Nintendo 64 et les limites de vérification de l'interface.
+- [ ] Ajouter les commandes intégrées Sony PSP-1000
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire dans l'ordre les fichiers du profil PSP, ses commandes, son image, son contrôle et le nettoyage temporaire.
+  - [x] Créer `docs/tasks/emulation/sony-psp-1000-reference.png` : télécharger temporairement la vue de face du PSP-1000 publiée dans le domaine public par Evan-Amos sur Wikimedia Commons.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sony-psp-1000.png` : intégrer la vue de face avec transparence et boutons visibles à partir de cette référence, en détachant le fond au besoin.
+  - [x] Supprimer `docs/tasks/emulation/sony-psp-1000-reference.png` : retirer l'image de travail après création de l'asset final.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant visuel invariant des commandes intégrées PSP-1000.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : nommer le profil avec le modèle invariant Sony PSP-1000.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : définir la clé de ressource PSP et les quatre commandes du stick analogique.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer croix, symboles, L/R, Select/Start et directions analogiques pris en charge par PPSSPP.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : sélectionner la PSP sur son port intégré et relier les zones visibles aux lignes d'affectation.
+  - [ ] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : convertir les quatre affectations du stick PSP en axes analogiques transmis à PPSSPP.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos PSP sur les boutons et le stick visibles de l'image finale.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer l'image et décrire commandes, zones, transparence et limites des boutons hors jeu.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la compilation Debug de l'application et des huit modules ainsi que les contrôles des artefacts.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

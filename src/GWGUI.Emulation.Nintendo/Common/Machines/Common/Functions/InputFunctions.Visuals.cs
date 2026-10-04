@@ -14,6 +14,7 @@ internal static partial class InputSettingsFunctions
             ModelConstants.GameBoy => [EmulationControllerVisualIds.NintendoGameBoy],
             ModelConstants.GameBoyColor => [EmulationControllerVisualIds.NintendoGameBoyColor],
             ModelConstants.GameBoyAdvance => [EmulationControllerVisualIds.NintendoGameBoyAdvance],
+            ModelConstants.Nintendo64 => [EmulationControllerVisualIds.Nintendo64Pad],
             _ => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro]
@@ -24,7 +25,8 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
-            ? null : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
+            ? null : model.Id == ModelConstants.Nintendo64
+            ? Nintendo64VisualCommandIds() : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
                 or ModelConstants.Snes or ModelConstants.GameBoy
                 or ModelConstants.GameBoyColor or ModelConstants.GameBoyAdvance
             ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes,
@@ -70,6 +72,28 @@ internal static partial class InputSettingsFunctions
         return commands;
     }
 
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>
+        Nintendo64VisualCommandIds() => new Dictionary<EmulationControllerVisualControl, string>
+        {
+            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+            [EmulationControllerVisualControl.StickUp] = InputSettingsFunctionsConstants.Nintendo64StickUp,
+            [EmulationControllerVisualControl.StickDown] = InputSettingsFunctionsConstants.Nintendo64StickDown,
+            [EmulationControllerVisualControl.StickLeft] = InputSettingsFunctionsConstants.Nintendo64StickLeft,
+            [EmulationControllerVisualControl.StickRight] = InputSettingsFunctionsConstants.Nintendo64StickRight,
+            [EmulationControllerVisualControl.PrimaryAction] = InputSettingsFunctionsConstants.Nintendo64A,
+            [EmulationControllerVisualControl.SecondaryAction] = InputSettingsFunctionsConstants.Nintendo64B,
+            [EmulationControllerVisualControl.CUp] = InputSettingsFunctionsConstants.Nintendo64CUp,
+            [EmulationControllerVisualControl.CDown] = InputSettingsFunctionsConstants.Nintendo64CDown,
+            [EmulationControllerVisualControl.CLeft] = InputSettingsFunctionsConstants.Nintendo64CLeft,
+            [EmulationControllerVisualControl.CRight] = InputSettingsFunctionsConstants.Nintendo64CRight,
+            [EmulationControllerVisualControl.LeftShoulder] = EmulationControllerCommandIds.L,
+            [EmulationControllerVisualControl.RightShoulder] = EmulationControllerCommandIds.R,
+            [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
+        };
+
     private static string ControllerResourceKey(ControllerType type, Model model) =>
         type == ControllerType.Joystick ? model.Id switch
         {
@@ -79,6 +103,7 @@ internal static partial class InputSettingsFunctions
             ModelConstants.GameBoy => InputSettingsFunctionsConstants.ResourceGameBoy,
             ModelConstants.GameBoyColor => InputSettingsFunctionsConstants.ResourceGameBoyColor,
             ModelConstants.GameBoyAdvance => InputSettingsFunctionsConstants.ResourceGameBoyAdvance,
+            ModelConstants.Nintendo64 => InputSettingsFunctionsConstants.ResourceNintendo64Pad,
             _ => InputSettingsFunctionsConstants.ResourceControllerJoystick
         } : type switch
     {

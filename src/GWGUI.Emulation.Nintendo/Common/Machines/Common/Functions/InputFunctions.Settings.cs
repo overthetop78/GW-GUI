@@ -86,6 +86,7 @@ internal static partial class InputSettingsFunctions
         : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
             ? NintendoControllerDefinitions(false)
         : model.Id == ModelConstants.Snes ? NintendoControllerDefinitions(true)
+        : model.Id == ModelConstants.Nintendo64 ? Nintendo64ControllerDefinitions()
         : model.Id is ModelConstants.GameBoy or ModelConstants.GameBoyColor
             or ModelConstants.GameBoyAdvance
             ? NintendoControllerDefinitions(false,
@@ -143,6 +144,46 @@ internal static partial class InputSettingsFunctions
         }
         return definitions;
     }
+
+    private static IReadOnlyList<InputBindingDefinition> Nintendo64ControllerDefinitions() =>
+    [
+        Definition(InputSettingsFunctionsConstants.Up,
+            InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Down,
+            InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Left,
+            InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Right,
+            InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64StickUp,
+            InputSettingsFunctionsConstants.Nintendo64StickUpLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64StickDown,
+            InputSettingsFunctionsConstants.Nintendo64StickDownLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64StickLeft,
+            InputSettingsFunctionsConstants.Nintendo64StickLeftLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64StickRight,
+            InputSettingsFunctionsConstants.Nintendo64StickRightLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64A,
+            InputSettingsFunctionsConstants.ButtonA, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64B,
+            InputSettingsFunctionsConstants.ButtonB, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64CUp,
+            InputSettingsFunctionsConstants.Nintendo64CUpLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64CDown,
+            InputSettingsFunctionsConstants.Nintendo64CDownLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64CLeft,
+            InputSettingsFunctionsConstants.Nintendo64CLeftLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Nintendo64CRight,
+            InputSettingsFunctionsConstants.Nintendo64CRightLabel, string.Empty),
+        Definition(EmulationControllerCommandIds.L,
+            InputSettingsFunctionsConstants.ButtonL, string.Empty),
+        Definition(EmulationControllerCommandIds.R,
+            InputSettingsFunctionsConstants.ButtonR, string.Empty),
+        Definition(EmulationControllerCommandIds.L2,
+            InputSettingsFunctionsConstants.Nintendo64ButtonZ, string.Empty),
+        Definition(EmulationControllerCommandIds.Start,
+            InputSettingsFunctionsConstants.ButtonStart, string.Empty)
+    ];
 
     private static InputBindingDefinition Definition(string id, string resourceKey,
         string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding,

@@ -535,6 +535,26 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.Ellipse, 18.0d, 68.0d, 4.5d, 8.0d),
                 new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 18.0d, 60.0d, 4.5d, 8.0d)
             ]),
+            [EmulationControllerVisualIds.Nintendo64Pad] = new("nintendo-64.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 22.7d, 27.8d, 12.8d, 17.4d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 22.7d, 27.8d, 12.8d, 17.4d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 22.7d, 27.8d, 12.8d, 17.4d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 22.7d, 27.8d, 12.8d, 17.4d),
+                new(EmulationControllerVisualControl.StickUp, ControllerVisualZoneShape.Ellipse, 48.8d, 47.7d, 5.0d, 6.7d),
+                new(EmulationControllerVisualControl.StickDown, ControllerVisualZoneShape.Ellipse, 48.8d, 56.0d, 5.0d, 6.7d),
+                new(EmulationControllerVisualControl.StickLeft, ControllerVisualZoneShape.Ellipse, 45.9d, 51.9d, 5.0d, 6.7d),
+                new(EmulationControllerVisualControl.StickRight, ControllerVisualZoneShape.Ellipse, 51.8d, 51.9d, 5.0d, 6.7d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 66.5d, 40.5d, 5.2d, 7.4d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 61.7d, 33.4d, 5.2d, 7.4d),
+                new(EmulationControllerVisualControl.CUp, ControllerVisualZoneShape.Ellipse, 72.7d, 22.1d, 5.1d, 6.9d),
+                new(EmulationControllerVisualControl.CDown, ControllerVisualZoneShape.Ellipse, 72.7d, 35.0d, 5.1d, 6.9d),
+                new(EmulationControllerVisualControl.CLeft, ControllerVisualZoneShape.Ellipse, 68.5d, 28.5d, 5.1d, 6.9d),
+                new(EmulationControllerVisualControl.CRight, ControllerVisualZoneShape.Ellipse, 77.0d, 28.5d, 5.1d, 6.9d),
+                new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.RoundedRectangle, 21.3d, 15.3d, 5.8d, 4.2d),
+                new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 73.2d, 15.3d, 7.0d, 4.2d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 48.7d, 32.3d, 5.2d, 7.4d)
+            ]),
             [EmulationControllerVisualIds.QuickShot] = new("quickshot.png",
             [
                 new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 22.6d, 0.0d, 54.0d, 52.6d),

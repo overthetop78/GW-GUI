@@ -35,6 +35,7 @@ public static class EmulationControllerVisualIds
     public const string SonyDualShock2 = "sony-dualshock-2";
     public const string SonyDualShock4 = "sony-dualshock-4";
     public const string SonyDualSense = "sony-dualsense";
+    public const string SonyPsp1000 = "sony-psp-1000";
     public const string NintendoNesPad = "nintendo-nes-pad";
     public const string NintendoNesDogbonePad = "nintendo-nes-dogbone-pad";
     public const string NintendoFamicomPad1 = "nintendo-famicom-pad-1";
@@ -43,6 +44,7 @@ public static class EmulationControllerVisualIds
     public const string NintendoGameBoy = "nintendo-game-boy";
     public const string NintendoGameBoyColor = "nintendo-game-boy-color";
     public const string NintendoGameBoyAdvance = "nintendo-game-boy-advance";
+    public const string Nintendo64Pad = "nintendo-64-pad";
     public const string QuickShot = "quickshot";
     public const string QuickShotDeluxe = "quickshot-deluxe";
     public const string QuickShotIiTurbo = "quickshot-ii-turbo";

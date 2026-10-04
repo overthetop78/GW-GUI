@@ -71,16 +71,54 @@ internal static class InputSnapshotFunctions
             uint buttons = 0;
             foreach (var mapping in binding.ButtonMappings)
             {
-                var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
+                var targetInKey = InputSnapshotDictionary.Nintendo64ButtonIndexes.TryGetValue(
+                    mapping.Key, out var keyTarget)
+                    || InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out keyTarget);
                 var target = targetInKey ? keyTarget
                     : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
                 var sourceName = targetInKey ? mapping.Value : mapping.Key;
                 if (target >= 0 && IsSourcePressed(sourceName, source, keys, physicalMouse))
                     buttons |= 1u << target;
             }
-            result[port] = source with { Buttons = buttons };
+            result[port] = source with
+            {
+                Buttons = buttons,
+                LeftX = MappedAxis(binding.ButtonMappings,
+                    InputSettingsFunctionsConstants.Nintendo64StickRight,
+                    InputSettingsFunctionsConstants.Nintendo64StickLeft,
+                    source.LeftX, source, keys, physicalMouse),
+                LeftY = MappedAxis(binding.ButtonMappings,
+                    InputSettingsFunctionsConstants.Nintendo64StickDown,
+                    InputSettingsFunctionsConstants.Nintendo64StickUp,
+                    source.LeftY, source, keys, physicalMouse),
+                RightX = MappedAxis(binding.ButtonMappings,
+                    InputSettingsFunctionsConstants.Nintendo64CLeft,
+                    InputSettingsFunctionsConstants.Nintendo64CRight,
+                    source.RightX, source, keys, physicalMouse),
+                RightY = MappedAxis(binding.ButtonMappings,
+                    InputSettingsFunctionsConstants.Nintendo64CDown,
+                    InputSettingsFunctionsConstants.Nintendo64CUp,
+                    source.RightY, source, keys, physicalMouse)
+            };
         }
         return result;
+    }
+
+    private static short MappedAxis(IReadOnlyDictionary<string, string> mappings,
+        string positiveCommand, string negativeCommand, short physicalValue,
+        EmulationControllerState controller, IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<string, bool> mouse)
+    {
+        var hasPositive = mappings.TryGetValue(positiveCommand, out var positiveSource)
+            && !string.IsNullOrWhiteSpace(positiveSource);
+        var hasNegative = mappings.TryGetValue(negativeCommand, out var negativeSource)
+            && !string.IsNullOrWhiteSpace(negativeSource);
+        if (!hasPositive && !hasNegative) return physicalValue;
+
+        var positive = hasPositive && IsSourcePressed(positiveSource!, controller, keys, mouse);
+        var negative = hasNegative && IsSourcePressed(negativeSource!, controller, keys, mouse);
+        return positive == negative ? default
+            : positive ? short.MaxValue : short.MinValue;
     }
 
     private static IReadOnlyDictionary<string, bool> PhysicalMouse(

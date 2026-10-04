@@ -23,6 +23,13 @@ internal static class InputSnapshotDictionary
             [InputSnapshotFunctionsConstants.R3] = 15
         };
 
+    internal static readonly IReadOnlyDictionary<string, int> Nintendo64ButtonIndexes =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSettingsFunctionsConstants.Nintendo64A] = ButtonIndexes[InputSnapshotFunctionsConstants.B],
+            [InputSettingsFunctionsConstants.Nintendo64B] = ButtonIndexes[InputSnapshotFunctionsConstants.Y]
+        };
+
     internal static readonly IReadOnlyDictionary<string, MouseAction> DefaultMouseMappings =
         new Dictionary<string, MouseAction>(StringComparer.OrdinalIgnoreCase)
         {

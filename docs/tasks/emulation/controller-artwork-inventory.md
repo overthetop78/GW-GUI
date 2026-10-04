@@ -220,6 +220,12 @@ Troisième lot : `nintendo-nes-dogbone.png` (1771 × 888, coin alpha 0) est un d
 
 Build Debug du 4 octobre 2026 après le NES-039 : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; l'exécutable `build/Debug/GW GUI/gwgui.exe` et les huit DLL de modules ont été vérifiés présents (9/9 artefacts). Les halos restent à essayer dans l'interface.
 
+Quatrième lot : la vue de face transparente `nintendo-64.png` existait déjà dans l'application ; sa provenance n'est pas documentée dans le dépôt. Le profil NUS-005 utilise quatre ports. Les lignes d'affectation séparent la croix, le stick, A/B, les quatre C, L/R, Z et Start. Le [mappage source de Mupen64Plus-Next](https://github.com/libretro/mupen64plus-libretro-nx/blob/develop/custom/mupen64plus-core/plugin/emulate_game_controller_via_libretro.c) montre qu'en mode standard A/B correspondent aux bits RetroPad B/Y, Z à L2, L/R aux boutons correspondants, le stick à l'axe gauche et les C à l'axe droit. Le cœur interprète l'axe droit horizontal en sens inversé pour les C : la conversion des affectations en tient compte. Les halos couvrent les commandes visibles ; Z, derrière la manette, est affectable mais n'a pas de zone sur cette image. Essai interactif restant à faire.
+
+Build Debug du 4 octobre 2026 après le profil Nintendo 64 : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de modules ont été vérifiés présents (9/9 artefacts). `git diff --check` ne signale aucune erreur. Les commandes et halos n'ont pas encore été essayés dans l'interface.
+
+Test ciblé Nintendo 64 du 4 octobre 2026 : `dotnet test tests\GWGUI.Tests\GWGUI.Tests.csproj --no-restore --filter FullyQualifiedName~Nintendo64ControllerTests --verbosity minimal` : 3 réussites, aucun échec. Il vérifie les quatre ports publiés, la présence des lignes et des identifiants de zones, les bits A/B/L/R/Z/Start/croix, les deux axes des boutons C et du stick, l'annulation de directions opposées et la conservation des axes physiques non réaffectés. Un avertissement NU1900 signale l'indisponibilité de l'index NuGet pour les données de vulnérabilité ; il n'a pas empêché la compilation ou les tests. Les halos rendus dans la fenêtre restent à contrôler visuellement.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Nintendo.Controller.GameWatchBall | Nintendo Game & Watch Ball (AC-01) | À créer / vérifier |
@@ -325,7 +331,7 @@ Build Debug du 4 octobre 2026 après le NES-039 : `scripts\local-building.cmd --
 | Emulation.Nintendo.Controller.VirtualBoyPad | Nintendo Virtual Boy Controller | À créer / vérifier |
 | Emulation.Nintendo.Controller.VirtualBoyBatteryBox | Nintendo Virtual Boy Battery Box | À créer / vérifier |
 | Emulation.Nintendo.Controller.VirtualBoyAcAdapterTap | Nintendo Virtual Boy AC Adapter Tap | À créer / vérifier |
-| Emulation.Nintendo.Controller.Nintendo64Pad | Nintendo 64 Controller (NUS-005) | À créer / vérifier |
+| Emulation.Nintendo.Controller.Nintendo64Pad | Nintendo 64 Controller (NUS-005) | `nintendo-64.png` existant : croix, stick, A/B, quatre boutons C, L/R et Start raccordés ; Z est derrière la manette et n'a donc pas de halo sur la vue de face. Provenance de l'image à documenter ; halos à essayer dans l'interface. |
 | Emulation.Nintendo.Controller.Nintendo64ControllerPak | Nintendo 64 Controller Pak (NUS-004) | À créer / vérifier |
 | Emulation.Nintendo.Controller.Nintendo64RumblePak | Nintendo 64 Rumble Pak (NUS-013) | À créer / vérifier |
 | Emulation.Nintendo.Controller.Nintendo64TransferPak | Nintendo 64 Transfer Pak (NUS-019) | À créer / vérifier |

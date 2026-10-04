@@ -15,6 +15,7 @@ public static class ModelCatalog
         new(ModelConstants.VirtualBoy, "Virtual Boy", ModelConstants.BackendVirtualBoy, 1024, false, 0, 0, false, false, true, true,
             CpuModels: [ModelConstants.CpuNecV810], VideoChip: ModelConstants.VideoNecV810, AudioChip: ModelConstants.AudioNecV810),
         new(ModelConstants.Nintendo64, "Nintendo 64", ModelConstants.BackendNintendo64, 4096, false, 0, 0, false, false, true, true,
+            ControllerPortCount: ModelConstants.Nintendo64ControllerPortCount,
             CpuModels: [ModelConstants.CpuNecVr4300], VideoChip: ModelConstants.VideoRealityCoprocessor, AudioChip: ModelConstants.AudioDsp),
         new(ModelConstants.GameBoy, "Game Boy", ModelConstants.BackendGameBoy, 8, false, 0, 0, false, false, true, true,
             ControllerPortCount: ModelConstants.IntegratedControllerPortCount,

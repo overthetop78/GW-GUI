@@ -95,6 +95,7 @@
   <data name="Emulation.Controller.Visual.Model.sony-playstation-controller"><value>PlayStation controller</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-1"><value>DUALSHOCK</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-2"><value>DUALSHOCK 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-psp-1000"><value>Sony PSP-1000</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-4"><value>DUALSHOCK 4</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualsense"><value>DualSense</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-nes-pad"><value>Nintendo NES Controller (NES-004)</value></data>
@@ -105,6 +106,7 @@
   <data name="Emulation.Controller.Visual.Model.nintendo-game-boy"><value>Nintendo Game Boy (DMG-01)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-game-boy-color"><value>Nintendo Game Boy Color (CGB-001)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-game-boy-advance"><value>Nintendo Game Boy Advance (AGB-001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-64-pad"><value>Nintendo 64 Controller (NUS-005)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
 </root>
