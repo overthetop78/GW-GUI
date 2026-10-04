@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Gniazdo kartridża</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Zamontować pierwsze cztery dyski w DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Dysk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Użyj karty</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Wybrany plik zostanie dołączony do tego wirtualnego urządzenia pamięci masowej.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Wybierz istniejący plik karty.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Plik karty ma nieprawidłowy rozmiar.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Wybierz format pliku obsługiwany przez to urządzenie.</value></data>
 </root>

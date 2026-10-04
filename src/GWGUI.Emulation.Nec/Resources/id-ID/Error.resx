@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Ekstensi isi ini tak didukung. BeetlePce. Ekstensi: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Ukuran saved- state tidak valid dikembalikan. BeetlePce. Ukuran: {0}</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Host menerima perintah tak dikenal. BeetlePce. Perintah: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Berkas memori backup memiliki ukuran tidak valid: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Memori cadangan melebihi ukuran yang didukung.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Berkas backup PC-FX memiliki ukuran tidak valid: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>Memori backup PC-FX memiliki ukuran yang tak terduga.</value></data>
 </root>

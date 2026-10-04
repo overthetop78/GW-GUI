@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Расширение контента не поддерживается. Эмулятор: BeetlePce. Расширение: {0}</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Недействительный размер сохраненного состояния был возвращен. Эмулятор: BeetlePce. Размер: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Хозяин получил неизвестную команду. Эмулятор: BeetlePce. Командир: {0}</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Файл резервной памяти имеет недействительный размер: {0}</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Резервная память превышает поддерживаемый размер.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Резервный файл PC-FX имеет недействительный размер: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>Резервная память PC-FX имеет неожиданный размер.</value></data>
 </root>

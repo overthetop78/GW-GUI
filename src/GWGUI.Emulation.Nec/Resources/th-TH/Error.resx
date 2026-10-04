@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>ส่วนขยายเนื้อหานี้ไม่รองรับ 2561 : BeetlePce. สืบค้นเมื่อ พ.ศ. ส่วนขยาย: {0}</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>ได้คืนขนาดรัฐที่บันทึกไว้ที่ไม่ถูกต้อง 2561 : BeetlePce. สืบค้นเมื่อ พ.ศ. ขนาด: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>เจ้าภาพได้รับคําสั่งไม่ทราบชื่อ 2561 : BeetlePce. สืบค้นเมื่อ พ.ศ. คําสั่ง: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>แฟ้มหน่วยความจําสํารองข้อมูลมีขนาดไม่ถูกต้อง: {0}</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>หน่วยความจําสํารองข้อมูลมากกว่าขนาดที่รองรับ</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>แฟ้มสํารองข้อมูล PC-FX มีขนาดไม่ถูกต้อง: {0}</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>หน่วยความจําสํารองข้อมูล PC-FX มีขนาดที่ไม่คาดคิด</value></data>
 </root>

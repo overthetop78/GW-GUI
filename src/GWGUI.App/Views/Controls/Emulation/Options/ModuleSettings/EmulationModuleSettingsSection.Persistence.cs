@@ -18,11 +18,15 @@ internal sealed partial class EmulationModuleSettingsSection
         if (_loading || _machines.SelectedItem is not EmulationMachineChoice selected) return;
         await ExecuteAsync(async () =>
         {
+            CaptureEditorValues();
+            var previous = _configuration;
+            var wasSaved = _saved.Any(item => item.Id == previous.Id);
+            if (!wasSaved) EmulationConfigurationDraftStore.Set(_module.Id, previous);
+            if (wasSaved) await PersistCapturedConfigurationAsync(previous, true);
             _configuration = _saved.FirstOrDefault(item => item.MachineId == selected.Definition.Id)
                 ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft)
                     ? draft : _module.CreateConfiguration(selected.Definition.Id));
             RebuildEditor();
-            if (_emulatorManagement is not null) await _emulatorManagement.RefreshAsync();
             NotifyEditingContextChanged();
         });
     }
@@ -39,20 +43,23 @@ internal sealed partial class EmulationModuleSettingsSection
     {
         _profiles.Get(_module.Id, _configuration.Id);
         CaptureEditorValues();
-        if (!_saved.Any(configuration => configuration.MachineId == _configuration.MachineId))
-        {
-            await EmulationConfigurationPersistenceFunctions.PersistAsync(
-                _module, _configuration, hasSavedConfiguration: false, profiles: _profiles);
-            return;
-        }
+        var configuration = _configuration;
+        await PersistCapturedConfigurationAsync(configuration,
+            _saved.Any(item => item.Id == configuration.Id));
+    }
+
+    private async Task PersistCapturedConfigurationAsync(IEmulationConfiguration configuration,
+        bool hasSavedConfiguration)
+    {
         await _saveInputGate.WaitAsync();
         try
         {
-            CaptureEditorValues();
-            var configuration = _configuration;
             if (await EmulationConfigurationPersistenceFunctions.PersistAsync(
-                    _module, configuration, hasSavedConfiguration: true, profiles: _profiles))
+                    _module, configuration, hasSavedConfiguration, profiles: _profiles))
+            {
+                _saved = _saved.Select(item => item.Id == configuration.Id ? configuration : item).ToArray();
                 ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(configuration));
+            }
         }
         finally { _saveInputGate.Release(); }
     }
@@ -102,8 +109,12 @@ internal sealed partial class EmulationModuleSettingsSection
     {
         EmulationSettingsLayout.DetachReusableElement(_machines);
         EmulationSettingsLayout.DetachReusableElement(_videoProcessing);
-        Content = null;
-        Content = BuildEditor();
+        var rebuilt = BuildEditor();
+        Content = rebuilt;
+        if (_emulatorManagement is not null)
+            _ = ExecuteAsync(_emulatorManagement.RefreshAsync);
+        if (_selectedTab == EmulationMachineTab.Rom && _firmwareManagement is not null)
+            _ = ExecuteAsync(_firmwareManagement.RefreshAsync);
     }
 
     private void SetConfiguration(IEmulationConfiguration configuration)

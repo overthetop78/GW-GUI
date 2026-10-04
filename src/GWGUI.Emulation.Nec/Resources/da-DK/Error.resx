@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>BeetlePce understøtter ikke indholdsudvidelsen {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>BeetlePce returnerede en ugyldig saved- state størrelse: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>BeetlePce-værten modtog den ukendte kommando {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Sikkerhedskopifilen har en ugyldig størrelse: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Sikkerhedskopihukommelsen overstiger den understøttede størrelse.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Den PC-FX backup fil har en ugyldig størrelse: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>PC-FX backup hukommelse har en uventet størrelse.</value></data>
 </root>

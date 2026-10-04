@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>카트리지 슬롯</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>DF0–DF3에서 첫 번째 4개의 디스크를 장착</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>의 특징 {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>사용 카드</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>선택된 파일은 이 가상 저장 장치에 붙어 있을 것입니다.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>기존 카드 파일을 선택하십시오.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>카드 파일에는 잘못된 크기가 있습니다.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>이 장치에 의해 지원되는 파일 형식을 선택하십시오.</value></data>
 </root>

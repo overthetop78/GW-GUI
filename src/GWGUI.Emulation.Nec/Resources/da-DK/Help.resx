@@ -6,8 +6,8 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
   <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Vælger RAM udvidelse udsat af BeetlePce. Maskinen skal genstartes, før den nye mængde anvendes.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>System ROM er indbygget i BeetlePce.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>BeetlePce leverer systemet ROM internt og afslører ikke en ROM-filvælger.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Ingen ekstern BIOS-fil er nødvendig for denne model.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Cylinderspil på denne maskine køre uden et eksternt system BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Intern beslutning fra BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Vælger en af BeetlePce 's interne beslutninger. Dette sætter ikke programmets vinduesstørrelse.</value></data>
   <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Type monitor emuleret af BeetlePce.</value></data>
@@ -30,4 +30,25 @@
   <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Lydudgang brugt af GW GUI.</value></data>
   <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Vælger Windows audio output, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
   <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identificerer den NEC-model, hvis hardwarekonfiguration redigeres.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Short"><value>Installeret hovedRAM på denne maskine.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Detailed"><value>Denne emulator giver ikke en primær RAM udvidelse mulighed for denne model.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Short"><value>System BIOS fil for CD spil.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Detailed"><value>Vælg en Super CD-ROM2 System Card 3 billede til PC Engine CD spil, eller en PC-FX BIOS billede til PC-FX. PC-FX kræver sin BIOS. Den valgte fil kopieres til emulatorens systemmappe, når maskinen starter.</value></data>
+  <data name="Emulation.Nec.Help.Video.Palette.Short"><value>Farve palet af PC Engine video output.</value></data>
+  <data name="Emulation.Nec.Help.Video.HorizontalWidth.Short"><value>Synlig vandret bredde for 352- pixel PC Engine tilstande.</value></data>
+  <data name="Emulation.Nec.Help.Video.DotClockWidth.Short"><value>Omgivet bredde af PC-FX høj dot ur mode.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdVolume.Short"><value>CD lydstyrke i PC Engine Duo spil.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SoundQuality.Short"><value>PC-FX lyd resampling kvalitet.</value></data>
+  <data name="Emulation.Nec.Help.Mouse.Sensitivity.Short"><value>Mouse bevægelsesfølsomhed for den valgte emulator.</value></data>
+  <data name="Emulation.Nec.Help.Video.ChromaInterpolation.Short"><value>Interpolerer PC-FX chroma til glattere farveovergange.</value></data>
+  <data name="Emulation.Nec.Help.Video.NoSpriteLimit.Short"><value>Fjerner den emulerede hardwarespritgrænse.</value></data>
+  <data name="Emulation.Nec.Help.Video.InitialScanline.Short"><value>Første scanlinje vist af emulatoren.</value></data>
+  <data name="Emulation.Nec.Help.Video.LastScanline.Short"><value>Sidste scanlinje vist af emulatoren.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkip.Short"><value>Kontrollerer om PC Engine emulator springer rammer.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkipThreshold.Short"><value>Lydbuffertærskel brugt af manuel frame skip.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmVolume.Short"><value>Volumen af CD ADPCM lyd afspilles af Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdPsgVolume.Short"><value>Volumen af CD PSG lyd afspilles af Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmLowPass.Short"><value>Filtrerer høje frekvenser fra CD ADPCM lyd.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SuppressClicks.Short"><value>Underpresser PC-FX lydklik forårsaget af kanal resets.</value></data>
+  <data name="Emulation.Nec.Help.Audio.BuggyCodec.Short"><value>Emulerer den defekte ADPCM kodning bruges af nogle PC-FX spil.</value></data>
 </root>

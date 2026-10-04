@@ -1,4 +1,6 @@
 using System.IO;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
 
 namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
@@ -30,14 +32,16 @@ internal static class ConfigurationValidationFunctions
             if (!Supports(model, media.Category))
                 throw new InvalidDataException($"{model.Id}:{media.Category}");
         }
+        if (configuration.EmulatorId == BeetlePcfxConstants.Id
+            && BeetlePcfxStorageFunctions.ExternalCardPath(configuration) is { } cardPath)
+            PcFxBackupMemoryFunctions.ValidateExternalCard(cardPath);
     }
 
     internal static bool Supports(Model model, MediaCategory category) => category switch
     {
-        MediaCategory.Floppy => model.MaximumFloppyDriveCount > 0,
-        MediaCategory.Cassette => model.SupportsCassetteDrive,
+        MediaCategory.CompactDisc => model.SupportsCdDrive,
         MediaCategory.Cartridge => model.SupportsCartridgeSlot,
-        MediaCategory.Snapshot => true,
+        MediaCategory.Snapshot => false,
         _ => false
     };
 }

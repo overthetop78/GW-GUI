@@ -10,7 +10,8 @@ public sealed record MachineConfiguration(
     InputConfiguration? Input = null,
     int SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion,
     IReadOnlyList<MediaConfiguration>? Media = null,
-    AudioConfiguration? Audio = null)
+    AudioConfiguration? Audio = null,
+    string? FirmwarePath = null)
     : GWGUI.Emulation.Interfaces.IEmulationConfiguration
 {
     public string ModuleId => MachineConfigurationConstants.ModuleId;

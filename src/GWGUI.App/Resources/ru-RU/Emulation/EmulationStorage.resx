@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Слот для картриджа</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>нажмите первые четыре диска DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Диск {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Используйте карту</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Выбранный файл будет прикреплен к этому виртуальному запоминающему устройству.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Выберите существующий карточный файл.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Файл карты имеет недействительный размер.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Выберите формат файла, поддерживаемый этим устройством.</value></data>
 </root>

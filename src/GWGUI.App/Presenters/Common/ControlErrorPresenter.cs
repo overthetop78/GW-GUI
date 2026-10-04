@@ -33,10 +33,18 @@ internal static class ControlErrorPresenter
             return;
         }
         var message = messageError.MessageData;
-        ErrorLog.Write(messageError,
-            $"{context} - {machineName} - {message.Category}/{message.MessageCode}");
-        if (message.Target == EmulationMessageTarget.Silent) return;
+        var logContext = $"{context} - {machineName} - {message.Category}/{message.MessageCode}";
         var description = MessageText(message);
+        if (message.Severity == EmulationMessageSeverity.Warning)
+        {
+            var names = (message.Context as EmulationRequiredMachineMediaMessageContext)?
+                .RequiredMediaNames;
+            ErrorLog.WriteWarning(names is { Count: > 0 }
+                ? $"{description}{Environment.NewLine}{string.Join(" / ", names)}"
+                : description, logContext);
+        }
+        else ErrorLog.Write(messageError, logContext);
+        if (message.Target == EmulationMessageTarget.Silent) return;
         if (message.Target != EmulationMessageTarget.Dialog) return;
         var details = MessageDetails(message, machineName);
         var media = MessageMedia(message);
@@ -98,7 +106,9 @@ internal static class ControlErrorPresenter
         [
             new CommonErrorDialogDetail(LocExtension.Get(ControlErrorPresenterConstants.MachineResource), machineName),
             new CommonErrorDialogDetail(LocExtension.Get(ControlErrorPresenterConstants.RequiredMediaResource),
-                string.Join(" / ", required.RequiredMedia.Select(MediaName)))
+                string.Join(" / ", message.Context is EmulationRequiredMachineMediaMessageContext
+                    { RequiredMediaNames: { Count: > 0 } names }
+                    ? names : required.RequiredMedia.Select(MediaName)))
         ]
         : null;
 

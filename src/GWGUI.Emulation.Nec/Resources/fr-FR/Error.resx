@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>BeetlePce ne prend pas en charge l'extension de contenu {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>BeetlePce a renvoyé une taille d'état sauvegardé invalide : {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Le processus hôte de BeetlePce a reçu la commande inconnue {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Le fichier mémoire de sauvegarde a une taille invalide : {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>La mémoire de sauvegarde dépasse la taille prise en charge.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Le fichier de sauvegarde PC-FX a une taille invalide : {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>La mémoire de sauvegarde PC-FX a une taille inattendue.</value></data>
 </root>

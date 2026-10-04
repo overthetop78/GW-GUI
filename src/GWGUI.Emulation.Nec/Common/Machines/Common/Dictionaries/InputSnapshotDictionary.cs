@@ -8,6 +8,8 @@ internal static class InputSnapshotDictionary
             [InputSnapshotFunctionsConstants.B] = 0,
             [InputSnapshotFunctionsConstants.Y] = 1,
             [InputSnapshotFunctionsConstants.Select] = 2,
+            [EmulationControllerCommandIds.Option] =
+                InputSnapshotFunctionsConstants.LibretroSelectButtonId,
             [InputSnapshotFunctionsConstants.Start] = 3,
             [InputSnapshotFunctionsConstants.Up] = 4,
             [InputSnapshotFunctionsConstants.Down] = 5,

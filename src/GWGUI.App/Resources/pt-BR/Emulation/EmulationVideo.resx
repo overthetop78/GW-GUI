@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>Chipset de vídeo: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>Padrão de vídeo</value></data>
   <data name="Emulation.Video.Resolution"><value>Resolução</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>Razão de proporções</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Proporção da imagem</value></data>
   <data name="Emulation.Video.Crop"><value>Fronteiras de colheita</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>Flicker fixador</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>Resolução baixa automática</value></data>

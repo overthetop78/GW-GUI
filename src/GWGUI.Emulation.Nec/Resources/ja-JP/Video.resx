@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>モニタータイプ</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>モニターの強度</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>カラー:</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>グリーンモノクロ</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>白いモノクロ</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>カラーパレット</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>コンポジット</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>水平幅</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>ドットクロック幅</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>クロマの補間</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>スプライトの限界を取除いて下さい</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>最初の可視スキャンライン</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>最終可視スキャンライン</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>フレームのスキップ</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>無効</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>自動自動制御</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>マニュアル</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>フレームスキップしきい値</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>画像の境界を表示する</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>表示画像の高さ</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>表示画像の幅</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>可視画像(240行)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>全263行</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>可視画像(348ピクセル)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>全392ピクセル</value></data>
+</root>

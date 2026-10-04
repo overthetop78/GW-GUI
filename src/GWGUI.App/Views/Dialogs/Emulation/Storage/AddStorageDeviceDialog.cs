@@ -40,6 +40,7 @@ public sealed class AddStorageDeviceDialog : Window
         EmulationMediaType.CompactDisc => LocExtension.Get(EmulationResourceKeys.CompactDiscDevice),
         EmulationMediaType.Cassette => LocExtension.Get(EmulationResourceKeys.CassetteDevice),
         EmulationMediaType.Cartridge => LocExtension.Get(EmulationResourceKeys.CartridgeDevice),
+        EmulationMediaType.MemoryCard => LocExtension.Get(EmulationResourceKeys.MemoryCardDevice),
         _ => type.ToString()
     };
 }

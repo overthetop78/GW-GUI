@@ -2,17 +2,27 @@ namespace GWGUI.Emulation.Nec.Common.Machines.Common.Dictionaries;
 
 using GWGUI.Emulation;
 using GWGUI.Emulation.Nec.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.TurboExpress.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.PcEngineLt.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.PcFx.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.LaserActive.Constants;
 
 internal static class ModelCatalog
 {
     internal static IReadOnlyList<Model> All { get; } =
     [
-        new("PcEngine", "PC Engine / TurboGrafx-16", "pce", 8, false, 0, 0, false, false, true, true),
-        new("CoreGrafx", "PC Engine CoreGrafx", "pce", 8, false, 0, 0, false, false, true, true),
-        new("SuperGrafx", "PC Engine SuperGrafx", "supergrafx", 8, false, 0, 0, false, false, true, true),
-        new("PcEngineDuo", "PC Engine Duo / TurboDuo", "pcecd", 32, false, 0, 0, false, false, true, true),
-        new("TurboExpress", "TurboExpress / PC Engine GT", "pce", 8, false, 0, 0, false, false, true, true),
-        new("PcFx", "PC-FX", "pcfx", 32, false, 0, 0, false, false, true, true)
+        PcEngineMachineConstants.Definition,
+        CoreGrafxMachineConstants.Definition,
+        SuperGrafxMachineConstants.Definition,
+        PcEngineDuoMachineConstants.Definition,
+        TurboExpressMachineConstants.Definition,
+        PcEngineLtMachineConstants.Definition,
+        PcFxMachineConstants.Definition,
+        LaserActiveMachineConstants.Definition
     ];
 
     internal static Model Get(string id) => All.FirstOrDefault(item =>

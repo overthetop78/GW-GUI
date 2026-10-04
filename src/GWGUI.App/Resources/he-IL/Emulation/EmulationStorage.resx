@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>חריץ מחסנית</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount the first four Disks in DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>דיסק דיסק {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>השתמש בכרטיס</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>הקובץ שנבחר יהיה מחובר למכשיר אחסון וירטואלי זה.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>בחר קובץ כרטיס קיים.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>לקובץ הכרטיס יש גודל לא חוקי.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>בחר פורמט קובץ נתמך על ידי מכשיר זה.</value></data>
 </root>

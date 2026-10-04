@@ -33,6 +33,7 @@
   <data name="Emulation.Storage.Cd.Writer"><value>CD writer</value></data>
   <data name="Emulation.Storage.Cd.WriterHint"><value>A blank disc can be created only when the selected machine and emulator support writing.</value></data>
   <data name="Emulation.Storage.Cd.Device"><value>CD-ROM drive</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Memory Card</value></data>
   <data name="Emulation.Storage.Device.Configure"><value>Configure</value></data>
   <data name="Emulation.Storage.Floppy.CreateBlank"><value>Create a blank floppy</value></data>
   <data name="Emulation.Storage.Disk.Image"><value>Disk image</value></data>

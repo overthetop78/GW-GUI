@@ -9,8 +9,10 @@ using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Views.Controls.Emulation.Options;
 using GWGUI.App.Views.Windows.EmulationModuleOptions;
 using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Amiga.Modules;
+using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Tests.Application.TestInfrastructure;
 using GWGUI.Tests.Interface.EmulationViews;
 
@@ -380,6 +382,75 @@ internal static class EmulationModuleSettingsNavigationScenarios
             {
                 Assert.False(window.IsVisible);
                 Assert.Null(window.ModuleContent.Content);
+            }
+            if (owner?.IsVisible == true) owner.Close();
+            await System.Windows.Threading.Dispatcher.Yield(
+                System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            Directory.Delete(root, true);
+        }
+    }
+
+    internal static async Task NecModuleWindowOpensAndClosesWithSavedMachine()
+    {
+        var root = Path.Combine(Path.GetTempPath(), $"gwgui-nec-settings-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(root);
+        using var httpClient = new HttpClient();
+        Window? owner = null;
+        EmulationModuleOptionsWindow? window = null;
+        try
+        {
+            var module = new NecEmulationModule(
+                Path.Combine(root, "Configurations"), root, httpClient, Path.Combine(root, "Core"));
+            await module.SaveConfigurationAsync(module.CreateConfiguration(module.Machines[0].Id));
+            var expectedConfiguration = Assert.Single(await module.LoadConfigurationsAsync());
+            owner = new Window { Width = 800, Height = 600 };
+            owner.Show();
+            window = new EmulationModuleOptionsWindow(module) { Owner = owner };
+            var rendered = false;
+            Exception? navigationError = null;
+            window.ContentRendered += async (_, _) =>
+            {
+                try
+                {
+                    await Task.Delay(500);
+                    var section = Assert.IsType<EmulationModuleSettingsSection>(window.ModuleContent.Content);
+                    rendered = section.IsVisible && section.Content is not null
+                        && section.CurrentConfiguration.Id == expectedConfiguration.Id;
+                    var machines = Assert.Single(MachineConfigurationScenarios.Controls<ListBox>(section),
+                        control => control.ItemsSource is EmulationMachineChoice[]);
+                    foreach (var tab in new[] { EmulationMachineTab.Rom, EmulationMachineTab.Storage,
+                                 EmulationMachineTab.Controllers, EmulationMachineTab.General })
+                    {
+                        var tabs = MachineConfigurationScenarios.Controls<TabControl>(section)
+                            .First(control => control.Items.Cast<TabItem>()
+                                .Any(item => item.Tag is EmulationMachineTab candidate && candidate == tab));
+                        tabs.SelectedItem = tabs.Items.Cast<TabItem>().First(item =>
+                            item.Tag is EmulationMachineTab candidate && candidate == tab);
+                        await Task.Delay(50);
+                    }
+                    machines.SelectedIndex = 1;
+                    await Task.Delay(100);
+                    machines.SelectedIndex = 0;
+                    await Task.Delay(250);
+                    Assert.True(section.Content is not null);
+                }
+                catch (Exception error) { navigationError = error; }
+                finally { window.Close(); }
+            };
+            window.ShowDialog();
+            await System.Windows.Threading.Dispatcher.Yield(
+                System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            Assert.True(rendered);
+            if (navigationError is not null) throw navigationError;
+            Assert.False(window.IsVisible);
+        }
+        finally
+        {
+            if (window?.IsVisible == true)
+            {
+                window.Close();
+                await System.Windows.Threading.Dispatcher.Yield(
+                    System.Windows.Threading.DispatcherPriority.ApplicationIdle);
             }
             if (owner?.IsVisible == true) owner.Close();
             await System.Windows.Threading.Dispatcher.Yield(

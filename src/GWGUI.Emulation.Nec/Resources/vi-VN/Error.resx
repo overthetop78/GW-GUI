@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Không hỗ trợ phần mở rộng nội dung này. Giả lập: BeetlePce. Mở rộng:{0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Một kích cỡ tiểu bang không hợp lệ đã được trả lại. Giả lập: BeetlePce. Cỡ:{0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Máy chủ nhận lệnh chưa rõ danh tính. Giả lập: BeetlePce. Chỉ huy: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Tập tin bộ nhớ sao lưu có kích cỡ không hợp lệ:{0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Bộ nhớ sao lưu vượt quá kích cỡ được hỗ trợ.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Tập tin sao lưu PC-FX có kích cỡ không hợp lệ:{0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>Bộ nhớ dự phòng PC-FX có kích cỡ bất ngờ.</value></data>
 </root>

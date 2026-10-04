@@ -6,8 +6,8 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Cantidad de RAM disponible para la máquina emulada.</value></data>
   <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Selecciona la expansión RAM expuesta por BeetlePce. La máquina debe reiniciar antes de utilizar la nueva cantidad.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>El sistema ROM está construido en BeetlePce.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>BeetlePce proporciona el sistema ROM internamente y no expone un selector de archivos ROM.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>No se necesita ningún archivo BIOS externo para este modelo.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Juegos de cartuchos en esta máquina funcionar sin un sistema externo BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Resolución interna emitida por BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Selecciona una de las resoluciones internas expuestas por BeetlePce. Esto no establece el tamaño de la ventana de aplicación.</value></data>
   <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Tipo de monitor emulado por BeetlePce.</value></data>
@@ -30,4 +30,25 @@
   <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Salida de audio utilizada por GW GUI.</value></data>
   <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Selecciona la salida de audio de Windows utilizada para reproducir el sonido de esta máquina emulada.</value></data>
   <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identifica el modelo NEC cuya configuración de hardware está siendo editada.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Short"><value>Instala la RAM principal de esta máquina.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Detailed"><value>Este emulador no proporciona una opción de expansión RAM principal para este modelo.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Short"><value>Sistema BIOS archivo para juegos de CD.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Detailed"><value>Elija un Super CD-ROM2 Tarjeta de sistema 3 imagen para PC Engine CD juegos, o un PC-FX BIOS imagen para PC-FX. PC-FX requiere su BIOS. El archivo seleccionado se copia en el directorio de sistema del emulador cuando la máquina comienza.</value></data>
+  <data name="Emulation.Nec.Help.Video.Palette.Short"><value>Paleta de color de la salida del vídeo PC Engine.</value></data>
+  <data name="Emulation.Nec.Help.Video.HorizontalWidth.Short"><value>Ancho horizontal visible para los modos 352-pixel PC Engine.</value></data>
+  <data name="Emulation.Nec.Help.Video.DotClockWidth.Short"><value>Ancho ajustado del modo de reloj de punto alto PC-FX.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdVolume.Short"><value>CD volumen de audio en los juegos de PC Engine Duo.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SoundQuality.Short"><value>Calidad de muestreo de sonido PC-FX.</value></data>
+  <data name="Emulation.Nec.Help.Mouse.Sensitivity.Short"><value>Sensibilidad de movimiento del ratón para el emulador seleccionado.</value></data>
+  <data name="Emulation.Nec.Help.Video.ChromaInterpolation.Short"><value>Interpola PC-FX croma para transiciones de color más suaves.</value></data>
+  <data name="Emulation.Nec.Help.Video.NoSpriteLimit.Short"><value>Elimina el límite de sprite del hardware emulado.</value></data>
+  <data name="Emulation.Nec.Help.Video.InitialScanline.Short"><value>Primera escanografía mostrada por el emulador.</value></data>
+  <data name="Emulation.Nec.Help.Video.LastScanline.Short"><value>Última escanografía mostrada por el emulador.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkip.Short"><value>Controla si el emulador PC Engine salta marcos.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkipThreshold.Short"><value>umbral de amortiguación de audio utilizado por patrón manual del marco.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmVolume.Short"><value>Volumen de audio CD ADPCM interpretado por Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdPsgVolume.Short"><value>Volumen de CD PSG audio tocado por Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmLowPass.Short"><value>Filtra altas frecuencias del audio CD ADPCM.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SuppressClicks.Short"><value>Suprime los clics de audio PC-FX causados por reiniciamientos del canal.</value></data>
+  <data name="Emulation.Nec.Help.Audio.BuggyCodec.Short"><value>Emula la codificación ADPCM defectuosa utilizada por algunos juegos PC-FX.</value></data>
 </root>

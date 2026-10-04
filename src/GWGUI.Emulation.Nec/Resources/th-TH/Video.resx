@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>ชนิดของจอภาพ</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>ความเข้มสีของจอภาพ</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>สี</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>สีเดียวสีเขียว</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>พิมพ์สีเดียวสีขาว</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>จานสี</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>คอมโพไซต์</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>ความกว้างทางแนวนอน</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>ความกว้างนาฬิกา</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>การเพิ่มข้อมูลโครมา</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>ลบค่าจํากัดของ spite</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>สแกนไลน์แรกที่มองเห็นได้</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>สแกนไลน์สุดท้ายที่มองเห็นได้</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>ข้ามเฟรมภาพ</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>ปิดการใช้งาน</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>อัตโนมัติ</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>ป้อนกระดาษเอง</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>การข้ามเฟรมภาพ</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>แสดงกรอบของรูปภาพ</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>แสดงความสูงของภาพ</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>แสดงความกว้างภาพ</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>ภาพที่มองเห็น (240 บรรทัด)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>ทั้ง 263 บรรทัด</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>ภาพที่เห็นได้ (348 พิกเซล)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>ทั้งหมด 392 พิกเซล</value></data>
+</root>

@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Це розширення вмісту не підтримується. Емулятор: BeetlePce. Подовжувач: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Повернуто недійсний збережений розмір держави. Емулятор: BeetlePce. Розмір: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Ведучий отримав невідому команду. Емулятор: BeetlePce. Команди: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Файл резервної пам'яті має недійсний розмір: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Пам'ять резервної копії перевищує підтримуваний розмір.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Файл резервного копіювання PC-FX має недійсний розмір: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>Оперативна пам'ять PC-FX має несподіваний розмір.</value></data>
 </root>

@@ -1,8 +1,12 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using GWGUI.Emulation.Nec.Emulators.BeetlePce.Functions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePce.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
+using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
+using GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePce.Services;
 
@@ -18,6 +22,9 @@ internal sealed class ExternalCore : IEmulatorCore
     private ExternalCoreApi.GetSerializedSize? _getSerializedSize;
     private ExternalCoreApi.Serialize? _serialize;
     private ExternalCoreApi.Serialize? _unserialize;
+    private ExternalCoreApi.GetMemoryData? _getMemoryData;
+    private ExternalCoreApi.GetMemorySize? _getMemorySize;
+    private bool _saveRamReady;
     private MachineConfiguration? _configuration;
     private string? _sessionDirectory;
     private string? _saveDirectory;
@@ -53,6 +60,16 @@ internal sealed class ExternalCore : IEmulatorCore
         string? saveDirectory = null)
     {
         _configuration = configuration;
+        var (expectedLibraryName, isolatedLibraryName) = configuration.EmulatorId switch
+        {
+            BeetlePceConstants.Id => (BeetlePceConstants.LibraryName,
+                ExternalCoreConstants.LibraryName),
+            BeetleSgxConstants.Id => (BeetleSgxConstants.LibraryName,
+                BeetleSgxConstants.InstalledLibraryName),
+            GeargrafxConstants.Id => (GeargrafxConstants.LibraryName,
+                GeargrafxConstants.InstalledLibraryName),
+            _ => throw new ArgumentOutOfRangeException(nameof(configuration.EmulatorId))
+        };
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
         var media = ResolveConfiguredMedia(configuration);
@@ -68,12 +85,17 @@ internal sealed class ExternalCore : IEmulatorCore
         var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
         saveDirectory = Path.GetFullPath(saveDirectory
             ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+        _saveDirectory = saveDirectory;
         Directory.CreateDirectory(systemDirectory);
+        if (configuration.EmulatorId != GeargrafxConstants.Id
+            && !string.IsNullOrWhiteSpace(configuration.FirmwarePath))
+            File.Copy(configuration.FirmwarePath,
+                Path.Combine(systemDirectory, FirmwareCatalogConstants.PcEngineSystemCardFileName), true);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);
         Directory.CreateDirectory(isolatedCoreDirectory);
-        var isolatedCorePath = Path.Combine(isolatedCoreDirectory, ExternalCoreConstants.LibraryName);
+        var isolatedCorePath = Path.Combine(isolatedCoreDirectory, isolatedLibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
         _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
@@ -88,7 +110,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new NotSupportedException(BeetlePceExceptions.UnsupportedApiVersion(apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
-            if (!string.Equals(libraryName, BeetlePceConstants.LibraryName,
+            if (!string.Equals(libraryName, expectedLibraryName,
                     StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException(BeetlePceExceptions.LibraryIdentityMismatch(libraryName));
             if (!info.NeedFullPath)
@@ -115,23 +137,32 @@ internal sealed class ExternalCore : IEmulatorCore
             _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>(ExternalCoreConstants.RetroSerializeSize);
             _serialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroSerialize);
             _unserialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroUnserialize);
+            _getMemoryData = Export<ExternalCoreApi.GetMemoryData>(ExternalCoreConstants.RetroGetMemoryData);
+            _getMemorySize = Export<ExternalCoreApi.GetMemorySize>(ExternalCoreConstants.RetroGetMemorySize);
             Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();
             _initialized = true;
             _host.ValidateConfiguredOptions();
             var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
                 ExternalCoreConstants.RetroSetControllerPortDevice);
             for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, ExternalCoreConstants.JoypadDevice);
+                setController((uint)port, configuration.Input?.ControllerBindings?
+                    .Any(binding => binding.Port == port && ControllerCatalog.IsMouse(binding.Type)) == true
+                    ? ExternalHostCallbacksConstants.MouseDevice : ExternalCoreConstants.JoypadDevice);
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
-                    throw new InvalidOperationException(BeetlePceExceptions.StartWithoutMediaUnsupported());
+                    throw new GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException(
+                        BeetlePceExceptions.StartWithoutMediaUnsupported());
                 _gameLoaded = loadGame(0);
             }
             else _gameLoaded = LoadGame(loadGame, contentPath);
             if (!_gameLoaded) throw new InvalidOperationException(BeetlePceExceptions.ContentRefused());
+            if (configuration.EmulatorId == GeargrafxConstants.Id)
+                GeargrafxSaveRamFunctions.Load(_getMemoryData, _getMemorySize, saveDirectory);
+            else CoreSaveRamFunctions.Load(_getMemoryData, _getMemorySize, saveDirectory);
+            _saveRamReady = true;
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
         }
@@ -179,15 +210,34 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void InsertMedia(string path) => (_host
-        ?? throw new InvalidOperationException(BeetlePceExceptions.CoreNotInitialized()))
-        .DiskControl.Insert(path);
-    public void EjectMedia() => (_host
-        ?? throw new InvalidOperationException(BeetlePceExceptions.CoreNotInitialized()))
-        .DiskControl.Eject();
-    public void SelectDisk(int index) => (_host
-        ?? throw new InvalidOperationException(BeetlePceExceptions.CoreNotInitialized()))
-        .DiskControl.Select(index);
+    public void InsertMedia(string path)
+    {
+        if (_configuration?.EmulatorId == GeargrafxConstants.Id)
+            throw new NotSupportedException(BeetlePceExceptions.MediaRefused());
+        (_host ?? throw new InvalidOperationException(BeetlePceExceptions.CoreNotInitialized()))
+            .DiskControl.Insert(path);
+    }
+    public void EjectMedia()
+    {
+        EnsureDiskControlSupported();
+        (_host ?? throw new InvalidOperationException(BeetlePceExceptions.CoreNotInitialized()))
+            .DiskControl.Eject();
+    }
+    public void SelectDisk(int index)
+    {
+        EnsureDiskControlSupported();
+        (_host ?? throw new InvalidOperationException(BeetlePceExceptions.CoreNotInitialized()))
+            .DiskControl.Select(index);
+    }
+
+    private void EnsureDiskControlSupported()
+    {
+        if (_configuration?.EmulatorId != GeargrafxConstants.Id) return;
+        var current = ResolveConfiguredMedia(_configuration).FirstOrDefault();
+        if (current is null || !Path.GetExtension(current.Path).Equals(
+                GeargrafxConstants.MmiExtension, StringComparison.OrdinalIgnoreCase))
+            throw new NotSupportedException(BeetlePceExceptions.DiskControlUnavailable());
+    }
 
     public byte[] SaveState()
     {
@@ -227,8 +277,22 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Stop()
     {
-        if (_gameLoaded) _unloadGame?.Invoke();
-        _gameLoaded = false;
+        if (!_gameLoaded) return;
+        try
+        {
+            if (_saveRamReady && _saveDirectory is { } directory
+                && _getMemoryData is not null && _getMemorySize is not null)
+            {
+                if (_configuration?.EmulatorId == GeargrafxConstants.Id)
+                    GeargrafxSaveRamFunctions.Save(_getMemoryData, _getMemorySize, directory);
+                else CoreSaveRamFunctions.Save(_getMemoryData, _getMemorySize, directory);
+            }
+        }
+        finally
+        {
+            try { _unloadGame?.Invoke(); }
+            finally { _gameLoaded = false; _saveRamReady = false; }
+        }
     }
 
     private void ValidateExtension(string? path)
@@ -282,6 +346,8 @@ internal sealed class ExternalCore : IEmulatorCore
                 _getSerializedSize = null;
                 _serialize = null;
                 _unserialize = null;
+                _getMemoryData = null;
+                _getMemorySize = null;
                 try { _host?.Dispose(); }
                 finally
                 {

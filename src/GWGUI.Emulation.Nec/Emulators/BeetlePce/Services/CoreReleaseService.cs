@@ -16,18 +16,27 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePce.Services;
 public sealed class CoreReleaseService
 {
     public static readonly Uri LatestOfficialUri = new(
-        CoreReleaseConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestBeetlePceLibretroDllZip);
+        CoreReleaseConstants.OfficialArchiveUrl);
 
     private readonly HttpClient _httpClient;
     private readonly string _directory;
+    private readonly CoreReleaseSettings _settings;
 
     public CoreReleaseService(HttpClient httpClient, string directory)
+        : this(httpClient, directory, new CoreReleaseSettings(LatestOfficialUri,
+            CoreReleaseConstants.ArchiveLibraryName,
+            CoreReleaseConstants.OptionLibretroDll,
+            BeetlePceConstants.DisplayName)) { }
+
+    internal CoreReleaseService(HttpClient httpClient, string directory,
+        CoreReleaseSettings settings)
     {
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
+        _settings = settings;
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, CoreReleaseConstants.OptionLibretroDll);
+    public string RequiredLibraryPath => Path.Combine(_directory, _settings.InstalledLibraryName);
 
     public string? GetInstalledVersion()
     {
@@ -48,16 +57,16 @@ public sealed class CoreReleaseService
     public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(
         CancellationToken cancellationToken = default)
     {
-        using var request = new HttpRequestMessage(HttpMethod.Head, LatestOfficialUri);
+        using var request = new HttpRequestMessage(HttpMethod.Head, _settings.OfficialArchiveUri);
         using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
             cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
         return [new CoreRelease($"official-{suffix}",
-            published is null ? CoreReleaseConstants.BeetlePceLatest
-                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · Beetle PCE FAST",
-            LatestOfficialUri, published, true, true)];
+            published is null ? $"{_settings.DisplayName} · {CoreReleaseConstants.Latest}"
+                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {_settings.DisplayName}",
+            _settings.OfficialArchiveUri, published, true, true)];
     }
 
     public bool IsInstalled(CoreRelease release)
@@ -104,7 +113,7 @@ public sealed class CoreReleaseService
             {
                 using var archive = ZipFile.OpenRead(download);
                 var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
+                    Path.GetFileName(item.FullName).Equals(_settings.ArchiveLibraryName, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidDataException(BeetlePceExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }

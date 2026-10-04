@@ -1,15 +1,23 @@
+using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.PcFx.Constants;
 using System.IO;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 
 namespace GWGUI.Emulation.Nec.Modules;
 
 public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorManager,
-    IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
+    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
+    IEmulationModuleLocalization
 {
     private static readonly EmulationModuleLocalization Localization = new(
         typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
+    private readonly string _firmwareDirectory;
     private readonly Engine _engine = new();
     private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
         new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
@@ -20,12 +28,14 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
+        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
+            EmulationPathConstants.MachinesDirectoryName, FirmwareConstants.DirectoryName,
+            EmulationPathConstants.FirmwareDirectoryName);
     }
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName =>
-        $"{EmulationModuleConstants.AssetResourcePrefix}.nec.png";
+    public string BrandImageResourceName => EmulationModuleConstants.BrandAssetResourceName;
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
@@ -46,8 +56,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         {
             EmulationMachineTab.Keyboard => model.HasKeyboard,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
-            EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
-                || model.SupportsCassetteDrive || model.SupportsCartridgeSlot,
+            EmulationMachineTab.Storage => model.SupportsCdDrive || model.SupportsCartridgeSlot,
             _ => item.Value
         });
         return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
@@ -59,8 +68,11 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Controllers: Enumerable.Repeat(ControllerType.Joystick,
-                model.ControllerPortCount).ToArray(),
+            Controllers: Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex,
+                model.ControllerPortCount)
+                .Select(index => index == InputSettingsFunctionsConstants.FirstPortIndex
+                    ? ControllerCatalog.Default(model)
+                    : ControllerType.None).ToArray(),
             Input: new InputConfiguration(), Media: []);
     }
 
@@ -88,7 +100,9 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         {
             if (item.Key is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency || item.Key.StartsWith(
+                or SettingsConstants.AudioLatency or SettingsConstants.FirmwarePath
+                or SettingsConstants.Ram or SettingsConstants.FirmwareIntegrated
+                || item.Key.StartsWith(
                     SettingsConstants.Model + ".", StringComparison.Ordinal)) continue;
             if (item.Value is null) options.Remove(item.Key);
             else options[item.Key] = item.Value;
@@ -97,6 +111,8 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         return nintendo with
         {
             Options = options,
+            FirmwarePath = values.TryGetValue(SettingsConstants.FirmwarePath, out var firmware)
+                ? string.IsNullOrWhiteSpace(firmware) ? null : firmware : nintendo.FirmwarePath,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
                 ? enabled == SettingsDescriptionFunctionsConstants.Enabled : nintendo.AudioEnabled,
             Audio = audio with
@@ -137,23 +153,35 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)),
         settings);
 
-    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration nintendo
-        ? new ValueTask(_store.SaveAsync(nintendo, cancellationToken))
-        : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+    public async ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
+        CancellationToken cancellationToken = default)
+    {
+        if (configuration is not MachineConfiguration machine)
+            throw new ArgumentException(nameof(configuration));
+        await SaveMachineAsync(machine, cancellationToken).ConfigureAwait(false);
+    }
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
         CancellationToken cancellationToken = default) =>
         (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false))
         .Cast<IEmulationConfiguration>().ToArray();
 
-    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
+    public async ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
     {
-        if (configuration is not MachineConfiguration nintendo)
-            return ValueTask.FromException(new ArgumentException(nameof(configuration)));
-        ConfigurationValidationFunctions.ValidateForSave(nintendo);
-        return new ValueTask(_store.SaveAsync(nintendo, cancellationToken));
+        if (configuration is not MachineConfiguration machine)
+            throw new ArgumentException(nameof(configuration));
+        ConfigurationValidationFunctions.ValidateForSave(machine);
+        await SaveMachineAsync(machine, cancellationToken).ConfigureAwait(false);
+    }
+
+    private async Task SaveMachineAsync(MachineConfiguration machine,
+        CancellationToken cancellationToken)
+    {
+        await _store.SaveAsync(machine, cancellationToken).ConfigureAwait(false);
+        if (machine.Model == PcFxMachineConstants.Id
+            && machine.EmulatorId == BeetlePcfxConstants.Id)
+            PcFxBackupMemoryFunctions.EnsureInternalFile(_store.MemoryDirectory(machine.Id));
     }
 
     public ValueTask DeleteConfigurationAsync(Guid configurationId,
@@ -162,6 +190,50 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         cancellationToken.ThrowIfCancellationRequested();
         _store.Delete(configurationId);
         return ValueTask.CompletedTask;
+    }
+
+    public string GetFirmwareDirectory(string machineId)
+    {
+        _ = ModelCatalog.Get(machineId);
+        return _firmwareDirectory;
+    }
+
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId,
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var current = RequireConfiguration(configuration);
+        if (!string.Equals(current.Model, machineId, StringComparison.OrdinalIgnoreCase))
+            throw new ArgumentException(nameof(configuration));
+        if (!ModelCatalog.Get(machineId).SupportsCdDrive)
+            return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+        var candidates = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
+            .Select(firmware =>
+            {
+                var compatible = firmware.CompatibleModels.Contains(machineId,
+                    StringComparer.OrdinalIgnoreCase);
+                return new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
+                    firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
+                    compatible ? firmware.IsOfficial
+                        ? EmulationFirmwareCompatibility.Official
+                        : EmulationFirmwareCompatibility.Compatible
+                        : EmulationFirmwareCompatibility.Incompatible,
+                    compatible ? SettingsConstants.FirmwarePath : null);
+            }).ToArray();
+        cancellationToken.ThrowIfCancellationRequested();
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
+    }
+
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration,
+        EmulationFirmwareCandidate firmware)
+    {
+        var current = RequireConfiguration(configuration);
+        if (firmware.DestinationFieldId != SettingsConstants.FirmwarePath)
+            throw new InvalidOperationException(nameof(firmware));
+        var inspected = FirmwareCatalog.Inspect(firmware.Path);
+        if (!inspected.CompatibleModels.Contains(current.Model, StringComparer.OrdinalIgnoreCase))
+            throw new InvalidOperationException(nameof(firmware));
+        return current with { FirmwarePath = inspected.Path };
     }
 
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
@@ -252,9 +324,11 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
-            value => Path.Combine(services.StatesDirectory,
-                value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
-                CoreDirectoryConstants.SavesDirectoryName));
+            value => value.Model == PcFxMachineConstants.Id ? _store.MemoryDirectory(value.Id)
+                : Path.Combine(services.StatesDirectory,
+                    value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
+                    CoreDirectoryConstants.SavesDirectoryName),
+            GetFirmwareDirectory(nintendo.Model));
         var storage = StorageSettingsFunctions.Describe(nintendo);
         var mounted = adapter.ResolveConfiguredMedia(nintendo);
         return new EmulationMachineRuntime(nintendo,
@@ -270,9 +344,8 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         Media = media.Select((item, index) => new MediaConfiguration(item.Path,
             item.Type switch
             {
-                EmulationMediaType.Floppy => MediaCategory.Floppy,
-                EmulationMediaType.Cassette => MediaCategory.Cassette,
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
             MountOrder: index)).ToArray()

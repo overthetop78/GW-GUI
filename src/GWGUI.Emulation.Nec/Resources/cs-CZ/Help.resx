@@ -6,8 +6,8 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Množství RAM dostupné pro emulovaný stroj.</value></data>
   <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Vybere rozšíření RAM vystavené BeetlePce. Před použitím nového množství se stroj musí restartovat.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Systém ROM je zabudován do BeetlePce.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>BeetlePce poskytuje systém ROM interně a neodhaluje volič souboru ROM.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Pro tento model není nutný externí BIOS soubor.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Cartridge hry na tomto stroji běží bez vnějšího systému BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Vnitřní usnesení vydávané BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Vybere jedno z vnitřních usnesení, které BeetlePce vystavil. Toto nenastavuje velikost okna aplikace.</value></data>
   <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Typ monitoru emulovaný BeetlePce.</value></data>
@@ -30,4 +30,25 @@
   <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Audio výstup použitý GW GUI.</value></data>
   <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Vybere zvukový výstup Windows použitý pro přehrávání zvuku z tohoto emulovaného stroje.</value></data>
   <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Identifikuje model NEC, jehož hardwarová konfigurace je editována.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Short"><value>Nainstaloval jsem hlavní RAM tohoto stroje.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Detailed"><value>Tento emulátor neposkytuje pro tento model hlavní možnost rozšíření RAM.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Short"><value>Systémový BIOS soubor pro CD hry.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Detailed"><value>Vyberte Super CD-ROM2 Obrázek systémové karty 3 pro PC Engine CD hry, nebo PC-FX BIOS Obrázek pro PC-FX. PC-FX vyžaduje BIOS. Při spuštění stroje je vybraný soubor zkopírován do systémového adresáře emulátoru.</value></data>
+  <data name="Emulation.Nec.Help.Video.Palette.Short"><value>Barevná paleta video výstupu PC Engine.</value></data>
+  <data name="Emulation.Nec.Help.Video.HorizontalWidth.Short"><value>Viditelná horizontální šířka pro 352-pixel PC Engine režimů.</value></data>
+  <data name="Emulation.Nec.Help.Video.DotClockWidth.Short"><value>Zaokrouhlená šířka režimu vysokotečných hodin PC-FX.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdVolume.Short"><value>CD audio objem v PC Engine Duo hry.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SoundQuality.Short"><value>PC-FX kvalita zvuku.</value></data>
+  <data name="Emulation.Nec.Help.Mouse.Sensitivity.Short"><value>Citlivost pohybu myši pro vybraný emulátor.</value></data>
+  <data name="Emulation.Nec.Help.Video.ChromaInterpolation.Short"><value>Interpoluje PC-FX chroma pro hladší barevné přechody.</value></data>
+  <data name="Emulation.Nec.Help.Video.NoSpriteLimit.Short"><value>Odstraní emulovaný hardwarový sprite limit.</value></data>
+  <data name="Emulation.Nec.Help.Video.InitialScanline.Short"><value>První scanline zobrazené emulátorem.</value></data>
+  <data name="Emulation.Nec.Help.Video.LastScanline.Short"><value>Poslední scanline zobrazené emulátorem.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkip.Short"><value>Kontroluje, zda emulátor PC Engine přeskakuje rámy.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkipThreshold.Short"><value>Práh zvukového bufferu použitý manuálním přeskokem rámu.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmVolume.Short"><value>Objem CD ADPCM zvuku hraného Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdPsgVolume.Short"><value>Objem CD PSG zvuku hraného Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmLowPass.Short"><value>Filtruje vysoké frekvence z CD ADPCM audio.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SuppressClicks.Short"><value>Potlačuje PC-FX audio kliknutí způsobené resety kanálů.</value></data>
+  <data name="Emulation.Nec.Help.Audio.BuggyCodec.Short"><value>Emuluje vadné ADPCM kódování používané některé PC-FX hry.</value></data>
 </root>

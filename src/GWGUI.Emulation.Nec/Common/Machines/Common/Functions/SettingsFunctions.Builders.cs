@@ -2,17 +2,17 @@ namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static partial class SettingsDescriptionFunctions
 {
-    private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab,
+    internal static EmulationSettingsBlock Block(string id, EmulationMachineTab tab,
         string title, string icon, int columns, params EmulationSettingsField[] fields) =>
         new(id, tab, title, fields, icon, columns);
 
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab,
+    internal static EmulationSettingsField Information(string id, EmulationMachineTab tab,
         string block, string label, string value) =>
         new(id, tab, block, label, EmulationSettingsEditor.Information, value,
             ExplanationResourceKey: ShortHelp(id),
             DetailedExplanationResourceKey: DetailedHelp(id));
 
-    private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab,
+    internal static EmulationSettingsField Toggle(string id, EmulationMachineTab tab,
         string block, string label, bool value, bool refreshSettingsOnChange = false) =>
         new(id, tab, block, label, EmulationSettingsEditor.Toggle,
             value ? SettingsDescriptionFunctionsConstants.Enabled
@@ -27,13 +27,22 @@ internal static partial class SettingsDescriptionFunctions
             ExplanationResourceKey: ShortHelp(id),
             DetailedExplanationResourceKey: DetailedHelp(id));
 
-    private static EmulationSettingsField Select(string id, EmulationMachineTab tab,
+    internal static EmulationSettingsField Select(string id, EmulationMachineTab tab,
         string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices,
-        bool requiresRestart = false) => new(id, tab, block, label,
+        bool isEnabled = true) => new(id, tab, block, label,
             EmulationSettingsEditor.Selection, value, choices.ToArray(),
+            IsEnabled: isEnabled,
             ExplanationResourceKey: ShortHelp(id),
-            DetailedExplanationResourceKey: DetailedHelp(id),
-            RequiresRestart: requiresRestart);
+            DetailedExplanationResourceKey: DetailedHelp(id));
+
+    private static EmulationSettingsField FirmwarePath(string? value) => new(
+        SettingsConstants.FirmwarePath, EmulationMachineTab.Rom,
+        SettingsDescriptionFunctionsConstants.Firmware,
+        SettingsDescriptionFunctionsConstants.ResourceFirmwareSystemRom,
+        EmulationSettingsEditor.Path, value,
+        ExplanationResourceKey: ShortHelp(SettingsConstants.FirmwarePath),
+        DetailedExplanationResourceKey: DetailedHelp(SettingsConstants.FirmwarePath),
+        DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware);
 
     private static EmulationSettingsField AudioOutput(string? value) => new(
         SettingsConstants.AudioOutput, EmulationMachineTab.Audio,

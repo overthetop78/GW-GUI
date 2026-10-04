@@ -2,34 +2,20 @@ namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =>
-        type == ControllerType.Joystick
-            ? [EmulationControllerVisualIds.QuickShot,
-                EmulationControllerVisualIds.CompetitionPro5000,
-                EmulationControllerVisualIds.ZipstikSuperPro]
-            : null;
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => null;
 
-    private static string? DefaultVisualId(ControllerType type) =>
-        type == ControllerType.Joystick ? EmulationControllerVisualIds.QuickShot : null;
+    private static string? DefaultVisualId(ControllerType type) => null;
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type) => type == ControllerType.Joystick
-        ? new Dictionary<EmulationControllerVisualControl, string>
-        {
-            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
-            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
-            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
-            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
-            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
-            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A
-        } : null;
+        VisualCommandIds(ControllerType type) => null;
 
     private static string ControllerResourceKey(ControllerType type) => type switch
     {
         ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
+        ControllerType.Mouse => InputSettingsFunctionsConstants.ResourceControllerMouse,
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
-        _ => $"Emulation.Controller.{type}"
+        _ => InputSettingsFunctionsConstants.ResourceControllerPrefix + type
     };
 
     private static IReadOnlyDictionary<string, string> ToStrings(

@@ -14,4 +14,11 @@ public sealed record EmulationMediaDevice(
     IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskImageFormat>? HardDiskFormats = null,
     EmulationStorageConfigurationKind ConfigurationKind = EmulationStorageConfigurationKind.None,
     string? ConfigurationOptionResourceKey = null,
-    string? ConfigurationOptionDetailedResourceKey = null);
+    string? ConfigurationOptionDetailedResourceKey = null,
+    IReadOnlyList<string>? CompactDiscSpeeds = null,
+    string? CompactDiscCacheResourceKey = null,
+    string? CompactDiscIgnoreErrorsResourceKey = null,
+    string? ModelResourceKey = null,
+    int? FixedImageSizeBytes = null,
+    string? DefaultImageFileName = null,
+    EmulationStorageDialogPresentation? DialogPresentation = null);

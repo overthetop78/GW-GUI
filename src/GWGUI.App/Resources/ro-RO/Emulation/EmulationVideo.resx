@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>Chipset video: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>Standard video</value></data>
   <data name="Emulation.Video.Resolution"><value>Rezoluția</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>Raportul privind perspectiva</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Raport de aspect</value></data>
   <data name="Emulation.Video.Crop"><value>Granițele culturilor</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>Fixator pentru flicker</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>Rezoluție automată scăzută</value></data>

@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Questa estensione di contenuto non è supportata. Emulatore: BeetlePce. Estensione: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Una dimensione salvata-stato non valida è stata restituita. Emulatore: BeetlePce. Dimensioni: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>L'ospite ha ricevuto un comando sconosciuto. Emulatore: BeetlePce. Comando: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Il file di memoria di backup ha una dimensione non valida: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>La memoria di backup supera le dimensioni supportate.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Il file di backup PC-FX ha una dimensione non valida: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>La memoria di backup PC-FX ha una dimensione inaspettata.</value></data>
 </root>

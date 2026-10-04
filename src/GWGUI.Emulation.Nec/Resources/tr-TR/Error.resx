@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Bu içerik uzantı desteklenmez. Emulator: BeetlePce. Dahili : {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Kayıp devlet büyüklüğü geri döndü. Emulator: BeetlePce. Boyut: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Ev sahibi bilinmeyen bir komut aldı. Emulator: BeetlePce. Komut: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Yedek hafıza dosyasının geçersiz bir büyüklüğü vardır: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Yedek hafıza desteklenen boyutunu aşıyor.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>PC-FX yedekleme dosyası geçersiz bir boyuta sahiptir: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>PC-FX yedekleme bellek beklenmedik bir boyuta sahiptir.</value></data>
 </root>

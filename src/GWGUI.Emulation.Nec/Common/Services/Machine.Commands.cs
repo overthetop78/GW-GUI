@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Nec.Common.Exceptions;
 using System.Collections.Concurrent;
 using System.IO;
 
@@ -100,7 +101,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         catch (Exception error)
         {
-            error = _startErrorTranslator?.Invoke(error)
+            error = error is CoreMediaRequiredException
+                ? RequiredMediaWarning(Configuration, error)
+                : _startErrorTranslator?.Invoke(error)
                 ?? EmulationErrorService.Translate(error,
                     EmulationMessageCategory.Machine,
                     EmulationMessageCode.MachineStartFailed,
@@ -123,6 +126,26 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             lock (_gate)
                 if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
         }
+    }
+
+    internal static EmulationMessageException RequiredMediaWarning(
+        MachineConfiguration configuration, Exception error)
+    {
+        var storage = StorageSettingsFunctions.Describe(configuration);
+        var devices = storage.AvailableDevices
+            .Where(device => storage.ConfiguredSlots.Contains(device.Slot)
+                && device.MediaType is EmulationMediaType.Cartridge
+                    or EmulationMediaType.CompactDisc)
+            .ToArray();
+        return new EmulationMessageException(new EmulationMessage(
+            EmulationMessageCategory.Media,
+            EmulationMessageCode.RequiredMediaMissing,
+            EmulationMessageSeverity.Warning,
+            EmulationMessageTarget.Dialog,
+            new EmulationRequiredMachineMediaMessageContext(configuration.Model,
+                devices.Select(device => device.Slot.Category).Distinct().ToArray(),
+                devices.Select(device => device.DisplayLabel ?? device.Slot.ToString()).ToArray())),
+            error);
     }
     private void FailPendingCommands(Exception error)
     {

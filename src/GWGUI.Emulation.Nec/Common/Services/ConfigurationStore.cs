@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text.Json;
 using GWGUI.Emulation.Functions;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 
 namespace GWGUI.Emulation.Nec.Common.Services;
 
@@ -21,6 +22,10 @@ public sealed class ConfigurationStore
         _directory = Path.GetFullPath(directory);
         _pathBase = Path.GetFullPath(pathBase ?? directory);
     }
+
+    public string MemoryDirectory(Guid id) => Path.Combine(_directory,
+        id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
+        PcFxBackupMemoryConstants.MemoryDirectoryName);
 
     public async Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
     {

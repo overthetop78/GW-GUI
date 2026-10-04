@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Steckmodulschacht</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montieren Sie die ersten vier Festplatten in DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Scheibe {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Gebrauchskarte</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Die ausgewählte Datei wird an dieses virtuelle Speichergerät angefügt.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Wählen Sie eine vorhandene Kartendatei aus.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Die Kartendatei hat eine ungültige Größe.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Wählen Sie ein Dateiformat, das von diesem Gerät unterstützt wird.</value></data>
 </root>

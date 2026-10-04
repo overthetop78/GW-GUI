@@ -15,7 +15,7 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;
 public sealed class ExternalCoreInstaller
 {
     public const string CoreRevision = CoreReleaseConstants.Latest;
-    public const string DownloadUrl = CoreReleaseConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestBeetlePcfxLibretroDllZip;
+    public const string DownloadUrl = CoreReleaseConstants.OfficialArchiveUrl;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
 
@@ -56,7 +56,7 @@ public sealed class ExternalCoreInstaller
             using (var archive = ZipFile.OpenRead(package))
             {
                 var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
+                    Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.ArchiveLibraryName, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidDataException(BeetlePcfxExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }

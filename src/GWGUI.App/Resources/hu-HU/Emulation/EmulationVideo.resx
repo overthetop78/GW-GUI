@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>Videó lapkakészlet: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>Video standard</value></data>
   <data name="Emulation.Video.Resolution"><value>Felbontás</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>Szemrevételezéses arány</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Képarány</value></data>
   <data name="Emulation.Video.Crop"><value>Növényvédőszer-maradékok</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>Flicker-rögzítő</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>Automatikus alacsony felbontású</value></data>

@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>BeetlePce ei tue sisällön laajentamista {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>BeetlePce palautti virheellisen tallennetun tilan koon: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>BeetlePce- isäntä sai tuntemattoman komennon {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Varamuistitiedoston koko on virheellinen: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Varmuuskopiointimuisti ylittää tuetun koon.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>PC-FX- varmuuskopiotiedoston koko on virheellinen: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>PC-FX:n varmuuskopiomuistissa on odottamaton koko.</value></data>
 </root>

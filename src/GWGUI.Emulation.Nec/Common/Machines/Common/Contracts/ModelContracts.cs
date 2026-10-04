@@ -12,5 +12,9 @@ public sealed record Model(
     bool SupportsCassetteDrive,
     bool HasBuiltInCartridgeSlot,
     bool SupportsCartridgeSlot,
-    int ControllerPortCount = 2,
-    int MouseButtonCount = 2);
+    int ControllerPortCount,
+    int MouseButtonCount,
+    string CpuName,
+    string CpuClock,
+    bool HasBuiltInCdDrive,
+    bool SupportsCdDrive);

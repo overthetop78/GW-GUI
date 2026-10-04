@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>监视器类型</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>监视强度</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>颜色</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>绿色单色</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>白色单色</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>彩色调色板</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>复合</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>水平宽度</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>点钟宽度</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>铬插值</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>删除图示限制</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>第一个可见的扫描线</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>最后一个可见的扫描线</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>框架跳过</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>已禁用</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>自动</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>手动</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>框架跳过阈值</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>顯示影像邊框</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>顯示影像高度</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>顯示影像寬度</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>可見影像（240 行）</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>全部 263 行</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>可見影像（348 像素）</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>全部 392 像素</value></data>
+</root>

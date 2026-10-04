@@ -8,8 +8,10 @@ namespace GWGUI.App.Services.Logging;
 
 public static class ErrorLog
 {
+    private const string WarningFilePrefix = "warnings";
     private static readonly object Gate = new();
     internal static event Action<string>? EntryWritten;
+    internal static event Action<string>? WarningWritten;
 
     public static string? Write(Exception exception, string context, string? directory = null) =>
         WriteEntry(exception.ToString(), context, "errors", directory, true);
@@ -20,7 +22,11 @@ public static class ErrorLog
     public static string? WriteInformation(string message, string context, string? directory = null) =>
         WriteEntry(message, context, "information", directory, true);
 
-    private static string? WriteEntry(string detail, string context, string prefix, string? directory, bool publish)
+    public static string? WriteWarning(string message, string context, string? directory = null) =>
+        WriteEntry(message, context, WarningFilePrefix, directory, true, warning: true);
+
+    private static string? WriteEntry(string detail, string context, string prefix, string? directory,
+        bool publish, bool warning = false)
     {
         var assembly = Assembly.GetEntryAssembly();
         var entry = new StringBuilder()
@@ -44,13 +50,13 @@ public static class ErrorLog
             lock (Gate) File.AppendAllText(path, entry, new UTF8Encoding(false));
         }
         catch { path = null; }
-        if (publish) Publish(entry);
+        if (publish) Publish(entry, warning ? WarningWritten : EntryWritten);
         return path;
     }
 
-    private static void Publish(string entry)
+    private static void Publish(string entry, Action<string>? written)
     {
-        if (EntryWritten is not { } written) return;
+        if (written is null) return;
         foreach (Action<string> subscriber in written.GetInvocationList())
         {
             try { subscriber(entry); }

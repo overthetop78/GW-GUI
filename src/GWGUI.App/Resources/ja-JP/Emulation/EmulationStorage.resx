@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>カートリッジスロット</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>最初の4ディスクを取付けて下さい DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>ディスク {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>カードの使用</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>選択したファイルは、この仮想ストレージデバイスに添付されます。</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>既存のカードファイルを選択します。</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>カードファイルが無効なサイズです。</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>このデバイスでサポートされているファイル形式を選択します。</value></data>
 </root>

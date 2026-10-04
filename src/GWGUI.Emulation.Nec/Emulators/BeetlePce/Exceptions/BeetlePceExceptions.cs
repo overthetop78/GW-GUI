@@ -5,6 +5,10 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePce.Exceptions;
 
 internal static class BeetlePceExceptions
 {
+    internal static string InvalidSaveRamSize(string path) =>
+        Text("Emulation.Error.BeetlePce.InvalidSaveRamSize", path);
+    internal static string SaveRamTooLarge() =>
+        Text("Emulation.Error.BeetlePce.SaveRamTooLarge");
     private static readonly EmulationModuleLocalization Localization = new(
         typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
 

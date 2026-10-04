@@ -1,3 +1,12 @@
+using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePce.Functions;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
+using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Functions;
+using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
+using GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
+
 namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static class StorageSettingsFunctions
@@ -6,76 +15,74 @@ internal static class StorageSettingsFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var devices = new List<EmulationMediaDevice>();
-        for (var index = 0; index < model.MaximumFloppyDriveCount; index++)
-            devices.Add(new EmulationMediaDevice(new EmulationMediaSlot(
-                    EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
-                [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u],
-                DisplayLabel: index == 0 ? StorageSettingsFunctionsConstants.FloppyDriveLabel
-                    : StorageSettingsFunctionsConstants.SecondFloppyDriveLabel,
-                IsPermanent: index < model.BuiltInFloppyDriveCount));
-        if (model.SupportsCassetteDrive)
-            devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette,
-                [StorageSettingsFunctionsConstants.Cdt, StorageSettingsFunctionsConstants.Tap, StorageSettingsFunctionsConstants.Voc],
-                RequiresMachineRecreation: true,
-                DisplayLabel: StorageSettingsFunctionsConstants.CassetteDriveLabel,
-                IsPermanent: model.HasBuiltInCassetteDrive));
-        if (model.SupportsCartridgeSlot)
-            devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge,
-                [StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
-                DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
-                IsPermanent: model.HasBuiltInCartridgeSlot));
-        var configuredFloppies = Math.Clamp(OptionInt(options,
-            StorageSettingsFunctionsConstants.FloppyDriveCountOption,
-            model.BuiltInFloppyDriveCount), model.BuiltInFloppyDriveCount,
-            model.MaximumFloppyDriveCount);
+        var devices = configuration.EmulatorId switch
+        {
+            BeetlePceConstants.Id => BeetlePceStorageFunctions.Devices(model),
+            BeetlePcfxConstants.Id => BeetlePcfxStorageFunctions.Devices(model),
+            BeetleSgxConstants.Id => BeetleSgxStorageFunctions.Devices(model),
+            GeargrafxConstants.Id => GeargrafxStorageFunctions.Devices(model),
+            _ => []
+        };
         var configured = devices.Where(device => device.Slot.Category switch
         {
-            EmulationMediaCategory.FloppyDrive => device.Slot.Index < configuredFloppies,
-            EmulationMediaCategory.CassetteDrive => model.HasBuiltInCassetteDrive
-                || OptionBool(options, StorageSettingsFunctionsConstants.CassetteDriveEnabledOption),
-            EmulationMediaCategory.CartridgeSlot => model.HasBuiltInCartridgeSlot
-                || OptionBool(options, StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption),
+            EmulationMediaCategory.CartridgeSlot => device.IsPermanent,
+            EmulationMediaCategory.CompactDiscDrive => device.IsPermanent
+                || configuration.EmulatorId == BeetlePceConstants.Id
+                    && BeetlePceStorageFunctions.IsCompactDiscEnabled(model, options)
+                || configuration.EmulatorId == BeetleSgxConstants.Id
+                    && BeetleSgxStorageFunctions.IsCompactDiscEnabled(model, options)
+                || configuration.EmulatorId == GeargrafxConstants.Id
+                    && GeargrafxStorageFunctions.IsCompactDiscEnabled(model, options),
+            EmulationMediaCategory.MemoryCard => configuration.EmulatorId == BeetlePcfxConstants.Id
+                && BeetlePcfxStorageFunctions.IsExternalCardEnabled(options),
             _ => false
         }).Select(device => device.Slot).ToArray();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
-        return new EmulationStorageSettings(devices, configured, mounted);
+        var deviceSettings = new List<EmulationStorageDeviceSettings>();
+        if (devices.Any(device => device.Slot == EmulationMediaSlot.Cd0))
+            deviceSettings.Add(configuration.EmulatorId switch
+            {
+                BeetlePcfxConstants.Id => BeetlePcfxStorageFunctions.CompactDiscSettings(options),
+                BeetleSgxConstants.Id => BeetleSgxStorageFunctions.CompactDiscSettings(options),
+                _ => BeetlePceStorageFunctions.CompactDiscSettings(options)
+            });
+        if (devices.Any(device => device.Slot == EmulationMediaSlot.MemoryCard0))
+            deviceSettings.Add(BeetlePcfxStorageFunctions.ExternalCardSettings(options));
+        return new EmulationStorageSettings(devices, configured, mounted, deviceSettings);
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration,
         EmulationStorageSettings settings)
     {
+        var model = ModelCatalog.Get(configuration.Model);
+        var available = Describe(configuration).AvailableDevices;
+        if (settings.ConfiguredSlots.Any(slot => available.All(device => device.Slot != slot))
+            || settings.MountedMedia.Any(media => settings.ConfiguredSlots.All(slot => slot != media.Slot)
+                || available.All(device => device.Slot != media.Slot
+                    || device.MediaType != media.Type)))
+            throw new ArgumentOutOfRangeException(nameof(settings));
+        var configured = settings.ConfiguredSlots.Concat(available
+            .Where(device => device.IsPermanent).Select(device => device.Slot)).Distinct().ToArray();
         var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch
             {
-                EmulationMediaType.Floppy => MediaCategory.Floppy,
-                EmulationMediaType.Cassette => MediaCategory.Cassette,
+                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
                 _ => throw new ArgumentOutOfRangeException(nameof(settings), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray();
-        var model = ModelCatalog.Get(configuration.Model);
         foreach (var item in media)
             if (!ConfigurationValidationFunctions.Supports(model, item.Category))
                 throw new ArgumentOutOfRangeException(nameof(settings), item.Category, null);
         var options = new Dictionary<string, string>(configuration.Options
-            ?? new Dictionary<string, string>(), StringComparer.Ordinal)
-        {
-            [StorageSettingsFunctionsConstants.FloppyDriveCountOption] = settings.ConfiguredSlots
-                .Count(slot => slot.Category == EmulationMediaCategory.FloppyDrive).ToString(
-                    System.Globalization.CultureInfo.InvariantCulture),
-            [StorageSettingsFunctionsConstants.CassetteDriveEnabledOption] = settings.ConfiguredSlots
-                .Contains(EmulationMediaSlot.Cassette0).ToString(),
-            [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots
-                .Contains(EmulationMediaSlot.Cartridge0).ToString()
-        };
+            ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        if (configuration.EmulatorId == BeetlePcfxConstants.Id)
+            BeetlePcfxStorageFunctions.ApplyOptions(options, settings, configured);
+        else if (configuration.EmulatorId == BeetlePceConstants.Id)
+            BeetlePceStorageFunctions.ApplyOptions(options, settings, configured);
+        else if (configuration.EmulatorId == BeetleSgxConstants.Id)
+            BeetleSgxStorageFunctions.ApplyOptions(options, settings, configured);
+        else if (configuration.EmulatorId == GeargrafxConstants.Id)
+            GeargrafxStorageFunctions.ApplyOptions(options, configured);
         return configuration with { Media = media, Options = options };
     }
-
-    private static int OptionInt(IReadOnlyDictionary<string, string> options,
-        string key, int defaultValue) => options.TryGetValue(key, out var value)
-        && int.TryParse(value, out var parsed) ? parsed : defaultValue;
-
-    private static bool OptionBool(IReadOnlyDictionary<string, string> options,
-        string key) => options.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed)
-        && parsed;
 }

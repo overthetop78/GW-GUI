@@ -44,7 +44,11 @@ public sealed class TerminalPanelController
 
     public Task ExportAsync(string path) => File.WriteAllTextAsync(path, GetCompleteText());
 
-    public void AppendError(string entry)
+    public void AppendError(string entry) => AppendEntry(entry, Brushes.IndianRed);
+
+    public void AppendWarning(string entry) => AppendEntry(entry, Brushes.DarkOrange);
+
+    private void AppendEntry(string entry, Brush foreground)
     {
         if (!string.IsNullOrEmpty(terminal.OutputText)
             && !terminal.OutputText.EndsWith(Environment.NewLine, StringComparison.Ordinal))
@@ -54,7 +58,7 @@ public sealed class TerminalPanelController
             paragraph = new Paragraph { Margin = new Thickness(0) };
             terminal.OutputTextBox.Document.Blocks.Add(paragraph);
         }
-        paragraph.Inlines.Add(new Run(entry) { Foreground = Brushes.IndianRed });
+        paragraph.Inlines.Add(new Run(entry) { Foreground = foreground });
         terminal.OutputTextBox.ScrollToEnd();
         SetVisibility(true);
     }

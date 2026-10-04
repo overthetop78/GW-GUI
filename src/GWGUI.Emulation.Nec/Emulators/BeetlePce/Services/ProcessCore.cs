@@ -282,7 +282,14 @@ internal sealed class ProcessCore : IEmulatorCore
             var response = ReadResponseAsync().GetAwaiter().GetResult();
             _responseReader?.Dispose();
             _responseReader = new BinaryReader(new MemoryStream(response, false), System.Text.Encoding.UTF8, false);
-            if (!Response.ReadBoolean()) throw new InvalidOperationException(Response.ReadString());
+            if (!Response.ReadBoolean())
+            {
+                var kind = (GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind)Response.ReadByte();
+                var detail = Response.ReadString();
+                throw kind == GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.MediaRequired
+                    ? new GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException(detail)
+                    : new InvalidOperationException(detail);
+            }
         }
         catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
         {

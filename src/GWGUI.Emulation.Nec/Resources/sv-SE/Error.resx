@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Denna innehållsförlängning är ostödd. Emulator: BeetlePce. Förlängning: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>En ogiltig sparad statsstorlek returnerades. Emulator: BeetlePce. Storlek: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Värden fick ett okänt kommando. Emulator: BeetlePce. Kommando: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Backup minne filen har en ogiltig storlek: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Backupminnet överstiger den stödda storleken.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>PC-FX backup filen har en ogiltig storlek: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>PC-FX backup minne har en oväntad storlek.</value></data>
 </root>

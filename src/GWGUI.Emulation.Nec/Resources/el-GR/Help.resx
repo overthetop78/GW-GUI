@@ -6,8 +6,8 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nec.Help.Memory.Ram.Short"><value>Ποσότητα της RAM που διατίθεται στην προσομοιωμένη μηχανή.</value></data>
   <data name="Emulation.Nec.Help.Memory.Ram.Detailed"><value>Επιλέγει την επέκταση RAM που εκτίθεται από το BeetlePce. Η μηχανή πρέπει να επανεκκινήσει πριν χρησιμοποιηθεί το νέο ποσό.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Το σύστημα ROM είναι ενσωματωμένο στο BeetlePce.</value></data>
-  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Το BeetlePce παρέχει το σύστημα ROM εσωτερικά και δεν εκθέτει έναν επιλογέα αρχείων ROM.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Short"><value>Δεν απαιτείται εξωτερικό αρχείο BIOS για αυτό το μοντέλο.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Integrated.Detailed"><value>Φυσίγγιο παιχνίδια σε αυτό το μηχάνημα τρέχει χωρίς ένα εξωτερικό σύστημα BIOS.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Short"><value>Εσωτερική ανάλυση από το BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Video.Resolution.Detailed"><value>Επιλέγει ένα από τα εσωτερικά ψηφίσματα που εκτίθενται από το BeetlePce. Αυτό δεν ορίζει το μέγεθος του παραθύρου της εφαρμογής.</value></data>
   <data name="Emulation.Nec.Help.Video.Monitor.Short"><value>Τύπος οθόνης που μιμείται ο BeetlePce.</value></data>
@@ -30,4 +30,25 @@
   <data name="Emulation.Nec.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από το GW GUI.</value></data>
   <data name="Emulation.Nec.Help.Audio.Output.Detailed"><value>Επιλέγει την έξοδο ήχου των Windows που χρησιμοποιείται για να παίξει τον ήχο από αυτό το εικονιζόμενο μηχάνημα.</value></data>
   <data name="Emulation.Nec.Help.General.Model.Detailed"><value>Προσδιορίζει το μοντέλο NEC του οποίου η διαμόρφωση υλικού είναι υπό επεξεργασία.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Short"><value>Εγκαταστημένη κύρια RAM αυτής της μηχανής.</value></data>
+  <data name="Emulation.Nec.Help.Memory.Fixed.Detailed"><value>Αυτός ο εξομοιωτής δεν παρέχει μια κύρια επιλογή επέκτασης RAM για αυτό το μοντέλο.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Short"><value>Αρχείο συστήματος BIOS για παιχνίδια CD.</value></data>
+  <data name="Emulation.Nec.Help.Firmware.Path.Detailed"><value>Επιλέξτε ένα Super CD-ROM2 Κάρτα συστήματος 3 εικόνα για PC Engine CD παιχνίδια, ή PC-FX BIOS εικόνα για PC-FX. PC-FX απαιτεί BIOS. Το επιλεγμένο αρχείο αντιγράφεται στον κατάλογο συστημάτων του εξομοιωτή όταν ξεκινά η μηχανή.</value></data>
+  <data name="Emulation.Nec.Help.Video.Palette.Short"><value>Παλέτα χρωμάτων της εξόδου βίντεο PC Engine.</value></data>
+  <data name="Emulation.Nec.Help.Video.HorizontalWidth.Short"><value>Ορατό οριζόντιο πλάτος για τις λειτουργίες 352-pixel PC Engine.</value></data>
+  <data name="Emulation.Nec.Help.Video.DotClockWidth.Short"><value>Αποδιδόμενο πλάτος της λειτουργίας ⁇ ολογιού υψηλής κουκκίδας PC-FX.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdVolume.Short"><value>Όγκος ήχου CD σε παιχνίδια PC Engine Duo.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SoundQuality.Short"><value>Ποιότητα επαναδειγματοληψίας ήχου PC-FX.</value></data>
+  <data name="Emulation.Nec.Help.Mouse.Sensitivity.Short"><value>Ευαισθησία κίνησης ποντικιού για τον επιλεγμένο εξομοιωτή.</value></data>
+  <data name="Emulation.Nec.Help.Video.ChromaInterpolation.Short"><value>Παρεμβάλλει το χρώμα PC-FX για ομαλότερες μεταβάσεις χρωμάτων.</value></data>
+  <data name="Emulation.Nec.Help.Video.NoSpriteLimit.Short"><value>Αφαιρεί το όριο εικονιζόμενου υλικού sprite.</value></data>
+  <data name="Emulation.Nec.Help.Video.InitialScanline.Short"><value>Πρώτη γραμμή σάρωσης που φαίνεται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Nec.Help.Video.LastScanline.Short"><value>Τελευταία γραμμή σάρωσης που φαίνεται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkip.Short"><value>Ελέγχει αν ο εξομοιωτής PC Engine παραλείπει τα πλαίσια.</value></data>
+  <data name="Emulation.Nec.Help.Video.FrameSkipThreshold.Short"><value>Κατώφλι ρυθμιστή ήχου που χρησιμοποιείται από χειροκίνητη skip πλαίσιο.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmVolume.Short"><value>Τόμος του ήχου CD ADPCM που παίζεται από Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.CdPsgVolume.Short"><value>Όγκος ήχου CD PSG που παίζεται από το Beetle PCE FAST.</value></data>
+  <data name="Emulation.Nec.Help.Audio.AdpcmLowPass.Short"><value>Φίλτρα υψηλής συχνότητας από CD ADPCM ήχου.</value></data>
+  <data name="Emulation.Nec.Help.Audio.SuppressClicks.Short"><value>Καταπιέζει τα ηχητικά κλικ PC-FX που προκαλούνται από τις επαναρυθμίσεις καναλιών.</value></data>
+  <data name="Emulation.Nec.Help.Audio.BuggyCodec.Short"><value>Προσομοιάζει την ελαττωματική κωδικοποίηση ADPCM που χρησιμοποιείται από κάποια παιχνίδια PC-FX.</value></data>
 </root>

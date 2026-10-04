@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>此内容扩展不支持 。 模拟:BeetlePce. 扩展名:{0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>返回无效的保存状态大小 。 模拟:BeetlePce. 大小:{0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>主机收到一个未知的命令. 模拟:BeetlePce. 指挥:{0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>备份内存文件的大小无效 :{0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>备份内存超过支持的大小 。</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>PC-FX备份文件的大小无效:{0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>PC-FX备份内存有出人意料的大小.</value></data>
 </root>

@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Το BeetlePce δεν υποστηρίζει την επέκταση περιεχομένου {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Το BeetlePce επέστρεψε ένα μη έγκυρο αποθηκευμένο μέγεθος κατάστασης: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Ο ξενιστής BeetlePce έλαβε την άγνωστη εντολή {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Το αρχείο αντιγράφων ασφαλείας μνήμης έχει μη έγκυρο μέγεθος: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Η εφεδρική μνήμη υπερβαίνει το υποστηριζόμενο μέγεθος.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Το εφεδρικό αρχείο PC-FX έχει μη έγκυρο μέγεθος: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>Η εφεδρική μνήμη PC-FX έχει απρόσμενο μέγεθος.</value></data>
 </root>

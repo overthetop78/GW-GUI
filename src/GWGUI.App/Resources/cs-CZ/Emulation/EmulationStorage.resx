@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Rozhraní náplně</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>První čtyři disky se připojí DF0-DF3</value></data>
   <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Použít kartu</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Vybraný soubor bude připojen k tomuto virtuálnímu úložišti.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Vyberte existující kartový soubor.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kartový soubor má neplatnou velikost.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Vyberte formát souboru podporovaný tímto zařízením.</value></data>
 </root>

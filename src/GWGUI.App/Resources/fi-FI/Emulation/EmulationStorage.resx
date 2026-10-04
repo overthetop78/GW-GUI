@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kasettipaikka</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Asenna neljä ensimmäistä levyä DF0...DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Levy {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Käytä korttia</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Valittu tiedosto liitetään tähän virtuaaliseen tallennuslaitteeseen.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Valitse olemassa oleva korttitiedosto.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Korttitiedoston koko on virheellinen.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Valitse tämän laitteen tukema tiedostomuoto.</value></data>
 </root>

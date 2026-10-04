@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Κουλοχέρης</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Προσάρτηση των πρώτων τεσσάρων δίσκων στο DF0 ⁇ DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Δίσκος {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Χρήση κάρτας</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Το επιλεγμένο αρχείο θα προσαρτηθεί σε αυτή την εικονική συσκευή αποθήκευσης.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Επιλέξτε ένα υπάρχον αρχείο καρτών.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Το αρχείο της κάρτας έχει μη έγκυρο μέγεθος.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Επιλέξτε μια μορφή αρχείου που υποστηρίζεται από αυτή τη συσκευή.</value></data>
 </root>

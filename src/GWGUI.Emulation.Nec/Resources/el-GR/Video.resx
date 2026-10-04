@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Τύπος παρακολούθησης</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>Ένταση παρακολούθησης</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Χρώμα</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>Πράσινο μονόχρωμο</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>Λευκό μονόχρωμο</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>Παλέτα χρωμάτων</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Σύνθετη</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>Οριζόντιο πλάτος</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Πλάτος ⁇ ολογιού κουκκίδας</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Παρεμβολή χρωμίου</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Αφαίρεση ορίου sprite</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>Πρώτη ορατή γραμμή σάρωσης</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Τελευταία ορατή γραμμή σάρωσης</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Παράκαμψη πλαισίου</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Απενεργοποίηση</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Αυτόματο</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Χειροκίνητο</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Κατώφλι παραλείψεων καρέ</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Εμφάνιση περιγράμματος εικόνας</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Εμφανιζόμενο ύψος εικόνας</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Εμφανιζόμενο πλάτος εικόνας</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Ορατή εικόνα (240 γραμμές)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>Όλες οι 263 γραμμές</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Ορατή εικόνα (348 εικονοστοιχεία)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Όλα τα εικονοστοιχεία 392</value></data>
+</root>

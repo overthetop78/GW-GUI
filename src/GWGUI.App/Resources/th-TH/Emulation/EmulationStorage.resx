@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>ช่องตลับเกม</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>เมานท์แผ่น 4 แผ่นแรกใน DF0- สืบค้นเมื่อ 3 ปีก่อนDF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>ดิสก์ {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>ใช้การ์ด</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>แฟ้มที่เลือกไว้จะถูกแนบเข้ากับอุปกรณ์จัดเก็บแบบเสมือนนี้</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>เลือกแฟ้มไพ่ที่มีอยู่แล้ว</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>แฟ้มการ์ดมีขนาดไม่ถูกต้อง</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>เลือกรูปแบบแฟ้มที่อุปกรณ์นี้รองรับ</value></data>
 </root>

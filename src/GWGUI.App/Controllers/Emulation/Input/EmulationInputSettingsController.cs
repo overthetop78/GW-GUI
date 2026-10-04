@@ -28,6 +28,7 @@ internal sealed class EmulationInputSettingsController
     private EmulationInputSettings _settings = new(null, null, []);
     private string? _moduleId;
     private string? _machineId;
+    private IEmulationConfiguration? _loadedConfiguration;
 
     internal EmulationInputSettingsController(IEmulationInputSettingsManager manager) => _manager = manager;
 
@@ -36,9 +37,9 @@ internal sealed class EmulationInputSettingsController
     internal UIElement CreateContent(EmulationMachineTab tab, IEmulationConfiguration configuration,
         IReadOnlyList<EmulationSettingsControlField> fields)
     {
-        if (!string.Equals(_moduleId, configuration.ModuleId, StringComparison.Ordinal)
-            || !string.Equals(_machineId, configuration.MachineId, StringComparison.Ordinal))
+        if (!ReferenceEquals(_loadedConfiguration, configuration))
         {
+            _loadedConfiguration = configuration;
             _moduleId = configuration.ModuleId;
             _machineId = configuration.MachineId;
             _keyboard = null;

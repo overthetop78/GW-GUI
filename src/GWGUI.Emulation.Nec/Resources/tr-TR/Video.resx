@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Monitor tipi</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>Monitor yoğunluk yoğunluğu</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Renkli Renk</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>Yeşil monokrom</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>Beyaz Monokrom</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>Renk paleti</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Kompozit Kompozit</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>yatay genişliği</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Saat genişlik</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Chroma interpolasyon</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Take sprite limit</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>İlk görünür tarama</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Son görünür tarama</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Frame atlar</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Devre dışı</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manual</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Çerçeve eşiği atlayabilir</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Görüntü kenarlarını göster</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Ekranlanan görüntü yüksekliği</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Ekranlanan görüntü genişliği</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Görünen görüntü (240 satır)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>263 satırın tamamı</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Görünen görüntü (348 piksel)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Tüm 392 piksel</value></data>
+</root>

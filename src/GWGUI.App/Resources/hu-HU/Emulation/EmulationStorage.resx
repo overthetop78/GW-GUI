@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kazettafoglalat</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Az első négy lemez csatlakoztatása DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Lemez {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Kártya használata</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>A kijelölt fájl csatlakozik ehhez a virtuális tároló eszközhöz.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Válasszon ki egy meglévő kártyafájlt.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>A kártyafájl érvénytelen méretű.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Válassza ki az eszköz által támogatott fájlformátumot.</value></data>
 </root>

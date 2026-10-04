@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Deze inhoudsextensie wordt niet ondersteund. BeetlePce. Uitbreiding: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Een ongeldige opgeslagen statusgrootte werd teruggegeven. BeetlePce. Grootte: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>De gastheer kreeg een onbekend commando. BeetlePce. Commando: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Het reservekopiegeheugenbestand heeft een ongeldige grootte: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Het reservekopiegeheugen overtreft de ondersteunde grootte.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Het PC-FX backupbestand heeft een ongeldige grootte: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>De PC-FX backup geheugen heeft een onverwachte grootte.</value></data>
 </root>

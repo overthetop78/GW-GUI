@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Monitortyp</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>Monitorintensität</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Farbe</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>grün monochrom</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>weißes Monochrom</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>Farbpalette</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Verbundwerkstoff</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>Horizontale Breite</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Punkttaktbreite</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Chrominterpolation</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Sprite-Grenzwert entfernen</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>Erste sichtbare Scanline</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Letzte sichtbare Scanline</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Frame Skip</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Deaktiviert</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatik</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Handbuch</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Rahmenübersprungschwelle</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Bildgrenzen anzeigen</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Höhe des angezeigten Bildes</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Angezeigte Bildbreite</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Sichtbares Bild (240 Zeilen)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>Alle 263 Linien</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Sichtbares Bild (348 Pixel)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Alle 392 Pixel</value></data>
+</root>

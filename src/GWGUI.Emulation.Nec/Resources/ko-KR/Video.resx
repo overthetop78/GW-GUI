@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>감시자 유형</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>감시자 강렬</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>색깔: 백색</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>녹색 monochrome</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>백색 monochrome</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>색깔 팔레트</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>제품 정보</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>수평한 폭</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>점 시계 폭</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>크로마 interpolation</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>sprite 제한 제거</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>첫 눈에 보이는 scanline</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>마지막 눈에 보이는 scanline</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>프레임 건너뛰기</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>사용 안 함</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>제품정보</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>(주)</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>프레임 건너뛰기 문턱</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>이미지 경계 표시</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>표시 영상 높이</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>표시 영상 너비</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>표시 영상 (240줄)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>모든 263 라인</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>표시 영상 (348픽셀)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>전체 너비 (392픽셀)</value></data>
+</root>

@@ -41,7 +41,7 @@
   <data name="Emulation.Storage.Floppy.Device"><value>Diskettestation</value></data>
   <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga-diskettekopie|*.adf|Alle bestanden|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.Device"><value>Harde schijf</value></data>
-  <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>interface</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Bestand vooraf toewijzen</value></data>
   <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Diskettes en cd&apos;s worden vanuit de actieve machine geplaatst of vervangen.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Medium verwijderen</value></data>
@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Cartridgesleuf</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount de eerste vier schijven in DF0DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Schijf {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Kaart gebruiken</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Het geselecteerde bestand zal aan dit virtuele opslagapparaat worden gekoppeld.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selecteer een bestaand kaartbestand.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Het kaartbestand heeft een ongeldige grootte.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Kies een bestandsformaat dat door dit apparaat wordt ondersteund.</value></data>
 </root>

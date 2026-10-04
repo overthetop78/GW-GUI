@@ -132,6 +132,40 @@ internal static class MachineConfigurationScenarios
         finally { module.Cleanup(); other.Cleanup(); }
     }
 
+    public static async Task MachineSwitchKeepsSavedAndDraftChanges()
+    {
+        var module = new Module();
+        var errors = new List<Exception>();
+        var saved = new Configuration(module.Id, Guid.NewGuid(), "a");
+        module.Saved.Add(saved);
+        var view = new EmulationModuleSettingsSection(module.Service, showError: errors.Add);
+        try
+        {
+            await view.EditConfigurationAsync(saved);
+            var machines = Assert.Single(Controls<ListBox>(view));
+            Assert.Single(Controls<CheckBox>(view)).IsChecked = true;
+            machines.SelectedIndex = 1;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+            Assert.Equal("b", view.CurrentConfiguration.MachineId);
+            Assert.Single(Controls<CheckBox>(view)).IsChecked = true;
+            machines.SelectedIndex = 0;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+            Assert.True(Assert.Single(Controls<CheckBox>(view)).IsChecked);
+            Assert.Equal("on", Assert.IsType<Configuration>(Assert.Single(module.Saved)).Value);
+            machines.SelectedIndex = 1;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+            Assert.True(Assert.Single(Controls<CheckBox>(view)).IsChecked);
+            Assert.True(EmulationConfigurationDraftStore.TryGet(module.Id, "b", out var draft));
+            Assert.Equal("on", Assert.IsType<Configuration>(draft).Value);
+            Assert.Empty(errors);
+        }
+        finally
+        {
+            await view.DisposeAsync();
+            module.Cleanup();
+        }
+    }
+
     public static async Task VideoProfileChangesArePublishedAndPersisted()
     {
         var module = new Module(includeVideo: true);

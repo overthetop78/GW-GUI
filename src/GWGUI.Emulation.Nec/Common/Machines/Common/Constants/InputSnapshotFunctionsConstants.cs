@@ -34,4 +34,5 @@ internal static class InputSnapshotFunctionsConstants
     internal const string Controller = "Controller:";
     internal const string Keyboard = "Keyboard:";
     internal const string Mouse = "Mouse:";
+    internal const int LibretroSelectButtonId = 2;
 }

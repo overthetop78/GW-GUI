@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Тип монітора</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>інтенсивність монітора</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Колір</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>Зелений монохромний</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>Білий монохромний</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>Колірна палітра</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Компонувальник</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>Горизонтальна ширина</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Ширина годинника</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Інтерполяція хрому</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Видалити обмеження спрайт</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>Перша видима скан-лінія</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Остання видима скандина</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Каркасні кальмари</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Вимкнено</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Автоматика</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Посібник</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Каркасний поріг</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Показати краї зображення</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Висота зображення на екрані</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Ширина зображення на екрані</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Видиме зображення (240 рядків)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>Всі 263 лінії</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Видиме зображення (348 пікселів)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Всі 392 пікселів</value></data>
+</root>

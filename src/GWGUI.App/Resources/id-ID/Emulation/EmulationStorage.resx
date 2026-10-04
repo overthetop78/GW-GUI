@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot kartrid</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Kait empat disk pertama di DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Diska {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Gunakan kartu</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Berkas yang dipilih akan dipasangkan pada perangkat penyimpanan virtual ini.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Pilih berkas kartu yang ada.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Berkas kartu memiliki ukuran yang tidak valid.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Pilih suatu format berkas yang didukung oleh perangkat ini.</value></data>
 </root>

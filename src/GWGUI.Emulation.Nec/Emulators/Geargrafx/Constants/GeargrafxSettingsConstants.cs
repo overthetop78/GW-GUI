@@ -1,0 +1,55 @@
+namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
+
+internal static class GeargrafxSettingsConstants
+{
+    internal const string AspectRatio = "geargrafx_aspect_ratio";
+    internal const string LaserActiveAspectRatio = "geargrafx_laseractive_aspect_ratio";
+    internal const string LaserActiveFraming = "geargrafx_laseractive_framing";
+    internal const string LaserActiveHorizontalFraming = "geargrafx_laseractive_horizontal_framing";
+    internal const string Overscan = "geargrafx_overscan";
+    internal const string PsgVolume = "geargrafx_psg_volume";
+    internal const string CdVolume = "geargrafx_cdrom_volume";
+    internal const string AdpcmVolume = "geargrafx_adpcm_volume";
+    internal const string MouseSensitivity = "geargrafx_mouse_sensitivity";
+    internal const string Region = "geargrafx_console_type";
+    internal const string RegionAuto = "Auto";
+    internal const string RegionJapan = "PC Engine (JAP)";
+    internal const string RegionUsa = "TurboGrafx-16 (USA)";
+    internal const string SuperGrafxJapan = "SuperGrafx (JAP)";
+    internal const string LaserActiveRegion = "geargrafx_laseractive_region";
+    internal const string LaserActiveRegionJapan = "Japan";
+    internal const string LaserActiveRegionUsa = "US";
+    internal const string AspectFourThree = "4:3 DAR";
+    internal const string AspectOneOne = "1:1 PAR";
+    internal const string AspectSixFive = "6:5 DAR";
+    internal const string AspectSixteenNine = "16:9 DAR";
+    internal const string AspectSixteenTen = "16:10 DAR";
+    internal const string FramingCropped = "Cropped (240 lines)";
+    internal const string FramingFull = "Full Field (263 lines)";
+    internal const string HorizontalCropped = "Cropped (348 pixels)";
+    internal const string HorizontalFull = "Full Width (392 pixels)";
+    internal const string Manual = "Manual";
+    internal const string Enabled = "Enabled";
+    internal const string Disabled = "Disabled";
+    internal const string DefaultVolume = "100";
+    internal const int VolumeStart = 0;
+    internal const int VolumeCount = 21;
+    internal const int VolumeStep = 10;
+    internal const int MouseStart = 1;
+    internal const int MouseCount = 15;
+    internal const string DefaultMouseSensitivity = "5";
+    internal const string ResourceAspectRatio = "Emulation.Video.AspectRatio";
+    internal const string ResourceOverscan = "Emulation.Nec.Video.Overscan";
+    internal const string ResourceOverscanDisabled = "Controllers.No";
+    internal const string ResourceOverscanEnabled = "Controllers.Yes";
+    internal const string ResourceFraming = "Emulation.Nec.Video.LaserActiveFraming";
+    internal const string ResourceHorizontalFraming = "Emulation.Nec.Video.LaserActiveHorizontalFraming";
+    internal const string ResourceFramingCropped = "Emulation.Nec.Video.LaserActiveFraming.Cropped";
+    internal const string ResourceFramingFull = "Emulation.Nec.Video.LaserActiveFraming.Full";
+    internal const string ResourceHorizontalCropped = "Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped";
+    internal const string ResourceHorizontalFull = "Emulation.Nec.Video.LaserActiveHorizontalFraming.Full";
+    internal const string ResourceRegion = "Emulation.Nec.Cpu.Region";
+    internal const string ResourceRegionAuto = "Emulation.Nec.Cpu.Region.Auto";
+    internal const string ResourceRegionJapan = "Emulation.Nec.Cpu.Region.Japan";
+    internal const string ResourceRegionUsa = "Emulation.Nec.Cpu.Region.Usa";
+}

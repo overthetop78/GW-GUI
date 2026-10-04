@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>منفذ الخرطوشة</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>سدد أول أربعة أقراص في DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>قرص {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>بطاقة الاستخدام</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>وسيُرفق الملف المختار بهذا الجهاز الافتراضي للتخزين.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>اختيار ملف البطاقات الحالي.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>ملف البطاقة له حجم غير صحيح</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>اختر استمارة ملف تدعمها هذه الأداة</value></data>
 </root>

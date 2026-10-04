@@ -10,11 +10,18 @@
   <data name="Emulation.Nec.Language.English"><value>English language</value></data>
   <data name="Emulation.Nec.Language.French"><value>French</value></data>
   <data name="Emulation.Nec.Language.Spanish"><value>Spanish</value></data>
-  <data name="Emulation.Nec.Video.Monitor"><value>Monitor type</value></data>
-  <data name="Emulation.Nec.Video.Intensity"><value>Monitor intensity</value></data>
-  <data name="Emulation.Nec.Video.Monitor.Color"><value>Color</value></data>
-  <data name="Emulation.Nec.Video.Monitor.Green"><value>Green monochrome</value></data>
-  <data name="Emulation.Nec.Video.Monitor.White"><value>White monochrome</value></data>
   <data name="Emulation.Nec.Firmware.Integrated"><value>ROM built into the emulator</value></data>
-  <data name="Emulation.Emulator.beetle_pce_fast.Description"><value>Emulates PC Engine, CoreGrafx, SuperGrafx and TurboGrafx systems.</value></data>
+  <data name="Emulation.Emulator.beetle_pce_fast.Description"><value>Emulates PC Engine, CoreGrafx, TurboGrafx-16, PC Engine Duo and TurboExpress systems.</value></data>
+  <data name="Emulation.Nec.Firmware.NotRequired"><value>No external BIOS required</value></data>
+  <data name="Emulation.Nec.Audio.CdVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.Nec.Audio.SoundQuality"><value>Sound quality</value></data>
+  <data name="Emulation.Nec.Mouse.Sensitivity"><value>Mouse sensitivity</value></data>
+  <data name="Emulation.Nec.Memory.CdRam"><value>CD work RAM</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmVolume"><value>CD ADPCM volume</value></data>
+  <data name="Emulation.Nec.Audio.CdPsgVolume"><value>CD PSG volume</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmLowPass"><value>CD ADPCM low-pass filter</value></data>
+  <data name="Emulation.Nec.Audio.SuppressClicks"><value>Suppress channel reset clicks</value></data>
+  <data name="Emulation.Nec.Audio.BuggyCodec"><value>Emulate buggy ADPCM codec</value></data>
+  <data name="Emulation.Nec.Storage.CdImageCache"><value>Load CD image into memory</value></data>
+  <data name="Emulation.Nec.Storage.CdIgnoreErrors"><value>Ignore CD correction errors</value></data>
 </root>

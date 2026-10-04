@@ -3,6 +3,11 @@ using GWGUI.Emulation.Nec.Emulators.BeetlePce.Contracts;
 using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetlePce.Services;
 using System.IO;
+using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.PcEngineLt.Constants;
+using GWGUI.Emulation.Nec.Common.Machines.TurboExpress.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePce.Factories;
 
@@ -16,7 +21,9 @@ internal sealed class BeetlePceMachineFactory : IEmulatorAdapter
     public EmulationEmulatorDefinition Definition { get; } = new(
         BeetlePceConstants.Id, BeetlePceConstants.DisplayName,
         BeetlePceConstants.DescriptionResourceKey,
-        new[] { "PcEngine", "CoreGrafx", "SuperGrafx", "PcEngineDuo", "TurboExpress" }
+        new[] { PcEngineMachineConstants.Id, CoreGrafxMachineConstants.Id,
+            PcEngineDuoMachineConstants.Id, PcEngineLtMachineConstants.Id,
+            TurboExpressMachineConstants.Id }
             .ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)

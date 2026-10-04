@@ -105,6 +105,9 @@ public static class CoreHost
                     responseStream.SetLength(0);
                     responseStream.Position = 0;
                     writer.Write(false);
+                    writer.Write((byte)(error is GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException
+                        ? GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.MediaRequired
+                        : GWGUI.Emulation.Nec.Common.Enums.CoreHostErrorKind.General));
                     writer.Write(error.ToString());
                 }
                 writer.Flush();

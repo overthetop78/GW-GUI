@@ -54,10 +54,16 @@ internal static class InputSnapshotFunctions
         IReadOnlyDictionary<string, bool> physicalMouse,
         IReadOnlyList<ControllerBinding>? bindings)
     {
-        var result = new EmulationControllerState[4];
+        var result = new EmulationControllerState[InputSettingsFunctionsConstants.MaximumPcePorts];
         for (var port = 0; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
+            if (binding?.Type == ControllerType.None || binding is null
+                && port > InputSettingsFunctionsConstants.FirstPortIndex)
+            {
+                result[port] = EmulationControllerState.Empty;
+                continue;
+            }
             var source = EmulationInputMappingFunctions.ResolveController(
                 binding?.DeviceId, physical, port);
             if (binding?.ButtonMappings is not { Count: > 0 }

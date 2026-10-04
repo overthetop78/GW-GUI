@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Această extensie a conținutului nu este susținută. Emulator: BeetlePce. Extensie: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>S-a returnat o dimensiune invalidă a stării salvate. Emulator: BeetlePce. Dimensiune: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Gazda a primit o comandă necunoscută. Emulator: BeetlePce. Comandă: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Fişierul memoriei de rezervă are o dimensiune invalidă: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Memoria de rezervă depășește dimensiunea susținută.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Fișierul de rezervă PC-FX are o dimensiune invalidă: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>Memoria de rezervă PC-FX are o dimensiune neașteptată.</value></data>
 </root>

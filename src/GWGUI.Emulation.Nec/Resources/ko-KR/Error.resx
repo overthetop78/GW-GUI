@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>이 콘텐츠 확장은 지원되지 않습니다. 에뮬레이터: BeetlePce. 확장: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>잘못된 저장 상태 크기가 반환되었습니다. 에뮬레이터: BeetlePce. 크기: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>호스트는 알 수없는 명령을 받았습니다. 에뮬레이터: BeetlePce. 명령: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>백업 메모리 파일은 잘못된 크기가 있습니다 : {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>백업 메모리는 지원된 크기를 초과합니다.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>PC-FX 백업 파일에는 잘못된 크기가 있습니다: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>PC-FX 백업 메모리에는 예상치 못한 크기가 있습니다.</value></data>
 </root>

@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>הרחבה זו של תוכן אינה נתמך. תגית: BeetlePce הרחבה: {0}</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>הוחזרה לגודל של מדינת הצלה לא חוקית. תגית: BeetlePce גודל: {0}</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>המארח קיבל פקודה לא ידועה. תגית: BeetlePce תגית: {0}</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>לקובץ זיכרון הגיבוי יש גודל לא חוקי: {0}</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>זיכרון הגיבוי עולה על הגודל הנתמך.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>לקובץ הגיבוי PC-FX יש גודל לא חוקי: {0}</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>לזיכרון הגיבוי PC-FX יש גודל בלתי צפוי.</value></data>
 </root>

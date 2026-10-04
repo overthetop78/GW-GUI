@@ -7,7 +7,10 @@
   <data name="Emulation.Nec.Model.PcEngine"><value>PC Engine / TurboGrafx-16</value></data>
   <data name="Emulation.Nec.Model.CoreGrafx"><value>PC Engine CoreGrafx</value></data>
   <data name="Emulation.Nec.Model.SuperGrafx"><value>PC Engine SuperGrafx</value></data>
+  <data name="Emulation.Nec.Model.SuperGrafx.Short"><value>SuperGrafx</value></data>
   <data name="Emulation.Nec.Model.PcEngineDuo"><value>PC Engine Duo / TurboDuo</value></data>
   <data name="Emulation.Nec.Model.TurboExpress"><value>TurboExpress / PC Engine GT</value></data>
+  <data name="Emulation.Nec.Model.PcEngineLt"><value>PC Engine LT</value></data>
   <data name="Emulation.Nec.Model.PcFx"><value>PC-FX</value></data>
+  <data name="Emulation.Nec.Model.LaserActive"><value>NEC LaserActive</value></data>
 </root>

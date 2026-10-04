@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Emplacement cartouche</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Monter les quatre premiers disques en DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disque {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Utiliser la carte</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Le fichier sélectionné sera attaché à ce périphérique de stockage virtuel.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Sélectionnez un fichier de carte existant.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Le fichier de la carte a une taille invalide.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Choisissez un format de fichier pris en charge par cet appareil.</value></data>
 </root>

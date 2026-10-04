@@ -50,4 +50,16 @@
   <data name="Emulation.Nec.Controller.PcFxMouse"><value>NEC PC-FX FX-MOU</value></data>
   <data name="Emulation.Nec.Controller.PcFxBackupMemory"><value>NEC PC-FX FX-BMP</value></data>
   <data name="Emulation.Nec.Controller.PcFxScsiAdapter"><value>NEC PC-FX FX-SCSI</value></data>
+  <data name="Emulation.Nec.Controller.Mouse"><value>Mouse</value></data>
+  <data name="Emulation.Nec.Controller.TurboExpressControls"><value>TurboExpress / PC Engine GT built-in controls</value></data>
+  <data name="Emulation.Nec.Controller.PcEngineLtControls"><value>PC Engine LT built-in controls</value></data>
+  <data name="Emulation.Nec.Controller.Action.I"><value>I</value></data>
+  <data name="Emulation.Nec.Controller.Action.II"><value>II</value></data>
+  <data name="Emulation.Nec.Controller.Action.III"><value>III</value></data>
+  <data name="Emulation.Nec.Controller.Action.IV"><value>IV</value></data>
+  <data name="Emulation.Nec.Controller.Action.V"><value>V</value></data>
+  <data name="Emulation.Nec.Controller.Action.VI"><value>VI</value></data>
+  <data name="Emulation.Nec.Controller.Action.Select"><value>Select</value></data>
+  <data name="Emulation.Nec.Controller.Action.Run"><value>Run</value></data>
+  <data name="Emulation.Nec.Controller.Action.Mode"><value>Mode</value></data>
 </root>

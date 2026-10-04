@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Denne innholdsforlengelsen er ikke støttet. Emulator : BeetlePce. Utvidelse: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>En ugyldig lagret størrelse ble returnert. Emulator : BeetlePce. Størrelse: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Verten fikk en ukjent kommando. Emulator : BeetlePce. Kommando: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Sikkerhetskopiminnefilen har en ugyldig størrelse: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Sikkerhetskopiminnet overstiger den støttede størrelsen.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>PC-FX sikkerhetskopifilen har en ugyldig størrelse: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>PC-FX sikkerhetskopiminnet har en uventet størrelse.</value></data>
 </root>

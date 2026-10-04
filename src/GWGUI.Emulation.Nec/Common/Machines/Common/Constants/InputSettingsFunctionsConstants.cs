@@ -25,4 +25,18 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";
     internal const string MouseLeft = "Mouse:Left";
     internal const string MouseRight = "Mouse:Right";
+    internal const int FirstPortIndex = 0;
+    internal const int FirstPortNumber = 1;
+    internal const int MaximumPcePorts = 5;
+    internal const string ResourceActionI = "Emulation.Nec.Controller.Action.I";
+    internal const string ResourceActionII = "Emulation.Nec.Controller.Action.II";
+    internal const string ResourceActionIII = "Emulation.Nec.Controller.Action.III";
+    internal const string ResourceActionIV = "Emulation.Nec.Controller.Action.IV";
+    internal const string ResourceActionV = "Emulation.Nec.Controller.Action.V";
+    internal const string ResourceActionVI = "Emulation.Nec.Controller.Action.VI";
+    internal const string ResourceActionSelect = "Emulation.Nec.Controller.Action.Select";
+    internal const string ResourceActionRun = "Emulation.Nec.Controller.Action.Run";
+    internal const string ResourceActionMode = "Emulation.Nec.Controller.Action.Mode";
+    internal const string ResourceControllerMouse = "Emulation.Nec.Controller.Mouse";
+    internal const string ResourceControllerPrefix = "Emulation.Nec.Controller.";
 }

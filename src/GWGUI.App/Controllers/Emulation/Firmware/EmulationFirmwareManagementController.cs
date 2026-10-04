@@ -42,11 +42,15 @@ internal sealed class EmulationFirmwareManagementController
 
     internal async Task RefreshAsync()
     {
+        var firmwares = _firmwares;
         var configuration = _getConfiguration();
         var settingsFields = _module.Describe(configuration.MachineId, configuration).Blocks
             .SelectMany(block => block.Fields).ToArray();
         var entries = await _manager.ScanFirmwareAsync(configuration.MachineId, configuration);
-        _firmwares.Items.Clear();
+        if (!ReferenceEquals(_firmwares, firmwares)
+            || _getConfiguration().Id != configuration.Id
+            || _getConfiguration().MachineId != configuration.MachineId) return;
+        firmwares.Items.Clear();
         foreach (var firmware in entries
                      .OrderBy(item => EmulationSettingsLayout.FirmwareCompatibilityOrder(item.Compatibility))
                      .ThenBy(item => item.DisplayName, StringComparer.CurrentCultureIgnoreCase))
@@ -56,7 +60,7 @@ internal sealed class EmulationFirmwareManagementController
             var destination = destinationField is null
                 ? string.Empty
                 : LocExtension.GetForModule(_module, destinationField.LabelResourceKey);
-            _firmwares.Items.Add(new ListBoxItem
+            firmwares.Items.Add(new ListBoxItem
             {
                 Tag = firmware,
                 Padding = new Thickness(0),

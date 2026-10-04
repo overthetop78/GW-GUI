@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>BeetlePce nepodporuje rozšíření obsahu {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>BeetlePce vrátil neplatnou velikost zachovaného stavu: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>Hostitel BeetlePce obdržel neznámý příkaz {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>Záložní paměťový soubor má neplatnou velikost: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>Záložní paměť je větší než podporovaná velikost.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Záložní soubor PC-FX má neplatnou velikost: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>Záložní paměť PC-FX má neočekávanou velikost.</value></data>
 </root>

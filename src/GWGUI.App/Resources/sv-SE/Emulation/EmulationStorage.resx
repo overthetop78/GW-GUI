@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassettplats</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montera de fyra första diskarna i DF0-DF3</value></data>
   <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Använd kort</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Den valda filen kommer att fästas på denna virtuella lagringsenhet.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Välj en befintlig kortfil.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kortfilen har en ogiltig storlek.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Välj ett filformat som stöds av den här enheten.</value></data>
 </root>

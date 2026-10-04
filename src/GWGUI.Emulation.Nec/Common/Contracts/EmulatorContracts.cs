@@ -7,7 +7,8 @@ internal sealed record EmulatorCreationContext(
     string CorePath,
     string HostExecutablePath,
     Func<IAudioOutput?>? AudioOutputFactory,
-    Func<MachineConfiguration, string>? SaveDirectoryResolver);
+    Func<MachineConfiguration, string>? SaveDirectoryResolver,
+    string FirmwareDirectory);
 
 internal sealed record EmulatorManagementContext(
     HttpClient HttpClient,

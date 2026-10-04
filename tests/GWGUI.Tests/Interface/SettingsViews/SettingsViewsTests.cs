@@ -26,6 +26,8 @@ public sealed class SettingsViewsTests(StaExecutionScenarios sta)
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.ModuleWindowReopensWithANewVisualTree);
     [Fact] public Task AmigaModuleWindowBuildsItsVisualTree() =>
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.AmigaModuleWindowBuildsItsVisualTree);
+    [Fact] public Task NecModuleWindowOpensAndClosesWithSavedMachine() =>
+        sta.RunAsync(EmulationModuleSettingsNavigationScenarios.NecModuleWindowOpensAndClosesWithSavedMachine);
     [Fact] public Task EachModuleUsesTheGenericSettingsWindow() =>
         sta.Run(EmulationModuleSettingsNavigationScenarios.ModuleWindowUsesTheGenericSectionAndDynamicTitle);
     [Fact] public Task EngineChangesPersistAndApply() => sta.Run(SettingsEditingScenarios.Engines);

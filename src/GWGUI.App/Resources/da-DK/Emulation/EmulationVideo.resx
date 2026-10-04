@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>Videochipsæt: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>Videostandard</value></data>
   <data name="Emulation.Video.Resolution"><value>Opløsning</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>Orienteringsforhold</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Billedets sideforhold</value></data>
   <data name="Emulation.Video.Crop"><value>Afgrødegrænser</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>Flicker fixer</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>Automatisk lav opløsning</value></data>

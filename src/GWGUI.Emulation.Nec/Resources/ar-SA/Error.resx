@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>لا يدعم BeetlePce امتداد المحتوى {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>أعاد BeetlePce حجما غير صالح للحالة المحفوظة: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>تلقت عملية استضافة BeetlePce الأمر غير المعروف {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>ملف الذاكرة الإحتياطي له حجم غير صحيح {0}</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>الذاكرة الاحتياطية تفوق حجم الدعم.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>The PC-FXback file has an invalid size: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>الذاكرة الاحتياطية PC-FX لديها حجم غير متوقع</value></data>
 </root>

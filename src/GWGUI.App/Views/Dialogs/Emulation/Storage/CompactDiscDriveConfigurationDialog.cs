@@ -5,20 +5,25 @@ using GWGUI.App.Functions.Views.Emulation.Storage;
 using GWGUI.App.Localization.Extensions;
 using System.Windows;
 using System.Windows.Controls;
+using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.App.Views.Dialogs.Emulation.Storage;
 
 public sealed class CompactDiscDriveConfigurationDialog : Window
 {
-    private readonly ComboBox _model = new();
     private readonly ComboBox _speed = new();
+    private readonly CheckBox _cache = new();
+    private readonly CheckBox _ignoreErrors = new();
 
-    public CompactDiscDriveSettings Settings => new(
-        _model.SelectedItem?.ToString() ?? "CD-ROM",
-        (_speed.SelectedItem as StorageDialogChoice)?.Value ?? "100");
+    public EmulationCompactDiscDriveSettings Settings => new(
+        (_speed.SelectedItem as StorageDialogChoice)?.Value
+            ?? new EmulationCompactDiscDriveSettings().Speed,
+        _cache.IsChecked == true, _ignoreErrors.IsChecked == true);
 
     public CompactDiscDriveConfigurationDialog(string identifier, string machineName,
-        CompactDiscDriveSettings settings, bool supportsWriter)
+        string modelName,
+        EmulationCompactDiscDriveSettings settings, IReadOnlyList<string>? speeds,
+        string? cacheLabel, string? ignoreErrorsLabel)
     {
         Title = $"{LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure)} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
@@ -27,31 +32,36 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         Width = 720;
         SizeToContent = SizeToContent.Height;
         ResizeMode = ResizeMode.NoResize;
-        _model.ItemsSource = supportsWriter
-            ? new[] { "CD-ROM", LocExtension.Get("Emulation.Storage.Cd.Writer") }
-            : new[] { "CD-ROM" };
-        _model.SelectedIndex = 0;
-        _speed.ItemsSource = new[]
-        {
-            new StorageDialogChoice("100", "1×"),
-            new StorageDialogChoice("0", LocExtension.Get("Emulation.Value.Maximum"))
-        };
+        _speed.ItemsSource = (speeds ?? []).Select(speed =>
+            new StorageDialogChoice(speed,
+                $"{speed}×")).ToArray();
         _speed.SelectedItem = _speed.Items.OfType<StorageDialogChoice>()
-            .FirstOrDefault(choice => choice.Value == settings.Speed) ?? _speed.Items[0];
-        var fields = StorageDialogUi.TwoColumnFields(
+            .FirstOrDefault(choice => choice.Value == settings.Speed)
+            ?? _speed.Items.OfType<StorageDialogChoice>().FirstOrDefault();
+        _cache.IsChecked = settings.CacheImage;
+        _ignoreErrors.IsChecked = settings.IgnoreErrors;
+        var entries = new List<(string Label, FrameworkElement Control)>
+        {
             (LocExtension.Get(EmulationResourceKeys.DeviceIdentifier),
                 new TextBox { Text = identifier, IsReadOnly = true }),
-            (LocExtension.Get(EmulationResourceKeys.Model), _model),
-            (LocExtension.Get("Emulation.Storage.Cd.Speed"), _speed));
+            (LocExtension.Get(EmulationResourceKeys.Model),
+                new TextBox { Text = modelName, IsReadOnly = true })
+        };
+        if (speeds is { Count: > 0 })
+            entries.Add((LocExtension.Get(EmulationResourceKeys.CompactDiscSpeed),
+                _speed));
+        if (!string.IsNullOrWhiteSpace(cacheLabel)) entries.Add((cacheLabel, _cache));
+        if (!string.IsNullOrWhiteSpace(ignoreErrorsLabel))
+            entries.Add((ignoreErrorsLabel, _ignoreErrors));
+        var fields = StorageDialogUi.TwoColumnFields(entries.ToArray());
         var body = new StackPanel();
         body.Children.Add(fields);
-        body.Children.Add(StorageDialogUi.Info(supportsWriter
-            ? LocExtension.Get("Emulation.Storage.Cd.WriterHint")
-            : LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
+        body.Children.Add(StorageDialogUi.Info(LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
         Content = StorageDialogUi.DialogLayout(
             StorageDialogUi.DialogHeader(IconGlyphs.OpticalDisc, Title,
                 $"{LocExtension.Get(EmulationResourceKeys.CompactDiscDevice)} · {machineName}"),
             StorageDialogUi.Card(LocExtension.Get(EmulationResourceKeys.CompactDiscDevice), body),
-            StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
+            StorageDialogUi.Footer(this,
+                LocExtension.Get(EmulationResourceKeys.CommonSave)));
     }
 }

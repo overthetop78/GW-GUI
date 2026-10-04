@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>卡带插槽</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>挂载 DF0 – DF3 中的前四张磁盘</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>磁盘 {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>使用纸牌</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>选中的文件将附在虚拟存储设备上 。</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>选择已有的卡片文件。</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>卡片文件的大小无效.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>选择由此设备支持的文件格式 。</value></data>
 </root>

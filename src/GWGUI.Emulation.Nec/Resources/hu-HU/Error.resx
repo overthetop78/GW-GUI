@@ -96,4 +96,8 @@
   <data name="Emulation.Error.BeetlePce.UnsupportedContentExtension"><value>Ez a tartalomkiterjesztés nem támogatott. BeetlePce. Kiterjesztés: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.InvalidStateSize"><value>Egy érvénytelen, megspórolt államméretet adtak vissza. BeetlePce. Méret: {0}.</value></data>
   <data name="Emulation.Error.BeetlePce.UnknownHostCommand"><value>A gazdatest ismeretlen parancsot kapott. BeetlePce. Parancsnokság: {0}</value></data>
+  <data name="Emulation.Error.BeetlePce.InvalidSaveRamSize"><value>A tartalék memóriafájl érvénytelen méretű: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePce.SaveRamTooLarge"><value>A tartalék memória meghaladja a támogatott méretet.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>Az PC-FX mentési fájl érvénytelen méretű: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>A PC-FX tartalék memória egy váratlan méretű.</value></data>
 </root>

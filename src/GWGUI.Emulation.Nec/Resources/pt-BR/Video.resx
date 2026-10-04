@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Tipo de monitor</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>Intensidade do monitor</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Cor</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>Monocromático verde</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>Monocromático branco</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>Paleta de cores</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Composto</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>Largura horizontal</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Largura do relógio dos pontos</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Interpolação de croma</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Remover o limite da imagem</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>Primeiro scanline visível</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Última linha de digitalização visível</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Saltar o Quadro</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Desactivado</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automático</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manual</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Limiar de salto da moldura</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Mostrar os contornos da imagem</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Altura da imagem mostrada</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Largura da imagem mostrada</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Imagem visível (240 linhas)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>Todas as 263 linhas</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Imagem visível (348 pixels)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Todos os 392 pixels</value></data>
+</root>

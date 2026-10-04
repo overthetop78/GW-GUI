@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassetteport</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montere de første fire diske i DF0-DF3</value></data>
   <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Brug kort</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Den valgte fil vil blive fastgjort til denne virtuelle lagerenhed.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Vælg en eksisterende kortfil.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kortfilen har en ugyldig størrelse.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Vælg et filformat understøttet af denne enhed.</value></data>
 </root>

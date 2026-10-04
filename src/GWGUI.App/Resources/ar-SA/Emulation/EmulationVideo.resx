@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>مجموعة شرائح الفيديو: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>معيار الفيديو</value></data>
   <data name="Emulation.Video.Resolution"><value>القرار</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>نسبة المشتبه فيهم</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>نسبة العرض إلى الارتفاع</value></data>
   <data name="Emulation.Video.Crop"><value>حدود المحاصيل</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>معالجات لطائرات</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>القرار المنخفض آليا</value></data>

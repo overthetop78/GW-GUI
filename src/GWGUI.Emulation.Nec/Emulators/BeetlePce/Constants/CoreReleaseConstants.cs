@@ -8,7 +8,8 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
 
 internal static class CoreReleaseConstants
 {
-    internal const string HttpsBuildbotLibretroComNightlyWindowsX8664LatestBeetlePceLibretroDllZip = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/beetle_pce_fast_libretro.dll.zip";
+    internal const string OfficialArchiveUrl = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/mednafen_pce_fast_libretro.dll.zip";
+    internal const string ArchiveLibraryName = "mednafen_pce_fast_libretro.dll";
     internal const string OptionLibretroDll = "beetle_pce_fast_libretro.dll";
     internal const string CoreJson = "core.json";
     internal const string Unknown = "unknown";

@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kartuş yuvası</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>İlk dört diski içeri girin DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk Disk Disk Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Kart kullanın</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Seçilen dosya bu sanal depolama cihazına eklenecektir.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Mevcut bir kart dosyasını seçin.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kart dosyasının geçersiz bir büyüklüğü vardır.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Bu cihaz tarafından desteklenen bir dosya formatı seçin.</value></data>
 </root>

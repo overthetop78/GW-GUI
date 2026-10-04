@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>ערכת שבבי וידאו: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>וידאו סטנדרטי</value></data>
   <data name="Emulation.Video.Resolution"><value>החלטה</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>יחס Aspect</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>יחס רוחב־גובה</value></data>
   <data name="Emulation.Video.Crop"><value>גבולות Crop</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>Flicker Fixer</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>פתרון נמוך אוטומטי</value></data>

@@ -102,7 +102,7 @@ internal sealed partial class ExternalHostCallbacks
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
 
-        if (device == MouseDevice && port == 0)
+        if (device == MouseDevice)
             return id switch
             {
                 0 => ClampToShort(input.Pointer.DeltaX),

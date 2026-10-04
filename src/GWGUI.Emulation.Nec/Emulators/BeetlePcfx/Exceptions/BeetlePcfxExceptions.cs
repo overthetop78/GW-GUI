@@ -5,6 +5,10 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Exceptions;
 
 internal static class BeetlePcfxExceptions
 {
+    internal static string InvalidBackupSize(string path) =>
+        Text("Emulation.Error.BeetlePcfx.InvalidBackupSize", path);
+    internal static string UnexpectedBackupMemorySize() =>
+        Text("Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize");
     private static readonly EmulationModuleLocalization Localization = new(
         typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
 

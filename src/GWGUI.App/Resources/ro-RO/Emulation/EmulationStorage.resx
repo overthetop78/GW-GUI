@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot pentru cartuș</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montați primele patru discuri în DF0DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disc {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Folosește cardul</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Fișierul selectat va fi atașat la acest dispozitiv de stocare virtuală.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selectaţi un fişier card existent.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Dosarul cardului are o dimensiune invalidă.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Alegeți un format de fișier susținut de acest dispozitiv.</value></data>
 </root>

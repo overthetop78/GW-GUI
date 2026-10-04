@@ -75,4 +75,9 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Ranhura de cartucho</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montar os quatro primeiros discos em DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disco {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Usar cartão</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>O arquivo selecionado será anexado a este dispositivo de armazenamento virtual.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selecione um arquivo de cartão existente.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>O arquivo de cartão tem um tamanho inválido.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Escolha um formato de arquivo suportado por este dispositivo.</value></data>
 </root>

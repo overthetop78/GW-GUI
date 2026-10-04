@@ -106,6 +106,7 @@ public partial class MainWindow : Window
         if (!e.Cancel)
         {
             ErrorLog.EntryWritten -= AppendErrorToConsole;
+            ErrorLog.WarningWritten -= AppendWarningToConsole;
             _scpInspectorController.Dispose();
         }
     }
@@ -118,6 +119,16 @@ public partial class MainWindow : Window
             return;
         }
         _terminalPanel.AppendError(entry);
+    }
+
+    private void AppendWarningToConsole(string entry)
+    {
+        if (!Dispatcher.CheckAccess())
+        {
+            _ = Dispatcher.InvokeAsync(() => AppendWarningToConsole(entry));
+            return;
+        }
+        _terminalPanel.AppendWarning(entry);
     }
 
     private void RefreshReadProfiles(string? selectedId = null)

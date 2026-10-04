@@ -11,6 +11,7 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
     public static EmulationMediaSlot Cartridge0 { get; } = new(EmulationMediaCategory.CartridgeSlot, EmulationMediaSlotConstants.FirstIndex);
     public static EmulationMediaSlot Cartridge1 { get; } = new(EmulationMediaCategory.CartridgeSlot, EmulationMediaSlotConstants.SecondIndex);
     public static EmulationMediaSlot Cassette0 { get; } = new(EmulationMediaCategory.CassetteDrive, EmulationMediaSlotConstants.FirstIndex);
+    public static EmulationMediaSlot MemoryCard0 { get; } = new(EmulationMediaCategory.MemoryCard, EmulationMediaSlotConstants.FirstIndex);
 
     public int ProtocolValue => Category switch
     {
@@ -20,6 +21,7 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
         EmulationMediaCategory.CartridgeSlot when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.CartridgeProtocolValue,
         EmulationMediaCategory.CartridgeSlot when Index == EmulationMediaSlotConstants.SecondIndex => EmulationMediaSlotConstants.SecondCartridgeProtocolValue,
         EmulationMediaCategory.CassetteDrive when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.CassetteProtocolValue,
+        EmulationMediaCategory.MemoryCard when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.MemoryCardProtocolValue,
         _ => throw new InvalidOperationException()
     };
 
@@ -34,6 +36,7 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
         EmulationMediaSlotConstants.CartridgeProtocolValue => Cartridge0,
         EmulationMediaSlotConstants.SecondCartridgeProtocolValue => Cartridge1,
         EmulationMediaSlotConstants.CassetteProtocolValue => Cassette0,
+        EmulationMediaSlotConstants.MemoryCardProtocolValue => MemoryCard0,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
     };
 
@@ -64,6 +67,7 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
         EmulationMediaCategory.CompactDiscDrive => $"{EmulationMediaSlotConstants.CompactDiscPrefix}{Index}",
         EmulationMediaCategory.CartridgeSlot => $"{EmulationMediaSlotConstants.CartridgePrefix}{Index}",
         EmulationMediaCategory.CassetteDrive => $"{EmulationMediaSlotConstants.CassettePrefix}{Index}",
+        EmulationMediaCategory.MemoryCard => $"{EmulationMediaSlotConstants.MemoryCardPrefix}{Index}",
         _ => $"{Category}{Index}"
     };
 }
