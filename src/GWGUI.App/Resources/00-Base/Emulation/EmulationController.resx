@@ -62,8 +62,9 @@
   <data name="Emulation.Controller.Visual.Model.sega-arcade-power-stick-6" xml:space="preserve"><value>Sega Arcade Power Stick 6B</value></data>
   <data name="Emulation.Controller.Visual.Model.saturn" xml:space="preserve"><value>Saturn Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.saturn-3d" xml:space="preserve"><value>Saturn 3D Control Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-saturn-virtua-stick-hss0104" xml:space="preserve"><value>Sega Saturn Virtua Stick HSS-0104</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-saturn-virtua-stick-hss0136" xml:space="preserve"><value>Sega Saturn Virtua Stick HSS-0136</value></data>
   <data name="Emulation.Controller.Visual.Model.dreamcast" xml:space="preserve"><value>Dreamcast Controller</value></data>
-  <data name="Emulation.Controller.Visual.Model.arcade-stick" xml:space="preserve"><value>Arcade Stick</value></data>
   <data name="Emulation.Controller.Visual.Model.flight-stick" xml:space="preserve"><value>Flight Stick</value></data>
   <data name="Emulation.Controller.Visual.Model.racing-wheel" xml:space="preserve"><value>Racing Wheel</value></data>
   <data name="Emulation.Controller.Visual.Model.nec-pc-engine-pad"><value>NEC PC Engine Pad (PI-PD001)</value></data>

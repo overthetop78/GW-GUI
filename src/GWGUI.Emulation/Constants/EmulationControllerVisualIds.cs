@@ -87,8 +87,9 @@ public static class EmulationControllerVisualIds
     public const string SegaArcadePowerStick6 = "sega-arcade-power-stick-6";
     public const string Saturn = "saturn";
     public const string Saturn3D = "saturn-3d";
+    public const string SegaSaturnVirtuaStickHss0104 = "sega-saturn-virtua-stick-hss0104";
+    public const string SegaSaturnVirtuaStickHss0136 = "sega-saturn-virtua-stick-hss0136";
     public const string Dreamcast = "dreamcast";
-    public const string ArcadeStick = "arcade-stick";
     public const string FlightStick = "flight-stick";
     public const string RacingWheel = "racing-wheel";
 }

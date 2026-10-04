@@ -17,11 +17,12 @@ internal static partial class InputSettingsFunctions
             ControllerType.SegaMegaDriveSixButton => [EmulationControllerVisualIds.MegaDrive6],
             ControllerType.SegaSaturnController => [EmulationControllerVisualIds.Saturn],
             ControllerType.SegaSaturnThreeDControlPad => [EmulationControllerVisualIds.Saturn3D],
+            ControllerType.SegaSaturnVirtuaStick =>
+                [EmulationControllerVisualIds.SegaSaturnVirtuaStickHss0104,
+                    EmulationControllerVisualIds.SegaSaturnVirtuaStickHss0136],
             ControllerType.SegaDreamcastController => [EmulationControllerVisualIds.Dreamcast],
             ControllerType.SegaArcadePowerStick => [EmulationControllerVisualIds.SegaArcadePowerStick3],
             ControllerType.SegaArcadePowerStickSixButton => [EmulationControllerVisualIds.SegaArcadePowerStick6],
-            ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
-                [EmulationControllerVisualIds.ArcadeStick],
             ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick =>
                 [EmulationControllerVisualIds.FlightStick],
             ControllerType.SegaSaturnArcadeRacer => [EmulationControllerVisualIds.RacingWheel],
@@ -41,11 +42,10 @@ internal static partial class InputSettingsFunctions
             ControllerType.SegaMegaDriveSixButton => EmulationControllerVisualIds.MegaDrive6,
             ControllerType.SegaSaturnController => EmulationControllerVisualIds.Saturn,
             ControllerType.SegaSaturnThreeDControlPad => EmulationControllerVisualIds.Saturn3D,
+            ControllerType.SegaSaturnVirtuaStick => EmulationControllerVisualIds.SegaSaturnVirtuaStickHss0104,
             ControllerType.SegaDreamcastController => EmulationControllerVisualIds.Dreamcast,
             ControllerType.SegaArcadePowerStick => EmulationControllerVisualIds.SegaArcadePowerStick3,
             ControllerType.SegaArcadePowerStickSixButton => EmulationControllerVisualIds.SegaArcadePowerStick6,
-            ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
-                EmulationControllerVisualIds.ArcadeStick,
             ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick =>
                 EmulationControllerVisualIds.FlightStick,
             ControllerType.SegaSaturnArcadeRacer => EmulationControllerVisualIds.RacingWheel,
@@ -61,6 +61,7 @@ internal static partial class InputSettingsFunctions
             or ControllerType.SegaGameGearController
             or ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton
             or ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad
+            or ControllerType.SegaSaturnVirtuaStick
             or ControllerType.SegaDreamcastController
             or ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
             or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick
@@ -95,7 +96,8 @@ internal static partial class InputSettingsFunctions
             commands[EmulationControllerVisualControl.RightTrigger] = EmulationControllerCommandIds.R2;
         }
         else if (type is ControllerType.SegaSaturnController
-            or ControllerType.SegaSaturnThreeDControlPad)
+            or ControllerType.SegaSaturnThreeDControlPad
+            or ControllerType.SegaSaturnVirtuaStick)
         {
             commands[EmulationControllerVisualControl.FaceA] = EmulationControllerCommandIds.B;
             commands[EmulationControllerVisualControl.FaceB] = EmulationControllerCommandIds.A;

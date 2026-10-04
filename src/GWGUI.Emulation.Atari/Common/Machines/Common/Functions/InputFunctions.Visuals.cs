@@ -83,8 +83,20 @@ private static IReadOnlyList<string>? CompatibleVisualIds(
         AddVisualCommand(result, actions, EmulationControllerVisualControl.SecondaryAction,
             jaguar ? EmulationControllerCommandIds.B : EmulationControllerCommandIds.Fire2);
         if (jaguar)
+        {
             AddVisualCommand(result, actions, EmulationControllerVisualControl.TertiaryAction,
                 EmulationControllerCommandIds.C);
+            AddVisualCommand(result, actions, EmulationControllerVisualControl.FaceX,
+                EmulationControllerCommandIds.Key9);
+            AddVisualCommand(result, actions, EmulationControllerVisualControl.FaceY,
+                EmulationControllerCommandIds.Key8);
+            AddVisualCommand(result, actions, EmulationControllerVisualControl.FaceZ,
+                EmulationControllerCommandIds.Key7);
+            AddVisualCommand(result, actions, EmulationControllerVisualControl.LeftShoulder,
+                EmulationControllerCommandIds.Key4);
+            AddVisualCommand(result, actions, EmulationControllerVisualControl.RightShoulder,
+                EmulationControllerCommandIds.Key6);
+        }
 
         AddVisualCommand(result, actions, EmulationControllerVisualControl.Turbo,
             EmulationControllerCommandIds.Turbo);

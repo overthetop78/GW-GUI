@@ -1,6 +1,6 @@
 # Visuels et boutons des contrôleurs
 
-Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, Microsoft, Sony, Nintendo et Sega, afficher un visuel de face à fond transparent, avec des zones de boutons correspondant aux commandes présentées dans la liste. Suivre le comportement déjà utilisé par Atari et Amiga. Une case n'est cochée qu'après vérification effective.
+Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, Microsoft, Sony, Nintendo et Sega, afficher une image fidèle d'un exemplaire identifié, vue de dessus droite à fond transparent, avec des zones de boutons correspondant aux commandes réellement présentes. Une reconstruction qui invente la coque, les couleurs, les libellés ou les boutons ne vaut pas validation. Suivre le comportement déjà utilisé par Atari et Amiga. Une case n'est cochée qu'après vérification effective.
 
 - [x] Inventorier les modèles et le fonctionnement existant
   - [x] Créer `docs/tasks/emulation/controller-artwork-inventory.md` : inscrire les 444 clés de contrôleurs des cinq modules, leur libellé et le manque actuel de profil fidèle ; noter le mécanisme Atari/Amiga et les écarts à résoudre avant de relier les visuels.
@@ -367,6 +367,533 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur le levier et les deux boutons de l'image.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la source, le profil et les limites de vérification.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug des modules et la présence des artefacts.
+- [ ] Raccorder les Sega Saturn Virtua Stick HSS-0104 et HSS-0136
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire dans l'ordre les deux images, les commandes, les halos et la vérification des modèles Virtua Stick.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0104-reference.jpg` : conserver provisoirement la vue officielle Sega du premier modèle.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0136-reference.jpg` : conserver provisoirement la vue officielle Sega du modèle révisé.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0104.png` : produire sa vue de face avec fond transparent et commandes visibles.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0136.png` : produire la vue de face transparente du modèle révisé.
+  - [x] Supprimer `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0104-reference.jpg` : retirer la première référence après inspection.
+  - [x] Supprimer `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0136-reference.jpg` : retirer la seconde référence après inspection.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer les deux identifiants visuels invariants.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : nommer les deux modèles invariants.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les boutons de jeu du Virtua Stick selon ceux présents physiquement.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer les deux visuels et relier les zones aux commandes Yabause.
+  - [x] Modifier `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0104.png` : remplacer la perspective par une vue de dessus orthogonale et droite, avec toutes les commandes du modèle original visibles.
+  - [x] Modifier `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0136.png` : remplacer la perspective par une vue de dessus orthogonale et droite, avec toutes les commandes du modèle révisé visibles.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur le levier et les boutons réellement visibles des deux modèles.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer les références et noter les commandes et limites du profil.
+  - [x] Créer `docs/tasks/emulation/controller-artwork-fidelity.md` : auditer chaque PNG ajouté au cours du chantier, noter pour chacun son modèle précis, sa source visuelle, son procédé de production et les écarts visibles, en commençant par les Xbox, Chatpad, télécommande et Virtua Stick signalés par l'utilisateur.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : marquer explicitement les images reconstruites non validées, sans les présenter comme fidèles ni terminées.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler après l'audit les remplacements fidèles, fichier par fichier, avant de reprendre la compilation.
+  - [x] Créer `docs/tasks/emulation/sources/xbox-duke-original.jpg` : conserver la photographie du Duke original d'Evan-Amos sur Wikimedia Commons pour un détourage fidèle.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour les manettes Xbox et N64 quelles commandes exigent une photo secondaire de dessus, de tranche ou de l'arrière, et identifier les vues sources nécessaires.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les fichiers de vues supplémentaires et les adaptations du visualiseur avant leur création, sans inventer de face cachée.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : préciser que les vues complémentaires sont des découpes minimales des seules zones cachées nécessaires, notamment le bouton Z de la N64.
+  - [x] Créer `docs/tasks/emulation/sources/xbox-duke-front.png` : conserver la vue frontale réelle du Duke utilisée par Copetti, en vérifiant sa forme et son angle.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : préciser que Power, Volume et autres commandes hors jeu des consoles portables n'ont pas de halo ni d'affectation de manette.
+  - [x] Créer `docs/tasks/emulation/sources/xbox-duke-back.jpg` : conserver une photographie arrière/haute du même Duke montrant les deux gâchettes.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : préciser que les portables n'ont aucune découpe de face sans commande de jeu, même si elle montre Power, Volume, luminosité ou cartouche.
+  - [x] Créer `docs/tasks/emulation/sources/xbox-duke-front-straight.jpg` : conserver une photographie authentique du Duke vue droit de dessus pour remplacer la référence oblique.
+  - [x] Déplacer `docs/tasks/emulation/pc-engine-controller-reference.jpg` vers `artifacts/controller-sources/pc-engine-controller-reference.jpg` : conserver la photo source NEC hors Git.
+  - [x] Déplacer `docs/tasks/emulation/turbografx-turbopad-reference.jpg` vers `artifacts/controller-sources/turbografx-turbopad-reference.jpg` : conserver la photo source NEC hors Git.
+  - [x] Déplacer `docs/tasks/emulation/game-gear-reference.jpg` vers `artifacts/controller-sources/game-gear-reference.jpg` : conserver la photo source Sega hors Git.
+  - [x] Déplacer `docs/tasks/emulation/pc-engine-turbostick-reference.jpg` vers `artifacts/controller-sources/pc-engine-turbostick-reference.jpg` : conserver la photo source NEC hors Git.
+  - [x] Déplacer `docs/tasks/emulation/saturn-3d-controller-reference.jpg` vers `artifacts/controller-sources/saturn-3d-controller-reference.jpg` : conserver la photo source Sega hors Git.
+  - [x] Déplacer `docs/tasks/emulation/sources/xbox-duke-original.jpg` vers `artifacts/controller-sources/xbox-duke-original.jpg` : conserver la photo Duke hors Git.
+  - [x] Déplacer `docs/tasks/emulation/sources/xbox-duke-front.png` vers `artifacts/controller-sources/xbox-duke-front.png` : conserver la vue frontale Duke hors Git.
+  - [x] Déplacer `docs/tasks/emulation/sources/xbox-duke-front-straight.jpg` vers `artifacts/controller-sources/xbox-duke-front-straight.jpg` : conserver la vue droite du Duke hors Git.
+  - [x] Déplacer `docs/tasks/emulation/sources/xbox-duke-back.jpg` vers `artifacts/controller-sources/xbox-duke-back.jpg` : conserver la vue des gâchettes Duke hors Git.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : remplacer les chemins des photos sources de `docs` par leurs chemins sous `artifacts`.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : faire pointer les prochains téléchargements de références vers `artifacts/controller-sources` et retirer les prévisions de photos sources suivies par Git.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : insérer la revue exhaustive des 108 PNG dans l'ordre du dossier, avec un contrôle documenté pour chaque image et une correction avant de passer à la suivante si nécessaire.
+  - [ ] Revoir les 108 images une par une dans l'ordre alphabétique du dossier ; corriger tout écart avant la suivante.
+    - [x] advanced-gravis-gamepad.png
+      - [x] Créer `artifacts/controller-sources/gravis-pc-gamepad-reference.jpg` : conserver une photographie vérifiable du vrai Gravis PC GamePad pour comparer la forme, les boutons, les commutateurs et le câble au PNG.
+      - [x] Supprimer `artifacts/controller-sources/gravis-pc-gamepad-alternative.jpg` : retirer la seconde photo de comparaison, moins nette et non retenue pour le visuel final.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `advanced-gravis-gamepad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] arcade-stick.png
+      - [x] Supprimer `src/GWGUI.App/Assets/Controllers/arcade-stick.png` : retirer le périphérique générique inventé signalé par l'utilisateur.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : enlever les deux références au PNG supprimé, y compris le profil à halos fictifs.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : retirer le profil inventé des choix Dreamcast Arcade Stick et Twin Stick sans supprimer leurs types de commandes.
+      - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : supprimer l'identifiant visuel `ArcadeStick` devenu sans profil.
+      - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : retirer le nom de modèle visuel `arcade-stick` inexistant.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `arcade-stick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] atari-5200-controller.png
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-front.jpg` : conserver la photographie Evan-Amos du contrôleur original pour lire l'inscription de la bande grise et comparer les commandes de face.
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-left.jpg` : conserver la photographie Evan-Amos du côté gauche avec les boutons rouges.
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-right.jpg` : conserver la photographie Evan-Amos du côté droit avec les boutons rouges.
+      - [x] Créer `artifacts/controller-sources/compose-atari-5200.ps1` : assembler par copie de pixels le PNG de face, les deux découpes latérales et un agrandissement photographique de l'inscription grise sur un fond transparent.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : retirer immédiatement l'assemblage raté et rétablir la vue principale précédente avant la refonte.
+      - [x] Supprimer `artifacts/controller-sources/atari-5200-composite.png` : retirer l'aperçu raté contenant une vignette inutile du nom.
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-straight.jpg` : conserver une photographie du vrai contrôleur prise de face, avec l'inscription et les trois touches lisibles, pour remplacer la vue principale.
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-existing.png` : conserver la vue de face conforme déjà présente pour refaire l'image sans perdre son alignement droit.
+      - [x] Modifier `artifacts/controller-sources/compose-atari-5200.ps1` : abandonner la vignette du nom et la photo sombre et oblique ; conserver la vue principale droite, améliorer l'inscription sur sa propre bande grise avec les pixels photographiés du vrai modèle, et ne garder que deux petites vues latérales des boutons.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : refaire la vue principale avec inscription lisible sur la manette elle-même et ajouter les deux seules coupes latérales des boutons rouges sur fond transparent.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : déplacer les halos des boutons latéraux sur les vues de côté et vérifier les autres touches du 5200.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `atari-5200-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] atari-5200-trak-ball.png
+      - [x] Créer `artifacts/controller-sources/atari-5200-trak-ball-reference.jpg` : conserver la photographie du CX53 de Wikimedia Commons pour comparer la coque, les commandes et les inscriptions du PNG.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `atari-5200-trak-ball.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] atari-7800-control-pad-europe.png
+      - [x] Créer `artifacts/controller-sources/atari-7800-cx78-reference.jpg` : conserver la photo du CX78 original pour contrôler la forme, les inscriptions et les deux boutons du PNG.
+      - [x] Créer `artifacts/controller-sources/compose-atari-cx78.ps1` : redresser par rééchantillonnage déterministe la photographie officielle du CX78 et détourer sa coque sur fond transparent, sans reconstruire sa croix ni ses inscriptions.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-7800-control-pad-europe.png` : remplacer la vue actuelle dont le centre de la croix est faux par le détourage photographique du véritable CX78.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : aligner les halos de la croix et des boutons 1/2 sur la nouvelle vue du CX78.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `atari-7800-control-pad-europe.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] Découper le catalogue des visuels par marque, console et manette
+      - [x] Créer `artifacts/controller-sources/controller-catalog-profiles.json` : inscrire pour chacun des 82 profils son identifiant et le chemin exact de son fichier C# par marque et console.
+      - [x] Créer `artifacts/controller-sources/split-controller-catalog.py` : déplacer sans altérer les zones des profils vers leurs fichiers individuels, créer les constantes de noms de PNG, puis réduire le catalogue aux fonctions communes.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkFileNames.cs` : déclarer une constante pour chaque nom de PNG utilisé par les modèles et profils.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecCommonZones.cs` : déplacer les zones communes utilisées par les trois TurboPad NEC.
+      - [x] Modifier `artifacts/controller-sources/split-controller-catalog.py` : ajouter un mode de création séquentielle des 82 fichiers individuels déjà prévus ci-dessous.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : déplacer uniquement le profil Atari5200Controller, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/7800/Atari7800ControlPadEurope.cs` : déplacer uniquement le profil Atari7800ControlPadEurope, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/7800/Atari7800ProLineCx24.cs` : déplacer uniquement le profil Atari7800ProLineCx24, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/2600/AtariCx40.cs` : déplacer uniquement le profil AtariCx40, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/Jaguar/AtariJaguarController.cs` : déplacer uniquement le profil AtariJaguarController, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/Jaguar/AtariJaguarProController.cs` : déplacer uniquement le profil AtariJaguarProController, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/CommodoreCd32.cs` : déplacer uniquement le profil CommodoreCd32, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/CompetitionPro5000.cs` : déplacer uniquement le profil CompetitionPro5000, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/CompetitionProCd32.cs` : déplacer uniquement le profil CompetitionProCd32, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Dreamcast/Dreamcast.cs` : déplacer uniquement le profil Dreamcast, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Generic/Controllers/FlightStick.cs` : déplacer uniquement le profil FlightStick, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/GameGear/GameGearControls.cs` : déplacer uniquement le profil GameGearControls, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/KonixSpeedkingAnalog.cs` : déplacer uniquement le profil KonixSpeedkingAnalog, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/KonixSpeedkingLeftHand.cs` : déplacer uniquement le profil KonixSpeedkingLeftHand, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/KonixSpeedkingRightHand.cs` : déplacer uniquement le profil KonixSpeedkingRightHand, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/MasterSystem/MasterSystem.cs` : déplacer uniquement le profil MasterSystem, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/MegaDrive/MegaDrive3.cs` : déplacer uniquement le profil MegaDrive3, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/MegaDrive/MegaDrive6.cs` : déplacer uniquement le profil MegaDrive6, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecArcadePad6.cs` : déplacer uniquement le profil NecArcadePad6, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecAvenuePad3.cs` : déplacer uniquement le profil NecAvenuePad3, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecAvenuePad6.cs` : déplacer uniquement le profil NecAvenuePad6, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecCordlessPad.cs` : déplacer uniquement le profil NecCordlessPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecCoreGrafxIiTurboPad.cs` : déplacer uniquement le profil NecCoreGrafxIiTurboPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecCoreGrafxTurboPad.cs` : déplacer uniquement le profil NecCoreGrafxTurboPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecDuoPad.cs` : déplacer uniquement le profil NecDuoPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecDuoRTurboPad.cs` : déplacer uniquement le profil NecDuoRTurboPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecPcEngineLtControls.cs` : déplacer uniquement le profil NecPcEngineLtControls, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecPcEngineMouse.cs` : déplacer uniquement le profil NecPcEngineMouse, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecPcEnginePad.cs` : déplacer uniquement le profil NecPcEnginePad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecPcEngineTurboPad.cs` : déplacer uniquement le profil NecPcEngineTurboPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecPcEngineTurboPadIi.cs` : déplacer uniquement le profil NecPcEngineTurboPadIi, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-Engine/NecPcEngineTurboStick.cs` : déplacer uniquement le profil NecPcEngineTurboStick, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-FX/NecPcFxMouse.cs` : déplacer uniquement le profil NecPcFxMouse, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/PC-FX/NecPcFxPad.cs` : déplacer uniquement le profil NecPcFxPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/TurboGrafx/NecTurboExpressControls.cs` : déplacer uniquement le profil NecTurboExpressControls, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/TurboGrafx/NecTurboGrafxTurboPad.cs` : déplacer uniquement le profil NecTurboGrafxTurboPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/TurboGrafx/NecTurboGrafxTurboStick.cs` : déplacer uniquement le profil NecTurboGrafxTurboStick, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/Nintendo64/Nintendo64Pad.cs` : déplacer uniquement le profil Nintendo64Pad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/Famicom/NintendoFamicomPad1.cs` : déplacer uniquement le profil NintendoFamicomPad1, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/GameBoy/NintendoGameBoy.cs` : déplacer uniquement le profil NintendoGameBoy, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/GameBoy/NintendoGameBoyAdvance.cs` : déplacer uniquement le profil NintendoGameBoyAdvance, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/GameBoy/NintendoGameBoyColor.cs` : déplacer uniquement le profil NintendoGameBoyColor, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/GameCube/NintendoGameCubePad.cs` : déplacer uniquement le profil NintendoGameCubePad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/GameCube/NintendoGameCubeWaveBird.cs` : déplacer uniquement le profil NintendoGameCubeWaveBird, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/NES/NintendoNesAdvantage.cs` : déplacer uniquement le profil NintendoNesAdvantage, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/NES/NintendoNesDogbonePad.cs` : déplacer uniquement le profil NintendoNesDogbonePad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/NES/NintendoNesMax.cs` : déplacer uniquement le profil NintendoNesMax, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/NES/NintendoNesPad.cs` : déplacer uniquement le profil NintendoNesPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/Famicom/NintendoSuperFamicomPad.cs` : déplacer uniquement le profil NintendoSuperFamicomPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/SuperNES/NintendoSuperNesPad.cs` : déplacer uniquement le profil NintendoSuperNesPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/PowerplayCruiser.cs` : déplacer uniquement le profil PowerplayCruiser, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/QuickShot.cs` : déplacer uniquement le profil QuickShot, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/QuickShotDeluxe.cs` : déplacer uniquement le profil QuickShotDeluxe, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/QuickShotIiTurbo.cs` : déplacer uniquement le profil QuickShotIiTurbo, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Generic/Controllers/RacingWheel.cs` : déplacer uniquement le profil RacingWheel, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/Saturn.cs` : déplacer uniquement le profil Saturn, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/Saturn3D.cs` : déplacer uniquement le profil Saturn3D, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/MegaDrive/SegaArcadePowerStick3.cs` : déplacer uniquement le profil SegaArcadePowerStick3, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/MegaDrive/SegaArcadePowerStick6.cs` : déplacer uniquement le profil SegaArcadePowerStick6, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/MasterSystem/SegaControlStick.cs` : déplacer uniquement le profil SegaControlStick, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/SegaSaturnVirtuaStickHss0104.cs` : déplacer uniquement le profil SegaSaturnVirtuaStickHss0104, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/SegaSaturnVirtuaStickHss0136.cs` : déplacer uniquement le profil SegaSaturnVirtuaStickHss0136, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/SG1000/SegaSg1000Ii.cs` : déplacer uniquement le profil SegaSg1000Ii, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/SG1000/SegaSg1000Joystick.cs` : déplacer uniquement le profil SegaSg1000Joystick, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation5/SonyDualSense.cs` : déplacer uniquement le profil SonyDualSense, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation/SonyDualShock1.cs` : déplacer uniquement le profil SonyDualShock1, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation2/SonyDualShock2.cs` : déplacer uniquement le profil SonyDualShock2, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation4/SonyDualShock4.cs` : déplacer uniquement le profil SonyDualShock4, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation/SonyPlayStationController.cs` : déplacer uniquement le profil SonyPlayStationController, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PSP/SonyPsp1000.cs` : déplacer uniquement le profil SonyPsp1000, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/SuncomTac2.cs` : déplacer uniquement le profil SuncomTac2, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/SuzoTheArcadeTurbo.cs` : déplacer uniquement le profil SuzoTheArcadeTurbo, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox360/Xbox360BigButtonPad.cs` : déplacer uniquement le profil Xbox360BigButtonPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox360/Xbox360Chatpad.cs` : déplacer uniquement le profil Xbox360Chatpad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox360/Xbox360TransformingDPad.cs` : déplacer uniquement le profil Xbox360TransformingDPad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox360/Xbox360WirelessRacingWheel.cs` : déplacer uniquement le profil Xbox360WirelessRacingWheel, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox360/Xbox360WirelessSpeedWheel.cs` : déplacer uniquement le profil Xbox360WirelessSpeedWheel, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/XboxOne/XboxChatpad.cs` : déplacer uniquement le profil XboxChatpad, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox/XboxControllerS.cs` : déplacer uniquement le profil XboxControllerS, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox/XboxDuke.cs` : déplacer uniquement le profil XboxDuke, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/Xbox/XboxDvdMoviePlaybackKit.cs` : déplacer uniquement le profil XboxDvdMoviePlaybackKit, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/ZipstikSuperPro.cs` : déplacer uniquement le profil ZipstikSuperPro, son fichier image par constante et ses zones de boutons.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.Profiles.cs` : assembler les 82 profils individuels dans le dictionnaire, sans répéter leurs zones.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : retirer les définitions individuelles et les noms de PNG littéraux, conserver le chargement et les caches, puis utiliser les constantes et le registre.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkGlobalUsings.cs` : rendre disponibles les types de zones des profils individuels sans répéter les imports dans les 82 fichiers.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : décrire le découpage, le nombre de profils et constater le résultat du build Debug application et modules.
+    - [x] atari-7800-pro-line-cx24.png
+      - [x] Créer `artifacts/controller-sources/atari-cx24-side.jpg` : conserver une photographie du véritable CX24 montrant le profil des deux boutons rouges.
+      - [x] Créer `artifacts/controller-sources/atari-cx24-main.png` : conserver l'image principale droite actuelle avant sa composition avec les boutons de côté.
+      - [x] Créer `artifacts/controller-sources/compose-atari-cx24.ps1` : ajouter à la face droite déjà présente deux découpes photographiques minimales des boutons latéraux, sur fond transparent.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-7800-pro-line-cx24.png` : afficher les deux boutons latéraux à côté de la vue principale, sans vue annexe du nom Atari.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/7800/Atari7800ProLineCx24.cs` : déplacer les halos des boutons sur les découpes où ils sont visibles.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `atari-7800-pro-line-cx24.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] atari-cx40.png
+      - [x] Créer `artifacts/controller-sources/atari-cx40-reference.jpg` : conserver la photographie de dessus du véritable CX40 publiée sur Wikimedia Commons pour comparer la coque, les inscriptions et les commandes.
+      - [x] Créer `artifacts/controller-sources/compose-atari-cx40.ps1` : redresser la photographie authentique et rendre transparent son fond blanc par traitement déterministe, sans reconstruire de détail du joystick.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-cx40.png` : remplacer l'illustration actuelle par la photographie redressée et détourée du CX40 original.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/2600/AtariCx40.cs` : recaler le halo du bouton rouge et celui des directions sur la nouvelle image.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `atari-cx40.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] atari-jaguar-controller.png
+      - [x] Créer `artifacts/controller-sources/atari-jaguar-controller-reference.jpg` : conserver une photographie de face du contrôleur Jaguar standard et vérifier les boutons, le pavé numérique et l'angle.
+      - [x] Créer `artifacts/controller-sources/atari-jaguar-controller-flat.jpg` : conserver la vue à plat authentique de la même manette pour remplacer le rendu actuel sans perspective.
+      - [x] Créer `artifacts/controller-sources/atari-jaguar-controller-flat-preview.png` : réduire la photographie pour vérifier si sa partie basse est réellement disponible avant tout détourage.
+      - [x] Créer `artifacts/controller-sources/compose-atari-jaguar.ps1` : détourer la photographie à plat et la réduire sur fond transparent sans changer les touches ni la coque.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-jaguar-controller.png` : remplacer l'illustration actuelle par la photographie réelle détourée.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/Jaguar/AtariJaguarController.cs` : recaler toutes les zones de boutons sur la photo réelle.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `atari-jaguar-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] atari-jaguar-pro-controller.png
+      - [x] Créer `artifacts/controller-sources/atari-jaguar-pro-controller-flat.jpg` : conserver une photographie à plat du véritable Pro Controller pour comparer tous les boutons de face.
+      - [x] Créer `artifacts/controller-sources/atari-jaguar-pro-controller-top.jpg` : conserver une photographie du dessus du même modèle pour les boutons L/R.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier X/Y/Z et L/R du Pro Controller aux commandes existantes des touches 9/8/7 et 4/6, conformément au câblage Jaguar.
+      - [x] Créer `artifacts/controller-sources/atari-jaguar-pro-top-upright.png` : redresser et réduire la photographie du dessus pour repérer précisément les découpes L/R.
+      - [x] Créer `artifacts/controller-sources/compose-atari-jaguar-pro.ps1` : détourer la vue à plat et composer deux découpes minimales authentiques des boutons L/R sur fond transparent.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-jaguar-pro-controller.png` : employer cette vue photographique composée.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/Jaguar/AtariJaguarProController.cs` : recaler les halos de face et les boutons L/R sur la vue où ils sont visibles.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `atari-jaguar-pro-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] Vérification du lot CX24 à Jaguar Pro
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la vérification des constantes de noms de PNG, du build Debug application et huit modules, et la présence des artefacts après les nouveaux profils Atari.
+    - [x] bally-astrocade-controller.png
+      - [x] Créer `artifacts/controller-sources/bally-control-handle-left.jpg` : conserver la photographie de profil du Bally Control Handle réel, montrant la gâchette et le bouton rotatif.
+      - [x] Créer `artifacts/controller-sources/compose-bally-control-handle.ps1` : détourer le profil droit par segmentation déterministe du fond clair, sans modifier le matériel.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/bally-astrocade-controller.png` : remplacer l'ancienne vue oblique par le profil photographique montrant la gâchette et la molette.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `bally-astrocade-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] colecovision-controller.png
+      - [x] Créer `artifacts/controller-sources/colecovision-controller-fl.jpg` : conserver la photographie publique Evan-Amos de face et de profil gauche du contrôleur ColecoVision original pour contrôler le modèle et son bouton latéral.
+      - [x] Créer `artifacts/controller-sources/colecovision-controller-fr.jpg` : conserver la vue droite correspondante pour contrôler le second bouton latéral.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `colecovision-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [x] Préparer les références photographiques du Commodore CD32
+      - [x] Créer `artifacts/controller-sources/amiga-cd32-controller-flat.jpg` : conserver la photographie publique de face du contrôleur Commodore CD32 pour comparer les formes et libellés.
+      - [x] Créer `artifacts/controller-sources/amiga-cd32-controller-back.jpg` : conserver la photographie publique arrière pour examiner les deux gâchettes cachées dans la vue de face.
+      - [x] Créer `artifacts/controller-sources/amiga-cd32-controller-left.jpg` : conserver la vue oblique réelle qui montre la gâchette gauche à détourer.
+      - [x] Créer `artifacts/controller-sources/amiga-cd32-controller-right.jpg` : conserver la vue oblique réelle qui montre la gâchette droite à détourer.
+    - [x] Corriger les trois contrôleurs Atari signalés par l'utilisateur
+      - [x] Atari 5200 CX52
+        - [x] Créer `artifacts/controller-sources/atari-5200-controller-side-profile.jpg` : conserver une photographie de profil du véritable CX52 montrant les boutons rouges dans la coque, pour une découpe latérale droite.
+        - [x] Modifier `artifacts/controller-sources/compose-atari-5200.ps1` : reconstruire depuis la vue principale droite sans recoller une autre bande Atari ; montrer les deux boutons rouges sur une petite vue de profil comprenant la coque réelle, sur fond transparent.
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : remplacer entièrement la composition ratée par le résultat du script, après contrôle visuel des boutons et de l'inscription sur la manette.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : recaler les halos sur la nouvelle image composée.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : corriger le bilan de fidélité du 5200 et documenter les deux vues latérales.
+      - [x] Atari 7800 déjà corrects
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-7800-pro-line-cx24.png` : rétablir le PNG précédent sans la retouche non demandée.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/7800/Atari7800ProLineCx24.cs` : faire correspondre les halos au PNG restauré.
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-7800-control-pad-europe.png` : rétablir le PNG précédent sans la retouche non demandée.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/7800/Atari7800ControlPadEurope.cs` : faire correspondre les halos au PNG restauré.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : indiquer que les deux images d'origine ont été rétablies à la demande de l'utilisateur.
+      - [x] Atari CX40 droit
+        - [x] Modifier `artifacts/controller-sources/compose-atari-cx40.ps1` : redresser la photographie en conservant la forme et les couleurs du joystick réel.
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-cx40.png` : utiliser la vue corrigée et vérifier que les côtés de la coque sont verticaux.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/2600/AtariCx40.cs` : recaler au besoin le bouton et le levier après redressement.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : signaler le redressement du CX40.
+    - [x] Rectifier les images Atari modifiées à tort
+      - [x] Rétablir la CX40 déjà validée
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-cx40.png` : rétablir exactement les pixels du PNG antérieur à mon redressement.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/2600/AtariCx40.cs` : rétablir les coordonnées des halos correspondant au PNG antérieur.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : indiquer que l'image CX40 validée par l'utilisateur est conservée.
+      - [x] Rétablir la Jaguar standard déjà validée
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-jaguar-controller.png` : rétablir exactement les pixels du PNG antérieur.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/Jaguar/AtariJaguarController.cs` : rétablir les coordonnées des halos correspondant au PNG antérieur.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : indiquer que la Jaguar standard validée par l'utilisateur est conservée.
+      - [x] Refaire la vue principale de la Jaguar Pro sans perdre les coupes de boutons validées
+        - [x] Créer `artifacts/controller-sources/atari-jaguar-pro-before.png` : conserver la version antérieure de la manette pour comparer fidèlement sa forme et ses boutons.
+        - [x] Modifier `artifacts/controller-sources/compose-atari-jaguar-pro.ps1` : composer une vue principale fidèle au modèle et garder les vues L/R déjà validées.
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-jaguar-pro-controller.png` : remplacer la vue principale ratée, conserver les coupes L/R et le fond transparent.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/Jaguar/AtariJaguarProController.cs` : recaler les halos sur les boutons réels de la nouvelle composition.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner les corrections de la Jaguar Pro.
+      - [x] Refaire l'Atari 5200 avec des coupes latérales à leur place
+        - [x] Créer `artifacts/controller-sources/atari-5200-ifixit-side-1.jpg` : conserver la première photographie des flancs du vrai CX52 pour identifier l'orientation des boutons.
+        - [x] Créer `artifacts/controller-sources/atari-5200-ifixit-side-2.jpg` : conserver la seconde photographie des flancs du vrai CX52 pour vérifier la vue opposée.
+        - [x] Créer `artifacts/controller-sources/atari-5200-ifixit-side-3.jpg` : conserver la troisième photographie des flancs du vrai CX52 pour comparer leur montage.
+        - [x] Modifier `artifacts/controller-sources/compose-atari-5200.ps1` : composer la face gauche à gauche, la face droite à droite, sans bouton latéral inventé.
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : remplacer entièrement l'image ratée par la composition fidèle au contrôleur CX52.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : recaler les halos sur les vrais boutons de la composition.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : corriger le bilan du CX52.
+    - [x] Refaire les deux Virtua Stick Saturn avec leurs inscriptions réelles
+      - [x] HSS-0104
+        - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-photo.jpg` : conserver la photographie du modèle réel et ses inscriptions visibles.
+        - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-full.jpg` : conserver une seconde vue photographique complète du modèle pour garder toute la coque et toutes les touches.
+        - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-clean.jpg` : conserver une photographie complète plus nette pour choisir la vue dont les libellés sont lisibles.
+        - [x] Créer `artifacts/controller-sources/Remove-ConnectedBackground.ps1` : isoler par pixels connectés le fond clair d'une photographie réelle, pour réutilisation sur les deux modèles sans toucher aux inscriptions.
+        - [x] Créer `artifacts/controller-sources/compose-sega-saturn-virtua-stick-hss0104.ps1` : détourer et redresser déterministement la photographie sans dessiner de touches.
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0104.png` : utiliser la vraie photo détourée où les noms des touches sont lisibles.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/SegaSaturnVirtuaStickHss0104.cs` : aligner les halos sur les commandes photographiées.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner la photo du HSS-0104 et la lecture de ses inscriptions.
+      - [x] HSS-0136
+        - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0136-photo.png` : conserver la photographie du modèle réel et ses inscriptions visibles.
+        - [x] Créer `artifacts/controller-sources/compose-sega-saturn-virtua-stick-hss0136.ps1` : détourer et redresser déterministement la photographie sans dessiner de touches.
+        - [x] Modifier `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0136.png` : utiliser la vraie photo détourée où les noms des touches sont lisibles.
+        - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/SegaSaturnVirtuaStickHss0136.cs` : aligner les halos sur les commandes photographiées.
+        - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner la photo du HSS-0136 et la lecture de ses inscriptions.
+    - [x] Vérifier le lot Atari corrigé
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter le résultat du build Debug de l'application après le recalage des profils Atari et la présence de l'exécutable.
+    - [x] Commencer la répartition du registre des profils par marque
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/NEC/NECProfileRegistry.cs` : enregistrer les profils NEC dans leur propre dictionnaire.
+    - [x] Reprendre le HSS-0104 seul et le soumettre à validation
+      - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-overhead-candidate.jpg` : conserver une autre photographie du HSS-0104 à comparer pour la verticalité de la vue et les inscriptions.
+      - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-overhead-second.jpg` : conserver la seconde photographie candidate, comparer l'angle vertical avant de choisir la source finale.
+      - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-overhead-third.jpg` : vérifier une photographie de catalogue plus proche de la verticale.
+      - [x] Modifier `artifacts/controller-sources/Remove-ConnectedBackground.ps1` : mettre à zéro les composantes RVB des pixels devenus transparents pour inspecter le détourage sans faux fond blanc.
+      - [x] Modifier `artifacts/controller-sources/compose-sega-saturn-virtua-stick-hss0104.ps1` : conserver le contrôleur entier dans la photo et retirer effectivement le fond clair par traitement déterministe.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0104.png` : remplacer le PNG au fond encore visible et au haut coupé par le détourage corrigé.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/SegaSaturnVirtuaStickHss0104.cs` : recaler les halos si les dimensions de la photo corrigée changent.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : noter la correction effective du fond et de la coupe, en attente de validation visuelle.
+    - [x] Respecter la liste des images figées par l'utilisateur
+      - [x] Créer `docs/tasks/emulation/controller-artwork-preserved.md` : inscrire les 31 PNG explicitement figés, leur chemin et l'interdiction de retoucher leurs pixels pendant la suite de l'audit.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : retirer les tâches de reprise encore ouvertes visant ces PNG et conserver les audits NEC et des autres modèles, sans modifier les 31 images figées.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : corriger l'état des PNG figés et classer les 19 PNG NEC comme modèles à authentifier un à un.
+    - [x] Préparer une nouvelle vue de dessus du HSS-0104 à soumettre à l'utilisateur
+      - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-sega-official.jpg` : comparer la photographie publiée par Sega à la géométrie d'une vue strictement supérieure.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner si la source Sega suffit ou si une autre prise de vue est nécessaire, sans valider le PNG refusé.
+      - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-retrounit-candidate.jpg` : vérifier la photographie du modèle HSS-0104 vue depuis le dessus et juger si elle respecte l'angle demandé.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner le résultat de cette vérification et, si la vue est oblique, préciser qu'aucun nouveau PNG ne doit en dériver.
+      - [x] Créer `artifacts/controller-sources/sega-saturn-virtua-stick-hss0104-ebay-candidate.jpg` : examiner la dernière photographie réelle trouvée pour sélectionner la source la plus droite et la plus lisible.
+      - [x] Créer `artifacts/controller-sources/rectify-sega-saturn-virtua-stick-hss0104.ps1` : redresser par transformation géométrique la meilleure photographie réelle proche de l'axe vertical, retirer le fond et enregistrer un aperçu dans `artifacts/controller-sources/`.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/sega-saturn-virtua-stick-hss0104.png` : remplacer l'image refusée uniquement si l'aperçu présente la manette entière avec les commandes originales dans une vue réellement supérieure.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/Saturn/SegaSaturnVirtuaStickHss0104.cs` : ajuster les zones de halo à la photographie redressée.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner la provenance, la transformation et la limite visuelle de l'image livrée.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner le résultat du build Debug de l'application après la reprise du profil.
+    - [x] Refaire le CX52 sur demande de l'utilisateur, avant la suite des autres manettes
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-etsy-candidate.jpg` : contrôler si cette photographie fournit une vue principale plus droite et une plaque « ATARI 5200 » lisible.
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-best-electronics-candidate.gif` : contrôler l'autre photographie potentiellement frontale du CX52 avant de choisir la source.
+      - [x] Créer `artifacts/controller-sources/atari-5200-controller-kodi-candidate.png` : vérifier si la photographie publiée pour l'icône de contrôleur offre une vraie vue de dessus et des inscriptions lisibles.
+      - [x] Modifier `artifacts/controller-sources/compose-atari-5200.ps1` : redresser la photo frontale réelle du CX52, utiliser deux photographies des flancs opposés (Etsy à gauche, photo de profil à droite) tournées pour aligner le haut de chaque côté, sans miroir ni boutons inventés, et faire apparaître une plaque « ATARI 5200 » lisible depuis une photographie du modèle.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : remplacer les découpes dupliquées et inversées par les vraies faces latérales.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : recaler les halos sur les quatre boutons latéraux photographiés.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner la référence Atari et le contrôle de l'orientation des deux flancs.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner le résultat de la compilation Debug de l'application après la mise à jour des halos du CX52.
+    - [x] Redessiner entièrement le CX52 comme illustration technique fidèle, sans détourage ni collage photographique
+      - [x] Créer `artifacts/controller-sources/draw-atari-5200.ps1` : dessiner à haute résolution la coque CX52 vue strictement de dessus, le joystick, les trois touches de fonction, la plaque ATARI 5200, le pavé numérique et les deux vues latérales avec deux boutons rouges chacune, d'après les photographies du modèle réel et sans y copier leurs pixels.
+      - [x] Créer `artifacts/controller-sources/atari-5200-generated-candidate.png` : produire un dessin expert à partir des vues réelles du CX52, puis contrôler la forme, les inscriptions, les 12 touches et les deux boutons de chaque flanc avant de retenir une image pour l'application.
+      - [x] Créer `artifacts/controller-sources/atari-5200-generated-final-candidate.png` : réduire les coupes aux seuls boutons utiles, retirer les câbles et manettes fictivement répétés sur les flancs et redresser la vue supérieure du joystick sans toucher aux 12 touches ni aux inscriptions correctes.
+      - [x] Créer `artifacts/controller-sources/atari-5200-generated-overhead-candidate.png` : corriger uniquement le joystick central pour qu'il soit vu strictement du dessus, sans flanc vertical visible, puis revérifier toutes les autres commandes.
+      - [x] Créer `artifacts/controller-sources/atari-5200-generated-buttons-candidate.png` : corriger la disposition physique des deux boutons de chaque flanc d'après les photographies, côte à côte dans chaque coupe orientée et avec la seule tranche supérieure visible dans la vue de dessus.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : remplacer entièrement le montage photographique par le rendu du dessin sur fond transparent.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : recaler les zones cliquables sur les commandes du dessin final.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : remplacer la description du photomontage par les références matérielles et les détails du dessin effectivement réalisés.
+      - [x] Créer `artifacts/controller-sources/atari-5200-generated-flanks-candidate.png` : redessiner chaque flanc d'après le gros plan fourni, avec deux barres rouges horizontales superposées et biseautées dans l'épaisseur du boîtier, sans changer la face ni les touches.
+      - [x] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : remplacer les deux coupes latérales aux boutons verticaux par les vraies barres horizontales superposées.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : aligner les quatre halos latéraux sur les barres rouges du dessin corrigé.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : corriger la description de la disposition des boutons latéraux conformément au gros plan fourni par l'utilisateur.
+      - [x] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner le résultat du build Debug après la mise à jour du dessin et du profil.
+    - [ ] Corriger le relief des boutons rouges du CX52 d'après les deux nouvelles vues de référence
+      - [x] Créer `artifacts/controller-sources/atari-5200-buttons-relief-candidate.png` : remplacer dans le dessin les fausses touches rouges encastrées par deux gâchettes larges qui dépassent de chaque flanc, l'une dans la demi-coque supérieure et l'autre dans la demi-coque inférieure, avec le décalage visible sur la photo réelle.
+      - [x] Créer `artifacts/controller-sources/draw-atari-5200-flanks.ps1` : redessiner les deux vues latérales avec les boutons rouges larges, horizontaux et superposés dans la coque près du câble, de part et d'autre de sa jointure ; suivre les photographies de profil sans utiliser leurs pixels ni détailler inutilement la pente de la coque.
+      - [x] Créer `artifacts/controller-sources/atari-5200-side-redrawn.png` : conserver sous `artifacts` la nouvelle illustration latérale redessinée d'après les vues de référence, sans détourer leurs pixels.
+      - [x] Modifier `artifacts/controller-sources/draw-atari-5200-flanks.ps1` : composer la vue principale avec une découpe limitée à la zone des deux boutons de chaque côté de la nouvelle illustration latérale, symétrisée pour les deux flancs.
+      - [ ] Créer `artifacts/controller-sources/atari-5200-flanks-redrawn-preview.png` : composer les flancs redessinés avec la vue de dessus et vérifier visuellement la géométrie avant de remplacer l'image de l'application.
+      - [ ] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : utiliser l'illustration corrigée seulement après contrôle visuel côte à côte avec les photographies des flancs.
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : ajuster les quatre zones d'action aux boutons saillants dessinés.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : documenter la géométrie saillante des boutons et l'état réel de la validation.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner la vérification du build Debug après ce dernier ajustement.
+    - [ ] Reprendre le HSS-0104 selon l'avis de l'utilisateur après le CX52
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : enregistrer sa validation ou le défaut précis restant et prévoir la correction correspondante avant de passer à une autre manette.
+    - [ ] Terminer la répartition du registre des profils par marque
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/MicrosoftProfileRegistry.cs` : enregistrer les profils Xbox dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/SonyProfileRegistry.cs` : enregistrer les profils Sony dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/NintendoProfileRegistry.cs` : enregistrer les profils Nintendo dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Generic/GenericProfileRegistry.cs` : enregistrer les joysticks multiplateformes dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/AmigaProfileRegistry.cs` : enregistrer les profils Amiga dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/AtariProfileRegistry.cs` : enregistrer les profils Atari dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/SegaProfileRegistry.cs` : enregistrer les profils Sega dans leur propre dictionnaire.
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.Profiles.cs` : garder seulement l'assemblage du dictionnaire des marques.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : décrire la répartition vérifiée et le résultat du build de l'application.
+    - [ ] Terminer commodore-cd32.png
+      - [ ] Créer `artifacts/controller-sources/compose-amiga-cd32-controller.ps1` : composer la vue de face existante avec deux petites découpes photographiques montrant uniquement les gâchettes, en préservant leurs pixels.
+      - [ ] Modifier `src/GWGUI.App/Assets/Controllers/commodore-cd32.png` : afficher ces découpes avec le contrôleur existant sur fond transparent.
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/CommodoreCd32.cs` : placer les halos des gâchettes sur les découpes réelles.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `commodore-cd32.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] competition-pro-cd32.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `competition-pro-cd32.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] dreamcast.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `dreamcast.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] flight-stick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `flight-stick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] generic-gamepad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `generic-gamepad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] konix-speedking-left-hand.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `konix-speedking-left-hand.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] konix-speedking-right-hand.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `konix-speedking-right-hand.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] mattel-hyperscan-controller.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `mattel-hyperscan-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] mattel-intellivision-controller.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `mattel-intellivision-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] mega-drive-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `mega-drive-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-arcade-pad-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-arcade-pad-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-avenue-pad-3.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-avenue-pad-3.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-avenue-pad-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-avenue-pad-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-cordless-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-cordless-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-coregrafx-ii-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-coregrafx-ii-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-coregrafx-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-coregrafx-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-duopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-duopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-duor-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-duor-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-lt-controls.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-lt-controls.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-mouse.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-mouse.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-turbopad-ii.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-turbopad-ii.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-turbostick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-turbostick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-fx-mouse.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-fx-mouse.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-fx-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-fx-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-turboexpress-controls.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-turboexpress-controls.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-turbografx-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-turbografx-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-turbografx-turbostick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-turbografx-turbostick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-64.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-64.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-game-boy-advance.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-game-boy-advance.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-game-boy-color.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-game-boy-color.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-game-boy.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-game-boy.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-gamecube-wavebird.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-gamecube-wavebird.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-gamecube.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-gamecube.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-nes-advantage.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-nes-advantage.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-nes-dogbone.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-nes-dogbone.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-nes-max.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-nes-max.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] philips-cdi-gamepad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `philips-cdi-gamepad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-1.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-1.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-2.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-2.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-4.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-4.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-5.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-5.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] quickshot-deluxe.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `quickshot-deluxe.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] quickshot-ii-turbo.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `quickshot-ii-turbo.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] quickshot.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `quickshot.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] racing-wheel.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `racing-wheel.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] saturn-3d-control-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `saturn-3d-control-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] saturn.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `saturn.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-arcade-power-stick-3.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-arcade-power-stick-3.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-arcade-power-stick-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-arcade-power-stick-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-control-stick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-control-stick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-saturn-virtua-stick-hss0104.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-saturn-virtua-stick-hss0104.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-saturn-virtua-stick-hss0136.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-saturn-virtua-stick-hss0136.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-sg1000-ii.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-sg1000-ii.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-sg1000-joystick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-sg1000-joystick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sony-dualshock-1.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sony-dualshock-1.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sony-psp-1000.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sony-psp-1000.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] super-nes-controller.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `super-nes-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] super-nintendo.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `super-nintendo.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-big-button-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-big-button-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-black.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-black.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-chatpad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-chatpad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-transforming-dpad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-transforming-dpad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-white.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-white.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-wireless-racing-wheel.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-wireless-racing-wheel.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-wireless-speed-wheel.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-wireless-speed-wheel.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-chatpad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-chatpad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-controller-s.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-controller-s.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-duke.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-duke.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-dvd-movie-playback-kit.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-dvd-movie-playback-kit.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-one.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-one.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-rematch-core.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-rematch-core.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-series.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-series.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+  - [ ] Créer `artifacts/controller-sources/cutout-duke.ps1` : préparer un détourage déterministe de la photo frontale du Duke et deux petites découpes de sa photo arrière montrant les gâchettes, sans modifier les pixels du matériel.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-duke.png` : remplacer l'illustration inventée par les pixels du matériel photographié, avec seul le fond détouré de manière déterministe.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les zones de la manette Duke sur ses commandes photographiées.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer la photo Duke et consigner les contrôles effectués.
+  - [ ] Créer `artifacts/controller-sources/xbox-dvd-remote-original.jpg` : conserver une photographie de face de la télécommande DVD Xbox d'origine.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-dvd-movie-playback-kit.png` : remplacer la télécommande reconstruite par la photographie du vrai modèle, fond seulement détouré.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos sur les touches réelles de la télécommande.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer la photo de la télécommande et noter le contrôle des touches.
+  - [ ] Créer `artifacts/controller-sources/xbox-controller-s-original.jpg` : conserver une photographie de face du Microsoft Controller S original.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-controller-s.png` : remplacer l'illustration par la photo détourée sans changement des boutons Black/White.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : recalculer les halos du Controller S.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier le Controller S.
+  - [ ] Créer `artifacts/controller-sources/xbox-chatpad-original.png` : conserver une photographie de face du Chatpad Microsoft pour Xbox One.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-chatpad.png` : remplacer les touches inventées par les pixels de la photographie, avec détourage du fond uniquement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : recalculer les zones du Chatpad d'après les touches réelles.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier le Chatpad Xbox One.
+  - [ ] Créer `artifacts/controller-sources/sony-psp-1000-original.png` : conserver la source photographique de face du modèle PSP-1000.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-psp-1000.png` : remplacer toute vue oblique ou reconstruction par la vue de face photographiée, fond détouré seulement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos de la PSP-1000.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier la PSP-1000.
+  - [ ] Créer `artifacts/controller-sources/sony-dualshock-1-original.jpg` : conserver une photo de face de la DualShock d'origine.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-dualshock-1.png` : remplacer l'image oblique par la photo de face du modèle exact, détourée sans reconstruire les commandes.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos de la DualShock d'origine.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier la DualShock d'origine.
+  - [ ] Créer `artifacts/controller-sources/sega-sg1000-joystick-original.jpg` : conserver une photo de dessus droite du joystick Sega SG-1000 exact.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sega-sg1000-joystick.png` : remplacer la vue fausse ou inclinée par la photo du vrai joystick, détourée uniquement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos du joystick SG-1000.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier le joystick SG-1000.
+  - [ ] Créer `artifacts/controller-sources/sega-sg1000-ii-original.jpg` : conserver une photo de face droite du contrôleur Sega SG-1000 II exact.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sega-sg1000-ii.png` : remplacer la vue fausse ou inclinée par la photo de la vraie manette, détourée uniquement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos SG-1000 II.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier la manette SG-1000 II.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les autres remplacements Xbox 360, NEC, Nintendo et Virtua Stick après ce lot prioritaire.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug et la présence de l'application et des huit modules.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.
