@@ -83,7 +83,8 @@ public sealed class Nintendo64ControllerTests
             }
         };
 
-        var mapped = InputSnapshotFunctions.Apply(snapshot, configuration, false);
+        var mapped = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64,
+            configuration, false);
         var controller = mapped.Controllers[FirstPortIndex];
 
         Assert.Equal(ExpectedButtonMask, controller.Buttons);
@@ -116,7 +117,8 @@ public sealed class Nintendo64ControllerTests
                 })
         ]);
 
-        var mapped = InputSnapshotFunctions.Apply(snapshot, configuration, false);
+        var mapped = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64,
+            configuration, false);
 
         Assert.Equal(default, mapped.Controllers[FirstPortIndex].LeftX);
         Assert.Equal(short.MaxValue, mapped.Controllers[FirstPortIndex].LeftY);

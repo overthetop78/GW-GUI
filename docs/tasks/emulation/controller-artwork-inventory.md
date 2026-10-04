@@ -242,6 +242,14 @@ Trois tests `GameCubeControllerTests` réussissent (0 échec) : les quatre ports
 
 Build Debug du 4 octobre 2026 après le profil GameCube : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de `build/Debug/GW GUI/Modules/<marque>/` vérifiés présents. Les halos ne sont pas encore contrôlés dans la fenêtre.
 
+Profil NES Max (NES-027) : `nintendo-nes-max.png` (1536 × 1024, coins alpha 0) est une vue de face transparente générée à partir de la [photographie libre d'Evan-Amos](https://commons.wikimedia.org/wiki/File:NES-MAX-Controller-FL.jpg). Les zones distinguent le disque directionnel, B, A, Turbo B, Turbo A, Select et Start. Le [tableau des commandes Mesen](https://docs.libretro.com/library/mesen/#joypad) donne A/B sur les bits RetroPad B/Y et Turbo A/B sur A/X ; les affectations NES et Famicom utilisent ces correspondances sans modifier les autres consoles. Les lignes Turbo A/B sont proposées sur le profil NES, mais seuls les visuels dont les boutons turbo sont visibles possèdent leurs halos. La position des halos et l'absence de frange autour de la silhouette restent à essayer en fenêtre.
+
+La NES Max est proposée parmi les visuels NES, sans être proposée sur Famicom Disk System, dont la prise de manette diffère. Le test ciblé après ce filtrage réussit (2/2). Les affectations Turbo A/B restent disponibles au niveau du coeur Mesen sur les deux profils, indépendamment du visuel sélectionné.
+
+Build Debug final après le filtrage Famicom : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL des modules ont été vérifiés présents. `git diff --check` ne relève aucune erreur. Le rendu interactif des zones NES Max n'est pas encore vérifié.
+
+Validation NES Max du 4 octobre 2026 : neuf tests ciblés `NesMaxControllerTests`, `Nintendo64ControllerTests` et `GameCubeControllerTests` réussissent (0 échec). Ils couvrent les boutons normaux et turbo transmis à Mesen, la conservation des bits SNES et les profils Nintendo 64/GameCube précédents. Le build `scripts\local-building.cmd --building=debug --modules=A` se termine avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de modules sont présents. `git diff --check` ne signale aucune erreur. Les halos restent à vérifier dans la fenêtre de l'application.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Nintendo.Controller.GameWatchBall | Nintendo Game & Watch Ball (AC-01) | À créer / vérifier |
@@ -315,7 +323,7 @@ Build Debug du 4 octobre 2026 après le profil GameCube : `scripts\local-buildin
 | Emulation.Nintendo.Controller.FamicomPad2 | Nintendo Famicom Controller II | À créer / vérifier |
 | Emulation.Nintendo.Controller.AvFamicomPad | Nintendo AV Famicom Controller (HVC-102) | À créer / vérifier |
 | Emulation.Nintendo.Controller.NesAdvantage | Nintendo NES Advantage (NES-026) | À créer / vérifier |
-| Emulation.Nintendo.Controller.NesMax | Nintendo NES Max (NES-027) | À créer / vérifier |
+| Emulation.Nintendo.Controller.NesMax | Nintendo NES Max (NES-027) | `nintendo-nes-max.png` : disque directionnel, B/A, Turbo B/A, Select et Start zonés ; essai des halos en fenêtre restant. |
 | Emulation.Nintendo.Controller.NesZapper | Nintendo NES Zapper (NES-005) | À créer / vérifier |
 | Emulation.Nintendo.Controller.FamicomLightGun | Nintendo Famicom Light Gun (HVC-005) | À créer / vérifier |
 | Emulation.Nintendo.Controller.NesPowerPad | Nintendo Power Pad / Family Fun Fitness Mat (NES-028) | À créer / vérifier |

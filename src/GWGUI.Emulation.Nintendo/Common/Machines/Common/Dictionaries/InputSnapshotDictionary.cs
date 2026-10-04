@@ -23,6 +23,15 @@ internal static class InputSnapshotDictionary
             [InputSnapshotFunctionsConstants.R3] = 15
         };
 
+    internal static readonly IReadOnlyDictionary<string, int> NesButtonIndexes =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSettingsFunctionsConstants.A] = ButtonIndexes[InputSnapshotFunctionsConstants.B],
+            [InputSettingsFunctionsConstants.B] = ButtonIndexes[InputSnapshotFunctionsConstants.Y],
+            [InputSettingsFunctionsConstants.NesTurboA] = ButtonIndexes[InputSnapshotFunctionsConstants.A],
+            [InputSettingsFunctionsConstants.NesTurboB] = ButtonIndexes[InputSnapshotFunctionsConstants.X]
+        };
+
     internal static readonly IReadOnlyDictionary<string, int> Nintendo64ButtonIndexes =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {

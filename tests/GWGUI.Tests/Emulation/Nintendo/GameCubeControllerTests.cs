@@ -104,7 +104,8 @@ public sealed class GameCubeControllerTests
             }
         };
 
-        var controller = InputSnapshotFunctions.Apply(snapshot, configuration, false)
+        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube,
+            configuration, false)
             .Controllers[FirstPortIndex];
 
         Assert.Equal(ExpectedButtons, controller.Buttons);
@@ -137,7 +138,8 @@ public sealed class GameCubeControllerTests
                 })
         ]);
 
-        var controller = InputSnapshotFunctions.Apply(snapshot, configuration, false)
+        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube,
+            configuration, false)
             .Controllers[FirstPortIndex];
 
         Assert.Equal(default, controller.RightX);

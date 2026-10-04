@@ -5,7 +5,12 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
         Model model) => type != ControllerType.Joystick ? null : model.Id switch
         {
-            ModelConstants.Nes or ModelConstants.FamicomDisk =>
+            ModelConstants.Nes =>
+                [EmulationControllerVisualIds.NintendoNesPad,
+                    EmulationControllerVisualIds.NintendoNesMax,
+                    EmulationControllerVisualIds.NintendoNesDogbonePad,
+                    EmulationControllerVisualIds.NintendoFamicomPad1],
+            ModelConstants.FamicomDisk =>
                 [EmulationControllerVisualIds.NintendoNesPad,
                     EmulationControllerVisualIds.NintendoNesDogbonePad,
                     EmulationControllerVisualIds.NintendoFamicomPad1],
@@ -33,7 +38,8 @@ internal static partial class InputSettingsFunctions
                 or ModelConstants.Snes or ModelConstants.GameBoy
                 or ModelConstants.GameBoyColor or ModelConstants.GameBoyAdvance
             ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes,
-                model.Id == ModelConstants.GameBoyAdvance)
+                model.Id == ModelConstants.GameBoyAdvance,
+                model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk)
             : new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -45,7 +51,7 @@ internal static partial class InputSettingsFunctions
         };
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>
-        NintendoVisualCommandIds(bool superNintendo, bool gameBoyAdvance)
+        NintendoVisualCommandIds(bool superNintendo, bool gameBoyAdvance, bool nes)
     {
         var commands = new Dictionary<EmulationControllerVisualControl, string>
         {
@@ -58,6 +64,13 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select,
             [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
         };
+        if (nes)
+        {
+            commands[EmulationControllerVisualControl.TertiaryAction] =
+                InputSettingsFunctionsConstants.NesTurboB;
+            commands[EmulationControllerVisualControl.QuaternaryAction] =
+                InputSettingsFunctionsConstants.NesTurboA;
+        }
         if (superNintendo)
         {
             commands[EmulationControllerVisualControl.TertiaryAction] =

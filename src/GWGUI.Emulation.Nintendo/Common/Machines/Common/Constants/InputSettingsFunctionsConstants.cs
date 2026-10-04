@@ -19,6 +19,10 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceControllerActionFire2 = "Emulation.Controller.Action.Fire2";
     internal const string ButtonB = "B";
     internal const string ButtonA = "A";
+    internal const string NesTurboA = "NesTurboA";
+    internal const string NesTurboB = "NesTurboB";
+    internal const string ButtonTurboA = "TURBO A";
+    internal const string ButtonTurboB = "TURBO B";
     internal const string ButtonY = "Y";
     internal const string ButtonX = "X";
     internal const string ButtonSelect = "SELECT";

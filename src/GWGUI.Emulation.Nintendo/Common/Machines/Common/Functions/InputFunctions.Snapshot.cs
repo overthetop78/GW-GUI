@@ -3,7 +3,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 internal static class InputSnapshotFunctions
 {
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
-        InputConfiguration? configuration, bool controllerPointerSwitchPressed)
+        string modelId, InputConfiguration? configuration, bool controllerPointerSwitchPressed)
     {
         configuration ??= new InputConfiguration();
         var hostKeys = snapshot.Keys;
@@ -18,7 +18,8 @@ internal static class InputSnapshotFunctions
             Pointer = MapPointer(snapshot.Pointer, snapshot.Controllers, hostKeys,
                 physicalMouse, configuration.MouseButtonMappings),
             Controllers = MapControllers(snapshot.Controllers, hostKeys, physicalMouse,
-                configuration.ControllerBindings)
+                configuration.ControllerBindings,
+                modelId is ModelConstants.Nes or ModelConstants.FamicomDisk)
         };
     }
 
@@ -52,7 +53,7 @@ internal static class InputSnapshotFunctions
     private static IReadOnlyList<EmulationControllerState> MapControllers(
         IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys,
         IReadOnlyDictionary<string, bool> physicalMouse,
-        IReadOnlyList<ControllerBinding>? bindings)
+        IReadOnlyList<ControllerBinding>? bindings, bool nesController)
     {
         var result = new EmulationControllerState[4];
         for (var port = 0; port < result.Length; port++)
@@ -74,6 +75,8 @@ internal static class InputSnapshotFunctions
                 var targetInKey = InputSnapshotDictionary.Nintendo64ButtonIndexes.TryGetValue(
                     mapping.Key, out var keyTarget)
                     || InputSnapshotDictionary.GameCubeButtonIndexes.TryGetValue(mapping.Key, out keyTarget)
+                    || (nesController && InputSnapshotDictionary.NesButtonIndexes.TryGetValue(
+                        mapping.Key, out keyTarget))
                     || InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out keyTarget);
                 var target = targetInKey ? keyTarget
                     : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);

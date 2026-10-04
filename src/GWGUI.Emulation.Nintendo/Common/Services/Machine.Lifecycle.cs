@@ -90,7 +90,8 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         _lastPhysicalInput = snapshot;
-        _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input,
+        _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Model,
+            Configuration.Input,
             _controllerPointerSwitchPressed));
     }
 

@@ -306,6 +306,30 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer l'image et sa licence, puis consigner le profil, ses commandes et les vérifications visuelles restant à faire.
   - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/GameCubeControllerTests.cs` : vérifier que la WaveBird est un visuel sélectionnable avec les mêmes commandes GameCube ; contrôler les zones visuelles en fenêtre, puisque le chargement des URI WPF `pack://` ne fonctionne pas dans le processus de tests isolé.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat des tests ciblés et du build Debug de l'application avec les huit modules.
+- [x] Raccorder la Nintendo NES Max (NES-027)
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-nes-max-reference.jpg` : conserver provisoirement la photographie frontale d'Evan-Amos afin de guider le détourage.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-nes-max.png` : produire d'après la référence une vue frontale aux boutons distincts et au fond transparent.
+  - [x] Supprimer `src/GWGUI.App/Assets/Controllers/nintendo-nes-max-reference.jpg` : retirer la photographie de travail une fois l'image finale inspectée.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant invariant NES Max.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : déclarer le nom invariant NES Max.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : déclarer les identifiants des commandes Turbo A et Turbo B propres au profil NES.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les deux commandes turbo dans les affectations NES.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs` : transmettre le modèle sélectionné au mappage des entrées afin d'appliquer les bits NES uniquement aux machines NES/Famicom.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : choisir les correspondances A/B/Turbo A/Turbo B propres à Mesen sur NES/Famicom sans modifier les autres consoles.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` : transmettre A, B et leurs variantes turbo aux bits RetroPad documentés pour le coeur NES.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/GameCubeControllerTests.cs` : fournir le modèle GameCube aux tests d'entrées existants après transmission explicite du modèle.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/Nintendo64ControllerTests.cs` : fournir le modèle Nintendo 64 aux tests d'entrées existants après transmission explicite du modèle.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer la NES Max et relier ses quatre boutons aux lignes d'affectation sans ajouter de zone fictive aux autres images NES.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur la croix, A, B, Turbo A, Turbo B, Select et Start visibles de face.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la source, décrire les commandes, le fond transparent et les limites de vérification en fenêtre.
+  - [x] Créer `tests/GWGUI.Tests/Emulation/Nintendo/NesMaxControllerTests.cs` : vérifier les commandes NES Max et les bits transmis au coeur.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner les résultats des tests ciblés et du build Debug des modules.
+- [x] Limiter la sélection NES Max à sa prise compatible
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer la NES Max sur le modèle NES sans l'ajouter aux visuels Famicom Disk System.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/NesMaxControllerTests.cs` : vérifier que NES propose la NES Max et que Famicom Disk System ne la propose pas.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner cette limite de compatibilité matérielle et le résultat du test ciblé.
+- [x] Valider le paquet NES Max final
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug de l'application et des huit modules après le filtrage Famicom, et le contrôle final des fichiers livrés.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.
