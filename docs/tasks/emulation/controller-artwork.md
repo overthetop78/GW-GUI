@@ -127,9 +127,32 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : retirer les deux clés Famicom/Super Famicom superflues, puisque les noms de variantes sont fournis directement par le sélecteur visuel.
   - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : inscrire les quatre noms invariants de profils Nintendo.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner images, transparence, boutons mappés et limites de couverture Nintendo du premier lot.
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug app et huit modules après raccordement Nintendo.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug app et huit modules après raccordement Nintendo.
 - [ ] Réaliser les profils Sega
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sega et les fichiers de profils précis avant leur réalisation.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sega et les fichiers de profils précis avant leur réalisation. Premier lot : réutiliser `master-system.png`, `mega-drive-3.png` et `mega-drive-6.png` pour les types déjà sélectionnables. Vérifier les correspondances réelles de Genesis Plus GX avant de lier les halos ; les périphériques suivants et leurs images seront planifiés après ce lot.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : déclarer les identifiants de boutons RetroPad et leurs libellés invariants de Master System et Mega Drive, y compris Start et Mode.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer pour les trois types les boutons réellement lus par Genesis Plus GX, avec leurs noms physiques, au lieu des deux actions de tir génériques.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier toutes les zones des trois visuels Master System et Mega Drive aux identifiants RetroPad correspondant aux boutons de chaque manette.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : ajouter les zones manquantes des boutons 1/2, A/B/C, X/Y/Z, Start et Mode sur les trois images existantes.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Constants/ExternalCoreConstants.cs` : ajouter les noms de périphériques trois, six et deux boutons publiés par le cœur, utilisés pour sélectionner le bon type sur le port.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` : choisir explicitement le type de périphérique trois ou six boutons quand cette manette est sélectionnée et exposée par le cœur.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : documenter les trois profils Sega, la correspondance avec Genesis Plus GX et les autres modèles encore non couverts.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug de l'application et des huit modules après ce lot Sega.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le raccordement Dreamcast du visuel `dreamcast.png` aux boutons A/B/X/Y, Start et gâchettes L/R réellement reçus par Flycast, selon les noms de son cœur.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : ajouter les identifiants RetroPad L2/R2 et les libellés invariants des gâchettes Dreamcast.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les commandes Dreamcast A/B/X/Y, Start et gâchettes L/R que Flycast accepte.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier chaque zone de bouton Dreamcast à sa commande RetroPad effective.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : ajuster la croix et ajouter les zones Dreamcast A/B/X/Y, Start et gâchettes aux boutons visibles du PNG de face.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la couverture Dreamcast, la référence des correspondances Flycast et les limites des commandes analogiques.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug app et huit modules après le raccordement Dreamcast.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat des tests existants de description, persistance et sélection de périphérique Sega après leur exécution ciblée.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le lot Saturn standard et le remplacement des zones génériques par des zones nommées A/B/C/X/Y/Z pour les profils Sega déjà raccordés, selon le code source Yabause.
+  - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs` : ajouter les six zones de boutons de face A/B/C/X/Y/Z utilisées par les manettes Sega.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : associer les nouvelles zones aux commandes RetroPad des Mega Drive, Dreamcast et Saturn standard ; réserver le profil Saturn standard à la manette standard.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : renommer les zones des visuels Mega Drive et Dreamcast, puis placer les six boutons, Start et L/R sur `saturn.png`.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer la liste complète des boutons de la manette Saturn standard effectivement lus par Yabause.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la couverture de la manette Saturn standard et les limites des périphériques Saturn distincts.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug complet et les artefacts après ce lot Saturn.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

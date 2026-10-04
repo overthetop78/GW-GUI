@@ -206,6 +206,8 @@ Build Debug du 4 octobre 2026 après le raccordement des commandes PlayStation e
 
 Premier lot fonctionnel : le NES-004, le Famicom Controller I et le Super Famicom SHVC-005 réutilisent des images de face déjà présentes dans l'application ; le Super NES SNS-005 a une variante violette créée à partir de `super-nintendo.png` avec fond transparent (coin alpha 0). L'[historique Nintendo de la Super Nintendo](https://www.nintendo.com/en-za/Hardware/Nintendo-History/Super-Nintendo/Super-Nintendo-627040.html) confirme les commandes supplémentaires X/Y et L/R. Les quatre profils disposent de zones pour croix, boutons et Select/Start, plus X/Y/L/R sur les deux profils 16 bits. La liste d'entrées du module est maintenant limitée aux boutons NES/Famicom pour NES et Famicom Disk System, et étendue aux boutons SNES pour Super Nintendo/Super Famicom. Les halos sont reliés aux identifiants de joypad lus par les cœurs ; essai visuel interactif encore à faire. Les 261 autres clés d'accessoires ne sont pas couvertes par ce lot.
 
+Compilation Debug du 4 octobre 2026 après ce raccordement : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules sont présents. L'essai interactif de sélection des profils et des halos reste à faire.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Nintendo.Controller.GameWatchBall | Nintendo Game & Watch Ball (AC-01) | À créer / vérifier |
@@ -476,6 +478,20 @@ Premier lot fonctionnel : le NES-004, le Famicom Controller I et le Super Famico
 
 ## Sega (34 clés)
 
+Premier lot : les trois images de face `master-system.png`, `mega-drive-3.png` et `mega-drive-6.png` existaient déjà. Les zones ont été ajustées à leurs boutons visibles. Les commandes Master System 1/2 et Mega Drive A/B/C, X/Y/Z, Start et Mode utilisent les entrées RetroPad documentées par [Genesis Plus GX](https://docs.libretro.com/library/genesis_plus_gx/#joypad) ; le cœur reçoit désormais, lorsque disponible, le type de manette trois ou six boutons explicitement sélectionné. Les 31 autres clés Sega restent à traiter, ainsi que la vérification interactive des halos.
+
+Deuxième lot : `dreamcast.png` représente déjà la manette de face sur fond transparent. La croix, A/B/X/Y, Start et les deux gâchettes disposent maintenant de zones distinctes, reliées aux identifiants RetroPad indiqués dans les [descripteurs du cœur Flycast](https://github.com/flyinghead/flycast/blob/master/shell/libretro/libretro.cpp). Le stick analogique reste transmis par les axes du contrôleur physique, mais la liste actuelle ne permet pas de lui attribuer une touche ou un halo directionnel. L'essai interactif des zones reste à faire. Trente autres clés Sega demeurent sans profil spécifique.
+
+Build Debug du 4 octobre 2026 après le profil Dreamcast : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `gwgui.exe` et les huit DLL de modules vérifiés présents sous `build/Debug/GW GUI`. L'essai interactif reste à faire.
+
+Quatre tests Sega existants de `ConsoleFamilyModuleTests` ciblant la description des profils, leurs ressources, leur persistance et la sélection des périphériques Genesis Plus GX réussissent (0 échec, 4 succès). Ils ne contrôlent ni le placement visuel des halos ni toutes les nouvelles correspondances de boutons.
+
+Troisième lot : l'image de face `saturn.png` (599 × 399, coin alpha 0) représente la manette Saturn standard. Ses six boutons, Start, L/R et la croix ont des zones distinctes reliées aux [descripteurs d'entrée du cœur Yabause](https://github.com/libretro/yabause/blob/master/yabause/src/libretro/libretro.c). Les zones de face Sega utilisent désormais des identifiants A/B/C/X/Y/Z explicites ; la manette Saturn 3D n'emprunte plus l'image du modèle standard, car son stick analogique et sa forme exigent un profil propre. Il reste 29 clés Sega sans profil dédié et tous les halos doivent encore être vérifiés dans l'interface.
+
+Build Debug du 4 octobre 2026 après le profil Saturn : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; l'exécutable `gwgui.exe` et les DLL des huit modules sont présents sous `build/Debug/GW GUI`. Aucun essai interactif des zones et halos n'a encore été réalisé.
+
+Compilation Debug du 4 octobre 2026 après ce lot : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules ont été vérifiés présents. Aucun essai interactif des halos n'a encore été effectué.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Sega.Controller.SegaControlStick | Control Stick | À créer / vérifier |
@@ -488,7 +504,7 @@ Premier lot fonctionnel : le NES-004, le Famicom Controller I et le Super Famico
 | Emulation.Sega.Controller.SegaArcadePowerStick | Arcade Power Stick | À créer / vérifier |
 | Emulation.Sega.Controller.SegaXe1Ap | XE-1 AP | À créer / vérifier |
 | Emulation.Sega.Controller.SegaActivator | Activator | À créer / vérifier |
-| Emulation.Sega.Controller.SegaSaturnThreeDControlPad | Saturn 3D Control Pad | À créer / vérifier |
+| Emulation.Sega.Controller.SegaSaturnThreeDControlPad | Saturn 3D Control Pad | Profil distinct à créer ; le visuel standard ne lui est plus attribué. |
 | Emulation.Sega.Controller.SegaSaturnVirtuaGun | Virtua Gun | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSaturnShuttleMouse | Shuttle Mouse | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSaturnMissionStick | Mission Stick | À créer / vérifier |
@@ -498,13 +514,13 @@ Premier lot fonctionnel : le NES-004, le Famicom Controller I et le Super Famico
 | Emulation.Sega.Controller.SegaSg1000Joystick | SG-1000 joystick | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSg1000IiJoypad | SG-1000 II gamepad | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSc3000Keyboard | SC-3000 keyboard | À créer / vérifier |
-| Emulation.Sega.Controller.SegaMasterSystemController | Master System controller | À créer / vérifier |
+| Emulation.Sega.Controller.SegaMasterSystemController | Master System controller | `master-system.png` : croix, 1 et 2 raccordés au profil sélectionnable ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaGameGearController | Game Gear built-in controls | À créer / vérifier |
-| Emulation.Sega.Controller.SegaMegaDriveThreeButton | Mega Drive 3-button controller | À créer / vérifier |
-| Emulation.Sega.Controller.SegaMegaDriveSixButton | Mega Drive 6-button controller | À créer / vérifier |
+| Emulation.Sega.Controller.SegaMegaDriveThreeButton | Mega Drive 3-button controller | `mega-drive-3.png` : croix, A/B/C et Start raccordés ; placement interactif à vérifier. |
+| Emulation.Sega.Controller.SegaMegaDriveSixButton | Mega Drive 6-button controller | `mega-drive-6.png` : croix, A/B/C, X/Y/Z, Start et Mode raccordés ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaArcadePowerStickSixButton | Arcade Power Stick 6-button controller | À créer / vérifier |
-| Emulation.Sega.Controller.SegaSaturnController | Saturn controller | À créer / vérifier |
-| Emulation.Sega.Controller.SegaDreamcastController | Dreamcast controller | À créer / vérifier |
+| Emulation.Sega.Controller.SegaSaturnController | Saturn controller | `saturn.png` : croix, A/B/C, X/Y/Z, Start et L/R raccordés aux boutons de Yabause ; halos à vérifier dans l'interface. |
+| Emulation.Sega.Controller.SegaDreamcastController | Dreamcast controller | `dreamcast.png` : croix, A/B/X/Y, Start, L/R raccordés aux boutons réellement lus par Flycast ; axes du stick non configurables dans la liste ; halos à vérifier dans l'interface. |
 | Emulation.Sega.Controller.SegaDreamcastMouse | Dreamcast mouse | À créer / vérifier |
 | Emulation.Sega.Controller.SegaDreamcastKeyboard | Dreamcast keyboard | À créer / vérifier |
 | Emulation.Sega.Controller.SegaDreamcastLightGun | Dreamcast light gun | À créer / vérifier |

@@ -238,6 +238,22 @@ internal sealed class ExternalCore : IEmulatorCore
         ControllerType type)
     {
         if (type == ControllerType.None) return 0;
+        var exactName = type switch
+        {
+            ControllerType.SegaMasterSystemController =>
+                ExternalCoreConstants.MasterSystemJoypadName,
+            ControllerType.SegaMegaDriveThreeButton =>
+                ExternalCoreConstants.MegaDriveThreeButtonName,
+            ControllerType.SegaMegaDriveSixButton =>
+                ExternalCoreConstants.MegaDriveSixButtonName,
+            _ => null
+        };
+        if (exactName is not null)
+        {
+            var exactDevice = devices.FirstOrDefault(device =>
+                device.Name.Contains(exactName, StringComparison.OrdinalIgnoreCase));
+            if (exactDevice is not null) return exactDevice.Id;
+        }
         var aliases = ControllerAliases(type);
         return devices.FirstOrDefault(device => aliases.Any(alias =>
             device.Name.Contains(alias, StringComparison.OrdinalIgnoreCase)))?.Id ?? 0;

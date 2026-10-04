@@ -11,8 +11,7 @@ internal static partial class InputSettingsFunctions
             ControllerType.SegaMasterSystemController => [EmulationControllerVisualIds.MasterSystem],
             ControllerType.SegaMegaDriveThreeButton => [EmulationControllerVisualIds.MegaDrive3],
             ControllerType.SegaMegaDriveSixButton => [EmulationControllerVisualIds.MegaDrive6],
-            ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad =>
-                [EmulationControllerVisualIds.Saturn],
+            ControllerType.SegaSaturnController => [EmulationControllerVisualIds.Saturn],
             ControllerType.SegaDreamcastController => [EmulationControllerVisualIds.Dreamcast],
             ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
                 or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
@@ -30,8 +29,7 @@ internal static partial class InputSettingsFunctions
             ControllerType.SegaMasterSystemController => EmulationControllerVisualIds.MasterSystem,
             ControllerType.SegaMegaDriveThreeButton => EmulationControllerVisualIds.MegaDrive3,
             ControllerType.SegaMegaDriveSixButton => EmulationControllerVisualIds.MegaDrive6,
-            ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad =>
-                EmulationControllerVisualIds.Saturn,
+            ControllerType.SegaSaturnController => EmulationControllerVisualIds.Saturn,
             ControllerType.SegaDreamcastController => EmulationControllerVisualIds.Dreamcast,
             ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
                 or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
@@ -52,15 +50,62 @@ internal static partial class InputSettingsFunctions
             or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick
             or ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick
             or ControllerType.SegaSaturnArcadeRacer
-        ? new Dictionary<EmulationControllerVisualControl, string>
+        ? BuildVisualCommandIds(type) : null;
+
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>
+        BuildVisualCommandIds(ControllerType type)
+    {
+        var commands = new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
             [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
             [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
-            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
-            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
-            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A
-        } : null;
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right
+        };
+        if (type == ControllerType.SegaDreamcastController)
+        {
+            commands[EmulationControllerVisualControl.FaceA] = EmulationControllerCommandIds.B;
+            commands[EmulationControllerVisualControl.FaceB] = EmulationControllerCommandIds.A;
+            commands[EmulationControllerVisualControl.FaceX] = EmulationControllerCommandIds.Y;
+            commands[EmulationControllerVisualControl.FaceY] = EmulationControllerCommandIds.X;
+            commands[EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start;
+            commands[EmulationControllerVisualControl.LeftTrigger] = EmulationControllerCommandIds.L2;
+            commands[EmulationControllerVisualControl.RightTrigger] = EmulationControllerCommandIds.R2;
+        }
+        else if (type == ControllerType.SegaSaturnController)
+        {
+            commands[EmulationControllerVisualControl.FaceA] = EmulationControllerCommandIds.B;
+            commands[EmulationControllerVisualControl.FaceB] = EmulationControllerCommandIds.A;
+            commands[EmulationControllerVisualControl.FaceC] = EmulationControllerCommandIds.R;
+            commands[EmulationControllerVisualControl.FaceX] = EmulationControllerCommandIds.Y;
+            commands[EmulationControllerVisualControl.FaceY] = EmulationControllerCommandIds.X;
+            commands[EmulationControllerVisualControl.FaceZ] = EmulationControllerCommandIds.L;
+            commands[EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start;
+            commands[EmulationControllerVisualControl.LeftTrigger] = EmulationControllerCommandIds.L2;
+            commands[EmulationControllerVisualControl.RightTrigger] = EmulationControllerCommandIds.R2;
+        }
+        else if (type is ControllerType.SegaMegaDriveThreeButton
+            or ControllerType.SegaMegaDriveSixButton)
+        {
+            commands[EmulationControllerVisualControl.FaceA] = EmulationControllerCommandIds.Y;
+            commands[EmulationControllerVisualControl.FaceB] = EmulationControllerCommandIds.B;
+            commands[EmulationControllerVisualControl.FaceC] = EmulationControllerCommandIds.A;
+            commands[EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start;
+            if (type == ControllerType.SegaMegaDriveSixButton)
+            {
+                commands[EmulationControllerVisualControl.FaceX] = EmulationControllerCommandIds.L;
+                commands[EmulationControllerVisualControl.FaceY] = EmulationControllerCommandIds.X;
+                commands[EmulationControllerVisualControl.FaceZ] = EmulationControllerCommandIds.R;
+                commands[EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select;
+            }
+        }
+        else
+        {
+            commands[EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B;
+            commands[EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A;
+        }
+        return commands;
+    }
 
     private static string? NormalizeVisualId(ControllerType type, string? visualId)
     {

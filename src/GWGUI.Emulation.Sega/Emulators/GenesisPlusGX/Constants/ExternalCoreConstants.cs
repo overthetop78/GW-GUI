@@ -26,5 +26,8 @@ internal static class ExternalCoreConstants
     internal const string RetroSetControllerPortDevice = "retro_set_controller_port_device";
     internal const string RetroLoadGame = "retro_load_game";
     internal const string RetroGetSystemAvInfo = "retro_get_system_av_info";
+    internal const string MasterSystemJoypadName = "MS Joypad 2 Button";
+    internal const string MegaDriveThreeButtonName = "MD Joypad 3 Button";
+    internal const string MegaDriveSixButtonName = "MD Joypad 6 Button";
     internal const uint JoypadDevice = 1;
 }

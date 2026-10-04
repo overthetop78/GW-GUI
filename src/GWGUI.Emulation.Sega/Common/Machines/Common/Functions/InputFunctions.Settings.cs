@@ -83,8 +83,82 @@ internal static partial class InputSettingsFunctions
             .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type) =>
-        type is ControllerType.None ? [] :
-        [
+        type switch
+        {
+            ControllerType.None => [],
+            ControllerType.SegaMasterSystemController =>
+            [
+                Definition(InputSettingsFunctionsConstants.Up,
+                    InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Down,
+                    InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Left,
+                    InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Right,
+                    InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+                Definition(InputSettingsFunctionsConstants.B,
+                    InputSettingsFunctionsConstants.ButtonOne, string.Empty),
+                Definition(InputSettingsFunctionsConstants.A,
+                    InputSettingsFunctionsConstants.ButtonTwo, string.Empty)
+            ],
+            ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton =>
+                MegaDriveDefinitions(type == ControllerType.SegaMegaDriveSixButton),
+            ControllerType.SegaSaturnController =>
+            [
+                Definition(InputSettingsFunctionsConstants.Up,
+                    InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Down,
+                    InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Left,
+                    InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Right,
+                    InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+                Definition(InputSettingsFunctionsConstants.B,
+                    InputSettingsFunctionsConstants.ButtonA, string.Empty),
+                Definition(InputSettingsFunctionsConstants.A,
+                    InputSettingsFunctionsConstants.ButtonB, string.Empty),
+                Definition(InputSettingsFunctionsConstants.R,
+                    InputSettingsFunctionsConstants.ButtonC, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Y,
+                    InputSettingsFunctionsConstants.ButtonX, string.Empty),
+                Definition(InputSettingsFunctionsConstants.X,
+                    InputSettingsFunctionsConstants.ButtonY, string.Empty),
+                Definition(InputSettingsFunctionsConstants.L,
+                    InputSettingsFunctionsConstants.ButtonZ, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Start,
+                    InputSettingsFunctionsConstants.ButtonStart, string.Empty),
+                Definition(InputSettingsFunctionsConstants.L2,
+                    InputSettingsFunctionsConstants.TriggerLeft, string.Empty),
+                Definition(InputSettingsFunctionsConstants.R2,
+                    InputSettingsFunctionsConstants.TriggerRight, string.Empty)
+            ],
+            ControllerType.SegaDreamcastController =>
+            [
+                Definition(InputSettingsFunctionsConstants.Up,
+                    InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Down,
+                    InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Left,
+                    InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Right,
+                    InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+                Definition(InputSettingsFunctionsConstants.B,
+                    InputSettingsFunctionsConstants.ButtonA, string.Empty),
+                Definition(InputSettingsFunctionsConstants.A,
+                    InputSettingsFunctionsConstants.ButtonB, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Y,
+                    InputSettingsFunctionsConstants.ButtonX, string.Empty),
+                Definition(InputSettingsFunctionsConstants.X,
+                    InputSettingsFunctionsConstants.ButtonY, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Start,
+                    InputSettingsFunctionsConstants.ButtonStart, string.Empty),
+                Definition(InputSettingsFunctionsConstants.L2,
+                    InputSettingsFunctionsConstants.TriggerLeft, string.Empty),
+                Definition(InputSettingsFunctionsConstants.R2,
+                    InputSettingsFunctionsConstants.TriggerRight, string.Empty)
+            ],
+            _ =>
+            [
             Definition(InputSettingsFunctionsConstants.Up,
                 InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
             Definition(InputSettingsFunctionsConstants.Down,
@@ -97,7 +171,43 @@ internal static partial class InputSettingsFunctions
                 InputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty),
             Definition(InputSettingsFunctionsConstants.A,
                 InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
-        ];
+            ]
+        };
+
+    private static IReadOnlyList<InputBindingDefinition> MegaDriveDefinitions(bool sixButton)
+    {
+        var definitions = new List<InputBindingDefinition>
+        {
+            Definition(InputSettingsFunctionsConstants.Up,
+                InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Down,
+                InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Left,
+                InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Right,
+                InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Y,
+                InputSettingsFunctionsConstants.ButtonA, string.Empty),
+            Definition(InputSettingsFunctionsConstants.B,
+                InputSettingsFunctionsConstants.ButtonB, string.Empty),
+            Definition(InputSettingsFunctionsConstants.A,
+                InputSettingsFunctionsConstants.ButtonC, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Start,
+                InputSettingsFunctionsConstants.ButtonStart, string.Empty)
+        };
+        if (sixButton)
+        {
+            definitions.Add(Definition(InputSettingsFunctionsConstants.L,
+                InputSettingsFunctionsConstants.ButtonX, string.Empty));
+            definitions.Add(Definition(InputSettingsFunctionsConstants.X,
+                InputSettingsFunctionsConstants.ButtonY, string.Empty));
+            definitions.Add(Definition(InputSettingsFunctionsConstants.R,
+                InputSettingsFunctionsConstants.ButtonZ, string.Empty));
+            definitions.Add(Definition(InputSettingsFunctionsConstants.Select,
+                InputSettingsFunctionsConstants.ButtonMode, string.Empty));
+        }
+        return definitions;
+    }
 
     private static InputBindingDefinition Definition(string id, string resourceKey,
         string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding,
