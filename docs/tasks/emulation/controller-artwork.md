@@ -200,12 +200,35 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Supprimer `docs/tasks/emulation/sega-arcade-power-stick-6-reference.jpg` : retirer la photographie externe après génération.
   - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les deux identifiants visuels invariants Arcade Power Stick.
   - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : ajouter les deux noms de modèle invariants Arcade Power Stick.
-  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer le levier, les boutons A/B/C et les commandes distinctes X/Y/Z, Start et Mode lorsque présentes.
-  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les entrées trois et six boutons propres aux deux modèles.
-  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : affecter les deux images et leurs zones aux commandes RetroPad exactes.
-  - [ ] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` : sélectionner le périphérique trois ou six boutons selon le modèle Arcade Power Stick.
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer les références et décrire précisément les zones et les limites des deux images.
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug complet et ses artefacts après ces deux profils.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer le levier, les boutons A/B/C et les commandes distinctes X/Y/Z, Start et Mode lorsque présentes.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les entrées trois et six boutons propres aux deux modèles.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : affecter les deux images et leurs zones aux commandes RetroPad exactes.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` : sélectionner le périphérique trois ou six boutons selon le modèle Arcade Power Stick.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer les références et décrire précisément les zones et les limites des deux images.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug complet et ses artefacts après ces deux profils.
+- [x] Compléter le profil Sony PlayStation DUALSHOCK
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : définir le lot Sony DUALSHOCK, ses fichiers, ses zones et sa vérification avant toute autre modification.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sony-dualshock-1.png` : intégrer la vue de face transparente du DUALSHOCK original publiée par Evan-Amos sur Wikimedia Commons.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant invariant du profil DUALSHOCK original.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : nommer le profil visuel DUALSHOCK sans traduction du nom de produit.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur la croix, les quatre symboles, les deux sticks cliquables, Select et Start ; vérifier les gâchettes visibles sur la photographie.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer le DUALSHOCK original comme visuel PlayStation sélectionnable avec les commandes déjà exposées.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer l'image, décrire les zones et les limites du profil.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la compilation Debug et la présence des artefacts après ce lot.
+- [ ] Compléter les commandes intégrées Game Boy, Game Boy Color et Game Boy Advance
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : définir avant l'exécution les fichiers des trois modèles portables, leurs boutons et les contrôles de compilation.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-game-boy.png` : intégrer une vue de face transparente de la Game Boy DMG-01 issue de Wikimedia Commons.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-game-boy-color.png` : intégrer une vue de face transparente de la Game Boy Color issue de Wikimedia Commons.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-game-boy-advance.png` : intégrer une vue de face transparente de la Game Boy Advance issue de Wikimedia Commons.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/ModelConstants.cs` : nommer les valeurs communes un port intégré et aucun bouton de souris sans littéraux dans le catalogue.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : attribuer un port de commandes intégrées et aucun bouton de souris aux trois portables.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les trois identifiants invariants des portables.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : nommer les trois visuels sans traduire les noms de machines.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones des croix, A/B, Start/Select et L/R visibles sur les photographies respectives.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les commandes réellement lues par Gambatte et mGBA pour ces trois modèles.
+  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : sélectionner leurs visuels et associer les zones aux commandes RetroPad.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter la provenance, la transparence, les zones, les ports et les limites restantes des trois profils.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug de l'application et des huit modules ainsi que leurs artefacts.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

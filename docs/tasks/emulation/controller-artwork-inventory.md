@@ -143,6 +143,10 @@ Build Debug du 4 octobre 2026 après ces profils : `scripts\local-building.cmd -
 
 Les visuels déjà livrés avec l'application `playstation-1.png`, `playstation-2.png`, `playstation-4.png` et `playstation-5.png` servent de profils séparés pour la manette PlayStation standard, la DUALSHOCK 2, la DUALSHOCK 4 et la DualSense. Leurs zones physiques principales sont définies dans `ControllerArtworkCatalog` et leurs noms invariants dans les ressources communes de l'application. Pour PlayStation et PlayStation 2, la liste expose maintenant les 16 bits de joypad réellement lus par SwanStation et PCSX2 : directions, quatre symboles, Select/Start, L1/R1, L2/R2 et L3/R3. La sélection du profil correspondant est raccordée aux commandes de cette liste et aux halos. Les modèles PlayStation 4 et 5 disposent aussi de leur profil visuel, mais le module ne possède pas de cœur d'émulation pour eux ; leurs commandes restent les six entrées génériques. Le PNG DualSense existant garde des résidus blancs autour de la coque. Placement des zones et essai interactif encore à vérifier.
 
+Le DUALSHOCK original possède désormais un second profil PlayStation sélectionnable : `sony-dualshock-1.png` (3060 × 2400, alpha 0 au coin), photographie détourée d'[Evan-Amos dans le domaine public](https://commons.wikimedia.org/wiki/File:PSX-DualShock.png). La croix, les quatre symboles, les deux sticks cliquables, Select, Start et les épaules L1/R1 visibles ont des zones associées aux commandes PlayStation existantes. Les boutons L2/R2 cachés par cette perspective et le bouton Analog ne reçoivent pas de halo. Le cœur utilise toujours le périphérique joypad actuellement configuré ; l'activation des axes analogiques en jeu et le placement interactif des zones restent à vérifier.
+
+Build Debug du 4 octobre 2026 après le profil DUALSHOCK original : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL `Modules/<marque>/gwgui.emulation.<marque>.dll` vérifiés présents. Aucun essai interactif des halos n'a encore été effectué.
+
 Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `Modules/<id>/` sont présents.
 
 Build Debug du 4 octobre 2026 après le raccordement des commandes PlayStation et PlayStation 2 : même script terminé avec code 0 ; l'exécutable et les huit DLL des modules sont présents. Cette vérification confirme la compilation, pas encore le comportement des halos en fenêtre.
@@ -155,7 +159,7 @@ Build Debug du 4 octobre 2026 après le raccordement des commandes PlayStation e
 | Emulation.Sony.Controller.PlayStationController | PlayStation controller | `playstation-1.png` réutilisé ; profil sélectionné pour PlayStation, 14 zones reliées à la liste (L3/R3 demandent une manette analogique). |
 | Emulation.Sony.Controller.PlayStationAnalogJoystick | PlayStation Analog Joystick | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationDualAnalog | PlayStation Dual Analog controller | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStationDualShock | PlayStation DUALSHOCK controller | À créer / vérifier |
+| Emulation.Sony.Controller.PlayStationDualShock | PlayStation DUALSHOCK controller | `sony-dualshock-1.png` : profil PlayStation supplémentaire avec croix, symboles, deux sticks, Select/Start et L1/R1 ; axes analogiques et halos à vérifier. |
 | Emulation.Sony.Controller.PlayStationMouse | PlayStation Mouse | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMultitap | PlayStation Multitap | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation2DualShock2 | PlayStation 2 DUALSHOCK 2 controller | `playstation-2.png` réutilisé ; profil sélectionné pour PlayStation 2, 16 zones reliées à la liste. |
@@ -494,6 +498,10 @@ Cinquième lot : `game-gear-controls.png` (1532 × 1026, coin alpha 0) représen
 
 Sixième lot : `sega-control-stick.png` (1476 × 1065, coin alpha 0) est une vue de dessus du Control Stick Master System fondée sur la [photographie de référence](https://www.videogameobsession.com/videogame/sms/hardware/). Son levier et ses deux boutons physiques disposent de zones distinctes ; les boutons 1 et 2 sont reliés aux entrées RetroPad B et A. Genesis Plus GX reçoit le périphérique `MS Joypad 2 Button` pour ce modèle. Le bouton « 1 START » du boîtier est le bouton 1, pas une troisième commande. La photo externe utilisée comme guide a été retirée du dépôt. Il reste 26 clés Sega sans profil dédié ; le placement des halos attend un essai interactif.
 
+Septième lot : `sega-arcade-power-stick-3.png` (1586 × 992, coin alpha 0) et `sega-arcade-power-stick-6.png` (1536 × 1024, coin alpha 0) sont des vues de dessus transparentes guidées par des [photographies du modèle trois boutons](https://quedejapon.com/products/sega-megadrive-arcade-power-stick-controller-3-button-rapid-fire-japan) et du [modèle 6B](https://www.pricecharting.com/game/jp-sega-mega-drive/arcade-power-stick-6b). Chaque levier et les boutons A/B/C ont leurs zones ; le 6B ajoute X/Y/Z et Mode. Start a sa propre zone sur les deux. Les commandes suivent les entrées RetroPad des manettes Mega Drive trois et six boutons, et Genesis Plus GX reçoit le périphérique correspondant. Les interrupteurs Turbo restent visibles sans affectation indépendante, car ils modifient le comportement des boutons physiques. Les photographies externes temporaires ont été retirées. Il reste 24 clés Sega sans profil dédié ; le placement des halos attend un essai interactif.
+
+Build Debug du 4 octobre 2026 après les deux Arcade Power Stick : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `build/Debug/GW GUI/Modules/<marque>/` vérifiés présents. Les halos restent à essayer dans l'interface.
+
 Build Debug du 4 octobre 2026 après le Control Stick : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de `build/Debug/GW GUI/Modules/` vérifiés présents. Les halos restent à essayer dans l'interface.
 
 Build Debug du 4 octobre 2026 après le profil Game Gear : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `gwgui.exe` et les huit DLL sous `build/Debug/GW GUI/Modules/<module>/` sont présents. Le PNG est inclus dans les ressources WPF via `Assets\Controllers\*.png`. Aucun essai interactif des halos n'a encore été effectué.
@@ -513,7 +521,7 @@ Compilation Debug du 4 octobre 2026 après ce lot : `scripts\local-building.cmd 
 | Emulation.Sega.Controller.SegaSportsPad | Sports Pad | À créer / vérifier |
 | Emulation.Sega.Controller.SegaPaddleControl | Paddle Control | À créer / vérifier |
 | Emulation.Sega.Controller.SegaHandleController | Handle Controller | À créer / vérifier |
-| Emulation.Sega.Controller.SegaArcadePowerStick | Arcade Power Stick | À créer / vérifier |
+| Emulation.Sega.Controller.SegaArcadePowerStick | Arcade Power Stick | `sega-arcade-power-stick-3.png` : levier, A/B/C et Start raccordés au périphérique trois boutons ; halos à vérifier dans l'interface. |
 | Emulation.Sega.Controller.SegaXe1Ap | XE-1 AP | À créer / vérifier |
 | Emulation.Sega.Controller.SegaActivator | Activator | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSaturnThreeDControlPad | Saturn 3D Control Pad | `saturn-3d-control-pad.png` : croix, A/B/C, X/Y/Z et Start raccordés ; stick analogique visible mais axes sans liaison de halo ; placement interactif à vérifier. |
@@ -530,7 +538,7 @@ Compilation Debug du 4 octobre 2026 après ce lot : `scripts\local-building.cmd 
 | Emulation.Sega.Controller.SegaGameGearController | Game Gear built-in controls | `game-gear-controls.png` : croix, 1/2 et Start raccordés sur le port unique ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaMegaDriveThreeButton | Mega Drive 3-button controller | `mega-drive-3.png` : croix, A/B/C et Start raccordés ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaMegaDriveSixButton | Mega Drive 6-button controller | `mega-drive-6.png` : croix, A/B/C, X/Y/Z, Start et Mode raccordés ; placement interactif à vérifier. |
-| Emulation.Sega.Controller.SegaArcadePowerStickSixButton | Arcade Power Stick 6-button controller | À créer / vérifier |
+| Emulation.Sega.Controller.SegaArcadePowerStickSixButton | Arcade Power Stick 6-button controller | `sega-arcade-power-stick-6.png` : levier, A/B/C, X/Y/Z, Start et Mode raccordés au périphérique six boutons ; halos à vérifier dans l'interface. |
 | Emulation.Sega.Controller.SegaSaturnController | Saturn controller | `saturn.png` : croix, A/B/C, X/Y/Z, Start et L/R raccordés aux boutons de Yabause ; halos à vérifier dans l'interface. |
 | Emulation.Sega.Controller.SegaDreamcastController | Dreamcast controller | `dreamcast.png` : croix, A/B/X/Y, Start, L/R raccordés aux boutons réellement lus par Flycast ; axes du stick non configurables dans la liste ; halos à vérifier dans l'interface. |
 | Emulation.Sega.Controller.SegaDreamcastMouse | Dreamcast mouse | À créer / vérifier |

@@ -31,6 +31,7 @@ public static class EmulationControllerVisualIds
     public const string Xbox360Chatpad = "xbox-360-chatpad";
     public const string XboxChatpad = "xbox-chatpad";
     public const string SonyPlayStationController = "sony-playstation-controller";
+    public const string SonyDualShock1 = "sony-dualshock-1";
     public const string SonyDualShock2 = "sony-dualshock-2";
     public const string SonyDualShock4 = "sony-dualshock-4";
     public const string SonyDualSense = "sony-dualsense";
@@ -38,6 +39,9 @@ public static class EmulationControllerVisualIds
     public const string NintendoFamicomPad1 = "nintendo-famicom-pad-1";
     public const string NintendoSuperNesPad = "nintendo-super-nes-pad";
     public const string NintendoSuperFamicomPad = "nintendo-super-famicom-pad";
+    public const string NintendoGameBoy = "nintendo-game-boy";
+    public const string NintendoGameBoyColor = "nintendo-game-boy-color";
+    public const string NintendoGameBoyAdvance = "nintendo-game-boy-advance";
     public const string QuickShot = "quickshot";
     public const string QuickShotDeluxe = "quickshot-deluxe";
     public const string QuickShotIiTurbo = "quickshot-ii-turbo";

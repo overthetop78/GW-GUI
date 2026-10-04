@@ -243,9 +243,9 @@ internal sealed class ExternalCore : IEmulatorCore
             ControllerType.SegaMasterSystemController or ControllerType.SegaGameGearController
                 or ControllerType.SegaControlStick =>
                 ExternalCoreConstants.MasterSystemJoypadName,
-            ControllerType.SegaMegaDriveThreeButton =>
+            ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaArcadePowerStick =>
                 ExternalCoreConstants.MegaDriveThreeButtonName,
-            ControllerType.SegaMegaDriveSixButton =>
+            ControllerType.SegaMegaDriveSixButton or ControllerType.SegaArcadePowerStickSixButton =>
                 ExternalCoreConstants.MegaDriveSixButtonName,
             _ => null
         };

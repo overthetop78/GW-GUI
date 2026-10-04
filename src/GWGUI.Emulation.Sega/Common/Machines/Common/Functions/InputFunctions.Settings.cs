@@ -118,8 +118,10 @@ internal static partial class InputSettingsFunctions
                 Definition(InputSettingsFunctionsConstants.Start,
                     InputSettingsFunctionsConstants.ButtonStart, string.Empty)
             ],
-            ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton =>
-                MegaDriveDefinitions(type == ControllerType.SegaMegaDriveSixButton),
+            ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaMegaDriveSixButton
+                or ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton =>
+                MegaDriveDefinitions(type is ControllerType.SegaMegaDriveSixButton
+                    or ControllerType.SegaArcadePowerStickSixButton),
             ControllerType.SegaSaturnController or ControllerType.SegaSaturnThreeDControlPad =>
             [
                 Definition(InputSettingsFunctionsConstants.Up,

@@ -18,6 +18,9 @@ internal static class ModelConstants
     internal const string WiiU = "WiiU";
     internal const string Switch = "Switch";
 
+    internal const int IntegratedControllerPortCount = 1;
+    internal const int NoMouseButtonCount = 0;
+
     internal const string BackendGameWatch = "gamewatch";
     internal const string BackendNes = "nes";
     internal const string BackendFamicomDisk = "fds";

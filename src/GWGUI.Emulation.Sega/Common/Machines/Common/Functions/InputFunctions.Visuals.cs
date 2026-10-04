@@ -16,8 +16,9 @@ internal static partial class InputSettingsFunctions
             ControllerType.SegaSaturnController => [EmulationControllerVisualIds.Saturn],
             ControllerType.SegaSaturnThreeDControlPad => [EmulationControllerVisualIds.Saturn3D],
             ControllerType.SegaDreamcastController => [EmulationControllerVisualIds.Dreamcast],
-            ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
-                or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
+            ControllerType.SegaArcadePowerStick => [EmulationControllerVisualIds.SegaArcadePowerStick3],
+            ControllerType.SegaArcadePowerStickSixButton => [EmulationControllerVisualIds.SegaArcadePowerStick6],
+            ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
                 [EmulationControllerVisualIds.ArcadeStick],
             ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick =>
                 [EmulationControllerVisualIds.FlightStick],
@@ -37,8 +38,9 @@ internal static partial class InputSettingsFunctions
             ControllerType.SegaSaturnController => EmulationControllerVisualIds.Saturn,
             ControllerType.SegaSaturnThreeDControlPad => EmulationControllerVisualIds.Saturn3D,
             ControllerType.SegaDreamcastController => EmulationControllerVisualIds.Dreamcast,
-            ControllerType.SegaArcadePowerStick or ControllerType.SegaArcadePowerStickSixButton
-                or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
+            ControllerType.SegaArcadePowerStick => EmulationControllerVisualIds.SegaArcadePowerStick3,
+            ControllerType.SegaArcadePowerStickSixButton => EmulationControllerVisualIds.SegaArcadePowerStick6,
+            ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick =>
                 EmulationControllerVisualIds.ArcadeStick,
             ControllerType.SegaHandleController or ControllerType.SegaSaturnMissionStick =>
                 EmulationControllerVisualIds.FlightStick,
@@ -100,13 +102,16 @@ internal static partial class InputSettingsFunctions
             commands[EmulationControllerVisualControl.RightTrigger] = EmulationControllerCommandIds.R2;
         }
         else if (type is ControllerType.SegaMegaDriveThreeButton
-            or ControllerType.SegaMegaDriveSixButton)
+            or ControllerType.SegaMegaDriveSixButton
+            or ControllerType.SegaArcadePowerStick
+            or ControllerType.SegaArcadePowerStickSixButton)
         {
             commands[EmulationControllerVisualControl.FaceA] = EmulationControllerCommandIds.Y;
             commands[EmulationControllerVisualControl.FaceB] = EmulationControllerCommandIds.B;
             commands[EmulationControllerVisualControl.FaceC] = EmulationControllerCommandIds.A;
             commands[EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start;
-            if (type == ControllerType.SegaMegaDriveSixButton)
+            if (type is ControllerType.SegaMegaDriveSixButton
+                or ControllerType.SegaArcadePowerStickSixButton)
             {
                 commands[EmulationControllerVisualControl.FaceX] = EmulationControllerCommandIds.L;
                 commands[EmulationControllerVisualControl.FaceY] = EmulationControllerCommandIds.X;

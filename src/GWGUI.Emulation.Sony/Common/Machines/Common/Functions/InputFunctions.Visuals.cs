@@ -5,7 +5,8 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
         Model model) => type != ControllerType.Joystick ? null : model.Id switch
         {
-            ModelConstants.PlayStation => [EmulationControllerVisualIds.SonyPlayStationController],
+            ModelConstants.PlayStation => [EmulationControllerVisualIds.SonyPlayStationController,
+                EmulationControllerVisualIds.SonyDualShock1],
             ModelConstants.PlayStation2 => [EmulationControllerVisualIds.SonyDualShock2],
             ModelConstants.PlayStation4 => [EmulationControllerVisualIds.SonyDualShock4],
             ModelConstants.PlayStation5 => [EmulationControllerVisualIds.SonyDualSense],

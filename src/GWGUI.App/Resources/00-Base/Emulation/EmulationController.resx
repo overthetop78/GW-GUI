@@ -93,6 +93,7 @@
   <data name="Emulation.Controller.Visual.Model.xbox-360-chatpad"><value>Xbox 360 Chatpad</value></data>
   <data name="Emulation.Controller.Visual.Model.xbox-chatpad"><value>Xbox Chatpad</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-playstation-controller"><value>PlayStation controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-1"><value>DUALSHOCK</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-2"><value>DUALSHOCK 2</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-4"><value>DUALSHOCK 4</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualsense"><value>DualSense</value></data>
@@ -100,6 +101,9 @@
   <data name="Emulation.Controller.Visual.Model.nintendo-famicom-pad-1"><value>Nintendo Famicom Controller I</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-super-nes-pad"><value>Nintendo Super NES Controller (SNS-005)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-super-famicom-pad"><value>Nintendo Super Famicom Controller (SHVC-005)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-game-boy"><value>Nintendo Game Boy (DMG-01)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-game-boy-color"><value>Nintendo Game Boy Color (CGB-001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-game-boy-advance"><value>Nintendo Game Boy Advance (AGB-001)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
 </root>
