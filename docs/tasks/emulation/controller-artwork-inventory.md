@@ -544,6 +544,10 @@ Sixième lot : `sega-control-stick.png` (1476 × 1065, coin alpha 0) est une vue
 
 Septième lot : `sega-arcade-power-stick-3.png` (1586 × 992, coin alpha 0) et `sega-arcade-power-stick-6.png` (1536 × 1024, coin alpha 0) sont des vues de dessus transparentes guidées par des [photographies du modèle trois boutons](https://quedejapon.com/products/sega-megadrive-arcade-power-stick-controller-3-button-rapid-fire-japan) et du [modèle 6B](https://www.pricecharting.com/game/jp-sega-mega-drive/arcade-power-stick-6b). Chaque levier et les boutons A/B/C ont leurs zones ; le 6B ajoute X/Y/Z et Mode. Start a sa propre zone sur les deux. Les commandes suivent les entrées RetroPad des manettes Mega Drive trois et six boutons, et Genesis Plus GX reçoit le périphérique correspondant. Les interrupteurs Turbo restent visibles sans affectation indépendante, car ils modifient le comportement des boutons physiques. Les photographies externes temporaires ont été retirées. Il reste 24 clés Sega sans profil dédié ; le placement des halos attend un essai interactif.
 
+Huitième lot : `sega-sg1000-ii.png` (1536 × 1024, coin alpha 0) présente le joypad SJ-150 de face, généré à partir de la [photographie du catalogue matériel Sega](https://www.sega.jp/history/hard/sg1000-2/devices.html). La référence temporaire a été retirée. Le levier amovible et les deux boutons ont chacun leurs zones : les quatre directions correspondent aux lignes directionnelles, les boutons aux lignes Fire 1/Fire 2 du profil SG-1000 existant. Le placement des halos dans l'interface reste à vérifier. Il reste 23 clés Sega sans profil dédié.
+
+Build Debug du 4 octobre 2026 après le profil SJ-150 : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules ont été vérifiés présents ; `git diff --check` ne signale aucune erreur. La sélection et les halos attendent encore un essai en fenêtre.
+
 Build Debug du 4 octobre 2026 après les deux Arcade Power Stick : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `build/Debug/GW GUI/Modules/<marque>/` vérifiés présents. Les halos restent à essayer dans l'interface.
 
 Build Debug du 4 octobre 2026 après le Control Stick : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de `build/Debug/GW GUI/Modules/` vérifiés présents. Les halos restent à essayer dans l'interface.
@@ -576,7 +580,7 @@ Compilation Debug du 4 octobre 2026 après ce lot : `scripts\local-building.cmd 
 | Emulation.Sega.Controller.SegaSaturnTwinStick | Twin Stick | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSaturnVirtuaStick | Virtua Stick | À créer / vérifier |
 | Emulation.Sega.Controller.SegaSg1000Joystick | SG-1000 joystick | À créer / vérifier |
-| Emulation.Sega.Controller.SegaSg1000IiJoypad | SG-1000 II gamepad | À créer / vérifier |
+| Emulation.Sega.Controller.SegaSg1000IiJoypad | SG-1000 II gamepad | `sega-sg1000-ii.png` : levier et deux boutons raccordés aux affectations SG-1000 ; halos à vérifier dans l'interface. |
 | Emulation.Sega.Controller.SegaSc3000Keyboard | SC-3000 keyboard | À créer / vérifier |
 | Emulation.Sega.Controller.SegaMasterSystemController | Master System controller | `master-system.png` : croix, 1 et 2 raccordés au profil sélectionnable ; placement interactif à vérifier. |
 | Emulation.Sega.Controller.SegaGameGearController | Game Gear built-in controls | `game-gear-controls.png` : croix, 1/2 et Start raccordés sur le port unique ; placement interactif à vérifier. |

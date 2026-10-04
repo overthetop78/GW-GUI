@@ -51,6 +51,7 @@
   <data name="Emulation.Controller.Visual.Model.atari-7800-control-pad-europe" xml:space="preserve"><value>Atari 7800 Control Pad (Europe)</value></data>
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve"><value>Atari Jaguar Pro Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-sg1000-ii" xml:space="preserve"><value>Sega SG-1000 II SJ-150</value></data>
   <data name="Emulation.Controller.Visual.Model.master-system" xml:space="preserve"><value>Master System Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.sega-control-stick" xml:space="preserve"><value>Sega Control Stick</value></data>
   <data name="Emulation.Controller.Visual.Model.game-gear-controls" xml:space="preserve"><value>Game Gear</value></data>

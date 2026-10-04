@@ -8,6 +8,7 @@ internal static partial class InputSettingsFunctions
             ControllerType.Joypad => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro],
+            ControllerType.SegaSg1000IiJoypad => [EmulationControllerVisualIds.SegaSg1000Ii],
             ControllerType.SegaMasterSystemController => [EmulationControllerVisualIds.MasterSystem],
             ControllerType.SegaControlStick => [EmulationControllerVisualIds.SegaControlStick],
             ControllerType.SegaGameGearController => [EmulationControllerVisualIds.GameGearControls],
@@ -30,6 +31,7 @@ internal static partial class InputSettingsFunctions
         type switch
         {
             ControllerType.Joypad => EmulationControllerVisualIds.QuickShot,
+            ControllerType.SegaSg1000IiJoypad => EmulationControllerVisualIds.SegaSg1000Ii,
             ControllerType.SegaMasterSystemController => EmulationControllerVisualIds.MasterSystem,
             ControllerType.SegaControlStick => EmulationControllerVisualIds.SegaControlStick,
             ControllerType.SegaGameGearController => EmulationControllerVisualIds.GameGearControls,
@@ -50,6 +52,7 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type) => type is ControllerType.Joypad
+            or ControllerType.SegaSg1000IiJoypad
             or ControllerType.SegaMasterSystemController
             or ControllerType.SegaControlStick
             or ControllerType.SegaGameGearController

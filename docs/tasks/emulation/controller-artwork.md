@@ -344,6 +344,17 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/NesMaxControllerTests.cs` : vérifier la présence du visuel NES Advantage sur NES, son absence sur Famicom Disk System et la couverture de ses commandes par les lignes d'affectation.
   - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/NesMaxControllerTests.cs` : supprimer les deux avertissements de nullabilité des collections de visuels dans le test.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat des tests ciblés et du build Debug de l'application avec les huit modules.
+- [x] Raccorder le joypad Sega SG-1000 II SJ-150
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire les actions ordonnées de ce profil SJ-150.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-sg1000-ii-reference.jpg` : conserver temporairement l'image du SJ-150 publiée dans le catalogue matériel officiel Sega.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-sg1000-ii.png` : produire une vue de face du SJ-150 avec fond transparent et commandes visibles.
+  - [x] Supprimer `src/GWGUI.App/Assets/Controllers/sega-sg1000-ii-reference.jpg` : retirer la référence de travail après inspection de l'image générée.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant visuel invariant SJ-150.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : ajouter le nom invariant du SJ-150.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : rendre le visuel SJ-150 sélectionnable et relier ses directions et deux boutons aux affectations existantes.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur les commandes visibles du SJ-150.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter le profil, la source et les limites vérifiées.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug de l'application et des modules après raccordement.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

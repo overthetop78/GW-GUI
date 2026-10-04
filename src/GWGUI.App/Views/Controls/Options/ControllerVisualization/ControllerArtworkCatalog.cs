@@ -869,6 +869,15 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.Key0, ControllerVisualZoneShape.RoundedRectangle, 46.5d, 74.4d, 5.6d, 2.5d),
                 new(EmulationControllerVisualControl.KeyHash, ControllerVisualZoneShape.RoundedRectangle, 56.1d, 74.4d, 5.8d, 2.5d)
             ]),
+            [EmulationControllerVisualIds.SegaSg1000Ii] = new("sega-sg1000-ii.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 43d, 64d, 14d, 22d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 43d, 64d, 14d, 22d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 43d, 64d, 14d, 22d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 43d, 64d, 14d, 22d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 50d, 26d, 9d, 13d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 50d, 41d, 9d, 13d)
+            ]),
             [EmulationControllerVisualIds.MasterSystem] = new("master-system.png",
             [
                 new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 13d, 39d, 23d, 35d),
