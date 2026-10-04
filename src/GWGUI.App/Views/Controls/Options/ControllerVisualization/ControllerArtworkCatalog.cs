@@ -422,6 +422,58 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 71.0d, 14.0d, 3.0d, 10.0d),
                 new(EmulationControllerVisualControl.Guide, ControllerVisualZoneShape.Ellipse, 47.0d, 49.0d, 6.0d, 9.5d)
             ]),
+            [EmulationControllerVisualIds.NintendoNesPad] = new("nintendo-entertainment-system.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 16.5d, 37.0d, 14.6d, 45.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 16.5d, 37.0d, 14.6d, 45.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 16.5d, 37.0d, 14.6d, 45.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 16.5d, 37.0d, 14.6d, 45.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 63.1d, 57.8d, 8.0d, 24.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 73.0d, 57.8d, 8.0d, 24.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 37.5d, 65.0d, 7.0d, 9.0d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 47.2d, 65.0d, 7.0d, 9.0d)
+            ]),
+            [EmulationControllerVisualIds.NintendoFamicomPad1] = new("famicom-controller-i.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 12.1d, 37.0d, 18.0d, 40.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 12.1d, 37.0d, 18.0d, 40.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 12.1d, 37.0d, 18.0d, 40.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 12.1d, 37.0d, 18.0d, 40.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 63.7d, 57.6d, 9.0d, 20.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 75.5d, 57.6d, 9.0d, 20.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 36.3d, 60.8d, 9.0d, 10.0d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 47.4d, 60.8d, 9.0d, 10.0d)
+            ]),
+            [EmulationControllerVisualIds.NintendoSuperNesPad] = new("super-nes-controller.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 12.0d, 39.0d, 19.5d, 27.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 12.0d, 39.0d, 19.5d, 27.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 12.0d, 39.0d, 19.5d, 27.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 12.0d, 39.0d, 19.5d, 27.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 74.0d, 58.5d, 9.0d, 13.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 83.2d, 46.7d, 9.0d, 13.0d),
+                new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 65.2d, 47.8d, 9.0d, 13.0d),
+                new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 74.3d, 37.0d, 9.0d, 13.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 37.4d, 53.5d, 9.5d, 8.5d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 49.4d, 53.5d, 9.5d, 8.5d),
+                new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.RoundedRectangle, 11.4d, 18.5d, 19.2d, 8.0d),
+                new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 69.8d, 18.5d, 19.2d, 8.0d)
+            ]),
+            [EmulationControllerVisualIds.NintendoSuperFamicomPad] = new("super-nintendo.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 12.7d, 38.5d, 18.0d, 28.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 12.7d, 38.5d, 18.0d, 28.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 12.7d, 38.5d, 18.0d, 28.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 12.7d, 38.5d, 18.0d, 28.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 74.7d, 58.8d, 8.2d, 12.5d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 84.1d, 46.5d, 8.2d, 12.5d),
+                new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 64.9d, 46.8d, 8.2d, 12.5d),
+                new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 75.1d, 36.5d, 8.2d, 12.5d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 38.0d, 52.6d, 8.0d, 10.0d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 48.6d, 52.6d, 8.0d, 10.0d),
+                new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.RoundedRectangle, 12.2d, 18.8d, 18.7d, 8.0d),
+                new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 69.0d, 18.8d, 18.7d, 8.0d)
+            ]),
             [EmulationControllerVisualIds.QuickShot] = new("quickshot.png",
             [
                 new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 22.6d, 0.0d, 54.0d, 52.6d),

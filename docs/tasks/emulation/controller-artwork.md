@@ -106,8 +106,28 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : réutiliser les quatre PNG existants et définir les zones physiques visibles de leurs croix, boutons, joysticks et commandes centrales.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner les quatre images réutilisées, leurs zones et le fait que le module Sony ne peut actuellement relier que son joystick générique.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug de l'application et des huit modules après l'ajout des quatre profils Sony.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le raccordement fonctionnel PlayStation/PlayStation 2 des profils existants, en exposant toutes les commandes joypad effectivement lues par SwanStation et PCSX2, puis en associant les zones de face au modèle sélectionné.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerCommandIds.cs` : ajouter les identifiants invariants manquants Select, R2, L3 et R3 déjà reconnus dans les instantanés d'entrée Sony.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : déclarer les étiquettes invariantes des symboles PlayStation et des boutons Select, Start, L1/R1, L2/R2 et L3/R3.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : afficher les 16 commandes joypad réelles pour PlayStation et PlayStation 2 et transmettre le modèle aux choix de contrôleur.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : ajouter les clés des libellés invariants des manettes PlayStation standard, DUALSHOCK 2/4 et DualSense.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer le visuel PlayStation adapté au modèle et relier croix, symboles, Select, Start et épaules aux commandes de la liste.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : utiliser le libellé de manette du modèle dans le choix de contrôleur.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : donner un nom invariant lisible à chaque nouveau profil visuel NEC, Xbox et Sony pour que le sélecteur n'affiche pas sa clé de ressource.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le raccordement effectif et les limites des profils Sony selon les machines.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug app et huit modules après le raccordement Sony et vérifier leurs artefacts.
 - [ ] Réaliser les profils Nintendo
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Nintendo et les fichiers de profils précis avant leur réalisation.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler le premier lot NES/Famicom/Super Famicom. Réutiliser les images transparentes `nintendo-entertainment-system.png`, `famicom-controller-i.png` et `super-nintendo.png`; créer une variante SNES nord-américaine fidèle si les couleurs diffèrent. Raccorder seulement les commandes réellement représentées dans les cœurs NES/SNES avant les autres périphériques.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/super-nes-controller.png` : variante américaine de face du SNS-005, fond transparent, boutons A/B/X/Y violets et épaules visibles.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les quatre identifiants invariants NES-004, Famicom I, SNS-005 et SHVC-005.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : inscrire les quatre images de face et les zones exactes de leurs commandes.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : ajouter les étiquettes de boutons invariantes et les clés des quatre modèles officiels.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : faire varier les boutons de la liste selon NES/Famicom ou SNES/Super Famicom et transmettre le modèle au choix visuel.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : limiter les visuels aux modèles compatibles avec la machine et relier leurs zones aux commandes de la liste.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : retirer les deux clés Famicom/Super Famicom superflues, puisque les noms de variantes sont fournis directement par le sélecteur visuel.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : inscrire les quatre noms invariants de profils Nintendo.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner images, transparence, boutons mappés et limites de couverture Nintendo du premier lot.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug app et huit modules après raccordement Nintendo.
 - [ ] Réaliser les profils Sega
   - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sega et les fichiers de profils précis avant leur réalisation.
 - [ ] Vérifier la couverture et le fonctionnement

@@ -18,9 +18,10 @@ internal static partial class InputSettingsFunctions
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = current?.Type ?? ControllerCatalog.Default(model);
             return new EmulationControllerPort(index + 1,
-                ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
+                ControllerCatalog.Types(model).Select(choice => Choice(choice, model)).ToArray(),
+                type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type),
+                new EmulationInputBindingSet(ControllerDefinitions(type, model),
                     current?.ButtonMappings ?? new Dictionary<string, string>(),
                     EmulationInputSource.Keyboard | EmulationInputSource.Mouse
                         | EmulationInputSource.Controller, true),
@@ -80,8 +81,10 @@ internal static partial class InputSettingsFunctions
             .Where(item => item.Value != MouseAction.None)
             .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type) =>
-        type is ControllerType.None ? [] :
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(
+        ControllerType type, Model model) => type is ControllerType.None ? []
+        : model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
+            ? PlayStationControllerDefinitions() :
         [
             Definition(InputSettingsFunctionsConstants.Up,
                 InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -97,12 +100,50 @@ internal static partial class InputSettingsFunctions
                 InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
+    private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions() =>
+    [
+        Definition(InputSettingsFunctionsConstants.Up,
+            InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Down,
+            InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Left,
+            InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Right,
+            InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+        Definition(EmulationControllerCommandIds.B, InputSettingsFunctionsConstants.ControllerCross,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.A, InputSettingsFunctionsConstants.ControllerCircle,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.Y, InputSettingsFunctionsConstants.ControllerSquare,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.X, InputSettingsFunctionsConstants.ControllerTriangle,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.Select,
+            InputSettingsFunctionsConstants.ControllerSelect, string.Empty),
+        Definition(EmulationControllerCommandIds.Start,
+            InputSettingsFunctionsConstants.ControllerStart, string.Empty),
+        Definition(EmulationControllerCommandIds.L, InputSettingsFunctionsConstants.ControllerL1,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.R, InputSettingsFunctionsConstants.ControllerR1,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.L2, InputSettingsFunctionsConstants.ControllerL2,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.R2, InputSettingsFunctionsConstants.ControllerR2,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.L3, InputSettingsFunctionsConstants.ControllerL3,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.R3, InputSettingsFunctionsConstants.ControllerR3,
+            string.Empty)
+    ];
+
     private static InputBindingDefinition Definition(string id, string resourceKey,
         string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding,
             invariant ?? (resourceKey.Contains('.') ? null : resourceKey));
 
-    private static EmulationControllerChoice Choice(ControllerType type) => new(
-        type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
-        CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
-        VisualCommandIds: VisualCommandIds(type));
+    private static EmulationControllerChoice Choice(ControllerType type, Model model) => new(
+        type.ToString(), ControllerResourceKey(type, model),
+        BindingDefinitions: ControllerDefinitions(type, model),
+        CompatibleVisualIds: CompatibleVisualIds(type, model),
+        DefaultVisualId: DefaultVisualId(type, model),
+        VisualCommandIds: VisualCommandIds(type, model));
 }

@@ -59,6 +59,42 @@
   <data name="Emulation.Controller.Visual.Model.arcade-stick" xml:space="preserve"><value>Arcade Stick</value></data>
   <data name="Emulation.Controller.Visual.Model.flight-stick" xml:space="preserve"><value>Flight Stick</value></data>
   <data name="Emulation.Controller.Visual.Model.racing-wheel" xml:space="preserve"><value>Racing Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-pad"><value>NEC PC Engine Pad (PI-PD001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-turbopad"><value>NEC Turbo Pad (PI-PD002)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-turbografx-turbopad"><value>NEC TurboPad (HES-PAD-01)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-coregrafx-turbopad"><value>NEC Turbo Pad (PI-PD6)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-coregrafx-ii-turbopad"><value>NEC Turbo Pad (PI-PD8)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-duor-turbopad"><value>NEC Turbo Pad (PCE-TP2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-turbopad-ii"><value>NEC Turbo Pad II (PI-PD5)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-turbostick"><value>NEC Turbo Stick (PI-PD4)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-avenue-pad-3"><value>NEC Avenue Pad 3 (NAPD-1001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-avenue-pad-6"><value>NEC Avenue Pad 6 (NAPD-1002)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-arcade-pad-6"><value>NEC Arcade Pad 6 (PCE-TP1)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-turbografx-turbostick"><value>NEC TurboGrafx TurboStick (HES-STK-01)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-duopad"><value>NEC DuoPad</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-cordless-pad"><value>NEC Cordless Pad (PI-PD12)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-mouse"><value>NEC PC Engine Mouse (PI-PD10)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-turboexpress-controls"><value>NEC TurboExpress controls</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-lt-controls"><value>NEC PC Engine LT controls</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-fx-pad"><value>NEC PC-FX Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-fx-mouse"><value>NEC PC-FX Mouse</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-duke"><value>Xbox Controller (Duke)</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-controller-s"><value>Xbox Controller S</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-transforming-dpad"><value>Xbox 360 Wireless Controller with Transforming D-Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-wireless-racing-wheel"><value>Xbox 360 Wireless Racing Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-wireless-speed-wheel"><value>Xbox 360 Wireless Speed Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-big-button-pad"><value>Xbox 360 Big Button Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-dvd-movie-playback-kit"><value>Xbox DVD Movie Playback Kit</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-chatpad"><value>Xbox 360 Chatpad</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-chatpad"><value>Xbox Chatpad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-playstation-controller"><value>PlayStation controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-2"><value>DUALSHOCK 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-4"><value>DUALSHOCK 4</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualsense"><value>DualSense</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-nes-pad"><value>Nintendo NES Controller (NES-004)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-famicom-pad-1"><value>Nintendo Famicom Controller I</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-super-nes-pad"><value>Nintendo Super NES Controller (SNS-005)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-super-famicom-pad"><value>Nintendo Super Famicom Controller (SHVC-005)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
 </root>

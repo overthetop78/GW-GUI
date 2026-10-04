@@ -18,9 +18,10 @@ internal static partial class InputSettingsFunctions
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = current?.Type ?? ControllerCatalog.Default(model);
             return new EmulationControllerPort(index + 1,
-                ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
+                ControllerCatalog.Types(model).Select(choice => Choice(choice, model)).ToArray(),
+                type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type),
+                new EmulationInputBindingSet(ControllerDefinitions(type, model),
                     current?.ButtonMappings ?? new Dictionary<string, string>(),
                     EmulationInputSource.Keyboard | EmulationInputSource.Mouse
                         | EmulationInputSource.Controller, true),
@@ -80,8 +81,11 @@ internal static partial class InputSettingsFunctions
             .Where(item => item.Value != MouseAction.None)
             .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type) =>
-        type is ControllerType.None ? [] :
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(
+        ControllerType type, Model model) => type is ControllerType.None ? []
+        : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
+            ? NintendoControllerDefinitions(false)
+        : model.Id == ModelConstants.Snes ? NintendoControllerDefinitions(true) :
         [
             Definition(InputSettingsFunctionsConstants.Up,
                 InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -97,12 +101,50 @@ internal static partial class InputSettingsFunctions
                 InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
+    private static IReadOnlyList<InputBindingDefinition> NintendoControllerDefinitions(
+        bool superNintendo)
+    {
+        var definitions = new List<InputBindingDefinition>
+        {
+            Definition(InputSettingsFunctionsConstants.Up,
+                InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Down,
+                InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Left,
+                InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Right,
+                InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+            Definition(EmulationControllerCommandIds.B,
+                InputSettingsFunctionsConstants.ButtonB, string.Empty),
+            Definition(EmulationControllerCommandIds.A,
+                InputSettingsFunctionsConstants.ButtonA, string.Empty),
+            Definition(EmulationControllerCommandIds.Select,
+                InputSettingsFunctionsConstants.ButtonSelect, string.Empty),
+            Definition(EmulationControllerCommandIds.Start,
+                InputSettingsFunctionsConstants.ButtonStart, string.Empty)
+        };
+        if (superNintendo)
+        {
+            definitions.Add(Definition(EmulationControllerCommandIds.Y,
+                InputSettingsFunctionsConstants.ButtonY, string.Empty));
+            definitions.Add(Definition(EmulationControllerCommandIds.X,
+                InputSettingsFunctionsConstants.ButtonX, string.Empty));
+            definitions.Add(Definition(EmulationControllerCommandIds.L,
+                InputSettingsFunctionsConstants.ButtonL, string.Empty));
+            definitions.Add(Definition(EmulationControllerCommandIds.R,
+                InputSettingsFunctionsConstants.ButtonR, string.Empty));
+        }
+        return definitions;
+    }
+
     private static InputBindingDefinition Definition(string id, string resourceKey,
         string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding,
             invariant ?? (resourceKey.Contains('.') ? null : resourceKey));
 
-    private static EmulationControllerChoice Choice(ControllerType type) => new(
-        type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
-        CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
-        VisualCommandIds: VisualCommandIds(type));
+    private static EmulationControllerChoice Choice(ControllerType type, Model model) => new(
+        type.ToString(), ControllerResourceKey(type, model),
+        BindingDefinitions: ControllerDefinitions(type, model),
+        CompatibleVisualIds: CompatibleVisualIds(type, model),
+        DefaultVisualId: DefaultVisualId(type, model),
+        VisualCommandIds: VisualCommandIds(type, model));
 }

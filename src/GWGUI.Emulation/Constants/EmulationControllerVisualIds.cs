@@ -34,6 +34,10 @@ public static class EmulationControllerVisualIds
     public const string SonyDualShock2 = "sony-dualshock-2";
     public const string SonyDualShock4 = "sony-dualshock-4";
     public const string SonyDualSense = "sony-dualsense";
+    public const string NintendoNesPad = "nintendo-nes-pad";
+    public const string NintendoFamicomPad1 = "nintendo-famicom-pad-1";
+    public const string NintendoSuperNesPad = "nintendo-super-nes-pad";
+    public const string NintendoSuperFamicomPad = "nintendo-super-famicom-pad";
     public const string QuickShot = "quickshot";
     public const string QuickShotDeluxe = "quickshot-deluxe";
     public const string QuickShotIiTurbo = "quickshot-ii-turbo";

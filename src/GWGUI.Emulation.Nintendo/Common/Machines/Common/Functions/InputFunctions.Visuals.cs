@@ -2,19 +2,28 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =>
-        type == ControllerType.Joystick
-            ? [EmulationControllerVisualIds.QuickShot,
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
+        Model model) => type != ControllerType.Joystick ? null : model.Id switch
+        {
+            ModelConstants.Nes or ModelConstants.FamicomDisk =>
+                [EmulationControllerVisualIds.NintendoNesPad,
+                    EmulationControllerVisualIds.NintendoFamicomPad1],
+            ModelConstants.Snes => [EmulationControllerVisualIds.NintendoSuperNesPad,
+                EmulationControllerVisualIds.NintendoSuperFamicomPad],
+            _ => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro]
-            : null;
+        };
 
-    private static string? DefaultVisualId(ControllerType type) =>
-        type == ControllerType.Joystick ? EmulationControllerVisualIds.QuickShot : null;
+    private static string? DefaultVisualId(ControllerType type, Model model) =>
+        CompatibleVisualIds(type, model)?.FirstOrDefault();
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type) => type == ControllerType.Joystick
-        ? new Dictionary<EmulationControllerVisualControl, string>
+        VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
+            ? null : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
+                or ModelConstants.Snes
+            ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes)
+            : new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
             [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
@@ -22,11 +31,45 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
             [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
             [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A
-        } : null;
+        };
 
-    private static string ControllerResourceKey(ControllerType type) => type switch
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>
+        NintendoVisualCommandIds(bool superNintendo)
     {
-        ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
+        var commands = new Dictionary<EmulationControllerVisualControl, string>
+        {
+            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+            [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select,
+            [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
+        };
+        if (superNintendo)
+        {
+            commands[EmulationControllerVisualControl.TertiaryAction] =
+                EmulationControllerCommandIds.Y;
+            commands[EmulationControllerVisualControl.QuaternaryAction] =
+                EmulationControllerCommandIds.X;
+            commands[EmulationControllerVisualControl.LeftShoulder] =
+                EmulationControllerCommandIds.L;
+            commands[EmulationControllerVisualControl.RightShoulder] =
+                EmulationControllerCommandIds.R;
+        }
+        return commands;
+    }
+
+    private static string ControllerResourceKey(ControllerType type, Model model) =>
+        type == ControllerType.Joystick ? model.Id switch
+        {
+            ModelConstants.Nes or ModelConstants.FamicomDisk =>
+                InputSettingsFunctionsConstants.ResourceNesPad,
+            ModelConstants.Snes => InputSettingsFunctionsConstants.ResourceSuperNesPad,
+            _ => InputSettingsFunctionsConstants.ResourceControllerJoystick
+        } : type switch
+    {
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         _ => $"Emulation.Controller.{type}"

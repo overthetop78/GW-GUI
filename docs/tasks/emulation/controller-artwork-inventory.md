@@ -141,22 +141,24 @@ Build Debug du 4 octobre 2026 après ces profils : `scripts\local-building.cmd -
 
 ## Sony (52 clés)
 
-Les visuels déjà livrés avec l'application `playstation-1.png`, `playstation-2.png`, `playstation-4.png` et `playstation-5.png` servent désormais de profils séparés pour la manette PlayStation standard, la DUALSHOCK 2, la DUALSHOCK 4 et la DualSense. Leurs zones physiques principales ont été placées dans `ControllerArtworkCatalog`. Le PNG DualSense existant garde des résidus blancs autour de la coque, à corriger avant validation graphique. Le module Sony n'expose pour le moment que `Joystick` et `None` : ces quatre visuels ne sont donc pas sélectionnables dans la configuration de ses machines et leurs halos ne sont pas reliés à des commandes Sony complètes. Le placement des zones et l'affichage interactif restent à vérifier.
+Les visuels déjà livrés avec l'application `playstation-1.png`, `playstation-2.png`, `playstation-4.png` et `playstation-5.png` servent de profils séparés pour la manette PlayStation standard, la DUALSHOCK 2, la DUALSHOCK 4 et la DualSense. Leurs zones physiques principales sont définies dans `ControllerArtworkCatalog` et leurs noms invariants dans les ressources communes de l'application. Pour PlayStation et PlayStation 2, la liste expose maintenant les 16 bits de joypad réellement lus par SwanStation et PCSX2 : directions, quatre symboles, Select/Start, L1/R1, L2/R2 et L3/R3. La sélection du profil correspondant est raccordée aux commandes de cette liste et aux halos. Les modèles PlayStation 4 et 5 disposent aussi de leur profil visuel, mais le module ne possède pas de cœur d'émulation pour eux ; leurs commandes restent les six entrées génériques. Le PNG DualSense existant garde des résidus blancs autour de la coque. Placement des zones et essai interactif encore à vérifier.
 
 Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `Modules/<id>/` sont présents.
+
+Build Debug du 4 octobre 2026 après le raccordement des commandes PlayStation et PlayStation 2 : même script terminé avec code 0 ; l'exécutable et les huit DLL des modules sont présents. Cette vérification confirme la compilation, pas encore le comportement des halos en fenêtre.
 
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Sony.Controller.MSXJS55 | Sony JS-55 joystick | À créer / vérifier |
 | Emulation.Sony.Controller.MSXJS75 | Sony JS-75 wireless joystick | À créer / vérifier |
 | Emulation.Sony.Controller.MSXJS303T | Sony JS-303T joypad | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStationController | PlayStation controller | `playstation-1.png` réutilisé, zones physiques principales ; profil non sélectionnable. |
+| Emulation.Sony.Controller.PlayStationController | PlayStation controller | `playstation-1.png` réutilisé ; profil sélectionné pour PlayStation, 14 zones reliées à la liste (L3/R3 demandent une manette analogique). |
 | Emulation.Sony.Controller.PlayStationAnalogJoystick | PlayStation Analog Joystick | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationDualAnalog | PlayStation Dual Analog controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationDualShock | PlayStation DUALSHOCK controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMouse | PlayStation Mouse | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMultitap | PlayStation Multitap | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStation2DualShock2 | PlayStation 2 DUALSHOCK 2 controller | `playstation-2.png` réutilisé, zones physiques principales ; profil non sélectionnable. |
+| Emulation.Sony.Controller.PlayStation2DualShock2 | PlayStation 2 DUALSHOCK 2 controller | `playstation-2.png` réutilisé ; profil sélectionné pour PlayStation 2, 16 zones reliées à la liste. |
 | Emulation.Sony.Controller.PlayStation2Multitap | PlayStation 2 Multitap | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation2EyeToy | PlayStation 2 EyeToy camera | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation2SingStarMicrophones | PlayStation 2 SingStar microphones | À créer / vérifier |
@@ -166,11 +168,11 @@ Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-buildin
 | Emulation.Sony.Controller.PlayStation3Eye | PlayStation Eye camera | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMoveMotion | PlayStation Move motion controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationMoveNavigation | PlayStation Move navigation controller | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStation4DualShock4 | PlayStation 4 DUALSHOCK 4 controller | `playstation-4.png` réutilisé, zones physiques principales ; profil non sélectionnable. |
+| Emulation.Sony.Controller.PlayStation4DualShock4 | PlayStation 4 DUALSHOCK 4 controller | `playstation-4.png` réutilisé ; profil sélectionnable, cœur et commandes complètes absents. |
 | Emulation.Sony.Controller.PlayStation4Camera | PlayStation Camera | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationVRAim | PlayStation VR Aim controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationVR | PlayStation VR headset | À créer / vérifier |
-| Emulation.Sony.Controller.PlayStation5DualSense | PlayStation 5 DualSense wireless controller | `playstation-5.png` réutilisé, zones physiques principales ; profil non sélectionnable, résidus blancs à nettoyer. |
+| Emulation.Sony.Controller.PlayStation5DualSense | PlayStation 5 DualSense wireless controller | `playstation-5.png` réutilisé ; profil sélectionnable, cœur et commandes complètes absents, résidus blancs à nettoyer. |
 | Emulation.Sony.Controller.PlayStation5DualSenseEdge | PlayStation 5 DualSense Edge wireless controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation5Access | PlayStation 5 Access controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationVR2Sense | PlayStation VR2 Sense controller | À créer / vérifier |
@@ -201,6 +203,8 @@ Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-buildin
 | Emulation.Sony.Controller.ZN1ArcadeLightGun | ZN-1 arcade light gun | À créer / vérifier |
 
 ## Nintendo (265 clés)
+
+Premier lot fonctionnel : le NES-004, le Famicom Controller I et le Super Famicom SHVC-005 réutilisent des images de face déjà présentes dans l'application ; le Super NES SNS-005 a une variante violette créée à partir de `super-nintendo.png` avec fond transparent (coin alpha 0). L'[historique Nintendo de la Super Nintendo](https://www.nintendo.com/en-za/Hardware/Nintendo-History/Super-Nintendo/Super-Nintendo-627040.html) confirme les commandes supplémentaires X/Y et L/R. Les quatre profils disposent de zones pour croix, boutons et Select/Start, plus X/Y/L/R sur les deux profils 16 bits. La liste d'entrées du module est maintenant limitée aux boutons NES/Famicom pour NES et Famicom Disk System, et étendue aux boutons SNES pour Super Nintendo/Super Famicom. Les halos sont reliés aux identifiants de joypad lus par les cœurs ; essai visuel interactif encore à faire. Les 261 autres clés d'accessoires ne sont pas couvertes par ce lot.
 
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
@@ -269,9 +273,9 @@ Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-buildin
 | Emulation.Nintendo.Controller.GameWatchBallClubNintendo | Nintendo Game & Watch Ball (Club Nintendo) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameWatchSuperMarioBros2020 | Nintendo Game & Watch: Super Mario Bros. | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameWatchZelda2021 | Nintendo Game & Watch: The Legend of Zelda | À créer / vérifier |
-| Emulation.Nintendo.Controller.NesPad | Nintendo NES Controller (NES-004) | À créer / vérifier |
+| Emulation.Nintendo.Controller.NesPad | Nintendo NES Controller (NES-004) | `nintendo-entertainment-system.png` réutilisé, huit zones reliées aux commandes NES. |
 | Emulation.Nintendo.Controller.NesDogbonePad | Nintendo NES Controller (NES-039) | À créer / vérifier |
-| Emulation.Nintendo.Controller.FamicomPad1 | Nintendo Famicom Controller I | À créer / vérifier |
+| Emulation.Nintendo.Controller.FamicomPad1 | Nintendo Famicom Controller I | `famicom-controller-i.png` réutilisé, huit zones reliées aux commandes NES/Famicom. |
 | Emulation.Nintendo.Controller.FamicomPad2 | Nintendo Famicom Controller II | À créer / vérifier |
 | Emulation.Nintendo.Controller.AvFamicomPad | Nintendo AV Famicom Controller (HVC-102) | À créer / vérifier |
 | Emulation.Nintendo.Controller.NesAdvantage | Nintendo NES Advantage (NES-026) | À créer / vérifier |
@@ -294,8 +298,8 @@ Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-buildin
 | Emulation.Nintendo.Controller.FamicomNetworkPad | Nintendo Famicom Network Controller (HVC-051) | À créer / vérifier |
 | Emulation.Nintendo.Controller.FamicomDiskDrive | Nintendo Famicom Disk System Disk Drive (HVC-022) | À créer / vérifier |
 | Emulation.Nintendo.Controller.FamicomDiskRamAdapter | Nintendo Famicom Disk System RAM Adapter (HVC-023) | À créer / vérifier |
-| Emulation.Nintendo.Controller.SuperNesPad | Nintendo Super NES Controller (SNS-005) | À créer / vérifier |
-| Emulation.Nintendo.Controller.SuperFamicomPad | Nintendo Super Famicom Controller (SHVC-005) | À créer / vérifier |
+| Emulation.Nintendo.Controller.SuperNesPad | Nintendo Super NES Controller (SNS-005) | `super-nes-controller.png` créé, transparent, douze zones reliées aux commandes SNES. |
+| Emulation.Nintendo.Controller.SuperFamicomPad | Nintendo Super Famicom Controller (SHVC-005) | `super-nintendo.png` réutilisé, douze zones reliées aux commandes SNES. |
 | Emulation.Nintendo.Controller.SuperNesRedesignedPad | Nintendo Super NES Controller (SNS-102) | À créer / vérifier |
 | Emulation.Nintendo.Controller.SuperNesMouse | Nintendo Super NES Mouse | À créer / vérifier |
 | Emulation.Nintendo.Controller.SuperScope | Nintendo Super Scope / Nintendo Scope | À créer / vérifier |

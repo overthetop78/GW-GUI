@@ -2,19 +2,44 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =>
-        type == ControllerType.Joystick
-            ? [EmulationControllerVisualIds.QuickShot,
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
+        Model model) => type != ControllerType.Joystick ? null : model.Id switch
+        {
+            ModelConstants.PlayStation => [EmulationControllerVisualIds.SonyPlayStationController],
+            ModelConstants.PlayStation2 => [EmulationControllerVisualIds.SonyDualShock2],
+            ModelConstants.PlayStation4 => [EmulationControllerVisualIds.SonyDualShock4],
+            ModelConstants.PlayStation5 => [EmulationControllerVisualIds.SonyDualSense],
+            _ => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro]
-            : null;
+        };
 
-    private static string? DefaultVisualId(ControllerType type) =>
-        type == ControllerType.Joystick ? EmulationControllerVisualIds.QuickShot : null;
+    private static string? DefaultVisualId(ControllerType type, Model model) =>
+        CompatibleVisualIds(type, model)?.FirstOrDefault();
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type) => type == ControllerType.Joystick
-        ? new Dictionary<EmulationControllerVisualControl, string>
+        VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
+            ? null : model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
+            ? new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+                [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+                [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+                [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+                [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+                [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+                [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Y,
+                [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.X,
+                [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Select,
+                [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start,
+                [EmulationControllerVisualControl.LeftShoulder] = EmulationControllerCommandIds.L,
+                [EmulationControllerVisualControl.RightShoulder] = EmulationControllerCommandIds.R,
+                [EmulationControllerVisualControl.LeftTrigger] = EmulationControllerCommandIds.L2,
+                [EmulationControllerVisualControl.RightTrigger] = EmulationControllerCommandIds.R2,
+                [EmulationControllerVisualControl.LeftStick] = EmulationControllerCommandIds.L3,
+                [EmulationControllerVisualControl.RightStick] = EmulationControllerCommandIds.R3
+            }
+        : new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
             [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
@@ -22,11 +47,18 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
             [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
             [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A
-        } : null;
+        };
 
-    private static string ControllerResourceKey(ControllerType type) => type switch
+    private static string ControllerResourceKey(ControllerType type, Model model) =>
+        type == ControllerType.Joystick ? model.Id switch
+        {
+            ModelConstants.PlayStation => InputSettingsFunctionsConstants.ResourcePlayStationController,
+            ModelConstants.PlayStation2 => InputSettingsFunctionsConstants.ResourceDualShock2,
+            ModelConstants.PlayStation4 => InputSettingsFunctionsConstants.ResourceDualShock4,
+            ModelConstants.PlayStation5 => InputSettingsFunctionsConstants.ResourceDualSense,
+            _ => InputSettingsFunctionsConstants.ResourceControllerJoystick
+        } : type switch
     {
-        ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         _ => $"Emulation.Controller.{type}"

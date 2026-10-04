@@ -17,6 +17,10 @@ public static class EmulationControllerCommandIds
     public const string L = "L";
     public const string R = "R";
     public const string L2 = "L2";
+    public const string R2 = "R2";
+    public const string L3 = "L3";
+    public const string R3 = "R3";
+    public const string Select = "Select";
     public const string Start = "Start";
     public const string Pause = "Pause";
     public const string Reset = "Reset";
