@@ -83,6 +83,7 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(
         ControllerType type, Model model) => type is ControllerType.None ? []
+        : model.Id == ModelConstants.Psp ? PspControllerDefinitions()
         : model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
             ? PlayStationControllerDefinitions() :
         [
@@ -99,6 +100,42 @@ internal static partial class InputSettingsFunctions
             Definition(InputSettingsFunctionsConstants.A,
                 InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
+
+    private static IReadOnlyList<InputBindingDefinition> PspControllerDefinitions() =>
+    [
+        Definition(InputSettingsFunctionsConstants.Up,
+            InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Down,
+            InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Left,
+            InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+        Definition(InputSettingsFunctionsConstants.Right,
+            InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+        Definition(EmulationControllerCommandIds.B, InputSettingsFunctionsConstants.ControllerCross,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.A, InputSettingsFunctionsConstants.ControllerCircle,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.Y, InputSettingsFunctionsConstants.ControllerSquare,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.X, InputSettingsFunctionsConstants.ControllerTriangle,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.Select,
+            InputSettingsFunctionsConstants.ControllerSelect, string.Empty),
+        Definition(EmulationControllerCommandIds.Start,
+            InputSettingsFunctionsConstants.ControllerStart, string.Empty),
+        Definition(EmulationControllerCommandIds.L, EmulationControllerCommandIds.L,
+            string.Empty),
+        Definition(EmulationControllerCommandIds.R, EmulationControllerCommandIds.R,
+            string.Empty),
+        Definition(InputSettingsFunctionsConstants.PspStickUp,
+            InputSettingsFunctionsConstants.PspStickUpLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.PspStickDown,
+            InputSettingsFunctionsConstants.PspStickDownLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.PspStickLeft,
+            InputSettingsFunctionsConstants.PspStickLeftLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.PspStickRight,
+            InputSettingsFunctionsConstants.PspStickRightLabel, string.Empty)
+    ];
 
     private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions() =>
     [

@@ -78,9 +78,37 @@ internal static class InputSnapshotFunctions
                 if (target >= 0 && IsSourcePressed(sourceName, source, keys, physicalMouse))
                     buttons |= 1u << target;
             }
-            result[port] = source with { Buttons = buttons };
+            result[port] = source with
+            {
+                Buttons = buttons,
+                LeftX = MappedAxis(binding.ButtonMappings,
+                    InputSettingsFunctionsConstants.PspStickRight,
+                    InputSettingsFunctionsConstants.PspStickLeft,
+                    source.LeftX, source, keys, physicalMouse),
+                LeftY = MappedAxis(binding.ButtonMappings,
+                    InputSettingsFunctionsConstants.PspStickDown,
+                    InputSettingsFunctionsConstants.PspStickUp,
+                    source.LeftY, source, keys, physicalMouse)
+            };
         }
         return result;
+    }
+
+    private static short MappedAxis(IReadOnlyDictionary<string, string> mappings,
+        string positiveCommand, string negativeCommand, short physicalValue,
+        EmulationControllerState controller, IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<string, bool> mouse)
+    {
+        var hasPositive = mappings.TryGetValue(positiveCommand, out var positiveSource)
+            && !string.IsNullOrWhiteSpace(positiveSource);
+        var hasNegative = mappings.TryGetValue(negativeCommand, out var negativeSource)
+            && !string.IsNullOrWhiteSpace(negativeSource);
+        if (!hasPositive && !hasNegative) return physicalValue;
+
+        var positive = hasPositive && IsSourcePressed(positiveSource!, controller, keys, mouse);
+        var negative = hasNegative && IsSourcePressed(negativeSource!, controller, keys, mouse);
+        return positive == negative ? default
+            : positive ? short.MaxValue : short.MinValue;
     }
 
     private static IReadOnlyDictionary<string, bool> PhysicalMouse(

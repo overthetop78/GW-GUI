@@ -29,6 +29,14 @@ internal static class InputSettingsFunctionsConstants
     internal const string ControllerR2 = "R2";
     internal const string ControllerL3 = "L3";
     internal const string ControllerR3 = "R3";
+    internal const string PspStickUp = "PspStickUp";
+    internal const string PspStickDown = "PspStickDown";
+    internal const string PspStickLeft = "PspStickLeft";
+    internal const string PspStickRight = "PspStickRight";
+    internal const string PspStickUpLabel = "● ↑";
+    internal const string PspStickDownLabel = "● ↓";
+    internal const string PspStickLeftLabel = "● ←";
+    internal const string PspStickRightLabel = "● →";
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceControllerNone = "Emulation.Controller.None";
     internal const string ResourceControllerJoystick = "Controllers.Enum.Joystick";
@@ -40,6 +48,8 @@ internal static class InputSettingsFunctionsConstants
         "Emulation.Sony.Controller.PlayStation4DualShock4";
     internal const string ResourceDualSense =
         "Emulation.Sony.Controller.PlayStation5DualSense";
+    internal const string ResourcePspIntegrated =
+        "Emulation.Sony.Controller.PSPIntegrated";
     internal const string ResourceControllerKeyboard = "Emulation.Tab.Keyboard";
     internal const string ResourceMouseButtonLeft = "Emulation.Mouse.Button.Left";
     internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";

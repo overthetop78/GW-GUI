@@ -145,6 +145,10 @@ Les visuels déjà livrés avec l'application `playstation-1.png`, `playstation-
 
 Le DUALSHOCK original possède désormais un second profil PlayStation sélectionnable : `sony-dualshock-1.png` (3060 × 2400, alpha 0 au coin), photographie détourée d'[Evan-Amos dans le domaine public](https://commons.wikimedia.org/wiki/File:PSX-DualShock.png). La croix, les quatre symboles, les deux sticks cliquables, Select, Start et les épaules L1/R1 visibles ont des zones associées aux commandes PlayStation existantes. Les boutons L2/R2 cachés par cette perspective et le bouton Analog ne reçoivent pas de halo. Le cœur utilise toujours le périphérique joypad actuellement configuré ; l'activation des axes analogiques en jeu et le placement interactif des zones restent à vérifier.
 
+Les commandes intégrées PSP disposent de `sony-psp-1000.png` (3980 × 2240, fond extérieur transparent), copie de la [photographie du domaine public d'Evan-Amos](https://commons.wikimedia.org/wiki/File:Sony-PSP-1000-Body.png). Le port unique présente la croix, les quatre symboles, L/R, Select/Start et quatre directions du stick analogique dans la liste et sur l'image. Leurs affectations rejoignent les boutons et axes gauches RetroPad lus par [PPSSPP](https://github.com/libretro/docs/blob/master/docs/library/ppsspp.md). Les commandes HOME, volume, écran, musique et HOLD/POWER visibles sur la coque ne sont pas exposées comme commandes de jeu par ce cœur et n'ont pas de halo. La photographie garde une légère perspective ; le placement précis des zones et leur affichage restent à vérifier dans l'interface. Les 51 autres clés Sony restent à traiter.
+
+Build Debug du 4 octobre 2026 après le profil PSP-1000 : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules vérifiés présents. La compilation ne valide pas encore le placement des halos en fenêtre.
+
 Build Debug du 4 octobre 2026 après le profil DUALSHOCK original : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL `Modules/<marque>/gwgui.emulation.<marque>.dll` vérifiés présents. Aucun essai interactif des halos n'a encore été effectué.
 
 Build Debug du 4 octobre 2026 après ces quatre profils : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `Modules/<id>/` sont présents.
@@ -182,7 +186,7 @@ Build Debug du 4 octobre 2026 après le raccordement des commandes PlayStation e
 | Emulation.Sony.Controller.PlayStationVR2Sense | PlayStation VR2 Sense controller | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationVR2 | PlayStation VR2 headset | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation5HDCamera | PlayStation 5 HD Camera | À créer / vérifier |
-| Emulation.Sony.Controller.PSPIntegrated | PSP built-in controls | À créer / vérifier |
+| Emulation.Sony.Controller.PSPIntegrated | PSP built-in controls | `sony-psp-1000.png` : croix, symboles, L/R, Select/Start et directions du stick reliés aux commandes PPSSPP ; halos à vérifier en fenêtre. |
 | Emulation.Sony.Controller.PSVitaIntegrated | PS Vita built-in controls | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStationPortalIntegrated | PlayStation Portal built-in controls | À créer / vérifier |
 | Emulation.Sony.Controller.PlayStation2DVDRemote | PlayStation 2 DVD remote control | À créer / vérifier |
