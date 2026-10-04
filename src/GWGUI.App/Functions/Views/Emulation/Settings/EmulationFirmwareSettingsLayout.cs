@@ -135,8 +135,9 @@ internal static partial class EmulationSettingsLayout
         EmulationFirmwareCompatibility.Official => 0,
         EmulationFirmwareCompatibility.Compatible => 1,
         EmulationFirmwareCompatibility.PartiallyCompatible => 2,
-        EmulationFirmwareCompatibility.Incompatible => 3,
-        _ => 4
+        EmulationFirmwareCompatibility.Unknown => 3,
+        EmulationFirmwareCompatibility.Incompatible => 4,
+        _ => 5
     };
 
     internal static void UpdateFirmwareUseButton(Button button,

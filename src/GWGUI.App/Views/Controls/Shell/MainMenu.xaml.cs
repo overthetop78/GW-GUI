@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.Emulation;
@@ -51,7 +52,11 @@ public partial class MainMenu : UserControl
 
     private void EmulationModule_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is MenuItem { Tag: string moduleId }) EmulationModuleRequested?.Invoke(moduleId);
+        if (sender is not MenuItem { Tag: string moduleId }) return;
+
+        Emulation.IsSubmenuOpen = false;
+        Keyboard.ClearFocus();
+        EmulationModuleRequested?.Invoke(moduleId);
     }
     private void LogHistory_Click(object sender, RoutedEventArgs e) => LogHistoryRequested?.Invoke(sender, e);
     private void Documentation_Click(object sender, RoutedEventArgs e) => DocumentationRequested?.Invoke(sender, e);

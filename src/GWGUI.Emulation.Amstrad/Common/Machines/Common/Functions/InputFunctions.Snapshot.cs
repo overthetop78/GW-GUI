@@ -75,7 +75,9 @@ internal static class InputSnapshotFunctions
                 var target = targetInKey ? keyTarget
                     : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
                 var sourceName = targetInKey ? mapping.Value : mapping.Key;
-                if (target >= 0 && IsSourcePressed(sourceName, source, keys, physicalMouse))
+                var mappingSource = EmulationInputMappingFunctions.ResolveSourceController(
+                    sourceName, physical, source);
+                if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= 1u << target;
             }
             result[port] = source with { Buttons = buttons };

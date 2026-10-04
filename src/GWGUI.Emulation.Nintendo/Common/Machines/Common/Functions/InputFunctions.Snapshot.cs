@@ -81,7 +81,9 @@ internal static class InputSnapshotFunctions
                 var target = targetInKey ? keyTarget
                     : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
                 var sourceName = targetInKey ? mapping.Value : mapping.Key;
-                if (target >= 0 && IsSourcePressed(sourceName, source, keys, physicalMouse))
+                var mappingSource = EmulationInputMappingFunctions.ResolveSourceController(
+                    sourceName, physical, source);
+                if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= 1u << target;
             }
             result[port] = source with
@@ -93,32 +95,32 @@ internal static class InputSnapshotFunctions
                     MappedAxis(binding.ButtonMappings,
                         InputSettingsFunctionsConstants.Nintendo64StickRight,
                         InputSettingsFunctionsConstants.Nintendo64StickLeft,
-                        source.LeftX, source, keys, physicalMouse),
-                    source, keys, physicalMouse),
+                        source.LeftX, source, physical, keys, physicalMouse),
+                    source, physical, keys, physicalMouse),
                 LeftY = MappedAxis(binding.ButtonMappings,
                     InputSettingsFunctionsConstants.GameCubeStickDown,
                     InputSettingsFunctionsConstants.GameCubeStickUp,
                     MappedAxis(binding.ButtonMappings,
                         InputSettingsFunctionsConstants.Nintendo64StickDown,
                         InputSettingsFunctionsConstants.Nintendo64StickUp,
-                        source.LeftY, source, keys, physicalMouse),
-                    source, keys, physicalMouse),
+                        source.LeftY, source, physical, keys, physicalMouse),
+                    source, physical, keys, physicalMouse),
                 RightX = MappedAxis(binding.ButtonMappings,
                     InputSettingsFunctionsConstants.GameCubeCRight,
                     InputSettingsFunctionsConstants.GameCubeCLeft,
                     MappedAxis(binding.ButtonMappings,
                         InputSettingsFunctionsConstants.Nintendo64CLeft,
                         InputSettingsFunctionsConstants.Nintendo64CRight,
-                        source.RightX, source, keys, physicalMouse),
-                    source, keys, physicalMouse),
+                        source.RightX, source, physical, keys, physicalMouse),
+                    source, physical, keys, physicalMouse),
                 RightY = MappedAxis(binding.ButtonMappings,
                     InputSettingsFunctionsConstants.GameCubeCDown,
                     InputSettingsFunctionsConstants.GameCubeCUp,
                     MappedAxis(binding.ButtonMappings,
                         InputSettingsFunctionsConstants.Nintendo64CDown,
                         InputSettingsFunctionsConstants.Nintendo64CUp,
-                        source.RightY, source, keys, physicalMouse),
-                    source, keys, physicalMouse)
+                        source.RightY, source, physical, keys, physicalMouse),
+                    source, physical, keys, physicalMouse)
             };
         }
         return result;
@@ -126,7 +128,8 @@ internal static class InputSnapshotFunctions
 
     private static short MappedAxis(IReadOnlyDictionary<string, string> mappings,
         string positiveCommand, string negativeCommand, short physicalValue,
-        EmulationControllerState controller, IReadOnlySet<EmulationKey> keys,
+        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
+        IReadOnlySet<EmulationKey> keys,
         IReadOnlyDictionary<string, bool> mouse)
     {
         var hasPositive = mappings.TryGetValue(positiveCommand, out var positiveSource)
@@ -135,8 +138,12 @@ internal static class InputSnapshotFunctions
             && !string.IsNullOrWhiteSpace(negativeSource);
         if (!hasPositive && !hasNegative) return physicalValue;
 
-        var positive = hasPositive && IsSourcePressed(positiveSource!, controller, keys, mouse);
-        var negative = hasNegative && IsSourcePressed(negativeSource!, controller, keys, mouse);
+        var positive = hasPositive && IsSourcePressed(positiveSource!,
+            EmulationInputMappingFunctions.ResolveSourceController(positiveSource!, physical, controller),
+            keys, mouse);
+        var negative = hasNegative && IsSourcePressed(negativeSource!,
+            EmulationInputMappingFunctions.ResolveSourceController(negativeSource!, physical, controller),
+            keys, mouse);
         return positive == negative ? default
             : positive ? short.MaxValue : short.MinValue;
     }

@@ -69,6 +69,7 @@ internal static class EmulationConfigurationTablePresenter
         EmulationMediaType.CompactDisc => MachinePresentationConstants.CompactDiscGlyph,
         EmulationMediaType.Cassette => MachinePresentationConstants.CassetteGlyph,
         EmulationMediaType.Cartridge => MachinePresentationConstants.CartridgeGlyph,
+        EmulationMediaType.MemoryCard => MachinePresentationConstants.MemoryCardGlyph,
         _ => throw new ArgumentOutOfRangeException(nameof(mediaType), mediaType, null)
     };
 

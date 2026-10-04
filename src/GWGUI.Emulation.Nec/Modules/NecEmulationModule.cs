@@ -214,11 +214,13 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
                     StringComparer.OrdinalIgnoreCase);
                 return new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
                     firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
-                    compatible ? firmware.IsOfficial
-                        ? EmulationFirmwareCompatibility.Official
-                        : EmulationFirmwareCompatibility.Compatible
-                        : EmulationFirmwareCompatibility.Incompatible,
-                    compatible ? SettingsConstants.FirmwarePath : null);
+                    compatible ? !firmware.IsVerified
+                        ? EmulationFirmwareCompatibility.Unknown
+                        : firmware.IsOfficial ? EmulationFirmwareCompatibility.Official
+                            : EmulationFirmwareCompatibility.Compatible
+                        : firmware.IsKnown ? EmulationFirmwareCompatibility.Incompatible
+                            : EmulationFirmwareCompatibility.Unknown,
+                    compatible || !firmware.IsKnown ? SettingsConstants.FirmwarePath : null);
             }).ToArray();
         cancellationToken.ThrowIfCancellationRequested();
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
@@ -231,7 +233,8 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         if (firmware.DestinationFieldId != SettingsConstants.FirmwarePath)
             throw new InvalidOperationException(nameof(firmware));
         var inspected = FirmwareCatalog.Inspect(firmware.Path);
-        if (!inspected.CompatibleModels.Contains(current.Model, StringComparer.OrdinalIgnoreCase))
+        if (inspected.IsKnown && !inspected.CompatibleModels.Contains(current.Model,
+                StringComparer.OrdinalIgnoreCase))
             throw new InvalidOperationException(nameof(firmware));
         return current with { FirmwarePath = inspected.Path };
     }

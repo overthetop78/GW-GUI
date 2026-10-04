@@ -407,6 +407,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         EmulationMediaType.CompactDisc => MachinePresentationConstants.CompactDiscGlyph,
         EmulationMediaType.Cartridge => MachinePresentationConstants.CartridgeGlyph,
         EmulationMediaType.Cassette => MachinePresentationConstants.CassetteGlyph,
+        EmulationMediaType.MemoryCard => MachinePresentationConstants.MemoryCardGlyph,
         _ => MachinePresentationConstants.FloppyGlyph
     };
 

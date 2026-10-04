@@ -34,7 +34,7 @@
                                           Data="M0,0 L4,4 L0,8" Stroke="{TemplateBinding Foreground}" StrokeThickness="1.4" StrokeLineJoin="Round"/>
                                 </Grid>
                             </Border>
-                            <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsSubmenuOpen}" Placement="Right" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                            <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsSubmenuOpen}" Placement="Right" AllowsTransparency="True" Focusable="False">
                                 <Border Background="{DynamicResource CardBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="7" Padding="3" MinWidth="220">
                                     <Border.Effect><DropShadowEffect BlurRadius="12" ShadowDepth="3" Opacity="0.18"/></Border.Effect>
                                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>

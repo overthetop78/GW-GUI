@@ -33,6 +33,7 @@ action imprécise avant de l'exécuter et supprimer une action devenue fausse ou
 
 ## Travail à reprendre après validation ou disponibilité
 
+- [Traduction complète des écrans du BIOS PC-FX](emulation/pcfx-bios-french.md) — compléter la ROM française au-delà du menu principal ; reporté.
 - [Publications restantes](release.md) — prochaines publications de l’application, du module Atari et, si son contrat évolue, du SDK.
 - [Atari](emulation/atari.md) — validations, accessibilité, Jaguar CD, guide et étude Atari System 1; reporté.
 - [Validations d’émulation](emulation/remaining-validations.md) — Amiga, cassette Atari800, GameInput, CPU masqué et distribution indépendante; reporté.

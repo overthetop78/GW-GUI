@@ -76,10 +76,17 @@ public static class EmulationInputMappingFunctions
         {
             var match = controllers.FirstOrDefault(controller =>
                 string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase));
-            if (match is not null) return match;
+            return match ?? EmulationControllerState.Empty;
         }
         return fallbackIndex >= 0 && fallbackIndex < controllers.Count
             ? controllers[fallbackIndex] : EmulationControllerState.Empty;
+    }
+
+    public static EmulationControllerState ResolveSourceController(string source,
+        IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
+    {
+        var deviceId = ParseControllerDeviceId(source);
+        return deviceId is null ? fallback : ResolveController(deviceId, controllers, -1);
     }
 
     public static float ControllerSourceValue(string source, EmulationControllerState controller)

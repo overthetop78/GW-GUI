@@ -16,6 +16,7 @@ internal static class MachinePresentationConstants
     internal static string CompactDiscGlyph => IconGlyphs.OpticalDisc;
     internal static string CartridgeGlyph => IconGlyphs.Controller;
     internal static string CassetteGlyph => IconGlyphs.Cassette;
+    internal static string MemoryCardGlyph => IconGlyphs.Memory;
     internal const double DefaultAspectRatio = 4d / 3d;
     internal const double WideToolbarMinimumWidth = 1450d;
     internal const double EmptyMeasurement = 0d;

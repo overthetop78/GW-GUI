@@ -33,15 +33,19 @@ internal static class GeargrafxFirmwareFunctions
             }
 
         if (string.IsNullOrWhiteSpace(selectedFirmwarePath)) return;
-        if (GeargrafxFirmwareConstants.SupportedNames.Contains(selectedName!))
-        {
-            File.Copy(selectedFirmwarePath, Path.Combine(systemDirectory, selectedName!), true);
-            return;
-        }
         var firmware = FirmwareCatalog.Inspect(selectedFirmwarePath);
-        if (firmware.Md5.Equals(FirmwareCatalogConstants.SystemCard3Md5,
-                StringComparison.OrdinalIgnoreCase))
-            File.Copy(selectedFirmwarePath,
-                Path.Combine(systemDirectory, GeargrafxFirmwareConstants.SystemCard3), true);
+        var destinationName = firmware.Md5 switch
+        {
+            FirmwareCatalogConstants.SystemCard1Md5 => GeargrafxFirmwareConstants.SystemCard1,
+            FirmwareCatalogConstants.SystemCard2Md5 or FirmwareCatalogConstants.SystemCard21Md5
+                or FirmwareCatalogConstants.SystemCard2UsMd5 => GeargrafxFirmwareConstants.SystemCard2,
+            FirmwareCatalogConstants.GamesExpressBlueMd5 or FirmwareCatalogConstants.GamesExpressGreenMd5
+                => GeargrafxFirmwareConstants.GameExpress,
+            FirmwareCatalogConstants.SystemCard3Md5 or FirmwareCatalogConstants.SystemCard3UsMd5
+                => GeargrafxFirmwareConstants.SystemCard3,
+            _ when GeargrafxFirmwareConstants.SupportedNames.Contains(selectedName!) => selectedName!,
+            _ => GeargrafxFirmwareConstants.SystemCard3
+        };
+        File.Copy(selectedFirmwarePath, Path.Combine(systemDirectory, destinationName), true);
     }
 }

@@ -27,4 +27,10 @@
       <LogicalName>GWGUI.Emulation.Sega.Resources.%(Filename).resources</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <Target Name="RemoveHostProvidedAssembliesFromCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"
+                               Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.Filename)').StartsWith('gwgui.'))" />
+    </ItemGroup>
+  </Target>
 </Project>
