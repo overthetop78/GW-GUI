@@ -355,6 +355,18 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur les commandes visibles du SJ-150.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter le profil, la source et les limites vérifiées.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug de l'application et des modules après raccordement.
+- [x] Raccorder le joystick Sega SG-1000 SJ-200
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire les actions ordonnées de ce profil SJ-200.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-sg1000-joystick-reference.jpg` : conserver provisoirement la photographie officielle Sega du SJ-200.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/sega-sg1000-joystick.png` : produire une vue frontale transparente du levier et des deux boutons.
+  - [x] Supprimer `src/GWGUI.App/Assets/Controllers/sega-sg1000-joystick-reference.jpg` : retirer la référence temporaire après inspection.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant visuel invariant SJ-200.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : déclarer le nom invariant du SJ-200.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer ce visuel pour le type SJ-200 et relier levier et boutons aux six affectations.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/GenesisPlusGX/Services/ExternalCore.cs` : choisir explicitement le périphérique deux boutons du cœur pour les deux commandes SG-1000.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur le levier et les deux boutons de l'image.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la source, le profil et les limites de vérification.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug des modules et la présence des artefacts.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

@@ -76,6 +76,7 @@ public static class EmulationControllerVisualIds
     public const string AtariLynxIi = "atari-lynx-ii";
     public const string AtariJaguarController = "atari-jaguar-controller";
     public const string AtariJaguarProController = "atari-jaguar-pro-controller";
+    public const string SegaSg1000Joystick = "sega-sg1000-joystick";
     public const string SegaSg1000Ii = "sega-sg1000-ii";
     public const string MasterSystem = "master-system";
     public const string SegaControlStick = "sega-control-stick";

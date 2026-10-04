@@ -240,7 +240,8 @@ internal sealed class ExternalCore : IEmulatorCore
         if (type == ControllerType.None) return 0;
         var exactName = type switch
         {
-            ControllerType.SegaMasterSystemController or ControllerType.SegaGameGearController
+            ControllerType.SegaSg1000Joystick or ControllerType.SegaSg1000IiJoypad
+                or ControllerType.SegaMasterSystemController or ControllerType.SegaGameGearController
                 or ControllerType.SegaControlStick =>
                 ExternalCoreConstants.MasterSystemJoypadName,
             ControllerType.SegaMegaDriveThreeButton or ControllerType.SegaArcadePowerStick =>
