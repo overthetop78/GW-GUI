@@ -36,6 +36,7 @@ public static class EmulationControllerVisualIds
     public const string SonyDualShock4 = "sony-dualshock-4";
     public const string SonyDualSense = "sony-dualsense";
     public const string NintendoNesPad = "nintendo-nes-pad";
+    public const string NintendoNesDogbonePad = "nintendo-nes-dogbone-pad";
     public const string NintendoFamicomPad1 = "nintendo-famicom-pad-1";
     public const string NintendoSuperNesPad = "nintendo-super-nes-pad";
     public const string NintendoSuperFamicomPad = "nintendo-super-famicom-pad";

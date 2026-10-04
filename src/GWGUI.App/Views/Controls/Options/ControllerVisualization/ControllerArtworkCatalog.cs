@@ -450,6 +450,17 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 37.5d, 65.0d, 7.0d, 9.0d),
                 new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 47.2d, 65.0d, 7.0d, 9.0d)
             ]),
+            [EmulationControllerVisualIds.NintendoNesDogbonePad] = new("nintendo-nes-dogbone.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 13.0d, 35.0d, 19.0d, 38.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 13.0d, 35.0d, 19.0d, 38.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 13.0d, 35.0d, 19.0d, 38.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 13.0d, 35.0d, 19.0d, 38.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 67.2d, 51.8d, 8.5d, 17.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 78.7d, 40.4d, 8.5d, 17.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 38.0d, 56.0d, 8.5d, 12.0d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 50.0d, 56.0d, 8.5d, 12.0d)
+            ]),
             [EmulationControllerVisualIds.NintendoFamicomPad1] = new("famicom-controller-i.png",
             [
                 new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 12.1d, 37.0d, 18.0d, 40.0d),
@@ -490,6 +501,39 @@ internal static class ControllerArtworkCatalog
                 new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 48.6d, 52.6d, 8.0d, 10.0d),
                 new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.RoundedRectangle, 12.2d, 18.8d, 18.7d, 8.0d),
                 new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 69.0d, 18.8d, 18.7d, 8.0d)
+            ]),
+            [EmulationControllerVisualIds.NintendoGameBoy] = new("nintendo-game-boy.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 10.2d, 59.0d, 22.0d, 16.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 10.2d, 59.0d, 22.0d, 16.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 10.2d, 59.0d, 22.0d, 16.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 10.2d, 59.0d, 22.0d, 16.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 58.0d, 66.8d, 12.0d, 8.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 72.0d, 62.6d, 12.0d, 8.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 29.0d, 79.0d, 11.0d, 5.0d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 43.5d, 79.5d, 11.0d, 5.0d)
+            ]),
+            [EmulationControllerVisualIds.NintendoGameBoyColor] = new("nintendo-game-boy-color.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 17.0d, 57.0d, 20.0d, 15.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 17.0d, 57.0d, 20.0d, 15.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 17.0d, 57.0d, 20.0d, 15.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 17.0d, 57.0d, 20.0d, 15.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 56.0d, 62.3d, 11.0d, 8.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 70.0d, 59.4d, 11.0d, 8.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 39.0d, 78.3d, 9.0d, 4.2d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 50.0d, 78.3d, 9.0d, 4.2d)
+            ]),
+            [EmulationControllerVisualIds.NintendoGameBoyAdvance] = new("nintendo-game-boy-advance.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 8.2d, 30.0d, 14.0d, 23.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 8.2d, 30.0d, 14.0d, 23.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 8.2d, 30.0d, 14.0d, 23.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 8.2d, 30.0d, 14.0d, 23.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 76.8d, 37.2d, 7.0d, 12.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 85.0d, 32.5d, 7.0d, 12.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.Ellipse, 18.0d, 68.0d, 4.5d, 8.0d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 18.0d, 60.0d, 4.5d, 8.0d)
             ]),
             [EmulationControllerVisualIds.QuickShot] = new("quickshot.png",
             [

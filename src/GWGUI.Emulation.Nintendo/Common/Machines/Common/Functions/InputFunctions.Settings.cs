@@ -85,7 +85,11 @@ internal static partial class InputSettingsFunctions
         ControllerType type, Model model) => type is ControllerType.None ? []
         : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
             ? NintendoControllerDefinitions(false)
-        : model.Id == ModelConstants.Snes ? NintendoControllerDefinitions(true) :
+        : model.Id == ModelConstants.Snes ? NintendoControllerDefinitions(true)
+        : model.Id is ModelConstants.GameBoy or ModelConstants.GameBoyColor
+            or ModelConstants.GameBoyAdvance
+            ? NintendoControllerDefinitions(false,
+                model.Id == ModelConstants.GameBoyAdvance) :
         [
             Definition(InputSettingsFunctionsConstants.Up,
                 InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -102,7 +106,7 @@ internal static partial class InputSettingsFunctions
         ];
 
     private static IReadOnlyList<InputBindingDefinition> NintendoControllerDefinitions(
-        bool superNintendo)
+        bool superNintendo, bool gameBoyAdvance = false)
     {
         var definitions = new List<InputBindingDefinition>
         {
@@ -129,6 +133,9 @@ internal static partial class InputSettingsFunctions
                 InputSettingsFunctionsConstants.ButtonY, string.Empty));
             definitions.Add(Definition(EmulationControllerCommandIds.X,
                 InputSettingsFunctionsConstants.ButtonX, string.Empty));
+        }
+        if (superNintendo || gameBoyAdvance)
+        {
             definitions.Add(Definition(EmulationControllerCommandIds.L,
                 InputSettingsFunctionsConstants.ButtonL, string.Empty));
             definitions.Add(Definition(EmulationControllerCommandIds.R,

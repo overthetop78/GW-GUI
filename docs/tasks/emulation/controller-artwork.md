@@ -215,7 +215,7 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer le DUALSHOCK original comme visuel PlayStation sélectionnable avec les commandes déjà exposées.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer l'image, décrire les zones et les limites du profil.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la compilation Debug et la présence des artefacts après ce lot.
-- [ ] Compléter les commandes intégrées Game Boy, Game Boy Color et Game Boy Advance
+- [x] Compléter les commandes intégrées Game Boy, Game Boy Color et Game Boy Advance
   - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : définir avant l'exécution les fichiers des trois modèles portables, leurs boutons et les contrôles de compilation.
   - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-game-boy.png` : intégrer une vue de face transparente de la Game Boy DMG-01 issue de Wikimedia Commons.
   - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-game-boy-color.png` : intégrer une vue de face transparente de la Game Boy Color issue de Wikimedia Commons.
@@ -224,11 +224,23 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : attribuer un port de commandes intégrées et aucun bouton de souris aux trois portables.
   - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les trois identifiants invariants des portables.
   - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : nommer les trois visuels sans traduire les noms de machines.
-  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones des croix, A/B, Start/Select et L/R visibles sur les photographies respectives.
-  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les commandes réellement lues par Gambatte et mGBA pour ces trois modèles.
-  - [ ] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : sélectionner leurs visuels et associer les zones aux commandes RetroPad.
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter la provenance, la transparence, les zones, les ports et les limites restantes des trois profils.
-  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug de l'application et des huit modules ainsi que leurs artefacts.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones des croix, A/B, Start/Select et L/R visibles sur les photographies respectives.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : référencer les noms invariants des trois commandes intégrées déjà présents dans `Controllers.resx`.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : exposer les commandes réellement lues par Gambatte et mGBA pour ces trois modèles.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : sélectionner leurs visuels et associer les zones aux commandes RetroPad.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter la provenance, la transparence, les zones, les ports et les limites restantes des trois profils.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat du build Debug de l'application et des huit modules ainsi que leurs artefacts.
+- [x] Ajouter le contrôleur Nintendo NES-039 Dogbone
+  - [x] Modifier `docs/tasks/emulation/controller-artwork.md` : inscrire avant réalisation les fichiers, zones, correspondances NES et contrôle Debug de ce lot.
+  - [x] Créer `docs/tasks/emulation/nes-dogbone-reference.jpg` : conserver temporairement la photographie de face du NES-039 publiée par Evan-Amos sur Wikimedia Commons.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nintendo-nes-dogbone.png` : produire à partir de la référence une vue de face transparente, boutons A/B, Select/Start et croix visibles.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant invariant du NES-039.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : nommer le profil NES-039 sans traduction du nom de produit.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les huit zones sur les commandes visibles du NES-039.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer le NES-039 sur NES et Famicom avec les commandes A/B, Select/Start et la croix déjà prises en charge.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la photographie du domaine public, décrire la transparence, les zones et l'état des halos.
+  - [x] Supprimer `docs/tasks/emulation/nes-dogbone-reference.jpg` : retirer la photographie de travail après la création du PNG final.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la compilation Debug de l'application et des huit modules après le raccordement NES-039.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.

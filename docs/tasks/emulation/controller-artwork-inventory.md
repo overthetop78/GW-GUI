@@ -212,6 +212,14 @@ Premier lot fonctionnel : le NES-004, le Famicom Controller I et le Super Famico
 
 Compilation Debug du 4 octobre 2026 après ce raccordement : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0. `build/Debug/GW GUI/gwgui.exe` et les DLL des huit modules sont présents. L'essai interactif de sélection des profils et des halos reste à faire.
 
+Deuxième lot : les commandes intégrées Game Boy DMG-01, Game Boy Color CGB-001 et Game Boy Advance AGB-001 disposent chacune d'un port et d'un profil de face transparent. Les vues Game Boy et Game Boy Color proviennent des photographies du domaine public d'[Evan-Amos (Game Boy)](https://commons.wikimedia.org/wiki/File:Game-Boy-Original.png) et d'[Evan-Amos (Game Boy Color)](https://commons.wikimedia.org/wiki/File:Nintendo_Game_Boy_Color.png) ; la seconde a été redressée, avec quelques pixels magenta résiduels sur le contour à nettoyer. La [vue Game Boy Advance](https://commons.wikimedia.org/wiki/File:GameBoyAdvance-transparent.png) est créditée à Zeartul (photo), Talgraf777 (fond blanc) et Paolos (fond transparent), sous [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) ; elle est reprise sans modification. Les halos couvrent la croix, B, A, Select et Start. L/R sont proposés dans la liste Game Boy Advance et reliés aux commandes RetroPad, mais ses gâchettes ne sont pas visibles sur cette vue de face : aucun halo n'est placé arbitrairement. Les essais interactifs restent à faire ; 258 autres clés Nintendo restent à couvrir.
+
+Build Debug du 4 octobre 2026 après les trois profils Game Boy : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL sous `build/Debug/GW GUI/Modules/<marque>/` vérifiés présents. Les profils et halos n'ont pas encore été essayés dans l'interface.
+
+Troisième lot : `nintendo-nes-dogbone.png` (1771 × 888, coin alpha 0) est un détourage de face produit à partir de la [photographie du NES-039 publiée dans le domaine public par Evan-Amos](https://commons.wikimedia.org/wiki/File:NES-Dogbone-Controller-Flat.jpg). Les quatre directions, B, A, Select et Start disposent de zones reliées aux commandes NES déjà prises en charge par le module. Le visuel est proposé sur NES et Famicom Disk System. Son contour comporte de légères franges et les halos restent à vérifier dans l'interface ; 257 autres clés Nintendo restent à couvrir.
+
+Build Debug du 4 octobre 2026 après le NES-039 : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; l'exécutable `build/Debug/GW GUI/gwgui.exe` et les huit DLL de modules ont été vérifiés présents (9/9 artefacts). Les halos restent à essayer dans l'interface.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Nintendo.Controller.GameWatchBall | Nintendo Game & Watch Ball (AC-01) | À créer / vérifier |
@@ -280,7 +288,7 @@ Compilation Debug du 4 octobre 2026 après ce raccordement : `scripts\local-buil
 | Emulation.Nintendo.Controller.GameWatchSuperMarioBros2020 | Nintendo Game & Watch: Super Mario Bros. | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameWatchZelda2021 | Nintendo Game & Watch: The Legend of Zelda | À créer / vérifier |
 | Emulation.Nintendo.Controller.NesPad | Nintendo NES Controller (NES-004) | `nintendo-entertainment-system.png` réutilisé, huit zones reliées aux commandes NES. |
-| Emulation.Nintendo.Controller.NesDogbonePad | Nintendo NES Controller (NES-039) | À créer / vérifier |
+| Emulation.Nintendo.Controller.NesDogbonePad | Nintendo NES Controller (NES-039) | `nintendo-nes-dogbone.png` : croix, B/A, Select et Start raccordés ; halos à vérifier. |
 | Emulation.Nintendo.Controller.FamicomPad1 | Nintendo Famicom Controller I | `famicom-controller-i.png` réutilisé, huit zones reliées aux commandes NES/Famicom. |
 | Emulation.Nintendo.Controller.FamicomPad2 | Nintendo Famicom Controller II | À créer / vérifier |
 | Emulation.Nintendo.Controller.AvFamicomPad | Nintendo AV Famicom Controller (HVC-102) | À créer / vérifier |
@@ -329,10 +337,10 @@ Compilation Debug du 4 octobre 2026 après ce raccordement : `scripts\local-buil
 | Emulation.Nintendo.Controller.Nintendo64DiskDrive | Nintendo 64DD (NUS-010) | À créer / vérifier |
 | Emulation.Nintendo.Controller.Nintendo64CaptureCassette | Nintendo 64 Capture Cassette (NUS-028) | À créer / vérifier |
 | Emulation.Nintendo.Controller.Nintendo64Modem | Nintendo 64 Modem (NUS-029) | À créer / vérifier |
-| Emulation.Nintendo.Controller.GameBoy | Nintendo Game Boy (DMG-01) | À créer / vérifier |
+| Emulation.Nintendo.Controller.GameBoy | Nintendo Game Boy (DMG-01) | `nintendo-game-boy.png` : croix, B/A, Select et Start raccordés ; halos à vérifier. |
 | Emulation.Nintendo.Controller.GameBoyPocket | Nintendo Game Boy pocket (MGB-001) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameBoyLight | Nintendo Game Boy Light (MGB-101) | À créer / vérifier |
-| Emulation.Nintendo.Controller.GameBoyColor | Nintendo Game Boy Color (CGB-001) | À créer / vérifier |
+| Emulation.Nintendo.Controller.GameBoyColor | Nintendo Game Boy Color (CGB-001) | `nintendo-game-boy-color.png` : croix, B/A, Select et Start raccordés ; contour à nettoyer et halos à vérifier. |
 | Emulation.Nintendo.Controller.GameBoyGameLinkCable | Nintendo Game Boy Game Link Cable (DMG-04) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameBoyFourPlayerAdapter | Nintendo Game Boy Four Player Adapter (DMG-07) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameBoyUniversalLinkAdapter | Nintendo Universal Game Link Adapter (DMG-14) | À créer / vérifier |
@@ -343,7 +351,7 @@ Compilation Debug du 4 octobre 2026 après ce raccordement : `scripts\local-buil
 | Emulation.Nintendo.Controller.GameBoyCamera | Nintendo Game Boy Camera / Pocket Camera (MGB-006) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameBoyPrinter | Nintendo Game Boy Printer / Pocket Printer (MGB-007) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameBoyMobileAdapter | Nintendo Mobile Adapter GB | À créer / vérifier |
-| Emulation.Nintendo.Controller.GameBoyAdvance | Nintendo Game Boy Advance (AGB-001) | À créer / vérifier |
+| Emulation.Nintendo.Controller.GameBoyAdvance | Nintendo Game Boy Advance (AGB-001) | `nintendo-game-boy-advance.png` : croix, B/A, Select et Start raccordés ; L/R présents dans la liste, cachés sur l'image de face. |
 | Emulation.Nintendo.Controller.GameBoyAdvanceSp | Nintendo Game Boy Advance SP (AGS-001) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameBoyAdvanceSpBacklit | Nintendo Game Boy Advance SP (AGS-101) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameBoyMicro | Nintendo Game Boy micro (OXY-001) | À créer / vérifier |

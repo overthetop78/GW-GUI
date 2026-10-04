@@ -98,6 +98,7 @@
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-4"><value>DUALSHOCK 4</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualsense"><value>DualSense</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-nes-pad"><value>Nintendo NES Controller (NES-004)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-nes-dogbone-pad"><value>Nintendo NES Controller (NES-039)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-famicom-pad-1"><value>Nintendo Famicom Controller I</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-super-nes-pad"><value>Nintendo Super NES Controller (SNS-005)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-super-famicom-pad"><value>Nintendo Super Famicom Controller (SHVC-005)</value></data>

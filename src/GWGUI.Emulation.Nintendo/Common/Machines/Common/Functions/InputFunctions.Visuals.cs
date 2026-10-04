@@ -7,9 +7,13 @@ internal static partial class InputSettingsFunctions
         {
             ModelConstants.Nes or ModelConstants.FamicomDisk =>
                 [EmulationControllerVisualIds.NintendoNesPad,
+                    EmulationControllerVisualIds.NintendoNesDogbonePad,
                     EmulationControllerVisualIds.NintendoFamicomPad1],
             ModelConstants.Snes => [EmulationControllerVisualIds.NintendoSuperNesPad,
                 EmulationControllerVisualIds.NintendoSuperFamicomPad],
+            ModelConstants.GameBoy => [EmulationControllerVisualIds.NintendoGameBoy],
+            ModelConstants.GameBoyColor => [EmulationControllerVisualIds.NintendoGameBoyColor],
+            ModelConstants.GameBoyAdvance => [EmulationControllerVisualIds.NintendoGameBoyAdvance],
             _ => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro]
@@ -21,8 +25,10 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
             ? null : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
-                or ModelConstants.Snes
-            ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes)
+                or ModelConstants.Snes or ModelConstants.GameBoy
+                or ModelConstants.GameBoyColor or ModelConstants.GameBoyAdvance
+            ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes,
+                model.Id == ModelConstants.GameBoyAdvance)
             : new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -34,7 +40,7 @@ internal static partial class InputSettingsFunctions
         };
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>
-        NintendoVisualCommandIds(bool superNintendo)
+        NintendoVisualCommandIds(bool superNintendo, bool gameBoyAdvance)
     {
         var commands = new Dictionary<EmulationControllerVisualControl, string>
         {
@@ -53,6 +59,9 @@ internal static partial class InputSettingsFunctions
                 EmulationControllerCommandIds.Y;
             commands[EmulationControllerVisualControl.QuaternaryAction] =
                 EmulationControllerCommandIds.X;
+        }
+        if (superNintendo || gameBoyAdvance)
+        {
             commands[EmulationControllerVisualControl.LeftShoulder] =
                 EmulationControllerCommandIds.L;
             commands[EmulationControllerVisualControl.RightShoulder] =
@@ -67,6 +76,9 @@ internal static partial class InputSettingsFunctions
             ModelConstants.Nes or ModelConstants.FamicomDisk =>
                 InputSettingsFunctionsConstants.ResourceNesPad,
             ModelConstants.Snes => InputSettingsFunctionsConstants.ResourceSuperNesPad,
+            ModelConstants.GameBoy => InputSettingsFunctionsConstants.ResourceGameBoy,
+            ModelConstants.GameBoyColor => InputSettingsFunctionsConstants.ResourceGameBoyColor,
+            ModelConstants.GameBoyAdvance => InputSettingsFunctionsConstants.ResourceGameBoyAdvance,
             _ => InputSettingsFunctionsConstants.ResourceControllerJoystick
         } : type switch
     {

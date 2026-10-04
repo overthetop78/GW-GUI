@@ -30,6 +30,9 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceControllerJoystick = "Controllers.Enum.Joystick";
     internal const string ResourceNesPad = "Emulation.Nintendo.Controller.NesPad";
     internal const string ResourceSuperNesPad = "Emulation.Nintendo.Controller.SuperNesPad";
+    internal const string ResourceGameBoy = "Emulation.Nintendo.Controller.GameBoy";
+    internal const string ResourceGameBoyColor = "Emulation.Nintendo.Controller.GameBoyColor";
+    internal const string ResourceGameBoyAdvance = "Emulation.Nintendo.Controller.GameBoyAdvance";
     internal const string ResourceControllerKeyboard = "Emulation.Tab.Keyboard";
     internal const string ResourceMouseButtonLeft = "Emulation.Mouse.Button.Left";
     internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";
