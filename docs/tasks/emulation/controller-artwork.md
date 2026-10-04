@@ -1,0 +1,44 @@
+# Visuels et boutons des contrôleurs
+
+Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, Microsoft, Sony, Nintendo et Sega, afficher un visuel de face à fond transparent, avec des zones de boutons correspondant aux commandes présentées dans la liste. Suivre le comportement déjà utilisé par Atari et Amiga. Une case n'est cochée qu'après vérification effective.
+
+- [x] Inventorier les modèles et le fonctionnement existant
+  - [x] Créer `docs/tasks/emulation/controller-artwork-inventory.md` : inscrire les 444 clés de contrôleurs des cinq modules, leur libellé et le manque actuel de profil fidèle ; noter le mécanisme Atari/Amiga et les écarts à résoudre avant de relier les visuels.
+- [ ] Réaliser les profils NEC
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-pad.png` : détourer le contrôleur NEC PI-PD001 photographié de face, avec ses boutons I, II, Select, Run et sa croix, puis conserver le canal alpha. PNG RGBA 1484 × 1060 ; alpha 0 au coin et 253 sur le contrôleur.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la photo de référence NEC PI-PD001 de SACHEN sous CC BY 3.0 et documenter la retouche du fond transparent.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant invariant NEC PI-PD001.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : associer le profil PI-PD001 à son PNG et aux zones de la croix, des boutons I et II, Select et Run.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : fournir le visuel PI-PD001 et les correspondances avec les commandes du modèle PC Engine. II→B, I→A, Select→Option et Run→Start.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : marquer PI-PD001 comme image créée et branchée, et consigner la compilation Debug des huit modules.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-turbografx-turbopad.png` : détourer une vue de face du TurboPad HES-PAD-01, avec ses boutons et ses interrupteurs visibles, sur fond transparent. PNG RGBA 1678 × 937 ; alpha 0 au coin.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer la photo TurboPad HES-PAD-01 de Evan-Amos, domaine public, et documenter le redressement ainsi que la transparence.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter l'identifiant invariant TurboPad HES-PAD-01.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones du TurboPad HES-PAD-01 sur les commandes visibles.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier le type TurboGrafxTurboPad au profil exact et aux commandes du port.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : marquer TurboPad HES-PAD-01 comme image créée et branchée, avec son crédit et les limites de vérification.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-coregrafx-turbopad.png` : image de face transparente du PI-PD6 avec interrupteurs et boutons visibles. PNG RGBA 1485 × 1059, alpha 0 au coin.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-coregrafx-ii-turbopad.png` : image de face transparente du PI-PD8 avec interrupteurs et boutons visibles. PNG RGBA 1486 × 1059, alpha 0 au coin.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les identifiants PI-PD6 et PI-PD8.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les zones exactes des PI-PD6 et PI-PD8 sur leurs images respectives.
+  - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier les types CoreGrafxTurboPad et CoreGrafxIITurboPad à leurs profils.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : noter la provenance du dessin PI-PD6/PI-PD8, les deux profils branchés et les vérifications encore à faire.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-duor-turbopad.png` : vue de face transparente du PCE-TP2 et de toutes ses commandes visibles. PNG RGBA 1485 × 1059, alpha 0 au coin.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbopad-ii.png` : vue de face transparente du PI-PD5 et de toutes ses commandes visibles. PNG RGBA 1625 × 968, alpha 0 au coin.
+  - [x] Créer `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : vue de face transparente du PI-PD4 et de toutes ses commandes visibles. PNG RGBA 1420 × 1108, alpha 0 au coin ; petites bavures résiduelles en bord supérieur à nettoyer avant validation finale.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons.
+  - [ ] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : ajouter les identifiants PCE-TP2, PI-PD5 et PI-PD4.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : associer ces trois images à leurs zones de commandes exactes.
+  - [ ] Modifier `src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : relier DuoRTurboPad, PcEngineTurboPadII et PcEngineTurboStick à leurs profils.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner sources, retouches, état des profils et vérifications des trois nouveaux visuels NEC.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins et actions du lot NEC suivant avant son exécution.
+- [ ] Réaliser les profils Microsoft
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Xbox et les fichiers de profils précis avant leur réalisation.
+- [ ] Réaliser les profils Sony
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sony et les fichiers de profils précis avant leur réalisation.
+- [ ] Réaliser les profils Nintendo
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Nintendo et les fichiers de profils précis avant leur réalisation.
+- [ ] Réaliser les profils Sega
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les chemins des PNG Sega et les fichiers de profils précis avant leur réalisation.
+- [ ] Vérifier la couverture et le fonctionnement
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la couverture réelle des cinq modules, les contrôles image/transparence/zones, le résultat du build Debug de l'application et des modules et les essais fonctionnels de sélection et de halos.

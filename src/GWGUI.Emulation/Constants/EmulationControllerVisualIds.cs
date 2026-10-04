@@ -2,6 +2,10 @@ namespace GWGUI.Emulation.Constants;
 
 public static class EmulationControllerVisualIds
 {
+    public const string NecPcEnginePad = "nec-pc-engine-pad";
+    public const string NecTurboGrafxTurboPad = "nec-turbografx-turbopad";
+    public const string NecCoreGrafxTurboPad = "nec-coregrafx-turbopad";
+    public const string NecCoreGrafxIiTurboPad = "nec-coregrafx-ii-turbopad";
     public const string QuickShot = "quickshot";
     public const string QuickShotDeluxe = "quickshot-deluxe";
     public const string QuickShotIiTurbo = "quickshot-ii-turbo";

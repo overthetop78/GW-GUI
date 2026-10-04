@@ -36,9 +36,47 @@ internal static class ControllerArtworkCatalog
             [ControllerVisualModel.ArcadeStick] = "arcade-stick.png"
         };
 
+    private static readonly IReadOnlyList<ControllerVisualZone> NecCoreGrafxTurboPadZones =
+    [
+        new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 7.7d, 52.4d, 16.5d, 23.1d),
+        new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 7.7d, 52.4d, 16.5d, 23.1d),
+        new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 7.7d, 52.4d, 16.5d, 23.1d),
+        new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 7.7d, 52.4d, 16.5d, 23.1d),
+        new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 69.7d, 62.8d, 9.1d, 11.8d),
+        new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 80.8d, 62.8d, 9.1d, 11.8d),
+        new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 40.4d, 66.1d, 8.1d, 5.7d),
+        new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 53.2d, 66.1d, 8.1d, 5.7d)
+    ];
+
     private static readonly IReadOnlyDictionary<string, ProfileDefinition> ProfileDefinitions =
         new Dictionary<string, ProfileDefinition>(StringComparer.Ordinal)
         {
+            [EmulationControllerVisualIds.NecPcEnginePad] = new("nec-pc-engine-pad.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 7.4d, 50.0d, 19.0d, 27.0d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 7.4d, 50.0d, 19.0d, 27.0d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 7.4d, 50.0d, 19.0d, 27.0d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 7.4d, 50.0d, 19.0d, 27.0d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 69.2d, 62.7d, 10.1d, 13.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 80.8d, 62.7d, 10.1d, 13.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 40.5d, 65.6d, 8.1d, 5.8d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 53.3d, 65.6d, 8.1d, 5.8d)
+            ]),
+            [EmulationControllerVisualIds.NecTurboGrafxTurboPad] = new("nec-turbografx-turbopad.png",
+            [
+                new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.DirectionalPad, 7.1d, 51.2d, 17.9d, 31.5d),
+                new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.DirectionalPad, 7.1d, 51.2d, 17.9d, 31.5d),
+                new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.DirectionalPad, 7.1d, 51.2d, 17.9d, 31.5d),
+                new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.DirectionalPad, 7.1d, 51.2d, 17.9d, 31.5d),
+                new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 68.8d, 65.1d, 8.3d, 17.0d),
+                new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 81.3d, 65.1d, 8.3d, 17.0d),
+                new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 40.0d, 70.0d, 7.6d, 7.8d),
+                new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 52.0d, 70.0d, 7.6d, 7.8d)
+            ]),
+            [EmulationControllerVisualIds.NecCoreGrafxTurboPad] =
+                new("nec-coregrafx-turbopad.png", NecCoreGrafxTurboPadZones),
+            [EmulationControllerVisualIds.NecCoreGrafxIiTurboPad] =
+                new("nec-coregrafx-ii-turbopad.png", NecCoreGrafxTurboPadZones),
             [EmulationControllerVisualIds.QuickShot] = new("quickshot.png",
             [
                 new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 22.6d, 0.0d, 54.0d, 52.6d),

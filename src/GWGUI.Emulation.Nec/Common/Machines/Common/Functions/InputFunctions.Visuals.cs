@@ -2,12 +2,40 @@ namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => null;
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type switch
+    {
+        ControllerType.PcEnginePad => [EmulationControllerVisualIds.NecPcEnginePad],
+        ControllerType.TurboGrafxTurboPad => [EmulationControllerVisualIds.NecTurboGrafxTurboPad],
+        ControllerType.CoreGrafxTurboPad => [EmulationControllerVisualIds.NecCoreGrafxTurboPad],
+        ControllerType.CoreGrafxIITurboPad => [EmulationControllerVisualIds.NecCoreGrafxIiTurboPad],
+        _ => null
+    };
 
-    private static string? DefaultVisualId(ControllerType type) => null;
+    private static string? DefaultVisualId(ControllerType type) => type switch
+    {
+        ControllerType.PcEnginePad => EmulationControllerVisualIds.NecPcEnginePad,
+        ControllerType.TurboGrafxTurboPad => EmulationControllerVisualIds.NecTurboGrafxTurboPad,
+        ControllerType.CoreGrafxTurboPad => EmulationControllerVisualIds.NecCoreGrafxTurboPad,
+        ControllerType.CoreGrafxIITurboPad => EmulationControllerVisualIds.NecCoreGrafxIiTurboPad,
+        _ => null
+    };
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type) => null;
+        VisualCommandIds(ControllerType type) => type is ControllerType.PcEnginePad
+            or ControllerType.TurboGrafxTurboPad or ControllerType.CoreGrafxTurboPad
+            or ControllerType.CoreGrafxIITurboPad
+            ? new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+                [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+                [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+                [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+                [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+                [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+                [EmulationControllerVisualControl.Option] = EmulationControllerCommandIds.Option,
+                [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
+            }
+            : null;
 
     private static string ControllerResourceKey(ControllerType type) => type switch
     {
