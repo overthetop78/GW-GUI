@@ -232,6 +232,12 @@ Build Debug du 4 octobre 2026 après le profil Nintendo 64 : `scripts\local-buil
 
 Test ciblé Nintendo 64 du 4 octobre 2026 : `dotnet test tests\GWGUI.Tests\GWGUI.Tests.csproj --no-restore --filter FullyQualifiedName~Nintendo64ControllerTests --verbosity minimal` : 3 réussites, aucun échec. Il vérifie les quatre ports publiés, la présence des lignes et des identifiants de zones, les bits A/B/L/R/Z/Start/croix, les deux axes des boutons C et du stick, l'annulation de directions opposées et la conservation des axes physiques non réaffectés. Un avertissement NU1900 signale l'indisponibilité de l'index NuGet pour les données de vulnérabilité ; il n'a pas empêché la compilation ou les tests. Les halos rendus dans la fenêtre restent à contrôler visuellement.
 
+Profil GameCube : `nintendo-gamecube.png` (1472 × 1205, coins transparents) reprend la [photographie de Monathephantom sur Wikimedia Commons](https://commons.wikimedia.org/wiki/File:GameCube_Controller_in_Transparent_color.png), sous licence CC BY-SA 4.0. Le modèle DOL-003 présente quatre ports. La liste sépare croix, A/B/X/Y/Z, Start, L/R, leurs pressions partielles et les quatre directions de chaque stick. Les zones sont posées uniquement sur la croix, les boutons et les sticks visibles de face ; Z, L/R et leurs pressions partielles restent affectables dans la liste, sans halo sur cette photographie qui masque ces commandes. Les correspondances suivent le [tableau des entrées GameCube de Dolphin](https://docs.libretro.com/library/dolphin/#joypad), dont les bits des gâchettes et pressions partielles diffèrent de ceux des autres manettes RetroPad. Le placement exact des zones et leur affichage dans la fenêtre restent à vérifier.
+
+Trois tests `GameCubeControllerTests` réussissent (0 échec) : les quatre ports et les commandes du profil, les bits RetroPad de Dolphin pour A/B/X/Y/Z, L/R et les demi-pressions, les deux sticks, l'annulation de directions opposées et la conservation d'axes physiques non réaffectés. La position et le rendu des halos en fenêtre WPF restent à contrôler. Le test a affiché l'avertissement NU1900 lié à l'accès aux avis NuGet.
+
+Build Debug du 4 octobre 2026 après le profil GameCube : `scripts\local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les huit DLL de `build/Debug/GW GUI/Modules/<marque>/` vérifiés présents. Les halos ne sont pas encore contrôlés dans la fenêtre.
+
 | Clé | Nom invariant / libellé | Image de face et zones |
 | --- | --- | --- |
 | Emulation.Nintendo.Controller.GameWatchBall | Nintendo Game & Watch Ball (AC-01) | À créer / vérifier |
@@ -418,7 +424,7 @@ Test ciblé Nintendo 64 du 4 octobre 2026 : `dotnet test tests\GWGUI.Tests\GWGUI
 | Emulation.Nintendo.Controller.NewNintendo3dsStylus | New Nintendo 3DS Stylus | À créer / vérifier |
 | Emulation.Nintendo.Controller.NewNintendo3dsXlStylus | New Nintendo 3DS XL Stylus | À créer / vérifier |
 | Emulation.Nintendo.Controller.NewNintendo2dsXlStylus | New Nintendo 2DS XL Stylus | À créer / vérifier |
-| Emulation.Nintendo.Controller.GameCubePad | Nintendo GameCube Controller (DOL-003) | À créer / vérifier |
+| Emulation.Nintendo.Controller.GameCubePad | Nintendo GameCube Controller (DOL-003) | `nintendo-gamecube.png` : croix, A/B/X/Y, Start et directions des sticks raccordés ; Z et L/R affectables sans halos sur cette vue. Placement à vérifier dans l'interface. |
 | Emulation.Nintendo.Controller.GameCubeWaveBird | Nintendo GameCube WaveBird Wireless Controller (DOL-004) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameCubeWaveBirdReceiver | Nintendo GameCube WaveBird Receiver (DOL-005) | À créer / vérifier |
 | Emulation.Nintendo.Controller.GameCubeDkBongos | Nintendo GameCube DK Bongos (DOL-021) | À créer / vérifier |

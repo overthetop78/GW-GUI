@@ -73,6 +73,7 @@ internal static class InputSnapshotFunctions
             {
                 var targetInKey = InputSnapshotDictionary.Nintendo64ButtonIndexes.TryGetValue(
                     mapping.Key, out var keyTarget)
+                    || InputSnapshotDictionary.GameCubeButtonIndexes.TryGetValue(mapping.Key, out keyTarget)
                     || InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out keyTarget);
                 var target = targetInKey ? keyTarget
                     : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
@@ -84,21 +85,37 @@ internal static class InputSnapshotFunctions
             {
                 Buttons = buttons,
                 LeftX = MappedAxis(binding.ButtonMappings,
-                    InputSettingsFunctionsConstants.Nintendo64StickRight,
-                    InputSettingsFunctionsConstants.Nintendo64StickLeft,
-                    source.LeftX, source, keys, physicalMouse),
+                    InputSettingsFunctionsConstants.GameCubeStickRight,
+                    InputSettingsFunctionsConstants.GameCubeStickLeft,
+                    MappedAxis(binding.ButtonMappings,
+                        InputSettingsFunctionsConstants.Nintendo64StickRight,
+                        InputSettingsFunctionsConstants.Nintendo64StickLeft,
+                        source.LeftX, source, keys, physicalMouse),
+                    source, keys, physicalMouse),
                 LeftY = MappedAxis(binding.ButtonMappings,
-                    InputSettingsFunctionsConstants.Nintendo64StickDown,
-                    InputSettingsFunctionsConstants.Nintendo64StickUp,
-                    source.LeftY, source, keys, physicalMouse),
+                    InputSettingsFunctionsConstants.GameCubeStickDown,
+                    InputSettingsFunctionsConstants.GameCubeStickUp,
+                    MappedAxis(binding.ButtonMappings,
+                        InputSettingsFunctionsConstants.Nintendo64StickDown,
+                        InputSettingsFunctionsConstants.Nintendo64StickUp,
+                        source.LeftY, source, keys, physicalMouse),
+                    source, keys, physicalMouse),
                 RightX = MappedAxis(binding.ButtonMappings,
-                    InputSettingsFunctionsConstants.Nintendo64CLeft,
-                    InputSettingsFunctionsConstants.Nintendo64CRight,
-                    source.RightX, source, keys, physicalMouse),
+                    InputSettingsFunctionsConstants.GameCubeCRight,
+                    InputSettingsFunctionsConstants.GameCubeCLeft,
+                    MappedAxis(binding.ButtonMappings,
+                        InputSettingsFunctionsConstants.Nintendo64CLeft,
+                        InputSettingsFunctionsConstants.Nintendo64CRight,
+                        source.RightX, source, keys, physicalMouse),
+                    source, keys, physicalMouse),
                 RightY = MappedAxis(binding.ButtonMappings,
-                    InputSettingsFunctionsConstants.Nintendo64CDown,
-                    InputSettingsFunctionsConstants.Nintendo64CUp,
-                    source.RightY, source, keys, physicalMouse)
+                    InputSettingsFunctionsConstants.GameCubeCDown,
+                    InputSettingsFunctionsConstants.GameCubeCUp,
+                    MappedAxis(binding.ButtonMappings,
+                        InputSettingsFunctionsConstants.Nintendo64CDown,
+                        InputSettingsFunctionsConstants.Nintendo64CUp,
+                        source.RightY, source, keys, physicalMouse),
+                    source, keys, physicalMouse)
             };
         }
         return result;

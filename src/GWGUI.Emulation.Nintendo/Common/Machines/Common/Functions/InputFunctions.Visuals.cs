@@ -15,6 +15,7 @@ internal static partial class InputSettingsFunctions
             ModelConstants.GameBoyColor => [EmulationControllerVisualIds.NintendoGameBoyColor],
             ModelConstants.GameBoyAdvance => [EmulationControllerVisualIds.NintendoGameBoyAdvance],
             ModelConstants.Nintendo64 => [EmulationControllerVisualIds.Nintendo64Pad],
+            ModelConstants.GameCube => [EmulationControllerVisualIds.NintendoGameCubePad],
             _ => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro]
@@ -26,7 +27,8 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
             ? null : model.Id == ModelConstants.Nintendo64
-            ? Nintendo64VisualCommandIds() : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
+            ? Nintendo64VisualCommandIds() : model.Id == ModelConstants.GameCube
+            ? GameCubeVisualCommandIds() : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
                 or ModelConstants.Snes or ModelConstants.GameBoy
                 or ModelConstants.GameBoyColor or ModelConstants.GameBoyAdvance
             ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes,
@@ -73,6 +75,31 @@ internal static partial class InputSettingsFunctions
     }
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>
+        GameCubeVisualCommandIds() => new Dictionary<EmulationControllerVisualControl, string>
+        {
+            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+            [EmulationControllerVisualControl.StickUp] = InputSettingsFunctionsConstants.GameCubeStickUp,
+            [EmulationControllerVisualControl.StickDown] = InputSettingsFunctionsConstants.GameCubeStickDown,
+            [EmulationControllerVisualControl.StickLeft] = InputSettingsFunctionsConstants.GameCubeStickLeft,
+            [EmulationControllerVisualControl.StickRight] = InputSettingsFunctionsConstants.GameCubeStickRight,
+            [EmulationControllerVisualControl.CUp] = InputSettingsFunctionsConstants.GameCubeCUp,
+            [EmulationControllerVisualControl.CDown] = InputSettingsFunctionsConstants.GameCubeCDown,
+            [EmulationControllerVisualControl.CLeft] = InputSettingsFunctionsConstants.GameCubeCLeft,
+            [EmulationControllerVisualControl.CRight] = InputSettingsFunctionsConstants.GameCubeCRight,
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+            [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Y,
+            [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.X,
+            [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start,
+            [EmulationControllerVisualControl.LeftShoulder] = InputSettingsFunctionsConstants.GameCubeL,
+            [EmulationControllerVisualControl.RightShoulder] = InputSettingsFunctionsConstants.GameCubeR,
+            [EmulationControllerVisualControl.RightTrigger] = InputSettingsFunctionsConstants.GameCubeZ
+        };
+
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>
         Nintendo64VisualCommandIds() => new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -104,6 +131,7 @@ internal static partial class InputSettingsFunctions
             ModelConstants.GameBoyColor => InputSettingsFunctionsConstants.ResourceGameBoyColor,
             ModelConstants.GameBoyAdvance => InputSettingsFunctionsConstants.ResourceGameBoyAdvance,
             ModelConstants.Nintendo64 => InputSettingsFunctionsConstants.ResourceNintendo64Pad,
+            ModelConstants.GameCube => InputSettingsFunctionsConstants.ResourceGameCubePad,
             _ => InputSettingsFunctionsConstants.ResourceControllerJoystick
         } : type switch
     {

@@ -30,6 +30,16 @@ internal static class InputSnapshotDictionary
             [InputSettingsFunctionsConstants.Nintendo64B] = ButtonIndexes[InputSnapshotFunctionsConstants.Y]
         };
 
+    internal static readonly IReadOnlyDictionary<string, int> GameCubeButtonIndexes =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSettingsFunctionsConstants.GameCubeZ] = ButtonIndexes[InputSnapshotFunctionsConstants.R],
+            [InputSettingsFunctionsConstants.GameCubeL] = ButtonIndexes[InputSnapshotFunctionsConstants.L2],
+            [InputSettingsFunctionsConstants.GameCubeR] = ButtonIndexes[InputSnapshotFunctionsConstants.R2],
+            [InputSettingsFunctionsConstants.GameCubeLHalf] = ButtonIndexes[InputSnapshotFunctionsConstants.L3],
+            [InputSettingsFunctionsConstants.GameCubeRHalf] = ButtonIndexes[InputSnapshotFunctionsConstants.R3]
+        };
+
     internal static readonly IReadOnlyDictionary<string, MouseAction> DefaultMouseMappings =
         new Dictionary<string, MouseAction>(StringComparer.OrdinalIgnoreCase)
         {
