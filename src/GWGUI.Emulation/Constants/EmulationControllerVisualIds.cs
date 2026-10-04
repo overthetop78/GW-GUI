@@ -46,6 +46,7 @@ public static class EmulationControllerVisualIds
     public const string NintendoGameBoyAdvance = "nintendo-game-boy-advance";
     public const string Nintendo64Pad = "nintendo-64-pad";
     public const string NintendoGameCubePad = "nintendo-gamecube-pad";
+    public const string NintendoGameCubeWaveBird = "nintendo-gamecube-wavebird";
     public const string QuickShot = "quickshot";
     public const string QuickShotDeluxe = "quickshot-deluxe";
     public const string QuickShotIiTurbo = "quickshot-ii-turbo";

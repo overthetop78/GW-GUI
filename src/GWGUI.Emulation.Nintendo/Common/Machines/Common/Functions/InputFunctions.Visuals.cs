@@ -15,7 +15,8 @@ internal static partial class InputSettingsFunctions
             ModelConstants.GameBoyColor => [EmulationControllerVisualIds.NintendoGameBoyColor],
             ModelConstants.GameBoyAdvance => [EmulationControllerVisualIds.NintendoGameBoyAdvance],
             ModelConstants.Nintendo64 => [EmulationControllerVisualIds.Nintendo64Pad],
-            ModelConstants.GameCube => [EmulationControllerVisualIds.NintendoGameCubePad],
+            ModelConstants.GameCube => [EmulationControllerVisualIds.NintendoGameCubePad,
+                EmulationControllerVisualIds.NintendoGameCubeWaveBird],
             _ => [EmulationControllerVisualIds.QuickShot,
                 EmulationControllerVisualIds.CompetitionPro5000,
                 EmulationControllerVisualIds.ZipstikSuperPro]

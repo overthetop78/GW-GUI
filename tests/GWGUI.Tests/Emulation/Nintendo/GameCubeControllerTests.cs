@@ -53,6 +53,21 @@ public sealed class GameCubeControllerTests
     }
 
     [Fact]
+    public void WaveBirdUsesTheGameCubeCommandProfile()
+    {
+        var settings = InputSettingsFunctions.Describe(
+            new MachineConfiguration(ModelConstants.GameCube, string.Empty));
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex]
+            .ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+
+        Assert.Contains(EmulationControllerVisualIds.NintendoGameCubeWaveBird,
+            choice.CompatibleVisualIds!);
+        var bindingIds = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
+        Assert.All(choice.VisualCommandIds!, command =>
+            Assert.Contains(command.Value, bindingIds));
+    }
+
+    [Fact]
     public void KeyboardBindingsReachDolphinButtonsAndBothSticks()
     {
         var mappings = new Dictionary<string, string>

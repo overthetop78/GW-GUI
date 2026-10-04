@@ -297,7 +297,18 @@ Objectif : pour chaque manette, joystick et périphérique déclarés par NEC, M
   - [x] Créer `tests/GWGUI.Tests/Emulation/Nintendo/GameCubeControllerTests.cs` : vérifier les quatre ports, les commandes, les bits Dolphin et les axes des deux sticks.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat des tests GameCube ciblés et leur limite concernant les halos WPF.
   - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug de l'application et des huit modules après le raccordement.
+- [x] Raccorder la Nintendo WaveBird au profil GameCube
+  - [x] Modifier `src/GWGUI.App/Assets/Controllers/nintendo-gamecube-wavebird.png` : remplacer la photographie détourée CC BY-SA 3.0 d'Evan-Amos, trop oblique pour les halos, par une vue strictement de face générée d'après ce modèle avec fond transparent et boutons lisibles.
+  - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs` : déclarer l'identifiant visuel invariant WaveBird.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : déclarer le nom invariant du profil WaveBird.
+  - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : proposer la WaveBird parmi les visuels GameCube avec les mêmes commandes de jeu que la manette DOL-003.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : placer les halos sur les boutons et sticks visibles du visuel WaveBird.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : créditer l'image et sa licence, puis consigner le profil, ses commandes et les vérifications visuelles restant à faire.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Nintendo/GameCubeControllerTests.cs` : vérifier que la WaveBird est un visuel sélectionnable avec les mêmes commandes GameCube ; contrôler les zones visuelles en fenêtre, puisque le chargement des URI WPF `pack://` ne fonctionne pas dans le processus de tests isolé.
+  - [x] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le résultat des tests ciblés et du build Debug de l'application avec les huit modules.
 - [ ] Vérifier la couverture et le fonctionnement
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
   - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nintendo-gamecube-wavebird.png` : retirer les franges colorées hors de la silhouette par une méthode expressément autorisée, sans altérer les commandes.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner l'état de l'alpha WaveBird après nettoyage et la vérification des halos dans l'interface.
   - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la couverture réelle des cinq modules, les contrôles image/transparence/zones, le résultat du build Debug de l'application et des modules et les essais fonctionnels de sélection et de halos.

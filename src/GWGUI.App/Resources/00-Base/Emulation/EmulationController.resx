@@ -108,6 +108,7 @@
   <data name="Emulation.Controller.Visual.Model.nintendo-game-boy-advance"><value>Nintendo Game Boy Advance (AGB-001)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-64-pad"><value>Nintendo 64 Controller (NUS-005)</value></data>
   <data name="Emulation.Controller.Visual.Model.nintendo-gamecube-pad"><value>Nintendo GameCube Controller (DOL-003)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-gamecube-wavebird"><value>Nintendo GameCube WaveBird Wireless Controller (DOL-004)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
 </root>
