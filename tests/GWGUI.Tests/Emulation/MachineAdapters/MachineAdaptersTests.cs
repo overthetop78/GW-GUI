@@ -46,7 +46,7 @@ public sealed class MachineAdaptersTests
     [InlineData("Ste", "St", "Hatari")] [InlineData("MegaSte", "St", "Hatari")] [InlineData("Tt", "St", "Hatari")] [InlineData("Falcon", "St", "Hatari")]
     [InlineData("Atari400", "EightBit", "Atari800")] [InlineData("Atari800", "EightBit", "Atari800")] [InlineData("Atari800Xl", "EightBit", "Atari800")]
     [InlineData("Atari130Xe", "EightBit", "Atari800")] [InlineData("Xegs", "EightBit", "Atari800")] [InlineData("XlXe", "EightBit", "Atari800")]
-    [InlineData("Atari5200", "Atari5200", "Atari800")] [InlineData("Atari2600", "Atari2600", "Stella")] [InlineData("Atari7800", "Atari7800", "ProSystem")]
+    [InlineData("Atari5200", "Atari5200", "Atari800")] [InlineData("Atari2600", "Atari2600", "Stella2023")] [InlineData("Atari7800", "Atari7800", "ProSystem")]
     [InlineData("Lynx", "Lynx", "BeetleLynx")] [InlineData("Jaguar", "Jaguar", "VirtualJaguar")] [InlineData("JaguarCd", "Jaguar", "VirtualJaguar")]
     public void AtariModelsChooseExpectedAdapter(string model, string family, string adapter) => MachineCapabilitiesScenarios.Atari(model, family, adapter);
     [Theory]

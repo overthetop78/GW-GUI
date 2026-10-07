@@ -9,3 +9,25 @@ doit utiliser `Common/Interfaces/IEmulatorAdapter.cs`, jamais communiquer direct
 `GWGUI.Emulation`, et fournir elle-même son identité, sa définition, sa DLL, sa source et ses données
 d’installation. `Common/Dictionaries/EmulatorCatalog.cs` découvre ensuite les adaptateurs sans
 connaître en dur un cœur concret.
+
+L’Atari 2600 propose trois profils distincts : `Stella`, `Stella2014` et
+`Stella2023`, avec les fichiers `stella_libretro.dll`, `stella2014_libretro.dll`
+et `stella2023_libretro.dll`. Ils ne sont proposés pour aucune autre machine.
+Le profil auparavant nommé `Stella` était Stella 2023 : son dossier et son
+adaptateur portent maintenant le nom `Stella2023`. Sa valeur numérique enregistrée
+reste identique, ainsi que son identifiant d’installation `stella2023`.
+
+`Emulators/Common/Interfaces/IEmulatorCore.cs` définit le contrat d’exécution.
+L’hôte commun reçoit une fabrique de ce contrat et le transport reçoit la commande
+de lancement fournie par l’adaptateur. Le module utilise `IEmulatorAdapter` pour
+les options, les extensions, la sélection et l’installation. Un autre backend peut
+implémenter ces contrats sans utiliser libretro.
+
+`Emulators/Common/Interop` contient les appels natifs, callbacks, probes et
+services d’installation des cœurs actuels. Les contrats de frames, audio, entrées,
+médias, états et messages restent dans `Common`. Les descriptions des trois
+profils 2600 partagent la ressource déjà traduite dans toutes les langues.
+
+Sources : [Stella](https://github.com/stella-emu/stella),
+[Stella 2014](https://github.com/libretro/stella2014-libretro),
+[Stella 2023](https://github.com/libretro/stella2023).

@@ -1,0 +1,390 @@
+# Atari 2600 : Stella et Common
+
+- [x] Ajouter Stella et Stella 2014, conserver Stella 2023 et rendre Common independant du backend
+  - [x] Reorganiser les fichiers existants sans ajouter de coeur aux autres machines
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreHostConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Constants/CoreHostConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreHostFunctionsConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Constants/CoreHostFunctionsConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreHostValues.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Constants/CoreHostValues.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreLifecycleConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/CoreLifecycleConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreOptionConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/CoreOptionConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreOptionProbeConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/CoreOptionProbeConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreOptionProbeValues.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/CoreOptionProbeValues.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/CoreReleaseConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Constants/CoreReleaseConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/DiskControlConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/DiskControlConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/EmulatorCatalogConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Constants/EmulatorCatalogConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/EnvironmentConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/EnvironmentConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/EnvironmentFunctionsConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/EnvironmentFunctionsConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/InputConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/InputConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/KeyboardConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/KeyboardConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/ProcessCoreConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Constants/ProcessCoreConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants/SessionMediaConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Constants/SessionMediaConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Contracts/ControllerContracts.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/ControllerContracts.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Contracts/CoreContracts.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/CoreContracts.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Contracts/EmulatorContracts.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/EmulatorContracts.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Contracts/MediaContracts.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/MediaContracts.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Contracts/RuntimeContracts.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/RuntimeContracts.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Dictionaries/CoreCatalog.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Enums/CoreEnums.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Enums/CoreEnums.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Enums/RuntimeEnums.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Enums/RuntimeEnums.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/CartridgeExceptions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/CartridgeExceptions.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/CoreHostErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/CoreHostErrors.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/CoreReleaseErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/CoreReleaseErrors.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/DiskControlErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/DiskControlErrors.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/EmulationException.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulationException.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/EmulatorCatalogErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/EmulatorCatalogErrors.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/ErrorMessages.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/ErrorMessages.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/ExceptionText.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/ExceptionText.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/ScpMediaFunctionsErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/ScpMediaFunctionsErrors.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions/SessionMediaErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Exceptions/SessionMediaErrors.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Factories/MachineFactory.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/AudioFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/AudioFunctions.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/ControllerFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/ControllerFunctions.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.Catalog.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.Diagnostics.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Diagnostics.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.ExternalProbe.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.Host.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Host.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.Lifecycle.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.OptionProbe.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.Options.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/CoreFunctions.Release.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/CoreFunctions.Release.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/InputFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/InputFunctions.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/MediaFunctions.Content.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Content.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/MediaFunctions.Disk.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/MediaFunctions.Scp.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/MediaFunctions.Scp.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/MediaFunctions.Session.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/MediaFunctions.Session.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/RuntimeFunctions.Environment.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/StateFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/StateFunctions.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions/VideoFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/VideoFunctions.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Interfaces/ICoreReleaseService.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interfaces/ICoreReleaseService.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Interfaces/IEmulatorCore.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interfaces/IEmulatorCore.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Interfaces/IEmulatorMediaAdapter.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Interfaces/IEmulatorMediaAdapter.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ContentPath.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ContentPath.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/CoreOptionHost.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreOptionHost.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/CoreProvider.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreProvider.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/CoreReleaseService.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/CoreReleaseService.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/DiskControl.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/DiskControl.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ExternalCore.Content.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.Content.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ExternalCore.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ExternalCore.Media.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.Media.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ExternalHostCallbacks.AudioVideoInput.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ExternalHostCallbacks.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ExternalHostCallbacks.Environment.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/ExternalHostCallbacks.EnvironmentDetails.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/FrameTimer.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/FrameTimer.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/KeyboardState.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/KeyboardState.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Services/LoadedContent.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/LoadedContent.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Common/Constants/ExternalCoreInteropConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/ExternalCoreInteropConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Stella/Constants/EmulatorConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Stella2023/Constants/EmulatorConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Stella/Constants/StellaOptionConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Stella2023/Constants/Stella2023OptionConstants.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Stella/Factories/StellaMachineFactory.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Stella2023/Factories/Stella2023MachineFactory.cs` : adapter namespace et references; conserver le traitement existant.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Stella/Functions/StellaOptionFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Stella2023/Functions/Stella2023OptionFunctions.cs` : adapter namespace et references; conserver le traitement existant.
+  - [x] Adapter les references et les contrats
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/BufferConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/CartridgeConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/ConfigurationStoreConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/ConfigurationSummaryFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/ControllerConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/ControllerPortConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/ControllerPortFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/CoreDirectoryConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/EmulationModuleConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/ErrorContextConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/MediaConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/SavedStateConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/VideoConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Contracts/CoreContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Contracts/EmulatorContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Dictionaries/EmulatorCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari2600/Constants/ModelConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari2600/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari5200/Constants/ModelConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari5200/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari7800/Constants/ModelConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari7800/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Constants/EightBitSettingsCatalogConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Constants/EightBitSettingsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Constants/EightBitSettingsFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Constants/KeyboardConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Constants/ModelConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Contracts/SettingsContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Dictionaries/KeyboardDictionary.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Dictionaries/SettingsCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Enums/SettingsEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari8Bit/Functions/SettingsFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariJaguar/Constants/ModelConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariJaguar/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariLynx/Constants/ModelConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariLynx/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Constants/KeyboardConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Constants/ModelConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Constants/TosConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Contracts/ModelContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Dictionaries/KeyboardDictionary.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Dictionaries/RegionDictionary.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Enums/ModelEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Functions/ModelFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Functions/TosFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/ControllerActionConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/ControllerDeviceConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/FirmwareCatalogConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/FirmwareConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/FirmwareRuntimeConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/FirmwareScanFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/HardwareSettingsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/HardwareSettingsFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/InputSnapshotFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/MachineConfigurationConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/MachineConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/MachineOptionConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/MachineOptionFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/MachineValues.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/MouseSettingsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/RuntimeConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/SettingsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/SettingsDescriptionChoicesConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/SettingsDescriptionTextConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/ShortcutConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/StateConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/StateStoreConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/StorageConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/VideoAudioSettingsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/ConfigurationContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/ControllerContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/FirmwareContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/HardwareModelContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/InputContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/MachineContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/MediaContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/RuntimeContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Contracts/StateContracts.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/CompatibilityCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/HardwareModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/MachineCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/ControllerEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/CoreEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/FirmwareEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/HardwareModelEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/InputEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/MachineEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/MediaEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/RuntimeEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/SettingsEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/StateEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/StorageEnums.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/EmulationPeripheralConversionFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/FirmwareFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/FirmwareFunctions.Scan.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/FirmwareFunctions.Selection.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/HardDiskFormats.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/HardwareModelFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Keyboard.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MachineFunctions.Hardware.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Activity.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Cartridge.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Cassette.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Compatibility.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/MediaFunctions.Runtime.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/RuntimeFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.AudioAndChoices.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.Builders.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.Hardware.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/SettingsFunctions.Machine.St.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Store.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Configuration.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Settings.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/AudioBuffer.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/AudioOutputController.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/CassetteInputController.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/Engine.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/FirmwareScanner.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/InputFrameStore.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/Machine.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/Machine.Lifecycle.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.Host.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.Protocol.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/SharedVideoWriter.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/VideoBufferSet.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Constants/Atari800MediaConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Constants/Atari800MediaFunctionsConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Constants/Atari800OptionConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Constants/EmulatorConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Contracts/Atari800PreparedMedia.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Enums/Atari800ContentType.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Exceptions/Atari800MediaErrors.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Factories/Atari800MachineFactory.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Functions/Atari800MediaFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Functions/Atari800OptionFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/BeetleLynx/Constants/EmulatorConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/BeetleLynx/Factories/BeetleLynxMachineFactory.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/EmulatorConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/HatariContentConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/HatariOptionConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/HatariStorageConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Contracts/HatariContent.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Contracts/HatariStorageVolume.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Exceptions/HatariContentErrors.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Exceptions/HatariStorageErrors.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Factories/HatariMachineFactory.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Functions/HatariContentFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Functions/HatariOptionFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Functions/HatariStorageFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Services/HatariStorage.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/ProSystem/Constants/EmulatorConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/ProSystem/Factories/ProSystemMachineFactory.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Constants/EmulatorConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Constants/JaguarCdConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Constants/VirtualJaguarOptionConstants.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Contracts/PreparedJaguarCd.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Exceptions/JaguarCdErrors.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Factories/VirtualJaguarMachineFactory.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Functions/JaguarCdFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/VirtualJaguar/Functions/VirtualJaguarOptionFunctions.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModuleFactory.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader/TemporaryLibretroMediaReader.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Atari/AtariEmulatorAdapterTests.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Audio/AudioBufferScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulationContracts/RuntimeOptionScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulatorAdapterGlobalUsings.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulatorManagerTests.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/AtariCartridgeScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/AtariCassetteScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/AtariMediaActivityScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdaptersTests.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineCapabilitiesScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs` : adapter les namespaces deplaces et le nom Stella2023, conserver les autres comportements.
+  - [x] Decoupler et integrer les variantes
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Contracts/CoreContracts.cs` : Extraire les structures natives vers Interop; ajouter le libelle de description commun facultatif au catalogue.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Contracts/ExternalCoreContracts.cs` : Creer les structures exports, information native et descripteurs memoire extraites.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/AudioFunctions.cs` : Separer CopyBatch natif des fonctions audio gerees.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/NativeAudioFunctions.cs` : Creer CopyBatch natif avec son traitement existant.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs` : appeler la copie audio native extraite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Functions/ControllerFunctions.cs` : Extraire les fonctions de configuration des ports natifs.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/ControllerPortFunctions.cs` : Creer les fonctions natives des ports; appliquer les trois variantes Stella.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs` : Ajouter les operations generiques des options et extensions de cartouches.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs` : Implementer les operations generiques, fournir la fabrique de coeur et la commande du processus.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/CoreHost.cs` : Utiliser une fabrique injectee de IEmulatorCore; liberer le coeur precedent.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.cs` : Recevoir la commande de lancement du backend.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.Host.cs` : Utiliser la commande injectee et attendre la terminaison lors de l erreur de lancement.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ProcessCore.Protocol.cs` : Garantir nettoyage dans finally et attendre destruction du processus.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/Engine.cs` : Exposer les adaptateurs par enum et identifiant, dispatcher les commandes sans choix natif.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Dictionaries/EmulatorCatalog.cs` : Decouvrir par contrat sans filtrage textuel du namespace.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Devices.cs` : Utiliser les extensions fournies par IEmulatorAdapter sans cast natif.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs` : Deleguer options, selection, commandes, installation et creation aux adaptateurs generiques.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/CoreEnums.cs` : Conserver la valeur numerique historique pour Stella2023; ajouter Stella et Stella2014 a la fin.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Atari2600/Constants/ModelConstants.cs` : Ajouter la cle commune de description des emulateurs 2600.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs` : Utiliser la description facultative de chaque entree sans dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Stella2023/Constants/EmulatorConstants.cs` : Corriger source officielle et separer constantes semantiques d identite, DLL et revision.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Stella/Constants/EmulatorConstants.cs` : Creer constantes et entree Stella, uniquement Atari2600.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Stella/Factories/StellaMachineFactory.cs` : Creer adaptateur Stella avec les cartouches 2600.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Stella2014/Constants/EmulatorConstants.cs` : Creer constantes et entree Stella2014, uniquement Atari2600.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Stella2014/Factories/Stella2014MachineFactory.cs` : Creer adaptateur Stella2014 avec les cartouches 2600.
+  - [x] Mettre a jour ressources, documentation et validation
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/00-Base/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ar-SA/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/cs-CZ/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/da-DK/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/de-DE/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/el-GR/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/en-US/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/es-ES/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/fi-FI/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/fr-FR/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/he-IL/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/hu-HU/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/id-ID/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/it-IT/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ja-JP/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ko-KR/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/nb-NO/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/nl-NL/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pl-PL/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pt-BR/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pt-PT/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ro-RO/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ru-RU/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/sv-SE/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/th-TH/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/tr-TR/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/uk-UA/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/vi-VN/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/zh-Hans/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/zh-Hant/Emulation.resx` : renommer la description Atari2600 commune en conservant sa traduction existante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs` : Retirer les imports des dossiers communs devenus inexistants.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Atari800/Factories/Atari800MachineFactory.cs` : Adapter la visibilite de la surcharge des extensions au contrat generique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Atari/AtariEmulatorAdapterTests.cs` : verifier les trois variantes, le perimetre Atari2600 et la conservation des configurations numeriques.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` : verifier le contrat generique et les nouveaux emplacements, sans test externe ajoute.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Constants` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Contracts` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Dictionaries` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Enums` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Exceptions` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Factories` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Functions` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro/Interfaces` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Stella/Functions` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Libretro` : retirer le dossier vide apres deplacement, sans suppression recursive.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/README.md` : documenter les trois profils et les services generiques versus Interop.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.LocalDiskImageTests/TemporaryLibretroMediaReader/TemporaryLibretroMediaReader.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/MediaEngineProjectBoundaryTests.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulatorAdapterGlobalUsings.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulatorManagerTests.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Atari/AtariEmulatorAdapterTests.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulationContracts/RuntimeOptionScenarios.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/AtariCartridgeScenarios.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/AtariCassetteScenarios.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/AtariMediaActivityScenarios.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineCapabilitiesScenarios.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Dictionaries/CoreCatalog.cs` : corriger les imports deplaces et conserver le coeur par defaut historique.
+    - [x] Modifier `docs/tasks/emulation/atari-stella-common.md` : enregistrer resultats des tests existants Atari/architecture et build Debug --modules=A, verifier application et huit modules.
+  - [x] Verifier les DLL officielles et terminer les controles
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdaptersTests.cs` : actualiser le nom du coeur par defaut Atari2600 de Stella vers Stella2023.
+    - [x] Creer `artifacts/temp/atari-stella-validation` : telecharger et extraire les trois paquets officiels pour verifier leur chargement avec la sonde existante.
+    - [x] Supprimer `artifacts/temp/atari-stella-validation` : supprimer les DLL et archives temporaires apres verification.
+    - [x] Modifier `docs/tasks/emulation/atari-stella-common.md` : enregistrer les resultats definitifs des controles et cocher les groupes termines.
+
+Validation initiale : build Debug --modules=A termine avec code 0; application et huit modules presents. Tests : 137 reussites et une attente de nom Stella a actualiser en Stella2023 (correction appliquee).
+
+Validation finale :
+- Build Debug `scripts/local-building.cmd --building=debug --modules=A` : code 0.
+- Application presente : `build/Debug/GW GUI/gwgui.exe`.
+- Huit modules presents : amstrad, atari, commodore, microsoft, nec, nintendo, sega, sony.
+- Tests Atari, MachineAdapters et architecture : 138 reussites, aucun echec.
+- Sonde existante sur les trois DLL officielles : code 0; Stella 26 options, Stella2014 11, Stella2023 16.
+- Les DLL, ZIP et sorties temporaires de la sonde ont ete supprimes; chaque processus a ete attendu et libere.
+- `git diff --check` : aucune anomalie.
+- Aucun parcours de jeu complet effectue et aucun backend non-libretro ajoute; ses contrats sont disponibles.

@@ -8,7 +8,7 @@ using System.Text.Json;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
-using GWGUI.Emulation.Atari.Emulators.Libretro.Contracts;
+using GWGUI.Emulation.Atari.Emulators.Common.Contracts;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Atari.Common.Services;
 using GWGUI.Emulation.Contracts;

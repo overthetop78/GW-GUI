@@ -32,7 +32,7 @@
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blue/brown 2</value></data>
   <data name="Emulation.Emulator.hatari.Description"><value>Bilgisayarları (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Atari 8 bit bilgisayarlarını ve Atari 5200 konsolunu emüle eder.</value></data>
-  <data name="Emulation.Emulator.stella2023.Description"><value>Atari 2600 konsolunu bağışlayın.</value></data>
+  <data name="Emulation.Emulator.atari2600.Description"><value>Atari 2600 konsolunu bağışlayın.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800 konsolunu emulates.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Hareketli Atari Lynx oyun sistemini destekler.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Oyun konsolları (Atari Jaguar/Jaguar CD).</value></data>

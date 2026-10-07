@@ -1,3 +1,4 @@
+using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -23,7 +24,7 @@ private Process StartHostProcess(string pipeName, string videoMapName)
             CreateNoWindow = true,
             WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
         };
-        startInfo.ArgumentList.Add(CoreHostConstants.CommandLineArgument);
+        startInfo.ArgumentList.Add(_hostCommand);
         startInfo.ArgumentList.Add(pipeName);
         startInfo.ArgumentList.Add(videoMapName);
         var process = Process.Start(startInfo)
@@ -35,8 +36,12 @@ private Process StartHostProcess(string pipeName, string videoMapName)
         }
         catch
         {
-            if (!process.HasExited) process.Kill(true);
-            process.Dispose();
+            try
+            {
+                if (!process.HasExited) process.Kill(true);
+                process.WaitForExit();
+            }
+            finally { process.Dispose(); }
             throw;
         }
     }

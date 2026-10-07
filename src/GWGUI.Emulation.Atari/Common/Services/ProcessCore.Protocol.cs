@@ -1,3 +1,4 @@
+using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -98,7 +99,7 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
         try
         {
             if (!_process.HasExited) _process.Kill(entireProcessTree: true);
-            _process.WaitForExit(CoreHostConstants.GracefulExitTimeoutMilliseconds);
+            _process.WaitForExit();
         }
         catch (Exception)
         {
@@ -108,37 +109,43 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
     public void Dispose()
     {
         if (_disposed) return;
-        if (!_connectionFailed && _pipe?.IsConnected == true)
+        try
         {
-            try
+            if (!_connectionFailed && _pipe?.IsConnected == true)
             {
-                Request(HostCommand.Dispose, allowUninitialized: true);
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    Request(HostCommand.Dispose, allowUninitialized: true);
+                }
+                catch (Exception)
+                {
+                }
             }
         }
-        _disposed = true;
-        CoreHostFunctions.DisposeTransport(_writer);
-        CoreHostFunctions.DisposeTransport(_pipe);
-        _videoMap?.Dispose();
-        _videoMemory?.Dispose();
-        if (_process is not null)
+        finally
         {
-            try
+            _disposed = true;
+            CoreHostFunctions.DisposeTransport(_writer);
+            CoreHostFunctions.DisposeTransport(_pipe);
+            _videoMap?.Dispose();
+            _videoMemory?.Dispose();
+            if (_process is not null)
             {
-                if (!_process.WaitForExit(CoreHostConstants.GracefulExitTimeoutMilliseconds))
-                    _process.Kill(entireProcessTree: true);
-                _process.WaitForExit(CoreHostConstants.GracefulExitTimeoutMilliseconds);
+                try
+                {
+                    if (!_process.WaitForExit(CoreHostConstants.GracefulExitTimeoutMilliseconds))
+                        _process.Kill(entireProcessTree: true);
+                    _process.WaitForExit();
+                }
+                catch (Exception)
+                {
+                }
+                _process.Dispose();
             }
-            catch (Exception)
+            _requestGate.Dispose();
+            while (_audio.TryDequeue(out _))
             {
             }
-            _process.Dispose();
-        }
-        _requestGate.Dispose();
-        while (_audio.TryDequeue(out _))
-        {
         }
     }
 }

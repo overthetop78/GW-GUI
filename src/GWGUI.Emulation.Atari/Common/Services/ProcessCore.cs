@@ -1,3 +1,4 @@
+using System.IO;
 using System.Buffers.Binary;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -16,6 +17,7 @@ namespace GWGUI.Emulation.Atari.Common.Services;
 internal sealed partial class ProcessCore : IEmulatorCore
 {
     private readonly string _hostExecutablePath;
+    private readonly string _hostCommand;
     private readonly string _corePath;
     private readonly Emulator _emulator;
     private readonly TimeSpan _responseTimeout;
@@ -40,13 +42,15 @@ internal sealed partial class ProcessCore : IEmulatorCore
 
     internal ProcessCore(string hostExecutablePath, string corePath, Emulator emulator,
         TimeSpan? responseTimeout = null, CancellationToken cancellationToken = default,
-        TimeSpan? connectionTimeout = null)
+        TimeSpan? connectionTimeout = null, string hostCommand = CoreHostConstants.CommandLineArgument)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(hostExecutablePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(corePath);
         _hostExecutablePath = Path.GetFullPath(hostExecutablePath);
         _corePath = Path.GetFullPath(corePath);
         _emulator = emulator;
+        ArgumentException.ThrowIfNullOrWhiteSpace(hostCommand);
+        _hostCommand = hostCommand;
         _responseTimeout = responseTimeout ??
             TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds);
         _cancellationToken = cancellationToken;

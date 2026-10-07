@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Modules;
@@ -17,9 +18,6 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     private readonly string _coreDirectory;
     private readonly string _firmwareDirectory;
     private readonly Engine _engine = new();
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
-
     public AtariEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient,
         string coreDirectory)
     {
@@ -39,30 +37,10 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
-    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
-    {
-        exitCode = 0;
-        if (arguments is [CoreHostConstants.CommandLineArgument, var pipeName, var videoMapName])
-        {
-            if (!OperatingSystem.IsWindows())
-                throw new PlatformNotSupportedException();
-            CoreHost.Run(pipeName, videoMapName);
-            return true;
-        }
-        if (arguments is not [CoreOptionProbeConstants.CommandLineArgument, var corePath, var emulatorText]
-            || !Enum.TryParse<Emulator>(emulatorText, out var emulator)) return false;
-        try
-        {
-            Console.Out.WriteLine(CoreOptionProbe.Inspect(corePath, emulator).Count);
-            exitCode = CoreOptionProbeConstants.SuccessExitCode;
-        }
-        catch (Exception error)
-        {
-            Console.Error.WriteLine(CoreOptionProbe.DescribeFailure(error));
-            exitCode = CoreOptionProbeConstants.FailureExitCode;
-        }
-        return true;
-    }
+    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) =>
+        _engine.TryHandleHostCommand(arguments, out exitCode);
+
+    private EmulatorManagementContext ManagementContext => new(_httpClient, _coreDirectory);
 
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
@@ -157,8 +135,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var atari = configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
-        var adapter = (MachineFactory)_engine.Adapter(atari);
-        return adapter.PrepareOptions(adapter.GetConfiguredOptions(atari));
+        return _engine.Adapter(atari).GetRuntimeOptions(atari);
     }
 
 
@@ -221,34 +198,23 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         return ValueTask.CompletedTask;
     }
 
-    public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
-        CancellationToken cancellationToken = default)
-    {
-        var emulator = CoreCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
-        var installation = await new CoreReleaseService(_httpClient, _coreDirectory)
-            .GetActiveInstallationAsync(emulator, cancellationToken).ConfigureAwait(false);
-        var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
-        var core = CoreCatalog.Get(emulator);
-        return new EmulationEmulatorInstallation(CoreCatalog.GetDefinition(core), version);
-    }
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
+        CancellationToken cancellationToken = default) => _engine.Adapter(
+            ConfigurationFunctions.GetCore(ModelCatalog.Parse(machineId)))
+        .GetInstallationAsync(ManagementContext, cancellationToken);
 
-    public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        var atari = configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration));
-        return await GetInstallationAsync(CoreCatalog.Get(atari.Core), cancellationToken)
-            .ConfigureAwait(false);
-    }
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
+        _engine.Adapter(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)))
+            .GetInstallationAsync(ManagementContext, cancellationToken);
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        var atari = configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration));
+        var atari = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
         var results = new List<EmulationEmulatorInstallation>();
-        foreach (var core in CoreCatalog.GetAll(atari.Model))
-            results.Add(await GetInstallationAsync(core, cancellationToken).ConfigureAwait(false));
+        foreach (var adapter in _engine.Adapters(atari.MachineId))
+            results.Add(await adapter.GetInstallationAsync(ManagementContext, cancellationToken).ConfigureAwait(false));
         return results;
     }
 
@@ -256,85 +222,33 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var atari = configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration));
-        var core = CoreCatalog.Get(emulatorId);
-        if (!core.Models.Contains(atari.Model))
+        var atari = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var adapter = _engine.Adapter(emulatorId);
+        if (!adapter.Definition.MachineIds.Contains(atari.MachineId))
             throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
-        return ValueTask.FromResult<IEmulationConfiguration>(atari with { Core = core.Emulator });
+        return ValueTask.FromResult<IEmulationConfiguration>(atari with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
     }
 
-    private async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorCatalogEntry core, CancellationToken cancellationToken)
-    {
-        var installation = await new CoreReleaseService(_httpClient, _coreDirectory)
-            .GetActiveInstallationAsync(core.Emulator, cancellationToken).ConfigureAwait(false);
-        var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
-        return new EmulationEmulatorInstallation(CoreCatalog.GetDefinition(core), version);
-    }
-
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
-        CancellationToken cancellationToken = default)
-    {
-        var emulator = CoreCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
-        var releases = await new CoreReleaseService(_httpClient, _coreDirectory)
-            .GetAvailableAsync(emulator, cancellationToken).ConfigureAwait(false);
-        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id,
-            $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
-    }
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
+        CancellationToken cancellationToken = default) => _engine.Adapter(
+            ConfigurationFunctions.GetCore(ModelCatalog.Parse(machineId)))
+        .FindReleasesAsync(ManagementContext, cancellationToken);
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
-    {
-        var atari = configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration));
-        return FindReleasesAsync(atari.Core, cancellationToken);
-    }
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
+        _engine.Adapter(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)))
+            .FindReleasesAsync(ManagementContext, cancellationToken);
 
-    public async ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default)
-    {
-        var emulator = CoreCatalog.Get(ModelCatalog.Parse(machineId)).Emulator;
-        if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != emulator)
-            throw new ArgumentException(nameof(release));
-        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value =>
-            progress.Report(value.Fraction ?? 0));
-        var installation = await new CoreReleaseService(_httpClient, _coreDirectory)
-            .InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
-        return installation.LibraryPath;
-    }
+    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release,
+        IProgress<double>? progress = null, CancellationToken cancellationToken = default) => _engine.Adapter(
+            ConfigurationFunctions.GetCore(ModelCatalog.Parse(machineId)))
+        .InstallAsync(ManagementContext, release, progress, cancellationToken);
 
     public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
         EmulationEmulatorRelease release, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default)
-    {
-        var atari = configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration));
-        return InstallAsync(atari.Core, release, progress, cancellationToken);
-    }
-
-    private async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        Emulator emulator, CancellationToken cancellationToken)
-    {
-        var releases = await new CoreReleaseService(_httpClient, _coreDirectory)
-            .GetAvailableAsync(emulator, cancellationToken).ConfigureAwait(false);
-        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id,
-            $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
-    }
-
-    private async ValueTask<string> InstallAsync(Emulator emulator, EmulationEmulatorRelease release,
-        IProgress<double>? progress, CancellationToken cancellationToken)
-    {
-        if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != emulator)
-            throw new ArgumentException(nameof(release));
-        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value =>
-            progress.Report(value.Fraction ?? 0));
-        var installation = await new CoreReleaseService(_httpClient, _coreDirectory)
-            .InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
-        return installation.LibraryPath;
-    }
+        CancellationToken cancellationToken = default) =>
+        _engine.Adapter(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)))
+            .InstallAsync(ManagementContext, release, progress, cancellationToken);
 
     public string GetFirmwareDirectory(string machineId)
     {
@@ -401,12 +315,12 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         if (configuration is not MachineConfiguration atari)
             throw new ArgumentException(nameof(configuration));
-        var corePath = await new CoreProvider(_httpClient, _coreDirectory)
-            .FindInstalledPathAsync(atari.Core, cancellationToken).ConfigureAwait(false)
+        var corePath = await _engine.Adapter(atari)
+            .FindInstalledCorePathAsync(ManagementContext, cancellationToken).ConfigureAwait(false)
             ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
-                new EmulationEmulatorMessageContext(CoreCatalog.Get(atari.Core).Id)));
+                new EmulationEmulatorMessageContext(_engine.Adapter(atari).EmulatorId)));
         var audioDevice = atari.Options.GetValueOrDefault(VideoAudioSettingsConstants.AudioOutputOption);
         if (string.Equals(audioDevice, VideoAudioSettingsConstants.DefaultAudioOutput,
                 StringComparison.Ordinal)) audioDevice = null;

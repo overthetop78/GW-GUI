@@ -15,7 +15,7 @@ private static IReadOnlyList<string> Extensions(MediaCategory category) => categ
 
     private static IReadOnlyList<string> CartridgeExtensions(MachineConfiguration configuration)
     {
-        var adapter = (MachineFactory)EmulatorCatalog.CreateAdapter(configuration.Core);
+        var adapter = EmulatorCatalog.CreateAdapter(configuration.Core);
         IEnumerable<string> extensions = adapter.GetCartridgeExtensions(configuration) is { } supported
             ? supported
             : Array.Empty<string>();

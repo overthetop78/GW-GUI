@@ -32,7 +32,7 @@
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>สีน้ําเงิน/ น้ําตาล 2</value></data>
   <data name="Emulation.Emulator.hatari.Description"><value>จําลองคอมพิวเตอร์ (Atari ST/STE/TT/Falcon6) พ.ศ.</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>จําลอง Atari 8 บิตคอมพิวเตอร์ และเครื่องควบคุม Atari 52200 เครื่อง (พ.ศ.</value></data>
-  <data name="Emulation.Emulator.stella2023.Description"><value>จําลองเครื่องควบคุม Atari 2600 เครื่อง</value></data>
+  <data name="Emulation.Emulator.atari2600.Description"><value>จําลองเครื่องควบคุม Atari 2600 เครื่อง</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>จําลองเครื่องควบคุม Atari 7800 เครื่อง</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>จําลองระบบเกมแบบพกพา Atari Lynx</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>จําลองคอนโซลเกม (Atari Jaguar/Jaguar CD).</value></data>

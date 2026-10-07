@@ -1,3 +1,4 @@
+using System.IO;
 using System.Globalization;
 using System.IO.Pipes;
 using System.Runtime.Versioning;
@@ -10,15 +11,17 @@ namespace GWGUI.Emulation.Atari.Common.Services;
 public static class CoreHost
 {
     [SupportedOSPlatform(CoreHostValues.Windows)]
-    public static void Run(string pipeName, string videoMapName)
+    internal static void Run(string pipeName, string videoMapName,
+        Func<string, Emulator, IEmulatorCore> createCore)
     {
+        ArgumentNullException.ThrowIfNull(createCore);
         using var video = new SharedVideoWriter(videoMapName);
         using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServerName,
             pipeName, PipeDirection.InOut, PipeOptions.None);
         pipe.Connect(CoreHostConstants.ConnectionTimeoutMilliseconds);
         using var reader = new BinaryReader(pipe, Encoding.UTF8, leaveOpen: true);
         using var transportWriter = new BinaryWriter(pipe, Encoding.UTF8, leaveOpen: true);
-        ExternalCore? core = null;
+        IEmulatorCore? core = null;
         var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
         var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
         try
@@ -34,7 +37,8 @@ public static class CoreHost
                     switch (command)
                     {
                         case HostCommand.Initialize:
-                            Initialize(reader, writer, ref core, ref lastDiagnosticCount);
+                            Initialize(reader, writer, createCore, ref core, ref lastDiagnosticCount);
+                            lastVideoSequence = CoreHostConstants.InitialVideoSequence;
                             break;
                         case HostCommand.RunFrame:
                             RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence,
@@ -121,17 +125,21 @@ public static class CoreHost
         }
     }
 
-    private static void Initialize(BinaryReader reader, BinaryWriter writer, ref ExternalCore? core,
+    private static void Initialize(BinaryReader reader, BinaryWriter writer,
+        Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core,
         ref int lastDiagnosticCount)
     {
-        core?.Dispose();
+        var previousCore = core;
+        core = null;
+        try { previousCore?.Dispose(); }
+        finally { core = null; }
         var corePath = reader.ReadString();
         var emulator = (Emulator)reader.ReadInt32();
         var session = reader.ReadString();
         var saves = CoreHostFunctions.ReadString(reader);
         var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(),
             CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
-        core = new ExternalCore(corePath, emulator);
+        core = createCore(corePath, emulator);
         core.Initialize(configuration, session, saves);
         writer.Write(core.CoreSha256);
         writer.Write(core.FramesPerSecond);
@@ -151,7 +159,7 @@ public static class CoreHost
 
     [SupportedOSPlatform(CoreHostValues.Windows)]
     private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video,
-        ExternalCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
+        IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
         core.SetInput(CoreHostFunctions.ReadInput(reader));
         core.RunFrame();
@@ -191,6 +199,6 @@ public static class CoreHost
         JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions)
         ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
 
-    private static ExternalCore EnsureCore(ExternalCore? core) => core ??
+    private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ??
         throw new InvalidOperationException(CoreHostErrors.NotInitialized);
 }

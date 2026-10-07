@@ -5,7 +5,7 @@ public static class Atari2600ModelCatalog
     public static IReadOnlyList<HardwareModelDefinition> All { get; } =
         HardwareModelFunctions.Values(
             HardwareModelFunctions.Create(MachineModel.Atari2600, Atari2600ModelConstants.ModelId,
-                Atari2600ModelConstants.DisplayNameResource, Emulator.Stella,
+                Atari2600ModelConstants.DisplayNameResource, Emulator.Stella2023,
                 Atari2600ModelConstants.CpuFrequencyHz, Atari2600ModelConstants.MainMemoryBytes,
                 HardwareModelFunctions.Values(HardwareCpu.Mos6507),
                 HardwareModelFunctions.Values(HardwareRegion.Ntsc, HardwareRegion.Pal),

@@ -32,7 +32,7 @@
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>蓝色/棕色 2</value></data>
   <data name="Emulation.Emulator.hatari.Description"><value>模拟计算机(Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>模拟Atari 8位计算机和Atari5200控制台.</value></data>
-  <data name="Emulation.Emulator.stella2023.Description"><value>模拟Atari 2600控制台.</value></data>
+  <data name="Emulation.Emulator.atari2600.Description"><value>模拟Atari 2600控制台.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>模拟Atari 7800控制台.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>模拟可移植的Atari Lynx游戏系统.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>模拟游戏控制台(Atari Jaguar/Jaguar CD).</value></data>

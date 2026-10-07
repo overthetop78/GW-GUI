@@ -32,7 +32,7 @@
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Sininen/ruskea 2</value></data>
   <data name="Emulation.Emulator.hatari.Description"><value>Emulgoi tietokoneita (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Emuloi Atarin 8-bittisiä tietokoneita ja Atari 5200 -konsolia.</value></data>
-  <data name="Emulation.Emulator.stella2023.Description"><value>Emuloi Atari 2600 -konsolia.</value></data>
+  <data name="Emulation.Emulator.atari2600.Description"><value>Emuloi Atari 2600 -konsolia.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuloi Atari 7800 -konsolia.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuloidaan kannettava Atari Lynx pelijärjestelmä.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emultaa pelikonsolit (Atari Jaguar/Jaguar CD).</value></data>

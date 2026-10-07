@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Atari800.Factories;
 
 internal sealed class Atari800MachineFactory() : MachineFactory(EmulatorConstants.Entry)
 {
-    internal override IReadOnlySet<string> GetCartridgeExtensions(MachineConfiguration configuration) =>
+    public override IReadOnlySet<string> GetCartridgeExtensions(MachineConfiguration configuration) =>
         configuration.Model == MachineModel.Atari5200
             ? Atari800MediaConstants.ConsoleCartridgeExtensions
             : Atari800MediaConstants.ComputerCartridgeExtensions;

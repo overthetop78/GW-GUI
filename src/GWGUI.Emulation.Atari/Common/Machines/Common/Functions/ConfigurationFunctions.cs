@@ -13,7 +13,7 @@ internal static class ConfigurationFunctions
             or MachineModel.Atari130Xe or MachineModel.Xegs or MachineModel.XlXe
             or MachineModel.Atari5200
             => Emulator.Atari800,
-        MachineModel.Atari2600 => Emulator.Stella,
+        MachineModel.Atari2600 => Emulator.Stella2023,
         MachineModel.Atari7800 => Emulator.ProSystem,
         MachineModel.Lynx => Emulator.BeetleLynx,
         MachineModel.Jaguar or MachineModel.JaguarCd => Emulator.VirtualJaguar,

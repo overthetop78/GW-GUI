@@ -32,7 +32,7 @@
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>블루/브라운 2</value></data>
   <data name="Emulation.Emulator.hatari.Description"><value>컴퓨터를 격리하십시오 (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>에뮬레이트 Atari 8 비트 컴퓨터와 Atari 5200 콘솔.</value></data>
-  <data name="Emulation.Emulator.stella2023.Description"><value>Atari 2600 콘솔을 격리합니다.</value></data>
+  <data name="Emulation.Emulator.atari2600.Description"><value>Atari 2600 콘솔을 격리합니다.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800 콘솔을 격리합니다.</value></data>
   <data name="Emulation.Emulator.beetle-lynx.Description"><value>휴대용 Atari Lynx 게임 시스템을 격리합니다.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>게임 콘솔을 에뮬레이트 (Atari Jaguar/Jaguar CD).</value></data>

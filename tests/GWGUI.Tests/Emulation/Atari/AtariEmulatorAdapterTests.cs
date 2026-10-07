@@ -6,7 +6,7 @@ using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
-using GWGUI.Emulation.Atari.Emulators.Libretro.Dictionaries;
+using GWGUI.Emulation.Atari.Emulators.Common.Interop.Dictionaries;
 using GWGUI.Emulation.Atari.Modules;
 using GWGUI.Emulation.Atari.Common.Services;
 using GWGUI.Emulation.Atari.Common.Machines.AtariST.Dictionaries;
@@ -17,6 +17,41 @@ namespace GWGUI.Tests.Emulation.Atari;
 
 public sealed class AtariEmulatorAdapterTests
 {
+    [Fact]
+    public async Task Atari2600OffersThreeSeparateStellaAdapters()
+    {
+        using var httpClient = new HttpClient();
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
+            httpClient, Path.GetTempPath());
+        var configuration = module.CreateConfiguration(nameof(MachineModel.Atari2600));
+        var entries = CoreCatalog.GetAll(MachineModel.Atari2600);
+        Assert.Equal(new[] { "stella", "stella2014", "stella2023" }, entries.Select(entry => entry.Id));
+        Assert.Equal(3, entries.Select(entry => entry.DllName).Distinct().Count());
+        foreach (var entry in entries)
+        {
+            Assert.Equal(new[] { MachineModel.Atari2600 }, entry.Models);
+            var selected = Assert.IsType<MachineConfiguration>(
+                await module.UseEmulatorAsync(configuration, entry.Id));
+            Assert.Equal(entry.Emulator, selected.Core);
+            Assert.Throws<ArgumentException>(() => new MachineConfiguration(
+                MachineModel.Atari7800, core: entry.Emulator));
+        }
+    }
+
+    [Fact]
+    public void RenamedStella2023KeepsTheSavedNumericIdentity()
+    {
+        var original = new MachineConfiguration(MachineModel.Atari2600);
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        var json = JsonSerializer.Serialize(original, options);
+        using var document = JsonDocument.Parse(json);
+        Assert.Equal(2, document.RootElement.GetProperty("core").GetInt32());
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(json, options);
+        Assert.NotNull(restored);
+        Assert.Equal(Emulator.Stella2023, restored.Core);
+        Assert.Equal("stella2023", CoreCatalog.Get(restored.Core).Id);
+    }
+
     [Fact]
     public void MachineConfigurationCrossesTheCoreHostJsonBoundary()
     {
@@ -38,7 +73,7 @@ public sealed class AtariEmulatorAdapterTests
         var names = typeof(AtariEmulationModule).Assembly.GetTypes().Select(type => type.FullName).ToHashSet();
         Assert.Contains("GWGUI.Emulation.Atari.Emulators.Hatari.Factories.HatariMachineFactory", names);
         Assert.Contains("GWGUI.Emulation.Atari.Emulators.Atari800.Factories.Atari800MachineFactory", names);
-        Assert.Contains("GWGUI.Emulation.Atari.Emulators.Stella.Factories.StellaMachineFactory", names);
+        Assert.Contains("GWGUI.Emulation.Atari.Emulators.Stella2023.Factories.Stella2023MachineFactory", names);
         Assert.Contains("GWGUI.Emulation.Atari.Emulators.ProSystem.Factories.ProSystemMachineFactory", names);
         Assert.Contains("GWGUI.Emulation.Atari.Emulators.BeetleLynx.Factories.BeetleLynxMachineFactory", names);
         Assert.Contains("GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Factories.VirtualJaguarMachineFactory", names);
