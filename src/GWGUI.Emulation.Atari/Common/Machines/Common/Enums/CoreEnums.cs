@@ -11,5 +11,6 @@ public enum Emulator
     Stella,
     Stella2014,
     A5200,
-    HatariB
+    HatariB,
+    Hatari2014
 }

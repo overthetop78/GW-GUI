@@ -34,7 +34,7 @@ internal static class EmulationMediaActivityFunctions
     internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(Emulator emulator,
         IReadOnlyDictionary<int, bool> ledStates) => emulator switch
     {
-        Emulator.Hatari => new Dictionary<EmulationMediaSlot, bool>
+        Emulator.Hatari or Emulator.Hatari2014 => new Dictionary<EmulationMediaSlot, bool>
         {
             [EmulationMediaSlot.Floppy0] = ledStates.GetValueOrDefault(FloppyALed),
             [EmulationMediaSlot.Floppy1] = ledStates.GetValueOrDefault(FloppyBLed),

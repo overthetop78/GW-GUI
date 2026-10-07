@@ -32,7 +32,7 @@ public sealed class AtariEmulatorAdapterTests
         var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(model.ToString()));
         Assert.Equal(Emulator.Hatari, configuration.Core);
-        Assert.Equal(new[] { "hatari", "hatarib" }, CoreCatalog.GetAll(model).Select(entry => entry.Id));
+        Assert.Equal(new[] { "hatari", "hatari2014", "hatarib" }, CoreCatalog.GetAll(model).Select(entry => entry.Id));
         var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, "hatarib"));
         Assert.Equal(Emulator.HatariB, selected.Core);
         var options = module.RuntimeOptions(selected);
@@ -44,6 +44,45 @@ public sealed class AtariEmulatorAdapterTests
         Assert.DoesNotContain(options.Keys, key => key.StartsWith("hatari_", StringComparison.Ordinal));
         Assert.Equal(CoreCatalog.Get(Emulator.Hatari).DescriptionResourceKey,
             CoreCatalog.Get(Emulator.HatariB).DescriptionResourceKey);
+    }
+
+    [Theory]
+    [InlineData(MachineModel.St, "st")]
+    [InlineData(MachineModel.Stf, "st")]
+    [InlineData(MachineModel.Stfm, "st")]
+    [InlineData(MachineModel.MegaSt, "st")]
+    [InlineData(MachineModel.Ste, "ste")]
+    [InlineData(MachineModel.MegaSte, "ste")]
+    [InlineData(MachineModel.Tt, "tt")]
+    [InlineData(MachineModel.Falcon, "falcon")]
+    public async Task StMachinesOfferHatari2014WithTheSharedLegacyOptions(MachineModel model, string nativeModel)
+    {
+        using var httpClient = new HttpClient();
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(model.ToString()));
+        var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, "hatari2014"));
+        Assert.Equal(Emulator.Hatari2014, selected.Core);
+        Assert.Equal(Emulator.Hatari, configuration.Core);
+        Assert.Equal("hatari2014_libretro.dll", CoreCatalog.Get(selected.Core).DllName);
+        Assert.Equal("Hatari2014", CoreCatalog.Get(selected.Core).LibraryName);
+        var expected = module.RuntimeOptions(configuration);
+        var actual = module.RuntimeOptions(selected);
+        Assert.Equal(nativeModel, actual["hatari_machinetype"]);
+        Assert.Equal(expected.OrderBy(pair => pair.Key), actual.OrderBy(pair => pair.Key));
+        Assert.Equal(CoreCatalog.Get(Emulator.Hatari).DescriptionResourceKey,
+            CoreCatalog.Get(selected.Core).DescriptionResourceKey);
+    }
+
+    [Fact]
+    public void Hatari2014CannotBeSelectedForOtherAtariMachines()
+    {
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari2600, core: Emulator.Hatari2014));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari800, core: Emulator.Hatari2014));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari5200, core: Emulator.Hatari2014));
+        var leds = new Dictionary<int, bool> { [0] = true, [1] = false, [2] = true };
+        Assert.Equal(
+            GWGUI.Emulation.Atari.Common.Machines.Common.Functions.EmulationMediaActivityFunctions.FromLedStates(Emulator.Hatari, leds),
+            GWGUI.Emulation.Atari.Common.Machines.Common.Functions.EmulationMediaActivityFunctions.FromLedStates(Emulator.Hatari2014, leds));
     }
 
     [Fact]

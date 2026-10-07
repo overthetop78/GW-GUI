@@ -1,28 +1,28 @@
 using System.Globalization;
-using GWGUI.Emulation.Atari.Emulators.Hatari.Constants;
 
-namespace GWGUI.Emulation.Atari.Emulators.Hatari.Functions;
 
-internal static class HatariOptionFunctions
+namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
+
+internal static class StLegacyOptionFunctions
 {
     internal static IReadOnlyDictionary<string, string> ApplyWriteProtection(
         IReadOnlyDictionary<string, string> options, StStorage? storage)
     {
         var result = new Dictionary<string, string>(options, StringComparer.Ordinal);
         if (storage is not null)
-            result[HatariOptionConstants.HardDriveWriteProtectionOption] = storage.Configuration.IsReadOnly
-                ? HatariOptionConstants.WriteProtectionEnabled : HatariOptionConstants.WriteProtectionDisabled;
+            result[StLegacyOptionConstants.HardDriveWriteProtectionOption] = storage.Configuration.IsReadOnly
+                ? StLegacyOptionConstants.WriteProtectionEnabled : StLegacyOptionConstants.WriteProtectionDisabled;
         return result;
     }
     private static readonly IReadOnlyDictionary<string, string> GenericToNative =
         new Dictionary<string, string>(StringComparer.Ordinal)
         {
-            [MachineOptionConstants.DriveActivity] = HatariOptionConstants.DriveActivity,
-            [SettingsDescriptionFunctionsConstants.FastBoot] = HatariOptionConstants.FastBoot,
-            [VideoAudioSettingsConstants.FloppySoundOption] = HatariOptionConstants.FloppySound,
-            [VideoAudioSettingsConstants.FloppySoundVolumeOption] = HatariOptionConstants.FloppySoundVolume,
-            [VideoAudioSettingsConstants.PolarizedFilterOption] = HatariOptionConstants.PolarizedFilter,
-            [MachineValues.ResetType] = HatariOptionConstants.ResetType
+            [MachineOptionConstants.DriveActivity] = StLegacyOptionConstants.DriveActivity,
+            [SettingsDescriptionFunctionsConstants.FastBoot] = StLegacyOptionConstants.FastBoot,
+            [VideoAudioSettingsConstants.FloppySoundOption] = StLegacyOptionConstants.FloppySound,
+            [VideoAudioSettingsConstants.FloppySoundVolumeOption] = StLegacyOptionConstants.FloppySoundVolume,
+            [VideoAudioSettingsConstants.PolarizedFilterOption] = StLegacyOptionConstants.PolarizedFilter,
+            [MachineValues.ResetType] = StLegacyOptionConstants.ResetType
         };
 
     internal static IReadOnlyDictionary<string, string> ToNativeOptions(
@@ -42,29 +42,29 @@ internal static class HatariOptionFunctions
             MachineOptionConstants.DriveActivity, MachineOptionFunctionsConstants.False);
         var result = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal)
         {
-            [HatariOptionConstants.MachineType] = MachineTypeFor(configuration.Model),
-            [HatariOptionConstants.DisableMouse] = MachineOptionFunctionsConstants.False,
-            [HatariOptionConstants.StartInMouseMode] = MachineOptionFunctionsConstants.False,
-            [HatariOptionConstants.DisableKeyboard] = MachineOptionFunctionsConstants.False,
-            [HatariOptionConstants.TwoJoysticks] = SecondJoystick(configuration)
+            [StLegacyOptionConstants.MachineType] = MachineTypeFor(configuration.Model),
+            [StLegacyOptionConstants.DisableMouse] = MachineOptionFunctionsConstants.False,
+            [StLegacyOptionConstants.StartInMouseMode] = MachineOptionFunctionsConstants.False,
+            [StLegacyOptionConstants.DisableKeyboard] = MachineOptionFunctionsConstants.False,
+            [StLegacyOptionConstants.TwoJoysticks] = SecondJoystick(configuration)
                 ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False,
-            [HatariOptionConstants.DriveActivity] = showDriveActivity,
-            [HatariOptionConstants.InputStatusDisplay] = string.Equals(showDriveActivity,
+            [StLegacyOptionConstants.DriveActivity] = showDriveActivity,
+            [StLegacyOptionConstants.InputStatusDisplay] = string.Equals(showDriveActivity,
                 MachineOptionFunctionsConstants.True, StringComparison.OrdinalIgnoreCase)
                 ? MachineOptionFunctionsConstants.Value1 : MachineOptionFunctionsConstants.Value0,
-            [HatariOptionConstants.AutoloadConfiguration] = MachineOptionFunctionsConstants.False
+            [StLegacyOptionConstants.AutoloadConfiguration] = MachineOptionFunctionsConstants.False
         };
-        Copy(result, MachineOptionConstants.MainMemory, HatariOptionConstants.RamSize, RamValue);
-        Copy(result, MachineOptionConstants.Frequency, HatariOptionConstants.CpuFrequency, CpuFrequencyValue);
-        Copy(result, VideoAudioSettingsConstants.StandardOption, HatariOptionConstants.HighResolution,
+        Copy(result, MachineOptionConstants.MainMemory, StLegacyOptionConstants.RamSize, RamValue);
+        Copy(result, MachineOptionConstants.Frequency, StLegacyOptionConstants.CpuFrequency, CpuFrequencyValue);
+        Copy(result, VideoAudioSettingsConstants.StandardOption, StLegacyOptionConstants.HighResolution,
             value => string.Equals(value, MachineOptionFunctionsConstants.Monochrome,
                 StringComparison.OrdinalIgnoreCase) ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False);
-        Copy(result, VideoAudioSettingsConstants.StandardOption, HatariOptionConstants.RefreshRate, RefreshRateValue);
-        Copy(result, MachineOptionConstants.Crop, HatariOptionConstants.CropOverscan,
+        Copy(result, VideoAudioSettingsConstants.StandardOption, StLegacyOptionConstants.RefreshRate, RefreshRateValue);
+        Copy(result, MachineOptionConstants.Crop, StLegacyOptionConstants.CropOverscan,
             value => string.Equals(value, MachineOptionFunctionsConstants.Enabled,
                 StringComparison.OrdinalIgnoreCase) ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False);
-        Copy(result, MachineOptionConstants.Frames, HatariOptionConstants.FrameSkip, value => value);
-        Copy(result, MachineOptionConstants.PointerSpeed, HatariOptionConstants.MouseSpeed, MouseSpeedValue);
+        Copy(result, MachineOptionConstants.Frames, StLegacyOptionConstants.FrameSkip, value => value);
+        Copy(result, MachineOptionConstants.PointerSpeed, StLegacyOptionConstants.MouseSpeed, MouseSpeedValue);
         ApplyFloppySettings(configuration, result);
         return ToNativeOptions(result);
     }
@@ -134,11 +134,11 @@ internal static class HatariOptionFunctions
         var slot = configuration.Media.FirstOrDefault(media => media.Category == MediaCategory.Floppy
             && media.IsInserted)?.Slot ?? EmulationMediaSlot.Floppy0;
         if (configuration.Options.TryGetValue(MachineOptionConstants.FloppySpeedPrefix + slot, out var speed))
-            result[HatariOptionConstants.FastFloppy] = speed == MachineOptionFunctionsConstants.Value100
+            result[StLegacyOptionConstants.FastFloppy] = speed == MachineOptionFunctionsConstants.Value100
                 ? MachineOptionFunctionsConstants.False : MachineOptionFunctionsConstants.True;
         if (configuration.Options.TryGetValue(MachineOptionConstants.FloppyWriteProtectionPrefix + slot, out var protection)
             && bool.TryParse(protection, out var protectedMedia))
-            result[HatariOptionConstants.FloppyWriteProtection] = protectedMedia
+            result[StLegacyOptionConstants.FloppyWriteProtection] = protectedMedia
                 ? MachineOptionFunctionsConstants.On : MachineOptionFunctionsConstants.Off;
     }
 }

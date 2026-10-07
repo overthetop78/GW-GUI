@@ -49,3 +49,12 @@ vers les options natives restent distinctes. HatariB utilise EmuTOS integre
 sans TOS utilisateur, ou le TOS selectionne dans la configuration. Ses options
 natives sont exposees par le mecanisme commun existant. Les images IPF et CTR
 necessitent la bibliotheque CAPS optionnelle du coeur.
+
+[Hatari 2014](https://github.com/libretro/hatari/tree/hitari2014-mercurial),
+via `hatari2014_libretro.dll`, est propose pour les memes huit modeles ST,
+STf, STfm, Mega ST, STE, Mega STE, TT et Falcon. Il exige un TOS utilisateur
+et un media de demarrage. Hatari reste le profil par defaut. Les conversions
+des options `hatari_*`, la preparation des medias et les indicateurs de lecteurs
+sont partages avec Hatari dans `Emulators/Common/Interop`; les contrats generaux
+restent utilisables par un backend non libretro. La description des machines
+reutilise la ressource ST deja traduite dans toutes les langues.

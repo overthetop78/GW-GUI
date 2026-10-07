@@ -1,6 +1,6 @@
-namespace GWGUI.Emulation.Atari.Emulators.Hatari.Constants;
+namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Constants;
 
-internal static class HatariOptionConstants
+internal static class StLegacyOptionConstants
 {
     internal const string HardDriveWriteProtectionOption = "hatari_writeprotect_hd";
     internal const string WriteProtectionEnabled = "on";

@@ -27,7 +27,7 @@ private void OnVideo(nint data, uint width, uint height, nuint pitch)
         if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
         var pixels = _videoBuffers.Rent(length);
         VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
-        if (_emulator == Emulator.Hatari && !_usesNativeLedInterface)
+        if (_emulator is Emulator.Hatari or Emulator.Hatari2014 && !_usesNativeLedInterface)
             EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(BufferConstants.FirstBufferIndex, length),
                 checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
         else if (_emulator == Emulator.Atari800)

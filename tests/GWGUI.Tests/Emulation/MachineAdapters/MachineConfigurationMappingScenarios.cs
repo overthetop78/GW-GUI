@@ -2,7 +2,7 @@ using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Functions;
 using GWGUI.Emulation.Atari.Emulators.Atari800.Functions;
-using GWGUI.Emulation.Atari.Emulators.Hatari.Functions;
+using GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using AtariMachineConfiguration = GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration;
@@ -14,7 +14,7 @@ internal static class MachineConfigurationMappingScenarios
     public static void AtariOption(string source,string value,string target,string? expected)
     {
         var configuration = new AtariMachineConfiguration(MachineModel.Ste,options:new Dictionary<string,string>{{source,value},{"custom","kept"}});
-        var mapped = HatariOptionFunctions.Apply(configuration);
+        var mapped = StLegacyOptionFunctions.Apply(configuration);
         if(expected is null) Assert.False(mapped.ContainsKey(target)); else Assert.Equal(expected,mapped[target]);
         Assert.Equal(value,configuration.Options[source]); Assert.Equal("kept",mapped["custom"]);
     }
@@ -88,7 +88,7 @@ internal static class MachineConfigurationMappingScenarios
     {
         var options = new Dictionary<string, string> { ["gwgui_atari_main_memory"] = "4194304", ["gwgui_atari_cpu_frequency"] = "16", ["custom"] = "kept" };
         var configuration = new AtariMachineConfiguration(MachineModel.Ste, options: options);
-        var mapped = HatariOptionFunctions.Apply(configuration);
+        var mapped = StLegacyOptionFunctions.Apply(configuration);
         Assert.Equal("4", mapped["hatari_ramsize"]); Assert.Equal("16", mapped["hatari_cpu_freq"]); Assert.Equal("ste", mapped["hatari_machinetype"]);
         Assert.Equal("kept", mapped["custom"]); Assert.Equal(3, options.Count); Assert.Equal(3, configuration.Options.Count);
         var amiga = AmigaMachineConfiguration.A500("virtual-rom", "virtual-floppy");
