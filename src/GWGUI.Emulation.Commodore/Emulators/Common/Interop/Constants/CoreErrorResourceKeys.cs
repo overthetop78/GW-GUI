@@ -1,0 +1,55 @@
+namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants;
+
+internal static class CoreErrorResourceKeys
+{
+    internal const string HostConfigurationInvalid = "Emulation.Error.PUAE.HostConfigurationInvalid";
+    internal const string HostNotInitialized = "Emulation.Error.PUAE.HostNotInitialized";
+    internal const string CoreNotInitialized = "Emulation.Error.PUAE.CoreNotInitialized";
+    internal const string KickstartNotFound = "Emulation.Error.PUAE.KickstartNotFound";
+    internal const string MediaNotFound = "Emulation.Error.PUAE.MediaNotFound";
+    internal const string ExtendedRomNotFound = "Emulation.Error.PUAE.ExtendedRomNotFound";
+    internal const string RomKeyNotFound = "Emulation.Error.PUAE.RomKeyNotFound";
+    internal const string FullContentPathsRequired = "Emulation.Error.PUAE.FullContentPathsRequired";
+    internal const string StartWithoutMediaUnsupported = "Emulation.Error.PUAE.StartWithoutMediaUnsupported";
+    internal const string ContentRefused = "Emulation.Error.PUAE.ContentRefused";
+    internal const string DiskLabelInvalid = "Emulation.Error.PUAE.DiskLabelInvalid";
+    internal const string StateSaveFailed = "Emulation.Error.PUAE.StateSaveFailed";
+    internal const string StateEmpty = "Emulation.Error.PUAE.StateEmpty";
+    internal const string StateRestoreFailed = "Emulation.Error.PUAE.StateRestoreFailed";
+    internal const string CoreNotLoaded = "Emulation.Error.PUAE.CoreNotLoaded";
+    internal const string CorePathNotAbsolute = "Emulation.Error.PUAE.CorePathNotAbsolute";
+    internal const string CoreNotFound = "Emulation.Error.PUAE.CoreNotFound";
+    internal const string ArchiveMissingLibrary = "Emulation.Error.PUAE.ArchiveMissingLibrary";
+    internal const string DownloadedCoreNotPe = "Emulation.Error.PUAE.DownloadedCoreNotPe";
+    internal const string DownloadedCoreInvalidPe = "Emulation.Error.PUAE.DownloadedCoreInvalidPe";
+    internal const string DownloadedCoreWrongArchitecture = "Emulation.Error.PUAE.DownloadedCoreWrongArchitecture";
+    internal const string MediaEjectFailed = "Emulation.Error.PUAE.MediaEjectFailed";
+    internal const string RequestedDiskSelectionFailed = "Emulation.Error.PUAE.RequestedDiskSelectionFailed";
+    internal const string RequestedMediaInsertFailed = "Emulation.Error.PUAE.RequestedMediaInsertFailed";
+    internal const string MediaSlotCreationFailed = "Emulation.Error.PUAE.MediaSlotCreationFailed";
+    internal const string MediaRefused = "Emulation.Error.PUAE.MediaRefused";
+    internal const string MediaSelectionFailed = "Emulation.Error.PUAE.MediaSelectionFailed";
+    internal const string MediaInsertFailed = "Emulation.Error.PUAE.MediaInsertFailed";
+    internal const string DiskControlUnavailable = "Emulation.Error.PUAE.DiskControlUnavailable";
+    internal const string DiskControlIncomplete = "Emulation.Error.PUAE.DiskControlIncomplete";
+    internal const string ProcessAlreadyInitialized = "Emulation.Error.PUAE.ProcessAlreadyInitialized";
+    internal const string HostExecutableNotFound = "Emulation.Error.PUAE.HostExecutableNotFound";
+    internal const string ProcessStartFailed = "Emulation.Error.PUAE.ProcessStartFailed";
+    internal const string VideoBufferUnavailable = "Emulation.Error.PUAE.VideoBufferUnavailable";
+    internal const string ProcessUnavailable = "Emulation.Error.PUAE.ProcessUnavailable";
+    internal const string ProcessNotInitialized = "Emulation.Error.PUAE.ProcessNotInitialized";
+    internal const string ProcessTimeout = "Emulation.Error.PUAE.ProcessTimeout";
+    internal const string ProcessCommunicationFailed = "Emulation.Error.PUAE.ProcessCommunicationFailed";
+    internal const string HostResponseUnavailable = "Emulation.Error.PUAE.HostResponseUnavailable";
+    internal const string UnknownCoreOption = "Emulation.Error.PUAE.UnknownCoreOption";
+    internal const string UnsupportedPixelFormat = "Emulation.Error.PUAE.UnsupportedPixelFormat";
+    internal const string InvalidOptionValue = "Emulation.Error.PUAE.InvalidOptionValue";
+    internal const string InvalidResponseLength = "Emulation.Error.PUAE.InvalidResponseLength";
+    internal const string UnsupportedHardDiskExtension = "Emulation.Error.PUAE.UnsupportedHardDiskExtension";
+    internal const string UnsupportedApiVersion = "Emulation.Error.PUAE.UnsupportedApiVersion";
+    internal const string LibraryIdentityMismatch = "Emulation.Error.PUAE.LibraryIdentityMismatch";
+    internal const string UnsupportedContentExtension = "Emulation.Error.PUAE.UnsupportedContentExtension";
+    internal const string InvalidStateSize = "Emulation.Error.PUAE.InvalidStateSize";
+    internal const string UnsupportedController = "Emulation.Error.PUAE.UnsupportedController";
+    internal const string UnknownHostCommand = "Emulation.Error.PUAE.UnknownHostCommand";
+}

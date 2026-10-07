@@ -10,7 +10,7 @@ public sealed class ExternalCoreInstaller
 {
     private readonly CoreDefinition _definition;
     private string CoreRevision => _definition.RequiredRelease?.Id ?? CoreReleaseConstants.Latest;
-    private string DownloadUrl => _definition.DownloadUrl;
+    private string DownloadUrl => _definition.DownloadUrl ?? throw new InvalidOperationException(nameof(CoreDefinition.DownloadUrl));
     private readonly HttpClient _httpClient;
     private readonly string _directory;
 
@@ -46,7 +46,7 @@ public sealed class ExternalCoreInstaller
             response.EnsureSuccessStatusCode();
             await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
             await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None,
-                             81920, FileOptions.Asynchronous))
+                             BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
             using (var archive = ZipFile.OpenRead(package))

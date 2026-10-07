@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>Мистецтво PUAE ядро не вимагає повного вмісту, оскільки це обов’язкове.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>Мистецтво PUAE не підтримує без посередників.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>Мистецтво PUAE ядро відмовлено в налаштуванні контенту.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>Анонім Amiga список відтворення не містить 64 медіа зображень.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>Анонім Amiga етикетка диска не містить труби або розриву лінії.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>Мистецтво Amiga не вдалося врятувати.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>Мистецтво Amiga держава порожній.</value></data>

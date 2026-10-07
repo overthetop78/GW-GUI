@@ -27,11 +27,11 @@ internal static class MachineCapabilitiesScenarios
     }
     public static void Amiga(string model, string cpu, string chipset, int chipMemory)
     {
-        var definition = AmigaModelCatalog.Get(model);
-        Assert.Equal(cpu, definition.DefaultCpu); Assert.Equal(chipset, definition.Chipset); Assert.Equal(chipMemory, definition.ChipMemoryKib);
+        var definition = Assert.IsType<GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Contracts.AmigaModel>(AmigaModelCatalog.Get(model));
+        Assert.Equal(cpu, ((int)definition.DefaultCpu).ToString()); Assert.Equal(chipset, definition.Chipset); Assert.Equal(chipMemory, definition.ChipMemoryKib);
         Assert.Equal(2, definition.ControllerPortCount);
         Assert.Contains(MachineCatalog.All, item => item.Id == model);
-        var configuration = new GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration(model,"virtual-rom",Options:new Dictionary<string,string>{{"gwgui_floppy_drive_count","99"},{"gwgui_hard_drive_count","99"}});
+        var configuration = new GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration(model, GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths:new Dictionary<string,string>{{"configuration.kickstartPath","virtual-rom"}},Options:new Dictionary<string,string>{{"gwgui_floppy_drive_count","99"},{"gwgui_hard_drive_count","99"}});
         var storage = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(configuration);
         Assert.Equal(definition.MaximumFloppyDrives,storage.ConfiguredSlots.Count(s=>s.Category==GWGUI.Emulation.Enums.EmulationMediaCategory.FloppyDrive));
         Assert.Equal(definition.MaximumHardDrives,storage.ConfiguredSlots.Count(s=>s.Category==GWGUI.Emulation.Enums.EmulationMediaCategory.HardDisk));

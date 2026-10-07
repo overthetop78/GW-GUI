@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>The PUAE ولا يطلب النواة مسارات المحتوى الكامل على النحو الذي يتطلبه هذا المضيف.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>The PUAE لا يدعم الجوهر البدء من دون وسائل الإعلام.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>The PUAE رفض الجوهر المحتوى المُحدّد.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An Amiga ولا يمكن أن تتضمن القائمة أكثر من 64 صورة إعلامية.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An Amiga لا يمكن لعلامة القرص أن تحتوي على أنبوب أو استراحة خطية</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>The Amiga لا يمكن إنقاذ الولاية</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>The Amiga الولاية فارغة</value></data>

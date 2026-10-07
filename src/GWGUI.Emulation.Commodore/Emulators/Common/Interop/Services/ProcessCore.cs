@@ -43,10 +43,10 @@ internal sealed class ProcessCore : IEmulatorCore
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
-    public double FramesPerSecond { get; private set; } = 50;
-    public int SampleRate { get; private set; } = 44100;
+    public double FramesPerSecond { get; private set; } = ExternalHostCallbacksConstants.DefaultFrameRate;
+    public int SampleRate { get; private set; } = ExternalHostCallbacksConstants.DefaultSampleRate;
     public int DiskCount { get; private set; }
-    public int CurrentDiskIndex { get; private set; } = -1;
+    public int CurrentDiskIndex { get; private set; } = ExternalCoreConstants.NoSelectedDisk;
 
     public bool TryDequeueAudio(out AudioChunk? chunk)
     {
@@ -66,20 +66,20 @@ internal sealed class ProcessCore : IEmulatorCore
         if (!File.Exists(_hostExecutablePath))
             throw new FileNotFoundException(CoreExceptions.HostExecutableNotFound(), _hostExecutablePath);
 
-        var pipeName = $"gwgui-amiga-{Guid.NewGuid():N}";
-        var videoMapName = $"gwgui-amiga-video-{Guid.NewGuid():N}";
+        Directory.CreateDirectory(sessionDirectory);
+        var pipeName = string.Concat(ProcessCoreConstants.PipeNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
+        var videoMapName = string.Concat(ProcessCoreConstants.VideoMapNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
         _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        _videoMap = _videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
+        _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        const int pipeBufferSize = 8 * 1024 * 1024;
-        _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte,
-            PipeOptions.Asynchronous, pipeBufferSize, pipeBufferSize);
+        _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte,
+            PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
         var startInfo = new ProcessStartInfo(_hostExecutablePath)
         {
             UseShellExecute = false,
             CreateNoWindow = true,
-            WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
+            WorkingDirectory = Path.GetFullPath(sessionDirectory)
         };
         startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
         startInfo.ArgumentList.Add(pipeName);
@@ -89,13 +89,14 @@ internal sealed class ProcessCore : IEmulatorCore
         catch
         {
             if (!_process.HasExited) _process.Kill(true);
+            _process.WaitForExit();
             _process.Dispose();
             _process = null;
             throw;
         }
         try
         {
-            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(ProcessCoreConstants.InitializationTimeoutSeconds));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
@@ -111,7 +112,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
             CoreName = Response.ReadString();
             CoreVersion = Response.ReadString();
-            SupportedContentExtensions = Response.ReadString().Split('|', StringSplitOptions.RemoveEmptyEntries)
+            SupportedContentExtensions = Response.ReadString().Split(ProcessCoreConstants.ExtensionSeparator, StringSplitOptions.RemoveEmptyEntries)
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
@@ -211,7 +212,7 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    if (!_process.WaitForExit(5_000)) _process.Kill(true);
+                    if (!_process.WaitForExit(ProcessCoreConstants.ProcessExitTimeoutMilliseconds)) _process.Kill(true);
                     _process.WaitForExit();
                 }
                 finally { _process.Dispose(); }
@@ -254,7 +255,7 @@ internal sealed class ProcessCore : IEmulatorCore
         catch (Exception error) when (error is IOException or EndOfStreamException or OperationCanceledException or InvalidDataException)
         {
             var timedOut = error is OperationCanceledException;
-            var exit = _process is { HasExited: true } ? $" It exited with code {_process.ExitCode}." : string.Empty;
+            var exit = _process is { HasExited: true } ? string.Format(ProcessCoreConstants.ProcessExitDetailFormat, _process.ExitCode) : string.Empty;
             _connectionFailed = true;
             TerminateProcess();
             throw new InvalidOperationException(timedOut
@@ -265,11 +266,11 @@ internal sealed class ProcessCore : IEmulatorCore
 
     private async Task<byte[]> ReadResponseAsync()
     {
-        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(ProcessCoreConstants.CommandTimeoutSeconds));
         var header = new byte[sizeof(int)];
         await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
         var length = BinaryPrimitives.ReadInt32LittleEndian(header);
-        if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
+        if (length is < BufferConstants.EndOfStreamByteCount or > EmulationHostProtocolConstants.MaximumBlobLength)
             throw new InvalidDataException(CoreExceptions.InvalidResponseLength(length));
         var response = GC.AllocateUninitializedArray<byte>(length);
         await _pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);

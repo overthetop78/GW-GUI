@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>A PUAE a mag nem kér teljes tartalommeneteket, ahogy azt ez a fogadó megköveteli.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>A PUAE A mag nem támogatja a média nélkül történő kezdést.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>A PUAE core elutasította a beállított tartalmat.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>A Amiga A lejátszólista nem tartalmazhat több mint 64 médiaképet.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>A Amiga A lemezcímke nem tartalmazhat cső- vagy vonaltörést.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>A Amiga Az államot nem lehetett megmenteni.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>A Amiga Az állam üres.</value></data>

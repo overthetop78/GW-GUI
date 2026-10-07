@@ -14,4 +14,33 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Commodore Amiga 4000</value></data>
   <data name="Emulation.Commodore.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Commodore Amiga CD32</value></data>
+  <data name="Emulation.Commodore.Model.C64" xml:space="preserve"><value>C64</value></data>
+  <data name="Emulation.Commodore.Model.C64Dtv" xml:space="preserve"><value>C64DTV</value></data>
+  <data name="Emulation.Commodore.Model.C64SuperCpu" xml:space="preserve"><value>C64 SuperCPU</value></data>
+  <data name="Emulation.Commodore.Model.C128" xml:space="preserve"><value>C128</value></data>
+  <data name="Emulation.Commodore.Model.CbmII510" xml:space="preserve"><value>CBM-II 510</value></data>
+  <data name="Emulation.Commodore.Model.CbmII610" xml:space="preserve"><value>CBM-II 610</value></data>
+  <data name="Emulation.Commodore.Model.CbmII620" xml:space="preserve"><value>CBM-II 620</value></data>
+  <data name="Emulation.Commodore.Model.CbmII620Plus" xml:space="preserve"><value>CBM-II 620+</value></data>
+  <data name="Emulation.Commodore.Model.CbmII710" xml:space="preserve"><value>CBM-II 710</value></data>
+  <data name="Emulation.Commodore.Model.CbmII720" xml:space="preserve"><value>CBM-II 720</value></data>
+  <data name="Emulation.Commodore.Model.CbmII720Plus" xml:space="preserve"><value>CBM-II 720+</value></data>
+  <data name="Emulation.Commodore.Model.Pet2001" xml:space="preserve"><value>PET 2001</value></data>
+  <data name="Emulation.Commodore.Model.Pet3008" xml:space="preserve"><value>PET 3008</value></data>
+  <data name="Emulation.Commodore.Model.Pet3016" xml:space="preserve"><value>PET 3016</value></data>
+  <data name="Emulation.Commodore.Model.Pet3032" xml:space="preserve"><value>PET 3032</value></data>
+  <data name="Emulation.Commodore.Model.Pet3032B" xml:space="preserve"><value>PET 3032B</value></data>
+  <data name="Emulation.Commodore.Model.Pet4016" xml:space="preserve"><value>PET 4016</value></data>
+  <data name="Emulation.Commodore.Model.Pet4032" xml:space="preserve"><value>PET 4032</value></data>
+  <data name="Emulation.Commodore.Model.Pet4032B" xml:space="preserve"><value>PET 4032B</value></data>
+  <data name="Emulation.Commodore.Model.Pet8032" xml:space="preserve"><value>PET 8032</value></data>
+  <data name="Emulation.Commodore.Model.Pet8096" xml:space="preserve"><value>PET 8096</value></data>
+  <data name="Emulation.Commodore.Model.Pet8296" xml:space="preserve"><value>PET 8296</value></data>
+  <data name="Emulation.Commodore.Model.SuperPet" xml:space="preserve"><value>SuperPET</value></data>
+  <data name="Emulation.Commodore.Model.C16" xml:space="preserve"><value>C16</value></data>
+  <data name="Emulation.Commodore.Model.Plus4" xml:space="preserve"><value>Plus/4</value></data>
+  <data name="Emulation.Commodore.Model.V364" xml:space="preserve"><value>V364</value></data>
+  <data name="Emulation.Commodore.Model.C232" xml:space="preserve"><value>Commodore 232</value></data>
+  <data name="Emulation.Commodore.Model.Vic20" xml:space="preserve"><value>VIC-20</value></data>
+  <data name="Emulation.Commodore.Model.Vic21" xml:space="preserve"><value>VIC-21 / Super VIC</value></data>
 </root>

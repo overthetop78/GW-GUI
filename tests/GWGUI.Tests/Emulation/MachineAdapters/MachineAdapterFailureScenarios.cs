@@ -23,7 +23,7 @@ internal static class MachineAdapterFailureScenarios
             : (Exception)new InvalidOperationException("synthetic adapter refusal");
         using var core = new Core { InitializeError=failure<2?error:null, FrameError=failure==2?error:null };
         var cleanups=0;
-        await using var machine = new Machine(Guid.NewGuid(),MachineConfiguration.A500("virtual-rom"),core,[],"virtual-session",
+        await using var machine = new Machine(Guid.NewGuid(),new MachineConfiguration("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","virtual-rom"}}, Options: new Dictionary<string,string>(), Id: Guid.NewGuid()),core,[],"virtual-session",
             deleteSession:path=>{Assert.Equal("virtual-session",path);cleanups++;});
         if(failure<2)
         {
@@ -31,7 +31,7 @@ internal static class MachineAdapterFailureScenarios
             Assert.Same(error,translated.InnerException);
             Assert.Equal(EmulationMessageCode.MachineStartFailed,translated.MessageData.MessageCode);
             await machine.StopAsync(); Assert.Equal(EmulationMachineState.Faulted,machine.State);
-            Assert.Equal("synthetic diagnostic",translated.Data["AmigaDiagnostics"]);
+            Assert.Equal("synthetic diagnostic",translated.Data["CommodoreDiagnostics"]);
             Assert.Equal(0,core.Stops);
         }
         else if(failure==2)
@@ -60,7 +60,7 @@ internal static class MachineAdapterFailureScenarios
     {
         var core = new Core { ExpectedMediaPath = "disk-2.adf" };
         var cleanups = 0;
-        var machine = new Machine(Guid.NewGuid(), MachineConfiguration.A500("virtual-rom"), core,
+        var machine = new Machine(Guid.NewGuid(), new MachineConfiguration("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","virtual-rom"}}, Options: new Dictionary<string,string>(), Id: Guid.NewGuid()), core,
             [new MediaConfiguration("disk-1.adf",
                 GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.MediaCategory.Floppy)], "virtual-session",
             deleteSession: path => { Assert.Equal("virtual-session", path); cleanups++; });
@@ -101,7 +101,7 @@ internal static class MachineAdapterFailureScenarios
         public IReadOnlySet<string> SupportedContentExtensions=>new HashSet<string>{"adf"};
         public double FramesPerSecond=>1000; public int SampleRate=>44100; public int DiskCount=>0; public int CurrentDiskIndex=>0;
         public void Initialize(MachineConfiguration configuration,string sessionDirectory,string? saveDirectory=null)
-        {Assert.Equal("virtual-rom",configuration.KickstartPath);Assert.Equal("virtual-session",sessionDirectory);if(InitializeError is {} error)throw error;}
+        {Assert.Equal("virtual-rom",configuration.FirmwarePath("configuration.kickstartPath"));Assert.Equal("virtual-session",sessionDirectory);if(InitializeError is {} error)throw error;}
         public void RunFrame(){Interlocked.Increment(ref Frames);FrameEntered.TrySetResult();if(BlockFrame){if(!FrameRelease.Wait(TimeSpan.FromSeconds(5)))throw new TimeoutException();BlockFrame=false;}if(FrameError is {} error)throw error;}
         public void Stop(){Stops++;Stopped.TrySetResult();}
         public void Dispose(){Disposals++;FrameRelease.Set();}

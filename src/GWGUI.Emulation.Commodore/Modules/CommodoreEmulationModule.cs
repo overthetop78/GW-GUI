@@ -1,4 +1,5 @@
 using System.IO;
+using System.Security.Cryptography;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Commodore.Modules;
@@ -8,7 +9,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     IEmulationModuleLocalization
 {
     private static readonly EmulationModuleLocalization Localization = new(
-        typeof(CommodoreEmulationModule).Assembly, "GWGUI.Emulation.Commodore.Resources.Emulation");
+        typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
 
     public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
         Localization.TryGetString(key, culture, out value);
@@ -35,7 +36,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     public string BrandImageResourceName =>
-        $"{EmulationModuleConstants.AssetResourcePrefix}.amiga.png";
+        EmulationModuleConstants.BrandImageResourceName;
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
@@ -46,119 +47,84 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
         var model = ModelCatalog.Get(machineId);
+        var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var visibility = DefaultVisibility with
         {
             Tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
             {
-                EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
-                EmulationMachineTab.Controllers => model.ControllerPortCount > 0,
+                EmulationMachineTab.Mouse => model.MouseButtonCount > MachineSettingsConstants.NoDevices,
+                EmulationMachineTab.Controllers => model.ControllerPortCount > MachineSettingsConstants.NoDevices,
                 EmulationMachineTab.Keyboard => model.HasKeyboard,
+                EmulationMachineTab.Rom => _engine.Adapter(current).GetFirmwareSlots(current).Count > BufferConstants.EmptyCollectionCount,
                 _ => item.Value
             })
         };
-        var current = configuration as MachineConfiguration
-            ?? (MachineConfiguration)CreateConfiguration(machineId);
         return new EmulationMachineSettings(machineId, visibility,
             SettingsDescriptionFunctions.Create(model, current));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId) =>
-        MachineConfiguration.A500(string.Empty) with
-        {
-            Model = machineId,
-            Id = Guid.NewGuid(),
-            InitialDiskPath = null
-        };
+        new MachineConfiguration(ModelCatalog.Get(machineId).Id, EmulatorCatalog.DefaultFor(machineId), Id: Guid.NewGuid());
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
-        if (configuration is not MachineConfiguration)
-            throw new ArgumentException(nameof(configuration));
-        var model = ModelCatalog.Get(machineId);
-        return MachineConfiguration.A500(string.Empty) with
-        {
-            Model = model.Id,
-            Options = new Dictionary<string, string>
-            {
-                [SettingsConstants.OptionModel] = model.BackendModel,
-                [SettingsConstants.OptionVideoStandard] = SettingsDescriptionFunctionsConstants.PAL,
-                [SettingsConstants.OptionFloppyMultidrive] = SettingsDescriptionFunctionsConstants.Disabled,
-                [SettingsConstants.OptionFloppyWriteProtection] = SettingsDescriptionFunctionsConstants.Disabled
-            },
-            Id = Guid.NewGuid(),
-            InitialDiskPath = null
-        };
+        if (configuration is not MachineConfiguration) throw new ArgumentException(nameof(configuration));
+        return CreateConfiguration(machineId);
     }
 
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
         IReadOnlyDictionary<string, string?> values)
     {
-        if (configuration is not MachineConfiguration amiga)
+        if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
-        var options = new Dictionary<string, string>(amiga.Options ?? new Dictionary<string, string>());
+        var slots = _engine.Adapter(current).GetFirmwareSlots(current);
+        var firmwareFields = slots.Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
+        var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>());
         foreach (var value in values)
         {
-            if (value.Key is SettingsConstants.KickstartPath or SettingsConstants.ExtendedRomPath
-                or SettingsConstants.RomKeyPath or SettingsConstants.AudioEnabled
-                or SettingsConstants.CpuOriginalSpeed
-                or SettingsConstants.CpuSpeed or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency or SettingsConstants.AudioStereoSeparation
-                or SettingsConstants.ParallelJoystickAdapter) continue;
+            if (firmwareFields.Contains(value.Key) || value.Key is MachineSettingsConstants.AudioEnabled
+                or MachineSettingsConstants.AudioOutput
+                or MachineSettingsConstants.AudioLatency or MachineSettingsConstants.AudioStereoSeparation) continue;
             if (value.Value is null) options.Remove(value.Key);
             else options[value.Key] = value.Value;
         }
-        if (values.TryGetValue(SettingsConstants.OptionSoundVolumeCd, out var cdVolume)
-            && !string.IsNullOrWhiteSpace(cdVolume))
-            options[SettingsConstants.OptionSoundVolumeCd] =
-                cdVolume.TrimEnd(SettingsDescriptionFunctionsConstants.PercentSuffix)
-                + SettingsDescriptionFunctionsConstants.PercentSuffix;
-        if (values.GetValueOrDefault(SettingsConstants.CpuSpeed)?.Split('|') is [var throttle, var multiplier])
-        {
-            options[SettingsConstants.OptionCpuThrottle] = throttle;
-            options[SettingsConstants.OptionCpuMultiplier] = multiplier;
-        }
-        var currentAudio = amiga.Audio ?? new AudioConfiguration();
-        var hasOutput = values.TryGetValue(SettingsConstants.AudioOutput, out var output);
-        var latency = int.TryParse(values.GetValueOrDefault(SettingsConstants.AudioLatency), out var latencyValue)
+        var currentAudio = current.Audio ?? new AudioConfiguration();
+        var hasOutput = values.TryGetValue(MachineSettingsConstants.AudioOutput, out var output);
+        var latency = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioLatency), out var latencyValue)
             ? latencyValue : currentAudio.LatencyMilliseconds;
-        var stereo = int.TryParse(values.GetValueOrDefault(SettingsConstants.AudioStereoSeparation),
+        var stereo = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioStereoSeparation),
             out var stereoValue) ? stereoValue : currentAudio.StereoSeparation;
-        var currentInput = amiga.Input ?? new InputConfiguration();
-        var input = currentInput with
-        {
-            ParallelJoystickAdapterEnabled = values.TryGetValue(
-                SettingsConstants.ParallelJoystickAdapter, out var parallelJoystickAdapter)
-                    ? parallelJoystickAdapter == SettingsDescriptionFunctionsConstants.Enabled
-                    : currentInput.ParallelJoystickAdapterEnabled
-        };
-        return amiga with
+        var updated = current with
         {
             Options = options,
-            KickstartPath = values.TryGetValue(SettingsConstants.KickstartPath, out var kickstartPath)
-                ? kickstartPath ?? string.Empty : amiga.KickstartPath,
-            ExtendedRomPath = values.TryGetValue(SettingsConstants.ExtendedRomPath, out var extendedRomPath)
-                ? OptionalPath(extendedRomPath) : amiga.ExtendedRomPath,
-            RomKeyPath = values.TryGetValue(SettingsConstants.RomKeyPath, out var romKeyPath)
-                ? OptionalPath(romKeyPath) : amiga.RomKeyPath,
-            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var audioEnabled)
-                ? audioEnabled == SettingsDescriptionFunctionsConstants.Enabled : amiga.AudioEnabled,
+            FirmwarePaths = ApplyFirmwarePaths(current, values, firmwareFields),
+            AudioEnabled = values.TryGetValue(MachineSettingsConstants.AudioEnabled, out var audioEnabled)
+                ? audioEnabled == MachineSettingsConstants.Enabled : current.AudioEnabled,
             Audio = currentAudio with
             {
                 OutputDeviceId = hasOutput
                     ? string.IsNullOrWhiteSpace(output) ? null : output
                     : currentAudio.OutputDeviceId,
                 LatencyMilliseconds = latency,
-                Interpolation = options.GetValueOrDefault(SettingsConstants.OptionSoundInterpol) ?? currentAudio.Interpolation,
-                Filter = options.GetValueOrDefault(SettingsConstants.OptionSoundFilter) ?? currentAudio.Filter,
                 StereoSeparation = stereo
             },
-            Input = input
         };
+        return _engine.Adapter(updated).ApplyBackendSettings(updated, values);
     }
 
 
-    private static string? OptionalPath(string? path) =>
-        string.IsNullOrWhiteSpace(path) ? null : path;
+    private static IReadOnlyDictionary<string, string> ApplyFirmwarePaths(MachineConfiguration configuration,
+        IReadOnlyDictionary<string, string?> values, IReadOnlySet<string> fields)
+    {
+        var paths = new Dictionary<string, string>(configuration.FirmwarePaths ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        foreach (var field in fields)
+        {
+            if (!values.TryGetValue(field, out var path)) continue;
+            if (string.IsNullOrWhiteSpace(path)) paths.Remove(field);
+            else paths[field] = path;
+        }
+        return paths;
+    }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
         new Dictionary<string, string>((configuration as MachineConfiguration
@@ -178,8 +144,8 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration amiga
-        ? new ValueTask(_store.SaveAsync(amiga, cancellationToken))
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration current
+        ? new ValueTask(_store.SaveAsync(current, cancellationToken))
         : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
@@ -198,10 +164,10 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
     {
-        if (configuration is not MachineConfiguration amiga)
+        if (configuration is not MachineConfiguration current)
             return ValueTask.FromException(new ArgumentException(nameof(configuration)));
-        ConfigurationValidationFunctions.ValidateForSave(amiga);
-        return new ValueTask(_store.SaveAsync(amiga, cancellationToken));
+        ConfigurationValidationFunctions.ValidateForSave(current);
+        return new ValueTask(_store.SaveAsync(current, cancellationToken));
     }
 
     public ValueTask DeleteConfigurationAsync(Guid configurationId,
@@ -216,7 +182,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.Get(Emulator.PUAE);
+        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
         var adapter = _engine.Adapter(definition.Id);
         return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
             .ConfigureAwait(false);
@@ -226,7 +192,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.Get(Emulator.PUAE);
+        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
         var adapter = _engine.Adapter(definition.Id);
         return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken)
             .ConfigureAwait(false);
@@ -236,7 +202,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.Get(Emulator.PUAE);
+        var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
         var adapter = _engine.Adapter(definition.Id);
         return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken)
             .ConfigureAwait(false);
@@ -271,7 +237,13 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var adapter = _engine.Adapter(emulatorId);
         if (!adapter.Definition.MachineIds.Contains(current.Model))
             throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
-        return ValueTask.FromResult<IEmulationConfiguration>(current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
+        var selected = current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey), Options = null };
+        var slots = adapter.GetFirmwareSlots(selected).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
+        return ValueTask.FromResult<IEmulationConfiguration>(selected with
+        {
+            FirmwarePaths = current.FirmwarePaths?.Where(pair => slots.Contains(pair.Key))
+                .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
+        });
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
@@ -302,54 +274,39 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        var entries = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
-            .Select(firmware => new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
-                firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
-                FirmwareCompatibility(firmware, machineId), firmware.Type switch
-                {
-                    FirmwareType.Kickstart => SettingsConstants.KickstartPath,
-                    FirmwareType.ExtendedRom => SettingsConstants.ExtendedRomPath,
-                    FirmwareType.RomKey => SettingsConstants.RomKeyPath,
-                    _ => null
-                })).ToArray();
+        var current = (MachineConfiguration)configuration;
+        var slots = _engine.Adapter(current).GetFirmwareSlots(current);
+        if (slots.Count == MachineSettingsConstants.NoDevices)
+            return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
+        var directory = GetFirmwareDirectory(machineId);
+        Directory.CreateDirectory(directory);
+        var entries = _engine.Adapter(current).ScanFirmware(current, directory, cancellationToken);
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(entries);
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration,
         EmulationFirmwareCandidate firmware)
     {
-        var amiga = configuration as MachineConfiguration
+        var current = configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
-        return firmware.DestinationFieldId switch
-        {
-            SettingsConstants.KickstartPath => amiga with { KickstartPath = firmware.Path },
-            SettingsConstants.ExtendedRomPath => amiga with { ExtendedRomPath = firmware.Path },
-            SettingsConstants.RomKeyPath => amiga with { RomKeyPath = firmware.Path },
-            _ => throw new InvalidOperationException(nameof(firmware))
-        };
-    }
-
-    private static EmulationFirmwareCompatibility FirmwareCompatibility(Firmware firmware, string machineId)
-    {
-        if (firmware.Type == FirmwareType.Unknown) return EmulationFirmwareCompatibility.Incompatible;
-        if (firmware.Type == FirmwareType.RomKey) return EmulationFirmwareCompatibility.Compatible;
-        if (!firmware.CompatibleModels.Contains(machineId, StringComparer.OrdinalIgnoreCase))
-            return EmulationFirmwareCompatibility.Incompatible;
-        return firmware.IsOfficial ? EmulationFirmwareCompatibility.Official
-            : firmware.IsKnown ? EmulationFirmwareCompatibility.Compatible
-            : EmulationFirmwareCompatibility.PartiallyCompatible;
+        if (firmware.DestinationFieldId is not { } field
+            || !_engine.Adapter(current).GetFirmwareSlots(current).Any(slot => slot.FieldId == field))
+            throw new ArgumentException(nameof(firmware));
+        return current.WithFirmwarePath(field, firmware.Path);
     }
 
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
         EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {
-        if (configuration is not MachineConfiguration amiga)
+        if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
-        if (!File.Exists(amiga.KickstartPath))
-            throw new EmulationMessageException(new EmulationMessage(
-                EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing,
-                EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
-        var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(amiga,
+        ConfigurationValidationFunctions.ValidateForSave(current);
+        foreach (var slot in _engine.Adapter(current).GetFirmwareSlots(current))
+            if (slot.IsRequired && string.IsNullOrWhiteSpace(current.FirmwarePath(slot.FieldId)))
+                throw new EmulationMessageException(new EmulationMessage(
+                    EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing,
+                    EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+        var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(current,
             services.ConvertedMediaDirectory).ConfigureAwait(false);
         var emulator = _engine.Adapter(runtime);
         var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken)
@@ -372,7 +329,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         return new EmulationMachineRuntime(runtime,
             CreateMachineFactory(_engine, runtime, creationContext), devices, mounted,
             MachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, true,
-            (media, _) => RuntimeMediaFunctions.PrepareMediaAsync(media,
+            (media, _) => RuntimeMediaFunctions.PrepareMediaAsync(runtime, media,
                 services.ConvertedMediaDirectory));
     }
 
@@ -380,14 +337,6 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         Engine engine,
         MachineConfiguration configuration,
         EmulatorCreationContext context) =>
-        media => engine.CreateMachine(configuration with { Media = ToAmigaMedia(media) }, context);
+        media => engine.CreateMachine(configuration with { Media = EmulationMediaConversionFunctions.FromCommon(media) }, context);
 
-    private static IReadOnlyList<MediaConfiguration> ToAmigaMedia(IEnumerable<EmulationMedia> media) =>
-        media.Select(item => new MediaConfiguration(item.Path, item.Type switch
-        {
-            EmulationMediaType.Floppy => MediaCategory.Floppy,
-            EmulationMediaType.HardDisk => MediaCategory.HardDrive,
-            EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
-            _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
-        }, IsReadOnly: item.IsReadOnly)).ToArray();
 }

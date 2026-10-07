@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>The The The PUAE הליבה אינה מבקשת נתיבי תוכן מלאים כפי שנדרש על ידי המארח הזה.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>The The The PUAE הליבה לא תומכת בהתחל ללא תקשורת.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>The The The PUAE הליבה סירבה לתוכן מוגדר.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An An An An An Amiga רשימת השמעה לא יכולה להכיל יותר מ-64 תמונות מדיה.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An An An An An Amiga תווית דיסק אינה יכולה להכיל צינור או הפסקת קו.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>The The The Amiga המדינה לא יכולה להינצל.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>The The The Amiga המדינה ריקה.</value></data>

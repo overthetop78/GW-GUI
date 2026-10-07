@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>Emulates Amiga computer, CDTV e CD32 sistemi.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>La riproduzione sonora è abilitata</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>La riproduzione sonora è disattivata</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>ROMA Kernal</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>Carattere ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>Editore ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (basso)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM (alto)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>C64 Kernal ROM</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>Funzione ROM (basso)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>Funzione ROM (alto)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>SuperCPU ROM</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>ROM internazionale del Kernal</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>Personaggio internazionale ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 azionamento ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET 6809 ROMA A</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 ROMA B</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 ROMA C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 ROMA D</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 ROMA E</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809 ROMA F</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>Emula computer Commodore con VICE.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>Emola il Commodore C64 con Frodo.</value></data>
 </root>

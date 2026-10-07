@@ -5,22 +5,22 @@ internal static class InputSnapshotDictionary
     internal static readonly IReadOnlyDictionary<string, int> ButtonIndexes =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {
-            [InputSnapshotFunctionsConstants.B] = 0,
-            [InputSnapshotFunctionsConstants.Y] = 1,
-            [InputSnapshotFunctionsConstants.Select] = 2,
-            [InputSnapshotFunctionsConstants.Start] = 3,
-            [InputSnapshotFunctionsConstants.Up] = 4,
-            [InputSnapshotFunctionsConstants.Down] = 5,
-            [InputSnapshotFunctionsConstants.Left] = 6,
-            [InputSnapshotFunctionsConstants.Right] = 7,
-            [InputSnapshotFunctionsConstants.A] = 8,
-            [InputSnapshotFunctionsConstants.X] = 9,
-            [InputSnapshotFunctionsConstants.L] = 10,
-            [InputSnapshotFunctionsConstants.R] = 11,
-            [InputSnapshotFunctionsConstants.L2] = 12,
-            [InputSnapshotFunctionsConstants.R2] = 13,
-            [InputSnapshotFunctionsConstants.L3] = 14,
-            [InputSnapshotFunctionsConstants.R3] = 15
+            [InputSnapshotFunctionsConstants.B] = (int)ControllerButton.B,
+            [InputSnapshotFunctionsConstants.Y] = (int)ControllerButton.Y,
+            [InputSnapshotFunctionsConstants.Select] = (int)ControllerButton.Select,
+            [InputSnapshotFunctionsConstants.Start] = (int)ControllerButton.Start,
+            [InputSnapshotFunctionsConstants.Up] = (int)ControllerButton.Up,
+            [InputSnapshotFunctionsConstants.Down] = (int)ControllerButton.Down,
+            [InputSnapshotFunctionsConstants.Left] = (int)ControllerButton.Left,
+            [InputSnapshotFunctionsConstants.Right] = (int)ControllerButton.Right,
+            [InputSnapshotFunctionsConstants.A] = (int)ControllerButton.A,
+            [InputSnapshotFunctionsConstants.X] = (int)ControllerButton.X,
+            [InputSnapshotFunctionsConstants.L] = (int)ControllerButton.L,
+            [InputSnapshotFunctionsConstants.R] = (int)ControllerButton.R,
+            [InputSnapshotFunctionsConstants.L2] = (int)ControllerButton.L2,
+            [InputSnapshotFunctionsConstants.R2] = (int)ControllerButton.R2,
+            [InputSnapshotFunctionsConstants.L3] = (int)ControllerButton.L3,
+            [InputSnapshotFunctionsConstants.R3] = (int)ControllerButton.R3
         };
 
     internal static readonly IReadOnlyDictionary<string, MouseAction> DefaultMouseMappings =

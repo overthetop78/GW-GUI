@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>Émule les ordinateurs Amiga et les systèmes CDTV et CD32.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>La lecture du son est activée</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>La lecture du son est désactivée</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>ROM KERNAL</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>ROM de caractère</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>Éditeur ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (faible)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM (élevé)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>C64 KERNAL ROM</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>Fonction ROM (faible)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>Fonction ROM (élevée)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>ROM SuperCPU</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>Organisation mondiale de la santé ROM</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>ROM de caractère international</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 conduite ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET 6809 ROM A</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 ROM B</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 ROM C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 ROM D</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 ROM E</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809 ROM F</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>Émule des ordinateurs Commodore avec VICE.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>Émule la Commodore C64 avec Frodo.</value></data>
 </root>

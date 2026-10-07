@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>W PUAE rdzeń nie wymaga pełnej zawartości ścieżek zgodnie z wymaganiami tego komputera.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>W PUAE rdzeń nie wspiera startu bez mediów.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>W PUAE rdzeń odmówił skonfigurowanej treści.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An Amiga playlist nie może zawierać więcej niż 64 obrazków medialnych.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An Amiga etykieta dysku nie może zawierać rury lub pęknięcia linii.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>W Amiga stan nie mógł być zapisany.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>W Amiga Stan jest pusty.</value></data>

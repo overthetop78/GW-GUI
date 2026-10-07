@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>El PUAE Core no solicita rutas de contenido completo como lo exige este host.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>El PUAE El núcleo no soporta empezar sin medios.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>El PUAE Core rechazó el contenido configurado.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>Una Amiga lista de reproducción no puede contener más de 64 imágenes multimedia.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>Una Amiga La etiqueta del disco no puede contener una tubería o una rotura de línea.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>El Amiga El estado no podría ser salvado.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>El Amiga El estado está vacío.</value></data>

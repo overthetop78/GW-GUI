@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>Emulasi Amiga komputer, CDTV dan CD32 sistem.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Pemutaran suara diaktifkan</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Pemutaran suara dinonaktifkan</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>ROM Kernal</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>ROM Karakter</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>ROM Penyunting</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>ROM BASIC (rendah)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>ROM BASIC (tinggi)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>ROM Kernal C64</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>ROM Fungsi (rendah)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>ROM Fungsi (tinggi)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>ROM superCPU</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>ROM Kernal Internasional</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>ROM karakter internasional</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>ROM drive 1541</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>ROM 6809 SuperPET</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 ROM B</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>ROM 6809 SuperPET C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 ROM D</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 ROM E</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>ROM 6809 SuperPET F</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>Emulasi Commodore komputer dengan VICE.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>Mengemulasi Commodore C64 bersama Frodo.</value></data>
 </root>

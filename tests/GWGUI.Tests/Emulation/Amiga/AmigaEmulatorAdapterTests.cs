@@ -32,7 +32,7 @@ public sealed class AmigaEmulatorAdapterTests
     public void MachineConfigurationCrossesTheCoreHostJsonBoundary()
     {
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        var original = new MachineConfiguration("A500", "kickstart.rom", Core: Emulator.PUAE);
+        var original = new MachineConfiguration("A500", Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","kickstart.rom"}});
 
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(
             JsonSerializer.Serialize(original, options), options);
@@ -41,7 +41,7 @@ public sealed class AmigaEmulatorAdapterTests
         Assert.Equal(original.Id, restored.Id);
         Assert.Equal(original.Model, restored.Model);
         Assert.Equal(original.Core, restored.Core);
-        Assert.Equal(original.KickstartPath, restored.KickstartPath);
+        Assert.Equal(original.FirmwarePath("configuration.kickstartPath"), restored.FirmwarePath("configuration.kickstartPath"));
     }
 
     [Fact]
@@ -59,12 +59,12 @@ public sealed class AmigaEmulatorAdapterTests
     }
 
     [Fact]
-    public void EngineRegistersThreeProfilesThroughTheCommonAdapter()
+    public void EngineRegistersAllProfilesThroughTheCommonAdapter()
     {
         var field = typeof(Engine).GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic);
         var adapters = Assert.IsAssignableFrom<System.Collections.IEnumerable>(field!.GetValue(new Engine()));
         var entries = adapters.Cast<object>().ToArray();
-        Assert.Equal(new[] { "amiberry", "puae", "puae2021" }, entries.Select(entry =>
+        Assert.Equal(new[] { "amiberry", "puae", "puae2021", "frodo", "vice_x64", "vice_x64sc", "vice_x64dtv", "vice_xscpu64", "vice_x128", "vice_xcbm5x0", "vice_xcbm2", "vice_xpet", "vice_xplus4", "vice_xvic" }.Order(), entries.Select(entry =>
             (string)entry.GetType().GetProperty("Key")!.GetValue(entry)!).Order());
     }
 
@@ -76,14 +76,14 @@ public sealed class AmigaEmulatorAdapterTests
     {
         using var httpClient = new HttpClient();
         var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
-        foreach (var machine in module.Machines)
+        foreach (var machine in module.Machines.Where(machine => new[] {"A500","A500PLUS","A600","A1000","A1200","A2000","A3000","A4000","CDTV","CD32"}.Contains(machine.Id)))
         {
             var original = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(machine.Id));
             Assert.Equal(Emulator.PUAE, original.Core);
             var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(original, id));
             Assert.Equal(core, selected.Core);
             var installations = await module.GetEmulatorInstallationsAsync(selected);
-            Assert.Equal(new[] { "amiberry", "puae", "puae2021" }, installations.Select(item => item.EmulatorId));
+            Assert.Equal(new[] { "puae", "puae2021", "amiberry" }, installations.Select(item => item.EmulatorId));
             Assert.Single(installations.Select(item => item.DescriptionResourceKey).Distinct());
             Assert.Equal(id, (await module.GetEmulatorInstallationAsync(selected)).EmulatorId);
             Assert.True(module.Describe(machine.Id, selected).Visibility.Tabs[EmulationMachineTab.Rom]);
@@ -96,7 +96,7 @@ public sealed class AmigaEmulatorAdapterTests
     public async Task PuaeStartupFailureKeepsTechnicalDetailOutOfTheDialogMessage()
     {
         var machine = new PuaeMachineFactory().Create(
-            new MachineConfiguration("A600", "kickstart.rom", Core: Emulator.PUAE),
+            new MachineConfiguration("A600", Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","kickstart.rom"}}),
             new EmulatorCreationContext(Path.GetTempPath(), "virtual-core", "virtual-host", null, null));
         try
         {
@@ -123,7 +123,7 @@ public sealed class AmigaEmulatorAdapterTests
     public async Task PuaeCoreAndFirmwareUseTheirMachineSubdirectories()
     {
         var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-        var moduleDirectory = Path.Combine(directory, "Emulation", "Machines", "amiga");
+        var moduleDirectory = Path.Combine(directory, "Emulation", "Machines", "commodore");
         var coreDirectory = Path.Combine(moduleDirectory, "Core", "puae");
         Directory.CreateDirectory(coreDirectory);
         try
@@ -233,7 +233,7 @@ public sealed class AmigaEmulatorAdapterTests
             httpClient, Path.GetTempPath());
 
         var missing = new HashSet<string>(StringComparer.Ordinal);
-        foreach (var machine in module.Machines)
+        foreach (var machine in module.Machines.Where(machine => new[] {"A500","A500PLUS","A600","A1000","A1200","A2000","A3000","A4000","CDTV","CD32"}.Contains(machine.Id)))
         foreach (var field in module.Describe(machine.Id,
                      module.CreateConfiguration(machine.Id)).Blocks.SelectMany(block => block.Fields))
         {

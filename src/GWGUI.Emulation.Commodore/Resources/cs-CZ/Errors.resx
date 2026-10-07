@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>V PUAE jádro nevyžaduje kompletní obsahové cesty, jak vyžaduje tento hostitel.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>V PUAE jádro nepodporuje začátek bez médií.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>V PUAE jádro odmítlo nakonfigurovaný obsah.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>A Amiga playlist nemůže obsahovat více než 64 mediálních obrázků.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>A Amiga Štítek disku nemůže obsahovat potrubí nebo přerušení linky.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>V Amiga Stát nemohl být zachráněn.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>V Amiga Stav je prázdný.</value></data>

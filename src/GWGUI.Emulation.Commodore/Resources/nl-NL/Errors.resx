@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>De PUAE kern vraagt geen volledige inhoud paden zoals vereist door deze host.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>De PUAE core ondersteunt het starten zonder media niet.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>De PUAE kern weigerde de geconfigureerde inhoud.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>Een Amiga Afspeellijst kan niet meer dan 64 mediaafbeeldingen bevatten.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>Een Amiga disk label kan geen pijp of regelbreuk bevatten.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>De Amiga status kon niet worden opgeslagen.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>De Amiga staat is leeg.</value></data>

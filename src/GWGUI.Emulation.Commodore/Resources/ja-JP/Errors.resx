@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>とりあえず PUAE core は、このホストが要求するような、完全なコンテンツパスをリクエストしません。</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>とりあえず PUAE コアはメディアなしで起動するサポートをしません。</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>とりあえず PUAE コアは、構成されたコンテンツを拒否しました。</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>アナウンス Amiga playlist には 64 以上のメディア画像が含まれていることはできません。</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>アナウンス Amiga ディスクラベルは、パイプやラインブレイクを含まない。</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>とりあえず Amiga 状態は保存できません。</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>とりあえず Amiga 状態は空です。</value></data>

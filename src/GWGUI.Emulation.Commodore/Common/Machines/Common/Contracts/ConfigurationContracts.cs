@@ -2,11 +2,9 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
 
 public sealed record MachineConfiguration(
     string Model,
-    string KickstartPath,
+    Emulator Core,
+    IReadOnlyDictionary<string, string>? FirmwarePaths = null,
     string? InitialDiskPath = null,
-    string? ExtendedRomPath = null,
-    string? RomKeyPath = null,
-    Emulator Core = Emulator.PUAE,
     IReadOnlyDictionary<string, string>? Options = null,
     Guid Id = default,
     bool AudioEnabled = true,
@@ -17,19 +15,22 @@ public sealed record MachineConfiguration(
     int SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion,
     string? ValidatedCoreSha256 = null,
     IReadOnlyList<MediaConfiguration>? Media = null,
-    AudioConfiguration? Audio = null)
+    AudioConfiguration? Audio = null,
+    IReadOnlyList<EmulationMediaSlot>? ConfiguredMediaSlots = null)
     : GWGUI.Emulation.Interfaces.IEmulationConfiguration
 {
-    public string ModuleId => MachineConfigurationConstants.ModuleId;
+    public string ModuleId => EmulationModuleConstants.ModuleId;
     string GWGUI.Emulation.Interfaces.IEmulationConfiguration.MachineId => Model;
-    public static MachineConfiguration A500(string kickstartPath, string? diskPath = null) =>
-        new(MachineConfigurationConstants.A500, kickstartPath, diskPath, Options: new Dictionary<string, string>
-        {
-            [SettingsConstants.OptionModel] = MachineConfigurationConstants.A500,
-            [SettingsConstants.OptionVideoStandard] = MachineConfigurationConstants.PAL,
-            [SettingsConstants.OptionFloppyMultidrive] = MachineConfigurationConstants.Disabled,
-            [SettingsConstants.OptionFloppyWriteProtection] = MachineConfigurationConstants.Disabled
-        }, Id: Guid.NewGuid());
+
+    public string FirmwarePath(string fieldId) => FirmwarePaths?.GetValueOrDefault(fieldId) ?? string.Empty;
+
+    public MachineConfiguration WithFirmwarePath(string fieldId, string? path)
+    {
+        var paths = new Dictionary<string, string>(FirmwarePaths ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        if (string.IsNullOrWhiteSpace(path)) paths.Remove(fieldId);
+        else paths[fieldId] = path;
+        return this with { FirmwarePaths = paths };
+    }
 
     public MachineConfiguration EnsureId() => Id == Guid.Empty ? this with { Id = Guid.NewGuid() } : this;
 }

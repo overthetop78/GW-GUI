@@ -10,7 +10,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 public sealed class CoreReleaseService
 {
     private readonly CoreDefinition _definition;
-    public Uri LatestOfficialUri => new(_definition.DownloadUrl);
+    public Uri? LatestOfficialUri => _definition.DownloadUrl is { } url ? new(url) : null;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
 
@@ -45,16 +45,17 @@ public sealed class CoreReleaseService
         var releases = new List<CoreRelease>();
         if (_definition.RequiredRelease is { } required) releases.Add(required);
 
-        using var request = new HttpRequestMessage(HttpMethod.Head, LatestOfficialUri);
+        if (LatestOfficialUri is not { } latestUri) return releases;
+        using var request = new HttpRequestMessage(HttpMethod.Head, latestUri);
         using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
             cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
-        releases.Add(new CoreRelease($"official-{suffix}",
+        releases.Add(new CoreRelease(string.Concat(CoreReleaseConstants.OfficialReleaseIdPrefix, suffix),
             published is null ? CoreReleaseConstants.LibretroLatest
-                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · Libretro",
-            LatestOfficialUri, published, false, true));
+                : string.Format(CoreReleaseConstants.PublishedDisplayFormat, published.Value.LocalDateTime),
+            latestUri, published, false, true));
         return releases;
     }
 
@@ -86,17 +87,17 @@ public sealed class CoreReleaseService
             var total = response.Content.Headers.ContentLength;
             await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
             await using (var target = new FileStream(download, FileMode.Create, FileAccess.Write, FileShare.None,
-                             81920, FileOptions.Asynchronous))
+                             BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
             {
-                var buffer = new byte[81920];
-                long written = 0;
+                var buffer = new byte[BufferConstants.FileTransferBufferSize];
+                long written = BufferConstants.EmptyStreamLength;
                 int read;
-                while ((read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > 0)
+                while ((read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > BufferConstants.EndOfStreamByteCount)
                 {
                     await target.WriteAsync(buffer.AsMemory(BufferConstants.FirstBufferIndex, read),
                         cancellationToken).ConfigureAwait(false);
                     written += read;
-                    if (total > 0) progress?.Report(written / (double)total.Value);
+                    if (total > BufferConstants.EmptyStreamLength) progress?.Report(written / (double)total.Value);
                 }
             }
 
@@ -115,7 +116,7 @@ public sealed class CoreReleaseService
             File.Move(extracted, destination, true);
             await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri,
                 destination, sha256, cancellationToken).ConfigureAwait(false);
-            progress?.Report(1);
+            progress?.Report(CoreReleaseConstants.CompletedDownloadProgress);
             return destination;
         }
         finally
@@ -129,14 +130,14 @@ public sealed class CoreReleaseService
     {
         using var stream = File.OpenRead(path);
         using var reader = new BinaryReader(stream);
-        if (stream.Length < 0x40 || reader.ReadUInt16() != 0x5A4D)
+        if (stream.Length < CoreReleaseConstants.DosHeaderSize || reader.ReadUInt16() != CoreReleaseConstants.DosHeaderSignature)
             throw new InvalidDataException(CoreExceptions.DownloadedCoreNotPe());
-        stream.Position = 0x3c;
+        stream.Position = CoreReleaseConstants.PeHeaderOffsetPosition;
         var peOffset = reader.ReadInt32();
-        if (peOffset < 0x40 || peOffset > stream.Length - 6)
+        if (peOffset < CoreReleaseConstants.DosHeaderSize || peOffset > stream.Length - CoreReleaseConstants.PeSignatureAndMachineSize)
             throw new InvalidDataException(CoreExceptions.DownloadedCoreInvalidPe());
         stream.Position = peOffset;
-        if (reader.ReadUInt32() != 0x00004550 || reader.ReadUInt16() != 0x8664)
+        if (reader.ReadUInt32() != CoreReleaseConstants.PeHeaderSignature || reader.ReadUInt16() != CoreReleaseConstants.Amd64Machine)
             throw new InvalidDataException(CoreExceptions.DownloadedCoreWrongArchitecture());
     }
 

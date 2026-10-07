@@ -22,7 +22,7 @@ internal static class MachineConfigurationMappingScenarios
     {
         using var http = new System.Net.Http.HttpClient();
         var module = new GWGUI.Emulation.Commodore.Modules.CommodoreEmulationModule("virtual-config","virtual-base",http,"virtual-core");
-        var original = AmigaMachineConfiguration.A500("original-rom");
+        var original = new AmigaMachineConfiguration("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","original-rom"}}, Options: new Dictionary<string,string>(), Id: Guid.NewGuid());
         var mapped = Assert.IsType<AmigaMachineConfiguration>(module.ApplySettings(original,new Dictionary<string,string?>
         {
             ["gwgui_amiga_crop"]="automatic",["configuration.kickstartPath"]="selected-rom",
@@ -32,13 +32,13 @@ internal static class MachineConfigurationMappingScenarios
             ["configuration.cpuSpeed"]="200|4",["configuration.parallelJoystickAdapter"]="enabled",
             ["custom"]="kept",["gwgui_amiga_floppy_multidrive"]=null
         }));
-        Assert.Equal("automatic",mapped.Options!["gwgui_amiga_crop"]); Assert.Equal("selected-rom",mapped.KickstartPath);
-        Assert.Null(mapped.ExtendedRomPath); Assert.Equal("selected-key",mapped.RomKeyPath); Assert.False(mapped.AudioEnabled);
+        Assert.Equal("automatic",mapped.Options!["gwgui_amiga_crop"]); Assert.Equal("selected-rom",mapped.FirmwarePath("configuration.kickstartPath"));
+        Assert.Empty(mapped.FirmwarePath("configuration.extendedRomPath")); Assert.Equal("selected-key",mapped.FirmwarePath("configuration.romKeyPath")); Assert.False(mapped.AudioEnabled);
         Assert.Equal(75,mapped.Audio!.LatencyMilliseconds); Assert.Equal(50,mapped.Audio.StereoSeparation); Assert.Equal("virtual-audio",mapped.Audio.OutputDeviceId);
         Assert.True(mapped.Input!.ParallelJoystickAdapterEnabled); Assert.Equal("kept",mapped.Options["custom"]);
         Assert.Equal("200",mapped.Options["gwgui_amiga_cpu_throttle"]); Assert.Equal("4",mapped.Options["gwgui_amiga_cpu_multiplier"]);
         Assert.False(mapped.Options.ContainsKey("gwgui_amiga_floppy_multidrive")); Assert.False(mapped.Options.ContainsKey("configuration.cpuSpeed"));
-        Assert.Equal("original-rom",original.KickstartPath); Assert.False(original.Options!.ContainsKey("gwgui_amiga_crop")); Assert.Equal(original.Id,mapped.Id);
+        Assert.Equal("original-rom",original.FirmwarePath("configuration.kickstartPath")); Assert.False(original.Options!.ContainsKey("gwgui_amiga_crop")); Assert.Equal(original.Id,mapped.Id);
         var storage = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(mapped);
         var changed = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.StorageSettingsFunctions.Apply(mapped,storage with
         {
@@ -47,7 +47,7 @@ internal static class MachineConfigurationMappingScenarios
         Assert.Equal("virtual.adf",changed.InitialDiskPath); Assert.True(Assert.Single(changed.Media!).IsReadOnly);
         Assert.Equal("automatic",changed.Options!["gwgui_amiga_crop"]);
 
-        var native = GWGUI.Emulation.Commodore.Emulators.Common.Interop.Functions.UaeOptionFunctions
+        var native = GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Functions.UaeOptionFunctions
             .ToNative(mapped);
         Assert.Equal("automatic", native.Options!["puae_crop"]);
         Assert.Equal("kept", native.Options["custom"]);
@@ -91,8 +91,8 @@ internal static class MachineConfigurationMappingScenarios
         var mapped = StLegacyOptionFunctions.Apply(configuration);
         Assert.Equal("4", mapped["hatari_ramsize"]); Assert.Equal("16", mapped["hatari_cpu_freq"]); Assert.Equal("ste", mapped["hatari_machinetype"]);
         Assert.Equal("kept", mapped["custom"]); Assert.Equal(3, options.Count); Assert.Equal(3, configuration.Options.Count);
-        var amiga = AmigaMachineConfiguration.A500("virtual-rom", "virtual-floppy");
-        Assert.Equal("A500", amiga.Model); Assert.Equal("virtual-rom", amiga.KickstartPath); Assert.Equal("virtual-floppy", amiga.InitialDiskPath);
+        var amiga = new AmigaMachineConfiguration("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","virtual-rom"}}, Options: new Dictionary<string,string>(), Id: Guid.NewGuid(), InitialDiskPath: "virtual-floppy");
+        Assert.Equal("A500", amiga.Model); Assert.Equal("virtual-rom", amiga.FirmwarePath("configuration.kickstartPath")); Assert.Equal("virtual-floppy", amiga.InitialDiskPath);
         Assert.NotEqual(Guid.Empty, amiga.EnsureId().Id); Assert.Equal(amiga.Id, amiga.EnsureId().Id);
     }
     public static void Media()

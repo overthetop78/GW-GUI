@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>จําลอง Amiga คอมพิวเตอร์ CDTV และ CD32 ระบบ</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>เปิดใช้งานการเล่นเสียง</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>ปิดการเล่นเสียง</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>เคอร์แนล ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>อักขระ ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>เครื่องมือแก้ไข ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (ช้า)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM (สูง)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>C64 Kernal ROM</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>ฟังก์ชัน ROM (ต่ํา)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>ฟังก์ชัน ROM (สูง)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>แบบ SuperCPU แบบ ROM</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>อินเตอร์เนชันแนล Kernal ROM</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>อักขระสากล ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 ไดรฟ์ ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET 6809ROM A (พ.ศ.</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809ROM B (พ.ศ.</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 ROM C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809ROM พ.ศ.</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809ROM พ.ศ.</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809ROMF (พ.ศ.</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>จําลอง Commodore คอมพิวเตอร์ที่มี VICE.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>เลียนแบบ Commodore C64 ด้วย Frodo.</value></data>
 </root>

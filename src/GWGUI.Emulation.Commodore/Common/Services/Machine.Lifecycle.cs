@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Commodore.Common.Constants;
 using GWGUI.Emulation.Constants;
@@ -27,7 +28,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             })
             {
                 IsBackground = true,
-                Name = $"GWGUI Amiga {Id:N}"
+                Name = string.Format(System.Globalization.CultureInfo.InvariantCulture, MachineConstants.ThreadNameFormat, Id)
             };
             _runLoop = completion.Task;
             thread.Start();
@@ -67,11 +68,17 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         QueueCommand(() =>
         {
             FlushAudio();
-            var resetKeys = new HashSet<EmulationKey>
-                { EmulationKey.LeftControl, EmulationKey.LeftAmiga, EmulationKey.RightAmiga };
-            _core.SetInput(EmulationInputSnapshot.Empty with { Keys = resetKeys });
-            _core.RunFrame();
-            _core.SetInput(EmulationInputSnapshot.Empty);
+            var resetKeys = EmulatorCatalog.CreateAdapter(Configuration.Core).SoftResetKeys;
+            if (resetKeys.Count == BufferConstants.EmptyCollectionCount) _core.HardReset();
+            else
+            {
+                try
+                {
+                    _core.SetInput(EmulationInputSnapshot.Empty with { Keys = resetKeys });
+                    _core.RunFrame();
+                }
+                finally { _core.SetInput(EmulationInputSnapshot.Empty); }
+            }
         }, cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
@@ -101,13 +108,20 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
 
     private async ValueTask<bool> SwitchControllerPointerAsync(CancellationToken cancellationToken)
     {
+        if (ModelCatalog.Get(Configuration.Model).MouseButtonCount == MachineSettingsConstants.NoDevices) return false;
         _controllerPointerSwitchPressed = true;
         SetInput(_lastPhysicalInput);
-        await Task.Delay(100, cancellationToken).ConfigureAwait(false);
-        _controllerPointerSwitchPressed = false;
-        _controllerPointerMode = !_controllerPointerMode;
-        SetInput(_lastPhysicalInput);
-        return _controllerPointerMode;
+        try
+        {
+            await Task.Delay(MachineConstants.ControllerPointerPulseMilliseconds, cancellationToken).ConfigureAwait(false);
+            _controllerPointerMode = !_controllerPointerMode;
+            return _controllerPointerMode;
+        }
+        finally
+        {
+            _controllerPointerSwitchPressed = false;
+            SetInput(_lastPhysicalInput);
+        }
     }
 
     public void SetAudioMuted(bool muted)
@@ -129,7 +143,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         await QueueCommand(() =>
         {
             _core.InsertMedia(fullPath);
-            var index = Math.Max(0, _core.CurrentDiskIndex);
+            var index = Math.Max(BufferConstants.FirstCollectionIndex, _core.CurrentDiskIndex);
             if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
             else _mediaPaths.Add(fullPath);
             _currentDiskPath = fullPath;
@@ -159,11 +173,9 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         QueueCommand(() =>
         {
             var state = _core.SaveState();
-            var header = new SavedStateHeader(3, Configuration.Model, _core.CoreSha256,
-                StateStore.HashFile(Configuration.KickstartPath),
-                _currentDiskPath is null ? null : StateStore.HashPath(_currentDiskPath),
+            var header = new SavedStateHeader(StateStoreConstants.CurrentFormatVersion,
+                Configuration.Model, _core.CoreSha256, FirmwareHashes(),
                 new Dictionary<string, string>(_currentOptions, StringComparer.Ordinal),
-                HashOptionalFile(Configuration.ExtendedRomPath), HashOptionalFile(Configuration.RomKeyPath),
                 StateStore.HashBytes(state), _mediaPaths.Select(StateStore.HashPath).ToArray());
             StateStore.Write(path, header, state);
         }, cancellationToken, EmulationMessageCategory.SavedState,
@@ -173,18 +185,13 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         QueueCommand(() =>
         {
             var saved = StateStore.Read(path);
-            if (saved.Header.FormatVersion is < 1 or > 3 || saved.Header.Model != Configuration.Model
+            if (saved.Header.FormatVersion != StateStoreConstants.CurrentFormatVersion
+                || saved.Header.Model != Configuration.Model
                 || saved.Header.CoreSha256 != _core.CoreSha256
-                || saved.Header.KickstartSha256 != StateStore.HashFile(Configuration.KickstartPath))
-                throw MachineExceptions.SavedStateIncompatible();
-            if (saved.Header.FormatVersion >= 2
-                && (saved.Header.ExtendedRomSha256 != HashOptionalFile(Configuration.ExtendedRomPath)
-                    || saved.Header.RomKeySha256 != HashOptionalFile(Configuration.RomKeyPath)
-                    || saved.Header.MediaSha256 != HashOptionalPath(_currentDiskPath)
-                    || !OptionsEqual(saved.Header.Options, _currentOptions)))
-                throw MachineExceptions.SavedStateIncompatible();
-            if (saved.Header.FormatVersion >= 3
-                && !(saved.Header.MediaSha256s ?? []).SequenceEqual(_mediaPaths.Select(StateStore.HashPath), StringComparer.OrdinalIgnoreCase))
+                || !OptionsEqual(saved.Header.FirmwareSha256s, FirmwareHashes())
+                || !OptionsEqual(saved.Header.Options, _currentOptions)
+                || !(saved.Header.MediaSha256s ?? []).SequenceEqual(
+                    _mediaPaths.Select(StateStore.HashPath), StringComparer.OrdinalIgnoreCase))
                 throw MachineExceptions.SavedStateIncompatible();
             _core.LoadState(saved.State);
         }, cancellationToken, EmulationMessageCategory.SavedState,

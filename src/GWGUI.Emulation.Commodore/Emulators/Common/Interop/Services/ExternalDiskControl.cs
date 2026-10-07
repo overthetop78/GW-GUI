@@ -49,14 +49,14 @@ internal sealed class ExternalDiskControl
         _addImage = Delegate<ExternalCoreApi.AddImage>(api.AddImage);
     }
 
-    internal int ImageCount => IsAvailable ? checked((int)_getImageCount!()) : 0;
+    internal int ImageCount => IsAvailable ? checked((int)_getImageCount!()) : BufferConstants.EmptyCollectionCount;
     internal int CurrentIndex
     {
         get
         {
-            if (!IsAvailable) return -1;
+            if (!IsAvailable) return ExternalCoreConstants.NoSelectedDisk;
             var index = _getImageIndex!();
-            return index == uint.MaxValue ? -1 : checked((int)index);
+            return index == uint.MaxValue ? ExternalCoreConstants.NoSelectedDisk : checked((int)index);
         }
     }
 
@@ -64,7 +64,7 @@ internal sealed class ExternalDiskControl
     {
         EnsureAvailable();
         var count = ImageCount;
-        if (index < 0 || index >= count) throw new ArgumentOutOfRangeException(nameof(index));
+        if (index < BufferConstants.FirstCollectionIndex || index >= count) throw new ArgumentOutOfRangeException(nameof(index));
         var previousIndex = _getImageIndex!();
         var wasEjected = _getEjectState!();
         if (!wasEjected && !_setEjectState!(true))
@@ -89,14 +89,14 @@ internal sealed class ExternalDiskControl
 
     private static string? ReadText<T>(T? getter, int index) where T : Delegate
     {
-        if (getter is null || index < 0) return null;
-        var buffer = Marshal.AllocHGlobal(4096);
+        if (getter is null || index < BufferConstants.FirstCollectionIndex) return null;
+        var buffer = Marshal.AllocHGlobal(ExternalCoreConstants.ImageTextBufferSize);
         try
         {
             var success = getter switch
             {
-                ExternalCoreApi.GetImagePath path => path((uint)index, buffer, 4096),
-                ExternalCoreApi.GetImageLabel label => label((uint)index, buffer, 4096),
+                ExternalCoreApi.GetImagePath path => path((uint)index, buffer, ExternalCoreConstants.ImageTextBufferSize),
+                ExternalCoreApi.GetImageLabel label => label((uint)index, buffer, ExternalCoreConstants.ImageTextBufferSize),
                 _ => false
             };
             return success ? Marshal.PtrToStringUTF8(buffer) : null;
@@ -111,8 +111,8 @@ internal sealed class ExternalDiskControl
         var wasEjected = _getEjectState!();
         if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(CoreExceptions.MediaEjectFailed());
         var count = _getImageCount!();
-        var index = count == 0 ? 0u : Math.Min(_getImageIndex!(), count - 1);
-        if (count == 0 && !_addImage!()) throw new InvalidOperationException(CoreExceptions.MediaSlotCreationFailed());
+        var index = count == ExternalCoreInteropConstants.EmptyNativeCollectionCount ? ExternalCoreConstants.FirstImageIndex : Math.Min(_getImageIndex!(), count - ExternalCoreConstants.SingleImageCount);
+        if (count == ExternalCoreInteropConstants.EmptyNativeCollectionCount && !_addImage!()) throw new InvalidOperationException(CoreExceptions.MediaSlotCreationFailed());
 
         var nativePath = Marshal.StringToCoTaskMemUTF8(Path.GetFullPath(path));
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
@@ -146,10 +146,10 @@ internal sealed class ExternalDiskControl
 
     private static T Delegate<T>(nint pointer) where T : Delegate
     {
-        if (pointer == 0) throw new InvalidOperationException(CoreExceptions.DiskControlIncomplete());
+        if (pointer == nint.Zero) throw new InvalidOperationException(CoreExceptions.DiskControlIncomplete());
         return Marshal.GetDelegateForFunctionPointer<T>(pointer);
     }
 
     private static T? OptionalDelegate<T>(nint pointer) where T : Delegate =>
-        pointer == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(pointer);
+        pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<T>(pointer);
 }

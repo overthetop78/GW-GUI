@@ -93,8 +93,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.InputStateCallback InputState { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
     internal ExternalCoreApi.SetLedState Led { get; }
-    internal int SampleRate { get; set; } = 44100;
-    internal double FramesPerSecond { get; private set; } = 50;
+    internal int SampleRate { get; set; } = ExternalHostCallbacksConstants.DefaultSampleRate;
+    internal double FramesPerSecond { get; private set; } = ExternalHostCallbacksConstants.DefaultFrameRate;
     internal bool SupportsNoGame { get; private set; }
     internal IReadOnlyList<IReadOnlyList<ControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<CoreOption> OptionCatalog { get; private set; } = [];
@@ -117,11 +117,11 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
             throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.UnknownCoreOption());
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
-        if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
+        if (option.Values.Count > BufferConstants.EmptyCollectionCount && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
             throw new ArgumentOutOfRangeException(nameof(value), value,
                 CoreExceptions.InvalidOptionValue(value, key));
         _options[key] = value;
-        Interlocked.Exchange(ref _optionsUpdated, 1);
+        Interlocked.Exchange(ref _optionsUpdated, ExternalHostCallbacksConstants.OptionsChangedState);
         _updateOptionsDisplay?.Invoke();
     }
 

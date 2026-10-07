@@ -8,7 +8,8 @@ public sealed class ConfigurationStore
 {
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
-        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson
+        WriteIndented = ConfigurationStoreConstants.WriteIndentedJson,
+        UnmappedMemberHandling = System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow
     };
     private readonly string _directory;
     private readonly string _pathBase;
@@ -89,20 +90,16 @@ public sealed class ConfigurationStore
 
     private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with
     {
-        KickstartPath = StorePath(configuration.KickstartPath)!,
+        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(pair => pair.Key, pair => StorePath(pair.Value)!, StringComparer.Ordinal),
         InitialDiskPath = StorePath(configuration.InitialDiskPath),
-        ExtendedRomPath = StorePath(configuration.ExtendedRomPath),
-        RomKeyPath = StorePath(configuration.RomKeyPath),
         Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = StorePath(floppy.Path)! }).ToArray(),
         Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()
     };
 
     private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with
     {
-        KickstartPath = ResolvePath(configuration.KickstartPath)!,
+        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(pair => pair.Key, pair => ResolvePath(pair.Value)!, StringComparer.Ordinal),
         InitialDiskPath = ResolvePath(configuration.InitialDiskPath),
-        ExtendedRomPath = ResolvePath(configuration.ExtendedRomPath),
-        RomKeyPath = ResolvePath(configuration.RomKeyPath),
         Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = ResolvePath(floppy.Path)! }).ToArray(),
         Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()
     };

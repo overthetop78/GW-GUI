@@ -30,7 +30,7 @@ public sealed class Engine
     {
         foreach (var adapter in _adapters.Values)
             if (adapter.TryHandleHostCommand(arguments, out exitCode)) return true;
-        exitCode = 0;
+        exitCode = CoreHostConstants.SuccessfulExitCode;
         return false;
     }
 }

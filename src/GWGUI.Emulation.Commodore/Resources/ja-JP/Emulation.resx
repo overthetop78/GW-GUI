@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>エミュレータ Amiga パソコン、 CDTV と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と CD32 システム。</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>サウンド再生が有効になっています</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>再生が無効になっています</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>ケルナルROM</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>キャラクターROM</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>編集ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (低い)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM (高い)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>C64 炉端 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>関数 ROM (低い)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>機能 ROM (最高)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>スーパーCPU ROM</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>国際ケルナルROM</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>国際文字 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 ドライブ ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET 6809 ROM A</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 ROM B</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 ROM C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 ROM D</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 ROM E</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809 ROM F</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>VICEでCommodoreコンピュータをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>Commodore C64をFrodoとエミュレートします。</value></data>
 </root>

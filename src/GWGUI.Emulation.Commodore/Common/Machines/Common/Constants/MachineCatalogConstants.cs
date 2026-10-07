@@ -1,0 +1,54 @@
+namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Constants;
+
+internal static class MachineCatalogConstants
+{
+    internal const string A500ResourceKey = "Emulation.Amiga.Model.A500";
+    internal const string A500ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A500.png";
+    internal const string A500PLUSResourceKey = "Emulation.Amiga.Model.A500PLUS";
+    internal const string A500PLUSImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A500PLUS.png";
+    internal const string A600ResourceKey = "Emulation.Amiga.Model.A600";
+    internal const string A600ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A600.png";
+    internal const string A1000ResourceKey = "Emulation.Amiga.Model.A1000";
+    internal const string A1000ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A1000.png";
+    internal const string A1200ResourceKey = "Emulation.Amiga.Model.A1200";
+    internal const string A1200ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A1200.png";
+    internal const string A2000ResourceKey = "Emulation.Amiga.Model.A2000";
+    internal const string A2000ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A2000.png";
+    internal const string A3000ResourceKey = "Emulation.Amiga.Model.A3000";
+    internal const string A3000ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A3000.png";
+    internal const string A4000ResourceKey = "Emulation.Amiga.Model.A4000";
+    internal const string A4000ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.A4000.png";
+    internal const string CDTVResourceKey = "Emulation.Commodore.Model.CDTV";
+    internal const string CDTVImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.CDTV.png";
+    internal const string CD32ResourceKey = "Emulation.Amiga.Model.CD32";
+    internal const string CD32ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.CD32.png";
+    internal const string C16ResourceKey = "Emulation.Commodore.Model.C16";
+    internal const string C64ResourceKey = "Emulation.Commodore.Model.C64";
+    internal const string C64DtvResourceKey = "Emulation.Commodore.Model.C64Dtv";
+    internal const string C64SuperCpuResourceKey = "Emulation.Commodore.Model.C64SuperCpu";
+    internal const string C128ResourceKey = "Emulation.Commodore.Model.C128";
+    internal const string CbmII510ResourceKey = "Emulation.Commodore.Model.CbmII510";
+    internal const string CbmII610ResourceKey = "Emulation.Commodore.Model.CbmII610";
+    internal const string CbmII620ResourceKey = "Emulation.Commodore.Model.CbmII620";
+    internal const string CbmII620PlusResourceKey = "Emulation.Commodore.Model.CbmII620Plus";
+    internal const string CbmII710ResourceKey = "Emulation.Commodore.Model.CbmII710";
+    internal const string CbmII720ResourceKey = "Emulation.Commodore.Model.CbmII720";
+    internal const string CbmII720PlusResourceKey = "Emulation.Commodore.Model.CbmII720Plus";
+    internal const string Pet2001ResourceKey = "Emulation.Commodore.Model.Pet2001";
+    internal const string Pet3008ResourceKey = "Emulation.Commodore.Model.Pet3008";
+    internal const string Pet3016ResourceKey = "Emulation.Commodore.Model.Pet3016";
+    internal const string Pet3032ResourceKey = "Emulation.Commodore.Model.Pet3032";
+    internal const string Pet3032BResourceKey = "Emulation.Commodore.Model.Pet3032B";
+    internal const string Pet4016ResourceKey = "Emulation.Commodore.Model.Pet4016";
+    internal const string Pet4032ResourceKey = "Emulation.Commodore.Model.Pet4032";
+    internal const string Pet4032BResourceKey = "Emulation.Commodore.Model.Pet4032B";
+    internal const string Pet8032ResourceKey = "Emulation.Commodore.Model.Pet8032";
+    internal const string Pet8096ResourceKey = "Emulation.Commodore.Model.Pet8096";
+    internal const string Pet8296ResourceKey = "Emulation.Commodore.Model.Pet8296";
+    internal const string Plus4ResourceKey = "Emulation.Commodore.Model.Plus4";
+    internal const string SuperPetResourceKey = "Emulation.Commodore.Model.SuperPet";
+    internal const string Vic20ResourceKey = "Emulation.Commodore.Model.Vic20";
+    internal const string Vic21ResourceKey = "Emulation.Commodore.Model.Vic21";
+    internal const string V364ResourceKey = "Emulation.Commodore.Model.V364";
+    internal const string C232ResourceKey = "Emulation.Commodore.Model.C232";
+}

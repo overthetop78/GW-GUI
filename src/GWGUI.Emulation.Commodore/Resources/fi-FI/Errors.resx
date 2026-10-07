@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>• PUAE core ei pyydä täyttä sisältöä kuten tämä isäntä vaatii.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>• PUAE Ydin ei tue aloittamista ilman tiedotusvälineitä.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>• PUAE ydin kieltäytyi konfiguroidusta sisällöstä.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An Amiga Soittolistalla voi olla enintään 64 mediakuvaa.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An Amiga levyn etiketti ei voi sisältää putken tai viivakatkoksen.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>• Amiga Valtiota ei voitu pelastaa.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>• Amiga Osavaltio on tyhjä.</value></data>

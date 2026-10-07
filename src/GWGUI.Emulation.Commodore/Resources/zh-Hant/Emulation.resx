@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>模拟 Amiga 电脑, CDTV 财务报告和已审计财务报表 CD32 系统。</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>已启用声音播放</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>音效播放已禁用</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>克纳尔ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>字符ROM 游戏</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>编辑器ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (减)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM( 高)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>C64 Kernal ROM 读取器</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>函数ROM( 低)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>函数ROM(高)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>超级CPU ROM 软件</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>国际克纳尔ROM</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>国际人物ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 驱动 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET 6809 ROM A级</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 (英语). ROM 页:1</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 (英语). ROM 丙级</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 (英语). ROM D级</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 (英语). ROM 页:1</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809 (英语). ROM 费 费</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>以VICE来模拟Commodore计算机.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>将CommodoreC64与Frodo相模拟.</value></data>
 </root>

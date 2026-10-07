@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>The PUAE core tidak meminta path isi penuh seperti yang diperlukan oleh host ini.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>The PUAE inti tidak mendukung dimulai tanpa media.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>The PUAE inti menolak isi yang dikonfigurasi.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An Amiga daftar putar tidak dapat memuat lebih dari 64 gambar media.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An Amiga disk label tidak boleh memuat pipe atau baris istirahat.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>The Amiga negara tidak dapat disimpan.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>The Amiga keadaan kosong.</value></data>

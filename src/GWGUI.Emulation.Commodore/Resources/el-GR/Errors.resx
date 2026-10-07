@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>Η PUAE ο πυρήνας δεν ζητά τις διαδρομές πλήρους περιεχομένου, όπως απαιτείται από αυτόν τον υπολογιστή.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>Η PUAE ο πυρήνας δεν υποστηρίζει την εκκίνηση χωρίς μέσα ενημέρωσης.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>Η PUAE ο πυρήνας αρνήθηκε το ρυθμισμένο περιεχόμενο.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>Α Amiga Η λίστα αναπαραγωγής δεν μπορεί να περιέχει περισσότερες από 64 εικόνες πολυμέσων.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>Α Amiga η ετικέτα του δίσκου δεν μπορεί να περιέχει σωλήνα ή διακοπή γραμμής.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>Η Amiga κατάσταση δεν μπόρεσε να σωθεί.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>Η Amiga Η κατάσταση είναι άδεια.</value></data>

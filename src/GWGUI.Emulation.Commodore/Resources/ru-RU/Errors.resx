@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>The PUAE Ядро не запрашивает полные пути контента, как того требует этот хост.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>The PUAE Ядро не поддерживает запуск без СМИ.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>The PUAE Ядро отказалось от настроенного контента.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>Ан Amiga плейлист не может содержать более 64 медиаизображений.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>Ан Amiga Ярлык диска не может содержать трубу или разрыв линии.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>The Amiga Государство не может быть спасено.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>The Amiga Государство пустое.</value></data>

@@ -1,3 +1,4 @@
+using System.IO;
 using System.Buffers.Binary;
 using System.Security.Cryptography;
 using System.Text;
@@ -21,7 +22,7 @@ internal static class StateStore
             using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 stream.Write(StateStoreConstants.Magic);
-                Span<byte> length = stackalloc byte[4];
+                Span<byte> length = stackalloc byte[sizeof(int)];
                 BinaryPrimitives.WriteInt32LittleEndian(length, headerBytes.Length);
                 stream.Write(length);
                 stream.Write(headerBytes);
@@ -39,10 +40,10 @@ internal static class StateStore
         Span<byte> magic = stackalloc byte[StateStoreConstants.Magic.Length];
         stream.ReadExactly(magic);
         if (!magic.SequenceEqual(StateStoreConstants.Magic)) throw MachineExceptions.SavedStateInvalid();
-        Span<byte> lengthBytes = stackalloc byte[4];
+        Span<byte> lengthBytes = stackalloc byte[sizeof(int)];
         stream.ReadExactly(lengthBytes);
         var length = BinaryPrimitives.ReadInt32LittleEndian(lengthBytes);
-        if (length is <= 0 or > StateStoreConstants.MaximumHeaderLength)
+        if (length is <= StateStoreConstants.MinimumHeaderLength or > StateStoreConstants.MaximumHeaderLength)
             throw MachineExceptions.SavedStateInvalid();
         var headerBytes = new byte[length];
         stream.ReadExactly(headerBytes);
@@ -51,7 +52,7 @@ internal static class StateStore
         using var state = new MemoryStream();
         stream.CopyTo(state);
         var stateBytes = state.ToArray();
-        if (header.StateSha256 is { Length: > 0 } expected && !HashBytes(stateBytes).Equals(expected, StringComparison.OrdinalIgnoreCase))
+        if (!HashBytes(stateBytes).Equals(header.StateSha256, StringComparison.OrdinalIgnoreCase))
             throw MachineExceptions.SavedStateInvalid();
         return (header, stateBytes);
     }
@@ -68,18 +69,18 @@ internal static class StateStore
         if (!Directory.Exists(path)) throw MachineExceptions.MediaNotFound();
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         Span<byte> length = stackalloc byte[sizeof(int)];
-        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.Value, SearchOption.AllDirectories)
+        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.AllFilesPattern, SearchOption.AllDirectories)
                      .Order(StringComparer.OrdinalIgnoreCase))
         {
-            var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, '/');
+            var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, StateStoreConstants.CanonicalDirectorySeparator);
             var name = Encoding.UTF8.GetBytes(relative);
             BinaryPrimitives.WriteInt32LittleEndian(length, name.Length);
             hash.AppendData(length);
             hash.AppendData(name);
             using var stream = File.OpenRead(file);
-            var buffer = new byte[64 * 1024];
+            var buffer = new byte[StateStoreConstants.DirectoryHashBufferSize];
             int read;
-            while ((read = stream.Read(buffer)) > 0) hash.AppendData(buffer.AsSpan(0, read));
+            while ((read = stream.Read(buffer)) > BufferConstants.EndOfStreamByteCount) hash.AppendData(buffer.AsSpan(BufferConstants.FirstBufferIndex, read));
         }
         return Convert.ToHexString(hash.GetHashAndReset());
     }

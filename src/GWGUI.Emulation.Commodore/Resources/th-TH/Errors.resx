@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>เดอะ PUAE แกนหลักไม่ได้ร้องขอพาธเต็มจากโฮสต์นี้</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>เดอะ PUAE แกนหลักไม่รองรับการเริ่มโดยไม่มีสื่อ</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>เดอะ PUAE แกนหลักปฏิเสธเนื้อหาที่ปรับแต่งมา</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>ตัวพิมพ์ Amiga ไม่สามารถบรรจุภาพจากสื่อได้มากกว่า 64 ภาพ</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>ตัวพิมพ์ Amiga แผ่นดิสก์ไม่สามารถบรรจุท่อหรือท่อแตกได้</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>เดอะ Amiga ไม่สามารถบันทึกสถานะได้</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>เดอะ Amiga สถานะของว่างเปล่า</value></data>

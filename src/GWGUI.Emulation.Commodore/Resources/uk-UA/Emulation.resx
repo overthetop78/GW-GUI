@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>Голоси Amiga комп'ютери, CDTV і CD32 системи.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Звуковий відтворення включений</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Відключено відтворення звуку</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>Кернал ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>Характеристика ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>Редактор ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (низько)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM (високий)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>C64 Кернал ROM</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>Функція ROM (низько)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>Функція ROM (високий)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>СуперКПУ ROM</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>Міжнародний Кернал ROM</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>Міжнародний характер ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 привід ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET 6809 ROM А</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 ROM Б</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 ROM C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 ROM Д</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 ROM Е</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809 ROM Ф</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>Використовуються комп'ютери Commodore з VICE.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>Вбудовує Commodore C64 з Frodo.</value></data>
 </root>

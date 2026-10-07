@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.Emulation;
 using System.Collections.Concurrent;
 
@@ -6,13 +7,15 @@ namespace GWGUI.Emulation.Commodore.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-    private static string? HashOptionalFile(string? path) => path is null ? null : StateStore.HashFile(path);
+    private IReadOnlyDictionary<string, string> FirmwareHashes() =>
+        (Configuration.FirmwarePaths ?? new Dictionary<string, string>())
+            .ToDictionary(pair => pair.Key, pair => StateStore.HashFile(pair.Value), StringComparer.Ordinal);
     private static string? HashOptionalPath(string? path) => path is null ? null : StateStore.HashPath(path);
 
     private static bool OptionsEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
     {
-        if ((left?.Count ?? 0) != right.Count) return false;
-        return left is null ? right.Count == 0 : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
+        if ((left?.Count ?? BufferConstants.EmptyCollectionCount) != right.Count) return false;
+        return left is null ? right.Count == BufferConstants.EmptyCollectionCount : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
     }
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken,
@@ -42,7 +45,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         {
             _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
             initialized = true;
-            var audioSampleRate = 0;
+            var audioSampleRate = MachineConstants.UninitializedAudioSampleRate;
             if (_audioOutput is not null)
             {
                 try { _audioOutput.Start(_core.SampleRate); audioSampleRate = _core.SampleRate; }
@@ -54,13 +57,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 _started?.TrySetResult();
             }
             var nextFrame = TimeProvider.System.GetTimestamp();
-            long videoSequence = 0;
+            long videoSequence = MachineConstants.InitialVideoSequence;
 
             while (!cancellationToken.IsCancellationRequested)
             {
                 lock (_gate)
                     while (_pauseRequested && _commands.IsEmpty && !cancellationToken.IsCancellationRequested)
-                        Monitor.Wait(_gate, TimeSpan.FromMilliseconds(100));
+                        Monitor.Wait(_gate, TimeSpan.FromMilliseconds(MachineConstants.PausedWorkerPollMilliseconds));
                 if (cancellationToken.IsCancellationRequested) break;
 
                 while (_commands.TryDequeue(out var command)) command.Execute();
@@ -93,7 +96,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     AudioChunkReady?.Invoke(this, audio);
                 }
 
-                var frameDuration = TimeSpan.FromSeconds(1 / Math.Clamp(_core.FramesPerSecond, 1, 1000));
+                var frameDuration = TimeSpan.FromSeconds(MachineConstants.SecondsPerFrame / Math.Clamp(_core.FramesPerSecond, MachineConstants.MinimumFramesPerSecond, MachineConstants.MaximumFramesPerSecond));
                 nextFrame += (long)(frameDuration.TotalSeconds * TimeProvider.System.TimestampFrequency);
                 var remaining = TimeProvider.System.GetElapsedTime(TimeProvider.System.GetTimestamp(), nextFrame);
                 if (remaining > TimeSpan.Zero) Thread.Sleep(remaining);
@@ -107,7 +110,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     EmulationMessageCategory.Machine,
                     EmulationMessageCode.MachineStartFailed,
                     new EmulationMachineMessageContext(Configuration.Model));
-            if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.AmigaDiagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
+            if (_core.Diagnostics.Count > BufferConstants.EmptyCollectionCount) error.Data[MachineConstants.DiagnosticsDataKey] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(MachineConstants.MaximumDiagnosticEntries));
             _started?.TrySetException(error);
             FailPendingCommands(error);
             lock (_gate) State = EmulationMachineState.Faulted;
@@ -141,14 +144,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private void WriteAudio(ReadOnlySpan<short> samples)
     {
         if (_audioOutput is null) return;
-        if (_audioVolume >= 1f)
+        if (_audioVolume >= AudioConstants.MaximumVolume)
         {
             _audioOutput.Write(samples);
             return;
         }
 
         var scaled = new short[samples.Length];
-        for (var index = 0; index < samples.Length; index++)
+        for (var index = AudioConstants.FirstSampleIndex; index < samples.Length; index++)
             scaled[index] = (short)Math.Clamp(samples[index] * _audioVolume, short.MinValue, short.MaxValue);
         _audioOutput.Write(scaled);
     }
@@ -170,12 +173,21 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public async ValueTask DisposeAsync()
     {
         if (_disposed) return;
-        await StopAsync().ConfigureAwait(false);
-        _stop?.Dispose();
-        _core.Dispose();
-        _audioOutput?.Dispose();
-        DeleteSessionDirectory();
-        _disposed = true;
+        try { await StopAsync().ConfigureAwait(false); }
+        finally
+        {
+            try { _core.Dispose(); }
+            finally
+            {
+                try { _audioOutput?.Dispose(); }
+                finally
+                {
+                    _stop?.Dispose();
+                    DeleteSessionDirectory();
+                    _disposed = true;
+                }
+            }
+        }
     }
 
     private void DeleteSessionDirectory()

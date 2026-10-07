@@ -3,23 +3,8 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants;
 
 internal static class ExternalCoreConstants
 {
-    internal const string Kick31034A1000 = "kick31034.A1000";
-    internal const string Kick32034A1000 = "kick32034.A1000";
-    internal const string Kick33180A500 = "kick33180.A500";
-    internal const string Kick34005A500 = "kick34005.A500";
-    internal const string Kick37175A500 = "kick37175.A500";
-    internal const string Kick37350A600 = "kick37350.A600";
-    internal const string Kick40063A600 = "kick40063.A600";
-    internal const string Kick39106A1200 = "kick39106.A1200";
-    internal const string Kick40068A1200 = "kick40068.A1200";
-    internal const string Kick39106A4000 = "kick39106.A4000";
-    internal const string Kick40068A4000 = "kick40068.A4000";
-    internal const string Kick40060CD32 = "kick40060.CD32";
     internal const string ConvertedMedia = "ConvertedMedia";
     internal const string Core = "Core";
-    internal const string RomKey = "rom.key";
-    internal const string Auto = "auto";
-    internal const string RightControl = "RETROK_RCTRL";
     internal const string RetroApiVersion = "retro_api_version";
     internal const string RetroGetSystemInfo = "retro_get_system_info";
     internal const string Scp = "scp";
@@ -48,24 +33,22 @@ internal static class ExternalCoreConstants
     internal const string A500PLUS = "A500PLUS";
     internal const string A600 = "A600";
     internal const string A1200 = "A1200";
-    internal const string A1200OG = "A1200OG";
     internal const string A3000 = "A3000";
     internal const string A4000 = "A4000";
     internal const string CDTV = "CDTV";
-    internal const string CD32FR = "CD32FR";
-    internal const string Kick40060CD32Ext = "kick40060.CD32.ext";
-    internal const string Kick34005CDTV = "kick34005.CDTV";
     internal const string A500 = "A500";
-    internal const string GWGUIMediaMDM3u = "GW GUI media (MD).m3u";
-    internal const string GWGUIMediaM3u = "GW GUI media.m3u";
-    internal const string Lha = ".lha";
-    internal const string Slave = ".slave";
-    internal const string Info = ".info";
-    internal const string Uae = ".uae";
     internal const string Automatic = "Automatic";
     internal const string RetroPad = "RetroPad";
     internal const string CD32Pad = "CD32 Pad";
     internal const string AnalogJoystick = "Analog Joystick";
     internal const string Joystick = "Joystick";
     internal const string Keyboard = "Keyboard";
+    internal const int NoSelectedDisk = -1;
+    internal const int SingleMediaCount = 1;
+    internal const uint NoControllerDevice = 0;
+    internal const uint DefaultJoypadDevice = 1;
+    internal const int DisplayPortNumberOffset = 1;
+    internal const int ImageTextBufferSize = 4096;
+    internal const uint FirstImageIndex = 0;
+    internal const uint SingleImageCount = 1;
 }

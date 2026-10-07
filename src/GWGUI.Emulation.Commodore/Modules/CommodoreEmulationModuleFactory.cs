@@ -13,9 +13,9 @@ public sealed class CommodoreEmulationModuleFactory : IEmulationModuleFactory
         Directory.CreateDirectory(Path.Combine(moduleDirectory,
             EmulationPathConstants.FirmwareDirectoryName));
         return new CommodoreEmulationModule(
-            Path.Combine(moduleDirectory, "Configurations"),
+            Path.Combine(moduleDirectory, CoreDirectoryConstants.ConfigurationsDirectoryName),
             context.DataDirectory,
             context.HttpClient,
-            Path.Combine(moduleDirectory, "Core"));
+            Path.Combine(moduleDirectory, CoreDirectoryConstants.CoreDirectoryName));
     }
 }

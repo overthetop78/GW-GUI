@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 Amiga 컴퓨터, CDTV 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 CD32 시스템.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound 재생이 활성화됩니다.</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>사운드 재생은 비활성화</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>Kernal ROM년</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>캐릭터 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>편집 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (낮은)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM (높은)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>C64 커널 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>기능 ROM (낮은)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>기능 ROM (높은)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>슈퍼 CPU ROM</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>국제 Kernal ROM</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>국제 캐릭터 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 드라이브 ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET 6809 ROM A</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 ROM B</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 ROM C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 ROM D</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 ROM E</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809 ROM F</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>VICE를 가진 Commodore 컴퓨터를 격리하십시오.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>Frodo와 Commodore C64를 격리합니다.</value></data>
 </root>

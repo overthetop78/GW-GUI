@@ -50,4 +50,5 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceAmigaControllerCd32 = "Emulation.Amiga.Controller.Cd32";
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceControllerNone = "Emulation.Controller.None";
+    internal const char ResourceKeySeparator = '.';
 }

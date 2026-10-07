@@ -1,14 +1,8 @@
 namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
 
-public sealed record Firmware(
-    string Path,
-    long Size,
-    string Md5,
-    string Sha256,
-    DateTime LastWriteTimeUtc,
-    FirmwareType Type,
-    bool IsKnown,
-    bool IsOfficial,
-    string? Name,
-    string? Version,
-    IReadOnlyList<string> CompatibleModels);
+internal sealed record FirmwareSlot(
+    string FieldId,
+    string ResourceKey,
+    bool IsRequired = false,
+    string? ExplanationResourceKey = null,
+    string? DetailedExplanationResourceKey = null);

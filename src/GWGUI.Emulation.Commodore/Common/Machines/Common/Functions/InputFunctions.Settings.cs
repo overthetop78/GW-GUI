@@ -1,10 +1,5 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Enums;
-using CdtvKeyboard = GWGUI.Emulation.Commodore.Common.Machines.CommodoreCDTV.Constants.AmigaCdtvKeyboardConstants;
-using CdtvKeyboardDictionary = GWGUI.Emulation.Commodore.Common.Machines.CommodoreCDTV.Dictionaries.AmigaCdtvKeyboardDictionary;
-using CdtvModelConstants = GWGUI.Emulation.Commodore.Common.Machines.CommodoreCDTV.Constants.ModelConstants;
-using ComputerKeyboard = GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.AmigaComputerKeyboardConstants;
-using ComputerKeyboardDictionary = GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Dictionaries.AmigaComputerKeyboardDictionary;
 
 namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 
@@ -15,19 +10,19 @@ internal static partial class InputSettingsFunctions
         var input = configuration.Input ?? new InputConfiguration();
         var model = ModelCatalog.Get(configuration.Model);
         var keyboard = model.HasKeyboard
-            ? new EmulationInputBindingSet(KeyboardDefinitions(model),
+            ? new EmulationInputBindingSet(EmulatorCatalog.CreateAdapter(configuration.Core).GetKeyboardDefinitions(configuration),
                 input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard)
             : null;
-        var mouse = new EmulationInputBindingSet(MouseDefinitions(model),
+        var mouse = model.MouseButtonCount == MachineSettingsConstants.NoDevices ? null : new EmulationInputBindingSet(MouseDefinitions(model),
             (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>())
                 .Where(item => item.Value != MouseAction.None)
                 .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard);
         var configured = input.ControllerBindings ?? [];
-        var portCount = model.ControllerPortCount + (input.ParallelJoystickAdapterEnabled ? 2 : 0);
-        var ports = Enumerable.Range(0, portCount).Select(index =>
+        var portCount = EmulatorCatalog.CreateAdapter(configuration.Core).GetControllerPortCount(configuration);
+        var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, portCount).Select(index =>
         {
-            var number = index + 1;
+            var number = index + ControllerPortConstants.OneControllerPort;
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = current?.Type ?? (index < model.ControllerPortCount
                 ? ControllerCatalog.Default(model) : ControllerType.Joystick);
@@ -55,7 +50,7 @@ internal static partial class InputSettingsFunctions
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase)
             ?? new Dictionary<string, MouseAction>();
-        var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - 1,
+        var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - ControllerPortConstants.OneControllerPort,
             Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
                 ? type : ControllerType.None, port.PhysicalDeviceId, port.Bindings.Values,
             port.VisualId)).ToArray();
@@ -66,34 +61,24 @@ internal static partial class InputSettingsFunctions
             MouseButtonMappings = mouse,
             ControllerBindings = controllers
         };
-        var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>())
-        {
-            [SettingsConstants.OptionTurboFire] = controllers.Any(binding => binding.ButtonMappings?
-                .Any(item => item.Key == InputSettingsFunctionsConstants.L2 && !string.IsNullOrWhiteSpace(item.Value)) == true)
-                ? InputSettingsFunctionsConstants.Enabled : InputSettingsFunctionsConstants.Disabled,
-            [SettingsConstants.OptionTurboFireButton] = InputSettingsFunctionsConstants.L2
-        };
-        return configuration with { Input = input, Options = options };
+        return EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration with { Input = input });
     }
 
-    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(Model model)
-    {
-        var keys = model.Id == CdtvModelConstants.CDTV
-            ? CdtvKeyboard.SpecialKeys : ComputerKeyboard.SpecialKeys;
-        var defaults = model.Id == CdtvModelConstants.CDTV
-            ? CdtvKeyboardDictionary.DefaultHostKeys : ComputerKeyboardDictionary.DefaultHostKeys;
-        return keys.Select(key => Definition(key.ToString(), KeyResource(key),
-            DefaultKey(key, defaults))).ToArray();
-    }
+    internal static IReadOnlyList<InputBindingDefinition> GenericKeyboardDefinitions() =>
+        Enum.GetValues<EmulationKey>()
+            .Where(key => key is not (EmulationKey.Unknown or EmulationKey.LeftAmiga or EmulationKey.RightAmiga
+                or EmulationKey.AtariOption or EmulationKey.AtariSelect or EmulationKey.AtariStart))
+            .Select(key => Definition(key.ToString(), KeyResource(key), key.ToString())).ToArray();
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions(Model model)
     {
+        if (model.MouseButtonCount == MachineSettingsConstants.NoDevices) return [];
         var definitions = new List<InputBindingDefinition>
         {
             Definition(nameof(MouseAction.LeftButton), InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
             Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
         };
-        if (model.MouseButtonCount >= 3)
+        if (model.MouseButtonCount >= InputSnapshotFunctionsConstants.MouseWithMiddleButtonCount)
             definitions.Add(Definition(nameof(MouseAction.MiddleButton),
                 InputSettingsFunctionsConstants.ResourceMouseButtonMiddle, InputSettingsFunctionsConstants.MouseMiddle));
         return definitions;
@@ -130,8 +115,8 @@ internal static partial class InputSettingsFunctions
         return definitions;
     }
 
-    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) =>
-        new(id, resourceKey, defaultBinding, resourceKey.Contains('.') ? null : resourceKey);
+    internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) =>
+        new(id, resourceKey, defaultBinding, resourceKey.Contains(InputSettingsFunctionsConstants.ResourceKeySeparator) ? null : resourceKey);
 
     private static EmulationControllerChoice Choice(ControllerType type) =>
         new(type.ToString(), ControllerResourceKey(type),

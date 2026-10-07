@@ -7,7 +7,7 @@ internal sealed class PuaeMachineFactory : UaeMachineFactory
 {
     public override EmulatorCatalogEntry CatalogEntry { get; } = new(Emulator.PUAE2021,
         new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorDescriptionConstants.AmigaDescriptionResourceKey,
-            MachineCatalog.All.Select(machine => machine.Id).ToHashSet(StringComparer.Ordinal)));
+            SupportedMachines));
     internal override CoreDefinition CoreDefinition { get; } = new(
         EmulatorConstants.DisplayName, EmulatorConstants.LibraryFile, EmulatorConstants.DownloadUrl);
 }

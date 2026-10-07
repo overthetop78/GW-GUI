@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>Die PUAE core fordert keine vollständigen Inhaltspfade an, wie von diesem Host verlangt.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>Die PUAE core unterstützt nicht das Starten ohne Medien.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>Die PUAE core lehnte den konfigurierten Inhalt ab.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An Amiga Die Playlist darf nicht mehr als 64 Medienbilder enthalten.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An Amiga Ein Plattenetikett kann keine Rohrleitung oder Leitungsunterbrechung enthalten.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>Die Amiga Der Staat konnte nicht gerettet werden.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>Die Amiga Der Staat ist leer.</value></data>

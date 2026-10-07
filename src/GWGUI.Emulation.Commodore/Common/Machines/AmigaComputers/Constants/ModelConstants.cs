@@ -3,7 +3,6 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants;
 internal static class ModelConstants
 {
     internal const string A500OG = "A500OG";
-    internal const string A1200OG = "A1200OG";
     internal const string A2000OG = "A2000OG";
     internal const string A4030 = "A4030";
     internal const string A4040 = "A4040";

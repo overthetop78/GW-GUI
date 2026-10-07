@@ -10,4 +10,26 @@
   <data name="Emulation.Emulator.Amiga.Description"><value>Tính Amiga Máy tính, CDTV và CD32 Hệ thống.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Phát lại âm thanh đã bật</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Không cho phát lại âm thanh</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal"><value>ROM hạt nhân</value></data>
+  <data name="Emulation.Commodore.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters"><value>Ký tự ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Editor"><value>Bộ sửa ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow"><value>BASIC ROM (từ từ)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh"><value>BASIC ROM (cao)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal"><value>ROM hạt nhân C64</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow"><value>Hàm ROM ( Chậm)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh"><value>Hàm ROM (cao)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu"><value>ROM SuperCPU</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational"><value>ROM hạt nhân quốc tế</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational"><value>ROM ký tự Quốc tế</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541"><value>1541 ổ đĩa ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA"><value>SuperPET809 ROM A</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB"><value>SuperPET 6809 ROM B</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC"><value>SuperPET 6809 ROM CN</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD"><value>SuperPET 6809 ROM D</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE"><value>SuperPET 6809 ROM E</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF"><value>SuperPET 6809 ROM F</value></data>
+  <data name="Emulation.Emulator.VICE.Description"><value>Kết hợp Commodore máy tính với VICE.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description"><value>Tính toán Commodore C64 có Frodo.</value></data>
 </root>

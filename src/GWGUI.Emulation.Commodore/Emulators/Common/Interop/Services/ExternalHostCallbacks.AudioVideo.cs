@@ -2,6 +2,8 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
 
+using static GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;
+
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks
@@ -14,51 +16,51 @@ internal sealed partial class ExternalHostCallbacks
         var pixels = new byte[byteCount];
         Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
         LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height),
-            checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height,
+            checked((int)pitch), _pixelFormat, _aspectRatio > MinimumAspectRatio ? _aspectRatio : width / (float)height,
             ++_videoSequence, _clock.Elapsed);
     }
 
     internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
         ApplyGeometry(info.Geometry);
-        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)
+        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > MinimumFrameRate)
             FramesPerSecond = info.Timing.FramesPerSecond;
-        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)
+        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > MinimumSampleRate and <= int.MaxValue)
             SampleRate = checked((int)Math.Round(info.Timing.SampleRate));
     }
 
     private bool ApplyGeometry(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));
         return true;
     }
 
     private void ApplyGeometry(ExternalCoreApi.Geometry geometry)
     {
-        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)
+        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > MinimumAspectRatio)
             _aspectRatio = geometry.AspectRatio;
-        else if (geometry.BaseHeight > 0)
+        else if (geometry.BaseHeight > ExternalCoreInteropConstants.EmptyFrameDimension)
             _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;
     }
 
     private bool ApplySystemAvInfo(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));
         return true;
     }
 
     private void HandleAudioSample(short left, short right)
     {
-        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1,
+        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount,
             ++_audioSequence, _clock.Elapsed));
     }
 
     private nuint HandleAudioBatch(nint data, nuint frames)
     {
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;
-        var samples = new short[checked((int)frames * 2)];
+        var samples = new short[checked((int)frames * AudioConstants.StereoChannelCount)];
         Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);
         PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames),
             ++_audioSequence, _clock.Elapsed));
@@ -70,16 +72,16 @@ internal sealed partial class ExternalHostCallbacks
         LatestAudioChunk = chunk;
         lock (_audioGate)
         {
-            var maximumFrames = Math.Max(1, SampleRate / 5);
+            var maximumFrames = Math.Max(AudioConstants.MinimumBufferedFrameCount, SampleRate / AudioConstants.BufferDurationDivisor);
             if (chunk.FrameCount > maximumFrames)
             {
-                var retainedSamples = chunk.InterleavedStereo.Slice((chunk.FrameCount - maximumFrames) * 2).ToArray();
+                var retainedSamples = chunk.InterleavedStereo.Slice((chunk.FrameCount - maximumFrames) * AudioConstants.StereoChannelCount).ToArray();
                 chunk = new AudioChunk(retainedSamples, chunk.SampleRate, maximumFrames, chunk.Sequence, chunk.Timestamp);
                 AudioOverrunCount++;
             }
             _audioChunks.Enqueue(chunk);
             _bufferedAudioFrames += chunk.FrameCount;
-            while (_bufferedAudioFrames > maximumFrames && _audioChunks.Count > 1)
+            while (_bufferedAudioFrames > maximumFrames && _audioChunks.Count > AudioConstants.MinimumBufferedFrameCount)
             {
                 _bufferedAudioFrames -= _audioChunks.Dequeue().FrameCount;
                 AudioOverrunCount++;

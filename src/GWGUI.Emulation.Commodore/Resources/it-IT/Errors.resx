@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>Il PUAE core non richiede percorsi di contenuto completi come richiesto da questo host.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>Il PUAE core non supporta l'avvio senza mezzi di comunicazione.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>Il PUAE core ha rifiutato il contenuto configurato.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>Anonimo Amiga playlist non può contenere più di 64 immagini multimediali.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>Anonimo Amiga etichetta disco non può contenere un tubo o una pausa di linea.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>Il Amiga lo stato non poteva essere salvato.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>Il Amiga lo stato è vuoto.</value></data>

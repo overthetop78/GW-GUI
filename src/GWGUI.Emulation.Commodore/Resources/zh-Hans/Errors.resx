@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>电话 PUAE 核心不要求按照此主机的要求提供完整的内容路径。</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>电话 PUAE 核心不支持没有媒体的启动。</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>电话 PUAE 核心拒绝配置的内容 。</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>有个 Amiga 播放列表中不能包含超过64个媒体图像.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>有个 Amiga 磁盘标签不能包含管或换行符 。</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>电话 Amiga 状态无法保存 。</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>电话 Amiga 州为空.</value></data>

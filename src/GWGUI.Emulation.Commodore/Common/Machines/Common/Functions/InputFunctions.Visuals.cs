@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static string KeyResource(EmulationKey key) => key switch
+    internal static string KeyResource(EmulationKey key) => key switch
     {
         EmulationKey.Help => InputSettingsFunctionsConstants.ResourceKeyHelp,
         EmulationKey.LeftAmiga => InputSettingsFunctionsConstants.ResourceKeyLeftAmiga,
@@ -14,7 +14,7 @@ internal static partial class InputSettingsFunctions
         _ => key.ToString()
     };
 
-    private static string DefaultKey(EmulationKey key,
+    internal static string DefaultKey(EmulationKey key,
         IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) =>
         defaults.GetValueOrDefault(key, key).ToString();
 
@@ -85,11 +85,11 @@ private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =
         ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceAmigaControllerJoystick,
         ControllerType.AnalogJoystick => InputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
         ControllerType.Cd32Pad => InputSettingsFunctionsConstants.ResourceAmigaControllerCd32,
-        ControllerType.RetroPad => "Controllers.Enum.Gamepad",
-        ControllerType.Keyboard => "Emulation.Tab.Keyboard",
+        ControllerType.RetroPad => InputSnapshotFunctionsConstants.GamepadResourceKey,
+        ControllerType.Keyboard => InputSnapshotFunctionsConstants.KeyboardResourceKey,
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
-        _ => $"Emulation.Controller.{type}"
+        _ => string.Format(System.Globalization.CultureInfo.InvariantCulture, InputSnapshotFunctionsConstants.ControllerResourceFormat, type)
     };
 
     private static IReadOnlyDictionary<string, string> ToStrings(

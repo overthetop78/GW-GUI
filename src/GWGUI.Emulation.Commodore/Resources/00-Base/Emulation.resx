@@ -13,4 +13,26 @@
   <data name="Emulation.Emulator.Amiga.Description" xml:space="preserve"><value>Emulates Amiga computers, CDTV and CD32 systems.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound playback is enabled</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Sound playback is disabled</value></data>
+  <data name="Emulation.Commodore.Rom.Kernal" xml:space="preserve"><value>Kernal ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Basic" xml:space="preserve"><value>BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Characters" xml:space="preserve"><value>Character ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Editor" xml:space="preserve"><value>Editor ROM</value></data>
+  <data name="Emulation.Commodore.Rom.BasicLow" xml:space="preserve"><value>BASIC ROM (low)</value></data>
+  <data name="Emulation.Commodore.Rom.BasicHigh" xml:space="preserve"><value>BASIC ROM (high)</value></data>
+  <data name="Emulation.Commodore.Rom.C64Kernal" xml:space="preserve"><value>C64 Kernal ROM</value></data>
+  <data name="Emulation.Commodore.Rom.C64Basic" xml:space="preserve"><value>C64 BASIC ROM</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionLow" xml:space="preserve"><value>Function ROM (low)</value></data>
+  <data name="Emulation.Commodore.Rom.FunctionHigh" xml:space="preserve"><value>Function ROM (high)</value></data>
+  <data name="Emulation.Commodore.Rom.SuperCpu" xml:space="preserve"><value>SuperCPU ROM</value></data>
+  <data name="Emulation.Commodore.Rom.KernalInternational" xml:space="preserve"><value>International Kernal ROM</value></data>
+  <data name="Emulation.Commodore.Rom.CharactersInternational" xml:space="preserve"><value>International character ROM</value></data>
+  <data name="Emulation.Commodore.Rom.Drive1541" xml:space="preserve"><value>1541 drive ROM</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetA" xml:space="preserve"><value>SuperPET 6809 ROM A</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetB" xml:space="preserve"><value>SuperPET 6809 ROM B</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetC" xml:space="preserve"><value>SuperPET 6809 ROM C</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetD" xml:space="preserve"><value>SuperPET 6809 ROM D</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetE" xml:space="preserve"><value>SuperPET 6809 ROM E</value></data>
+  <data name="Emulation.Commodore.Rom.SuperPetF" xml:space="preserve"><value>SuperPET 6809 ROM F</value></data>
+  <data name="Emulation.Emulator.VICE.Description" xml:space="preserve"><value>Emulates Commodore computers with VICE.</value></data>
+  <data name="Emulation.Emulator.Frodo.Description" xml:space="preserve"><value>Emulates the Commodore C64 with Frodo.</value></data>
 </root>

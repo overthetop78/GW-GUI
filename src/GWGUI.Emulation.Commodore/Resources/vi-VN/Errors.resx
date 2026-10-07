@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>Hạt PUAE Cái lõi không yêu cầu đường dẫn đầy đủ nội dung như máy này cần thiết.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>Hạt PUAE Bản gốc không hỗ trợ bắt đầu mà không có phương tiện truyền thông.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>Hạt PUAE lõi từ chối nội dung cấu hình.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An Amiga danh sách chơi không thể chứa hơn 64 hình ảnh phương tiện.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An Amiga Nhãn đĩa không thể chứa ống hoặc vết ngắt dòng.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>Hạt Amiga không thể lưu được.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>Hạt Amiga Tình trạng trống.</value></data>

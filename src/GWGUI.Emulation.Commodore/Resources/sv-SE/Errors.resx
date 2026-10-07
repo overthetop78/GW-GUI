@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>Den som PUAE Kärna begär inte fullständiga innehållsvägar som krävs av denna värd.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>Den som PUAE Kärna stöder inte start utan media.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>Den som PUAE kärnan vägrade det konfigurerade innehållet.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>En Annons Amiga Spellistan kan inte innehålla mer än 64 bilder.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>En Annons Amiga diskett kan inte innehålla ett rör eller en linjebrytning.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>Den som Amiga Staten kunde inte räddas.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>Den som Amiga Staten är tom.</value></data>

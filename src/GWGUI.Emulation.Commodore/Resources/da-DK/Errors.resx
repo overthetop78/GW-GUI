@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>Den PUAE kerne ikke anmode om fuld indhold stier som krævet af denne vært.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>Den PUAE kerne understøtter ikke start uden medier.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>Den PUAE kernen nægtede det konfigurerede indhold.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>En Amiga spillelisten kan ikke indeholde mere end 64 mediebilleder.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>En Amiga disk etiket kan ikke indeholde et rør eller en linje pause.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>Den Amiga staten ikke kunne reddes.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>Den Amiga - Staten er tom.</value></data>

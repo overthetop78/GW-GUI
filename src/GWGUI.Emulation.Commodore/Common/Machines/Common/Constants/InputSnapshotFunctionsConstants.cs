@@ -5,6 +5,16 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Constants;
 
 internal static class InputSnapshotFunctionsConstants
 {
+    internal const int NoPointerMovement = 0;
+    internal const int NoWheelMovement = 0;
+    internal const uint NoPressedButtons = 0;
+    internal const uint SingleButtonMask = 1;
+    internal const int UnknownButtonIndex = -1;
+    internal const int MinimumButtonIndex = 0;
+    internal const int MouseWithMiddleButtonCount = 3;
+    internal const string ControllerResourceFormat = "Emulation.Controller.{0}";
+    internal const string GamepadResourceKey = "Controllers.Enum.Gamepad";
+    internal const string KeyboardResourceKey = "Emulation.Tab.Keyboard";
     internal const string B = "B";
     internal const string Y = "Y";
     internal const string Select = "Select";

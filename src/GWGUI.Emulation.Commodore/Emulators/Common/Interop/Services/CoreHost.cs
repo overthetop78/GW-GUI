@@ -13,15 +13,15 @@ public static class CoreHost
     public static void Run(string pipeName, string videoMapName)
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
-        using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
+        using var videoMap = videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        using var pipe = new NamedPipeClientStream(CoreHostConstants.Value, pipeName, PipeDirection.InOut, PipeOptions.None);
-        pipe.Connect(15_000);
+        using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalServerName, pipeName, PipeDirection.InOut, PipeOptions.None);
+        pipe.Connect(CoreHostConstants.PipeConnectionTimeoutMilliseconds);
         using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
         using var transportWriter = new BinaryWriter(pipe, System.Text.Encoding.UTF8, true);
         ExternalCore? core = null;
-        var lastVideoSequence = 0L;
-        var lastDiagnosticCount = 0;
+        var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
+        var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
         try
         {
         while (true)
@@ -51,7 +51,7 @@ public static class CoreHost
                         writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostProtocol.JsonOptions));
                         lastDiagnosticCount = core.Diagnostics.Count;
                         writer.Write(core.CoreName); writer.Write(core.CoreVersion);
-                        writer.Write(string.Join('|', core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
+                        writer.Write(string.Join(ProcessCoreConstants.ExtensionSeparator, core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
                         writer.Write(core.DiskCount); writer.Write(core.CurrentDiskIndex);
                         CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                         break;
@@ -94,8 +94,8 @@ public static class CoreHost
             }
             catch (Exception error)
             {
-                responseStream.SetLength(0);
-                responseStream.Position = 0;
+                responseStream.SetLength(BufferConstants.EmptyStreamLength);
+                responseStream.Position = BufferConstants.EmptyStreamLength;
                 writer.Write(false);
                 writer.Write(error.ToString());
             }

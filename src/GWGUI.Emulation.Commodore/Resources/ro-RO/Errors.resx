@@ -14,7 +14,6 @@
   <data name="Emulation.Error.PUAE.FullContentPathsRequired"><value>, PUAE nucleul nu solicită căi complete de conținut, conform cerințelor acestei gazde.</value></data>
   <data name="Emulation.Error.PUAE.StartWithoutMediaUnsupported"><value>, PUAE nucleul nu sprijină pornirea fără mass-media.</value></data>
   <data name="Emulation.Error.PUAE.ContentRefused"><value>, PUAE miezul a refuzat conţinutul configurat.</value></data>
-  <data name="Emulation.Error.PUAE.PlaylistLimitExceeded"><value>An Amiga Lista de redare nu poate conține mai mult de 64 de imagini media.</value></data>
   <data name="Emulation.Error.PUAE.DiskLabelInvalid"><value>An Amiga Eticheta de disc nu poate conține o conductă sau o ruptură de linie.</value></data>
   <data name="Emulation.Error.PUAE.StateSaveFailed"><value>, Amiga Statul nu a putut fi salvat.</value></data>
   <data name="Emulation.Error.PUAE.StateEmpty"><value>, Amiga Starea e goală.</value></data>
