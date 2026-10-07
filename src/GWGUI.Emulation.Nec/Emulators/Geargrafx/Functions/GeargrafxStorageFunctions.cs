@@ -1,6 +1,7 @@
 using GWGUI.Emulation.Nec.Common.Machines.LaserActive.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
@@ -15,12 +16,12 @@ internal static class GeargrafxStorageFunctions
         if (model.SupportsCartridgeSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0,
                 EmulationMediaType.Cartridge,
-                [BeetlePceStorageConstants.PceExtension,
-                    BeetlePceStorageConstants.BinExtension],
+                [BeetlePceFastStorageConstants.PceExtension,
+                    BeetlePceFastStorageConstants.BinExtension],
                 RequiresMachineRecreation: true,
-                DisplayLabel: BeetlePceStorageConstants.CartridgeSlotLabel,
+                DisplayLabel: BeetlePceFastStorageConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot,
-                ModelResourceKey: BeetlePceStorageConstants.HuCardSlotResourceKey));
+                ModelResourceKey: BeetlePceFastStorageConstants.HuCardSlotResourceKey));
         if (model.SupportsCdDrive)
         {
             var laserActive = model.Id == LaserActiveMachineConstants.Id;
@@ -34,8 +35,8 @@ internal static class GeargrafxStorageFunctions
                 DisplayLabel: StorageSettingsFunctionsConstants.CdDriveLabel,
                 IsPermanent: model.HasBuiltInCdDrive,
                 ModelResourceKey: model.Id == PcEngineDuoMachineConstants.Id
-                    ? BeetlePceStorageConstants.DuoCdRomResourceKey
-                    : BeetlePceStorageConstants.CdRom2ResourceKey));
+                    ? BeetlePceFastStorageConstants.DuoCdRomResourceKey
+                    : BeetlePceFastStorageConstants.CdRom2ResourceKey));
         }
         return devices;
     }

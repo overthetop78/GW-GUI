@@ -1,5 +1,7 @@
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Functions;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
@@ -17,6 +19,7 @@ internal static partial class SettingsDescriptionFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
+        var coreOptions = CoreSettingsFunctions.HasDefinitions(configuration.EmulatorId);
         var pcfx = configuration.EmulatorId == BeetlePcfxConstants.Id;
         var sgx = configuration.EmulatorId == BeetleSgxConstants.Id;
         var geargrafx = configuration.EmulatorId == GeargrafxConstants.Id;
@@ -26,11 +29,11 @@ internal static partial class SettingsDescriptionFunctions
         var ramDisplay = model.RamKib >= SettingsDescriptionFunctionsConstants.KibPerMib
             ? $"{model.RamKib / SettingsDescriptionFunctionsConstants.KibPerMib}{SettingsDescriptionFunctionsConstants.MemoryUnitMib}"
             : $"{ram}{SettingsDescriptionFunctionsConstants.MemoryUnitKib}";
-        var video = pcfx
+        var video = coreOptions ? [] : pcfx
             ? BeetlePcfxSettingsDescriptionFunctions.Video(options)
             : sgx ? BeetleSgxSettingsDescriptionFunctions.Video(options)
                 : geargrafx ? GeargrafxSettingsDescriptionFunctions.Video(model.Id, options)
-                : BeetlePceSettingsDescriptionFunctions.Video(options);
+                : BeetlePceFastSettingsDescriptionFunctions.Video(options);
         var audio = new List<EmulationSettingsField>
         {
             Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio,
@@ -46,15 +49,16 @@ internal static partial class SettingsDescriptionFunctions
                     .Select(value => Invariant(value.ToString(),
                         $"{value}{SettingsDescriptionFunctionsConstants.MillisecondUnit}", value)))
         };
-        if (pcfx) BeetlePcfxSettingsDescriptionFunctions.AddAudio(audio, options);
+        if (coreOptions) { }
+        else if (pcfx) BeetlePcfxSettingsDescriptionFunctions.AddAudio(audio, options);
         else if (geargrafx) GeargrafxSettingsDescriptionFunctions.AddAudio(audio, options);
         else if (cdCapable && (model.HasBuiltInCdDrive
             || bool.TryParse(options.GetValueOrDefault(
-                BeetlePceStorageConstants.CdDriveEnabledOption), out var cdEnabled)
+                BeetlePceFastStorageConstants.CdDriveEnabledOption), out var cdEnabled)
                 && cdEnabled))
         {
             if (sgx) BeetleSgxSettingsDescriptionFunctions.AddCdAudio(audio, options);
-            else BeetlePceSettingsDescriptionFunctions.AddCdAudio(audio, options);
+            else BeetlePceFastSettingsDescriptionFunctions.AddCdAudio(audio, options);
         }
         var blocks = new List<EmulationSettingsBlock>
         {
@@ -118,7 +122,7 @@ internal static partial class SettingsDescriptionFunctions
         if (cd)
             blocks.Insert(PcEngineDuoMachineConstants.CdMemoryBlockPosition,
                 PcEngineDuoSettingsFunctions.CdRamBlock());
-        if (model.MouseButtonCount > SettingsDescriptionFunctionsConstants.FirstChoice)
+        if (!coreOptions && model.MouseButtonCount > SettingsDescriptionFunctionsConstants.FirstChoice)
             blocks.Add(Block(SettingsDescriptionFunctionsConstants.Mouse, EmulationMachineTab.Mouse,
                 SettingsDescriptionFunctionsConstants.ResourceMouseTab,
                 SettingsDescriptionFunctionsConstants.MouseIcon,
@@ -126,7 +130,28 @@ internal static partial class SettingsDescriptionFunctions
                 pcfx ? BeetlePcfxSettingsDescriptionFunctions.Mouse(options)
                     : sgx ? BeetleSgxSettingsDescriptionFunctions.Mouse(options)
                         : geargrafx ? GeargrafxSettingsDescriptionFunctions.Mouse(options)
-                        : BeetlePceSettingsDescriptionFunctions.Mouse(options)));
+                        : BeetlePceFastSettingsDescriptionFunctions.Mouse(options)));
+        if (coreOptions)
+        {
+            foreach (var tab in CoreSettingsFunctions.Definitions(configuration.EmulatorId)
+                .Select(option => option.Tab).Distinct())
+            {
+                var block = blocks.FirstOrDefault(item => item.Tab == tab);
+                var blockId = block?.Id ?? CoreSettingsConstants.BlockPrefix + tab;
+                var fields = CoreSettingsFunctions.Fields(configuration, tab, blockId);
+                if (block is null)
+                    blocks.Add(new EmulationSettingsBlock(blockId, tab,
+                        CoreSettingsConstants.Titles[tab], fields, Columns: CoreSettingsConstants.ColumnCount));
+                else blocks[blocks.IndexOf(block)] = block with
+                    { Fields = block.Fields.Concat(fields).ToArray() };
+            }
+            if (FirmwareFunctions.Slots(configuration.EmulatorId).Count != 0)
+            {
+                var firmware = blocks.First(item => item.Tab == EmulationMachineTab.Rom);
+                blocks[blocks.IndexOf(firmware)] = firmware with
+                    { Fields = FirmwareFunctions.Fields(configuration) };
+            }
+        }
         return blocks;
     }
 }

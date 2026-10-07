@@ -587,7 +587,7 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void NecBeetlePceSelectsPcEngineModels()
+    public void NecBeetlePceFastSelectsPcEngineModels()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-nec-adapter-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -600,7 +600,7 @@ public sealed class ConsoleFamilyModuleTests
             {
                 var configuration = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>(
                     module.CreateConfiguration(machineId));
-                Assert.Equal("beetle_pce_fast", configuration.EmulatorId);
+                Assert.Equal(machineId == "SuperGrafx" ? "beetle_sgx" : "beetle_pce_fast", configuration.EmulatorId);
             }
         }
         finally

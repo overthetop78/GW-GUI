@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Contracts;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
 

@@ -94,12 +94,18 @@ public sealed class ConfigurationStore
 
     private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with
     {
-        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray()
+        Media = configuration.Media?.Select(media => media with { Path = StorePath(media.Path)! }).ToArray(),
+        FirmwarePath = StorePath(configuration.FirmwarePath),
+        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key,
+            item => StorePath(item.Value)!, StringComparer.Ordinal)
     };
 
     private MachineConfiguration ResolvePaths(MachineConfiguration configuration) => configuration with
     {
-        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray()
+        Media = configuration.Media?.Select(media => media with { Path = ResolvePath(media.Path)! }).ToArray(),
+        FirmwarePath = ResolvePath(configuration.FirmwarePath),
+        FirmwarePaths = configuration.FirmwarePaths?.ToDictionary(item => item.Key,
+            item => ResolvePath(item.Value)!, StringComparer.Ordinal)
     };
 
     private string? StorePath(string? path)

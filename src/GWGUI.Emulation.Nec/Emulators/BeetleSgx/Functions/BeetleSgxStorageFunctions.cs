@@ -1,4 +1,5 @@
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Functions;
@@ -11,24 +12,24 @@ internal static class BeetleSgxStorageFunctions
         if (model.SupportsCartridgeSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0,
                 EmulationMediaType.Cartridge,
-                [BeetlePceStorageConstants.PceExtension, BeetlePceStorageConstants.BinExtension],
+                [BeetlePceFastStorageConstants.PceExtension, BeetlePceFastStorageConstants.BinExtension],
                 RequiresMachineRecreation: true,
-                DisplayLabel: BeetlePceStorageConstants.CartridgeSlotLabel,
+                DisplayLabel: BeetlePceFastStorageConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot,
-                ModelResourceKey: BeetlePceStorageConstants.HuCardSlotResourceKey));
+                ModelResourceKey: BeetlePceFastStorageConstants.HuCardSlotResourceKey));
         if (model.SupportsCdDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0,
                 EmulationMediaType.CompactDisc,
                 [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Ccd,
-                    BeetlePceStorageConstants.IsoExtension, BeetlePceStorageConstants.ImgExtension,
-                    BeetlePceStorageConstants.BinExtension, StorageSettingsFunctionsConstants.Chd],
+                    BeetlePceFastStorageConstants.IsoExtension, BeetlePceFastStorageConstants.ImgExtension,
+                    BeetlePceFastStorageConstants.BinExtension, StorageSettingsFunctionsConstants.Chd],
                 RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CdDriveLabel,
                 IsPermanent: model.HasBuiltInCdDrive,
                 ConfigurationKind: EmulationStorageConfigurationKind.CompactDiscDrive,
                 CompactDiscSpeeds: BeetleSgxSettingsConstants.CdSpeeds,
                 CompactDiscCacheResourceKey: StorageSettingsFunctionsConstants.ResourceCdImageCache,
-                ModelResourceKey: BeetlePceStorageConstants.CdRom2ResourceKey));
+                ModelResourceKey: BeetlePceFastStorageConstants.CdRom2ResourceKey));
         return devices;
     }
 

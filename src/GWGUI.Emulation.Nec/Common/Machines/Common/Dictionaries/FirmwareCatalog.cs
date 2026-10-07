@@ -17,7 +17,10 @@ public sealed class FirmwareCatalog
     [
         PcEngineMachineConstants.Id, CoreGrafxMachineConstants.Id,
         PcEngineDuoMachineConstants.Id, PcEngineLtMachineConstants.Id,
-        SuperGrafxMachineConstants.Id, LaserActiveMachineConstants.Id
+        SuperGrafxMachineConstants.Id, LaserActiveMachineConstants.Id,
+        Machines.PcEngineCd.Constants.MachineConstants.Id,
+        Machines.PcEngineSuperCd.Constants.MachineConstants.Id,
+        Machines.PcEngineArcadeCard.Constants.MachineConstants.Id
     ];
 
     private static readonly HashSet<string> Extensions = new(StringComparer.OrdinalIgnoreCase)

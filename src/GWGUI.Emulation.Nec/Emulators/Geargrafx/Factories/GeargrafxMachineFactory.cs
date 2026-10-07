@@ -6,9 +6,11 @@ using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngineLt.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.TurboExpress.Constants;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Contracts;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Functions;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Services;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
@@ -26,7 +28,9 @@ internal sealed class GeargrafxMachineFactory : IEmulatorAdapter
         GeargrafxConstants.DescriptionResourceKey,
         new[] { PcEngineMachineConstants.Id, CoreGrafxMachineConstants.Id,
             PcEngineDuoMachineConstants.Id, PcEngineLtMachineConstants.Id,
-            TurboExpressMachineConstants.Id, SuperGrafxMachineConstants.Id,
+            TurboExpressMachineConstants.Id,
+            GWGUI.Emulation.Nec.Common.Machines.PcEngineCd.Constants.MachineConstants.Id,
+            GWGUI.Emulation.Nec.Common.Machines.PcEngineSuperCd.Constants.MachineConstants.Id, SuperGrafxMachineConstants.Id,
             LaserActiveMachineConstants.Id }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
@@ -84,7 +88,7 @@ internal sealed class GeargrafxMachineFactory : IEmulatorAdapter
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         var machineId = Guid.NewGuid();
-        var native = BeetlePceOptionFunctions.ToNative(configuration.EnsureId());
+        var native = BeetlePceFastOptionFunctions.ToNative(configuration.EnsureId());
         var sessionDirectory = Path.Combine(context.SessionsDirectory,
             machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         GeargrafxFirmwareFunctions.Prepare(context.FirmwareDirectory, sessionDirectory,

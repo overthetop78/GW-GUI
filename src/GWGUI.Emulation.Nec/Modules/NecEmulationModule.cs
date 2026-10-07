@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;
@@ -56,7 +57,8 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         {
             EmulationMachineTab.Keyboard => model.HasKeyboard,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
-            EmulationMachineTab.Storage => model.SupportsCdDrive || model.SupportsCartridgeSlot,
+            EmulationMachineTab.Storage => model.SupportsCdDrive || model.SupportsCartridgeSlot
+                || model.MaximumFloppyDriveCount > 0,
             _ => item.Value
         });
         return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
@@ -96,8 +98,10 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         var nintendo = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(nintendo.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        var firmwareSlots = FirmwareFunctions.Slots(nintendo.EmulatorId);
         foreach (var item in values)
         {
+            if (firmwareSlots.Any(slot => slot.FieldId == item.Key)) continue;
             if (item.Key is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency or SettingsConstants.FirmwarePath
@@ -108,7 +112,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
             else options[item.Key] = item.Value;
         }
         var audio = nintendo.Audio ?? new AudioConfiguration();
-        return nintendo with
+        return FirmwareFunctions.Apply(nintendo, values) with
         {
             Options = options,
             FirmwarePath = values.TryGetValue(SettingsConstants.FirmwarePath, out var firmware)
@@ -205,6 +209,8 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         var current = RequireConfiguration(configuration);
         if (!string.Equals(current.Model, machineId, StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException(nameof(configuration));
+        if (FirmwareFunctions.Slots(current.EmulatorId).Count != 0)
+            return ValueTask.FromResult(FirmwareFunctions.Scan(current, GetFirmwareDirectory(machineId)));
         if (!ModelCatalog.Get(machineId).SupportsCdDrive)
             return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>([]);
         var candidates = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
@@ -230,6 +236,12 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         EmulationFirmwareCandidate firmware)
     {
         var current = RequireConfiguration(configuration);
+        if (FirmwareFunctions.Slots(current.EmulatorId).Any(slot => slot.FieldId == firmware.DestinationFieldId))
+        {
+            if (!File.Exists(firmware.Path)) throw new FileNotFoundException(null, firmware.Path);
+            return FirmwareFunctions.Apply(current, new Dictionary<string, string?>
+                { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) });
+        }
         if (firmware.DestinationFieldId != SettingsConstants.FirmwarePath)
             throw new InvalidOperationException(nameof(firmware));
         var inspected = FirmwareCatalog.Inspect(firmware.Path);
@@ -349,13 +361,15 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
             {
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
                 EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
+                EmulationMediaType.Floppy => MediaCategory.Floppy,
+                EmulationMediaType.HardDisk => MediaCategory.HardDisk,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted,
-            MountOrder: index)).ToArray()
+            MountOrder: index, SlotIndex: item.Slot.Index)).ToArray()
     };
 
     private static string DefaultEmulatorId(string machineId) =>
-        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
+        EmulatorCatalog.DefaultFor(machineId);
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));

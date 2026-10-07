@@ -17,4 +17,5 @@ public sealed record Model(
     string CpuName,
     string CpuClock,
     bool HasBuiltInCdDrive,
-    bool SupportsCdDrive);
+    bool SupportsCdDrive,
+    bool SupportsHardDrives = false);

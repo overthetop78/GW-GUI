@@ -14,4 +14,5 @@ public static class MachineCatalog
                 ? EmulationModuleConstants.BrandAssetResourceName
                 : $"{EmulationModuleConstants.AssetResourcePrefix}.Machines.{model.Id}.png"))
         .ToArray();
+
 }

@@ -1,4 +1,5 @@
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
 using static GWGUI.Emulation.Nec.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
 
@@ -10,7 +11,7 @@ internal static class BeetleSgxSettingsDescriptionFunctions
     [
         Select(BeetleSgxSettingsConstants.HorizontalOverscan, EmulationMachineTab.Video,
             SettingsDescriptionFunctionsConstants.Video,
-            BeetlePceSettingsConstants.ResourceHorizontalWidth,
+            BeetlePceFastSettingsConstants.ResourceHorizontalWidth,
             options.GetValueOrDefault(BeetleSgxSettingsConstants.HorizontalOverscan,
                 BeetleSgxSettingsConstants.DefaultHorizontalOverscan),
             Enumerable.Range(SettingsDescriptionFunctionsConstants.FirstChoice,
@@ -57,11 +58,11 @@ internal static class BeetleSgxSettingsDescriptionFunctions
     {
         foreach (var (id, resource) in new[]
         {
-            (BeetleSgxSettingsConstants.CdVolume, BeetlePceSettingsConstants.ResourceCdVolume),
+            (BeetleSgxSettingsConstants.CdVolume, BeetlePceFastSettingsConstants.ResourceCdVolume),
             (BeetleSgxSettingsConstants.AdpcmVolume,
-                BeetlePceSettingsConstants.ResourceAdpcmVolume),
+                BeetlePceFastSettingsConstants.ResourceAdpcmVolume),
             (BeetleSgxSettingsConstants.CdPsgVolume,
-                BeetlePceSettingsConstants.ResourceCdPsgVolume)
+                BeetlePceFastSettingsConstants.ResourceCdPsgVolume)
         })
             audio.Add(Select(id, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.Audio, resource,

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Model.Pc8001"><value>PC-8001</value></data>
+  <data name="Emulation.Nec.Model.Pc8801"><value>PC-8801</value></data>
+  <data name="Emulation.Nec.Model.Pc9801"><value>PC-9801</value></data>
+  <data name="Emulation.Nec.Model.Pc9821"><value>PC-9821</value></data>
+  <data name="Emulation.Nec.Model.PcEngineCd"><value>PC Engine CD / TurboGrafx-CD</value></data>
+  <data name="Emulation.Nec.Model.PcEngineSuperCd"><value>PC Engine Super CD-ROM²</value></data>
+  <data name="Emulation.Nec.Model.PcEngineArcadeCard"><value>PC Engine Arcade Card</value></data>
+  <data name="Emulation.Nec.Model.Pc8801MkII"><value>PC-8801mkII</value></data>
+  <data name="Emulation.Nec.Model.Pc8801MkIISR"><value>PC-8801mkIISR</value></data>
+  <data name="Emulation.Emulator.beetle_pce"><value>Beetle PCE</value></data>
+  <data name="Emulation.Emulator.quasi88"><value>QUASI88</value></data>
+  <data name="Emulation.Emulator.neko_project_ii"><value>Neko Project II</value></data>
+  <data name="Emulation.Emulator.np2kai"><value>NP2Kai</value></data>
+</root>

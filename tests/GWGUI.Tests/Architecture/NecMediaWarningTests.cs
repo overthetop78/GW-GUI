@@ -4,7 +4,8 @@ using GWGUI.Emulation.Nec.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Nec.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
 using GWGUI.Emulation.Nec.Common.Services;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
@@ -37,9 +38,9 @@ public sealed class NecMediaWarningTests
                 : new[] { EmulationMediaCategory.CartridgeSlot },
             required.RequiredMedia);
         Assert.Equal(cdDriveEnabled
-                ? new[] { BeetlePceStorageConstants.CartridgeSlotLabel,
+                ? new[] { BeetlePceFastStorageConstants.CartridgeSlotLabel,
                     StorageSettingsFunctionsConstants.CdDriveLabel }
-                : new[] { BeetlePceStorageConstants.CartridgeSlotLabel },
+                : new[] { BeetlePceFastStorageConstants.CartridgeSlotLabel },
             required.RequiredMediaNames);
     }
 }

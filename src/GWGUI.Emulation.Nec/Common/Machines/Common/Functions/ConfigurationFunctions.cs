@@ -41,6 +41,8 @@ internal static class ConfigurationValidationFunctions
     {
         MediaCategory.CompactDisc => model.SupportsCdDrive,
         MediaCategory.Cartridge => model.SupportsCartridgeSlot,
+        MediaCategory.Floppy => model.MaximumFloppyDriveCount > 0,
+        MediaCategory.HardDisk => model.SupportsHardDrives,
         MediaCategory.Snapshot => false,
         _ => false
     };

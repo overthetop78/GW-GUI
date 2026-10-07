@@ -1,7 +1,8 @@
 using System.IO;
 using System.Runtime.InteropServices;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Exceptions;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
@@ -17,7 +18,7 @@ internal static class GeargrafxSaveRamFunctions
         if (!File.Exists(path)) return;
         var bytes = File.ReadAllBytes(path);
         if (bytes.Length != size)
-            throw new InvalidDataException(BeetlePceExceptions.InvalidSaveRamSize(path));
+            throw new InvalidDataException(CoreExceptions.InvalidSaveRamSize(path));
         Marshal.Copy(bytes, GeargrafxSaveRamConstants.FirstByteOffset, memory, size);
     }
 
@@ -54,7 +55,7 @@ internal static class GeargrafxSaveRamFunctions
             return IntPtr.Zero;
         }
         if (length > GeargrafxSaveRamConstants.MaximumSize)
-            throw new InvalidDataException(BeetlePceExceptions.SaveRamTooLarge());
+            throw new InvalidDataException(CoreExceptions.SaveRamTooLarge());
         size = (int)length;
         return getData(GeargrafxSaveRamConstants.SaveRamType);
     }

@@ -1,8 +1,10 @@
 using System.IO;
 using GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Contracts;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Functions;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Services;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Services;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Services;
 using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Factories;
@@ -75,7 +77,7 @@ internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         var machineId = Guid.NewGuid();
-        var native = BeetlePceOptionFunctions.ToNative(configuration.EnsureId());
+        var native = BeetlePceFastOptionFunctions.ToNative(configuration.EnsureId());
         return new Machine(machineId, native,
             new ProcessCore(context.HostExecutablePath, context.CorePath),
             native.Media ?? [], Path.Combine(context.SessionsDirectory,

@@ -22,7 +22,16 @@ internal static class ModelCatalog
         TurboExpressMachineConstants.Definition,
         PcEngineLtMachineConstants.Definition,
         PcFxMachineConstants.Definition,
-        LaserActiveMachineConstants.Definition
+        LaserActiveMachineConstants.Definition,
+        Machines.Pc8001.Constants.MachineConstants.Definition,
+        Machines.Pc8801.Constants.MachineConstants.Definition,
+        Machines.Pc8801.Dictionaries.ModelCatalog.MkII,
+        Machines.Pc8801.Dictionaries.ModelCatalog.MkIISr,
+        Machines.Pc9801.Constants.MachineConstants.Definition,
+        Machines.Pc9821.Constants.MachineConstants.Definition,
+        Machines.PcEngineCd.Constants.MachineConstants.Definition,
+        Machines.PcEngineSuperCd.Constants.MachineConstants.Definition,
+        Machines.PcEngineArcadeCard.Constants.MachineConstants.Definition
     ];
 
     internal static Model Get(string id) => All.FirstOrDefault(item =>

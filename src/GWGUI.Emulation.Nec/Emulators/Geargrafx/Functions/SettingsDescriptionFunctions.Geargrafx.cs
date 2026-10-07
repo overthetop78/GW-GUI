@@ -1,6 +1,7 @@
 using GWGUI.Emulation.Nec.Common.Machines.LaserActive.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;
-using GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
 using static GWGUI.Emulation.Nec.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
 
@@ -69,9 +70,9 @@ internal static class GeargrafxSettingsDescriptionFunctions
     {
         foreach (var (id, resource) in new[]
         {
-            (GeargrafxSettingsConstants.PsgVolume, BeetlePceSettingsConstants.ResourceCdPsgVolume),
-            (GeargrafxSettingsConstants.CdVolume, BeetlePceSettingsConstants.ResourceCdVolume),
-            (GeargrafxSettingsConstants.AdpcmVolume, BeetlePceSettingsConstants.ResourceAdpcmVolume)
+            (GeargrafxSettingsConstants.PsgVolume, BeetlePceFastSettingsConstants.ResourceCdPsgVolume),
+            (GeargrafxSettingsConstants.CdVolume, BeetlePceFastSettingsConstants.ResourceCdVolume),
+            (GeargrafxSettingsConstants.AdpcmVolume, BeetlePceFastSettingsConstants.ResourceAdpcmVolume)
         })
             audio.Add(Select(id, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.Audio, resource,
