@@ -31,10 +31,8 @@ internal sealed partial class EmulationModuleSettingsSection
         return layout;
     }
 
-    private UIElement BuildGeneralHeader()
+    private Button BuildCreateButton()
     {
-        var heading = new Grid { Margin = new Thickness(0, 0, 0, 12) };
-        heading.ColumnDefinitions.Add(new ColumnDefinition());
         var save = new Button
         {
             Content = LocExtension.Get("Common.Create"),
@@ -44,8 +42,7 @@ internal sealed partial class EmulationModuleSettingsSection
                 ? Visibility.Collapsed : Visibility.Visible
         };
         save.Click += async (_, _) => await ExecuteAsync(SaveAsync);
-        heading.Children.Add(save);
-        return heading;
+        return save;
     }
 
     private UIElement BuildMachineTabs()
@@ -69,9 +66,18 @@ internal sealed partial class EmulationModuleSettingsSection
             or EmulationMachineTab.Controllers) && _inputSettings is not null)
             return BuildInputSettingsTab(settings, tab);
         var panel = new StackPanel { Margin = new Thickness(12) };
-        if (tab == EmulationMachineTab.General) panel.Children.Add(BuildGeneralHeader());
-        if (tab == EmulationMachineTab.General && _emulatorManagement is not null)
-            panel.Children.Add(_emulatorManagement.CreateView());
+        if (tab == EmulationMachineTab.General)
+        {
+            var createButton = BuildCreateButton();
+            if (_emulatorManagement is not null)
+                panel.Children.Add(_emulatorManagement.CreateView(createButton));
+            else
+            {
+                var heading = new Grid { Margin = new Thickness(0, 0, 0, 12) };
+                heading.Children.Add(createButton);
+                panel.Children.Add(heading);
+            }
+        }
         AddBlocks(panel, settings, tab);
         ApplySettingsRules(settings);
         if (_storageSettings is not null && tab == EmulationMachineTab.Storage)

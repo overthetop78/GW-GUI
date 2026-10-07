@@ -1,5 +1,7 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari.Common.Constants;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
+using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Dictionaries;
 
@@ -33,6 +35,7 @@ public static class MachineCatalog
         "Jaguar" => "AtariJaguar.png",
         "JaguarCd" => "AtariJaguarCD.png",
         "XlXe" => "AtariXLXE.png",
+        nameof(MachineModel.Xegs) => MachineConstants.XegsImageFileName,
         _ => null
     };
 }

@@ -142,9 +142,7 @@ internal sealed partial class EmulationModuleSettingsSection
     internal void RefreshLocalizedContent()
     {
         CaptureEditorValues();
-        var choices = _module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.GetForModule(_module, machine.DisplayResourceKey),
-            _saved.Any(configuration => configuration.MachineId == machine.Id))).ToArray();
+        var choices = _module.Machines.Select(CreateMachineChoice).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(_configuration.MachineId);
         FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft

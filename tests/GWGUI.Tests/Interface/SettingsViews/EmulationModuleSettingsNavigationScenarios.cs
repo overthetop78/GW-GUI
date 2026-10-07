@@ -78,7 +78,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
         try
         {
             controller.ConfigurationChanged += (_, _) => useCount++;
-            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView(new Button()));
             await controller.RefreshAsync();
             Assert.Equal(["emulator-a", "emulator-b"], panel.Emulators.Items
                 .Cast<EmulationEmulatorInstallation>().Select(item => item.EmulatorId));
@@ -126,7 +126,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
             () => configuration, value => configuration = value, () => false);
         try
         {
-            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView(new Button()));
             await controller.RefreshAsync();
 
             Assert.Empty(panel.Emulators.Items);
@@ -170,7 +170,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
             () => configuration, value => configuration = value, () => false);
         try
         {
-            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView(new Button()));
             await controller.RefreshAsync();
 
             panel.Search.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
@@ -228,7 +228,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
             () => configuration,
             value => configuration = value,
             () => false);
-        var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+        var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView(new Button()));
         try
         {
             controller.ConfigurationChanged += (_, _) => useCount++;
@@ -287,7 +287,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
             new EmulatorLocalization(definition.DescriptionResourceKey, "Description traduite"));
         try
         {
-            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView());
+            var panel = Assert.IsType<EmulationCoreManagementPanel>(controller.CreateView(new Button()));
             await controller.RefreshAsync();
             Assert.Equal("Emulator A", Assert.IsType<EmulationEmulatorInstallation>(
                 panel.Emulators.SelectedItem).DisplayName);

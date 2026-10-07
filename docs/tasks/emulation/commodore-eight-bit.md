@@ -67,10 +67,59 @@ Nettoyage realise : outils de test, sources, DLL et copies temporaires supprimes
 ## PNG des machines ajoutees
 
 - [ ] Ajouter les images des 29 nouvelles machines Commodore
-  - [ ] Committer la reprise existante
-    - [ ] Modifier l index et creer le commit Git : inclure les sources, ressources, tests et ce suivi actuellement modifies.
-  - [ ] Creer et relier les images
-    - [ ] Creer `src/GWGUI.Emulation.Commodore/Assets/Machines/{C16,C64,C64Dtv,C64SuperCpu,C128,CbmII510,CbmII610,CbmII620,CbmII620Plus,CbmII710,CbmII720,CbmII720Plus,Pet2001,Pet3008,Pet3016,Pet3032,Pet3032B,Pet4016,Pet4032,Pet4032B,Pet8032,Pet8096,Pet8296,Plus4,SuperPet,Vic20,Vic21,V364,C232}.png` : illustrations des machines, conformes aux PNG existants et aux differences de boitiers.
-    - [ ] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Constants/MachineCatalogConstants.cs` et `Dictionaries/MachineCatalog.cs` : constantes et references des ressources images pour les 29 machines.
-  - [ ] Verifier et nettoyer
-    - [ ] Modifier ce suivi : verifier les dimensions, les 39 ressources images embarquees et le build Debug avec huit modules; supprimer les fichiers de travail temporaires dans `artifacts/temp/commodore-machine-images` apres usage.
+  - [x] Committer la reprise existante
+    - [x] Modifier l index et creer le commit Git : inclure les sources, ressources, tests et ce suivi actuellement modifies.
+  - [x] Creer et relier les images
+    - [x] Creer `src/GWGUI.Emulation.Commodore/Assets/Machines/{C16,C64,C64Dtv,C64SuperCpu,C128,Pet2001}.png` : images fournies par l utilisateur, GIF SuperCPU converti en PNG.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Constants/MachineCatalogConstants.cs` et `Dictionaries/MachineCatalog.cs` : relier les six PNG fournis aux machines correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Assets/Machines/Plus4.png` : utiliser la source WEBP de l utilisateur et retirer uniquement son fond pour obtenir un PNG transparent.
+    - [x] Creer `artifacts/temp/commodore-machine-images/{CbmII610,CbmII710,Pet4032,Pet8032,Pet8296,C232,V364}.jpg` et `Pet3032.png` : photos sources verifiees pour detourage; suppression au nettoyage.
+    - [x] Creer `artifacts/temp/commodore-machine-images/CbmII510.jpg` : photo du P500 correspondant au CBM-II 510 pour detourage.
+    - [x] Creer `src/GWGUI.Emulation.Commodore/Assets/Machines/{CbmII510,CbmII610,CbmII710,Pet3032,Pet4032,Pet8032,Pet8296,Plus4,SuperPet,Vic20,C232,V364}.png` : photos et rendu de reference avec fond transparent; halo du PET 8296 retire.
+    - [x] Creer `src/GWGUI.Emulation.Commodore/Assets/Machines/{CbmII620,CbmII620Plus,CbmII720,CbmII720Plus,Pet3008,Pet3016,Pet4016,Pet8096,Vic21}.png` : reutiliser le visuel du meme boitier pour les variantes de memoire et extensions internes.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Constants/MachineCatalogConstants.cs` et `Dictionaries/MachineCatalog.cs` : relier les 21 autres PNG disponibles.
+    - [x] Supprimer `src/GWGUI.Emulation.Commodore/Assets/Machines/Vic21.png` : doublon du VIC-20; modifier `Constants/MachineCatalogConstants.cs` et `Dictionaries/MachineCatalog.cs` pour utiliser directement `Vic20ImageResource` pour VIC-21.
+    - [x] Supprimer `src/GWGUI.Emulation.Commodore/Assets/Machines/{Pet8096,Pet4016,Pet3016,Pet3008,CbmII720,CbmII720Plus}.png` : doublons signales par l utilisateur; modifier `Constants/MachineCatalogConstants.cs` et `Dictionaries/MachineCatalog.cs` pour referencer respectivement 8032, 4032, 3032 et 710.
+    - [x] Supprimer `src/GWGUI.Emulation.Commodore/Assets/Machines/{CbmII620,CbmII620Plus}.png` : doublons du 610; modifier `Constants/MachineCatalogConstants.cs` et `Dictionaries/MachineCatalog.cs` pour utiliser `CbmII610ImageResource`.
+  - [x] Verifier et nettoyer
+    - [x] Modifier ce suivi : verifier les dimensions, la transparence, les 28 ressources images embarquees et le build Debug avec huit modules; supprimer les fichiers de travail temporaires dans `artifacts/temp/commodore-machine-images` apres usage.
+  - [ ] Completer les deux variantes a clavier business apres identification fiable
+    - [ ] Creer `src/GWGUI.Emulation.Commodore/Assets/Machines/Pet3032B.png` : photographie fiable de cette variante avec fond transparent.
+    - [ ] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Constants/MachineCatalogConstants.cs` et `Dictionaries/MachineCatalog.cs` : relier les images des deux variantes business.
+    - [ ] Modifier ce suivi : verifier les deux PNG et les 30 ressources embarquees pour les 39 machines apres build Debug avec huit modules.
+
+### Validation des images
+
+- 18 nouveaux PNG uniques; 28 ressources PNG au total dans le module; 37 machines disposent d une image.
+- PNG ouverts et contours verifies; transparence presente, quatre coins a alpha zero pour chaque image.
+- Neuf doublons supprimes a la demande de l utilisateur. Ressources partagees : VIC-21 vers VIC-20; PET 3008/3016 vers 3032; PET 4016 vers 4032; PET 8096 vers 8032; CBM-II 620/620+ vers 610 et 720/720+ vers 710.
+- Ressources embarquees de la DLL publiee comparees aux 28 PNG : aucune difference, aucune reference manquante.
+- Build final scripts/local-building.cmd --building=debug --modules=A : sortie 0, executable build/Debug/GW GUI/gwgui.exe et huit modules presents.
+- Dossier artifacts/temp/commodore-machine-images supprime apres verification.
+- Reste a completer : photo fiable de PET 3032B, a clavier business. PET 4032B utilise la miniature Pet4032.png sur demande explicite de l utilisateur du 7 octobre 2026.
+
+### Sources des nouveaux visuels
+
+Photos choisies par l utilisateur :
+
+- C64 : https://upload.wikimedia.org/wikipedia/commons/9/9d/Commodore-64-Computer-FL.png
+- C16 : https://upload.wikimedia.org/wikipedia/commons/a/af/Commodore_16_002a.png
+- C64 DTV : https://www.getdigital.de/cdn/shop/files/productImage-173-c64-dtv-joystick-1_14895fad-b760-4d92-ae0f-b620067866c3.png?v=1721573450&width=400
+- SuperCPU : https://s3.amazonaws.com/com.c64os.resources/weblog/woc19presentationsreview2_2/supercpu.gif (conversion de format GIF vers PNG)
+- C128 : https://upload.wikimedia.org/wikipedia/commons/8/8d/Commodore-128.png
+- PET 2001 : https://upload.wikimedia.org/wikipedia/commons/8/88/Commodore_2001_Series-IMG_0448b.png
+- Plus/4 : https://storage.googleapis.com/rtc-collector-images/images/master/1765739574852_t0fi6v.webp (fond retire)
+- SuperPET : https://piermarcobarbe.github.io/informatics_history_HCI_atelier_2015/html/hardware/images/superpet.png
+
+Sources recherchees; fond retire sauf pour le PNG VIC-20 deja transparent :
+
+- VIC-20 : https://upload.wikimedia.org/wikipedia/commons/b/bb/Commodore-VIC-20-FL.png
+- CBM-II 510 / P500 : https://vintagecomputer.net/commodore/p500/P500_front-view.JPG
+- CBM-II 610 : https://commons.wikimedia.org/wiki/File:Cbm610_ta.jpg
+- CBM-II 710 : https://commons.wikimedia.org/wiki/File:Cbm710_ta.jpg
+- PET 3032 : https://www.homecomputermuseum.nl/wp-content/uploads/2019/09/Pet-1200x1086.png
+- PET 4032 : https://jimvideo.wordpress.com/wp-content/uploads/2012/09/pet4032.jpg
+- PET 8032 : https://commons.wikimedia.org/wiki/File:Commodore_PET_8032.jpg (phreakindee, CC0)
+- PET 8296 : https://www.fib.upc.edu/retro-informatica/exposicio/micrordinadors/com_8296.html?lang=es
+- C232 : https://www.pagetable.com/docs/232-264/case_232.jpg
+- V364 : https://cbmmuseum.kuto.de/images/home_364.jpg (rendu de reference)

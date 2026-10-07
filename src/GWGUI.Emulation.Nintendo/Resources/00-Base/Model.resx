@@ -5,9 +5,9 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Nintendo.Model.GameWatch"><value>Game &amp; Watch</value></data>
-  <data name="Emulation.Nintendo.Model.Nes"><value>Nintendo Entertainment System / Famicom</value></data>
+  <data name="Emulation.Nintendo.Model.Nes"><value>NES</value></data>
   <data name="Emulation.Nintendo.Model.FamicomDisk"><value>Famicom Disk System</value></data>
-  <data name="Emulation.Nintendo.Model.Snes"><value>Super Nintendo / Super Famicom</value></data>
+  <data name="Emulation.Nintendo.Model.Snes"><value>SNES</value></data>
   <data name="Emulation.Nintendo.Model.VirtualBoy"><value>Virtual Boy</value></data>
   <data name="Emulation.Nintendo.Model.Nintendo64"><value>Nintendo 64</value></data>
   <data name="Emulation.Nintendo.Model.GameBoy"><value>Game Boy</value></data>

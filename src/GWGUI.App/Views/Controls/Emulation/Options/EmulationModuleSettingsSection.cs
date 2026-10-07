@@ -11,6 +11,7 @@ using GWGUI.App.Controllers.Emulation.Input;
 using GWGUI.App.Controllers.Emulation.Options;
 using GWGUI.App.Controllers.Emulation.Storage;
 using GWGUI.App.Functions.Views.Emulation.Machine;
+using GWGUI.App.Views.Controls.Emulation.Machine;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Common;
@@ -66,8 +67,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
             ControlErrorContexts.EmulationConfigurationManagement, LocExtension.GetForModule(_module, _module.DisplayResourceKey)));
         _machines.ItemContainerStyle = EmulationMachineChoiceLayout.CreateListItemContainerStyle();
         _machines.ItemTemplate = EmulationMachineChoiceLayout.CreateTemplate();
-        var choices = module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.GetForModule(_module, machine.DisplayResourceKey), false)).ToArray();
+        var choices = module.Machines.Select(CreateMachineChoice).ToArray();
         _machines.ItemsSource = choices;
         _machines.SelectedIndex = 0;
         _configuration = module.CreateConfiguration(choices[0].Definition.Id);
@@ -151,6 +151,11 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         NotifyEditingContextChanged();
     }
 
+    private EmulationMachineChoice CreateMachineChoice(EmulationMachineDefinition machine) =>
+        new(machine, LocExtension.GetForModule(_module, machine.DisplayResourceKey),
+            _saved.Any(configuration => configuration.MachineId == machine.Id),
+            EmulationAssetFunctions.Load(_module, machine.ImageResourceName));
+
     private async Task ReloadAsync()
     {
         _saved = await _module.LoadConfigurationsAsync();
@@ -160,9 +165,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         _configuration = selected
             ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, machineId, out var draft)
                 ? draft : _module.CreateConfiguration(machineId));
-        var choices = _module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.GetForModule(_module, machine.DisplayResourceKey),
-            _saved.Any(configuration => configuration.MachineId == machine.Id))).ToArray();
+        var choices = _module.Machines.Select(CreateMachineChoice).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(machineId);
         RebuildEditor();

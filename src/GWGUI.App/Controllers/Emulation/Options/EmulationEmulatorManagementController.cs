@@ -40,11 +40,11 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
 
     internal event EventHandler? ConfigurationChanged;
 
-    internal UIElement CreateView()
+    internal UIElement CreateView(Button createButton)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         DetachView();
-        _view = new EmulationCoreManagementPanel((key, arguments) => LocExtension.Get(key, arguments));
+        _view = new EmulationCoreManagementPanel((key, arguments) => LocExtension.Get(key, arguments), createButton);
         _view.Search.Click += SearchClicked;
         _view.Download.Click += InstallClicked;
         _view.Cancel.Click += CancelClicked;

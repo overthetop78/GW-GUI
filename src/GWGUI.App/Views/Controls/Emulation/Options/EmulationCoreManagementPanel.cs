@@ -29,7 +29,7 @@ internal sealed class EmulationCoreManagementPanel : UserControl
     internal TextBlock Description { get; } = new() { TextWrapping = TextWrapping.Wrap };
     internal TextBlock Status { get; } = new() { TextWrapping = TextWrapping.Wrap };
 
-    internal EmulationCoreManagementPanel(Func<string, object[], string> localize)
+    internal EmulationCoreManagementPanel(Func<string, object[], string> localize, Button createButton)
     {
         Search.Content = localize(EmulationCoreManagementConstants.SearchResource, []);
         Download.Content = localize(EmulationCoreManagementConstants.DownloadResource, []);
@@ -83,6 +83,7 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         releases.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         releases.ColumnDefinitions.Add(new ColumnDefinition());
         releases.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        releases.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         Search.Margin = new Thickness(0, 0, 12, 0);
         releases.Children.Add(Search);
         Grid.SetColumn(Versions, 1);
@@ -90,6 +91,9 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         Download.Margin = new Thickness(12, 0, 0, 0);
         Grid.SetColumn(Download, 2);
         releases.Children.Add(Download);
+        createButton.Margin = new Thickness(0, 0, EmulationCoreManagementConstants.CreateButtonRightMargin, 0);
+        Grid.SetColumn(createButton, 3);
+        releases.Children.Add(createButton);
         Grid.SetRow(releases, 2);
         Grid.SetColumnSpan(releases, 4);
         content.Children.Add(releases);

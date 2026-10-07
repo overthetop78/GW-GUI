@@ -15,6 +15,21 @@ internal static class EmulationMachineChoiceLayout
         var text = new FrameworkElementFactory(typeof(TextBlock), "Text");
         text.SetBinding(TextBlock.TextProperty, new Binding(nameof(EmulationMachineChoice.DisplayName)));
 
+        var image = new FrameworkElementFactory(typeof(Image));
+        image.SetBinding(Image.SourceProperty, new Binding(nameof(EmulationMachineChoice.Image)));
+        image.SetValue(FrameworkElement.MaxHeightProperty, EmulationMachineChoiceVisualConstants.MaximumImageHeight);
+        image.SetBinding(FrameworkElement.HeightProperty,
+            new Binding(nameof(FrameworkElement.ActualHeight)) { ElementName = text.Name });
+        image.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+        image.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+        image.SetValue(Image.StretchProperty, Stretch.Uniform);
+        image.SetValue(FrameworkElement.MarginProperty,
+            new Thickness(0, 0, EmulationMachineChoiceVisualConstants.ImageNameSpacing, 0));
+        text.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+        var row = new FrameworkElementFactory(typeof(DockPanel));
+        row.AppendChild(image);
+        row.AppendChild(text);
+
         var configured = new DataTrigger
         {
             Binding = new Binding(nameof(EmulationMachineChoice.HasSavedConfiguration)),
@@ -24,7 +39,7 @@ internal static class EmulationMachineChoiceLayout
             new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredForeground), "Text"));
         configured.Setters.Add(new Setter(TextBlock.FontWeightProperty, FontWeights.Bold, "Text"));
 
-        var template = new DataTemplate(typeof(EmulationMachineChoice)) { VisualTree = text };
+        var template = new DataTemplate(typeof(EmulationMachineChoice)) { VisualTree = row };
         template.Triggers.Add(configured);
         return template;
     }

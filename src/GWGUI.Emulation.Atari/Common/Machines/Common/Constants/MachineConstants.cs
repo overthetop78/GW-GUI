@@ -3,6 +3,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
 
 internal static class MachineConstants
 {
+    internal const string XegsImageFileName = "AtariXEGS.png";
     internal const double MinimumFramesPerSecond = 1;
     internal const double MaximumFramesPerSecond = 1000;
     internal const int PauseWaitMilliseconds = 100;
