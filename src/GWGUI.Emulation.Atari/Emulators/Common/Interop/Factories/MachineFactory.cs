@@ -95,6 +95,9 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public virtual IReadOnlyDictionary<string, string> GetConfiguredOptions(MachineConfiguration configuration) =>
         configuration.Options;
 
+    public virtual void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory) =>
+        FirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
+
     public virtual IReadOnlyDictionary<string, string> PrepareOptions(
         IReadOnlyDictionary<string, string> options) => options;
 

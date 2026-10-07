@@ -17,6 +17,71 @@ namespace GWGUI.Tests.Emulation.Atari;
 
 public sealed class AtariEmulatorAdapterTests
 {
+    [Theory]
+    [InlineData(MachineModel.St, "0")]
+    [InlineData(MachineModel.Stf, "0")]
+    [InlineData(MachineModel.Stfm, "0")]
+    [InlineData(MachineModel.MegaSt, "1")]
+    [InlineData(MachineModel.Ste, "2")]
+    [InlineData(MachineModel.MegaSte, "3")]
+    [InlineData(MachineModel.Tt, "4")]
+    [InlineData(MachineModel.Falcon, "5")]
+    public async Task StMachinesOfferHatariBWithoutChangingHatariDefaults(MachineModel model, string nativeModel)
+    {
+        using var httpClient = new HttpClient();
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(model.ToString()));
+        Assert.Equal(Emulator.Hatari, configuration.Core);
+        Assert.Equal(new[] { "hatari", "hatarib" }, CoreCatalog.GetAll(model).Select(entry => entry.Id));
+        var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, "hatarib"));
+        Assert.Equal(Emulator.HatariB, selected.Core);
+        var options = module.RuntimeOptions(selected);
+        var hardware = StModelCatalog.Get(model);
+        Assert.Equal(nativeModel, options["hatarib_machine"]);
+        Assert.Equal(hardware.DefaultMainMemoryKib.ToString(CultureInfo.InvariantCulture), options["hatarib_memory"]);
+        Assert.Equal(hardware.DefaultCpuFrequencyMhz.ToString(CultureInfo.InvariantCulture), options["hatarib_cpu_clock"]);
+        Assert.Equal("<etos1024k>", options["hatarib_tos"]);
+        Assert.DoesNotContain(options.Keys, key => key.StartsWith("hatari_", StringComparison.Ordinal));
+        Assert.Equal(CoreCatalog.Get(Emulator.Hatari).DescriptionResourceKey,
+            CoreCatalog.Get(Emulator.HatariB).DescriptionResourceKey);
+    }
+
+    [Fact]
+    public void HatariBUsesItsOwnOptionsAndOnlyStMachines()
+    {
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari2600, core: Emulator.HatariB));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari5200, core: Emulator.HatariB));
+        var configuration = new MachineConfiguration(MachineModel.Falcon, core: Emulator.HatariB,
+            firmwares: [new FirmwareConfiguration(FirmwareCategory.Tos, "tos.img", false)],
+            options: new Dictionary<string, string>
+            {
+                ["gwgui_atari_main_memory"] = "4194304", ["gwgui_atari_cpu_frequency"] = "32",
+                ["gwgui_atari_cpu"] = nameof(StCpu.Motorola68030),
+                ["gwgui_atari_fpu"] = nameof(StFpu.Motorola68882),
+                ["gwgui_atari_cpu_precision"] = nameof(StCpuPrecision.CycleExact)
+            });
+        var options = GWGUI.Emulation.Atari.Emulators.HatariB.Functions.OptionFunctions.Apply(configuration);
+        Assert.Equal("4096", options["hatarib_memory"]);
+        Assert.Equal("32", options["hatarib_cpu_clock"]);
+        Assert.Equal("3", options["hatarib_cpu"]);
+        Assert.Equal("68882", options["hatarib_fpu"]);
+        Assert.Equal("1", options["hatarib_cycle_exact"]);
+        Assert.Equal("<tos.img>", options["hatarib_tos"]);
+        Assert.Equal("<etos192uk>", GWGUI.Emulation.Atari.Emulators.HatariB.Functions.OptionFunctions.Apply(
+            configuration with { Options = new Dictionary<string, string> { ["hatarib_tos"] = "<etos192uk>" } })["hatarib_tos"]);
+    }
+
+    [Theory]
+    [InlineData("0", "1")]
+    [InlineData("1", "0")]
+    public void HatariBConvertsTheSharedResetType(string commonValue, string nativeValue)
+    {
+        var options = GWGUI.Emulation.Atari.Emulators.HatariB.Functions.OptionFunctions.ToNative(
+            new Dictionary<string, string> { ["gwgui_atari_reset_type"] = commonValue });
+        Assert.Equal(nativeValue, options["hatarib_soft_reset"]);
+        Assert.DoesNotContain("gwgui_atari_reset_type", options.Keys);
+    }
+
     [Fact]
     public async Task Atari5200OffersA5200WithoutChangingItsDefaultAdapter()
     {

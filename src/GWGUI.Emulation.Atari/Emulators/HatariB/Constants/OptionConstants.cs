@@ -1,0 +1,56 @@
+namespace GWGUI.Emulation.Atari.Emulators.HatariB.Constants;
+
+internal static class OptionConstants
+{
+    internal const string MachineType = "hatarib_machine";
+    internal const string MemorySize = "hatarib_memory";
+    internal const string Cpu = "hatarib_cpu";
+    internal const string CpuClock = "hatarib_cpu_clock";
+    internal const string CpuCycleExact = "hatarib_cycle_exact";
+    internal const string Fpu = "hatarib_fpu";
+    internal const string Tos = "hatarib_tos";
+    internal const string UserTos = "<tos.img>";
+    internal const string InternalTos = "<etos1024k>";
+    internal const string Monitor = "hatarib_monitor";
+    internal const string EmutosFramerate = "hatarib_emutos_framerate";
+    internal const string Borders = "hatarib_borders";
+    internal const string StatusBar = "hatarib_statusbar";
+    internal const string MouseSpeed = "hatarib_mouse_host_speed";
+    internal const string HostMouse = "hatarib_host_mouse";
+    internal const string HostKeyboard = "hatarib_host_keyboard";
+    internal const string FastBoot = "hatarib_patchtos";
+    internal const string FastFloppy = "hatarib_fast_floppy";
+    internal const string ReadOnlyFloppy = "hatarib_readonly_floppy";
+    internal const string ReadOnlyHardDisk = "hatarib_hard_readonly";
+    internal const string SoftReset = "hatarib_soft_reset";
+    internal const string StMachine = "0";
+    internal const string MegaStMachine = "1";
+    internal const string SteMachine = "2";
+    internal const string MegaSteMachine = "3";
+    internal const string TtMachine = "4";
+    internal const string FalconMachine = "5";
+    internal const string Disabled = "0";
+    internal const string Enabled = "1";
+    internal const string DriveLights = "2";
+    internal const string MonochromeMonitor = "0";
+    internal const string ColourMonitor = "1";
+    internal const string DefaultBorders = "2";
+    internal const string Cpu68000 = "0";
+    internal const string Cpu68030 = "3";
+    internal const string NoFpu = "0";
+    internal const string Fpu68881 = "68881";
+    internal const string Fpu68882 = "68882";
+    internal const string NtscFramerate = "0";
+    internal const string PalFramerate = "1";
+    internal const int BytesPerKibibyte = 1024;
+    internal const int NormalFloppySpeedPercent = 100;
+    internal const string SlowMouseSpeed = "4";
+    internal const string NormalMouseSpeed = "6";
+    internal const string FastMouseSpeed = "8";
+    internal const string FasterMouseSpeed = "10";
+    internal const string FastestMouseSpeed = "14";
+    internal const int SlowMouseLimitPercent = 50;
+    internal const int NormalMouseLimitPercent = 100;
+    internal const int FastMouseLimitPercent = 150;
+    internal const int FasterMouseLimitPercent = 200;
+}

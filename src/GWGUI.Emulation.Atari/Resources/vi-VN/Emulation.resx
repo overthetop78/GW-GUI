@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice"><value>R: Thiết bị nối tiếp</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Xanh nước biển/ Lông mày 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Xanh nước biển/ Lông mày 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Tính toán máy tính (Atari ST/STE/TT/Falcon).</value></data>
+  <data name="Emulation.Emulator.atari-st.Description"><value>Tính toán máy tính (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Máy tính Atari 8-bit và bàn điều khiển Ataria 5200.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Đặt máy điều khiển Atari 2600.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Tính toán bảng điều khiển Atari 7800.</value></data>

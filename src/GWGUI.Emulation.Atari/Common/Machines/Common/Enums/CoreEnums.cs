@@ -10,5 +10,6 @@ public enum Emulator
     VirtualJaguar,
     Stella,
     Stella2014,
-    A5200
+    A5200,
+    HatariB
 }

@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice"><value>R: Серийное устройство</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Синий/коричневый 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Голубой/коричневый 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Эмулирует компьютеры (Atari ST/STE/TT/Falcon).</value></data>
+  <data name="Emulation.Emulator.atari-st.Description"><value>Эмулирует компьютеры (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Имитирует 8-битные компьютеры Atari и консоль Atari 5200.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Консоль Atari 2600.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Консоль Atari 7800 эмулирует.</value></data>

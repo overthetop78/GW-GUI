@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice"><value>R: seriell enhet</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blå/brun 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blå/brun 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Emulerar datorer (Atari ST/STE/TT/Falcon).</value></data>
+  <data name="Emulation.Emulator.atari-st.Description"><value>Emulerar datorer (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Emulerar Atari 8-bitars datorer och Atari 5200 konsolen.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Emulerar Atari 2600-konsolen.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Emulerar Atari 7800-konsolen.</value></data>

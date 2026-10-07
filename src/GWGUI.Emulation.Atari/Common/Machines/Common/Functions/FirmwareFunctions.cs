@@ -72,12 +72,13 @@ public static class FirmwareFunctions
 
 public static class FirmwareRuntimeFunctions
 {
-    public static void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory)
+    public static void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory,
+        bool validateRequired = true)
     {
         ArgumentNullException.ThrowIfNull(configuration);
         var absoluteSystemDirectory = Path.GetFullPath(systemDirectory);
         Directory.CreateDirectory(absoluteSystemDirectory);
-        ValidateRequiredFirmware(configuration);
+        if (validateRequired) ValidateRequiredFirmware(configuration);
         ClearManagedFirmwareFiles(absoluteSystemDirectory);
         foreach (var firmware in configuration.Firmwares)
         {

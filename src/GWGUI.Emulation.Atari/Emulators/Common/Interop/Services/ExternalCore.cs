@@ -76,6 +76,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _sessionDirectory = absoluteSession;
             var systemDirectory = Path.Combine(absoluteSession, CoreDirectoryConstants.SystemDirectoryName);
             var media = _mediaAdapter.SelectPrimaryMedia(configuration);
+            _mediaAdapter.PrepareSystemDirectory(configuration, systemDirectory);
             _library = new ExternalCoreLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var configuredOptions = _mediaAdapter.PrepareOptions(
@@ -92,7 +93,6 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _info = CoreFunctions.ReadInitializedInfo(_exports, Emulator);
             _callbacks.ValidateConfiguredOptions();
 
-            FirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
             _preparedContent = _mediaAdapter.PrepareContent(configuration, media, absoluteSession, _info);
             media = _preparedContent?.Configuration;
             if (_preparedContent?.ActivityPaths is { } activityPaths)
@@ -155,8 +155,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
     }
     public void SetOption(string key, string value)
     {
-        var option = _mediaAdapter.PrepareOptions(
-            new Dictionary<string, string>(StringComparer.Ordinal) { [key] = value }).Single();
-        RequireCallbacks().SetOption(option.Key, option.Value);
+        var options = _mediaAdapter.PrepareOptions(
+            new Dictionary<string, string>(StringComparer.Ordinal) { [key] = value });
+        foreach (var option in options) RequireCallbacks().SetOption(option.Key, option.Value);
     }
 }

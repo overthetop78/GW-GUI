@@ -110,7 +110,7 @@ private MachineConfiguration CurrentConfiguration() =>
     private void ResetCore(string resetType)
     {
         _audio.Reset();
-        if (Configuration.Core == Emulator.Hatari)
+        if (Configuration.Core is Emulator.Hatari or Emulator.HatariB)
             _core.SetOption(MachineValues.ResetType, resetType);
         _core.HardReset();
     }

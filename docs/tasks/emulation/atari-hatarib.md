@@ -1,0 +1,89 @@
+# HatariB : machines Atari compatibles
+
+- [x] Ajouter HatariB aux machines compatibles
+  - [x] Identifier le profil officiel et preparer la validation
+    - [x] Creer `artifacts/temp/atari-hatarib-validation` : conserver temporairement la DLL officielle et les sources necessaires a la verification des options, formats et entrees.
+  - [x] Partager les traitements ST existants entre Hatari et HatariB
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/HatariContentConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/StContentConstants.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/HatariStorageConstants.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Constants/StStorageConstants.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Contracts/HatariContent.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Contracts/StContent.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Contracts/HatariStorageVolume.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Contracts/StStorageVolume.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Exceptions/HatariContentErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Exceptions/StContentErrors.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Exceptions/HatariStorageErrors.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Exceptions/StStorageErrors.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Services/HatariStorage.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/StStorage.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Functions/HatariContentFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/StContentFunctions.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Deplacer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Functions/HatariStorageFunctions.cs` vers `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/StStorageFunctions.cs` : rendre les noms communs ST et conserver les traitements, en laissant les options natives dans Hatari.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/HatariOptionConstants.cs` : conserver les constantes de protection natives propres a Hatari.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Functions/HatariOptionFunctions.cs` : conserver la conversion de protection propre a Hatari.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Factories/HatariMachineFactory.cs` : reutiliser les traitements ST deplaces dans Common.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs` : importer les erreurs communes ST.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Contracts` : retirer le dossier devenu vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Exceptions` : retirer le dossier devenu vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Emulators/Hatari/Services` : retirer le dossier devenu vide.
+  - [x] Integrer le profil au fonctionnement existant
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/CoreEnums.cs` : ajouter HatariB en fin d enumeration sans changer les configurations existantes.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/HatariB/Constants/EmulatorConstants.cs` : identite, DLL, source, revision et machines prises en charge.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/HatariB/Constants/OptionConstants.cs` : noms et valeurs des options natives et des conversions utiles.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/HatariB/Functions/OptionFunctions.cs` : traduire la configuration materielle commune vers les options propres a HatariB.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/HatariB/Factories/HatariBMachineFactory.cs` : fournir options, medias, installation et firmware par Common.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs` : ajouter la preparation de firmware delegable en conservant le comportement actuel.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs` : deleguer le firmware a la fabrique.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/FirmwareFunctions.cs` : permettre a un adaptateur de choisir le firmware integre sans rendre obligatoire un TOS externe.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/Machine.Commands.cs` : transmettre le type de reset a HatariB via le mecanisme existant.
+  - [x] Corriger et completer les conversions avant validation
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/HatariB/Functions/OptionFunctions.cs` : convertir la valeur existante de reset doux vers le code natif inverse.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs` : transmettre toutes les options natives issues d une commande commune.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/AtariST/Constants/ModelConstants.cs` : definir la cle de description ST partagee.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/HatariB/Constants/EmulatorConstants.cs` : reutiliser la cle commune de description.
+  - [x] Localiser et documenter
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Hatari/Constants/EmulatorConstants.cs` : partager la description des machines ST entre les deux profils.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/00-Base/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ar-SA/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/cs-CZ/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/da-DK/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/de-DE/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/el-GR/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/en-US/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/es-ES/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/fi-FI/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/fr-FR/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/he-IL/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/hu-HU/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/id-ID/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/it-IT/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ja-JP/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ko-KR/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/nb-NO/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/nl-NL/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pl-PL/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pt-BR/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pt-PT/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ro-RO/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ru-RU/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/sv-SE/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/th-TH/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/tr-TR/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/uk-UA/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/vi-VN/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/zh-Hans/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/zh-Hant/Emulation.resx` : partager la description ST deja traduite.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/README.md` : documenter les machines compatibles, le firmware et les formats de HatariB.
+  - [x] Valider et nettoyer
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Atari/AtariEmulatorAdapterTests.cs` : verifier selection, perimetre, options, compatibilite des anciens profils et firmware.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` : inclure le dossier du nouveau profil.
+    - [x] Creer `tests/GWGUI.Tests/Emulation/Atari/HatariBNativeValidationTests.cs` : verifier temporairement l initialisation, les frames et les etats avec la DLL officielle, puis liberer le coeur dans finally.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/HatariB/Constants/EmulatorConstants.cs` : retirer la cle locale devenue redondante.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/HatariB/Constants/OptionConstants.cs` : retirer les constantes natives inutilisees.
+    - [x] Supprimer `tests/GWGUI.Tests/Emulation/Atari/HatariBNativeValidationTests.cs` : supprimer le test externe apres execution.
+    - [x] Supprimer `artifacts/temp/atari-hatarib-validation` : supprimer DLL, sources et artefacts temporaires apres utilisation.
+    - [x] Modifier `docs/tasks/emulation/atari-hatarib.md` : enregistrer les tests, le build Debug --modules=A et verifier l application et les huit modules.
+## Validation effectuee
+
+- Source officielle HatariB inspectee : revision `4fb7ebdfa14d5de7df3076143f255d7d8bf0323c`.
+- `scripts\local-building.cmd --building=debug --modules=A` : termine avec code 0.
+- Application verifiee : `F:\GW GUI\build\Debug\GW GUI\gwgui.exe`.
+- Huit modules verifies : amstrad, atari, commodore, microsoft, nec, nintendo, sega, sony.
+- 167 tests reussis avant nettoyage, dont 8 validations avec la DLL officielle : ST, STf, STfm, Mega ST, STE, Mega STE, TT, Falcon; EmuTOS integre, frames, etats sauvegardes/restaures et reset doux.
+- 159 tests permanents reussis apres suppression du test natif temporaire.
+- DLL, sources et sessions natives temporaires supprimees. Aucun parcours de jeu complet effectue.
+- Hatari reste le profil par defaut; les configurations enregistrees gardent leurs valeurs numeriques.

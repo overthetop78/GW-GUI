@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice"><value>R: dispozitiv serial</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Albastru/maroniu 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Albastru/maroniu 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Emulează calculatoarele (Atari ST/STE/TT/Falcon).</value></data>
+  <data name="Emulation.Emulator.atari-st.Description"><value>Emulează calculatoarele (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Emulează computerele de 8 biți Atari și consola Atari 5200.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Emulează consola Atari 2600.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Emulează consola Atari 7800.</value></data>

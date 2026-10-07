@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice"><value>Périphérique série R:</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Bleu/brun 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Bleu/brun 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Émule les ordinateurs Atari ST, STE, TT et Falcon.</value></data>
+  <data name="Emulation.Emulator.atari-st.Description"><value>Émule les ordinateurs Atari ST, STE, TT et Falcon.</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Émule les ordinateurs Atari 8 bits et la console Atari 5200.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Émule la console Atari 2600.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Émule la console Atari 7800.</value></data>

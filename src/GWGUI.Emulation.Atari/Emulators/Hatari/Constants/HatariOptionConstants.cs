@@ -2,6 +2,9 @@ namespace GWGUI.Emulation.Atari.Emulators.Hatari.Constants;
 
 internal static class HatariOptionConstants
 {
+    internal const string HardDriveWriteProtectionOption = "hatari_writeprotect_hd";
+    internal const string WriteProtectionEnabled = "on";
+    internal const string WriteProtectionDisabled = "off";
     internal const string MachineType = "hatari_machinetype";
     internal const string RamSize = "hatari_ramsize";
     internal const string CpuFrequency = "hatari_cpu_freq";

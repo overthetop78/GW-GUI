@@ -52,3 +52,4 @@ global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;
 global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Interfaces;
 global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
+global using GWGUI.Emulation.Atari.Emulators.Common.Interop.Exceptions;

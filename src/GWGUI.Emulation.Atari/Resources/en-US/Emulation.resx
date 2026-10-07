@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: serial device</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blue/brown 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blue/brown 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description" xml:space="preserve"><value>Emulates Atari ST, STE, TT and Falcon computers.</value></data>
+  <data name="Emulation.Emulator.atari-st.Description" xml:space="preserve"><value>Emulates Atari ST, STE, TT and Falcon computers.</value></data>
   <data name="Emulation.Emulator.atari800.Description" xml:space="preserve"><value>Emulates Atari 8-bit computers and the Atari 5200 console.</value></data>
   <data name="Emulation.Emulator.atari2600.Description" xml:space="preserve"><value>Emulates the Atari 2600 console.</value></data>
   <data name="Emulation.Emulator.prosystem.Description" xml:space="preserve"><value>Emulates the Atari 7800 console.</value></data>

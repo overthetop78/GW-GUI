@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice"><value>R: シリアル装置</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>青/茶色 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>青/茶色 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>コンピュータ(Atari ST/STE/TT/Falcon)をエミュレートします。</value></data>
+  <data name="Emulation.Emulator.atari-st.Description"><value>コンピュータ(Atari ST/STE/TT/Falcon)をエミュレートします。</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Atari 8ビットコンピュータとAtari 5200コンソールをエミュレートします。</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Atari 2600コンソールをエミュレートします。</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Atari 7800コンソールをエミュレートします。</value></data>

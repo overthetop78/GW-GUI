@@ -5,6 +5,15 @@ namespace GWGUI.Emulation.Atari.Emulators.Hatari.Functions;
 
 internal static class HatariOptionFunctions
 {
+    internal static IReadOnlyDictionary<string, string> ApplyWriteProtection(
+        IReadOnlyDictionary<string, string> options, StStorage? storage)
+    {
+        var result = new Dictionary<string, string>(options, StringComparer.Ordinal);
+        if (storage is not null)
+            result[HatariOptionConstants.HardDriveWriteProtectionOption] = storage.Configuration.IsReadOnly
+                ? HatariOptionConstants.WriteProtectionEnabled : HatariOptionConstants.WriteProtectionDisabled;
+        return result;
+    }
     private static readonly IReadOnlyDictionary<string, string> GenericToNative =
         new Dictionary<string, string>(StringComparer.Ordinal)
         {

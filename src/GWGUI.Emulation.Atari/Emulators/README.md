@@ -40,3 +40,12 @@ l'adaptateur choisit le BIOS Altirra intégré. Les options natives restent
 configurables par le mécanisme commun. Ce cœur utilise deux contrôleurs,
 dont le premier avec le pavé à boutons directs; les deux autres ports
 matériels ne sont pas pris en charge par a5200.
+
+[HatariB](https://github.com/bbbradsmith/hatariB) est propose pour ST, STf,
+STfm, Mega ST, STE, Mega STE, TT et Falcon, via `hatarib_libretro.dll`.
+Hatari reste le profil par defaut. Les deux profils reutilisent la preparation
+commune des disquettes, disques durs et dossiers GEMDOS; leurs conversions
+vers les options natives restent distinctes. HatariB utilise EmuTOS integre
+sans TOS utilisateur, ou le TOS selectionne dans la configuration. Ses options
+natives sont exposees par le mecanisme commun existant. Les images IPF et CTR
+necessitent la bibliotheque CAPS optionnelle du coeur.

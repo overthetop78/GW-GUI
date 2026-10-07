@@ -30,7 +30,7 @@
   <data name="Emulation.Atari.Storage.SerialDevice"><value>R: soros eszköz</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Kék / barna 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Kék / barna 2</value></data>
-  <data name="Emulation.Emulator.hatari.Description"><value>Emulálja a számítógépeket (Atari ST/STE/TT/Falcon).</value></data>
+  <data name="Emulation.Emulator.atari-st.Description"><value>Emulálja a számítógépeket (Atari ST/STE/TT/Falcon).</value></data>
   <data name="Emulation.Emulator.atari800.Description"><value>Emulálja az Atari 8- bites számítógépeket és az Atari 5200 konzolt.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Emulálja az Atari 2600 konzolt.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Emulálja az Atari 7800 konzolt.</value></data>
