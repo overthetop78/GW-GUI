@@ -1,0 +1,462 @@
+# Intégration CrocoDS dans Amstrad
+
+- [x] Intégrer CrocoDS par les contrats existants
+  - [x] Mutualiser le transport libretro
+    - [x] Déplacer les fichiers génériques de `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/{Constants,Contracts,Enums,Exceptions,Functions,Interfaces,Services}` vers `Emulators/Common`, adapter leurs namespaces et les imports source/tests ; conserver les constantes, options et la fabrique propres à Caprice32.
+    - [x] Créer `Emulators/Common/Contracts/CoreDefinition.cs` et modifier les services `CoreReleaseService.cs`, `CoreProvider.cs`, `ExternalCoreInstaller.cs`, `ProcessCore.cs`, `ExternalCore.cs` : identité, téléchargement et commande selon le cœur ; charger aussi les données quand need_fullpath=false ; libérer les buffers et bibliothèques.
+  - [x] Ajouter l'adaptateur
+    - [x] Créer `Emulators/CrocoDS/Constants/CrocoDSConstants.cs` et `Factories/CrocoDSMachineFactory.cs`, modifier `Common/Machines/Common/Enums/CoreEnums.cs` : CPC 6128 seulement, installation isolée, options natives, média unique et validation.
+  - [x] Adapter l'affichage et la configuration
+    - [x] Modifier `Common/Machines/Common/Functions/SettingsFunctions.cs`, `StorageFunctions.cs`, `ConfigurationFunctions.cs`, `Modules/AmstradEmulationModule.cs` et `Common/Services/Machine.cs` : réglages selon émulateur, RAM fixe, absence de souris/cassette/deuxième lecteur, médias DSK/SNA/KCR et recréation.
+    - [x] Créer `Emulators/Common/Services/CoreOptionsReader.cs` et modifier `SettingsFunctions.CrocoDS.cs` : lire les options déclarées sans démarrer le cœur, afficher leurs choix et transmettre les valeurs persistées.
+    - [x] Modifier les ressources `Resources/00-Base` et `Resources/*` : description CrocoDS et libellés nouveaux dans toutes les langues avec Argos, invariants en base commune.
+  - [x] Vérifier et documenter
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` : découverte, limites machines/périphériques/options, persistance et refus des incompatibilités.
+    - [x] Modifier `Emulators/Caprice32/Constants/*.cs` et `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` : corriger les namespaces conservés et les accès aux contrats SDK identifiés par compilation.
+    - [x] Créer temporairement `tests/GWGUI.Tests/Emulation/Amstrad/CrocoDSNativeSmokeTests.cs` : télécharger la DLL officielle, lire les options et exécuter quelques images avec une disquette vide ; nettoyer le répertoire temporaire dans finally.
+    - [x] Supprimer `tests/GWGUI.Tests/Emulation/Amstrad/CrocoDSNativeSmokeTests.cs` après validation et supprimer ses artefacts temporaires.
+    - [x] Modifier `Resources/fr-FR/Emulation.resx` et `Emulators/README.md` : finaliser les textes francais et documenter le partage libretro et les options declarees par CrocoDS.
+    - [x] Organiser les services dans `Emulators/Common` et modifier les namespaces/imports dans les fichiers Amstrad et les tests, selon la structure demandée.
+    - [x] Modifier `Common/Interfaces/IEmulatorAdapter.cs`, `Common/Services/Engine.cs`, les deux fabriques et `Modules/AmstradEmulationModule.cs` : faire remonter les options installées par le Common racine au lieu de charger le cœur directement dans le module.
+    - [x] Modifier `Emulators/Common/Exceptions/CommonExceptions.cs`, `Resources/*/Errors.resx` et `Emulators/README.md` : erreurs communes aux deux émulateurs et documentation de la structure Common.
+    - [x] Modifier `Emulators/Common/Services/ExternalCore.cs`, `Exceptions/CommonExceptions.cs` et `Resources/*/Errors.resx` : indiquer l'identite attendue du coeur dans l'erreur commune, traduite par Argos.
+    - [x] Supprimer les anciens dossiers vides `Emulators/Caprice32/{Contracts,Enums,Exceptions,Interfaces,Services}` apres le deplacement de leurs fichiers ; consigner le resultat du test d'architecture.
+    - [x] Modifier `docs/tasks/emulation/amstrad-crocods.md` avec les résultats des tests ciblés et du build Debug de tous les modules, chemins de sortie et limites constatées.
+
+Sources : https://github.com/libretro/libretro-crocods/blob/master/libretro.c ; https://docs.libretro.com/library/crocods/.
+Le source actuel désactive les options historiques. Elles ne doivent pas être présentées comme actives sans déclaration par la DLL installée.
+
+## Résultats vérifiés le 7 octobre 2026
+
+- Structure finale : `Emulators/Caprice32`, `Emulators/CrocoDS`, `Emulators/Common`. Le Common racine relie les adaptateurs, les options et les services partagés via `IEmulatorAdapter` et `Engine`.
+- CrocoDS proposé uniquement pour `cpc-6128`, RAM fixe 128 KiB, ROM intégrée, clavier et contrôleurs ; absence de souris, de cassette et de lecteur supplémentaire.
+- Un contenu DSK/SNA/KCR ; changement de média par recréation. Chargement en mémoire selon `need_fullpath=false`, buffer conservé jusqu'au déchargement.
+- Les options sont lues dans les déclarations de la DLL installée. La DLL officielle téléchargée durant la vérification ne déclare aucune option ; les trois options historiques restent masquées. Les libellés et choix sont traduits dans toutes les cultures pour les versions qui les déclarent.
+- Tests Amstrad et architecture : 56 réussis, 0 échec. Le premier échec d'architecture provenait des cinq anciens dossiers Caprice32 devenus vides ; leur suppression l'a corrigé.
+- Test temporaire de la DLL officielle : 1 réussi, disquette vide chargée et 10 images exécutées. Test et fichiers temporaires supprimés ; aucune bibliothèque conservée ni processus laissé ouvert.
+- Vérification élargie `ConsoleFamilyModuleTests` : 51 réussis, 8 échecs dans les autres familles. Les sources de ces familles et ce fichier de tests sont inchangés par ce chantier. Échecs : NintendoResourceCatalogsMatchPublishedSettings, SegaChipLabelsArePresentInEveryTranslatedCulture, MicrosoftResourceCatalogUsesCommonCategoriesAndNoUninstalledCoreText, ConsoleFamilyModulesExposeTheSameCommonFileLayout, SegaHelpCataloguesContainOnlyReferencedSettings, NecBeetlePceSelectsPcEngineModels, SegaNeutralResourcesContainOnlyInvariantEntries, SonyResourceCatalogsUseCommonCategoriesAndOnlySonyText.
+- Build final : `scripts\local-building.cmd --building=debug --modules=A`, code de sortie 0. Application et huit DLL de modules présentes.
+- Application : `F:\GW GUI\build\Debug\GW GUI\gwgui.exe`.
+- Module Amstrad : `F:\GW GUI\build\Debug\GW GUI\Modules\amstrad\gwgui.emulation.amstrad.dll`.
+- Le rendu a été vérifié par le test natif ; aucun parcours visuel dans l'application n'a été effectué.
+
+## Renommage des identifiants du code partage
+
+- [x] Finaliser les noms Common
+  - [x] Renommer les fichiers et le code
+    - [x] Renommer le fichier d'exceptions partagé en `Emulators/Common/Exceptions/CommonExceptions.cs`, modifier la classe et ses references dans `Emulators/Common/**/*.cs` ; renommer les identifiants des constantes de publication en noms generiques.
+    - [x] Modifier `Emulators/Common/Exceptions/CommonExceptions.cs` et `Resources/*/Errors.resx` : remplacer le prefixe des cles `Emulation.Error.Libretro` par `Emulation.Error.Common` dans toutes les langues.
+    - [x] Modifier `docs/tasks/emulation/amstrad-crocods.md` : actualiser les chemins de fichiers et consigner la validation des tests et du build Debug avec tous les modules.
+
+
+
+
+## Extraction des constantes dans tout le module Amstrad
+
+- [x] Remplacer les valeurs litterales du code Amstrad
+  - [x] Preparer et executer la migration
+    - [x] Creer `artifacts/amstrad-constants/AmstradConstants.csproj` et `artifacts/amstrad-constants/Program.cs` : analyser les syntaxes C#, reutiliser les constantes existantes et preparer les actions par fichier avant modification.
+
+  - [x] Extraire les valeurs par fichier
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Constants/EmulatorCatalogConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Constants/EngineConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Constants/InputAccumulatorConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Constants/MachineConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Constants/StateStoreConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ConfigurationSummaryFunctionsConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ControllerCatalogConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/EmulationMediaConversionFunctionsConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/FirmwareCatalogConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/InputSnapshotDictionaryConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/InputSnapshotFunctionsConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/MachineCatalogConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/MediaConfigurationConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ModelConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsDescriptionChoicesConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsHelpDictionaryConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/StorageConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcClassic/Constants/ModelCatalogConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcPlus/Constants/ModelCatalogConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Common/Machines/Gx4000/Constants/ModelCatalogConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Constants/AmstradEmulationModuleConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Constants/AmstradEmulationModuleFactoryConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/Caprice32MachineFactoryConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CommonExceptionsConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreDefinitionConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreHostConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseServiceConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalCoreConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalDiskControlConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalHostCallbacksConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/HostCommandConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ProcessCoreConstants.cs` : declarer les constantes de ce composant.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CrocoDSMachineFactoryConstants.cs` : declarer les constantes de ce composant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Dictionaries/EmulatorCatalog.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/MediaContracts.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/ModelContracts.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/MachineCatalog.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/ConfigurationFunctions.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.CrocoDS.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/StorageFunctions.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcClassic/Dictionaries/ModelCatalog.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcPlus/Dictionaries/ModelCatalog.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Gx4000/Dictionaries/ModelCatalog.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Engine.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/InputAccumulator.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/StateStore.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Functions/Caprice32OptionFunctions.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreDefinition.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Enums/HostEnums.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Exceptions/CommonExceptions.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreOptionsReader.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCore.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalDiskControl.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.AudioVideo.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Environment.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Input.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModuleFactory.cs` : remplacer les textes, nombres et fragments interpoles par les constantes correspondantes.
+  - [x] Reprendre la migration avec des constantes metier
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/MachineConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ConfigurationSummaryFunctionsConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/FirmwareCatalogConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/InputSettingsFunctionsConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/InputSnapshotFunctionsConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ModelConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsDescriptionChoicesConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/StorageConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Constants/AmstradEmulationModuleConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CommonExceptionsConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreHostConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseServiceConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalCoreConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalHostCallbacksConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ProcessCoreConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CrocoDSMachineFactoryConstants.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Dictionaries/EmulatorCatalog.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/MediaContracts.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/ModelContracts.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/ConfigurationFunctions.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.CrocoDS.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/StorageFunctions.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcClassic/Dictionaries/ModelCatalog.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcPlus/Dictionaries/ModelCatalog.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Gx4000/Dictionaries/ModelCatalog.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Engine.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/InputAccumulator.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/StateStore.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Enums/HostEnums.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Exceptions/CommonExceptions.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCore.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalDiskControl.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.AudioVideo.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Environment.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Input.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` : supprimer les noms generes Value et reutiliser les constantes metier, corriger les types et la decouverte des adaptateurs.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Constants/EmulatorCatalogConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Constants/EngineConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Constants/InputAccumulatorConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Constants/StateStoreConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ControllerCatalogConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/EmulationMediaConversionFunctionsConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/InputSnapshotDictionaryConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/MediaConfigurationConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcClassic/Constants/ModelCatalogConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcPlus/Constants/ModelCatalogConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/Gx4000/Constants/ModelCatalogConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/Caprice32MachineFactoryConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalDiskControlConstants.cs` : classe generee inutile ou vide.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/HostCommandConstants.cs` : classe generee inutile ou vide.
+  - [x] Organiser les constantes selon leurs roles
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/MachineConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Dictionaries/EmulatorCatalog.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/MachineCatalog.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Engine.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/InputAccumulator.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Commands.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/StateStore.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Environment.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Input.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/ConfigurationFunctions.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationSummaryFunctionsConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/MediaContracts.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/ModelContracts.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/ControllerCatalog.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/FirmwareCatalog.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/InputSnapshotDictionary.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.CrocoDS.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/StorageFunctions.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Functions/Caprice32OptionFunctions.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/EmulationModuleConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModuleFactory.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationStoreConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreDefinition.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CrocoDSConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreHostConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalHostCallbacksConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ProcessCoreConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreRelease.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Enums/HostEnums.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Exceptions/CommonExceptions.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreOptionsReader.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreProvider.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCore.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCoreInstaller.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalDiskControl.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.AudioVideo.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsDescriptionChoicesConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/StorageConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsHelpDictionaryConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/MachineCatalogConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/BufferConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/VideoConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/StateStoreConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ModelConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/ExternalCoreInteropConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/InputSnapshotFunctionsConstants.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcClassic/Dictionaries/ModelCatalog.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcPlus/Dictionaries/ModelCatalog.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Gx4000/Dictionaries/ModelCatalog.cs` : fusionner les doublons et utiliser les constantes de volumes, formats, delais, tailles, controles et ressources appropriees.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Constants/MachineConstants.cs` : constantes fusionnees dans leur classe existante.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/ConfigurationSummaryFunctionsConstants.cs` : constantes fusionnees dans leur classe existante.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Constants/AmstradEmulationModuleConstants.cs` : constantes fusionnees dans leur classe existante.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Constants/AmstradEmulationModuleFactoryConstants.cs` : constantes fusionnees dans leur classe existante.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreDefinitionConstants.cs` : constantes fusionnees dans leur classe existante.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CrocoDSMachineFactoryConstants.cs` : constantes fusionnees dans leur classe existante.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseServiceConstants.cs` : constantes fusionnees dans leur classe existante.
+  - [x] Corriger les proprietaires des constantes et leurs imports
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseConstants.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/Caprice32Constants.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreHostConstants.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalCoreConstants.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalHostCallbacksConstants.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ProcessCoreConstants.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreDefinition.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCoreInstaller.cs` : placer les constantes de Caprice32 dans son profil et corriger les imports des classes partagees.
+  - [x] Finaliser les noms et l'audit syntaxique
+    - [x] Modifier `artifacts/amstrad-constants/Program.cs` : remplacer la generation automatique par un audit syntaxique en lecture seule des valeurs restantes et des declarations inutilisees.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalHostCallbacksConstants.cs` et `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Input.cs` : donner aux caracteres du clavier leurs propres noms et corriger les priorites de touches et le nombre de touches de fonction.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CommonExceptionsConstants.cs`, `src/GWGUI.Emulation.Amstrad/Emulators/Common/Exceptions/CommonExceptions.cs`, `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsHelpDictionaryConstants.cs`, `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs`, `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsDescriptionChoicesConstants.cs`, `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.CrocoDS.cs` : nommer les cles par leur role et retirer les noms recopiant les valeurs.
+    - [x] Supprimer `src/GWGUI.Emulation.Amstrad/Constants` : dossier vide apres fusion des constantes dans Common.
+  - [x] Completer les noms et les derniers formats et delais
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CommonExceptionsConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Exceptions/CommonExceptions.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsHelpDictionaryConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/SettingsDescriptionChoicesConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.CrocoDS.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/StateStoreConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreHostConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ProcessCoreConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalHostCallbacksConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Input.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCore.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalCoreConstants.cs` : finaliser les noms metier, les constantes de formats et delais et enlever les valeurs de profils du Common.
+  - [x] Corriger la reference du delai de connexion
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : utiliser PipeConnectTimeoutMilliseconds pour la connexion au pipe.
+  - [x] Corriger le nom du filtre de fichiers de sauvegarde
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Constants/StateStoreConstants.cs` et `src/GWGUI.Emulation.Amstrad/Common/Services/StateStore.cs` : utiliser AllFilesSearchPattern pour le filtre de parcours.
+  - [x] Verifier les roles et les imports des dernieres references
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CrocoDSConstants.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreDefinition.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/VideoConstants.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.AudioVideo.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ProcessCoreConstants.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : expliciter les imports IO et les roles des extensions, identites, seuils video et diagnostics.
+  - [x] Valider et nettoyer
+    - [x] Modifier `docs/tasks/emulation/amstrad-crocods.md` : consigner l'audit final, les tests existants et le build Debug de tous les modules.
+    - [x] Supprimer `artifacts/amstrad-constants` et ses fichiers temporaires apres verification de son chemin dans le depot.
+## Résultat de la reprise des constantes
+
+- Audit syntaxique des 71 fichiers C# hors dossiers Constants : 0 chaîne, nombre, caractère ou fragment de texte restant en dehors des constantes. Les formats des dates et identifiants utilisent aussi des constantes.
+- Noms liés au rôle : MinimumVolume et MaximumVolume réutilisés, HashBufferSize pour le hachage, MaximumFramesPerSecond pour la borne vidéo, délais explicites pour la connexion et l'arrêt du processus, noms des touches et identifiants des contrôles natifs.
+- Les classes générées contenant Value0, Value0f et autres noms construits sur les valeurs ont été supprimées ou fusionnées dans les classes existantes. Aucun de ces noms générés ne subsiste.
+- Les identités et commandes appartiennent à EmulatorConstants dans chaque profil ; les DLL et URL de téléchargement appartiennent à CoreReleaseConstants dans chaque profil. Common conserve les paramètres du protocole et du téléchargement partagés.
+- Découverte des adaptateurs : filtrage par IEmulatorAdapter et type non abstrait ; aucun filtre textuel sur leur namespace.
+- Tests existants Amstrad et architecture : 78 réussis, 0 échec. Aucun nouveau test ajouté pour cette extraction.
+- Build Debug avec tous les modules : code de sortie 0 ; application et huit DLL vérifiées. `F:\GW GUI\build\Debug\GW GUI\gwgui.exe`.
+- Outil temporaire de migration/audit supprimé après usage.
+
+## Noms des constantes dans les profils
+
+- [x] Corriger les noms et la repartition des constantes de profils
+  - [x] Renommer et adapter les fichiers
+    - [x] Renommer `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/Caprice32Constants.cs` en `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/EmulatorConstants.cs` : nommer la classe EmulatorConstants et reserver les constantes de publication a CoreReleaseConstants.
+    - [x] Renommer `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CrocoDSConstants.cs` en `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/EmulatorConstants.cs` : nommer la classe EmulatorConstants et reserver les constantes de publication a CoreReleaseConstants.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/CoreReleaseConstants.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Creer `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CoreReleaseConstants.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/ConfigurationFunctions.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.CrocoDS.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/SettingsFunctions.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/StorageFunctions.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreDefinition.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreRelease.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreProvider.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCoreInstaller.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalDiskControl.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.AudioVideo.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Environment.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Input.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` : utiliser les constantes du profil ou de la publication avec des references non ambigues.
+    - [x] Renommer `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/Caprice32OptionConstants.cs` en `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/OptionConstants.cs` : nommer la classe OptionConstants dans le profil Caprice32.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Functions/Caprice32OptionFunctions.cs` : adapter les references aux constantes des options sans prefixe redondant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/EmulationGlobalUsings.cs` : adapter les references aux constantes des options sans prefixe redondant.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` : adapter les references aux constantes des options sans prefixe redondant.
+  - [x] Valider
+    - [x] Modifier `docs/tasks/emulation/amstrad-crocods.md` : consigner les tests existants et le build Debug avec tous les modules, actualiser les noms finaux.
+
+### Validation des noms de profils
+
+- `Emulators/Caprice32/Constants/EmulatorConstants.cs` : identité et commande du profil.
+- `Emulators/Caprice32/Constants/CoreReleaseConstants.cs` : DLL et URL du profil.
+- `Emulators/Caprice32/Constants/OptionConstants.cs` : clés et valeurs des options du profil.
+- `Emulators/CrocoDS/Constants/EmulatorConstants.cs` : identité, commande, machine et formats du profil.
+- `Emulators/CrocoDS/Constants/CoreReleaseConstants.cs` : DLL et URL du profil.
+- Les classes de constantes ne répètent plus le nom du profil. Les références extérieures distinguent les profils avec des alias ; aucun import de namespace inutilisé dans les déclarations de constantes.
+- Tests existants Amstrad et architecture : 78 réussis, 0 échec. Build Debug avec tous les modules : code de sortie 0, application et huit DLL vérifiées.
+
+## Common independant du backend
+
+- [x] Decoupler le runtime et les services communs
+  - [x] Modifier les contrats, services et adaptateurs dans cet ordre
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreDefinition.cs` : Remplacer le catalogue de profils par une definition fournie par chaque adaptateur, avec validation et metadonnees de publication.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interfaces/IEmulatorCore.cs` : Ajouter la capacite de capture du pointeur au contrat du coeur.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs` : Executer une fabrique injectee de IEmulatorCore et liberer le coeur precedent lors de la reinitialisation.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : Recevoir commande et capacite de pointeur sans catalogue de profils; attendre la destruction du processus.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs` : Utiliser la capacite du coeur sans identifier CrocoDS.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Functions/CoreHostProtocol.cs` : Utiliser le contexte du module pour les erreurs du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/CoreLibraryVerifier.cs` : Creer le verificateur Windows x64 optionnel a partir du traitement existant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreReleaseService.cs` : Exiger une definition; deleguer validation et libelles de publication a cette definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreProvider.cs` : Supprimer le choix implicite de Caprice32.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCoreInstaller.cs` : Supprimer les valeurs Caprice32 implicites et enregistrer architecture et validation fournies.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseConstants.cs` : Retirer les libelles Libretro du transport commun.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Constants/CoreReleaseConstants.cs` : Ajouter les libelles de publication et architecture propres au profil.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Constants/CoreReleaseConstants.cs` : Ajouter les libelles de publication et architecture propres au profil.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalCore.cs` : Deplacer vers Emulators/Common/Interop/Services/ExternalCore.cs avec namespace Interop.Services; ExternalCore recoit explicitement sa definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalDiskControl.cs` : Deplacer vers Emulators/Common/Interop/Services/ExternalDiskControl.cs avec namespace Interop.Services; ExternalCore recoit explicitement sa definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.cs` : Deplacer vers Emulators/Common/Interop/Services/ExternalHostCallbacks.cs avec namespace Interop.Services; ExternalCore recoit explicitement sa definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.AudioVideo.cs` : Deplacer vers Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs avec namespace Interop.Services; ExternalCore recoit explicitement sa definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Environment.cs` : Deplacer vers Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs avec namespace Interop.Services; ExternalCore recoit explicitement sa definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ExternalHostCallbacks.Input.cs` : Deplacer vers Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs avec namespace Interop.Services; ExternalCore recoit explicitement sa definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreOptionsReader.cs` : Deplacer vers Emulators/Common/Interop/Services/CoreOptionsReader.cs avec namespace Interop.Services; ExternalCore recoit explicitement sa definition.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Factories/Caprice32MachineFactory.cs` : Fournir la definition, la fabrique native, la commande de lancement et les capacites; importer explicitement Interop.Services.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/CrocoDS/Factories/CrocoDSMachineFactory.cs` : Fournir la definition, la fabrique native, la commande de lancement et les capacites; importer explicitement Interop.Services.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ProcessCoreConstants.cs` : Ajouter NoSelectedDiskIndex comme etat du transport partage.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs` : Referencer la constante du transport pour le disque non selectionne.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/EmulationModuleConstants.cs` : Ajouter le nom du dossier des coeurs du module.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModuleFactory.cs` : Referencer le dossier des coeurs sans constante native.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalCoreConstants.cs` : Deplacer dans Emulators/Common/Interop/Constants avec le namespace correspondant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/ExternalHostCallbacksConstants.cs` : Deplacer dans Emulators/Common/Interop/Constants avec le namespace correspondant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/ExternalCoreInteropConstants.cs` : Deplacer dans Emulators/Common/Interop/Constants avec le namespace correspondant.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreReleaseConstants.cs` : Deplacer les signatures PE dans les constantes natives.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/CoreLibraryVerifier.cs` : Utiliser les constantes natives PE avec import explicite.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs` : Importer explicitement les constantes natives; utiliser le disque non selectionne du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalDiskControl.cs` : Importer explicitement les constantes natives; utiliser le disque non selectionne du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs` : Importer explicitement les constantes natives; utiliser le disque non selectionne du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs` : Importer explicitement les constantes natives; utiliser le disque non selectionne du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs` : Importer explicitement les constantes natives; utiliser le disque non selectionne du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs` : Importer explicitement les constantes natives; utiliser le disque non selectionne du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/CoreOptionsReader.cs` : Importer explicitement les constantes natives; utiliser le disque non selectionne du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/README.md` : Documenter le contrat generique et les services natifs optionnels sans annoncer de nouvel emulateur.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs` : Adapter import statique au namespace des constantes natives.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs` : Adapter import statique au namespace des constantes natives.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` : Adapter les imports des tests existants aux services et constantes natifs deplaces.
+    - [x] Modifier `docs/tasks/emulation/amstrad-crocods.md` : Consigner les controles de dependances, tests Amstrad/architecture et build Debug des huit modules.
+
+
+### Validation du Common independant
+
+- Common hors Interop : aucune reference aux API natives ou aux profils Caprice32/CrocoDS; aucune selection implicite de Caprice32.
+- CoreHost recoit une fabrique IEmulatorCore; ProcessCore recoit sa commande de lancement. Les adaptateurs fournissent definition, validation de fichier et capacites.
+- Services et constantes natifs isoles dans Emulators/Common/Interop. Reinitialisation de l'hote : liberation du coeur precedent. Transport : attente de la fin effective du processus apres terminaison.
+- Tests existants Amstrad et architecture : 78 reussis, 0 echec, dont cycle de vie avec un coeur de test gere sans libretro. Aucun nouvel emulateur non-libretro ajoute ou teste en integration.
+- Build Debug --modules=A : code de sortie 0; application et huit modules verifies dans F:\GW GUI\build\Debug\GW GUI.
+- Deux imports statiques oublies lors du deplacement ont ete corriges avant la compilation reussie.
+
+## Commit des modifications Amstrad
+
+- [x] Preparer les modifications validees pour le commit
+  - [x] Preparer le contenu du commit
+    - [x] Modifier `docs/tasks/emulation/amstrad-crocods.md` : consigner le perimetre du commit, les 78 tests reussis et le build Debug des huit modules.
+- Perimetre : integration CrocoDS pour CPC 6128, constantes semantiques, services Common independants du backend, implementation native dans Common/Interop, ressources et tests existants adaptes. Validation : 78 tests reussis et build Debug des huit modules reussi.
+
+- [x] Corriger les espaces detectes avant le commit
+  - [x] Nettoyer les fins de fichiers
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Constants/CoreHostConstants.cs` : supprimer la ligne vide supplementaire en fin de fichier.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Contracts/CoreRelease.cs` : supprimer la ligne vide supplementaire en fin de fichier.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Common/Exceptions/CommonExceptions.cs` : supprimer la ligne vide supplementaire en fin de fichier.

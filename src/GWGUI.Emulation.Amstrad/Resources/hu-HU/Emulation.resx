@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Zöld monokróm</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Fehér monokróm</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM az emulátorba épített</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emulálja az Amstrad CPC 6128 építményét a ROM-ban, és támogatja a lemezképeket és pillanatfelvételeket.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitor típusa</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Képkeret</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Gyorshack</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatikus</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Engedélyezve</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Letiltva</value></data>
 </root>

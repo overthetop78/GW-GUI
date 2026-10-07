@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>ירוק מונוכרום</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>מונוכרום לבן</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM נבנה לתוך החיקוי</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>משערים את Amstrad CPC 6128 עם ROM מובנה ותמיכה בתמונות דיסק וצילומים.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>עקבו אחרי type</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>צילום: framing</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>מהירות ההאקר</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>אוטומטי</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Enable</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>מוגבלות</value></data>
 </root>

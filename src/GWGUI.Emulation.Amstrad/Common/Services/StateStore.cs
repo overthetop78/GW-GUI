@@ -48,7 +48,7 @@ internal static class StateStore
         Span<byte> lengthBytes = stackalloc byte[sizeof(int)];
         stream.ReadExactly(lengthBytes);
         var length = BinaryPrimitives.ReadInt32LittleEndian(lengthBytes);
-        if (length is <= 0 or > StateStoreConstants.MaximumHeaderLength)
+        if (length is <= BufferConstants.EmptyCollectionCount or > StateStoreConstants.MaximumHeaderLength)
             throw MachineExceptions.SavedStateInvalid();
 
         var headerBytes = new byte[length];
@@ -72,19 +72,19 @@ internal static class StateStore
 
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         Span<byte> length = stackalloc byte[sizeof(int)];
-        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.Value, SearchOption.AllDirectories)
+        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.AllFilesSearchPattern, SearchOption.AllDirectories)
                      .Order(StringComparer.OrdinalIgnoreCase))
         {
-            var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, '/');
+            var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);
             var name = Encoding.UTF8.GetBytes(relative);
             BinaryPrimitives.WriteInt32LittleEndian(length, name.Length);
             hash.AppendData(length);
             hash.AppendData(name);
             using var stream = File.OpenRead(file);
-            var buffer = new byte[64 * 1024];
+            var buffer = new byte[StateStoreConstants.HashBufferSize];
             int read;
-            while ((read = stream.Read(buffer)) > 0)
-                hash.AppendData(buffer.AsSpan(0, read));
+            while ((read = stream.Read(buffer)) > BufferConstants.EmptyCollectionCount)
+                hash.AppendData(buffer.AsSpan(BufferConstants.FirstBufferIndex, read));
         }
         return Convert.ToHexString(hash.GetHashAndReset());
     }

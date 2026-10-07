@@ -15,4 +15,14 @@ internal static class StorageSettingsFunctionsConstants
     internal const string SecondFloppyDriveLabel = "B:";
     internal const string CassetteDriveLabel = "Cassette";
     internal const string CartridgeSlotLabel = "Cartridge";
+
+    internal const string Sna = ".sna";
+    internal const string Kcr = ".kcr";
+
+    internal const int NoFloppyDrives = 0;
+    internal const int SingleFloppyDrive = 1;
+    internal const int MaximumFloppyDrives = 2;
+    internal const int FloppyActivityLed = 0;
+    internal const int CassetteActivityLed = 1;
+    internal const int CartridgeActivityLed = 2;
 }

@@ -15,15 +15,15 @@ internal static partial class InputSettingsFunctions
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(
             KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
             EmulationInputSource.Keyboard) : null;
-        var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(
+        var mouse = model.MouseButtonCount > BufferConstants.EmptyCollectionCount ? new EmulationInputBindingSet(
             MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
                 | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.ControllerBindings ?? [];
-        var ports = Enumerable.Range(0, model.ControllerPortCount).Select(index =>
+        var ports = Enumerable.Range(BufferConstants.FirstCollectionIndex, model.ControllerPortCount).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
             var type = current?.Type ?? ControllerCatalog.Default(model);
-            return new EmulationControllerPort(index + 1,
+            return new EmulationControllerPort(index + BufferConstants.IndexIncrement,
                 ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
                 new EmulationInputBindingSet(ControllerDefinitions(type),
@@ -47,7 +47,7 @@ internal static partial class InputSettingsFunctions
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase) ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
-            port.Number - 1,
+            port.Number - BufferConstants.IndexIncrement,
             Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
                 ? type : ControllerType.None,
             port.PhysicalDeviceId,
@@ -112,7 +112,7 @@ internal static partial class InputSettingsFunctions
 
     private static InputBindingDefinition Definition(string id, string resourceKey,
         string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding,
-            invariant ?? (resourceKey.Contains('.') ? null : resourceKey));
+            invariant ?? (resourceKey.Contains(MediaConstants.ExtensionPrefix) ? null : resourceKey));
 
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),

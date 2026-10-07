@@ -31,7 +31,7 @@ internal sealed class InputAccumulator
             var result = _current;
             _current = _current with
             {
-                Pointer = _current.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0, HorizontalWheel = 0 }
+                Pointer = _current.Pointer with { DeltaX = EmulationHostProtocolConstants.EmptyPointerDelta, DeltaY = EmulationHostProtocolConstants.EmptyPointerDelta, Wheel = EmulationHostProtocolConstants.EmptyPointerDelta, HorizontalWheel = EmulationHostProtocolConstants.EmptyPointerDelta }
             };
             return result;
         }

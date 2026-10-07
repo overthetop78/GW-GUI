@@ -5,6 +5,7 @@ internal interface IEmulatorAdapter
     string EmulatorId { get; }
     string EmulatorKey { get; }
     EmulationEmulatorDefinition Definition { get; }
+    IReadOnlyList<CoreOption> GetOptions(EmulatorManagementContext context);
     bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);
     ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken);

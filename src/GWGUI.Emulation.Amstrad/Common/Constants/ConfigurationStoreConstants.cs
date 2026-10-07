@@ -19,4 +19,6 @@ internal static class ConfigurationStoreConstants
     internal const bool WriteIndentedJson = true;
     internal const bool UseAsyncFileAccess = true;
     internal const bool RecursiveDirectoryDelete = true;
+
+    internal const string ConfigurationsDirectoryName = "Configurations";
 }

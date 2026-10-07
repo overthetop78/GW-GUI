@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 using System.Globalization;
 using System.IO;
 using System.Net;
@@ -11,10 +13,11 @@ using GWGUI.Emulation.Amstrad.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Amstrad.Common.Services;
+using GWGUI.Emulation.Amstrad.Emulators.Common.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Constants;
 using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Functions;
-using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Interfaces;
-using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Services;
+using GWGUI.Emulation.Amstrad.Emulators.Common.Interfaces;
+using GWGUI.Emulation.Amstrad.Emulators.Common.Services;
 using GWGUI.Emulation.Amstrad.Modules;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
@@ -66,7 +69,7 @@ public sealed class AmstradEmulatorAdapterTests
 
         var field = typeof(Engine).GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic);
         var adapters = Assert.IsAssignableFrom<System.Collections.IDictionary>(field!.GetValue(new Engine()));
-        Assert.Equal(["caprice32"], adapters.Keys.Cast<string>());
+        Assert.Equal(["caprice32", "crocods"], adapters.Keys.Cast<string>());
     }
 
     [Fact]
@@ -108,12 +111,86 @@ public sealed class AmstradEmulatorAdapterTests
         var releases = await module.FindEmulatorReleasesAsync(configuration);
 
         var release = Assert.Single(releases);
-        Assert.Equal("caprice32", Assert.Single(
-            await module.GetEmulatorInstallationsAsync(configuration)).EmulatorId);
+        Assert.Equal(["caprice32", "crocods"], (await module.GetEmulatorInstallationsAsync(configuration))
+            .Select(item => item.EmulatorId));
         Assert.StartsWith("official-", release.Id, StringComparison.Ordinal);
         Assert.Equal(release.Id, release.Version);
         Assert.True(release.IsRequired);
         Assert.Same(release, Assert.Single(releases, candidate => candidate.IsRequired));
+    }
+
+    [Theory]
+    [InlineData("cpc-464", false)]
+    [InlineData("cpc-664", false)]
+    [InlineData("cpc-6128", true)]
+    [InlineData("cpc-464-plus", false)]
+    [InlineData("cpc-6128-plus", false)]
+    [InlineData("gx4000", false)]
+    public async Task CrocoDSIsOfferedOnlyForItsSupportedMachine(string model, bool supported)
+    {
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var original = module.CreateConfiguration(model);
+        Assert.Equal(supported, (await module.GetEmulatorInstallationsAsync(original))
+            .Any(item => item.EmulatorId == "crocods"));
+        if (!supported)
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => module.UseEmulatorAsync(original, "crocods").AsTask());
+        else
+            Assert.Equal("crocods", Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(original, "crocods")).EmulatorId);
+    }
+
+    [Fact]
+    public async Task CrocoDSSettingsExcludeUnsupportedCaprice32HardwareAndOptions()
+    {
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var config = await module.UseEmulatorAsync(module.CreateConfiguration("cpc-6128"), "crocods");
+        var settings = module.Describe("cpc-6128", config);
+        var fields = settings.Blocks.SelectMany(block => block.Fields).ToDictionary(field => field.Id);
+        Assert.Equal("CrocoDS", fields[SettingsConstants.Emulator].Value);
+        Assert.Equal("128 KiB", fields[SettingsConstants.Ram].Value);
+        Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.Ram].Editor);
+        Assert.DoesNotContain(SettingsConstants.FloppySound, fields.Keys);
+        Assert.DoesNotContain(SettingsConstants.VideoIntensity, fields.Keys);
+        Assert.DoesNotContain(SettingsConstants.VideoResolution, fields.Keys);
+        Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Mouse]);
+        Assert.Null(module.DescribeInputSettings(config).Mouse);
+        var drive = Assert.Single(module.DescribeStorageSettings(config).AvailableDevices);
+        Assert.True(drive.RequiresMachineRecreation);
+        Assert.Equal([".dsk", ".sna", ".kcr"], drive.AcceptedExtensions);
+        Assert.Equal("caprice32", Assert.IsType<MachineConfiguration>(module.ChangeMachine(config, "gx4000")).EmulatorId);
+    }
+
+    [Fact]
+    public void CrocoDSDeclaredOptionsKeepNativeKeysChoicesAndPersistedValues()
+    {
+        var config = new MachineConfiguration("cpc-6128", "crocods",
+            new Dictionary<string, string> { ["crocods_resize"] = "Overscan" });
+        var option = new CoreOption("crocods_resize", "Resize", null, null, "Auto", "Auto",
+            [new("Auto", "Auto"), new("320x200", "320x200"), new("Overscan", "Overscan")], true);
+        var settings = SettingsDescriptionFunctions.Create(config, [option]);
+        var field = Assert.Single(settings.SelectMany(block => block.Fields), field => field.Id == "crocods_resize");
+        Assert.Equal("Overscan", field.Value);
+        Assert.Equal(["Auto", "320x200", "Overscan"], field.Choices!.Select(choice => choice.Id));
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var updated = module.ApplySettings(config, new Dictionary<string, string?> { ["crocods_resize"] = "320x200" });
+        Assert.Equal("320x200", module.RuntimeOptions(updated)["crocods_resize"]);
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(updated, updated.GetType()));
+        Assert.Equal("crocods", restored!.EmulatorId);
+        Assert.Equal("320x200", restored.Options!["crocods_resize"]);
+    }
+
+    [Theory]
+    [InlineData(".cdt", MediaCategory.Cassette)]
+    [InlineData(".cpr", MediaCategory.Cartridge)]
+    [InlineData(".m3u", MediaCategory.Floppy)]
+    public void CrocoDSRejectsUnsupportedContent(string extension, MediaCategory category)
+    {
+        var config = new MachineConfiguration("cpc-6128", "crocods", Media:
+            [new MediaConfiguration(Path.Combine(Path.GetTempPath(), "content" + extension), category)]);
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Factories.CrocoDSMachineFactory.Validate(config));
     }
 
     [Theory]
@@ -320,7 +397,7 @@ public sealed class AmstradEmulatorAdapterTests
 
             var native = Caprice32OptionFunctions.ToNative(configuration);
 
-            Assert.Equal(expected, native.Options![Caprice32OptionConstants.Language]);
+            Assert.Equal(expected, native.Options![OptionConstants.Language]);
         }
         finally
         {

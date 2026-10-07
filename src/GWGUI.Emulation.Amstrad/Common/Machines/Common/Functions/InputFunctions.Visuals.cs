@@ -29,7 +29,7 @@ internal static partial class InputSettingsFunctions
         ControllerType.Joystick => InputSettingsFunctionsConstants.ResourceControllerJoystick,
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
-        _ => $"Emulation.Controller.{type}"
+        _ => $"{InputSettingsFunctionsConstants.EmulationController}{type}"
     };
 
     private static IReadOnlyDictionary<string, string> ToStrings(

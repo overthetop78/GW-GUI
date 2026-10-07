@@ -25,4 +25,6 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";
     internal const string MouseLeft = "Mouse:Left";
     internal const string MouseRight = "Mouse:Right";
+
+    internal const string EmulationController = "Emulation.Controller.";
 }

@@ -18,7 +18,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private Task? _runLoop;
     private bool _pauseRequested;
     private volatile bool _audioMuted;
-    private float _audioVolume = 1f;
+    private float _audioVolume = AudioConstants.MaximumVolume;
     private bool _disposed;
     private readonly ConcurrentQueue<PendingCommand> _commands = new();
     private TaskCompletionSource? _started;
@@ -60,11 +60,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationAudio Audio => this;
     public IEmulationSavedStates SavedStates => this;
     public IEmulationRuntime Runtime => this;
-    bool IEmulationInput.SupportsPointerCapture => true;
+    bool IEmulationInput.SupportsPointerCapture => _core.SupportsPointerCapture;
     bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
     IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings =>
         Configuration.Input?.KeyboardBindings ?? new Dictionary<string, string>();
-    bool IEmulationInput.SupportsControllerPointerSwitch => true;
+    bool IEmulationInput.SupportsControllerPointerSwitch => _core.SupportsPointerCapture;
     bool IEmulationInput.ControllerPointerMode => _controllerPointerMode;
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
     public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
@@ -94,7 +94,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         await SelectDiskAsync(slot.Index, cancellationToken).ConfigureAwait(false);
         await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
         var mountedIndex = _mountedCommonMedia.FindIndex(item => item.Slot == slot);
-        if (mountedIndex >= 0)
+        if (mountedIndex >= BufferConstants.FirstCollectionIndex)
             _mountedCommonMedia[mountedIndex] = _mountedCommonMedia[mountedIndex] with { IsInserted = false };
     }
     ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index,
@@ -109,7 +109,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         remove => AudioChunkReady -= value;
     }
     void IEmulationAudio.SetMuted(bool muted) => SetAudioMuted(muted);
-    void IEmulationAudio.SetVolume(float volume) => _audioVolume = Math.Clamp(volume, 0f, 1f);
+    void IEmulationAudio.SetVolume(float volume) => _audioVolume = Math.Clamp(volume, AudioConstants.MinimumVolume, AudioConstants.MaximumVolume);
     void IEmulationAudio.SetOutputFactory(Func<IAudioOutput?>? factory) => ReplaceAudioOutput(factory);
     string IEmulationRuntime.EmulatorName => CoreName;
     string IEmulationRuntime.EmulatorVersion => CoreVersion;

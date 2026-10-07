@@ -26,7 +26,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             })
             {
                 IsBackground = true,
-                Name = $"GWGUI Amstrad {Id:N}"
+                Name = $"{MachineConstants.ThreadNamePrefix}{Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)}"
             };
             _runLoop = completion.Task;
             thread.Start();
@@ -98,7 +98,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
         _controllerPointerSwitchPressed = true;
         SetInput(_lastPhysicalInput);
-        await Task.Delay(100, cancellationToken).ConfigureAwait(false);
+        await Task.Delay(MachineConstants.StopPollingIntervalMilliseconds, cancellationToken).ConfigureAwait(false);
         _controllerPointerSwitchPressed = false;
         _controllerPointerMode = !_controllerPointerMode;
         SetInput(_lastPhysicalInput);
@@ -116,7 +116,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         {
             var fullPath = Path.GetFullPath(path);
             _core.InsertMedia(fullPath);
-            var index = Math.Max(0, _core.CurrentDiskIndex);
+            var index = Math.Max(BufferConstants.FirstCollectionIndex, _core.CurrentDiskIndex);
             if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
             else _mediaPaths.Add(fullPath);
             _currentDiskPath = fullPath;

@@ -31,7 +31,7 @@ public sealed class FirmwareCatalog
         var file = new FileInfo(Path.GetFullPath(path));
         using var stream = file.OpenRead();
         var md5 = Convert.ToHexString(MD5.HashData(stream));
-        stream.Position = 0;
+        stream.Position = BufferConstants.FirstStreamPosition;
         var sha256 = Convert.ToHexString(SHA256.HashData(stream));
         return new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc,
             FirmwareType.SystemRom, IsKnown: false, IsOfficial: false, Name: null, Version: null,

@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Yeşil Monokrom</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Beyaz Monokrom</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM Prodüksiyona inşa edilmiş</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Amstrad CPC 6128, yerleşik ROM ile inşa edilmiş ve disk görüntüleri ve anlıklar için destek vermektedir.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitor tipi</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Image framing</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Hız hack</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Enabled</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Engelliler</value></data>
 </root>

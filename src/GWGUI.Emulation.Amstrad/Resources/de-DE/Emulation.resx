@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Grün monochrom</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Weiß monochrom</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM Eingebaut in den Emulator</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emuliert den Amstrad CPC 6128 mit integriertem ROM und Unterstützung für Disk-Images und Snapshots.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitortyp</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Bildrahmen</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Speed Hack</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatik</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Aktiviert</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Behinderte</value></data>
 </root>

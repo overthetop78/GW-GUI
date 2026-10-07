@@ -6,4 +6,4 @@ public sealed record MediaConfiguration(
     string? Label = null,
     bool IsReadOnly = false,
     bool IsInserted = true,
-    int MountOrder = 0);
+    int MountOrder = MediaConstants.DefaultMountOrder);

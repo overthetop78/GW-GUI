@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>绿色单色</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>白色单色</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM 嵌入到模拟器中</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>用内置 ROM 来模拟 Amstrad CPC 6128 , 并支持磁盘图像和快照.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>监视器类型</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>图像框架</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>速率黑客攻击</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>自动</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>过度扫描</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>已启用</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>已禁用</value></data>
 </root>

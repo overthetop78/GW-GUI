@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Vihreä yksivärinen</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Valkoinen yksivärinen</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM Emulaattoriin rakennettu</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emulgoi Amstrad CPC 6128 sisäänrakennettu ROM ja tuki levykuvia ja valokuvia.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitorin tyyppi</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Kuvan kehystys</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Nopeushakata</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automaattinen</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Yliskannaus</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Käytössä</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Ei käytössä</value></data>
 </root>

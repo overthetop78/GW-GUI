@@ -22,6 +22,9 @@ public sealed class Engine
     internal IEmulatorAdapter Adapter(MachineConfiguration configuration) =>
         Adapter(configuration.EmulatorId);
 
+    internal IReadOnlyList<CoreOption> GetOptions(MachineConfiguration configuration,
+        EmulatorManagementContext context) => Adapter(configuration).GetOptions(context);
+
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter)
         ? adapter
         : throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
@@ -30,7 +33,7 @@ public sealed class Engine
     {
         foreach (var adapter in _adapters.Values)
             if (adapter.TryHandleHostCommand(arguments, out exitCode)) return true;
-        exitCode = 0;
+        exitCode = EmulationModuleConstants.DefaultHostExitCode;
         return false;
     }
 }

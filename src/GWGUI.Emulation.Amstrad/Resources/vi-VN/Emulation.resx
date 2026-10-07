@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Đơn sắc xanh lá cây</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Đơn sắc trắng</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM đã xây dựng vào trình giả lập</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Tính toán Amstrad CPC 6128 với sự hỗ trợ từ ROM và hỗ trợ cho hình ảnh trên đĩa và ảnh chụp.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Kiểu màn hình</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Khung ảnh</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Đang hack tốc độ</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Tự động</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Bật</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Tắt</value></data>
 </root>

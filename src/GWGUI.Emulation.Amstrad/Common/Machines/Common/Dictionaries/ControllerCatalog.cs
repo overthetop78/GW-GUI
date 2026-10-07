@@ -5,14 +5,14 @@ public static class ControllerCatalog
     public static IReadOnlyList<ControllerType> Types(Model model)
     {
         var types = new List<ControllerType>();
-        if (model.ControllerPortCount > 0)
+        if (model.ControllerPortCount > BufferConstants.EmptyCollectionCount)
             types.Add(ControllerType.Joystick);
         types.Add(ControllerType.None);
         return types;
     }
 
     public static ControllerType Default(Model model) =>
-        model.ControllerPortCount > 0
+        model.ControllerPortCount > BufferConstants.EmptyCollectionCount
             ? ControllerType.Joystick
             : ControllerType.None;
 

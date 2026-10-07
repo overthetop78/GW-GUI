@@ -1,17 +1,26 @@
+using CrocoDSProfile = GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Constants.EmulatorConstants;
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
+        if (configuration.EmulatorId == CrocoDSProfile.Id)
+        {
+            var device = new EmulationMediaDevice(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy,
+                [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.Sna, StorageSettingsFunctionsConstants.Kcr], RequiresMachineRecreation: true,
+                DisplayLabel: StorageSettingsFunctionsConstants.FloppyDriveLabel, IsPermanent: true);
+            return new EmulationStorageSettings([device], [EmulationMediaSlot.Floppy0],
+                EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []));
+        }
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
-        for (var index = 0; index < model.MaximumFloppyDriveCount; index++)
+        for (var index = BufferConstants.FirstCollectionIndex; index < model.MaximumFloppyDriveCount; index++)
             devices.Add(new EmulationMediaDevice(new EmulationMediaSlot(
                     EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
                 [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u],
-                DisplayLabel: index == 0 ? StorageSettingsFunctionsConstants.FloppyDriveLabel
+                DisplayLabel: index == BufferConstants.FirstCollectionIndex ? StorageSettingsFunctionsConstants.FloppyDriveLabel
                     : StorageSettingsFunctionsConstants.SecondFloppyDriveLabel,
                 IsPermanent: index < model.BuiltInFloppyDriveCount));
         if (model.SupportsCassetteDrive)
@@ -68,7 +77,14 @@ internal static class StorageSettingsFunctions
             [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots
                 .Contains(EmulationMediaSlot.Cartridge0).ToString()
         };
-        return configuration with { Media = media, Options = options };
+        var result = configuration with { Media = media, Options = options };
+        if (configuration.EmulatorId == CrocoDSProfile.Id)
+        {
+            if (settings.ConfiguredSlots.Any(slot => slot != EmulationMediaSlot.Floppy0))
+                throw new ArgumentOutOfRangeException(nameof(settings));
+            Emulators.CrocoDS.Factories.CrocoDSMachineFactory.Validate(result);
+        }
+        return result;
     }
 
     private static int OptionInt(IReadOnlyDictionary<string, string> options,

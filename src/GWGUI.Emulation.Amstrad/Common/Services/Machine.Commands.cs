@@ -9,8 +9,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     private static bool OptionsEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
     {
-        if ((left?.Count ?? 0) != right.Count) return false;
-        return left is null ? right.Count == 0 : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
+        if ((left?.Count ?? BufferConstants.EmptyCollectionCount) != right.Count) return false;
+        return left is null ? right.Count == BufferConstants.EmptyCollectionCount : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
     }
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken,
@@ -40,7 +40,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         {
             _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
             initialized = true;
-            var audioSampleRate = 0;
+            var audioSampleRate = AudioConstants.UninitializedSampleRate;
             if (_audioOutput is not null)
             {
                 try { _audioOutput.Start(_core.SampleRate); audioSampleRate = _core.SampleRate; }
@@ -52,13 +52,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                 _started?.TrySetResult();
             }
             var nextFrame = TimeProvider.System.GetTimestamp();
-            long videoSequence = 0;
+            long videoSequence = VideoConstants.InitialFrameSequence;
 
             while (!cancellationToken.IsCancellationRequested)
             {
                 lock (_gate)
                     while (_pauseRequested && _commands.IsEmpty && !cancellationToken.IsCancellationRequested)
-                        Monitor.Wait(_gate, TimeSpan.FromMilliseconds(100));
+                        Monitor.Wait(_gate, TimeSpan.FromMilliseconds(MachineConstants.CommandPollingIntervalMilliseconds));
                 if (cancellationToken.IsCancellationRequested) break;
 
                 while (_commands.TryDequeue(out var command)) command.Execute();
@@ -91,7 +91,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     AudioChunkReady?.Invoke(this, audio);
                 }
 
-                var frameDuration = TimeSpan.FromSeconds(1 / Math.Clamp(_core.FramesPerSecond, 1, 1000));
+                var frameDuration = TimeSpan.FromSeconds(VideoConstants.SingleFrameCount / Math.Clamp(_core.FramesPerSecond, VideoConstants.MinimumFramesPerSecond, VideoConstants.MaximumFramesPerSecond));
                 nextFrame += (long)(frameDuration.TotalSeconds * TimeProvider.System.TimestampFrequency);
                 var remaining = TimeProvider.System.GetElapsedTime(TimeProvider.System.GetTimestamp(), nextFrame);
                 if (remaining > TimeSpan.Zero) Thread.Sleep(remaining);
@@ -105,7 +105,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
                     EmulationMessageCategory.Machine,
                     EmulationMessageCode.MachineStartFailed,
                     new EmulationMachineMessageContext(Configuration.Model));
-            if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.Diagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
+            if (_core.Diagnostics.Count > BufferConstants.EmptyCollectionCount) error.Data[MachineConstants.Diagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(MachineConstants.MaximumFailureDiagnosticCount));
             _started?.TrySetException(error);
             FailPendingCommands(error);
             lock (_gate) State = EmulationMachineState.Faulted;
@@ -139,14 +139,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private void WriteAudio(ReadOnlySpan<short> samples)
     {
         if (_audioOutput is null) return;
-        if (_audioVolume >= 1f)
+        if (_audioVolume >= AudioConstants.MaximumVolume)
         {
             _audioOutput.Write(samples);
             return;
         }
 
         var scaled = new short[samples.Length];
-        for (var index = 0; index < samples.Length; index++)
+        for (var index = BufferConstants.FirstCollectionIndex; index < samples.Length; index++)
             scaled[index] = (short)Math.Clamp(samples[index] * _audioVolume, short.MinValue, short.MaxValue);
         _audioOutput.Write(scaled);
     }

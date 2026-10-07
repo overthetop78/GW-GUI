@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>สีเดียวสีเขียว</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>พิมพ์สีเดียวสีขาว</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM สร้างจากเครื่องจําลอง</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>เลียนแบบ Amstrad CPC 6128 ขอสาบานต่อลมที่พัด (ฝุ่นให้) กระจัดกระจายอย่างปลิวว่อน ROM และรองรับรูปภาพและภาพที่จับได้บนดิสก์</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>ชนิดของจอภาพ</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>กรอบรูปภาพ</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>แฮ็คแบบสปีด</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>อัตโนมัติ</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>เปิดใช้งาน</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>ปิดการใช้งาน</value></data>
 </root>

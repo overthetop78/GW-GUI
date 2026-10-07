@@ -54,13 +54,13 @@ internal static class InputSnapshotFunctions
         IReadOnlyDictionary<string, bool> physicalMouse,
         IReadOnlyList<ControllerBinding>? bindings)
     {
-        var result = new EmulationControllerState[4];
-        for (var port = 0; port < result.Length; port++)
+        var result = new EmulationControllerState[ControllerPortConstants.MaximumControllerPortCount];
+        for (var port = BufferConstants.FirstCollectionIndex; port < result.Length; port++)
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port);
             var source = EmulationInputMappingFunctions.ResolveController(
                 binding?.DeviceId, physical, port);
-            if (binding?.ButtonMappings is not { Count: > 0 }
+            if (binding?.ButtonMappings is not { Count: > BufferConstants.EmptyCollectionCount }
                 || !binding.ButtonMappings.Any(mapping =>
                     !string.IsNullOrWhiteSpace(mapping.Key)
                     && !string.IsNullOrWhiteSpace(mapping.Value)))
@@ -68,17 +68,17 @@ internal static class InputSnapshotFunctions
                 result[port] = source;
                 continue;
             }
-            uint buttons = 0;
+            uint buttons = InputSnapshotFunctionsConstants.EmptyControllerButtons;
             foreach (var mapping in binding.ButtonMappings)
             {
                 var targetInKey = InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget);
                 var target = targetInKey ? keyTarget
-                    : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
+                    : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, InputSnapshotFunctionsConstants.UnmappedButtonIndex);
                 var sourceName = targetInKey ? mapping.Value : mapping.Key;
                 var mappingSource = EmulationInputMappingFunctions.ResolveSourceController(
                     sourceName, physical, source);
-                if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
-                    buttons |= 1u << target;
+                if (target >= BufferConstants.FirstCollectionIndex && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
+                    buttons |= InputSnapshotFunctionsConstants.ControllerButtonMask << target;
             }
             result[port] = source with { Buttons = buttons };
         }
@@ -94,10 +94,10 @@ internal static class InputSnapshotFunctions
             [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,
             [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,
             [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,
-            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > 0,
-            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < 0,
-            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < 0,
-            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > 0
+            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > EmulationHostProtocolConstants.EmptyPointerDelta,
+            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < EmulationHostProtocolConstants.EmptyPointerDelta,
+            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < EmulationHostProtocolConstants.EmptyPointerDelta,
+            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > EmulationHostProtocolConstants.EmptyPointerDelta
         };
 
     private static bool IsSourcePressed(string sourceName,
@@ -113,7 +113,7 @@ internal static class InputSnapshotFunctions
                 controllerSource, controller, value);
         }
         if (InputSnapshotDictionary.ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))
-            return (controller.Buttons & (1u << legacyIndex)) != 0;
+            return (controller.Buttons & (InputSnapshotFunctionsConstants.ControllerButtonMask << legacyIndex)) != InputSnapshotFunctionsConstants.EmptyControllerButtons;
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard,
                 out var keyboardSource)
             && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))
@@ -138,6 +138,6 @@ internal static class InputSnapshotFunctions
         if (string.IsNullOrWhiteSpace(value)
             || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return false;
         source = value[prefix.Length..];
-        return source.Length > 0;
+        return source.Length > BufferConstants.EmptyCollectionCount;
     }
 }

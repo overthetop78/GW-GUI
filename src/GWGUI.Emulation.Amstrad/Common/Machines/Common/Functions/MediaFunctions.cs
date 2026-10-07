@@ -17,7 +17,7 @@ internal static class EmulationMediaConversionFunctions
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
             var index = indexes.GetValueOrDefault(category);
-            indexes[category] = index + 1;
+            indexes[category] = index + BufferConstants.IndexIncrement;
             var type = item.Category switch
             {
                 MediaCategory.Floppy or MediaCategory.Snapshot => EmulationMediaType.Floppy,
@@ -36,8 +36,8 @@ internal static class EmulationMediaActivityFunctions
     internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(
         IReadOnlyDictionary<int, bool> leds) => new Dictionary<EmulationMediaSlot, bool>
     {
-        [EmulationMediaSlot.Floppy0] = leds.GetValueOrDefault(0),
-        [EmulationMediaSlot.Cassette0] = leds.GetValueOrDefault(1),
-        [EmulationMediaSlot.Cartridge0] = leds.GetValueOrDefault(2)
+        [EmulationMediaSlot.Floppy0] = leds.GetValueOrDefault(StorageSettingsFunctionsConstants.FloppyActivityLed),
+        [EmulationMediaSlot.Cassette0] = leds.GetValueOrDefault(StorageSettingsFunctionsConstants.CassetteActivityLed),
+        [EmulationMediaSlot.Cartridge0] = leds.GetValueOrDefault(StorageSettingsFunctionsConstants.CartridgeActivityLed)
     };
 }

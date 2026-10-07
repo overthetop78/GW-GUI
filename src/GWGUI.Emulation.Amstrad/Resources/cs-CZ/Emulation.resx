@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Zelený monochrom</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Bílý monochrom</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM zabudovaný do emulátoru</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emuluje Amstrad CPC 6128 s built- in ROM a podporou pro obrázky disků a snímků.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Typ monitoru</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Zarámování obrázků</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Hack rychlosti</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatické</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Povoleno</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Zakázáno</value></data>
 </root>

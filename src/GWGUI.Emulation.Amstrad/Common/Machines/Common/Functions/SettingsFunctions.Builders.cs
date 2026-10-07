@@ -47,8 +47,8 @@ internal static partial class SettingsDescriptionFunctions
         DetailedExplanationResourceKey: DetailedHelp(SettingsConstants.AudioOutput));
 
     private static string? ShortHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
-        ? resource + ".Short" : null;
+        ? resource + SettingsDescriptionFunctionsConstants.ShortHelpSuffix : null;
 
     private static string? DetailedHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
-        ? resource + ".Detailed" : null;
+        ? resource + SettingsDescriptionFunctionsConstants.DetailedHelpSuffix : null;
 }

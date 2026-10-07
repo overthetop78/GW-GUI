@@ -1,0 +1,52 @@
+namespace GWGUI.Emulation.Amstrad.Emulators.Common.Constants;
+
+internal static class CommonExceptionsConstants
+{
+    internal const string ResourceManagerBaseName = "GWGUI.Emulation.Amstrad.Resources.Emulation";
+    internal const string HostConfigurationInvalidResourceKey = "Emulation.Error.Common.HostConfigurationInvalid";
+    internal const string HostNotInitializedResourceKey = "Emulation.Error.Common.HostNotInitialized";
+    internal const string CoreNotInitializedResourceKey = "Emulation.Error.Common.CoreNotInitialized";
+    internal const string MediaNotFoundResourceKey = "Emulation.Error.Common.MediaNotFound";
+    internal const string FullContentPathsRequiredResourceKey = "Emulation.Error.Common.FullContentPathsRequired";
+    internal const string StartWithoutMediaUnsupportedResourceKey = "Emulation.Error.Common.StartWithoutMediaUnsupported";
+    internal const string ContentRefusedResourceKey = "Emulation.Error.Common.ContentRefused";
+    internal const string PlaylistLimitExceededResourceKey = "Emulation.Error.Common.PlaylistLimitExceeded";
+    internal const string DiskLabelInvalidResourceKey = "Emulation.Error.Common.DiskLabelInvalid";
+    internal const string StateSaveFailedResourceKey = "Emulation.Error.Common.StateSaveFailed";
+    internal const string StateEmptyResourceKey = "Emulation.Error.Common.StateEmpty";
+    internal const string StateRestoreFailedResourceKey = "Emulation.Error.Common.StateRestoreFailed";
+    internal const string CoreNotLoadedResourceKey = "Emulation.Error.Common.CoreNotLoaded";
+    internal const string CorePathNotAbsoluteResourceKey = "Emulation.Error.Common.CorePathNotAbsolute";
+    internal const string CoreNotFoundResourceKey = "Emulation.Error.Common.CoreNotFound";
+    internal const string ArchiveMissingLibraryResourceKey = "Emulation.Error.Common.ArchiveMissingLibrary";
+    internal const string DownloadedCoreNotPeResourceKey = "Emulation.Error.Common.DownloadedCoreNotPe";
+    internal const string DownloadedCoreInvalidPeResourceKey = "Emulation.Error.Common.DownloadedCoreInvalidPe";
+    internal const string DownloadedCoreWrongArchitectureResourceKey = "Emulation.Error.Common.DownloadedCoreWrongArchitecture";
+    internal const string MediaEjectFailedResourceKey = "Emulation.Error.Common.MediaEjectFailed";
+    internal const string RequestedDiskSelectionFailedResourceKey = "Emulation.Error.Common.RequestedDiskSelectionFailed";
+    internal const string RequestedMediaInsertFailedResourceKey = "Emulation.Error.Common.RequestedMediaInsertFailed";
+    internal const string MediaSlotCreationFailedResourceKey = "Emulation.Error.Common.MediaSlotCreationFailed";
+    internal const string MediaRefusedResourceKey = "Emulation.Error.Common.MediaRefused";
+    internal const string MediaSelectionFailedResourceKey = "Emulation.Error.Common.MediaSelectionFailed";
+    internal const string MediaInsertFailedResourceKey = "Emulation.Error.Common.MediaInsertFailed";
+    internal const string DiskControlUnavailableResourceKey = "Emulation.Error.Common.DiskControlUnavailable";
+    internal const string DiskControlIncompleteResourceKey = "Emulation.Error.Common.DiskControlIncomplete";
+    internal const string ProcessAlreadyInitializedResourceKey = "Emulation.Error.Common.ProcessAlreadyInitialized";
+    internal const string HostExecutableNotFoundResourceKey = "Emulation.Error.Common.HostExecutableNotFound";
+    internal const string ProcessStartFailedResourceKey = "Emulation.Error.Common.ProcessStartFailed";
+    internal const string VideoBufferUnavailableResourceKey = "Emulation.Error.Common.VideoBufferUnavailable";
+    internal const string ProcessUnavailableResourceKey = "Emulation.Error.Common.ProcessUnavailable";
+    internal const string ProcessNotInitializedResourceKey = "Emulation.Error.Common.ProcessNotInitialized";
+    internal const string ProcessTimeoutResourceKey = "Emulation.Error.Common.ProcessTimeout";
+    internal const string ProcessCommunicationFailedResourceKey = "Emulation.Error.Common.ProcessCommunicationFailed";
+    internal const string HostResponseUnavailableResourceKey = "Emulation.Error.Common.HostResponseUnavailable";
+    internal const string UnknownCoreOptionResourceKey = "Emulation.Error.Common.UnknownCoreOption";
+    internal const string UnsupportedPixelFormatResourceKey = "Emulation.Error.Common.UnsupportedPixelFormat";
+    internal const string InvalidOptionValueResourceKey = "Emulation.Error.Common.InvalidOptionValue";
+    internal const string InvalidResponseLengthResourceKey = "Emulation.Error.Common.InvalidResponseLength";
+    internal const string UnsupportedApiVersionResourceKey = "Emulation.Error.Common.UnsupportedApiVersion";
+    internal const string LibraryIdentityMismatchResourceKey = "Emulation.Error.Common.LibraryIdentityMismatch";
+    internal const string UnsupportedContentExtensionResourceKey = "Emulation.Error.Common.UnsupportedContentExtension";
+    internal const string InvalidStateSizeResourceKey = "Emulation.Error.Common.InvalidStateSize";
+    internal const string UnknownHostCommandResourceKey = "Emulation.Error.Common.UnknownHostCommand";
+}

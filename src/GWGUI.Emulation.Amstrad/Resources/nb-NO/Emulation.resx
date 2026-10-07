@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Grønn monokrom</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Hvit monokrom</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM Bygget inn i emulatoren</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emulerer Amstrad CPC 6128 med innebygd ROM og støtte for diskbilder.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Overvåkingstype</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Bildeutforming</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Hastighet hack</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatisk</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Aktivert</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Deaktivert</value></data>
 </root>

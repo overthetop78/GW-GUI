@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>녹색 monochrome</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>백색 monochrome</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM 에뮬레이터로 구축</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>내장 ROM과 디스크 이미지 및 스냅 샷을 지원하는 Amstrad CPC 6128를 격리합니다.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>감시자 유형</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>이미지 framing</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>속도 해킹</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>제품정보</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>구름 많음</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>이름 *</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>지원하다</value></data>
 </root>

@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Monokrom hijau</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>Monokrom putih</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM dibangun ke emulator</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emulating the Amstrad CPC 6128 with built-in ROM and support for disk image and snapshots.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Jenis monitor</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Gambar framing</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Peretasan kecepatan</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Otomatis</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overccan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Diaktifkan</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Dinonaktifkan</value></data>
 </root>

@@ -15,4 +15,12 @@
   <data name="Emulation.Amstrad.Video.Monitor.Green"><value>الاحتكارات الخضراء</value></data>
   <data name="Emulation.Amstrad.Video.Monitor.White"><value>نجوم أبيض</value></data>
   <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM بنيت في الشعار</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>يُحذّرُ Amstrad CPC 6128 مَع بُني في ROM و الدعم لصور الأقراص والطلقات</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>نوع الرصد</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>رسم الصور</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>اختراق سريع</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatic</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>فوق الكان</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>مُتاحة</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>المعوقون</value></data>
 </root>

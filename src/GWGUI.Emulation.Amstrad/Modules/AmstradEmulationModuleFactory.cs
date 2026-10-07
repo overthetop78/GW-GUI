@@ -12,8 +12,8 @@ public sealed class AmstradEmulationModuleFactory : IEmulationModuleFactory
         Directory.CreateDirectory(Path.Combine(context.ModuleDirectory,
             EmulationPathConstants.FirmwareDirectoryName));
         return new AmstradEmulationModule(
-            Path.Combine(context.ModuleDirectory, "Configurations"),
+            Path.Combine(context.ModuleDirectory, ConfigurationStoreConstants.ConfigurationsDirectoryName),
             context.DataDirectory, context.HttpClient,
-            Path.Combine(context.ModuleDirectory, "Core"));
+            Path.Combine(context.ModuleDirectory, EmulationModuleConstants.CoreDirectoryName));
     }
 }
