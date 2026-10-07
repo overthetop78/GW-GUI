@@ -190,7 +190,7 @@ public sealed class EmulationArchitectureTests
         var atari = Path.Combine(root, "src", "GWGUI.Emulation.Atari");
         foreach (var emulator in new[]
                  {
-                     "A5200", "Atari800", "BeetleLynx", "Hatari", "Hatari2014", "HatariB", "ProSystem", "Stella", "Stella2014", "Stella2023", "VirtualJaguar"
+                     "A5200", "Atari800", "BeetleLynx", "GearLynx", "Handy", "Holani", "Hatari", "Hatari2014", "HatariB", "ProSystem", "Stella", "Stella2014", "Stella2023", "VirtualJaguar"
                  })
             Assert.True(File.Exists(Path.Combine(atari, "Emulators", emulator,
                 "Constants", "EmulatorConstants.cs")), $"{emulator} does not own its metadata.");

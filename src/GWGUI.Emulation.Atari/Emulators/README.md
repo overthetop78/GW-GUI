@@ -1,5 +1,26 @@
 # Adaptateurs Atari
 
+La Lynx propose Beetle Lynx (profil par défaut), GearLynx, Handy et Holani.
+Les jeux sont des cartouches, distinctes du BIOS système `lynxboot.img`.
+Beetle Lynx et GearLynx exigent ce BIOS ; Handy et Holani peuvent utiliser
+leur démarrage intégré. Tous les quatre acceptent le BIOS utilisateur choisi
+dans l'onglet ROM, qui reste donc affiché même lorsque ce BIOS est facultatif.
+Un émulateur limité à un BIOS intégré, sans prise en charge externe, ne doit
+pas proposer cette sélection. Plusieurs ROM système doivent rester distinctes
+des cartouches de jeu et pouvoir être sélectionnées séparément si nécessaire.
+
+Formats natifs : Beetle Lynx accepte `lnx`, `lyx`, `bll`, `o` ; GearLynx
+accepte `lnx`, `lyx`, `o`, `bin` ; Handy accepte `lnx`, `lyx`, `o` ;
+Holani accepte `lnx`, `o`. Les options natives passent par les services
+existants ; Holani ne publie actuellement aucune option. Les contrats Common
+restent indépendants du backend, et les boutons physiques Lynx sont convertis
+vers les commandes propres à Holani dans son adaptateur.
+
+Sources : [Beetle Lynx](https://github.com/libretro/beetle-lynx-libretro),
+[GearLynx](https://github.com/drhelius/Gearlynx),
+[Handy](https://github.com/libretro/libretro-handy),
+[Holani](https://github.com/LLeny/holani-retro).
+
 Les ports et commandes disponibles sont définis par le modèle Atari dans les catalogues et fonctions
 communs du module. Ils ne sont jamais définis par un cœur.
 

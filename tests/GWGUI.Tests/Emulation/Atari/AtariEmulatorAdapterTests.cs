@@ -18,6 +18,61 @@ namespace GWGUI.Tests.Emulation.Atari;
 public sealed class AtariEmulatorAdapterTests
 {
     [Theory]
+    [InlineData(Emulator.BeetleLynx, "beetle-lynx", "mednafen_lynx_libretro.dll")]
+    [InlineData(Emulator.GearLynx, "gearlynx", "gearlynx_libretro.dll")]
+    [InlineData(Emulator.Handy, "handy", "handy_libretro.dll")]
+    [InlineData(Emulator.Holani, "holani", "holani_libretro.dll")]
+    public async Task LynxOffersFourAdaptersWithoutChangingItsDefault(Emulator emulator, string id, string dll)
+    {
+        using var httpClient = new HttpClient();
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(nameof(MachineModel.Lynx)));
+        Assert.Equal(Emulator.BeetleLynx, configuration.Core);
+        Assert.Equal(new[] { "beetle-lynx", "gearlynx", "handy", "holani" },
+            CoreCatalog.GetAll(MachineModel.Lynx).Select(entry => entry.Id));
+        var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, id));
+        Assert.Equal(emulator, selected.Core);
+        Assert.Equal(dll, CoreCatalog.Get(emulator).DllName);
+        Assert.Equal("Emulation.Emulator.atari-lynx.Description", CoreCatalog.Get(emulator).DescriptionResourceKey);
+        var settings = module.Describe(nameof(MachineModel.Lynx), selected);
+        Assert.True(settings.Visibility.Tabs[EmulationMachineTab.Rom]);
+        Assert.Contains(settings.Blocks.SelectMany(block => block.Fields), field =>
+            field.Id == "configuration.systemFirmware" && field.IsVisible && field.IsEnabled);
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari2600, core: emulator));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari5200, core: emulator));
+    }
+
+    [Fact]
+    public void LynxAdaptersUseTheirOwnCartridgeFormats()
+    {
+        Assert.Equal(new[] { "bll", "lnx", "lyx", "o" },
+            GWGUI.Emulation.Atari.Emulators.BeetleLynx.Constants.EmulatorConstants.CartridgeExtensions.Order());
+        Assert.Equal(new[] { "bin", "lnx", "lyx", "o" },
+            GWGUI.Emulation.Atari.Emulators.GearLynx.Constants.EmulatorConstants.CartridgeExtensions.Order());
+        Assert.Equal(new[] { "lnx", "lyx", "o" },
+            GWGUI.Emulation.Atari.Emulators.Handy.Constants.EmulatorConstants.CartridgeExtensions.Order());
+        Assert.Equal(new[] { "lnx", "o" },
+            GWGUI.Emulation.Atari.Emulators.Holani.Constants.EmulatorConstants.CartridgeExtensions.Order());
+    }
+
+    [Theory]
+    [InlineData(8, 0)]
+    [InlineData(0, 8)]
+    [InlineData(10, 10)]
+    [InlineData(11, 11)]
+    [InlineData(3, 3)]
+    public void HolaniPreservesPhysicalLynxButtons(int command, int nativeButton)
+    {
+        var controller = EmulationControllerState.Empty with { Buttons = 1u << command, LeftX = 1234 };
+        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(),
+            EmulationInputSnapshot.Empty.Pointer, [controller]);
+        var converted = GWGUI.Emulation.Atari.Emulators.Holani.Functions.InputFunctions.ToNative(snapshot);
+        Assert.Equal(1u << nativeButton, converted.Controllers[0].Buttons);
+        Assert.Equal(controller.LeftX, converted.Controllers[0].LeftX);
+        Assert.Equal(1u << command, snapshot.Controllers[0].Buttons);
+    }
+
+    [Theory]
     [InlineData(MachineModel.St, "0")]
     [InlineData(MachineModel.Stf, "0")]
     [InlineData(MachineModel.Stfm, "0")]

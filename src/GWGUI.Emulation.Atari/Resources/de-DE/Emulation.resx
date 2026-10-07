@@ -34,7 +34,7 @@
   <data name="Emulation.Emulator.atari800.Description"><value>Emuliert Atari 8-Bit Computer und die Atari 5200 Konsole.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Emuliert die Atari 2600 Konsole.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Emuliert die Atari 7800 Konsole.</value></data>
-  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Emuliert das tragbare Atari Lynx-Spielsystem.</value></data>
+  <data name="Emulation.Emulator.atari-lynx.Description"><value>Emuliert das tragbare Atari Lynx-Spielsystem.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emuliert Spielkonsolen (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound Playback ist aktiviert</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Sound Playback ist deaktiviert</value></data>

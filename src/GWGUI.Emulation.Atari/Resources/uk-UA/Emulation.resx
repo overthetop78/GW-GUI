@@ -34,7 +34,7 @@
   <data name="Emulation.Emulator.atari800.Description"><value>Налаштовує Atari 8-бітні комп'ютери та консолі Atari 5200.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Налаштовує консолі Atari 2600.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Налаштовує консолі Atari 7800.</value></data>
-  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Вбудовує переносну ігрову систему Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.atari-lynx.Description"><value>Вбудовує переносну ігрову систему Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Емулює ігрові консолі (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Увімкнути відтворення звуку</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Звуковий відтворення вимкнено</value></data>

@@ -34,7 +34,7 @@
   <data name="Emulation.Emulator.atari800.Description"><value>Máy tính Atari 8-bit và bàn điều khiển Ataria 5200.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Đặt máy điều khiển Atari 2600.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Tính toán bảng điều khiển Atari 7800.</value></data>
-  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Tính toán hệ thống game Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.atari-lynx.Description"><value>Tính toán hệ thống game Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Tính toán các giao diện trò chơi (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Phát lại âm thanh đã bật</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Bộ phát lại âm thanh bị tắt</value></data>

@@ -12,5 +12,8 @@ public enum Emulator
     Stella2014,
     A5200,
     HatariB,
-    Hatari2014
+    Hatari2014,
+    GearLynx,
+    Handy,
+    Holani
 }

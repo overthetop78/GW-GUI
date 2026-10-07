@@ -94,7 +94,11 @@ internal static class InputSnapshotFunctions
         if (model == MachineModel.Lynx)
             return action switch
             {
-                InputSnapshotFunctionsConstants.Option1 => 10, InputSnapshotFunctionsConstants.Option2 => 11, InputSnapshotFunctionsConstants.Pause => 3,
+                InputSnapshotFunctionsConstants.A => LynxInputConstants.ButtonACommand,
+                InputSnapshotFunctionsConstants.B => LynxInputConstants.ButtonBCommand,
+                InputSnapshotFunctionsConstants.Option1 => LynxInputConstants.Option1Command,
+                InputSnapshotFunctionsConstants.Option2 => LynxInputConstants.Option2Command,
+                InputSnapshotFunctionsConstants.Pause => LynxInputConstants.PauseCommand,
                 _ => InputSnapshotDictionary.CommonButtons.GetValueOrDefault(action, -1)
             };
         if (model == MachineModel.Atari5200)

@@ -34,7 +34,7 @@
   <data name="Emulation.Emulator.atari800.Description"><value>Имитирует 8-битные компьютеры Atari и консоль Atari 5200.</value></data>
   <data name="Emulation.Emulator.atari2600.Description"><value>Консоль Atari 2600.</value></data>
   <data name="Emulation.Emulator.prosystem.Description"><value>Консоль Atari 7800 эмулирует.</value></data>
-  <data name="Emulation.Emulator.beetle-lynx.Description"><value>Имитирует портативную игровую систему Atari Lynx.</value></data>
+  <data name="Emulation.Emulator.atari-lynx.Description"><value>Имитирует портативную игровую систему Atari Lynx.</value></data>
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Эмулирует игровые приставки (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Воспроизведение звука включено</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Воспроизведение звука отключено</value></data>
