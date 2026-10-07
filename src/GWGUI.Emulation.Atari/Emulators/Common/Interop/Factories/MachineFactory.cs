@@ -98,6 +98,24 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public virtual IReadOnlyDictionary<string, string> PrepareOptions(
         IReadOnlyDictionary<string, string> options) => options;
 
+    public virtual EmulationInputSnapshot PrepareInput(EmulationInputSnapshot snapshot) => snapshot;
+
+    public virtual void ConfigureController(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
+        MachineConfiguration configuration, int port, PeripheralCategory peripheral) =>
+        ControllerPortFunctions.ConfigurePort(exports, callbacks, configuration, port, peripheral);
+
+    public void ConfigureControllers(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
+        MachineConfiguration configuration)
+    {
+        var portCount = CompatibilityCatalog.Get(configuration.Model).ControllerPortCount;
+        for (var port = ControllerPortConstants.MinimumControllerPort; port < portCount; port++)
+        {
+            var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
+            ConfigureController(exports, callbacks, configuration, port,
+                binding?.Peripheral ?? PeripheralCategory.Automatic);
+        }
+    }
+
     public virtual EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration,
         MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
     {

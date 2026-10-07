@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Tính toán các giao diện trò chơi (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Phát lại âm thanh đã bật</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Bộ phát lại âm thanh bị tắt</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Thả máy bay Atari 5200.</value></data>
 </root>

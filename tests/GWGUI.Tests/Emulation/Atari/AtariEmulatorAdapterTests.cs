@@ -18,6 +18,78 @@ namespace GWGUI.Tests.Emulation.Atari;
 public sealed class AtariEmulatorAdapterTests
 {
     [Fact]
+    public async Task Atari5200OffersA5200WithoutChangingItsDefaultAdapter()
+    {
+        using var httpClient = new HttpClient();
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
+            httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(
+            module.CreateConfiguration(nameof(MachineModel.Atari5200)));
+        Assert.Equal(Emulator.Atari800, configuration.Core);
+        Assert.Equal(new[] { "a5200", "atari800" },
+            CoreCatalog.GetAll(MachineModel.Atari5200).Select(entry => entry.Id));
+        var selected = Assert.IsType<MachineConfiguration>(
+            await module.UseEmulatorAsync(configuration, "a5200"));
+        Assert.Equal(Emulator.A5200, selected.Core);
+        var entry = CoreCatalog.Get(selected.Core);
+        Assert.Equal("a5200_libretro.dll", entry.DllName);
+        Assert.Equal(new[] { MachineModel.Atari5200 }, entry.Models);
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(
+            MachineModel.Atari800Xl, core: Emulator.A5200));
+        Assert.Equal("internal", module.RuntimeOptions(selected)["a5200_bios"]);
+        Assert.Equal("official", module.RuntimeOptions(selected with
+        {
+            Firmwares = [new FirmwareConfiguration(FirmwareCategory.Atari5200Bios,
+                "5200.rom", false)]
+        })["a5200_bios"]);
+        Assert.Equal("internal", module.RuntimeOptions(selected with
+        {
+            Options = new Dictionary<string, string> { ["a5200_bios"] = "internal" },
+            Firmwares = [new FirmwareConfiguration(FirmwareCategory.Atari5200Bios,
+                "5200.rom", false)]
+        })["a5200_bios"]);
+    }
+
+    [Theory]
+    [InlineData(0, 8)]
+    [InlineData(8, 0)]
+    [InlineData(1, 9)]
+    [InlineData(9, 1)]
+    [InlineData(10, 11)]
+    [InlineData(11, 13)]
+    [InlineData(13, 12)]
+    [InlineData(14, 14)]
+    public void A5200ConvertsMachineCommandsToNativeButtons(int command, int nativeButton)
+    {
+        var controller = EmulationControllerState.Empty with
+        {
+            Buttons = 1u << command,
+            LeftX = 1234,
+            LeftY = -2345
+        };
+        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(),
+            EmulationInputSnapshot.Empty.Pointer, [controller]);
+        var converted = GWGUI.Emulation.Atari.Emulators.A5200.Functions.InputFunctions.ToNative(snapshot);
+        Assert.Equal(1u << nativeButton, converted.Controllers[0].Buttons);
+        Assert.Equal(controller.LeftX, converted.Controllers[0].LeftX);
+        Assert.Equal(controller.LeftY, converted.Controllers[0].LeftY);
+        Assert.Equal(1u << command, snapshot.Controllers[0].Buttons);
+    }
+
+    [Fact]
+    public void A5200MapsKeypadTwoAndDoesNotExposeUnsupportedControllerPorts()
+    {
+        var controller = EmulationControllerState.Empty with { Buttons = 1u << 12 };
+        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(),
+            EmulationInputSnapshot.Empty.Pointer, [controller, controller, controller, controller]);
+        var converted = GWGUI.Emulation.Atari.Emulators.A5200.Functions.InputFunctions.ToNative(snapshot);
+        Assert.Equal(2, converted.Controllers.Count);
+        Assert.Equal(0u, converted.Controllers[0].Buttons);
+        Assert.Equal(0, converted.Controllers[0].RightX);
+        Assert.Equal(short.MinValue, converted.Controllers[0].RightY);
+    }
+
+    [Fact]
     public async Task Atari2600OffersThreeSeparateStellaAdapters()
     {
         using var httpClient = new HttpClient();

@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emulerer spillkonsoller (Atari Jaguar/Jaguar CD6).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Lydavspilling er aktivert</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Lydavspilling er deaktivert</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Emulerer Atari 5200 konsollen.</value></data>
 </root>

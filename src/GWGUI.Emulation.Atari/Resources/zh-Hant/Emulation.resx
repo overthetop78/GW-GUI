@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>模拟游戏控制台(Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>已启用回放声音</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>声音回放已禁用</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>模拟Atari 5200控制台.</value></data>
 </root>

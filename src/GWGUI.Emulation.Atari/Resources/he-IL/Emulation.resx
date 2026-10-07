@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>קונסולות משחק (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound Playback ניתן</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Sound Playback הוא נכה</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>קונסולת Atari 5200</value></data>
 </root>

@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>게임 콘솔을 에뮬레이트 (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound 재생이 활성화됩니다.</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>사운드 재생이 비활성화됩니다.</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Atari 5200 콘솔을 격리합니다.</value></data>
 </root>

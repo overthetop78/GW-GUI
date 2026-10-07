@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Προσομοιάζει κονσόλες παιχνιδιών (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Ενεργοποίηση αναπαραγωγής ήχου</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Η αναπαραγωγή ήχου απενεργοποιήθηκε</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Προσομοιάζει την κονσόλα Atari 5200.</value></data>
 </root>

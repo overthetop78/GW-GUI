@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Emultaa pelikonsolit (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Äänisoitin on käytössä</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Äänitallennus ei ole käytössä</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Emulgoi Atari 5200 -konsolin.</value></data>
 </root>

@@ -9,5 +9,6 @@ public enum Emulator
     BeetleLynx,
     VirtualJaguar,
     Stella,
-    Stella2014
+    Stella2014,
+    A5200
 }

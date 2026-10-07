@@ -1,0 +1,66 @@
+# Atari 5200 : a5200
+
+- [x] Ajouter a5200 pour Atari 5200
+  - [x] Integrer le profil et ses adaptations natives
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Enums/CoreEnums.cs` : ajouter A5200 a la fin sans changer les identites enregistrees.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/A5200/Constants/EmulatorConstants.cs` : identite, DLL officielle, source, revision, extensions a52/bin et perimetre Atari5200.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/A5200/Constants/InputConstants.cs` : indices semantiques et boutons natifs du controleur a5200.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/A5200/Functions/InputFunctions.cs` : convertir les commandes existantes vers les deux boutons, le pavé numerique et les axes natifs.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/A5200/Constants/OptionConstants.cs` : noms et valeurs de selection du BIOS interne ou utilisateur.
+    - [x] Creer `src/GWGUI.Emulation.Atari/Emulators/A5200/Factories/A5200MachineFactory.cs` : utiliser Common, preparer cartouches/options/entrees et choisir le controleur a pavé direct.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Factories/MachineFactory.cs` : ajouter les surcharges de conversion des entrees et selection du controleur, comportement existant par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs` : deleguer la configuration des controleurs a la fabrique native.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/Common/Interop/Services/ExternalCore.cs` : deleguer entrees et configuration des ports a la fabrique native.
+    - [x] Creer `artifacts/temp/atari-a5200-validation` : heberger la configuration Argos temporaire, telecharger la DLL officielle et verifier son chargement et ses options avec la sonde existante.
+  - [x] Traduire et documenter
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/00-Base/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ar-SA/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/cs-CZ/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/da-DK/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/de-DE/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/el-GR/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/en-US/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/es-ES/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/fi-FI/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/fr-FR/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/he-IL/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/hu-HU/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/id-ID/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/it-IT/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ja-JP/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ko-KR/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/nb-NO/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/nl-NL/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pl-PL/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pt-BR/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/pt-PT/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ro-RO/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/ru-RU/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/sv-SE/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/th-TH/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/tr-TR/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/uk-UA/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/vi-VN/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/zh-Hans/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/zh-Hant/Emulation.resx` : ajouter la description a5200 traduite via Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Emulators/README.md` : documenter le profil Atari5200, ses formats et la source officielle.
+  - [x] Verifier integration et livraison
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Atari/AtariEmulatorAdapterTests.cs` : tester selection a5200, limitation Atari5200, BIOS et conversion des boutons/axes sans fichiers externes.
+    - [x] Modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` : inclure le nouveau dossier de profil.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Atari/AtariEmulatorAdapterTests.cs` : corriger le type attendu du masque de boutons en uint.
+    - [x] Creer `tests/GWGUI.Tests/Emulation/Atari/A5200NativeValidationTests.cs` : verification temporaire de chargement de cartouche synthetique, frames video/audio et etat, avec destruction du coeur dans finally.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Atari/A5200NativeValidationTests.cs` : importer les contrats du SDK pour le slot cartouche.
+    - [x] Supprimer `tests/GWGUI.Tests/Emulation/Atari/A5200NativeValidationTests.cs` : retirer le test qui depend de la DLL officielle apres execution.
+    - [x] Supprimer `artifacts/temp/atari-a5200-validation` : retirer les DLL, ZIP et sorties temporaires apres verification.
+    - [x] Modifier `docs/tasks/emulation/atari-a5200.md` : enregistrer tests, build Debug --modules=A et presence de l application et des huit modules.
+
+Resultats :
+- Commit precedent cree : `5f9fe4cc` (Stella et contrats Common).
+- a5200 ajoute uniquement a l Atari5200; Atari800 conserve comme choix par defaut.
+- Description ajoutee dans les 30 catalogues avec Argos.
+- Build Debug --modules=A termine avec code 0; application et huit modules verifies.
+- Tests Atari, adaptateurs et architecture : 148 reussites, aucun echec, apres nettoyage.
+- DLL officielle a5200 : initialisation reussie, 13 options natives detectees.
+- Validation native temporaire : cartouche synthetique chargee, cinq frames, video/audio, sauvegarde/restauration d etat reussies.
+- Test natif et tous ses artefacts temporaires supprimes; coeur dispose dans finally, processus de sonde attendu et libere.
+- Aucun parcours de jeu commercial effectue.

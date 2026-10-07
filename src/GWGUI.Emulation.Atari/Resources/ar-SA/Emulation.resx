@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Conoles (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>العزف الصوتي مُتاح</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>العزف الصوتي معاق</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>يَحْذنُ a Atari 5200 Conole.</value></data>
 </root>

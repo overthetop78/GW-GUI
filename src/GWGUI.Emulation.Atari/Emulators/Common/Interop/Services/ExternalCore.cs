@@ -111,7 +111,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
                     Emulator == Emulator.Atari800);
             }
             CoreLifecycleFunctions.Load(_exports, _callbacks, configuration,
-                _content?.GameInfo ?? nint.Zero);
+                _content?.GameInfo ?? nint.Zero,
+                () => _mediaAdapter.ConfigureControllers(_exports, _callbacks, configuration));
             _gameLoaded = true;
             if (_preparedContent?.BootMedia is { } bootFloppy)
             {
@@ -144,12 +145,13 @@ internal sealed partial class ExternalCore : IEmulatorCore
         RequireExports().Run();
     }
     public void HardReset() => RequireExports().Reset();
-    public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = snapshot;
+    public void SetInput(EmulationInputSnapshot snapshot) =>
+        RequireCallbacks().Input = _mediaAdapter.PrepareInput(snapshot);
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
     {
         var configuration = _configuration ??
             throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
-        ControllerPortFunctions.ConfigurePort(RequireExports(), RequireCallbacks(), configuration, port, peripheral);
+        _mediaAdapter.ConfigureController(RequireExports(), RequireCallbacks(), configuration, port, peripheral);
     }
     public void SetOption(string key, string value)
     {

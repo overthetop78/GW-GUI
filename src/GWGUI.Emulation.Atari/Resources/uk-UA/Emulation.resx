@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Емулює ігрові консолі (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Увімкнути відтворення звуку</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Звуковий відтворення вимкнено</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Налаштовує консолі Atari 5200.</value></data>
 </root>

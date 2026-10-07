@@ -31,3 +31,12 @@ profils 2600 partagent la ressource déjà traduite dans toutes les langues.
 Sources : [Stella](https://github.com/stella-emu/stella),
 [Stella 2014](https://github.com/libretro/stella2014-libretro),
 [Stella 2023](https://github.com/libretro/stella2023).
+
+L'Atari 5200 propose aussi [a5200](https://github.com/libretro/a5200), via
+`a5200_libretro.dll`, pour les cartouches `.a52` et `.bin`. Atari800 reste
+le profil par défaut des configurations existantes. Le BIOS utilisateur
+sélectionné est copié par le service de firmware commun; sans sélection,
+l'adaptateur choisit le BIOS Altirra intégré. Les options natives restent
+configurables par le mécanisme commun. Ce cœur utilise deux contrôleurs,
+dont le premier avec le pavé à boutons directs; les deux autres ports
+matériels ne sont pas pris en charge par a5200.

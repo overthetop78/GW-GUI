@@ -3,7 +3,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 internal static class CoreLifecycleFunctions
 {
     internal static void Load(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, nint gameInfo)
+        MachineConfiguration configuration, nint gameInfo, Action? configureControllers = null)
     {
         if (gameInfo == nint.Zero && !callbacks.SupportsNoGame)
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentRequired,
@@ -12,7 +12,10 @@ internal static class CoreLifecycleFunctions
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
                 ErrorMessages.ContentLoadFailed);
         callbacks.ConfigureInput(configuration.Input);
-        ControllerPortFunctions.Configure(exports, callbacks, configuration);
+        if (configureControllers is null)
+            ControllerPortFunctions.Configure(exports, callbacks, configuration);
+        else
+            configureControllers();
         exports.GetSystemAvInfo(out var avInfo);
         callbacks.ApplySystemAvInfo(avInfo);
     }

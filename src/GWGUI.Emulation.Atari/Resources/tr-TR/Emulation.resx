@@ -38,4 +38,5 @@
   <data name="Emulation.Emulator.virtual-jaguar.Description"><value>Oyun konsolları (Atari Jaguar/Jaguar CD).</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound playback etkinleştirilir</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Sound playback devre dışı bırakıldı</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Atari 5200 konsolunu emulates.</value></data>
 </root>
