@@ -43,7 +43,7 @@ internal static class EmulationFixedPixelSettingsBlock
             screen.Children.Add(Choice(EmulationVideoProcessingCatalog.FixedPixelMonochromeColor,
                 EmulationVideoProcessingCatalog.MonochromePaletteResourceKeys,
                 value.MonochromePalette,
-                palette => changed(current => current with { MonochromePalette = palette, MonochromeColorArgb = null })));
+                palette => changed(current => current with { MonochromePalette = palette })));
         AddGroup(groups, screen, 0, 0);
 
         var structure = new StackPanel();

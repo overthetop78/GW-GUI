@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Semua berkas|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Kompabilitas Chipset</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Emulasi Amiga komputer, CDTV dan CD32 sistem.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Emulasi Amiga komputer, CDTV dan CD32 sistem.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Pemutaran suara diaktifkan</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Pemutaran suara dinonaktifkan</value></data>
 </root>

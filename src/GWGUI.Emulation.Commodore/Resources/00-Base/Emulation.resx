@@ -10,7 +10,7 @@
   <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3.5-inch DD · 880 KiB</value></data>
   <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3.5-inch HD · 1.76 MiB</value></data>
   <data name="Emulation.Family.Commodore" xml:space="preserve"><value>Commodore</value></data>
-  <data name="Emulation.Emulator.PUAE.Description" xml:space="preserve"><value>Emulates Amiga computers, CDTV and CD32 systems.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description" xml:space="preserve"><value>Emulates Amiga computers, CDTV and CD32 systems.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound playback is enabled</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Sound playback is disabled</value></data>
 </root>

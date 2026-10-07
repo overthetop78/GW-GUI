@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga وسائط الإعلام|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|جميع الملفات|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>الطب</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>توافق الشيبس</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>المواد Amiga حواسيب CDTV و CD32 أنظمة</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>المواد Amiga حواسيب CDTV و CD32 أنظمة</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>"اللعبة الصوتية مُتاحة"</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>"اللعبة الصوتية معاق"</value></data>
 </root>

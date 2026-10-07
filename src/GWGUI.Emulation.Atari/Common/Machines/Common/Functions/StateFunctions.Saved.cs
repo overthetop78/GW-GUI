@@ -66,42 +66,8 @@ internal static class SavedStateFunctions
         return HashBytes(JsonSerializer.SerializeToUtf8Bytes(fingerprint, StateConstants.JsonOptions));
     }
 
-    internal static bool IsCompatibleConfigurationHash(MachineConfiguration configuration, string hash)
-    {
-        if (string.Equals(hash, ConfigurationHash(configuration), StringComparison.OrdinalIgnoreCase))
-            return true;
-        // Format used before presentation profiles were moved out of the modules.
-        // Try every historical numeric value; it never represented emulated machine state.
-        for (var legacyValue = 0; legacyValue < StateConstants.LegacyPresentationValueCount; legacyValue++)
-            if (string.Equals(hash, LegacyConfigurationHash(configuration, legacyValue),
-                StringComparison.OrdinalIgnoreCase)) return true;
-        return false;
-    }
-
-    internal static string LegacyConfigurationHash(MachineConfiguration configuration, int legacyValue)
-    {
-        var fingerprint = new StateConfigurationFingerprint(configuration.SchemaVersion,
-            configuration.Model, configuration.Core, configuration.AudioEnabled,
-            ContentEntries(configuration),
-            configuration.Options.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
-            InputFingerprint(configuration.Input),
-            configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray(),
-            configuration.Firmwares.OrderBy(firmware => firmware.Category).ToArray());
-        var document = JsonSerializer.SerializeToElement(fingerprint, StateConstants.JsonOptions);
-        using var stream = new MemoryStream();
-        using (var writer = new Utf8JsonWriter(stream))
-        {
-            writer.WriteStartObject();
-            foreach (var property in document.EnumerateObject())
-            {
-                property.WriteTo(writer);
-                if (property.Name == StateConstants.LegacyAudioProperty)
-                    writer.WriteNumber(StateConstants.LegacyPresentationProperty, legacyValue);
-            }
-            writer.WriteEndObject();
-        }
-        return HashBytes(stream.ToArray());
-    }
+    internal static bool IsCompatibleConfigurationHash(MachineConfiguration configuration, string hash) =>
+        string.Equals(hash, ConfigurationHash(configuration), StringComparison.OrdinalIgnoreCase);
 
     internal static string ContentHash(MachineConfiguration configuration) =>
         HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration),

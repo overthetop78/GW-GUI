@@ -6,7 +6,7 @@ public sealed record MachineConfiguration(
     string? InitialDiskPath = null,
     string? ExtendedRomPath = null,
     string? RomKeyPath = null,
-    Emulator Core = Emulator.External,
+    Emulator Core = Emulator.PUAE,
     IReadOnlyDictionary<string, string>? Options = null,
     Guid Id = default,
     bool AudioEnabled = true,

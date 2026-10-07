@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga ЗМІ|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Всі файли|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Пилки</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Сумісність з чіпсетом</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Голоси Amiga комп'ютери, CDTV і CD32 системи.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Голоси Amiga комп'ютери, CDTV і CD32 системи.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Звуковий відтворення включений</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Відключено відтворення звуку</value></data>
 </root>

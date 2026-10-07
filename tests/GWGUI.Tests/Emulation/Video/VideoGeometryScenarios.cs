@@ -11,7 +11,7 @@ internal static class VideoGeometryScenarios
             DisplayTechnology=(GWGUI.VideoPresentation.Enums.EmulationVideoDisplayTechnology)999,
             Sampling=(GWGUI.VideoPresentation.Enums.EmulationVideoSampling)999,
             Crt=new(HorizontalCurvature:-500,VerticalCurvature:500,BeamWidth:-10,MaskIntensity:200),
-            FixedPixel=new(ResponseTimeMilliseconds:5000,GridIntensity:-1,PersistenceIntensity:101,MonochromeColorArgb:0xffffffff,BacklightIntensity:101,BlackDepth:-1),
+            FixedPixel=new(ResponseTimeMilliseconds:5000,GridIntensity:-1,PersistenceIntensity:101,MonochromePalette:GWGUI.VideoPresentation.Enums.EmulationMonochromePalette.White,BacklightIntensity:101,BlackDepth:-1),
             Restoration=new(Dedithering:-1,Denoising:101),Temporal=new(GeneralPersistence:101,MotionBlur:-1)
         };
         var output=EmulationVideoProcessingConfigurationFunctions.Normalize(input);
@@ -19,7 +19,7 @@ internal static class VideoGeometryScenarios
         Assert.Equal(GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Nearest,output.Sampling);
         Assert.Equal(-100,output.Crt.HorizontalCurvature); Assert.Equal(100,output.Crt.VerticalCurvature); Assert.Equal(0,output.Crt.BeamWidth); Assert.Equal(100,output.Crt.MaskIntensity);
         Assert.Equal(1000,output.FixedPixel.ResponseTimeMilliseconds); Assert.Equal(0,output.FixedPixel.GridIntensity); Assert.Equal(100,output.FixedPixel.PersistenceIntensity);
-        Assert.Null(output.FixedPixel.MonochromeColorArgb); Assert.Equal(GWGUI.VideoPresentation.Enums.EmulationMonochromePalette.White,output.FixedPixel.MonochromePalette);
+        Assert.Equal(GWGUI.VideoPresentation.Enums.EmulationMonochromePalette.White,output.FixedPixel.MonochromePalette);
         Assert.Equal(100,output.FixedPixel.BacklightIntensity); Assert.Equal(0,output.FixedPixel.BlackDepth); Assert.Equal(0,output.Restoration.Dedithering); Assert.Equal(100,output.Restoration.Denoising);
         Assert.Equal(100,output.Temporal.GeneralPersistence); Assert.Equal(0,output.Temporal.MotionBlur);
         Assert.Equal(5000,input.FixedPixel.ResponseTimeMilliseconds); Assert.Equal(output,EmulationVideoProcessingConfigurationFunctions.Normalize(output));

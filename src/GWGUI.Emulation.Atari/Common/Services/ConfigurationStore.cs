@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.Json;
 using GWGUI.Emulation.Functions;
 
@@ -18,7 +19,7 @@ public sealed class ConfigurationStore
         _pathBase = Path.GetFullPath(pathBase ?? directory);
     }
 
-    public async Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(
+    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(
         CancellationToken cancellationToken = default)
     {
         Directory.CreateDirectory(_directory);
@@ -29,13 +30,8 @@ public sealed class ConfigurationStore
             try
             {
                 var json = ConfigurationFileAccessFunctions.ReadAllText(path);
-                var document = JsonConfigurationRecoveryFunctions
-                    .DeserializeRemovingInvalidProperties(json,
-                        ConfigurationStoreFunctions.Deserialize,
-                        out var repairedJson);
-                if (!string.Equals(json, repairedJson, StringComparison.Ordinal))
-                    await JsonConfigurationRecoveryFunctions.WriteAtomicallyAsync(path, repairedJson,
-                        cancellationToken).ConfigureAwait(false);
+                using var parsed = JsonDocument.Parse(json);
+                var document = ConfigurationStoreFunctions.Deserialize(parsed.RootElement);
                 configurations.Add(ConfigurationStoreFunctions.FromDocument(document, _pathBase));
             }
             catch (JsonException) { }
@@ -43,7 +39,7 @@ public sealed class ConfigurationStore
             catch (InvalidDataException) { }
             catch (ArgumentException) { }
         }
-        return configurations;
+        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);
     }
 
     public async Task SaveAsync(MachineConfiguration configuration,
@@ -73,15 +69,10 @@ public sealed class ConfigurationStore
             id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         if (Directory.Exists(machineDirectory))
             Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);
-        var legacyPath = Path.Combine(_directory,
-            id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)
-            + ConfigurationStoreConstants.LegacyFileExtension);
-        if (File.Exists(legacyPath)) File.Delete(legacyPath);
     }
 
     private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory)
         .Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName))
-        .Concat(Directory.EnumerateFiles(_directory, ConfigurationStoreConstants.JsonSearchPattern))
         .Where(File.Exists)
         .Order(StringComparer.OrdinalIgnoreCase);
 }

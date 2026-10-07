@@ -6,7 +6,6 @@ namespace GWGUI.VideoPresentation.Contracts;
 public sealed record EmulationFixedPixelVideoConfiguration(
     EmulationFixedPixelTechnology Technology = EmulationFixedPixelTechnology.Lcd,
     EmulationSubpixelLayout Subpixels = EmulationSubpixelLayout.Rgb,
-    uint? MonochromeColorArgb = null,
     int GridIntensity = EmulationVideoProcessingDefaults.Intensity,
     int PixelGap = EmulationVideoProcessingDefaults.Intensity,
     int ResponseTimeMilliseconds = EmulationVideoProcessingDefaults.DurationMilliseconds,

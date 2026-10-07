@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga média|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Minden fájl|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Csípőszorító</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>A chipset kompatibilitás</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Emulátok Amiga számítógépek, CDTV és CD32 rendszerek.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Emulátok Amiga számítógépek, CDTV és CD32 rendszerek.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Hanglejátszás engedélyezve</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>A hanglejátszás kikapcsolva</value></data>
 </root>

@@ -36,8 +36,7 @@ internal static class ConfigurationStoreFunctions
     internal static MachineConfiguration FromDocument(ConfigurationDocument document,
         string pathBase)
     {
-        if (document.SchemaVersion is < ConfigurationStoreConstants.MinimumSchemaVersion
-            or > ConfigurationStoreConstants.CurrentSchemaVersion)
+        if (document.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
             throw new InvalidDataException();
         if (document.Id == Guid.Empty)
             throw new InvalidDataException();

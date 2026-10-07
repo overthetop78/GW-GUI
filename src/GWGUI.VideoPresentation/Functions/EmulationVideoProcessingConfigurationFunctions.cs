@@ -100,11 +100,8 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 Subpixels = DefinedOrDefault(fixedPixel.Subpixels, EmulationSubpixelLayout.Rgb),
                 GridIntensity = Intensity(fixedPixel.GridIntensity),
                 PixelGap = Intensity(fixedPixel.PixelGap),
-                MonochromeColorArgb = null,
-                MonochromePalette = fixedPixel.MonochromeColorArgb is uint legacyColor
-                    ? EmulationMonochromePaletteFunctions.FromArgb(legacyColor)
-                    : DefinedOrDefault(fixedPixel.MonochromePalette,
-                        EmulationMonochromePalette.Green),
+                MonochromePalette = DefinedOrDefault(fixedPixel.MonochromePalette,
+                    EmulationMonochromePalette.Green),
                 ResponseTimeMilliseconds = Duration(fixedPixel.ResponseTimeMilliseconds),
                 PersistenceIntensity = Intensity(fixedPixel.PersistenceIntensity),
                 BacklightIntensity = OptionalIntensity(fixedPixel.BacklightIntensity),

@@ -29,7 +29,7 @@ public class VideoTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionS
         }
     }
 
-    [Fact] public void VideoProcessingNormalizesEnumsIntensitiesAndLegacyPalette() => VideoGeometryScenarios.ProcessingLimits();
+    [Fact] public void VideoProcessingNormalizesEnumsIntensitiesAndPalette() => VideoGeometryScenarios.ProcessingLimits();
     [Fact] public void VideoProcessingAppliesBrightnessBeforeContrast() => VideoGeometryScenarios.ProcessingOrder();
     [Theory] [InlineData(0)] [InlineData(1)] [InlineData(2)]
     public Task PresentationRoutesFramesSettingsAndRendererFailures(int failure) => sta.RunAsync(() => VideoProcessingScenarios.Presentation(failure));

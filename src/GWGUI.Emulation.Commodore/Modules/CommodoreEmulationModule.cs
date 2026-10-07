@@ -216,7 +216,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.GetAll(machineId).Single();
+        var definition = EmulatorCatalog.Get(Emulator.PUAE);
         var adapter = _engine.Adapter(definition.Id);
         return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
             .ConfigureAwait(false);
@@ -226,7 +226,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.GetAll(machineId).Single();
+        var definition = EmulatorCatalog.Get(Emulator.PUAE);
         var adapter = _engine.Adapter(definition.Id);
         return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken)
             .ConfigureAwait(false);
@@ -236,10 +236,59 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
-        var definition = EmulatorCatalog.GetAll(machineId).Single();
+        var definition = EmulatorCatalog.Get(Emulator.PUAE);
         var adapter = _engine.Adapter(definition.Id);
         return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken)
             .ConfigureAwait(false);
+    }
+
+    public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        var adapter = _engine.Adapter(configuration as MachineConfiguration
+            ?? throw new ArgumentException(nameof(configuration)));
+        return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
+    }
+
+    public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var results = new List<EmulationEmulatorInstallation>();
+        foreach (var definition in EmulatorCatalog.GetAll(current.Model))
+        {
+            var adapter = _engine.Adapter(definition.Id);
+            results.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false));
+        }
+        return results;
+    }
+
+    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration,
+        string emulatorId, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var adapter = _engine.Adapter(emulatorId);
+        if (!adapter.Definition.MachineIds.Contains(current.Model))
+            throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
+        return ValueTask.FromResult<IEmulationConfiguration>(current with { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
+    }
+
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        var adapter = _engine.Adapter(configuration as MachineConfiguration
+            ?? throw new ArgumentException(nameof(configuration)));
+        return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
+    }
+
+    public async ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
+        EmulationEmulatorRelease release, IProgress<double>? progress = null,
+        CancellationToken cancellationToken = default)
+    {
+        var adapter = _engine.Adapter(configuration as MachineConfiguration
+            ?? throw new ArgumentException(nameof(configuration)));
+        return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken).ConfigureAwait(false);
     }
 
     public string GetFirmwareDirectory(string machineId)

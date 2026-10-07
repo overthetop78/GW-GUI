@@ -19,6 +19,12 @@ global using GWGUI.Emulation.Commodore.Common.Machines.Common.Exceptions;
 global using GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 global using GWGUI.Emulation.Commodore.Modules;
 global using GWGUI.Emulation.Commodore.Common.Services;
-global using GWGUI.Emulation.Commodore.Emulators.PUAE.Contracts;
-global using GWGUI.Emulation.Commodore.Emulators.PUAE.Enums;
-global using GWGUI.Emulation.Commodore.Emulators.PUAE.Interfaces;
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Contracts;
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Enums;
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interfaces;
+
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Constants;
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Functions;
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;
+global using GWGUI.Emulation.Commodore.Emulators.Common.Interop.Exceptions;

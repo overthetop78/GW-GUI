@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Μέσα μαζικής ενημέρωσης|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Όλα τα αρχεία|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Σύνολο τσιπ</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Συμβατότητα τσιπσετ</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Εξομοίωση Amiga υπολογιστές, CDTV και CD32 συστήματα.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Εξομοίωση Amiga υπολογιστές, CDTV και CD32 συστήματα.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Η αναπαραγωγή ήχου είναι ενεργοποιημένη</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Η αναπαραγωγή ήχου είναι απενεργοποιημένη</value></data>
 </root>

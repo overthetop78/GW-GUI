@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga médias|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Jeu de puces</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Compatibilité des puces</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Émule les ordinateurs Amiga et les systèmes CDTV et CD32.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Émule les ordinateurs Amiga et les systèmes CDTV et CD32.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>La lecture du son est activée</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>La lecture du son est désactivée</value></data>
 </root>

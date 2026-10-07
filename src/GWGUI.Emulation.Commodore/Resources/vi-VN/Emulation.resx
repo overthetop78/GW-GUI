@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga phương tiện|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Tương thích với Chipset</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Tính Amiga Máy tính, CDTV và CD32 Hệ thống.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Tính Amiga Máy tính, CDTV và CD32 Hệ thống.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Phát lại âm thanh đã bật</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Không cho phát lại âm thanh</value></data>
 </root>

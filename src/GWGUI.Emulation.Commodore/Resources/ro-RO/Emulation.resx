@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Toate fișierele|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Chipsset</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Compatibilitatea Chipsset</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Emulează Amiga calculatoare; CDTV şi CD32 sisteme.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Emulează Amiga calculatoare; CDTV şi CD32 sisteme.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Redare sunet este activat</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Redarea sunetului este dezactivată</value></data>
 </root>

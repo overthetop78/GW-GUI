@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga מדיה|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|כל הקבצים|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>צ'יפסט</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>תאימות צ'יפ</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>⁇ Amiga מחשבים, CDTV ו CD32 מערכות.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>⁇ Amiga מחשבים, CDTV ו CD32 מערכות.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Sound Playback הוא זמין</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Sound Playback הוא מוגבל</value></data>
 </root>

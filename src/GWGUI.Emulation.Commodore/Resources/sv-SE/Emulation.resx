@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alla filer|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Chipset kompatibilitet</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Emulerar Amiga datorer, CDTV och CD32 system.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Emulerar Amiga datorer, CDTV och CD32 system.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>Ljuduppspelning är aktiverad</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>Ljuduppspelning är inaktiverad</value></data>
 </root>

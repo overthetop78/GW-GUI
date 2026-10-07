@@ -1,0 +1,164 @@
+# Amiberry, PUAE et PUAE 2021
+
+- [x] Integrer les trois profils Amiga et organiser leurs Common
+  - [x] Identifier les coeurs et leur fonctionnement
+    - [x] Creer `artifacts/temp/commodore-amiga-validation` : DLL Windows x64 et sources officielles temporaires des trois coeurs pour verifier identites, options, formats, modeles et firmware.
+    - [x] Modifier `docs/tasks/emulation/commodore-amiga-emulators.md` : enregistrer l identite du PUAE existant et l inventaire exact des fichiers a reorganiser avant modification.
+  - [x] Extraire les services partages et integrer les profils
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/CoreHostConstants.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/CoreHostConstants.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/CoreReleaseConstants.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/CoreReleaseConstants.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/ExternalCoreConstants.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/ExternalCoreConstants.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/ExternalHostCallbacksConstants.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/ExternalHostCallbacksConstants.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/ProcessCoreConstants.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/ProcessCoreConstants.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Contracts/ControllerContracts.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Contracts/ControllerContracts.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Contracts/CoreRelease.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Contracts/CoreRelease.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Contracts/EmulatorContracts.cs` vers `src/GWGUI.Emulation.Commodore/Common/Contracts/EmulatorContracts.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Enums/HostEnums.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Enums/HostEnums.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Exceptions/PuaeExceptions.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Exceptions/PuaeExceptions.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Factories/PuaeMachineFactory.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Functions/CoreHostProtocol.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Functions/CoreHostProtocol.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Interfaces/IEmulatorCore.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interfaces/IEmulatorCore.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/CoreHost.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/CoreProvider.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreProvider.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/CoreReleaseService.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalCore.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalCoreInstaller.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCoreInstaller.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalDiskControl.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalDiskControl.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalHostCallbacks.AudioVideo.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideo.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalHostCallbacks.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalHostCallbacks.Environment.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalHostCallbacks.Input.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ProcessCore.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs` : adapter les namespaces et separer les donnees des profils des services communs.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/MachineFactory.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreReleaseService.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreProvider.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCoreInstaller.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/CoreReleaseConstants.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/ExternalCoreConstants.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/ExternalHostCallbacksConstants.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs` : parametrer les profils, isoler leurs options et firmware, et garantir la liberation des ressources.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Enums/CoreEnums.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Common/Dictionaries/EmulatorCatalog.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/PuaeConstants.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Factories/PuaeMachineFactory.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE2021/Constants/EmulatorConstants.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE2021/Factories/PuaeMachineFactory.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/Amiberry/Constants/EmulatorConstants.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/Amiberry/Constants/OptionConstants.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/Amiberry/Factories/AmiberryMachineFactory.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Contracts/CoreDefinition.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/UaeMachineFactory.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Contracts/EmulatorContracts.cs` : restaurer les contextes generiques existants et conserver leur compatibilite.
+    - [x] Creer `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Contracts/EmulatorCatalogEntry.cs` : conserver les metadonnees des adaptateurs natifs hors des contrats generiques.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/PuaeOptionConstants.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/UaeOptionConstants.cs` : partager les noms des options PUAE et PUAE 2021.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Functions/PuaeOptionFunctions.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Functions/UaeOptionFunctions.cs` : partager la conversion des deux variantes UAE.
+    - [x] Renommer `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Exceptions/PuaeExceptions.cs` en `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Exceptions/CoreExceptions.cs` et adapter ses appels : erreurs natives communes avec les traductions existantes.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Functions/CoreHostProtocol.cs` : utiliser le nom commun du transport plutot qu un profil.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Constants/ProcessCoreConstants.cs` : definir le nom commun du transport.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Factories/UaeMachineFactory.cs` : utiliser les constantes et fonctions partagees UAE.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs` : suivre les fonctions UAE partagees.
+    - [x] Creer `src/GWGUI.Emulation.Commodore/Common/Constants/EmulatorDescriptionConstants.cs` : cle unique de description traduite des trois profils.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/PuaeConstants.cs` et les trois fabriques : reutiliser la description commune sans dependance entre profils.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalHostCallbacks.Input.cs` et `ExternalHostCallbacks.Environment.cs` : corriger les imports statiques des constantes deplacees.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/00-Base/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/ar-SA/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/cs-CZ/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/da-DK/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/de-DE/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/el-GR/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/en-US/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/es-ES/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/fi-FI/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/fr-FR/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/he-IL/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/hu-HU/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/id-ID/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/it-IT/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/ja-JP/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/ko-KR/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/nb-NO/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/nl-NL/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/pl-PL/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/pt-BR/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/pt-PT/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/ro-RO/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/ru-RU/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/sv-SE/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/th-TH/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/tr-TR/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/uk-UA/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/vi-VN/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/zh-Hans/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Resources/zh-Hant/Emulation.resx` : partager la description existante sans refaire ni dupliquer les traductions.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Enums/CoreEnums.cs` et les references `Emulator.External` du module et des tests : renommer PUAE avec la valeur numerique conservee.
+    - [x] Creer `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/EmulatorJsonConverter.cs` : lire la valeur historique External et ecrire PUAE dans les nouvelles configurations.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs` : utiliser la selection generique existante pour les trois profils et installer le profil selectionne.
+    - [x] Supprimer `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/EmulatorJsonConverter.cs` : retirer la compatibilite External suivant la correction utilisateur.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Enums/CoreEnums.cs` : conserver uniquement PUAE, PUAE2021 et Amiberry sans ancien nom ni convertisseur.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModuleFactory.cs` : supprimer le repli sur l ancien dossier de module amiga apres renommage Commodore.
+    - [x] Creer ou modifier `src/GWGUI.Emulation.Commodore/Emulators/README.md` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+    - [x] Creer ou modifier `tests/GWGUI.Tests/Architecture/EmulationArchitectureTests.cs` : brancher les trois profils, leurs options et firmware sur les Common generaux et leur interop native partagee.
+  - [x] Verifier et livrer
+    - [x] Creer `tests/GWGUI.Tests/Emulation/Amiga/CommodoreNativeValidationTests.cs` : verifier identites, versions et options des DLL officielles avec liberation native dans finally.
+    - [x] Retirer les migrations et replis vers les anciennes configurations
+      - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Microsoft/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs` : charger seulement le format et l emplacement actuels, sans conversion des anciens fichiers.
+      - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Constants/ConfigurationStoreConstants.cs` : supprimer les constantes des anciens fichiers et anciennes versions.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.Persistence.cs` : accepter uniquement la version de schema actuelle.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StateFunctions.Saved.cs` : supprimer les empreintes de configuration historiques.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/StateConstants.cs` : supprimer les constantes des empreintes historiques.
+      - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : supprimer les alias historiques de configuration et conserver les modeles courants.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` : verifier le rejet des anciens alias de modeles et enum.
+      - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/CommodoreNativeValidationTests.cs` : corriger l import du chargeur natif et proteger la desinitialisation dans finally.
+      - [x] Renommer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/PuaeConstants.cs` en `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/EmulatorConstants.cs` : suivre le nom des constantes utilise dans les autres profils et adapter la fabrique PUAE.
+    - [x] Deplacer `src/GWGUI.Emulation.Commodore/Common/Constants/EmulatorDescriptionConstants.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/Common/Constants/EmulatorDescriptionConstants.cs` : garder la description partagee avec les adaptateurs et modifier leurs imports.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs` : garantir la fermeture des ressources et attendre la destruction du processus dans finally.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs` : liberer le chargeur natif meme si la desinitialisation echoue.
+    - [x] Modifier `src/GWGUI.VideoPresentation/Services/VideoPresentationProfileStore.cs` : supprimer la migration des anciens profils et la conversion des booleens historiques.
+    - [x] Modifier `src/GWGUI.App/Services/Emulation/EmulationVideoPresentationProfiles.cs` : supprimer la recherche des anciens fichiers Amiga et Atari.
+    - [x] Modifier `src/GWGUI.VideoPresentation/Constants/VideoPresentationStorageConstants.cs` et supprimer `src/GWGUI.VideoPresentation/Services/LegacyBooleanJsonConverter.cs` : retirer les definitions de migration inutilisees.
+    - [x] Modifier `src/GWGUI.VideoPresentation/Contracts/EmulationFixedPixelVideoConfiguration.cs` et `src/GWGUI.VideoPresentation/Functions/EmulationVideoProcessingConfigurationFunctions.cs` : retirer l ancienne couleur monochrome remplacee par la palette.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Video/VideoGeometryScenarios.cs` et `tests/GWGUI.Tests/Emulation/Video/VideoTests.cs` : verifier uniquement la configuration actuelle de palette.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationFixedPixelSettingsBlock.cs` : retirer la remise a zero du champ historique de couleur supprime.
+    - [x] Modifier `src/GWGUI.Emulation.Amstrad/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Microsoft/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Nec/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Nintendo/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Services/ConfigurationStore.cs` : supprimer la reparation qui transforme les valeurs anciennes ou invalides en valeurs par defaut.
+    - [x] Supprimer les dossiers vides `src/GWGUI.Emulation.Commodore/Emulators/PUAE/{Contracts,Enums,Exceptions,Functions,Interfaces,Services}` : terminer le deplacement dans Common.
+    - [x] Supprimer `tests/GWGUI.Tests/Emulation/Amiga/CommodoreNativeValidationTests.cs` : retirer les tests externes apres verification.
+    - [x] Modifier `docs/tasks/emulation/commodore-amiga-emulators.md` : consigner les tests utiles et le build Debug de l application et des huit modules.
+    - [x] Supprimer `artifacts/temp/commodore-amiga-validation` : retirer DLL, sources et artefacts temporaires apres verification.
+
+Identite existante : profil puae et bibliotheque puae_libretro.dll ; PUAE 2021 utilise puae2021_libretro.dll. Les anciennes configurations seront recreees par l utilisateur ; aucun alias ni migration de format historique n est conserve.
+
+Verification finale :
+- 318 tests cibles reussis, dont six controles temporaires des DLL natives et des configurations Amiberry ; tests externes retires apres verification.
+- Les DLL officielles des trois profils sont chargees et initialisees ; leurs options natives sont verifiees. Aucun lancement de jeu complet ni validation de toutes les combinaisons materielles n est revendique.
+- Build Debug application et huit modules reussi (code de sortie 0) : F:\GW GUI\build\Debug\GW GUI\gwgui.exe. Presence des huit DLL de module verifiee.
+- Audit elargi : huit controles non corriges hors des changements demandes (ressources Nintendo, Sega, Microsoft et Sony ; arborescence commune des autres familles ; selection NEC beetle_sgx). Ne pas confondre ce resultat avec les 318 tests cibles reussis.
+- Les configurations Commodore sont enregistrees dans Emulation\Machines\commodore\Configurations. Les anciens fichiers sous amiga ne sont ni consultes ni deplaces.
+- Les fichiers video deja au format actuel dans Emulation\VideoPresentation restent lisibles ; la migration depuis les anciennes configurations Amiga et Atari est supprimee.

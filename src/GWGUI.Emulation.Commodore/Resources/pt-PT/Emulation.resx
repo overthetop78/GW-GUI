@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga mídia|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Todos os arquivos|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Compatibilidade com o chipset</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>Emula Amiga computadores, CDTV e CD32 sistemas.</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>Emula Amiga computadores, CDTV e CD32 sistemas.</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>A reprodução de som está activa</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>A reprodução de som está desactivada</value></data>
 </root>

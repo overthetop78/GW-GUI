@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.Json;
 using GWGUI.Emulation.Functions;
 
@@ -21,13 +22,12 @@ public sealed class ConfigurationStore
         _pathBase = Path.GetFullPath(pathBase ?? directory);
     }
 
-    public async Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
+    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
     {
         Directory.CreateDirectory(_directory);
         var configurations = new List<MachineConfiguration>();
         var paths = Directory.EnumerateDirectories(_directory)
             .Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName))
-            .Concat(Directory.EnumerateFiles(_directory, ConfigurationStoreConstants.JsonSearchPattern))
             .Where(File.Exists)
             .Order(StringComparer.OrdinalIgnoreCase);
         foreach (var path in paths)
@@ -36,23 +36,15 @@ public sealed class ConfigurationStore
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 var json = ConfigurationFileAccessFunctions.ReadAllText(path);
-                var configuration = JsonConfigurationRecoveryFunctions
-                    .DeserializeRemovingInvalidProperties(json, root =>
-                        root.Deserialize<MachineConfiguration>(JsonOptions)
-                        ?? throw new JsonException(),
-                        out var repairedJson);
-                if (!string.Equals(json, repairedJson, StringComparison.Ordinal))
-                    await JsonConfigurationRecoveryFunctions.WriteAtomicallyAsync(path, repairedJson,
-                        cancellationToken).ConfigureAwait(false);
+                var configuration = JsonSerializer.Deserialize<MachineConfiguration>(json, JsonOptions);
                 if (configuration is not null
-                    && configuration.SchemaVersion is >= ConfigurationStoreConstants.MinimumSchemaVersion
-                    and <= ConfigurationStoreConstants.CurrentSchemaVersion)
+                    && configuration.SchemaVersion == ConfigurationStoreConstants.CurrentSchemaVersion)
                     configurations.Add(ResolvePaths(configuration.EnsureId()));
             }
             catch (JsonException) { }
             catch (IOException) { }
         }
-        return configurations;
+        return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);
     }
 
     public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
@@ -93,10 +85,6 @@ public sealed class ConfigurationStore
             id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         if (Directory.Exists(target))
             Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);
-        var legacy = Path.Combine(_directory,
-            id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)
-            + ConfigurationStoreConstants.LegacyFileExtension);
-        if (File.Exists(legacy)) File.Delete(legacy);
     }
 
     private MachineConfiguration StorePaths(MachineConfiguration configuration) => configuration with

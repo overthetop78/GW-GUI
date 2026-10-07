@@ -19,10 +19,20 @@ namespace GWGUI.Tests.Emulation.Amiga;
 public sealed class AmigaEmulatorAdapterTests
 {
     [Fact]
+    public void ObsoleteConfigurationAliasesAreNoLongerAccepted()
+    {
+        Assert.DoesNotContain("External", Enum.GetNames<Emulator>());
+        Assert.False(Enum.TryParse<Emulator>("External", out _));
+        foreach (var id in new[] { "A500OG", "A1200OG", "A2000OG", "A4030", "A4040", "CD32FR" })
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+                GWGUI.Emulation.Commodore.Common.Machines.Common.Dictionaries.ModelCatalog.Get(id));
+    }
+
+    [Fact]
     public void MachineConfigurationCrossesTheCoreHostJsonBoundary()
     {
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        var original = new MachineConfiguration("A500", "kickstart.rom", Core: Emulator.External);
+        var original = new MachineConfiguration("A500", "kickstart.rom", Core: Emulator.PUAE);
 
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(
             JsonSerializer.Serialize(original, options), options);
@@ -49,20 +59,44 @@ public sealed class AmigaEmulatorAdapterTests
     }
 
     [Fact]
-    public void EngineRegistersPuaeOnlyThroughTheCommonAdapter()
+    public void EngineRegistersThreeProfilesThroughTheCommonAdapter()
     {
         var field = typeof(Engine).GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic);
         var adapters = Assert.IsAssignableFrom<System.Collections.IEnumerable>(field!.GetValue(new Engine()));
         var entries = adapters.Cast<object>().ToArray();
-        var entry = Assert.Single(entries);
-        Assert.Equal("puae", entry.GetType().GetProperty("Key")!.GetValue(entry));
+        Assert.Equal(new[] { "amiberry", "puae", "puae2021" }, entries.Select(entry =>
+            (string)entry.GetType().GetProperty("Key")!.GetValue(entry)!).Order());
+    }
+
+    [Theory]
+    [InlineData("puae", Emulator.PUAE)]
+    [InlineData("puae2021", Emulator.PUAE2021)]
+    [InlineData("amiberry", Emulator.Amiberry)]
+    public async Task AllAmigaMachinesOfferTheThreeProfilesAndTheirRomFields(string id, Emulator core)
+    {
+        using var httpClient = new HttpClient();
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        foreach (var machine in module.Machines)
+        {
+            var original = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(machine.Id));
+            Assert.Equal(Emulator.PUAE, original.Core);
+            var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(original, id));
+            Assert.Equal(core, selected.Core);
+            var installations = await module.GetEmulatorInstallationsAsync(selected);
+            Assert.Equal(new[] { "amiberry", "puae", "puae2021" }, installations.Select(item => item.EmulatorId));
+            Assert.Single(installations.Select(item => item.DescriptionResourceKey).Distinct());
+            Assert.Equal(id, (await module.GetEmulatorInstallationAsync(selected)).EmulatorId);
+            Assert.True(module.Describe(machine.Id, selected).Visibility.Tabs[EmulationMachineTab.Rom]);
+            var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(selected));
+            Assert.Equal(core, restored!.Core);
+        }
     }
 
     [Fact]
     public async Task PuaeStartupFailureKeepsTechnicalDetailOutOfTheDialogMessage()
     {
         var machine = new PuaeMachineFactory().Create(
-            new MachineConfiguration("A600", "kickstart.rom", Core: Emulator.External),
+            new MachineConfiguration("A600", "kickstart.rom", Core: Emulator.PUAE),
             new EmulatorCreationContext(Path.GetTempPath(), "virtual-core", "virtual-host", null, null));
         try
         {

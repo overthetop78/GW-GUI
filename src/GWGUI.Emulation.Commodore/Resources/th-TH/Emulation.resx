@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga สื่อ|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|แฟ้มทั้งหมด|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>ชุดชิป</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>ความเข้ากันได้ของชิฟท์</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>จําลอง Amiga คอมพิวเตอร์ CDTV และ CD32 ระบบ</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>จําลอง Amiga คอมพิวเตอร์ CDTV และ CD32 ระบบ</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>เปิดใช้งานการเล่นเสียง</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>ปิดการเล่นเสียง</value></data>
 </root>

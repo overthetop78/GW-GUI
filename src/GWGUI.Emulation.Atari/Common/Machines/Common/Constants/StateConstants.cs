@@ -22,7 +22,4 @@ internal static class StateConstants
     internal const string MediaCategory = "media";
     internal static readonly byte[] Magic = System.Text.Encoding.ASCII.GetBytes(MagicText);
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
-    internal const string LegacyAudioProperty = "audioEnabled";
-    internal const string LegacyPresentationProperty = "videoRenderer";
-    internal const int LegacyPresentationValueCount = 4;
 }

@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga メディア|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|すべてのファイル|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>チップセット</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>チップセットの互換性</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>エミュレータ Amiga パソコン、 CDTV と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と CD32 システム。</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>エミュレータ Amiga パソコン、 CDTV と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と CD32 システム。</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>サウンド再生が有効になっています</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>再生が無効になっています</value></data>
 </root>

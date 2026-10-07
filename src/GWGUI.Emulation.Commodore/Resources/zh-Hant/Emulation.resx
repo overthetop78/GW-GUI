@@ -7,7 +7,7 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga 媒体|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|所有文件|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>芯片集( T)</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>芯片集兼容性</value></data>
-  <data name="Emulation.Emulator.PUAE.Description"><value>模拟 Amiga 电脑, CDTV 财务报告和已审计财务报表 CD32 系统。</value></data>
+  <data name="Emulation.Emulator.Amiga.Description"><value>模拟 Amiga 电脑, CDTV 财务报告和已审计财务报表 CD32 系统。</value></data>
   <data name="Emulation.Summary.AudioEnabled"><value>已启用声音播放</value></data>
   <data name="Emulation.Summary.AudioDisabled"><value>音效播放已禁用</value></data>
 </root>
